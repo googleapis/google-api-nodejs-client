@@ -1198,8 +1198,7 @@ export namespace meet_v2 {
     list(
       params: Params$Resource$Conferencerecords$Participants$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListParticipantsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListParticipantsResponse>,
       callback: BodyResponseCallback<Schema$ListParticipantsResponse>
     ): void;
     list(
@@ -1724,8 +1723,7 @@ export namespace meet_v2 {
         | BodyResponseCallback<Schema$Recording>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Recording>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Recording> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Recording>>
@@ -1848,8 +1846,7 @@ export namespace meet_v2 {
     list(
       params: Params$Resource$Conferencerecords$Recordings$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListRecordingsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListRecordingsResponse>,
       callback: BodyResponseCallback<Schema$ListRecordingsResponse>
     ): void;
     list(
@@ -2040,8 +2037,7 @@ export namespace meet_v2 {
         | BodyResponseCallback<Schema$SmartNote>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$SmartNote>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$SmartNote> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$SmartNote>>
@@ -2164,8 +2160,7 @@ export namespace meet_v2 {
     list(
       params: Params$Resource$Conferencerecords$Smartnotes$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListSmartNotesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListSmartNotesResponse>,
       callback: BodyResponseCallback<Schema$ListSmartNotesResponse>
     ): void;
     list(
@@ -2360,8 +2355,7 @@ export namespace meet_v2 {
         | BodyResponseCallback<Schema$Transcript>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Transcript>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Transcript> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Transcript>>
@@ -2484,8 +2478,7 @@ export namespace meet_v2 {
     list(
       params: Params$Resource$Conferencerecords$Transcripts$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListTranscriptsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListTranscriptsResponse>,
       callback: BodyResponseCallback<Schema$ListTranscriptsResponse>
     ): void;
     list(
@@ -3009,8 +3002,7 @@ export namespace meet_v2 {
         | BodyResponseCallback<Schema$Space>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Space>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Space> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Space>>
@@ -3146,8 +3138,7 @@ export namespace meet_v2 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -3293,8 +3284,7 @@ export namespace meet_v2 {
         | BodyResponseCallback<Schema$Space>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Space>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Space> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Space>>
@@ -3451,8 +3441,7 @@ export namespace meet_v2 {
         | BodyResponseCallback<Schema$Space>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Space>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Space> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Space>>

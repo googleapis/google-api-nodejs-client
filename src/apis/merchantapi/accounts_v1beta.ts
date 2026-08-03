@@ -308,6 +308,10 @@ export namespace merchantapi_accounts_v1beta {
      * Output only. The human-readable display name of the provider account.
      */
     providerDisplayName?: string | null;
+    /**
+     * Service type for UCP Checkout Management. The provider is managing the UCP Checkout capability integration for the merchant.
+     */
+    ucpCheckoutManagement?: Schema$UcpCheckoutManagement;
   }
   /**
    * Additional instructions to add account services during creation of the account.
@@ -2126,6 +2130,10 @@ export namespace merchantapi_accounts_v1beta {
     minTransitDays?: number | null;
   }
   /**
+   * `UcpCheckoutManagement` payload.
+   */
+  export interface Schema$UcpCheckoutManagement {}
+  /**
    * Request message for the `UnclaimHomepage` method.
    */
   export interface Schema$UnclaimHomepageRequest {}
@@ -2432,8 +2440,7 @@ export namespace merchantapi_accounts_v1beta {
         | BodyResponseCallback<Schema$Account>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Account>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Account> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Account>>
@@ -2588,8 +2595,7 @@ export namespace merchantapi_accounts_v1beta {
         | BodyResponseCallback<Schema$Account>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Account>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Account> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Account>>
@@ -2724,8 +2730,7 @@ export namespace merchantapi_accounts_v1beta {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -2866,8 +2871,7 @@ export namespace merchantapi_accounts_v1beta {
         | BodyResponseCallback<Schema$Account>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Account>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Account> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Account>>
@@ -2989,8 +2993,7 @@ export namespace merchantapi_accounts_v1beta {
     list(
       params: Params$Resource$Accounts$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListAccountsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListAccountsResponse>,
       callback: BodyResponseCallback<Schema$ListAccountsResponse>
     ): void;
     list(
@@ -3132,8 +3135,7 @@ export namespace merchantapi_accounts_v1beta {
     listSubaccounts(
       params: Params$Resource$Accounts$Listsubaccounts,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListSubAccountsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListSubAccountsResponse>,
       callback: BodyResponseCallback<Schema$ListSubAccountsResponse>
     ): void;
     listSubaccounts(
@@ -3312,8 +3314,7 @@ export namespace merchantapi_accounts_v1beta {
         | BodyResponseCallback<Schema$Account>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Account>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Account> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Account>>
@@ -3844,8 +3845,7 @@ export namespace merchantapi_accounts_v1beta {
     getAutomaticImprovements(
       params: Params$Resource$Accounts$Automaticimprovements$Getautomaticimprovements,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$AutomaticImprovements>,
+        MethodOptions | BodyResponseCallback<Schema$AutomaticImprovements>,
       callback: BodyResponseCallback<Schema$AutomaticImprovements>
     ): void;
     getAutomaticImprovements(
@@ -4005,8 +4005,7 @@ export namespace merchantapi_accounts_v1beta {
     updateAutomaticImprovements(
       params: Params$Resource$Accounts$Automaticimprovements$Updateautomaticimprovements,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$AutomaticImprovements>,
+        MethodOptions | BodyResponseCallback<Schema$AutomaticImprovements>,
       callback: BodyResponseCallback<Schema$AutomaticImprovements>
     ): void;
     updateAutomaticImprovements(
@@ -4993,8 +4992,7 @@ export namespace merchantapi_accounts_v1beta {
     getDeveloperRegistration(
       params: Params$Resource$Accounts$Developerregistration$Getdeveloperregistration,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$DeveloperRegistration>,
+        MethodOptions | BodyResponseCallback<Schema$DeveloperRegistration>,
       callback: BodyResponseCallback<Schema$DeveloperRegistration>
     ): void;
     getDeveloperRegistration(
@@ -5144,8 +5142,7 @@ export namespace merchantapi_accounts_v1beta {
     registerGcp(
       params: Params$Resource$Accounts$Developerregistration$Registergcp,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$DeveloperRegistration>,
+        MethodOptions | BodyResponseCallback<Schema$DeveloperRegistration>,
       callback: BodyResponseCallback<Schema$DeveloperRegistration>
     ): void;
     registerGcp(
@@ -5308,8 +5305,7 @@ export namespace merchantapi_accounts_v1beta {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -5796,8 +5792,7 @@ export namespace merchantapi_accounts_v1beta {
     linkGbpAccount(
       params: Params$Resource$Accounts$Gbpaccounts$Linkgbpaccount,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$LinkGbpAccountResponse>,
+        MethodOptions | BodyResponseCallback<Schema$LinkGbpAccountResponse>,
       callback: BodyResponseCallback<Schema$LinkGbpAccountResponse>
     ): void;
     linkGbpAccount(
@@ -5941,8 +5936,7 @@ export namespace merchantapi_accounts_v1beta {
     list(
       params: Params$Resource$Accounts$Gbpaccounts$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListGbpAccountsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListGbpAccountsResponse>,
       callback: BodyResponseCallback<Schema$ListGbpAccountsResponse>
     ): void;
     list(
@@ -6141,8 +6135,7 @@ export namespace merchantapi_accounts_v1beta {
         | BodyResponseCallback<Schema$Homepage>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Homepage>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Homepage> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Homepage>>
@@ -6280,8 +6273,7 @@ export namespace merchantapi_accounts_v1beta {
         | BodyResponseCallback<Schema$Homepage>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Homepage>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Homepage> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Homepage>>
@@ -6425,8 +6417,7 @@ export namespace merchantapi_accounts_v1beta {
         | BodyResponseCallback<Schema$Homepage>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Homepage>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Homepage> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Homepage>>
@@ -6576,8 +6567,7 @@ export namespace merchantapi_accounts_v1beta {
         | BodyResponseCallback<Schema$Homepage>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Homepage>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Homepage> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Homepage>>
@@ -6755,8 +6745,7 @@ export namespace merchantapi_accounts_v1beta {
     list(
       params: Params$Resource$Accounts$Issues$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListAccountIssuesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListAccountIssuesResponse>,
       callback: BodyResponseCallback<Schema$ListAccountIssuesResponse>
     ): void;
     list(
@@ -7770,8 +7759,7 @@ export namespace merchantapi_accounts_v1beta {
     find(
       params: Params$Resource$Accounts$Omnichannelsettings$Lfpproviders$Find,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$FindLfpProvidersResponse>,
+        MethodOptions | BodyResponseCallback<Schema$FindLfpProvidersResponse>,
       callback: BodyResponseCallback<Schema$FindLfpProvidersResponse>
     ): void;
     find(
@@ -7920,8 +7908,7 @@ export namespace merchantapi_accounts_v1beta {
     linkLfpProvider(
       params: Params$Resource$Accounts$Omnichannelsettings$Lfpproviders$Linklfpprovider,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$LinkLfpProviderResponse>,
+        MethodOptions | BodyResponseCallback<Schema$LinkLfpProviderResponse>,
       callback: BodyResponseCallback<Schema$LinkLfpProviderResponse>
     ): void;
     linkLfpProvider(
@@ -8283,8 +8270,7 @@ export namespace merchantapi_accounts_v1beta {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -8971,8 +8957,7 @@ export namespace merchantapi_accounts_v1beta {
         | BodyResponseCallback<Schema$Program>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Program>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Program> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Program>>
@@ -9118,8 +9103,7 @@ export namespace merchantapi_accounts_v1beta {
         | BodyResponseCallback<Schema$Program>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Program>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Program> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Program>>
@@ -9259,8 +9243,7 @@ export namespace merchantapi_accounts_v1beta {
         | BodyResponseCallback<Schema$Program>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Program>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Program> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Program>>
@@ -9383,8 +9366,7 @@ export namespace merchantapi_accounts_v1beta {
     list(
       params: Params$Resource$Accounts$Programs$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListProgramsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListProgramsResponse>,
       callback: BodyResponseCallback<Schema$ListProgramsResponse>
     ): void;
     list(
@@ -9750,8 +9732,7 @@ export namespace merchantapi_accounts_v1beta {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -10271,8 +10252,7 @@ export namespace merchantapi_accounts_v1beta {
         | BodyResponseCallback<Schema$Region>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Region>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Region> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Region>>
@@ -10406,8 +10386,7 @@ export namespace merchantapi_accounts_v1beta {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -10549,8 +10528,7 @@ export namespace merchantapi_accounts_v1beta {
         | BodyResponseCallback<Schema$Region>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Region>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Region> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Region>>
@@ -10850,8 +10828,7 @@ export namespace merchantapi_accounts_v1beta {
         | BodyResponseCallback<Schema$Region>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Region>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Region> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Region>>
@@ -11506,7 +11483,8 @@ export namespace merchantapi_accounts_v1beta {
      *   //   "name": "my_name",
      *   //   "productsManagement": {},
      *   //   "provider": "my_provider",
-     *   //   "providerDisplayName": "my_providerDisplayName"
+     *   //   "providerDisplayName": "my_providerDisplayName",
+     *   //   "ucpCheckoutManagement": {}
      *   // }
      * }
      *
@@ -11654,7 +11632,8 @@ export namespace merchantapi_accounts_v1beta {
      *   //   "name": "my_name",
      *   //   "productsManagement": {},
      *   //   "provider": "my_provider",
-     *   //   "providerDisplayName": "my_providerDisplayName"
+     *   //   "providerDisplayName": "my_providerDisplayName",
+     *   //   "ucpCheckoutManagement": {}
      *   // }
      * }
      *
@@ -11957,7 +11936,8 @@ export namespace merchantapi_accounts_v1beta {
      *   //   "name": "my_name",
      *   //   "productsManagement": {},
      *   //   "provider": "my_provider",
-     *   //   "providerDisplayName": "my_providerDisplayName"
+     *   //   "providerDisplayName": "my_providerDisplayName",
+     *   //   "ucpCheckoutManagement": {}
      *   // }
      * }
      *
@@ -12147,8 +12127,7 @@ export namespace merchantapi_accounts_v1beta {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -12998,8 +12977,7 @@ export namespace merchantapi_accounts_v1beta {
         | BodyResponseCallback<Schema$User>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$User>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$User> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$User>>
@@ -13133,8 +13111,7 @@ export namespace merchantapi_accounts_v1beta {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -13272,8 +13249,7 @@ export namespace merchantapi_accounts_v1beta {
         | BodyResponseCallback<Schema$User>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$User>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$User> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$User>>
@@ -13565,8 +13541,7 @@ export namespace merchantapi_accounts_v1beta {
         | BodyResponseCallback<Schema$User>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$User>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$User> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$User>>
@@ -13774,8 +13749,7 @@ export namespace merchantapi_accounts_v1beta {
         | BodyResponseCallback<Schema$User>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$User>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$User> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$User>>

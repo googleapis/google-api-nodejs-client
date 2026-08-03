@@ -112,6 +112,8 @@ export namespace sts_v1 {
    */
   export class Sts {
     context: APIRequestContext;
+    organizations: Resource$Organizations;
+    projects: Resource$Projects;
     v1: Resource$V1;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
@@ -120,6 +122,8 @@ export namespace sts_v1 {
         google,
       };
 
+      this.organizations = new Resource$Organizations(this.context);
+      this.projects = new Resource$Projects(this.context);
       this.v1 = new Resource$V1(this.context);
     }
   }
@@ -265,6 +269,77 @@ export namespace sts_v1 {
     token_type?: string | null;
   }
   /**
+   * A JSON web key set (JWK) See also https://datatracker.ietf.org/doc/html/rfc7517 and https://github.com/spiffe/spiffe/blob/main/standards/JWT-SVID.md#6-representation-in-the-spiffe-bundle
+   */
+  export interface Schema$GoogleIdentityStsV1Jwk {
+    /**
+     * Algorithm intended for use with the key. Currently "RS256".
+     */
+    alg?: string | null;
+    /**
+     * Exponent value for kty="RSA".
+     */
+    e?: string | null;
+    /**
+     * Key ID.
+     */
+    kid?: string | null;
+    /**
+     * Key type. Currently "RSA".
+     */
+    kty?: string | null;
+    /**
+     * Modulus value for kty="RSA".
+     */
+    n?: string | null;
+    /**
+     * Public key use. Currently "sig".
+     */
+    use?: string | null;
+  }
+  /**
+   * Response message for GetJwks.
+   */
+  export interface Schema$GoogleIdentityStsV1Jwks {
+    /**
+     * The JWKS for this OP.
+     */
+    keys?: Schema$GoogleIdentityStsV1Jwk[];
+  }
+  /**
+   * Response message for GetOpenIdProviderConfig. Message fields are defined in https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderConfigurationResponse
+   */
+  export interface Schema$GoogleIdentityStsV1OpenIdProviderConfig {
+    /**
+     * URL pointing to an authorization endpoint under this issuer. Note: Currently this endpoint returns a 404.
+     */
+    authorization_endpoint?: string | null;
+    /**
+     * JSON array containing a list of the JWS signing algorithms (alg values) supported by the OP for the ID token to encode the claims in a JWT [JWT]. Note: Currently always "["RS256"]".
+     */
+    id_token_signing_alg_values_supported?: string[] | null;
+    /**
+     * URL using the https scheme with no query or fragment components that the OP asserts as its issuer identifier.
+     */
+    issuer?: string | null;
+    /**
+     * URL of the OP's JWK Set [JWK] document, which MUST use the https scheme.
+     */
+    jwks_uri?: string | null;
+    /**
+     * JSON array containing a list of the OAuth 2.0 response_type values that this OP supports. Note: Currently always "["id_token"]".
+     */
+    response_types_supported?: string[] | null;
+    /**
+     * JSON array containing a list of the subject identifier types that this OP supports. Note: Currently always "["public"]".
+     */
+    subject_types_supported?: string[] | null;
+    /**
+     * URL pointing to a token endpoint under this issuer. Note: Currently this endpoint returns a 404.
+     */
+    token_endpoint?: string | null;
+  }
+  /**
    * An `Options` object configures features that the Security Token Service supports, but that are not supported by standard OAuth 2.0 token exchange endpoints, as defined in https://tools.ietf.org/html/rfc8693.
    */
   export interface Schema$GoogleIdentityStsV1Options {
@@ -301,6 +376,733 @@ export namespace sts_v1 {
      * Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
      */
     title?: string | null;
+  }
+
+  export class Resource$Organizations {
+    context: APIRequestContext;
+    locations: Resource$Organizations$Locations;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.locations = new Resource$Organizations$Locations(this.context);
+    }
+  }
+
+  export class Resource$Organizations$Locations {
+    context: APIRequestContext;
+    workloadIdentityPools: Resource$Organizations$Locations$Workloadidentitypools;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.workloadIdentityPools =
+        new Resource$Organizations$Locations$Workloadidentitypools(
+          this.context
+        );
+    }
+  }
+
+  export class Resource$Organizations$Locations$Workloadidentitypools {
+    context: APIRequestContext;
+    openid: Resource$Organizations$Locations$Workloadidentitypools$Openid;
+    wellKnown: Resource$Organizations$Locations$Workloadidentitypools$WellKnown;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.openid =
+        new Resource$Organizations$Locations$Workloadidentitypools$Openid(
+          this.context
+        );
+      this.wellKnown =
+        new Resource$Organizations$Locations$Workloadidentitypools$WellKnown(
+          this.context
+        );
+    }
+  }
+
+  export class Resource$Organizations$Locations$Workloadidentitypools$Openid {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Fetches the signing keys for an agentic or managed workload identity pool and returns them in JWKs format, defined in [RFC 7517](https://tools.ietf.org/html/rfc7517). For now, only agentic system pools are supported. **Preview** This feature is subject to the "Pre-GA Offerings Terms" in the General Service Terms section of the [Service Specific Terms](https://cloud.google.com/terms/service-terms#1). Pre-GA features are available "as is" and might have limited support. For more information, see the [launch stage descriptions](https://cloud.google.com/products#product-launch-stages).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sts.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const sts = google.sts('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await sts.organizations.locations.workloadIdentityPools.openid.getJwks({
+     *       // Required. The name of the pool whose JWKS needs to be retrieved. Format: 'organizations/{ORGANIZATION_NUMBER\}/locations/global/workloadIdentityPools/{POOL_ID\}' 'projects/{PROJECT_NUMBER\}/locations/global/workloadIdentityPools/{POOL_ID\}' Example(s): 'organizations/1234/locations/global/workloadIdentityPools/agents.global.org-1234.system.id.goog' 'projects/12345678/locations/global/workloadIdentityPools/agents.global.proj-12345678.system.id.goog'
+     *       name: 'organizations/my-organization/locations/my-location/workloadIdentityPools/my-workloadIdentityPool',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "keys": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getJwks(
+      params: Params$Resource$Organizations$Locations$Workloadidentitypools$Openid$Getjwks,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    getJwks(
+      params?: Params$Resource$Organizations$Locations$Workloadidentitypools$Openid$Getjwks,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleIdentityStsV1Jwks>>;
+    getJwks(
+      params: Params$Resource$Organizations$Locations$Workloadidentitypools$Openid$Getjwks,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getJwks(
+      params: Params$Resource$Organizations$Locations$Workloadidentitypools$Openid$Getjwks,
+      options:
+        MethodOptions | BodyResponseCallback<Schema$GoogleIdentityStsV1Jwks>,
+      callback: BodyResponseCallback<Schema$GoogleIdentityStsV1Jwks>
+    ): void;
+    getJwks(
+      params: Params$Resource$Organizations$Locations$Workloadidentitypools$Openid$Getjwks,
+      callback: BodyResponseCallback<Schema$GoogleIdentityStsV1Jwks>
+    ): void;
+    getJwks(
+      callback: BodyResponseCallback<Schema$GoogleIdentityStsV1Jwks>
+    ): void;
+    getJwks(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Workloadidentitypools$Openid$Getjwks
+        | BodyResponseCallback<Schema$GoogleIdentityStsV1Jwks>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleIdentityStsV1Jwks>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleIdentityStsV1Jwks>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleIdentityStsV1Jwks>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Workloadidentitypools$Openid$Getjwks;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Workloadidentitypools$Openid$Getjwks;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://sts.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}/openid/jwks').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleIdentityStsV1Jwks>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleIdentityStsV1Jwks>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Organizations$Locations$Workloadidentitypools$Openid$Getjwks extends StandardParameters {
+    /**
+     * Required. The name of the pool whose JWKS needs to be retrieved. Format: 'organizations/{ORGANIZATION_NUMBER\}/locations/global/workloadIdentityPools/{POOL_ID\}' 'projects/{PROJECT_NUMBER\}/locations/global/workloadIdentityPools/{POOL_ID\}' Example(s): 'organizations/1234/locations/global/workloadIdentityPools/agents.global.org-1234.system.id.goog' 'projects/12345678/locations/global/workloadIdentityPools/agents.global.proj-12345678.system.id.goog'
+     */
+    name?: string;
+  }
+
+  export class Resource$Organizations$Locations$Workloadidentitypools$WellKnown {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets the OIDC provider configuration for an agentic or managed workload identity pool following [the OIDC 1.0 discovery specification](https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderConfigurationResponse). For now, only agentic system pools are supported. **Preview** This feature is subject to the "Pre-GA Offerings Terms" in the General Service Terms section of the [Service Specific Terms](https://cloud.google.com/terms/service-terms#1). Pre-GA features are available "as is" and might have limited support. For more information, see the [launch stage descriptions](https://cloud.google.com/products#product-launch-stages).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sts.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const sts = google.sts('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     (await sts.organizations.locations.workloadIdentityPools.well) -
+     *     known.getOpenid -
+     *     configuration({
+     *       // Required. The name of the pool whose OpenID provider configuration to retrieve. Format: 'organizations/{ORGANIZATION_NUMBER\}/locations/global/workloadIdentityPools/{POOL_ID\}' 'projects/{PROJECT_NUMBER\}/locations/global/workloadIdentityPools/{POOL_ID\}' Example: 'organizations/1234/locations/global/workloadIdentityPools/agents.global.org-1234.system.id.goog' 'projects/12345678/locations/global/workloadIdentityPools/agents.global.proj-12345678.system.id.goog'
+     *       name: 'organizations/my-organization/locations/my-location/workloadIdentityPools/my-workloadIdentityPool',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "authorization_endpoint": "my_authorization_endpoint",
+     *   //   "id_token_signing_alg_values_supported": [],
+     *   //   "issuer": "my_issuer",
+     *   //   "jwks_uri": "my_jwks_uri",
+     *   //   "response_types_supported": [],
+     *   //   "subject_types_supported": [],
+     *   //   "token_endpoint": "my_token_endpoint"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getOpenidConfiguration(
+      params: Params$Resource$Organizations$Locations$Workloadidentitypools$WellKnown$Getopenidconfiguration,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    getOpenidConfiguration(
+      params?: Params$Resource$Organizations$Locations$Workloadidentitypools$WellKnown$Getopenidconfiguration,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleIdentityStsV1OpenIdProviderConfig>
+    >;
+    getOpenidConfiguration(
+      params: Params$Resource$Organizations$Locations$Workloadidentitypools$WellKnown$Getopenidconfiguration,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getOpenidConfiguration(
+      params: Params$Resource$Organizations$Locations$Workloadidentitypools$WellKnown$Getopenidconfiguration,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleIdentityStsV1OpenIdProviderConfig>,
+      callback: BodyResponseCallback<Schema$GoogleIdentityStsV1OpenIdProviderConfig>
+    ): void;
+    getOpenidConfiguration(
+      params: Params$Resource$Organizations$Locations$Workloadidentitypools$WellKnown$Getopenidconfiguration,
+      callback: BodyResponseCallback<Schema$GoogleIdentityStsV1OpenIdProviderConfig>
+    ): void;
+    getOpenidConfiguration(
+      callback: BodyResponseCallback<Schema$GoogleIdentityStsV1OpenIdProviderConfig>
+    ): void;
+    getOpenidConfiguration(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Workloadidentitypools$WellKnown$Getopenidconfiguration
+        | BodyResponseCallback<Schema$GoogleIdentityStsV1OpenIdProviderConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleIdentityStsV1OpenIdProviderConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleIdentityStsV1OpenIdProviderConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleIdentityStsV1OpenIdProviderConfig>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Workloadidentitypools$WellKnown$Getopenidconfiguration;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Workloadidentitypools$WellKnown$Getopenidconfiguration;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://sts.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+name}/.well-known/openid-configuration'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleIdentityStsV1OpenIdProviderConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleIdentityStsV1OpenIdProviderConfig>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Organizations$Locations$Workloadidentitypools$WellKnown$Getopenidconfiguration extends StandardParameters {
+    /**
+     * Required. The name of the pool whose OpenID provider configuration to retrieve. Format: 'organizations/{ORGANIZATION_NUMBER\}/locations/global/workloadIdentityPools/{POOL_ID\}' 'projects/{PROJECT_NUMBER\}/locations/global/workloadIdentityPools/{POOL_ID\}' Example: 'organizations/1234/locations/global/workloadIdentityPools/agents.global.org-1234.system.id.goog' 'projects/12345678/locations/global/workloadIdentityPools/agents.global.proj-12345678.system.id.goog'
+     */
+    name?: string;
+  }
+
+  export class Resource$Projects {
+    context: APIRequestContext;
+    locations: Resource$Projects$Locations;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.locations = new Resource$Projects$Locations(this.context);
+    }
+  }
+
+  export class Resource$Projects$Locations {
+    context: APIRequestContext;
+    workloadIdentityPools: Resource$Projects$Locations$Workloadidentitypools;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.workloadIdentityPools =
+        new Resource$Projects$Locations$Workloadidentitypools(this.context);
+    }
+  }
+
+  export class Resource$Projects$Locations$Workloadidentitypools {
+    context: APIRequestContext;
+    openid: Resource$Projects$Locations$Workloadidentitypools$Openid;
+    wellKnown: Resource$Projects$Locations$Workloadidentitypools$WellKnown;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.openid =
+        new Resource$Projects$Locations$Workloadidentitypools$Openid(
+          this.context
+        );
+      this.wellKnown =
+        new Resource$Projects$Locations$Workloadidentitypools$WellKnown(
+          this.context
+        );
+    }
+  }
+
+  export class Resource$Projects$Locations$Workloadidentitypools$Openid {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Fetches the signing keys for an agentic or managed workload identity pool and returns them in JWKs format, defined in [RFC 7517](https://tools.ietf.org/html/rfc7517). For now, only agentic system pools are supported. **Preview** This feature is subject to the "Pre-GA Offerings Terms" in the General Service Terms section of the [Service Specific Terms](https://cloud.google.com/terms/service-terms#1). Pre-GA features are available "as is" and might have limited support. For more information, see the [launch stage descriptions](https://cloud.google.com/products#product-launch-stages).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sts.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const sts = google.sts('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sts.projects.locations.workloadIdentityPools.openid.getJwks(
+     *     {
+     *       // Required. The name of the pool whose JWKS needs to be retrieved. Format: 'organizations/{ORGANIZATION_NUMBER\}/locations/global/workloadIdentityPools/{POOL_ID\}' 'projects/{PROJECT_NUMBER\}/locations/global/workloadIdentityPools/{POOL_ID\}' Example(s): 'organizations/1234/locations/global/workloadIdentityPools/agents.global.org-1234.system.id.goog' 'projects/12345678/locations/global/workloadIdentityPools/agents.global.proj-12345678.system.id.goog'
+     *       name: 'projects/my-project/locations/my-location/workloadIdentityPools/my-workloadIdentityPool',
+     *     },
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "keys": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getJwks(
+      params: Params$Resource$Projects$Locations$Workloadidentitypools$Openid$Getjwks,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    getJwks(
+      params?: Params$Resource$Projects$Locations$Workloadidentitypools$Openid$Getjwks,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleIdentityStsV1Jwks>>;
+    getJwks(
+      params: Params$Resource$Projects$Locations$Workloadidentitypools$Openid$Getjwks,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getJwks(
+      params: Params$Resource$Projects$Locations$Workloadidentitypools$Openid$Getjwks,
+      options:
+        MethodOptions | BodyResponseCallback<Schema$GoogleIdentityStsV1Jwks>,
+      callback: BodyResponseCallback<Schema$GoogleIdentityStsV1Jwks>
+    ): void;
+    getJwks(
+      params: Params$Resource$Projects$Locations$Workloadidentitypools$Openid$Getjwks,
+      callback: BodyResponseCallback<Schema$GoogleIdentityStsV1Jwks>
+    ): void;
+    getJwks(
+      callback: BodyResponseCallback<Schema$GoogleIdentityStsV1Jwks>
+    ): void;
+    getJwks(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Workloadidentitypools$Openid$Getjwks
+        | BodyResponseCallback<Schema$GoogleIdentityStsV1Jwks>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleIdentityStsV1Jwks>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleIdentityStsV1Jwks>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleIdentityStsV1Jwks>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Workloadidentitypools$Openid$Getjwks;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Workloadidentitypools$Openid$Getjwks;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://sts.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}/openid/jwks').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleIdentityStsV1Jwks>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleIdentityStsV1Jwks>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Openid$Getjwks extends StandardParameters {
+    /**
+     * Required. The name of the pool whose JWKS needs to be retrieved. Format: 'organizations/{ORGANIZATION_NUMBER\}/locations/global/workloadIdentityPools/{POOL_ID\}' 'projects/{PROJECT_NUMBER\}/locations/global/workloadIdentityPools/{POOL_ID\}' Example(s): 'organizations/1234/locations/global/workloadIdentityPools/agents.global.org-1234.system.id.goog' 'projects/12345678/locations/global/workloadIdentityPools/agents.global.proj-12345678.system.id.goog'
+     */
+    name?: string;
+  }
+
+  export class Resource$Projects$Locations$Workloadidentitypools$WellKnown {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets the OIDC provider configuration for an agentic or managed workload identity pool following [the OIDC 1.0 discovery specification](https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderConfigurationResponse). For now, only agentic system pools are supported. **Preview** This feature is subject to the "Pre-GA Offerings Terms" in the General Service Terms section of the [Service Specific Terms](https://cloud.google.com/terms/service-terms#1). Pre-GA features are available "as is" and might have limited support. For more information, see the [launch stage descriptions](https://cloud.google.com/products#product-launch-stages).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sts.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const sts = google.sts('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     (await sts.projects.locations.workloadIdentityPools.well) -
+     *     known.getOpenid -
+     *     configuration({
+     *       // Required. The name of the pool whose OpenID provider configuration to retrieve. Format: 'organizations/{ORGANIZATION_NUMBER\}/locations/global/workloadIdentityPools/{POOL_ID\}' 'projects/{PROJECT_NUMBER\}/locations/global/workloadIdentityPools/{POOL_ID\}' Example: 'organizations/1234/locations/global/workloadIdentityPools/agents.global.org-1234.system.id.goog' 'projects/12345678/locations/global/workloadIdentityPools/agents.global.proj-12345678.system.id.goog'
+     *       name: 'projects/my-project/locations/my-location/workloadIdentityPools/my-workloadIdentityPool',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "authorization_endpoint": "my_authorization_endpoint",
+     *   //   "id_token_signing_alg_values_supported": [],
+     *   //   "issuer": "my_issuer",
+     *   //   "jwks_uri": "my_jwks_uri",
+     *   //   "response_types_supported": [],
+     *   //   "subject_types_supported": [],
+     *   //   "token_endpoint": "my_token_endpoint"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getOpenidConfiguration(
+      params: Params$Resource$Projects$Locations$Workloadidentitypools$WellKnown$Getopenidconfiguration,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    getOpenidConfiguration(
+      params?: Params$Resource$Projects$Locations$Workloadidentitypools$WellKnown$Getopenidconfiguration,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleIdentityStsV1OpenIdProviderConfig>
+    >;
+    getOpenidConfiguration(
+      params: Params$Resource$Projects$Locations$Workloadidentitypools$WellKnown$Getopenidconfiguration,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getOpenidConfiguration(
+      params: Params$Resource$Projects$Locations$Workloadidentitypools$WellKnown$Getopenidconfiguration,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleIdentityStsV1OpenIdProviderConfig>,
+      callback: BodyResponseCallback<Schema$GoogleIdentityStsV1OpenIdProviderConfig>
+    ): void;
+    getOpenidConfiguration(
+      params: Params$Resource$Projects$Locations$Workloadidentitypools$WellKnown$Getopenidconfiguration,
+      callback: BodyResponseCallback<Schema$GoogleIdentityStsV1OpenIdProviderConfig>
+    ): void;
+    getOpenidConfiguration(
+      callback: BodyResponseCallback<Schema$GoogleIdentityStsV1OpenIdProviderConfig>
+    ): void;
+    getOpenidConfiguration(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Workloadidentitypools$WellKnown$Getopenidconfiguration
+        | BodyResponseCallback<Schema$GoogleIdentityStsV1OpenIdProviderConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleIdentityStsV1OpenIdProviderConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleIdentityStsV1OpenIdProviderConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleIdentityStsV1OpenIdProviderConfig>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Workloadidentitypools$WellKnown$Getopenidconfiguration;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Workloadidentitypools$WellKnown$Getopenidconfiguration;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://sts.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+name}/.well-known/openid-configuration'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleIdentityStsV1OpenIdProviderConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleIdentityStsV1OpenIdProviderConfig>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Workloadidentitypools$WellKnown$Getopenidconfiguration extends StandardParameters {
+    /**
+     * Required. The name of the pool whose OpenID provider configuration to retrieve. Format: 'organizations/{ORGANIZATION_NUMBER\}/locations/global/workloadIdentityPools/{POOL_ID\}' 'projects/{PROJECT_NUMBER\}/locations/global/workloadIdentityPools/{POOL_ID\}' Example: 'organizations/1234/locations/global/workloadIdentityPools/agents.global.org-1234.system.id.goog' 'projects/12345678/locations/global/workloadIdentityPools/agents.global.proj-12345678.system.id.goog'
+     */
+    name?: string;
   }
 
   export class Resource$V1 {

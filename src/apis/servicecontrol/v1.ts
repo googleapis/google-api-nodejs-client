@@ -284,6 +284,10 @@ export namespace servicecontrol_v1 {
      */
     claims?: {[key: string]: any} | null;
     /**
+     * Identifies the client credential id used for authentication. credential_id is in the format of AUTH_METHOD:IDENTIFIER, e.g. "serviceaccount:XXXXX, apikey:XXXXX" where the format of the IDENTIFIER can vary for different AUTH_METHODs.
+     */
+    credentialId?: string | null;
+    /**
      * Attributes of the OAuth token associated with the request.
      */
     oauth?: Schema$Oauth;
@@ -1693,8 +1697,7 @@ export namespace servicecontrol_v1 {
     allocateQuota(
       params: Params$Resource$Services$Allocatequota,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$AllocateQuotaResponse>,
+        MethodOptions | BodyResponseCallback<Schema$AllocateQuotaResponse>,
       callback: BodyResponseCallback<Schema$AllocateQuotaResponse>
     ): void;
     allocateQuota(

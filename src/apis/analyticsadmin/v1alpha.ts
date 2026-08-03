@@ -2514,6 +2514,10 @@ export namespace analyticsadmin_v1alpha {
    */
   export interface Schema$GoogleAnalyticsAdminV1alphaPropertySummary {
     /**
+     * If true, then the user has a Google Analytics role that permits them to edit the property.
+     */
+    canEdit?: boolean | null;
+    /**
      * Display name for the property referred to in this property summary.
      */
     displayName?: string | null;
@@ -3481,7 +3485,7 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * Returns all accounts accessible by the caller. Note that these accounts might not currently have GA properties. Soft-deleted (ie: "trashed") accounts are excluded by default. Returns an empty list if no relevant accounts are found.
+     * Returns all accounts accessible by the caller. Note that these accounts might not currently have GA properties. Soft-deleted (ie: "trashed") accounts are excluded by default. Returns an empty list if no relevant accounts are found. Note: The easiest way to retrieve a list of all properties you have access to is by using `ListAccountSummaries`.
      * @example
      * ```js
      * // Before running the sample:
@@ -8929,6 +8933,164 @@ export namespace analyticsadmin_v1alpha {
         );
       }
     }
+
+    /**
+     * Updates the reporting identity settings for this property.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analyticsadmin = google.analyticsadmin('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analyticsadmin.properties.updateReportingIdentitySettings({
+     *     // Output only. Identifier. Resource name for this reporting identity settings singleton resource. Format: properties/{property_id\}/reportingIdentitySettings Example: "properties/1234/reportingIdentitySettings"
+     *     name: 'properties/my-propertie/reportingIdentitySettings',
+     *     // Optional. The list of fields to be updated. Field names must be in snake case (for example, "field_to_update"). Omitted fields will not be updated. To replace the entire entity, use one path with the string "*" to match all fields. If omitted, the service will treat it as an implied field mask equivalent to all fields that are populated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "name": "my_name",
+     *       //   "reportingIdentity": "my_reportingIdentity"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name",
+     *   //   "reportingIdentity": "my_reportingIdentity"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    updateReportingIdentitySettings(
+      params: Params$Resource$Properties$Updatereportingidentitysettings,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    updateReportingIdentitySettings(
+      params?: Params$Resource$Properties$Updatereportingidentitysettings,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaReportingIdentitySettings>
+    >;
+    updateReportingIdentitySettings(
+      params: Params$Resource$Properties$Updatereportingidentitysettings,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    updateReportingIdentitySettings(
+      params: Params$Resource$Properties$Updatereportingidentitysettings,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaReportingIdentitySettings>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaReportingIdentitySettings>
+    ): void;
+    updateReportingIdentitySettings(
+      params: Params$Resource$Properties$Updatereportingidentitysettings,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaReportingIdentitySettings>
+    ): void;
+    updateReportingIdentitySettings(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaReportingIdentitySettings>
+    ): void;
+    updateReportingIdentitySettings(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Updatereportingidentitysettings
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaReportingIdentitySettings>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaReportingIdentitySettings>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaReportingIdentitySettings>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaReportingIdentitySettings>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Updatereportingidentitysettings;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Properties$Updatereportingidentitysettings;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaReportingIdentitySettings>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaReportingIdentitySettings>(
+          parameters
+        );
+      }
+    }
   }
 
   export interface Params$Resource$Properties$Acknowledgeuserdatacollection extends StandardParameters {
@@ -9101,6 +9263,21 @@ export namespace analyticsadmin_v1alpha {
      * Request body metadata
      */
     requestBody?: Schema$GoogleAnalyticsAdminV1alphaGoogleSignalsSettings;
+  }
+  export interface Params$Resource$Properties$Updatereportingidentitysettings extends StandardParameters {
+    /**
+     * Output only. Identifier. Resource name for this reporting identity settings singleton resource. Format: properties/{property_id\}/reportingIdentitySettings Example: "properties/1234/reportingIdentitySettings"
+     */
+    name?: string;
+    /**
+     * Optional. The list of fields to be updated. Field names must be in snake case (for example, "field_to_update"). Omitted fields will not be updated. To replace the entire entity, use one path with the string "*" to match all fields. If omitted, the service will treat it as an implied field mask equivalent to all fields that are populated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleAnalyticsAdminV1alphaReportingIdentitySettings;
   }
 
   export class Resource$Properties$Accessbindings {

@@ -2086,7 +2086,7 @@
       }
     }
   },
-  "revision": "20260507",
+  "revision": "20260723",
   "rootUrl": "https://alloydb.googleapis.com/",
   "schemas": {
     "AuthorizedNetwork": {
@@ -2716,7 +2716,8 @@
           "type": "string"
         },
         "networkConfig": {
-          "$ref": "NetworkConfig"
+          "$ref": "NetworkConfig",
+          "description": "Optional."
         },
         "primaryConfig": {
           "$ref": "PrimaryConfig",
@@ -2950,6 +2951,11 @@
           "readOnly": true,
           "type": "array"
         },
+        "pscAutoDnsName": {
+          "description": "Output only. Specifies the DNS name to use with PSC service automation for the Instance.",
+          "readOnly": true,
+          "type": "string"
+        },
         "pscDnsName": {
           "description": "Output only. The DNS name to use with PSC for the Instance.",
           "readOnly": true,
@@ -2973,6 +2979,22 @@
           "readOnly": true,
           "type": "integer"
         },
+        "authproxyPoolerScalingType": {
+          "description": "Optional. The scaling type of the AuthProxy pooler.",
+          "enum": [
+            "POOLER_SCALING_TYPE_UNSPECIFIED",
+            "POOLER_NONE",
+            "POOLER_MACHINE_SIZED",
+            "POOLER_MANUAL_OVERRIDE"
+          ],
+          "enumDescriptions": [
+            "The scaling type is not specified.",
+            "No pooler is enabled.",
+            "The number of poolers is automatically determined by the service based on the VM size.",
+            "The number of poolers is kept unchanged no matter the machine size."
+          ],
+          "type": "string"
+        },
         "enabled": {
           "description": "Optional. Whether to enable Managed Connection Pool (MCP).",
           "type": "boolean"
@@ -2989,6 +3011,22 @@
           "format": "int32",
           "readOnly": true,
           "type": "integer"
+        },
+        "poolerScalingType": {
+          "description": "Optional. The scaling type of the regular pooler.",
+          "enum": [
+            "POOLER_SCALING_TYPE_UNSPECIFIED",
+            "POOLER_NONE",
+            "POOLER_MACHINE_SIZED",
+            "POOLER_MANUAL_OVERRIDE"
+          ],
+          "enumDescriptions": [
+            "The scaling type is not specified.",
+            "No pooler is enabled.",
+            "The number of poolers is automatically determined by the service based on the VM size.",
+            "The number of poolers is kept unchanged no matter the machine size."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -3768,6 +3806,11 @@
           "$ref": "PscInstanceConfig",
           "description": "Optional. The configuration for Private Service Connect (PSC) for the instance."
         },
+        "pscInstanceInfo": {
+          "$ref": "PscInstanceInfo",
+          "description": "Output only. Information about the Private Service Connect (PSC) for the instance.",
+          "readOnly": true
+        },
         "publicIpAddress": {
           "description": "Output only. The public IP addresses for the Instance. This is available ONLY when enable_public_ip is set. This is the connection endpoint for an end-user application.",
           "readOnly": true,
@@ -4540,12 +4583,40 @@
           },
           "type": "array"
         },
+        "pscAutoConnectionPolicyState": {
+          "description": "Optional. Configuration for setting up PSC auto connection for the instance.",
+          "enum": [
+            "PSC_AUTO_CONNECTION_POLICY_STATE_UNSPECIFIED",
+            "ENABLED",
+            "DISABLED"
+          ],
+          "enumDescriptions": [
+            "The state is unspecified. For old instances, this means the PSC auto connection is disabled. For new instances, this means the PSC auto connection is enabled by default.",
+            "Enables the PSC auto connection for the instance.",
+            "Disables the PSC auto connection for the instance."
+          ],
+          "type": "string"
+        },
         "pscAutoConnections": {
           "description": "Optional. Configurations for setting up PSC service automation.",
           "items": {
             "$ref": "PscAutoConnectionConfig"
           },
           "type": "array"
+        },
+        "pscAutoDnsState": {
+          "description": "Optional. Configuration for setting up PSC auto DNS for the instance.",
+          "enum": [
+            "PSC_AUTO_DNS_STATE_UNSPECIFIED",
+            "PSC_AUTO_DNS_STATE_ENABLED",
+            "PSC_AUTO_DNS_STATE_DISABLED"
+          ],
+          "enumDescriptions": [
+            "The state is unspecified. For old instances, this means the PSC auto DNS is disabled. For new instances, this means the PSC auto DNS is enabled by default. Use `effective_psc_auto_dns_enabled` to check the effective state of the PSC auto DNS.",
+            "Enables the PSC auto DNS for the instance.",
+            "Disables the PSC auto DNS for the instance."
+          ],
+          "type": "string"
         },
         "pscDnsName": {
           "description": "Output only. The DNS name of the instance for PSC connectivity. Name convention: ...alloydb-psc.goog",
@@ -4561,6 +4632,36 @@
         },
         "serviceAttachmentLink": {
           "description": "Output only. The service attachment created when Private Service Connect (PSC) is enabled for the instance. The name of the resource will be in the format of `projects//regions//serviceAttachments/`",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PscInstanceInfo": {
+      "description": "Information about the Private Service Connect (PSC) for the instance.",
+      "id": "PscInstanceInfo",
+      "properties": {
+        "effectivePscAutoConnectionPolicy": {
+          "description": "Output only. Indicates if the PSC auto connection policy is enabled for the instance. For older instances, this will be off by default, but for newer instances, this will be auto-enabled.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "effectivePscAutoDnsEnabled": {
+          "description": "Output only. The effective state of the PSC auto DNS for the instance.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "pscAutoDnsNames": {
+          "description": "Output only. Specifies the auto DNS names for the instance.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "serviceConnectionPolicy": {
+          "description": "Output only. The PSC service connection policy name. The format is \"projects//regions//serviceConnectionPolicies/\"",
           "readOnly": true,
           "type": "string"
         }
@@ -5040,15 +5141,15 @@
       "type": "object"
     },
     "StorageDatabasecenterPartnerapiV1mainAvailabilityConfiguration": {
-      "description": "Configuration for availability of database instance",
+      "description": "Disable validation warnings",
       "id": "StorageDatabasecenterPartnerapiV1mainAvailabilityConfiguration",
       "properties": {
         "automaticFailoverRoutingConfigured": {
-          "description": "Checks for existence of (multi-cluster) routing configuration that allows automatic failover to a different zone/region in case of an outage. Applicable to Bigtable resources.",
+          "description": "Disable validation warnings",
           "type": "boolean"
         },
         "availabilityType": {
-          "description": "Availability type. Potential values: * `ZONAL`: The instance serves data from only one zone. Outages in that zone affect data accessibility. * `REGIONAL`: The instance can serve data from more than one zone in a region (it is highly available).",
+          "description": "Disable validation warnings",
           "enum": [
             "AVAILABILITY_TYPE_UNSPECIFIED",
             "ZONAL",
@@ -5057,118 +5158,120 @@
             "AVAILABILITY_TYPE_OTHER"
           ],
           "enumDescriptions": [
-            "",
-            "Zonal available instance.",
-            "Regional available instance.",
-            "Multi regional instance",
-            "For rest of the other category"
+            "Disable validation warnings",
+            "Disable validation warnings",
+            "Disable validation warnings",
+            "Disable validation warnings",
+            "Disable validation warnings"
           ],
           "type": "string"
         },
         "crossRegionReplicaConfigured": {
-          "description": "Checks for resources that are configured to have redundancy, and ongoing replication across regions",
+          "description": "Disable validation warnings",
           "type": "boolean"
         },
         "externalReplicaConfigured": {
+          "description": "Disable validation warnings",
           "type": "boolean"
         },
         "promotableReplicaConfigured": {
+          "description": "Disable validation warnings",
           "type": "boolean"
         }
       },
       "type": "object"
     },
     "StorageDatabasecenterPartnerapiV1mainBackupConfiguration": {
-      "description": "Configuration for automatic backups",
+      "description": "Disable validation warnings",
       "id": "StorageDatabasecenterPartnerapiV1mainBackupConfiguration",
       "properties": {
         "automatedBackupEnabled": {
-          "description": "Whether customer visible automated backups are enabled on the instance.",
+          "description": "Disable validation warnings",
           "type": "boolean"
         },
         "backupRetentionSettings": {
           "$ref": "StorageDatabasecenterPartnerapiV1mainRetentionSettings",
-          "description": "Backup retention settings."
+          "description": "Disable validation warnings"
         },
         "pointInTimeRecoveryEnabled": {
-          "description": "Whether point-in-time recovery is enabled. This is optional field, if the database service does not have this feature or metadata is not available in control plane, this can be omitted.",
+          "description": "Disable validation warnings",
           "type": "boolean"
         }
       },
       "type": "object"
     },
     "StorageDatabasecenterPartnerapiV1mainBackupDRConfiguration": {
-      "description": "BackupDRConfiguration to capture the backup and disaster recovery details of database resource.",
+      "description": "Disable validation warnings",
       "id": "StorageDatabasecenterPartnerapiV1mainBackupDRConfiguration",
       "properties": {
         "backupdrManaged": {
-          "description": "Indicates if the resource is managed by BackupDR.",
+          "description": "Disable validation warnings",
           "type": "boolean"
         }
       },
       "type": "object"
     },
     "StorageDatabasecenterPartnerapiV1mainBackupDRMetadata": {
-      "description": "BackupDRMetadata contains information about the backup and disaster recovery metadata of a database resource.",
+      "description": "Disable validation warnings",
       "id": "StorageDatabasecenterPartnerapiV1mainBackupDRMetadata",
       "properties": {
         "backupConfiguration": {
           "$ref": "StorageDatabasecenterPartnerapiV1mainBackupConfiguration",
-          "description": "Backup configuration for this instance."
+          "description": "Disable validation warnings"
         },
         "backupRun": {
           "$ref": "StorageDatabasecenterPartnerapiV1mainBackupRun",
-          "description": "Latest backup run information for this instance."
+          "description": "Disable validation warnings"
         },
         "backupdrConfiguration": {
           "$ref": "StorageDatabasecenterPartnerapiV1mainBackupDRConfiguration",
-          "description": "BackupDR configuration for this instance."
+          "description": "Disable validation warnings"
         },
         "fullResourceName": {
-          "description": "Required. Full resource name of this instance.",
+          "description": "Required. Disable validation warnings",
           "type": "string"
         },
         "lastRefreshTime": {
-          "description": "Required. Last time backup configuration was refreshed.",
+          "description": "Required. Disable validation warnings",
           "format": "google-datetime",
           "type": "string"
         },
         "resourceId": {
           "$ref": "StorageDatabasecenterPartnerapiV1mainDatabaseResourceId",
-          "description": "Required. Database resource id."
+          "description": "Required. Disable validation warnings"
         }
       },
       "type": "object"
     },
     "StorageDatabasecenterPartnerapiV1mainBackupRun": {
-      "description": "A backup run.",
+      "description": "Disable validation warnings",
       "id": "StorageDatabasecenterPartnerapiV1mainBackupRun",
       "properties": {
         "endTime": {
-          "description": "The time the backup operation completed. REQUIRED",
+          "description": "Disable validation warnings",
           "format": "google-datetime",
           "type": "string"
         },
         "error": {
           "$ref": "StorageDatabasecenterPartnerapiV1mainOperationError",
-          "description": "Information about why the backup operation failed. This is only present if the run has the FAILED status. OPTIONAL"
+          "description": "Disable validation warnings"
         },
         "startTime": {
-          "description": "The time the backup operation started. REQUIRED",
+          "description": "Disable validation warnings",
           "format": "google-datetime",
           "type": "string"
         },
         "status": {
-          "description": "The status of this run. REQUIRED",
+          "description": "Disable validation warnings",
           "enum": [
             "STATUS_UNSPECIFIED",
             "SUCCESSFUL",
             "FAILED"
           ],
           "enumDescriptions": [
-            "",
-            "The backup was successful.",
-            "The backup was unsuccessful."
+            "Disable validation warnings",
+            "Disable validation warnings",
+            "Disable validation warnings"
           ],
           "type": "string"
         }
@@ -5176,43 +5279,43 @@
       "type": "object"
     },
     "StorageDatabasecenterPartnerapiV1mainCompliance": {
-      "description": "Contains compliance information about a security standard indicating unmet recommendations.",
+      "description": "Disable validation warnings",
       "id": "StorageDatabasecenterPartnerapiV1mainCompliance",
       "properties": {
         "standard": {
-          "description": "Industry-wide compliance standards or benchmarks, such as CIS, PCI, and OWASP.",
+          "description": "Disable validation warnings",
           "type": "string"
         },
         "version": {
-          "description": "Version of the standard or benchmark, for example, 1.1",
+          "description": "Disable validation warnings",
           "type": "string"
         }
       },
       "type": "object"
     },
     "StorageDatabasecenterPartnerapiV1mainConfigBasedSignalData": {
-      "description": "Config based signal data. This is used to send signals to Condor which are based on the DB level configurations. These will be used to send signals for self managed databases.",
+      "description": "Disable validation warnings",
       "id": "StorageDatabasecenterPartnerapiV1mainConfigBasedSignalData",
       "properties": {
         "fullResourceName": {
-          "description": "Required. Full Resource name of the source resource.",
+          "description": "Required. Disable validation warnings",
           "type": "string"
         },
         "lastRefreshTime": {
-          "description": "Required. Last time signal was refreshed",
+          "description": "Required. Disable validation warnings",
           "format": "google-datetime",
           "type": "string"
         },
         "resourceId": {
           "$ref": "StorageDatabasecenterPartnerapiV1mainDatabaseResourceId",
-          "description": "Database resource id."
+          "description": "Disable validation warnings"
         },
         "signalBoolValue": {
-          "description": "Signal data for boolean signals.",
+          "description": "Disable validation warnings",
           "type": "boolean"
         },
         "signalType": {
-          "description": "Required. Signal type of the signal",
+          "description": "Required. Disable validation warnings",
           "enum": [
             "SIGNAL_TYPE_UNSPECIFIED",
             "SIGNAL_TYPE_OUTDATED_MINOR_VERSION",
@@ -5227,17 +5330,17 @@
             "SIGNAL_TYPE_NOT_PROTECTED_BY_AUTOMATIC_FAILOVER"
           ],
           "enumDescriptions": [
-            "Unspecified signal type.",
-            "Outdated Minor Version",
-            "Represents database auditing is disabled.",
-            "Represents if a database has a password configured for the root account or not.",
-            "Represents if a resource is exposed to public access.",
-            "Represents if a resources requires all incoming connections to use SSL or not.",
-            "Represents if a resource version is in extended support.",
-            "Represents if a resource has no automated backup policy.",
-            "Represents if a resource version is nearing end of life.",
-            "Represents if the last backup of a resource is older than 24 hours.",
-            "Represents if a resource is not protected by automatic failover."
+            "Disable validation warnings",
+            "Disable validation warnings",
+            "Disable validation warnings",
+            "Disable validation warnings",
+            "Disable validation warnings",
+            "Disable validation warnings",
+            "Disable validation warnings",
+            "Disable validation warnings",
+            "Disable validation warnings",
+            "Disable validation warnings",
+            "Disable validation warnings"
           ],
           "type": "string"
         }
@@ -5245,11 +5348,11 @@
       "type": "object"
     },
     "StorageDatabasecenterPartnerapiV1mainCustomMetadataData": {
-      "description": "Any custom metadata associated with the resource. e.g. A spanner instance can have multiple databases with its own unique metadata. Information for these individual databases can be captured in custom metadata data",
+      "description": "Disable validation warnings",
       "id": "StorageDatabasecenterPartnerapiV1mainCustomMetadataData",
       "properties": {
         "internalResourceMetadata": {
-          "description": "Metadata for individual internal resources in an instance. e.g. spanner instance can have multiple databases with unique configuration.",
+          "description": "Disable validation warnings",
           "items": {
             "$ref": "StorageDatabasecenterPartnerapiV1mainInternalResourceMetadata"
           },
@@ -5259,28 +5362,28 @@
       "type": "object"
     },
     "StorageDatabasecenterPartnerapiV1mainDatabaseResourceFeed": {
-      "description": "DatabaseResourceFeed is the top level proto to be used to ingest different database resource level events into Condor platform. Next ID: 13",
+      "description": "Disable validation warnings",
       "id": "StorageDatabasecenterPartnerapiV1mainDatabaseResourceFeed",
       "properties": {
         "backupdrMetadata": {
           "$ref": "StorageDatabasecenterPartnerapiV1mainBackupDRMetadata",
-          "description": "BackupDR metadata is used to ingest metadata from BackupDR."
+          "description": "Disable validation warnings"
         },
         "configBasedSignalData": {
           "$ref": "StorageDatabasecenterPartnerapiV1mainConfigBasedSignalData",
-          "description": "Config based signal data is used to ingest signals that are generated based on the configuration of the database resource."
+          "description": "Disable validation warnings"
         },
         "databaseResourceSignalData": {
           "$ref": "StorageDatabasecenterPartnerapiV1mainDatabaseResourceSignalData",
-          "description": "Database resource signal data is used to ingest signals from database resource signal feeds."
+          "description": "Disable validation warnings"
         },
         "feedTimestamp": {
-          "description": "Required. Timestamp when feed is generated.",
+          "description": "Required. Disable validation warnings",
           "format": "google-datetime",
           "type": "string"
         },
         "feedType": {
-          "description": "Required. Type feed to be ingested into condor",
+          "description": "Required. Disable validation warnings",
           "enum": [
             "FEEDTYPE_UNSPECIFIED",
             "RESOURCE_METADATA",
@@ -5292,43 +5395,47 @@
             "DATABASE_RESOURCE_SIGNAL_DATA"
           ],
           "enumDescriptions": [
-            "",
-            "Database resource metadata feed from control plane",
-            "Database resource monitoring data",
-            "Database resource security health signal data",
-            "Database resource recommendation signal data",
-            "Database config based signal data",
-            "Database resource metadata from BackupDR",
-            "Database resource signal data"
+            "Disable validation warnings",
+            "Disable validation warnings",
+            "Disable validation warnings",
+            "Disable validation warnings",
+            "Disable validation warnings",
+            "Disable validation warnings",
+            "Disable validation warnings",
+            "Disable validation warnings"
           ],
           "type": "string"
         },
         "observabilityMetricData": {
-          "$ref": "StorageDatabasecenterPartnerapiV1mainObservabilityMetricData"
+          "$ref": "StorageDatabasecenterPartnerapiV1mainObservabilityMetricData",
+          "description": "Disable validation warnings"
         },
         "recommendationSignalData": {
-          "$ref": "StorageDatabasecenterPartnerapiV1mainDatabaseResourceRecommendationSignalData"
+          "$ref": "StorageDatabasecenterPartnerapiV1mainDatabaseResourceRecommendationSignalData",
+          "description": "Disable validation warnings"
         },
         "resourceHealthSignalData": {
-          "$ref": "StorageDatabasecenterPartnerapiV1mainDatabaseResourceHealthSignalData"
+          "$ref": "StorageDatabasecenterPartnerapiV1mainDatabaseResourceHealthSignalData",
+          "description": "Disable validation warnings"
         },
         "resourceId": {
           "$ref": "StorageDatabasecenterPartnerapiV1mainDatabaseResourceId",
           "deprecated": true,
-          "description": "Primary key associated with the Resource. resource_id is available in individual feed level as well."
+          "description": "Disable validation warnings"
         },
         "resourceMetadata": {
-          "$ref": "StorageDatabasecenterPartnerapiV1mainDatabaseResourceMetadata"
+          "$ref": "StorageDatabasecenterPartnerapiV1mainDatabaseResourceMetadata",
+          "description": "Disable validation warnings"
         },
         "skipIngestion": {
-          "description": "Optional. If true, the feed won't be ingested by DB Center. This indicates that the feed is intentionally skipped. For example, BackupDR feeds are only needed for resources integrated with DB Center (e.g., CloudSQL, AlloyDB). Feeds for non-integrated resources (e.g., Compute Engine, Persistent Disk) can be skipped.",
+          "description": "Optional. Disable validation warnings",
           "type": "boolean"
         }
       },
       "type": "object"
     },
     "StorageDatabasecenterPartnerapiV1mainDatabaseResourceHealthSignalData": {
-      "description": "Common model for database resource health signal data.",
+      "description": "Disable validation warnings",
       "id": "StorageDatabasecenterPartnerapiV1mainDatabaseResourceHealthSignalData",
       "properties": {
         "additionalMetadata": {
@@ -5336,39 +5443,39 @@
             "description": "Properties of the object.",
             "type": "any"
           },
-          "description": "Any other additional metadata",
+          "description": "Disable validation warnings",
           "type": "object"
         },
         "compliance": {
-          "description": "Industry standards associated with this signal; if this signal is an issue, that could be a violation of the associated industry standard(s). For example, AUTO_BACKUP_DISABLED signal is associated with CIS GCP 1.1, CIS GCP 1.2, CIS GCP 1.3, NIST 800-53 and ISO-27001 compliance standards. If a database resource does not have automated backup enable, it will violate these following industry standards.",
+          "description": "Disable validation warnings",
           "items": {
             "$ref": "StorageDatabasecenterPartnerapiV1mainCompliance"
           },
           "type": "array"
         },
         "description": {
-          "description": "Description associated with signal",
+          "description": "Disable validation warnings",
           "type": "string"
         },
         "eventTime": {
-          "description": "Required. The last time at which the event described by this signal took place",
+          "description": "Required. Disable validation warnings",
           "format": "google-datetime",
           "type": "string"
         },
         "externalUri": {
-          "description": "The external-uri of the signal, using which more information about this signal can be obtained. In GCP, this will take user to SCC page to get more details about signals.",
+          "description": "Disable validation warnings",
           "type": "string"
         },
         "location": {
-          "description": "This is used to identify the location of the resource. Example: \"us-central1\"",
+          "description": "Disable validation warnings",
           "type": "string"
         },
         "name": {
-          "description": "Required. The name of the signal, ex: PUBLIC_SQL_INSTANCE, SQL_LOG_ERROR_VERBOSITY etc.",
+          "description": "Required. Disable validation warnings",
           "type": "string"
         },
         "provider": {
-          "description": "Cloud provider name. Ex: GCP/AWS/Azure/OnPrem/SelfManaged",
+          "description": "Disable validation warnings",
           "enum": [
             "PROVIDER_UNSPECIFIED",
             "GCP",
@@ -5379,26 +5486,26 @@
             "PROVIDER_OTHER"
           ],
           "enumDescriptions": [
-            "",
-            "Google cloud platform provider",
-            "Amazon web service",
-            "Azure web service",
-            "On-prem database resources.",
-            "Self-managed database provider. These are resources on a cloud platform, e.g., database resource installed in a GCE VM, but not a managed database service.",
-            "For the rest of the other categories. Other refers to the rest of other database service providers, this could be smaller cloud provider. This needs to be provided when the provider is known, but it is not present in the existing set of enum values."
+            "Disable validation warnings",
+            "Disable validation warnings",
+            "Disable validation warnings",
+            "Disable validation warnings",
+            "Disable validation warnings",
+            "Disable validation warnings",
+            "Disable validation warnings"
           ],
           "type": "string"
         },
         "resourceContainer": {
-          "description": "Closest parent container of this resource. In GCP, 'container' refers to a Cloud Resource Manager project. It must be resource name of a Cloud Resource Manager project with the format of \"provider//\", such as \"projects/123\". For GCP provided resources, number should be project number.",
+          "description": "Disable validation warnings",
           "type": "string"
         },
         "resourceName": {
-          "description": "Required. Database resource name associated with the signal. Resource name to follow CAIS resource_name format as noted here go/condor-common-datamodel",
+          "description": "Required. Disable validation warnings",
           "type": "string"
         },
         "signalClass": {
-          "description": "Required. The class of the signal, such as if it's a THREAT or VULNERABILITY.",
+          "description": "Required. Disable validation warnings",
           "enum": [
             "CLASS_UNSPECIFIED",
             "THREAT",
@@ -5408,21 +5515,21 @@
             "ERROR"
           ],
           "enumDescriptions": [
-            "Unspecified signal class.",
-            "Describes unwanted or malicious activity.",
-            "Describes a potential weakness in software that increases risk to Confidentiality & Integrity & Availability.",
-            "Describes a potential weakness in cloud resource/asset configuration that increases risk.",
-            "Describes a security observation that is for informational purposes.",
-            "Describes an error that prevents some SCC functionality."
+            "Disable validation warnings",
+            "Disable validation warnings",
+            "Disable validation warnings",
+            "Disable validation warnings",
+            "Disable validation warnings",
+            "Disable validation warnings"
           ],
           "type": "string"
         },
         "signalId": {
-          "description": "Required. Unique identifier for the signal. This is an unique id which would be mainatined by partner to identify a signal.",
+          "description": "Required. Disable validation warnings",
           "type": "string"
         },
         "signalSeverity": {
-          "description": "The severity of the signal, such as if it's a HIGH or LOW severity.",
+          "description": "Disable validation warnings",
           "enum": [
             "SIGNAL_SEVERITY_UNSPECIFIED",
             "CRITICAL",
@@ -5431,16 +5538,16 @@
             "LOW"
           ],
           "enumDescriptions": [
-            "This value is used for findings when a source doesn't write a severity value.",
-            "A critical vulnerability is easily discoverable by an external actor, exploitable.",
-            "A high risk vulnerability can be easily discovered and exploited in combination with other vulnerabilities.",
-            "A medium risk vulnerability could be used by an actor to gain access to resources or privileges that enable them to eventually gain access and the ability to execute arbitrary code or exfiltrate data.",
-            "A low risk vulnerability hampers a security organization's ability to detect vulnerabilities or active threats in their deployment."
+            "Disable validation warnings",
+            "Disable validation warnings",
+            "Disable validation warnings",
+            "Disable validation warnings",
+            "Disable validation warnings"
           ],
           "type": "string"
         },
         "signalType": {
-          "description": "Required. Type of signal, for example, `AVAILABLE_IN_MULTIPLE_ZONES`, `LOGGING_MOST_ERRORS`, etc.",
+          "description": "Required. Disable validation warnings",
           "enum": [
             "SIGNAL_TYPE_UNSPECIFIED",
             "SIGNAL_TYPE_NOT_PROTECTED_BY_AUTOMATIC_FAILOVER",
@@ -5548,7 +5655,10 @@
             "SIGNAL_TYPE_RECOMMENDED_MAINTENANCE_POLICIES",
             "SIGNAL_TYPE_EXTENDED_SUPPORT",
             "SIGNAL_TYPE_PERFORMANCE_KPI_CHANGE",
-            "SIGNAL_TYPE_VERSION_NEARING_END_OF_LIFE"
+            "SIGNAL_TYPE_VERSION_NEARING_END_OF_LIFE",
+            "SIGNAL_TYPE_HIGH_MAINTENANCE_DOWNTIME_RISK",
+            "SIGNAL_TYPE_LOW_CACHE_HIT_AND_MAINTENANCE_DOWNTIME",
+            "SIGNAL_TYPE_MISSING_ENHANCED_PROTECTION"
           ],
           "enumDeprecated": [
             false,
@@ -5650,6 +5760,9 @@
             false,
             false,
             true,
+            false,
+            false,
+            false,
             false,
             false,
             false,
@@ -5766,11 +5879,15 @@
             "Recommended maintenance policy.",
             "Resource version is in extended support.",
             "Change in performance KPIs.",
-            "Database version nearing end of life."
+            "Database version nearing end of life.",
+            "Indicates a high risk of maintenance downtime.",
+            "Indicates both a low cache hit rate and a risk of maintenance downtime.",
+            "Indicates that the resource is missing enhanced protection."
           ],
           "type": "string"
         },
         "state": {
+          "description": "Required. Disable validation warnings",
           "enum": [
             "STATE_UNSPECIFIED",
             "ACTIVE",
@@ -5778,10 +5895,10 @@
             "MUTED"
           ],
           "enumDescriptions": [
-            "Unspecified state.",
-            "The signal requires attention and has not been addressed yet.",
-            "The signal has been fixed, triaged as a non-issue or otherwise addressed and is no longer active.",
-            "The signal has been muted."
+            "Disable validation warnings",
+            "Disable validation warnings",
+            "Disable validation warnings",
+            "Disable validation warnings"
           ],
           "type": "string"
         }
@@ -5789,11 +5906,11 @@
       "type": "object"
     },
     "StorageDatabasecenterPartnerapiV1mainDatabaseResourceId": {
-      "description": "DatabaseResourceId will serve as primary key for any resource ingestion event.",
+      "description": "Disable validation warnings",
       "id": "StorageDatabasecenterPartnerapiV1mainDatabaseResourceId",
       "properties": {
         "provider": {
-          "description": "Required. Cloud provider name. Ex: GCP/AWS/Azure/OnPrem/SelfManaged",
+          "description": "Required. Disable validation warnings",
           "enum": [
             "PROVIDER_UNSPECIFIED",
             "GCP",
@@ -5804,58 +5921,66 @@
             "PROVIDER_OTHER"
           ],
           "enumDescriptions": [
-            "",
-            "Google cloud platform provider",
-            "Amazon web service",
-            "Azure web service",
-            "On-prem database resources.",
-            "Self-managed database provider. These are resources on a cloud platform, e.g., database resource installed in a GCE VM, but not a managed database service.",
-            "For the rest of the other categories. Other refers to the rest of other database service providers, this could be smaller cloud provider. This needs to be provided when the provider is known, but it is not present in the existing set of enum values."
+            "Disable validation warnings",
+            "Disable validation warnings",
+            "Disable validation warnings",
+            "Disable validation warnings",
+            "Disable validation warnings",
+            "Disable validation warnings",
+            "Disable validation warnings"
           ],
           "type": "string"
         },
         "providerDescription": {
-          "description": "Optional. Needs to be used only when the provider is PROVIDER_OTHER.",
+          "description": "Optional. Disable validation warnings",
           "type": "string"
         },
         "resourceType": {
-          "description": "Required. The type of resource this ID is identifying. Ex go/keep-sorted start alloydb.googleapis.com/Cluster, alloydb.googleapis.com/Instance, bigtableadmin.googleapis.com/Cluster, bigtableadmin.googleapis.com/Instance compute.googleapis.com/Instance firestore.googleapis.com/Database, redis.googleapis.com/Instance, redis.googleapis.com/Cluster, oracledatabase.googleapis.com/CloudExadataInfrastructure oracledatabase.googleapis.com/CloudVmCluster oracledatabase.googleapis.com/AutonomousDatabase spanner.googleapis.com/Instance, spanner.googleapis.com/Database, sqladmin.googleapis.com/Instance, go/keep-sorted end REQUIRED Please refer go/condor-common-datamodel",
+          "description": "Required. Disable validation warnings",
           "type": "string"
         },
         "uniqueId": {
-          "description": "Required. A service-local token that distinguishes this resource from other resources within the same service.",
+          "description": "Required. Disable validation warnings",
           "type": "string"
         }
       },
       "type": "object"
     },
     "StorageDatabasecenterPartnerapiV1mainDatabaseResourceMetadata": {
-      "description": "Common model for database resource instance metadata. Next ID: 32",
+      "description": "Disable validation warnings",
       "id": "StorageDatabasecenterPartnerapiV1mainDatabaseResourceMetadata",
       "properties": {
+        "additionalMetadata": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Disable validation warnings",
+          "type": "object"
+        },
         "availabilityConfiguration": {
           "$ref": "StorageDatabasecenterPartnerapiV1mainAvailabilityConfiguration",
-          "description": "Availability configuration for this instance"
+          "description": "Disable validation warnings"
         },
         "backupConfiguration": {
           "$ref": "StorageDatabasecenterPartnerapiV1mainBackupConfiguration",
-          "description": "Backup configuration for this instance"
+          "description": "Disable validation warnings"
         },
         "backupRun": {
           "$ref": "StorageDatabasecenterPartnerapiV1mainBackupRun",
-          "description": "Latest backup run information for this instance"
+          "description": "Disable validation warnings"
         },
         "backupdrConfiguration": {
           "$ref": "StorageDatabasecenterPartnerapiV1mainBackupDRConfiguration",
-          "description": "Optional. BackupDR Configuration for the resource."
+          "description": "Optional. Disable validation warnings"
         },
         "creationTime": {
-          "description": "The creation time of the resource, i.e. the time when resource is created and recorded in partner service.",
+          "description": "Disable validation warnings",
           "format": "google-datetime",
           "type": "string"
         },
         "currentState": {
-          "description": "Current state of the instance.",
+          "description": "Disable validation warnings",
           "enum": [
             "STATE_UNSPECIFIED",
             "HEALTHY",
@@ -5866,22 +5991,22 @@
             "STOPPED"
           ],
           "enumDescriptions": [
-            "",
-            "The instance is running.",
-            "Instance being created, updated, deleted or under maintenance",
-            "When instance is suspended",
-            "Instance is deleted.",
-            "For rest of the other category",
-            "Instance is in STOPPED state."
+            "Disable validation warnings",
+            "Disable validation warnings",
+            "Disable validation warnings",
+            "Disable validation warnings",
+            "Disable validation warnings",
+            "Disable validation warnings",
+            "Disable validation warnings"
           ],
           "type": "string"
         },
         "customMetadata": {
           "$ref": "StorageDatabasecenterPartnerapiV1mainCustomMetadataData",
-          "description": "Any custom metadata associated with the resource"
+          "description": "Disable validation warnings"
         },
         "edition": {
-          "description": "Optional. Edition represents whether the instance is ENTERPRISE or ENTERPRISE_PLUS. This information is core to Cloud SQL only and is used to identify the edition of the instance.",
+          "description": "Optional. Disable validation warnings",
           "enum": [
             "EDITION_UNSPECIFIED",
             "EDITION_ENTERPRISE",
@@ -5889,22 +6014,22 @@
             "EDITION_STANDARD"
           ],
           "enumDescriptions": [
-            "Default, to make it consistent with instance edition enum.",
-            "Represents the enterprise edition.",
-            "Represents the enterprise plus edition.",
-            "Represents the standard edition."
+            "Disable validation warnings",
+            "Disable validation warnings",
+            "Disable validation warnings",
+            "Disable validation warnings"
           ],
           "type": "string"
         },
         "entitlements": {
-          "description": "Entitlements associated with the resource",
+          "description": "Disable validation warnings",
           "items": {
             "$ref": "StorageDatabasecenterPartnerapiV1mainEntitlement"
           },
           "type": "array"
         },
         "expectedState": {
-          "description": "The state that the instance is expected to be in. For example, an instance state can transition to UNHEALTHY due to wrong patch update, while the expected state will remain at the HEALTHY.",
+          "description": "Disable validation warnings",
           "enum": [
             "STATE_UNSPECIFIED",
             "HEALTHY",
@@ -5915,27 +6040,27 @@
             "STOPPED"
           ],
           "enumDescriptions": [
-            "",
-            "The instance is running.",
-            "Instance being created, updated, deleted or under maintenance",
-            "When instance is suspended",
-            "Instance is deleted.",
-            "For rest of the other category",
-            "Instance is in STOPPED state."
+            "Disable validation warnings",
+            "Disable validation warnings",
+            "Disable validation warnings",
+            "Disable validation warnings",
+            "Disable validation warnings",
+            "Disable validation warnings",
+            "Disable validation warnings"
           ],
           "type": "string"
         },
         "gcbdrConfiguration": {
           "$ref": "StorageDatabasecenterPartnerapiV1mainGCBDRConfiguration",
           "deprecated": true,
-          "description": "GCBDR configuration for the resource."
+          "description": "Disable validation warnings"
         },
         "id": {
           "$ref": "StorageDatabasecenterPartnerapiV1mainDatabaseResourceId",
-          "description": "Required. Unique identifier for a Database resource"
+          "description": "Required. Disable validation warnings"
         },
         "instanceType": {
-          "description": "The type of the instance. Specified at creation time.",
+          "description": "Disable validation warnings",
           "enum": [
             "INSTANCE_TYPE_UNSPECIFIED",
             "SUB_RESOURCE_TYPE_UNSPECIFIED",
@@ -5986,36 +6111,52 @@
           ],
           "type": "string"
         },
+        "internalAdditionalMetadata": {
+          "additionalProperties": {
+            "description": "Properties of the object. Contains field @type with type URL.",
+            "type": "any"
+          },
+          "description": "Disable validation warnings",
+          "type": "object"
+        },
+        "ipAddress": {
+          "$ref": "StorageDatabasecenterPartnerapiV1mainIpAddress",
+          "description": "Optional. Disable validation warnings"
+        },
         "isDeletionProtectionEnabled": {
-          "description": "Optional. Whether deletion protection is enabled for this resource.",
+          "description": "Optional. Disable validation warnings",
           "type": "boolean"
         },
         "location": {
-          "description": "The resource location. REQUIRED",
+          "description": "Disable validation warnings",
           "type": "string"
         },
         "machineConfiguration": {
           "$ref": "StorageDatabasecenterPartnerapiV1mainMachineConfiguration",
-          "description": "Machine configuration for this resource."
+          "description": "Disable validation warnings"
         },
         "maintenanceInfo": {
           "$ref": "StorageDatabasecenterPartnerapiV1mainResourceMaintenanceInfo",
-          "description": "Optional. Maintenance info for the resource."
+          "description": "Optional. Disable validation warnings"
         },
         "modes": {
-          "description": "Optional. The modes of the database resource.",
+          "description": "Optional. Disable validation warnings",
           "items": {
             "enum": [
               "MODE_UNSPECIFIED",
               "MODE_NATIVE",
               "MODE_MONGODB_COMPATIBLE",
-              "MODE_DATASTORE"
+              "MODE_DATASTORE",
+              "MODE_CLUSTER_ENABLED",
+              "MODE_CLUSTER_DISABLED"
             ],
             "enumDescriptions": [
-              "Default mode.",
-              "Native mode.",
-              "MongoDB compatible mode.",
-              "Datastore mode."
+              "Disable validation warnings",
+              "Disable validation warnings",
+              "Disable validation warnings",
+              "Disable validation warnings",
+              "Disable validation warnings",
+              "Disable validation warnings"
             ],
             "type": "string"
           },
@@ -6023,33 +6164,33 @@
         },
         "primaryResourceId": {
           "$ref": "StorageDatabasecenterPartnerapiV1mainDatabaseResourceId",
-          "description": "Identifier for this resource's immediate parent/primary resource if the current resource is a replica or derived form of another Database resource. Else it would be NULL. REQUIRED if the immediate parent exists when first time resource is getting ingested, otherwise optional."
+          "description": "Disable validation warnings"
         },
         "primaryResourceLocation": {
-          "description": "Primary resource location. REQUIRED if the immediate parent exists when first time resource is getting ingested, otherwise optional.",
+          "description": "Disable validation warnings",
           "type": "string"
         },
         "product": {
           "$ref": "StorageDatabasecenterProtoCommonProduct",
-          "description": "The product this resource represents."
+          "description": "Disable validation warnings"
         },
         "resourceContainer": {
-          "description": "Closest parent Cloud Resource Manager container of this resource. It must be resource name of a Cloud Resource Manager project with the format of \"/\", such as \"projects/123\". For GCP provided resources, number should be project number.",
+          "description": "Disable validation warnings",
           "type": "string"
         },
         "resourceFlags": {
-          "description": "Optional. List of resource flags for the database resource.",
+          "description": "Optional. Disable validation warnings",
           "items": {
             "$ref": "StorageDatabasecenterPartnerapiV1mainResourceFlags"
           },
           "type": "array"
         },
         "resourceName": {
-          "description": "Required. Different from DatabaseResourceId.unique_id, a resource name can be reused over time. That is, after a resource named \"ABC\" is deleted, the name \"ABC\" can be used to to create a new resource within the same source. Resource name to follow CAIS resource_name format as noted here go/condor-common-datamodel",
+          "description": "Required. Disable validation warnings",
           "type": "string"
         },
         "suspensionReason": {
-          "description": "Optional. Suspension reason for the resource.",
+          "description": "Optional. Disable validation warnings",
           "enum": [
             "SUSPENSION_REASON_UNSPECIFIED",
             "WIPEOUT_HIDE_EVENT",
@@ -6072,26 +6213,26 @@
         },
         "tagsSet": {
           "$ref": "StorageDatabasecenterPartnerapiV1mainTags",
-          "description": "Optional. Tags associated with this resources."
+          "description": "Optional. Disable validation warnings"
         },
         "updationTime": {
-          "description": "The time at which the resource was updated and recorded at partner service.",
+          "description": "Disable validation warnings",
           "format": "google-datetime",
           "type": "string"
         },
         "userLabelSet": {
           "$ref": "StorageDatabasecenterPartnerapiV1mainUserLabels",
-          "description": "User-provided labels associated with the resource"
+          "description": "Disable validation warnings"
         },
         "zone": {
-          "description": "The resource zone. This is only applicable for zonal resources and will be empty for regional and multi-regional resources.",
+          "description": "Disable validation warnings",
           "type": "string"
         }
       },
       "type": "object"
     },
     "StorageDatabasecenterPartnerapiV1mainDatabaseResourceRecommendationSignalData": {
-      "description": "Common model for database resource recommendation signal data.",
+      "description": "Disable validation warnings",
       "id": "StorageDatabasecenterPartnerapiV1mainDatabaseResourceRecommendationSignalData",
       "properties": {
         "additionalMetadata": {
@@ -6099,16 +6240,16 @@
             "description": "Properties of the object.",
             "type": "any"
           },
-          "description": "Optional. Any other additional metadata specific to recommendation",
+          "description": "Optional. Disable validation warnings",
           "type": "object"
         },
         "lastRefreshTime": {
-          "description": "Required. last time recommendationw as refreshed",
+          "description": "Required. Disable validation warnings",
           "format": "google-datetime",
           "type": "string"
         },
         "recommendationState": {
-          "description": "Required. Recommendation state",
+          "description": "Required. Disable validation warnings",
           "enum": [
             "UNSPECIFIED",
             "ACTIVE",
@@ -6118,33 +6259,33 @@
             "DISMISSED"
           ],
           "enumDescriptions": [
-            "",
-            "Recommendation is active and can be applied. ACTIVE recommendations can be marked as CLAIMED, SUCCEEDED, or FAILED.",
-            "Recommendation is in claimed state. Recommendations content is immutable and cannot be updated by Google. CLAIMED recommendations can be marked as CLAIMED, SUCCEEDED, or FAILED.",
-            "Recommendation is in succeeded state. Recommendations content is immutable and cannot be updated by Google. SUCCEEDED recommendations can be marked as SUCCEEDED, or FAILED.",
-            "Recommendation is in failed state. Recommendations content is immutable and cannot be updated by Google. FAILED recommendations can be marked as SUCCEEDED, or FAILED.",
-            "Recommendation is in dismissed state. Recommendation content can be updated by Google. DISMISSED recommendations can be marked as ACTIVE."
+            "Disable validation warnings",
+            "Disable validation warnings",
+            "Disable validation warnings",
+            "Disable validation warnings",
+            "Disable validation warnings",
+            "Disable validation warnings"
           ],
           "type": "string"
         },
         "recommender": {
-          "description": "Required. Name of recommendation. Examples: organizations/1234/locations/us-central1/recommenders/google.cloudsql.instance.PerformanceRecommender/recommendations/9876",
+          "description": "Required. Disable validation warnings",
           "type": "string"
         },
         "recommenderId": {
-          "description": "Required. ID of recommender. Examples: \"google.cloudsql.instance.PerformanceRecommender\"",
+          "description": "Required. Disable validation warnings",
           "type": "string"
         },
         "recommenderSubtype": {
-          "description": "Required. Contains an identifier for a subtype of recommendations produced for the same recommender. Subtype is a function of content and impact, meaning a new subtype might be added when significant changes to `content` or `primary_impact.category` are introduced. See the Recommenders section to see a list of subtypes for a given Recommender. Examples: For recommender = \"google.cloudsql.instance.PerformanceRecommender\", recommender_subtype can be \"MYSQL_HIGH_NUMBER_OF_OPEN_TABLES_BEST_PRACTICE\"/\"POSTGRES_HIGH_TRANSACTION_ID_UTILIZATION_BEST_PRACTICE\"",
+          "description": "Required. Disable validation warnings",
           "type": "string"
         },
         "resourceName": {
-          "description": "Required. Database resource name associated with the signal. Resource name to follow CAIS resource_name format as noted here go/condor-common-datamodel",
+          "description": "Required. Disable validation warnings",
           "type": "string"
         },
         "signalType": {
-          "description": "Required. Type of signal, for example, `SIGNAL_TYPE_IDLE`, `SIGNAL_TYPE_HIGH_NUMBER_OF_TABLES`, etc.",
+          "description": "Required. Disable validation warnings",
           "enum": [
             "SIGNAL_TYPE_UNSPECIFIED",
             "SIGNAL_TYPE_NOT_PROTECTED_BY_AUTOMATIC_FAILOVER",
@@ -6252,7 +6393,10 @@
             "SIGNAL_TYPE_RECOMMENDED_MAINTENANCE_POLICIES",
             "SIGNAL_TYPE_EXTENDED_SUPPORT",
             "SIGNAL_TYPE_PERFORMANCE_KPI_CHANGE",
-            "SIGNAL_TYPE_VERSION_NEARING_END_OF_LIFE"
+            "SIGNAL_TYPE_VERSION_NEARING_END_OF_LIFE",
+            "SIGNAL_TYPE_HIGH_MAINTENANCE_DOWNTIME_RISK",
+            "SIGNAL_TYPE_LOW_CACHE_HIT_AND_MAINTENANCE_DOWNTIME",
+            "SIGNAL_TYPE_MISSING_ENHANCED_PROTECTION"
           ],
           "enumDeprecated": [
             false,
@@ -6354,6 +6498,9 @@
             false,
             false,
             true,
+            false,
+            false,
+            false,
             false,
             false,
             false,
@@ -6470,7 +6617,10 @@
             "Recommended maintenance policy.",
             "Resource version is in extended support.",
             "Change in performance KPIs.",
-            "Database version nearing end of life."
+            "Database version nearing end of life.",
+            "Indicates a high risk of maintenance downtime.",
+            "Indicates both a low cache hit rate and a risk of maintenance downtime.",
+            "Indicates that the resource is missing enhanced protection."
           ],
           "type": "string"
         }
@@ -6478,45 +6628,45 @@
       "type": "object"
     },
     "StorageDatabasecenterPartnerapiV1mainDatabaseResourceSignalData": {
-      "description": "Database resource signal data. This is used to send signals to Condor which are based on the DB/Instance/Fleet level configurations. These will be used to send signals for all inventory types. Next ID: 10",
+      "description": "Disable validation warnings",
       "id": "StorageDatabasecenterPartnerapiV1mainDatabaseResourceSignalData",
       "properties": {
         "backupRun": {
           "$ref": "StorageDatabasecenterPartnerapiV1mainBackupRun",
           "deprecated": true,
-          "description": "Deprecated: Use signal_metadata_list instead."
+          "description": "Disable validation warnings"
         },
         "fullResourceName": {
-          "description": "Required. Full Resource name of the source resource.",
+          "description": "Required. Disable validation warnings",
           "type": "string"
         },
         "lastRefreshTime": {
-          "description": "Required. Last time signal was refreshed",
+          "description": "Required. Disable validation warnings",
           "format": "google-datetime",
           "type": "string"
         },
         "location": {
-          "description": "Required. Resource location.",
+          "description": "Required. Disable validation warnings",
           "type": "string"
         },
         "resourceId": {
           "$ref": "StorageDatabasecenterPartnerapiV1mainDatabaseResourceId",
-          "description": "Database resource id."
+          "description": "Disable validation warnings"
         },
         "signalBoolValue": {
           "deprecated": true,
-          "description": "Deprecated: Use signal_metadata_list instead.",
+          "description": "Disable validation warnings",
           "type": "boolean"
         },
         "signalMetadataList": {
-          "description": "This will support array of OneOf signal metadata information for a given signal type.",
+          "description": "Disable validation warnings",
           "items": {
             "$ref": "StorageDatabasecenterPartnerapiV1mainSignalMetadata"
           },
           "type": "array"
         },
         "signalState": {
-          "description": "Required. Output only. Signal state of the signal",
+          "description": "Required. Output only. Disable validation warnings",
           "enum": [
             "SIGNAL_STATE_UNSPECIFIED",
             "ACTIVE",
@@ -6524,16 +6674,16 @@
             "DISMISSED"
           ],
           "enumDescriptions": [
-            "Unspecified signal state.",
-            "Signal is active and requires attention.",
-            "Signal is inactive and does not require attention.",
-            "Signal is dismissed by the user and should not be shown to the user again."
+            "Disable validation warnings",
+            "Disable validation warnings",
+            "Disable validation warnings",
+            "Disable validation warnings"
           ],
           "readOnly": true,
           "type": "string"
         },
         "signalType": {
-          "description": "Required. Signal type of the signal",
+          "description": "Required. Disable validation warnings",
           "enum": [
             "SIGNAL_TYPE_UNSPECIFIED",
             "SIGNAL_TYPE_OUTDATED_MINOR_VERSION",
@@ -6548,17 +6698,17 @@
             "SIGNAL_TYPE_NOT_PROTECTED_BY_AUTOMATIC_FAILOVER"
           ],
           "enumDescriptions": [
-            "Unspecified signal type.",
-            "Outdated Minor Version",
-            "Represents database auditing is disabled.",
-            "Represents if a database has a password configured for the root account or not.",
-            "Represents if a resource is exposed to public access.",
-            "Represents if a resources requires all incoming connections to use SSL or not.",
-            "Represents if a resource version is in extended support.",
-            "Represents if a resource has no automated backup policy.",
-            "Represents if a resource version is nearing end of life.",
-            "Represents if the last backup of a resource is older than 24 hours.",
-            "Represents if a resource is not protected by automatic failover."
+            "Disable validation warnings",
+            "Disable validation warnings",
+            "Disable validation warnings",
+            "Disable validation warnings",
+            "Disable validation warnings",
+            "Disable validation warnings",
+            "Disable validation warnings",
+            "Disable validation warnings",
+            "Disable validation warnings",
+            "Disable validation warnings",
+            "Disable validation warnings"
           ],
           "type": "string"
         }
@@ -6566,25 +6716,25 @@
       "type": "object"
     },
     "StorageDatabasecenterPartnerapiV1mainEntitlement": {
-      "description": "Proto representing the access that a user has to a specific feature/service. NextId: 3.",
+      "description": "Disable validation warnings",
       "id": "StorageDatabasecenterPartnerapiV1mainEntitlement",
       "properties": {
         "entitlementState": {
-          "description": "The current state of user's accessibility to a feature/benefit.",
+          "description": "Disable validation warnings",
           "enum": [
             "ENTITLEMENT_STATE_UNSPECIFIED",
             "ENTITLED",
             "REVOKED"
           ],
           "enumDescriptions": [
-            "",
-            "User is entitled to a feature/benefit, but whether it has been successfully provisioned is decided by provisioning state.",
-            "User is entitled to a feature/benefit, but it was requested to be revoked. Whether the revoke has been successful is decided by provisioning state."
+            "Disable validation warnings",
+            "Disable validation warnings",
+            "Disable validation warnings"
           ],
           "type": "string"
         },
         "type": {
-          "description": "An enum that represents the type of this entitlement.",
+          "description": "Disable validation warnings",
           "enum": [
             "ENTITLEMENT_TYPE_UNSPECIFIED",
             "GEMINI",
@@ -6598,10 +6748,10 @@
             false
           ],
           "enumDescriptions": [
-            "The entitlement type is unspecified.",
-            "The root entitlement representing Gemini package ownership.This will no longer be supported in the future.",
-            "The entitlement representing Native Tier, This will be the default Entitlement going forward with GCA Enablement.",
-            "The entitlement representing GCA-Standard Tier."
+            "Disable validation warnings",
+            "Disable validation warnings",
+            "Disable validation warnings",
+            "Disable validation warnings"
           ],
           "type": "string"
         }
@@ -6609,77 +6759,94 @@
       "type": "object"
     },
     "StorageDatabasecenterPartnerapiV1mainGCBDRConfiguration": {
-      "description": "GCBDR Configuration for the resource.",
+      "description": "Disable validation warnings",
       "id": "StorageDatabasecenterPartnerapiV1mainGCBDRConfiguration",
       "properties": {
         "gcbdrManaged": {
-          "description": "Whether the resource is managed by GCBDR.",
+          "description": "Disable validation warnings",
           "type": "boolean"
         }
       },
       "type": "object"
     },
     "StorageDatabasecenterPartnerapiV1mainInternalResourceMetadata": {
-      "description": "Metadata for individual internal resources in an instance. e.g. spanner instance can have multiple databases with unique configuration settings. Similarly bigtable can have multiple clusters within same bigtable instance.",
+      "description": "Disable validation warnings",
       "id": "StorageDatabasecenterPartnerapiV1mainInternalResourceMetadata",
       "properties": {
         "backupConfiguration": {
           "$ref": "StorageDatabasecenterPartnerapiV1mainBackupConfiguration",
-          "description": "Backup configuration for this database"
+          "description": "Disable validation warnings"
         },
         "backupRun": {
           "$ref": "StorageDatabasecenterPartnerapiV1mainBackupRun",
-          "description": "Information about the last backup attempt for this database"
+          "description": "Disable validation warnings"
         },
         "isDeletionProtectionEnabled": {
-          "description": "Whether deletion protection is enabled for this internal resource.",
+          "description": "Disable validation warnings",
           "type": "boolean"
         },
         "product": {
-          "$ref": "StorageDatabasecenterProtoCommonProduct"
+          "$ref": "StorageDatabasecenterProtoCommonProduct",
+          "description": "Disable validation warnings"
         },
         "resourceId": {
-          "$ref": "StorageDatabasecenterPartnerapiV1mainDatabaseResourceId"
+          "$ref": "StorageDatabasecenterPartnerapiV1mainDatabaseResourceId",
+          "description": "Disable validation warnings"
         },
         "resourceName": {
-          "description": "Required. internal resource name for spanner this will be database name e.g.\"spanner.googleapis.com/projects/123/abc/instances/inst1/databases/db1\"",
+          "description": "Required. Disable validation warnings",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "StorageDatabasecenterPartnerapiV1mainIpAddress": {
+      "description": "Disable validation warnings",
+      "id": "StorageDatabasecenterPartnerapiV1mainIpAddress",
+      "properties": {
+        "privateIp": {
+          "description": "Disable validation warnings",
+          "type": "string"
+        },
+        "publicIp": {
+          "description": "Disable validation warnings",
           "type": "string"
         }
       },
       "type": "object"
     },
     "StorageDatabasecenterPartnerapiV1mainMachineConfiguration": {
-      "description": "MachineConfiguration describes the configuration of a machine specific to Database Resource.",
+      "description": "Disable validation warnings",
       "id": "StorageDatabasecenterPartnerapiV1mainMachineConfiguration",
       "properties": {
         "baselineSlots": {
-          "description": "Optional. Baseline slots for BigQuery Reservations. Baseline slots are in increments of 50.",
+          "description": "Optional. Disable validation warnings",
           "format": "int64",
           "type": "string"
         },
         "cpuCount": {
           "deprecated": true,
-          "description": "The number of CPUs. Deprecated. Use vcpu_count instead. TODO(b/342344482) add proto validations again after bug fix.",
+          "description": "Disable validation warnings",
           "format": "int32",
           "type": "integer"
         },
         "maxReservationSlots": {
-          "description": "Optional. Max slots for BigQuery Reservations. Max slots are in increments of 50.",
+          "description": "Optional. Disable validation warnings",
           "format": "int64",
           "type": "string"
         },
         "memorySizeInBytes": {
-          "description": "Memory size in bytes. TODO(b/342344482) add proto validations again after bug fix.",
+          "description": "Disable validation warnings",
           "format": "int64",
           "type": "string"
         },
         "shardCount": {
-          "description": "Optional. Number of shards (if applicable).",
+          "description": "Optional. Disable validation warnings",
           "format": "int32",
           "type": "integer"
         },
         "vcpuCount": {
-          "description": "Optional. The number of vCPUs. TODO(b/342344482) add proto validations again after bug fix.",
+          "description": "Optional. Disable validation warnings",
           "format": "double",
           "type": "number"
         }
@@ -6687,10 +6854,11 @@
       "type": "object"
     },
     "StorageDatabasecenterPartnerapiV1mainObservabilityMetricData": {
+      "description": "Disable validation warnings",
       "id": "StorageDatabasecenterPartnerapiV1mainObservabilityMetricData",
       "properties": {
         "aggregationType": {
-          "description": "Required. Type of aggregation performed on the metric.",
+          "description": "Required. Disable validation warnings",
           "enum": [
             "AGGREGATION_TYPE_UNSPECIFIED",
             "PEAK",
@@ -6708,7 +6876,7 @@
           "type": "string"
         },
         "metricType": {
-          "description": "Required. Type of metric like CPU, Memory, etc.",
+          "description": "Required. Disable validation warnings",
           "enum": [
             "METRIC_TYPE_UNSPECIFIED",
             "CPU_UTILIZATION",
@@ -6734,30 +6902,31 @@
           "type": "string"
         },
         "observationTime": {
-          "description": "Required. The time the metric value was observed.",
+          "description": "Required. Disable validation warnings",
           "format": "google-datetime",
           "type": "string"
         },
         "resourceName": {
-          "description": "Required. Database resource name associated with the signal. Resource name to follow CAIS resource_name format as noted here go/condor-common-datamodel",
+          "description": "Required. Disable validation warnings",
           "type": "string"
         },
         "value": {
           "$ref": "StorageDatabasecenterProtoCommonTypedValue",
-          "description": "Required. Value of the metric type."
+          "description": "Required. Disable validation warnings"
         }
       },
       "type": "object"
     },
     "StorageDatabasecenterPartnerapiV1mainOperationError": {
-      "description": "An error that occurred during a backup creation operation.",
+      "description": "Disable validation warnings",
       "id": "StorageDatabasecenterPartnerapiV1mainOperationError",
       "properties": {
         "code": {
-          "description": "Identifies the specific error that occurred. REQUIRED",
+          "description": "Disable validation warnings",
           "type": "string"
         },
         "errorType": {
+          "description": "Disable validation warnings",
           "enum": [
             "OPERATION_ERROR_TYPE_UNSPECIFIED",
             "KMS_KEY_ERROR",
@@ -6779,71 +6948,71 @@
           "type": "string"
         },
         "message": {
-          "description": "Additional information about the error encountered. REQUIRED",
+          "description": "Disable validation warnings",
           "type": "string"
         }
       },
       "type": "object"
     },
     "StorageDatabasecenterPartnerapiV1mainResourceFlags": {
-      "description": "Message type for storing resource flags.",
+      "description": "Disable validation warnings",
       "id": "StorageDatabasecenterPartnerapiV1mainResourceFlags",
       "properties": {
         "key": {
-          "description": "Optional. Key of the resource flag.",
+          "description": "Optional. Disable validation warnings",
           "type": "string"
         },
         "value": {
-          "description": "Optional. Value of the resource flag.",
+          "description": "Optional. Disable validation warnings",
           "type": "string"
         }
       },
       "type": "object"
     },
     "StorageDatabasecenterPartnerapiV1mainResourceMaintenanceDenySchedule": {
-      "description": "Deny maintenance period for the database resource. It specifies the time range during which the maintenance cannot start. This is configured by the customer.",
+      "description": "Disable validation warnings",
       "id": "StorageDatabasecenterPartnerapiV1mainResourceMaintenanceDenySchedule",
       "properties": {
         "endDate": {
           "$ref": "GoogleTypeDate",
-          "description": "Optional. Deny period end date."
+          "description": "Optional. Disable validation warnings"
         },
         "startDate": {
           "$ref": "GoogleTypeDate",
-          "description": "Optional. The start date of the deny maintenance period."
+          "description": "Optional. Disable validation warnings"
         },
         "time": {
           "$ref": "GoogleTypeTimeOfDay",
-          "description": "Optional. Time in UTC when the deny period starts on start_date and ends on end_date."
+          "description": "Optional. Disable validation warnings"
         }
       },
       "type": "object"
     },
     "StorageDatabasecenterPartnerapiV1mainResourceMaintenanceInfo": {
-      "description": "MaintenanceInfo to capture the maintenance details of database resource.",
+      "description": "Disable validation warnings",
       "id": "StorageDatabasecenterPartnerapiV1mainResourceMaintenanceInfo",
       "properties": {
         "currentVersionReleaseDate": {
           "$ref": "GoogleTypeDate",
-          "description": "Optional. The date when the current maintenance version was released."
+          "description": "Optional. Disable validation warnings"
         },
         "denyMaintenanceSchedules": {
-          "description": "Optional. List of Deny maintenance period for the database resource.",
+          "description": "Optional. Disable validation warnings",
           "items": {
             "$ref": "StorageDatabasecenterPartnerapiV1mainResourceMaintenanceDenySchedule"
           },
           "type": "array"
         },
         "isInstanceStopped": {
-          "description": "Optional. Whether the instance is in stopped state. This information is temporarily being captured in maintenanceInfo, till STOPPED state is supported by DB Center.",
+          "description": "Optional. Disable validation warnings",
           "type": "boolean"
         },
         "maintenanceSchedule": {
           "$ref": "StorageDatabasecenterPartnerapiV1mainResourceMaintenanceSchedule",
-          "description": "Optional. Maintenance window for the database resource."
+          "description": "Optional. Disable validation warnings"
         },
         "maintenanceState": {
-          "description": "Output only. Current state of maintenance on the database resource.",
+          "description": "Output only. Disable validation warnings",
           "enum": [
             "MAINTENANCE_STATE_UNSPECIFIED",
             "CREATING",
@@ -6854,34 +7023,41 @@
             "ERROR"
           ],
           "enumDescriptions": [
-            "Unspecified state.",
-            "Database resource is being created.",
-            "Database resource has been created and is ready to use.",
-            "Database resource is being updated.",
-            "Database resource is unheathy and under repair.",
-            "Database resource is being deleted.",
-            "Database resource encountered an error and is in indeterministic state."
+            "Disable validation warnings",
+            "Disable validation warnings",
+            "Disable validation warnings",
+            "Disable validation warnings",
+            "Disable validation warnings",
+            "Disable validation warnings",
+            "Disable validation warnings"
           ],
           "readOnly": true,
           "type": "string"
         },
         "maintenanceVersion": {
-          "description": "Optional. Current Maintenance version of the database resource. Example: \"MYSQL_8_0_41.R20250531.01_15\"",
+          "description": "Optional. Disable validation warnings",
           "type": "string"
+        },
+        "nextAvailableMaintenanceVersions": {
+          "description": "Optional. Disable validation warnings",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "upcomingMaintenance": {
           "$ref": "StorageDatabasecenterPartnerapiV1mainUpcomingMaintenance",
-          "description": "Optional. Upcoming maintenance for the database resource. This field is populated once SLM generates and publishes upcoming maintenance window."
+          "description": "Optional. Disable validation warnings"
         }
       },
       "type": "object"
     },
     "StorageDatabasecenterPartnerapiV1mainResourceMaintenanceSchedule": {
-      "description": "Maintenance window for the database resource. It specifies preferred time and day of the week and phase in some cases, when the maintenance can start. This is configured by the customer.",
+      "description": "Disable validation warnings",
       "id": "StorageDatabasecenterPartnerapiV1mainResourceMaintenanceSchedule",
       "properties": {
         "day": {
-          "description": "Optional. Preferred day of the week for maintenance, e.g. MONDAY, TUESDAY, etc.",
+          "description": "Optional. Disable validation warnings",
           "enum": [
             "DAY_OF_WEEK_UNSPECIFIED",
             "MONDAY",
@@ -6905,7 +7081,7 @@
           "type": "string"
         },
         "phase": {
-          "description": "Optional. Phase of the maintenance window. This is to capture order of maintenance. For example, for Cloud SQL resources, this can be used to capture if the maintenance window is in Week1, Week2, Week5, etc. Non production resources are usually part of early phase. For more details, refer to Cloud SQL resources - https://cloud.google.com/sql/docs/mysql/maintenance",
+          "description": "Optional. Disable validation warnings",
           "enum": [
             "PHASE_UNSPECIFIED",
             "ANY",
@@ -6914,36 +7090,38 @@
             "WEEK5"
           ],
           "enumDescriptions": [
-            "Phase is unspecified.",
-            "Any phase.",
-            "Week 1.",
-            "Week 2.",
-            "Week 5."
+            "Disable validation warnings",
+            "Disable validation warnings",
+            "Disable validation warnings",
+            "Disable validation warnings",
+            "Disable validation warnings"
           ],
           "type": "string"
         },
         "time": {
           "$ref": "GoogleTypeTimeOfDay",
-          "description": "Optional. Preferred time to start the maintenance operation on the specified day."
+          "description": "Optional. Disable validation warnings"
         }
       },
       "type": "object"
     },
     "StorageDatabasecenterPartnerapiV1mainRetentionSettings": {
+      "description": "Disable validation warnings",
       "id": "StorageDatabasecenterPartnerapiV1mainRetentionSettings",
       "properties": {
         "durationBasedRetention": {
-          "description": "Duration based retention period i.e. 172800 seconds (2 days)",
+          "description": "Disable validation warnings",
           "format": "google-duration",
           "type": "string"
         },
         "quantityBasedRetention": {
+          "description": "Disable validation warnings",
           "format": "int32",
           "type": "integer"
         },
         "retentionUnit": {
           "deprecated": true,
-          "description": "The unit that 'retained_backups' represents.",
+          "description": "Disable validation warnings",
           "enum": [
             "RETENTION_UNIT_UNSPECIFIED",
             "COUNT",
@@ -6952,21 +7130,22 @@
             "RETENTION_UNIT_OTHER"
           ],
           "enumDescriptions": [
-            "Backup retention unit is unspecified, will be treated as COUNT.",
-            "Retention will be by count, eg. \"retain the most recent 7 backups\".",
-            "Retention will be by Time, eg. \"retain backups till a specific time\" i.e. till 2024-05-01T00:00:00Z.",
-            "Retention will be by duration, eg. \"retain the backups for 172800 seconds (2 days)\".",
-            "For rest of the other category"
+            "Disable validation warnings",
+            "Disable validation warnings",
+            "Disable validation warnings",
+            "Disable validation warnings",
+            "Disable validation warnings"
           ],
           "type": "string"
         },
         "timeBasedRetention": {
           "deprecated": true,
+          "description": "Disable validation warnings",
           "format": "google-duration",
           "type": "string"
         },
         "timestampBasedRetentionTime": {
-          "description": "Timestamp based retention period i.e. 2024-05-01T00:00:00Z",
+          "description": "Disable validation warnings",
           "format": "google-datetime",
           "type": "string"
         }
@@ -6974,45 +7153,45 @@
       "type": "object"
     },
     "StorageDatabasecenterPartnerapiV1mainSignalMetadata": {
-      "description": "SignalMetadata contains one of the signal metadata proto messages associated with a SignalType. This proto will be mapped to SignalMetadata message in storage.proto. Next ID: 3",
+      "description": "Disable validation warnings",
       "id": "StorageDatabasecenterPartnerapiV1mainSignalMetadata",
       "properties": {
         "backupRun": {
           "$ref": "StorageDatabasecenterPartnerapiV1mainBackupRun",
-          "description": "Signal data for backup runs."
+          "description": "Disable validation warnings"
         },
         "signalBoolValue": {
-          "description": "Signal data for boolean signals.",
+          "description": "Disable validation warnings",
           "type": "boolean"
         }
       },
       "type": "object"
     },
     "StorageDatabasecenterPartnerapiV1mainTags": {
-      "description": "Message type for storing tags. Tags provide a way to create annotations for resources, and in some cases conditionally allow or deny policies based on whether a resource has a specific tag.",
+      "description": "Disable validation warnings",
       "id": "StorageDatabasecenterPartnerapiV1mainTags",
       "properties": {
         "tags": {
           "additionalProperties": {
             "type": "string"
           },
-          "description": "The Tag key/value mappings.",
+          "description": "Disable validation warnings",
           "type": "object"
         }
       },
       "type": "object"
     },
     "StorageDatabasecenterPartnerapiV1mainUpcomingMaintenance": {
-      "description": "Upcoming maintenance for the database resource. This is generated by SLM once the upcoming maintenance schedule is published.",
+      "description": "Disable validation warnings",
       "id": "StorageDatabasecenterPartnerapiV1mainUpcomingMaintenance",
       "properties": {
         "endTime": {
-          "description": "Optional. The end time of the upcoming maintenance.",
+          "description": "Optional. Disable validation warnings",
           "format": "google-datetime",
           "type": "string"
         },
         "startTime": {
-          "description": "Optional. The start time of the upcoming maintenance.",
+          "description": "Optional. Disable validation warnings",
           "format": "google-datetime",
           "type": "string"
         }
@@ -7020,13 +7199,14 @@
       "type": "object"
     },
     "StorageDatabasecenterPartnerapiV1mainUserLabels": {
-      "description": "Message type for storing user labels. User labels are used to tag App Engine resources, allowing users to search for resources matching a set of labels and to aggregate usage data by labels.",
+      "description": "Disable validation warnings",
       "id": "StorageDatabasecenterPartnerapiV1mainUserLabels",
       "properties": {
         "labels": {
           "additionalProperties": {
             "type": "string"
           },
+          "description": "Disable validation warnings",
           "type": "object"
         }
       },
@@ -7052,6 +7232,7 @@
             "ENGINE_CLOUD_SPANNER_WITH_GOOGLESQL_DIALECT",
             "ENGINE_MEMORYSTORE_FOR_REDIS",
             "ENGINE_MEMORYSTORE_FOR_REDIS_CLUSTER",
+            "ENGINE_MEMORYSTORE_FOR_VALKEY",
             "ENGINE_OTHER",
             "ENGINE_FIRESTORE_WITH_NATIVE_MODE",
             "ENGINE_FIRESTORE_WITH_DATASTORE_MODE",
@@ -7078,6 +7259,7 @@
             false,
             false,
             false,
+            false,
             false
           ],
           "enumDescriptions": [
@@ -7094,6 +7276,7 @@
             "Cloud Spanner with Google SQL dialect.",
             "Memorystore with Redis dialect.",
             "Memorystore with Redis cluster dialect.",
+            "Memorystore with Valkey.",
             "Other refers to rest of other database engine. This is to be when engine is known, but it is not present in this enum.",
             "Firestore with native mode.",
             "Firestore with datastore mode.",
@@ -7204,6 +7387,11 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "caseAgnostic": {
+          "description": "Output only. Whether the allowed values are case agnostic.",
+          "readOnly": true,
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -7613,12 +7801,18 @@
           "enum": [
             "USER_TYPE_UNSPECIFIED",
             "ALLOYDB_BUILT_IN",
-            "ALLOYDB_IAM_USER"
+            "ALLOYDB_IAM_USER",
+            "ALLOYDB_IAM_GROUP",
+            "ALLOYDB_IAM_GROUP_USER",
+            "ALLOYDB_IAM_GROUP_SERVICE_ACCOUNT"
           ],
           "enumDescriptions": [
             "Unspecified user type.",
             "The default user type that authenticates via password-based authentication.",
-            "Database user that can authenticate via IAM-Based authentication."
+            "Database user that can authenticate via IAM-Based authentication.",
+            "Database user that represents an IAM group whose members can authenticate via IAM group-based authentication.",
+            "Represents a user that belongs to an IAM group.",
+            "Represents a service account that belongs to an IAM group."
           ],
           "type": "string"
         }

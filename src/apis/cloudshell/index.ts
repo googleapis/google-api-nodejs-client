@@ -35,10 +35,7 @@ export function cloudshell<
 >(
   this: GoogleConfigurable,
   versionOrOptions:
-    | 'v1'
-    | cloudshell_v1.Options
-    | 'v1alpha1'
-    | cloudshell_v1alpha1.Options
+    'v1' | cloudshell_v1.Options | 'v1alpha1' | cloudshell_v1alpha1.Options
 ) {
   return getAPI<T>('cloudshell', versionOrOptions, VERSIONS, this);
 }

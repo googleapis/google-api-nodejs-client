@@ -4,6 +4,24 @@
 
 [1]: https://www.npmjs.com/package/googleapis?activeTab=versions
 
+## [174.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/googleapis-v173.0.0...googleapis-v174.0.0) (2026-08-03)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3955](https://github.com/googleapis/google-api-nodejs-client/issues/3955)) ([c429a9b](https://github.com/googleapis/google-api-nodejs-client/commit/c429a9b6f8272f1a651084f83ffcf4b88124c59f))
+* run the generator ([#3959](https://github.com/googleapis/google-api-nodejs-client/issues/3959)) ([ac15310](https://github.com/googleapis/google-api-nodejs-client/commit/ac153108d76743e8caaa0e4c013bb802d3f5121f))
+
+
+### Bug Fixes
+
+* prevent OOMs and HTTP 408 timeouts during API generation and push ([#3954](https://github.com/googleapis/google-api-nodejs-client/issues/3954)) ([5950a04](https://github.com/googleapis/google-api-nodejs-client/commit/5950a04a8c33944c5e594e48959868f288b0996e))
+
 ## [173.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/googleapis-v172.0.0...googleapis-v173.0.0) (2026-05-28)
 
 

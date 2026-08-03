@@ -125,27 +125,27 @@ export namespace workloadmanager_v1 {
   }
 
   /**
-   * Active directory details
+   * Active Directory details.
    */
   export interface Schema$ActiveDirectory {
     /**
-     * Optional. DNS IP address
+     * Optional. DNS IP address.
      */
     dnsAddress?: string | null;
     /**
-     * Optional. human readable form of a domain such as “google.com”.
+     * Optional. Human readable form of a domain such as `example.com`.
      */
     domain?: string | null;
     /**
-     * Optional. domain username
+     * Optional. Domain username.
      */
     domainUsername?: string | null;
     /**
-     * Required. secret_manager_secret
+     * Required. Secret Manager secret.
      */
     secretManagerSecret?: string | null;
     /**
-     * Required. active directory type
+     * Required. Active Directory type.
      */
     type?: string | null;
   }
@@ -154,48 +154,48 @@ export namespace workloadmanager_v1 {
    */
   export interface Schema$Actuation {
     /**
-     * Output only. [Output only] Actuation output
+     * Output only. Actuation output.
      */
     actuationOutput?: Schema$ActuationOutput;
     /**
-     * Output only. [Output only] Deployment output
+     * Output only. Deployment output.
      */
     deploymentOutput?: Schema$DeploymentOutput[];
     /**
-     * Output only. [Output only] End time stamp
+     * Output only. End time stamp.
      */
     endTime?: string | null;
     /**
-     * The name of actuation resource. The format is projects/{project\}/locations/{location\}/deployments/{deployment\}/actuations/{actuation\}
+     * The name of the actuation resource. The format is projects/{project\}/locations/{location\}/deployments/{deployment\}/actuations/{actuation\}.
      */
     name?: string | null;
     /**
-     * Output only. [Output only] Start time stamp
+     * Output only. Start time stamp.
      */
     startTime?: string | null;
     /**
-     * Output only. [Output only] Actuation state
+     * Output only. Actuation state.
      */
     state?: string | null;
   }
   /**
-   * Message for output of Actuation
+   * Message for output of actuation.
    */
   export interface Schema$ActuationOutput {
     /**
-     * A link to gcs file that store build logs
+     * A link to the Cloud Storage file that stores build logs.
      */
     actuateLogs?: string | null;
     /**
-     * Output only. error message return from ansible.
+     * Output only. Error message returned from Ansible.
      */
     ansibleError?: string | null;
     /**
-     * Output only. failed task name return from ansible.
+     * Output only. Failed task name returned from Ansible.
      */
     ansibleFailedTask?: string[] | null;
     /**
-     * reference to Blueprint Controller deployment and revision resource
+     * Reference to the Blueprint Controller deployment and revision resource.
      */
     blueprintId?: string | null;
     /**
@@ -207,19 +207,19 @@ export namespace workloadmanager_v1 {
      */
     errorCode?: string | null;
     /**
-     * A link to actuation cloud build log.
+     * A link to the actuation Cloud Build log.
      */
     errorLogs?: string | null;
     /**
-     * Output only. whether the error message is user facing. If true, the error message will be shown in the UI.
+     * Output only. Whether the error message is user facing. If true, the error message will be shown in the UI.
      */
     hasUserFacingErrorMsg?: boolean | null;
     /**
-     * Output only. error message return from terraform.
+     * Output only. Error message returned from Terraform.
      */
     terraformError?: string | null;
     /**
-     * reference to terraform template used
+     * Reference to the Terraform template used.
      */
     terraformTemplate?: string | null;
   }
@@ -399,63 +399,63 @@ export namespace workloadmanager_v1 {
     unspecifiedStateMessage?: string | null;
   }
   /**
-   * Message for sap instant details
+   * Message for SAP instance details.
    */
   export interface Schema$AppDetails {
     /**
-     * Optional. instance id for app
+     * Optional. Instance ID for app.
      */
     appInstanceId?: string | null;
     /**
-     * Application service account - let custoemrs bring their own SA for application
+     * Application service account. Let customers bring their own service account for the application.
      */
     appServiceAccount?: string | null;
     /**
-     * Optional. Customized vm names
+     * Optional. Customized VM names.
      */
     appVmNames?: string[] | null;
     /**
-     * Required. image for ascs server
+     * Required. Image for the ASCS server.
      */
     ascsImage?: string | null;
     /**
-     * Optional. instance id for ascs
+     * Optional. Instance ID for ASCS.
      */
     ascsInstanceId?: string | null;
     /**
-     * Required. ascs_machine_type
+     * Required. ASCS machine type.
      */
     ascsMachineType?: string | null;
     /**
-     * ASCS service account - let custoemrs bring their own SA for ASCS
+     * ASCS service account. Let customers bring their own service account for ASCS.
      */
     ascsServiceAccount?: string | null;
     /**
-     * Optional. ASCS vm name
+     * Optional. ASCS VM name.
      */
     ascsVm?: string | null;
     /**
-     * Optional. instance id for ers
+     * Optional. Instance ID for ERS.
      */
     ersInstanceId?: string | null;
     /**
-     * Optional. ERS vm name
+     * Optional. ERS VM name.
      */
     ersVm?: string | null;
     /**
-     * Required. image for app server and ascs server
+     * Required. Image for the app server and ASCS server.
      */
     image?: string | null;
     /**
-     * Required. machine type
+     * Required. Machine type.
      */
     machineType?: string | null;
     /**
-     * Required. secret_manager_secret
+     * Required. Secret Manager secret.
      */
     secretManagerSecret?: string | null;
     /**
-     * Optional. Storage location
+     * Optional. Storage location.
      */
     sharedStorage?: string | null;
     /**
@@ -463,7 +463,7 @@ export namespace workloadmanager_v1 {
      */
     sid?: string | null;
     /**
-     * Required. vms_multiplier
+     * Required. VMs multiplier.
      */
     vmsMultiplier?: number | null;
   }
@@ -553,88 +553,88 @@ export namespace workloadmanager_v1 {
     subComponentsHealth?: Schema$ComponentHealth[];
   }
   /**
-   * Database details
+   * Database details.
    */
   export interface Schema$Database {
     /**
-     * Required. disk_type
+     * Required. Disk type.
      */
     diskType?: string | null;
     /**
-     * Optional. only useful for Linux High Availability setup
+     * Optional. Only useful for Linux High Availability setup.
      */
     floatingIpAddress?: string | null;
     /**
-     * Required. machine type
+     * Required. Machine type.
      */
     machineType?: string | null;
     /**
-     * Optional. the name of a secondary-sole-tenant node/node group
+     * Optional. The name of a secondary-sole-tenant node/node group.
      */
     secondarySoleTenantNode?: string | null;
     /**
-     * Optional. the type of a secondary-sole-tenant node/node group e.g. compute.googleapis.com/node-name
+     * Optional. The type of a secondary-sole-tenant node/node group. E.g., compute.googleapis.com/node-name.
      */
     secondarySoleTenantNodeType?: string | null;
     /**
-     * Required. secret_manager_secret
+     * Required. Secret Manager secret.
      */
     secretManagerSecret?: string | null;
     /**
-     * Required. whether simultaneous multithreading is enabled or not
+     * Required. Whether simultaneous multithreading is enabled or not.
      */
     smt?: boolean | null;
     /**
-     * Optional. the name of a primary sole-tenant node/node group
+     * Optional. The name of a primary sole-tenant node/node group.
      */
     soleTenantNode?: string | null;
     /**
-     * Optional. the type of a primary sole-tenant node/node group e.g. compute.googleapis.com/node-name
+     * Optional. The type of a primary sole-tenant node/node group. E.g., compute.googleapis.com/node-name.
      */
     soleTenantNodeType?: string | null;
     /**
-     * Required. whether to have TempDB on local SSD
+     * Required. Whether to have TempDB on local SSD.
      */
     tempdbOnSsd?: boolean | null;
     /**
-     * Required. SHARED or SOLE_TENANT
+     * Required. SHARED or SOLE_TENANT.
      */
     tenancyModel?: string | null;
   }
   /**
-   * Message for sap instant details
+   * Message for SAP instance details.
    */
   export interface Schema$DatabaseDetails {
     /**
-     * Database service account - let custoemrs bring their own SA for database
+     * Database service account. Let customers bring their own SA for the database.
      */
     databaseServiceAccount?: string | null;
     /**
-     * Required. disk_type
+     * Required. Disk type.
      */
     diskType?: string | null;
     /**
-     * Required. image for database server
+     * Required. Image for the database server.
      */
     image?: string | null;
     /**
-     * Optional. instance id
+     * Optional. Instance ID.
      */
     instanceId?: string | null;
     /**
-     * Required. machine type
+     * Required. Machine type.
      */
     machineType?: string | null;
     /**
-     * Optional. primary db vm name
+     * Optional. Primary DB VM name.
      */
     primaryDbVm?: string | null;
     /**
-     * Optional. secondary db vm name
+     * Optional. Secondary DB VM name.
      */
     secondaryDbVm?: string | null;
     /**
-     * Required. secret_manager_secret
+     * Required. Secret Manager secret.
      */
     secretManagerSecret?: string | null;
     /**
@@ -660,27 +660,27 @@ export namespace workloadmanager_v1 {
    */
   export interface Schema$Deployment {
     /**
-     * Output only. [Output only] Create time stamp
+     * Output only. Create time stamp.
      */
     createTime?: string | null;
     /**
-     * Description of the Deployment
+     * Description of the deployment.
      */
     description?: string | null;
     /**
-     * The name of deployment resource. The format will be 'projects/{project_id\}/locations/{location_id\}/deployments/{deployment_id\}'
+     * The name of the deployment resource. The format is 'projects/{project_id\}/locations/{location_id\}/deployments/{deployment_id\}'.
      */
     name?: string | null;
     /**
-     * SAP system workload input
+     * SAP system workload input.
      */
     sapSystemS4Config?: Schema$SapSystemS4Config;
     /**
-     * User-specified Service Account (SA) credentials to be used for cloud build Format: `projects/{projectID\}/serviceAccounts/{serviceAccount\}` The default Cloud Build SA will be used initially if this field is not set during deployment creation
+     * User-specified Service Account (SA) credentials to be used for Cloud Build. Format: `projects/{projectID\}/serviceAccounts/{serviceAccount\}` The default Cloud Build SA will be used initially if this field is not set during deployment creation.
      */
     serviceAccount?: string | null;
     /**
-     * MS SQL workload input
+     * MS SQL workload input.
      */
     sqlServerWorkload?: Schema$SqlServerWorkload;
     /**
@@ -692,7 +692,7 @@ export namespace workloadmanager_v1 {
      */
     terraformVariables?: {[key: string]: Schema$TerraformVariable} | null;
     /**
-     * Output only. [Output only] Update time stamp
+     * Output only. Update time stamp.
      */
     updateTime?: string | null;
     /**
@@ -700,20 +700,20 @@ export namespace workloadmanager_v1 {
      */
     workerPool?: string | null;
     /**
-     * Optional. Workload type of the deployment
+     * Optional. Workload type of the deployment.
      */
     workloadType?: string | null;
   }
   /**
-   * Message for output of deployment resource
+   * Message for output of deployment resource.
    */
   export interface Schema$DeploymentOutput {
     /**
-     * name of the resource
+     * Name of the resource.
      */
     name?: string | null;
     /**
-     * type of the resource
+     * Type of the resource.
      */
     type?: string | null;
   }
@@ -1011,7 +1011,7 @@ export namespace workloadmanager_v1 {
    */
   export interface Schema$ListActuationsResponse {
     /**
-     * The list of Actuation
+     * The list of actuations.
      */
     actuations?: Schema$Actuation[];
     /**
@@ -1024,11 +1024,11 @@ export namespace workloadmanager_v1 {
     unreachable?: string[] | null;
   }
   /**
-   * Message for response to listing Deployments
+   * Message for response to listing deployments.
    */
   export interface Schema$ListDeploymentsResponse {
     /**
-     * The list of Deployment
+     * The list of deployments.
      */
     deployments?: Schema$Deployment[];
     /**
@@ -1182,52 +1182,52 @@ export namespace workloadmanager_v1 {
     name?: string | null;
   }
   /**
-   * Message for sap instant details
+   * Message for SAP instance details.
    */
   export interface Schema$LocationDetails {
     /**
-     * Optional. create firewall, if true, create firewall for the deployment. This field provides an option to not always create firewall for the deployment.
+     * Optional. Create firewall. If true, creates a firewall for the deployment. This field provides an option to not always create a firewall for the deployment.
      */
     createCommsFirewall?: boolean | null;
     /**
-     * Optional. network tags
+     * Optional. Network tags.
      */
     customTags?: string[] | null;
     /**
-     * Optional. when user skip DNS configuration from UI, deployment_dns_enabled=false otherwise deployment_dns_enabled=true
+     * Optional. When the user skips DNS configuration in the UI, `deployment_dns_enabled` is false; otherwise `deployment_dns_enabled` is true.
      */
     deploymentDnsEnabled?: boolean | null;
     /**
-     * Optional. dns zone name
+     * Optional. DNS zone name.
      */
     dnsZone?: string | null;
     /**
-     * Optional. dns_zone_name_suffix
+     * Optional. DNS zone name suffix.
      */
     dnsZoneNameSuffix?: string | null;
     internetAccess?: string | null;
     /**
-     * Optional. network project
+     * Optional. Network project.
      */
     networkProject?: string | null;
     /**
-     * Required. region_name
+     * Required. Region name.
      */
     regionName?: string | null;
     /**
-     * Required. subnet_name
+     * Required. Subnet name.
      */
     subnetName?: string | null;
     /**
-     * Required. vpc_name
+     * Required. VPC name.
      */
     vpcName?: string | null;
     /**
-     * Required. zone1_name
+     * Required. Zone 1 name.
      */
     zone1Name?: string | null;
     /**
-     * Optional. zone2_name
+     * Optional. Zone 2 name.
      */
     zone2Name?: string | null;
   }
@@ -1312,31 +1312,31 @@ export namespace workloadmanager_v1 {
     verb?: string | null;
   }
   /**
-   * pacemaker configuration
+   * Pacemaker configuration.
    */
   export interface Schema$Pacemaker {
     /**
-     * Required. bucket location for node certificates
+     * Required. Bucket location for node certificates.
      */
     bucketNameNodeCertificates?: string | null;
     /**
-     * Required. pacemaker cluster name
+     * Required. Pacemaker cluster name.
      */
     pacemakerCluster?: string | null;
     /**
-     * Required. pacemaker cluster secret name
+     * Required. Pacemaker cluster secret name.
      */
     pacemakerClusterSecret?: string | null;
     /**
-     * Required. pacemaker cluster username
+     * Required. Pacemaker cluster username.
      */
     pacemakerClusterUsername?: string | null;
     /**
-     * Required. sql pacemaker secret name
+     * Required. SQL Pacemaker secret name.
      */
     sqlPacemakerSecret?: string | null;
     /**
-     * Required. sql pacemaker username
+     * Required. SQL Pacemaker username.
      */
     sqlPacemakerUsername?: string | null;
   }
@@ -1918,56 +1918,56 @@ export namespace workloadmanager_v1 {
     numbers?: string[] | null;
   }
   /**
-   * Message for sap system workload
+   * Message for SAP system workload.
    */
   export interface Schema$SapSystemS4Config {
     allowStoppingForUpdate?: boolean | null;
     /**
-     * Ansible runner service account - let custoemrs bring their own SA for Ansible runner
+     * Ansible runner service account. Let customers bring their own service account for the Ansible runner.
      */
     ansibleRunnerServiceAccount?: string | null;
     /**
-     * instance details
+     * Instance details.
      */
     app?: Schema$AppDetails;
     /**
-     * database details
+     * Database details.
      */
     database?: Schema$DatabaseDetails;
     /**
-     * Required. two model non-HA and HA supported
+     * Required. Supports non-HA and HA models.
      */
     deploymentModel?: string | null;
     /**
-     * Required. deployment environment
+     * Required. Deployment environment.
      */
     environmentType?: string | null;
     /**
-     * the project that infrastructure deployed, current only support the same project where the deployment resource exist.
+     * The project that infrastructure is deployed in. Currently only supports the same project where the deployment resource exists.
      */
     gcpProjectId?: string | null;
     /**
-     * database details
+     * Database details.
      */
     location?: Schema$LocationDetails;
     /**
-     * Required. media_bucket_name
+     * Required. Media bucket name.
      */
     mediaBucketName?: string | null;
     /**
-     * Optional. sap_boot_disk_image
+     * Optional. SAP boot disk image.
      */
     sapBootDiskImage?: string | null;
     /**
-     * Required. support scale up and scale out
+     * Required. Supports scale up and scale out.
      */
     scalingMethod?: string | null;
     /**
-     * Required. sap hana version
+     * Required. SAP HANA version.
      */
     version?: string | null;
     /**
-     * vm_prefix
+     * VM prefix.
      */
     vmPrefix?: string | null;
   }
@@ -2074,43 +2074,43 @@ export namespace workloadmanager_v1 {
     timeoutSeconds?: number | null;
   }
   /**
-   * Location and networking details for configuring SQL server workload
+   * Location and networking details for configuring SQL server workload.
    */
   export interface Schema$SqlLocationDetails {
     /**
-     * Optional. create a new DNS Zone when the field is empty, Only show for `Using an existing DNS` List of existing DNS Zones tf variable name: existing_dns_zone_name
+     * Optional. Create a new DNS zone when the field is empty. Only shown for `Using an existing DNS`. List of existing DNS zones. Terraform variable name: existing_dns_zone_name.
      */
     dnsZone?: string | null;
     /**
-     * Required. the project that infrastructure deployed, currently only supports the same project where the deployment resource exists.
+     * Required. The project that infrastructure is deployed in. Currently only supports the same project where the deployment resource exists.
      */
     gcpProjectId?: string | null;
     /**
-     * Required. Internet Access
+     * Required. Internet Access.
      */
     internetAccess?: string | null;
     /**
-     * Required. network name
+     * Required. Network name.
      */
     network?: string | null;
     /**
-     * Required. primary zone
+     * Required. Primary zone.
      */
     primaryZone?: string | null;
     /**
-     * Required. region name
+     * Required. Region name.
      */
     region?: string | null;
     /**
-     * Optional. secondary zone can't be same as primary_zone and is only for High Availability deployment mode
+     * Optional. Secondary zone cannot be the same as primary_zone and is only for High Availability deployment mode.
      */
     secondaryZone?: string | null;
     /**
-     * Required. subnetwork name
+     * Required. Subnetwork name.
      */
     subnetwork?: string | null;
     /**
-     * Optional. teriary zone can't be same as primary_zone and secondary zone, and it is only for High Availability deployment mode
+     * Optional. Tertiary zone cannot be the same as primary_zone and secondary_zone, and it is only for High Availability deployment mode.
      */
     tertiaryZone?: string | null;
   }
@@ -2158,75 +2158,75 @@ export namespace workloadmanager_v1 {
     type?: string | null;
   }
   /**
-   * Message for MS SQL workload
+   * Message for MS SQL workload.
    */
   export interface Schema$SqlServerWorkload {
     /**
-     * Required. active directory details
+     * Required. Active Directory details.
      */
     activeDirectory?: Schema$ActiveDirectory;
     /**
-     * Compute engine service account - let customers bring their own SA for Compute engine
+     * Compute Engine service account. Let customers bring their own service account for Compute Engine.
      */
     computeEngineServiceAccount?: string | null;
     /**
-     * Required. database details
+     * Required. Database details.
      */
     database?: Schema$Database;
     /**
-     * Required. HIGH_AVAILABILITY or SINGLE_INSTANCE
+     * Required. HIGH_AVAILABILITY or SINGLE_INSTANCE.
      */
     deploymentModel?: string | null;
     /**
-     * Required. deployment environment
+     * Required. Deployment environment.
      */
     environmentType?: string | null;
     /**
-     * Optional. SHARED_DISK or S2D
+     * Optional. SHARED_DISK or S2D.
      */
     fciType?: string | null;
     /**
-     * Optional. AOAG or FCI, it is only needed for High Availability deployment mode
+     * Optional. AOAG or FCI. It is only needed for the High Availability deployment mode.
      */
     haType?: string | null;
     /**
-     * Required. SQL licensing type
+     * Required. SQL licensing type.
      */
     isSqlPayg?: boolean | null;
     /**
-     * Required. location details
+     * Required. Location details.
      */
     location?: Schema$SqlLocationDetails;
     /**
-     * Required. name of the media storing SQL server installation files
+     * Required. Name of the media storing SQL server installation files.
      */
     mediaBucket?: string | null;
     /**
-     * Required. type of the operating system the SQL server is going to run on top of
+     * Required. The type of the operating system the SQL server is going to run on top of.
      */
     operatingSystemType?: string | null;
     /**
-     * Required. the image of the operating system
+     * Required. The image of the operating system.
      */
     osImage?: string | null;
     /**
-     * Optional. OS image type, it's used to create boot disks for VM instances When either Windows licensing type or SQL licensing type is BYOL, this option is disabled and default to custom image
+     * Optional. OS image type. It's used to create boot disks for VM instances. When either Windows licensing type or SQL licensing type is BYOL, this option is disabled and defaults to a custom image.
      */
     osImageType?: string | null;
     /**
-     * Optional. pacemaker configuration, only applicable for Linux HA deployments
+     * Optional. Pacemaker configuration, only applicable for Linux HA deployments.
      */
     pacemaker?: Schema$Pacemaker;
     /**
-     * Optional. SQL Server Edition type, only applicable when Operating System is Linux
+     * Optional. SQL Server Edition type, only applicable when the operating system is Linux.
      */
     sqlServerEdition?: string | null;
     /**
-     * Optional. 2017 or 2019 or 2022
+     * Optional. 2017, 2019, or 2022.
      */
     sqlServerVersion?: string | null;
     /**
-     * Required. should be unique in the project
+     * Required. Should be unique in the project.
      */
     vmPrefix?: string | null;
   }
@@ -2265,7 +2265,7 @@ export namespace workloadmanager_v1 {
     newFixes?: string | null;
   }
   /**
-   * In order to align with Infra Manager dependency, we create the same TerraformVariable message to represent a Terraform input variable, by following Infra Manager's API documentation: https://cloud.google.com/infrastructure-manager/docs/reference/rest A Terraform input variable.
+   * In order to align with the Infra Manager dependency, we create the same TerraformVariable message to represent a Terraform input variable, by following Infra Manager's API documentation: https://cloud.google.com/infrastructure-manager/docs/reference/rest. A Terraform input variable.
    */
   export interface Schema$TerraformVariable {
     /**
@@ -2534,8 +2534,7 @@ export namespace workloadmanager_v1 {
         | BodyResponseCallback<Schema$Location>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Location>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Location> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Location>>
@@ -2660,8 +2659,7 @@ export namespace workloadmanager_v1 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListLocationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListLocationsResponse>,
       callback: BodyResponseCallback<Schema$ListLocationsResponse>
     ): void;
     list(
@@ -2801,7 +2799,7 @@ export namespace workloadmanager_v1 {
      *
      *   // Do the magic
      *   const res = await workloadmanager.projects.locations.deployments.create({
-     *     // Required. Id of the deployment
+     *     // Required. ID of the deployment.
      *     deploymentId: 'placeholder-value',
      *     // Required. The resource prefix of the Deployment using the form: `projects/{project_id\}/locations/{location_id\}`
      *     parent: 'projects/my-project/locations/my-location',
@@ -2884,8 +2882,7 @@ export namespace workloadmanager_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -2965,9 +2962,9 @@ export namespace workloadmanager_v1 {
      *
      *   // Do the magic
      *   const res = await workloadmanager.projects.locations.deployments.delete({
-     *     // Optional. If set to true, any actuation will also be deleted. Followed the best practice from https://aip.dev/135#cascading-delete
+     *     // Optional. If set to true, any actuation will also be deleted. Follows the best practice from https://aip.dev/135#cascading-delete.
      *     force: 'placeholder-value',
-     *     // Required. Name of the resource
+     *     // Required. Name of the resource.
      *     name: 'projects/my-project/locations/my-location/deployments/my-deployment',
      *   });
      *   console.log(res.data);
@@ -3028,8 +3025,7 @@ export namespace workloadmanager_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3106,7 +3102,7 @@ export namespace workloadmanager_v1 {
      *
      *   // Do the magic
      *   const res = await workloadmanager.projects.locations.deployments.get({
-     *     // Required. Name of the resource. The format will be 'projects/{project_id\}/locations/{location_id\}/deployments/{deployment_id\}'
+     *     // Required. Name of the resource. The format is 'projects/{project_id\}/locations/{location_id\}/deployments/{deployment_id\}'.
      *     name: 'projects/my-project/locations/my-location/deployments/my-deployment',
      *   });
      *   console.log(res.data);
@@ -3173,8 +3169,7 @@ export namespace workloadmanager_v1 {
         | BodyResponseCallback<Schema$Deployment>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Deployment>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Deployment> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Deployment>>
@@ -3251,7 +3246,7 @@ export namespace workloadmanager_v1 {
      *
      *   // Do the magic
      *   const res = await workloadmanager.projects.locations.deployments.list({
-     *     // Optional. Filter resource follow https://google.aip.dev/160
+     *     // Optional. Filter resource following https://google.aip.dev/160.
      *     filter: 'placeholder-value',
      *     // Optional. Field to sort by. See https://google.aip.dev/132#ordering for more details.
      *     orderBy: 'placeholder-value',
@@ -3300,8 +3295,7 @@ export namespace workloadmanager_v1 {
     list(
       params: Params$Resource$Projects$Locations$Deployments$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListDeploymentsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListDeploymentsResponse>,
       callback: BodyResponseCallback<Schema$ListDeploymentsResponse>
     ): void;
     list(
@@ -3373,7 +3367,7 @@ export namespace workloadmanager_v1 {
 
   export interface Params$Resource$Projects$Locations$Deployments$Create extends StandardParameters {
     /**
-     * Required. Id of the deployment
+     * Required. ID of the deployment.
      */
     deploymentId?: string;
     /**
@@ -3392,23 +3386,23 @@ export namespace workloadmanager_v1 {
   }
   export interface Params$Resource$Projects$Locations$Deployments$Delete extends StandardParameters {
     /**
-     * Optional. If set to true, any actuation will also be deleted. Followed the best practice from https://aip.dev/135#cascading-delete
+     * Optional. If set to true, any actuation will also be deleted. Follows the best practice from https://aip.dev/135#cascading-delete.
      */
     force?: boolean;
     /**
-     * Required. Name of the resource
+     * Required. Name of the resource.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Deployments$Get extends StandardParameters {
     /**
-     * Required. Name of the resource. The format will be 'projects/{project_id\}/locations/{location_id\}/deployments/{deployment_id\}'
+     * Required. Name of the resource. The format is 'projects/{project_id\}/locations/{location_id\}/deployments/{deployment_id\}'.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Deployments$List extends StandardParameters {
     /**
-     * Optional. Filter resource follow https://google.aip.dev/160
+     * Optional. Filter resource following https://google.aip.dev/160.
      */
     filter?: string;
     /**
@@ -3467,7 +3461,7 @@ export namespace workloadmanager_v1 {
      *   // Do the magic
      *   const res =
      *     await workloadmanager.projects.locations.deployments.actuations.create({
-     *       // Required. The resource name of the Actuation location using the form: 'projects/{project_id\}/locations/{location\}/deployments/{deployment\}'
+     *       // Required. The resource name of the Actuation location using the form: 'projects/{project_id\}/locations/{location\}/deployments/{deployment\}'.
      *       parent:
      *         'projects/my-project/locations/my-location/deployments/my-deployment',
      *       // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
@@ -3544,8 +3538,7 @@ export namespace workloadmanager_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3596,7 +3589,7 @@ export namespace workloadmanager_v1 {
     }
 
     /**
-     * Deletes a single Actuation
+     * Deletes a single Actuation.
      * @example
      * ```js
      * // Before running the sample:
@@ -3627,7 +3620,7 @@ export namespace workloadmanager_v1 {
      *   // Do the magic
      *   const res =
      *     await workloadmanager.projects.locations.deployments.actuations.delete({
-     *       // Required. The name of the book to delete. project/{project_id\}/locations/{location_id\}/deployments/{deployment_id\}/actuations/{actuation_id\}
+     *       // Required. The name of the actuation to delete. projects/{project\}/locations/{location\}/deployments/{deployment\}/actuations/{actuation\}.
      *       name: 'projects/my-project/locations/my-location/deployments/my-deployment/actuations/my-actuation',
      *     });
      *   console.log(res.data);
@@ -3688,8 +3681,7 @@ export namespace workloadmanager_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3768,7 +3760,7 @@ export namespace workloadmanager_v1 {
      *   // Do the magic
      *   const res =
      *     await workloadmanager.projects.locations.deployments.actuations.get({
-     *       // Required. Name of the resource
+     *       // Required. Name of the resource.
      *       name: 'projects/my-project/locations/my-location/deployments/my-deployment/actuations/my-actuation',
      *     });
      *   console.log(res.data);
@@ -3830,8 +3822,7 @@ export namespace workloadmanager_v1 {
         | BodyResponseCallback<Schema$Actuation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Actuation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Actuation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Actuation>>
@@ -3910,7 +3901,7 @@ export namespace workloadmanager_v1 {
      *   // Do the magic
      *   const res =
      *     await workloadmanager.projects.locations.deployments.actuations.list({
-     *       // Optional. Filtering results
+     *       // Optional. Filtering results.
      *       filter: 'placeholder-value',
      *       // Optional. Field to sort by. See https://google.aip.dev/132#ordering for more details.
      *       orderBy: 'placeholder-value',
@@ -3918,7 +3909,7 @@ export namespace workloadmanager_v1 {
      *       pageSize: 'placeholder-value',
      *       // Optional. A token identifying a page of results the server should return.
      *       pageToken: 'placeholder-value',
-     *       // Required. The resource prefix of the Actuation using the form: 'projects/{project_id\}/locations/{location\}/deployments/{deployment\}'
+     *       // Required. The resource prefix of the Actuation using the form: 'projects/{project_id\}/locations/{location\}/deployments/{deployment\}'.
      *       parent:
      *         'projects/my-project/locations/my-location/deployments/my-deployment',
      *     });
@@ -3960,8 +3951,7 @@ export namespace workloadmanager_v1 {
     list(
       params: Params$Resource$Projects$Locations$Deployments$Actuations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListActuationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListActuationsResponse>,
       callback: BodyResponseCallback<Schema$ListActuationsResponse>
     ): void;
     list(
@@ -4034,7 +4024,7 @@ export namespace workloadmanager_v1 {
 
   export interface Params$Resource$Projects$Locations$Deployments$Actuations$Create extends StandardParameters {
     /**
-     * Required. The resource name of the Actuation location using the form: 'projects/{project_id\}/locations/{location\}/deployments/{deployment\}'
+     * Required. The resource name of the Actuation location using the form: 'projects/{project_id\}/locations/{location\}/deployments/{deployment\}'.
      */
     parent?: string;
     /**
@@ -4049,19 +4039,19 @@ export namespace workloadmanager_v1 {
   }
   export interface Params$Resource$Projects$Locations$Deployments$Actuations$Delete extends StandardParameters {
     /**
-     * Required. The name of the book to delete. project/{project_id\}/locations/{location_id\}/deployments/{deployment_id\}/actuations/{actuation_id\}
+     * Required. The name of the actuation to delete. projects/{project\}/locations/{location\}/deployments/{deployment\}/actuations/{actuation\}.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Deployments$Actuations$Get extends StandardParameters {
     /**
-     * Required. Name of the resource
+     * Required. Name of the resource.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Deployments$Actuations$List extends StandardParameters {
     /**
-     * Optional. Filtering results
+     * Optional. Filtering results.
      */
     filter?: string;
     /**
@@ -4077,7 +4067,7 @@ export namespace workloadmanager_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The resource prefix of the Actuation using the form: 'projects/{project_id\}/locations/{location\}/deployments/{deployment\}'
+     * Required. The resource prefix of the Actuation using the form: 'projects/{project_id\}/locations/{location\}/deployments/{deployment\}'.
      */
     parent?: string;
   }
@@ -4490,8 +4480,7 @@ export namespace workloadmanager_v1 {
     get(
       params: Params$Resource$Projects$Locations$Discoveredprofiles$Health$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$WorkloadProfileHealth>,
+        MethodOptions | BodyResponseCallback<Schema$WorkloadProfileHealth>,
       callback: BodyResponseCallback<Schema$WorkloadProfileHealth>
     ): void;
     get(
@@ -4692,8 +4681,7 @@ export namespace workloadmanager_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4838,8 +4826,7 @@ export namespace workloadmanager_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4985,8 +4972,7 @@ export namespace workloadmanager_v1 {
         | BodyResponseCallback<Schema$Evaluation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Evaluation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Evaluation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Evaluation>>
@@ -5112,8 +5098,7 @@ export namespace workloadmanager_v1 {
     list(
       params: Params$Resource$Projects$Locations$Evaluations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListEvaluationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListEvaluationsResponse>,
       callback: BodyResponseCallback<Schema$ListEvaluationsResponse>
     ): void;
     list(
@@ -5298,8 +5283,7 @@ export namespace workloadmanager_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5538,8 +5522,7 @@ export namespace workloadmanager_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5687,8 +5670,7 @@ export namespace workloadmanager_v1 {
         | BodyResponseCallback<Schema$Execution>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Execution>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Execution> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Execution>>
@@ -5817,8 +5799,7 @@ export namespace workloadmanager_v1 {
     list(
       params: Params$Resource$Projects$Locations$Evaluations$Executions$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListExecutionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListExecutionsResponse>,
       callback: BodyResponseCallback<Schema$ListExecutionsResponse>
     ): void;
     list(
@@ -5991,8 +5972,7 @@ export namespace workloadmanager_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -6563,8 +6543,7 @@ export namespace workloadmanager_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -6688,8 +6667,7 @@ export namespace workloadmanager_v1 {
     writeInsight(
       params: Params$Resource$Projects$Locations$Insights$Writeinsight,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$WriteInsightResponse>,
+        MethodOptions | BodyResponseCallback<Schema$WriteInsightResponse>,
       callback: BodyResponseCallback<Schema$WriteInsightResponse>
     ): void;
     writeInsight(
@@ -6881,8 +6859,7 @@ export namespace workloadmanager_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -7014,8 +6991,7 @@ export namespace workloadmanager_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -7153,8 +7129,7 @@ export namespace workloadmanager_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -7280,8 +7255,7 @@ export namespace workloadmanager_v1 {
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListOperationsResponse>,
       callback: BodyResponseCallback<Schema$ListOperationsResponse>
     ): void;
     list(

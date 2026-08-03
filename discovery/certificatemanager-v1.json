@@ -1325,7 +1325,7 @@
       }
     }
   },
-  "revision": "20260427",
+  "revision": "20260629",
   "rootUrl": "https://certificatemanager.googleapis.com/",
   "schemas": {
     "AllowlistedCertificate": {
@@ -1504,6 +1504,13 @@
           "$ref": "SelfManagedCertificate",
           "description": "If set, defines data of a self-managed certificate."
         },
+        "tags": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Input only. Immutable. Tag keys/values directly bound to this resource. For example: \"123/environment\": \"production\", \"123/costCenter\": \"marketing\"",
+          "type": "object"
+        },
         "updateTime": {
           "description": "Output only. The last update timestamp of a Certificate.",
           "format": "google-datetime",
@@ -1596,6 +1603,13 @@
           "format": "int32",
           "type": "integer"
         },
+        "tags": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Input only. Immutable. Tag keys/values directly bound to this resource. For example: \"123/environment\": \"production\", \"123/costCenter\": \"marketing\"",
+          "type": "object"
+        },
         "updateTime": {
           "description": "Output only. The last update timestamp of a CertificateIssuanceConfig.",
           "format": "google-datetime",
@@ -1637,6 +1651,13 @@
         "name": {
           "description": "Identifier. A user-defined name of the Certificate Map. Certificate Map names must be unique globally and match pattern `projects/*/locations/*/certificateMaps/*`.",
           "type": "string"
+        },
+        "tags": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Input only. Immutable. Tag keys/values directly bound to this resource. For example: \"123/environment\": \"production\", \"123/costCenter\": \"marketing\"",
+          "type": "object"
         },
         "updateTime": {
           "description": "Output only. The update timestamp of a Certificate Map.",
@@ -1752,6 +1773,13 @@
         "name": {
           "description": "Identifier. A user-defined name of the dns authorization. DnsAuthorization names must be unique globally and match pattern `projects/*/locations/*/dnsAuthorizations/*`.",
           "type": "string"
+        },
+        "tags": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Input only. Immutable. Tag keys/values directly bound to this resource. For example: \"123/environment\": \"production\", \"123/costCenter\": \"marketing\"",
+          "type": "object"
         },
         "type": {
           "description": "Optional. Immutable. Type of DnsAuthorization. If unset during resource creation the following default will be used: - in location `global`: FIXED_RECORD, - in other locations: PER_PROJECT_RECORD.",
@@ -2441,6 +2469,13 @@
             "$ref": "TrustStore"
           },
           "description": "Optional. Defines a mapping from a trust domain to a TrustStore. This is used for SPIFFE certificate validation.",
+          "type": "object"
+        },
+        "tags": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Input only. Immutable. Tag keys/values directly bound to this resource. For example: \"123/environment\": \"production\", \"123/costCenter\": \"marketing\"",
           "type": "object"
         },
         "trustStores": {

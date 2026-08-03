@@ -7034,8 +7034,7 @@ export namespace content_v2_1 {
     authinfo(
       params: Params$Resource$Accounts$Authinfo,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$AccountsAuthInfoResponse>,
+        MethodOptions | BodyResponseCallback<Schema$AccountsAuthInfoResponse>,
       callback: BodyResponseCallback<Schema$AccountsAuthInfoResponse>
     ): void;
     authinfo(
@@ -7644,8 +7643,7 @@ export namespace content_v2_1 {
         | BodyResponseCallback<Schema$Account>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Account>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Account> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Account>>
@@ -7822,8 +7820,7 @@ export namespace content_v2_1 {
         | BodyResponseCallback<Schema$Account>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Account>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Account> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Account>>
@@ -7956,8 +7953,7 @@ export namespace content_v2_1 {
     link(
       params: Params$Resource$Accounts$Link,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$AccountsLinkResponse>,
+        MethodOptions | BodyResponseCallback<Schema$AccountsLinkResponse>,
       callback: BodyResponseCallback<Schema$AccountsLinkResponse>
     ): void;
     link(
@@ -8106,8 +8102,7 @@ export namespace content_v2_1 {
     list(
       params: Params$Resource$Accounts$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$AccountsListResponse>,
+        MethodOptions | BodyResponseCallback<Schema$AccountsListResponse>,
       callback: BodyResponseCallback<Schema$AccountsListResponse>
     ): void;
     list(
@@ -8253,8 +8248,7 @@ export namespace content_v2_1 {
     listlinks(
       params: Params$Resource$Accounts$Listlinks,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$AccountsListLinksResponse>,
+        MethodOptions | BodyResponseCallback<Schema$AccountsListLinksResponse>,
       callback: BodyResponseCallback<Schema$AccountsListLinksResponse>
     ): void;
     listlinks(
@@ -8618,8 +8612,7 @@ export namespace content_v2_1 {
         | BodyResponseCallback<Schema$Account>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Account>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Account> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Account>>
@@ -8902,8 +8895,7 @@ export namespace content_v2_1 {
     verifyphonenumber(
       params: Params$Resource$Accounts$Verifyphonenumber,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$VerifyPhoneNumberResponse>,
+        MethodOptions | BodyResponseCallback<Schema$VerifyPhoneNumberResponse>,
       callback: BodyResponseCallback<Schema$VerifyPhoneNumberResponse>
     ): void;
     verifyphonenumber(
@@ -9689,8 +9681,7 @@ export namespace content_v2_1 {
     list(
       params: Params$Resource$Accounts$Labels$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListAccountLabelsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListAccountLabelsResponse>,
       callback: BodyResponseCallback<Schema$ListAccountLabelsResponse>
     ): void;
     list(
@@ -10057,8 +10048,7 @@ export namespace content_v2_1 {
     create(
       params: Params$Resource$Accounts$Returncarrier$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$AccountReturnCarrier>,
+        MethodOptions | BodyResponseCallback<Schema$AccountReturnCarrier>,
       callback: BodyResponseCallback<Schema$AccountReturnCarrier>
     ): void;
     create(
@@ -10492,8 +10482,7 @@ export namespace content_v2_1 {
     patch(
       params: Params$Resource$Accounts$Returncarrier$Patch,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$AccountReturnCarrier>,
+        MethodOptions | BodyResponseCallback<Schema$AccountReturnCarrier>,
       callback: BodyResponseCallback<Schema$AccountReturnCarrier>
     ): void;
     patch(
@@ -11355,8 +11344,7 @@ export namespace content_v2_1 {
         | BodyResponseCallback<Schema$AccountTax>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$AccountTax>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$AccountTax> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$AccountTax>>
@@ -11479,8 +11467,7 @@ export namespace content_v2_1 {
     list(
       params: Params$Resource$Accounttax$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$AccounttaxListResponse>,
+        MethodOptions | BodyResponseCallback<Schema$AccounttaxListResponse>,
       callback: BodyResponseCallback<Schema$AccounttaxListResponse>
     ): void;
     list(
@@ -11650,8 +11637,7 @@ export namespace content_v2_1 {
         | BodyResponseCallback<Schema$AccountTax>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$AccountTax>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$AccountTax> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$AccountTax>>
@@ -11872,8 +11858,7 @@ export namespace content_v2_1 {
         | BodyResponseCallback<Schema$Collection>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Collection>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Collection> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Collection>>
@@ -12156,8 +12141,7 @@ export namespace content_v2_1 {
         | BodyResponseCallback<Schema$Collection>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Collection>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Collection> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Collection>>
@@ -12279,8 +12263,7 @@ export namespace content_v2_1 {
     list(
       params: Params$Resource$Collections$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListCollectionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListCollectionsResponse>,
       callback: BodyResponseCallback<Schema$ListCollectionsResponse>
     ): void;
     list(
@@ -13788,8 +13771,7 @@ export namespace content_v2_1 {
         | BodyResponseCallback<Schema$Css>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Css>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Css> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Css>>
@@ -14081,8 +14063,7 @@ export namespace content_v2_1 {
         | BodyResponseCallback<Schema$Css>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Css>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Css> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Css>>
@@ -14531,8 +14512,7 @@ export namespace content_v2_1 {
     fetchnow(
       params: Params$Resource$Datafeeds$Fetchnow,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$DatafeedsFetchNowResponse>,
+        MethodOptions | BodyResponseCallback<Schema$DatafeedsFetchNowResponse>,
       callback: BodyResponseCallback<Schema$DatafeedsFetchNowResponse>
     ): void;
     fetchnow(
@@ -14701,8 +14681,7 @@ export namespace content_v2_1 {
         | BodyResponseCallback<Schema$Datafeed>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Datafeed>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Datafeed> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Datafeed>>
@@ -14861,8 +14840,7 @@ export namespace content_v2_1 {
         | BodyResponseCallback<Schema$Datafeed>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Datafeed>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Datafeed> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Datafeed>>
@@ -14986,8 +14964,7 @@ export namespace content_v2_1 {
     list(
       params: Params$Resource$Datafeeds$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$DatafeedsListResponse>,
+        MethodOptions | BodyResponseCallback<Schema$DatafeedsListResponse>,
       callback: BodyResponseCallback<Schema$DatafeedsListResponse>
     ): void;
     list(
@@ -15169,8 +15146,7 @@ export namespace content_v2_1 {
         | BodyResponseCallback<Schema$Datafeed>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Datafeed>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Datafeed> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Datafeed>>
@@ -15885,8 +15861,7 @@ export namespace content_v2_1 {
     get(
       params: Params$Resource$Freelistingsprogram$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$FreeListingsProgramStatus>,
+        MethodOptions | BodyResponseCallback<Schema$FreeListingsProgramStatus>,
       callback: BodyResponseCallback<Schema$FreeListingsProgramStatus>
     ): void;
     get(
@@ -17096,8 +17071,7 @@ export namespace content_v2_1 {
     list(
       params: Params$Resource$Liasettings$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$LiasettingsListResponse>,
+        MethodOptions | BodyResponseCallback<Schema$LiasettingsListResponse>,
       callback: BodyResponseCallback<Schema$LiasettingsListResponse>
     ): void;
     list(
@@ -17860,8 +17834,7 @@ export namespace content_v2_1 {
     setomnichannelexperience(
       params: Params$Resource$Liasettings$Setomnichannelexperience,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$LiaOmnichannelExperience>,
+        MethodOptions | BodyResponseCallback<Schema$LiaOmnichannelExperience>,
       callback: BodyResponseCallback<Schema$LiaOmnichannelExperience>
     ): void;
     setomnichannelexperience(
@@ -19147,8 +19120,7 @@ export namespace content_v2_1 {
     triggeraction(
       params: Params$Resource$Merchantsupport$Triggeraction,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TriggerActionResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TriggerActionResponse>,
       callback: BodyResponseCallback<Schema$TriggerActionResponse>
     ): void;
     triggeraction(
@@ -19542,8 +19514,7 @@ export namespace content_v2_1 {
     custombatch(
       params: Params$Resource$Pos$Custombatch,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$PosCustomBatchResponse>,
+        MethodOptions | BodyResponseCallback<Schema$PosCustomBatchResponse>,
       callback: BodyResponseCallback<Schema$PosCustomBatchResponse>
     ): void;
     custombatch(
@@ -19848,8 +19819,7 @@ export namespace content_v2_1 {
         | BodyResponseCallback<Schema$PosStore>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$PosStore>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$PosStore> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$PosStore>>
@@ -20013,8 +19983,7 @@ export namespace content_v2_1 {
         | BodyResponseCallback<Schema$PosStore>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$PosStore>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$PosStore> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$PosStore>>
@@ -20161,8 +20130,7 @@ export namespace content_v2_1 {
     inventory(
       params: Params$Resource$Pos$Inventory,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$PosInventoryResponse>,
+        MethodOptions | BodyResponseCallback<Schema$PosInventoryResponse>,
       callback: BodyResponseCallback<Schema$PosInventoryResponse>
     ): void;
     inventory(
@@ -21566,8 +21534,7 @@ export namespace content_v2_1 {
         | BodyResponseCallback<Schema$Product>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Product>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Product> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Product>>
@@ -21918,8 +21885,7 @@ export namespace content_v2_1 {
         | BodyResponseCallback<Schema$Product>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Product>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Product> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Product>>
@@ -22043,8 +22009,7 @@ export namespace content_v2_1 {
     list(
       params: Params$Resource$Products$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ProductsListResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ProductsListResponse>,
       callback: BodyResponseCallback<Schema$ProductsListResponse>
     ): void;
     list(
@@ -22418,8 +22383,7 @@ export namespace content_v2_1 {
         | BodyResponseCallback<Schema$Product>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Product>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Product> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Product>>
@@ -23232,8 +23196,7 @@ export namespace content_v2_1 {
         | BodyResponseCallback<Schema$Promotion>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Promotion>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Promotion> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Promotion>>
@@ -23415,8 +23378,7 @@ export namespace content_v2_1 {
         | BodyResponseCallback<Schema$Promotion>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Promotion>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Promotion> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Promotion>>
@@ -23542,8 +23504,7 @@ export namespace content_v2_1 {
     list(
       params: Params$Resource$Promotions$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListPromotionResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListPromotionResponse>,
       callback: BodyResponseCallback<Schema$ListPromotionResponse>
     ): void;
     list(
@@ -23734,8 +23695,7 @@ export namespace content_v2_1 {
     get(
       params: Params$Resource$Pubsubnotificationsettings$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$PubsubNotificationSettings>,
+        MethodOptions | BodyResponseCallback<Schema$PubsubNotificationSettings>,
       callback: BodyResponseCallback<Schema$PubsubNotificationSettings>
     ): void;
     get(
@@ -23887,8 +23847,7 @@ export namespace content_v2_1 {
     update(
       params: Params$Resource$Pubsubnotificationsettings$Update,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$PubsubNotificationSettings>,
+        MethodOptions | BodyResponseCallback<Schema$PubsubNotificationSettings>,
       callback: BodyResponseCallback<Schema$PubsubNotificationSettings>
     ): void;
     update(
@@ -24058,8 +24017,7 @@ export namespace content_v2_1 {
     list(
       params: Params$Resource$Quotas$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListMethodQuotasResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListMethodQuotasResponse>,
       callback: BodyResponseCallback<Schema$ListMethodQuotasResponse>
     ): void;
     list(
@@ -24925,8 +24883,7 @@ export namespace content_v2_1 {
         | BodyResponseCallback<Schema$Region>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Region>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Region> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Region>>
@@ -25201,8 +25158,7 @@ export namespace content_v2_1 {
         | BodyResponseCallback<Schema$Region>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Region>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Region> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Region>>
@@ -25503,8 +25459,7 @@ export namespace content_v2_1 {
         | BodyResponseCallback<Schema$Region>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Region>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Region> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Region>>
@@ -27794,8 +27749,7 @@ export namespace content_v2_1 {
     get(
       params: Params$Resource$Shoppingadsprogram$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ShoppingAdsProgramStatus>,
+        MethodOptions | BodyResponseCallback<Schema$ShoppingAdsProgramStatus>,
       callback: BodyResponseCallback<Schema$ShoppingAdsProgramStatus>
     ): void;
     get(

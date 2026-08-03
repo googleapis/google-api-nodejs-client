@@ -37,10 +37,7 @@ export function datacatalog<
 >(
   this: GoogleConfigurable,
   versionOrOptions:
-    | 'v1'
-    | datacatalog_v1.Options
-    | 'v1beta1'
-    | datacatalog_v1beta1.Options
+    'v1' | datacatalog_v1.Options | 'v1beta1' | datacatalog_v1beta1.Options
 ) {
   return getAPI<T>('datacatalog', versionOrOptions, VERSIONS, this);
 }

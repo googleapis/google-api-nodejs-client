@@ -146,7 +146,7 @@ export namespace cloudtrace_v1 {
    */
   export interface Schema$Trace {
     /**
-     * Project ID of the Cloud project where the trace data is stored.
+     * Required. Project ID of the Cloud project where the trace data is stored.
      */
     projectId?: string | null;
     /**
@@ -154,7 +154,7 @@ export namespace cloudtrace_v1 {
      */
     spans?: Schema$TraceSpan[];
     /**
-     * Globally unique identifier for the trace. This identifier is a 128-bit numeric value formatted as a 32-byte hex string. For example, `382d4f4c6b7bb2f4a972559d9085001d`. The numeric value should not be zero.
+     * Required. Globally unique identifier for the trace. This identifier is a 128-bit numeric value formatted as a 32-byte hex string. For example, `382d4f4c6b7bb2f4a972559d9085001d`. The numeric value should not be zero.
      */
     traceId?: string | null;
   }
@@ -172,19 +172,19 @@ export namespace cloudtrace_v1 {
    */
   export interface Schema$TraceSpan {
     /**
-     * End time of the span in seconds and nanoseconds from the UNIX epoch.
+     * Required. End time of the span in seconds and nanoseconds from the UNIX epoch.
      */
     endTime?: string | null;
     /**
-     * Distinguishes between spans generated in a particular context. For example, two spans with the same name may be distinguished using `RPC_CLIENT` and `RPC_SERVER` to identify queueing latency associated with the span.
+     * Optional. Distinguishes between spans generated in a particular context. For example, two spans with the same name may be distinguished using `RPC_CLIENT` and `RPC_SERVER` to identify queueing latency associated with the span.
      */
     kind?: string | null;
     /**
-     * Collection of labels associated with the span. Label keys must be less than 128 bytes. Label values must be less than 16 KiB. Some keys might have predefined meaning, and you can also create your own. For more information, see [Cloud Trace labels](https://cloud.google.com/trace/docs/trace-labels).
+     * Optional. Collection of labels associated with the span. Label keys must be less than 128 bytes. Label values must be less than 16 KiB. Some keys might have predefined meaning, and you can also create your own. For more information, see [Cloud Trace labels](https://cloud.google.com/trace/docs/trace-labels).
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Name of the span. Must be less than 128 bytes. The span name is sanitized and displayed in the Trace tool in the Google Cloud Platform Console. The name may be a method name or some other per-call site name. For the same executable and the same call point, a best practice is to use a consistent name, which makes it easier to correlate cross-trace spans.
+     * Required. Name of the span. Must be less than 128 bytes. The span name is sanitized and displayed in the Trace tool in the Google Cloud Platform Console. The name may be a method name or some other per-call site name. For the same executable and the same call point, a best practice is to use a consistent name, which makes it easier to correlate cross-trace spans.
      */
     name?: string | null;
     /**
@@ -192,11 +192,11 @@ export namespace cloudtrace_v1 {
      */
     parentSpanId?: string | null;
     /**
-     * Identifier for the span. Must be a 64-bit integer other than 0 and unique within a trace. For example, `2205310701640571284`.
+     * Required. Identifier for the span. Must be a 64-bit integer other than 0 and unique within a trace. For example, `2205310701640571284`.
      */
     spanId?: string | null;
     /**
-     * Start time of the span in seconds and nanoseconds from the UNIX epoch.
+     * Required. Start time of the span in seconds and nanoseconds from the UNIX epoch.
      */
     startTime?: string | null;
   }
@@ -306,8 +306,7 @@ export namespace cloudtrace_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -469,8 +468,7 @@ export namespace cloudtrace_v1 {
         | BodyResponseCallback<Schema$Trace>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Trace>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Trace> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Trace>>
@@ -551,7 +549,7 @@ export namespace cloudtrace_v1 {
      *
      *   // Do the magic
      *   const res = await cloudtrace.projects.traces.list({
-     *     // End of the time interval (inclusive) during which the trace data was collected from the application.
+     *     // Required. End of the time interval (inclusive) during which the trace data was collected from the application.
      *     endTime: 'placeholder-value',
      *     // Optional. A filter against properties of the trace. See [filter syntax documentation](https://cloud.google.com/trace/docs/trace-filters) for details.
      *     filter: 'placeholder-value',
@@ -559,11 +557,11 @@ export namespace cloudtrace_v1 {
      *     orderBy: 'placeholder-value',
      *     // Optional. Maximum number of traces to return. If not specified or <= 0, the implementation selects a reasonable value. The implementation may return fewer traces than the requested page size.
      *     pageSize: 'placeholder-value',
-     *     // Token identifying the page of results to return. If provided, use the value of the `next_page_token` field from a previous request.
+     *     // Optional. Token identifying the page of results to return. If provided, use the value of the `next_page_token` field from a previous request.
      *     pageToken: 'placeholder-value',
      *     // Required. ID of the Cloud project where the trace data is stored.
      *     projectId: 'placeholder-value',
-     *     // Start of the time interval (inclusive) during which the trace data was collected from the application.
+     *     // Required. Start of the time interval (inclusive) during which the trace data was collected from the application.
      *     startTime: 'placeholder-value',
      *     // Optional. Type of data returned for traces in the list. Default is `MINIMAL`.
      *     view: 'placeholder-value',
@@ -685,7 +683,7 @@ export namespace cloudtrace_v1 {
   }
   export interface Params$Resource$Projects$Traces$List extends StandardParameters {
     /**
-     * End of the time interval (inclusive) during which the trace data was collected from the application.
+     * Required. End of the time interval (inclusive) during which the trace data was collected from the application.
      */
     endTime?: string;
     /**
@@ -701,7 +699,7 @@ export namespace cloudtrace_v1 {
      */
     pageSize?: number;
     /**
-     * Token identifying the page of results to return. If provided, use the value of the `next_page_token` field from a previous request.
+     * Optional. Token identifying the page of results to return. If provided, use the value of the `next_page_token` field from a previous request.
      */
     pageToken?: string;
     /**
@@ -709,7 +707,7 @@ export namespace cloudtrace_v1 {
      */
     projectId?: string;
     /**
-     * Start of the time interval (inclusive) during which the trace data was collected from the application.
+     * Required. Start of the time interval (inclusive) during which the trace data was collected from the application.
      */
     startTime?: string;
     /**

@@ -1909,7 +1909,7 @@
       }
     }
   },
-  "revision": "20260429",
+  "revision": "20260722",
   "rootUrl": "https://beyondcorp.googleapis.com/",
   "schemas": {
     "AllocatedConnection": {
@@ -3253,6 +3253,10 @@
           "$ref": "GoogleCloudBeyondcorpSecuritygatewaysV1ContextualHeadersDelegatedDeviceInfo",
           "description": "Optional. The device information configuration."
         },
+        "dispatchInfo": {
+          "$ref": "GoogleCloudBeyondcorpSecuritygatewaysV1ContextualHeadersDelegatedDispatchInfo",
+          "description": "Optional. The dispatch information configuration."
+        },
         "groupInfo": {
           "$ref": "GoogleCloudBeyondcorpSecuritygatewaysV1ContextualHeadersDelegatedGroupInfo",
           "description": "Optional. Group details."
@@ -3286,6 +3290,29 @@
       "properties": {
         "outputType": {
           "description": "Optional. The output type details for the delegated device.",
+          "enum": [
+            "OUTPUT_TYPE_UNSPECIFIED",
+            "PROTOBUF",
+            "JSON",
+            "NONE"
+          ],
+          "enumDescriptions": [
+            "The unspecified output type.",
+            "Protobuf output type.",
+            "JSON output type.",
+            "Explicitly disable header output."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudBeyondcorpSecuritygatewaysV1ContextualHeadersDelegatedDispatchInfo": {
+      "description": "The delegated dispatch information configuration.",
+      "id": "GoogleCloudBeyondcorpSecuritygatewaysV1ContextualHeadersDelegatedDispatchInfo",
+      "properties": {
+        "outputType": {
+          "description": "Optional. The output type details for the delegated dispatch information.",
           "enum": [
             "OUTPUT_TYPE_UNSPECIFIED",
             "PROTOBUF",

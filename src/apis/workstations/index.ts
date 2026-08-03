@@ -37,10 +37,7 @@ export function workstations<
 >(
   this: GoogleConfigurable,
   versionOrOptions:
-    | 'v1'
-    | workstations_v1.Options
-    | 'v1beta'
-    | workstations_v1beta.Options
+    'v1' | workstations_v1.Options | 'v1beta' | workstations_v1beta.Options
 ) {
   return getAPI<T>('workstations', versionOrOptions, VERSIONS, this);
 }

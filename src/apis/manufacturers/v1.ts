@@ -989,8 +989,7 @@ export namespace manufacturers_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -1116,8 +1115,7 @@ export namespace manufacturers_v1 {
     get(
       params: Params$Resource$Accounts$Languages$Productcertifications$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ProductCertification>,
+        MethodOptions | BodyResponseCallback<Schema$ProductCertification>,
       callback: BodyResponseCallback<Schema$ProductCertification>
     ): void;
     get(
@@ -1439,8 +1437,7 @@ export namespace manufacturers_v1 {
     patch(
       params: Params$Resource$Accounts$Languages$Productcertifications$Patch,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ProductCertification>,
+        MethodOptions | BodyResponseCallback<Schema$ProductCertification>,
       callback: BodyResponseCallback<Schema$ProductCertification>
     ): void;
     patch(
@@ -1644,8 +1641,7 @@ export namespace manufacturers_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -1794,8 +1790,7 @@ export namespace manufacturers_v1 {
         | BodyResponseCallback<Schema$Product>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Product>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Product> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Product>>
@@ -1921,8 +1916,7 @@ export namespace manufacturers_v1 {
     list(
       params: Params$Resource$Accounts$Products$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListProductsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListProductsResponse>,
       callback: BodyResponseCallback<Schema$ListProductsResponse>
     ): void;
     list(
@@ -2128,8 +2122,7 @@ export namespace manufacturers_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>

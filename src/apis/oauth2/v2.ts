@@ -201,8 +201,7 @@ export namespace oauth2_v2 {
         | BodyResponseCallback<Schema$Tokeninfo>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Tokeninfo>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Tokeninfo> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Tokeninfo>>
@@ -444,8 +443,7 @@ export namespace oauth2_v2 {
         | BodyResponseCallback<Schema$Userinfo>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Userinfo>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Userinfo> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Userinfo>>
@@ -608,8 +606,7 @@ export namespace oauth2_v2 {
         | BodyResponseCallback<Schema$Userinfo>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Userinfo>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Userinfo> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Userinfo>>

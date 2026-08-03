@@ -463,7 +463,7 @@ export namespace merchantapi_reports_v1 {
      */
     clickThroughRate?: number | null;
     /**
-     * Date in the merchant timezone to which metrics apply. Segment. Condition on `date` is required in the `WHERE` clause.
+     * Date in the Merchant Center account timezone to which metrics apply. Segment. Condition on `date` is required in the `WHERE` clause.
      */
     date?: Schema$Date;
     /**
@@ -471,7 +471,7 @@ export namespace merchantapi_reports_v1 {
      */
     impressions?: string | null;
     /**
-     * First day of the week (Monday) of the metrics date in the merchant timezone. Segment.
+     * First day of the week (Monday) of the metrics date in the Merchant Center account timezone. Segment.
      */
     week?: Schema$Date;
   }
@@ -740,7 +740,7 @@ export namespace merchantapi_reports_v1 {
      */
     customLabel4?: string | null;
     /**
-     * Date in the merchant timezone to which metrics apply. Segment. Condition on `date` is required in the `WHERE` clause.
+     * Date in the Merchant Center account timezone to which metrics apply. Segment. Condition on `date` is required in the `WHERE` clause.
      */
     date?: Schema$Date;
     /**
@@ -784,7 +784,7 @@ export namespace merchantapi_reports_v1 {
      */
     title?: string | null;
     /**
-     * First day of the week (Monday) of the metrics date in the merchant timezone. Segment.
+     * First day of the week (Monday) of the metrics date in the Merchant Center account timezone. Segment.
      */
     week?: Schema$Date;
   }
@@ -1105,7 +1105,7 @@ export namespace merchantapi_reports_v1 {
      *
      *   // Do the magic
      *   const res = await merchantapi.accounts.reports.search({
-     *     // Required. Id of the account making the call. Must be a standalone account or an MCA subaccount. Format: accounts/{account\}
+     *     // Required. Id of the account making the call. Must be a standalone account or a subaccount of an advanced account. Format: accounts/{account\}
      *     parent: 'accounts/my-account',
      *
      *     // Request body metadata
@@ -1225,7 +1225,7 @@ export namespace merchantapi_reports_v1 {
 
   export interface Params$Resource$Accounts$Reports$Search extends StandardParameters {
     /**
-     * Required. Id of the account making the call. Must be a standalone account or an MCA subaccount. Format: accounts/{account\}
+     * Required. Id of the account making the call. Must be a standalone account or a subaccount of an advanced account. Format: accounts/{account\}
      */
     parent?: string;
 

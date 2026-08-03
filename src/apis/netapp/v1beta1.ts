@@ -447,7 +447,7 @@ export namespace netapp_v1beta1 {
      */
     sourceBackupVault?: string | null;
     /**
-     * Output only. Region in which the backup vault is created. Format: `projects/{project_id\}/locations/{location\}`
+     * Optional. Region in which the backup vault is created. Format: `projects/{project_id\}/locations/{location\}`
      */
     sourceRegion?: string | null;
     /**
@@ -587,6 +587,10 @@ export namespace netapp_v1beta1 {
      * Output only. Full name of the source volume resource. Format: projects/{project\}/locations/{location\}/volumes/{volume\}
      */
     sourceVolume?: string | null;
+    /**
+     * Output only. The current state of the clone split operation.
+     */
+    splitState?: string | null;
   }
   /**
    * Make a snapshot every day e.g. at 04:00, 05:20, 23:50
@@ -1189,6 +1193,10 @@ export namespace netapp_v1beta1 {
    */
   export interface Schema$LocationMetadata {
     /**
+     * Output only. Indicates the flex performance tier of this location.
+     */
+    flexPerformanceTier?: string | null;
+    /**
      * Output only. Indicates if the location has ONTAP Proxy support.
      */
     hasOntapProxy?: boolean | null;
@@ -1632,6 +1640,27 @@ export namespace netapp_v1beta1 {
      */
     weeklySchedule?: Schema$WeeklySchedule;
   }
+  /**
+   * Message for SplitStatus.
+   */
+  export interface Schema$SplitStatus {
+    /**
+     * Output only. The estimated progress percentage of the split operation (0-100). This is meaningful primarily when split_state is IN_PROGRESS.
+     */
+    progressPercent?: number | null;
+    /**
+     * Output only. The current state of the clone split operation.
+     */
+    splitState?: string | null;
+    /**
+     * Output only. Human-readable details about the current state. Mostly used for displaying error messages during split failure Examples: "Split in progress", "Error: insufficient capacity".
+     */
+    stateDetails?: string | null;
+  }
+  /**
+   * Request message for splitting a volume.
+   */
+  export interface Schema$StartSplitRequest {}
   /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
@@ -2273,8 +2302,7 @@ export namespace netapp_v1beta1 {
         | BodyResponseCallback<Schema$Location>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Location>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Location> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Location>>
@@ -2398,8 +2426,7 @@ export namespace netapp_v1beta1 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListLocationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListLocationsResponse>,
       callback: BodyResponseCallback<Schema$ListLocationsResponse>
     ): void;
     list(
@@ -2626,8 +2653,7 @@ export namespace netapp_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -2768,8 +2794,7 @@ export namespace netapp_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3247,8 +3272,7 @@ export namespace netapp_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3477,8 +3501,7 @@ export namespace netapp_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3618,8 +3641,7 @@ export namespace netapp_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3893,8 +3915,7 @@ export namespace netapp_v1beta1 {
     list(
       params: Params$Resource$Projects$Locations$Backuppolicies$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListBackupPoliciesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListBackupPoliciesResponse>,
       callback: BodyResponseCallback<Schema$ListBackupPoliciesResponse>
     ): void;
     list(
@@ -4075,8 +4096,7 @@ export namespace netapp_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4313,8 +4333,7 @@ export namespace netapp_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4454,8 +4473,7 @@ export namespace netapp_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4734,8 +4752,7 @@ export namespace netapp_v1beta1 {
     list(
       params: Params$Resource$Projects$Locations$Backupvaults$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListBackupVaultsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListBackupVaultsResponse>,
       callback: BodyResponseCallback<Schema$ListBackupVaultsResponse>
     ): void;
     list(
@@ -4919,8 +4936,7 @@ export namespace netapp_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5158,8 +5174,7 @@ export namespace netapp_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5300,8 +5315,7 @@ export namespace netapp_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5453,8 +5467,7 @@ export namespace netapp_v1beta1 {
         | BodyResponseCallback<Schema$Backup>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Backup>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Backup> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Backup>>
@@ -5769,8 +5782,7 @@ export namespace netapp_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5997,8 +6009,7 @@ export namespace netapp_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -6138,8 +6149,7 @@ export namespace netapp_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -6279,8 +6289,7 @@ export namespace netapp_v1beta1 {
         | BodyResponseCallback<Schema$HostGroup>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$HostGroup>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$HostGroup> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$HostGroup>>
@@ -6405,8 +6414,7 @@ export namespace netapp_v1beta1 {
     list(
       params: Params$Resource$Projects$Locations$Hostgroups$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListHostGroupsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListHostGroupsResponse>,
       callback: BodyResponseCallback<Schema$ListHostGroupsResponse>
     ): void;
     list(
@@ -6583,8 +6591,7 @@ export namespace netapp_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -6811,8 +6818,7 @@ export namespace netapp_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -6952,8 +6958,7 @@ export namespace netapp_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -7096,8 +7101,7 @@ export namespace netapp_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -7241,8 +7245,7 @@ export namespace netapp_v1beta1 {
         | BodyResponseCallback<Schema$KmsConfig>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$KmsConfig>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$KmsConfig> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$KmsConfig>>
@@ -7367,8 +7370,7 @@ export namespace netapp_v1beta1 {
     list(
       params: Params$Resource$Projects$Locations$Kmsconfigs$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListKmsConfigsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListKmsConfigsResponse>,
       callback: BodyResponseCallback<Schema$ListKmsConfigsResponse>
     ): void;
     list(
@@ -7546,8 +7548,7 @@ export namespace netapp_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -7670,8 +7671,7 @@ export namespace netapp_v1beta1 {
     verify(
       params: Params$Resource$Projects$Locations$Kmsconfigs$Verify,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$VerifyKmsConfigResponse>,
+        MethodOptions | BodyResponseCallback<Schema$VerifyKmsConfigResponse>,
       callback: BodyResponseCallback<Schema$VerifyKmsConfigResponse>
     ): void;
     verify(
@@ -8200,8 +8200,7 @@ export namespace netapp_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -8326,8 +8325,7 @@ export namespace netapp_v1beta1 {
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListOperationsResponse>,
       callback: BodyResponseCallback<Schema$ListOperationsResponse>
     ): void;
     list(
@@ -8593,8 +8591,7 @@ export namespace netapp_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -8734,8 +8731,7 @@ export namespace netapp_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -9034,8 +9030,7 @@ export namespace netapp_v1beta1 {
     list(
       params: Params$Resource$Projects$Locations$Storagepools$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListStoragePoolsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListStoragePoolsResponse>,
       callback: BodyResponseCallback<Schema$ListStoragePoolsResponse>
     ): void;
     list(
@@ -9239,8 +9234,7 @@ export namespace netapp_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -9386,8 +9380,7 @@ export namespace netapp_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -9534,8 +9527,7 @@ export namespace netapp_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -9685,8 +9677,7 @@ export namespace netapp_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -9838,8 +9829,7 @@ export namespace netapp_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -10084,8 +10074,7 @@ export namespace netapp_v1beta1 {
     list(
       params: Params$Resource$Projects$Locations$Storagepools$Backupconfigs$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListBackupConfigsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListBackupConfigsResponse>,
       callback: BodyResponseCallback<Schema$ListBackupConfigsResponse>
     ): void;
     list(
@@ -10258,8 +10247,7 @@ export namespace netapp_v1beta1 {
     executeOntapDelete(
       params: Params$Resource$Projects$Locations$Storagepools$Ontap$Executeontapdelete,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ExecuteOntapDeleteResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ExecuteOntapDeleteResponse>,
       callback: BodyResponseCallback<Schema$ExecuteOntapDeleteResponse>
     ): void;
     executeOntapDelete(
@@ -10402,8 +10390,7 @@ export namespace netapp_v1beta1 {
     executeOntapGet(
       params: Params$Resource$Projects$Locations$Storagepools$Ontap$Executeontapget,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ExecuteOntapGetResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ExecuteOntapGetResponse>,
       callback: BodyResponseCallback<Schema$ExecuteOntapGetResponse>
     ): void;
     executeOntapGet(
@@ -10554,8 +10541,7 @@ export namespace netapp_v1beta1 {
     executeOntapPatch(
       params: Params$Resource$Projects$Locations$Storagepools$Ontap$Executeontappatch,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ExecuteOntapPatchResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ExecuteOntapPatchResponse>,
       callback: BodyResponseCallback<Schema$ExecuteOntapPatchResponse>
     ): void;
     executeOntapPatch(
@@ -10706,8 +10692,7 @@ export namespace netapp_v1beta1 {
     executeOntapPost(
       params: Params$Resource$Projects$Locations$Storagepools$Ontap$Executeontappost,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ExecuteOntapPostResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ExecuteOntapPostResponse>,
       callback: BodyResponseCallback<Schema$ExecuteOntapPostResponse>
     ): void;
     executeOntapPost(
@@ -10977,8 +10962,7 @@ export namespace netapp_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -11120,8 +11104,7 @@ export namespace netapp_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -11269,8 +11252,7 @@ export namespace netapp_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -11453,8 +11435,7 @@ export namespace netapp_v1beta1 {
         | BodyResponseCallback<Schema$Volume>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Volume>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Volume> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Volume>>
@@ -11496,6 +11477,146 @@ export namespace netapp_v1beta1 {
         );
       } else {
         return createAPIRequest<Schema$Volume>(parameters);
+      }
+    }
+
+    /**
+     * Retrieves the current state, progress, and details of a split operation for a volume. This method is relevant when the volume is a clone. For volumes that are not clones, this method will return an error.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/netapp.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const netapp = google.netapp('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await netapp.projects.locations.volumes.getSplitStatus({
+     *     // Required. The full name of the volume. Format: projects/{project_number\}/locations/{location\}/volumes/{volume_id\}
+     *     name: 'projects/my-project/locations/my-location/volumes/my-volume',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "progressPercent": 0,
+     *   //   "splitState": "my_splitState",
+     *   //   "stateDetails": "my_stateDetails"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getSplitStatus(
+      params: Params$Resource$Projects$Locations$Volumes$Getsplitstatus,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    getSplitStatus(
+      params?: Params$Resource$Projects$Locations$Volumes$Getsplitstatus,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SplitStatus>>;
+    getSplitStatus(
+      params: Params$Resource$Projects$Locations$Volumes$Getsplitstatus,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getSplitStatus(
+      params: Params$Resource$Projects$Locations$Volumes$Getsplitstatus,
+      options: MethodOptions | BodyResponseCallback<Schema$SplitStatus>,
+      callback: BodyResponseCallback<Schema$SplitStatus>
+    ): void;
+    getSplitStatus(
+      params: Params$Resource$Projects$Locations$Volumes$Getsplitstatus,
+      callback: BodyResponseCallback<Schema$SplitStatus>
+    ): void;
+    getSplitStatus(callback: BodyResponseCallback<Schema$SplitStatus>): void;
+    getSplitStatus(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Volumes$Getsplitstatus
+        | BodyResponseCallback<Schema$SplitStatus>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SplitStatus>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SplitStatus>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SplitStatus>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Volumes$Getsplitstatus;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Volumes$Getsplitstatus;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://netapp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}:getSplitStatus').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SplitStatus>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SplitStatus>(parameters);
       }
     }
 
@@ -11794,8 +11915,7 @@ export namespace netapp_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -11942,8 +12062,7 @@ export namespace netapp_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -12091,8 +12210,7 @@ export namespace netapp_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -12117,6 +12235,152 @@ export namespace netapp_v1beta1 {
         options: Object.assign(
           {
             url: (rootUrl + '/v1beta1/{+name}:revert').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Splits a clone volume from its source volume. This operation will only work for volumes which have clone_details set(clones). For volumes that are not clones, this operation will return an error.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/netapp.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const netapp = google.netapp('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await netapp.projects.locations.volumes.startSplit({
+     *     // Required. The full name of the clone volume to be split from its source. Format: projects/{project_number\}/locations/{location\}/volumes/{volume_id\}
+     *     name: 'projects/my-project/locations/my-location/volumes/my-volume',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    startSplit(
+      params: Params$Resource$Projects$Locations$Volumes$Startsplit,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    startSplit(
+      params?: Params$Resource$Projects$Locations$Volumes$Startsplit,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    startSplit(
+      params: Params$Resource$Projects$Locations$Volumes$Startsplit,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    startSplit(
+      params: Params$Resource$Projects$Locations$Volumes$Startsplit,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    startSplit(
+      params: Params$Resource$Projects$Locations$Volumes$Startsplit,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    startSplit(callback: BodyResponseCallback<Schema$Operation>): void;
+    startSplit(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Volumes$Startsplit
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Volumes$Startsplit;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Volumes$Startsplit;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://netapp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}:startSplit').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -12183,6 +12447,12 @@ export namespace netapp_v1beta1 {
      */
     name?: string;
   }
+  export interface Params$Resource$Projects$Locations$Volumes$Getsplitstatus extends StandardParameters {
+    /**
+     * Required. The full name of the volume. Format: projects/{project_number\}/locations/{location\}/volumes/{volume_id\}
+     */
+    name?: string;
+  }
   export interface Params$Resource$Projects$Locations$Volumes$List extends StandardParameters {
     /**
      * Filtering results
@@ -12241,6 +12511,17 @@ export namespace netapp_v1beta1 {
      * Request body metadata
      */
     requestBody?: Schema$RevertVolumeRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Volumes$Startsplit extends StandardParameters {
+    /**
+     * Required. The full name of the clone volume to be split from its source. Format: projects/{project_number\}/locations/{location\}/volumes/{volume_id\}
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$StartSplitRequest;
   }
 
   export class Resource$Projects$Locations$Volumes$Quotarules {
@@ -12359,8 +12640,7 @@ export namespace netapp_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -12501,8 +12781,7 @@ export namespace netapp_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -12644,8 +12923,7 @@ export namespace netapp_v1beta1 {
         | BodyResponseCallback<Schema$QuotaRule>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$QuotaRule>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$QuotaRule> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$QuotaRule>>
@@ -12771,8 +13049,7 @@ export namespace netapp_v1beta1 {
     list(
       params: Params$Resource$Projects$Locations$Volumes$Quotarules$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListQuotaRulesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListQuotaRulesResponse>,
       callback: BodyResponseCallback<Schema$ListQuotaRulesResponse>
     ): void;
     list(
@@ -12951,8 +13228,7 @@ export namespace netapp_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -13189,8 +13465,7 @@ export namespace netapp_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -13331,8 +13606,7 @@ export namespace netapp_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -13482,8 +13756,7 @@ export namespace netapp_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -13764,8 +14037,7 @@ export namespace netapp_v1beta1 {
     list(
       params: Params$Resource$Projects$Locations$Volumes$Replications$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListReplicationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListReplicationsResponse>,
       callback: BodyResponseCallback<Schema$ListReplicationsResponse>
     ): void;
     list(
@@ -13953,8 +14225,7 @@ export namespace netapp_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -14098,8 +14369,7 @@ export namespace netapp_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -14247,8 +14517,7 @@ export namespace netapp_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -14397,8 +14666,7 @@ export namespace netapp_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -14545,8 +14813,7 @@ export namespace netapp_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -14833,8 +15100,7 @@ export namespace netapp_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -14975,8 +15241,7 @@ export namespace netapp_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -15119,8 +15384,7 @@ export namespace netapp_v1beta1 {
         | BodyResponseCallback<Schema$Snapshot>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Snapshot>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Snapshot> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Snapshot>>
@@ -15248,8 +15512,7 @@ export namespace netapp_v1beta1 {
     list(
       params: Params$Resource$Projects$Locations$Volumes$Snapshots$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListSnapshotsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListSnapshotsResponse>,
       callback: BodyResponseCallback<Schema$ListSnapshotsResponse>
     ): void;
     list(
@@ -15426,8 +15689,7 @@ export namespace netapp_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>

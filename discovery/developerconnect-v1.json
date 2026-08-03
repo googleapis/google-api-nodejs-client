@@ -1631,6 +1631,11 @@
                           "location": "query",
                           "type": "string"
                         },
+                        "orderBy": {
+                          "description": "Optional. Field to use to order the list of DeploymentEvents. Expects AIP-132 format \"field_name asc\" or \"field_name desc\", e.g. \"deploy_time desc\" Supported fields for ordering are: deploy_time, update_time. Currently, only sorting by a single field is supported. If this field is not provided, the list will be sorted by \"deploy_time desc\". For more details on the ordering syntax, see https://google.aip.dev/132#ordering.",
+                          "location": "query",
+                          "type": "string"
+                        },
                         "pageSize": {
                           "description": "Optional. The maximum number of deployment events to return. The service may return fewer than this value. If unspecified, at most 50 deployment events will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
                           "format": "int32",
@@ -1795,7 +1800,7 @@
       }
     }
   },
-  "revision": "20260426",
+  "revision": "20260611",
   "rootUrl": "https://developerconnect.googleapis.com/",
   "schemas": {
     "AccountConnector": {
@@ -1953,6 +1958,14 @@
           "description": "Output only. Unique identifier of `ArtifactDeployment`.",
           "readOnly": true,
           "type": "string"
+        },
+        "sourceCodeUris": {
+          "description": "Output only. The URIs of the source code, if available. For Cloud Run source deploy for example: `gs://my-bucket/my-folder/1234567890.abcde-fdbe.zip#1234567890`",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
         },
         "sourceCommitUris": {
           "description": "Output only. The source commits at which this artifact was built. Extracted from provenance.",

@@ -2167,7 +2167,7 @@
                 "userEvents": {
                   "methods": {
                     "collect": {
-                      "description": "Writes a single user event from the browser. For larger user event payload over 16 KB, the POST method should be used instead, otherwise a 400 Bad Request error is returned. This method is used only by the Retail API JavaScript pixel and Google Tag Manager. Users should not call this method directly.",
+                      "description": "Writes a single user event from the browser. For larger user event payload over 16 KB, the POST method should be used instead, otherwise a 400 Bad Request error is returned. This method is used only by the AI Commerce Search API JavaScript pixel and Google Tag Manager. Users should not call this method directly.",
                       "flatPath": "v2beta/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}/userEvents:collect",
                       "httpMethod": "POST",
                       "id": "retail.projects.locations.catalogs.userEvents.collect",
@@ -2498,7 +2498,7 @@
       }
     }
   },
-  "revision": "20260507",
+  "revision": "20260723",
   "rootUrl": "https://retail.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -3294,7 +3294,7 @@
       "id": "GoogleCloudRetailV2alphaEnrollSolutionResponse",
       "properties": {
         "enrolledSolution": {
-          "description": "Retail API solution that the project has enrolled.",
+          "description": "AI Commerce Search API solution that the project has enrolled.",
           "enum": [
             "SOLUTION_TYPE_UNSPECIFIED",
             "SOLUTION_TYPE_RECOMMENDATION",
@@ -6762,7 +6762,7 @@
           "type": "string"
         },
         "sizes": {
-          "description": "The size of the product. To represent different size systems or size types, consider using this format: [[[size_system:]size_type:]size_value]. For example, in \"US:MENS:M\", \"US\" represents size system; \"MENS\" represents size type; \"M\" represents size value. In \"GIRLS:27\", size system is empty; \"GIRLS\" represents size type; \"27\" represents size value. In \"32 inches\", both size system and size type are empty, while size value is \"32 inches\". A maximum of 20 values are allowed per Product. Each value must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an INVALID_ARGUMENT error is returned. Corresponding properties: Google Merchant Center property [size](https://support.google.com/merchants/answer/6324492), [size_type](https://support.google.com/merchants/answer/6324497), and [size_system](https://support.google.com/merchants/answer/6324502). Schema.org property [Product.size](https://schema.org/size).",
+          "description": "The size of the product. To represent different size systems or size types, consider using this format: [[[size_system:]size_type:]size_value]. For example, in \"US:MENS:M\", \"US\" represents size system; \"MENS\" represents size type; \"M\" represents size value. In \"GIRLS:27\", size system is empty; \"GIRLS\" represents size type; \"27\" represents size value. In \"32 inches\", both size system and size type are empty, while size value is \"32 inches\". A maximum of 20 values are allowed per Product by default. This limit can be increased using dynamic override configurations. Each value must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an INVALID_ARGUMENT error is returned. Corresponding properties: Google Merchant Center property [size](https://support.google.com/merchants/answer/6324492), [size_type](https://support.google.com/merchants/answer/6324497), and [size_system](https://support.google.com/merchants/answer/6324502). Schema.org property [Product.size](https://schema.org/size).",
           "items": {
             "type": "string"
           },
@@ -8498,14 +8498,14 @@
       "type": "object"
     },
     "GoogleCloudRetailV2betaUserEvent": {
-      "description": "UserEvent captures all metadata information Retail API needs to know about how end users interact with customers' website.",
+      "description": "UserEvent captures all metadata information AI Commerce Search API needs to know about how end users interact with customers' website.",
       "id": "GoogleCloudRetailV2betaUserEvent",
       "properties": {
         "attributes": {
           "additionalProperties": {
             "$ref": "GoogleCloudRetailV2betaCustomAttribute"
           },
-          "description": "Extra user event features to include in the recommendation model. If you provide custom attributes for ingested user events, also include them in the user events that you associate with prediction requests. Custom attribute formatting must be consistent between imported events and events provided with prediction requests. This lets the Retail API use those custom attributes when training models and serving predictions, which helps improve recommendation quality. This field needs to pass all below criteria, otherwise an INVALID_ARGUMENT error is returned: * The key must be a UTF-8 encoded string with a length limit of 5,000 characters. * For text attributes, at most 400 values are allowed. Empty values are not allowed. Each value must be a UTF-8 encoded string with a length limit of 256 characters. * For number attributes, at most 400 values are allowed. For product recommendations, an example of extra user information is traffic_channel, which is how a user arrives at the site. Users can arrive at the site by coming to the site directly, coming through Google search, or in other ways.",
+          "description": "Extra user event features to include in the recommendation model. If you provide custom attributes for ingested user events, also include them in the user events that you associate with prediction requests. Custom attribute formatting must be consistent between imported events and events provided with prediction requests. This lets the AI Commerce Search API use those custom attributes when training models and serving predictions, which helps improve recommendation quality. This field needs to pass all below criteria, otherwise an INVALID_ARGUMENT error is returned: * The key must be a UTF-8 encoded string with a length limit of 5,000 characters. * For text attributes, at most 400 values are allowed. Empty values are not allowed. Each value must be a UTF-8 encoded string with a length limit of 256 characters. * For number attributes, at most 400 values are allowed. For product recommendations, an example of extra user information is traffic_channel, which is how a user arrives at the site. Users can arrive at the site by coming to the site directly, coming through Google search, or in other ways.",
           "type": "object"
         },
         "attributionToken": {
@@ -8534,7 +8534,7 @@
           "type": "string"
         },
         "experimentIds": {
-          "description": "A list of identifiers for the independent experiment groups this user event belongs to. This is used to distinguish between user events associated with different experiment setups (e.g. using Retail API, using different recommendation models).",
+          "description": "A list of identifiers for the independent experiment groups this user event belongs to. This is used to distinguish between user events associated with different experiment setups (such as by using AI Commerce Search API, or using different recommendation models).",
           "items": {
             "type": "string"
           },

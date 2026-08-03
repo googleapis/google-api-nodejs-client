@@ -300,9 +300,31 @@
       }
     }
   },
-  "revision": "20260408",
+  "revision": "20260713",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
+    "CustomAttribute": {
+      "description": "A message that represents custom attributes. Exactly one of `value` or `group_values` must not be empty.",
+      "id": "CustomAttribute",
+      "properties": {
+        "groupValues": {
+          "description": "Subattributes within this attribute group. If `group_values` is not empty, `value` must be empty.",
+          "items": {
+            "$ref": "CustomAttribute"
+          },
+          "type": "array"
+        },
+        "name": {
+          "description": "The name of the attribute.",
+          "type": "string"
+        },
+        "value": {
+          "description": "The value of the attribute. If `value` is not empty, `group_values` must be empty.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Empty": {
       "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "Empty",
@@ -451,8 +473,19 @@
           ],
           "type": "string"
         },
+        "customAttributes": {
+          "description": "Optional. A list of custom (merchant-provided) attributes. It can also be used for submitting any attribute of the data specification in its generic form (for example, `{ \"name\": \"size type\", \"value\": \"regular\" }`). This is useful for submitting attributes not explicitly exposed by the API. Maximum allowed number of characters for each custom attribute is 10240 (represents sum of characters for name and value). Maximum 2500 custom attributes can be set, with total size of 102.4kB. Underscores in custom attribute names are replaced by spaces upon insertion.",
+          "items": {
+            "$ref": "CustomAttribute"
+          },
+          "type": "array"
+        },
         "instoreProductLocation": {
           "description": "Optional. Location of the product inside the store. Maximum length is 20 bytes.",
+          "type": "string"
+        },
+        "localShippingLabel": {
+          "description": "Optional. Specifies a label associated with the shipping for the `LocalInventory` resource. Can be used to group local shipping services to this particular inventory item. For accepted field format, see the [Local delivery](https://support.google.com/merchants/answer/14819809#localdelivery)",
           "type": "string"
         },
         "loyaltyPrograms": {
@@ -686,11 +719,13 @@
           "description": "The resource that changed, in this case it will always be `Product`.",
           "enum": [
             "RESOURCE_UNSPECIFIED",
-            "PRODUCT"
+            "PRODUCT",
+            "ACCOUNT_SERVICE"
           ],
           "enumDescriptions": [
             "Unspecified resource",
-            "Resource type : product"
+            "Resource type : product",
+            "Account service"
           ],
           "type": "string"
         }

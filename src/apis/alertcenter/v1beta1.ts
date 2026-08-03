@@ -1607,8 +1607,7 @@ export namespace alertcenter_v1beta1 {
     batchDelete(
       params: Params$Resource$Alerts$Batchdelete,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$BatchDeleteAlertsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$BatchDeleteAlertsResponse>,
       callback: BodyResponseCallback<Schema$BatchDeleteAlertsResponse>
     ): void;
     batchDelete(
@@ -1914,8 +1913,7 @@ export namespace alertcenter_v1beta1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -2064,8 +2062,7 @@ export namespace alertcenter_v1beta1 {
         | BodyResponseCallback<Schema$Alert>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Alert>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Alert> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Alert>>
@@ -2507,8 +2504,7 @@ export namespace alertcenter_v1beta1 {
         | BodyResponseCallback<Schema$Alert>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Alert>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Alert> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Alert>>
@@ -2869,8 +2865,7 @@ export namespace alertcenter_v1beta1 {
     list(
       params: Params$Resource$Alerts$Feedback$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListAlertFeedbackResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListAlertFeedbackResponse>,
       callback: BodyResponseCallback<Schema$ListAlertFeedbackResponse>
     ): void;
     list(
@@ -3065,8 +3060,7 @@ export namespace alertcenter_v1beta1 {
         | BodyResponseCallback<Schema$Settings>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Settings>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Settings> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Settings>>
@@ -3207,8 +3201,7 @@ export namespace alertcenter_v1beta1 {
         | BodyResponseCallback<Schema$Settings>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Settings>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Settings> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Settings>>

@@ -637,8 +637,7 @@ export namespace observability_v1 {
         | BodyResponseCallback<Schema$Location>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Location>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Location> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Location>>
@@ -775,8 +774,7 @@ export namespace observability_v1 {
         | BodyResponseCallback<Schema$Settings>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Settings>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Settings> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Settings>>
@@ -901,8 +899,7 @@ export namespace observability_v1 {
     list(
       params: Params$Resource$Folders$Locations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListLocationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListLocationsResponse>,
       callback: BodyResponseCallback<Schema$ListLocationsResponse>
     ): void;
     list(
@@ -1076,8 +1073,7 @@ export namespace observability_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -1272,8 +1268,7 @@ export namespace observability_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -1405,8 +1400,7 @@ export namespace observability_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -1544,8 +1538,7 @@ export namespace observability_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -1671,8 +1664,7 @@ export namespace observability_v1 {
     list(
       params: Params$Resource$Folders$Locations$Operations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListOperationsResponse>,
       callback: BodyResponseCallback<Schema$ListOperationsResponse>
     ): void;
     list(
@@ -1899,8 +1891,7 @@ export namespace observability_v1 {
         | BodyResponseCallback<Schema$Location>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Location>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Location> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Location>>
@@ -2037,8 +2028,7 @@ export namespace observability_v1 {
         | BodyResponseCallback<Schema$Settings>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Settings>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Settings> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Settings>>
@@ -2163,8 +2153,7 @@ export namespace observability_v1 {
     list(
       params: Params$Resource$Organizations$Locations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListLocationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListLocationsResponse>,
       callback: BodyResponseCallback<Schema$ListLocationsResponse>
     ): void;
     list(
@@ -2338,8 +2327,7 @@ export namespace observability_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -2534,8 +2522,7 @@ export namespace observability_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -2668,8 +2655,7 @@ export namespace observability_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -2808,8 +2794,7 @@ export namespace observability_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -2935,8 +2920,7 @@ export namespace observability_v1 {
     list(
       params: Params$Resource$Organizations$Locations$Operations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListOperationsResponse>,
       callback: BodyResponseCallback<Schema$ListOperationsResponse>
     ): void;
     list(
@@ -3171,8 +3155,7 @@ export namespace observability_v1 {
         | BodyResponseCallback<Schema$Location>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Location>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Location> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Location>>
@@ -3309,8 +3292,7 @@ export namespace observability_v1 {
         | BodyResponseCallback<Schema$Settings>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Settings>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Settings> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Settings>>
@@ -3435,8 +3417,7 @@ export namespace observability_v1 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListLocationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListLocationsResponse>,
       callback: BodyResponseCallback<Schema$ListLocationsResponse>
     ): void;
     list(
@@ -3610,8 +3591,7 @@ export namespace observability_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3813,8 +3793,7 @@ export namespace observability_v1 {
         | BodyResponseCallback<Schema$Bucket>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Bucket>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Bucket> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Bucket>>
@@ -4138,8 +4117,7 @@ export namespace observability_v1 {
         | BodyResponseCallback<Schema$Dataset>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Dataset>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Dataset> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Dataset>>
@@ -4262,8 +4240,7 @@ export namespace observability_v1 {
     list(
       params: Params$Resource$Projects$Locations$Buckets$Datasets$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListDatasetsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListDatasetsResponse>,
       callback: BodyResponseCallback<Schema$ListDatasetsResponse>
     ): void;
     list(
@@ -4471,8 +4448,7 @@ export namespace observability_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4615,8 +4591,7 @@ export namespace observability_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4756,8 +4731,7 @@ export namespace observability_v1 {
         | BodyResponseCallback<Schema$Link>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Link>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Link> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Link>>
@@ -5056,8 +5030,7 @@ export namespace observability_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5262,8 +5235,7 @@ export namespace observability_v1 {
         | BodyResponseCallback<Schema$View>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$View>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$View> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$View>>
@@ -5576,8 +5548,7 @@ export namespace observability_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -5709,8 +5680,7 @@ export namespace observability_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -5848,8 +5818,7 @@ export namespace observability_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5975,8 +5944,7 @@ export namespace observability_v1 {
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListOperationsResponse>,
       callback: BodyResponseCallback<Schema$ListOperationsResponse>
     ): void;
     list(
@@ -6189,8 +6157,7 @@ export namespace observability_v1 {
         | BodyResponseCallback<Schema$Scope>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Scope>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Scope> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Scope>>
@@ -6340,8 +6307,7 @@ export namespace observability_v1 {
         | BodyResponseCallback<Schema$Scope>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Scope>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Scope> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Scope>>
@@ -6522,8 +6488,7 @@ export namespace observability_v1 {
         | BodyResponseCallback<Schema$TraceScope>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$TraceScope>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$TraceScope> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$TraceScope>>
@@ -6658,8 +6623,7 @@ export namespace observability_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -6797,8 +6761,7 @@ export namespace observability_v1 {
         | BodyResponseCallback<Schema$TraceScope>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$TraceScope>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$TraceScope> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$TraceScope>>
@@ -6919,8 +6882,7 @@ export namespace observability_v1 {
     list(
       params: Params$Resource$Projects$Locations$Tracescopes$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListTraceScopesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListTraceScopesResponse>,
       callback: BodyResponseCallback<Schema$ListTraceScopesResponse>
     ): void;
     list(
@@ -7095,8 +7057,7 @@ export namespace observability_v1 {
         | BodyResponseCallback<Schema$TraceScope>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$TraceScope>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$TraceScope> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$TraceScope>>

@@ -767,8 +767,7 @@ export namespace streetviewpublish_v1 {
         | BodyResponseCallback<Schema$Photo>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Photo>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Photo> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Photo>>
@@ -899,8 +898,7 @@ export namespace streetviewpublish_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -1052,8 +1050,7 @@ export namespace streetviewpublish_v1 {
         | BodyResponseCallback<Schema$Photo>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Photo>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Photo> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Photo>>
@@ -1192,8 +1189,7 @@ export namespace streetviewpublish_v1 {
         | BodyResponseCallback<Schema$UploadRef>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$UploadRef>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$UploadRef> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$UploadRef>>
@@ -1364,8 +1360,7 @@ export namespace streetviewpublish_v1 {
         | BodyResponseCallback<Schema$Photo>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Photo>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Photo> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Photo>>
@@ -1540,8 +1535,7 @@ export namespace streetviewpublish_v1 {
     batchDelete(
       params: Params$Resource$Photos$Batchdelete,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$BatchDeletePhotosResponse>,
+        MethodOptions | BodyResponseCallback<Schema$BatchDeletePhotosResponse>,
       callback: BodyResponseCallback<Schema$BatchDeletePhotosResponse>
     ): void;
     batchDelete(
@@ -1686,8 +1680,7 @@ export namespace streetviewpublish_v1 {
     batchGet(
       params: Params$Resource$Photos$Batchget,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$BatchGetPhotosResponse>,
+        MethodOptions | BodyResponseCallback<Schema$BatchGetPhotosResponse>,
       callback: BodyResponseCallback<Schema$BatchGetPhotosResponse>
     ): void;
     batchGet(
@@ -1832,8 +1825,7 @@ export namespace streetviewpublish_v1 {
     batchUpdate(
       params: Params$Resource$Photos$Batchupdate,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$BatchUpdatePhotosResponse>,
+        MethodOptions | BodyResponseCallback<Schema$BatchUpdatePhotosResponse>,
       callback: BodyResponseCallback<Schema$BatchUpdatePhotosResponse>
     ): void;
     batchUpdate(
@@ -2217,8 +2209,7 @@ export namespace streetviewpublish_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -2350,8 +2341,7 @@ export namespace streetviewpublish_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -2496,8 +2486,7 @@ export namespace streetviewpublish_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -2637,8 +2626,7 @@ export namespace streetviewpublish_v1 {
         | BodyResponseCallback<Schema$UploadRef>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$UploadRef>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$UploadRef> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$UploadRef>>
@@ -2807,8 +2795,7 @@ export namespace streetviewpublish_v1 {
     list(
       params: Params$Resource$Photosequences$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListPhotoSequencesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListPhotoSequencesResponse>,
       callback: BodyResponseCallback<Schema$ListPhotoSequencesResponse>
     ): void;
     list(

@@ -15,6 +15,53 @@
   "description": "Enables users to create and manage connections to Google Cloud services and third-party business applications using the Connectors interface.",
   "discoveryVersion": "v1",
   "documentationLink": "https://cloud.google.com/apigee/docs/api-platform/connectors/about-connectors",
+  "endpoints": [
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://connectors.us-central1.rep.googleapis.com/",
+      "location": "us-central1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://connectors.us-east1.rep.googleapis.com/",
+      "location": "us-east1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://connectors.us-east4.rep.googleapis.com/",
+      "location": "us-east4"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://connectors.us-east5.rep.googleapis.com/",
+      "location": "us-east5"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://connectors.us-south1.rep.googleapis.com/",
+      "location": "us-south1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://connectors.us-west1.rep.googleapis.com/",
+      "location": "us-west1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://connectors.us-west2.rep.googleapis.com/",
+      "location": "us-west2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://connectors.us-west3.rep.googleapis.com/",
+      "location": "us-west3"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://connectors.us-west4.rep.googleapis.com/",
+      "location": "us-west4"
+    }
+  ],
   "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
@@ -186,6 +233,34 @@
                   },
                   "response": {
                     "$ref": "ExchangeAuthCodeResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "executeHttpRequest": {
+                  "description": "Executes a generic HTTP request. This supports all payload formats including REST/JSON, GraphQL, XML, SOAP, and Multipart by passing the rendered payload as raw bytes.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/connections/{connectionsId}:executeHttpRequest",
+                  "httpMethod": "POST",
+                  "id": "connectors.projects.locations.connections.executeHttpRequest",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Resource name of the Connection. Format: projects/{project}/locations/{location}/connections/{connection}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/connections/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}:executeHttpRequest",
+                  "request": {
+                    "$ref": "ExecuteHttpRequestRequest"
+                  },
+                  "response": {
+                    "$ref": "ExecuteHttpRequestResponse"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -999,6 +1074,12 @@
                           "pattern": "^projects/[^/]+/locations/[^/]+/connections/[^/]+$",
                           "required": true,
                           "type": "string"
+                        },
+                        "toolNames": {
+                          "description": "List of tool names for selective tool fetching.",
+                          "location": "query",
+                          "repeated": true,
+                          "type": "string"
                         }
                       },
                       "path": "v2/{+parent}/tools",
@@ -1018,7 +1099,7 @@
       }
     }
   },
-  "revision": "20260427",
+  "revision": "20260617",
   "rootUrl": "https://connectors.googleapis.com/",
   "schemas": {
     "AccessCredentials": {
@@ -1406,6 +1487,79 @@
       },
       "type": "object"
     },
+    "ExecuteHttpRequestRequest": {
+      "id": "ExecuteHttpRequestRequest",
+      "properties": {
+        "headers": {
+          "description": "HTTP headers to send with the request (e.g., Content-Type: application/json). Order is preserved and duplicate keys are allowed.",
+          "items": {
+            "$ref": "HttpHeader"
+          },
+          "type": "array"
+        },
+        "httpMethod": {
+          "description": "Required. The HTTP method to use for the request.",
+          "enum": [
+            "HTTP_METHOD_UNSPECIFIED",
+            "HTTP_METHOD_GET",
+            "HTTP_METHOD_POST",
+            "HTTP_METHOD_PUT",
+            "HTTP_METHOD_PATCH",
+            "HTTP_METHOD_DELETE",
+            "HTTP_METHOD_HEAD",
+            "HTTP_METHOD_OPTIONS"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        },
+        "rawBody": {
+          "description": "Raw byte payload. Used for all pre-serialized formats including JSON, XML, GraphQL, and Multipart.",
+          "format": "byte",
+          "type": "string"
+        },
+        "url": {
+          "description": "Required. The fully resolved absolute target URL. Callers must pre-encode any query parameters.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ExecuteHttpRequestResponse": {
+      "id": "ExecuteHttpRequestResponse",
+      "properties": {
+        "body": {
+          "description": "The raw response body.",
+          "format": "byte",
+          "type": "string"
+        },
+        "headers": {
+          "description": "HTTP headers received in the response. Order is preserved and duplicate keys are allowed (e.g., multiple Set-Cookie headers).",
+          "items": {
+            "$ref": "HttpHeader"
+          },
+          "type": "array"
+        },
+        "reason": {
+          "description": "The HTTP status reason phrase received from the backend (e.g., \"Not Found\"). May be empty if the backend did not provide one.",
+          "type": "string"
+        },
+        "statusCode": {
+          "description": "The HTTP status code received from the backend.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "ExecuteSqlQueryRequest": {
       "description": "An execute sql query request containing the query and the connection to execute it on.",
       "id": "ExecuteSqlQueryRequest",
@@ -1761,6 +1915,21 @@
         },
         "mimeType": {
           "description": "The MIME type of the resource.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "HttpHeader": {
+      "description": "A single HTTP header. Keys are case-insensitive. Multiple headers with the same key may be present.",
+      "id": "HttpHeader",
+      "properties": {
+        "key": {
+          "description": "The header name.",
+          "type": "string"
+        },
+        "value": {
+          "description": "The header value.",
           "type": "string"
         }
       },

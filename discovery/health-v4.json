@@ -8,8 +8,17 @@
         "https://www.googleapis.com/auth/googlehealth.activity_and_fitness.readonly": {
           "description": "See your Google Health activity and fitness data"
         },
+        "https://www.googleapis.com/auth/googlehealth.activity_and_fitness.writeonly": {
+          "description": "Add activity and fitness data to Google Health, and edit or delete the data it adds."
+        },
+        "https://www.googleapis.com/auth/googlehealth.ecg.readonly": {
+          "description": "See your Google Health ECG data"
+        },
         "https://www.googleapis.com/auth/googlehealth.health_metrics_and_measurements.readonly": {
           "description": "See your Google Health health metrics and measurement data"
+        },
+        "https://www.googleapis.com/auth/googlehealth.health_metrics_and_measurements.writeonly": {
+          "description": "Add health metric and measurements data to Google Health, and edit or delete the data it adds."
         },
         "https://www.googleapis.com/auth/googlehealth.irn.readonly": {
           "description": "See your Google Health Irregular Rhythm Notifications data"
@@ -17,14 +26,38 @@
         "https://www.googleapis.com/auth/googlehealth.location.readonly": {
           "description": "See exercise GPS location data in Google Health"
         },
+        "https://www.googleapis.com/auth/googlehealth.location.writeonly": {
+          "description": "Add exercise GPS location data to Google Health, and edit or delete the data it adds."
+        },
+        "https://www.googleapis.com/auth/googlehealth.logged_symptoms.writeonly": {
+          "description": "Add logged symptoms data to Google Health, and edit or delete the data it adds"
+        },
+        "https://www.googleapis.com/auth/googlehealth.mindfulness.writeonly": {
+          "description": "Add mindfulness data to Google Health, and edit or delete the data it adds"
+        },
+        "https://www.googleapis.com/auth/googlehealth.nutrition.writeonly": {
+          "description": "Add nutrition data to Google Health, and edit or delete the data it adds."
+        },
         "https://www.googleapis.com/auth/googlehealth.profile.readonly": {
           "description": "See your Google Health profile data"
+        },
+        "https://www.googleapis.com/auth/googlehealth.profile.writeonly": {
+          "description": "Add profile data to Google Health, and edit or delete the data it adds."
+        },
+        "https://www.googleapis.com/auth/googlehealth.reproductive_health.writeonly": {
+          "description": "Add reproductive health data to Google Health, and edit or delete the data it adds"
         },
         "https://www.googleapis.com/auth/googlehealth.settings.readonly": {
           "description": "See your Google Health settings"
         },
+        "https://www.googleapis.com/auth/googlehealth.settings.writeonly": {
+          "description": "Add settings data to Google Health, and edit or delete the data it adds."
+        },
         "https://www.googleapis.com/auth/googlehealth.sleep.readonly": {
           "description": "See your Google Health sleep data"
+        },
+        "https://www.googleapis.com/auth/googlehealth.sleep.writeonly": {
+          "description": "Add sleep data to Google Health, and edit or delete the data it adds."
         }
       }
     }
@@ -140,7 +173,7 @@
               ],
               "parameters": {
                 "parent": {
-                  "description": "Required. The parent resource where this subscriber will be created. Format: projects/{project} Example: projects/my-project-123",
+                  "description": "Required. The parent resource where this subscriber will be created. Format: projects/{project_number} Example: projects/1234567890",
                   "location": "path",
                   "pattern": "^projects/[^/]+$",
                   "required": true,
@@ -335,7 +368,7 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "Optional. A filter to apply to the list of subscriptions. The filter syntax is described in https://google.aip.dev/160. The filter can be applied to the following fields: - `user` - `data_type` The `user` identifier (e.g., `user1` in `users/user1`) refers to the public `healthUserId` Example: user = \"users/user1\" Example: user = \"users/user1\" OR user = \"users/user2\" Example: user = \"users/user1\" AND (data_type = \"sleep\" OR data_type = \"weight\")",
+                      "description": "Optional. A filter to apply to the list of subscriptions. The filter syntax is described in https://google.aip.dev/160. The filter can be applied to the following fields: - `user` - `data_type` The `user` identifier (e.g., `user1` in `users/user1`) refers to the public `health_user_id` Example: user = \"users/user1\" Example: user = \"users/user1\" OR user = \"users/user2\" Example: user = \"users/user1\" AND (data_type = \"sleep\" OR data_type = \"weight\")",
                       "location": "query",
                       "type": "string"
                     },
@@ -406,6 +439,70 @@
         }
       }
     },
+    "shl": {
+      "resources": {
+        "m": {
+          "methods": {
+            "getShlManifest": {
+              "description": "Forward a manifest request for a given SHL",
+              "flatPath": "v4/shl/m/{externalShlId}",
+              "httpMethod": "POST",
+              "id": "health.shl.m.getShlManifest",
+              "parameterOrder": [
+                "externalShlId"
+              ],
+              "parameters": {
+                "externalShlId": {
+                  "description": "Required. External ID mapping to a ShlSharedLinkCapabilityToken object See https://docs.google.com/document/d/1Pch20pxJHRbsaMxp0EYgs3ZU0Gu7QTUznk8LhvbQvfY/edit?tab=t.0#heading=h.17wg41voij6q",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v4/shl/m/{externalShlId}",
+              "request": {
+                "$ref": "ManifestParams"
+              },
+              "response": {
+                "$ref": "HttpBody"
+              }
+            }
+          }
+        },
+        "r": {
+          "methods": {
+            "get": {
+              "description": "Forward a resource request for a given SHL",
+              "flatPath": "v4/shl/r/{externalShlId}/{resourceToken}",
+              "httpMethod": "GET",
+              "id": "health.shl.r.get",
+              "parameterOrder": [
+                "externalShlId",
+                "resourceToken"
+              ],
+              "parameters": {
+                "externalShlId": {
+                  "description": "Required. External ID mapping to a ShlSharedLinkCapabilityToken object See https://docs.google.com/document/d/1Pch20pxJHRbsaMxp0EYgs3ZU0Gu7QTUznk8LhvbQvfY/edit?tab=t.0#heading=h.17wg41voij6q",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "resourceToken": {
+                  "description": "Required. Encoded, encrypted message containing resource access details",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v4/shl/r/{externalShlId}/{resourceToken}",
+              "response": {
+                "$ref": "HttpBody"
+              }
+            }
+          }
+        }
+      }
+    },
     "users": {
       "methods": {
         "getIdentity": {
@@ -431,7 +528,9 @@
           },
           "scopes": [
             "https://www.googleapis.com/auth/googlehealth.activity_and_fitness.readonly",
+            "https://www.googleapis.com/auth/googlehealth.ecg.readonly",
             "https://www.googleapis.com/auth/googlehealth.health_metrics_and_measurements.readonly",
+            "https://www.googleapis.com/auth/googlehealth.irn.readonly",
             "https://www.googleapis.com/auth/googlehealth.profile.readonly",
             "https://www.googleapis.com/auth/googlehealth.settings.readonly",
             "https://www.googleapis.com/auth/googlehealth.sleep.readonly"
@@ -541,7 +640,10 @@
           },
           "response": {
             "$ref": "Profile"
-          }
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/googlehealth.profile.writeonly"
+          ]
         },
         "updateSettings": {
           "description": "Updates the user's settings details.",
@@ -572,7 +674,10 @@
           },
           "response": {
             "$ref": "Settings"
-          }
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/googlehealth.settings.writeonly"
+          ]
         }
       },
       "resources": {
@@ -603,7 +708,17 @@
                   },
                   "response": {
                     "$ref": "Operation"
-                  }
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/googlehealth.activity_and_fitness.writeonly",
+                    "https://www.googleapis.com/auth/googlehealth.health_metrics_and_measurements.writeonly",
+                    "https://www.googleapis.com/auth/googlehealth.location.writeonly",
+                    "https://www.googleapis.com/auth/googlehealth.logged_symptoms.writeonly",
+                    "https://www.googleapis.com/auth/googlehealth.mindfulness.writeonly",
+                    "https://www.googleapis.com/auth/googlehealth.nutrition.writeonly",
+                    "https://www.googleapis.com/auth/googlehealth.reproductive_health.writeonly",
+                    "https://www.googleapis.com/auth/googlehealth.sleep.writeonly"
+                  ]
                 },
                 "create": {
                   "description": "Creates a single identifiable data point.",
@@ -628,7 +743,17 @@
                   },
                   "response": {
                     "$ref": "Operation"
-                  }
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/googlehealth.activity_and_fitness.writeonly",
+                    "https://www.googleapis.com/auth/googlehealth.health_metrics_and_measurements.writeonly",
+                    "https://www.googleapis.com/auth/googlehealth.location.writeonly",
+                    "https://www.googleapis.com/auth/googlehealth.logged_symptoms.writeonly",
+                    "https://www.googleapis.com/auth/googlehealth.mindfulness.writeonly",
+                    "https://www.googleapis.com/auth/googlehealth.nutrition.writeonly",
+                    "https://www.googleapis.com/auth/googlehealth.reproductive_health.writeonly",
+                    "https://www.googleapis.com/auth/googlehealth.sleep.writeonly"
+                  ]
                 },
                 "dailyRollUp": {
                   "description": "Roll up data points over civil time intervals for supported data types.",
@@ -776,7 +901,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Identifier. Data point name, only supported for the subset of identifiable data types. For the majority of the data types, individual data points do not need to be identified and this field would be empty. Format: `users/{user}/dataTypes/{data_type}/dataPoints/{data_point}` Example: `users/abcd1234/dataTypes/sleep/dataPoints/a1b2c3d4-e5f6-7890-1234-567890abcdef` The `{user}` ID is a system-generated identifier, as described in Identity.health_user_id. The `{data_type}` ID corresponds to the kebab-case version of the field names in the DataPoint data union field, e.g. `total-calories` for the `total_calories` field. The `{data_point}` ID can be client-provided or system-generated. If client-provided, it must be a string of 4-63 characters, containing only lowercase letters, numbers, and hyphens.",
+                      "description": "Identifier. Data point name, only supported for the subset of identifiable data types. For the majority of the data types, individual data points do not need to be identified and this field would be empty. Format: `users/{user}/dataTypes/{data_type}/dataPoints/{data_point}` Example: `users/abcd1234/dataTypes/sleep/dataPoints/a1b2c3d4-e5f6-7890-1234-567890abcdef` The `{user}` ID is a system-generated identifier, as described in Identity.health_user_id. The `{data_type}` ID corresponds to the kebab-case version of the field names in the DataPoint data union field, e.g. `heart-rate` for the `heart_rate` field. The `{data_point}` ID can be client-provided or system-generated. If client-provided, it must be a string of 4-63 characters, containing only lowercase letters, numbers, and hyphens.",
                       "location": "path",
                       "pattern": "^users/[^/]+/dataTypes/[^/]+/dataPoints/[^/]+$",
                       "required": true,
@@ -789,7 +914,17 @@
                   },
                   "response": {
                     "$ref": "Operation"
-                  }
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/googlehealth.activity_and_fitness.writeonly",
+                    "https://www.googleapis.com/auth/googlehealth.health_metrics_and_measurements.writeonly",
+                    "https://www.googleapis.com/auth/googlehealth.location.writeonly",
+                    "https://www.googleapis.com/auth/googlehealth.logged_symptoms.writeonly",
+                    "https://www.googleapis.com/auth/googlehealth.mindfulness.writeonly",
+                    "https://www.googleapis.com/auth/googlehealth.nutrition.writeonly",
+                    "https://www.googleapis.com/auth/googlehealth.reproductive_health.writeonly",
+                    "https://www.googleapis.com/auth/googlehealth.sleep.writeonly"
+                  ]
                 },
                 "reconcile": {
                   "description": "Reconcile data points from multiple data sources into a single data stream.",
@@ -943,7 +1078,7 @@
       }
     }
   },
-  "revision": "20260525",
+  "revision": "20260729",
   "rootUrl": "https://health.googleapis.com/",
   "schemas": {
     "ActiveEnergyBurned": {
@@ -2133,7 +2268,7 @@
           "description": "Optional. Data for points in the `irregular-rhythm-notification` session data type collection."
         },
         "name": {
-          "description": "Identifier. Data point name, only supported for the subset of identifiable data types. For the majority of the data types, individual data points do not need to be identified and this field would be empty. Format: `users/{user}/dataTypes/{data_type}/dataPoints/{data_point}` Example: `users/abcd1234/dataTypes/sleep/dataPoints/a1b2c3d4-e5f6-7890-1234-567890abcdef` The `{user}` ID is a system-generated identifier, as described in Identity.health_user_id. The `{data_type}` ID corresponds to the kebab-case version of the field names in the DataPoint data union field, e.g. `total-calories` for the `total_calories` field. The `{data_point}` ID can be client-provided or system-generated. If client-provided, it must be a string of 4-63 characters, containing only lowercase letters, numbers, and hyphens.",
+          "description": "Identifier. Data point name, only supported for the subset of identifiable data types. For the majority of the data types, individual data points do not need to be identified and this field would be empty. Format: `users/{user}/dataTypes/{data_type}/dataPoints/{data_point}` Example: `users/abcd1234/dataTypes/sleep/dataPoints/a1b2c3d4-e5f6-7890-1234-567890abcdef` The `{user}` ID is a system-generated identifier, as described in Identity.health_user_id. The `{data_type}` ID corresponds to the kebab-case version of the field names in the DataPoint data union field, e.g. `heart-rate` for the `heart_rate` field. The `{data_point}` ID can be client-provided or system-generated. If client-provided, it must be a string of 4-63 characters, containing only lowercase letters, numbers, and hyphens.",
           "type": "string"
         },
         "nutritionLog": {
@@ -2465,7 +2600,7 @@
       "type": "object"
     },
     "EndpointAuthorization": {
-      "description": "Authorization mechanism for a subscriber endpoint. For all requests sent by the Webhooks service, the JSON payload is cryptographically signed. The signature is delivered in the `X-HEALTHAPI-SIGNATURE` HTTP header. This is an ECDSA (NIST P256) signature of the JSON payload. Clients must verify this signature using Google Health API's public key to confirm the payload was sent by the Health API.",
+      "description": "Authorization mechanism for a subscriber endpoint. For all requests sent by the Webhooks service, the JSON payload is cryptographically signed. The signature is delivered in the `GOOGLE-HEALTH-API-SIGNATURE` HTTP header. This is an ECDSA (NIST P256) signature of the JSON payload. Clients must verify this signature using Google Health API's public key to confirm the payload was sent by the Health API.",
       "id": "EndpointAuthorization",
       "properties": {
         "secret": {
@@ -2485,7 +2620,7 @@
       "id": "EnergyQuantity",
       "properties": {
         "kcal": {
-          "description": "Required. Value representing the energy in kilocalories.",
+          "description": "Required. The energy value in kilocalories.",
           "format": "double",
           "type": "number"
         },
@@ -2578,33 +2713,371 @@
           "description": "Required. The type of activity performed during an exercise.",
           "enum": [
             "EXERCISE_TYPE_UNSPECIFIED",
-            "RUNNING",
-            "WALKING",
+            "AEROBIC_WORKOUT",
+            "ARCHERY",
+            "ASSAULT_BIKE",
+            "BACKPACKING",
+            "BADMINTON",
+            "BALLET",
+            "BALLROOM_DANCE",
+            "BARRE_CLASS",
+            "BASEBALL",
+            "BASKETBALL",
             "BIKING",
-            "SWIMMING",
-            "HIKING",
-            "YOGA",
-            "PILATES",
-            "WORKOUT",
+            "BILLIARDS",
+            "BODY_WEIGHT",
+            "BOOTCAMP",
+            "BOWLING",
+            "BOXING",
+            "BREAKDANCING",
+            "CALISTHENICS",
+            "CANOEING",
+            "CARDIO_SCULPT",
+            "CARDIO_WORKOUT",
+            "CARPENTRY",
+            "CHEERLEADING",
+            "CIRCUIT_TRAINING",
+            "CLEANING",
+            "CLIMBING",
+            "CORE_TRAINING",
+            "CRICKET",
+            "CROQUET",
+            "CROSS_COUNTRY_SKI",
+            "CROSS_TRAINING",
+            "CROSSFIT",
+            "CURLING",
+            "DANCING",
+            "DIVING",
+            "ELECTRIC_BIKE",
+            "ELECTRIC_SCOOTER",
+            "ELLIPTICAL",
+            "EQUESTRIAN_SPORTS",
+            "EXERCISE_CLASS",
+            "FENCING",
+            "FIELD_HOCKEY",
+            "FISHING",
+            "FITNESS_GAMING",
+            "FOILING",
+            "FOOTBALL_AMERICAN",
+            "FOOTBALL_AUSTRALIAN",
+            "FREE_WEIGHTS",
+            "FRISBEE_PLAYING_GENERAL",
+            "FUNCTIONAL_STRENGTH_TRAINING",
+            "GARDENING",
+            "GOLF",
+            "GYMNASTICS",
+            "HANDBALL",
+            "HAND_CYCLING",
             "HIIT",
-            "WEIGHTLIFTING",
+            "HIKING",
+            "HIP_HOP",
+            "HOCKEY",
+            "HOEING",
+            "HOUSEHOLD_CHORES",
+            "HUNTING",
+            "ICE_SKATING",
+            "INCLINE_RUN",
+            "INCLINE_WALK",
+            "INDOOR_CLIMBING",
+            "INTERVAL_WORKOUT",
+            "JAZZ_DANCE",
+            "JIU_JITSU",
+            "JUMPING_ROPE",
+            "KARATE",
+            "KAYAKING",
+            "KICKBOXING",
+            "KITESURFING",
+            "LACROSSE",
+            "MARTIAL_ARTS",
+            "MEDITATE",
+            "MODERN_DANCE",
+            "MOTOCROSS",
+            "MOTORCYCLE",
+            "MOUNTAIN_BIKE",
+            "MOWING_LAWN",
+            "MUAY_THAI",
+            "MULTISPORT",
+            "MUSICAL_PERFORMANCE",
+            "NORDIC_WALKING",
+            "ORIENTEERING",
+            "OTHER",
+            "OUTDOOR_BIKE",
+            "OUTDOOR_WORKOUT",
+            "PADDLEBOARDING",
+            "PADEL",
+            "PAINTING",
+            "PARAGLIDING",
+            "PARKOUR",
+            "PICKELBALL",
+            "PILATES",
+            "POLO",
+            "POWERLIFTING",
+            "POWER_WALKING",
+            "RACKET_SPORTS",
+            "RACQUETBALL",
+            "RESISTANCE_BANDS",
+            "ROCK_CLIMBING",
+            "ROLLERBLADING",
+            "ROLLER_SKATING",
+            "ROWING",
+            "ROWING_MACHINE",
+            "RUCKING",
+            "RUGBY",
+            "RUNNING",
+            "SAILING",
+            "SCOOTERING",
+            "SCUBA_DIVING",
+            "SHOOTING",
+            "SHOVELING",
+            "SKATEBOARDING",
+            "SKATING",
+            "SKIING",
+            "SKYDIVING",
+            "SNORKELING",
+            "SNOWBOARDING",
+            "SNOWMOBILING",
+            "SNOWSHOEING",
+            "SNOW_SPORT",
+            "SOCCER",
+            "SOFTBALL",
+            "SPEED_SKATING",
+            "SPINNING",
+            "SPORT",
+            "SQUASH",
+            "STAIRCLIMBER",
+            "STATIONARY_BIKE",
+            "STEP_TRAINING",
             "STRENGTH_TRAINING",
-            "OTHER"
+            "STRETCHING",
+            "STROLLER_WALK",
+            "SURFING",
+            "SWIMMING",
+            "SWIMMING_OPEN_WATER",
+            "SWIMMING_POOL",
+            "SYNCHRONIZED_SWIMMING",
+            "TABATA_WORKOUT",
+            "TABLE_TENNIS",
+            "TAEKWONDO",
+            "TAI_CHI",
+            "TANGO",
+            "TENNIS",
+            "TRACK_AND_FIELD",
+            "TRAIL_RUN",
+            "TRAMPOLINE",
+            "TREADMILL",
+            "TREADMILL_WALK",
+            "TRX",
+            "ULTIMATE_FRISBEE",
+            "UNICYCLING",
+            "VOLLEYBALL",
+            "VOLLEYBALL_BEACH",
+            "WAKEBOARDING",
+            "WALKING",
+            "WALK_WITH_WEIGHTS",
+            "WATER_AEROBICS",
+            "WATER_JOGGING",
+            "WATER_POLO",
+            "WATER_SKIING",
+            "WATER_SPORT",
+            "WATER_VOLLEYBALL",
+            "WEEDING",
+            "WEIGHTLIFTING",
+            "WEIGHT_MACHINES",
+            "WEIGHTS",
+            "WHEELCHAIR",
+            "WINDSURFING",
+            "WORKOUT",
+            "WRESTLING",
+            "YOGA",
+            "YOGA_BIKRAM",
+            "YOGA_HATHA",
+            "YOGA_POWER",
+            "YOGA_VINYASA",
+            "ZUMBA"
           ],
           "enumDescriptions": [
             "Exercise type is unspecified.",
-            "Running type.",
-            "Walking type.",
+            "Aerobic workout type.",
+            "Archery type.",
+            "Assault bike type.",
+            "Backpacking type.",
+            "Badminton type.",
+            "Ballet type.",
+            "Ballroom dance type.",
+            "Barre class type.",
+            "Baseball type.",
+            "Basketball type.",
             "Biking type.",
-            "Swimming type.",
+            "Billiards type.",
+            "Body weight type.",
+            "Bootcamp type.",
+            "Bowling type.",
+            "Boxing type.",
+            "Breakdancing type.",
+            "Calisthenics type.",
+            "Canoeing type.",
+            "Cardio sculpt type.",
+            "Cardio workout type.",
+            "Carpentry type.",
+            "Cheerleading type.",
+            "Circuit training type.",
+            "Cleaning type.",
+            "Climbing type.",
+            "Core training type.",
+            "Cricket type.",
+            "Croquet type.",
+            "Cross country ski type.",
+            "Cross training type.",
+            "Crossfit type.",
+            "Curling type.",
+            "Dancing type.",
+            "Diving type.",
+            "Electric bike type.",
+            "Electric scooter type.",
+            "Elliptical type.",
+            "Equestrian sports type.",
+            "Exercise class type.",
+            "Fencing type.",
+            "Field hockey type.",
+            "Fishing type.",
+            "Fitness gaming type.",
+            "Foiling type.",
+            "Football american type.",
+            "Football australian type.",
+            "Free weights type.",
+            "Frisbee playing general type.",
+            "Functional strength training type.",
+            "Gardening type.",
+            "Golf type.",
+            "Gymnastics type.",
+            "Handball type.",
+            "Hand cycling type.",
+            "Hiit type.",
             "Hiking type.",
-            "Yoga type.",
+            "Hip hop type.",
+            "Hockey type.",
+            "Hoeing type.",
+            "Household chores type.",
+            "Hunting type.",
+            "Ice skating type.",
+            "Incline run type.",
+            "Incline walk type.",
+            "Indoor climbing type.",
+            "Interval workout type.",
+            "Jazz dance type.",
+            "Jiu jitsu type.",
+            "Jumping rope type.",
+            "Karate type.",
+            "Kayaking type.",
+            "Kickboxing type.",
+            "Kitesurfing type.",
+            "Lacrosse type.",
+            "Martial arts type.",
+            "Meditate type.",
+            "Modern dance type.",
+            "Motocross type.",
+            "Motorcycle type.",
+            "Mountain bike type.",
+            "Mowing lawn type.",
+            "Muay thai type.",
+            "Multisport type.",
+            "Musical performance type.",
+            "Nordic walking type.",
+            "Orienteering type.",
+            "Other type.",
+            "Outdoor bike type.",
+            "Outdoor workout type.",
+            "Paddleboarding type.",
+            "Padel type.",
+            "Painting type.",
+            "Paragliding type.",
+            "Parkour type.",
+            "Pickelball type.",
             "Pilates type.",
-            "Workout type.",
-            "HIIT type.",
-            "Weightlifting type.",
+            "Polo type.",
+            "Powerlifting type.",
+            "Power walking type.",
+            "Racket sports type.",
+            "Racquetball type.",
+            "Resistance bands type.",
+            "Rock climbing type.",
+            "Rollerblading type.",
+            "Roller skating type.",
+            "Rowing type.",
+            "Rowing machine type.",
+            "Rucking type.",
+            "Rugby type.",
+            "Running type.",
+            "Sailing type.",
+            "Scootering type.",
+            "Scuba diving type.",
+            "Shooting type.",
+            "Shoveling type.",
+            "Skateboarding type.",
+            "Skating type.",
+            "Skiing type.",
+            "Skydiving type.",
+            "Snorkeling type.",
+            "Snowboarding type.",
+            "Snowmobiling type.",
+            "Snowshoeing type.",
+            "Snow sport type.",
+            "Soccer type.",
+            "Softball type.",
+            "Speed skating type.",
+            "Spinning type.",
+            "Sport type.",
+            "Squash type.",
+            "Stairclimber type.",
+            "Stationary bike type.",
+            "Step training type.",
             "Strength training type.",
-            "Other type."
+            "Stretching type.",
+            "Stroller walk type.",
+            "Surfing type.",
+            "Swimming type.",
+            "Swimming open water type.",
+            "Swimming pool type.",
+            "Synchronized swimming type.",
+            "Tabata workout type.",
+            "Table tennis type.",
+            "Taekwondo type.",
+            "Tai chi type.",
+            "Tango type.",
+            "Tennis type.",
+            "Track and field type.",
+            "Trail run type.",
+            "Trampoline type.",
+            "Treadmill type.",
+            "Treadmill walk type.",
+            "Trx type.",
+            "Ultimate frisbee type.",
+            "Unicycling type.",
+            "Volleyball type.",
+            "Volleyball beach type.",
+            "Wakeboarding type.",
+            "Walking type.",
+            "Walk with weights type.",
+            "Water aerobics type.",
+            "Water jogging type.",
+            "Water polo type.",
+            "Water skiing type.",
+            "Water sport type.",
+            "Water volleyball type.",
+            "Weeding type.",
+            "Weightlifting type.",
+            "Weight machines type.",
+            "Weights type.",
+            "Wheelchair type.",
+            "Windsurfing type.",
+            "Workout type.",
+            "Wrestling type.",
+            "Yoga type.",
+            "Yoga bikram type.",
+            "Yoga hatha type.",
+            "Yoga power type.",
+            "Yoga vinyasa type.",
+            "Zumba type."
           ],
           "type": "string"
         },
@@ -2901,6 +3374,17 @@
       },
       "type": "object"
     },
+    "GoogleDevicesandservicesHealthV4User": {
+      "description": "Represents a user in the Google Health API. It matches the parent resource of collections owned by the user. Clients currently do not need to interact with this resource directly.",
+      "id": "GoogleDevicesandservicesHealthV4User",
+      "properties": {
+        "name": {
+          "description": "Identifier. The resource name of the user. The `{user}` ID is a system-generated identifier, as described in Identity.health_user_id. Format: `users/{user}`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleDevicesandservicesHealthV4WebhookNotificationCloudLog": {
       "description": "Log message for a webhook notification sent by the Google Health API to a subscriber's endpoint. Includes the HTTP response received from the endpoint.",
       "id": "GoogleDevicesandservicesHealthV4WebhookNotificationCloudLog",
@@ -3109,6 +3593,33 @@
         "sampleTime": {
           "$ref": "ObservationSampleTime",
           "description": "Required. The time at which the height was recorded."
+        }
+      },
+      "type": "object"
+    },
+    "HttpBody": {
+      "description": "Message that represents an arbitrary HTTP body. It should only be used for payload formats that can't be represented as JSON, such as raw binary or an HTML page. This message can be used both in streaming and non-streaming API methods in the request as well as the response. It can be used as a top-level request field, which is convenient if one wants to extract parameters from either the URL or HTTP template into the request fields and also want access to the raw HTTP body. Example: message GetResourceRequest { // A unique request id. string request_id = 1; // The raw HTTP body is bound to this field. google.api.HttpBody http_body = 2; } service ResourceService { rpc GetResource(GetResourceRequest) returns (google.api.HttpBody); rpc UpdateResource(google.api.HttpBody) returns (google.protobuf.Empty); } Example with streaming methods: service CaldavService { rpc GetCalendar(stream google.api.HttpBody) returns (stream google.api.HttpBody); rpc UpdateCalendar(stream google.api.HttpBody) returns (stream google.api.HttpBody); } Use of this type only changes how the request and response bodies are handled, all other features will continue to work unchanged.",
+      "id": "HttpBody",
+      "properties": {
+        "contentType": {
+          "description": "The HTTP Content-Type header value specifying the content type of the body.",
+          "type": "string"
+        },
+        "data": {
+          "description": "The HTTP request/response body as raw binary.",
+          "format": "byte",
+          "type": "string"
+        },
+        "extensions": {
+          "description": "Application specific response metadata. Must be set in the first response for streaming APIs.",
+          "items": {
+            "additionalProperties": {
+              "description": "Properties of the object. Contains field @type with type URL.",
+              "type": "any"
+            },
+            "type": "object"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -3345,6 +3856,26 @@
       },
       "type": "object"
     },
+    "ManifestParams": {
+      "description": "Represents the POST body contained in a GetShlManifestRequest This message is nested to represent that See https://build.fhir.org/ig/HL7/smart-health-cards-and-links/links-specification.html#smart-health-link-manifest-request",
+      "id": "ManifestParams",
+      "properties": {
+        "embeddedLengthMax": {
+          "description": "Optional. Integer upper bound on the length of embedded payloads",
+          "format": "int32",
+          "type": "integer"
+        },
+        "passcode": {
+          "description": "Optional. ",
+          "type": "string"
+        },
+        "recipient": {
+          "description": "Required. A string describing the recipient (e.g.,the name of an organization or person) suitable for display to the Receiving User",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "MedicalDeviceInfo": {
       "description": "Software as Medical Device (SaMD) metadata. Used to construct the Unique Device Identifier (UDI).",
       "id": "MedicalDeviceInfo",
@@ -3479,7 +4010,7 @@
       "id": "NutrientQuantity",
       "properties": {
         "nutrient": {
-          "description": "Required. Value representing the nutrient.",
+          "description": "Required. The nutrient type.",
           "enum": [
             "NUTRIENT_UNSPECIFIED",
             "BIOTIN",
@@ -3568,7 +4099,7 @@
         },
         "quantity": {
           "$ref": "WeightQuantity",
-          "description": "Required. Value representing the quantity of the nutrient."
+          "description": "Required. The quantity of the nutrient, measured in grams."
         }
       },
       "type": "object"
@@ -3673,31 +4204,31 @@
       "type": "object"
     },
     "NutritionLog": {
-      "description": "Holds information about a user logged food. There are two ways of creating a nutrition log based on the food type: 1. Identified food: Using the food field, which is a reference to a Food resource. In this case fields `nutrients`, `energy`, `energy_from_fat`, `total_carbohydrate`, `total_fat`, `food_display_name` will be populated based on the referenced food. 2. Anonymous food: Using the `food_display_name` field and setting the `nutrients`, `energy`, `energy_from_fat`, `total_carbohydrate`, `total_fat` fields manually. The identified food is preferred over the anonymous food. Nutrition logs created from anonymous food are not be editable.",
+      "description": "Holds information about food logged by a user. There are two ways of creating a nutrition log based on the food type: 1. Identified food: Using the food field, which is a reference to a Food resource. In this case fields `nutrients`, `energy`, `energy_from_fat`, `total_carbohydrate`, `total_fat`, `food_display_name` will be populated based on the referenced food. 2. Anonymous food: Using the `food_display_name` field and setting the `nutrients`, `energy`, `energy_from_fat`, `total_carbohydrate`, `total_fat` fields manually. The identified food is preferred over the anonymous food. Nutrition logs created from anonymous food are not editable.",
       "id": "NutritionLog",
       "properties": {
         "energy": {
           "$ref": "EnergyQuantity",
-          "description": "Optional. Value representing the energy of the nutrition log. For nutrition logs created from an identified food, this field will be populated based on the referenced food. For anonymous food, this field will be populated manually."
+          "description": "Optional. The total energy of the food, measured in kilocalories (`kcal`)."
         },
         "energyFromFat": {
           "$ref": "EnergyQuantity",
-          "description": "Optional. Value representing the energy from fat of the nutrition log. For nutrition logs created from an identified food, this field will be populated based on the referenced food. For anonymous food, this field will be populated manually."
+          "description": "Optional. The energy from fat, measured in kilocalories (`kcal`)."
         },
         "food": {
-          "description": "Required. Represents the food ID.",
+          "description": "Optional. The resource name of the Food item. Required when creating a nutrition log from an identified food. For anonymous food logs, use the `food_display_name` field instead.",
           "type": "string"
         },
         "foodDisplayName": {
-          "description": "Value representing the display name of the food. For nutrition logs created from an identified food, this field will be populated based on the referenced food. For anonymous food, this field will be populated manually.",
+          "description": "The display name of the food. For identified food logs, this is populated automatically from the referenced food.",
           "type": "string"
         },
         "interval": {
           "$ref": "SessionTimeInterval",
-          "description": "Required. Observed interval."
+          "description": "Required. The time window when the food was logged."
         },
         "mealType": {
-          "description": "Optional. Value representing the meal type of the nutrition log.",
+          "description": "Optional. The meal category. One of `BREAKFAST`, `LUNCH`, `DINNER`, or `SNACK`.",
           "enum": [
             "MEAL_TYPE_UNSPECIFIED",
             "BEFORE_BREAKFAST",
@@ -3725,7 +4256,7 @@
           "type": "string"
         },
         "nutrients": {
-          "description": "Optional. Value representing the nutrients of the nutrition log.",
+          "description": "Optional. An array of individual nutrient values for the nutrition log.",
           "items": {
             "$ref": "NutrientQuantity"
           },
@@ -3733,15 +4264,15 @@
         },
         "serving": {
           "$ref": "Serving",
-          "description": "Optional. Value representing the nutrition log serving."
+          "description": "Optional. The serving information for the logged food."
         },
         "totalCarbohydrate": {
           "$ref": "WeightQuantity",
-          "description": "Optional. Value representing the total carbohydrate of the nutrition log. For nutrition logs created from an identified food, this field will be populated based on the referenced food. For anonymous food, this field will be populated manually."
+          "description": "Optional. The total carbohydrate content, measured in grams."
         },
         "totalFat": {
           "$ref": "WeightQuantity",
-          "description": "Optional. Value representing the total fat of the nutrition log. For nutrition logs created from an identified food, this field will be populated based on the referenced food. For anonymous food, this field will be populated manually."
+          "description": "Optional. The total fat content, measured in grams."
         }
       },
       "type": "object"
@@ -4104,7 +4635,7 @@
           "description": "Data for points in the `daily-vo2-max` daily data type collection."
         },
         "dataPointName": {
-          "description": "Identifier. Data point name, only supported for the subset of identifiable data types. For the majority of the data types, individual data points do not need to be identified and this field would be empty. Format: `users/{user}/dataTypes/{data_type}/dataPoints/{data_point}` Example: `users/abcd1234/dataTypes/sleep/dataPoints/a1b2c3d4-e5f6-7890-1234-567890abcdef` The `{user}` ID is a system-generated identifier, as described in Identity.health_user_id. The `{data_type}` ID corresponds to the kebab-case version of the field names in the DataPoint data union field, e.g. `total-calories` for the `total_calories` field. The `{data_point}` ID can be client-provided or system-generated. If client-provided, it must be a string of 4-63 characters, containing only lowercase letters, numbers, and hyphens.",
+          "description": "Identifier. Data point name, only supported for the subset of identifiable data types. For the majority of the data types, individual data points do not need to be identified and this field would be empty. Format: `users/{user}/dataTypes/{data_type}/dataPoints/{data_point}` Example: `users/abcd1234/dataTypes/sleep/dataPoints/a1b2c3d4-e5f6-7890-1234-567890abcdef` The `{user}` ID is a system-generated identifier, as described in Identity.health_user_id. The `{data_type}` ID corresponds to the kebab-case version of the field names in the DataPoint data union field, e.g. `heart-rate` for the `heart_rate` field. The `{data_point}` ID can be client-provided or system-generated. If client-provided, it must be a string of 4-63 characters, containing only lowercase letters, numbers, and hyphens.",
           "type": "string"
         },
         "distance": {
@@ -4270,7 +4801,7 @@
           "description": "Required. Closed-open range of data points that will be rolled up. The maximum range for `calories-in-heart-rate-zone`, `heart-rate`, `active-minutes` and `total-calories` is 14 days. The maximum range for all other data types is 90 days."
         },
         "windowSize": {
-          "description": "Required. The size of the time window to group data points into before applying the aggregation functions.",
+          "description": "Required. The size of the time window to group data points into before applying the aggregation functions. Must be at least 1 second.",
           "format": "google-duration",
           "type": "string"
         }
@@ -4462,7 +4993,7 @@
       "id": "Serving",
       "properties": {
         "amount": {
-          "description": "Optional. Amount of food consumed, fractional values are supported.",
+          "description": "Optional. The number of servings.",
           "format": "double",
           "type": "number"
         },
@@ -4698,7 +5229,7 @@
         },
         "metadata": {
           "$ref": "SleepMetadata",
-          "description": "Optional. Sleep metadata: processing, main, manually edited, stages status."
+          "description": "Optional. Sleep metadata: `processed`, `main_sleep`, `manually_edited`, and `stages_status`."
         },
         "outOfBedSegments": {
           "description": "Optional. “Out of bed” segments that can overlap with sleep stages.",
@@ -4750,6 +5281,11 @@
           "description": "Optional. Sleep identifier relevant in the context of the data source.",
           "type": "string"
         },
+        "mainSleep": {
+          "description": "Output only. `main_sleep`: the longest sleep session with stages within one day. If no sleep session has stages, then the longest sleep is the `main_sleep`. If there are multiple days of sleep in the response, there is one `main_sleep` per day.",
+          "readOnly": true,
+          "type": "boolean"
+        },
         "manuallyEdited": {
           "description": "Output only. Some sleeps autodetected by algorithms can be manually edited by users.",
           "readOnly": true,
@@ -4761,7 +5297,7 @@
           "type": "boolean"
         },
         "processed": {
-          "description": "Output only. Sleep and sleep stages algorithms finished processing.",
+          "description": "Output only. Sleep and sleep stages algorithms finished processing. A `true` value indicates whether all data processing for the session is complete. A `false` value means sleep period is detected but sleep stages is still processing.",
           "readOnly": true,
           "type": "boolean"
         },
@@ -5143,7 +5679,7 @@
       "id": "Subscription",
       "properties": {
         "dataTypes": {
-          "description": "Optional. Data types subscribed to. A subscriber will only receive notifications for data types that are declared here. A subscription can only subscribe to the data types of the subscriber. Supported data types are: \"altitude\", \"distance\", \"floors\", \"sleep\", \"steps\", \"weight\".",
+          "description": "Optional. Data types subscribed to. A subscriber will only receive notifications for data types that are declared here. A subscription can only subscribe to the data types of the subscriber. The values should be in the format \"users/{health_user_id}/dataTypes/{data_type}\" where `{data_type}` is one of \"altitude\", \"distance\", \"floors\", \"sleep\", \"steps\", \"weight\".",
           "items": {
             "type": "string"
           },
@@ -5349,7 +5885,7 @@
       "type": "object"
     },
     "TotalCaloriesRollupValue": {
-      "description": "Represents the result of the rollup of the user's total calories.",
+      "description": "Represents the result of the rollup of the user's total calories. Note: Queries for the `total-calories` data type must include a time interval filter (such as `total_calories.interval.start_time` or `total_calories.interval.civil_start_time`). The maximum range is 14 days. Example filter query: `total_calories.interval.start_time >= \"2026-04-20T00:00:00Z\" AND total_calories.interval.start_time < \"2026-04-21T00:00:00Z\"`",
       "id": "TotalCaloriesRollupValue",
       "properties": {
         "kcalSum": {
@@ -5509,7 +6045,7 @@
       "id": "WeightQuantity",
       "properties": {
         "grams": {
-          "description": "Required. Value representing the weight in grams.",
+          "description": "Required. The weight value in grams.",
           "format": "double",
           "type": "number"
         },

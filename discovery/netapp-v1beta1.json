@@ -2160,6 +2160,31 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "getSplitStatus": {
+                  "description": "Retrieves the current state, progress, and details of a split operation for a volume. This method is relevant when the volume is a clone. For volumes that are not clones, this method will return an error.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/volumes/{volumesId}:getSplitStatus",
+                  "httpMethod": "GET",
+                  "id": "netapp.projects.locations.volumes.getSplitStatus",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The full name of the volume. Format: projects/{project_number}/locations/{location}/volumes/{volume_id}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/volumes/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}:getSplitStatus",
+                  "response": {
+                    "$ref": "SplitStatus"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "list": {
                   "description": "Lists Volumes in a given project.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/volumes",
@@ -2289,6 +2314,34 @@
                   "path": "v1beta1/{+name}:revert",
                   "request": {
                     "$ref": "RevertVolumeRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "startSplit": {
+                  "description": "Splits a clone volume from its source volume. This operation will only work for volumes which have clone_details set(clones). For volumes that are not clones, this operation will return an error.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/volumes/{volumesId}:startSplit",
+                  "httpMethod": "POST",
+                  "id": "netapp.projects.locations.volumes.startSplit",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The full name of the clone volume to be split from its source. Format: projects/{project_number}/locations/{location}/volumes/{volume_id}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/volumes/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}:startSplit",
+                  "request": {
+                    "$ref": "StartSplitRequest"
                   },
                   "response": {
                     "$ref": "Operation"
@@ -2950,7 +3003,7 @@
       }
     }
   },
-  "revision": "20260518",
+  "revision": "20260719",
   "rootUrl": "https://netapp.googleapis.com/",
   "schemas": {
     "ActiveDirectory": {
@@ -3438,8 +3491,7 @@
           "type": "string"
         },
         "sourceRegion": {
-          "description": "Output only. Region in which the backup vault is created. Format: `projects/{project_id}/locations/{location}`",
-          "readOnly": true,
+          "description": "Optional. Region in which the backup vault is created. Format: `projects/{project_id}/locations/{location}`",
           "type": "string"
         },
         "state": {
@@ -3669,6 +3721,23 @@
         },
         "sourceVolume": {
           "description": "Output only. Full name of the source volume resource. Format: projects/{project}/locations/{location}/volumes/{volume}",
+          "readOnly": true,
+          "type": "string"
+        },
+        "splitState": {
+          "description": "Output only. The current state of the clone split operation.",
+          "enum": [
+            "SPLIT_STATE_UNSPECIFIED",
+            "SPLIT_STATE_NOT_SPLITTING",
+            "SPLIT_STATE_IN_PROGRESS",
+            "SPLIT_STATE_FAILED"
+          ],
+          "enumDescriptions": [
+            "State is not specified.",
+            "The volume is a thin clone, sharing blocks with its source.",
+            "A split operation is currently active and in progress.",
+            "The attempt to split the volume failed."
+          ],
           "readOnly": true,
           "type": "string"
         }
@@ -4593,6 +4662,19 @@
       "description": "Metadata for a given google.cloud.location.Location.",
       "id": "LocationMetadata",
       "properties": {
+        "flexPerformanceTier": {
+          "description": "Output only. Indicates the flex performance tier of this location.",
+          "enum": [
+            "FLEX_PERFORMANCE_TIER_UNSPECIFIED",
+            "LIMITED"
+          ],
+          "enumDescriptions": [
+            "Unspecified flex performance tier.",
+            "Flex performance tier is limited."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
         "hasOntapProxy": {
           "description": "Output only. Indicates if the location has ONTAP Proxy support.",
           "readOnly": true,
@@ -5333,6 +5415,47 @@
           "description": "Weekly schedule policy."
         }
       },
+      "type": "object"
+    },
+    "SplitStatus": {
+      "description": "Message for SplitStatus.",
+      "id": "SplitStatus",
+      "properties": {
+        "progressPercent": {
+          "description": "Output only. The estimated progress percentage of the split operation (0-100). This is meaningful primarily when split_state is IN_PROGRESS.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "splitState": {
+          "description": "Output only. The current state of the clone split operation.",
+          "enum": [
+            "SPLIT_STATE_UNSPECIFIED",
+            "SPLIT_STATE_NOT_SPLITTING",
+            "SPLIT_STATE_IN_PROGRESS",
+            "SPLIT_STATE_FAILED"
+          ],
+          "enumDescriptions": [
+            "State is not specified.",
+            "The volume is a thin clone, sharing blocks with its source.",
+            "A split operation is currently active and in progress.",
+            "The attempt to split the volume failed."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "stateDetails": {
+          "description": "Output only. Human-readable details about the current state. Mostly used for displaying error messages during split failure Examples: \"Split in progress\", \"Error: insufficient capacity\".",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "StartSplitRequest": {
+      "description": "Request message for splitting a volume.",
+      "id": "StartSplitRequest",
+      "properties": {},
       "type": "object"
     },
     "Status": {

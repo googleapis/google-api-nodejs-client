@@ -362,6 +362,10 @@ export namespace networkconnectivity_v1alpha1 {
      */
     prefixLength?: number | null;
     /**
+     * Output only. Status of the Internal Range.
+     */
+    rangeStatus?: string | null;
+    /**
      * Optional. Can be set to narrow down or pick a different address space while searching for a free range. If not set, defaults to the ["10.0.0.0/8", "172.16.0.0/12", "192.168.0.0/16"] address space (for auto-mode networks, the "10.0.0.0/9" range is used instead of "10.0.0.0/8"). This can be used to target the search in other rfc-1918 address spaces like "172.16.0.0/12" and "192.168.0.0/16" or non-rfc-1918 address spaces used in the VPC.
      */
     targetCidrRange?: string[] | null;
@@ -748,8 +752,7 @@ export namespace networkconnectivity_v1alpha1 {
         | BodyResponseCallback<Schema$Location>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Location>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Location> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Location>>
@@ -874,8 +877,7 @@ export namespace networkconnectivity_v1alpha1 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListLocationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListLocationsResponse>,
       callback: BodyResponseCallback<Schema$ListLocationsResponse>
     ): void;
     list(
@@ -1082,8 +1084,7 @@ export namespace networkconnectivity_v1alpha1 {
     create(
       params: Params$Resource$Projects$Locations$Global$Hubs$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -1230,8 +1231,7 @@ export namespace networkconnectivity_v1alpha1 {
     delete(
       params: Params$Resource$Projects$Locations$Global$Hubs$Delete,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -1394,8 +1394,7 @@ export namespace networkconnectivity_v1alpha1 {
         | BodyResponseCallback<Schema$Hub>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Hub>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Hub> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Hub>>
@@ -1535,8 +1534,7 @@ export namespace networkconnectivity_v1alpha1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -1827,8 +1825,7 @@ export namespace networkconnectivity_v1alpha1 {
     patch(
       params: Params$Resource$Projects$Locations$Global$Hubs$Patch,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     patch(
@@ -1997,8 +1994,7 @@ export namespace networkconnectivity_v1alpha1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -2129,8 +2125,7 @@ export namespace networkconnectivity_v1alpha1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Global$Hubs$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -2374,6 +2369,7 @@ export namespace networkconnectivity_v1alpha1 {
      *         //   "overlaps": [],
      *         //   "peering": "my_peering",
      *         //   "prefixLength": 0,
+     *         //   "rangeStatus": "my_rangeStatus",
      *         //   "targetCidrRange": [],
      *         //   "updateTime": "my_updateTime",
      *         //   "usage": "my_usage",
@@ -2421,8 +2417,7 @@ export namespace networkconnectivity_v1alpha1 {
     create(
       params: Params$Resource$Projects$Locations$Internalranges$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -2570,8 +2565,7 @@ export namespace networkconnectivity_v1alpha1 {
     delete(
       params: Params$Resource$Projects$Locations$Internalranges$Delete,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -2690,6 +2684,7 @@ export namespace networkconnectivity_v1alpha1 {
      *   //   "overlaps": [],
      *   //   "peering": "my_peering",
      *   //   "prefixLength": 0,
+     *   //   "rangeStatus": "my_rangeStatus",
      *   //   "targetCidrRange": [],
      *   //   "updateTime": "my_updateTime",
      *   //   "usage": "my_usage",
@@ -2885,8 +2880,7 @@ export namespace networkconnectivity_v1alpha1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -3016,8 +3010,7 @@ export namespace networkconnectivity_v1alpha1 {
     list(
       params: Params$Resource$Projects$Locations$Internalranges$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListInternalRangesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListInternalRangesResponse>,
       callback: BodyResponseCallback<Schema$ListInternalRangesResponse>
     ): void;
     list(
@@ -3144,6 +3137,7 @@ export namespace networkconnectivity_v1alpha1 {
      *         //   "overlaps": [],
      *         //   "peering": "my_peering",
      *         //   "prefixLength": 0,
+     *         //   "rangeStatus": "my_rangeStatus",
      *         //   "targetCidrRange": [],
      *         //   "updateTime": "my_updateTime",
      *         //   "usage": "my_usage",
@@ -3192,8 +3186,7 @@ export namespace networkconnectivity_v1alpha1 {
     patch(
       params: Params$Resource$Projects$Locations$Internalranges$Patch,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     patch(
@@ -3363,8 +3356,7 @@ export namespace networkconnectivity_v1alpha1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -3496,8 +3488,7 @@ export namespace networkconnectivity_v1alpha1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Internalranges$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -3777,8 +3768,7 @@ export namespace networkconnectivity_v1alpha1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -3913,8 +3903,7 @@ export namespace networkconnectivity_v1alpha1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -4034,8 +4023,7 @@ export namespace networkconnectivity_v1alpha1 {
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -4410,8 +4398,7 @@ export namespace networkconnectivity_v1alpha1 {
     create(
       params: Params$Resource$Projects$Locations$Spokes$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -4558,8 +4545,7 @@ export namespace networkconnectivity_v1alpha1 {
     delete(
       params: Params$Resource$Projects$Locations$Spokes$Delete,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -4725,8 +4711,7 @@ export namespace networkconnectivity_v1alpha1 {
         | BodyResponseCallback<Schema$Spoke>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Spoke>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Spoke> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Spoke>>
@@ -4865,8 +4850,7 @@ export namespace networkconnectivity_v1alpha1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -5159,8 +5143,7 @@ export namespace networkconnectivity_v1alpha1 {
     patch(
       params: Params$Resource$Projects$Locations$Spokes$Patch,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     patch(
@@ -5328,8 +5311,7 @@ export namespace networkconnectivity_v1alpha1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -5457,8 +5439,7 @@ export namespace networkconnectivity_v1alpha1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Spokes$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(

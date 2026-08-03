@@ -554,7 +554,7 @@
       }
     }
   },
-  "revision": "20260511",
+  "revision": "20260719",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
     "AppDevExperienceState": {
@@ -1667,7 +1667,7 @@
         },
         "management": {
           "deprecated": true,
-          "description": "Optional. Deprecated: From version 1.21.0, automatic Feature management is unavailable, and Config Sync only supports manual upgrades.",
+          "description": "Optional. Deprecated: Automatic Feature management is in Preview and is unavailable in version 1.21.0 and later, after which Config Sync only supports manual upgrades. If set to manual upgrades, clear this field instead, which is behaviorally equivalent but helps prevent compatibility issues with newer fields.",
           "enum": [
             "MANAGEMENT_UNSPECIFIED",
             "MANAGEMENT_AUTOMATIC",
@@ -3154,6 +3154,12 @@
             "NON_STANDARD_BINARY_USAGE",
             "UNSUPPORTED_GATEWAY_CLASS",
             "MANAGED_CNI_NOT_ENABLED",
+            "MISSING_CONTROL_PLANE_CONFIG",
+            "SHARED_VPC_MISSING_PERMISSIONS",
+            "REQUIRED_ORG_POLICY_DISABLED",
+            "MODERNIZATION_INCOMPATIBLE_POD_ANNOTATION",
+            "MODERNIZATION_INCOMPATIBLE_CONFIG",
+            "MODERNIZATION_INCOMPATIBLE_GATEWAY_POD_SCALE",
             "MODERNIZATION_SCHEDULED",
             "MODERNIZATION_IN_PROGRESS",
             "MODERNIZATION_COMPLETED",
@@ -3169,7 +3175,12 @@
             "MODERNIZATION_MODERNIZING",
             "MODERNIZATION_MODERNIZED_SOAKING",
             "MODERNIZATION_FINALIZED",
-            "MODERNIZATION_ROLLING_BACK_FLEET"
+            "MODERNIZATION_ROLLING_BACK_FLEET",
+            "MODERNIZATION_MODERNIZED",
+            "MODERNIZATION_COMPATIBLE",
+            "MODERNIZATION_INCOMPATIBLE",
+            "MODERNIZATION_INCOMPATIBLE_FLEET_SCALE",
+            "MODERNIZATION_INCOMPATIBLE_FLEET_QUOTA"
           ],
           "enumDescriptions": [
             "Default Unspecified code",
@@ -3210,6 +3221,12 @@
             "Non-standard binary usage error code",
             "Unsupported gateway class error code",
             "Managed CNI not enabled error code",
+            "Missing control plane configuration error code",
+            "Shared VPC missing permissions error code",
+            "Required org policy disabled error code",
+            "One or more Pods have unsupported annotations.",
+            "Incompatible config found in the cluster.",
+            "Gateway pods per cluster limit exceeded.",
             "Modernization is scheduled for a cluster.",
             "Modernization is in progress for a cluster.",
             "Modernization is completed for a cluster.",
@@ -3225,7 +3242,12 @@
             "Modernization of one or more clusters in a fleet is in progress.",
             "Modernization of all the fleet's clusters is complete. Soaking before finalizing the modernization.",
             "Modernization is finalized for all clusters in a fleet. Rollback is no longer allowed.",
-            "Rollback is in progress for modernization of all clusters in a fleet."
+            "Rollback is in progress for modernization of all clusters in a fleet.",
+            "Modernization of all the fleet's clusters is complete. Soaking before finalizing the modernization.",
+            "Fleet is compatible for modernization.",
+            "Fleet is not yet compatible for modernization.",
+            "Fleet exceeds service mesh fleet-level scalability limits.",
+            "Fleet exceeds service mesh fleet-level quota limits."
           ],
           "type": "string"
         },

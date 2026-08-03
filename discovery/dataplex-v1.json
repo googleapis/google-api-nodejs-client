@@ -1950,6 +1950,97 @@
             },
             "dataDomains": {
               "methods": {
+                "create": {
+                  "description": "Creates a DataDomain resource.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataDomains",
+                  "httpMethod": "POST",
+                  "id": "dataplex.projects.locations.dataDomains.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "dataDomainId": {
+                      "description": "Required. DataDomain identifier. * Must contain only lowercase letters, numbers and hyphens. * Must start with a letter. * Must be between 1-63 characters. * Must end with a number or a letter. * Must be unique within the project and location.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The resource name of the parent location: projects/{project_id_or_number}/locations/{location_id}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "validateOnly": {
+                      "description": "Optional. Only validate the request, but do not perform mutations.",
+                      "location": "query",
+                      "type": "boolean"
+                    }
+                  },
+                  "path": "v1/{+parent}/dataDomains",
+                  "request": {
+                    "$ref": "GoogleCloudDataplexV1DataDomain"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/dataplex.read-write"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a DataDomain resource (allowed only when there are no bindings).",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataDomains/{dataDomainsId}",
+                  "httpMethod": "DELETE",
+                  "id": "dataplex.projects.locations.dataDomains.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The resource name of the DataDomain: projects/{project_id_or_number}/locations/{location_id}/dataDomains/{data_domain_id}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/dataDomains/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/dataplex.read-write"
+                  ]
+                },
+                "get": {
+                  "description": "Retrieves a DataDomain resource.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataDomains/{dataDomainsId}",
+                  "httpMethod": "GET",
+                  "id": "dataplex.projects.locations.dataDomains.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The resource name of the DataDomain: projects/{project_id_or_number}/locations/{location_id}/dataDomains/{data_domain_id}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/dataDomains/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudDataplexV1DataDomain"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/dataplex.read-write"
+                  ]
+                },
                 "getIamPolicy": {
                   "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataDomains/{dataDomainsId}:getIamPolicy",
@@ -1976,6 +2067,93 @@
                   "path": "v1/{+resource}:getIamPolicy",
                   "response": {
                     "$ref": "GoogleIamV1Policy"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/dataplex.read-write"
+                  ]
+                },
+                "list": {
+                  "description": "Lists DataDomain resources in a project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataDomains",
+                  "httpMethod": "GET",
+                  "id": "dataplex.projects.locations.dataDomains.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. Filter request. Supports filter by parent_data_domain.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Optional. Order by fields for the result.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. Maximum number of DataDomains to return. The service may return fewer. If unspecified, at most 50 domains will be returned. The maximum value is 100; values above 100 will be coerced to 100.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. Page token received from a previous ListDataDomains call.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The resource name of the parent location: projects/{project_id_or_number}/locations/{location_id}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/dataDomains",
+                  "response": {
+                    "$ref": "GoogleCloudDataplexV1ListDataDomainsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/dataplex.read-write"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates a DataDomain resource.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataDomains/{dataDomainsId}",
+                  "httpMethod": "PATCH",
+                  "id": "dataplex.projects.locations.dataDomains.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Identifier. The relative resource name of the DataDomain, of the form: projects/{project_id_or_number}/locations/{location_id}/dataDomains/{data_domain_id}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/dataDomains/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. Mask of fields to update.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "validateOnly": {
+                      "description": "Optional. Only validate the request, but do not perform mutations.",
+                      "location": "query",
+                      "type": "boolean"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "GoogleCloudDataplexV1DataDomain"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform",
@@ -2039,6 +2217,150 @@
                     "https://www.googleapis.com/auth/cloud-platform",
                     "https://www.googleapis.com/auth/dataplex.read-write"
                   ]
+                }
+              },
+              "resources": {
+                "bindings": {
+                  "methods": {
+                    "create": {
+                      "description": "Creates a DataDomainBinding resource.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataDomains/{dataDomainsId}/bindings",
+                      "httpMethod": "POST",
+                      "id": "dataplex.projects.locations.dataDomains.bindings.create",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "dataDomainBindingId": {
+                          "description": "Optional. DataDomainBinding identifier. * Must contain only lowercase letters, numbers and hyphens. * Must start with a letter. * Must be between 1-63 characters. * Must end with a number or a letter. * Must be unique within the parent DataDomain. If not provided, a system-generated UUID will be used.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The resource name of the parent DataDomain: projects/{project_id_or_number}/locations/{location_id}/dataDomains/{data_domain_id}",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/dataDomains/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "validateOnly": {
+                          "description": "Optional. Only validate the request, but do not perform mutations.",
+                          "location": "query",
+                          "type": "boolean"
+                        }
+                      },
+                      "path": "v1/{+parent}/bindings",
+                      "request": {
+                        "$ref": "GoogleCloudDataplexV1DataDomainBinding"
+                      },
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/dataplex.read-write"
+                      ]
+                    },
+                    "delete": {
+                      "description": "Deletes a DataDomainBinding resource.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataDomains/{dataDomainsId}/bindings/{bindingsId}",
+                      "httpMethod": "DELETE",
+                      "id": "dataplex.projects.locations.dataDomains.bindings.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The resource name of the DataDomainBinding: projects/{project_id_or_number}/locations/{location_id}/dataDomains/{data_domain_id}/bindings/{binding_id}",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/dataDomains/[^/]+/bindings/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/dataplex.read-write"
+                      ]
+                    },
+                    "get": {
+                      "description": "Retrieves a DataDomainBinding resource.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataDomains/{dataDomainsId}/bindings/{bindingsId}",
+                      "httpMethod": "GET",
+                      "id": "dataplex.projects.locations.dataDomains.bindings.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The resource name of the DataDomainBinding: projects/{project_id_or_number}/locations/{location_id}/dataDomains/{data_domain_id}/bindings/{binding_id}",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/dataDomains/[^/]+/bindings/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "GoogleCloudDataplexV1DataDomainBinding"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/dataplex.read-write"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists DataDomainBinding resources under a DataDomain.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataDomains/{dataDomainsId}/bindings",
+                      "httpMethod": "GET",
+                      "id": "dataplex.projects.locations.dataDomains.bindings.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "Optional. Filter request.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "orderBy": {
+                          "description": "Optional. Order by fields for the result.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "Optional. Maximum number of DataDomainBindings to return. The service may return fewer. If unspecified, at most 50 bindings will be returned. The maximum value is 100; values above 100 will be coerced to 100.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Optional. Page token received from a previous ListDataDomainBindings call.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The resource name of the parent DataDomain: projects/{project_id_or_number}/locations/{location_id}/dataDomains/{data_domain_id}",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/dataDomains/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/bindings",
+                      "response": {
+                        "$ref": "GoogleCloudDataplexV1ListDataDomainBindingsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/dataplex.read-write"
+                      ]
+                    }
+                  }
                 }
               }
             },
@@ -7716,7 +8038,7 @@
       }
     }
   },
-  "revision": "20260520",
+  "revision": "20260713",
   "rootUrl": "https://dataplex.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -8842,6 +9164,39 @@
       },
       "type": "object"
     },
+    "GoogleCloudDataplexV1ContactIdentity": {
+      "description": "Identity of a business contact.",
+      "id": "GoogleCloudDataplexV1ContactIdentity",
+      "properties": {
+        "contactId": {
+          "description": "Optional. Email ID or freeform ID of the Contact person.",
+          "type": "string"
+        },
+        "contactName": {
+          "description": "Required. Name of the contact person for the Data Domain; unvalidated freeform text.",
+          "type": "string"
+        },
+        "contactRole": {
+          "description": "Required. Designation of the person i.e. Data Steward or Data Analyst. Example values: owner, steward, producer, admin.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1Contacts": {
+      "description": "Business contacts part of business context of a Data Domain. Corresponds to the Contacts Aspect in Dataplex Universal Catalog.",
+      "id": "GoogleCloudDataplexV1Contacts",
+      "properties": {
+        "identities": {
+          "description": "Required. Identities of the business contacts.",
+          "items": {
+            "$ref": "GoogleCloudDataplexV1ContactIdentity"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDataplexV1CreateEntryLinkRequest": {
       "description": "Request message for CreateEntryLink.",
       "id": "GoogleCloudDataplexV1CreateEntryLinkRequest",
@@ -9385,6 +9740,10 @@
       "description": "Describes options for unstructured data discovery.",
       "id": "GoogleCloudDataplexV1DataDiscoverySpecStorageConfigUnstructuredDataOptions",
       "properties": {
+        "globalEndpointEnabled": {
+          "description": "Optional. Whether to use the global model endpoint.",
+          "type": "boolean"
+        },
         "semanticInferenceEnabled": {
           "description": "Optional. Specifies whether deeper semantic inference over the objects' contents using GenAI is enabled.",
           "type": "boolean"
@@ -9609,17 +9968,101 @@
               "GENERATION_SCOPE_UNSPECIFIED",
               "ALL",
               "TABLE_AND_COLUMN_DESCRIPTIONS",
-              "SQL_QUERIES"
+              "SQL_QUERIES",
+              "BUSINESS_GLOSSARY_TERM_ASSOCIATIONS"
             ],
             "enumDescriptions": [
               "Unspecified generation scope. If no generation scope is specified, all available documentation components will be generated.",
               "All the possible results will be generated.",
               "Table and column descriptions will be generated.",
-              "SQL queries will be generated."
+              "SQL queries will be generated.",
+              "Business glossary term associations will be generated."
             ],
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1DataDomain": {
+      "description": "A DataDomain is a logical grouping of data resources for governance, discovery, and management at scale.",
+      "id": "GoogleCloudDataplexV1DataDomain",
+      "properties": {
+        "contacts": {
+          "$ref": "GoogleCloudDataplexV1Contacts",
+          "description": "Required. Contact info for the Data Domains."
+        },
+        "createTime": {
+          "description": "Output only. The time at which the DataDomain was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. User-provided description of the DataDomain.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Required. User-friendly display name.",
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. User-defined labels for the DataDomain.",
+          "type": "object"
+        },
+        "name": {
+          "description": "Identifier. The relative resource name of the DataDomain, of the form: projects/{project_id_or_number}/locations/{location_id}/dataDomains/{data_domain_id}",
+          "type": "string"
+        },
+        "parentDataDomain": {
+          "description": "Optional. Immutable. The resource name of the parent DataDomain. Empty if this is a top-level DataDomain. Format: projects/{project_id_or_number}/locations/{location}/dataDomains/{parent_data_domain_id} This field is immutable after creation.",
+          "type": "string"
+        },
+        "policyMember": {
+          "$ref": "GoogleIamV1ResourcePolicyMember",
+          "description": "Output only. Output-only policy member strings of this resource.",
+          "readOnly": true
+        },
+        "uid": {
+          "description": "Output only. System-generated globally unique ID for the DataDomain.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The time at which the DataDomain was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1DataDomainBinding": {
+      "description": "DataDomainBinding represents a rule that includes a Google Cloud resource and its contents into a DataDomain.",
+      "id": "GoogleCloudDataplexV1DataDomainBinding",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The time at which the DataDomainBinding was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. The relative resource name of the DataDomainBinding. Format: projects/{project_id_or_number}/locations/{location}/dataDomains/{data_domain_id}/bindings/{binding_id}",
+          "type": "string"
+        },
+        "resource": {
+          "description": "Required. Immutable. The full resource name of the Google Cloud resource to be bound (i.e. included together with its contents) to the DataDomain.Format: IAM Full resource name (https://docs.cloud.google.com/iam/docs/full-resource-names) Examples: - GCP Project: //cloudresourcemanager.googleapis.com/projects/{project-id} - BigQuery Dataset: //bigquery.googleapis.com/projects/{project-id}/datasets/{dataset-id} - BigQuery Table: //bigquery.googleapis.com/projects/{project-id}/datasets/{dataset-id}/tables/{table-id} - Dataplex Data Product: //dataplex.googleapis.com/projects/{project-number}/locations/{location}/dataProducts/{data-product-id}Authorization: the resource to be bound must first grant an IAM role with the resource-specific setIamPolicy permission to the DataDomain. Example: - resource: //bigquery.googleapis.com/projects/{project-id}/datasets/{dataset-id} - IAM role: with bigquery.datasets.setIamPolicy permission (e.g. roles/owner) - IAM member: principal://dataplex.googleapis.com/projects/{project-number}/name/locations/{location}/dataDomains/{data-domain-id}",
+          "type": "string"
+        },
+        "uid": {
+          "description": "Output only. System-generated unique ID.",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -11205,14 +11648,16 @@
             "DATA_QUALITY",
             "DATA_PROFILE",
             "DATA_DISCOVERY",
-            "DATA_DOCUMENTATION"
+            "DATA_DOCUMENTATION",
+            "UNSTRUCTURED_DATA_PROFILE"
           ],
           "enumDescriptions": [
             "The data scan type is unspecified.",
             "Data quality scan.",
             "Data profile scan.",
             "Data discovery scan.",
-            "Data documentation scan."
+            "Data documentation scan.",
+            "Unstructured data profile scan."
           ],
           "readOnly": true,
           "type": "string"
@@ -11221,6 +11666,15 @@
           "description": "Output only. System generated globally unique ID for the scan. This ID will be different if the scan is deleted and re-created with the same name.",
           "readOnly": true,
           "type": "string"
+        },
+        "unstructuredDataProfileResult": {
+          "$ref": "GoogleCloudDataplexV1UnstructuredDataProfileResult",
+          "description": "Output only. The result of an unstructured data profile scan.",
+          "readOnly": true
+        },
+        "unstructuredDataProfileSpec": {
+          "$ref": "GoogleCloudDataplexV1UnstructuredDataProfileSpec",
+          "description": "Optional. Settings for an unstructured data profile scan."
         },
         "updateTime": {
           "description": "Output only. The time when the scan was last updated.",
@@ -11659,14 +12113,16 @@
             "DATA_QUALITY",
             "DATA_PROFILE",
             "DATA_DISCOVERY",
-            "DATA_DOCUMENTATION"
+            "DATA_DOCUMENTATION",
+            "UNSTRUCTURED_DATA_PROFILE"
           ],
           "enumDescriptions": [
             "The data scan type is unspecified.",
             "Data quality scan.",
             "Data profile scan.",
             "Data discovery scan.",
-            "Data documentation scan."
+            "Data documentation scan.",
+            "Unstructured data profile scan."
           ],
           "readOnly": true,
           "type": "string"
@@ -11675,6 +12131,16 @@
           "description": "Output only. System generated globally unique ID for the DataScanJob.",
           "readOnly": true,
           "type": "string"
+        },
+        "unstructuredDataProfileResult": {
+          "$ref": "GoogleCloudDataplexV1UnstructuredDataProfileResult",
+          "description": "Output only. The result of an unstructured data profile scan.",
+          "readOnly": true
+        },
+        "unstructuredDataProfileSpec": {
+          "$ref": "GoogleCloudDataplexV1UnstructuredDataProfileSpec",
+          "description": "Output only. Settings for an unstructured data profile scan.",
+          "readOnly": true
         }
       },
       "type": "object"
@@ -12915,6 +13381,284 @@
       },
       "type": "object"
     },
+    "GoogleCloudDataplexV1GraphProfile": {
+      "description": "Contains the strict structure for graph-profile for semantic inference scan result.",
+      "id": "GoogleCloudDataplexV1GraphProfile",
+      "properties": {
+        "edgeTypes": {
+          "description": "Output only. Edge types.",
+          "items": {
+            "$ref": "GoogleCloudDataplexV1GraphProfileEdgeType"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "nodeTypes": {
+          "description": "Output only. Node types.",
+          "items": {
+            "$ref": "GoogleCloudDataplexV1GraphProfileNodeType"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1GraphProfileEdgeType": {
+      "description": "Represents a type of edge (relationship) in the graph.",
+      "id": "GoogleCloudDataplexV1GraphProfileEdgeType",
+      "properties": {
+        "description": {
+          "description": "Output only. Description of the edge type.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "extractionHints": {
+          "$ref": "GoogleCloudDataplexV1GraphProfileEdgeTypeExtractionHints",
+          "description": "Output only. Extraction hints for the edge.",
+          "readOnly": true
+        },
+        "fields": {
+          "description": "Output only. Fields of the edge type.",
+          "items": {
+            "$ref": "GoogleCloudDataplexV1GraphProfileField"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "foreignKeys": {
+          "description": "Output only. Defines the Foreign Key constraints for the edge.",
+          "items": {
+            "$ref": "GoogleCloudDataplexV1GraphProfileEdgeTypeForeignKey"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "name": {
+          "description": "Output only. Name of the edge type.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "sourceNodeType": {
+          "description": "Output only. Source node type.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "targetNodeType": {
+          "description": "Output only. Target node type.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1GraphProfileEdgeTypeExtractionHints": {
+      "description": "Extraction hints (edge-level).",
+      "id": "GoogleCloudDataplexV1GraphProfileEdgeTypeExtractionHints",
+      "properties": {
+        "cardinality": {
+          "description": "Output only. Expected connectivity topology and bounds of this relationship. Format: \"Topology - Description\" Example: \"1:N - One company can have multiple financial reports.\"",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1GraphProfileEdgeTypeForeignKey": {
+      "description": "Represents a foreign key constraint.",
+      "id": "GoogleCloudDataplexV1GraphProfileEdgeTypeForeignKey",
+      "properties": {
+        "description": {
+          "description": "Output only. Description of the foreign key.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "fieldMappings": {
+          "description": "Output only. Field Mappings. Mappings between local fields and the fields they reference in the referenced node type.",
+          "items": {
+            "$ref": "GoogleCloudDataplexV1GraphProfileEdgeTypeForeignKeyFieldMapping"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "name": {
+          "description": "Output only. Name of the foreign key constraint.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "referencedNodeType": {
+          "description": "Output only. The node type this constraint references.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1GraphProfileEdgeTypeForeignKeyFieldMapping": {
+      "description": "Maps a local field to a referenced field.",
+      "id": "GoogleCloudDataplexV1GraphProfileEdgeTypeForeignKeyFieldMapping",
+      "properties": {
+        "field": {
+          "description": "Output only. Local field name forming part of the foreign key.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "referencedField": {
+          "description": "Output only. Field name in the referenced node type.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1GraphProfileField": {
+      "description": "Represents a field in a node or edge type.",
+      "id": "GoogleCloudDataplexV1GraphProfileField",
+      "properties": {
+        "dataType": {
+          "description": "Output only. The data type of the field, e.g., STRING, INTEGER, DATE.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Output only. Description of the field.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "extractionHints": {
+          "$ref": "GoogleCloudDataplexV1GraphProfileFieldExtractionHints",
+          "description": "Output only. Extraction hints for the field.",
+          "readOnly": true
+        },
+        "fields": {
+          "description": "Output only. Sub-fields of this field (for STRUCT types).",
+          "items": {
+            "$ref": "GoogleCloudDataplexV1GraphProfileField"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "metadataType": {
+          "description": "Output only. The mapped metadata type.",
+          "enum": [
+            "METADATA_TYPE_UNSPECIFIED",
+            "BOOLEAN",
+            "NUMBER",
+            "STRING",
+            "BYTES",
+            "DATETIME",
+            "TIMESTAMP",
+            "GEOSPATIAL",
+            "STRUCT",
+            "OTHER"
+          ],
+          "enumDescriptions": [
+            "Unspecified metadata type.",
+            "Boolean type.",
+            "Numeric type.",
+            "String type.",
+            "Bytes type.",
+            "Date and time type.",
+            "Timestamp type.",
+            "Geospatial type.",
+            "Struct (record) type.",
+            "Other types not covered above."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "mode": {
+          "description": "Output only. The mode of the field.",
+          "enum": [
+            "MODE_UNSPECIFIED",
+            "NULLABLE",
+            "REPEATED",
+            "REQUIRED"
+          ],
+          "enumDescriptions": [
+            "Unspecified mode.",
+            "Field can be null.",
+            "Field can be repeated.",
+            "Field is required."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. Name of the field.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1GraphProfileFieldExtractionHints": {
+      "description": "Extraction hints (field-level).",
+      "id": "GoogleCloudDataplexV1GraphProfileFieldExtractionHints",
+      "properties": {
+        "normalization": {
+          "description": "Output only. Standardizes extracted data (e.g., to ISO 3166-1 alpha-2).",
+          "readOnly": true,
+          "type": "string"
+        },
+        "synthesis": {
+          "description": "Output only. Generates value from other data instead of direct extraction (e.g., hashing).",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1GraphProfileNodeType": {
+      "description": "Represents a type of node in the graph.",
+      "id": "GoogleCloudDataplexV1GraphProfileNodeType",
+      "properties": {
+        "description": {
+          "description": "Output only. Description of the node type.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "extractionHints": {
+          "$ref": "GoogleCloudDataplexV1GraphProfileNodeTypeExtractionHints",
+          "description": "Output only. Extraction hints for the node.",
+          "readOnly": true
+        },
+        "fields": {
+          "description": "Output only. Fields of the node type.",
+          "items": {
+            "$ref": "GoogleCloudDataplexV1GraphProfileField"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "name": {
+          "description": "Output only. Name of the node type.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "primaryKeys": {
+          "description": "Output only. Field names forming the primary keys. The order in this array defines the key's ordinal positions for composite keys.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1GraphProfileNodeTypeExtractionHints": {
+      "description": "Extraction hints (node-level).",
+      "id": "GoogleCloudDataplexV1GraphProfileNodeTypeExtractionHints",
+      "properties": {
+        "cardinality": {
+          "description": "Output only. Expected occurrence frequency of this node type within a document. Format: \"Bounds - Description\" Example: \"0:N - A document may contain multiple people names.\"",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDataplexV1ImportItem": {
       "description": "An object that describes the values that you want to set for an entry and its attached aspects when you import metadata. Used when you run a metadata import job. See CreateMetadataJob.You provide a collection of import items in a metadata import file. For more information about how to create a metadata import file, see Metadata import file (https://cloud.google.com/dataplex/docs/import-metadata#metadata-import-file).",
       "id": "GoogleCloudDataplexV1ImportItem",
@@ -13428,6 +14172,42 @@
       },
       "type": "object"
     },
+    "GoogleCloudDataplexV1ListDataDomainBindingsResponse": {
+      "description": "List DataDomainBindings response.",
+      "id": "GoogleCloudDataplexV1ListDataDomainBindingsResponse",
+      "properties": {
+        "dataDomainBindings": {
+          "description": "DataDomainBindings under the given parent.",
+          "items": {
+            "$ref": "GoogleCloudDataplexV1DataDomainBinding"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Token to retrieve the next page of results.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1ListDataDomainsResponse": {
+      "description": "List DataDomains response.",
+      "id": "GoogleCloudDataplexV1ListDataDomainsResponse",
+      "properties": {
+        "dataDomains": {
+          "description": "DataDomains under the given parent.",
+          "items": {
+            "$ref": "GoogleCloudDataplexV1DataDomain"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Token to retrieve the next page of results.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDataplexV1ListDataProductsResponse": {
       "description": "Response message for listing data products.",
       "id": "GoogleCloudDataplexV1ListDataProductsResponse",
@@ -13865,15 +14645,11 @@
       "description": "Lookup Context using permissions in the source system.",
       "id": "GoogleCloudDataplexV1LookupContextRequest",
       "properties": {
-        "context": {
-          "description": "Optional. The text representing contextual information for which metadata context is being requested.",
-          "type": "string"
-        },
         "options": {
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Optional. Allows to configure the context.Supported options: format - The format of the context (one of yaml, xml, json, default is yaml). context_budget - If provided, the output will be intelligently truncated on a best-effort basis to contain approximately the desired amount of characters. There is no guarantee to achieve the specific amount.",
+          "description": "Optional. Allows to configure the context.Supported options: format - The format of the context (one of yaml, xml, json, default is yaml). context_budget - If provided, the output will be intelligently truncated on a best-effort basis to contain approximately the desired amount of characters. There is no guarantee to achieve the specific amount. all_schema_fields - If set to true, all schema fields will be returned in the context (regardless of context_budget value). Otherwise, the list of schema fields is truncated. Default is false.",
           "type": "object"
         },
         "resources": {
@@ -15495,6 +16271,47 @@
       },
       "type": "object"
     },
+    "GoogleCloudDataplexV1UnstructuredDataProfileResult": {
+      "description": "Contains the result of an unstructured data profile scan.",
+      "id": "GoogleCloudDataplexV1UnstructuredDataProfileResult",
+      "properties": {
+        "description": {
+          "description": "Output only. The inferred description.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "graphProfile": {
+          "$ref": "GoogleCloudDataplexV1GraphProfile",
+          "description": "Output only. The inferred graph profile.",
+          "readOnly": true
+        },
+        "partialFailureMessage": {
+          "description": "Output only. Optional message for partial failures (e.g. node type extraction failed).",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1UnstructuredDataProfileSpec": {
+      "description": "Contains the specification for an unstructured data profile scan.",
+      "id": "GoogleCloudDataplexV1UnstructuredDataProfileSpec",
+      "properties": {
+        "customizedPrompt": {
+          "description": "Optional. Customized prompt for unstructured data profile. The field will be used as part of the prompt, could be some instruction, specifying skill, or specific area to focus.",
+          "type": "string"
+        },
+        "globalEndpointEnabled": {
+          "description": "Optional. Whether to use the global model.",
+          "type": "boolean"
+        },
+        "graphProfilePublishingEnabled": {
+          "description": "Optional. Whether to publish graph-profile as aspect on the catalog entry.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDataplexV1UpdateEntryRequest": {
       "description": "Update Entry request.",
       "id": "GoogleCloudDataplexV1UpdateEntryRequest",
@@ -15914,6 +16731,23 @@
           "description": "Specifies the format of the policy.Valid values are 0, 1, and 3. Requests that specify an invalid value are rejected.Any operation that affects conditional role bindings must specify version 3. This requirement applies to the following operations: Getting a policy that includes a conditional role binding Adding a conditional role binding to a policy Changing a conditional role binding in a policy Removing any role binding, with or without a condition, from a policy that includes conditionsImportant: If you use IAM Conditions, you must include the etag field whenever you call setIamPolicy. If you omit this field, then IAM allows you to overwrite a version 3 policy with a version 1 policy, and all of the conditions in the version 3 policy are lost.If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleIamV1ResourcePolicyMember": {
+      "description": "Output-only policy member strings of a Google Cloud resource's built-in identity.",
+      "id": "GoogleIamV1ResourcePolicyMember",
+      "properties": {
+        "iamPolicyNamePrincipal": {
+          "description": "Output only. IAM policy binding member referring to a Google Cloud resource by user-assigned name (https://google.aip.dev/122). If a resource is deleted and recreated with the same name, the binding will be applicable to the new resource.Example: principal://parametermanager.googleapis.com/projects/12345/name/locations/us-central1-a/parameters/my-parameter",
+          "readOnly": true,
+          "type": "string"
+        },
+        "iamPolicyUidPrincipal": {
+          "description": "Output only. IAM policy binding member referring to a Google Cloud resource by system-assigned unique identifier (https://google.aip.dev/148#uid). If a resource is deleted and recreated with the same name, the binding will not be applicable to the new resourceExample: principal://parametermanager.googleapis.com/projects/12345/uid/locations/us-central1-a/parameters/a918fed5",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"

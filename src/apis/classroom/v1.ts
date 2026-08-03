@@ -171,7 +171,7 @@ export namespace classroom_v1 {
      */
     studentViewUri?: Schema$EmbedUri;
     /**
-     * URI for the teacher to see student work on the attachment, if applicable. The URI will be opened in an iframe with the `courseId`, `itemId`, `itemType`, `attachmentId`, and `submissionId` query parameters set. This is the same `submissionId` returned in the [`AddOnContext.studentContext`](//devsite.google.com/classroom/reference/rest/v1/AddOnContext#StudentContext) field when a student views the attachment. If the URI is omitted or removed, `max_points` will also be discarded.
+     * URI for the teacher to see student work on the attachment, if applicable. The URI will be opened in an iframe with the `courseId`, `itemId`, `itemType`, `attachmentId`, and `submissionId` query parameters set. This is the same `submissionId` returned in the [`AddOnContext.studentContext`](/workspace/classroom/reference/rest/v1/AddOnContext#StudentContext) field when a student views the attachment. If the URI is omitted or removed, `max_points` will also be discarded.
      */
     studentWorkReviewUri?: Schema$EmbedUri;
     /**
@@ -204,7 +204,7 @@ export namespace classroom_v1 {
      */
     postSubmissionState?: string | null;
     /**
-     * Identifier for the student that owns this submission. Requires the user to be a teacher in the course and have permission to read student submissions. Read-only.
+     * Identifier for the student that owns this submission. Requires the user to be a teacher in the course and have permission to read student submissions. See [`courseWork.studentSubmissions.get`](/workspace/classroom/reference/rest/v1/courses.courseWork.studentSubmissions/get#authorization-scopes) for the list of acceptable OAuth scopes for this field. Read-only.
      */
     userId?: string | null;
   }
@@ -1925,8 +1925,7 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Schema$Course>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Course>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Course> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Course>>
@@ -2056,8 +2055,7 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -2212,8 +2210,7 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Schema$Course>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Course>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Course> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Course>>
@@ -2331,8 +2328,7 @@ export namespace classroom_v1 {
     getGradingPeriodSettings(
       params: Params$Resource$Courses$Getgradingperiodsettings,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GradingPeriodSettings>,
+        MethodOptions | BodyResponseCallback<Schema$GradingPeriodSettings>,
       callback: BodyResponseCallback<Schema$GradingPeriodSettings>
     ): void;
     getGradingPeriodSettings(
@@ -2579,7 +2575,7 @@ export namespace classroom_v1 {
      *   const res = await classroom.courses.patch({
      *     // Identifier of the course to update. This identifier can be either the Classroom-assigned identifier or an alias.
      *     id: 'placeholder-value',
-     *     // Mask that identifies which fields on the course to update. This field is required to do an update. The update will fail if invalid fields are specified. The following fields are valid: * `courseState` * `description` * `descriptionHeading` * `name` * `ownerId` * `room` * `section` * `subject` * `levels` Note: patches to ownerId are treated as being effective immediately, but in practice it may take some time for the ownership transfer of all affected resources to complete. When set in a query parameter, this field should be specified as `updateMask=,,...`
+     *     // Mask that identifies which fields on the course to update. This field is required to do an update. The update will fail if invalid fields are specified. The following fields are valid: * `courseState` * `description` * `descriptionHeading` * `name` * `ownerId` * `room` * `section` * `subject` * `learningStandardSettings` * `levels` Note: patches to ownerId are treated as being effective immediately, but in practice it may take some time for the ownership transfer of all affected resources to complete. When set in a query parameter, this field should be specified as `updateMask=,,...`
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -2684,8 +2680,7 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Schema$Course>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Course>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Course> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Course>>
@@ -2865,8 +2860,7 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Schema$Course>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Course>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Course> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Course>>
@@ -2992,8 +2986,7 @@ export namespace classroom_v1 {
     updateGradingPeriodSettings(
       params: Params$Resource$Courses$Updategradingperiodsettings,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GradingPeriodSettings>,
+        MethodOptions | BodyResponseCallback<Schema$GradingPeriodSettings>,
       callback: BodyResponseCallback<Schema$GradingPeriodSettings>
     ): void;
     updateGradingPeriodSettings(
@@ -3115,7 +3108,7 @@ export namespace classroom_v1 {
      */
     id?: string;
     /**
-     * Mask that identifies which fields on the course to update. This field is required to do an update. The update will fail if invalid fields are specified. The following fields are valid: * `courseState` * `description` * `descriptionHeading` * `name` * `ownerId` * `room` * `section` * `subject` * `levels` Note: patches to ownerId are treated as being effective immediately, but in practice it may take some time for the ownership transfer of all affected resources to complete. When set in a query parameter, this field should be specified as `updateMask=,,...`
+     * Mask that identifies which fields on the course to update. This field is required to do an update. The update will fail if invalid fields are specified. The following fields are valid: * `courseState` * `description` * `descriptionHeading` * `name` * `ownerId` * `room` * `section` * `subject` * `learningStandardSettings` * `levels` Note: patches to ownerId are treated as being effective immediately, but in practice it may take some time for the ownership transfer of all affected resources to complete. When set in a query parameter, this field should be specified as `updateMask=,,...`
      */
     updateMask?: string;
 
@@ -3390,8 +3383,7 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -3517,8 +3509,7 @@ export namespace classroom_v1 {
     list(
       params: Params$Resource$Courses$Aliases$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListCourseAliasesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListCourseAliasesResponse>,
       callback: BodyResponseCallback<Schema$ListCourseAliasesResponse>
     ): void;
     list(
@@ -3889,8 +3880,7 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -4324,8 +4314,7 @@ export namespace classroom_v1 {
     list(
       params: Params$Resource$Courses$Announcements$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListAnnouncementsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListAnnouncementsResponse>,
       callback: BodyResponseCallback<Schema$ListAnnouncementsResponse>
     ): void;
     list(
@@ -5107,8 +5096,7 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -5914,8 +5902,7 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Schema$CourseWork>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$CourseWork>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$CourseWork> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$CourseWork>>
@@ -6051,8 +6038,7 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -6218,8 +6204,7 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Schema$CourseWork>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$CourseWork>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$CourseWork> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$CourseWork>>
@@ -6504,8 +6489,7 @@ export namespace classroom_v1 {
     list(
       params: Params$Resource$Courses$Coursework$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListCourseWorkResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListCourseWorkResponse>,
       callback: BodyResponseCallback<Schema$ListCourseWorkResponse>
     ): void;
     list(
@@ -6695,8 +6679,7 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Schema$CourseWork>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$CourseWork>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$CourseWork> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$CourseWork>>
@@ -6889,8 +6872,7 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Schema$CourseWork>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$CourseWork>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$CourseWork> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$CourseWork>>
@@ -7052,8 +7034,7 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Schema$Rubric>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Rubric>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Rubric> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Rubric>>
@@ -7512,8 +7493,7 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -8684,8 +8664,7 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Schema$Rubric>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Rubric>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Rubric> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Rubric>>
@@ -8823,8 +8802,7 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -8975,8 +8953,7 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Schema$Rubric>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Rubric>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Rubric> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Rubric>>
@@ -9287,8 +9264,7 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Schema$Rubric>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Rubric>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Rubric> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Rubric>>
@@ -10220,8 +10196,7 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -10366,8 +10341,7 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -10512,8 +10486,7 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -10974,8 +10947,7 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -12040,8 +12012,7 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -13154,8 +13125,7 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -14451,8 +14421,7 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -14577,8 +14546,7 @@ export namespace classroom_v1 {
     list(
       params: Params$Resource$Courses$Studentgroups$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListStudentGroupsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListStudentGroupsResponse>,
       callback: BodyResponseCallback<Schema$ListStudentGroupsResponse>
     ): void;
     list(
@@ -15104,8 +15072,7 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -15471,8 +15438,7 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Schema$Student>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Student>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Student> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Student>>
@@ -15608,8 +15574,7 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -15755,8 +15720,7 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Schema$Student>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Student>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Student> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Student>>
@@ -15884,8 +15848,7 @@ export namespace classroom_v1 {
     list(
       params: Params$Resource$Courses$Students$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListStudentsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListStudentsResponse>,
       callback: BodyResponseCallback<Schema$ListStudentsResponse>
     ): void;
     list(
@@ -16114,8 +16077,7 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Schema$Teacher>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Teacher>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Teacher> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Teacher>>
@@ -16251,8 +16213,7 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -16397,8 +16358,7 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Schema$Teacher>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Teacher>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Teacher> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Teacher>>
@@ -16526,8 +16486,7 @@ export namespace classroom_v1 {
     list(
       params: Params$Resource$Courses$Teachers$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListTeachersResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListTeachersResponse>,
       callback: BodyResponseCallback<Schema$ListTeachersResponse>
     ): void;
     list(
@@ -16750,8 +16709,7 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Schema$Topic>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Topic>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Topic> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Topic>>
@@ -16887,8 +16845,7 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -17032,8 +16989,7 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Schema$Topic>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Topic>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Topic> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Topic>>
@@ -17332,8 +17288,7 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Schema$Topic>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Topic>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Topic> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Topic>>
@@ -17539,8 +17494,7 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -17687,8 +17641,7 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Schema$Invitation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Invitation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Invitation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Invitation>>
@@ -17819,8 +17772,7 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -17962,8 +17914,7 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Schema$Invitation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Invitation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Invitation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Invitation>>
@@ -18090,8 +18041,7 @@ export namespace classroom_v1 {
     list(
       params: Params$Resource$Invitations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListInvitationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListInvitationsResponse>,
       callback: BodyResponseCallback<Schema$ListInvitationsResponse>
     ): void;
     list(
@@ -18436,8 +18386,7 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -19444,8 +19393,7 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -19589,8 +19537,7 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Schema$Guardian>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Guardian>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Guardian> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Guardian>>
@@ -19718,8 +19665,7 @@ export namespace classroom_v1 {
     list(
       params: Params$Resource$Userprofiles$Guardians$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListGuardiansResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListGuardiansResponse>,
       callback: BodyResponseCallback<Schema$ListGuardiansResponse>
     ): void;
     list(

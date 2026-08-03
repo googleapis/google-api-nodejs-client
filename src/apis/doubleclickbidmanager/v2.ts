@@ -477,8 +477,7 @@ export namespace doubleclickbidmanager_v2 {
         | BodyResponseCallback<Schema$Query>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Query>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Query> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Query>>
@@ -744,8 +743,7 @@ export namespace doubleclickbidmanager_v2 {
         | BodyResponseCallback<Schema$Query>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Query>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Query> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Query>>
@@ -1032,8 +1030,7 @@ export namespace doubleclickbidmanager_v2 {
         | BodyResponseCallback<Schema$Report>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Report>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Report> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Report>>
@@ -1228,8 +1225,7 @@ export namespace doubleclickbidmanager_v2 {
         | BodyResponseCallback<Schema$Report>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Report>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Report> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Report>>

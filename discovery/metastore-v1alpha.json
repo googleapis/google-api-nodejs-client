@@ -1807,7 +1807,7 @@
       }
     }
   },
-  "revision": "20260427",
+  "revision": "20260723",
   "rootUrl": "https://metastore.googleapis.com/",
   "schemas": {
     "AlterMetadataResourceLocationRequest": {
@@ -1973,6 +1973,42 @@
       },
       "type": "object"
     },
+    "BackfillStatus": {
+      "description": "Backfill status for the migration execution.",
+      "id": "BackfillStatus",
+      "properties": {
+        "migrationSummary": {
+          "$ref": "MigrationSummary",
+          "description": "Output only. Summary of the migration results. This is populated after the backfill or dry run is finished.",
+          "readOnly": true
+        },
+        "reportPath": {
+          "description": "Output only. The Cloud Storage path where the backfill or dry run report is written. Format: \"gs://path-to-report\".",
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The current state of the backfill (or dry run).",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "PENDING",
+            "RUNNING",
+            "SUCCEEDED",
+            "FAILED"
+          ],
+          "enumDescriptions": [
+            "The backfill state is unspecified.",
+            "Waiting to start.",
+            "Backfill in progress.",
+            "Backfill complete, report is available",
+            "Backfill failed; check report for details"
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Backup": {
       "description": "The details of a backup resource.",
       "id": "Backup",
@@ -2034,6 +2070,60 @@
       },
       "type": "object"
     },
+    "BigLakeMetastoreMigrationConfig": {
+      "description": "Defines the configuration required to migrate metadata from a Dataproc Metastore service to BigLake Metastore.",
+      "id": "BigLakeMetastoreMigrationConfig",
+      "properties": {
+        "backfillStatus": {
+          "$ref": "BackfillStatus",
+          "description": "Output only. ",
+          "readOnly": true
+        },
+        "conflictPolicy": {
+          "description": "Optional. The policy to handle conflicts when migrating resources, defaults to SKIP if not specified.",
+          "enum": [
+            "CONFLICT_POLICY_UNSPECIFIED",
+            "SKIP",
+            "OVERWRITE"
+          ],
+          "enumDescriptions": [
+            "The conflict policy is unspecified.",
+            "Skip migrating resources that already exist in the target catalog.",
+            "Update resources that already exist in the target catalog."
+          ],
+          "type": "string"
+        },
+        "dryRun": {
+          "description": "Optional. If true, performs discovery of requested resources and analysis against the target catalog to come up with a plan for each resource (e.g. Create, Update, Skip, etc.). No metadata is actually migrated.",
+          "type": "boolean"
+        },
+        "hiveConfig": {
+          "$ref": "HiveConfig",
+          "description": "Optional. At least one of hive_config or iceberg_config must be provided, otherwise, a validation error will be thrown. If only one is provided, the service only migrates tables of that specific type. If both are provided, both Hive and Iceberg tables will be migrated.Configuration for migrating Hive tables to a BigLake Hive catalog."
+        },
+        "icebergConfig": {
+          "$ref": "IcebergConfig",
+          "description": "Optional. Configuration for migrating Iceberg tables to a BigLake Iceberg REST catalog."
+        },
+        "mode": {
+          "description": "Required. Defines the behavior of the migration execution.",
+          "enum": [
+            "MIGRATION_MODE_UNSPECIFIED",
+            "BACKFILL"
+          ],
+          "enumDescriptions": [
+            "The migration mode is unspecified.",
+            "Performs the metadata migration of requested resources. The migration completes once the backfill is finished."
+          ],
+          "type": "string"
+        },
+        "reportPath": {
+          "description": "Optional. The Cloud Storage path where the backfill / dry run report should be written. If not provided, the report will be generated in the service's artifacts bucket. Format: \"gs://path/to/folder\"",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Binding": {
       "description": "Associates members, or principals, with a role.",
       "id": "Binding",
@@ -2077,6 +2167,41 @@
       "description": "The request message for Operations.CancelOperation.",
       "id": "CancelOperationRequest",
       "properties": {},
+      "type": "object"
+    },
+    "CatalogSummary": {
+      "description": "Summary of results for a specific destination catalog.",
+      "id": "CatalogSummary",
+      "properties": {
+        "catalog": {
+          "description": "Output only. The catalog resource name (format: projects/*/catalogs/*).",
+          "readOnly": true,
+          "type": "string"
+        },
+        "catalogType": {
+          "description": "Output only. The type of the catalog.",
+          "enum": [
+            "CATALOG_TYPE_UNSPECIFIED",
+            "HIVE",
+            "ICEBERG"
+          ],
+          "enumDescriptions": [
+            "The catalog type is unspecified.",
+            "BigLake Metastore Hive catalog.",
+            "BigLake Metastore Iceberg REST catalog."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "databaseSummaries": {
+          "description": "Output only. Summary of results for each database in the catalog.",
+          "items": {
+            "$ref": "DatabaseSummary"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
       "type": "object"
     },
     "CdcConfig": {
@@ -2309,6 +2434,61 @@
       },
       "type": "object"
     },
+    "DatabaseSummary": {
+      "description": "Summary of results for a specific database in a catalog.",
+      "id": "DatabaseSummary",
+      "properties": {
+        "database": {
+          "description": "Output only. The name of the database.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "planAction": {
+          "description": "Output only. The migration plan action for the database.",
+          "enum": [
+            "ACTION_UNSPECIFIED",
+            "CREATE",
+            "UPDATE",
+            "SKIP",
+            "DEPENDENCY_FAILURE",
+            "ERROR"
+          ],
+          "enumDescriptions": [
+            "The action is unspecified.",
+            "Resource missing; will be created.",
+            "Resource exists at the target, but differs from the source; will be updated.",
+            "Resource exists at the target; no changes will be made.",
+            "Resource cannot be migrated due to a dependency failure (e.g., parent resource missing).",
+            "Resource cannot be migrated due to an error during discovery."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "resultStatus": {
+          "description": "Output only. The migration result status for the database. This is only set if the migration is not a dry run.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "SUCCEEDED",
+            "FAILED",
+            "SKIPPED"
+          ],
+          "enumDescriptions": [
+            "The state is unspecified.",
+            "The resource was migrated successfully.",
+            "The resource failed to migrate.",
+            "The resource was skipped and will not be migrated."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "tableSummary": {
+          "$ref": "TableSummary",
+          "description": "Output only. Aggregated summary of results for all tables in the database.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
     "DataplexConfig": {
       "description": "Specifies how metastore metadata should be integrated with the Dataplex service.",
       "id": "DataplexConfig",
@@ -2497,6 +2677,24 @@
       },
       "type": "object"
     },
+    "HiveConfig": {
+      "description": "Configuration for migrating Hive metadata.",
+      "id": "HiveConfig",
+      "properties": {
+        "catalog": {
+          "description": "Required. The target catalog for migrated databases and tables. Format: \"projects/{project_id_or_number}/catalogs/{catalog_id}\"",
+          "type": "string"
+        },
+        "databases": {
+          "description": "Required. The list of databases to migrate to the Hive catalog. Use \"*\" to migrate all databases. Note: If Iceberg tables exist in these databases, they will only be migrated if iceberg_config is also specified.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "HiveMetastoreConfig": {
       "description": "Specifies configuration information specific to running Hive metastore software as the metastore service.",
       "id": "HiveMetastoreConfig",
@@ -2551,6 +2749,24 @@
         "version": {
           "description": "The semantic version of the Hive Metastore software.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "IcebergConfig": {
+      "description": "Configuration for migrating Iceberg metadata.",
+      "id": "IcebergConfig",
+      "properties": {
+        "catalog": {
+          "description": "Required. The target catalog for migrated Iceberg metadata. Format: \"projects/{project_id_or_number}/catalogs/{catalog_id}\"",
+          "type": "string"
+        },
+        "namespaces": {
+          "description": "Required. The list of namespaces to migrate to the Iceberg REST catalog. Use \"*\" to migrate all namespaces. Note: If Hive tables exist in these namespaces, they will only be migrated if hive_config is also specified.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -3071,6 +3287,10 @@
       "description": "The details of a migration execution resource.",
       "id": "MigrationExecution",
       "properties": {
+        "biglakeMetastoreMigrationConfig": {
+          "$ref": "BigLakeMetastoreMigrationConfig",
+          "description": "Configuration information specific to migrating from Dataproc Metastore to BigLake Metastore."
+        },
         "cloudSqlMigrationConfig": {
           "$ref": "CloudSQLMigrationConfig",
           "deprecated": true,
@@ -3120,7 +3340,8 @@
             "SUCCEEDED",
             "FAILED",
             "CANCELLED",
-            "DELETING"
+            "DELETING",
+            "ROLLED_BACK"
           ],
           "enumDescriptions": [
             "The state of the migration execution is unknown.",
@@ -3131,13 +3352,45 @@
             "The migration execution has completed successfully.",
             "The migration execution has failed.",
             "The migration execution is cancelled.",
-            "The migration execution is being deleted."
+            "The migration execution is being deleted.",
+            "The migration execution has been rolled back. This occurs when CancelMigration is invoked after the migration has completed and the metastore service is in the PROXY state, returning the service to the ACTIVE state. This enables rollback support when the customer wants to resume using DPMS after a successful migration."
           ],
           "readOnly": true,
           "type": "string"
         },
         "stateMessage": {
           "description": "Output only. Additional information about the current state of the migration execution.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MigrationSummary": {
+      "description": "Summary of the migration results.",
+      "id": "MigrationSummary",
+      "properties": {
+        "catalogSummaries": {
+          "description": "Output only. Summary of results for each catalog involved in the migration.",
+          "items": {
+            "$ref": "CatalogSummary"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "createTime": {
+          "description": "Output only. The UTC time when this report was finalized.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "dryRun": {
+          "description": "Output only. Whether the migration was a dry run.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "service": {
+          "description": "Output only. The Dataproc Metastore service name (format: projects/*/locations/*/services/*) on which the migration was executed.",
           "readOnly": true,
           "type": "string"
         }
@@ -3708,7 +3961,8 @@
             "DELETING",
             "ERROR",
             "AUTOSCALING",
-            "MIGRATING"
+            "MIGRATING",
+            "PROXY"
           ],
           "enumDescriptions": [
             "The state of the metastore service is unknown.",
@@ -3720,7 +3974,8 @@
             "The metastore service is undergoing deletion. It cannot be used.",
             "The metastore service has encountered an error and cannot be used. The metastore service should be deleted.",
             "The Dataproc Metastore service 2 is being scaled up or down.",
-            "The metastore service is processing a managed migration."
+            "The metastore service is processing a managed migration.",
+            "The metastore service has completed managed migration and is now proxying requests to the Lakehouse runtime catalog."
           ],
           "readOnly": true,
           "type": "string"
@@ -3852,6 +4107,49 @@
         "space": {
           "description": "copybara:strip_begin(b/383363683) Space to which this status belongs copybara:strip_end_and_replace optional string space = 2; // Space to which this status belongs",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TableSummary": {
+      "description": "Aggregated summary of results for all tables in a database.",
+      "id": "TableSummary",
+      "properties": {
+        "partitionDiscoveredCount": {
+          "description": "Output only. Partition migration summary across all Hive tables in the database.The total number of partitions discovered at the source.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "partitionFailedCount": {
+          "description": "Output only. The total number of partitions that failed to migrate at the target.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "partitionSuccessCount": {
+          "description": "Output only. The total number of partitions successfully migrated at the target.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "planCounts": {
+          "additionalProperties": {
+            "format": "int64",
+            "type": "string"
+          },
+          "description": "Output only. Number of tables with a specific migration plan action. The key is the action name (e.g. CREATE, UPDATE, SKIP, etc.).",
+          "readOnly": true,
+          "type": "object"
+        },
+        "resultCounts": {
+          "additionalProperties": {
+            "format": "int64",
+            "type": "string"
+          },
+          "description": "Output only. Number of tables with a specific migration result status. The key is the status name (e.g. SUCCEEDED, FAILED, SKIPPED, etc.). This is only set if the migration is not a dry run.",
+          "readOnly": true,
+          "type": "object"
         }
       },
       "type": "object"

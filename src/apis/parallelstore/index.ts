@@ -37,10 +37,7 @@ export function parallelstore<
 >(
   this: GoogleConfigurable,
   versionOrOptions:
-    | 'v1'
-    | parallelstore_v1.Options
-    | 'v1beta'
-    | parallelstore_v1beta.Options
+    'v1' | parallelstore_v1.Options | 'v1beta' | parallelstore_v1beta.Options
 ) {
   return getAPI<T>('parallelstore', versionOrOptions, VERSIONS, this);
 }

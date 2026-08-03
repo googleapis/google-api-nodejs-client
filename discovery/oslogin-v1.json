@@ -414,7 +414,7 @@
       }
     }
   },
-  "revision": "20251202",
+  "revision": "20260610",
   "rootUrl": "https://oslogin.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -548,6 +548,10 @@
       "properties": {
         "appEngineInstance": {
           "description": "The App Engine instance to sign the SSH public key for. Expected format: apps/{app}/services/{service}/versions/{version}/instances/{instance}",
+          "type": "string"
+        },
+        "cloudRunResource": {
+          "description": "Optional. The Cloud Run resource to sign the SSH public key for. Expected formats: - `projects/{project}/locations/{location}/services/{service}` - `projects/{project}/locations/{location}/workerPools/{worker_pool}` - `projects/{project}/locations/{location}/jobs/{job}` - `projects/{project}/locations/{location}/instances/{instance}`",
           "type": "string"
         },
         "computeInstance": {

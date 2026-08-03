@@ -2,6 +2,12 @@
   "auth": {
     "oauth2": {
       "scopes": {
+        "https://www.googleapis.com/auth/apihub.readonly": {
+          "description": "See your Google Cloud API hub data and the email address of your Google Account"
+        },
+        "https://www.googleapis.com/auth/apihub.readwrite": {
+          "description": "See, edit, configure, and delete your Google Cloud API hub data and see the email address for your Google Account"
+        },
         "https://www.googleapis.com/auth/cloud-platform": {
           "description": "See, edit, configure, and delete your Google Cloud data and see the email address for your Google Account."
         }
@@ -181,6 +187,7 @@
                 "$ref": "GoogleLongrunningOperation"
               },
               "scopes": [
+                "https://www.googleapis.com/auth/apihub.readwrite",
                 "https://www.googleapis.com/auth/cloud-platform"
               ]
             },
@@ -206,6 +213,8 @@
                 "$ref": "GoogleCloudLocationLocation"
               },
               "scopes": [
+                "https://www.googleapis.com/auth/apihub.readonly",
+                "https://www.googleapis.com/auth/apihub.readwrite",
                 "https://www.googleapis.com/auth/cloud-platform"
               ]
             },
@@ -253,6 +262,8 @@
                 "$ref": "GoogleCloudLocationListLocationsResponse"
               },
               "scopes": [
+                "https://www.googleapis.com/auth/apihub.readonly",
+                "https://www.googleapis.com/auth/apihub.readwrite",
                 "https://www.googleapis.com/auth/cloud-platform"
               ]
             },
@@ -278,6 +289,8 @@
                 "$ref": "GoogleCloudApihubV1LookupRuntimeProjectAttachmentResponse"
               },
               "scopes": [
+                "https://www.googleapis.com/auth/apihub.readonly",
+                "https://www.googleapis.com/auth/apihub.readwrite",
                 "https://www.googleapis.com/auth/cloud-platform"
               ]
             },
@@ -334,6 +347,8 @@
                 "$ref": "GoogleCloudApihubV1RetrieveApiViewsResponse"
               },
               "scopes": [
+                "https://www.googleapis.com/auth/apihub.readonly",
+                "https://www.googleapis.com/auth/apihub.readwrite",
                 "https://www.googleapis.com/auth/cloud-platform"
               ]
             },
@@ -362,6 +377,8 @@
                 "$ref": "GoogleCloudApihubV1SearchResourcesResponse"
               },
               "scopes": [
+                "https://www.googleapis.com/auth/apihub.readonly",
+                "https://www.googleapis.com/auth/apihub.readwrite",
                 "https://www.googleapis.com/auth/cloud-platform"
               ]
             }
@@ -391,6 +408,8 @@
                     "$ref": "GoogleCloudApihubV1Addon"
                   },
                   "scopes": [
+                    "https://www.googleapis.com/auth/apihub.readonly",
+                    "https://www.googleapis.com/auth/apihub.readwrite",
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
@@ -432,6 +451,8 @@
                     "$ref": "GoogleCloudApihubV1ListAddonsResponse"
                   },
                   "scopes": [
+                    "https://www.googleapis.com/auth/apihub.readonly",
+                    "https://www.googleapis.com/auth/apihub.readwrite",
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
@@ -460,6 +481,7 @@
                     "$ref": "GoogleLongrunningOperation"
                   },
                   "scopes": [
+                    "https://www.googleapis.com/auth/apihub.readwrite",
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 }
@@ -497,6 +519,7 @@
                     "$ref": "GoogleLongrunningOperation"
                   },
                   "scopes": [
+                    "https://www.googleapis.com/auth/apihub.readwrite",
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
@@ -522,6 +545,7 @@
                     "$ref": "GoogleLongrunningOperation"
                   },
                   "scopes": [
+                    "https://www.googleapis.com/auth/apihub.readwrite",
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
@@ -547,6 +571,8 @@
                     "$ref": "GoogleCloudApihubV1ApiHubInstance"
                   },
                   "scopes": [
+                    "https://www.googleapis.com/auth/apihub.readonly",
+                    "https://www.googleapis.com/auth/apihub.readwrite",
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
@@ -572,6 +598,8 @@
                     "$ref": "GoogleCloudApihubV1LookupApiHubInstanceResponse"
                   },
                   "scopes": [
+                    "https://www.googleapis.com/auth/apihub.readonly",
+                    "https://www.googleapis.com/auth/apihub.readwrite",
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
@@ -606,6 +634,7 @@
                     "$ref": "GoogleLongrunningOperation"
                   },
                   "scopes": [
+                    "https://www.googleapis.com/auth/apihub.readwrite",
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 }
@@ -643,6 +672,7 @@
                     "$ref": "GoogleCloudApihubV1Api"
                   },
                   "scopes": [
+                    "https://www.googleapis.com/auth/apihub.readwrite",
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
@@ -673,6 +703,7 @@
                     "$ref": "Empty"
                   },
                   "scopes": [
+                    "https://www.googleapis.com/auth/apihub.readwrite",
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
@@ -698,6 +729,8 @@
                     "$ref": "GoogleCloudApihubV1Api"
                   },
                   "scopes": [
+                    "https://www.googleapis.com/auth/apihub.readonly",
+                    "https://www.googleapis.com/auth/apihub.readwrite",
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
@@ -739,6 +772,8 @@
                     "$ref": "GoogleCloudApihubV1ListApisResponse"
                   },
                   "scopes": [
+                    "https://www.googleapis.com/auth/apihub.readonly",
+                    "https://www.googleapis.com/auth/apihub.readwrite",
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
@@ -773,6 +808,7 @@
                     "$ref": "GoogleCloudApihubV1Api"
                   },
                   "scopes": [
+                    "https://www.googleapis.com/auth/apihub.readwrite",
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 }
@@ -810,6 +846,7 @@
                         "$ref": "GoogleCloudApihubV1Version"
                       },
                       "scopes": [
+                        "https://www.googleapis.com/auth/apihub.readwrite",
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
@@ -840,6 +877,7 @@
                         "$ref": "Empty"
                       },
                       "scopes": [
+                        "https://www.googleapis.com/auth/apihub.readwrite",
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
@@ -865,6 +903,8 @@
                         "$ref": "GoogleCloudApihubV1Version"
                       },
                       "scopes": [
+                        "https://www.googleapis.com/auth/apihub.readonly",
+                        "https://www.googleapis.com/auth/apihub.readwrite",
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
@@ -906,6 +946,8 @@
                         "$ref": "GoogleCloudApihubV1ListVersionsResponse"
                       },
                       "scopes": [
+                        "https://www.googleapis.com/auth/apihub.readonly",
+                        "https://www.googleapis.com/auth/apihub.readwrite",
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
@@ -940,6 +982,7 @@
                         "$ref": "GoogleCloudApihubV1Version"
                       },
                       "scopes": [
+                        "https://www.googleapis.com/auth/apihub.readwrite",
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     }
@@ -969,6 +1012,8 @@
                             "$ref": "GoogleCloudApihubV1Definition"
                           },
                           "scopes": [
+                            "https://www.googleapis.com/auth/apihub.readonly",
+                            "https://www.googleapis.com/auth/apihub.readwrite",
                             "https://www.googleapis.com/auth/cloud-platform"
                           ]
                         }
@@ -1006,6 +1051,7 @@
                             "$ref": "GoogleCloudApihubV1ApiOperation"
                           },
                           "scopes": [
+                            "https://www.googleapis.com/auth/apihub.readwrite",
                             "https://www.googleapis.com/auth/cloud-platform"
                           ]
                         },
@@ -1031,6 +1077,7 @@
                             "$ref": "Empty"
                           },
                           "scopes": [
+                            "https://www.googleapis.com/auth/apihub.readwrite",
                             "https://www.googleapis.com/auth/cloud-platform"
                           ]
                         },
@@ -1056,6 +1103,8 @@
                             "$ref": "GoogleCloudApihubV1ApiOperation"
                           },
                           "scopes": [
+                            "https://www.googleapis.com/auth/apihub.readonly",
+                            "https://www.googleapis.com/auth/apihub.readwrite",
                             "https://www.googleapis.com/auth/cloud-platform"
                           ]
                         },
@@ -1097,6 +1146,8 @@
                             "$ref": "GoogleCloudApihubV1ListApiOperationsResponse"
                           },
                           "scopes": [
+                            "https://www.googleapis.com/auth/apihub.readonly",
+                            "https://www.googleapis.com/auth/apihub.readwrite",
                             "https://www.googleapis.com/auth/cloud-platform"
                           ]
                         },
@@ -1131,6 +1182,7 @@
                             "$ref": "GoogleCloudApihubV1ApiOperation"
                           },
                           "scopes": [
+                            "https://www.googleapis.com/auth/apihub.readwrite",
                             "https://www.googleapis.com/auth/cloud-platform"
                           ]
                         }
@@ -1168,6 +1220,7 @@
                             "$ref": "GoogleCloudApihubV1Spec"
                           },
                           "scopes": [
+                            "https://www.googleapis.com/auth/apihub.readwrite",
                             "https://www.googleapis.com/auth/cloud-platform"
                           ]
                         },
@@ -1193,6 +1246,7 @@
                             "$ref": "Empty"
                           },
                           "scopes": [
+                            "https://www.googleapis.com/auth/apihub.readwrite",
                             "https://www.googleapis.com/auth/cloud-platform"
                           ]
                         },
@@ -1233,6 +1287,8 @@
                             "$ref": "GoogleCloudApihubV1FetchAdditionalSpecContentResponse"
                           },
                           "scopes": [
+                            "https://www.googleapis.com/auth/apihub.readonly",
+                            "https://www.googleapis.com/auth/apihub.readwrite",
                             "https://www.googleapis.com/auth/cloud-platform"
                           ]
                         },
@@ -1258,6 +1314,8 @@
                             "$ref": "GoogleCloudApihubV1Spec"
                           },
                           "scopes": [
+                            "https://www.googleapis.com/auth/apihub.readonly",
+                            "https://www.googleapis.com/auth/apihub.readwrite",
                             "https://www.googleapis.com/auth/cloud-platform"
                           ]
                         },
@@ -1283,6 +1341,8 @@
                             "$ref": "GoogleCloudApihubV1SpecContents"
                           },
                           "scopes": [
+                            "https://www.googleapis.com/auth/apihub.readonly",
+                            "https://www.googleapis.com/auth/apihub.readwrite",
                             "https://www.googleapis.com/auth/cloud-platform"
                           ]
                         },
@@ -1311,6 +1371,7 @@
                             "$ref": "Empty"
                           },
                           "scopes": [
+                            "https://www.googleapis.com/auth/apihub.readwrite",
                             "https://www.googleapis.com/auth/cloud-platform"
                           ]
                         },
@@ -1352,6 +1413,8 @@
                             "$ref": "GoogleCloudApihubV1ListSpecsResponse"
                           },
                           "scopes": [
+                            "https://www.googleapis.com/auth/apihub.readonly",
+                            "https://www.googleapis.com/auth/apihub.readwrite",
                             "https://www.googleapis.com/auth/cloud-platform"
                           ]
                         },
@@ -1386,6 +1449,7 @@
                             "$ref": "GoogleCloudApihubV1Spec"
                           },
                           "scopes": [
+                            "https://www.googleapis.com/auth/apihub.readwrite",
                             "https://www.googleapis.com/auth/cloud-platform"
                           ]
                         }
@@ -1427,6 +1491,7 @@
                     "$ref": "GoogleCloudApihubV1Attribute"
                   },
                   "scopes": [
+                    "https://www.googleapis.com/auth/apihub.readwrite",
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
@@ -1452,6 +1517,7 @@
                     "$ref": "Empty"
                   },
                   "scopes": [
+                    "https://www.googleapis.com/auth/apihub.readwrite",
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
@@ -1477,6 +1543,8 @@
                     "$ref": "GoogleCloudApihubV1Attribute"
                   },
                   "scopes": [
+                    "https://www.googleapis.com/auth/apihub.readonly",
+                    "https://www.googleapis.com/auth/apihub.readwrite",
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
@@ -1518,6 +1586,8 @@
                     "$ref": "GoogleCloudApihubV1ListAttributesResponse"
                   },
                   "scopes": [
+                    "https://www.googleapis.com/auth/apihub.readonly",
+                    "https://www.googleapis.com/auth/apihub.readwrite",
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
@@ -1552,6 +1622,7 @@
                     "$ref": "GoogleCloudApihubV1Attribute"
                   },
                   "scopes": [
+                    "https://www.googleapis.com/auth/apihub.readwrite",
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 }
@@ -1589,6 +1660,7 @@
                     "$ref": "GoogleCloudApihubV1Curation"
                   },
                   "scopes": [
+                    "https://www.googleapis.com/auth/apihub.readwrite",
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
@@ -1614,6 +1686,7 @@
                     "$ref": "Empty"
                   },
                   "scopes": [
+                    "https://www.googleapis.com/auth/apihub.readwrite",
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
@@ -1639,6 +1712,8 @@
                     "$ref": "GoogleCloudApihubV1Curation"
                   },
                   "scopes": [
+                    "https://www.googleapis.com/auth/apihub.readonly",
+                    "https://www.googleapis.com/auth/apihub.readwrite",
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
@@ -1680,6 +1755,8 @@
                     "$ref": "GoogleCloudApihubV1ListCurationsResponse"
                   },
                   "scopes": [
+                    "https://www.googleapis.com/auth/apihub.readonly",
+                    "https://www.googleapis.com/auth/apihub.readwrite",
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
@@ -1714,6 +1791,7 @@
                     "$ref": "GoogleCloudApihubV1Curation"
                   },
                   "scopes": [
+                    "https://www.googleapis.com/auth/apihub.readwrite",
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 }
@@ -1751,6 +1829,7 @@
                     "$ref": "GoogleCloudApihubV1Dependency"
                   },
                   "scopes": [
+                    "https://www.googleapis.com/auth/apihub.readwrite",
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
@@ -1776,6 +1855,7 @@
                     "$ref": "Empty"
                   },
                   "scopes": [
+                    "https://www.googleapis.com/auth/apihub.readwrite",
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
@@ -1801,6 +1881,8 @@
                     "$ref": "GoogleCloudApihubV1Dependency"
                   },
                   "scopes": [
+                    "https://www.googleapis.com/auth/apihub.readonly",
+                    "https://www.googleapis.com/auth/apihub.readwrite",
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
@@ -1842,6 +1924,8 @@
                     "$ref": "GoogleCloudApihubV1ListDependenciesResponse"
                   },
                   "scopes": [
+                    "https://www.googleapis.com/auth/apihub.readonly",
+                    "https://www.googleapis.com/auth/apihub.readwrite",
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
@@ -1876,6 +1960,7 @@
                     "$ref": "GoogleCloudApihubV1Dependency"
                   },
                   "scopes": [
+                    "https://www.googleapis.com/auth/apihub.readwrite",
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 }
@@ -1913,6 +1998,7 @@
                     "$ref": "GoogleCloudApihubV1Deployment"
                   },
                   "scopes": [
+                    "https://www.googleapis.com/auth/apihub.readwrite",
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
@@ -1938,6 +2024,7 @@
                     "$ref": "Empty"
                   },
                   "scopes": [
+                    "https://www.googleapis.com/auth/apihub.readwrite",
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
@@ -1963,6 +2050,8 @@
                     "$ref": "GoogleCloudApihubV1Deployment"
                   },
                   "scopes": [
+                    "https://www.googleapis.com/auth/apihub.readonly",
+                    "https://www.googleapis.com/auth/apihub.readwrite",
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
@@ -2004,6 +2093,8 @@
                     "$ref": "GoogleCloudApihubV1ListDeploymentsResponse"
                   },
                   "scopes": [
+                    "https://www.googleapis.com/auth/apihub.readonly",
+                    "https://www.googleapis.com/auth/apihub.readwrite",
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
@@ -2038,6 +2129,7 @@
                     "$ref": "GoogleCloudApihubV1Deployment"
                   },
                   "scopes": [
+                    "https://www.googleapis.com/auth/apihub.readwrite",
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 }
@@ -2067,6 +2159,8 @@
                     "$ref": "GoogleCloudApihubV1DiscoveredApiObservation"
                   },
                   "scopes": [
+                    "https://www.googleapis.com/auth/apihub.readonly",
+                    "https://www.googleapis.com/auth/apihub.readwrite",
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
@@ -2103,6 +2197,8 @@
                     "$ref": "GoogleCloudApihubV1ListDiscoveredApiObservationsResponse"
                   },
                   "scopes": [
+                    "https://www.googleapis.com/auth/apihub.readonly",
+                    "https://www.googleapis.com/auth/apihub.readwrite",
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 }
@@ -2132,6 +2228,8 @@
                         "$ref": "GoogleCloudApihubV1DiscoveredApiOperation"
                       },
                       "scopes": [
+                        "https://www.googleapis.com/auth/apihub.readonly",
+                        "https://www.googleapis.com/auth/apihub.readwrite",
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
@@ -2168,6 +2266,8 @@
                         "$ref": "GoogleCloudApihubV1ListDiscoveredApiOperationsResponse"
                       },
                       "scopes": [
+                        "https://www.googleapis.com/auth/apihub.readonly",
+                        "https://www.googleapis.com/auth/apihub.readwrite",
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     }
@@ -2207,6 +2307,7 @@
                     "$ref": "GoogleCloudApihubV1ExternalApi"
                   },
                   "scopes": [
+                    "https://www.googleapis.com/auth/apihub.readwrite",
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
@@ -2232,6 +2333,7 @@
                     "$ref": "Empty"
                   },
                   "scopes": [
+                    "https://www.googleapis.com/auth/apihub.readwrite",
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
@@ -2257,6 +2359,8 @@
                     "$ref": "GoogleCloudApihubV1ExternalApi"
                   },
                   "scopes": [
+                    "https://www.googleapis.com/auth/apihub.readonly",
+                    "https://www.googleapis.com/auth/apihub.readwrite",
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
@@ -2293,6 +2397,8 @@
                     "$ref": "GoogleCloudApihubV1ListExternalApisResponse"
                   },
                   "scopes": [
+                    "https://www.googleapis.com/auth/apihub.readonly",
+                    "https://www.googleapis.com/auth/apihub.readwrite",
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
@@ -2327,6 +2433,7 @@
                     "$ref": "GoogleCloudApihubV1ExternalApi"
                   },
                   "scopes": [
+                    "https://www.googleapis.com/auth/apihub.readwrite",
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 }
@@ -2364,6 +2471,7 @@
                     "$ref": "GoogleCloudApihubV1HostProjectRegistration"
                   },
                   "scopes": [
+                    "https://www.googleapis.com/auth/apihub.readwrite",
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
@@ -2389,6 +2497,8 @@
                     "$ref": "GoogleCloudApihubV1HostProjectRegistration"
                   },
                   "scopes": [
+                    "https://www.googleapis.com/auth/apihub.readonly",
+                    "https://www.googleapis.com/auth/apihub.readwrite",
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
@@ -2435,6 +2545,8 @@
                     "$ref": "GoogleCloudApihubV1ListHostProjectRegistrationsResponse"
                   },
                   "scopes": [
+                    "https://www.googleapis.com/auth/apihub.readonly",
+                    "https://www.googleapis.com/auth/apihub.readwrite",
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 }
@@ -2467,6 +2579,7 @@
                     "$ref": "Empty"
                   },
                   "scopes": [
+                    "https://www.googleapis.com/auth/apihub.readwrite",
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
@@ -2492,6 +2605,7 @@
                     "$ref": "Empty"
                   },
                   "scopes": [
+                    "https://www.googleapis.com/auth/apihub.readwrite",
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
@@ -2517,6 +2631,8 @@
                     "$ref": "GoogleLongrunningOperation"
                   },
                   "scopes": [
+                    "https://www.googleapis.com/auth/apihub.readonly",
+                    "https://www.googleapis.com/auth/apihub.readwrite",
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
@@ -2563,6 +2679,8 @@
                     "$ref": "GoogleLongrunningListOperationsResponse"
                   },
                   "scopes": [
+                    "https://www.googleapis.com/auth/apihub.readonly",
+                    "https://www.googleapis.com/auth/apihub.readwrite",
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 }
@@ -2600,6 +2718,7 @@
                     "$ref": "GoogleCloudApihubV1Plugin"
                   },
                   "scopes": [
+                    "https://www.googleapis.com/auth/apihub.readwrite",
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
@@ -2625,6 +2744,7 @@
                     "$ref": "GoogleLongrunningOperation"
                   },
                   "scopes": [
+                    "https://www.googleapis.com/auth/apihub.readwrite",
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
@@ -2653,6 +2773,7 @@
                     "$ref": "GoogleCloudApihubV1Plugin"
                   },
                   "scopes": [
+                    "https://www.googleapis.com/auth/apihub.readwrite",
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
@@ -2681,6 +2802,7 @@
                     "$ref": "GoogleCloudApihubV1Plugin"
                   },
                   "scopes": [
+                    "https://www.googleapis.com/auth/apihub.readwrite",
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
@@ -2706,6 +2828,8 @@
                     "$ref": "GoogleCloudApihubV1Plugin"
                   },
                   "scopes": [
+                    "https://www.googleapis.com/auth/apihub.readonly",
+                    "https://www.googleapis.com/auth/apihub.readwrite",
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
@@ -2731,6 +2855,8 @@
                     "$ref": "GoogleCloudApihubV1StyleGuide"
                   },
                   "scopes": [
+                    "https://www.googleapis.com/auth/apihub.readonly",
+                    "https://www.googleapis.com/auth/apihub.readwrite",
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
@@ -2772,6 +2898,8 @@
                     "$ref": "GoogleCloudApihubV1ListPluginsResponse"
                   },
                   "scopes": [
+                    "https://www.googleapis.com/auth/apihub.readonly",
+                    "https://www.googleapis.com/auth/apihub.readwrite",
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
@@ -2806,6 +2934,7 @@
                     "$ref": "GoogleCloudApihubV1StyleGuide"
                   },
                   "scopes": [
+                    "https://www.googleapis.com/auth/apihub.readwrite",
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 }
@@ -2843,6 +2972,7 @@
                         "$ref": "GoogleLongrunningOperation"
                       },
                       "scopes": [
+                        "https://www.googleapis.com/auth/apihub.readwrite",
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
@@ -2868,6 +2998,7 @@
                         "$ref": "GoogleLongrunningOperation"
                       },
                       "scopes": [
+                        "https://www.googleapis.com/auth/apihub.readwrite",
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
@@ -2896,6 +3027,7 @@
                         "$ref": "GoogleLongrunningOperation"
                       },
                       "scopes": [
+                        "https://www.googleapis.com/auth/apihub.readwrite",
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
@@ -2924,6 +3056,7 @@
                         "$ref": "GoogleLongrunningOperation"
                       },
                       "scopes": [
+                        "https://www.googleapis.com/auth/apihub.readwrite",
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
@@ -2952,6 +3085,7 @@
                         "$ref": "GoogleLongrunningOperation"
                       },
                       "scopes": [
+                        "https://www.googleapis.com/auth/apihub.readwrite",
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
@@ -2977,6 +3111,8 @@
                         "$ref": "GoogleCloudApihubV1PluginInstance"
                       },
                       "scopes": [
+                        "https://www.googleapis.com/auth/apihub.readonly",
+                        "https://www.googleapis.com/auth/apihub.readwrite",
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
@@ -3018,6 +3154,8 @@
                         "$ref": "GoogleCloudApihubV1ListPluginInstancesResponse"
                       },
                       "scopes": [
+                        "https://www.googleapis.com/auth/apihub.readonly",
+                        "https://www.googleapis.com/auth/apihub.readwrite",
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
@@ -3046,6 +3184,7 @@
                         "$ref": "GoogleCloudApihubV1ManagePluginInstanceSourceDataResponse"
                       },
                       "scopes": [
+                        "https://www.googleapis.com/auth/apihub.readwrite",
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
@@ -3080,6 +3219,7 @@
                         "$ref": "GoogleCloudApihubV1PluginInstance"
                       },
                       "scopes": [
+                        "https://www.googleapis.com/auth/apihub.readwrite",
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     }
@@ -3109,6 +3249,8 @@
                         "$ref": "GoogleCloudApihubV1StyleGuideContents"
                       },
                       "scopes": [
+                        "https://www.googleapis.com/auth/apihub.readonly",
+                        "https://www.googleapis.com/auth/apihub.readwrite",
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     }
@@ -3148,6 +3290,7 @@
                     "$ref": "GoogleCloudApihubV1RuntimeProjectAttachment"
                   },
                   "scopes": [
+                    "https://www.googleapis.com/auth/apihub.readwrite",
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
@@ -3173,6 +3316,7 @@
                     "$ref": "Empty"
                   },
                   "scopes": [
+                    "https://www.googleapis.com/auth/apihub.readwrite",
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
@@ -3198,6 +3342,8 @@
                     "$ref": "GoogleCloudApihubV1RuntimeProjectAttachment"
                   },
                   "scopes": [
+                    "https://www.googleapis.com/auth/apihub.readonly",
+                    "https://www.googleapis.com/auth/apihub.readwrite",
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
@@ -3244,6 +3390,41 @@
                     "$ref": "GoogleCloudApihubV1ListRuntimeProjectAttachmentsResponse"
                   },
                   "scopes": [
+                    "https://www.googleapis.com/auth/apihub.readonly",
+                    "https://www.googleapis.com/auth/apihub.readwrite",
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
+            "servers": {
+              "methods": {
+                "configureAndDeployServer": {
+                  "description": "Configures and deploys a given server config for given target. Currently this API supports only deploying MCP server in Apigee X. For mcp server deployment in apigee X, if there is already a mcp proxy deployed, then this method will try to overwrite it by creating new revision i.e. all existing tools will be removed and new set of tools will be deployed.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/servers:configureAndDeployServer",
+                  "httpMethod": "POST",
+                  "id": "apihub.projects.locations.servers.configureAndDeployServer",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. Format: `projects/{project}/locations/{location}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/servers:configureAndDeployServer",
+                  "request": {
+                    "$ref": "GoogleCloudApihubV1ConfigureAndDeployServerRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/apihub.readwrite",
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 }
@@ -3254,7 +3435,7 @@
       }
     }
   },
-  "revision": "20260425",
+  "revision": "20260720",
   "rootUrl": "https://apihub.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -3832,6 +4013,34 @@
       },
       "type": "object"
     },
+    "GoogleCloudApihubV1ApigeeXTargetDetails": {
+      "description": "The target configuration for Apigee X. Note: If this API is called while an earlier deployment is still in progress, the earlier deployment will be aborted and a new deployment will be triggered.",
+      "id": "GoogleCloudApihubV1ApigeeXTargetDetails",
+      "properties": {
+        "deployedRevision": {
+          "description": "Output only. The revision number of the Apigee proxy that was deployed.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "environment": {
+          "description": "Required. The specific Apigee environment where the server will be deployed.",
+          "type": "string"
+        },
+        "metadata": {
+          "$ref": "GoogleCloudApihubV1MetaData",
+          "description": "Optional. Metadata for the proxy configuration in Apigee X."
+        },
+        "proxy": {
+          "description": "Required. This name identifies the proxy resource in Apigee. It typically follows a standard alphanumeric format (e.g., \"mcp-discovery-server\").",
+          "type": "string"
+        },
+        "targetProject": {
+          "description": "Required. The runtime project that hosts the Apigee X organization. This must be one of the runtime projects attached to the API Hub host project.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudApihubV1ApplicationIntegrationEndpointDetails": {
       "description": "The details of the Application Integration endpoint to be triggered for curation.",
       "id": "GoogleCloudApihubV1ApplicationIntegrationEndpointDetails",
@@ -4272,6 +4481,17 @@
             "Value type is multi int."
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApihubV1ConfigureAndDeployServerRequest": {
+      "description": "Request message for ApiHub.ConfigureAndDeployServer.",
+      "id": "GoogleCloudApihubV1ConfigureAndDeployServerRequest",
+      "properties": {
+        "mcpServerConfig": {
+          "$ref": "GoogleCloudApihubV1McpServerConfig",
+          "description": "MCP (Model Context Protocol) server configuration."
         }
       },
       "type": "object"
@@ -5249,6 +5469,47 @@
       },
       "type": "object"
     },
+    "GoogleCloudApihubV1HttpOperationConfig": {
+      "description": "Identifies a single API Hub operation by spec resource name + HTTP path + HTTP method.",
+      "id": "GoogleCloudApihubV1HttpOperationConfig",
+      "properties": {
+        "method": {
+          "description": "Required. HTTP method of the operation within the referenced spec. (GET / PUT / POST / DELETE / OPTIONS / HEAD / PATCH / TRACE).",
+          "enum": [
+            "METHOD_UNSPECIFIED",
+            "GET",
+            "PUT",
+            "POST",
+            "DELETE",
+            "OPTIONS",
+            "HEAD",
+            "PATCH",
+            "TRACE"
+          ],
+          "enumDescriptions": [
+            "Method unspecified.",
+            "Get Operation type.",
+            "Put Operation type.",
+            "Post Operation type.",
+            "Delete Operation type.",
+            "Options Operation type.",
+            "Head Operation type.",
+            "Patch Operation type.",
+            "Trace Operation type."
+          ],
+          "type": "string"
+        },
+        "path": {
+          "description": "Required. HTTP path of the operation within the referenced spec. Match is exact (no template substitution): the path here must appear verbatim on an APIOperationRevision belonging to the spec.",
+          "type": "string"
+        },
+        "spec": {
+          "description": "Required. Spec resource name: `projects/{project}/locations/{location}/apis/{api}/versions/{version}/specs/{spec}`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudApihubV1HttpOperationDetails": {
       "description": "An HTTP-based API Operation, sometimes called a \"REST\" Operation.",
       "id": "GoogleCloudApihubV1HttpOperationDetails",
@@ -5857,6 +6118,24 @@
       },
       "type": "object"
     },
+    "GoogleCloudApihubV1McpServerConfig": {
+      "description": "MCP-specific server configuration.",
+      "id": "GoogleCloudApihubV1McpServerConfig",
+      "properties": {
+        "apigeeXTargetDetails": {
+          "$ref": "GoogleCloudApihubV1ApigeeXTargetDetails",
+          "description": "Optional. The target Apigee X configuration."
+        },
+        "tools": {
+          "description": "Required. The tools to expose on the MCP server.",
+          "items": {
+            "$ref": "GoogleCloudApihubV1McpToolConfig"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudApihubV1McpTool": {
       "description": "Details describing an MCP Tool.",
       "id": "GoogleCloudApihubV1McpTool",
@@ -5883,6 +6162,40 @@
         },
         "title": {
           "description": "Optional. Optional title for the tool.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApihubV1McpToolConfig": {
+      "description": "A tool exposed by the MCP server. Each tool wraps exactly one API Hub operation under a caller-supplied identifier.",
+      "id": "GoogleCloudApihubV1McpToolConfig",
+      "properties": {
+        "description": {
+          "description": "Required. Description of what the tool does and how it is used. Description serves as key reference for the agent to know about the tool capabilities.",
+          "type": "string"
+        },
+        "operation": {
+          "$ref": "GoogleCloudApihubV1OperationConfig",
+          "description": "Required. The API Hub operation this tool exposes. Each tool wraps exactly one operation; callers that want to expose multiple operations should declare multiple tools."
+        },
+        "toolId": {
+          "description": "Required. Caller-supplied identifier for the tool; each tool must have a unique identifier. This will be by used by agents to invoke the tool. Tool ID must be unique across all tools in the given MCP server configuration.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApihubV1MetaData": {
+      "description": "Metadata for the server configuration in Apigee X.",
+      "id": "GoogleCloudApihubV1MetaData",
+      "properties": {
+        "description": {
+          "description": "Optional. Description for the server. For apigee target, this will be used as revision description.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Optional. Display name for the server. For apigee target, this will be used as revision display name.",
           "type": "string"
         }
       },
@@ -5975,6 +6288,21 @@
         "version": {
           "description": "Output only. The version in the spec. This maps to `info.version` in OpenAPI spec.",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApihubV1OperationConfig": {
+      "description": "API hub Operation config.",
+      "id": "GoogleCloudApihubV1OperationConfig",
+      "properties": {
+        "httpOperation": {
+          "$ref": "GoogleCloudApihubV1HttpOperationConfig",
+          "description": "The HTTP operation config."
+        },
+        "operation": {
+          "description": "Full API Hub operation resource name: `projects/{project}/locations/{location}/apis/{api}/versions/{version}/operations/{operation}`",
           "type": "string"
         }
       },
@@ -6171,7 +6499,8 @@
             "CLOUD_API_GATEWAY",
             "CLOUD_ENDPOINTS",
             "API_DISCOVERY",
-            "OTHERS"
+            "OTHERS",
+            "AWS_API_GATEWAY"
           ],
           "enumDescriptions": [
             "The gateway type is not specified.",
@@ -6181,7 +6510,8 @@
             "The gateway type is Cloud API Gateway.",
             "The gateway type is Cloud Endpoints.",
             "The gateway type is API Discovery.",
-            "The gateway type for any other types of gateways."
+            "The gateway type for any other types of gateways.",
+            "The gateway type is AWS API Gateway."
           ],
           "type": "string"
         },

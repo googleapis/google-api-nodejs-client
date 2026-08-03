@@ -241,7 +241,7 @@ export namespace merchantapi_quota_v1beta {
      */
     quotaMinuteLimit?: string | null;
     /**
-     * Output only. The current quota usage, meaning the number of calls already made on a given day to the methods in the group. The daily quota limits reset at at 12:00 PM midday UTC.
+     * Output only. The current quota usage, meaning the number of calls already made on a given day to the methods in the group. The daily quota limits reset at 12:00 PM midday UTC.
      */
     quotaUsage?: string | null;
   }
@@ -336,8 +336,7 @@ export namespace merchantapi_quota_v1beta {
     list(
       params: Params$Resource$Accounts$Quotas$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListQuotaGroupsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListQuotaGroupsResponse>,
       callback: BodyResponseCallback<Schema$ListQuotaGroupsResponse>
     ): void;
     list(

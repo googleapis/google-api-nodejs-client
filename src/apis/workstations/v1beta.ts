@@ -329,6 +329,10 @@ export namespace workstations_v1beta {
      */
     archiveTimeout?: string | null;
     /**
+     * Optional. Maximum size in GB to which this persistent directory can be resized. Defaults to unlimited if not set.
+     */
+    maxSizeGb?: number | null;
+    /**
      * Optional. Whether the persistent disk should be deleted when the workstation is deleted. Valid values are `DELETE` and `RETAIN`. Defaults to `DELETE`.
      */
     reclaimPolicy?: string | null;
@@ -472,6 +476,10 @@ export namespace workstations_v1beta {
      * Optional. Type of file system that the disk should be formatted with. The workstation image must support this file system type. Must be empty if source_snapshot is set. Defaults to `"ext4"`.
      */
     fsType?: string | null;
+    /**
+     * Optional. Maximum size in GB to which this persistent directory can be resized. Defaults to unlimited if not set.
+     */
+    maxSizeGb?: number | null;
     /**
      * Optional. Whether the persistent disk should be deleted when the workstation is deleted. Valid values are `DELETE` and `RETAIN`. Defaults to `DELETE`.
      */
@@ -661,23 +669,27 @@ export namespace workstations_v1beta {
     workstations?: Schema$Workstation[];
   }
   /**
-   * OAuth token.
+   * Represents an OAuth 2.0 access token and its associated metadata.
    */
   export interface Schema$OAuthToken {
     /**
-     * Required. The OAuth token.
+     * Required. The OAuth 2.0 access token value.
      */
     accessToken?: string | null;
     /**
-     * Optional. The email address encapsulated in the OAuth token.
+     * Optional. The email address associated with the OAuth 2.0 access token.
      */
     email?: string | null;
     /**
-     * Optional. The time the OAuth access token will expire. This should be the time the access token was generated plus the expires_in offset returned from the Access Token Response.
+     * Optional. The lifetime duration of the access token. Only one of `expire_time` or `expires_in` should be specified.
+     */
+    expiresIn?: string | null;
+    /**
+     * Optional. The time the OAuth access token will expire. This should be the time the access token was generated plus the expires_in offset returned from the Access Token Response. Only one of `expire_time` or `expires_in` should be specified.
      */
     expireTime?: string | null;
     /**
-     * Optional. The scopes encapsulated in the OAuth token. See https://developers.google.com/identity/protocols/oauth2/scopes for more information.
+     * Optional. The scopes associated with the OAuth 2.0 access token. See https://developers.google.com/identity/protocols/oauth2/scopes for more information.
      */
     scopes?: string | null;
   }
@@ -816,7 +828,7 @@ export namespace workstations_v1beta {
    */
   export interface Schema$PushCredentialsRequest {
     /**
-     * Optional. Credentials used by Cloud Client Libraries, Google API Client Libraries, and other tooling within the user conainer: https://cloud.google.com/docs/authentication/application-default-credentials
+     * Optional. Credentials used by Cloud Client Libraries, Google API Client Libraries, and other tooling within the user container. For more information, see https://cloud.google.com/docs/authentication/application-default-credentials
      */
     applicationDefaultCredentials?: Schema$OAuthToken;
   }
@@ -910,6 +922,19 @@ export namespace workstations_v1beta {
    * Request message for StopWorkstation.
    */
   export interface Schema$StopWorkstationRequest {
+    /**
+     * Optional. If set, the request will be rejected if the latest version of the workstation on the server does not have this ETag.
+     */
+    etag?: string | null;
+    /**
+     * Optional. If set, validate the request and preview the result, but do not actually apply it.
+     */
+    validateOnly?: boolean | null;
+  }
+  /**
+   * Request message for SuspendWorkstation.
+   */
+  export interface Schema$SuspendWorkstationRequest {
     /**
      * Optional. If set, the request will be rejected if the latest version of the workstation on the server does not have this ETag.
      */
@@ -1217,6 +1242,10 @@ export namespace workstations_v1beta {
      */
     httpOptions?: Schema$HttpOptions;
     /**
+     * Optional. The action to take when the workstation has been idle for the duration specified in idle_timeout. Defaults to STOP.
+     */
+    idleAction?: string | null;
+    /**
      * Optional. Number of seconds to wait before automatically stopping a workstation after it last received user traffic. A value of `"0s"` indicates that Cloud Workstations VMs created with this configuration should never time out due to idleness. Provide [duration](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#duration) terminated by `s` for seconds—for example, `"7200s"` (2 hours). The default is `"1200s"` (20 minutes).
      */
     idleTimeout?: string | null;
@@ -1270,26 +1299,9 @@ export namespace workstations_v1beta {
     updateTime?: string | null;
   }
   /**
-   * A Persistent Directory backed by a Compute Engine regional persistent disk within the workstation.
-   */
-  export interface Schema$WorkstationGceRegionalPersistentDisk {
-    /**
-     * The name of the persistent directory.
-     */
-    name?: string | null;
-    /**
-     * Required. The desired size of the persistent directory in GB.
-     */
-    sizeGb?: number | null;
-  }
-  /**
    * A directory to persist across workstation sessions. Updates to this field will only take effect on this workstation after it is restarted.
    */
   export interface Schema$WorkstationPersistentDirectory {
-    /**
-     * A PersistentDirectory backed by a Compute Engine persistent disk.
-     */
-    gcePd?: Schema$WorkstationGceRegionalPersistentDisk;
     /**
      * Optional. The mount path of the persistent directory.
      */
@@ -1694,8 +1706,7 @@ export namespace workstations_v1beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -1820,8 +1831,7 @@ export namespace workstations_v1beta {
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListOperationsResponse>,
       callback: BodyResponseCallback<Schema$ListOperationsResponse>
     ): void;
     list(
@@ -2073,8 +2083,7 @@ export namespace workstations_v1beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -2221,8 +2230,7 @@ export namespace workstations_v1beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -2705,8 +2713,7 @@ export namespace workstations_v1beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -2911,6 +2918,7 @@ export namespace workstations_v1beta {
      *           //   "grantWorkstationAdminRoleOnCreate": false,
      *           //   "host": {},
      *           //   "httpOptions": {},
+     *           //   "idleAction": "my_idleAction",
      *           //   "idleTimeout": "my_idleTimeout",
      *           //   "labels": {},
      *           //   "maxUsableWorkstations": 0,
@@ -2986,8 +2994,7 @@ export namespace workstations_v1beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3137,8 +3144,7 @@ export namespace workstations_v1beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3242,6 +3248,7 @@ export namespace workstations_v1beta {
      *   //   "grantWorkstationAdminRoleOnCreate": false,
      *   //   "host": {},
      *   //   "httpOptions": {},
+     *   //   "idleAction": "my_idleAction",
      *   //   "idleTimeout": "my_idleTimeout",
      *   //   "labels": {},
      *   //   "maxUsableWorkstations": 0,
@@ -3448,8 +3455,7 @@ export namespace workstations_v1beta {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -3874,6 +3880,7 @@ export namespace workstations_v1beta {
      *           //   "grantWorkstationAdminRoleOnCreate": false,
      *           //   "host": {},
      *           //   "httpOptions": {},
+     *           //   "idleAction": "my_idleAction",
      *           //   "idleTimeout": "my_idleTimeout",
      *           //   "labels": {},
      *           //   "maxUsableWorkstations": 0,
@@ -3949,8 +3956,7 @@ export namespace workstations_v1beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4100,8 +4106,7 @@ export namespace workstations_v1beta {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -4232,8 +4237,7 @@ export namespace workstations_v1beta {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Workstationclusters$Workstationconfigs$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -4572,8 +4576,7 @@ export namespace workstations_v1beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4721,8 +4724,7 @@ export namespace workstations_v1beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5181,8 +5183,7 @@ export namespace workstations_v1beta {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -5313,8 +5314,7 @@ export namespace workstations_v1beta {
     list(
       params: Params$Resource$Projects$Locations$Workstationclusters$Workstationconfigs$Workstations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListWorkstationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListWorkstationsResponse>,
       callback: BodyResponseCallback<Schema$ListWorkstationsResponse>
     ): void;
     list(
@@ -5667,8 +5667,7 @@ export namespace workstations_v1beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5818,8 +5817,7 @@ export namespace workstations_v1beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5972,8 +5970,7 @@ export namespace workstations_v1beta {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -6127,8 +6124,7 @@ export namespace workstations_v1beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -6281,8 +6277,7 @@ export namespace workstations_v1beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -6308,6 +6303,159 @@ export namespace workstations_v1beta {
         options: Object.assign(
           {
             url: (rootUrl + '/v1beta/{+name}:stop').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Suspends a workstation to reduce costs.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/workstations.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const workstations = google.workstations('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await workstations.projects.locations.workstationClusters.workstationConfigs.workstations.suspend(
+     *       {
+     *         // Required. Name of the workstation to suspend.
+     *         name: 'projects/my-project/locations/my-location/workstationClusters/my-workstationCluster/workstationConfigs/my-workstationConfig/workstations/my-workstation',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "etag": "my_etag",
+     *           //   "validateOnly": false
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    suspend(
+      params: Params$Resource$Projects$Locations$Workstationclusters$Workstationconfigs$Workstations$Suspend,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    suspend(
+      params?: Params$Resource$Projects$Locations$Workstationclusters$Workstationconfigs$Workstations$Suspend,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    suspend(
+      params: Params$Resource$Projects$Locations$Workstationclusters$Workstationconfigs$Workstations$Suspend,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    suspend(
+      params: Params$Resource$Projects$Locations$Workstationclusters$Workstationconfigs$Workstations$Suspend,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    suspend(
+      params: Params$Resource$Projects$Locations$Workstationclusters$Workstationconfigs$Workstations$Suspend,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    suspend(callback: BodyResponseCallback<Schema$Operation>): void;
+    suspend(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Workstationclusters$Workstationconfigs$Workstations$Suspend
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Workstationclusters$Workstationconfigs$Workstations$Suspend;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Workstationclusters$Workstationconfigs$Workstations$Suspend;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://workstations.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+name}:suspend').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -6413,8 +6561,7 @@ export namespace workstations_v1beta {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Workstationclusters$Workstationconfigs$Workstations$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -6644,6 +6791,17 @@ export namespace workstations_v1beta {
      * Request body metadata
      */
     requestBody?: Schema$StopWorkstationRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Workstationclusters$Workstationconfigs$Workstations$Suspend extends StandardParameters {
+    /**
+     * Required. Name of the workstation to suspend.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SuspendWorkstationRequest;
   }
   export interface Params$Resource$Projects$Locations$Workstationclusters$Workstationconfigs$Workstations$Testiampermissions extends StandardParameters {
     /**

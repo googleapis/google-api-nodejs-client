@@ -503,8 +503,7 @@ export namespace servicedirectory_v1 {
         | BodyResponseCallback<Schema$Location>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Location>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Location> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Location>>
@@ -551,7 +550,7 @@ export namespace servicedirectory_v1 {
     }
 
     /**
-     * Lists information about the supported locations for this service. This method lists locations based on the resource scope provided in the [ListLocationsRequest.name] field: * **Global locations**: If `name` is empty, the method lists the public locations available to all projects. * **Project-specific locations**: If `name` follows the format `projects/{project\}`, the method lists locations visible to that specific project. This includes public, private, or other project-specific locations enabled for the project. For gRPC and client library implementations, the resource name is passed as the `name` field. For direct service calls, the resource name is incorporated into the request path based on the specific service implementation and version.
+     * Lists information about the supported locations for this service. This method lists locations based on the resource scope provided in the ListLocationsRequest.name field: * **Global locations**: If `name` is empty, the method lists the public locations available to all projects. * **Project-specific locations**: If `name` follows the format `projects/{project\}`, the method lists locations visible to that specific project. This includes public, private, or other project-specific locations enabled for the project. For gRPC and client library implementations, the resource name is passed as the `name` field. For direct service calls, the resource name is incorporated into the request path based on the specific service implementation and version.
      * @example
      * ```js
      * // Before running the sample:
@@ -581,7 +580,7 @@ export namespace servicedirectory_v1 {
      *
      *   // Do the magic
      *   const res = await servicedirectory.projects.locations.list({
-     *     // Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
+     *     // Optional. Do not use this field unless explicitly documented otherwise. This is primarily for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -629,8 +628,7 @@ export namespace servicedirectory_v1 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListLocationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListLocationsResponse>,
       callback: BodyResponseCallback<Schema$ListLocationsResponse>
     ): void;
     list(
@@ -708,7 +706,7 @@ export namespace servicedirectory_v1 {
   }
   export interface Params$Resource$Projects$Locations$List extends StandardParameters {
     /**
-     * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
+     * Optional. Do not use this field unless explicitly documented otherwise. This is primarily for internal usage.
      */
     extraLocationTypes?: string[];
     /**
@@ -841,8 +839,7 @@ export namespace servicedirectory_v1 {
         | BodyResponseCallback<Schema$Namespace>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Namespace>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Namespace> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Namespace>>
@@ -977,8 +974,7 @@ export namespace servicedirectory_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -1114,8 +1110,7 @@ export namespace servicedirectory_v1 {
         | BodyResponseCallback<Schema$Namespace>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Namespace>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Namespace> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Namespace>>
@@ -1262,8 +1257,7 @@ export namespace servicedirectory_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -1392,8 +1386,7 @@ export namespace servicedirectory_v1 {
     list(
       params: Params$Resource$Projects$Locations$Namespaces$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListNamespacesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListNamespacesResponse>,
       callback: BodyResponseCallback<Schema$ListNamespacesResponse>
     ): void;
     list(
@@ -1564,8 +1557,7 @@ export namespace servicedirectory_v1 {
         | BodyResponseCallback<Schema$Namespace>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Namespace>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Namespace> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Namespace>>
@@ -1712,8 +1704,7 @@ export namespace servicedirectory_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -1843,8 +1834,7 @@ export namespace servicedirectory_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Namespaces$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -2132,8 +2122,7 @@ export namespace servicedirectory_v1 {
         | BodyResponseCallback<Schema$Service>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Service>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Service> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Service>>
@@ -2270,8 +2259,7 @@ export namespace servicedirectory_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -2411,8 +2399,7 @@ export namespace servicedirectory_v1 {
         | BodyResponseCallback<Schema$Service>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Service>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Service> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Service>>
@@ -2559,8 +2546,7 @@ export namespace servicedirectory_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -2691,8 +2677,7 @@ export namespace servicedirectory_v1 {
     list(
       params: Params$Resource$Projects$Locations$Namespaces$Services$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListServicesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListServicesResponse>,
       callback: BodyResponseCallback<Schema$ListServicesResponse>
     ): void;
     list(
@@ -2867,8 +2852,7 @@ export namespace servicedirectory_v1 {
         | BodyResponseCallback<Schema$Service>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Service>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Service> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Service>>
@@ -2995,8 +2979,7 @@ export namespace servicedirectory_v1 {
     resolve(
       params: Params$Resource$Projects$Locations$Namespaces$Services$Resolve,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ResolveServiceResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ResolveServiceResponse>,
       callback: BodyResponseCallback<Schema$ResolveServiceResponse>
     ): void;
     resolve(
@@ -3168,8 +3151,7 @@ export namespace servicedirectory_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -3301,8 +3283,7 @@ export namespace servicedirectory_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Namespaces$Services$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -3602,8 +3583,7 @@ export namespace servicedirectory_v1 {
         | BodyResponseCallback<Schema$Endpoint>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Endpoint>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Endpoint> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Endpoint>>
@@ -3742,8 +3722,7 @@ export namespace servicedirectory_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -3886,8 +3865,7 @@ export namespace servicedirectory_v1 {
         | BodyResponseCallback<Schema$Endpoint>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Endpoint>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Endpoint> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Endpoint>>
@@ -4017,8 +3995,7 @@ export namespace servicedirectory_v1 {
     list(
       params: Params$Resource$Projects$Locations$Namespaces$Services$Endpoints$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListEndpointsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListEndpointsResponse>,
       callback: BodyResponseCallback<Schema$ListEndpointsResponse>
     ): void;
     list(
@@ -4199,8 +4176,7 @@ export namespace servicedirectory_v1 {
         | BodyResponseCallback<Schema$Endpoint>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Endpoint>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Endpoint> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Endpoint>>

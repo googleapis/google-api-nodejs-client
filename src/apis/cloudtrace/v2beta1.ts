@@ -286,8 +286,7 @@ export namespace cloudtrace_v2beta1 {
         | BodyResponseCallback<Schema$TraceSink>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$TraceSink>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$TraceSink> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$TraceSink>>
@@ -424,8 +423,7 @@ export namespace cloudtrace_v2beta1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -563,8 +561,7 @@ export namespace cloudtrace_v2beta1 {
         | BodyResponseCallback<Schema$TraceSink>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$TraceSink>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$TraceSink> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$TraceSink>>
@@ -687,8 +684,7 @@ export namespace cloudtrace_v2beta1 {
     list(
       params: Params$Resource$Projects$Tracesinks$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListTraceSinksResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListTraceSinksResponse>,
       callback: BodyResponseCallback<Schema$ListTraceSinksResponse>
     ): void;
     list(
@@ -861,8 +857,7 @@ export namespace cloudtrace_v2beta1 {
         | BodyResponseCallback<Schema$TraceSink>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$TraceSink>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$TraceSink> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$TraceSink>>

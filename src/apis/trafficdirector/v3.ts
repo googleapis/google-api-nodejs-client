@@ -976,8 +976,7 @@ export namespace trafficdirector_v3 {
     client_status(
       params: Params$Resource$Discovery$Client_status,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ClientStatusResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ClientStatusResponse>,
       callback: BodyResponseCallback<Schema$ClientStatusResponse>
     ): void;
     client_status(

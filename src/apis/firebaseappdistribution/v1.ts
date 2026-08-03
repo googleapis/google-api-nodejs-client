@@ -670,6 +670,10 @@ export namespace firebaseappdistribution_v1 {
      * The releases
      */
     releases?: Schema$GoogleFirebaseAppdistroV1Release[];
+    /**
+     * The total number of releases.
+     */
+    totalSize?: number | null;
   }
   /**
    * The response message for `ListTesters`.
@@ -689,9 +693,21 @@ export namespace firebaseappdistribution_v1 {
    */
   export interface Schema$GoogleFirebaseAppdistroV1Release {
     /**
+     * Output only. Number of testers with accepted invitations.
+     */
+    acceptedInvitationCount?: number | null;
+    /**
+     * Output only. Registration state of the Android package (BinaryType.APK).
+     */
+    androidPackageRegistrationState?: string | null;
+    /**
      * Output only. A signed link (which expires in one hour) to directly download the app binary (IPA/APK/AAB) file.
      */
     binaryDownloadUri?: string | null;
+    /**
+     * Output only. Type of binary.
+     */
+    binaryType?: string | null;
     /**
      * Output only. Build version of the release. For an Android release, the build version is the `versionCode`. For an iOS release, the build version is the `CFBundleVersion`.
      */
@@ -709,21 +725,37 @@ export namespace firebaseappdistribution_v1 {
      */
     expireTime?: string | null;
     /**
+     * Output only. Number of feedback reports left by testers.
+     */
+    feedbackCount?: number | null;
+    /**
      * Output only. A link to the Firebase console displaying a single release.
      */
     firebaseConsoleUri?: string | null;
+    /**
+     * Output only. Number of testers who have downloaded this release.
+     */
+    installationCount?: number | null;
     /**
      * The name of the release resource. Format: `projects/{project_number\}/apps/{app\}/releases/{release\}`
      */
     name?: string | null;
     /**
-     * Notes of the release.
+     * Output only. Number of testers who were invited (incl. expired invitations), but did not (yet) accept the invitation.
+     */
+    openInvitationCount?: number | null;
+    /**
+     * Notes about the release.
      */
     releaseNotes?: Schema$GoogleFirebaseAppdistroV1ReleaseNotes;
     /**
      * Output only. A link to the release in the tester web clip or Android app that lets testers (which were granted access to the app) view release notes and install the app onto their devices.
      */
     testingUri?: string | null;
+    /**
+     * Output only. The overall state of tests run on this release
+     */
+    testState?: string | null;
     /**
      * Output only. The time the release was last updated.
      */
@@ -971,8 +1003,7 @@ export namespace firebaseappdistribution_v1 {
     upload(
       params: Params$Resource$Media$Upload,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     upload(
@@ -1602,14 +1633,21 @@ export namespace firebaseappdistribution_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "acceptedInvitationCount": 0,
+     *   //   "androidPackageRegistrationState": "my_androidPackageRegistrationState",
      *   //   "binaryDownloadUri": "my_binaryDownloadUri",
+     *   //   "binaryType": "my_binaryType",
      *   //   "buildVersion": "my_buildVersion",
      *   //   "createTime": "my_createTime",
      *   //   "displayVersion": "my_displayVersion",
      *   //   "expireTime": "my_expireTime",
+     *   //   "feedbackCount": 0,
      *   //   "firebaseConsoleUri": "my_firebaseConsoleUri",
+     *   //   "installationCount": 0,
      *   //   "name": "my_name",
+     *   //   "openInvitationCount": 0,
      *   //   "releaseNotes": {},
+     *   //   "testState": "my_testState",
      *   //   "testingUri": "my_testingUri",
      *   //   "updateTime": "my_updateTime"
      *   // }
@@ -1749,9 +1787,9 @@ export namespace firebaseappdistribution_v1 {
      *
      *   // Do the magic
      *   const res = await firebaseappdistribution.projects.apps.releases.list({
-     *     // Optional. The expression to filter releases listed in the response. To learn more about filtering, refer to [Google's AIP-160 standard](http://aip.dev/160). Supported fields: - `releaseNotes.text` supports `=` (can contain a wildcard character (`*`) at the beginning or end of the string) - `createTime` supports `<`, `<=`, `\>` and `\>=`, and expects an RFC-3339 formatted string Examples: - `createTime <= "2021-09-08T00:00:00+04:00"` - `releaseNotes.text="fixes" AND createTime \>= "2021-09-08T00:00:00.0Z"` - `releaseNotes.text="*v1.0.0-rc*"`
+     *     // Optional. The expression to filter releases listed in the response. To learn more about filtering, refer to the [AIP-160 standard](http://aip.dev/160). Supported fields: - Time fields supporting `<`, `<=`, `\>` and `\>=`; expecting an RFC-3339 formatted string: - `create_time` (or `createTime`) - `update_time` (or `updateTime`) - `expire_time` (or `expireTime`) - Text fields supporting `=`. The compared text can contain a wildcard character (`*`) at the beginning and/or end of the string which also enables case-insensitive matching: - `release_notes.text` (or `releaseNotes.text`) - `display_version` (or `displayVersion`) - `build_version` (or `buildVersion`). Examples: - `createTime <= "2021-09-08T00:00:00+04:00"` - `expire_time \> "2021-09-08T00:00:00+04:00"` - `releaseNotes.text="fixes" AND createTime \>= "2021-09-08T00:00:00.0Z"` - `releaseNotes.text="*v1.0.0-rc*"` - `(display_version = "v1.0.0-rc2" AND `build_version = "123") OR release_notes = "*v1.0.0-rc2 (123)*"`
      *     filter: 'placeholder-value',
-     *     // Optional. The fields used to order releases. Supported fields: - `createTime` To specify descending order for a field, append a "desc" suffix, for example, `createTime desc`. If this parameter is not set, releases are ordered by `createTime` in descending order.
+     *     // Optional. The fields used to order releases. Supported fields: - `create_time` (or `createTime`) - `update_time` (or `updateTime`) - `expire_time` (or `expireTime`) To specify descending order for a field, append a "desc" suffix, for example, `createTime desc`. If this parameter is not set, releases are ordered by `createTime` in descending order.
      *     orderBy: 'placeholder-value',
      *     // Optional. The maximum number of releases to return. The service may return fewer than this value. The valid range is [1-100]; If unspecified (0), at most 25 releases are returned. Values above 100 are coerced to 100.
      *     pageSize: 'placeholder-value',
@@ -1765,7 +1803,8 @@ export namespace firebaseappdistribution_v1 {
      *   // Example response
      *   // {
      *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "releases": []
+     *   //   "releases": [],
+     *   //   "totalSize": 0
      *   // }
      * }
      *
@@ -1915,14 +1954,21 @@ export namespace firebaseappdistribution_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "acceptedInvitationCount": 0,
+     *       //   "androidPackageRegistrationState": "my_androidPackageRegistrationState",
      *       //   "binaryDownloadUri": "my_binaryDownloadUri",
+     *       //   "binaryType": "my_binaryType",
      *       //   "buildVersion": "my_buildVersion",
      *       //   "createTime": "my_createTime",
      *       //   "displayVersion": "my_displayVersion",
      *       //   "expireTime": "my_expireTime",
+     *       //   "feedbackCount": 0,
      *       //   "firebaseConsoleUri": "my_firebaseConsoleUri",
+     *       //   "installationCount": 0,
      *       //   "name": "my_name",
+     *       //   "openInvitationCount": 0,
      *       //   "releaseNotes": {},
+     *       //   "testState": "my_testState",
      *       //   "testingUri": "my_testingUri",
      *       //   "updateTime": "my_updateTime"
      *       // }
@@ -1932,14 +1978,21 @@ export namespace firebaseappdistribution_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "acceptedInvitationCount": 0,
+     *   //   "androidPackageRegistrationState": "my_androidPackageRegistrationState",
      *   //   "binaryDownloadUri": "my_binaryDownloadUri",
+     *   //   "binaryType": "my_binaryType",
      *   //   "buildVersion": "my_buildVersion",
      *   //   "createTime": "my_createTime",
      *   //   "displayVersion": "my_displayVersion",
      *   //   "expireTime": "my_expireTime",
+     *   //   "feedbackCount": 0,
      *   //   "firebaseConsoleUri": "my_firebaseConsoleUri",
+     *   //   "installationCount": 0,
      *   //   "name": "my_name",
+     *   //   "openInvitationCount": 0,
      *   //   "releaseNotes": {},
+     *   //   "testState": "my_testState",
      *   //   "testingUri": "my_testingUri",
      *   //   "updateTime": "my_updateTime"
      *   // }
@@ -2079,11 +2132,11 @@ export namespace firebaseappdistribution_v1 {
   }
   export interface Params$Resource$Projects$Apps$Releases$List extends StandardParameters {
     /**
-     * Optional. The expression to filter releases listed in the response. To learn more about filtering, refer to [Google's AIP-160 standard](http://aip.dev/160). Supported fields: - `releaseNotes.text` supports `=` (can contain a wildcard character (`*`) at the beginning or end of the string) - `createTime` supports `<`, `<=`, `\>` and `\>=`, and expects an RFC-3339 formatted string Examples: - `createTime <= "2021-09-08T00:00:00+04:00"` - `releaseNotes.text="fixes" AND createTime \>= "2021-09-08T00:00:00.0Z"` - `releaseNotes.text="*v1.0.0-rc*"`
+     * Optional. The expression to filter releases listed in the response. To learn more about filtering, refer to the [AIP-160 standard](http://aip.dev/160). Supported fields: - Time fields supporting `<`, `<=`, `\>` and `\>=`; expecting an RFC-3339 formatted string: - `create_time` (or `createTime`) - `update_time` (or `updateTime`) - `expire_time` (or `expireTime`) - Text fields supporting `=`. The compared text can contain a wildcard character (`*`) at the beginning and/or end of the string which also enables case-insensitive matching: - `release_notes.text` (or `releaseNotes.text`) - `display_version` (or `displayVersion`) - `build_version` (or `buildVersion`). Examples: - `createTime <= "2021-09-08T00:00:00+04:00"` - `expire_time \> "2021-09-08T00:00:00+04:00"` - `releaseNotes.text="fixes" AND createTime \>= "2021-09-08T00:00:00.0Z"` - `releaseNotes.text="*v1.0.0-rc*"` - `(display_version = "v1.0.0-rc2" AND `build_version = "123") OR release_notes = "*v1.0.0-rc2 (123)*"`
      */
     filter?: string;
     /**
-     * Optional. The fields used to order releases. Supported fields: - `createTime` To specify descending order for a field, append a "desc" suffix, for example, `createTime desc`. If this parameter is not set, releases are ordered by `createTime` in descending order.
+     * Optional. The fields used to order releases. Supported fields: - `create_time` (or `createTime`) - `update_time` (or `updateTime`) - `expire_time` (or `expireTime`) To specify descending order for a field, append a "desc" suffix, for example, `createTime desc`. If this parameter is not set, releases are ordered by `createTime` in descending order.
      */
     orderBy?: string;
     /**
@@ -2948,8 +3001,7 @@ export namespace firebaseappdistribution_v1 {
     get(
       params: Params$Resource$Projects$Apps$Releases$Operations$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -3259,8 +3311,7 @@ export namespace firebaseappdistribution_v1 {
     wait(
       params: Params$Resource$Projects$Apps$Releases$Operations$Wait,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(

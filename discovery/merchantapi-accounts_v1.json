@@ -2438,7 +2438,7 @@
       }
     }
   },
-  "revision": "20260512",
+  "revision": "20260722",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "About": {
@@ -2686,6 +2686,10 @@
           "description": "Output only. The human-readable display name of the provider account.",
           "readOnly": true,
           "type": "string"
+        },
+        "ucpCheckoutManagement": {
+          "$ref": "UcpCheckoutManagement",
+          "description": "Service type for UCP Checkout Management. The provider is managing the UCP Checkout capability integration for the merchant."
         }
       },
       "type": "object"
@@ -4889,11 +4893,13 @@
           "description": "The resource that changed, in this case it will always be `Product`.",
           "enum": [
             "RESOURCE_UNSPECIFIED",
-            "PRODUCT"
+            "PRODUCT",
+            "ACCOUNT_SERVICE"
           ],
           "enumDescriptions": [
             "Unspecified resource",
-            "Resource type : product"
+            "Resource type : product",
+            "Account service"
           ],
           "type": "string"
         }
@@ -5590,6 +5596,12 @@
           "type": "integer"
         }
       },
+      "type": "object"
+    },
+    "UcpCheckoutManagement": {
+      "description": "`UcpCheckoutManagement` payload.",
+      "id": "UcpCheckoutManagement",
+      "properties": {},
       "type": "object"
     },
     "UnclaimHomepageRequest": {

@@ -195,6 +195,10 @@ export namespace fcm_v1 {
      */
     bodyLocKey?: string | null;
     /**
+     * Optional. If set, display notifications delivered to the device will be handled by the app instead of the proxy.
+     */
+    bypassProxyNotification?: boolean | null;
+    /**
      * The [notification's channel id](https://developer.android.com/guide/topics/ui/notifiers/notifications#ManageChannels) (new in Android O). The app must create a channel with this channel ID before any notification with this channel ID is received. If you don't send this channel ID in the request, or if the channel ID provided has not yet been created by the app, FCM uses the channel ID specified in the app manifest.
      */
     channelId?: string | null;
@@ -360,7 +364,7 @@ export namespace fcm_v1 {
      */
     color?: Schema$Color;
     /**
-     * Required. Along with `light_on_duration `, define the blink rate of LED flashes. Resolution defined by [proto.Duration](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Duration)
+     * Required. Along with `light_on_duration`, define the blink rate of LED flashes. Resolution defined by [proto.Duration](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Duration)
      */
     lightOffDuration?: string | null;
     /**
@@ -393,6 +397,10 @@ export namespace fcm_v1 {
      */
     fcmOptions?: Schema$FcmOptions;
     /**
+     * Firebase Installation ID to send a message to.
+     */
+    fid?: string | null;
+    /**
      * Output Only. The identifier of the message sent, in the format of `projects/x/messages/{message_id\}`.
      */
     name?: string | null;
@@ -401,7 +409,7 @@ export namespace fcm_v1 {
      */
     notification?: Schema$Notification;
     /**
-     * Registration token to send a message to.
+     * Deprecated: Use `fid` instead. Registration token to send a message to. During the transition period, this field also accepts a Firebase Installation ID (FID).
      */
     token?: string | null;
     /**
@@ -548,6 +556,7 @@ export namespace fcm_v1 {
      *   //   "condition": "my_condition",
      *   //   "data": {},
      *   //   "fcmOptions": {},
+     *   //   "fid": "my_fid",
      *   //   "name": "my_name",
      *   //   "notification": {},
      *   //   "token": "my_token",
@@ -602,8 +611,7 @@ export namespace fcm_v1 {
         | BodyResponseCallback<Schema$Message>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Message>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Message> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Message>>

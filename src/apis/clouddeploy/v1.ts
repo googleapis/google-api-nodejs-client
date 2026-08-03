@@ -3886,8 +3886,7 @@ export namespace clouddeploy_v1 {
         | BodyResponseCallback<Schema$Location>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Location>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Location> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Location>>
@@ -4023,8 +4022,7 @@ export namespace clouddeploy_v1 {
         | BodyResponseCallback<Schema$Config>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Config>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Config> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Config>>
@@ -4148,8 +4146,7 @@ export namespace clouddeploy_v1 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListLocationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListLocationsResponse>,
       callback: BodyResponseCallback<Schema$ListLocationsResponse>
     ): void;
     list(
@@ -4375,8 +4372,7 @@ export namespace clouddeploy_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4525,8 +4521,7 @@ export namespace clouddeploy_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4811,8 +4806,7 @@ export namespace clouddeploy_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -5133,8 +5127,7 @@ export namespace clouddeploy_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5282,8 +5275,7 @@ export namespace clouddeploy_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -5592,8 +5584,7 @@ export namespace clouddeploy_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5744,8 +5735,7 @@ export namespace clouddeploy_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -6030,8 +6020,7 @@ export namespace clouddeploy_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -6352,8 +6341,7 @@ export namespace clouddeploy_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -6484,8 +6472,7 @@ export namespace clouddeploy_v1 {
     rollbackTarget(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Rollbacktarget,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$RollbackTargetResponse>,
+        MethodOptions | BodyResponseCallback<Schema$RollbackTargetResponse>,
       callback: BodyResponseCallback<Schema$RollbackTargetResponse>
     ): void;
     rollbackTarget(
@@ -6658,8 +6645,7 @@ export namespace clouddeploy_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -6788,8 +6774,7 @@ export namespace clouddeploy_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -7397,8 +7382,7 @@ export namespace clouddeploy_v1 {
     list(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Automationruns$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListAutomationRunsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListAutomationRunsResponse>,
       callback: BodyResponseCallback<Schema$ListAutomationRunsResponse>
     ): void;
     list(
@@ -7635,8 +7619,7 @@ export namespace clouddeploy_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -7786,8 +7769,7 @@ export namespace clouddeploy_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -7933,8 +7915,7 @@ export namespace clouddeploy_v1 {
         | BodyResponseCallback<Schema$Automation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Automation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Automation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Automation>>
@@ -8062,8 +8043,7 @@ export namespace clouddeploy_v1 {
     list(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Automations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListAutomationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListAutomationsResponse>,
       callback: BodyResponseCallback<Schema$ListAutomationsResponse>
     ): void;
     list(
@@ -8252,8 +8232,7 @@ export namespace clouddeploy_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -8487,8 +8466,7 @@ export namespace clouddeploy_v1 {
     abandon(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Abandon,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$AbandonReleaseResponse>,
+        MethodOptions | BodyResponseCallback<Schema$AbandonReleaseResponse>,
       callback: BodyResponseCallback<Schema$AbandonReleaseResponse>
     ): void;
     abandon(
@@ -8691,8 +8669,7 @@ export namespace clouddeploy_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -8852,8 +8829,7 @@ export namespace clouddeploy_v1 {
         | BodyResponseCallback<Schema$Release>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Release>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Release> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Release>>
@@ -8981,8 +8957,7 @@ export namespace clouddeploy_v1 {
     list(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListReleasesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListReleasesResponse>,
       callback: BodyResponseCallback<Schema$ListReleasesResponse>
     ): void;
     list(
@@ -9210,8 +9185,7 @@ export namespace clouddeploy_v1 {
     advance(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Advance,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$AdvanceRolloutResponse>,
+        MethodOptions | BodyResponseCallback<Schema$AdvanceRolloutResponse>,
       callback: BodyResponseCallback<Schema$AdvanceRolloutResponse>
     ): void;
     advance(
@@ -9362,8 +9336,7 @@ export namespace clouddeploy_v1 {
     approve(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Approve,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ApproveRolloutResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ApproveRolloutResponse>,
       callback: BodyResponseCallback<Schema$ApproveRolloutResponse>
     ): void;
     approve(
@@ -9513,8 +9486,7 @@ export namespace clouddeploy_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Cancel,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$CancelRolloutResponse>,
+        MethodOptions | BodyResponseCallback<Schema$CancelRolloutResponse>,
       callback: BodyResponseCallback<Schema$CancelRolloutResponse>
     ): void;
     cancel(
@@ -9716,8 +9688,7 @@ export namespace clouddeploy_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -9879,8 +9850,7 @@ export namespace clouddeploy_v1 {
         | BodyResponseCallback<Schema$Rollout>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Rollout>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Rollout> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Rollout>>
@@ -10160,8 +10130,7 @@ export namespace clouddeploy_v1 {
     list(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListRolloutsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListRolloutsResponse>,
       callback: BodyResponseCallback<Schema$ListRolloutsResponse>
     ): void;
     list(
@@ -10608,8 +10577,7 @@ export namespace clouddeploy_v1 {
         | BodyResponseCallback<Schema$JobRun>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$JobRun>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$JobRun> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$JobRun>>
@@ -10886,8 +10854,7 @@ export namespace clouddeploy_v1 {
     terminate(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Jobruns$Terminate,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TerminateJobRunResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TerminateJobRunResponse>,
       callback: BodyResponseCallback<Schema$TerminateJobRunResponse>
     ): void;
     terminate(
@@ -11121,8 +11088,7 @@ export namespace clouddeploy_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -11270,8 +11236,7 @@ export namespace clouddeploy_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -11554,8 +11519,7 @@ export namespace clouddeploy_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -11684,8 +11648,7 @@ export namespace clouddeploy_v1 {
     list(
       params: Params$Resource$Projects$Locations$Deploypolicies$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListDeployPoliciesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListDeployPoliciesResponse>,
       callback: BodyResponseCallback<Schema$ListDeployPoliciesResponse>
     ): void;
     list(
@@ -11873,8 +11836,7 @@ export namespace clouddeploy_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -12020,8 +11982,7 @@ export namespace clouddeploy_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -12291,8 +12252,7 @@ export namespace clouddeploy_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -12423,8 +12383,7 @@ export namespace clouddeploy_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -12561,8 +12520,7 @@ export namespace clouddeploy_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -12687,8 +12645,7 @@ export namespace clouddeploy_v1 {
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListOperationsResponse>,
       callback: BodyResponseCallback<Schema$ListOperationsResponse>
     ): void;
     list(
@@ -12932,8 +12889,7 @@ export namespace clouddeploy_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -13081,8 +13037,7 @@ export namespace clouddeploy_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -13232,8 +13187,7 @@ export namespace clouddeploy_v1 {
         | BodyResponseCallback<Schema$Target>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Target>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Target> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Target>>
@@ -13371,8 +13325,7 @@ export namespace clouddeploy_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -13692,8 +13645,7 @@ export namespace clouddeploy_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -13838,8 +13790,7 @@ export namespace clouddeploy_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -13965,8 +13916,7 @@ export namespace clouddeploy_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Targets$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(

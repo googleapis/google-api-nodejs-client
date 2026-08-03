@@ -138,6 +138,15 @@ export namespace bigquerydatatransfer_v1 {
     hasValidCreds?: boolean | null;
   }
   /**
+   * Configuration for Dataplex destination.
+   */
+  export interface Schema$DataplexConfiguration {
+    /**
+     * Required. The Dataplex Universal Catalog entry group for importing the metadata. entry_group has the format of `projects/{project_id\}/locations/{region\}/entryGroups/{entry_group_id\}`.
+     */
+    entryGroup?: string | null;
+  }
+  /**
    * Defines the properties and custom parameters for a data source.
    */
   export interface Schema$DataSource {
@@ -448,6 +457,15 @@ export namespace bigquerydatatransfer_v1 {
    */
   export interface Schema$ManualSchedule {}
   /**
+   * The metadata destination of the transfer config.
+   */
+  export interface Schema$MetadataDestination {
+    /**
+     * The Dataplex Universal Catalog configuration.
+     */
+    dataplexConfiguration?: Schema$DataplexConfiguration;
+  }
+  /**
    * Partition details related to hierarchy.
    */
   export interface Schema$PartitionDetail {
@@ -634,6 +652,10 @@ export namespace bigquerydatatransfer_v1 {
      * The classification of the destination table.
      */
     managedTableType?: string | null;
+    /**
+     * The metadata destination of the transfer config.
+     */
+    metadataDestination?: Schema$MetadataDestination;
     /**
      * Identifier. The resource name of the transfer config. Transfer config names have the form either `projects/{project_id\}/locations/{region\}/transferConfigs/{config_id\}` or `projects/{project_id\}/transferConfigs/{config_id\}`, where `config_id` is usually a UUID, even though it is not guaranteed or required. The name is ignored when creating a transfer config.
      */
@@ -1000,8 +1022,7 @@ export namespace bigquerydatatransfer_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -1149,8 +1170,7 @@ export namespace bigquerydatatransfer_v1 {
     checkValidCreds(
       params: Params$Resource$Projects$Datasources$Checkvalidcreds,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$CheckValidCredsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$CheckValidCredsResponse>,
       callback: BodyResponseCallback<Schema$CheckValidCredsResponse>
     ): void;
     checkValidCreds(
@@ -1330,8 +1350,7 @@ export namespace bigquerydatatransfer_v1 {
         | BodyResponseCallback<Schema$DataSource>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$DataSource>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$DataSource> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$DataSource>>
@@ -1456,8 +1475,7 @@ export namespace bigquerydatatransfer_v1 {
     list(
       params: Params$Resource$Projects$Datasources$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListDataSourcesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListDataSourcesResponse>,
       callback: BodyResponseCallback<Schema$ListDataSourcesResponse>
     ): void;
     list(
@@ -1670,8 +1688,7 @@ export namespace bigquerydatatransfer_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -1816,8 +1833,7 @@ export namespace bigquerydatatransfer_v1 {
         | BodyResponseCallback<Schema$Location>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Location>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Location> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Location>>
@@ -1946,8 +1962,7 @@ export namespace bigquerydatatransfer_v1 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListLocationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListLocationsResponse>,
       callback: BodyResponseCallback<Schema$ListLocationsResponse>
     ): void;
     list(
@@ -2115,8 +2130,7 @@ export namespace bigquerydatatransfer_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -2304,8 +2318,7 @@ export namespace bigquerydatatransfer_v1 {
     checkValidCreds(
       params: Params$Resource$Projects$Locations$Datasources$Checkvalidcreds,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$CheckValidCredsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$CheckValidCredsResponse>,
       callback: BodyResponseCallback<Schema$CheckValidCredsResponse>
     ): void;
     checkValidCreds(
@@ -2486,8 +2499,7 @@ export namespace bigquerydatatransfer_v1 {
         | BodyResponseCallback<Schema$DataSource>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$DataSource>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$DataSource> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$DataSource>>
@@ -2612,8 +2624,7 @@ export namespace bigquerydatatransfer_v1 {
     list(
       params: Params$Resource$Projects$Locations$Datasources$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListDataSourcesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListDataSourcesResponse>,
       callback: BodyResponseCallback<Schema$ListDataSourcesResponse>
     ): void;
     list(
@@ -2785,6 +2796,7 @@ export namespace bigquerydatatransfer_v1 {
      *         //   "encryptionConfiguration": {},
      *         //   "error": {},
      *         //   "managedTableType": "my_managedTableType",
+     *         //   "metadataDestination": {},
      *         //   "name": "my_name",
      *         //   "nextRunTime": "my_nextRunTime",
      *         //   "notificationPubsubTopic": "my_notificationPubsubTopic",
@@ -2813,6 +2825,7 @@ export namespace bigquerydatatransfer_v1 {
      *   //   "encryptionConfiguration": {},
      *   //   "error": {},
      *   //   "managedTableType": "my_managedTableType",
+     *   //   "metadataDestination": {},
      *   //   "name": "my_name",
      *   //   "nextRunTime": "my_nextRunTime",
      *   //   "notificationPubsubTopic": "my_notificationPubsubTopic",
@@ -3014,8 +3027,7 @@ export namespace bigquerydatatransfer_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -3116,6 +3128,7 @@ export namespace bigquerydatatransfer_v1 {
      *   //   "encryptionConfiguration": {},
      *   //   "error": {},
      *   //   "managedTableType": "my_managedTableType",
+     *   //   "metadataDestination": {},
      *   //   "name": "my_name",
      *   //   "nextRunTime": "my_nextRunTime",
      *   //   "notificationPubsubTopic": "my_notificationPubsubTopic",
@@ -3434,6 +3447,7 @@ export namespace bigquerydatatransfer_v1 {
      *         //   "encryptionConfiguration": {},
      *         //   "error": {},
      *         //   "managedTableType": "my_managedTableType",
+     *         //   "metadataDestination": {},
      *         //   "name": "my_name",
      *         //   "nextRunTime": "my_nextRunTime",
      *         //   "notificationPubsubTopic": "my_notificationPubsubTopic",
@@ -3462,6 +3476,7 @@ export namespace bigquerydatatransfer_v1 {
      *   //   "encryptionConfiguration": {},
      *   //   "error": {},
      *   //   "managedTableType": "my_managedTableType",
+     *   //   "metadataDestination": {},
      *   //   "name": "my_name",
      *   //   "nextRunTime": "my_nextRunTime",
      *   //   "notificationPubsubTopic": "my_notificationPubsubTopic",
@@ -4094,8 +4109,7 @@ export namespace bigquerydatatransfer_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -4382,8 +4396,7 @@ export namespace bigquerydatatransfer_v1 {
     list(
       params: Params$Resource$Projects$Locations$Transferconfigs$Runs$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListTransferRunsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListTransferRunsResponse>,
       callback: BodyResponseCallback<Schema$ListTransferRunsResponse>
     ): void;
     list(
@@ -4577,8 +4590,7 @@ export namespace bigquerydatatransfer_v1 {
     list(
       params: Params$Resource$Projects$Locations$Transferconfigs$Runs$Transferlogs$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListTransferLogsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListTransferLogsResponse>,
       callback: BodyResponseCallback<Schema$ListTransferLogsResponse>
     ): void;
     list(
@@ -5075,6 +5087,7 @@ export namespace bigquerydatatransfer_v1 {
      *       //   "encryptionConfiguration": {},
      *       //   "error": {},
      *       //   "managedTableType": "my_managedTableType",
+     *       //   "metadataDestination": {},
      *       //   "name": "my_name",
      *       //   "nextRunTime": "my_nextRunTime",
      *       //   "notificationPubsubTopic": "my_notificationPubsubTopic",
@@ -5103,6 +5116,7 @@ export namespace bigquerydatatransfer_v1 {
      *   //   "encryptionConfiguration": {},
      *   //   "error": {},
      *   //   "managedTableType": "my_managedTableType",
+     *   //   "metadataDestination": {},
      *   //   "name": "my_name",
      *   //   "nextRunTime": "my_nextRunTime",
      *   //   "notificationPubsubTopic": "my_notificationPubsubTopic",
@@ -5302,8 +5316,7 @@ export namespace bigquerydatatransfer_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -5401,6 +5414,7 @@ export namespace bigquerydatatransfer_v1 {
      *   //   "encryptionConfiguration": {},
      *   //   "error": {},
      *   //   "managedTableType": "my_managedTableType",
+     *   //   "metadataDestination": {},
      *   //   "name": "my_name",
      *   //   "nextRunTime": "my_nextRunTime",
      *   //   "notificationPubsubTopic": "my_notificationPubsubTopic",
@@ -5717,6 +5731,7 @@ export namespace bigquerydatatransfer_v1 {
      *       //   "encryptionConfiguration": {},
      *       //   "error": {},
      *       //   "managedTableType": "my_managedTableType",
+     *       //   "metadataDestination": {},
      *       //   "name": "my_name",
      *       //   "nextRunTime": "my_nextRunTime",
      *       //   "notificationPubsubTopic": "my_notificationPubsubTopic",
@@ -5745,6 +5760,7 @@ export namespace bigquerydatatransfer_v1 {
      *   //   "encryptionConfiguration": {},
      *   //   "error": {},
      *   //   "managedTableType": "my_managedTableType",
+     *   //   "metadataDestination": {},
      *   //   "name": "my_name",
      *   //   "nextRunTime": "my_nextRunTime",
      *   //   "notificationPubsubTopic": "my_notificationPubsubTopic",
@@ -6367,8 +6383,7 @@ export namespace bigquerydatatransfer_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -6650,8 +6665,7 @@ export namespace bigquerydatatransfer_v1 {
     list(
       params: Params$Resource$Projects$Transferconfigs$Runs$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListTransferRunsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListTransferRunsResponse>,
       callback: BodyResponseCallback<Schema$ListTransferRunsResponse>
     ): void;
     list(
@@ -6842,8 +6856,7 @@ export namespace bigquerydatatransfer_v1 {
     list(
       params: Params$Resource$Projects$Transferconfigs$Runs$Transferlogs$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListTransferLogsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListTransferLogsResponse>,
       callback: BodyResponseCallback<Schema$ListTransferLogsResponse>
     ): void;
     list(

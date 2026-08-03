@@ -37,10 +37,7 @@ export function analyticshub<
 >(
   this: GoogleConfigurable,
   versionOrOptions:
-    | 'v1'
-    | analyticshub_v1.Options
-    | 'v1beta1'
-    | analyticshub_v1beta1.Options
+    'v1' | analyticshub_v1.Options | 'v1beta1' | analyticshub_v1beta1.Options
 ) {
   return getAPI<T>('analyticshub', versionOrOptions, VERSIONS, this);
 }

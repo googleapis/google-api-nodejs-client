@@ -637,8 +637,7 @@ export namespace iam_v2beta {
     createPolicy(
       params: Params$Resource$Policies$Createpolicy,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     createPolicy(
@@ -781,8 +780,7 @@ export namespace iam_v2beta {
     delete(
       params: Params$Resource$Policies$Delete,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -927,8 +925,7 @@ export namespace iam_v2beta {
     get(
       params: Params$Resource$Policies$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleIamV2betaPolicy>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleIamV2betaPolicy>,
       callback: BodyResponseCallback<Schema$GoogleIamV2betaPolicy>
     ): void;
     get(
@@ -1232,8 +1229,7 @@ export namespace iam_v2beta {
     update(
       params: Params$Resource$Policies$Update,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     update(
@@ -1437,8 +1433,7 @@ export namespace iam_v2beta {
     get(
       params: Params$Resource$Policies$Operations$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(

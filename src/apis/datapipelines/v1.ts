@@ -398,7 +398,7 @@ export namespace datapipelines_v1 {
      */
     name?: string | null;
     /**
-     * Immutable. The sources of the pipeline (for example, Dataplex). The keys and values are set by the corresponding sources during pipeline creation.
+     * Immutable. The sources of the pipeline (for example, Knowledge Catalog). The keys and values are set by the corresponding sources during pipeline creation.
      */
     pipelineSources?: {[key: string]: string} | null;
     /**

@@ -2716,8 +2716,7 @@ export namespace language_v1beta2 {
     analyzeEntities(
       params: Params$Resource$Documents$Analyzeentities,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$AnalyzeEntitiesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$AnalyzeEntitiesResponse>,
       callback: BodyResponseCallback<Schema$AnalyzeEntitiesResponse>
     ): void;
     analyzeEntities(
@@ -3020,8 +3019,7 @@ export namespace language_v1beta2 {
     analyzeSentiment(
       params: Params$Resource$Documents$Analyzesentiment,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$AnalyzeSentimentResponse>,
+        MethodOptions | BodyResponseCallback<Schema$AnalyzeSentimentResponse>,
       callback: BodyResponseCallback<Schema$AnalyzeSentimentResponse>
     ): void;
     analyzeSentiment(
@@ -3172,8 +3170,7 @@ export namespace language_v1beta2 {
     analyzeSyntax(
       params: Params$Resource$Documents$Analyzesyntax,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$AnalyzeSyntaxResponse>,
+        MethodOptions | BodyResponseCallback<Schema$AnalyzeSyntaxResponse>,
       callback: BodyResponseCallback<Schema$AnalyzeSyntaxResponse>
     ): void;
     analyzeSyntax(
@@ -3329,8 +3326,7 @@ export namespace language_v1beta2 {
     annotateText(
       params: Params$Resource$Documents$Annotatetext,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$AnnotateTextResponse>,
+        MethodOptions | BodyResponseCallback<Schema$AnnotateTextResponse>,
       callback: BodyResponseCallback<Schema$AnnotateTextResponse>
     ): void;
     annotateText(
@@ -3479,8 +3475,7 @@ export namespace language_v1beta2 {
     classifyText(
       params: Params$Resource$Documents$Classifytext,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ClassifyTextResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ClassifyTextResponse>,
       callback: BodyResponseCallback<Schema$ClassifyTextResponse>
     ): void;
     classifyText(
@@ -3628,8 +3623,7 @@ export namespace language_v1beta2 {
     moderateText(
       params: Params$Resource$Documents$Moderatetext,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ModerateTextResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ModerateTextResponse>,
       callback: BodyResponseCallback<Schema$ModerateTextResponse>
     ): void;
     moderateText(

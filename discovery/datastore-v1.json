@@ -1111,7 +1111,7 @@
       }
     }
   },
-  "revision": "20260323",
+  "revision": "20260702",
   "rootUrl": "https://datastore.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -1220,6 +1220,10 @@
             "$ref": "Key"
           },
           "type": "array"
+        },
+        "requestOptions": {
+          "$ref": "RequestOptions",
+          "description": "Optional. The options for this request."
         }
       },
       "type": "object"
@@ -1271,6 +1275,10 @@
           "description": "The ID of the database against which to make the request. '(default)' is not allowed; please use empty string '' to refer the default database.",
           "type": "string"
         },
+        "requestOptions": {
+          "$ref": "RequestOptions",
+          "description": "Optional. The options for this request."
+        },
         "transactionOptions": {
           "$ref": "TransactionOptions",
           "description": "Options for a new transaction."
@@ -1318,6 +1326,10 @@
             "$ref": "Mutation"
           },
           "type": "array"
+        },
+        "requestOptions": {
+          "$ref": "RequestOptions",
+          "description": "Optional. The options for this request."
         },
         "singleUseTransaction": {
           "$ref": "TransactionOptions",
@@ -2395,6 +2407,10 @@
         "readOptions": {
           "$ref": "ReadOptions",
           "description": "The options for this lookup request."
+        },
+        "requestOptions": {
+          "$ref": "RequestOptions",
+          "description": "Optional. The options for this request."
         }
       },
       "type": "object"
@@ -2931,6 +2947,20 @@
       },
       "type": "object"
     },
+    "RequestOptions": {
+      "description": "Options for a request.",
+      "id": "RequestOptions",
+      "properties": {
+        "requestTags": {
+          "description": "Optional. The request tags for the request. The tags are processed as follows: - Truncated to 510 characters. - Filtered out if empty. - Deduplicated. - Limited to 50 tags.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ReserveIdsRequest": {
       "description": "The request for Datastore.ReserveIds.",
       "id": "ReserveIdsRequest",
@@ -2945,6 +2975,10 @@
             "$ref": "Key"
           },
           "type": "array"
+        },
+        "requestOptions": {
+          "$ref": "RequestOptions",
+          "description": "Optional. The options for this request."
         }
       },
       "type": "object"
@@ -2962,6 +2996,10 @@
         "databaseId": {
           "description": "The ID of the database against which to make the request. '(default)' is not allowed; please use empty string '' to refer the default database.",
           "type": "string"
+        },
+        "requestOptions": {
+          "$ref": "RequestOptions",
+          "description": "Optional. The options for this request."
         },
         "transaction": {
           "description": "Required. The transaction identifier, returned by a call to Datastore.BeginTransaction.",
@@ -3004,6 +3042,10 @@
         "readOptions": {
           "$ref": "ReadOptions",
           "description": "The options for this query."
+        },
+        "requestOptions": {
+          "$ref": "RequestOptions",
+          "description": "Optional. The options for this request."
         }
       },
       "type": "object"
@@ -3063,6 +3105,10 @@
         "readOptions": {
           "$ref": "ReadOptions",
           "description": "The options for this query."
+        },
+        "requestOptions": {
+          "$ref": "RequestOptions",
+          "description": "Optional. The options for this request."
         }
       },
       "type": "object"

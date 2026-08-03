@@ -2325,6 +2325,154 @@
                 }
               }
             },
+            "pscAuthorizationPolicies": {
+              "methods": {
+                "create": {
+                  "description": "Creates a new PscAuthorizationPolicy in a given project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/pscAuthorizationPolicies",
+                  "httpMethod": "POST",
+                  "id": "networkconnectivity.projects.locations.pscAuthorizationPolicies.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The parent resource's name of the PscAuthorizationPolicy.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "pscAuthorizationPolicyId": {
+                      "description": "Required. Resource ID of the PscAuthorizationPolicy.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/pscAuthorizationPolicies",
+                  "request": {
+                    "$ref": "PscAuthorizationPolicy"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a single PscAuthorizationPolicy.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/pscAuthorizationPolicies/{pscAuthorizationPoliciesId}",
+                  "httpMethod": "DELETE",
+                  "id": "networkconnectivity.projects.locations.pscAuthorizationPolicies.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "etag": {
+                      "description": "Optional. The etag of the PscAuthorizationPolicy to delete.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "Required. The name of the PscAuthorizationPolicy to delete.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/pscAuthorizationPolicies/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets details of a single PscAuthorizationPolicy.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/pscAuthorizationPolicies/{pscAuthorizationPoliciesId}",
+                  "httpMethod": "GET",
+                  "id": "networkconnectivity.projects.locations.pscAuthorizationPolicies.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the PscAuthorizationPolicy to get.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/pscAuthorizationPolicies/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "PscAuthorizationPolicy"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists PscAuthorizationPolicies in a given project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/pscAuthorizationPolicies",
+                  "httpMethod": "GET",
+                  "id": "networkconnectivity.projects.locations.pscAuthorizationPolicies.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. Filter expression to restrict the results.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Optional. Sort order of the results.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. The maximum number of PscAuthorizationPolicies to return in a single page. The service may return fewer than this value. If unspecified, at most 50 PscAuthorizationPolicies will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A page token, received from a previous `ListPscAuthorizationPolicies` call.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent resource's name.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/pscAuthorizationPolicies",
+                  "response": {
+                    "$ref": "ListPscAuthorizationPoliciesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
             "regionalEndpoints": {
               "methods": {
                 "create": {
@@ -3898,7 +4046,7 @@
       }
     }
   },
-  "revision": "20260514",
+  "revision": "20260715",
   "rootUrl": "https://networkconnectivity.googleapis.com/",
   "schemas": {
     "AcceptHubSpokeRequest": {
@@ -4183,7 +4331,7 @@
           "type": "string"
         },
         "serviceClass": {
-          "description": "Required. Immutable. The service class identifier which authorizes this AutomatedDnsRecord. Any API calls targeting this AutomatedDnsRecord must have `networkconnectivity.serviceclasses.use` IAM permission for the provided service class.",
+          "description": "Required. Immutable. The service class identifier which authorizes this AutomatedDnsRecord. Any API calls targeting this AutomatedDnsRecord must have `networkconnectivity.serviceClasses.use` IAM permission for the provided service class.",
           "type": "string"
         },
         "state": {
@@ -4934,7 +5082,7 @@
           "type": "object"
         },
         "reason": {
-          "description": "The reason of the error. This is a constant value that identifies the proximate cause of the error. Error reasons are unique within a particular domain of errors. This should be at most 63 characters and match a regular expression of `A-Z+[A-Z0-9]`, which represents UPPER_SNAKE_CASE.",
+          "description": "The reason for the error. This is a constant value that identifies the proximate cause of the error. Error reasons are unique within a particular domain of errors. This should be at most 63 characters and match a regular expression of `A-Z+[A-Z0-9]`, which represents UPPER_SNAKE_CASE.",
           "type": "string"
         }
       },
@@ -5854,6 +6002,31 @@
       },
       "type": "object"
     },
+    "ListPscAuthorizationPoliciesResponse": {
+      "description": "Response for ListPscAuthorizationPolicies.",
+      "id": "ListPscAuthorizationPoliciesResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page.",
+          "type": "string"
+        },
+        "pscAuthorizationPolicies": {
+          "description": "The list of PscAuthorizationPolicies.",
+          "items": {
+            "$ref": "PscAuthorizationPolicy"
+          },
+          "type": "array"
+        },
+        "unreachable": {
+          "description": "Unordered list. Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ListRegionalEndpointsResponse": {
       "description": "Response for ListRegionalEndpoints.",
       "id": "ListRegionalEndpointsResponse",
@@ -6518,6 +6691,72 @@
         },
         "serviceAttachmentUri": {
           "description": "The resource path of a service attachment. Example: projects/{projectNumOrId}/regions/{region}/serviceAttachments/{resourceId}.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PscAuthorizationPolicy": {
+      "description": "Represents a PSC Authorization Policy.",
+      "id": "PscAuthorizationPolicy",
+      "properties": {
+        "authorizationMode": {
+          "description": "Required. The authorization mode.",
+          "enum": [
+            "AUTHORIZATION_MODE_UNSPECIFIED",
+            "AUTHORIZATION_MODE_TRANSITIVE_TO_SERVICE_ATTACHMENT"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "In this mode, authorization is determined by the permissions on the underlying Service Attachment."
+          ],
+          "type": "string"
+        },
+        "authorizedClientResources": {
+          "description": "Required. List of authorized consumer resources allowed to connect. Supported values are: 1. Project resource name (e.g., `projects/{project_id}`) 2. Wildcard `\"*\"` (grants global ingress authorization to the target).",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "createTime": {
+          "description": "Output only. The time when the PscAuthorizationPolicy was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. A description of this resource.",
+          "type": "string"
+        },
+        "etag": {
+          "description": "Output only. The etag of the PscAuthorizationPolicy.",
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. User-defined labels.",
+          "type": "object"
+        },
+        "name": {
+          "description": "Identifier. The name of the PscAuthorizationPolicy. Format: projects/{project}/locations/{location}/pscAuthorizationPolicies/{psc_authorization_policy}",
+          "type": "string"
+        },
+        "targetResourceUri": {
+          "description": "Required. The full absolute URI of the targeted resource governed by this policy. For example, for an AgentRegistry resource, the format is: `//agentregistry.googleapis.com/projects/{project}/locations/{location}`",
+          "type": "string"
+        },
+        "uid": {
+          "description": "Output only. The unique identifier of the PscAuthorizationPolicy.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The time when the PscAuthorizationPolicy was updated.",
+          "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         }
       },

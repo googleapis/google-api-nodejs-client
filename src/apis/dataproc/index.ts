@@ -31,10 +31,7 @@ export function dataproc(
 export function dataproc<T = dataproc_v1.Dataproc | dataproc_v1beta2.Dataproc>(
   this: GoogleConfigurable,
   versionOrOptions:
-    | 'v1'
-    | dataproc_v1.Options
-    | 'v1beta2'
-    | dataproc_v1beta2.Options
+    'v1' | dataproc_v1.Options | 'v1beta2' | dataproc_v1beta2.Options
 ) {
   return getAPI<T>('dataproc', versionOrOptions, VERSIONS, this);
 }

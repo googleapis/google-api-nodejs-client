@@ -790,7 +790,7 @@ export namespace css_v1 {
      */
     quotaMinuteLimit?: string | null;
     /**
-     * Output only. The current quota usage, meaning the number of calls already made on a given day to the methods in the group. The daily quota limits reset at at 12:00 PM midday UTC.
+     * Output only. The current quota usage, meaning the number of calls already made on a given day to the methods in the group. The daily quota limits reset at 12:00 PM midday UTC.
      */
     quotaUsage?: string | null;
   }
@@ -921,8 +921,7 @@ export namespace css_v1 {
         | BodyResponseCallback<Schema$Account>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Account>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Account> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Account>>
@@ -1045,8 +1044,7 @@ export namespace css_v1 {
     listChildAccounts(
       params: Params$Resource$Accounts$Listchildaccounts,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListChildAccountsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListChildAccountsResponse>,
       callback: BodyResponseCallback<Schema$ListChildAccountsResponse>
     ): void;
     listChildAccounts(
@@ -1220,8 +1218,7 @@ export namespace css_v1 {
         | BodyResponseCallback<Schema$Account>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Account>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Account> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Account>>
@@ -1408,8 +1405,7 @@ export namespace css_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -1915,8 +1911,7 @@ export namespace css_v1 {
         | BodyResponseCallback<Schema$CssProduct>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$CssProduct>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$CssProduct> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$CssProduct>>
@@ -2036,8 +2031,7 @@ export namespace css_v1 {
     list(
       params: Params$Resource$Accounts$Cssproducts$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListCssProductsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListCssProductsResponse>,
       callback: BodyResponseCallback<Schema$ListCssProductsResponse>
     ): void;
     list(
@@ -2374,8 +2368,7 @@ export namespace css_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -2495,8 +2488,7 @@ export namespace css_v1 {
     list(
       params: Params$Resource$Accounts$Labels$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListAccountLabelsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListAccountLabelsResponse>,
       callback: BodyResponseCallback<Schema$ListAccountLabelsResponse>
     ): void;
     list(
@@ -2843,8 +2835,7 @@ export namespace css_v1 {
     list(
       params: Params$Resource$Accounts$Quotas$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListQuotaGroupsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListQuotaGroupsResponse>,
       callback: BodyResponseCallback<Schema$ListQuotaGroupsResponse>
     ): void;
     list(

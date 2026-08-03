@@ -131,7 +131,7 @@ export namespace dlp_v2 {
   }
 
   /**
-   * A task to execute on the completion of a job. See https://cloud.google.com/sensitive-data-protection/docs/concepts-actions to learn more.
+   * A task to execute on the completion of a job. See https://docs.cloud.google.com/sensitive-data-protection/docs/concepts-actions to learn more.
    */
   export interface Schema$GooglePrivacyDlpV2Action {
     /**
@@ -139,7 +139,7 @@ export namespace dlp_v2 {
      */
     deidentify?: Schema$GooglePrivacyDlpV2Deidentify;
     /**
-     * Sends an email when the job completes. The email goes to IAM project owners and technical [Essential Contacts](https://cloud.google.com/resource-manager/docs/managing-notification-contacts).
+     * Sends an email when the job completes. The email goes to IAM project owners and technical [Essential Contacts](https://docs.cloud.google.com/resource-manager/docs/managing-notification-contacts).
      */
     jobNotificationEmails?: Schema$GooglePrivacyDlpV2JobNotificationEmails;
     /**
@@ -189,7 +189,7 @@ export namespace dlp_v2 {
      */
     imageContainmentType?: Schema$GooglePrivacyDlpV2ImageContainmentType;
     /**
-     * A list of image-supported infoTypes—excluding [document infoTypes](https://cloud.google.com/sensitive-data-protection/docs/infotypes-reference#documents)—to be used as context for the adjustment rule. Sensitive Data Protection adjusts the likelihood of an image finding if its bounding box has the specified spatial relationship (defined by `image_containment_type`) with a finding of an infoType in this list. For example, you can create a rule to adjust the likelihood of a `US_PASSPORT` finding if it is enclosed by a finding of `OBJECT_TYPE/PERSON/PASSPORT`. To configure this, set `US_PASSPORT` in `InspectionRuleSet.info_types`. Add an `adjustment_rule` with an `adjust_by_image_findings.info_types` that contains `OBJECT_TYPE/PERSON/PASSPORT` and `image_containment_type` set to `encloses`. In this case, the likelihood of the `US_PASSPORT` finding is adjusted, but the likelihood of the `OBJECT_TYPE/PERSON/PASSPORT` finding is not.
+     * A list of image-supported infoTypes—excluding [document infoTypes](https://docs.cloud.google.com/sensitive-data-protection/docs/infotypes-reference#documents)—to be used as context for the adjustment rule. Sensitive Data Protection adjusts the likelihood of an image finding if its bounding box has the specified spatial relationship (defined by `image_containment_type`) with a finding of an infoType in this list. For example, you can create a rule to adjust the likelihood of a `US_PASSPORT` finding if it is enclosed by a finding of `OBJECT_TYPE/PERSON/PASSPORT`. To configure this, set `US_PASSPORT` in `InspectionRuleSet.info_types`. Add an `adjustment_rule` with an `adjust_by_image_findings.info_types` that contains `OBJECT_TYPE/PERSON/PASSPORT` and `image_containment_type` set to `encloses`. In this case, the likelihood of the `US_PASSPORT` finding is adjusted, but the likelihood of the `OBJECT_TYPE/PERSON/PASSPORT` finding is not.
      */
     infoTypes?: Schema$GooglePrivacyDlpV2InfoType[];
     /**
@@ -299,27 +299,27 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2AnalyzeDataSourceRiskDetails {
     /**
-     * Categorical stats result
+     * Output only. Categorical stats result
      */
     categoricalStatsResult?: Schema$GooglePrivacyDlpV2CategoricalStatsResult;
     /**
-     * Delta-presence result
+     * Output only. Delta-presence result
      */
     deltaPresenceEstimationResult?: Schema$GooglePrivacyDlpV2DeltaPresenceEstimationResult;
     /**
-     * K-anonymity result
+     * Output only. K-anonymity result
      */
     kAnonymityResult?: Schema$GooglePrivacyDlpV2KAnonymityResult;
     /**
-     * K-map result
+     * Output only. K-map result
      */
     kMapEstimationResult?: Schema$GooglePrivacyDlpV2KMapEstimationResult;
     /**
-     * L-divesity result
+     * Output only. L-divesity result
      */
     lDiversityResult?: Schema$GooglePrivacyDlpV2LDiversityResult;
     /**
-     * Numerical stats result
+     * Output only. Numerical stats result
      */
     numericalStatsResult?: Schema$GooglePrivacyDlpV2NumericalStatsResult;
     /**
@@ -382,6 +382,24 @@ export namespace dlp_v2 {
      * All AWS assets stored in Asset Inventory that didn't match other AWS discovery configs.
      */
     allAssetInventoryAssets?: boolean | null;
+  }
+  /**
+   * Represents a batch of content to inspect or redact.
+   */
+  export interface Schema$GooglePrivacyDlpV2BatchContentItem {
+    /**
+     * Optional. Represents a batch of string values to inspect or redact.
+     */
+    stringValueBatch?: Schema$GooglePrivacyDlpV2StringValueBatch;
+  }
+  /**
+   * Location within a batch of content.
+   */
+  export interface Schema$GooglePrivacyDlpV2BatchContentLocation {
+    /**
+     * Matches an index of a batch item in the batch provided in the request.
+     */
+    itemIndex?: number | null;
   }
   /**
    * Target used to match against for discovery with BigQuery tables
@@ -451,7 +469,7 @@ export namespace dlp_v2 {
      */
     rowsLimit?: string | null;
     /**
-     * Max percentage of rows to scan. The rest are omitted. The number of rows scanned is rounded down. Must be between 0 and 100, inclusively. Both 0 and 100 means no limit. Defaults to 0. Only one of rows_limit and rows_limit_percent can be specified. Cannot be used in conjunction with TimespanConfig. Caution: A [known issue](https://cloud.google.com/sensitive-data-protection/docs/known-issues#bq-sampling) is causing the `rowsLimitPercent` field to behave unexpectedly. We recommend using `rowsLimit` instead.
+     * Max percentage of rows to scan. The rest are omitted. The number of rows scanned is rounded down. Must be between 0 and 100, inclusively. Both 0 and 100 means no limit. Defaults to 0. Only one of rows_limit and rows_limit_percent can be specified. Cannot be used in conjunction with TimespanConfig. Caution: A [known issue](https://docs.cloud.google.com/sensitive-data-protection/docs/known-issues#bq-sampling) is causing the `rowsLimitPercent` field to behave unexpectedly. We recommend using `rowsLimit` instead.
      */
     rowsLimitPercent?: number | null;
     /**
@@ -563,7 +581,7 @@ export namespace dlp_v2 {
     replacementValue?: Schema$GooglePrivacyDlpV2Value;
   }
   /**
-   * Generalization function that buckets values based on ranges. The ranges and replacement values are dynamically provided by the user for custom behavior, such as 1-30 -\> LOW, 31-65 -\> MEDIUM, 66-100 -\> HIGH. This can be used on data of type: number, long, string, timestamp. If the bound `Value` type differs from the type of data being transformed, we will first attempt converting the type of the data to be transformed to match the type of the bound before comparing. See https://cloud.google.com/sensitive-data-protection/docs/concepts-bucketing to learn more.
+   * Generalization function that buckets values based on ranges. The ranges and replacement values are dynamically provided by the user for custom behavior, such as 1-30 -\> LOW, 31-65 -\> MEDIUM, 66-100 -\> HIGH. This can be used on data of type: number, long, string, timestamp. If the bound `Value` type differs from the type of data being transformed, we will first attempt converting the type of the data to be transformed to match the type of the bound before comparing. See https://docs.cloud.google.com/sensitive-data-protection/docs/concepts-bucketing to learn more.
    */
   export interface Schema$GooglePrivacyDlpV2BucketingConfig {
     /**
@@ -687,7 +705,7 @@ export namespace dlp_v2 {
     generationCadence?: Schema$GooglePrivacyDlpV2DiscoveryCloudSqlGenerationCadence;
   }
   /**
-   * Use IAM authentication to connect. This requires the Cloud SQL IAM feature to be enabled on the instance, which is not the default for Cloud SQL. See https://cloud.google.com/sql/docs/postgres/authentication and https://cloud.google.com/sql/docs/mysql/authentication.
+   * Use IAM authentication to connect. This requires the Cloud SQL IAM feature to be enabled on the instance, which is not the default for Cloud SQL. See https://docs.cloud.google.com/sql/docs/postgres/authentication and https://docs.cloud.google.com/sql/docs/mysql/authentication.
    */
   export interface Schema$GooglePrivacyDlpV2CloudSqlIamCredential {}
   /**
@@ -750,11 +768,11 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2CloudStorageOptions {
     /**
-     * Max number of bytes to scan from a file. If a scanned file's size is bigger than this value then the rest of the bytes are omitted. Only one of `bytes_limit_per_file` and `bytes_limit_per_file_percent` can be specified. This field can't be set if de-identification is requested. For certain file types, setting this field has no effect. For more information, see [Limits on bytes scanned per file](https://cloud.google.com/sensitive-data-protection/docs/supported-file-types#max-byte-size-per-file).
+     * Max number of bytes to scan from a file. If a scanned file's size is bigger than this value then the rest of the bytes are omitted. Only one of `bytes_limit_per_file` and `bytes_limit_per_file_percent` can be specified. This field can't be set if de-identification is requested. For certain file types, setting this field has no effect. For more information, see [Limits on bytes scanned per file](https://docs.cloud.google.com/sensitive-data-protection/docs/supported-file-types#max-byte-size-per-file).
      */
     bytesLimitPerFile?: string | null;
     /**
-     * Max percentage of bytes to scan from a file. The rest are omitted. The number of bytes scanned is rounded down. Must be between 0 and 100, inclusively. Both 0 and 100 means no limit. Defaults to 0. Only one of bytes_limit_per_file and bytes_limit_per_file_percent can be specified. This field can't be set if de-identification is requested. For certain file types, setting this field has no effect. For more information, see [Limits on bytes scanned per file](https://cloud.google.com/sensitive-data-protection/docs/supported-file-types#max-byte-size-per-file).
+     * Max percentage of bytes to scan from a file. The rest are omitted. The number of bytes scanned is rounded down. Must be between 0 and 100, inclusively. Both 0 and 100 means no limit. Defaults to 0. Only one of bytes_limit_per_file and bytes_limit_per_file_percent can be specified. This field can't be set if de-identification is requested. For certain file types, setting this field has no effect. For more information, see [Limits on bytes scanned per file](https://docs.cloud.google.com/sensitive-data-protection/docs/supported-file-types#max-byte-size-per-file).
      */
     bytesLimitPerFilePercent?: number | null;
     /**
@@ -868,7 +886,7 @@ export namespace dlp_v2 {
      */
     datasetId?: string | null;
     /**
-     * If supported, the location where the dataset's data is stored. See https://cloud.google.com/bigquery/docs/locations for supported BigQuery locations.
+     * If supported, the location where the dataset's data is stored. See https://docs.cloud.google.com/bigquery/docs/locations for supported BigQuery locations.
      */
     datasetLocation?: string | null;
     /**
@@ -1013,6 +1031,10 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2ContentItem {
     /**
+     * Represents a batch of items to inspect.
+     */
+    batchContentItem?: Schema$GooglePrivacyDlpV2BatchContentItem;
+    /**
      * Content data to inspect or redact. Replaces `type` and `data`.
      */
     byteItem?: Schema$GooglePrivacyDlpV2ByteContentItem;
@@ -1025,7 +1047,7 @@ export namespace dlp_v2 {
      */
     conversation?: Schema$GooglePrivacyDlpV2Conversation;
     /**
-     * Structured content for inspection. See https://cloud.google.com/sensitive-data-protection/docs/inspecting-text#inspecting_a_table to learn more.
+     * Structured content for inspection. See https://docs.cloud.google.com/sensitive-data-protection/docs/inspecting-text#inspecting_a_table to learn more.
      */
     table?: Schema$GooglePrivacyDlpV2Table;
     /**
@@ -1037,6 +1059,10 @@ export namespace dlp_v2 {
    * Precise location of the finding within a document, record, image, or metadata container.
    */
   export interface Schema$GooglePrivacyDlpV2ContentLocation {
+    /**
+     * Location within a batch of content.
+     */
+    batchContentLocation?: Schema$GooglePrivacyDlpV2BatchContentLocation;
     /**
      * Name of the container where the finding is located. The top level name is the source file name or table name. Names of some common storage containers are formatted as follows: * BigQuery tables: `{project_id\}:{dataset_id\}.{table_id\}` * Cloud Storage files: `gs://{bucket\}/{path\}` * Datastore namespace: {namespace\} Nested names could be absent if the embedded object has no string identifier (for example, an image contained within a document).
      */
@@ -1075,9 +1101,70 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2ContentMetadata {
     /**
+     * Optional. The file labels associated with the content.
+     */
+    fileLabels?: Schema$GooglePrivacyDlpV2FileLabel[];
+    /**
      * User provided key-value pairs of content metadata.
      */
     properties?: Schema$GooglePrivacyDlpV2KeyValueMetadataProperty[];
+  }
+  /**
+   * A policy to apply to content based on its inspection findings.
+   */
+  export interface Schema$GooglePrivacyDlpV2ContentPolicy {
+    /**
+     * Output only. The creation timestamp of a contentPolicy; output-only field.
+     */
+    createTime?: string | null;
+    /**
+     * Action to take if the content is scanned and no rules match. Defaults to returning an ALLOW verdict if not set.
+     */
+    defaultAction?: Schema$GooglePrivacyDlpV2PolicyAction;
+    /**
+     * Optional. Display name (max 63 chars)
+     */
+    displayName?: string | null;
+    /**
+     * Output only. A stream of errors encountered when the policy was applied. Output only field. Will return the last 100 errors. Whenever the policy is modified this list will be cleared.
+     */
+    errors?: Schema$GooglePrivacyDlpV2Error[];
+    /**
+     * Optional. Action to take if the content is a supported file type and size but fails to be scanned, for example because the file is encrypted or corrupted.
+     */
+    failedToScanSupportedFileType?: Schema$GooglePrivacyDlpV2PolicyAction;
+    /**
+     * Optional. Action to take if the content is a supported file type but is too large to be scanned.
+     */
+    inputTooLarge?: Schema$GooglePrivacyDlpV2PolicyAction;
+    /**
+     * Optional. InspectConfig to use to produce findings.
+     */
+    inspectConfig?: Schema$GooglePrivacyDlpV2InspectConfig;
+    /**
+     * Optional. InspectTemplate to use to produce findings. Deprecated: use inspect_config instead.
+     */
+    inspectTemplate?: Schema$GooglePrivacyDlpV2InspectTemplate;
+    /**
+     * Optional. Log the actions taken by the content policy to external systems.
+     */
+    loggingConfigs?: Schema$GooglePrivacyDlpV2LoggingConfig[];
+    /**
+     * Output only. Resource name of the policy.
+     */
+    name?: string | null;
+    /**
+     * Required. Policies to apply, based on the findings returned by inspection. The first rule to match applies.
+     */
+    rules?: Schema$GooglePrivacyDlpV2PolicyRule[];
+    /**
+     * Optional. Action to take if the content is an unsupported file type.
+     */
+    unsupportedFileType?: Schema$GooglePrivacyDlpV2PolicyAction;
+    /**
+     * Output only. The last update timestamp of a contentPolicy; output-only field.
+     */
+    updateTime?: string | null;
   }
   /**
    * Complete conversation or slice of a conversation. It is assumed that all included messages are contiguous and ordered in chronological order.
@@ -1114,7 +1201,7 @@ export namespace dlp_v2 {
      */
     messageType?: string | null;
     /**
-     * Optional. The identifier of the participant. For example 'test-user' or 'gemini'. The participant ID can contain lowercase letters, numbers, and hyphens; that is, it must match the regular expression: `^[a-z]([a-z0-9-]{0,61\}[a-z0-9])?$`. The maximum length is 63 characters.
+     * Optional. The identifier of the participant, for example 'test-user' or 'gemini'. The participant ID can contain lowercase letters, numbers, and hyphens; that is, it must match the regular expression: `^[a-z]([a-z0-9-]{0,61\}[a-z0-9])?$`. The maximum length is 63 characters.
      */
     participantId?: string | null;
   }
@@ -1126,6 +1213,19 @@ export namespace dlp_v2 {
      * Required. The connection resource.
      */
     connection?: Schema$GooglePrivacyDlpV2Connection;
+  }
+  /**
+   * Request message for CreateContentPolicy.
+   */
+  export interface Schema$GooglePrivacyDlpV2CreateContentPolicyRequest {
+    /**
+     * Required. The content_policy resource.
+     */
+    contentPolicy?: Schema$GooglePrivacyDlpV2ContentPolicy;
+    /**
+     * Optional. The content policy ID can contain uppercase and lowercase letters, numbers, and hyphens; that is, it must match the regular expression: `[a-zA-Z\d-_]+`. The maximum length is 100 characters. If empty, the system will generate a random id.
+     */
+    contentPolicyId?: string | null;
   }
   /**
    * Request message for CreateDeidentifyTemplate.
@@ -1247,7 +1347,7 @@ export namespace dlp_v2 {
     surrogateInfoType?: Schema$GooglePrivacyDlpV2InfoType;
   }
   /**
-   * Pseudonymization method that generates surrogates via cryptographic hashing. Uses SHA-256. The key size must be either 32 or 64 bytes. Outputs a base64 encoded representation of the hashed output (for example, L7k0BHmF1ha5U3NfGykjro4xWi1MPVQPjhMAZbSV9mM=). Currently, only string and integer values can be hashed. See https://cloud.google.com/sensitive-data-protection/docs/pseudonymization to learn more.
+   * Pseudonymization method that generates surrogates via cryptographic hashing. Uses SHA-256. The key size must be either 32 or 64 bytes. Outputs a base64 encoded representation of the hashed output (for example, L7k0BHmF1ha5U3NfGykjro4xWi1MPVQPjhMAZbSV9mM=). Currently, only string and integer values can be hashed. See https://docs.cloud.google.com/sensitive-data-protection/docs/pseudonymization to learn more.
    */
   export interface Schema$GooglePrivacyDlpV2CryptoHashConfig {
     /**
@@ -1273,7 +1373,7 @@ export namespace dlp_v2 {
     unwrapped?: Schema$GooglePrivacyDlpV2UnwrappedCryptoKey;
   }
   /**
-   * Replaces an identifier with a surrogate using Format Preserving Encryption (FPE) with the FFX mode of operation; however when used in the `ReidentifyContent` API method, it serves the opposite function by reversing the surrogate back into the original identifier. The identifier must be encoded as ASCII. For a given crypto key and context, the same identifier will be replaced with the same surrogate. Identifiers must be at least two characters long. In the case that the identifier is the empty string, it will be skipped. See https://cloud.google.com/sensitive-data-protection/docs/pseudonymization to learn more. Note: We recommend using CryptoDeterministicConfig for all use cases which do not require preserving the input alphabet space and size, plus warrant referential integrity. FPE incurs significant latency costs.
+   * Replaces an identifier with a surrogate using Format Preserving Encryption (FPE) with the FFX mode of operation; however when used in the `ReidentifyContent` API method, it serves the opposite function by reversing the surrogate back into the original identifier. The identifier must be encoded as ASCII. For a given crypto key and context, the same identifier will be replaced with the same surrogate. Identifiers must be at least two characters long. In the case that the identifier is the empty string, it will be skipped. See https://docs.cloud.google.com/sensitive-data-protection/docs/pseudonymization to learn more. Note: We recommend using CryptoDeterministicConfig for all use cases which do not require preserving the input alphabet space and size, plus warrant referential integrity. FPE incurs significant latency costs.
    */
   export interface Schema$GooglePrivacyDlpV2CryptoReplaceFfxFpeConfig {
     /**
@@ -1297,7 +1397,7 @@ export namespace dlp_v2 {
      */
     radix?: number | null;
     /**
-     * The custom infoType to annotate the surrogate with. This annotation will be applied to the surrogate by prefixing it with the name of the custom infoType followed by the number of characters comprising the surrogate. The following scheme defines the format: info_type_name(surrogate_character_count):surrogate For example, if the name of custom infoType is 'MY_TOKEN_INFO_TYPE' and the surrogate is 'abc', the full replacement value will be: 'MY_TOKEN_INFO_TYPE(3):abc' This annotation identifies the surrogate when inspecting content using the custom infoType [`SurrogateType`](https://cloud.google.com/sensitive-data-protection/docs/reference/rest/v2/InspectConfig#surrogatetype). This facilitates reversal of the surrogate when it occurs in free text. In order for inspection to work properly, the name of this infoType must not occur naturally anywhere in your data; otherwise, inspection may find a surrogate that does not correspond to an actual identifier. Therefore, choose your custom infoType name carefully after considering what your data looks like. One way to select a name that has a high chance of yielding reliable detection is to include one or more unicode characters that are highly improbable to exist in your data. For example, assuming your data is entered from a regular ASCII keyboard, the symbol with the hex code point 29DD might be used like so: ⧝MY_TOKEN_TYPE
+     * The custom infoType to annotate the surrogate with. This annotation will be applied to the surrogate by prefixing it with the name of the custom infoType followed by the number of characters comprising the surrogate. The following scheme defines the format: info_type_name(surrogate_character_count):surrogate For example, if the name of custom infoType is 'MY_TOKEN_INFO_TYPE' and the surrogate is 'abc', the full replacement value will be: 'MY_TOKEN_INFO_TYPE(3):abc' This annotation identifies the surrogate when inspecting content using the custom infoType [`SurrogateType`](https://docs.cloud.google.com/sensitive-data-protection/docs/reference/rest/v2/InspectConfig#surrogatetype). This facilitates reversal of the surrogate when it occurs in free text. In order for inspection to work properly, the name of this infoType must not occur naturally anywhere in your data; otherwise, inspection may find a surrogate that does not correspond to an actual identifier. Therefore, choose your custom infoType name carefully after considering what your data looks like. One way to select a name that has a high chance of yielding reliable detection is to include one or more unicode characters that are highly improbable to exist in your data. For example, assuming your data is entered from a regular ASCII keyboard, the symbol with the hex code point 29DD might be used like so: ⧝MY_TOKEN_TYPE
      */
     surrogateInfoType?: Schema$GooglePrivacyDlpV2InfoType;
   }
@@ -1317,6 +1417,10 @@ export namespace dlp_v2 {
      * If set to EXCLUSION_TYPE_EXCLUDE this infoType will not cause a finding to be returned. It still can be used for rules matching. Only supported for the `dictionary`, `regex`, and `stored_type` CustomInfoTypes.
      */
     exclusionType?: string | null;
+    /**
+     * File label to detect.
+     */
+    fileLabelInfoType?: Schema$GooglePrivacyDlpV2FileLabelInfoType;
     /**
      * CustomInfoType can either be a new infoType, or an extension of built-in infoType, when the name matches one of existing infoTypes and that infoType is specified in `InspectContent.info_types` field. Specifying the latter adds findings to the one detected by the system. If built-in info type is not specified in `InspectContent.info_types` list then the name is treated as a custom info type.
      */
@@ -1415,7 +1519,7 @@ export namespace dlp_v2 {
      */
     exportData?: Schema$GooglePrivacyDlpV2Export;
     /**
-     * Publishes generated data profiles to Google Security Operations. For more information, see [Use Sensitive Data Protection data in context-aware analytics](https://cloud.google.com/chronicle/docs/detection/usecase-dlp-high-risk-user-download).
+     * Publishes generated data profiles to Google Security Operations. For more information, see [Use Sensitive Data Protection data in context-aware analytics](https://docs.cloud.google.com/chronicle/docs/detection/usecase-dlp-high-risk-user-download).
      */
     publishToChronicle?: Schema$GooglePrivacyDlpV2PublishToChronicle;
     /**
@@ -1498,7 +1602,7 @@ export namespace dlp_v2 {
      */
     fullResourceName?: string | null;
     /**
-     * The [type of content](https://cloud.google.com/sensitive-data-protection/docs/infotypes-reference) that might have been found.
+     * The [type of content](https://docs.cloud.google.com/sensitive-data-protection/docs/infotypes-reference) that might have been found.
      */
     infotype?: Schema$GooglePrivacyDlpV2InfoType;
     /**
@@ -1545,7 +1649,7 @@ export namespace dlp_v2 {
     field?: Schema$GooglePrivacyDlpV2FieldId;
   }
   /**
-   * Configuration for setting up a job to scan resources for profile generation. Only one data profile configuration may exist per organization, folder, or project. The generated data profiles are retained according to the [data retention policy] (https://cloud.google.com/sensitive-data-protection/docs/data-profiles#retention).
+   * Configuration for setting up a job to scan resources for profile generation. Only one data profile configuration may exist per organization, folder, or project. The generated data profiles are retained according to the [data retention policy] (https://docs.cloud.google.com/sensitive-data-protection/docs/data-profiles#retention).
    */
   export interface Schema$GooglePrivacyDlpV2DataProfileJobConfig {
     /**
@@ -1553,7 +1657,7 @@ export namespace dlp_v2 {
      */
     dataProfileActions?: Schema$GooglePrivacyDlpV2DataProfileAction[];
     /**
-     * Detection logic for profile generation. Not all template features are used by profiles. FindingLimits, include_quote and exclude_info_types have no impact on data profiling. Multiple templates may be provided if there is data in multiple regions. At most one template must be specified per-region (including "global"). Each region is scanned using the applicable template. If no region-specific template is specified, but a "global" template is specified, it will be copied to that region and used instead. If no global or region-specific template is provided for a region with data, that region's data will not be scanned. For more information, see https://cloud.google.com/sensitive-data-protection/docs/data-profiles#data-residency.
+     * Detection logic for profile generation. Not all template features are used by profiles. FindingLimits, include_quote and exclude_info_types have no impact on data profiling. Multiple templates may be provided if there is data in multiple regions. At most one template must be specified per-region (including "global"). Each region is scanned using the applicable template. If no region-specific template is specified, but a "global" template is specified, it will be copied to that region and used instead. If no global or region-specific template is provided for a region with data, that region's data will not be scanned. For more information, see https://docs.cloud.google.com/sensitive-data-protection/docs/data-profiles#data-residency.
      */
     inspectTemplates?: string[] | null;
     /**
@@ -1649,7 +1753,7 @@ export namespace dlp_v2 {
     partitionId?: Schema$GooglePrivacyDlpV2PartitionId;
   }
   /**
-   * Shifts dates by random number of days, with option to be consistent for the same context. See https://cloud.google.com/sensitive-data-protection/docs/concepts-date-shifting to learn more.
+   * Shifts dates by random number of days, with option to be consistent for the same context. See https://docs.cloud.google.com/sensitive-data-protection/docs/concepts-date-shifting to learn more.
    */
   export interface Schema$GooglePrivacyDlpV2DateShiftConfig {
     /**
@@ -1805,7 +1909,7 @@ export namespace dlp_v2 {
     transformedBytes?: string | null;
   }
   /**
-   * DeidentifyTemplates contains instructions on how to de-identify content. See https://cloud.google.com/sensitive-data-protection/docs/concepts-templates to learn more.
+   * DeidentifyTemplates contains instructions on how to de-identify content. See https://docs.cloud.google.com/sensitive-data-protection/docs/concepts-templates to learn more.
    */
   export interface Schema$GooglePrivacyDlpV2DeidentifyTemplate {
     /**
@@ -1907,7 +2011,7 @@ export namespace dlp_v2 {
     hotwordRule?: Schema$GooglePrivacyDlpV2HotwordRule;
   }
   /**
-   * Custom information type based on a dictionary of words or phrases. This can be used to match sensitive information specific to the data, such as a list of employee IDs or job titles. Dictionary words are case-insensitive and all characters other than letters and digits in the unicode [Basic Multilingual Plane](https://en.wikipedia.org/wiki/Plane_%28Unicode%29#Basic_Multilingual_Plane) will be replaced with whitespace when scanning for matches, so the dictionary phrase "Sam Johnson" will match all three phrases "sam johnson", "Sam, Johnson", and "Sam (Johnson)". Additionally, the characters surrounding any match must be of a different type than the adjacent characters within the word, so letters must be next to non-letters and digits next to non-digits. For example, the dictionary word "jen" will match the first three letters of the text "jen123" but will return no matches for "jennifer". Dictionary words containing a large number of characters that are not letters or digits may result in unexpected findings because such characters are treated as whitespace. The [limits](https://cloud.google.com/sensitive-data-protection/limits) page contains details about the size limits of dictionaries. For dictionaries that do not fit within these constraints, consider using `LargeCustomDictionaryConfig` in the `StoredInfoType` API.
+   * Custom information type based on a dictionary of words or phrases. This can be used to match sensitive information specific to the data, such as a list of employee IDs or job titles. Dictionary words are case-insensitive and all characters other than letters and digits in the unicode [Basic Multilingual Plane](https://en.wikipedia.org/wiki/Plane_%28Unicode%29#Basic_Multilingual_Plane) will be replaced with whitespace when scanning for matches, so the dictionary phrase "Sam Johnson" will match all three phrases "sam johnson", "Sam, Johnson", and "Sam (Johnson)". Additionally, the characters surrounding any match must be of a different type than the adjacent characters within the word, so letters must be next to non-letters and digits next to non-digits. For example, the dictionary word "jen" will match the first three letters of the text "jen123" but will return no matches for "jennifer". Dictionary words containing a large number of characters that are not letters or digits may result in unexpected findings because such characters are treated as whitespace. The [limits](https://docs.cloud.google.com/sensitive-data-protection/limits) page contains details about the size limits of dictionaries. For dictionaries that do not fit within these constraints, consider using `LargeCustomDictionaryConfig` in the `StoredInfoType` API.
    */
   export interface Schema$GooglePrivacyDlpV2Dictionary {
     /**
@@ -2052,7 +2156,7 @@ export namespace dlp_v2 {
     refreshFrequency?: string | null;
   }
   /**
-   * Configuration for discovery to scan resources for profile generation. Only one discovery configuration may exist per organization, folder, or project. The generated data profiles are retained according to the [data retention policy] (https://cloud.google.com/sensitive-data-protection/docs/data-profiles#retention).
+   * Configuration for discovery to scan resources for profile generation. Only one discovery configuration may exist per organization, folder, or project. The generated data profiles are retained according to the [data retention policy] (https://docs.cloud.google.com/sensitive-data-protection/docs/data-profiles#retention).
    */
   export interface Schema$GooglePrivacyDlpV2DiscoveryConfig {
     /**
@@ -2072,7 +2176,7 @@ export namespace dlp_v2 {
      */
     errors?: Schema$GooglePrivacyDlpV2Error[];
     /**
-     * Detection logic for profile generation. Not all template features are used by Discovery. FindingLimits, include_quote and exclude_info_types have no impact on Discovery. Multiple templates may be provided if there is data in multiple regions. At most one template must be specified per-region (including "global"). Each region is scanned using the applicable template. If no region-specific template is specified, but a "global" template is specified, it will be copied to that region and used instead. If no global or region-specific template is provided for a region with data, that region's data will not be scanned. For more information, see https://cloud.google.com/sensitive-data-protection/docs/data-profiles#data-residency.
+     * Detection logic for profile generation. Not all template features are used by Discovery. FindingLimits, include_quote and exclude_info_types have no impact on Discovery. Multiple templates may be provided if there is data in multiple regions. At most one template must be specified per-region (including "global"). Each region is scanned using the applicable template. If no region-specific template is specified, but a "global" template is specified, it will be copied to that region and used instead. If no global or region-specific template is provided for a region with data, that region's data will not be scanned. For more information, see https://docs.cloud.google.com/sensitive-data-protection/docs/data-profiles#data-residency.
      */
     inspectTemplates?: string[] | null;
     /**
@@ -2080,7 +2184,7 @@ export namespace dlp_v2 {
      */
     lastRunTime?: string | null;
     /**
-     * Unique resource name for the DiscoveryConfig, assigned by the service when the DiscoveryConfig is created, for example `projects/dlp-test-project/locations/global/discoveryConfigs/53234423`.
+     * Output only. Unique resource name for the DiscoveryConfig, assigned by the service when the DiscoveryConfig is created, for example `projects/dlp-test-project/locations/global/discoveryConfigs/53234423`.
      */
     name?: string | null;
     /**
@@ -2314,19 +2418,19 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2DlpJob {
     /**
-     * Events that should occur after the job has completed.
+     * Output only. Events that should occur after the job has completed.
      */
     actionDetails?: Schema$GooglePrivacyDlpV2ActionDetails[];
     /**
-     * Time when the job was created.
+     * Output only. Time when the job was created.
      */
     createTime?: string | null;
     /**
-     * Time when the job finished.
+     * Output only. Time when the job finished.
      */
     endTime?: string | null;
     /**
-     * A stream of errors encountered running the job.
+     * Output only. A stream of errors encountered running the job.
      */
     errors?: Schema$GooglePrivacyDlpV2Error[];
     /**
@@ -2334,15 +2438,15 @@ export namespace dlp_v2 {
      */
     inspectDetails?: Schema$GooglePrivacyDlpV2InspectDataSourceDetails;
     /**
-     * If created by a job trigger, the resource name of the trigger that instantiated the job.
+     * Output only. If created by a job trigger, the resource name of the trigger that instantiated the job.
      */
     jobTriggerName?: string | null;
     /**
-     * Time when the job was last modified by the system.
+     * Output only. Time when the job was last modified by the system.
      */
     lastModified?: string | null;
     /**
-     * The server-assigned name.
+     * Output only. The server-assigned name.
      */
     name?: string | null;
     /**
@@ -2350,11 +2454,11 @@ export namespace dlp_v2 {
      */
     riskDetails?: Schema$GooglePrivacyDlpV2AnalyzeDataSourceRiskDetails;
     /**
-     * Time when the job started.
+     * Output only. Time when the job started.
      */
     startTime?: string | null;
     /**
-     * State of a job.
+     * Output only. State of a job.
      */
     state?: string | null;
     /**
@@ -2449,7 +2553,7 @@ export namespace dlp_v2 {
      */
     imageContainmentType?: Schema$GooglePrivacyDlpV2ImageContainmentType;
     /**
-     * A list of image-supported infoTypes—excluding [document infoTypes](https://cloud.google.com/sensitive-data-protection/docs/infotypes-reference#documents)—to be used as context for the exclusion rule. A finding is excluded if its bounding box has the specified spatial relationship (defined by `image_containment_type`) with a finding of an infoType in this list. For example, if `InspectionRuleSet.info_types` includes `OBJECT_TYPE/PERSON` and this `exclusion_rule` specifies `info_types` as `OBJECT_TYPE/PERSON/PASSPORT` with `image_containment_type` set to `encloses`, then `OBJECT_TYPE/PERSON` findings will be excluded if they are fully contained within the bounding box of an `OBJECT_TYPE/PERSON/PASSPORT` finding.
+     * A list of image-supported infoTypes—excluding [document infoTypes](https://docs.cloud.google.com/sensitive-data-protection/docs/infotypes-reference#documents)—to be used as context for the exclusion rule. A finding is excluded if its bounding box has the specified spatial relationship (defined by `image_containment_type`) with a finding of an infoType in this list. For example, if `InspectionRuleSet.info_types` includes `OBJECT_TYPE/PERSON` and this `exclusion_rule` specifies `info_types` as `OBJECT_TYPE/PERSON/PASSPORT` with `image_containment_type` set to `encloses`, then `OBJECT_TYPE/PERSON` findings will be excluded if they are fully contained within the bounding box of an `OBJECT_TYPE/PERSON/PASSPORT` finding.
      */
     infoTypes?: Schema$GooglePrivacyDlpV2InfoType[];
   }
@@ -2496,7 +2600,7 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2Export {
     /**
-     * Store all profiles to BigQuery. * The system will create a new dataset and table for you if none are are provided. The dataset will be named `sensitive_data_protection_discovery` and table will be named `discovery_profiles`. This table will be placed in the same project as the container project running the scan. After the first profile is generated and the dataset and table are created, the discovery scan configuration will be updated with the dataset and table names. * See [Analyze data profiles stored in BigQuery](https://cloud.google.com/sensitive-data-protection/docs/analyze-data-profiles). * See [Sample queries for your BigQuery table](https://cloud.google.com/sensitive-data-protection/docs/analyze-data-profiles#sample_sql_queries). * Data is inserted using [streaming insert](https://cloud.google.com/blog/products/bigquery/life-of-a-bigquery-streaming-insert) and so data may be in the buffer for a period of time after the profile has finished. * The Pub/Sub notification is sent before the streaming buffer is guaranteed to be written, so data may not be instantly visible to queries by the time your topic receives the Pub/Sub notification. * The best practice is to use the same table for an entire organization so that you can take advantage of the [provided Data Studio reports](https://cloud.google.com/sensitive-data-protection/docs/analyze-data-profiles#use_a_premade_report). If you use VPC Service Controls to define security perimeters, then you must use a separate table for each boundary.
+     * Store all profiles to BigQuery. * The system will create a new dataset and table for you if none are are provided. The dataset will be named `sensitive_data_protection_discovery` and table will be named `discovery_profiles`. This table will be placed in the same project as the container project running the scan. After the first profile is generated and the dataset and table are created, the discovery scan configuration will be updated with the dataset and table names. * See [Analyze data profiles stored in BigQuery](https://docs.cloud.google.com/sensitive-data-protection/docs/analyze-data-profiles). * See [Sample queries for your BigQuery table](https://docs.cloud.google.com/sensitive-data-protection/docs/analyze-data-profiles#sample_sql_queries). * Data is inserted using [streaming insert](https://cloud.google.com/blog/products/bigquery/life-of-a-bigquery-streaming-insert) and so data may be in the buffer for a period of time after the profile has finished. * The Pub/Sub notification is sent before the streaming buffer is guaranteed to be written, so data may not be instantly visible to queries by the time your topic receives the Pub/Sub notification. * The best practice is to use the same table for an entire organization so that you can take advantage of the [provided Data Studio reports](https://docs.cloud.google.com/sensitive-data-protection/docs/analyze-data-profiles#use_a_premade_report). If you use VPC Service Controls to define security perimeters, then you must use a separate table for each boundary.
      */
     profileTable?: Schema$GooglePrivacyDlpV2BigQueryTable;
     /**
@@ -2603,6 +2707,32 @@ export namespace dlp_v2 {
     fileExtension?: string | null;
   }
   /**
+   * Represents a file label.
+   */
+  export interface Schema$GooglePrivacyDlpV2FileLabel {
+    /**
+     * Google Drive labels published by Google.
+     */
+    googleDriveLabel?: Schema$GooglePrivacyDlpV2GoogleDriveLabelMetadata;
+    /**
+     * Sensitivity labels published by Microsoft.
+     */
+    sensitivityLabel?: Schema$GooglePrivacyDlpV2SensitivityLabelMetadata;
+  }
+  /**
+   * Configuration for a custom infoType that detects file labels.
+   */
+  export interface Schema$GooglePrivacyDlpV2FileLabelInfoType {
+    /**
+     * Google Drive labels published by Google.
+     */
+    googleDriveLabel?: Schema$GooglePrivacyDlpV2GoogleDriveLabel;
+    /**
+     * Sensitivity labels published by Microsoft.
+     */
+    sensitivityLabel?: Schema$GooglePrivacyDlpV2SensitivityLabel;
+  }
+  /**
    * Set of files to scan.
    */
   export interface Schema$GooglePrivacyDlpV2FileSet {
@@ -2624,7 +2754,7 @@ export namespace dlp_v2 {
      */
     includeRegexes?: Schema$GooglePrivacyDlpV2FileStoreRegexes;
     /**
-     * Optional. To be included in the collection, a resource must meet all of the following requirements: - If tag filters are provided, match all provided tag filters. - If one or more patterns are specified, match at least one pattern. For a resource to match the tag filters, the resource must have all of the provided tags attached. Tags refer to Resource Manager tags bound to the resource or its ancestors. For more information, see [Manage schedules](https://cloud.google.com/sensitive-data-protection/docs/profile-project-cloud-storage#manage-schedules).
+     * Optional. To be included in the collection, a resource must meet all of the following requirements: - If tag filters are provided, match all provided tag filters. - If one or more patterns are specified, match at least one pattern. For a resource to match the tag filters, the resource must have all of the provided tags attached. Tags refer to Resource Manager tags bound to the resource or its ancestors. For more information, see [Manage schedules](https://docs.cloud.google.com/sensitive-data-protection/docs/profile-project-cloud-storage#manage-schedules).
      */
     includeTags?: Schema$GooglePrivacyDlpV2TagFilters;
   }
@@ -2669,7 +2799,7 @@ export namespace dlp_v2 {
      */
     fileStoreIsEmpty?: boolean | null;
     /**
-     * The location of the file store. * Cloud Storage: https://cloud.google.com/storage/docs/locations#available-locations * Amazon S3: https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints
+     * The location of the file store. * Cloud Storage: https://docs.cloud.google.com/storage/docs/locations#available-locations * Amazon S3: https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints
      */
     fileStoreLocation?: string | null;
     /**
@@ -2847,7 +2977,7 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2FinishDlpJobRequest {}
   /**
-   * Buckets values based on fixed size ranges. The Bucketing transformation can provide all of this functionality, but requires more configuration. This message is provided as a convenience to the user for simple bucketing strategies. The transformed value will be a hyphenated string of {lower_bound\}-{upper_bound\}. For example, if lower_bound = 10 and upper_bound = 20, all values that are within this bucket will be replaced with "10-20". This can be used on data of type: double, long. If the bound Value type differs from the type of data being transformed, we will first attempt converting the type of the data to be transformed to match the type of the bound before comparing. See https://cloud.google.com/sensitive-data-protection/docs/concepts-bucketing to learn more.
+   * Buckets values based on fixed size ranges. The Bucketing transformation can provide all of this functionality, but requires more configuration. This message is provided as a convenience to the user for simple bucketing strategies. The transformed value will be a hyphenated string of {lower_bound\}-{upper_bound\}. For example, if lower_bound = 10 and upper_bound = 20, all values that are within this bucket will be replaced with "10-20". This can be used on data of type: double, long. If the bound Value type differs from the type of data being transformed, we will first attempt converting the type of the data to be transformed to match the type of the bound before comparing. See https://docs.cloud.google.com/sensitive-data-protection/docs/concepts-bucketing to learn more.
    */
   export interface Schema$GooglePrivacyDlpV2FixedSizeBucketingConfig {
     /**
@@ -2872,6 +3002,32 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2GlobalProcessing {}
   /**
+   * Google Drive labels published by Google.
+   */
+  export interface Schema$GooglePrivacyDlpV2GoogleDriveLabel {
+    /**
+     * The field values of the Google Drive label to match.
+     */
+    labelFieldsToMatch?: Schema$GooglePrivacyDlpV2LabelField[];
+    /**
+     * The [label ID](https://developers.google.com/workspace/drive/labels/guides/overview) of the Google Drive label.
+     */
+    labelId?: string | null;
+  }
+  /**
+   * Google Drive labels published by Google.
+   */
+  export interface Schema$GooglePrivacyDlpV2GoogleDriveLabelMetadata {
+    /**
+     * The field values of the Google Drive label
+     */
+    labelFields?: Schema$GooglePrivacyDlpV2LabelFieldMetadata[];
+    /**
+     * The [label ID](https://developers.google.com/workspace/drive/labels/guides/overview) of the Google Drive label.
+     */
+    labelId?: string | null;
+  }
+  /**
    * The rule that adjusts the likelihood of findings within a certain proximity of hotwords.
    */
   export interface Schema$GooglePrivacyDlpV2HotwordRule {
@@ -2884,7 +3040,7 @@ export namespace dlp_v2 {
      */
     likelihoodAdjustment?: Schema$GooglePrivacyDlpV2LikelihoodAdjustment;
     /**
-     * Range of characters within which the entire hotword must reside. The total length of the window cannot exceed 1000 characters. The finding itself will be included in the window, so that hotwords can be used to match substrings of the finding itself. Suppose you want Cloud DLP to promote the likelihood of the phone number regex "\(\d{3\}\) \d{3\}-\d{4\}" if the area code is known to be the area code of a company's office. In this case, use the hotword regex "\(xxx\)", where "xxx" is the area code in question. For tabular data, if you want to modify the likelihood of an entire column of findngs, see [Hotword example: Set the match likelihood of a table column] (https://cloud.google.com/sensitive-data-protection/docs/creating-custom-infotypes-likelihood#match-column-values).
+     * Range of characters within which the entire hotword must reside. The total length of the window cannot exceed 1000 characters. The finding itself will be included in the window, so that hotwords can be used to match substrings of the finding itself. Suppose you want Cloud DLP to promote the likelihood of the phone number regex "\(\d{3\}\) \d{3\}-\d{4\}" if the area code is known to be the area code of a company's office. In this case, use the hotword regex "\(xxx\)", where "xxx" is the area code in question. For tabular data, if you want to modify the likelihood of an entire column of findngs, see [Hotword example: Set the match likelihood of a table column] (https://docs.cloud.google.com/sensitive-data-protection/docs/creating-custom-infotypes-likelihood#match-column-values).
      */
     proximity?: Schema$GooglePrivacyDlpV2Proximity;
   }
@@ -3077,7 +3233,7 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2InfoType {
     /**
-     * Name of the information type. Either a name of your choosing when creating a CustomInfoType, or one of the names listed at https://cloud.google.com/sensitive-data-protection/docs/infotypes-reference when specifying a built-in type. When sending Cloud DLP results to Data Catalog, infoType names should conform to the pattern `[A-Za-z0-9$_-]{1,64\}`.
+     * Name of the information type. Either a name of your choosing when creating a CustomInfoType, or one of the names listed at https://docs.cloud.google.com/sensitive-data-protection/docs/infotypes-reference when specifying a built-in type. When sending Cloud DLP results to Data Catalog, infoType names should conform to the pattern `[A-Za-z0-9$_-]{1,64\}`.
      */
     name?: string | null;
     /**
@@ -3105,6 +3261,23 @@ export namespace dlp_v2 {
      * The class of identifiers where this infoType belongs
      */
     typeCategory?: string | null;
+  }
+  /**
+   * A info type based condition.
+   */
+  export interface Schema$GooglePrivacyDlpV2InfoTypeCondition {
+    /**
+     * match any info types.
+     */
+    anyInfoType?: Schema$GoogleProtobufEmpty;
+    /**
+     * match any of these info types.
+     */
+    infoTypes?: Schema$GooglePrivacyDlpV2InfoTypes;
+    /**
+     * Optional. The minimum total number of findings of all matching info types required for this condition to evaluate to true. Defaults to 1 if unset.
+     */
+    minCount?: string | null;
   }
   /**
    * InfoType description.
@@ -3182,6 +3355,15 @@ export namespace dlp_v2 {
     maxFindings?: number | null;
   }
   /**
+   * Info types to match.
+   */
+  export interface Schema$GooglePrivacyDlpV2InfoTypes {
+    /**
+     * Required. A list of info types to match.
+     */
+    infoTypeNames?: string[] | null;
+  }
+  /**
    * Statistics regarding a specific InfoType.
    */
   export interface Schema$GooglePrivacyDlpV2InfoTypeStats {
@@ -3238,7 +3420,7 @@ export namespace dlp_v2 {
      */
     contentOptions?: string[] | null;
     /**
-     * CustomInfoTypes provided by the user. See https://cloud.google.com/sensitive-data-protection/docs/creating-custom-infotypes to learn more.
+     * CustomInfoTypes provided by the user. See https://docs.cloud.google.com/sensitive-data-protection/docs/creating-custom-infotypes to learn more.
      */
     customInfoTypes?: Schema$GooglePrivacyDlpV2CustomInfoType[];
     /**
@@ -3250,7 +3432,7 @@ export namespace dlp_v2 {
      */
     includeQuote?: boolean | null;
     /**
-     * Restricts what info_types to look for. The values must correspond to InfoType values returned by ListInfoTypes or listed at https://cloud.google.com/sensitive-data-protection/docs/infotypes-reference. When no InfoTypes or CustomInfoTypes are specified in a request, the system may automatically choose a default list of detectors to run, which may change over time. If you need precise control and predictability as to what detectors are run you should specify specific InfoTypes listed in the reference, otherwise a default list will be used, which may change over time.
+     * Restricts what info_types to look for. The values must correspond to InfoType values returned by ListInfoTypes or listed at https://docs.cloud.google.com/sensitive-data-protection/docs/infotypes-reference. When no InfoTypes or CustomInfoTypes are specified in a request, the system may automatically choose a default list of detectors to run, which may change over time. If you need precise control and predictability as to what detectors are run you should specify specific InfoTypes listed in the reference, otherwise a default list will be used, which may change over time.
      */
     infoTypes?: Schema$GooglePrivacyDlpV2InfoType[];
     /**
@@ -3258,7 +3440,7 @@ export namespace dlp_v2 {
      */
     limits?: Schema$GooglePrivacyDlpV2FindingLimits;
     /**
-     * Only returns findings equal to or above this threshold. The default is POSSIBLE. In general, the highest likelihood setting yields the fewest findings in results and the lowest chance of a false positive. For more information, see [Match likelihood](https://cloud.google.com/sensitive-data-protection/docs/likelihood).
+     * Only returns findings equal to or above this threshold. The default is POSSIBLE. In general, the highest likelihood setting yields the fewest findings in results and the lowest chance of a false positive. For more information, see [Match likelihood](https://docs.cloud.google.com/sensitive-data-protection/docs/likelihood).
      */
     minLikelihood?: string | null;
     /**
@@ -3309,7 +3491,7 @@ export namespace dlp_v2 {
      */
     requestedOptions?: Schema$GooglePrivacyDlpV2RequestedOptions;
     /**
-     * A summary of the outcome of this inspection job.
+     * Output only. A summary of the outcome of this inspection job.
      */
     result?: Schema$GooglePrivacyDlpV2Result;
   }
@@ -3378,7 +3560,7 @@ export namespace dlp_v2 {
     findingsTruncated?: boolean | null;
   }
   /**
-   * The inspectTemplate contains a configuration (set of types of sensitive data to be detected) to be used anywhere you otherwise would normally specify InspectConfig. See https://cloud.google.com/sensitive-data-protection/docs/concepts-templates to learn more.
+   * The inspectTemplate contains a configuration (set of types of sensitive data to be detected) to be used anywhere you otherwise would normally specify InspectConfig. See https://docs.cloud.google.com/sensitive-data-protection/docs/concepts-templates to learn more.
    */
   export interface Schema$GooglePrivacyDlpV2InspectTemplate {
     /**
@@ -3411,11 +3593,11 @@ export namespace dlp_v2 {
     updateTime?: string | null;
   }
   /**
-   * Sends an email when the job completes. The email goes to IAM project owners and technical [Essential Contacts](https://cloud.google.com/resource-manager/docs/managing-notification-contacts).
+   * Sends an email when the job completes. The email goes to IAM project owners and technical [Essential Contacts](https://docs.cloud.google.com/resource-manager/docs/managing-notification-contacts).
    */
   export interface Schema$GooglePrivacyDlpV2JobNotificationEmails {}
   /**
-   * Contains a configuration to make API calls on a repeating basis. See https://cloud.google.com/sensitive-data-protection/docs/concepts-job-triggers to learn more.
+   * Contains a configuration to make API calls on a repeating basis. See https://docs.cloud.google.com/sensitive-data-protection/docs/concepts-job-triggers to learn more.
    */
   export interface Schema$GooglePrivacyDlpV2JobTrigger {
     /**
@@ -3443,7 +3625,7 @@ export namespace dlp_v2 {
      */
     lastRunTime?: string | null;
     /**
-     * Unique resource name for the triggeredJob, assigned by the service when the triggeredJob is created, for example `projects/dlp-test-project/jobTriggers/53234423`.
+     * Output only. Unique resource name for the triggeredJob, assigned by the service when the triggeredJob is created, for example `projects/dlp-test-project/jobTriggers/53234423`.
      */
     name?: string | null;
     /**
@@ -3628,7 +3810,7 @@ export namespace dlp_v2 {
     kMapEstimationHistogram?: Schema$GooglePrivacyDlpV2KMapEstimationHistogramBucket[];
   }
   /**
-   * Include to use an existing data crypto key wrapped by KMS. The wrapped key must be a 128-, 192-, or 256-bit key. Authorization requires the following IAM permissions when sending a request to perform a crypto transformation using a KMS-wrapped crypto key: dlp.kms.encrypt For more information, see [Creating a wrapped key] (https://cloud.google.com/sensitive-data-protection/docs/create-wrapped-key). Note: When you use Cloud KMS for cryptographic operations, [charges apply](https://cloud.google.com/kms/pricing).
+   * Include to use an existing data crypto key wrapped by KMS. The wrapped key must be a 128-, 192-, or 256-bit key. Authorization requires the following IAM permissions when sending a request to perform a crypto transformation using a KMS-wrapped crypto key: dlp.kms.encrypt For more information, see [Creating a wrapped key] (https://docs.cloud.google.com/sensitive-data-protection/docs/create-wrapped-key). Note: When you use Cloud KMS for cryptographic operations, [charges apply](https://cloud.google.com/kms/pricing).
    */
   export interface Schema$GooglePrivacyDlpV2KmsWrappedCryptoKey {
     /**
@@ -3641,7 +3823,33 @@ export namespace dlp_v2 {
     wrappedKey?: string | null;
   }
   /**
-   * Configuration for a custom dictionary created from a data source of any size up to the maximum size defined in the [limits](https://cloud.google.com/sensitive-data-protection/limits) page. The artifacts of dictionary creation are stored in the specified Cloud Storage location. Consider using `CustomInfoType.Dictionary` for smaller dictionaries that satisfy the size requirements.
+   * The field values of the Google Drive label to match.
+   */
+  export interface Schema$GooglePrivacyDlpV2LabelField {
+    /**
+     * The identifier of the Label Field.
+     */
+    id?: string | null;
+    /**
+     * The value of the Label Field to match.
+     */
+    value?: string | null;
+  }
+  /**
+   * The field values of the Google Drive label
+   */
+  export interface Schema$GooglePrivacyDlpV2LabelFieldMetadata {
+    /**
+     * The identifier of the Label Field.
+     */
+    id?: string | null;
+    /**
+     * The value of the Label Field.
+     */
+    value?: Schema$GooglePrivacyDlpV2Value;
+  }
+  /**
+   * Configuration for a custom dictionary created from a data source of any size up to the maximum size defined in the [limits](https://docs.cloud.google.com/sensitive-data-protection/limits) page. The artifacts of dictionary creation are stored in the specified Cloud Storage location. Consider using `CustomInfoType.Dictionary` for smaller dictionaries that satisfy the size requirements.
    */
   export interface Schema$GooglePrivacyDlpV2LargeCustomDictionaryConfig {
     /**
@@ -3772,6 +3980,19 @@ export namespace dlp_v2 {
      * List of connections.
      */
     connections?: Schema$GooglePrivacyDlpV2Connection[];
+    /**
+     * Token to retrieve the next page of results. An empty value means there are no more results.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * Response message for ListContentPolicies.
+   */
+  export interface Schema$GooglePrivacyDlpV2ListContentPoliciesResponse {
+    /**
+     * List of content policies.
+     */
+    contentPolicies?: Schema$GooglePrivacyDlpV2ContentPolicy[];
     /**
      * Token to retrieve the next page of results. An empty value means there are no more results.
      */
@@ -3938,6 +4159,32 @@ export namespace dlp_v2 {
     regionalizationScope?: string | null;
   }
   /**
+   * A single logging configuration.
+   */
+  export interface Schema$GooglePrivacyDlpV2LoggingConfig {
+    /**
+     * Optional. Log the actions taken to a BigQuery table.
+     */
+    logToBigQuery?: Schema$GooglePrivacyDlpV2LogToBigQuery;
+  }
+  /**
+   * Configuration for logging content policy actions to BigQuery.
+   */
+  export interface Schema$GooglePrivacyDlpV2LogToBigQuery {
+    /**
+     * Required. The ID of the dataset containing the BigQuery table to write to.
+     */
+    datasetId?: string | null;
+    /**
+     * Required. The ID of the project containing the BigQuery table to write to.
+     */
+    projectId?: string | null;
+    /**
+     * Required. The ID of the BigQuery table to write to.
+     */
+    tableId?: string | null;
+  }
+  /**
    * Job trigger option for hybrid jobs. Jobs must be manually created and finished.
    */
   export interface Schema$GooglePrivacyDlpV2Manual {}
@@ -4037,7 +4284,7 @@ export namespace dlp_v2 {
     awsLocation?: Schema$GooglePrivacyDlpV2AwsDiscoveryStartingLocation;
   }
   /**
-   * Target used to match against for discovery of resources from other clouds. An [AWS connector in Security Command Center (Enterprise](https://cloud.google.com/security-command-center/docs/connect-scc-to-aws) is required to use this feature.
+   * Target used to match against for discovery of resources from other clouds. An [AWS connector in Security Command Center (Enterprise](https://docs.cloud.google.com/security-command-center/docs/connect-scc-to-aws) is required to use this feature.
    */
   export interface Schema$GooglePrivacyDlpV2OtherCloudDiscoveryTarget {
     /**
@@ -4164,6 +4411,41 @@ export namespace dlp_v2 {
      * The name of the entity. A name matching regex `__.*__` is reserved/read-only. A name must not be more than 1500 bytes when UTF-8 encoded. Cannot be `""`.
      */
     name?: string | null;
+  }
+  /**
+   * A possible action to take when applying a content policy.
+   */
+  export interface Schema$GooglePrivacyDlpV2PolicyAction {
+    /**
+     * Optional. If set, the verdict will be returned to the user.
+     */
+    returnVerdict?: string | null;
+  }
+  /**
+   * A condition that must match for this rule to apply.
+   */
+  export interface Schema$GooglePrivacyDlpV2PolicyCondition {
+    /**
+     * A condition based on info types.
+     */
+    infoTypeCondition?: Schema$GooglePrivacyDlpV2InfoTypeCondition;
+  }
+  /**
+   * A single policy rule. The first rule to match from the list above controls the result.
+   */
+  export interface Schema$GooglePrivacyDlpV2PolicyRule {
+    /**
+     * Required. Action to take if this rule applies.
+     */
+    action?: Schema$GooglePrivacyDlpV2PolicyAction;
+    /**
+     * Optional. Conditions that must match for this rule to apply. All conditions must match (`AND`). For `OR` conditions, use multiple rules.
+     */
+    conditions?: Schema$GooglePrivacyDlpV2PolicyCondition[];
+    /**
+     * If set, the verdict will be returned to the user. Deprecated: Use `action` instead.
+     */
+    returnVerdict?: string | null;
   }
   /**
    * A rule for transforming a value.
@@ -4319,7 +4601,7 @@ export namespace dlp_v2 {
      */
     windowAfter?: number | null;
     /**
-     * Number of characters before the finding to consider. For tabular data, if you want to modify the likelihood of an entire column of findngs, set this to 1. For more information, see [Hotword example: Set the match likelihood of a table column] (https://cloud.google.com/sensitive-data-protection/docs/creating-custom-infotypes-likelihood#match-column-values).
+     * Number of characters before the finding to consider. For tabular data, if you want to modify the likelihood of an entire column of findngs, set this to 1. For more information, see [Hotword example: Set the match likelihood of a table column] (https://docs.cloud.google.com/sensitive-data-protection/docs/creating-custom-infotypes-likelihood#match-column-values).
      */
     windowBefore?: number | null;
   }
@@ -4328,7 +4610,7 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2PublishFindingsToCloudDataCatalog {}
   /**
-   * Publish findings of a DlpJob to Dataplex Universal Catalog as a `sensitive-data-protection-job-result` aspect. For more information, see [Send inspection results to Dataplex Universal Catalog as aspects](https://cloud.google.com/sensitive-data-protection/docs/add-aspects-inspection-job). Aspects are stored in Dataplex Universal Catalog storage and are governed by service-specific policies for Dataplex Universal Catalog. For more information, see [Service Specific Terms](https://cloud.google.com/terms/service-terms). Only a single instance of this action can be specified. This action is allowed only if all resources being scanned are BigQuery tables. Compatible with: Inspect
+   * Publish findings of a DlpJob to Dataplex Universal Catalog as a `sensitive-data-protection-job-result` aspect. For more information, see [Send inspection results to Dataplex Universal Catalog as aspects](https://docs.cloud.google.com/sensitive-data-protection/docs/add-aspects-inspection-job). Aspects are stored in Dataplex Universal Catalog storage and are governed by service-specific policies for Dataplex Universal Catalog. For more information, see [Service Specific Terms](https://cloud.google.com/terms/service-terms). Only a single instance of this action can be specified. This action is allowed only if all resources being scanned are BigQuery tables. Compatible with: Inspect
    */
   export interface Schema$GooglePrivacyDlpV2PublishFindingsToDataplexCatalog {}
   /**
@@ -4340,7 +4622,7 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2PublishToChronicle {}
   /**
-   * Create Dataplex Universal Catalog aspects for profiled resources with the aspect type Sensitive Data Protection Profile. To learn more about aspects, see https://cloud.google.com/sensitive-data-protection/docs/add-aspects.
+   * Create Dataplex Universal Catalog aspects for profiled resources with the aspect type Sensitive Data Protection Profile. To learn more about aspects, see https://docs.cloud.google.com/sensitive-data-protection/docs/add-aspects.
    */
   export interface Schema$GooglePrivacyDlpV2PublishToDataplexCatalog {
     /**
@@ -4349,7 +4631,7 @@ export namespace dlp_v2 {
     lowerDataRiskToLow?: boolean | null;
   }
   /**
-   * Publish a message into a given Pub/Sub topic when DlpJob has completed. The message contains a single field, `DlpJobName`, which is equal to the finished job's [`DlpJob.name`](https://cloud.google.com/sensitive-data-protection/docs/reference/rest/v2/projects.dlpJobs#DlpJob). Compatible with: Inspect, Risk
+   * Publish a message into a given Pub/Sub topic when DlpJob has completed. The message contains a single field, `DlpJobName`, which is equal to the finished job's [`DlpJob.name`](https://docs.cloud.google.com/sensitive-data-protection/docs/reference/rest/v2/projects.dlpJobs#DlpJob). Compatible with: Inspect, Risk
    */
   export interface Schema$GooglePrivacyDlpV2PublishToPubSub {
     /**
@@ -4686,7 +4968,7 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2ReplaceDictionaryConfig {
     /**
-     * A list of words to select from for random replacement. The [limits](https://cloud.google.com/sensitive-data-protection/limits) page contains details about the size limits of dictionaries.
+     * A list of words to select from for random replacement. The [limits](https://docs.cloud.google.com/sensitive-data-protection/limits) page contains details about the size limits of dictionaries.
      */
     wordList?: Schema$GooglePrivacyDlpV2WordList;
   }
@@ -4729,7 +5011,7 @@ export namespace dlp_v2 {
      */
     jobConfig?: Schema$GooglePrivacyDlpV2InspectJobConfig;
     /**
-     * If run with an InspectTemplate, a snapshot of its state at the time of this run.
+     * Output only. If run with an InspectTemplate, a snapshot of its state at the time of this run.
      */
     snapshotInspectTemplate?: Schema$GooglePrivacyDlpV2InspectTemplate;
   }
@@ -4768,7 +5050,7 @@ export namespace dlp_v2 {
     totalEstimatedBytes?: string | null;
   }
   /**
-   * Configuration for a risk analysis job. See https://cloud.google.com/sensitive-data-protection/docs/concepts-risk-analysis to learn more.
+   * Configuration for a risk analysis job. See https://docs.cloud.google.com/sensitive-data-protection/docs/concepts-risk-analysis to learn more.
    */
   export interface Schema$GooglePrivacyDlpV2RiskAnalysisJobConfig {
     /**
@@ -4860,7 +5142,7 @@ export namespace dlp_v2 {
     username?: string | null;
   }
   /**
-   * Discovery target for credentials and secrets in cloud resource metadata. This target does not include any filtering or frequency controls. Cloud DLP will scan cloud resource metadata for secrets daily. No inspect template should be included in the discovery config for a security benchmarks scan. Instead, the built-in list of secrets and credentials infoTypes will be used (see https://cloud.google.com/sensitive-data-protection/docs/infotypes-reference#credentials_and_secrets). Credentials and secrets discovered will be reported as vulnerabilities to Security Command Center.
+   * Discovery target for credentials and secrets in cloud resource metadata. This target does not include any filtering or frequency controls. Cloud DLP will scan cloud resource metadata for secrets daily. No inspect template should be included in the discovery config for a security benchmarks scan. Instead, the built-in list of secrets and credentials infoTypes will be used (see https://docs.cloud.google.com/sensitive-data-protection/docs/infotypes-reference#credentials_and_secrets). Credentials and secrets discovered will be reported as vulnerabilities to Security Command Center.
    */
   export interface Schema$GooglePrivacyDlpV2SecretsDiscoveryTarget {}
   /**
@@ -4871,6 +5153,24 @@ export namespace dlp_v2 {
      * Required. InfoTypes to apply the transformation to. Required. Provided InfoType must be unique within the ImageTransformations message.
      */
     infoTypes?: Schema$GooglePrivacyDlpV2InfoType[];
+  }
+  /**
+   * Sensitivity labels published by Microsoft.
+   */
+  export interface Schema$GooglePrivacyDlpV2SensitivityLabel {
+    /**
+     * The GUID of the sensitivity label.
+     */
+    guid?: string | null;
+  }
+  /**
+   * Sensitivity labels published by Microsoft.
+   */
+  export interface Schema$GooglePrivacyDlpV2SensitivityLabelMetadata {
+    /**
+     * Required. The GUID of the sensitivity label.
+     */
+    guid?: string | null;
   }
   /**
    * Score is calculated from of all elements in the data profile. A higher level means the data is more sensitive.
@@ -4941,7 +5241,7 @@ export namespace dlp_v2 {
      */
     currentVersion?: Schema$GooglePrivacyDlpV2StoredInfoTypeVersion;
     /**
-     * Resource name.
+     * Output only. Resource name.
      */
     name?: string | null;
     /**
@@ -4950,7 +5250,7 @@ export namespace dlp_v2 {
     pendingVersions?: Schema$GooglePrivacyDlpV2StoredInfoTypeVersion[];
   }
   /**
-   * Configuration for stored infoTypes. All fields and subfield are provided by the user. For more information, see https://cloud.google.com/sensitive-data-protection/docs/creating-custom-infotypes.
+   * Configuration for stored infoTypes. All fields and subfield are provided by the user. For more information, see https://docs.cloud.google.com/sensitive-data-protection/docs/creating-custom-infotypes.
    */
   export interface Schema$GooglePrivacyDlpV2StoredInfoTypeConfig {
     /**
@@ -4992,19 +5292,19 @@ export namespace dlp_v2 {
      */
     config?: Schema$GooglePrivacyDlpV2StoredInfoTypeConfig;
     /**
-     * Create timestamp of the version. Read-only, determined by the system when the version is created.
+     * Output only. Create timestamp of the version. Read-only, determined by the system when the version is created.
      */
     createTime?: string | null;
     /**
-     * Errors that occurred when creating this storedInfoType version, or anomalies detected in the storedInfoType data that render it unusable. Only the five most recent errors will be displayed, with the most recent error appearing first. For example, some of the data for stored custom dictionaries is put in the user's Cloud Storage bucket, and if this data is modified or deleted by the user or another system, the dictionary becomes invalid. If any errors occur, fix the problem indicated by the error message and use the UpdateStoredInfoType API method to create another version of the storedInfoType to continue using it, reusing the same `config` if it was not the source of the error.
+     * Output only. Errors that occurred when creating this storedInfoType version, or anomalies detected in the storedInfoType data that render it unusable. Only the five most recent errors will be displayed, with the most recent error appearing first. For example, some of the data for stored custom dictionaries is put in the user's Cloud Storage bucket, and if this data is modified or deleted by the user or another system, the dictionary becomes invalid. If any errors occur, fix the problem indicated by the error message and use the UpdateStoredInfoType API method to create another version of the storedInfoType to continue using it, reusing the same `config` if it was not the source of the error.
      */
     errors?: Schema$GooglePrivacyDlpV2Error[];
     /**
-     * Stored info type version state. Read-only, updated by the system during dictionary creation.
+     * Output only. Stored info type version state. Read-only, updated by the system during dictionary creation.
      */
     state?: string | null;
     /**
-     * Statistics about this storedInfoType version.
+     * Output only. Statistics about this storedInfoType version.
      */
     stats?: Schema$GooglePrivacyDlpV2StoredInfoTypeStats;
   }
@@ -5020,6 +5320,15 @@ export namespace dlp_v2 {
      * Resource name of the requested `StoredInfoType`, for example `organizations/433245324/storedInfoTypes/432452342` or `projects/project-id/storedInfoTypes/432452342`.
      */
     name?: string | null;
+  }
+  /**
+   * Represents a batch of string values to inspect or redact.
+   */
+  export interface Schema$GooglePrivacyDlpV2StringValueBatch {
+    /**
+     * Optional. Represents string data to inspect or redact.
+     */
+    values?: string[] | null;
   }
   /**
    * A collection that informs the user the number of times a particular `TransformationResultCode` and error details occurred.
@@ -5039,11 +5348,11 @@ export namespace dlp_v2 {
     details?: string | null;
   }
   /**
-   * Message for detecting output from deidentification transformations such as [`CryptoReplaceFfxFpeConfig`](https://cloud.google.com/sensitive-data-protection/docs/reference/rest/v2/organizations.deidentifyTemplates#cryptoreplaceffxfpeconfig). These types of transformations are those that perform pseudonymization, thereby producing a "surrogate" as output. This should be used in conjunction with a field on the transformation such as `surrogate_info_type`. This CustomInfoType does not support the use of `detection_rules`.
+   * Message for detecting output from deidentification transformations such as [`CryptoReplaceFfxFpeConfig`](https://docs.cloud.google.com/sensitive-data-protection/docs/reference/rest/v2/organizations.deidentifyTemplates#cryptoreplaceffxfpeconfig). These types of transformations are those that perform pseudonymization, thereby producing a "surrogate" as output. This should be used in conjunction with a field on the transformation such as `surrogate_info_type`. This CustomInfoType does not support the use of `detection_rules`.
    */
   export interface Schema$GooglePrivacyDlpV2SurrogateType {}
   /**
-   * Structured content to inspect. Up to 50,000 `Value`s per request allowed. See https://cloud.google.com/sensitive-data-protection/docs/inspecting-structured-text#inspecting_a_table to learn more.
+   * Structured content to inspect. Up to 50,000 `Value`s per request allowed. See https://docs.cloud.google.com/sensitive-data-protection/docs/inspecting-structured-text#inspecting_a_table to learn more.
    */
   export interface Schema$GooglePrivacyDlpV2Table {
     /**
@@ -5076,7 +5385,7 @@ export namespace dlp_v2 {
      */
     datasetId?: string | null;
     /**
-     * If supported, the location where the dataset's data is stored. See https://cloud.google.com/bigquery/docs/locations for supported locations.
+     * If supported, the location where the dataset's data is stored. See https://docs.cloud.google.com/bigquery/docs/locations for supported locations.
      */
     datasetLocation?: string | null;
     /**
@@ -5289,11 +5598,11 @@ export namespace dlp_v2 {
     infoType?: Schema$GooglePrivacyDlpV2InfoType;
   }
   /**
-   * If set, attaches the [tags] (https://cloud.google.com/resource-manager/docs/tags/tags-overview) provided to profiled resources. Tags support [access control](https://cloud.google.com/iam/docs/tags-access-control). You can conditionally grant or deny access to a resource based on whether the resource has a specific tag.
+   * If set, attaches the [tags] (https://docs.cloud.google.com/resource-manager/docs/tags/tags-overview) provided to profiled resources. Tags support [access control](https://docs.cloud.google.com/iam/docs/tags-access-control). You can conditionally grant or deny access to a resource based on whether the resource has a specific tag.
    */
   export interface Schema$GooglePrivacyDlpV2TagResources {
     /**
-     * Whether applying a tag to a resource should lower the risk of the profile for that resource. For example, in conjunction with an [IAM deny policy](https://cloud.google.com/iam/docs/deny-overview), you can deny all principals a permission if a tag value is present, mitigating the risk of the resource. This also lowers the data risk of resources at the lower levels of the resource hierarchy. For example, reducing the data risk of a table data profile also reduces the data risk of the constituent column data profiles.
+     * Whether applying a tag to a resource should lower the risk of the profile for that resource. For example, in conjunction with an [IAM deny policy](https://docs.cloud.google.com/iam/docs/deny-overview), you can deny all principals a permission if a tag value is present, mitigating the risk of the resource. This also lowers the data risk of resources at the lower levels of the resource hierarchy. For example, reducing the data risk of a table data profile also reduces the data risk of the constituent column data profiles.
      */
     lowerDataRiskToLow?: boolean | null;
     /**
@@ -5332,7 +5641,7 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2TimespanConfig {
     /**
-     * When the job is started by a JobTrigger we will automatically figure out a valid start_time to avoid scanning files that have not been modified since the last time the JobTrigger executed. This will be based on the time of the execution of the last run of the JobTrigger or the timespan end_time used in the last run of the JobTrigger. **For BigQuery** Inspect jobs triggered by automatic population will scan data that is at least three hours old when the job starts. This is because streaming buffer rows are not read during inspection and reading up to the current timestamp will result in skipped rows. See the [known issue](https://cloud.google.com/sensitive-data-protection/docs/known-issues#recently-streamed-data) related to this operation.
+     * When the job is started by a JobTrigger we will automatically figure out a valid start_time to avoid scanning files that have not been modified since the last time the JobTrigger executed. This will be based on the time of the execution of the last run of the JobTrigger or the timespan end_time used in the last run of the JobTrigger. **For BigQuery** Inspect jobs triggered by automatic population will scan data that is at least three hours old when the job starts. This is because streaming buffer rows are not read during inspection and reading up to the current timestamp will result in skipped rows. See the [known issue](https://docs.cloud.google.com/sensitive-data-protection/docs/known-issues#recently-streamed-data) related to this operation.
      */
     enableAutoPopulationOfTimespanConfig?: boolean | null;
     /**
@@ -5344,7 +5653,7 @@ export namespace dlp_v2 {
      */
     startTime?: string | null;
     /**
-     * Specification of the field containing the timestamp of scanned items. Used for data sources like Datastore and BigQuery. **For BigQuery** If this value is not specified and the table was modified between the given start and end times, the entire table will be scanned. If this value is specified, then rows are filtered based on the given start and end times. Rows with a `NULL` value in the provided BigQuery column are skipped. Valid data types of the provided BigQuery column are: `INTEGER`, `DATE`, `TIMESTAMP`, and `DATETIME`. If your BigQuery table is [partitioned at ingestion time](https://cloud.google.com/bigquery/docs/partitioned-tables#ingestion_time), you can use any of the following pseudo-columns as your timestamp field. When used with Cloud DLP, these pseudo-column names are case sensitive. - `_PARTITIONTIME` - `_PARTITIONDATE` - `_PARTITION_LOAD_TIME` **For Datastore** If this value is specified, then entities are filtered based on the given start and end times. If an entity does not contain the provided timestamp property or contains empty or invalid values, then it is included. Valid data types of the provided timestamp property are: `TIMESTAMP`. See the [known issue](https://cloud.google.com/sensitive-data-protection/docs/known-issues#bq-timespan) related to this operation.
+     * Specification of the field containing the timestamp of scanned items. Used for data sources like Datastore and BigQuery. **For BigQuery** If this value is not specified and the table was modified between the given start and end times, the entire table will be scanned. If this value is specified, then rows are filtered based on the given start and end times. Rows with a `NULL` value in the provided BigQuery column are skipped. Valid data types of the provided BigQuery column are: `INTEGER`, `DATE`, `TIMESTAMP`, and `DATETIME`. If your BigQuery table is [partitioned at ingestion time](https://docs.cloud.google.com/bigquery/docs/partitioned-tables#ingestion_time), you can use any of the following pseudo-columns as your timestamp field. When used with Cloud DLP, these pseudo-column names are case sensitive. - `_PARTITIONTIME` - `_PARTITIONDATE` - `_PARTITION_LOAD_TIME` **For Datastore** If this value is specified, then entities are filtered based on the given start and end times. If an entity does not contain the provided timestamp property or contains empty or invalid values, then it is included. Valid data types of the provided timestamp property are: `TIMESTAMP`. See the [known issue](https://docs.cloud.google.com/sensitive-data-protection/docs/known-issues#bq-timespan) related to this operation.
      */
     timestampField?: Schema$GooglePrivacyDlpV2FieldId;
   }
@@ -5561,6 +5870,19 @@ export namespace dlp_v2 {
      * Required. The connection with new values for the relevant fields.
      */
     connection?: Schema$GooglePrivacyDlpV2Connection;
+    /**
+     * Optional. Mask to control which fields get updated.
+     */
+    updateMask?: string | null;
+  }
+  /**
+   * Request message for UpdateContentPolicy.
+   */
+  export interface Schema$GooglePrivacyDlpV2UpdateContentPolicyRequest {
+    /**
+     * Required. The content_policy with new values for the relevant fields.
+     */
+    contentPolicy?: Schema$GooglePrivacyDlpV2ContentPolicy;
     /**
      * Optional. Mask to control which fields get updated.
      */
@@ -5856,7 +6178,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Returns a list of the sensitive information types that the DLP API supports. See https://cloud.google.com/sensitive-data-protection/docs/infotypes-reference to learn more.
+     * Returns a list of the sensitive information types that the DLP API supports. See https://docs.cloud.google.com/sensitive-data-protection/docs/infotypes-reference to learn more.
      * @example
      * ```js
      * // Before running the sample:
@@ -6040,7 +6362,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Returns a list of the sensitive information types that the DLP API supports. See https://cloud.google.com/sensitive-data-protection/docs/infotypes-reference to learn more.
+     * Returns a list of the sensitive information types that the DLP API supports. See https://docs.cloud.google.com/sensitive-data-protection/docs/infotypes-reference to learn more.
      * @example
      * ```js
      * // Before running the sample:
@@ -6240,7 +6562,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Creates a DeidentifyTemplate for reusing frequently used configuration for de-identifying content, images, and storage. See https://cloud.google.com/sensitive-data-protection/docs/creating-templates-deid to learn more.
+     * Creates a DeidentifyTemplate for reusing frequently used configuration for de-identifying content, images, and storage. See https://docs.cloud.google.com/sensitive-data-protection/docs/creating-templates-deid to learn more.
      * @example
      * ```js
      * // Before running the sample:
@@ -6270,7 +6592,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.organizations.deidentifyTemplates.create({
-     *     // Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` + Organizations scope, location specified: `organizations/{org_id\}/locations/{location_id\}` + Organizations scope, no location specified (defaults to global): `organizations/{org_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     *     // Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` + Organizations scope, location specified: `organizations/{org_id\}/locations/{location_id\}` + Organizations scope, no location specified (defaults to global): `organizations/{org_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      *     parent: 'organizations/my-organization',
      *
      *     // Request body metadata
@@ -6402,7 +6724,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Deletes a DeidentifyTemplate. See https://cloud.google.com/sensitive-data-protection/docs/creating-templates-deid to learn more.
+     * Deletes a DeidentifyTemplate. See https://docs.cloud.google.com/sensitive-data-protection/docs/creating-templates-deid to learn more.
      * @example
      * ```js
      * // Before running the sample:
@@ -6534,7 +6856,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Gets a DeidentifyTemplate. See https://cloud.google.com/sensitive-data-protection/docs/creating-templates-deid to learn more.
+     * Gets a DeidentifyTemplate. See https://docs.cloud.google.com/sensitive-data-protection/docs/creating-templates-deid to learn more.
      * @example
      * ```js
      * // Before running the sample:
@@ -6683,7 +7005,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Lists DeidentifyTemplates. See https://cloud.google.com/sensitive-data-protection/docs/creating-templates-deid to learn more.
+     * Lists DeidentifyTemplates. See https://docs.cloud.google.com/sensitive-data-protection/docs/creating-templates-deid to learn more.
      * @example
      * ```js
      * // Before running the sample:
@@ -6721,7 +7043,7 @@ export namespace dlp_v2 {
      *     pageSize: 'placeholder-value',
      *     // Page token to continue retrieval. Comes from the previous call to `ListDeidentifyTemplates`.
      *     pageToken: 'placeholder-value',
-     *     // Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` + Organizations scope, location specified: `organizations/{org_id\}/locations/{location_id\}` + Organizations scope, no location specified (defaults to global): `organizations/{org_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     *     // Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` + Organizations scope, location specified: `organizations/{org_id\}/locations/{location_id\}` + Organizations scope, no location specified (defaults to global): `organizations/{org_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      *     parent: 'organizations/my-organization',
      *   });
      *   console.log(res.data);
@@ -6839,7 +7161,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Updates the DeidentifyTemplate. See https://cloud.google.com/sensitive-data-protection/docs/creating-templates-deid to learn more.
+     * Updates the DeidentifyTemplate. See https://docs.cloud.google.com/sensitive-data-protection/docs/creating-templates-deid to learn more.
      * @example
      * ```js
      * // Before running the sample:
@@ -6999,7 +7321,7 @@ export namespace dlp_v2 {
 
   export interface Params$Resource$Organizations$Deidentifytemplates$Create extends StandardParameters {
     /**
-     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` + Organizations scope, location specified: `organizations/{org_id\}/locations/{location_id\}` + Organizations scope, no location specified (defaults to global): `organizations/{org_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` + Organizations scope, location specified: `organizations/{org_id\}/locations/{location_id\}` + Organizations scope, no location specified (defaults to global): `organizations/{org_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
     parent?: string;
 
@@ -7038,7 +7360,7 @@ export namespace dlp_v2 {
      */
     pageToken?: string;
     /**
-     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` + Organizations scope, location specified: `organizations/{org_id\}/locations/{location_id\}` + Organizations scope, no location specified (defaults to global): `organizations/{org_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` + Organizations scope, location specified: `organizations/{org_id\}/locations/{location_id\}` + Organizations scope, no location specified (defaults to global): `organizations/{org_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
     parent?: string;
   }
@@ -7061,7 +7383,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Creates an InspectTemplate for reusing frequently used configuration for inspecting content, images, and storage. See https://cloud.google.com/sensitive-data-protection/docs/creating-templates to learn more.
+     * Creates an InspectTemplate for reusing frequently used configuration for inspecting content, images, and storage. See https://docs.cloud.google.com/sensitive-data-protection/docs/creating-templates to learn more.
      * @example
      * ```js
      * // Before running the sample:
@@ -7091,7 +7413,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.organizations.inspectTemplates.create({
-     *     // Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` + Organizations scope, location specified: `organizations/{org_id\}/locations/{location_id\}` + Organizations scope, no location specified (defaults to global): `organizations/{org_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     *     // Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` + Organizations scope, location specified: `organizations/{org_id\}/locations/{location_id\}` + Organizations scope, no location specified (defaults to global): `organizations/{org_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      *     parent: 'organizations/my-organization',
      *
      *     // Request body metadata
@@ -7224,7 +7546,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Deletes an InspectTemplate. See https://cloud.google.com/sensitive-data-protection/docs/creating-templates to learn more.
+     * Deletes an InspectTemplate. See https://docs.cloud.google.com/sensitive-data-protection/docs/creating-templates to learn more.
      * @example
      * ```js
      * // Before running the sample:
@@ -7356,7 +7678,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Gets an InspectTemplate. See https://cloud.google.com/sensitive-data-protection/docs/creating-templates to learn more.
+     * Gets an InspectTemplate. See https://docs.cloud.google.com/sensitive-data-protection/docs/creating-templates to learn more.
      * @example
      * ```js
      * // Before running the sample:
@@ -7506,7 +7828,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Lists InspectTemplates. See https://cloud.google.com/sensitive-data-protection/docs/creating-templates to learn more.
+     * Lists InspectTemplates. See https://docs.cloud.google.com/sensitive-data-protection/docs/creating-templates to learn more.
      * @example
      * ```js
      * // Before running the sample:
@@ -7544,7 +7866,7 @@ export namespace dlp_v2 {
      *     pageSize: 'placeholder-value',
      *     // Page token to continue retrieval. Comes from the previous call to `ListInspectTemplates`.
      *     pageToken: 'placeholder-value',
-     *     // Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` + Organizations scope, location specified: `organizations/{org_id\}/locations/{location_id\}` + Organizations scope, no location specified (defaults to global): `organizations/{org_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     *     // Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` + Organizations scope, location specified: `organizations/{org_id\}/locations/{location_id\}` + Organizations scope, no location specified (defaults to global): `organizations/{org_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      *     parent: 'organizations/my-organization',
      *   });
      *   console.log(res.data);
@@ -7662,7 +7984,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Updates the InspectTemplate. See https://cloud.google.com/sensitive-data-protection/docs/creating-templates to learn more.
+     * Updates the InspectTemplate. See https://docs.cloud.google.com/sensitive-data-protection/docs/creating-templates to learn more.
      * @example
      * ```js
      * // Before running the sample:
@@ -7823,7 +8145,7 @@ export namespace dlp_v2 {
 
   export interface Params$Resource$Organizations$Inspecttemplates$Create extends StandardParameters {
     /**
-     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` + Organizations scope, location specified: `organizations/{org_id\}/locations/{location_id\}` + Organizations scope, no location specified (defaults to global): `organizations/{org_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` + Organizations scope, location specified: `organizations/{org_id\}/locations/{location_id\}` + Organizations scope, no location specified (defaults to global): `organizations/{org_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
     parent?: string;
 
@@ -7862,7 +8184,7 @@ export namespace dlp_v2 {
      */
     pageToken?: string;
     /**
-     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` + Organizations scope, location specified: `organizations/{org_id\}/locations/{location_id\}` + Organizations scope, no location specified (defaults to global): `organizations/{org_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` + Organizations scope, location specified: `organizations/{org_id\}/locations/{location_id\}` + Organizations scope, no location specified (defaults to global): `organizations/{org_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
     parent?: string;
   }
@@ -9260,7 +9582,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Creates a DeidentifyTemplate for reusing frequently used configuration for de-identifying content, images, and storage. See https://cloud.google.com/sensitive-data-protection/docs/creating-templates-deid to learn more.
+     * Creates a DeidentifyTemplate for reusing frequently used configuration for de-identifying content, images, and storage. See https://docs.cloud.google.com/sensitive-data-protection/docs/creating-templates-deid to learn more.
      * @example
      * ```js
      * // Before running the sample:
@@ -9290,7 +9612,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.organizations.locations.deidentifyTemplates.create({
-     *     // Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` + Organizations scope, location specified: `organizations/{org_id\}/locations/{location_id\}` + Organizations scope, no location specified (defaults to global): `organizations/{org_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     *     // Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` + Organizations scope, location specified: `organizations/{org_id\}/locations/{location_id\}` + Organizations scope, no location specified (defaults to global): `organizations/{org_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      *     parent: 'organizations/my-organization/locations/my-location',
      *
      *     // Request body metadata
@@ -9423,7 +9745,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Deletes a DeidentifyTemplate. See https://cloud.google.com/sensitive-data-protection/docs/creating-templates-deid to learn more.
+     * Deletes a DeidentifyTemplate. See https://docs.cloud.google.com/sensitive-data-protection/docs/creating-templates-deid to learn more.
      * @example
      * ```js
      * // Before running the sample:
@@ -9556,7 +9878,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Gets a DeidentifyTemplate. See https://cloud.google.com/sensitive-data-protection/docs/creating-templates-deid to learn more.
+     * Gets a DeidentifyTemplate. See https://docs.cloud.google.com/sensitive-data-protection/docs/creating-templates-deid to learn more.
      * @example
      * ```js
      * // Before running the sample:
@@ -9706,7 +10028,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Lists DeidentifyTemplates. See https://cloud.google.com/sensitive-data-protection/docs/creating-templates-deid to learn more.
+     * Lists DeidentifyTemplates. See https://docs.cloud.google.com/sensitive-data-protection/docs/creating-templates-deid to learn more.
      * @example
      * ```js
      * // Before running the sample:
@@ -9744,7 +10066,7 @@ export namespace dlp_v2 {
      *     pageSize: 'placeholder-value',
      *     // Page token to continue retrieval. Comes from the previous call to `ListDeidentifyTemplates`.
      *     pageToken: 'placeholder-value',
-     *     // Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` + Organizations scope, location specified: `organizations/{org_id\}/locations/{location_id\}` + Organizations scope, no location specified (defaults to global): `organizations/{org_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     *     // Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` + Organizations scope, location specified: `organizations/{org_id\}/locations/{location_id\}` + Organizations scope, no location specified (defaults to global): `organizations/{org_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      *     parent: 'organizations/my-organization/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -9863,7 +10185,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Updates the DeidentifyTemplate. See https://cloud.google.com/sensitive-data-protection/docs/creating-templates-deid to learn more.
+     * Updates the DeidentifyTemplate. See https://docs.cloud.google.com/sensitive-data-protection/docs/creating-templates-deid to learn more.
      * @example
      * ```js
      * // Before running the sample:
@@ -10024,7 +10346,7 @@ export namespace dlp_v2 {
 
   export interface Params$Resource$Organizations$Locations$Deidentifytemplates$Create extends StandardParameters {
     /**
-     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` + Organizations scope, location specified: `organizations/{org_id\}/locations/{location_id\}` + Organizations scope, no location specified (defaults to global): `organizations/{org_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` + Organizations scope, location specified: `organizations/{org_id\}/locations/{location_id\}` + Organizations scope, no location specified (defaults to global): `organizations/{org_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
     parent?: string;
 
@@ -10063,7 +10385,7 @@ export namespace dlp_v2 {
      */
     pageToken?: string;
     /**
-     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` + Organizations scope, location specified: `organizations/{org_id\}/locations/{location_id\}` + Organizations scope, no location specified (defaults to global): `organizations/{org_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` + Organizations scope, location specified: `organizations/{org_id\}/locations/{location_id\}` + Organizations scope, no location specified (defaults to global): `organizations/{org_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
     parent?: string;
   }
@@ -10926,7 +11248,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Lists DlpJobs that match the specified filter in the request. See https://cloud.google.com/sensitive-data-protection/docs/inspecting-storage and https://cloud.google.com/sensitive-data-protection/docs/compute-risk-analysis to learn more.
+     * Lists DlpJobs that match the specified filter in the request. See https://docs.cloud.google.com/sensitive-data-protection/docs/inspecting-storage and https://docs.cloud.google.com/sensitive-data-protection/docs/compute-risk-analysis to learn more.
      * @example
      * ```js
      * // Before running the sample:
@@ -10966,7 +11288,7 @@ export namespace dlp_v2 {
      *     pageSize: 'placeholder-value',
      *     // The standard list page token.
      *     pageToken: 'placeholder-value',
-     *     // Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     *     // Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      *     parent: 'organizations/my-organization/locations/my-location',
      *     // The type of job. Defaults to `DlpJobType.INSPECT`
      *     type: 'placeholder-value',
@@ -11108,7 +11430,7 @@ export namespace dlp_v2 {
      */
     pageToken?: string;
     /**
-     * Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     * Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
     parent?: string;
     /**
@@ -11627,7 +11949,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Returns a list of the sensitive information types that the DLP API supports. See https://cloud.google.com/sensitive-data-protection/docs/infotypes-reference to learn more.
+     * Returns a list of the sensitive information types that the DLP API supports. See https://docs.cloud.google.com/sensitive-data-protection/docs/infotypes-reference to learn more.
      * @example
      * ```js
      * // Before running the sample:
@@ -11806,7 +12128,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Creates an InspectTemplate for reusing frequently used configuration for inspecting content, images, and storage. See https://cloud.google.com/sensitive-data-protection/docs/creating-templates to learn more.
+     * Creates an InspectTemplate for reusing frequently used configuration for inspecting content, images, and storage. See https://docs.cloud.google.com/sensitive-data-protection/docs/creating-templates to learn more.
      * @example
      * ```js
      * // Before running the sample:
@@ -11836,7 +12158,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.organizations.locations.inspectTemplates.create({
-     *     // Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` + Organizations scope, location specified: `organizations/{org_id\}/locations/{location_id\}` + Organizations scope, no location specified (defaults to global): `organizations/{org_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     *     // Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` + Organizations scope, location specified: `organizations/{org_id\}/locations/{location_id\}` + Organizations scope, no location specified (defaults to global): `organizations/{org_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      *     parent: 'organizations/my-organization/locations/my-location',
      *
      *     // Request body metadata
@@ -11970,7 +12292,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Deletes an InspectTemplate. See https://cloud.google.com/sensitive-data-protection/docs/creating-templates to learn more.
+     * Deletes an InspectTemplate. See https://docs.cloud.google.com/sensitive-data-protection/docs/creating-templates to learn more.
      * @example
      * ```js
      * // Before running the sample:
@@ -12103,7 +12425,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Gets an InspectTemplate. See https://cloud.google.com/sensitive-data-protection/docs/creating-templates to learn more.
+     * Gets an InspectTemplate. See https://docs.cloud.google.com/sensitive-data-protection/docs/creating-templates to learn more.
      * @example
      * ```js
      * // Before running the sample:
@@ -12254,7 +12576,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Lists InspectTemplates. See https://cloud.google.com/sensitive-data-protection/docs/creating-templates to learn more.
+     * Lists InspectTemplates. See https://docs.cloud.google.com/sensitive-data-protection/docs/creating-templates to learn more.
      * @example
      * ```js
      * // Before running the sample:
@@ -12292,7 +12614,7 @@ export namespace dlp_v2 {
      *     pageSize: 'placeholder-value',
      *     // Page token to continue retrieval. Comes from the previous call to `ListInspectTemplates`.
      *     pageToken: 'placeholder-value',
-     *     // Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` + Organizations scope, location specified: `organizations/{org_id\}/locations/{location_id\}` + Organizations scope, no location specified (defaults to global): `organizations/{org_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     *     // Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` + Organizations scope, location specified: `organizations/{org_id\}/locations/{location_id\}` + Organizations scope, no location specified (defaults to global): `organizations/{org_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      *     parent: 'organizations/my-organization/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -12411,7 +12733,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Updates the InspectTemplate. See https://cloud.google.com/sensitive-data-protection/docs/creating-templates to learn more.
+     * Updates the InspectTemplate. See https://docs.cloud.google.com/sensitive-data-protection/docs/creating-templates to learn more.
      * @example
      * ```js
      * // Before running the sample:
@@ -12573,7 +12895,7 @@ export namespace dlp_v2 {
 
   export interface Params$Resource$Organizations$Locations$Inspecttemplates$Create extends StandardParameters {
     /**
-     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` + Organizations scope, location specified: `organizations/{org_id\}/locations/{location_id\}` + Organizations scope, no location specified (defaults to global): `organizations/{org_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` + Organizations scope, location specified: `organizations/{org_id\}/locations/{location_id\}` + Organizations scope, no location specified (defaults to global): `organizations/{org_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
     parent?: string;
 
@@ -12612,7 +12934,7 @@ export namespace dlp_v2 {
      */
     pageToken?: string;
     /**
-     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` + Organizations scope, location specified: `organizations/{org_id\}/locations/{location_id\}` + Organizations scope, no location specified (defaults to global): `organizations/{org_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` + Organizations scope, location specified: `organizations/{org_id\}/locations/{location_id\}` + Organizations scope, no location specified (defaults to global): `organizations/{org_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
     parent?: string;
   }
@@ -12635,7 +12957,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Creates a job trigger to run DLP actions such as scanning storage for sensitive information on a set schedule. See https://cloud.google.com/sensitive-data-protection/docs/creating-job-triggers to learn more.
+     * Creates a job trigger to run DLP actions such as scanning storage for sensitive information on a set schedule. See https://docs.cloud.google.com/sensitive-data-protection/docs/creating-job-triggers to learn more.
      * @example
      * ```js
      * // Before running the sample:
@@ -12665,7 +12987,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.organizations.locations.jobTriggers.create({
-     *     // Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     *     // Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      *     parent: 'organizations/my-organization/locations/my-location',
      *
      *     // Request body metadata
@@ -12798,7 +13120,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Deletes a job trigger. See https://cloud.google.com/sensitive-data-protection/docs/creating-job-triggers to learn more.
+     * Deletes a job trigger. See https://docs.cloud.google.com/sensitive-data-protection/docs/creating-job-triggers to learn more.
      * @example
      * ```js
      * // Before running the sample:
@@ -12931,7 +13253,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Gets a job trigger. See https://cloud.google.com/sensitive-data-protection/docs/creating-job-triggers to learn more.
+     * Gets a job trigger. See https://docs.cloud.google.com/sensitive-data-protection/docs/creating-job-triggers to learn more.
      * @example
      * ```js
      * // Before running the sample:
@@ -13080,7 +13402,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Lists job triggers. See https://cloud.google.com/sensitive-data-protection/docs/creating-job-triggers to learn more.
+     * Lists job triggers. See https://docs.cloud.google.com/sensitive-data-protection/docs/creating-job-triggers to learn more.
      * @example
      * ```js
      * // Before running the sample:
@@ -13120,7 +13442,7 @@ export namespace dlp_v2 {
      *     pageSize: 'placeholder-value',
      *     // Page token to continue retrieval. Comes from the previous call to ListJobTriggers. `order_by` field must not change for subsequent calls.
      *     pageToken: 'placeholder-value',
-     *     // Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     *     // Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      *     parent: 'organizations/my-organization/locations/my-location',
      *     // The type of jobs. Will use `DlpJobType.INSPECT` if not set.
      *     type: 'placeholder-value',
@@ -13240,7 +13562,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Updates a job trigger. See https://cloud.google.com/sensitive-data-protection/docs/creating-job-triggers to learn more.
+     * Updates a job trigger. See https://docs.cloud.google.com/sensitive-data-protection/docs/creating-job-triggers to learn more.
      * @example
      * ```js
      * // Before running the sample:
@@ -13401,7 +13723,7 @@ export namespace dlp_v2 {
 
   export interface Params$Resource$Organizations$Locations$Jobtriggers$Create extends StandardParameters {
     /**
-     * Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     * Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
     parent?: string;
 
@@ -13444,7 +13766,7 @@ export namespace dlp_v2 {
      */
     pageToken?: string;
     /**
-     * Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     * Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
     parent?: string;
     /**
@@ -13816,7 +14138,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Creates a pre-built stored infoType to be used for inspection. See https://cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes to learn more.
+     * Creates a pre-built stored infoType to be used for inspection. See https://docs.cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes to learn more.
      * @example
      * ```js
      * // Before running the sample:
@@ -13846,7 +14168,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.organizations.locations.storedInfoTypes.create({
-     *     // Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` + Organizations scope, location specified: `organizations/{org_id\}/locations/{location_id\}` + Organizations scope, no location specified (defaults to global): `organizations/{org_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     *     // Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` + Organizations scope, location specified: `organizations/{org_id\}/locations/{location_id\}` + Organizations scope, no location specified (defaults to global): `organizations/{org_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      *     parent: 'organizations/my-organization/locations/my-location',
      *
      *     // Request body metadata
@@ -13976,7 +14298,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Deletes a stored infoType. See https://cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes to learn more.
+     * Deletes a stored infoType. See https://docs.cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes to learn more.
      * @example
      * ```js
      * // Before running the sample:
@@ -14109,7 +14431,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Gets a stored infoType. See https://cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes to learn more.
+     * Gets a stored infoType. See https://docs.cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes to learn more.
      * @example
      * ```js
      * // Before running the sample:
@@ -14256,7 +14578,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Lists stored infoTypes. See https://cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes to learn more.
+     * Lists stored infoTypes. See https://docs.cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes to learn more.
      * @example
      * ```js
      * // Before running the sample:
@@ -14294,7 +14616,7 @@ export namespace dlp_v2 {
      *     pageSize: 'placeholder-value',
      *     // Page token to continue retrieval. Comes from the previous call to `ListStoredInfoTypes`.
      *     pageToken: 'placeholder-value',
-     *     // Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     *     // Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      *     parent: 'organizations/my-organization/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -14413,7 +14735,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Updates the stored infoType by creating a new version. The existing version will continue to be used until the new version is ready. See https://cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes to learn more.
+     * Updates the stored infoType by creating a new version. The existing version will continue to be used until the new version is ready. See https://docs.cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes to learn more.
      * @example
      * ```js
      * // Before running the sample:
@@ -14571,7 +14893,7 @@ export namespace dlp_v2 {
 
   export interface Params$Resource$Organizations$Locations$Storedinfotypes$Create extends StandardParameters {
     /**
-     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` + Organizations scope, location specified: `organizations/{org_id\}/locations/{location_id\}` + Organizations scope, no location specified (defaults to global): `organizations/{org_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` + Organizations scope, location specified: `organizations/{org_id\}/locations/{location_id\}` + Organizations scope, no location specified (defaults to global): `organizations/{org_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
     parent?: string;
 
@@ -14610,7 +14932,7 @@ export namespace dlp_v2 {
      */
     pageToken?: string;
     /**
-     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
     parent?: string;
   }
@@ -15139,7 +15461,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Creates a pre-built stored infoType to be used for inspection. See https://cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes to learn more.
+     * Creates a pre-built stored infoType to be used for inspection. See https://docs.cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes to learn more.
      * @example
      * ```js
      * // Before running the sample:
@@ -15169,7 +15491,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.organizations.storedInfoTypes.create({
-     *     // Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` + Organizations scope, location specified: `organizations/{org_id\}/locations/{location_id\}` + Organizations scope, no location specified (defaults to global): `organizations/{org_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     *     // Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` + Organizations scope, location specified: `organizations/{org_id\}/locations/{location_id\}` + Organizations scope, no location specified (defaults to global): `organizations/{org_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      *     parent: 'organizations/my-organization',
      *
      *     // Request body metadata
@@ -15298,7 +15620,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Deletes a stored infoType. See https://cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes to learn more.
+     * Deletes a stored infoType. See https://docs.cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes to learn more.
      * @example
      * ```js
      * // Before running the sample:
@@ -15430,7 +15752,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Gets a stored infoType. See https://cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes to learn more.
+     * Gets a stored infoType. See https://docs.cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes to learn more.
      * @example
      * ```js
      * // Before running the sample:
@@ -15576,7 +15898,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Lists stored infoTypes. See https://cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes to learn more.
+     * Lists stored infoTypes. See https://docs.cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes to learn more.
      * @example
      * ```js
      * // Before running the sample:
@@ -15614,7 +15936,7 @@ export namespace dlp_v2 {
      *     pageSize: 'placeholder-value',
      *     // Page token to continue retrieval. Comes from the previous call to `ListStoredInfoTypes`.
      *     pageToken: 'placeholder-value',
-     *     // Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     *     // Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      *     parent: 'organizations/my-organization',
      *   });
      *   console.log(res.data);
@@ -15732,7 +16054,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Updates the stored infoType by creating a new version. The existing version will continue to be used until the new version is ready. See https://cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes to learn more.
+     * Updates the stored infoType by creating a new version. The existing version will continue to be used until the new version is ready. See https://docs.cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes to learn more.
      * @example
      * ```js
      * // Before running the sample:
@@ -15889,7 +16211,7 @@ export namespace dlp_v2 {
 
   export interface Params$Resource$Organizations$Storedinfotypes$Create extends StandardParameters {
     /**
-     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` + Organizations scope, location specified: `organizations/{org_id\}/locations/{location_id\}` + Organizations scope, no location specified (defaults to global): `organizations/{org_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` + Organizations scope, location specified: `organizations/{org_id\}/locations/{location_id\}` + Organizations scope, no location specified (defaults to global): `organizations/{org_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
     parent?: string;
 
@@ -15928,7 +16250,7 @@ export namespace dlp_v2 {
      */
     pageToken?: string;
     /**
-     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
     parent?: string;
   }
@@ -15980,7 +16302,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * De-identifies potentially sensitive info from a ContentItem. This method has limits on input size and output size. See https://cloud.google.com/sensitive-data-protection/docs/deidentify-sensitive-data to learn more. When no InfoTypes or CustomInfoTypes are specified in this request, the system will automatically choose what detectors to run. By default this may be all types, but may change over time as detectors are updated.
+     * De-identifies potentially sensitive info from a ContentItem. This method has limits on input size and output size. See https://docs.cloud.google.com/sensitive-data-protection/docs/deidentify-sensitive-data to learn more. When no InfoTypes or CustomInfoTypes are specified in this request, the system will automatically choose what detectors to run. By default this may be all types, but may change over time as detectors are updated.
      * @example
      * ```js
      * // Before running the sample:
@@ -16010,7 +16332,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.content.deidentify({
-     *     // Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     *     // Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      *     parent: 'projects/my-project',
      *
      *     // Request body metadata
@@ -16141,7 +16463,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Finds potentially sensitive info in content. This method has limits on input size, processing time, and output size. When no InfoTypes or CustomInfoTypes are specified in this request, the system will automatically choose what detectors to run. By default this may be all types, but may change over time as detectors are updated. For how to guides, see https://cloud.google.com/sensitive-data-protection/docs/inspecting-images and https://cloud.google.com/sensitive-data-protection/docs/inspecting-text,
+     * Finds potentially sensitive info in content. This method has limits on input size, processing time, and output size. When no InfoTypes or CustomInfoTypes are specified in this request, the system will automatically choose what detectors to run. By default this may be all types, but may change over time as detectors are updated. For how to guides, see https://docs.cloud.google.com/sensitive-data-protection/docs/inspecting-images and https://docs.cloud.google.com/sensitive-data-protection/docs/inspecting-text,
      * @example
      * ```js
      * // Before running the sample:
@@ -16171,7 +16493,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.content.inspect({
-     *     // Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     *     // Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      *     parent: 'projects/my-project',
      *
      *     // Request body metadata
@@ -16299,7 +16621,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Re-identifies content that has been de-identified. See https://cloud.google.com/sensitive-data-protection/docs/pseudonymization#re-identification_in_free_text_code_example to learn more.
+     * Re-identifies content that has been de-identified. See https://docs.cloud.google.com/sensitive-data-protection/docs/pseudonymization#re-identification_in_free_text_code_example to learn more.
      * @example
      * ```js
      * // Before running the sample:
@@ -16329,7 +16651,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.content.reidentify({
-     *     // Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     *     // Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      *     parent: 'projects/my-project',
      *
      *     // Request body metadata
@@ -16462,7 +16784,7 @@ export namespace dlp_v2 {
 
   export interface Params$Resource$Projects$Content$Deidentify extends StandardParameters {
     /**
-     * Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     * Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
     parent?: string;
 
@@ -16473,7 +16795,7 @@ export namespace dlp_v2 {
   }
   export interface Params$Resource$Projects$Content$Inspect extends StandardParameters {
     /**
-     * Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     * Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
     parent?: string;
 
@@ -16484,7 +16806,7 @@ export namespace dlp_v2 {
   }
   export interface Params$Resource$Projects$Content$Reidentify extends StandardParameters {
     /**
-     * Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     * Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
     parent?: string;
 
@@ -16501,7 +16823,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Creates a DeidentifyTemplate for reusing frequently used configuration for de-identifying content, images, and storage. See https://cloud.google.com/sensitive-data-protection/docs/creating-templates-deid to learn more.
+     * Creates a DeidentifyTemplate for reusing frequently used configuration for de-identifying content, images, and storage. See https://docs.cloud.google.com/sensitive-data-protection/docs/creating-templates-deid to learn more.
      * @example
      * ```js
      * // Before running the sample:
@@ -16531,7 +16853,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.deidentifyTemplates.create({
-     *     // Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` + Organizations scope, location specified: `organizations/{org_id\}/locations/{location_id\}` + Organizations scope, no location specified (defaults to global): `organizations/{org_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     *     // Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` + Organizations scope, location specified: `organizations/{org_id\}/locations/{location_id\}` + Organizations scope, no location specified (defaults to global): `organizations/{org_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      *     parent: 'projects/my-project',
      *
      *     // Request body metadata
@@ -16663,7 +16985,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Deletes a DeidentifyTemplate. See https://cloud.google.com/sensitive-data-protection/docs/creating-templates-deid to learn more.
+     * Deletes a DeidentifyTemplate. See https://docs.cloud.google.com/sensitive-data-protection/docs/creating-templates-deid to learn more.
      * @example
      * ```js
      * // Before running the sample:
@@ -16795,7 +17117,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Gets a DeidentifyTemplate. See https://cloud.google.com/sensitive-data-protection/docs/creating-templates-deid to learn more.
+     * Gets a DeidentifyTemplate. See https://docs.cloud.google.com/sensitive-data-protection/docs/creating-templates-deid to learn more.
      * @example
      * ```js
      * // Before running the sample:
@@ -16944,7 +17266,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Lists DeidentifyTemplates. See https://cloud.google.com/sensitive-data-protection/docs/creating-templates-deid to learn more.
+     * Lists DeidentifyTemplates. See https://docs.cloud.google.com/sensitive-data-protection/docs/creating-templates-deid to learn more.
      * @example
      * ```js
      * // Before running the sample:
@@ -16982,7 +17304,7 @@ export namespace dlp_v2 {
      *     pageSize: 'placeholder-value',
      *     // Page token to continue retrieval. Comes from the previous call to `ListDeidentifyTemplates`.
      *     pageToken: 'placeholder-value',
-     *     // Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` + Organizations scope, location specified: `organizations/{org_id\}/locations/{location_id\}` + Organizations scope, no location specified (defaults to global): `organizations/{org_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     *     // Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` + Organizations scope, location specified: `organizations/{org_id\}/locations/{location_id\}` + Organizations scope, no location specified (defaults to global): `organizations/{org_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      *     parent: 'projects/my-project',
      *   });
      *   console.log(res.data);
@@ -17100,7 +17422,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Updates the DeidentifyTemplate. See https://cloud.google.com/sensitive-data-protection/docs/creating-templates-deid to learn more.
+     * Updates the DeidentifyTemplate. See https://docs.cloud.google.com/sensitive-data-protection/docs/creating-templates-deid to learn more.
      * @example
      * ```js
      * // Before running the sample:
@@ -17260,7 +17582,7 @@ export namespace dlp_v2 {
 
   export interface Params$Resource$Projects$Deidentifytemplates$Create extends StandardParameters {
     /**
-     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` + Organizations scope, location specified: `organizations/{org_id\}/locations/{location_id\}` + Organizations scope, no location specified (defaults to global): `organizations/{org_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` + Organizations scope, location specified: `organizations/{org_id\}/locations/{location_id\}` + Organizations scope, no location specified (defaults to global): `organizations/{org_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
     parent?: string;
 
@@ -17299,7 +17621,7 @@ export namespace dlp_v2 {
      */
     pageToken?: string;
     /**
-     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` + Organizations scope, location specified: `organizations/{org_id\}/locations/{location_id\}` + Organizations scope, no location specified (defaults to global): `organizations/{org_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` + Organizations scope, location specified: `organizations/{org_id\}/locations/{location_id\}` + Organizations scope, no location specified (defaults to global): `organizations/{org_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
     parent?: string;
   }
@@ -17322,7 +17644,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running DlpJob. The server makes a best effort to cancel the DlpJob, but success is not guaranteed. See https://cloud.google.com/sensitive-data-protection/docs/inspecting-storage and https://cloud.google.com/sensitive-data-protection/docs/compute-risk-analysis to learn more.
+     * Starts asynchronous cancellation on a long-running DlpJob. The server makes a best effort to cancel the DlpJob, but success is not guaranteed. See https://docs.cloud.google.com/sensitive-data-protection/docs/inspecting-storage and https://docs.cloud.google.com/sensitive-data-protection/docs/compute-risk-analysis to learn more.
      * @example
      * ```js
      * // Before running the sample:
@@ -17460,7 +17782,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Creates a new job to inspect storage or calculate risk metrics. See https://cloud.google.com/sensitive-data-protection/docs/inspecting-storage and https://cloud.google.com/sensitive-data-protection/docs/compute-risk-analysis to learn more. When no InfoTypes or CustomInfoTypes are specified in inspect jobs, the system will automatically choose what detectors to run. By default this may be all types, but may change over time as detectors are updated.
+     * Creates a new job to inspect storage or calculate risk metrics. See https://docs.cloud.google.com/sensitive-data-protection/docs/inspecting-storage and https://docs.cloud.google.com/sensitive-data-protection/docs/compute-risk-analysis to learn more. When no InfoTypes or CustomInfoTypes are specified in inspect jobs, the system will automatically choose what detectors to run. By default this may be all types, but may change over time as detectors are updated.
      * @example
      * ```js
      * // Before running the sample:
@@ -17490,7 +17812,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.dlpJobs.create({
-     *     // Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     *     // Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      *     parent: 'projects/my-project',
      *
      *     // Request body metadata
@@ -17551,8 +17873,7 @@ export namespace dlp_v2 {
     create(
       params: Params$Resource$Projects$Dlpjobs$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DlpJob>,
+        MethodOptions | BodyResponseCallback<Schema$GooglePrivacyDlpV2DlpJob>,
       callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DlpJob>
     ): void;
     create(
@@ -17623,7 +17944,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Deletes a long-running DlpJob. This method indicates that the client is no longer interested in the DlpJob result. The job will be canceled if possible. See https://cloud.google.com/sensitive-data-protection/docs/inspecting-storage and https://cloud.google.com/sensitive-data-protection/docs/compute-risk-analysis to learn more.
+     * Deletes a long-running DlpJob. This method indicates that the client is no longer interested in the DlpJob result. The job will be canceled if possible. See https://docs.cloud.google.com/sensitive-data-protection/docs/inspecting-storage and https://docs.cloud.google.com/sensitive-data-protection/docs/compute-risk-analysis to learn more.
      * @example
      * ```js
      * // Before running the sample:
@@ -17755,7 +18076,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Gets the latest state of a long-running DlpJob. See https://cloud.google.com/sensitive-data-protection/docs/inspecting-storage and https://cloud.google.com/sensitive-data-protection/docs/compute-risk-analysis to learn more.
+     * Gets the latest state of a long-running DlpJob. See https://docs.cloud.google.com/sensitive-data-protection/docs/inspecting-storage and https://docs.cloud.google.com/sensitive-data-protection/docs/compute-risk-analysis to learn more.
      * @example
      * ```js
      * // Before running the sample:
@@ -17835,8 +18156,7 @@ export namespace dlp_v2 {
     get(
       params: Params$Resource$Projects$Dlpjobs$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DlpJob>,
+        MethodOptions | BodyResponseCallback<Schema$GooglePrivacyDlpV2DlpJob>,
       callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DlpJob>
     ): void;
     get(
@@ -17902,7 +18222,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Lists DlpJobs that match the specified filter in the request. See https://cloud.google.com/sensitive-data-protection/docs/inspecting-storage and https://cloud.google.com/sensitive-data-protection/docs/compute-risk-analysis to learn more.
+     * Lists DlpJobs that match the specified filter in the request. See https://docs.cloud.google.com/sensitive-data-protection/docs/inspecting-storage and https://docs.cloud.google.com/sensitive-data-protection/docs/compute-risk-analysis to learn more.
      * @example
      * ```js
      * // Before running the sample:
@@ -17942,7 +18262,7 @@ export namespace dlp_v2 {
      *     pageSize: 'placeholder-value',
      *     // The standard list page token.
      *     pageToken: 'placeholder-value',
-     *     // Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     *     // Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      *     parent: 'projects/my-project',
      *     // The type of job. Defaults to `DlpJobType.INSPECT`
      *     type: 'placeholder-value',
@@ -18075,7 +18395,7 @@ export namespace dlp_v2 {
   }
   export interface Params$Resource$Projects$Dlpjobs$Create extends StandardParameters {
     /**
-     * Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     * Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
     parent?: string;
 
@@ -18118,7 +18438,7 @@ export namespace dlp_v2 {
      */
     pageToken?: string;
     /**
-     * Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     * Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
     parent?: string;
     /**
@@ -18134,7 +18454,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Redacts potentially sensitive info from an image. This method has limits on input size, processing time, and output size. See https://cloud.google.com/sensitive-data-protection/docs/redacting-sensitive-data-images to learn more. When no InfoTypes or CustomInfoTypes are specified in this request, the system will automatically choose what detectors to run. By default this may be all types, but may change over time as detectors are updated. Only the first frame of each multiframe image is redacted. Metadata and other frames are omitted in the response.
+     * Redacts potentially sensitive info from an image. This method has limits on input size, processing time, and output size. See https://docs.cloud.google.com/sensitive-data-protection/docs/redacting-sensitive-data-images to learn more. When no InfoTypes or CustomInfoTypes are specified in this request, the system will automatically choose what detectors to run. By default this may be all types, but may change over time as detectors are updated. Only the first frame of each multiframe image is redacted. Metadata and other frames are omitted in the response.
      * @example
      * ```js
      * // Before running the sample:
@@ -18164,7 +18484,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.image.redact({
-     *     // Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     *     // Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      *     parent: 'projects/my-project',
      *
      *     // Request body metadata
@@ -18299,7 +18619,7 @@ export namespace dlp_v2 {
 
   export interface Params$Resource$Projects$Image$Redact extends StandardParameters {
     /**
-     * Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     * Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
     parent?: string;
 
@@ -18316,7 +18636,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Creates an InspectTemplate for reusing frequently used configuration for inspecting content, images, and storage. See https://cloud.google.com/sensitive-data-protection/docs/creating-templates to learn more.
+     * Creates an InspectTemplate for reusing frequently used configuration for inspecting content, images, and storage. See https://docs.cloud.google.com/sensitive-data-protection/docs/creating-templates to learn more.
      * @example
      * ```js
      * // Before running the sample:
@@ -18346,7 +18666,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.inspectTemplates.create({
-     *     // Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` + Organizations scope, location specified: `organizations/{org_id\}/locations/{location_id\}` + Organizations scope, no location specified (defaults to global): `organizations/{org_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     *     // Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` + Organizations scope, location specified: `organizations/{org_id\}/locations/{location_id\}` + Organizations scope, no location specified (defaults to global): `organizations/{org_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      *     parent: 'projects/my-project',
      *
      *     // Request body metadata
@@ -18479,7 +18799,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Deletes an InspectTemplate. See https://cloud.google.com/sensitive-data-protection/docs/creating-templates to learn more.
+     * Deletes an InspectTemplate. See https://docs.cloud.google.com/sensitive-data-protection/docs/creating-templates to learn more.
      * @example
      * ```js
      * // Before running the sample:
@@ -18611,7 +18931,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Gets an InspectTemplate. See https://cloud.google.com/sensitive-data-protection/docs/creating-templates to learn more.
+     * Gets an InspectTemplate. See https://docs.cloud.google.com/sensitive-data-protection/docs/creating-templates to learn more.
      * @example
      * ```js
      * // Before running the sample:
@@ -18761,7 +19081,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Lists InspectTemplates. See https://cloud.google.com/sensitive-data-protection/docs/creating-templates to learn more.
+     * Lists InspectTemplates. See https://docs.cloud.google.com/sensitive-data-protection/docs/creating-templates to learn more.
      * @example
      * ```js
      * // Before running the sample:
@@ -18799,7 +19119,7 @@ export namespace dlp_v2 {
      *     pageSize: 'placeholder-value',
      *     // Page token to continue retrieval. Comes from the previous call to `ListInspectTemplates`.
      *     pageToken: 'placeholder-value',
-     *     // Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` + Organizations scope, location specified: `organizations/{org_id\}/locations/{location_id\}` + Organizations scope, no location specified (defaults to global): `organizations/{org_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     *     // Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` + Organizations scope, location specified: `organizations/{org_id\}/locations/{location_id\}` + Organizations scope, no location specified (defaults to global): `organizations/{org_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      *     parent: 'projects/my-project',
      *   });
      *   console.log(res.data);
@@ -18917,7 +19237,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Updates the InspectTemplate. See https://cloud.google.com/sensitive-data-protection/docs/creating-templates to learn more.
+     * Updates the InspectTemplate. See https://docs.cloud.google.com/sensitive-data-protection/docs/creating-templates to learn more.
      * @example
      * ```js
      * // Before running the sample:
@@ -19078,7 +19398,7 @@ export namespace dlp_v2 {
 
   export interface Params$Resource$Projects$Inspecttemplates$Create extends StandardParameters {
     /**
-     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` + Organizations scope, location specified: `organizations/{org_id\}/locations/{location_id\}` + Organizations scope, no location specified (defaults to global): `organizations/{org_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` + Organizations scope, location specified: `organizations/{org_id\}/locations/{location_id\}` + Organizations scope, no location specified (defaults to global): `organizations/{org_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
     parent?: string;
 
@@ -19117,7 +19437,7 @@ export namespace dlp_v2 {
      */
     pageToken?: string;
     /**
-     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` + Organizations scope, location specified: `organizations/{org_id\}/locations/{location_id\}` + Organizations scope, no location specified (defaults to global): `organizations/{org_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` + Organizations scope, location specified: `organizations/{org_id\}/locations/{location_id\}` + Organizations scope, no location specified (defaults to global): `organizations/{org_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
     parent?: string;
   }
@@ -19226,8 +19546,7 @@ export namespace dlp_v2 {
     activate(
       params: Params$Resource$Projects$Jobtriggers$Activate,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DlpJob>,
+        MethodOptions | BodyResponseCallback<Schema$GooglePrivacyDlpV2DlpJob>,
       callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DlpJob>
     ): void;
     activate(
@@ -19298,7 +19617,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Creates a job trigger to run DLP actions such as scanning storage for sensitive information on a set schedule. See https://cloud.google.com/sensitive-data-protection/docs/creating-job-triggers to learn more.
+     * Creates a job trigger to run DLP actions such as scanning storage for sensitive information on a set schedule. See https://docs.cloud.google.com/sensitive-data-protection/docs/creating-job-triggers to learn more.
      * @example
      * ```js
      * // Before running the sample:
@@ -19328,7 +19647,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.jobTriggers.create({
-     *     // Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     *     // Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      *     parent: 'projects/my-project',
      *
      *     // Request body metadata
@@ -19460,7 +19779,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Deletes a job trigger. See https://cloud.google.com/sensitive-data-protection/docs/creating-job-triggers to learn more.
+     * Deletes a job trigger. See https://docs.cloud.google.com/sensitive-data-protection/docs/creating-job-triggers to learn more.
      * @example
      * ```js
      * // Before running the sample:
@@ -19592,7 +19911,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Gets a job trigger. See https://cloud.google.com/sensitive-data-protection/docs/creating-job-triggers to learn more.
+     * Gets a job trigger. See https://docs.cloud.google.com/sensitive-data-protection/docs/creating-job-triggers to learn more.
      * @example
      * ```js
      * // Before running the sample:
@@ -19741,7 +20060,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Lists job triggers. See https://cloud.google.com/sensitive-data-protection/docs/creating-job-triggers to learn more.
+     * Lists job triggers. See https://docs.cloud.google.com/sensitive-data-protection/docs/creating-job-triggers to learn more.
      * @example
      * ```js
      * // Before running the sample:
@@ -19781,7 +20100,7 @@ export namespace dlp_v2 {
      *     pageSize: 'placeholder-value',
      *     // Page token to continue retrieval. Comes from the previous call to ListJobTriggers. `order_by` field must not change for subsequent calls.
      *     pageToken: 'placeholder-value',
-     *     // Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     *     // Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      *     parent: 'projects/my-project',
      *     // The type of jobs. Will use `DlpJobType.INSPECT` if not set.
      *     type: 'placeholder-value',
@@ -19901,7 +20220,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Updates a job trigger. See https://cloud.google.com/sensitive-data-protection/docs/creating-job-triggers to learn more.
+     * Updates a job trigger. See https://docs.cloud.google.com/sensitive-data-protection/docs/creating-job-triggers to learn more.
      * @example
      * ```js
      * // Before running the sample:
@@ -20072,7 +20391,7 @@ export namespace dlp_v2 {
   }
   export interface Params$Resource$Projects$Jobtriggers$Create extends StandardParameters {
     /**
-     * Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     * Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
     parent?: string;
 
@@ -20115,7 +20434,7 @@ export namespace dlp_v2 {
      */
     pageToken?: string;
     /**
-     * Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     * Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
     parent?: string;
     /**
@@ -20140,6 +20459,7 @@ export namespace dlp_v2 {
     columnDataProfiles: Resource$Projects$Locations$Columndataprofiles;
     connections: Resource$Projects$Locations$Connections;
     content: Resource$Projects$Locations$Content;
+    contentPolicies: Resource$Projects$Locations$Contentpolicies;
     deidentifyTemplates: Resource$Projects$Locations$Deidentifytemplates;
     discoveryConfigs: Resource$Projects$Locations$Discoveryconfigs;
     dlpJobs: Resource$Projects$Locations$Dlpjobs;
@@ -20159,6 +20479,9 @@ export namespace dlp_v2 {
         this.context
       );
       this.content = new Resource$Projects$Locations$Content(this.context);
+      this.contentPolicies = new Resource$Projects$Locations$Contentpolicies(
+        this.context
+      );
       this.deidentifyTemplates =
         new Resource$Projects$Locations$Deidentifytemplates(this.context);
       this.discoveryConfigs = new Resource$Projects$Locations$Discoveryconfigs(
@@ -21516,7 +21839,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * De-identifies potentially sensitive info from a ContentItem. This method has limits on input size and output size. See https://cloud.google.com/sensitive-data-protection/docs/deidentify-sensitive-data to learn more. When no InfoTypes or CustomInfoTypes are specified in this request, the system will automatically choose what detectors to run. By default this may be all types, but may change over time as detectors are updated.
+     * De-identifies potentially sensitive info from a ContentItem. This method has limits on input size and output size. See https://docs.cloud.google.com/sensitive-data-protection/docs/deidentify-sensitive-data to learn more. When no InfoTypes or CustomInfoTypes are specified in this request, the system will automatically choose what detectors to run. By default this may be all types, but may change over time as detectors are updated.
      * @example
      * ```js
      * // Before running the sample:
@@ -21546,7 +21869,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.locations.content.deidentify({
-     *     // Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     *     // Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      *     parent: 'projects/my-project/locations/my-location',
      *
      *     // Request body metadata
@@ -21677,7 +22000,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Finds potentially sensitive info in content. This method has limits on input size, processing time, and output size. When no InfoTypes or CustomInfoTypes are specified in this request, the system will automatically choose what detectors to run. By default this may be all types, but may change over time as detectors are updated. For how to guides, see https://cloud.google.com/sensitive-data-protection/docs/inspecting-images and https://cloud.google.com/sensitive-data-protection/docs/inspecting-text,
+     * Finds potentially sensitive info in content. This method has limits on input size, processing time, and output size. When no InfoTypes or CustomInfoTypes are specified in this request, the system will automatically choose what detectors to run. By default this may be all types, but may change over time as detectors are updated. For how to guides, see https://docs.cloud.google.com/sensitive-data-protection/docs/inspecting-images and https://docs.cloud.google.com/sensitive-data-protection/docs/inspecting-text,
      * @example
      * ```js
      * // Before running the sample:
@@ -21707,7 +22030,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.locations.content.inspect({
-     *     // Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     *     // Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      *     parent: 'projects/my-project/locations/my-location',
      *
      *     // Request body metadata
@@ -21835,7 +22158,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Re-identifies content that has been de-identified. See https://cloud.google.com/sensitive-data-protection/docs/pseudonymization#re-identification_in_free_text_code_example to learn more.
+     * Re-identifies content that has been de-identified. See https://docs.cloud.google.com/sensitive-data-protection/docs/pseudonymization#re-identification_in_free_text_code_example to learn more.
      * @example
      * ```js
      * // Before running the sample:
@@ -21865,7 +22188,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.locations.content.reidentify({
-     *     // Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     *     // Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      *     parent: 'projects/my-project/locations/my-location',
      *
      *     // Request body metadata
@@ -21998,7 +22321,7 @@ export namespace dlp_v2 {
 
   export interface Params$Resource$Projects$Locations$Content$Deidentify extends StandardParameters {
     /**
-     * Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     * Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
     parent?: string;
 
@@ -22009,7 +22332,7 @@ export namespace dlp_v2 {
   }
   export interface Params$Resource$Projects$Locations$Content$Inspect extends StandardParameters {
     /**
-     * Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     * Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
     parent?: string;
 
@@ -22020,7 +22343,7 @@ export namespace dlp_v2 {
   }
   export interface Params$Resource$Projects$Locations$Content$Reidentify extends StandardParameters {
     /**
-     * Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     * Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
     parent?: string;
 
@@ -22030,6 +22353,825 @@ export namespace dlp_v2 {
     requestBody?: Schema$GooglePrivacyDlpV2ReidentifyContentRequest;
   }
 
+  export class Resource$Projects$Locations$Contentpolicies {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Create a ContentPolicy.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dlp.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dlp = google.dlp('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dlp.projects.locations.contentPolicies.create({
+     *     // Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization): + Projects scope: `projects/{project_id\}/locations/{location_id\}` + Organizations scope: `organizations/{org_id\}/locations/{location_id\}`
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "contentPolicy": {},
+     *       //   "contentPolicyId": "my_contentPolicyId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "defaultAction": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "errors": [],
+     *   //   "failedToScanSupportedFileType": {},
+     *   //   "inputTooLarge": {},
+     *   //   "inspectConfig": {},
+     *   //   "inspectTemplate": {},
+     *   //   "loggingConfigs": [],
+     *   //   "name": "my_name",
+     *   //   "rules": [],
+     *   //   "unsupportedFileType": {},
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Contentpolicies$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Projects$Locations$Contentpolicies$Create,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2ContentPolicy>>;
+    create(
+      params: Params$Resource$Projects$Locations$Contentpolicies$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Contentpolicies$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ContentPolicy>,
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ContentPolicy>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Contentpolicies$Create,
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ContentPolicy>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ContentPolicy>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Contentpolicies$Create
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ContentPolicy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ContentPolicy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ContentPolicy>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2ContentPolicy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Contentpolicies$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Contentpolicies$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/contentPolicies').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GooglePrivacyDlpV2ContentPolicy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GooglePrivacyDlpV2ContentPolicy>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Delete a ContentPolicy.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dlp.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dlp = google.dlp('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dlp.projects.locations.contentPolicies.delete({
+     *     // Required. Resource name of the ContentPolicy to be deleted, in the format: `projects/{project\}/locations/{location\}/contentPolicies/{content_policy\}`.
+     *     name: 'projects/my-project/locations/my-location/contentPolicies/my-contentPolicie',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Contentpolicies$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Contentpolicies$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
+    delete(
+      params: Params$Resource$Projects$Locations$Contentpolicies$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Contentpolicies$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Contentpolicies$Delete,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Contentpolicies$Delete
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Contentpolicies$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Contentpolicies$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
+    }
+
+    /**
+     * Get a ContentPolicy.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dlp.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dlp = google.dlp('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dlp.projects.locations.contentPolicies.get({
+     *     // Required. Resource name in the format: `projects/{project\}/locations/{location\}/contentPolicies/{content_policy\}`.
+     *     name: 'projects/my-project/locations/my-location/contentPolicies/my-contentPolicie',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "defaultAction": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "errors": [],
+     *   //   "failedToScanSupportedFileType": {},
+     *   //   "inputTooLarge": {},
+     *   //   "inspectConfig": {},
+     *   //   "inspectTemplate": {},
+     *   //   "loggingConfigs": [],
+     *   //   "name": "my_name",
+     *   //   "rules": [],
+     *   //   "unsupportedFileType": {},
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Contentpolicies$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Contentpolicies$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2ContentPolicy>>;
+    get(
+      params: Params$Resource$Projects$Locations$Contentpolicies$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Contentpolicies$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ContentPolicy>,
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ContentPolicy>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Contentpolicies$Get,
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ContentPolicy>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ContentPolicy>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Contentpolicies$Get
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ContentPolicy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ContentPolicy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ContentPolicy>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2ContentPolicy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Contentpolicies$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Contentpolicies$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GooglePrivacyDlpV2ContentPolicy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GooglePrivacyDlpV2ContentPolicy>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists ContentPolicies in a parent.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dlp.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dlp = google.dlp('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dlp.projects.locations.contentPolicies.list({
+     *     // Optional. Number of results per page, max 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. Page token from a previous page to return the next set of results. If set, all other request fields must match the original request.
+     *     pageToken: 'placeholder-value',
+     *     // Required. Resource name of the organization or project, for example, `organizations/433245324/locations/europe` or `projects/project-id/locations/asia`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "contentPolicies": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Contentpolicies$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Contentpolicies$List,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2ListContentPoliciesResponse>
+    >;
+    list(
+      params: Params$Resource$Projects$Locations$Contentpolicies$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Contentpolicies$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListContentPoliciesResponse>,
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListContentPoliciesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Contentpolicies$List,
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListContentPoliciesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListContentPoliciesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Contentpolicies$List
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListContentPoliciesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListContentPoliciesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListContentPoliciesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2ListContentPoliciesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Contentpolicies$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Contentpolicies$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/contentPolicies').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GooglePrivacyDlpV2ListContentPoliciesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GooglePrivacyDlpV2ListContentPoliciesResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Update a ContentPolicy.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dlp.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dlp = google.dlp('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dlp.projects.locations.contentPolicies.patch({
+     *     // Required. Resource name in the format: `projects/{project\}/locations/{location\}/contentPolicies/{content_policy\}`.
+     *     name: 'projects/my-project/locations/my-location/contentPolicies/my-contentPolicie',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "contentPolicy": {},
+     *       //   "updateMask": "my_updateMask"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "defaultAction": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "errors": [],
+     *   //   "failedToScanSupportedFileType": {},
+     *   //   "inputTooLarge": {},
+     *   //   "inspectConfig": {},
+     *   //   "inspectTemplate": {},
+     *   //   "loggingConfigs": [],
+     *   //   "name": "my_name",
+     *   //   "rules": [],
+     *   //   "unsupportedFileType": {},
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Contentpolicies$Patch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Contentpolicies$Patch,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2ContentPolicy>>;
+    patch(
+      params: Params$Resource$Projects$Locations$Contentpolicies$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Contentpolicies$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ContentPolicy>,
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ContentPolicy>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Contentpolicies$Patch,
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ContentPolicy>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ContentPolicy>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Contentpolicies$Patch
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ContentPolicy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ContentPolicy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ContentPolicy>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2ContentPolicy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Contentpolicies$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Contentpolicies$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GooglePrivacyDlpV2ContentPolicy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GooglePrivacyDlpV2ContentPolicy>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Contentpolicies$Create extends StandardParameters {
+    /**
+     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization): + Projects scope: `projects/{project_id\}/locations/{location_id\}` + Organizations scope: `organizations/{org_id\}/locations/{location_id\}`
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GooglePrivacyDlpV2CreateContentPolicyRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Contentpolicies$Delete extends StandardParameters {
+    /**
+     * Required. Resource name of the ContentPolicy to be deleted, in the format: `projects/{project\}/locations/{location\}/contentPolicies/{content_policy\}`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Contentpolicies$Get extends StandardParameters {
+    /**
+     * Required. Resource name in the format: `projects/{project\}/locations/{location\}/contentPolicies/{content_policy\}`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Contentpolicies$List extends StandardParameters {
+    /**
+     * Optional. Number of results per page, max 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. Page token from a previous page to return the next set of results. If set, all other request fields must match the original request.
+     */
+    pageToken?: string;
+    /**
+     * Required. Resource name of the organization or project, for example, `organizations/433245324/locations/europe` or `projects/project-id/locations/asia`.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Contentpolicies$Patch extends StandardParameters {
+    /**
+     * Required. Resource name in the format: `projects/{project\}/locations/{location\}/contentPolicies/{content_policy\}`.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GooglePrivacyDlpV2UpdateContentPolicyRequest;
+  }
+
   export class Resource$Projects$Locations$Deidentifytemplates {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -22037,7 +23179,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Creates a DeidentifyTemplate for reusing frequently used configuration for de-identifying content, images, and storage. See https://cloud.google.com/sensitive-data-protection/docs/creating-templates-deid to learn more.
+     * Creates a DeidentifyTemplate for reusing frequently used configuration for de-identifying content, images, and storage. See https://docs.cloud.google.com/sensitive-data-protection/docs/creating-templates-deid to learn more.
      * @example
      * ```js
      * // Before running the sample:
@@ -22067,7 +23209,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.locations.deidentifyTemplates.create({
-     *     // Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` + Organizations scope, location specified: `organizations/{org_id\}/locations/{location_id\}` + Organizations scope, no location specified (defaults to global): `organizations/{org_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     *     // Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` + Organizations scope, location specified: `organizations/{org_id\}/locations/{location_id\}` + Organizations scope, no location specified (defaults to global): `organizations/{org_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      *     parent: 'projects/my-project/locations/my-location',
      *
      *     // Request body metadata
@@ -22200,7 +23342,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Deletes a DeidentifyTemplate. See https://cloud.google.com/sensitive-data-protection/docs/creating-templates-deid to learn more.
+     * Deletes a DeidentifyTemplate. See https://docs.cloud.google.com/sensitive-data-protection/docs/creating-templates-deid to learn more.
      * @example
      * ```js
      * // Before running the sample:
@@ -22333,7 +23475,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Gets a DeidentifyTemplate. See https://cloud.google.com/sensitive-data-protection/docs/creating-templates-deid to learn more.
+     * Gets a DeidentifyTemplate. See https://docs.cloud.google.com/sensitive-data-protection/docs/creating-templates-deid to learn more.
      * @example
      * ```js
      * // Before running the sample:
@@ -22483,7 +23625,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Lists DeidentifyTemplates. See https://cloud.google.com/sensitive-data-protection/docs/creating-templates-deid to learn more.
+     * Lists DeidentifyTemplates. See https://docs.cloud.google.com/sensitive-data-protection/docs/creating-templates-deid to learn more.
      * @example
      * ```js
      * // Before running the sample:
@@ -22521,7 +23663,7 @@ export namespace dlp_v2 {
      *     pageSize: 'placeholder-value',
      *     // Page token to continue retrieval. Comes from the previous call to `ListDeidentifyTemplates`.
      *     pageToken: 'placeholder-value',
-     *     // Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` + Organizations scope, location specified: `organizations/{org_id\}/locations/{location_id\}` + Organizations scope, no location specified (defaults to global): `organizations/{org_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     *     // Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` + Organizations scope, location specified: `organizations/{org_id\}/locations/{location_id\}` + Organizations scope, no location specified (defaults to global): `organizations/{org_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      *     parent: 'projects/my-project/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -22640,7 +23782,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Updates the DeidentifyTemplate. See https://cloud.google.com/sensitive-data-protection/docs/creating-templates-deid to learn more.
+     * Updates the DeidentifyTemplate. See https://docs.cloud.google.com/sensitive-data-protection/docs/creating-templates-deid to learn more.
      * @example
      * ```js
      * // Before running the sample:
@@ -22801,7 +23943,7 @@ export namespace dlp_v2 {
 
   export interface Params$Resource$Projects$Locations$Deidentifytemplates$Create extends StandardParameters {
     /**
-     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` + Organizations scope, location specified: `organizations/{org_id\}/locations/{location_id\}` + Organizations scope, no location specified (defaults to global): `organizations/{org_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` + Organizations scope, location specified: `organizations/{org_id\}/locations/{location_id\}` + Organizations scope, no location specified (defaults to global): `organizations/{org_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
     parent?: string;
 
@@ -22840,7 +23982,7 @@ export namespace dlp_v2 {
      */
     pageToken?: string;
     /**
-     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` + Organizations scope, location specified: `organizations/{org_id\}/locations/{location_id\}` + Organizations scope, no location specified (defaults to global): `organizations/{org_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` + Organizations scope, location specified: `organizations/{org_id\}/locations/{location_id\}` + Organizations scope, no location specified (defaults to global): `organizations/{org_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
     parent?: string;
   }
@@ -23701,7 +24843,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running DlpJob. The server makes a best effort to cancel the DlpJob, but success is not guaranteed. See https://cloud.google.com/sensitive-data-protection/docs/inspecting-storage and https://cloud.google.com/sensitive-data-protection/docs/compute-risk-analysis to learn more.
+     * Starts asynchronous cancellation on a long-running DlpJob. The server makes a best effort to cancel the DlpJob, but success is not guaranteed. See https://docs.cloud.google.com/sensitive-data-protection/docs/inspecting-storage and https://docs.cloud.google.com/sensitive-data-protection/docs/compute-risk-analysis to learn more.
      * @example
      * ```js
      * // Before running the sample:
@@ -23839,7 +24981,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Creates a new job to inspect storage or calculate risk metrics. See https://cloud.google.com/sensitive-data-protection/docs/inspecting-storage and https://cloud.google.com/sensitive-data-protection/docs/compute-risk-analysis to learn more. When no InfoTypes or CustomInfoTypes are specified in inspect jobs, the system will automatically choose what detectors to run. By default this may be all types, but may change over time as detectors are updated.
+     * Creates a new job to inspect storage or calculate risk metrics. See https://docs.cloud.google.com/sensitive-data-protection/docs/inspecting-storage and https://docs.cloud.google.com/sensitive-data-protection/docs/compute-risk-analysis to learn more. When no InfoTypes or CustomInfoTypes are specified in inspect jobs, the system will automatically choose what detectors to run. By default this may be all types, but may change over time as detectors are updated.
      * @example
      * ```js
      * // Before running the sample:
@@ -23869,7 +25011,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.locations.dlpJobs.create({
-     *     // Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     *     // Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      *     parent: 'projects/my-project/locations/my-location',
      *
      *     // Request body metadata
@@ -23930,8 +25072,7 @@ export namespace dlp_v2 {
     create(
       params: Params$Resource$Projects$Locations$Dlpjobs$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DlpJob>,
+        MethodOptions | BodyResponseCallback<Schema$GooglePrivacyDlpV2DlpJob>,
       callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DlpJob>
     ): void;
     create(
@@ -24002,7 +25143,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Deletes a long-running DlpJob. This method indicates that the client is no longer interested in the DlpJob result. The job will be canceled if possible. See https://cloud.google.com/sensitive-data-protection/docs/inspecting-storage and https://cloud.google.com/sensitive-data-protection/docs/compute-risk-analysis to learn more.
+     * Deletes a long-running DlpJob. This method indicates that the client is no longer interested in the DlpJob result. The job will be canceled if possible. See https://docs.cloud.google.com/sensitive-data-protection/docs/inspecting-storage and https://docs.cloud.google.com/sensitive-data-protection/docs/compute-risk-analysis to learn more.
      * @example
      * ```js
      * // Before running the sample:
@@ -24272,7 +25413,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Gets the latest state of a long-running DlpJob. See https://cloud.google.com/sensitive-data-protection/docs/inspecting-storage and https://cloud.google.com/sensitive-data-protection/docs/compute-risk-analysis to learn more.
+     * Gets the latest state of a long-running DlpJob. See https://docs.cloud.google.com/sensitive-data-protection/docs/inspecting-storage and https://docs.cloud.google.com/sensitive-data-protection/docs/compute-risk-analysis to learn more.
      * @example
      * ```js
      * // Before running the sample:
@@ -24352,8 +25493,7 @@ export namespace dlp_v2 {
     get(
       params: Params$Resource$Projects$Locations$Dlpjobs$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DlpJob>,
+        MethodOptions | BodyResponseCallback<Schema$GooglePrivacyDlpV2DlpJob>,
       callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DlpJob>
     ): void;
     get(
@@ -24572,7 +25712,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Lists DlpJobs that match the specified filter in the request. See https://cloud.google.com/sensitive-data-protection/docs/inspecting-storage and https://cloud.google.com/sensitive-data-protection/docs/compute-risk-analysis to learn more.
+     * Lists DlpJobs that match the specified filter in the request. See https://docs.cloud.google.com/sensitive-data-protection/docs/inspecting-storage and https://docs.cloud.google.com/sensitive-data-protection/docs/compute-risk-analysis to learn more.
      * @example
      * ```js
      * // Before running the sample:
@@ -24612,7 +25752,7 @@ export namespace dlp_v2 {
      *     pageSize: 'placeholder-value',
      *     // The standard list page token.
      *     pageToken: 'placeholder-value',
-     *     // Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     *     // Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      *     parent: 'projects/my-project/locations/my-location',
      *     // The type of job. Defaults to `DlpJobType.INSPECT`
      *     type: 'placeholder-value',
@@ -24745,7 +25885,7 @@ export namespace dlp_v2 {
   }
   export interface Params$Resource$Projects$Locations$Dlpjobs$Create extends StandardParameters {
     /**
-     * Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     * Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
     parent?: string;
 
@@ -24810,7 +25950,7 @@ export namespace dlp_v2 {
      */
     pageToken?: string;
     /**
-     * Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     * Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
     parent?: string;
     /**
@@ -25329,7 +26469,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Redacts potentially sensitive info from an image. This method has limits on input size, processing time, and output size. See https://cloud.google.com/sensitive-data-protection/docs/redacting-sensitive-data-images to learn more. When no InfoTypes or CustomInfoTypes are specified in this request, the system will automatically choose what detectors to run. By default this may be all types, but may change over time as detectors are updated. Only the first frame of each multiframe image is redacted. Metadata and other frames are omitted in the response.
+     * Redacts potentially sensitive info from an image. This method has limits on input size, processing time, and output size. See https://docs.cloud.google.com/sensitive-data-protection/docs/redacting-sensitive-data-images to learn more. When no InfoTypes or CustomInfoTypes are specified in this request, the system will automatically choose what detectors to run. By default this may be all types, but may change over time as detectors are updated. Only the first frame of each multiframe image is redacted. Metadata and other frames are omitted in the response.
      * @example
      * ```js
      * // Before running the sample:
@@ -25359,7 +26499,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.locations.image.redact({
-     *     // Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     *     // Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      *     parent: 'projects/my-project/locations/my-location',
      *
      *     // Request body metadata
@@ -25494,7 +26634,7 @@ export namespace dlp_v2 {
 
   export interface Params$Resource$Projects$Locations$Image$Redact extends StandardParameters {
     /**
-     * Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     * Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
     parent?: string;
 
@@ -25511,7 +26651,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Returns a list of the sensitive information types that the DLP API supports. See https://cloud.google.com/sensitive-data-protection/docs/infotypes-reference to learn more.
+     * Returns a list of the sensitive information types that the DLP API supports. See https://docs.cloud.google.com/sensitive-data-protection/docs/infotypes-reference to learn more.
      * @example
      * ```js
      * // Before running the sample:
@@ -25690,7 +26830,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Creates an InspectTemplate for reusing frequently used configuration for inspecting content, images, and storage. See https://cloud.google.com/sensitive-data-protection/docs/creating-templates to learn more.
+     * Creates an InspectTemplate for reusing frequently used configuration for inspecting content, images, and storage. See https://docs.cloud.google.com/sensitive-data-protection/docs/creating-templates to learn more.
      * @example
      * ```js
      * // Before running the sample:
@@ -25720,7 +26860,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.locations.inspectTemplates.create({
-     *     // Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` + Organizations scope, location specified: `organizations/{org_id\}/locations/{location_id\}` + Organizations scope, no location specified (defaults to global): `organizations/{org_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     *     // Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` + Organizations scope, location specified: `organizations/{org_id\}/locations/{location_id\}` + Organizations scope, no location specified (defaults to global): `organizations/{org_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      *     parent: 'projects/my-project/locations/my-location',
      *
      *     // Request body metadata
@@ -25854,7 +26994,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Deletes an InspectTemplate. See https://cloud.google.com/sensitive-data-protection/docs/creating-templates to learn more.
+     * Deletes an InspectTemplate. See https://docs.cloud.google.com/sensitive-data-protection/docs/creating-templates to learn more.
      * @example
      * ```js
      * // Before running the sample:
@@ -25987,7 +27127,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Gets an InspectTemplate. See https://cloud.google.com/sensitive-data-protection/docs/creating-templates to learn more.
+     * Gets an InspectTemplate. See https://docs.cloud.google.com/sensitive-data-protection/docs/creating-templates to learn more.
      * @example
      * ```js
      * // Before running the sample:
@@ -26137,7 +27277,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Lists InspectTemplates. See https://cloud.google.com/sensitive-data-protection/docs/creating-templates to learn more.
+     * Lists InspectTemplates. See https://docs.cloud.google.com/sensitive-data-protection/docs/creating-templates to learn more.
      * @example
      * ```js
      * // Before running the sample:
@@ -26175,7 +27315,7 @@ export namespace dlp_v2 {
      *     pageSize: 'placeholder-value',
      *     // Page token to continue retrieval. Comes from the previous call to `ListInspectTemplates`.
      *     pageToken: 'placeholder-value',
-     *     // Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` + Organizations scope, location specified: `organizations/{org_id\}/locations/{location_id\}` + Organizations scope, no location specified (defaults to global): `organizations/{org_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     *     // Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` + Organizations scope, location specified: `organizations/{org_id\}/locations/{location_id\}` + Organizations scope, no location specified (defaults to global): `organizations/{org_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      *     parent: 'projects/my-project/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -26293,7 +27433,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Updates the InspectTemplate. See https://cloud.google.com/sensitive-data-protection/docs/creating-templates to learn more.
+     * Updates the InspectTemplate. See https://docs.cloud.google.com/sensitive-data-protection/docs/creating-templates to learn more.
      * @example
      * ```js
      * // Before running the sample:
@@ -26455,7 +27595,7 @@ export namespace dlp_v2 {
 
   export interface Params$Resource$Projects$Locations$Inspecttemplates$Create extends StandardParameters {
     /**
-     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` + Organizations scope, location specified: `organizations/{org_id\}/locations/{location_id\}` + Organizations scope, no location specified (defaults to global): `organizations/{org_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` + Organizations scope, location specified: `organizations/{org_id\}/locations/{location_id\}` + Organizations scope, no location specified (defaults to global): `organizations/{org_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
     parent?: string;
 
@@ -26494,7 +27634,7 @@ export namespace dlp_v2 {
      */
     pageToken?: string;
     /**
-     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` + Organizations scope, location specified: `organizations/{org_id\}/locations/{location_id\}` + Organizations scope, no location specified (defaults to global): `organizations/{org_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` + Organizations scope, location specified: `organizations/{org_id\}/locations/{location_id\}` + Organizations scope, no location specified (defaults to global): `organizations/{org_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
     parent?: string;
   }
@@ -26603,8 +27743,7 @@ export namespace dlp_v2 {
     activate(
       params: Params$Resource$Projects$Locations$Jobtriggers$Activate,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DlpJob>,
+        MethodOptions | BodyResponseCallback<Schema$GooglePrivacyDlpV2DlpJob>,
       callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DlpJob>
     ): void;
     activate(
@@ -26675,7 +27814,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Creates a job trigger to run DLP actions such as scanning storage for sensitive information on a set schedule. See https://cloud.google.com/sensitive-data-protection/docs/creating-job-triggers to learn more.
+     * Creates a job trigger to run DLP actions such as scanning storage for sensitive information on a set schedule. See https://docs.cloud.google.com/sensitive-data-protection/docs/creating-job-triggers to learn more.
      * @example
      * ```js
      * // Before running the sample:
@@ -26705,7 +27844,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.locations.jobTriggers.create({
-     *     // Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     *     // Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      *     parent: 'projects/my-project/locations/my-location',
      *
      *     // Request body metadata
@@ -26837,7 +27976,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Deletes a job trigger. See https://cloud.google.com/sensitive-data-protection/docs/creating-job-triggers to learn more.
+     * Deletes a job trigger. See https://docs.cloud.google.com/sensitive-data-protection/docs/creating-job-triggers to learn more.
      * @example
      * ```js
      * // Before running the sample:
@@ -26969,7 +28108,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Gets a job trigger. See https://cloud.google.com/sensitive-data-protection/docs/creating-job-triggers to learn more.
+     * Gets a job trigger. See https://docs.cloud.google.com/sensitive-data-protection/docs/creating-job-triggers to learn more.
      * @example
      * ```js
      * // Before running the sample:
@@ -27272,7 +28411,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Lists job triggers. See https://cloud.google.com/sensitive-data-protection/docs/creating-job-triggers to learn more.
+     * Lists job triggers. See https://docs.cloud.google.com/sensitive-data-protection/docs/creating-job-triggers to learn more.
      * @example
      * ```js
      * // Before running the sample:
@@ -27312,7 +28451,7 @@ export namespace dlp_v2 {
      *     pageSize: 'placeholder-value',
      *     // Page token to continue retrieval. Comes from the previous call to ListJobTriggers. `order_by` field must not change for subsequent calls.
      *     pageToken: 'placeholder-value',
-     *     // Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     *     // Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      *     parent: 'projects/my-project/locations/my-location',
      *     // The type of jobs. Will use `DlpJobType.INSPECT` if not set.
      *     type: 'placeholder-value',
@@ -27432,7 +28571,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Updates a job trigger. See https://cloud.google.com/sensitive-data-protection/docs/creating-job-triggers to learn more.
+     * Updates a job trigger. See https://docs.cloud.google.com/sensitive-data-protection/docs/creating-job-triggers to learn more.
      * @example
      * ```js
      * // Before running the sample:
@@ -27603,7 +28742,7 @@ export namespace dlp_v2 {
   }
   export interface Params$Resource$Projects$Locations$Jobtriggers$Create extends StandardParameters {
     /**
-     * Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     * Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
     parent?: string;
 
@@ -27657,7 +28796,7 @@ export namespace dlp_v2 {
      */
     pageToken?: string;
     /**
-     * Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     * Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
     parent?: string;
     /**
@@ -28029,7 +29168,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Creates a pre-built stored infoType to be used for inspection. See https://cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes to learn more.
+     * Creates a pre-built stored infoType to be used for inspection. See https://docs.cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes to learn more.
      * @example
      * ```js
      * // Before running the sample:
@@ -28059,7 +29198,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.locations.storedInfoTypes.create({
-     *     // Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` + Organizations scope, location specified: `organizations/{org_id\}/locations/{location_id\}` + Organizations scope, no location specified (defaults to global): `organizations/{org_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     *     // Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` + Organizations scope, location specified: `organizations/{org_id\}/locations/{location_id\}` + Organizations scope, no location specified (defaults to global): `organizations/{org_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      *     parent: 'projects/my-project/locations/my-location',
      *
      *     // Request body metadata
@@ -28189,7 +29328,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Deletes a stored infoType. See https://cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes to learn more.
+     * Deletes a stored infoType. See https://docs.cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes to learn more.
      * @example
      * ```js
      * // Before running the sample:
@@ -28322,7 +29461,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Gets a stored infoType. See https://cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes to learn more.
+     * Gets a stored infoType. See https://docs.cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes to learn more.
      * @example
      * ```js
      * // Before running the sample:
@@ -28468,7 +29607,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Lists stored infoTypes. See https://cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes to learn more.
+     * Lists stored infoTypes. See https://docs.cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes to learn more.
      * @example
      * ```js
      * // Before running the sample:
@@ -28506,7 +29645,7 @@ export namespace dlp_v2 {
      *     pageSize: 'placeholder-value',
      *     // Page token to continue retrieval. Comes from the previous call to `ListStoredInfoTypes`.
      *     pageToken: 'placeholder-value',
-     *     // Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     *     // Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      *     parent: 'projects/my-project/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -28624,7 +29763,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Updates the stored infoType by creating a new version. The existing version will continue to be used until the new version is ready. See https://cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes to learn more.
+     * Updates the stored infoType by creating a new version. The existing version will continue to be used until the new version is ready. See https://docs.cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes to learn more.
      * @example
      * ```js
      * // Before running the sample:
@@ -28781,7 +29920,7 @@ export namespace dlp_v2 {
 
   export interface Params$Resource$Projects$Locations$Storedinfotypes$Create extends StandardParameters {
     /**
-     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` + Organizations scope, location specified: `organizations/{org_id\}/locations/{location_id\}` + Organizations scope, no location specified (defaults to global): `organizations/{org_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` + Organizations scope, location specified: `organizations/{org_id\}/locations/{location_id\}` + Organizations scope, no location specified (defaults to global): `organizations/{org_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
     parent?: string;
 
@@ -28820,7 +29959,7 @@ export namespace dlp_v2 {
      */
     pageToken?: string;
     /**
-     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
     parent?: string;
   }
@@ -29348,7 +30487,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Creates a pre-built stored infoType to be used for inspection. See https://cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes to learn more.
+     * Creates a pre-built stored infoType to be used for inspection. See https://docs.cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes to learn more.
      * @example
      * ```js
      * // Before running the sample:
@@ -29378,7 +30517,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.storedInfoTypes.create({
-     *     // Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` + Organizations scope, location specified: `organizations/{org_id\}/locations/{location_id\}` + Organizations scope, no location specified (defaults to global): `organizations/{org_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     *     // Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` + Organizations scope, location specified: `organizations/{org_id\}/locations/{location_id\}` + Organizations scope, no location specified (defaults to global): `organizations/{org_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      *     parent: 'projects/my-project',
      *
      *     // Request body metadata
@@ -29507,7 +30646,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Deletes a stored infoType. See https://cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes to learn more.
+     * Deletes a stored infoType. See https://docs.cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes to learn more.
      * @example
      * ```js
      * // Before running the sample:
@@ -29639,7 +30778,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Gets a stored infoType. See https://cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes to learn more.
+     * Gets a stored infoType. See https://docs.cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes to learn more.
      * @example
      * ```js
      * // Before running the sample:
@@ -29785,7 +30924,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Lists stored infoTypes. See https://cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes to learn more.
+     * Lists stored infoTypes. See https://docs.cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes to learn more.
      * @example
      * ```js
      * // Before running the sample:
@@ -29823,7 +30962,7 @@ export namespace dlp_v2 {
      *     pageSize: 'placeholder-value',
      *     // Page token to continue retrieval. Comes from the previous call to `ListStoredInfoTypes`.
      *     pageToken: 'placeholder-value',
-     *     // Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     *     // Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      *     parent: 'projects/my-project',
      *   });
      *   console.log(res.data);
@@ -29941,7 +31080,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Updates the stored infoType by creating a new version. The existing version will continue to be used until the new version is ready. See https://cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes to learn more.
+     * Updates the stored infoType by creating a new version. The existing version will continue to be used until the new version is ready. See https://docs.cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes to learn more.
      * @example
      * ```js
      * // Before running the sample:
@@ -30098,7 +31237,7 @@ export namespace dlp_v2 {
 
   export interface Params$Resource$Projects$Storedinfotypes$Create extends StandardParameters {
     /**
-     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` + Organizations scope, location specified: `organizations/{org_id\}/locations/{location_id\}` + Organizations scope, no location specified (defaults to global): `organizations/{org_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` + Organizations scope, location specified: `organizations/{org_id\}/locations/{location_id\}` + Organizations scope, no location specified (defaults to global): `organizations/{org_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
     parent?: string;
 
@@ -30137,7 +31276,7 @@ export namespace dlp_v2 {
      */
     pageToken?: string;
     /**
-     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/{project_id\}/locations/{location_id\}` + Projects scope, no location specified (defaults to global): `projects/{project_id\}` The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
     parent?: string;
   }

@@ -497,8 +497,7 @@ export namespace chromeuxreport_v1 {
     queryHistoryRecord(
       params: Params$Resource$Records$Queryhistoryrecord,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$QueryHistoryResponse>,
+        MethodOptions | BodyResponseCallback<Schema$QueryHistoryResponse>,
       callback: BodyResponseCallback<Schema$QueryHistoryResponse>
     ): void;
     queryHistoryRecord(

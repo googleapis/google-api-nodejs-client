@@ -52,6 +52,21 @@
       "description": "Regional Endpoint",
       "endpointUrl": "https://discoveryengine.in.rep.googleapis.com/",
       "location": "in"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://discoveryengine.asia-southeast1.rep.googleapis.com/",
+      "location": "asia-southeast1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://discoveryengine.europe-west3.rep.googleapis.com/",
+      "location": "europe-west3"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://discoveryengine.ca.rep.googleapis.com/",
+      "location": "ca"
     }
   ],
   "fullyEncodeReservedExpansion": true,
@@ -1873,6 +1888,21 @@
                           "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+$",
                           "required": true,
                           "type": "string"
+                        },
+                        "view": {
+                          "description": "Optional. The view to apply to the returned DataStore. Defaults to DataStoreView.DATA_STORE_VIEW_BASIC if unspecified. DataStoreView.DATA_STORE_VIEW_FULL additionally populates DataStore.icon_uri for a connector-backed data store. Resolving the connector icon requires extra lookups, so request it only when the caller renders the icon.",
+                          "enum": [
+                            "DATA_STORE_VIEW_UNSPECIFIED",
+                            "DATA_STORE_VIEW_BASIC",
+                            "DATA_STORE_VIEW_FULL"
+                          ],
+                          "enumDescriptions": [
+                            "The default / unset value. The API defaults to DataStoreView.DATA_STORE_VIEW_BASIC.",
+                            "Does not populate DataStore.icon_uri. This is the default view.",
+                            "Additionally populates DataStore.icon_uri for connector-backed data stores. Resolving connector icons requires extra lookups, so request this view only when the icons are rendered."
+                          ],
+                          "location": "query",
+                          "type": "string"
                         }
                       },
                       "path": "v1alpha/{+name}",
@@ -1882,6 +1912,33 @@
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform",
                         "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite",
+                        "https://www.googleapis.com/auth/discoveryengine.serving.readwrite"
+                      ]
+                    },
+                    "getCompletionConfig": {
+                      "description": "Gets a CompletionConfig",
+                      "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}/completionConfig",
+                      "httpMethod": "GET",
+                      "id": "discoveryengine.projects.locations.collections.dataStores.getCompletionConfig",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. Full CompletionConfig resource name. Format: `projects/*/locations/*/dataStores/*/completionConfig` `projects/*/locations/*/collections/*/dataStores/*/completionConfig` `projects/*/locations/*/collections/*/engines/*/completionConfig`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+/completionConfig$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha/{+name}",
+                      "response": {
+                        "$ref": "GoogleCloudDiscoveryengineV1alphaCompletionConfig"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
                         "https://www.googleapis.com/auth/discoveryengine.readwrite",
                         "https://www.googleapis.com/auth/discoveryengine.serving.readwrite"
                       ]
@@ -1970,6 +2027,21 @@
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+$",
                           "required": true,
+                          "type": "string"
+                        },
+                        "view": {
+                          "description": "Optional. The view to apply to the returned DataStores. Defaults to DataStoreView.DATA_STORE_VIEW_BASIC if unspecified. DataStoreView.DATA_STORE_VIEW_FULL additionally populates DataStore.icon_uri for connector-backed data stores. Resolving connector icons requires extra lookups, so request it only when the caller renders the icons.",
+                          "enum": [
+                            "DATA_STORE_VIEW_UNSPECIFIED",
+                            "DATA_STORE_VIEW_BASIC",
+                            "DATA_STORE_VIEW_FULL"
+                          ],
+                          "enumDescriptions": [
+                            "The default / unset value. The API defaults to DataStoreView.DATA_STORE_VIEW_BASIC.",
+                            "Does not populate DataStore.icon_uri. This is the default view.",
+                            "Additionally populates DataStore.icon_uri for connector-backed data stores. Resolving connector icons requires extra lookups, so request this view only when the icons are rendered."
+                          ],
+                          "location": "query",
                           "type": "string"
                         }
                       },
@@ -2109,8 +2181,44 @@
                         "https://www.googleapis.com/auth/discoveryengine.serving.readwrite"
                       ]
                     },
+                    "updateCompletionConfig": {
+                      "description": "Updates the CompletionConfigs.",
+                      "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}/completionConfig",
+                      "httpMethod": "PATCH",
+                      "id": "discoveryengine.projects.locations.collections.dataStores.updateCompletionConfig",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. Immutable. Fully qualified name `projects/*/locations/*/dataStores/*/completionConfig` `projects/*/locations/*/collections/*/dataStores/*/completionConfig` `projects/*/locations/*/collections/*/engines/*/completionConfig`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+/completionConfig$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "updateMask": {
+                          "description": "Indicates which fields in the provided CompletionConfig to update. The following are the only supported fields: * CompletionConfig.matching_order * CompletionConfig.max_suggestions * CompletionConfig.min_prefix_length * CompletionConfig.query_model * CompletionConfig.enable_mode * CompletionConfig.query_frequency_threshold * CompletionConfig.num_unique_users_threshold * CompletionConfig.should_serve_content_suggestions * CompletionConfig.filter_pii_suggestions_using_dlp If not set, all supported fields are updated.",
+                          "format": "google-fieldmask",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha/{+name}",
+                      "request": {
+                        "$ref": "GoogleCloudDiscoveryengineV1alphaCompletionConfig"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudDiscoveryengineV1alphaCompletionConfig"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite",
+                        "https://www.googleapis.com/auth/discoveryengine.serving.readwrite"
+                      ]
+                    },
                     "updateDocumentProcessingConfig": {
-                      "description": "Updates the DocumentProcessingConfig. DocumentProcessingConfig is a singleon resource of DataStore. It's empty when DataStore is created. The first call to this method will set up DocumentProcessingConfig.",
+                      "description": "Updates the DocumentProcessingConfig. DocumentProcessingConfig is a singleton resource of DataStore. It's empty when DataStore is created. The first call to this method will set up DocumentProcessingConfig. The `update_mask` query parameter is not supported; if it is set the request returns an error. To update mutable fields, omit `update_mask` and send the full DocumentProcessingConfig as the request body. The entire resource is overwritten, so include all values you want to retain. For example, to update the layout parser, set DocumentProcessingConfig.default_parsing_config (or DocumentProcessingConfig.parsing_config_overrides) and omit `update_mask`. Some fields, such as DocumentProcessingConfig.chunking_config, are immutable and return an error if changed.",
                       "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}/documentProcessingConfig",
                       "httpMethod": "PATCH",
                       "id": "discoveryengine.projects.locations.collections.dataStores.updateDocumentProcessingConfig",
@@ -2126,7 +2234,7 @@
                           "type": "string"
                         },
                         "updateMask": {
-                          "description": "Indicates which fields in the provided DocumentProcessingConfig to update. The following are the only supported fields: * DocumentProcessingConfig.ocr_config If not set, all supported fields are updated.",
+                          "description": "Not supported. If `update_mask` is set, the request returns an `UnsupportedFieldError`. To update mutable fields, omit `update_mask`; the full DocumentProcessingConfig in the request body then overwrites the existing resource. See the method description for details.",
                           "format": "google-fieldmask",
                           "location": "query",
                           "type": "string"
@@ -5103,6 +5211,26 @@
                               "location": "query",
                               "type": "boolean"
                             },
+                            "languageCode": {
+                              "description": "Optional. BCP-47 language tag (e.g. \"en\", \"fr-CA\"). Used to localize human-readable strings in the response, such as the model selector `display_name` / `description` on `WidgetConfig.UiSettings.ModelConfigInfo`. Empty / unset falls back to the default language (English).",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "modelInfoView": {
+                              "description": "Optional. Selects which view of `WidgetConfig.UiSettings.ModelConfigInfo` the backend computes. `MODEL_INFO_VIEW_ADMIN` is set by the Cloud Console admin \"Feature Management\" page (screen/4Vn9gQKbN8tb7gm) to receive the admin-surfaced model set with `ResolvedModel.admin_view` populated; unset / `MODEL_INFO_VIEW_WEB` returns the end-user selector. The mobile surface is detected from the `X-Goog-Gemini-Enterprise-Mobile` header instead (see `ModelInfoView`).",
+                              "enum": [
+                                "MODEL_INFO_VIEW_UNSPECIFIED",
+                                "END_USER_WEB",
+                                "ADMIN"
+                              ],
+                              "enumDescriptions": [
+                                "Not specified.",
+                                "The end-user web model selector view.",
+                                "The Cloud Console admin \"Feature Control\" view that displays model toggles. Returns admin-surfaced models with `ResolvedModel.admin_view` populated."
+                              ],
+                              "location": "query",
+                              "type": "string"
+                            },
                             "name": {
                               "description": "Required. Full WidgetConfig resource name. Format: `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}/widgetConfigs/{widget_config_id}`",
                               "location": "path",
@@ -5247,6 +5375,33 @@
                       "path": "v1alpha/{+name}",
                       "response": {
                         "$ref": "GoogleCloudDiscoveryengineV1alphaEngine"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite",
+                        "https://www.googleapis.com/auth/discoveryengine.serving.readwrite"
+                      ]
+                    },
+                    "getCompletionConfig": {
+                      "description": "Gets a CompletionConfig",
+                      "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/completionConfig",
+                      "httpMethod": "GET",
+                      "id": "discoveryengine.projects.locations.collections.engines.getCompletionConfig",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. Full CompletionConfig resource name. Format: `projects/*/locations/*/dataStores/*/completionConfig` `projects/*/locations/*/collections/*/dataStores/*/completionConfig` `projects/*/locations/*/collections/*/engines/*/completionConfig`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/completionConfig$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha/{+name}",
+                      "response": {
+                        "$ref": "GoogleCloudDiscoveryengineV1alphaCompletionConfig"
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform",
@@ -5506,6 +5661,42 @@
                       },
                       "response": {
                         "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite",
+                        "https://www.googleapis.com/auth/discoveryengine.serving.readwrite"
+                      ]
+                    },
+                    "updateCompletionConfig": {
+                      "description": "Updates the CompletionConfigs.",
+                      "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/completionConfig",
+                      "httpMethod": "PATCH",
+                      "id": "discoveryengine.projects.locations.collections.engines.updateCompletionConfig",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. Immutable. Fully qualified name `projects/*/locations/*/dataStores/*/completionConfig` `projects/*/locations/*/collections/*/dataStores/*/completionConfig` `projects/*/locations/*/collections/*/engines/*/completionConfig`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/completionConfig$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "updateMask": {
+                          "description": "Indicates which fields in the provided CompletionConfig to update. The following are the only supported fields: * CompletionConfig.matching_order * CompletionConfig.max_suggestions * CompletionConfig.min_prefix_length * CompletionConfig.query_model * CompletionConfig.enable_mode * CompletionConfig.query_frequency_threshold * CompletionConfig.num_unique_users_threshold * CompletionConfig.should_serve_content_suggestions * CompletionConfig.filter_pii_suggestions_using_dlp If not set, all supported fields are updated.",
+                          "format": "google-fieldmask",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha/{+name}",
+                      "request": {
+                        "$ref": "GoogleCloudDiscoveryengineV1alphaCompletionConfig"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudDiscoveryengineV1alphaCompletionConfig"
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform",
@@ -7268,7 +7459,374 @@
                       },
                       "resources": {
                         "alphaEvolveExperiments": {
+                          "methods": {
+                            "acquirePrograms": {
+                              "description": "Acquires one or more AlphaEvolveProgram from the generated queue of programs for evaluation.",
+                              "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/sessions/{sessionsId}/alphaEvolveExperiments/{alphaEvolveExperimentsId}:acquirePrograms",
+                              "httpMethod": "POST",
+                              "id": "discoveryengine.projects.locations.collections.engines.sessions.alphaEvolveExperiments.acquirePrograms",
+                              "parameterOrder": [
+                                "parent"
+                              ],
+                              "parameters": {
+                                "parent": {
+                                  "description": "Required. The parent resource name (AlphaEvolveExperiment) of the AlphaEvolveExperiment. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/sessions/{session}/alphaEvolveExperiments/{alpha_evolve_experiment}`",
+                                  "location": "path",
+                                  "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/sessions/[^/]+/alphaEvolveExperiments/[^/]+$",
+                                  "required": true,
+                                  "type": "string"
+                                }
+                              },
+                              "path": "v1alpha/{+parent}:acquirePrograms",
+                              "request": {
+                                "$ref": "GoogleCloudDiscoveryengineV1alphaAcquireProgramsRequest"
+                              },
+                              "response": {
+                                "$ref": "GoogleCloudDiscoveryengineV1alphaAcquireProgramsResponse"
+                              },
+                              "scopes": [
+                                "https://www.googleapis.com/auth/cloud-platform",
+                                "https://www.googleapis.com/auth/discoveryengine.readwrite",
+                                "https://www.googleapis.com/auth/discoveryengine.serving.readwrite"
+                              ]
+                            },
+                            "create": {
+                              "description": "Creates a new AlphaEvolveExperiment.",
+                              "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/sessions/{sessionsId}/alphaEvolveExperiments",
+                              "httpMethod": "POST",
+                              "id": "discoveryengine.projects.locations.collections.engines.sessions.alphaEvolveExperiments.create",
+                              "parameterOrder": [
+                                "parent"
+                              ],
+                              "parameters": {
+                                "parent": {
+                                  "description": "Required. The parent resource name (Session) of the experiment. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/sessions/{session}`",
+                                  "location": "path",
+                                  "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/sessions/[^/]+$",
+                                  "required": true,
+                                  "type": "string"
+                                }
+                              },
+                              "path": "v1alpha/{+parent}/alphaEvolveExperiments",
+                              "request": {
+                                "$ref": "GoogleCloudDiscoveryengineV1alphaAlphaEvolveExperiment"
+                              },
+                              "response": {
+                                "$ref": "GoogleCloudDiscoveryengineV1alphaAlphaEvolveExperiment"
+                              },
+                              "scopes": [
+                                "https://www.googleapis.com/auth/cloud-platform",
+                                "https://www.googleapis.com/auth/discoveryengine.readwrite",
+                                "https://www.googleapis.com/auth/discoveryengine.serving.readwrite"
+                              ]
+                            },
+                            "delete": {
+                              "description": "Deletes an experiment provided the experiment is in an end state (e.g. created, failed, succeeded).",
+                              "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/sessions/{sessionsId}/alphaEvolveExperiments/{alphaEvolveExperimentsId}",
+                              "httpMethod": "DELETE",
+                              "id": "discoveryengine.projects.locations.collections.engines.sessions.alphaEvolveExperiments.delete",
+                              "parameterOrder": [
+                                "name"
+                              ],
+                              "parameters": {
+                                "name": {
+                                  "description": "Required. The full resource name of the experiment to delete. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/sessions/{session}/alphaEvolveExperiments/{alpha_evolve_experiment}`",
+                                  "location": "path",
+                                  "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/sessions/[^/]+/alphaEvolveExperiments/[^/]+$",
+                                  "required": true,
+                                  "type": "string"
+                                }
+                              },
+                              "path": "v1alpha/{+name}",
+                              "response": {
+                                "$ref": "GoogleProtobufEmpty"
+                              },
+                              "scopes": [
+                                "https://www.googleapis.com/auth/cloud-platform",
+                                "https://www.googleapis.com/auth/discoveryengine.readwrite",
+                                "https://www.googleapis.com/auth/discoveryengine.serving.readwrite"
+                              ]
+                            },
+                            "get": {
+                              "description": "Get an existing AlphaEvolveExperiment.",
+                              "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/sessions/{sessionsId}/alphaEvolveExperiments/{alphaEvolveExperimentsId}",
+                              "httpMethod": "GET",
+                              "id": "discoveryengine.projects.locations.collections.engines.sessions.alphaEvolveExperiments.get",
+                              "parameterOrder": [
+                                "name"
+                              ],
+                              "parameters": {
+                                "name": {
+                                  "description": "Required. The full resource name of the experiment. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/sessions/{session}/alphaEvolveExperiments/{alpha_evolve_experiment}`",
+                                  "location": "path",
+                                  "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/sessions/[^/]+/alphaEvolveExperiments/[^/]+$",
+                                  "required": true,
+                                  "type": "string"
+                                }
+                              },
+                              "path": "v1alpha/{+name}",
+                              "response": {
+                                "$ref": "GoogleCloudDiscoveryengineV1alphaAlphaEvolveExperiment"
+                              },
+                              "scopes": [
+                                "https://www.googleapis.com/auth/cloud-platform",
+                                "https://www.googleapis.com/auth/discoveryengine.readwrite",
+                                "https://www.googleapis.com/auth/discoveryengine.serving.readwrite"
+                              ]
+                            },
+                            "list": {
+                              "description": "List all AlphaEvolveExperiments in a given session.",
+                              "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/sessions/{sessionsId}/alphaEvolveExperiments",
+                              "httpMethod": "GET",
+                              "id": "discoveryengine.projects.locations.collections.engines.sessions.alphaEvolveExperiments.list",
+                              "parameterOrder": [
+                                "parent"
+                              ],
+                              "parameters": {
+                                "pageSize": {
+                                  "description": "Optional. The maximum number of experiments to return. The service may return fewer than this value.",
+                                  "format": "int32",
+                                  "location": "query",
+                                  "type": "integer"
+                                },
+                                "pageToken": {
+                                  "description": "Optional. A page token, received from a previous `ListAlphaEvolveExperiments` call. Provide this to retrieve the subsequent page.",
+                                  "location": "query",
+                                  "type": "string"
+                                },
+                                "parent": {
+                                  "description": "Required. The parent resource name (Session) of the Session. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/sessions/{session}`",
+                                  "location": "path",
+                                  "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/sessions/[^/]+$",
+                                  "required": true,
+                                  "type": "string"
+                                }
+                              },
+                              "path": "v1alpha/{+parent}/alphaEvolveExperiments",
+                              "response": {
+                                "$ref": "GoogleCloudDiscoveryengineV1alphaListAlphaEvolveExperimentsResponse"
+                              },
+                              "scopes": [
+                                "https://www.googleapis.com/auth/cloud-platform",
+                                "https://www.googleapis.com/auth/discoveryengine.readwrite",
+                                "https://www.googleapis.com/auth/discoveryengine.serving.readwrite"
+                              ]
+                            },
+                            "resume": {
+                              "description": "Resumes a workflow to process the AlphaEvolveExperiment.",
+                              "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/sessions/{sessionsId}/alphaEvolveExperiments/{alphaEvolveExperimentsId}:resume",
+                              "httpMethod": "POST",
+                              "id": "discoveryengine.projects.locations.collections.engines.sessions.alphaEvolveExperiments.resume",
+                              "parameterOrder": [
+                                "name"
+                              ],
+                              "parameters": {
+                                "name": {
+                                  "description": "Required. Experiment to resume. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/sessions/{session}/alphaEvolveExperiments/{alpha_evolve_experiment}`",
+                                  "location": "path",
+                                  "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/sessions/[^/]+/alphaEvolveExperiments/[^/]+$",
+                                  "required": true,
+                                  "type": "string"
+                                }
+                              },
+                              "path": "v1alpha/{+name}:resume",
+                              "request": {
+                                "$ref": "GoogleCloudDiscoveryengineV1alphaResumeExperimentRequest"
+                              },
+                              "response": {
+                                "$ref": "GoogleLongrunningOperation"
+                              },
+                              "scopes": [
+                                "https://www.googleapis.com/auth/cloud-platform",
+                                "https://www.googleapis.com/auth/discoveryengine.readwrite",
+                                "https://www.googleapis.com/auth/discoveryengine.serving.readwrite"
+                              ]
+                            },
+                            "start": {
+                              "description": "Starts a workflow to process the AlphaEvolveExperiment.",
+                              "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/sessions/{sessionsId}/alphaEvolveExperiments/{alphaEvolveExperimentsId}:start",
+                              "httpMethod": "POST",
+                              "id": "discoveryengine.projects.locations.collections.engines.sessions.alphaEvolveExperiments.start",
+                              "parameterOrder": [
+                                "name"
+                              ],
+                              "parameters": {
+                                "name": {
+                                  "description": "Required. Experiment to start. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/sessions/{session}/alphaEvolveExperiments/{alpha_evolve_experiment}`",
+                                  "location": "path",
+                                  "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/sessions/[^/]+/alphaEvolveExperiments/[^/]+$",
+                                  "required": true,
+                                  "type": "string"
+                                }
+                              },
+                              "path": "v1alpha/{+name}:start",
+                              "request": {
+                                "$ref": "GoogleCloudDiscoveryengineV1alphaStartExperimentRequest"
+                              },
+                              "response": {
+                                "$ref": "GoogleLongrunningOperation"
+                              },
+                              "scopes": [
+                                "https://www.googleapis.com/auth/cloud-platform",
+                                "https://www.googleapis.com/auth/discoveryengine.readwrite",
+                                "https://www.googleapis.com/auth/discoveryengine.serving.readwrite"
+                              ]
+                            },
+                            "submitProgramsEvaluations": {
+                              "description": "Adds an AlphaEvolveProgramEvaluation to the experiment.",
+                              "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/sessions/{sessionsId}/alphaEvolveExperiments/{alphaEvolveExperimentsId}:submitProgramsEvaluations",
+                              "httpMethod": "POST",
+                              "id": "discoveryengine.projects.locations.collections.engines.sessions.alphaEvolveExperiments.submitProgramsEvaluations",
+                              "parameterOrder": [
+                                "parent"
+                              ],
+                              "parameters": {
+                                "parent": {
+                                  "description": "Required. The parent resource name (AlphaEvolveExperiment) of the Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/sessions/{session}/alphaEvolveExperiments/{alpha_evolve_experiment}`",
+                                  "location": "path",
+                                  "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/sessions/[^/]+/alphaEvolveExperiments/[^/]+$",
+                                  "required": true,
+                                  "type": "string"
+                                }
+                              },
+                              "path": "v1alpha/{+parent}:submitProgramsEvaluations",
+                              "request": {
+                                "$ref": "GoogleCloudDiscoveryengineV1alphaSubmitProgramsEvaluationsRequest"
+                              },
+                              "response": {
+                                "$ref": "GoogleCloudDiscoveryengineV1alphaSubmitProgramsEvaluationsResponse"
+                              },
+                              "scopes": [
+                                "https://www.googleapis.com/auth/cloud-platform",
+                                "https://www.googleapis.com/auth/discoveryengine.readwrite",
+                                "https://www.googleapis.com/auth/discoveryengine.serving.readwrite"
+                              ]
+                            }
+                          },
                           "resources": {
+                            "alphaEvolvePrograms": {
+                              "methods": {
+                                "create": {
+                                  "description": "Creates a new AlphaEvolveProgram.",
+                                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/sessions/{sessionsId}/alphaEvolveExperiments/{alphaEvolveExperimentsId}/alphaEvolvePrograms",
+                                  "httpMethod": "POST",
+                                  "id": "discoveryengine.projects.locations.collections.engines.sessions.alphaEvolveExperiments.alphaEvolvePrograms.create",
+                                  "parameterOrder": [
+                                    "parent"
+                                  ],
+                                  "parameters": {
+                                    "parent": {
+                                      "description": "Required. The parent resource name (AlphaEvolveExperiment) of the AlphaEvolveProgram. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/sessions/{session}/alphaEvolveExperiments/{alpha_evolve_experiment}`",
+                                      "location": "path",
+                                      "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/sessions/[^/]+/alphaEvolveExperiments/[^/]+$",
+                                      "required": true,
+                                      "type": "string"
+                                    }
+                                  },
+                                  "path": "v1alpha/{+parent}/alphaEvolvePrograms",
+                                  "request": {
+                                    "$ref": "GoogleCloudDiscoveryengineV1alphaAlphaEvolveProgram"
+                                  },
+                                  "response": {
+                                    "$ref": "GoogleCloudDiscoveryengineV1alphaAlphaEvolveProgram"
+                                  },
+                                  "scopes": [
+                                    "https://www.googleapis.com/auth/cloud-platform",
+                                    "https://www.googleapis.com/auth/discoveryengine.readwrite",
+                                    "https://www.googleapis.com/auth/discoveryengine.serving.readwrite"
+                                  ]
+                                },
+                                "get": {
+                                  "description": "Gets an existing AlphaEvolveProgram.",
+                                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/sessions/{sessionsId}/alphaEvolveExperiments/{alphaEvolveExperimentsId}/alphaEvolvePrograms/{alphaEvolveProgramsId}",
+                                  "httpMethod": "GET",
+                                  "id": "discoveryengine.projects.locations.collections.engines.sessions.alphaEvolveExperiments.alphaEvolvePrograms.get",
+                                  "parameterOrder": [
+                                    "name"
+                                  ],
+                                  "parameters": {
+                                    "name": {
+                                      "description": "Required. The full resource name of the program. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/sessions/{session}/alphaEvolveExperiments/{alpha_evolve_experiment}/alphaEvolvePrograms/{alpha_evolve_program}`",
+                                      "location": "path",
+                                      "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/sessions/[^/]+/alphaEvolveExperiments/[^/]+/alphaEvolvePrograms/[^/]+$",
+                                      "required": true,
+                                      "type": "string"
+                                    }
+                                  },
+                                  "path": "v1alpha/{+name}",
+                                  "response": {
+                                    "$ref": "GoogleCloudDiscoveryengineV1alphaAlphaEvolveProgram"
+                                  },
+                                  "scopes": [
+                                    "https://www.googleapis.com/auth/cloud-platform",
+                                    "https://www.googleapis.com/auth/discoveryengine.readwrite",
+                                    "https://www.googleapis.com/auth/discoveryengine.serving.readwrite"
+                                  ]
+                                },
+                                "list": {
+                                  "description": "List all AlphaEvolvePrograms in a given experiment that follow the criteria provided in the request.",
+                                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/sessions/{sessionsId}/alphaEvolveExperiments/{alphaEvolveExperimentsId}/alphaEvolvePrograms",
+                                  "httpMethod": "GET",
+                                  "id": "discoveryengine.projects.locations.collections.engines.sessions.alphaEvolveExperiments.alphaEvolvePrograms.list",
+                                  "parameterOrder": [
+                                    "parent"
+                                  ],
+                                  "parameters": {
+                                    "orderBy": {
+                                      "description": "Optional. Sorting criterion for the programs. Comma separated list of metrics to sort by and optionally sort order, e.g. \"score1 desc, score2\". The criteria are applied in the order listed in the field. An implicit criterion of sorting by create_time descending is always applied as the final tie-breaker after all other specified criteria.",
+                                      "location": "query",
+                                      "type": "string"
+                                    },
+                                    "pageSize": {
+                                      "description": "Optional. The maximum number of programs to return. The service may return fewer than this value.",
+                                      "format": "int32",
+                                      "location": "query",
+                                      "type": "integer"
+                                    },
+                                    "pageToken": {
+                                      "description": "Optional. A page token, received from a previous `ListAlphaEvolvePrograms` call. Provide this to retrieve the subsequent page.",
+                                      "location": "query",
+                                      "type": "string"
+                                    },
+                                    "parent": {
+                                      "description": "Required. The parent resource name (AlphaEvolveExperiment) of the experiment. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/sessions/{session}/alphaEvolveExperiments/{alpha_evolve_experiment}`",
+                                      "location": "path",
+                                      "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/sessions/[^/]+/alphaEvolveExperiments/[^/]+$",
+                                      "required": true,
+                                      "type": "string"
+                                    },
+                                    "stateFilter": {
+                                      "description": "Optional. Filter to apply to the programs. Examples: \"state_filter = \\'COMPLETED\\'\" \"state_filter = \\'INITIALIZED\\' OR \"state_filter = \\'EVALUATING\\'\" If empty, the behavior defaults to listing programs in REGISTRATION_COMPLETE state or processing state is NULL.",
+                                      "enum": [
+                                        "PROGRAM_STATE_UNSPECIFIED",
+                                        "INITIALIZED",
+                                        "GENERATING",
+                                        "EVALUATING",
+                                        "COMPLETED"
+                                      ],
+                                      "enumDescriptions": [
+                                        "Default value. This value is unused.",
+                                        "The program is initialized.",
+                                        "The program is in generation.",
+                                        "The program is pending evaluation.",
+                                        "The program is completed."
+                                      ],
+                                      "location": "query",
+                                      "type": "string"
+                                    }
+                                  },
+                                  "path": "v1alpha/{+parent}/alphaEvolvePrograms",
+                                  "response": {
+                                    "$ref": "GoogleCloudDiscoveryengineV1alphaListAlphaEvolveProgramsResponse"
+                                  },
+                                  "scopes": [
+                                    "https://www.googleapis.com/auth/cloud-platform",
+                                    "https://www.googleapis.com/auth/discoveryengine.readwrite",
+                                    "https://www.googleapis.com/auth/discoveryengine.serving.readwrite"
+                                  ]
+                                }
+                              }
+                            },
                             "operations": {
                               "methods": {
                                 "get": {
@@ -7439,6 +7997,26 @@
                               "description": "Optional. Whether to turn off collection_components in WidgetConfig to reduce latency and data transmission.",
                               "location": "query",
                               "type": "boolean"
+                            },
+                            "languageCode": {
+                              "description": "Optional. BCP-47 language tag (e.g. \"en\", \"fr-CA\"). Used to localize human-readable strings in the response, such as the model selector `display_name` / `description` on `WidgetConfig.UiSettings.ModelConfigInfo`. Empty / unset falls back to the default language (English).",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "modelInfoView": {
+                              "description": "Optional. Selects which view of `WidgetConfig.UiSettings.ModelConfigInfo` the backend computes. `MODEL_INFO_VIEW_ADMIN` is set by the Cloud Console admin \"Feature Management\" page (screen/4Vn9gQKbN8tb7gm) to receive the admin-surfaced model set with `ResolvedModel.admin_view` populated; unset / `MODEL_INFO_VIEW_WEB` returns the end-user selector. The mobile surface is detected from the `X-Goog-Gemini-Enterprise-Mobile` header instead (see `ModelInfoView`).",
+                              "enum": [
+                                "MODEL_INFO_VIEW_UNSPECIFIED",
+                                "END_USER_WEB",
+                                "ADMIN"
+                              ],
+                              "enumDescriptions": [
+                                "Not specified.",
+                                "The end-user web model selector view.",
+                                "The Cloud Console admin \"Feature Control\" view that displays model toggles. Returns admin-surfaced models with `ResolvedModel.admin_view` populated."
+                              ],
+                              "location": "query",
+                              "type": "string"
                             },
                             "name": {
                               "description": "Required. Full WidgetConfig resource name. Format: `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}/widgetConfigs/{widget_config_id}`",
@@ -7790,6 +8368,21 @@
                       "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+$",
                       "required": true,
                       "type": "string"
+                    },
+                    "view": {
+                      "description": "Optional. The view to apply to the returned DataStore. Defaults to DataStoreView.DATA_STORE_VIEW_BASIC if unspecified. DataStoreView.DATA_STORE_VIEW_FULL additionally populates DataStore.icon_uri for a connector-backed data store. Resolving the connector icon requires extra lookups, so request it only when the caller renders the icon.",
+                      "enum": [
+                        "DATA_STORE_VIEW_UNSPECIFIED",
+                        "DATA_STORE_VIEW_BASIC",
+                        "DATA_STORE_VIEW_FULL"
+                      ],
+                      "enumDescriptions": [
+                        "The default / unset value. The API defaults to DataStoreView.DATA_STORE_VIEW_BASIC.",
+                        "Does not populate DataStore.icon_uri. This is the default view.",
+                        "Additionally populates DataStore.icon_uri for connector-backed data stores. Resolving connector icons requires extra lookups, so request this view only when the icons are rendered."
+                      ],
+                      "location": "query",
+                      "type": "string"
                     }
                   },
                   "path": "v1alpha/{+name}",
@@ -7799,6 +8392,33 @@
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform",
                     "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
+                    "https://www.googleapis.com/auth/discoveryengine.readwrite",
+                    "https://www.googleapis.com/auth/discoveryengine.serving.readwrite"
+                  ]
+                },
+                "getCompletionConfig": {
+                  "description": "Gets a CompletionConfig",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/dataStores/{dataStoresId}/completionConfig",
+                  "httpMethod": "GET",
+                  "id": "discoveryengine.projects.locations.dataStores.getCompletionConfig",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Full CompletionConfig resource name. Format: `projects/*/locations/*/dataStores/*/completionConfig` `projects/*/locations/*/collections/*/dataStores/*/completionConfig` `projects/*/locations/*/collections/*/engines/*/completionConfig`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+/completionConfig$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudDiscoveryengineV1alphaCompletionConfig"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
                     "https://www.googleapis.com/auth/discoveryengine.readwrite",
                     "https://www.googleapis.com/auth/discoveryengine.serving.readwrite"
                   ]
@@ -7887,6 +8507,21 @@
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
+                      "type": "string"
+                    },
+                    "view": {
+                      "description": "Optional. The view to apply to the returned DataStores. Defaults to DataStoreView.DATA_STORE_VIEW_BASIC if unspecified. DataStoreView.DATA_STORE_VIEW_FULL additionally populates DataStore.icon_uri for connector-backed data stores. Resolving connector icons requires extra lookups, so request it only when the caller renders the icons.",
+                      "enum": [
+                        "DATA_STORE_VIEW_UNSPECIFIED",
+                        "DATA_STORE_VIEW_BASIC",
+                        "DATA_STORE_VIEW_FULL"
+                      ],
+                      "enumDescriptions": [
+                        "The default / unset value. The API defaults to DataStoreView.DATA_STORE_VIEW_BASIC.",
+                        "Does not populate DataStore.icon_uri. This is the default view.",
+                        "Additionally populates DataStore.icon_uri for connector-backed data stores. Resolving connector icons requires extra lookups, so request this view only when the icons are rendered."
+                      ],
+                      "location": "query",
                       "type": "string"
                     }
                   },
@@ -7996,8 +8631,44 @@
                     "https://www.googleapis.com/auth/discoveryengine.serving.readwrite"
                   ]
                 },
+                "updateCompletionConfig": {
+                  "description": "Updates the CompletionConfigs.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/dataStores/{dataStoresId}/completionConfig",
+                  "httpMethod": "PATCH",
+                  "id": "discoveryengine.projects.locations.dataStores.updateCompletionConfig",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Immutable. Fully qualified name `projects/*/locations/*/dataStores/*/completionConfig` `projects/*/locations/*/collections/*/dataStores/*/completionConfig` `projects/*/locations/*/collections/*/engines/*/completionConfig`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+/completionConfig$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Indicates which fields in the provided CompletionConfig to update. The following are the only supported fields: * CompletionConfig.matching_order * CompletionConfig.max_suggestions * CompletionConfig.min_prefix_length * CompletionConfig.query_model * CompletionConfig.enable_mode * CompletionConfig.query_frequency_threshold * CompletionConfig.num_unique_users_threshold * CompletionConfig.should_serve_content_suggestions * CompletionConfig.filter_pii_suggestions_using_dlp If not set, all supported fields are updated.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}",
+                  "request": {
+                    "$ref": "GoogleCloudDiscoveryengineV1alphaCompletionConfig"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudDiscoveryengineV1alphaCompletionConfig"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/discoveryengine.readwrite",
+                    "https://www.googleapis.com/auth/discoveryengine.serving.readwrite"
+                  ]
+                },
                 "updateDocumentProcessingConfig": {
-                  "description": "Updates the DocumentProcessingConfig. DocumentProcessingConfig is a singleon resource of DataStore. It's empty when DataStore is created. The first call to this method will set up DocumentProcessingConfig.",
+                  "description": "Updates the DocumentProcessingConfig. DocumentProcessingConfig is a singleton resource of DataStore. It's empty when DataStore is created. The first call to this method will set up DocumentProcessingConfig. The `update_mask` query parameter is not supported; if it is set the request returns an error. To update mutable fields, omit `update_mask` and send the full DocumentProcessingConfig as the request body. The entire resource is overwritten, so include all values you want to retain. For example, to update the layout parser, set DocumentProcessingConfig.default_parsing_config (or DocumentProcessingConfig.parsing_config_overrides) and omit `update_mask`. Some fields, such as DocumentProcessingConfig.chunking_config, are immutable and return an error if changed.",
                   "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/dataStores/{dataStoresId}/documentProcessingConfig",
                   "httpMethod": "PATCH",
                   "id": "discoveryengine.projects.locations.dataStores.updateDocumentProcessingConfig",
@@ -8013,7 +8684,7 @@
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "Indicates which fields in the provided DocumentProcessingConfig to update. The following are the only supported fields: * DocumentProcessingConfig.ocr_config If not set, all supported fields are updated.",
+                      "description": "Not supported. If `update_mask` is set, the request returns an `UnsupportedFieldError`. To update mutable fields, omit `update_mask`; the full DocumentProcessingConfig in the request body then overwrites the existing resource. See the method description for details.",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -10593,6 +11264,26 @@
                           "location": "query",
                           "type": "boolean"
                         },
+                        "languageCode": {
+                          "description": "Optional. BCP-47 language tag (e.g. \"en\", \"fr-CA\"). Used to localize human-readable strings in the response, such as the model selector `display_name` / `description` on `WidgetConfig.UiSettings.ModelConfigInfo`. Empty / unset falls back to the default language (English).",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "modelInfoView": {
+                          "description": "Optional. Selects which view of `WidgetConfig.UiSettings.ModelConfigInfo` the backend computes. `MODEL_INFO_VIEW_ADMIN` is set by the Cloud Console admin \"Feature Management\" page (screen/4Vn9gQKbN8tb7gm) to receive the admin-surfaced model set with `ResolvedModel.admin_view` populated; unset / `MODEL_INFO_VIEW_WEB` returns the end-user selector. The mobile surface is detected from the `X-Goog-Gemini-Enterprise-Mobile` header instead (see `ModelInfoView`).",
+                          "enum": [
+                            "MODEL_INFO_VIEW_UNSPECIFIED",
+                            "END_USER_WEB",
+                            "ADMIN"
+                          ],
+                          "enumDescriptions": [
+                            "Not specified.",
+                            "The end-user web model selector view.",
+                            "The Cloud Console admin \"Feature Control\" view that displays model toggles. Returns admin-surfaced models with `ResolvedModel.admin_view` populated."
+                          ],
+                          "location": "query",
+                          "type": "string"
+                        },
                         "name": {
                           "description": "Required. Full WidgetConfig resource name. Format: `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}/widgetConfigs/{widget_config_id}`",
                           "location": "path",
@@ -12540,6 +13231,36 @@
                 },
                 "userLicenses": {
                   "methods": {
+                    "export": {
+                      "description": "Exports all the UserLicenses under the parent UserStore as a single CSV document. This is the backend for the admin console \"Download as CSV\" action: it reuses the ListUserLicenses read path so admins can sort/filter offline in Excel or Sheets. The response carries the full CSV (header row followed by data rows) inline in ExportUserLicensesResponse.csv_data.",
+                      "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/userStores/{userStoresId}/userLicenses:export",
+                      "httpMethod": "POST",
+                      "id": "discoveryengine.projects.locations.userStores.userLicenses.export",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. The parent UserStore resource name, format: `projects/{project}/locations/{location}/userStores/{user_store_id}`. All UserLicenses under this UserStore are exported.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/userStores/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha/{+parent}/userLicenses:export",
+                      "request": {
+                        "$ref": "GoogleCloudDiscoveryengineV1alphaExportUserLicensesRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudDiscoveryengineV1alphaExportUserLicensesResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite",
+                        "https://www.googleapis.com/auth/discoveryengine.serving.readwrite"
+                      ]
+                    },
                     "list": {
                       "description": "Lists the User Licenses.",
                       "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/userStores/{userStoresId}/userLicenses",
@@ -12560,7 +13281,7 @@
                           "type": "string"
                         },
                         "pageSize": {
-                          "description": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, defaults to 10. The maximum value is 50; values above 50 will be coerced to 50. If this field is negative, an INVALID_ARGUMENT error is returned.",
+                          "description": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, defaults to 100. The maximum value is 1000; values above 1000 will be coerced to 1000. If this field is negative, an INVALID_ARGUMENT error is returned.",
                           "format": "int32",
                           "location": "query",
                           "type": "integer"
@@ -12676,7 +13397,7 @@
       }
     }
   },
-  "revision": "20260524",
+  "revision": "20260724",
   "rootUrl": "https://discoveryengine.googleapis.com/",
   "schemas": {
     "GoogleApiDistribution": {
@@ -13535,6 +14256,32 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "toolspecOverride": {
+          "$ref": "GoogleCloudDiscoveryengineV1BAPConfigToolspecOverride",
+          "description": "Optional. Custom toolspec overrides for this connection. For Enterprise BAP connectors that support admin-curated tool definitions, this holds the (simplified) per-tool overrides. On Get, populated by the server by merging persisted overrides with live runtime tool definitions and trimming the result for UI consumption. On Update, the supplied value replaces the persisted overrides after server-side validation and merging: the `base_version` field MUST match the server's current base toolspec version (otherwise the request is rejected with a user-facing error directing the admin to re-download the latest tools first)."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1BAPConfigToolspecOverride": {
+      "description": "Customer-facing view of the admin-curated toolspec for a BAP connection. Holds the (simplified) per-tool definitions surfaced to and editable by the admin in the Discovery Engine UI. Mirrors the shape of the backend `google.cloud.connectorexecution.v1.ToolspecOverride` message, but is intentionally kept as a separate public type so the Discovery Engine API surface can evolve independently of the fed-API surface (AIP-215). Handlers convert between the two via helpers in //cloud/ml/discoveryengine/external_service/v1main/data_connector_service/lib:bap_custom_tool_util.",
+      "id": "GoogleCloudDiscoveryengineV1BAPConfigToolspecOverride",
+      "properties": {
+        "baseVersion": {
+          "description": "Required. Base toolspec version against which `tools` were authored. On Update, MUST match the server's current stable toolspec version for the connection; mismatch is rejected with a user-facing error directing the admin to re-download the latest tools first.",
+          "type": "string"
+        },
+        "tools": {
+          "description": "Required. Tool definitions (one Struct per tool) that the admin has customised on top of the base toolspec returned by the fed API. REQUIRED because it is the only user-editable field in the modify API; the request must carry at least one tool.",
+          "items": {
+            "additionalProperties": {
+              "description": "Properties of the object.",
+              "type": "any"
+            },
+            "type": "object"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -14231,7 +14978,8 @@
             "GCNV",
             "GOOGLE_CHAT",
             "GOOGLE_SITES",
-            "REMOTE_MCP"
+            "REMOTE_MCP",
+            "GOOGLE_WORKSPACE"
           ],
           "enumDescriptions": [
             "Default value.",
@@ -14248,7 +14996,8 @@
             "Google Cloud NetApp Volumes connector.",
             "Google Chat connector.",
             "Google Sites connector.",
-            "Remote MCP based connector."
+            "Remote MCP based connector.",
+            "Google Workspace connector."
           ],
           "readOnly": true,
           "type": "string"
@@ -14264,7 +15013,7 @@
           "type": "string"
         },
         "dataSource": {
-          "description": "Required. The identifier for the data source. This is a partial list of supported connectors. Please refer to the [documentation](https://docs.cloud.google.com/gemini/enterprise/docs/connectors/introduction-to-connectors-and-data-stores) for the full list of connectors. Supported first-party connectors include: * `gcs` * `bigquery` * `gcp_fhir` * `google_mail` * `google_drive` * `google_calendar` * `google_chat` Supported third-party connectors include: Generally available (GA) connectors: * `onedrive` * `outlook` * `confluence` * `jira` * `servicenow` * `sharepoint` Preview connectors: * `asana` * `azure_active_directory` * `box` * `canva` * `confluence_server` * `custom_connector` * `docusign` * `dropbox` * `dynamics365` * `github` * `gitlab` * `hubspot` * `jira_server` * `linear` * `native_cloud_identity` * `notion` * `okta` * `pagerduty` * `peoplesoft` * `salesforce` * `shopify` * `slack` * `snowflake` * `teams` * `trello` * `workday` * `zendesk`",
+          "description": "Required. The identifier for the data source. For the full, up-to-date list of supported connectors and their values, see [Connect a third-party data source](https://docs.cloud.google.com/gemini/enterprise/docs/connectors/connect-third-party-data-source#sources-by-launch-stage).",
           "type": "string"
         },
         "destinationConfigs": {
@@ -14356,6 +15105,10 @@
           "readOnly": true,
           "type": "string"
         },
+        "metadata": {
+          "$ref": "GoogleCloudDiscoveryengineV1DataConnectorConnectorMetadata",
+          "description": "Optional. User-facing metadata for the connector. Populated from the connector's generated metadata / registry `ConnectorSource`."
+        },
         "name": {
           "description": "Identifier. The full resource name of the Data Connector. Format: `projects/*/locations/*/collections/*/dataConnector`.",
           "type": "string"
@@ -14363,6 +15116,14 @@
         "nextSyncTime": {
           "$ref": "GoogleTypeDateTime",
           "description": "Defines the scheduled time for the next data synchronization. This field requires hour , minute, and time_zone from the [IANA Time Zone Database](https://www.iana.org/time-zones). This is utilized when the data connector has a refresh interval greater than 1 day. When the hours or minutes are not specified, we will assume a sync time of 0:00. The user must provide a time zone to avoid ambiguity."
+        },
+        "oauthStaticIpAddresses": {
+          "description": "Output only. The static IP addresses used by this connector for OAuth APIs (e.g. end user authentication). These are surfaced separately from `static_ip_addresses` so that customers can apply granular firewall settings for OAuth endpoints. Only populated for connectors that have static IP enabled and are used for actions and/or federated search.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
         },
         "params": {
           "additionalProperties": {
@@ -14469,6 +15230,10 @@
           ],
           "type": "string"
         },
+        "tag": {
+          "description": "Optional. Immutable. User-facing, version-independent label for this connector. May be shared by multiple connectors under the same (project, location, collection, data_source); tag-based lookup returns the one with the greatest create_time. Optional at Create time. Agent Designer resolves connectors via (data_source, tag) when set, falling back to the legacy resource-name lookup when unset, so connectors created before the tag-write launch continue to work without a backfill.",
+          "type": "string"
+        },
         "updateTime": {
           "description": "Output only. Timestamp the DataConnector was last updated.",
           "format": "google-datetime",
@@ -14479,6 +15244,37 @@
           "description": "Output only. Whether the connector is created with VPC-SC enabled.",
           "readOnly": true,
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1DataConnectorConnectorMetadata": {
+      "description": "User-facing metadata for the connector, shown on the connector detail page (title, description, short_description, author, authenticated_account, note).",
+      "id": "GoogleCloudDiscoveryengineV1DataConnectorConnectorMetadata",
+      "properties": {
+        "authenticatedAccount": {
+          "description": "Optional. The end user's account as authenticated to the connector, so the end user can see which account is connected. May be an email, a username, or any identifier the connector/third party provides.",
+          "type": "string"
+        },
+        "author": {
+          "description": "Optional. The party that authored the connector, e.g. \"Google\" or a third-party provider name. Lets end users see who authored a connector (future: third-party-authored connectors).",
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. Human-readable description of the connector, shown on the connector detail page. One connector has a single description.",
+          "type": "string"
+        },
+        "note": {
+          "description": "Optional. Free-form, multi-line note about the connector's capabilities or a custom note that can be set for the connector.",
+          "type": "string"
+        },
+        "shortDescription": {
+          "description": "Optional. Short, subtitle-length description of the connector (e.g. shown beneath the connector name in list and detail views).",
+          "type": "string"
+        },
+        "title": {
+          "description": "Optional. Display title of the connector.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -15377,6 +16173,11 @@
           ],
           "type": "string"
         },
+        "associatedAgentRegistry": {
+          "description": "Output only. The Agent registry containing the agents, MCP servers and tools associated with this engine. Derived server-side from the linked Agent Gateway's registry.",
+          "readOnly": true,
+          "type": "string"
+        },
         "chatEngineConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1EngineChatEngineConfig",
           "description": "Configurations for the Chat Engine. Only applicable if solution_type is SOLUTION_TYPE_CHAT."
@@ -15449,7 +16250,7 @@
             ],
             "type": "string"
           },
-          "description": "Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `disable-mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `disable-canvas-workspace` * `disable-skills` * `enable-end-user-sharing-with-groups`",
+          "description": "Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `disable-skills` * `disable-projects` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence`",
           "type": "object"
         },
         "industryVertical": {
@@ -15775,7 +16576,7 @@
       "id": "GoogleCloudDiscoveryengineV1EngineSearchEngineConfig",
       "properties": {
         "requiredSubscriptionTier": {
-          "description": "Optional. The required subscription tier of this engine. They cannot be modified after engine creation. If the required subscription tier is search, user with higher license tier like assist can still access the standalone app associated with this engine.",
+          "description": "Optional. The required subscription tier of this engine. If the required subscription tier is search, user with higher license tier like assist can still access the standalone app associated with this engine. Web grounding feature is only available on the app if it is set as SubscriptionTier.SUBSCRIPTION_TIER_SEARCH_AND_ASSISTANT.",
           "enum": [
             "SUBSCRIPTION_TIER_UNSPECIFIED",
             "SUBSCRIPTION_TIER_SEARCH",
@@ -15790,7 +16591,9 @@
             "SUBSCRIPTION_TIER_EDU_PRO",
             "SUBSCRIPTION_TIER_EDU_EMERGING",
             "SUBSCRIPTION_TIER_EDU_PRO_EMERGING",
-            "SUBSCRIPTION_TIER_FRONTLINE_STARTER"
+            "SUBSCRIPTION_TIER_FRONTLINE_STARTER",
+            "SUBSCRIPTION_TIER_CONSUMPTION_ONLY",
+            "SUBSCRIPTION_TIER_EDU_GOV_EMERGING"
           ],
           "enumDescriptions": [
             "Default value.",
@@ -15806,7 +16609,9 @@
             "Gemini Enterprise EDU Pro tier.",
             "Gemini Enterprise EDU tier for emerging market only.",
             "Gemini Enterprise EDU Pro tier for emerging market.",
-            "Gemini Frontline Starter tier."
+            "Gemini Frontline Starter tier.",
+            "Represents the Gemini Enterprise Consumption-only tier: $0 subscription billed purely on usage (PAYG).",
+            "Gemini Enterprise EDU tier for government in emerging markets."
           ],
           "type": "string"
         },
@@ -16186,6 +16991,11 @@
           "readOnly": true,
           "type": "boolean"
         },
+        "lastUserUpdateTime": {
+          "description": "Optional. Timestamp of the most recent user-initiated update (seat count change or subscription term change). Unlike `update_time`, this field is only stamped when a customer explicitly updates the license (e.g. via the UI), and is not touched by system-driven writes (subscription pipeline, BALC propagation, etc.).",
+          "format": "google-datetime",
+          "type": "string"
+        },
         "licenseCount": {
           "description": "Required. Number of licenses purchased.",
           "format": "int64",
@@ -16254,7 +17064,9 @@
             "SUBSCRIPTION_TIER_EDU_PRO",
             "SUBSCRIPTION_TIER_EDU_EMERGING",
             "SUBSCRIPTION_TIER_EDU_PRO_EMERGING",
-            "SUBSCRIPTION_TIER_FRONTLINE_STARTER"
+            "SUBSCRIPTION_TIER_FRONTLINE_STARTER",
+            "SUBSCRIPTION_TIER_CONSUMPTION_ONLY",
+            "SUBSCRIPTION_TIER_EDU_GOV_EMERGING"
           ],
           "enumDescriptions": [
             "Default value.",
@@ -16270,7 +17082,9 @@
             "Gemini Enterprise EDU Pro tier.",
             "Gemini Enterprise EDU tier for emerging market only.",
             "Gemini Enterprise EDU Pro tier for emerging market.",
-            "Gemini Frontline Starter tier."
+            "Gemini Frontline Starter tier.",
+            "Represents the Gemini Enterprise Consumption-only tier: $0 subscription billed purely on usage (PAYG).",
+            "Gemini Enterprise EDU tier for government in emerging markets."
           ],
           "type": "string"
         }
@@ -16358,6 +17172,14 @@
       "description": "Represents the currently effective configurable billing parameters. These values are derived from the customer's subscription history stored internally and reflect the thresholds actively being used for billing purposes at the time of the GetProject call. This includes the start_time of the subscription and may differ from the values in `customer_provided_config` due to billing rules (e.g., scale-downs taking effect only at the start of a new month). We also include the update type to indicate the type of update performed on the configurable billing configuration in the UpdateProject operation.",
       "id": "GoogleCloudDiscoveryengineV1ProjectConfigurableBillingStatus",
       "properties": {
+        "agentSearchTokenSubscriptionStatuses": {
+          "description": "Output only. Per-model Agent Search TPM subscription status.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1ProjectConfigurableBillingStatusAgentSearchTokenSubscriptionStatus"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "effectiveIndexingCoreThreshold": {
           "description": "Optional. The currently effective Indexing Core threshold. This is the threshold against which Indexing Core usage is compared for overage calculations.",
           "format": "int64",
@@ -16393,6 +17215,61 @@
         },
         "updateType": {
           "description": "Output only. The type of update performed in this operation. This field is populated in the response of UpdateProject.",
+          "enum": [
+            "UPDATE_TYPE_UNSPECIFIED",
+            "CREATE",
+            "DELETE",
+            "SCALE_UP",
+            "SCALE_DOWN"
+          ],
+          "enumDescriptions": [
+            "Unspecified update type.",
+            "Configurable billing was created/enabled.",
+            "Configurable billing was deleted/disabled.",
+            "Subscription was scaled up (thresholds increased).",
+            "Subscription was scaled down (thresholds decreased)."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1ProjectConfigurableBillingStatusAgentSearchTokenSubscriptionStatus": {
+      "description": "Per-model Agent Search TPM subscription status. One entry per active `core_subscription.agent_search_token_subscriptions[*]` entry in the customer-provided config; populated by UpdateProject and GetProject. The lifecycle scalars on this message (`start_time`, `terminate_time`, `update_type`, `tpm_threshold_next_update_time`) are per (project, model_version) — siblings of the whole-relationship `start_time` / `terminate_time` / `update_type` on the enclosing ConfigurableBillingStatus, but scoped to this specific Agent Search TPM subscription instead of to the overall customer-configurable- pricing relationship. This per-instance granularity is intentional: the underlying SubV3 storage is per-(project, model_version), so each model has its own activation, termination, and deferred-update clock; surfacing that on the response gives customers the granularity they need to manage per-model commitments independently. QPM / IndexingCore differ — their storage is one row per (project, location), so their lifecycle is represented only by the whole- relationship scalars on ConfigurableBillingStatus.",
+      "id": "GoogleCloudDiscoveryengineV1ProjectConfigurableBillingStatusAgentSearchTokenSubscriptionStatus",
+      "properties": {
+        "effectiveTpmThreshold": {
+          "description": "Output only. The currently effective TPM threshold. Reflects scale-up immediately and scale-down at the next billing cycle, matching `effective_search_qpm_threshold` semantics.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "modelVersion": {
+          "description": "Output only. The Gemini model version this status corresponds to. Matches CoreSubscription.AgentSearchTokenSubscription.model_version (a stable Gemini model version from the Gemini Enterprise Agent Platform model-versions registry; see https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/model-versions#gemini-models).",
+          "readOnly": true,
+          "type": "string"
+        },
+        "startTime": {
+          "description": "Output only. When this (project, model_version) Agent Search TPM subscription was first activated. Set once on first activation of this model version and never moved by subsequent threshold updates; on termination + re-activation a new value is recorded. Does NOT move the whole-relationship `start_time` on the enclosing ConfigurableBillingStatus, which continues to represent the first activation of the overall customer-configurable-pricing relationship.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "terminateTime": {
+          "description": "Output only. If set, the scheduled effective time at which this (project, model_version) Agent Search TPM subscription will terminate. Populated when the customer removes this entry from `core_subscription.agent_search_token_subscriptions[*]`. Does NOT move the whole-relationship `terminate_time` on the enclosing ConfigurableBillingStatus, which is populated only when the entire customer-configurable-pricing relationship is being torn down.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "tpmThresholdNextUpdateTime": {
+          "description": "Output only. The earliest next update time for the TPM subscription threshold for this (project, model_version). Populated only after a successful update.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateType": {
+          "description": "Output only. The type of the most recent update to this (project, model_version) subscription, as performed by the most recent UpdateProject call. `UPDATE_TYPE_UNSPECIFIED` indicates this model_version was not touched by the most recent UpdateProject (its `effective_tpm_threshold` reflects an earlier update). The whole-relationship `update_type` on the enclosing ConfigurableBillingStatus continues to summarize the direction of the most recent update across all surfaces in the project (QPM, IndexingCore, and Agent Search TPM together).",
           "enum": [
             "UPDATE_TYPE_UNSPECIFIED",
             "CREATE",
@@ -16549,7 +17426,7 @@
       "type": "object"
     },
     "GoogleCloudDiscoveryengineV1PurgeCompletionSuggestionsResponse": {
-      "description": "Response message for CompletionService.PurgeCompletionSuggestions method.",
+      "description": "Response message for CompletionService.PurgeCompletionSuggestions method. If the long running operation is successfully done, then this message is returned by the google.longrunning.Operations.response field.",
       "id": "GoogleCloudDiscoveryengineV1PurgeCompletionSuggestionsResponse",
       "properties": {
         "errorSamples": {
@@ -17467,7 +18344,8 @@
             "GOOGLE_CHAT",
             "GOOGLE_GROUPS",
             "GOOGLE_KEEP",
-            "GOOGLE_PEOPLE"
+            "GOOGLE_PEOPLE",
+            "GOOGLE_WORKSPACE"
           ],
           "enumDescriptions": [
             "Defaults to an unspecified Workspace type.",
@@ -17478,7 +18356,8 @@
             "Workspace Data Store contains Chat data",
             "Workspace Data Store contains Groups data",
             "Workspace Data Store contains Keep data",
-            "Workspace Data Store contains People data"
+            "Workspace Data Store contains People data",
+            "Workspace Data Store contains all Workspace apps data"
           ],
           "type": "string"
         }
@@ -17535,6 +18414,10 @@
       "description": "Request message for the DataConnectorService.AcquireAccessToken method.",
       "id": "GoogleCloudDiscoveryengineV1alphaAcquireAccessTokenRequest",
       "properties": {
+        "action": {
+          "description": "Optional. The tool/action name being executed. If provided, the server will check the required scopes of the action and dynamically trigger incremental authorization if they are missing.",
+          "type": "string"
+        },
         "scope": {
           "description": "Optional. The scope to request for the access token. Scope will override default scope if specified.",
           "type": "string"
@@ -17553,6 +18436,33 @@
         "refreshTokenInfo": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaRefreshTokenInfo",
           "description": "Info about the stored refresh token used to create the access token."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaAcquireProgramsRequest": {
+      "description": "Request message for AlphaEvolveService.AcquirePrograms.",
+      "id": "GoogleCloudDiscoveryengineV1alphaAcquireProgramsRequest",
+      "properties": {
+        "desiredProgramsCount": {
+          "description": "Optional. Number of evolved programs to acquire. If not set, the default value is 1.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaAcquireProgramsResponse": {
+      "description": "Response message for AlphaEvolveService.AcquirePrograms.",
+      "id": "GoogleCloudDiscoveryengineV1alphaAcquireProgramsResponse",
+      "properties": {
+        "programs": {
+          "description": "Output only. List of acquired program candidates to be evaluated. Note: The number of programs acquired might be lower than requested.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaAlphaEvolveProgram"
+          },
+          "readOnly": true,
+          "type": "array"
         }
       },
       "type": "object"
@@ -18003,6 +18913,11 @@
           "readOnly": true,
           "type": "string"
         },
+        "creationFailureReason": {
+          "description": "Output only. The reason why the agent creation (provisioning) failed. Only set if the state is CREATION_FAILED.",
+          "readOnly": true,
+          "type": "string"
+        },
         "customPlaceholderText": {
           "description": "Optional. The custom placeholder text that appears in the text box before the user enters any text.",
           "type": "string"
@@ -18071,7 +18986,8 @@
             "PRIVATE",
             "ENABLED",
             "SUSPENDED",
-            "CREATING"
+            "CREATING",
+            "CREATION_FAILED"
           ],
           "enumDescriptions": [
             "The state is unspecified.",
@@ -18082,7 +18998,8 @@
             "Agent is available only to its creator..",
             "Agent is available for users who have access.",
             "Agent is temporarily unavailable, though visible to users who have access.",
-            "Agent is being created."
+            "Agent is being created.",
+            "Agent creation (provisioning) failed. Terminal. To retry, the caller must `DeleteAgent` to clear the failed resource and then create again; there is no in-place overwrite of a failed agent. Only set for asynchronously-provisioned agents."
           ],
           "readOnly": true,
           "type": "string"
@@ -18323,6 +19240,404 @@
         },
         "tableId": {
           "description": "Required. The AlloyDB table to copy the data from with a length limit of 256 characters.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaAlphaEvolveEvaluationInsights": {
+      "description": "Evaluation insights for a program.",
+      "id": "GoogleCloudDiscoveryengineV1alphaAlphaEvolveEvaluationInsights",
+      "properties": {
+        "insights": {
+          "description": "Optional. List of evaluation insights.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaAlphaEvolveEvaluationInsightsAlphaEvolveEvaluationInsight"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaAlphaEvolveEvaluationInsightsAlphaEvolveEvaluationInsight": {
+      "description": "A single evaluation insight.",
+      "id": "GoogleCloudDiscoveryengineV1alphaAlphaEvolveEvaluationInsightsAlphaEvolveEvaluationInsight",
+      "properties": {
+        "label": {
+          "description": "Optional. Label of the insight.",
+          "type": "string"
+        },
+        "text": {
+          "description": "Optional. Text of the insight.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaAlphaEvolveEvaluationScores": {
+      "description": "Contains the evaluation scores for the target metrics to optimize.",
+      "id": "GoogleCloudDiscoveryengineV1alphaAlphaEvolveEvaluationScores",
+      "properties": {
+        "scores": {
+          "description": "Required. List of evaluation scores.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaAlphaEvolveEvaluationScoresAlphaEvolveEvaluationScore"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaAlphaEvolveEvaluationScoresAlphaEvolveEvaluationScore": {
+      "description": "Score for a single metric.",
+      "id": "GoogleCloudDiscoveryengineV1alphaAlphaEvolveEvaluationScoresAlphaEvolveEvaluationScore",
+      "properties": {
+        "metric": {
+          "description": "Required. Name of the metric.",
+          "type": "string"
+        },
+        "score": {
+          "description": "Required. Score of a program for this metric.",
+          "format": "float",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaAlphaEvolveExperiment": {
+      "description": "An experiment is a single run of the AlphaEvolve agent, an evolutionary coding agent powered by LLM for algorithm discovery and optimization.",
+      "id": "GoogleCloudDiscoveryengineV1alphaAlphaEvolveExperiment",
+      "properties": {
+        "config": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaAlphaEvolveExperimentConfig",
+          "description": "Required. Experiment configuration."
+        },
+        "createTime": {
+          "description": "Output only. Time when the experiment was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "initialAlphaEvolveProgram": {
+          "description": "Output only. Specifies the name of the seed program used to start the experiment.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. The full resource name of the experiment. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/sessions/{session}/alphaEvolveExperiments/{alpha_evolve_experiment}`",
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The state of the experiment.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATED",
+            "RUNNING",
+            "PAUSED",
+            "COMPLETED",
+            "FAILED"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "The experiment is created.",
+            "The experiment is running.",
+            "The experiment is paused.",
+            "The experiment is completed.",
+            "The experiment has failed."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "stats": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaAlphaEvolveExperimentStats",
+          "description": "Output only. Experiment stats.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaAlphaEvolveExperimentConfig": {
+      "description": "Configuration of an experiment.",
+      "id": "GoogleCloudDiscoveryengineV1alphaAlphaEvolveExperimentConfig",
+      "properties": {
+        "evolutionSettings": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaAlphaEvolveExperimentConfigEvolutionSettings",
+          "description": "Optional. Evolution settings for the experiment."
+        },
+        "generationSettings": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaAlphaEvolveExperimentConfigGenerationSettings",
+          "description": "Optional. Generation settings for the experiment, controlling how new program candidates are generated, including things LLM parameters and user-provided context and prompts."
+        },
+        "problemDescription": {
+          "description": "Required. Description of the problem to be solved by the experiment.",
+          "type": "string"
+        },
+        "programLanguage": {
+          "description": "Required. Primary programming language of the code being optimized.",
+          "type": "string"
+        },
+        "runSettings": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaAlphaEvolveExperimentConfigRunSettings",
+          "description": "Required. Run settings for the experiment, controlling the overall behavior of the experiment run."
+        },
+        "title": {
+          "description": "Required. Title of the experiment.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaAlphaEvolveExperimentConfigEvolutionSettings": {
+      "description": "Evolution settings for the experiment.",
+      "id": "GoogleCloudDiscoveryengineV1alphaAlphaEvolveExperimentConfigEvolutionSettings",
+      "properties": {
+        "parentSamplingConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaAlphaEvolveExperimentConfigEvolutionSettingsParentSamplingConfig",
+          "description": "Optional. Parent sampling configuration."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaAlphaEvolveExperimentConfigEvolutionSettingsParentSamplingConfig": {
+      "description": "Configuration for parent sampling.",
+      "id": "GoogleCloudDiscoveryengineV1alphaAlphaEvolveExperimentConfigEvolutionSettingsParentSamplingConfig",
+      "properties": {
+        "paretoSamplingConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaAlphaEvolveExperimentConfigEvolutionSettingsParentSamplingConfigParetoSamplingConfig",
+          "description": "Optional. Pareto sampling configuration."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaAlphaEvolveExperimentConfigEvolutionSettingsParentSamplingConfigParetoSamplingConfig": {
+      "description": "Configuration for Pareto sampling.",
+      "id": "GoogleCloudDiscoveryengineV1alphaAlphaEvolveExperimentConfigEvolutionSettingsParentSamplingConfigParetoSamplingConfig",
+      "properties": {
+        "paretoSamplingProbability": {
+          "description": "Optional. Probability [0.0, 1.0] of sampling parent programs from the Pareto frontier instead of normal fitness-based sampling during candidate generation. Useful when optimizing multiple metrics simultaneously. Default 0.0 (disabled). Only effective when evaluation returns multiple metrics in scores_to_optimize.",
+          "format": "float",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaAlphaEvolveExperimentConfigGenerationSettings": {
+      "description": "Generation settings for the experiment.",
+      "id": "GoogleCloudDiscoveryengineV1alphaAlphaEvolveExperimentConfigGenerationSettings",
+      "properties": {
+        "context": {
+          "description": "Optional. Additional user-provided context to be used during generation.",
+          "type": "string"
+        },
+        "includeFullProgramInPrompt": {
+          "description": "Optional. When true, the LLM prompt includes the full program text (both mutable EVOLVE-BLOCK regions and immutable boilerplate). When false (default), only the mutable EVOLVE-BLOCK regions are shown, saving context window.",
+          "type": "boolean"
+        },
+        "models": {
+          "description": "Optional. Per-model configuration. See `ModelConfig` for details. If left unset, the server selects a default model.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaAlphaEvolveExperimentConfigGenerationSettingsModelConfig"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaAlphaEvolveExperimentConfigGenerationSettingsModelConfig": {
+      "description": "Per-model configuration. Mutually exclusive with `model_mixture` and `model`: when `models` is set, both `model_mixture` and `model` must be left unset. The same allowed-model list and at-most-2-models rule as for `model_mixture` apply. In addition, each entry may specify a per-model `temperature` for LLM sampling. Unlike `model_mixture`, weights here are *relative*: only their ratios matter (the server normalizes them), so callers may use any positive numbers without having to ensure they sum to 1.0.",
+      "id": "GoogleCloudDiscoveryengineV1alphaAlphaEvolveExperimentConfigGenerationSettingsModelConfig",
+      "properties": {
+        "name": {
+          "description": "Required. Model name (e.g. `gemini-2.5-flash`, `gemini-3.1-pro-preview`). See `model_mixture` for the list of allowed models.",
+          "type": "string"
+        },
+        "weight": {
+          "description": "Optional. Relative weight for this model in the mixture. Must be a finite, strictly positive value. Weights across all entries are normalized server-side, so they need not sum to 1.0. Defaults to 1.0 when unset, which is convenient when configuring a single model or an even mixture. Some Pro-tier models are capped at most 50% of the total weight; requests violating that cap are rejected with INVALID_ARGUMENT.",
+          "format": "float",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaAlphaEvolveExperimentConfigRunSettings": {
+      "description": "Run settings for the experiment.",
+      "id": "GoogleCloudDiscoveryengineV1alphaAlphaEvolveExperimentConfigRunSettings",
+      "properties": {
+        "concurrency": {
+          "description": "Required. Maximum number of programs that can be generated in parallel. Must be positive.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "maxDuration": {
+          "description": "Optional. Maximum duration of the experiment. If unset, defaults to 24 hours.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "maxPrograms": {
+          "description": "Required. Maximum number of programs to generate during the experiment run. The initial program counts towards this limit. Must be greater than 1.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaAlphaEvolveExperimentStats": {
+      "description": "Stats about the experiment.",
+      "id": "GoogleCloudDiscoveryengineV1alphaAlphaEvolveExperimentStats",
+      "properties": {
+        "candidatesCount": {
+          "description": "Output only. Number of candidates generated.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "evaluatedCandidatesCount": {
+          "description": "Output only. Number of candidates evaluated.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "inputTokenCount": {
+          "description": "Output only. Number of billed input tokens consumed by the experiment.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "outputTokenCount": {
+          "description": "Output only. Number of billed output tokens consumed by the experiment.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaAlphaEvolveProgram": {
+      "description": "Represents a single program to be used within the context of an AlphaEvolve experiment.",
+      "id": "GoogleCloudDiscoveryengineV1alphaAlphaEvolveProgram",
+      "properties": {
+        "content": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaAlphaEvolveProgramContent",
+          "description": "Optional. Content of the program."
+        },
+        "createTime": {
+          "description": "Output only. Time when the program was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "evaluation": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaAlphaEvolveProgramEvaluation",
+          "description": "Optional. Evaluation results for the program."
+        },
+        "lockToken": {
+          "description": "Optional. Lock token for the program.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. Unique identifier for the program. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/sessions/{session}/alphaEvolveExperiments/{alpha_evolve_experiment}/alphaEvolvePrograms/{alpha_evolve_program}`",
+          "type": "string"
+        },
+        "parentPrograms": {
+          "description": "Output only. Optionally specifies which parent programs this program was evolved from. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/sessions/{session}/alphaEvolveExperiments/{alpha_evolve_experiment}/alphaEvolvePrograms/{alpha_evolve_program}`",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "state": {
+          "description": "Output only. State of the program.",
+          "enum": [
+            "PROGRAM_STATE_UNSPECIFIED",
+            "INITIALIZED",
+            "GENERATING",
+            "EVALUATING",
+            "COMPLETED"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "The program is initialized.",
+            "The program is in generation.",
+            "The program is pending evaluation.",
+            "The program is completed."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaAlphaEvolveProgramContent": {
+      "description": "A self-contained message containing the content of a program. Can represent a collection of files.",
+      "id": "GoogleCloudDiscoveryengineV1alphaAlphaEvolveProgramContent",
+      "properties": {
+        "description": {
+          "description": "Optional. Description of the program.",
+          "type": "string"
+        },
+        "files": {
+          "description": "Required. A list of source files that make up the overall program.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaAlphaEvolveSourceFile"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaAlphaEvolveProgramEvaluation": {
+      "description": "Evaluation results for a program candidate.",
+      "id": "GoogleCloudDiscoveryengineV1alphaAlphaEvolveProgramEvaluation",
+      "properties": {
+        "insights": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaAlphaEvolveEvaluationInsights",
+          "description": "Optional. Represents various insights about the candidate, which are not directly used as optimization target, but that can be used to improve subsequent generations, and as such can be used to construct the evolution prompt."
+        },
+        "scores": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaAlphaEvolveEvaluationScores",
+          "description": "Optional. Contains the evaluation scores for the target metrics to optimize."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaAlphaEvolveProgramEvaluationSubmission": {
+      "description": "Evaluation submission for a program candidate.",
+      "id": "GoogleCloudDiscoveryengineV1alphaAlphaEvolveProgramEvaluationSubmission",
+      "properties": {
+        "evaluation": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaAlphaEvolveProgramEvaluation",
+          "description": "Required. Evaluation results for the program candidate."
+        },
+        "lockToken": {
+          "description": "Required. Lock token for the program obtained in the AcquireAlphaEvolvePrograms call.",
+          "type": "string"
+        },
+        "program": {
+          "description": "Required. Unique identifier for the program. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/sessions/{session}/alphaEvolveExperiments/{alpha_evolve_experiment}/alphaEvolvePrograms/{alpha_evolve_program}`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaAlphaEvolveSourceFile": {
+      "description": "A single source file with its path, content and metadata.",
+      "id": "GoogleCloudDiscoveryengineV1alphaAlphaEvolveSourceFile",
+      "properties": {
+        "content": {
+          "description": "Required. The raw content of the file. This is a string and not bytes, because it should be ultimately processed by the LLM as text.",
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. Additional description of the file.",
+          "type": "string"
+        },
+        "path": {
+          "description": "Required. The relative path of the file, including the filename. e.g., \"src/main.py\", \"utils/helpers.js\", \"README.md\"",
+          "type": "string"
+        },
+        "programLanguage": {
+          "description": "Optional. The programming language of the file.",
           "type": "string"
         }
       },
@@ -19999,6 +21314,10 @@
           },
           "type": "array"
         },
+        "dataProtectionPolicy": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaDataProtectionPolicy",
+          "description": "Optional. Data protection policy to be used for sanitizing file uploads."
+        },
         "modelArmorConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaAssistantCustomerPolicyModelArmorConfig",
           "description": "Optional. Model Armor configuration to be used for sanitizing user prompts and assistant responses."
@@ -20391,6 +21710,32 @@
               "Connector utilized for End User Authentication."
             ],
             "type": "string"
+          },
+          "type": "array"
+        },
+        "toolspecOverride": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaBAPConfigToolspecOverride",
+          "description": "Optional. Custom toolspec overrides for this connection. For Enterprise BAP connectors that support admin-curated tool definitions, this holds the (simplified) per-tool overrides. On Get, populated by the server by merging persisted overrides with live runtime tool definitions and trimming the result for UI consumption. On Update, the supplied value replaces the persisted overrides after server-side validation and merging: the `base_version` field MUST match the server's current base toolspec version (otherwise the request is rejected with a user-facing error directing the admin to re-download the latest tools first)."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaBAPConfigToolspecOverride": {
+      "description": "Customer-facing view of the admin-curated toolspec for a BAP connection. Holds the (simplified) per-tool definitions surfaced to and editable by the admin in the Discovery Engine UI. Mirrors the shape of the backend `google.cloud.connectorexecution.v1.ToolspecOverride` message, but is intentionally kept as a separate public type so the Discovery Engine API surface can evolve independently of the fed-API surface (AIP-215). Handlers convert between the two via helpers in //cloud/ml/discoveryengine/external_service/v1main/data_connector_service/lib:bap_custom_tool_util.",
+      "id": "GoogleCloudDiscoveryengineV1alphaBAPConfigToolspecOverride",
+      "properties": {
+        "baseVersion": {
+          "description": "Required. Base toolspec version against which `tools` were authored. On Update, MUST match the server's current stable toolspec version for the connection; mismatch is rejected with a user-facing error directing the admin to re-download the latest tools first.",
+          "type": "string"
+        },
+        "tools": {
+          "description": "Required. Tool definitions (one Struct per tool) that the admin has customised on top of the base toolspec returned by the fed API. REQUIRED because it is the only user-editable field in the modify API; the request must carry at least one tool.",
+          "items": {
+            "additionalProperties": {
+              "description": "Properties of the object.",
+              "type": "any"
+            },
+            "type": "object"
           },
           "type": "array"
         }
@@ -20903,7 +22248,9 @@
             "SUBSCRIPTION_TIER_EDU_PRO",
             "SUBSCRIPTION_TIER_EDU_EMERGING",
             "SUBSCRIPTION_TIER_EDU_PRO_EMERGING",
-            "SUBSCRIPTION_TIER_FRONTLINE_STARTER"
+            "SUBSCRIPTION_TIER_FRONTLINE_STARTER",
+            "SUBSCRIPTION_TIER_CONSUMPTION_ONLY",
+            "SUBSCRIPTION_TIER_EDU_GOV_EMERGING"
           ],
           "enumDescriptions": [
             "Default value.",
@@ -20919,7 +22266,9 @@
             "Gemini Enterprise EDU Pro tier.",
             "Gemini Enterprise EDU tier for emerging market only.",
             "Gemini Enterprise EDU Pro tier for emerging market.",
-            "Gemini Frontline Starter tier."
+            "Gemini Frontline Starter tier.",
+            "Represents the Gemini Enterprise Consumption-only tier: $0 subscription billed purely on usage (PAYG).",
+            "Gemini Enterprise EDU tier for government in emerging markets."
           ],
           "type": "string"
         }
@@ -21711,6 +23060,68 @@
         "suggestion": {
           "description": "The suggestion for the query.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaCompletionConfig": {
+      "description": "Config to customize Autocomplete API response for both engines and data stores. Some fields are applicable to only one of them.",
+      "id": "GoogleCloudDiscoveryengineV1alphaCompletionConfig",
+      "properties": {
+        "enableMode": {
+          "description": "The enable mode of autocomplete generation pipelines. If this field is unset, the server behavior defaults to CompletionConfig.EnableMode.AUTOMATIC. Applies to DataStore only. Ignored for Engine.",
+          "enum": [
+            "ENABLE_MODE_UNSPECIFIED",
+            "AUTOMATIC",
+            "MANUAL"
+          ],
+          "enumDescriptions": [
+            "When AutoComplete enable mode unspecified, it defaults to AUTOMATIC mode.",
+            "AutoComplete will be enabled when the data store meets criteria.",
+            "AutoComplete will be enabled regardless of UCS data requirements."
+          ],
+          "type": "string"
+        },
+        "filterPiiSuggestionsUsingDlp": {
+          "deprecated": true,
+          "description": "Deprecated: this field has no effect. As of May 2025, PII suggestion filtering using [DLP](https://cloud.google.com/security/products/dlp) is always on for all data stores and can't be configured per data store.",
+          "type": "boolean"
+        },
+        "matchingOrder": {
+          "description": "The matching order for autocomplete suggestions, e.g., a query consisting of `sh` with `out-of-order` specified would suggest `women's shoes`, whereas a query of `red s` with `exact-prefix` specified would suggest `red shoes`. Currently supported values: * `out-of-order` * `exact-prefix` Default value: `exact-prefix`.",
+          "type": "string"
+        },
+        "maxSuggestions": {
+          "description": "The maximum number of autocomplete suggestions returned per term. max_suggestions must lie within the range of [1, 20]. If not set or set to 0, it will be set to the default of 20 suggestions.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "minPrefixLength": {
+          "description": "The minimum number of characters needed to be typed in order to get suggestions. min_prefix_length must lie within the range of [1, 20]. If not set or set to 0, it will be set to the default of 1 character.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "description": "Required. Immutable. Fully qualified name `projects/*/locations/*/dataStores/*/completionConfig` `projects/*/locations/*/collections/*/dataStores/*/completionConfig` `projects/*/locations/*/collections/*/engines/*/completionConfig`",
+          "type": "string"
+        },
+        "numUniqueUsersThreshold": {
+          "description": "This field is only meaningful for suggestions generated from user events or search history, which may have user ids attached. If the number of unique users that have searched a query is less than this threshold, the query will not be generated as a suggestion. This is field can be helpful for preventing PII queries becoming suggestions, as those queries are usually uniquely searched. If not set, the default value is 3 used in the generation pipeline.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "queryFrequencyThreshold": {
+          "description": "This field is only meaningful for suggestions generated from user events or search history. If a query shows up less than this threshold, it may indicate that the query is rarely searched and thus will not be generated as a suggestion. This is field can be helpful for preventing PII queries becoming suggestions, as those queries are usually uniquely searched. If not set, the default value is 3 used in the generation pipeline.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "queryModel": {
+          "description": "The data model of query suggestions for serving. Currently supported values: * `automatic` - autocomplete backend automatic selects or mixes suggestions from different models. * `document` - Using suggestions generated from user-imported documents. * `search-history` - Using suggestions generated from the past history of SearchService.Search API calls. Do not use it when there is no traffic for Search API. * `user-event` - Using suggestions generated from user-imported search events. * `document-completable` - Using suggestions taken directly from user-imported document fields marked as completable. If query model is empty, the serving applies the \"automatic\" model by default.",
+          "type": "string"
+        },
+        "shouldServeContentSuggestions": {
+          "description": "Whether to generate and serve content suggestions. This allows for content suggestions to be served in addition to query suggestions.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -22791,7 +24202,8 @@
             "GCNV",
             "GOOGLE_CHAT",
             "GOOGLE_SITES",
-            "REMOTE_MCP"
+            "REMOTE_MCP",
+            "GOOGLE_WORKSPACE"
           ],
           "enumDescriptions": [
             "Default value.",
@@ -22808,7 +24220,8 @@
             "Google Cloud NetApp Volumes connector.",
             "Google Chat connector.",
             "Google Sites connector.",
-            "Remote MCP based connector."
+            "Remote MCP based connector.",
+            "Google Workspace connector."
           ],
           "readOnly": true,
           "type": "string"
@@ -22828,7 +24241,7 @@
           "description": "Optional. Specifies the data protection policy for the connector."
         },
         "dataSource": {
-          "description": "Required. The identifier for the data source. This is a partial list of supported connectors. Please refer to the [documentation](https://docs.cloud.google.com/gemini/enterprise/docs/connectors/introduction-to-connectors-and-data-stores) for the full list of connectors. Supported first-party connectors include: * `gcs` * `bigquery` * `gcp_fhir` * `google_mail` * `google_drive` * `google_calendar` * `google_chat` Supported third-party connectors include: Generally available (GA) connectors: * `onedrive` * `outlook` * `confluence` * `jira` * `servicenow` * `sharepoint` Preview connectors: * `asana` * `azure_active_directory` * `box` * `canva` * `confluence_server` * `custom_connector` * `docusign` * `dropbox` * `dynamics365` * `github` * `gitlab` * `hubspot` * `jira_server` * `linear` * `native_cloud_identity` * `notion` * `okta` * `pagerduty` * `peoplesoft` * `salesforce` * `shopify` * `slack` * `snowflake` * `teams` * `trello` * `workday` * `zendesk`",
+          "description": "Required. The identifier for the data source. For the full, up-to-date list of supported connectors and their values, see [Connect a third-party data source](https://docs.cloud.google.com/gemini/enterprise/docs/connectors/connect-third-party-data-source#sources-by-launch-stage).",
           "type": "string"
         },
         "destinationConfigs": {
@@ -22920,6 +24333,10 @@
           "readOnly": true,
           "type": "string"
         },
+        "metadata": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaDataConnectorConnectorMetadata",
+          "description": "Optional. User-facing metadata for the connector. Populated from the connector's generated metadata / registry `ConnectorSource`."
+        },
         "name": {
           "description": "Identifier. The full resource name of the Data Connector. Format: `projects/*/locations/*/collections/*/dataConnector`.",
           "type": "string"
@@ -22927,6 +24344,14 @@
         "nextSyncTime": {
           "$ref": "GoogleTypeDateTime",
           "description": "Defines the scheduled time for the next data synchronization. This field requires hour , minute, and time_zone from the [IANA Time Zone Database](https://www.iana.org/time-zones). This is utilized when the data connector has a refresh interval greater than 1 day. When the hours or minutes are not specified, we will assume a sync time of 0:00. The user must provide a time zone to avoid ambiguity."
+        },
+        "oauthStaticIpAddresses": {
+          "description": "Output only. The static IP addresses used by this connector for OAuth APIs (e.g. end user authentication). These are surfaced separately from `static_ip_addresses` so that customers can apply granular firewall settings for OAuth endpoints. Only populated for connectors that have static IP enabled and are used for actions and/or federated search.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
         },
         "params": {
           "additionalProperties": {
@@ -23033,6 +24458,10 @@
           ],
           "type": "string"
         },
+        "tag": {
+          "description": "Optional. Immutable. User-facing, version-independent label for this connector. May be shared by multiple connectors under the same (project, location, collection, data_source); tag-based lookup returns the one with the greatest create_time. Optional at Create time. Agent Designer resolves connectors via (data_source, tag) when set, falling back to the legacy resource-name lookup when unset, so connectors created before the tag-write launch continue to work without a backfill.",
+          "type": "string"
+        },
         "updateTime": {
           "description": "Output only. Timestamp the DataConnector was last updated.",
           "format": "google-datetime",
@@ -23043,6 +24472,37 @@
           "description": "Output only. Whether the connector is created with VPC-SC enabled.",
           "readOnly": true,
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaDataConnectorConnectorMetadata": {
+      "description": "User-facing metadata for the connector, shown on the connector detail page (title, description, short_description, author, authenticated_account, note).",
+      "id": "GoogleCloudDiscoveryengineV1alphaDataConnectorConnectorMetadata",
+      "properties": {
+        "authenticatedAccount": {
+          "description": "Optional. The end user's account as authenticated to the connector, so the end user can see which account is connected. May be an email, a username, or any identifier the connector/third party provides.",
+          "type": "string"
+        },
+        "author": {
+          "description": "Optional. The party that authored the connector, e.g. \"Google\" or a third-party provider name. Lets end users see who authored a connector (future: third-party-authored connectors).",
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. Human-readable description of the connector, shown on the connector detail page. One connector has a single description.",
+          "type": "string"
+        },
+        "note": {
+          "description": "Optional. Free-form, multi-line note about the connector's capabilities or a custom note that can be set for the connector.",
+          "type": "string"
+        },
+        "shortDescription": {
+          "description": "Optional. Short, subtitle-length description of the connector (e.g. shown beneath the connector name in list and detail views).",
+          "type": "string"
+        },
+        "title": {
+          "description": "Optional. Display title of the connector.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -23306,6 +24766,11 @@
         "healthcareFhirConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaHealthcareFhirConfig",
           "description": "Optional. Configuration for `HEALTHCARE_FHIR` vertical."
+        },
+        "iconUri": {
+          "description": "Output only. Provides the icon URI of the data store's connector source, if this is a connector-backed data store. Empty for data stores without an associated connector source. In DataStoreService.ListDataStores and DataStoreService.GetDataStore, this is only populated when DataStoreView.DATA_STORE_VIEW_FULL is requested via ListDataStoresRequest.view or GetDataStoreRequest.view respectively.",
+          "readOnly": true,
+          "type": "string"
         },
         "identityMappingStore": {
           "description": "Immutable. The fully qualified resource name of the associated IdentityMappingStore. This field can only be set for acl_enabled DataStores with `THIRD_PARTY` or `GSUITE` IdP. Format: `projects/{project}/locations/{location}/identityMappingStores/{identity_mapping_store}`.",
@@ -23767,6 +25232,11 @@
         "successCount": {
           "description": "The number of end users under the user store that were successfully deleted.",
           "format": "int64",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Operation last update time. If the operation is done, this is also the finish time.",
+          "format": "google-datetime",
           "type": "string"
         }
       },
@@ -24319,6 +25789,11 @@
           ],
           "type": "string"
         },
+        "associatedAgentRegistry": {
+          "description": "Output only. The Agent registry containing the agents, MCP servers and tools associated with this engine. Derived server-side from the linked Agent Gateway's registry.",
+          "readOnly": true,
+          "type": "string"
+        },
         "chatEngineConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaEngineChatEngineConfig",
           "description": "Configurations for the Chat Engine. Only applicable if solution_type is SOLUTION_TYPE_CHAT."
@@ -24391,7 +25866,7 @@
             ],
             "type": "string"
           },
-          "description": "Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `disable-mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `disable-canvas-workspace` * `disable-skills` * `enable-end-user-sharing-with-groups`",
+          "description": "Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `disable-skills` * `disable-projects` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence`",
           "type": "object"
         },
         "industryVertical": {
@@ -24782,7 +26257,7 @@
       "id": "GoogleCloudDiscoveryengineV1alphaEngineSearchEngineConfig",
       "properties": {
         "requiredSubscriptionTier": {
-          "description": "Optional. The required subscription tier of this engine. They cannot be modified after engine creation. If the required subscription tier is search, user with higher license tier like assist can still access the standalone app associated with this engine.",
+          "description": "Optional. The required subscription tier of this engine. If the required subscription tier is search, user with higher license tier like assist can still access the standalone app associated with this engine. Web grounding feature is only available on the app if it is set as SubscriptionTier.SUBSCRIPTION_TIER_SEARCH_AND_ASSISTANT.",
           "enum": [
             "SUBSCRIPTION_TIER_UNSPECIFIED",
             "SUBSCRIPTION_TIER_SEARCH",
@@ -24797,7 +26272,9 @@
             "SUBSCRIPTION_TIER_EDU_PRO",
             "SUBSCRIPTION_TIER_EDU_EMERGING",
             "SUBSCRIPTION_TIER_EDU_PRO_EMERGING",
-            "SUBSCRIPTION_TIER_FRONTLINE_STARTER"
+            "SUBSCRIPTION_TIER_FRONTLINE_STARTER",
+            "SUBSCRIPTION_TIER_CONSUMPTION_ONLY",
+            "SUBSCRIPTION_TIER_EDU_GOV_EMERGING"
           ],
           "enumDescriptions": [
             "Default value.",
@@ -24813,7 +26290,9 @@
             "Gemini Enterprise EDU Pro tier.",
             "Gemini Enterprise EDU tier for emerging market only.",
             "Gemini Enterprise EDU Pro tier for emerging market.",
-            "Gemini Frontline Starter tier."
+            "Gemini Frontline Starter tier.",
+            "Represents the Gemini Enterprise Consumption-only tier: $0 subscription billed purely on usage (PAYG).",
+            "Gemini Enterprise EDU tier for government in emerging markets."
           ],
           "type": "string"
         },
@@ -25071,6 +26550,24 @@
       "properties": {},
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaExportUserLicensesRequest": {
+      "description": "Request message for UserLicenseService.ExportUserLicenses.",
+      "id": "GoogleCloudDiscoveryengineV1alphaExportUserLicensesRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaExportUserLicensesResponse": {
+      "description": "Response message for UserLicenseService.ExportUserLicenses.",
+      "id": "GoogleCloudDiscoveryengineV1alphaExportUserLicensesResponse",
+      "properties": {
+        "csvData": {
+          "description": "The full CSV document as raw bytes: the header row followed by one row per UserLicense. Contains user license data (e.g. user emails). An export with no matching licenses contains only the header row.",
+          "format": "byte",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaExternalIdentity": {
       "description": "External identity representing either a user or group. This user or group is from an external identity provider (IdP).",
       "id": "GoogleCloudDiscoveryengineV1alphaExternalIdentity",
@@ -25158,6 +26655,124 @@
         },
         "uri": {
           "description": "The URI of the source.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaFeedback": {
+      "description": "Information about the user feedback. This information will be used for logging and metrics purpose.",
+      "id": "GoogleCloudDiscoveryengineV1alphaFeedback",
+      "properties": {
+        "comment": {
+          "description": "Optional. The additional user comment of the feedback if user gives a thumb down.",
+          "type": "string"
+        },
+        "componentVersion": {
+          "description": "Optional. The version of the component that this report is being sent from.",
+          "type": "string"
+        },
+        "conversationInfo": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaFeedbackConversationInfo",
+          "description": "The related conversation information when user gives feedback."
+        },
+        "dataTermsAccepted": {
+          "description": "Optional. Whether the customer accepted data use terms.",
+          "type": "boolean"
+        },
+        "feedbackSource": {
+          "description": "Optional. The UI component the user feedback comes from, which could be GOOGLE_CONSOLE, GOOGLE_WIDGET, GOOGLE_WEBAPP.",
+          "enum": [
+            "FEEDBACK_SOURCE_UNSPECIFIED",
+            "GOOGLE_CONSOLE",
+            "GOOGLE_WIDGET",
+            "GOOGLE_WEBAPP",
+            "GOOGLE_AGENTSPACE_MOBILE"
+          ],
+          "enumDescriptions": [
+            "Unspecified feedback source.",
+            "Feedback source is Google Console.",
+            "Feedback source is Google Widget.",
+            "Feedback source is Google Webapp.",
+            "Feedback source is Google AgentSpace Mobile app."
+          ],
+          "type": "string"
+        },
+        "feedbackType": {
+          "description": "Required. Indicate whether the user gives a positive or negative feedback. If the user gives a negative feedback, there might be more feedback details.",
+          "enum": [
+            "FEEDBACK_TYPE_UNSPECIFIED",
+            "LIKE",
+            "DISLIKE"
+          ],
+          "enumDescriptions": [
+            "Unspecified feedback type.",
+            "The user gives a positive feedback.",
+            "The user gives a negative feedback."
+          ],
+          "type": "string"
+        },
+        "llmModelVersion": {
+          "description": "The version of the LLM model that was used to generate the response.",
+          "type": "string"
+        },
+        "reasons": {
+          "description": "Optional. The reason if user gives a thumb down.",
+          "items": {
+            "enum": [
+              "REASON_UNSPECIFIED",
+              "INACCURATE_RESPONSE",
+              "NOT_RELEVANT",
+              "INCOMPREHENSIVE",
+              "OFFENSIVE_OR_UNSAFE",
+              "FORMAT_AND_STYLES",
+              "BAD_CITATION",
+              "CANVAS_NOT_GENERATED",
+              "CANVAS_QUALITY_BAD",
+              "CANVAS_EXPORT_FAILED"
+            ],
+            "enumDescriptions": [
+              "Unspecified reason.",
+              "The response is inaccurate.",
+              "The response is not relevant.",
+              "The response is incomprehensive.",
+              "The response is offensive or unsafe.",
+              "The response is not well-formatted.",
+              "The response is not well-associated with the query.",
+              "The expected canvas was not generated for the response.",
+              "The generated canvas is of bad quality (e.g. inaccurate, incomplete, poorly formatted).",
+              "Exporting the generated canvas failed (e.g. download or external export action did not complete successfully)."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaFeedbackConversationInfo": {
+      "description": "The conversation information such as the question index and session name.",
+      "id": "GoogleCloudDiscoveryengineV1alphaFeedbackConversationInfo",
+      "properties": {
+        "answerQueryToken": {
+          "description": "Optional. The token which could be used to fetch the answer log.",
+          "type": "string"
+        },
+        "assistToken": {
+          "description": "Optional. The token which could be used to fetch the assistant log.",
+          "type": "string"
+        },
+        "query": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaQuery",
+          "description": "Required. The user's search query."
+        },
+        "questionIndex": {
+          "description": "The index of the user input within the conversation messages.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "session": {
+          "description": "Name of the newly generated or continued session.",
           "type": "string"
         }
       },
@@ -26548,6 +28163,11 @@
           "readOnly": true,
           "type": "boolean"
         },
+        "lastUserUpdateTime": {
+          "description": "Optional. Timestamp of the most recent user-initiated update (seat count change or subscription term change). Unlike `update_time`, this field is only stamped when a customer explicitly updates the license (e.g. via the UI), and is not touched by system-driven writes (subscription pipeline, BALC propagation, etc.).",
+          "format": "google-datetime",
+          "type": "string"
+        },
         "licenseCount": {
           "description": "Required. Number of licenses purchased.",
           "format": "int64",
@@ -26616,7 +28236,9 @@
             "SUBSCRIPTION_TIER_EDU_PRO",
             "SUBSCRIPTION_TIER_EDU_EMERGING",
             "SUBSCRIPTION_TIER_EDU_PRO_EMERGING",
-            "SUBSCRIPTION_TIER_FRONTLINE_STARTER"
+            "SUBSCRIPTION_TIER_FRONTLINE_STARTER",
+            "SUBSCRIPTION_TIER_CONSUMPTION_ONLY",
+            "SUBSCRIPTION_TIER_EDU_GOV_EMERGING"
           ],
           "enumDescriptions": [
             "Default value.",
@@ -26632,7 +28254,9 @@
             "Gemini Enterprise EDU Pro tier.",
             "Gemini Enterprise EDU tier for emerging market only.",
             "Gemini Enterprise EDU Pro tier for emerging market.",
-            "Gemini Frontline Starter tier."
+            "Gemini Frontline Starter tier.",
+            "Represents the Gemini Enterprise Consumption-only tier: $0 subscription billed purely on usage (PAYG).",
+            "Gemini Enterprise EDU tier for government in emerging markets."
           ],
           "type": "string"
         }
@@ -26668,6 +28292,46 @@
         },
         "nextPageToken": {
           "description": "A token that can be sent as ListAgentsRequest.page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaListAlphaEvolveExperimentsResponse": {
+      "description": "Response message for AlphaEvolveService.ListAlphaEvolveExperiments.",
+      "id": "GoogleCloudDiscoveryengineV1alphaListAlphaEvolveExperimentsResponse",
+      "properties": {
+        "alphaEvolveExperiments": {
+          "description": "Output only. List of experiments.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaAlphaEvolveExperiment"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Output only. A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaListAlphaEvolveProgramsResponse": {
+      "description": "Response message for AlphaEvolveService.ListAlphaEvolvePrograms.",
+      "id": "GoogleCloudDiscoveryengineV1alphaListAlphaEvolveProgramsResponse",
+      "properties": {
+        "alphaEvolvePrograms": {
+          "description": "Output only. List of programs matching the criteria provided in the request.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaAlphaEvolveProgram"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Output only. A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -27526,6 +29190,14 @@
       "description": "Represents the currently effective configurable billing parameters. These values are derived from the customer's subscription history stored internally and reflect the thresholds actively being used for billing purposes at the time of the GetProject call. This includes the start_time of the subscription and may differ from the values in `customer_provided_config` due to billing rules (e.g., scale-downs taking effect only at the start of a new month). We also include the update type to indicate the type of update performed on the configurable billing configuration in the UpdateProject operation.",
       "id": "GoogleCloudDiscoveryengineV1alphaProjectConfigurableBillingStatus",
       "properties": {
+        "agentSearchTokenSubscriptionStatuses": {
+          "description": "Output only. Per-model Agent Search TPM subscription status.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaProjectConfigurableBillingStatusAgentSearchTokenSubscriptionStatus"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "effectiveIndexingCoreThreshold": {
           "description": "Optional. The currently effective Indexing Core threshold. This is the threshold against which Indexing Core usage is compared for overage calculations.",
           "format": "int64",
@@ -27561,6 +29233,61 @@
         },
         "updateType": {
           "description": "Output only. The type of update performed in this operation. This field is populated in the response of UpdateProject.",
+          "enum": [
+            "UPDATE_TYPE_UNSPECIFIED",
+            "CREATE",
+            "DELETE",
+            "SCALE_UP",
+            "SCALE_DOWN"
+          ],
+          "enumDescriptions": [
+            "Unspecified update type.",
+            "Configurable billing was created/enabled.",
+            "Configurable billing was deleted/disabled.",
+            "Subscription was scaled up (thresholds increased).",
+            "Subscription was scaled down (thresholds decreased)."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaProjectConfigurableBillingStatusAgentSearchTokenSubscriptionStatus": {
+      "description": "Per-model Agent Search TPM subscription status. One entry per active `core_subscription.agent_search_token_subscriptions[*]` entry in the customer-provided config; populated by UpdateProject and GetProject. The lifecycle scalars on this message (`start_time`, `terminate_time`, `update_type`, `tpm_threshold_next_update_time`) are per (project, model_version) — siblings of the whole-relationship `start_time` / `terminate_time` / `update_type` on the enclosing ConfigurableBillingStatus, but scoped to this specific Agent Search TPM subscription instead of to the overall customer-configurable- pricing relationship. This per-instance granularity is intentional: the underlying SubV3 storage is per-(project, model_version), so each model has its own activation, termination, and deferred-update clock; surfacing that on the response gives customers the granularity they need to manage per-model commitments independently. QPM / IndexingCore differ — their storage is one row per (project, location), so their lifecycle is represented only by the whole- relationship scalars on ConfigurableBillingStatus.",
+      "id": "GoogleCloudDiscoveryengineV1alphaProjectConfigurableBillingStatusAgentSearchTokenSubscriptionStatus",
+      "properties": {
+        "effectiveTpmThreshold": {
+          "description": "Output only. The currently effective TPM threshold. Reflects scale-up immediately and scale-down at the next billing cycle, matching `effective_search_qpm_threshold` semantics.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "modelVersion": {
+          "description": "Output only. The Gemini model version this status corresponds to. Matches CoreSubscription.AgentSearchTokenSubscription.model_version (a stable Gemini model version from the Gemini Enterprise Agent Platform model-versions registry; see https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/model-versions#gemini-models).",
+          "readOnly": true,
+          "type": "string"
+        },
+        "startTime": {
+          "description": "Output only. When this (project, model_version) Agent Search TPM subscription was first activated. Set once on first activation of this model version and never moved by subsequent threshold updates; on termination + re-activation a new value is recorded. Does NOT move the whole-relationship `start_time` on the enclosing ConfigurableBillingStatus, which continues to represent the first activation of the overall customer-configurable-pricing relationship.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "terminateTime": {
+          "description": "Output only. If set, the scheduled effective time at which this (project, model_version) Agent Search TPM subscription will terminate. Populated when the customer removes this entry from `core_subscription.agent_search_token_subscriptions[*]`. Does NOT move the whole-relationship `terminate_time` on the enclosing ConfigurableBillingStatus, which is populated only when the entire customer-configurable-pricing relationship is being torn down.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "tpmThresholdNextUpdateTime": {
+          "description": "Output only. The earliest next update time for the TPM subscription threshold for this (project, model_version). Populated only after a successful update.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateType": {
+          "description": "Output only. The type of the most recent update to this (project, model_version) subscription, as performed by the most recent UpdateProject call. `UPDATE_TYPE_UNSPECIFIED` indicates this model_version was not touched by the most recent UpdateProject (its `effective_tpm_threshold` reflects an earlier update). The whole-relationship `update_type` on the enclosing ConfigurableBillingStatus continues to summarize the direction of the most recent update across all surfaces in the project (QPM, IndexingCore, and Agent Search TPM together).",
           "enum": [
             "UPDATE_TYPE_UNSPECIFIED",
             "CREATE",
@@ -27757,7 +29484,7 @@
       "type": "object"
     },
     "GoogleCloudDiscoveryengineV1alphaPurgeCompletionSuggestionsResponse": {
-      "description": "Response message for CompletionService.PurgeCompletionSuggestions method.",
+      "description": "Response message for CompletionService.PurgeCompletionSuggestions method. If the long running operation is successfully done, then this message is returned by the google.longrunning.Operations.response field.",
       "id": "GoogleCloudDiscoveryengineV1alphaPurgeCompletionSuggestionsResponse",
       "properties": {
         "errorSamples": {
@@ -28966,6 +30693,31 @@
     "GoogleCloudDiscoveryengineV1alphaResumeEngineRequest": {
       "description": "Request for resuming training of an engine.",
       "id": "GoogleCloudDiscoveryengineV1alphaResumeEngineRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaResumeExperimentMetadata": {
+      "description": "Metadata for AlphaEvolveService.ResumeExperiment long running operation.",
+      "id": "GoogleCloudDiscoveryengineV1alphaResumeExperimentMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The time the operation was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The time the operation was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaResumeExperimentRequest": {
+      "description": "Request message for AlphaEvolveService.ResumeExperiment.",
+      "id": "GoogleCloudDiscoveryengineV1alphaResumeExperimentRequest",
       "properties": {},
       "type": "object"
     },
@@ -30693,6 +32445,10 @@
         "rankSignals": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaSearchResponseSearchResultRankSignals",
           "description": "Optional. A set of ranking signals associated with the result."
+        },
+        "retrievalSignals": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaSearchResponseSearchResultRetrievalSignals",
+          "description": "Optional. A set of signals used by the relevance filter meant for use to fine-tune the relevance filter thresholds."
         }
       },
       "type": "object"
@@ -30769,6 +32525,35 @@
         },
         "value": {
           "description": "Optional. Float value representing the ranking signal (e.g. 1.25 for BM25).",
+          "format": "float",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaSearchResponseSearchResultRetrievalSignals": {
+      "description": "Contains a set of signals used by the relevance filter.",
+      "id": "GoogleCloudDiscoveryengineV1alphaSearchResponseSearchResultRetrievalSignals",
+      "properties": {
+        "retrievalSources": {
+          "description": "Optional. Indicates how the result was retrieved.",
+          "items": {
+            "enum": [
+              "RETRIEVAL_SOURCE_UNSPECIFIED",
+              "KEYWORD_SEARCH",
+              "SEMANTIC_SEARCH"
+            ],
+            "enumDescriptions": [
+              "Unspecified retrieval source.",
+              "Indicates the result was retrieved by keyword search.",
+              "Indicates the result was retrieved by semantic search."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "semanticRelevanceScore": {
+          "description": "Optional. Relevance score used by the filter when semantic_relevance_threshold is set.",
           "format": "float",
           "type": "number"
         }
@@ -31631,6 +33416,36 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaStartExperimentMetadata": {
+      "description": "Metadata for AlphaEvolveService.StartExperiment long running operation.",
+      "id": "GoogleCloudDiscoveryengineV1alphaStartExperimentMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The time the operation was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The time the operation was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaStartExperimentRequest": {
+      "description": "Request message for AlphaEvolveService.StartExperiment.",
+      "id": "GoogleCloudDiscoveryengineV1alphaStartExperimentRequest",
+      "properties": {
+        "name": {
+          "description": "Required. Experiment to start. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/sessions/{session}/alphaEvolveExperiments/{alpha_evolve_experiment}`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaStreamAssistRequest": {
       "description": "Request for the AssistantService.StreamAssist method.",
       "id": "GoogleCloudDiscoveryengineV1alphaStreamAssistRequest",
@@ -31755,6 +33570,13 @@
           "description": "A global unique ID that identifies the current pair of request and stream of responses. Used for feedback and support.",
           "type": "string"
         },
+        "connectorAuthErrors": {
+          "description": "Per-connector authentication errors encountered during the request. Present when one or more connectors failed authentication but the request proceeded with the remaining connectors.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaStreamAssistResponseConnectorAuthError"
+          },
+          "type": "array"
+        },
         "invocationTools": {
           "description": "The tool names of the tools that were invoked.",
           "items": {
@@ -31772,6 +33594,21 @@
         "sessionInfo": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaStreamAssistResponseSessionInfo",
           "description": "Session information. Only included in the final StreamAssistResponse of the response stream."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaStreamAssistResponseConnectorAuthError": {
+      "description": "Describes an authentication error for a specific data connector.",
+      "id": "GoogleCloudDiscoveryengineV1alphaStreamAssistResponseConnectorAuthError",
+      "properties": {
+        "dataConnector": {
+          "description": "Resource name of the data connector that failed authentication.",
+          "type": "string"
+        },
+        "errorMessage": {
+          "description": "Human-readable error message describing the auth failure.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -31800,6 +33637,26 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaSubmitProgramsEvaluationsRequest": {
+      "description": "Request message for AlphaEvolveService.SubmitProgramsEvaluations.",
+      "id": "GoogleCloudDiscoveryengineV1alphaSubmitProgramsEvaluationsRequest",
+      "properties": {
+        "evaluationSubmissions": {
+          "description": "Required. List of program evaluations to submit. At this time, only one evaluation submission is supported.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaAlphaEvolveProgramEvaluationSubmission"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaSubmitProgramsEvaluationsResponse": {
+      "description": "Response message for AlphaEvolveService.SubmitProgramsEvaluations.",
+      "id": "GoogleCloudDiscoveryengineV1alphaSubmitProgramsEvaluationsResponse",
+      "properties": {},
       "type": "object"
     },
     "GoogleCloudDiscoveryengineV1alphaSuggestionDenyListEntry": {
@@ -32261,6 +34118,10 @@
           "description": "Required. User event type. Allowed values are: Generic values: * `search`: Search for Documents. * `view-item`: Detailed page view of a Document. * `view-item-list`: View of a panel or ordered list of Documents. * `view-home-page`: View of the home page. * `view-category-page`: View of a category page, e.g. Home > Men > Jeans Retail-related values: * `add-to-cart`: Add an item(s) to cart, e.g. in Retail online shopping * `purchase`: Purchase an item(s) Media-related values: * `media-play`: Start/resume watching a video, playing a song, etc. * `media-complete`: Finished or stopped midway through a video, song, etc. Custom conversion value: * `conversion`: Customer defined conversion event.",
           "type": "string"
         },
+        "feedback": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaFeedback",
+          "description": "Optional. This field is optional except for the `add-feedback` event types."
+        },
         "filter": {
           "description": "Optional. The filter syntax consists of an expression language for constructing a predicate from one or more fields of the documents being filtered. One example is for `search` events, the associated SearchRequest may contain a filter expression in SearchRequest.filter conforming to https://google.aip.dev/160#filtering. Similarly, for `view-item-list` events that are generated from a RecommendRequest, this field may be populated directly from RecommendRequest.filter conforming to https://google.aip.dev/160#filtering. The value must be a UTF-8 encoded string with a length limit of 1,000 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.",
           "type": "string"
@@ -32345,11 +34206,11 @@
       "type": "object"
     },
     "GoogleCloudDiscoveryengineV1alphaUserInfoPreciseLocation": {
-      "description": "Precise location info with multiple representation options. Currently only latitude and longitude point is supported.",
+      "description": "Precise location info with multiple representation options.",
       "id": "GoogleCloudDiscoveryengineV1alphaUserInfoPreciseLocation",
       "properties": {
         "address": {
-          "description": "Optional. Location represented by a natural language address. Will later be geocoded and converted to either a point or a polygon.",
+          "description": "Location represented by a natural language address. Will later be geocoded and converted to either a point or a polygon.",
           "type": "string"
         },
         "point": {
@@ -32529,8 +34390,16 @@
           "description": "Optional. Output only. Describes the assistant settings of the widget.",
           "readOnly": true
         },
+        "batchAuthStatuses": {
+          "description": "Output only. The batch authorization statuses for the widget's connectors.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaWidgetConfigBatchAuthStatus"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "collectionComponents": {
-          "description": "Output only. Collection components that lists all collections and child data stores associated with the widget config, those data sources can be used for filtering in widget service APIs, users can return results that from selected data sources.",
+          "description": "Output only. Collection components that lists all collections and child data stores associated with the widget config, those data sources can be used for filtering in widget service APIs, users can return results that from selected data sources. For SaaS / Business engines, when `LookupWidgetConfig` is called with `view = WITH_AVAILABLE_CONNECTORS`, this list is additionally augmented with synthetic placeholder entries for connectors the caller may attach but has not yet attached (see `CollectionComponent` for the placeholder contract). The frontend can therefore render a unified list of already-attached and available-to-attach sources by iterating this single field. For Enterprise engines and for the default `view`, only already-attached connectors are returned (today's behavior).",
           "items": {
             "$ref": "GoogleCloudDiscoveryengineV1alphaWidgetConfigCollectionComponent"
           },
@@ -32827,10 +34696,37 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaWidgetConfigBatchAuthStatus": {
+      "description": "Describes the batch authorization status for a batch_authorization_group.",
+      "id": "GoogleCloudDiscoveryengineV1alphaWidgetConfigBatchAuthStatus",
+      "properties": {
+        "batchAuthorizationGroup": {
+          "description": "Output only. The batch authorization group the placeholder belongs to.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "connectorAuthState": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaWidgetConfigConnectorAuthState",
+          "description": "Output only. The current authorization state for this connector.",
+          "readOnly": true
+        },
+        "placeholder": {
+          "description": "Output only. It is the batch authorization group placeholder full resource name. This is not a real data connector (not existed in DataConnector table in spanner). It's a resource name existing only in the connector_authorization in the user table. E.g. projects/{project}/locations/{location}/collections/oauth_placeholder_google_workspace/dataStores/dataConnector.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaWidgetConfigCollectionComponent": {
-      "description": "Read-only collection component that contains data store collections fields that may be used for filtering",
+      "description": "Read-only collection component that contains data store collections fields that may be used for filtering. For SaaS / Business engines, when `LookupWidgetConfig` is called with `view = WITH_AVAILABLE_CONNECTORS`, instances of this message are also used to represent synthetic placeholder entries for connectors the caller may attach but has not yet attached. Placeholder entries have `connector_auth_state.auth_state == AUTH_STATE_UNSPECIFIED` (or `NO_AUTH`), an empty `connector_auth_state.authorization_uri` (the widget calls `WidgetBuildAuthorizationUrl` on the user's \"Connect\" click), and synthetic placeholder values in `name` / `id` (see field comments). Fields that only make sense for materialized connectors (`data_store_components`, `tenant`, `action_connector`) are left unset for placeholder entries.",
       "id": "GoogleCloudDiscoveryengineV1alphaWidgetConfigCollectionComponent",
       "properties": {
+        "connectorAuthState": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaWidgetConfigConnectorAuthState",
+          "description": "Output only. The auth uri of the connector source.",
+          "readOnly": true
+        },
         "connectorIconLink": {
           "description": "Output only. The icon link of the connector source.",
           "readOnly": true,
@@ -32857,12 +34753,49 @@
           "type": "string"
         },
         "id": {
-          "description": "Output only. the identifier of the collection, used for widget service. For now it refers to collection_id, in the future we will migrate the field to encrypted collection name UUID.",
+          "description": "Output only. the identifier of the collection, used for widget service. For now it refers to collection_id, in the future we will migrate the field to encrypted collection name UUID. For synthetic placeholder entries (see message-level comment) this is a synthetic placeholder id, not a real collection_id.",
           "readOnly": true,
           "type": "string"
         },
         "name": {
-          "description": "The name of the collection. It should be collection resource name. Format: `projects/{project}/locations/{location}/collections/{collection_id}`. For APIs under WidgetService, such as WidgetService.LookupWidgetConfig, the project number and location part is erased in this field.",
+          "description": "The name of the collection. It should be collection resource name. Format: `projects/{project}/locations/{location}/collections/{collection_id}`. For APIs under WidgetService, such as WidgetService.LookupWidgetConfig, the project number and location part is erased in this field. For synthetic placeholder entries (see message-level comment) this carries a synthetic placeholder collection id that does not correspond to a real collection. Callers must not attempt to resolve / GET this resource until the user authorizes the connector.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaWidgetConfigConnectorAuthState": {
+      "description": "Read-only connector in CollectionComponent auth state.",
+      "id": "GoogleCloudDiscoveryengineV1alphaWidgetConfigConnectorAuthState",
+      "properties": {
+        "authState": {
+          "description": "Output only. The authorization state of the data connector.",
+          "enum": [
+            "AUTH_STATE_UNSPECIFIED",
+            "AUTHORIZED",
+            "EXPIRED",
+            "ACTIONS_DISABLED",
+            "NO_AUTH"
+          ],
+          "enumDescriptions": [
+            "Default value. Also returned for synthetic placeholder `CollectionComponent` entries surfaced by `LookupWidgetConfig` with `view = WITH_AVAILABLE_CONNECTORS` (SaaS / Business only) — those entries represent connectors the caller may attach but has not yet attached.",
+            "The user has authorized the data connector.",
+            "The user authorization for the data connector has expired.",
+            "The user can still make search requests but actions need to be enabled.",
+            "The data connector does not require any authorization. Also used for placeholder entries whose underlying connector does not require user OAuth."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "authorizationUri": {
+          "description": "Output only. The authorization uri for the data connector. For synthetic placeholder `CollectionComponent` entries (returned by `LookupWidgetConfig` with `view = WITH_AVAILABLE_CONNECTORS` on SaaS / Business engines), this field is left empty. The widget should call `WidgetService.WidgetBuildAuthorizationUrl` on the user's \"Connect\" click to obtain a freshly-built authorization URL.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The authorization state update timestamp.",
+          "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -32955,7 +34888,8 @@
             "GOOGLE_CHAT",
             "GOOGLE_GROUPS",
             "GOOGLE_KEEP",
-            "GOOGLE_PEOPLE"
+            "GOOGLE_PEOPLE",
+            "GOOGLE_WORKSPACE"
           ],
           "enumDescriptions": [
             "Defaults to an unspecified Workspace type.",
@@ -32966,7 +34900,8 @@
             "Workspace Data Store contains Chat data",
             "Workspace Data Store contains Groups data",
             "Workspace Data Store contains Keep data",
-            "Workspace Data Store contains People data"
+            "Workspace Data Store contains People data",
+            "Workspace Data Store contains all Workspace apps data"
           ],
           "readOnly": true,
           "type": "string"
@@ -33224,13 +35159,18 @@
             ],
             "type": "string"
           },
-          "description": "Output only. Feature config for the engine to opt in or opt out of features. Supported keys: * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `disable-mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `disable-canvas-workspace` * `disable-skills` * `enable-end-user-sharing-with-groups`",
+          "description": "Output only. Feature config for the engine to opt in or opt out of features. Supported keys: * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `disable-skills` * `disable-projects` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence`",
           "readOnly": true,
           "type": "object"
         },
         "generativeAnswerConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaWidgetConfigUiSettingsGenerativeAnswerConfig",
           "description": "Describes generative answer configuration."
+        },
+        "googleDrivePickerEnabled": {
+          "description": "Output only. Whether the Google Drive file picker is available to end-users. Declared `optional` for the same field-presence reason as `onedrive_picker_enabled` above.",
+          "readOnly": true,
+          "type": "boolean"
         },
         "interactionType": {
           "description": "Describes widget (or web app) interaction type",
@@ -33247,6 +35187,11 @@
             "Search with the generative answer that supports follow up questions. Also known as multi-turn search."
           ],
           "type": "string"
+        },
+        "modelConfigInfo": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaWidgetConfigUiSettingsModelConfigInfo",
+          "description": "Output only. The resolved, server-side view of model selector configuration. Holds both the ordered list of models that should appear in the model selector dropdown and the model that should be selected by default. Clients should render this directly without applying their own filtering, ordering, or localization. The legacy `model_configs` map above is retained for backward compatibility with clients that have not yet migrated to consuming this field.",
+          "readOnly": true
         },
         "modelConfigs": {
           "additionalProperties": {
@@ -33266,6 +35211,11 @@
           "readOnly": true,
           "type": "object"
         },
+        "onedrivePickerEnabled": {
+          "description": "Output only. Whether the OneDrive file picker is available to end-users. Computed by the backend from admin connector enablement (Business edition) or attached OneDrive connectors (Enterprise edition), combined with the existing `disable-onedrive-upload` admin feature. Declared `optional` so an explicitly-computed `false` is serialized with field presence. A plain proto3 `bool` drops a default `false` on the wire, which prevented clients from distinguishing \"picker disabled\" (`false`) from \"field not populated\" (unset).",
+          "readOnly": true,
+          "type": "boolean"
+        },
         "resultDescriptionType": {
           "description": "Controls whether result extract is display and how (snippet or extractive answer). Default to no result if unspecified.",
           "enum": [
@@ -33283,6 +35233,10 @@
         "searchAddonSpec": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaWidgetConfigUiSettingsSearchAddonSpec",
           "description": "Optional. SearchAddonSpec is used to disable add-ons for search. This field is only supported for search requests."
+        },
+        "sourceAdminDisplayNameEnabled": {
+          "description": "Optional. Whether to show the admin-configured display name for data connectors in the widget sources UI (instead of the connector kind). Opt-in; defaults to false.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -33348,6 +35302,88 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaWidgetConfigUiSettingsModelConfigInfo": {
+      "description": "The resolved, server-side view of model selector configuration for the end-user. The backend computes this per-request by applying, in order: Mendel flag evaluation, regional availability rules based on the engine's location, and admin-panel overrides from `model_configs`. The backend is the single source of truth for this configuration; clients should render `resolved_models` directly in the model selector dropdown, in the order provided, without applying their own filtering, ordering, or localization.",
+      "id": "GoogleCloudDiscoveryengineV1alphaWidgetConfigUiSettingsModelConfigInfo",
+      "properties": {
+        "defaultModelId": {
+          "description": "Output only. The `model_id` of the model that should be selected by default in the model selector when the end-user has not made an explicit choice. The value is always one of the `model_id`s present in `resolved_models`.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "resolvedModels": {
+          "description": "Output only. The list of models that are available to the end-user in the model selector, in the order in which they should be displayed.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaWidgetConfigUiSettingsModelConfigInfoResolvedModel"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaWidgetConfigUiSettingsModelConfigInfoResolvedModel": {
+      "description": "A single model that is resolved to be available to the end-user in the model selector, with all of its localized display metadata.",
+      "id": "GoogleCloudDiscoveryengineV1alphaWidgetConfigUiSettingsModelConfigInfoResolvedModel",
+      "properties": {
+        "adminView": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaWidgetConfigUiSettingsModelConfigInfoResolvedModelAdminView",
+          "description": "Output only. Admin-surface metadata; populated only for the Console admin Feature Control page (see `AdminView`). Unset for end-user surfaces.",
+          "readOnly": true
+        },
+        "description": {
+          "description": "Output only. Localized description text (e.g. `State-of-the-art reasoning`). Localized using the same locale as `display_name`.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Output only. Localized display name of the model (e.g. `Gemini 3.1 Pro`). Localized server-side based on the LookupWidgetConfigRequest.language_code and LookupWidgetConfigRequest.region_code of the request.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "icon": {
+          "description": "Output only. GM3-compatible icon token associated with the model (e.g. `rocket_launch`, `bolt`, `graph_5`).",
+          "readOnly": true,
+          "type": "string"
+        },
+        "isPreview": {
+          "description": "Output only. Whether the model is currently in preview. Clients should surface this via a \"Preview\" badge in the selector UI.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "modelId": {
+          "description": "Output only. Unique identifier of the model (e.g. `gemini-2.5-flash`, `gemini-3.1-pro-preview`). This is the same identifier that clients pass back to the assistant service to select this model. Virtual / \"pseudo\" models (e.g. `gemini-fast`) are also valid values here; they are resolved to the underlying concrete model on the backend.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaWidgetConfigUiSettingsModelConfigInfoResolvedModelAdminView": {
+      "description": "Admin-surface metadata. Populated only when the request originates from the Cloud Console admin \"Feature Control\" page; left unset for end-user surfaces (Web, Mobile). Lets the admin page render its toggle table directly from the backend instead of a hardcoded client-side registry.",
+      "id": "GoogleCloudDiscoveryengineV1alphaWidgetConfigUiSettingsModelConfigInfoResolvedModelAdminView",
+      "properties": {
+        "adminOverridable": {
+          "description": "Output only. Whether the admin can toggle this model's enabled/disabled state via `UiSettings.model_configs`. Derived from `MODEL_TAG_ADMIN_OVERRIDABLE`. When false, the model is \"forced\" and its state is governed by `enabled_by_default`.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "enabledByDefault": {
+          "description": "Output only. Whether the model is enabled when the admin has set no explicit override in `UiSettings.model_configs`. Derived from `MODEL_TAG_ENABLED_BY_DEFAULT`.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "regions": {
+          "description": "Output only. Regions where this model is launched.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaWidgetConfigUiSettingsSearchAddonSpec": {
       "description": "SearchAddonSpec is used to disable add-ons for search. By default, if this field is not specified, add-ons are enabled wherever applicable.",
       "id": "GoogleCloudDiscoveryengineV1alphaWidgetConfigUiSettingsSearchAddonSpec",
@@ -33395,7 +35431,8 @@
             "GOOGLE_CHAT",
             "GOOGLE_GROUPS",
             "GOOGLE_KEEP",
-            "GOOGLE_PEOPLE"
+            "GOOGLE_PEOPLE",
+            "GOOGLE_WORKSPACE"
           ],
           "enumDescriptions": [
             "Defaults to an unspecified Workspace type.",
@@ -33406,7 +35443,8 @@
             "Workspace Data Store contains Chat data",
             "Workspace Data Store contains Groups data",
             "Workspace Data Store contains Keep data",
-            "Workspace Data Store contains People data"
+            "Workspace Data Store contains People data",
+            "Workspace Data Store contains all Workspace apps data"
           ],
           "type": "string"
         }
@@ -33417,6 +35455,10 @@
       "description": "Workspace settings for the end user.",
       "id": "GoogleCloudDiscoveryengineV1alphaWorkspaceSettings",
       "properties": {
+        "customerDomainValid": {
+          "description": "Whether the calling user's customer domain matches the workspace data stores under this engine.",
+          "type": "boolean"
+        },
         "workspaceAccessEnabled": {
           "description": "Whether an end user has workspace access enabled.",
           "type": "boolean"
@@ -34701,6 +36743,11 @@
           ],
           "type": "string"
         },
+        "associatedAgentRegistry": {
+          "description": "Output only. The Agent registry containing the agents, MCP servers and tools associated with this engine. Derived server-side from the linked Agent Gateway's registry.",
+          "readOnly": true,
+          "type": "string"
+        },
         "chatEngineConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1betaEngineChatEngineConfig",
           "description": "Configurations for the Chat Engine. Only applicable if solution_type is SOLUTION_TYPE_CHAT."
@@ -34773,7 +36820,7 @@
             ],
             "type": "string"
           },
-          "description": "Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `disable-mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `disable-canvas-workspace` * `disable-skills` * `enable-end-user-sharing-with-groups`",
+          "description": "Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `disable-skills` * `disable-projects` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence`",
           "type": "object"
         },
         "industryVertical": {
@@ -35099,7 +37146,7 @@
       "id": "GoogleCloudDiscoveryengineV1betaEngineSearchEngineConfig",
       "properties": {
         "requiredSubscriptionTier": {
-          "description": "Optional. The required subscription tier of this engine. They cannot be modified after engine creation. If the required subscription tier is search, user with higher license tier like assist can still access the standalone app associated with this engine.",
+          "description": "Optional. The required subscription tier of this engine. If the required subscription tier is search, user with higher license tier like assist can still access the standalone app associated with this engine. Web grounding feature is only available on the app if it is set as SubscriptionTier.SUBSCRIPTION_TIER_SEARCH_AND_ASSISTANT.",
           "enum": [
             "SUBSCRIPTION_TIER_UNSPECIFIED",
             "SUBSCRIPTION_TIER_SEARCH",
@@ -35114,7 +37161,9 @@
             "SUBSCRIPTION_TIER_EDU_PRO",
             "SUBSCRIPTION_TIER_EDU_EMERGING",
             "SUBSCRIPTION_TIER_EDU_PRO_EMERGING",
-            "SUBSCRIPTION_TIER_FRONTLINE_STARTER"
+            "SUBSCRIPTION_TIER_FRONTLINE_STARTER",
+            "SUBSCRIPTION_TIER_CONSUMPTION_ONLY",
+            "SUBSCRIPTION_TIER_EDU_GOV_EMERGING"
           ],
           "enumDescriptions": [
             "Default value.",
@@ -35130,7 +37179,9 @@
             "Gemini Enterprise EDU Pro tier.",
             "Gemini Enterprise EDU tier for emerging market only.",
             "Gemini Enterprise EDU Pro tier for emerging market.",
-            "Gemini Frontline Starter tier."
+            "Gemini Frontline Starter tier.",
+            "Represents the Gemini Enterprise Consumption-only tier: $0 subscription billed purely on usage (PAYG).",
+            "Gemini Enterprise EDU tier for government in emerging markets."
           ],
           "type": "string"
         },
@@ -35687,6 +37738,11 @@
           "readOnly": true,
           "type": "boolean"
         },
+        "lastUserUpdateTime": {
+          "description": "Optional. Timestamp of the most recent user-initiated update (seat count change or subscription term change). Unlike `update_time`, this field is only stamped when a customer explicitly updates the license (e.g. via the UI), and is not touched by system-driven writes (subscription pipeline, BALC propagation, etc.).",
+          "format": "google-datetime",
+          "type": "string"
+        },
         "licenseCount": {
           "description": "Required. Number of licenses purchased.",
           "format": "int64",
@@ -35755,7 +37811,9 @@
             "SUBSCRIPTION_TIER_EDU_PRO",
             "SUBSCRIPTION_TIER_EDU_EMERGING",
             "SUBSCRIPTION_TIER_EDU_PRO_EMERGING",
-            "SUBSCRIPTION_TIER_FRONTLINE_STARTER"
+            "SUBSCRIPTION_TIER_FRONTLINE_STARTER",
+            "SUBSCRIPTION_TIER_CONSUMPTION_ONLY",
+            "SUBSCRIPTION_TIER_EDU_GOV_EMERGING"
           ],
           "enumDescriptions": [
             "Default value.",
@@ -35771,7 +37829,9 @@
             "Gemini Enterprise EDU Pro tier.",
             "Gemini Enterprise EDU tier for emerging market only.",
             "Gemini Enterprise EDU Pro tier for emerging market.",
-            "Gemini Frontline Starter tier."
+            "Gemini Frontline Starter tier.",
+            "Represents the Gemini Enterprise Consumption-only tier: $0 subscription billed purely on usage (PAYG).",
+            "Gemini Enterprise EDU tier for government in emerging markets."
           ],
           "type": "string"
         }
@@ -35908,6 +37968,14 @@
       "description": "Represents the currently effective configurable billing parameters. These values are derived from the customer's subscription history stored internally and reflect the thresholds actively being used for billing purposes at the time of the GetProject call. This includes the start_time of the subscription and may differ from the values in `customer_provided_config` due to billing rules (e.g., scale-downs taking effect only at the start of a new month). We also include the update type to indicate the type of update performed on the configurable billing configuration in the UpdateProject operation.",
       "id": "GoogleCloudDiscoveryengineV1betaProjectConfigurableBillingStatus",
       "properties": {
+        "agentSearchTokenSubscriptionStatuses": {
+          "description": "Output only. Per-model Agent Search TPM subscription status.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1betaProjectConfigurableBillingStatusAgentSearchTokenSubscriptionStatus"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "effectiveIndexingCoreThreshold": {
           "description": "Optional. The currently effective Indexing Core threshold. This is the threshold against which Indexing Core usage is compared for overage calculations.",
           "format": "int64",
@@ -35943,6 +38011,61 @@
         },
         "updateType": {
           "description": "Output only. The type of update performed in this operation. This field is populated in the response of UpdateProject.",
+          "enum": [
+            "UPDATE_TYPE_UNSPECIFIED",
+            "CREATE",
+            "DELETE",
+            "SCALE_UP",
+            "SCALE_DOWN"
+          ],
+          "enumDescriptions": [
+            "Unspecified update type.",
+            "Configurable billing was created/enabled.",
+            "Configurable billing was deleted/disabled.",
+            "Subscription was scaled up (thresholds increased).",
+            "Subscription was scaled down (thresholds decreased)."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaProjectConfigurableBillingStatusAgentSearchTokenSubscriptionStatus": {
+      "description": "Per-model Agent Search TPM subscription status. One entry per active `core_subscription.agent_search_token_subscriptions[*]` entry in the customer-provided config; populated by UpdateProject and GetProject. The lifecycle scalars on this message (`start_time`, `terminate_time`, `update_type`, `tpm_threshold_next_update_time`) are per (project, model_version) — siblings of the whole-relationship `start_time` / `terminate_time` / `update_type` on the enclosing ConfigurableBillingStatus, but scoped to this specific Agent Search TPM subscription instead of to the overall customer-configurable- pricing relationship. This per-instance granularity is intentional: the underlying SubV3 storage is per-(project, model_version), so each model has its own activation, termination, and deferred-update clock; surfacing that on the response gives customers the granularity they need to manage per-model commitments independently. QPM / IndexingCore differ — their storage is one row per (project, location), so their lifecycle is represented only by the whole- relationship scalars on ConfigurableBillingStatus.",
+      "id": "GoogleCloudDiscoveryengineV1betaProjectConfigurableBillingStatusAgentSearchTokenSubscriptionStatus",
+      "properties": {
+        "effectiveTpmThreshold": {
+          "description": "Output only. The currently effective TPM threshold. Reflects scale-up immediately and scale-down at the next billing cycle, matching `effective_search_qpm_threshold` semantics.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "modelVersion": {
+          "description": "Output only. The Gemini model version this status corresponds to. Matches CoreSubscription.AgentSearchTokenSubscription.model_version (a stable Gemini model version from the Gemini Enterprise Agent Platform model-versions registry; see https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/model-versions#gemini-models).",
+          "readOnly": true,
+          "type": "string"
+        },
+        "startTime": {
+          "description": "Output only. When this (project, model_version) Agent Search TPM subscription was first activated. Set once on first activation of this model version and never moved by subsequent threshold updates; on termination + re-activation a new value is recorded. Does NOT move the whole-relationship `start_time` on the enclosing ConfigurableBillingStatus, which continues to represent the first activation of the overall customer-configurable-pricing relationship.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "terminateTime": {
+          "description": "Output only. If set, the scheduled effective time at which this (project, model_version) Agent Search TPM subscription will terminate. Populated when the customer removes this entry from `core_subscription.agent_search_token_subscriptions[*]`. Does NOT move the whole-relationship `terminate_time` on the enclosing ConfigurableBillingStatus, which is populated only when the entire customer-configurable-pricing relationship is being torn down.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "tpmThresholdNextUpdateTime": {
+          "description": "Output only. The earliest next update time for the TPM subscription threshold for this (project, model_version). Populated only after a successful update.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateType": {
+          "description": "Output only. The type of the most recent update to this (project, model_version) subscription, as performed by the most recent UpdateProject call. `UPDATE_TYPE_UNSPECIFIED` indicates this model_version was not touched by the most recent UpdateProject (its `effective_tpm_threshold` reflects an earlier update). The whole-relationship `update_type` on the enclosing ConfigurableBillingStatus continues to summarize the direction of the most recent update across all surfaces in the project (QPM, IndexingCore, and Agent Search TPM together).",
           "enum": [
             "UPDATE_TYPE_UNSPECIFIED",
             "CREATE",
@@ -37626,11 +39749,11 @@
       "type": "object"
     },
     "GoogleCloudDiscoveryengineV1betaUserInfoPreciseLocation": {
-      "description": "Precise location info with multiple representation options. Currently only latitude and longitude point is supported.",
+      "description": "Precise location info with multiple representation options.",
       "id": "GoogleCloudDiscoveryengineV1betaUserInfoPreciseLocation",
       "properties": {
         "address": {
-          "description": "Optional. Location represented by a natural language address. Will later be geocoded and converted to either a point or a polygon.",
+          "description": "Location represented by a natural language address. Will later be geocoded and converted to either a point or a polygon.",
           "type": "string"
         },
         "point": {
@@ -37753,7 +39876,8 @@
             "GOOGLE_CHAT",
             "GOOGLE_GROUPS",
             "GOOGLE_KEEP",
-            "GOOGLE_PEOPLE"
+            "GOOGLE_PEOPLE",
+            "GOOGLE_WORKSPACE"
           ],
           "enumDescriptions": [
             "Defaults to an unspecified Workspace type.",
@@ -37764,7 +39888,8 @@
             "Workspace Data Store contains Chat data",
             "Workspace Data Store contains Groups data",
             "Workspace Data Store contains Keep data",
-            "Workspace Data Store contains People data"
+            "Workspace Data Store contains People data",
+            "Workspace Data Store contains all Workspace apps data"
           ],
           "type": "string"
         }

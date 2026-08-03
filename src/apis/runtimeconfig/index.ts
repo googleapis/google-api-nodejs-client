@@ -37,10 +37,7 @@ export function runtimeconfig<
 >(
   this: GoogleConfigurable,
   versionOrOptions:
-    | 'v1'
-    | runtimeconfig_v1.Options
-    | 'v1beta1'
-    | runtimeconfig_v1beta1.Options
+    'v1' | runtimeconfig_v1.Options | 'v1beta1' | runtimeconfig_v1beta1.Options
 ) {
   return getAPI<T>('runtimeconfig', versionOrOptions, VERSIONS, this);
 }

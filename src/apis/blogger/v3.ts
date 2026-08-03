@@ -100,7 +100,7 @@ export namespace blogger_v3 {
   }
 
   /**
-   * blogger API
+   * Blogger API
    *
    * The Blogger API provides access to posts, comments and pages of a Blogger blog.
    *
@@ -733,8 +733,7 @@ export namespace blogger_v3 {
         | BodyResponseCallback<Schema$Blog>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Blog>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Blog> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Blog>>
@@ -882,8 +881,7 @@ export namespace blogger_v3 {
         | BodyResponseCallback<Schema$Blog>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Blog>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Blog> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Blog>>
@@ -1027,8 +1025,7 @@ export namespace blogger_v3 {
         | BodyResponseCallback<Schema$BlogList>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$BlogList>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$BlogList> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$BlogList>>
@@ -1397,8 +1394,7 @@ export namespace blogger_v3 {
         | BodyResponseCallback<Schema$Comment>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Comment>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Comment> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Comment>>
@@ -1682,8 +1678,7 @@ export namespace blogger_v3 {
         | BodyResponseCallback<Schema$Comment>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Comment>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Comment> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Comment>>
@@ -2142,8 +2137,7 @@ export namespace blogger_v3 {
         | BodyResponseCallback<Schema$Comment>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Comment>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Comment> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Comment>>
@@ -2292,8 +2286,7 @@ export namespace blogger_v3 {
         | BodyResponseCallback<Schema$Comment>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Comment>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Comment> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Comment>>
@@ -2729,8 +2722,7 @@ export namespace blogger_v3 {
         | BodyResponseCallback<Schema$Page>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Page>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Page> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Page>>
@@ -2898,8 +2890,7 @@ export namespace blogger_v3 {
         | BodyResponseCallback<Schema$Page>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Page>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Page> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Page>>
@@ -3049,8 +3040,7 @@ export namespace blogger_v3 {
         | BodyResponseCallback<Schema$PageList>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$PageList>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$PageList> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$PageList>>
@@ -3222,8 +3212,7 @@ export namespace blogger_v3 {
         | BodyResponseCallback<Schema$Page>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Page>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Page> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Page>>
@@ -3371,8 +3360,7 @@ export namespace blogger_v3 {
         | BodyResponseCallback<Schema$Page>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Page>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Page> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Page>>
@@ -3519,8 +3507,7 @@ export namespace blogger_v3 {
         | BodyResponseCallback<Schema$Page>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Page>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Page> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Page>>
@@ -3692,8 +3679,7 @@ export namespace blogger_v3 {
         | BodyResponseCallback<Schema$Page>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Page>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Page> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Page>>
@@ -3974,8 +3960,7 @@ export namespace blogger_v3 {
         | BodyResponseCallback<Schema$Pageviews>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Pageviews>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Pageviews> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Pageviews>>
@@ -4291,8 +4276,7 @@ export namespace blogger_v3 {
         | BodyResponseCallback<Schema$Post>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Post>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Post> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Post>>
@@ -4454,8 +4438,7 @@ export namespace blogger_v3 {
         | BodyResponseCallback<Schema$Post>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Post>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Post> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Post>>
@@ -4641,8 +4624,7 @@ export namespace blogger_v3 {
         | BodyResponseCallback<Schema$Post>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Post>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Post> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Post>>
@@ -4805,8 +4787,7 @@ export namespace blogger_v3 {
         | BodyResponseCallback<Schema$PostList>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$PostList>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$PostList> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$PostList>>
@@ -4998,8 +4979,7 @@ export namespace blogger_v3 {
         | BodyResponseCallback<Schema$Post>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Post>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Post> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Post>>
@@ -5156,8 +5136,7 @@ export namespace blogger_v3 {
         | BodyResponseCallback<Schema$Post>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Post>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Post> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Post>>
@@ -5311,8 +5290,7 @@ export namespace blogger_v3 {
         | BodyResponseCallback<Schema$Post>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Post>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Post> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Post>>
@@ -5459,8 +5437,7 @@ export namespace blogger_v3 {
         | BodyResponseCallback<Schema$PostList>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$PostList>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$PostList> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$PostList>>
@@ -5652,8 +5629,7 @@ export namespace blogger_v3 {
         | BodyResponseCallback<Schema$Post>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Post>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Post> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Post>>
@@ -6428,8 +6404,7 @@ export namespace blogger_v3 {
         | BodyResponseCallback<Schema$User>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$User>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$User> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$User>>

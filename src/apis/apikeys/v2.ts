@@ -598,8 +598,7 @@ export namespace apikeys_v2 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -787,8 +786,7 @@ export namespace apikeys_v2 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -927,8 +925,7 @@ export namespace apikeys_v2 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -1074,8 +1071,7 @@ export namespace apikeys_v2 {
         | BodyResponseCallback<Schema$V2Key>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$V2Key>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$V2Key> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$V2Key>>
@@ -1193,8 +1189,7 @@ export namespace apikeys_v2 {
     getKeyString(
       params: Params$Resource$Projects$Locations$Keys$Getkeystring,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$V2GetKeyStringResponse>,
+        MethodOptions | BodyResponseCallback<Schema$V2GetKeyStringResponse>,
       callback: BodyResponseCallback<Schema$V2GetKeyStringResponse>
     ): void;
     getKeyString(
@@ -1520,8 +1515,7 @@ export namespace apikeys_v2 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -1664,8 +1658,7 @@ export namespace apikeys_v2 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>

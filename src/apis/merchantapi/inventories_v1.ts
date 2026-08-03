@@ -125,6 +125,23 @@ export namespace merchantapi_inventories_v1 {
   }
 
   /**
+   * A message that represents custom attributes. Exactly one of `value` or `group_values` must not be empty.
+   */
+  export interface Schema$CustomAttribute {
+    /**
+     * Subattributes within this attribute group. If `group_values` is not empty, `value` must be empty.
+     */
+    groupValues?: Schema$CustomAttribute[];
+    /**
+     * The name of the attribute.
+     */
+    name?: string | null;
+    /**
+     * The value of the attribute. If `value` is not empty, `group_values` must be empty.
+     */
+    value?: string | null;
+  }
+  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
@@ -234,9 +251,17 @@ export namespace merchantapi_inventories_v1 {
      */
     availability?: string | null;
     /**
+     * Optional. A list of custom (merchant-provided) attributes. It can also be used for submitting any attribute of the data specification in its generic form (for example, `{ "name": "size type", "value": "regular" \}`). This is useful for submitting attributes not explicitly exposed by the API. Maximum allowed number of characters for each custom attribute is 10240 (represents sum of characters for name and value). Maximum 2500 custom attributes can be set, with total size of 102.4kB. Underscores in custom attribute names are replaced by spaces upon insertion.
+     */
+    customAttributes?: Schema$CustomAttribute[];
+    /**
      * Optional. Location of the product inside the store. Maximum length is 20 bytes.
      */
     instoreProductLocation?: string | null;
+    /**
+     * Optional. Specifies a label associated with the shipping for the `LocalInventory` resource. Can be used to group local shipping services to this particular inventory item. For accepted field format, see the [Local delivery](https://support.google.com/merchants/answer/14819809#localdelivery)
+     */
+    localShippingLabel?: string | null;
     /**
      * Optional. An optional list of loyalty programs containing applicable loyalty member prices for this product at this store. This field is used to show store-specific member prices on Local Inventory Ads (LIA). To use this, the loyalty program must be configured in Google Merchant Center. The benefits provided must match the merchant's website and be clear to members. This is only applicable for merchants in supported countries. See [Loyalty program](https://support.google.com/merchants/answer/12922446) for details on supported countries and loyalty program configuration. For local inventory specific details, see the [Local inventory data specification](https://support.google.com/merchants/answer/3061342).
      */
@@ -507,8 +532,7 @@ export namespace merchantapi_inventories_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -982,8 +1006,7 @@ export namespace merchantapi_inventories_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>

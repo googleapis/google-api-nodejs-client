@@ -4290,8 +4290,7 @@ export namespace datalabeling_v1beta1 {
     exportData(
       params: Params$Resource$Projects$Datasets$Exportdata,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     exportData(
@@ -4595,8 +4594,7 @@ export namespace datalabeling_v1beta1 {
     importData(
       params: Params$Resource$Projects$Datasets$Importdata,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     importData(
@@ -6637,8 +6635,7 @@ export namespace datalabeling_v1beta1 {
     create(
       params: Params$Resource$Projects$Datasets$Annotateddatasets$Feedbackthreads$Feedbackmessages$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -7967,8 +7964,7 @@ export namespace datalabeling_v1beta1 {
     label(
       params: Params$Resource$Projects$Datasets$Image$Label,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     label(
@@ -8142,8 +8138,7 @@ export namespace datalabeling_v1beta1 {
     label(
       params: Params$Resource$Projects$Datasets$Text$Label,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     label(
@@ -8319,8 +8314,7 @@ export namespace datalabeling_v1beta1 {
     label(
       params: Params$Resource$Projects$Datasets$Video$Label,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     label(
@@ -9814,8 +9808,7 @@ export namespace datalabeling_v1beta1 {
     create(
       params: Params$Resource$Projects$Instructions$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -10713,8 +10706,7 @@ export namespace datalabeling_v1beta1 {
     get(
       params: Params$Resource$Projects$Operations$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(

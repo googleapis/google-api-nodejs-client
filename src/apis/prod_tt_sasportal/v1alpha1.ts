@@ -5694,8 +5694,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
     list(
       params: Params$Resource$Customers$Nodes$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$SasPortalListNodesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$SasPortalListNodesResponse>,
       callback: BodyResponseCallback<Schema$SasPortalListNodesResponse>
     ): void;
     list(
@@ -7260,8 +7259,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
     list(
       params: Params$Resource$Customers$Nodes$Nodes$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$SasPortalListNodesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$SasPortalListNodesResponse>,
       callback: BodyResponseCallback<Schema$SasPortalListNodesResponse>
     ): void;
     list(
@@ -12346,8 +12344,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
     list(
       params: Params$Resource$Nodes$Nodes$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$SasPortalListNodesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$SasPortalListNodesResponse>,
       callback: BodyResponseCallback<Schema$SasPortalListNodesResponse>
     ): void;
     list(
@@ -13910,8 +13907,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
     list(
       params: Params$Resource$Nodes$Nodes$Nodes$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$SasPortalListNodesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$SasPortalListNodesResponse>,
       callback: BodyResponseCallback<Schema$SasPortalListNodesResponse>
     ): void;
     list(

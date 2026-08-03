@@ -35,10 +35,7 @@ export function beyondcorp<
 >(
   this: GoogleConfigurable,
   versionOrOptions:
-    | 'v1'
-    | beyondcorp_v1.Options
-    | 'v1alpha'
-    | beyondcorp_v1alpha.Options
+    'v1' | beyondcorp_v1.Options | 'v1alpha' | beyondcorp_v1alpha.Options
 ) {
   return getAPI<T>('beyondcorp', versionOrOptions, VERSIONS, this);
 }

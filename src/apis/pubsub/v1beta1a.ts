@@ -490,8 +490,7 @@ export namespace pubsub_v1beta1a {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -779,8 +778,7 @@ export namespace pubsub_v1beta1a {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -1049,8 +1047,7 @@ export namespace pubsub_v1beta1a {
     list(
       params: Params$Resource$Subscriptions$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListSubscriptionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListSubscriptionsResponse>,
       callback: BodyResponseCallback<Schema$ListSubscriptionsResponse>
     ): void;
     list(
@@ -1217,8 +1214,7 @@ export namespace pubsub_v1beta1a {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -1360,8 +1356,7 @@ export namespace pubsub_v1beta1a {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -1869,8 +1864,7 @@ export namespace pubsub_v1beta1a {
         | BodyResponseCallback<Schema$Topic>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Topic>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Topic> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Topic>>
@@ -2003,8 +1997,7 @@ export namespace pubsub_v1beta1a {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -2142,8 +2135,7 @@ export namespace pubsub_v1beta1a {
         | BodyResponseCallback<Schema$Topic>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Topic>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Topic> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Topic>>
@@ -2426,8 +2418,7 @@ export namespace pubsub_v1beta1a {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -2553,8 +2544,7 @@ export namespace pubsub_v1beta1a {
     publishBatch(
       params: Params$Resource$Topics$Publishbatch,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$PublishBatchResponse>,
+        MethodOptions | BodyResponseCallback<Schema$PublishBatchResponse>,
       callback: BodyResponseCallback<Schema$PublishBatchResponse>
     ): void;
     publishBatch(

@@ -124,13 +124,54 @@
           "scopes": [
             "https://www.googleapis.com/auth/cloud-platform"
           ]
+        },
+        "troubleshootError": {
+          "description": "Checks the access request associated with the error identifier and explains why the access is denied by IAM policies.",
+          "flatPath": "v3beta/iam:troubleshootError",
+          "httpMethod": "POST",
+          "id": "policytroubleshooter.iam.troubleshootError",
+          "parameterOrder": [],
+          "parameters": {},
+          "path": "v3beta/iam:troubleshootError",
+          "request": {
+            "$ref": "GoogleCloudPolicytroubleshooterIamV3betaTroubleshootIamPolicyErrorRequest"
+          },
+          "response": {
+            "$ref": "GoogleCloudPolicytroubleshooterIamV3betaTroubleshootIamPolicyErrorResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
         }
       }
     }
   },
-  "revision": "20260503",
+  "revision": "20260628",
   "rootUrl": "https://policytroubleshooter.googleapis.com/",
   "schemas": {
+    "GoogleCloudPolicytroubleshooterIamV3betaAccessContext": {
+      "description": "Information about the principal, resource, and permission for the ErrorInfoId.",
+      "id": "GoogleCloudPolicytroubleshooterIamV3betaAccessContext",
+      "properties": {
+        "name": {
+          "description": "The relative resource name, not including the / prefix. For example, `projects/project-id`, `projects/-/serviceAccounts/11112222`",
+          "type": "string"
+        },
+        "parent": {
+          "description": "The full resource name of the parent where IAM policy is configured. For example, `//cloudresourcemanager.googleapis.com/folders/444446666`",
+          "type": "string"
+        },
+        "permission": {
+          "description": "Required. The IAM permission name provided by the user in the access denied request.",
+          "type": "string"
+        },
+        "principal": {
+          "description": "The email address of the principal who requested access. For example, `alice@example.com` or `my-service-account@my-project.iam.gserviceaccount.com`. The principal must be a Google Account or a service account. Other types of principals are not supported.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudPolicytroubleshooterIamV3betaAccessTuple": {
       "description": "Information about the principal, resource, and permission to check.",
       "id": "GoogleCloudPolicytroubleshooterIamV3betaAccessTuple",
@@ -1023,15 +1064,31 @@
           "readOnly": true,
           "type": "string"
         },
+        "combinedResourceRelevance": {
+          "description": "The relevance of the combined resource inclusion state to the overall access state.",
+          "enum": [
+            "HEURISTIC_RELEVANCE_UNSPECIFIED",
+            "HEURISTIC_RELEVANCE_NORMAL",
+            "HEURISTIC_RELEVANCE_HIGH"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "The data point has a limited effect on the result. Changing the data point is unlikely to affect the overall determination.",
+            "The data point has a strong effect on the result. Changing the data point is likely to affect the overall determination."
+          ],
+          "type": "string"
+        },
         "effect": {
           "description": "Required. The effect of the rule which describes the access relationship.",
           "enum": [
             "EFFECT_UNSPECIFIED",
-            "ALLOW"
+            "ALLOW",
+            "DENY"
           ],
           "enumDescriptions": [
             "Effect unspecified.",
-            "Allows access to the resources in this rule."
+            "Allows access to the resources in this rule.",
+            "Denies access to the resources in this rule."
           ],
           "type": "string"
         },
@@ -1040,6 +1097,14 @@
           "items": {
             "$ref": "GoogleCloudPolicytroubleshooterIamV3betaExplainedPABRuleExplainedResource"
           },
+          "type": "array"
+        },
+        "pabUnsupportedFeatures": {
+          "description": "Output only. Unsupported features detected in this rule. Supported values: * `OPERATION`: Permission Subsetting (Operation constraints). See google.iam.v3.PrincipalAccessBoundaryPolicyRule.operation.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
           "type": "array"
         },
         "relevance": {
@@ -1209,6 +1274,58 @@
             "The data point has a strong effect on the result. Changing the data point is likely to affect the overall determination."
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudPolicytroubleshooterIamV3betaTroubleshootIamPolicyErrorRequest": {
+      "description": "Request to troubleshoot access denial with the IAM error identifier.",
+      "id": "GoogleCloudPolicytroubleshooterIamV3betaTroubleshootIamPolicyErrorRequest",
+      "properties": {
+        "errorInfoId": {
+          "description": "This identifier is returned in the `ErrorInfo.metadata` with key 'error_info_id' when an access requests is denied by the IAM service.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudPolicytroubleshooterIamV3betaTroubleshootIamPolicyErrorResponse": {
+      "description": "Response for troubleshoot access denial with the IAM error identifier.",
+      "id": "GoogleCloudPolicytroubleshooterIamV3betaTroubleshootIamPolicyErrorResponse",
+      "properties": {
+        "accessContext": {
+          "$ref": "GoogleCloudPolicytroubleshooterIamV3betaAccessContext",
+          "description": "The access context associated with the ErrorInfoId."
+        },
+        "allowPolicyExplanation": {
+          "$ref": "GoogleCloudPolicytroubleshooterIamV3betaAllowPolicyExplanation",
+          "description": "An explanation of how the applicable IAM allow policies affect the final access state."
+        },
+        "denyPolicyExplanation": {
+          "$ref": "GoogleCloudPolicytroubleshooterIamV3betaDenyPolicyExplanation",
+          "description": "An explanation of how the applicable IAM deny policies affect the final access state."
+        },
+        "overallAccessState": {
+          "description": "Indicates whether the principal has the permission to access the resource, based on evaluating all types of the applicable IAM policies.",
+          "enum": [
+            "OVERALL_ACCESS_STATE_UNSPECIFIED",
+            "OVERALL_ACCESS_STATE_CAN_ACCESS",
+            "OVERALL_ACCESS_STATE_CANNOT_ACCESS",
+            "OVERALL_ACCESS_STATE_UNKNOWN_INFO",
+            "OVERALL_ACCESS_STATE_UNKNOWN_CONDITIONAL"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "The principal has the permission.",
+            "The principal doesn't have the permission.",
+            "The principal might have the permission, but the sender can't access all of the information needed to fully evaluate the principal's access.",
+            "The principal might have the permission, but Policy Troubleshooter can't fully evaluate the principal's access because of the missing context to evaluate the condition."
+          ],
+          "type": "string"
+        },
+        "pabPolicyExplanation": {
+          "$ref": "GoogleCloudPolicytroubleshooterIamV3betaPABPolicyExplanation",
+          "description": "An explanation of how the applicable principal access boundary policies affect the final access state."
         }
       },
       "type": "object"
@@ -1646,13 +1763,22 @@
           "description": "Required. The access relationship of principals to the resources in this rule.",
           "enum": [
             "EFFECT_UNSPECIFIED",
-            "ALLOW"
+            "ALLOW",
+            "DENY"
           ],
           "enumDescriptions": [
             "Effect unspecified.",
-            "Allows access to the resources in this rule."
+            "Allows access to the resources in this rule.",
+            "Denies access to the resources in this rule."
           ],
           "type": "string"
+        },
+        "excludedResources": {
+          "description": "Optional. A list of Resource Manager resources. If an excluded resource is listed in the rule, then the rule does not apply for that resource and its descendants. This takes precedence over the `resources` field. The number of excluded resources in this field is limited to 500 across all rules in the policy. The following resource types are supported: * Organizations, such as `//cloudresourcemanager.googleapis.com/organizations/123`. * Folders, such as `//cloudresourcemanager.googleapis.com/folders/123`. * Projects, such as `//cloudresourcemanager.googleapis.com/projects/123` or `//cloudresourcemanager.googleapis.com/projects/my-project-id`.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "operation": {
           "$ref": "GoogleIamV3PrincipalAccessBoundaryPolicyRuleOperation",
@@ -1673,14 +1799,14 @@
       "id": "GoogleIamV3PrincipalAccessBoundaryPolicyRuleOperation",
       "properties": {
         "excludedPermissions": {
-          "description": "Optional. Specifies the permissions that this rule excludes from the set of affected permissions given by `permissions`. The number of excluded permission strings in this field is limited to 50. If a permission appears in both `permissions` and `excluded_permissions` then it will _not_ be subject to the policy effect. The excluded permissions can be specified using the same syntax as `permissions`.",
+          "description": "Optional. Specifies the permissions that this rule excludes from the set of affected permissions given by `permissions`. The number of excluded permission strings in this field is limited to 50 across all rules in the policy. If a permission appears in both `permissions` and `excluded_permissions` then it will _not_ be subject to the policy effect. The excluded permissions can be specified using the same syntax as `permissions`.",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "permissions": {
-          "description": "Optional. The permissions that are explicitly affected by this rule. The number of permission strings in this field is limited to 50. Each permission uses the format `{service_fqdn}/{resource}.{verb}`, where `{service_fqdn}` is the fully qualified domain name for the service. `*` can be used as a wildcard to match all permissions for a specific service, resource type, or verb. The following formats are supported: * `{service_fqdn}/{resource}.{verb}`: A specific permission. * `{service_fqdn}/{resource}.*`: All permissions for a specific resource type. * `{service_fqdn}/*.*`: All permissions for all resource types under a specific service. * `{service_fqdn}/*.{verb}`: All permissions with a specific verb under a specific service. * `*`: All permissions across all services. For example, `compute.googleapis.com/*.setIamPolicy` refers to all setIamPolicy permissions for any compute resource. Wildcards expand only to the permissions specified in the `enforcement_version` of the policy. If the `enforcement_version` is updated, the wildcard will automatically expand to include new permissions in the updated version.",
+          "description": "Optional. The permissions that are explicitly affected by this rule. The number of permission strings in this field is limited to 50 across all rules in the policy. Each permission uses the format `{service_fqdn}/{resource}.{verb}`, where `{service_fqdn}` is the fully qualified domain name for the service. `*` can be used as a wildcard to match all permissions for a specific service, resource type, or verb. The following formats are supported: * `{service_fqdn}/{resource}.{verb}`: A specific permission. * `{service_fqdn}/{resource}.*`: All permissions for a specific resource type. * `{service_fqdn}/*.*`: All permissions for all resource types under a specific service. * `{service_fqdn}/*.{verb}`: All permissions with a specific verb under a specific service. * `*`: All permissions across all services. For example, `compute.googleapis.com/*.setIamPolicy` refers to all setIamPolicy permissions for any compute resource. Wildcards expand only to the permissions specified in the `enforcement_version` of the policy. If the `enforcement_version` is updated, the wildcard will automatically expand to include new permissions in the updated version.",
           "items": {
             "type": "string"
           },

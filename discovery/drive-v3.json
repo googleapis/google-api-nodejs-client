@@ -721,7 +721,7 @@
             },
             "pageSize": {
               "default": "100",
-              "description": "The maximum number of changes to return per page.",
+              "description": "The maximum number of changes to return. The service may return fewer than this value. If unspecified, at most 100 changes will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
               "format": "int32",
               "location": "query",
               "maximum": "1000",
@@ -833,7 +833,7 @@
             },
             "pageSize": {
               "default": "100",
-              "description": "The maximum number of changes to return per page.",
+              "description": "The maximum number of changes to return. The service may return fewer than this value. If unspecified, at most 100 changes will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
               "format": "int32",
               "location": "query",
               "maximum": "1000",
@@ -1049,7 +1049,7 @@
             },
             "pageSize": {
               "default": "20",
-              "description": "The maximum number of comments to return per page.",
+              "description": "The maximum number of comments to return. The service may return fewer than this value. If unspecified, at most 20 comments will be returned. The maximum value is 100; values above 100 will be coerced to 100.",
               "format": "int32",
               "location": "query",
               "maximum": "100",
@@ -1241,7 +1241,7 @@
           "parameters": {
             "pageSize": {
               "default": "10",
-              "description": "Maximum number of shared drives to return per page.",
+              "description": "The maximum number of shared drives to return. The service may return fewer than this value. If unspecified, at most 10 shared drives will be returned. The maximum value is 100; values above 100 will be coerced to 100.",
               "format": "int32",
               "location": "query",
               "maximum": "100",
@@ -1829,7 +1829,7 @@
             },
             "pageSize": {
               "default": "100",
-              "description": "The maximum number of files to return per page. Pages may be partial or empty even before reaching the end of the file list. If unspecified, at most 100 files are returned for shared drives, and the entire list of files for non-shared drives. The maximum value is 100; values above 100 are changed to 100.",
+              "description": "The maximum number of files to return. The service may return fewer than this value. If unspecified, at most 100 files will be returned for shared drives, and the entire list of files for non-shared drives. The maximum value is 1000; values above 1000 will be coerced to 1000.",
               "format": "int32",
               "location": "query",
               "maximum": "1000",
@@ -2379,7 +2379,7 @@
               "type": "string"
             },
             "pageSize": {
-              "description": "The maximum number of permissions to return per page. When not set for files in a shared drive, at most 100 results will be returned. When not set for files that are not in a shared drive, the entire list will be returned.",
+              "description": "The maximum number of permissions to return. The service may return fewer than this value. If unspecified, at most 100 permissions will be returned for shared drives, and the entire list of permissions for non-shared drives. The maximum value is 100; values above 100 will be coerced to 100.",
               "format": "int32",
               "location": "query",
               "maximum": "100",
@@ -2650,7 +2650,7 @@
             },
             "pageSize": {
               "default": "20",
-              "description": "The maximum number of replies to return per page.",
+              "description": "The maximum number of replies to return. The service may return fewer than this value. If unspecified, at most 20 replies will be returned. The maximum value is 100; values above 100 will be coerced to 100.",
               "format": "int32",
               "location": "query",
               "maximum": "100",
@@ -2813,7 +2813,7 @@
             },
             "pageSize": {
               "default": "200",
-              "description": "The maximum number of revisions to return per page.",
+              "description": "The maximum number of revisions to return. The service may return fewer than this value. If unspecified, at most 200 revisions will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
               "format": "int32",
               "location": "query",
               "maximum": "1000",
@@ -3038,7 +3038,7 @@
       }
     }
   },
-  "revision": "20260428",
+  "revision": "20260720",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "About": {
@@ -3438,6 +3438,21 @@
         "dueTime": {
           "description": "The time that the approval is due.",
           "format": "google-datetime",
+          "type": "string"
+        },
+        "fileContentChangeBehavior": {
+          "description": "Output only. The behavior of the approval when the file content changes.",
+          "enum": [
+            "FILE_CONTENT_CHANGE_BEHAVIOR_UNSPECIFIED",
+            "RESET_APPROVAL",
+            "NO_APPROVAL_ACTION"
+          ],
+          "enumDescriptions": [
+            "The behavior is unspecified.",
+            "Any ReviewerResponse with a Response of APPROVED will be reset to NO_DECISION when the file content changes while the approval has a Status of IN_PROGRESS. When the approval has a Status of APPROVED and RESET_APPROVAL is selected, the file is locked.",
+            "No action is taken when the file content changes."
+          ],
+          "readOnly": true,
           "type": "string"
         },
         "initiator": {
@@ -4147,6 +4162,10 @@
           "properties": {
             "canAcceptOwnership": {
               "description": "Output only. Whether the current user is the pending owner of the file. Not populated for shared drive files.",
+              "type": "boolean"
+            },
+            "canAccessViaGenAi": {
+              "description": "Whether the current user can access this file via Gen AI features. For more information, see [Drive MCP file eligibility](https://developers.google.com/workspace/drive/api/guides/drive-mcp-server-file-eligibility).",
               "type": "boolean"
             },
             "canAddChildren": {
@@ -5623,6 +5642,20 @@
         "dueTime": {
           "description": "Optional. The time that the approval is due.",
           "format": "google-datetime",
+          "type": "string"
+        },
+        "fileContentChangeBehavior": {
+          "description": "Optional. The behavior of the approval when the file content changes.",
+          "enum": [
+            "FILE_CONTENT_CHANGE_BEHAVIOR_UNSPECIFIED",
+            "RESET_APPROVAL",
+            "NO_APPROVAL_ACTION"
+          ],
+          "enumDescriptions": [
+            "The behavior is unspecified.",
+            "Any ReviewerResponse with a Response of APPROVED will be reset to NO_DECISION when the file content changes while the approval has a Status of IN_PROGRESS. When the approval has a Status of APPROVED and RESET_APPROVAL is selected, the file is locked.",
+            "No action is taken when the file content changes."
+          ],
           "type": "string"
         },
         "lockFile": {

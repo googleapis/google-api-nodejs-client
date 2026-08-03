@@ -521,6 +521,36 @@ export namespace youtube_v3 {
     type?: string | null;
   }
   /**
+   * Response for the Videos.stats API. Returns VideoStat information about a batch of videos. VideoStat contains a subset of the information in Video that is relevant to statistics and content details. BatchGetStats is intentionally not atomic to provide a better user experience. BatchGetStatsResponse returns a summary to help users understand the outcome of the operation.
+   */
+  export interface Schema$BatchGetStatsResponse {
+    /**
+     * Etag of this resource.
+     */
+    etag?: string | null;
+    /**
+     * The videos' stats information.
+     */
+    items?: Schema$VideoStat[];
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string "youtube#batchGetStatsResponse".
+     */
+    kind?: string | null;
+  }
+  /**
+   * Details about the brand partner linked to the video for Creator Initiated Linking (CIL). Next ID: 6
+   */
+  export interface Schema$BrandPartner {
+    /**
+     * Required. Channel handle, must begin with "@"
+     */
+    channelHandle?: string | null;
+    /**
+     * Required. External Channel ID, must begin with "UC"
+     */
+    channelId?: string | null;
+  }
+  /**
    * A *caption* resource represents a YouTube caption track. A caption track is associated with exactly one YouTube video.
    */
   export interface Schema$Caption {
@@ -1130,6 +1160,27 @@ export namespace youtube_v3 {
      */
     privacyStatus?: string | null;
     selfDeclaredMadeForKids?: boolean | null;
+  }
+  /**
+   * Information specific to a creator in an affiliate program linked to a YouTube channel.
+   */
+  export interface Schema$ChannelToAffiliateProgramLinkDetails {
+    /**
+     * Required. Google Merchant Center ID of the partner.
+     */
+    merchantId?: string | null;
+    /**
+     * Required. Affiliate program status.
+     */
+    programStatus?: string | null;
+    /**
+     * Optional. Reason for the last update of the affiliate program status.
+     */
+    statusUpdateReason?: string | null;
+    /**
+     * Optional. Timestamp when the affiliate program status was last updated.
+     */
+    statusUpdateTime?: string | null;
   }
   /**
    * Freebase topic information related to the channel.
@@ -2529,7 +2580,7 @@ export namespace youtube_v3 {
    */
   export interface Schema$LiveChatMessageSnippet {
     /**
-     * The ID of the user that authored this message, this field is not always filled. textMessageEvent - the user that wrote the message fanFundingEvent - the user that funded the broadcast newSponsorEvent - the user that just became a sponsor memberMilestoneChatEvent - the member that sent the message membershipGiftingEvent - the user that made the purchase giftMembershipReceivedEvent - the user that received the gift membership messageDeletedEvent - the moderator that took the action messageRetractedEvent - the author that retracted their message userBannedEvent - the moderator that took the action superChatEvent - the user that made the purchase superStickerEvent - the user that made the purchase pollEvent - the user that created the poll
+     * The ID of the user that authored this message, this field is not always filled. textMessageEvent - the user that wrote the message fanFundingEvent - the user that funded the broadcast newSponsorEvent - the user that just became a sponsor memberMilestoneChatEvent - the member that sent the message membershipGiftingEvent - the user that made the purchase giftMembershipReceivedEvent - the user that received the gift membership messageDeletedEvent - the moderator that took the action. Unused. messageRetractedEvent - the author that retracted their message. Unused. userBannedEvent - the moderator that took the action superChatEvent - the user that made the purchase superStickerEvent - the user that made the purchase pollEvent - the user that created the poll
      */
     authorChannelId?: string | null;
     /**
@@ -3843,6 +3894,10 @@ export namespace youtube_v3 {
    */
   export interface Schema$ThirdPartyLinkSnippet {
     /**
+     * Information specific to a link between a channel and an affiliate program of a partner.
+     */
+    channelToAffiliateProgramLink?: Schema$ChannelToAffiliateProgramLinkDetails;
+    /**
      * Information specific to a link between a channel and a store on a merchandising platform.
      */
     channelToStoreLink?: Schema$ChannelToStoreLinkDetails;
@@ -3933,6 +3988,7 @@ export namespace youtube_v3 {
      * Age restriction details related to a video. This data can only be retrieved by the video owner.
      */
     ageGating?: Schema$VideoAgeGating;
+    brandPartner?: Schema$BrandPartner;
     /**
      * The contentDetails object contains information about the video content, including the length of the video and its aspect ratio.
      */
@@ -4602,6 +4658,35 @@ export namespace youtube_v3 {
     title?: string | null;
   }
   /**
+   * A *VideoStat* resource represents a YouTube video's stats.
+   */
+  export interface Schema$VideoStat {
+    /**
+     * Output only. The VideoStatsContentDetails object contains information about the video content, including the length of the video.
+     */
+    contentDetails?: Schema$VideoStatsContentDetails;
+    /**
+     * Output only. Etag of this resource.
+     */
+    etag?: string | null;
+    /**
+     * Output only. The ID that YouTube uses to uniquely identify the video.
+     */
+    id?: string | null;
+    /**
+     * Output only. Identifies what kind of resource this is. Value: the fixed string "youtube#videoStats".
+     */
+    kind?: string | null;
+    /**
+     * Output only. The VideoStatsSnippet object contains basic details about the video, such publish time.
+     */
+    snippet?: Schema$VideoStatsSnippet;
+    /**
+     * Output only. The VideoStatsStatistics object contains statistics about the video.
+     */
+    statistics?: Schema$VideoStatsStatistics;
+  }
+  /**
    * Statistics about the video, such as the number of times the video was viewed or liked.
    */
   export interface Schema$VideoStatistics {
@@ -4623,6 +4708,41 @@ export namespace youtube_v3 {
     likeCount?: string | null;
     /**
      * The number of times the video has been viewed.
+     */
+    viewCount?: string | null;
+  }
+  /**
+   * Details about the content of a YouTube Video. This is a subset of the information in VideoContentDetails specifically for the Videos.stats API.
+   */
+  export interface Schema$VideoStatsContentDetails {
+    /**
+     * Output only. The length of the video. The property value is a [`google.protobuf.Duration`](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#duration) object.
+     */
+    duration?: string | null;
+  }
+  /**
+   * Basic details about a video. This is a subset of the information in VideoSnippet specifically for the Videos.stats API.
+   */
+  export interface Schema$VideoStatsSnippet {
+    /**
+     * Output only. The date and time that the video was uploaded. The property value is a [`google.protobuf.Timestamp`](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#timestamp) object.
+     */
+    publishTime?: string | null;
+  }
+  /**
+   * Statistics about the video, such as the number of times the video was viewed or liked.
+   */
+  export interface Schema$VideoStatsStatistics {
+    /**
+     * Output only. The number of comments for the video.
+     */
+    commentCount?: string | null;
+    /**
+     * Output only. The number of users who have indicated that they liked the video by giving it a positive rating.
+     */
+    likeCount?: string | null;
+    /**
+     * Output only. The number of times the video has been viewed.
      */
     viewCount?: string | null;
   }
@@ -5039,8 +5159,7 @@ export namespace youtube_v3 {
     list(
       params: Params$Resource$Activities$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ActivityListResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ActivityListResponse>,
       callback: BodyResponseCallback<Schema$ActivityListResponse>
     ): void;
     list(
@@ -5544,8 +5663,7 @@ export namespace youtube_v3 {
         | BodyResponseCallback<Schema$Caption>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Caption>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Caption> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Caption>>
@@ -5862,8 +5980,7 @@ export namespace youtube_v3 {
         | BodyResponseCallback<Schema$Caption>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Caption>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Caption> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Caption>>
@@ -6150,8 +6267,7 @@ export namespace youtube_v3 {
     insert(
       params: Params$Resource$Channelbanners$Insert,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ChannelBannerResource>,
+        MethodOptions | BodyResponseCallback<Schema$ChannelBannerResource>,
       callback: BodyResponseCallback<Schema$ChannelBannerResource>
     ): void;
     insert(
@@ -6562,8 +6678,7 @@ export namespace youtube_v3 {
         | BodyResponseCallback<Schema$Channel>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Channel>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Channel> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Channel>>
@@ -7072,8 +7187,7 @@ export namespace youtube_v3 {
     list(
       params: Params$Resource$Channelsections$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ChannelSectionListResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ChannelSectionListResponse>,
       callback: BodyResponseCallback<Schema$ChannelSectionListResponse>
     ): void;
     list(
@@ -7614,8 +7728,7 @@ export namespace youtube_v3 {
         | BodyResponseCallback<Schema$Comment>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Comment>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Comment> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Comment>>
@@ -8181,8 +8294,7 @@ export namespace youtube_v3 {
         | BodyResponseCallback<Schema$Comment>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Comment>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Comment> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Comment>>
@@ -8563,8 +8675,7 @@ export namespace youtube_v3 {
     list(
       params: Params$Resource$Commentthreads$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$CommentThreadListResponse>,
+        MethodOptions | BodyResponseCallback<Schema$CommentThreadListResponse>,
       callback: BodyResponseCallback<Schema$CommentThreadListResponse>
     ): void;
     list(
@@ -8783,8 +8894,7 @@ export namespace youtube_v3 {
     list(
       params: Params$Resource$I18nlanguages$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$I18nLanguageListResponse>,
+        MethodOptions | BodyResponseCallback<Schema$I18nLanguageListResponse>,
       callback: BodyResponseCallback<Schema$I18nLanguageListResponse>
     ): void;
     list(
@@ -8950,8 +9060,7 @@ export namespace youtube_v3 {
     list(
       params: Params$Resource$I18nregions$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$I18nRegionListResponse>,
+        MethodOptions | BodyResponseCallback<Schema$I18nRegionListResponse>,
       callback: BodyResponseCallback<Schema$I18nRegionListResponse>
     ): void;
     list(
@@ -9610,8 +9719,7 @@ export namespace youtube_v3 {
         | BodyResponseCallback<Schema$Cuepoint>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Cuepoint>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Cuepoint> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Cuepoint>>
@@ -9757,8 +9865,7 @@ export namespace youtube_v3 {
     list(
       params: Params$Resource$Livebroadcasts$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$LiveBroadcastListResponse>,
+        MethodOptions | BodyResponseCallback<Schema$LiveBroadcastListResponse>,
       callback: BodyResponseCallback<Schema$LiveBroadcastListResponse>
     ): void;
     list(
@@ -12026,8 +12133,7 @@ export namespace youtube_v3 {
         | BodyResponseCallback<Schema$LiveStream>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$LiveStream>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$LiveStream> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$LiveStream>>
@@ -12169,8 +12275,7 @@ export namespace youtube_v3 {
     list(
       params: Params$Resource$Livestreams$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$LiveStreamListResponse>,
+        MethodOptions | BodyResponseCallback<Schema$LiveStreamListResponse>,
       callback: BodyResponseCallback<Schema$LiveStreamListResponse>
     ): void;
     list(
@@ -12352,8 +12457,7 @@ export namespace youtube_v3 {
         | BodyResponseCallback<Schema$LiveStream>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$LiveStream>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$LiveStream> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$LiveStream>>
@@ -13233,8 +13337,7 @@ export namespace youtube_v3 {
     list(
       params: Params$Resource$Playlistimages$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$PlaylistImageListResponse>,
+        MethodOptions | BodyResponseCallback<Schema$PlaylistImageListResponse>,
       callback: BodyResponseCallback<Schema$PlaylistImageListResponse>
     ): void;
     list(
@@ -13965,8 +14068,7 @@ export namespace youtube_v3 {
     list(
       params: Params$Resource$Playlistitems$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$PlaylistItemListResponse>,
+        MethodOptions | BodyResponseCallback<Schema$PlaylistItemListResponse>,
       callback: BodyResponseCallback<Schema$PlaylistItemListResponse>
     ): void;
     list(
@@ -14525,8 +14627,7 @@ export namespace youtube_v3 {
         | BodyResponseCallback<Schema$Playlist>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Playlist>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Playlist> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Playlist>>
@@ -14672,8 +14773,7 @@ export namespace youtube_v3 {
     list(
       params: Params$Resource$Playlists$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$PlaylistListResponse>,
+        MethodOptions | BodyResponseCallback<Schema$PlaylistListResponse>,
       callback: BodyResponseCallback<Schema$PlaylistListResponse>
     ): void;
     list(
@@ -14856,8 +14956,7 @@ export namespace youtube_v3 {
         | BodyResponseCallback<Schema$Playlist>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Playlist>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Playlist> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Playlist>>
@@ -15732,8 +15831,7 @@ export namespace youtube_v3 {
     list(
       params: Params$Resource$Subscriptions$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$SubscriptionListResponse>,
+        MethodOptions | BodyResponseCallback<Schema$SubscriptionListResponse>,
       callback: BodyResponseCallback<Schema$SubscriptionListResponse>
     ): void;
     list(
@@ -15963,8 +16061,7 @@ export namespace youtube_v3 {
     list(
       params: Params$Resource$Superchatevents$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$SuperChatEventListResponse>,
+        MethodOptions | BodyResponseCallback<Schema$SuperChatEventListResponse>,
       callback: BodyResponseCallback<Schema$SuperChatEventListResponse>
     ): void;
     list(
@@ -16167,8 +16264,7 @@ export namespace youtube_v3 {
         | BodyResponseCallback<Schema$TestItem>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$TestItem>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$TestItem> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$TestItem>>
@@ -16608,8 +16704,7 @@ export namespace youtube_v3 {
     list(
       params: Params$Resource$Thirdpartylinks$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ThirdPartyLinkListResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ThirdPartyLinkListResponse>,
       callback: BodyResponseCallback<Schema$ThirdPartyLinkListResponse>
     ): void;
     list(
@@ -16997,8 +17092,7 @@ export namespace youtube_v3 {
     set(
       params: Params$Resource$Thumbnails$Set,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ThumbnailSetResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ThumbnailSetResponse>,
       callback: BodyResponseCallback<Schema$ThumbnailSetResponse>
     ): void;
     set(
@@ -17369,8 +17463,7 @@ export namespace youtube_v3 {
     list(
       params: Params$Resource$Videocategories$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$VideoCategoryListResponse>,
+        MethodOptions | BodyResponseCallback<Schema$VideoCategoryListResponse>,
       callback: BodyResponseCallback<Schema$VideoCategoryListResponse>
     ): void;
     list(
@@ -17464,6 +17557,157 @@ export namespace youtube_v3 {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
+    }
+
+    /**
+     * Retrieves a batch of VideoStat resources, possibly filtered. BatchGetStats is intentionally not atomic to provide a better user experience.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/youtube',
+     *       'https://www.googleapis.com/auth/youtube.force-ssl',
+     *       'https://www.googleapis.com/auth/youtube.readonly',
+     *       'https://www.googleapis.com/auth/youtubepartner',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.videos.batchGetStats({
+     *     // Required. Return videos with the given ids. The number of IDs specified cannot exceed 50.
+     *     id: 'placeholder-value',
+     *     // Optional. **Note:** This parameter is intended exclusively for YouTube content partners. The `onBehalfOfContentOwner` parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     *     onBehalfOfContentOwner: 'placeholder-value',
+     *     // Required. The `**part**` parameter specifies a comma-separated list of one or more `videoStat` resource properties that the API response will include. If the parameter identifies a property that contains child properties, the child properties will be included in the response. For example, in a `videoStat` resource, the `statistics` property contains `view_count` and `like_count`. As such, if you set `**part=snippet**`, the API response will contain all of those properties.
+     *     part: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    batchGetStats(
+      params: Params$Resource$Videos$Batchgetstats,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    batchGetStats(
+      params?: Params$Resource$Videos$Batchgetstats,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BatchGetStatsResponse>>;
+    batchGetStats(
+      params: Params$Resource$Videos$Batchgetstats,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    batchGetStats(
+      params: Params$Resource$Videos$Batchgetstats,
+      options:
+        MethodOptions | BodyResponseCallback<Schema$BatchGetStatsResponse>,
+      callback: BodyResponseCallback<Schema$BatchGetStatsResponse>
+    ): void;
+    batchGetStats(
+      params: Params$Resource$Videos$Batchgetstats,
+      callback: BodyResponseCallback<Schema$BatchGetStatsResponse>
+    ): void;
+    batchGetStats(
+      callback: BodyResponseCallback<Schema$BatchGetStatsResponse>
+    ): void;
+    batchGetStats(
+      paramsOrCallback?:
+        | Params$Resource$Videos$Batchgetstats
+        | BodyResponseCallback<Schema$BatchGetStatsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BatchGetStatsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BatchGetStatsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$BatchGetStatsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Videos$Batchgetstats;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Videos$Batchgetstats;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://youtube.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/videos:batchGetStats').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$BatchGetStatsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$BatchGetStatsResponse>(parameters);
+      }
     }
 
     /**
@@ -17676,8 +17920,7 @@ export namespace youtube_v3 {
     getRating(
       params: Params$Resource$Videos$Getrating,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$VideoGetRatingResponse>,
+        MethodOptions | BodyResponseCallback<Schema$VideoGetRatingResponse>,
       callback: BodyResponseCallback<Schema$VideoGetRatingResponse>
     ): void;
     getRating(
@@ -17800,6 +18043,7 @@ export namespace youtube_v3 {
      *       // request body parameters
      *       // {
      *       //   "ageGating": {},
+     *       //   "brandPartner": {},
      *       //   "contentDetails": {},
      *       //   "etag": "my_etag",
      *       //   "fileDetails": {},
@@ -17830,6 +18074,7 @@ export namespace youtube_v3 {
      *   // Example response
      *   // {
      *   //   "ageGating": {},
+     *   //   "brandPartner": {},
      *   //   "contentDetails": {},
      *   //   "etag": "my_etag",
      *   //   "fileDetails": {},
@@ -17897,8 +18142,7 @@ export namespace youtube_v3 {
         | BodyResponseCallback<Schema$Video>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Video>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Video> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Video>>
@@ -18441,6 +18685,7 @@ export namespace youtube_v3 {
      *       // request body parameters
      *       // {
      *       //   "ageGating": {},
+     *       //   "brandPartner": {},
      *       //   "contentDetails": {},
      *       //   "etag": "my_etag",
      *       //   "fileDetails": {},
@@ -18467,6 +18712,7 @@ export namespace youtube_v3 {
      *   // Example response
      *   // {
      *   //   "ageGating": {},
+     *   //   "brandPartner": {},
      *   //   "contentDetails": {},
      *   //   "etag": "my_etag",
      *   //   "fileDetails": {},
@@ -18534,8 +18780,7 @@ export namespace youtube_v3 {
         | BodyResponseCallback<Schema$Video>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Video>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Video> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Video>>
@@ -18580,6 +18825,20 @@ export namespace youtube_v3 {
     }
   }
 
+  export interface Params$Resource$Videos$Batchgetstats extends StandardParameters {
+    /**
+     * Required. Return videos with the given ids. The number of IDs specified cannot exceed 50.
+     */
+    id?: string[];
+    /**
+     * Optional. **Note:** This parameter is intended exclusively for YouTube content partners. The `onBehalfOfContentOwner` parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     */
+    onBehalfOfContentOwner?: string;
+    /**
+     * Required. The `**part**` parameter specifies a comma-separated list of one or more `videoStat` resource properties that the API response will include. If the parameter identifies a property that contains child properties, the child properties will be included in the response. For example, in a `videoStat` resource, the `statistics` property contains `view_count` and `like_count`. As such, if you set `**part=snippet**`, the API response will contain all of those properties.
+     */
+    part?: string[];
+  }
   export interface Params$Resource$Videos$Delete extends StandardParameters {
     /**
      *
@@ -19249,173 +19508,6 @@ export namespace youtube_v3 {
       this.context = context;
       this.liveChat = new Resource$Youtube$V3$Livechat(this.context);
     }
-
-    /**
-     * Updates an existing resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const youtube = google.youtube('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await youtube.youtube.v3.updateCommentThreads({
-     *     // The *part* parameter specifies a comma-separated list of commentThread resource properties that the API response will include. You must at least include the snippet part in the parameter value since that part contains all of the properties that the API request can update.
-     *     part: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "etag": "my_etag",
-     *       //   "id": "my_id",
-     *       //   "kind": "my_kind",
-     *       //   "replies": {},
-     *       //   "snippet": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "etag": "my_etag",
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "replies": {},
-     *   //   "snippet": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    updateCommentThreads(
-      params: Params$Resource$Youtube$V3$Updatecommentthreads,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    updateCommentThreads(
-      params?: Params$Resource$Youtube$V3$Updatecommentthreads,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$CommentThread>>;
-    updateCommentThreads(
-      params: Params$Resource$Youtube$V3$Updatecommentthreads,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    updateCommentThreads(
-      params: Params$Resource$Youtube$V3$Updatecommentthreads,
-      options: MethodOptions | BodyResponseCallback<Schema$CommentThread>,
-      callback: BodyResponseCallback<Schema$CommentThread>
-    ): void;
-    updateCommentThreads(
-      params: Params$Resource$Youtube$V3$Updatecommentthreads,
-      callback: BodyResponseCallback<Schema$CommentThread>
-    ): void;
-    updateCommentThreads(
-      callback: BodyResponseCallback<Schema$CommentThread>
-    ): void;
-    updateCommentThreads(
-      paramsOrCallback?:
-        | Params$Resource$Youtube$V3$Updatecommentthreads
-        | BodyResponseCallback<Schema$CommentThread>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$CommentThread>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$CommentThread>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$CommentThread>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Youtube$V3$Updatecommentthreads;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Youtube$V3$Updatecommentthreads;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://youtube.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/youtube/v3/commentThreads').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'PUT',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: [],
-        pathParams: [],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$CommentThread>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$CommentThread>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Youtube$V3$Updatecommentthreads extends StandardParameters {
-    /**
-     * The *part* parameter specifies a comma-separated list of commentThread resource properties that the API response will include. You must at least include the snippet part in the parameter value since that part contains all of the properties that the API request can update.
-     */
-    part?: string[];
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$CommentThread;
   }
 
   export class Resource$Youtube$V3$Livechat {

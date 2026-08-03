@@ -972,6 +972,45 @@
                     "https://www.googleapis.com/auth/cloud-bigtable.admin.cluster",
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
+                },
+                "updateMemoryLayer": {
+                  "description": "Updates the memory layer of a cluster. To enable the memory layer, set the memory_config. To disable the memory layer, unset the memory_config.",
+                  "flatPath": "v2/projects/{projectsId}/instances/{instancesId}/clusters/{clustersId}/memoryLayer",
+                  "httpMethod": "PATCH",
+                  "id": "bigtableadmin.projects.instances.clusters.updateMemoryLayer",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Identifier. Name of the memory layer. This is always: \"projects/{project}/instances/{instance}/clusters/{cluster}/memoryLayer\".",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/instances/[^/]+/clusters/[^/]+/memoryLayer$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. The list of fields to update.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}",
+                  "request": {
+                    "$ref": "MemoryLayer"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/bigtable.admin",
+                    "https://www.googleapis.com/auth/bigtable.admin.cluster",
+                    "https://www.googleapis.com/auth/bigtable.admin.instance",
+                    "https://www.googleapis.com/auth/cloud-bigtable.admin",
+                    "https://www.googleapis.com/auth/cloud-bigtable.admin.cluster",
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
                 }
               },
               "resources": {
@@ -1691,6 +1730,11 @@
                     "parent"
                   ],
                   "parameters": {
+                    "ignoreWarnings": {
+                      "description": "Optional. If true, ignore optional safety checks when creating the materialized view.",
+                      "location": "query",
+                      "type": "boolean"
+                    },
                     "materializedViewId": {
                       "description": "Required. The ID to use for the materialized view, which will become the final component of the materialized view's resource name.",
                       "location": "query",
@@ -2362,7 +2406,7 @@
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "Required. The list of fields to update. A mask specifying which fields (e.g. `change_stream_config`) in the `table` field should be updated. This mask is relative to the `table` field, not to the request message. The wildcard (*) path is currently not supported. Currently UpdateTable is only supported for the following fields: * `change_stream_config` * `change_stream_config.retention_period` * `deletion_protection` * `automated_backup_policy` * `automated_backup_policy.retention_period` * `automated_backup_policy.frequency` * `row_key_schema` If `column_families` is set in `update_mask`, it will return an UNIMPLEMENTED error.",
+                      "description": "Required. The list of fields to update. A mask specifying which fields (e.g. `change_stream_config`) in the `table` field should be updated. This mask is relative to the `table` field, not to the request message. The wildcard (*) path is currently not supported. Currently UpdateTable is only supported for the following fields: * `change_stream_config` * `change_stream_config.retention_period` * `deletion_protection` * `automated_backup_policy` * `automated_backup_policy.retention_period` * `automated_backup_policy.frequency` * `automated_backup_policy.locations` * `row_key_schema` If `column_families` is set in `update_mask`, it will return an UNIMPLEMENTED error.",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -3194,7 +3238,7 @@
       }
     }
   },
-  "revision": "20260514",
+  "revision": "20260725",
   "rootUrl": "https://bigtableadmin.googleapis.com/",
   "schemas": {
     "AppProfile": {
@@ -3733,6 +3777,18 @@
           "description": "How much space the data in the column family occupies. This is roughly how many bytes would be needed to read the contents of the entire column family (e.g. by streaming all contents out).",
           "format": "int64",
           "type": "string"
+        },
+        "logicalDataHddBytes": {
+          "description": "Output only. The logical data bytes of the column family stored on HDD.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "logicalDataSsdBytes": {
+          "description": "Output only. The logical data bytes of the column family stored on SSD.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -4036,6 +4092,10 @@
       "description": "Request message for BigtableInstanceAdmin.CreateMaterializedView.",
       "id": "CreateMaterializedViewRequest",
       "properties": {
+        "ignoreWarnings": {
+          "description": "Optional. If true, ignore optional safety checks when creating the materialized view.",
+          "type": "boolean"
+        },
         "materializedView": {
           "$ref": "MaterializedView",
           "description": "Required. The materialized view to create."
@@ -4830,6 +4890,11 @@
             "The Enterprise edition. This is the default offering that is designed to meet the needs of most enterprise workloads.",
             "The Enterprise Plus edition. This is a premium tier that is designed for demanding, multi-tenant workloads requiring the highest levels of performance, scale, and global availability. The nodes in the Enterprise Plus tier come at a higher cost than the Enterprise tier. Any Enterprise Plus features must be disabled before downgrading to Enterprise."
           ],
+          "type": "string"
+        },
+        "knowledgeCatalogRegion": {
+          "description": "Output only. The region where Knowledge Catalog data is synced to and stored, including user-created aspects.",
+          "readOnly": true,
           "type": "string"
         },
         "labels": {

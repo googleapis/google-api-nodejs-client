@@ -137,7 +137,7 @@ export namespace readerrevenuesubscriptionlinking_v1 {
      */
     detail?: string | null;
     /**
-     * Required. Expiration time of the entitlement. Entitlements that have expired over 30 days will be purged. The max expire_time is 398 days from now().
+     * Optional. Expiration time of the entitlement. If unset, the entitlement does not expire (indefinite entitlement). We need to support indefinite entitlements for platform publishers. dd: go/rrm-sl-notedotcom Entitlements that have expired over 30 days will be purged.
      */
     expireTime?: string | null;
     /**
@@ -275,8 +275,7 @@ export namespace readerrevenuesubscriptionlinking_v1 {
     delete(
       params: Params$Resource$Publications$Readers$Delete,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$DeleteReaderResponse>,
+        MethodOptions | BodyResponseCallback<Schema$DeleteReaderResponse>,
       callback: BodyResponseCallback<Schema$DeleteReaderResponse>
     ): void;
     delete(
@@ -436,8 +435,7 @@ export namespace readerrevenuesubscriptionlinking_v1 {
         | BodyResponseCallback<Schema$Reader>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Reader>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Reader> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Reader>>

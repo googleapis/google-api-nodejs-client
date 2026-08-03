@@ -583,8 +583,7 @@ export namespace gamesConfiguration_v1configuration {
     get(
       params: Params$Resource$Achievementconfigurations$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$AchievementConfiguration>,
+        MethodOptions | BodyResponseCallback<Schema$AchievementConfiguration>,
       callback: BodyResponseCallback<Schema$AchievementConfiguration>
     ): void;
     get(
@@ -744,8 +743,7 @@ export namespace gamesConfiguration_v1configuration {
     insert(
       params: Params$Resource$Achievementconfigurations$Insert,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$AchievementConfiguration>,
+        MethodOptions | BodyResponseCallback<Schema$AchievementConfiguration>,
       callback: BodyResponseCallback<Schema$AchievementConfiguration>
     ): void;
     insert(
@@ -1062,8 +1060,7 @@ export namespace gamesConfiguration_v1configuration {
     update(
       params: Params$Resource$Achievementconfigurations$Update,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$AchievementConfiguration>,
+        MethodOptions | BodyResponseCallback<Schema$AchievementConfiguration>,
       callback: BodyResponseCallback<Schema$AchievementConfiguration>
     ): void;
     update(
@@ -1396,8 +1393,7 @@ export namespace gamesConfiguration_v1configuration {
     get(
       params: Params$Resource$Leaderboardconfigurations$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$LeaderboardConfiguration>,
+        MethodOptions | BodyResponseCallback<Schema$LeaderboardConfiguration>,
       callback: BodyResponseCallback<Schema$LeaderboardConfiguration>
     ): void;
     get(
@@ -1557,8 +1553,7 @@ export namespace gamesConfiguration_v1configuration {
     insert(
       params: Params$Resource$Leaderboardconfigurations$Insert,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$LeaderboardConfiguration>,
+        MethodOptions | BodyResponseCallback<Schema$LeaderboardConfiguration>,
       callback: BodyResponseCallback<Schema$LeaderboardConfiguration>
     ): void;
     insert(
@@ -1875,8 +1870,7 @@ export namespace gamesConfiguration_v1configuration {
     update(
       params: Params$Resource$Leaderboardconfigurations$Update,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$LeaderboardConfiguration>,
+        MethodOptions | BodyResponseCallback<Schema$LeaderboardConfiguration>,
       callback: BodyResponseCallback<Schema$LeaderboardConfiguration>
     ): void;
     update(

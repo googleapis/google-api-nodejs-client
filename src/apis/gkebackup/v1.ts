@@ -578,6 +578,10 @@ export namespace gkebackup_v1 {
      * Backup Rule Name.
      */
     ruleName?: string | null;
+    /**
+     * The storage tier of the BackupRule.
+     */
+    storageTier?: string | null;
   }
   /**
    * Log entry for BDRBackupPlanJobLog for resources using BackupPlan based protection.
@@ -653,7 +657,7 @@ export namespace gkebackup_v1 {
     workloadsAffectedCount?: number | null;
   }
   /**
-   * Log entry for Backup and Restore Job for resources using BackupPlan based protection. Next Id: 24
+   * Log entry for Backup and Restore Job for resources using BackupPlan based protection. Next Id: 26
    */
   export interface Schema$BDRBackupRestoreJobLog {
     /**
@@ -748,6 +752,14 @@ export namespace gkebackup_v1 {
      * Start time of the job.
      */
     startTime?: string | null;
+    /**
+     * The storage tier associated with the backup.
+     */
+    storageTier?: string | null;
+    /**
+     * The target resource type for restore jobs.
+     */
+    targetResourceType?: string | null;
   }
   /**
    * Associates `members`, or principals, with a `role`.
@@ -2163,8 +2175,7 @@ export namespace gkebackup_v1 {
         | BodyResponseCallback<Schema$Location>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Location>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Location> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Location>>
@@ -2288,8 +2299,7 @@ export namespace gkebackup_v1 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListLocationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListLocationsResponse>,
       callback: BodyResponseCallback<Schema$ListLocationsResponse>
     ): void;
     list(
@@ -2490,8 +2500,7 @@ export namespace gkebackup_v1 {
     create(
       params: Params$Resource$Projects$Locations$Backupchannels$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -2639,8 +2648,7 @@ export namespace gkebackup_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Backupchannels$Delete,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -2929,8 +2937,7 @@ export namespace gkebackup_v1 {
     list(
       params: Params$Resource$Projects$Locations$Backupchannels$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListBackupChannelsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListBackupChannelsResponse>,
       callback: BodyResponseCallback<Schema$ListBackupChannelsResponse>
     ): void;
     list(
@@ -3092,8 +3099,7 @@ export namespace gkebackup_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Backupchannels$Patch,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     patch(
@@ -3682,8 +3688,7 @@ export namespace gkebackup_v1 {
     create(
       params: Params$Resource$Projects$Locations$Backupplans$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -3829,8 +3834,7 @@ export namespace gkebackup_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Backupplans$Delete,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -4004,8 +4008,7 @@ export namespace gkebackup_v1 {
         | BodyResponseCallback<Schema$BackupPlan>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$BackupPlan>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$BackupPlan> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$BackupPlan>>
@@ -4144,8 +4147,7 @@ export namespace gkebackup_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -4413,8 +4415,7 @@ export namespace gkebackup_v1 {
     list(
       params: Params$Resource$Projects$Locations$Backupplans$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListBackupPlansResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListBackupPlansResponse>,
       callback: BodyResponseCallback<Schema$ListBackupPlansResponse>
     ): void;
     list(
@@ -4585,8 +4586,7 @@ export namespace gkebackup_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Backupplans$Patch,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     patch(
@@ -4754,8 +4754,7 @@ export namespace gkebackup_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -5035,8 +5034,7 @@ export namespace gkebackup_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Backupplans$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -5354,8 +5352,7 @@ export namespace gkebackup_v1 {
     create(
       params: Params$Resource$Projects$Locations$Backupplans$Backups$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -5504,8 +5501,7 @@ export namespace gkebackup_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Backupplans$Backups$Delete,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -5693,8 +5689,7 @@ export namespace gkebackup_v1 {
         | BodyResponseCallback<Schema$Backup>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Backup>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Backup> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Backup>>
@@ -5987,8 +5982,7 @@ export namespace gkebackup_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -6304,8 +6298,7 @@ export namespace gkebackup_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Backupplans$Backups$Patch,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     patch(
@@ -6475,8 +6468,7 @@ export namespace gkebackup_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -6605,8 +6597,7 @@ export namespace gkebackup_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Backupplans$Backups$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -7046,8 +7037,7 @@ export namespace gkebackup_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -7177,8 +7167,7 @@ export namespace gkebackup_v1 {
     list(
       params: Params$Resource$Projects$Locations$Backupplans$Backups$Volumebackups$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListVolumeBackupsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListVolumeBackupsResponse>,
       callback: BodyResponseCallback<Schema$ListVolumeBackupsResponse>
     ): void;
     list(
@@ -7353,8 +7342,7 @@ export namespace gkebackup_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -7485,8 +7473,7 @@ export namespace gkebackup_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Backupplans$Backups$Volumebackups$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -7717,8 +7704,7 @@ export namespace gkebackup_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -7849,8 +7835,7 @@ export namespace gkebackup_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -7969,8 +7954,7 @@ export namespace gkebackup_v1 {
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -8344,8 +8328,7 @@ export namespace gkebackup_v1 {
     create(
       params: Params$Resource$Projects$Locations$Restorechannels$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -8492,8 +8475,7 @@ export namespace gkebackup_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Restorechannels$Delete,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -8946,8 +8928,7 @@ export namespace gkebackup_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Restorechannels$Patch,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     patch(
@@ -9526,8 +9507,7 @@ export namespace gkebackup_v1 {
     create(
       params: Params$Resource$Projects$Locations$Restoreplans$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -9675,8 +9655,7 @@ export namespace gkebackup_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Restoreplans$Delete,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -9983,8 +9962,7 @@ export namespace gkebackup_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -10252,8 +10230,7 @@ export namespace gkebackup_v1 {
     list(
       params: Params$Resource$Projects$Locations$Restoreplans$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListRestorePlansResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListRestorePlansResponse>,
       callback: BodyResponseCallback<Schema$ListRestorePlansResponse>
     ): void;
     list(
@@ -10417,8 +10394,7 @@ export namespace gkebackup_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Restoreplans$Patch,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     patch(
@@ -10586,8 +10562,7 @@ export namespace gkebackup_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -10866,8 +10841,7 @@ export namespace gkebackup_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Restoreplans$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -11176,8 +11150,7 @@ export namespace gkebackup_v1 {
     create(
       params: Params$Resource$Projects$Locations$Restoreplans$Restores$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -11326,8 +11299,7 @@ export namespace gkebackup_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Restoreplans$Restores$Delete,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -11502,8 +11474,7 @@ export namespace gkebackup_v1 {
         | BodyResponseCallback<Schema$Restore>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Restore>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Restore> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Restore>>
@@ -11644,8 +11615,7 @@ export namespace gkebackup_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -11775,8 +11745,7 @@ export namespace gkebackup_v1 {
     list(
       params: Params$Resource$Projects$Locations$Restoreplans$Restores$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListRestoresResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListRestoresResponse>,
       callback: BodyResponseCallback<Schema$ListRestoresResponse>
     ): void;
     list(
@@ -11948,8 +11917,7 @@ export namespace gkebackup_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Restoreplans$Restores$Patch,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     patch(
@@ -12119,8 +12087,7 @@ export namespace gkebackup_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -12251,8 +12218,7 @@ export namespace gkebackup_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Restoreplans$Restores$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -12681,8 +12647,7 @@ export namespace gkebackup_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -12814,8 +12779,7 @@ export namespace gkebackup_v1 {
     list(
       params: Params$Resource$Projects$Locations$Restoreplans$Restores$Volumerestores$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListVolumeRestoresResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListVolumeRestoresResponse>,
       callback: BodyResponseCallback<Schema$ListVolumeRestoresResponse>
     ): void;
     list(
@@ -12990,8 +12954,7 @@ export namespace gkebackup_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -13122,8 +13085,7 @@ export namespace gkebackup_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Restoreplans$Restores$Volumerestores$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(

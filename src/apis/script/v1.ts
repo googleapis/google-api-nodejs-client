@@ -748,8 +748,7 @@ export namespace script_v1 {
     list(
       params: Params$Resource$Processes$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListUserProcessesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListUserProcessesResponse>,
       callback: BodyResponseCallback<Schema$ListUserProcessesResponse>
     ): void;
     list(
@@ -1175,8 +1174,7 @@ export namespace script_v1 {
         | BodyResponseCallback<Schema$Project>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Project>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Project> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Project>>
@@ -1317,8 +1315,7 @@ export namespace script_v1 {
         | BodyResponseCallback<Schema$Project>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Project>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Project> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Project>>
@@ -1459,8 +1456,7 @@ export namespace script_v1 {
         | BodyResponseCallback<Schema$Content>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Content>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Content> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Content>>
@@ -1602,8 +1598,7 @@ export namespace script_v1 {
         | BodyResponseCallback<Schema$Metrics>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Metrics>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Metrics> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Metrics>>
@@ -1749,8 +1744,7 @@ export namespace script_v1 {
         | BodyResponseCallback<Schema$Content>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Content>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Content> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Content>>
@@ -1955,8 +1949,7 @@ export namespace script_v1 {
         | BodyResponseCallback<Schema$Deployment>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Deployment>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Deployment> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Deployment>>
@@ -2092,8 +2085,7 @@ export namespace script_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -2236,8 +2228,7 @@ export namespace script_v1 {
         | BodyResponseCallback<Schema$Deployment>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Deployment>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Deployment> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Deployment>>
@@ -2362,8 +2353,7 @@ export namespace script_v1 {
     list(
       params: Params$Resource$Projects$Deployments$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListDeploymentsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListDeploymentsResponse>,
       callback: BodyResponseCallback<Schema$ListDeploymentsResponse>
     ): void;
     list(
@@ -2532,8 +2522,7 @@ export namespace script_v1 {
         | BodyResponseCallback<Schema$Deployment>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Deployment>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Deployment> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Deployment>>
@@ -2750,8 +2739,7 @@ export namespace script_v1 {
         | BodyResponseCallback<Schema$Version>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Version>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Version> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Version>>
@@ -2895,8 +2883,7 @@ export namespace script_v1 {
         | BodyResponseCallback<Schema$Version>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Version>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Version> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Version>>
@@ -3021,8 +3008,7 @@ export namespace script_v1 {
     list(
       params: Params$Resource$Projects$Versions$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListVersionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListVersionsResponse>,
       callback: BodyResponseCallback<Schema$ListVersionsResponse>
     ): void;
     list(
@@ -3246,8 +3232,7 @@ export namespace script_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>

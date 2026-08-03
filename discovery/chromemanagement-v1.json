@@ -14,6 +14,12 @@
         "https://www.googleapis.com/auth/chrome.management.reports.readonly": {
           "description": "See reports about devices and Chrome browsers managed within your organization"
         },
+        "https://www.googleapis.com/auth/chrome.management.securityinsights": {
+          "description": "Turn Chrome Security Insights on and off and view the data it generates"
+        },
+        "https://www.googleapis.com/auth/chrome.management.securityinsights.readonly": {
+          "description": "See Chrome Security Insights reports"
+        },
         "https://www.googleapis.com/auth/chrome.management.telemetry.readonly": {
           "description": "See basic device and telemetry information collected from ChromeOS devices or users managed within your organization"
         }
@@ -516,7 +522,7 @@
               ],
               "parameters": {
                 "connectorConfigId": {
-                  "description": "Optional. ID to use for the connector config, which becomes the final component of the connector config's resource name. If provided, the ID must be 1-63 characters long, and contain only lowercase letters, digits, and hyphens. It must start with a letter, and end with a letter or number. If not provided, the connector config will be assigned a random UUID.",
+                  "description": "Optional. ID to use for the connector config, which becomes the final component of the connector config's resource name. If provided, the ID must be 1-36 characters long, and contain only lowercase letters, digits, and hyphens. It must start with a letter, and end with a letter or number. If not provided, the connector config will be assigned a random UUID.",
                   "location": "query",
                   "type": "string"
                 },
@@ -670,7 +676,11 @@
                   "path": "v1/{+customer}/enterprise/securityInsights:checkEnablementStatus",
                   "response": {
                     "$ref": "GoogleChromeManagementVersionsV1CheckEnablementStatusResponse"
-                  }
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/chrome.management.securityinsights",
+                    "https://www.googleapis.com/auth/chrome.management.securityinsights.readonly"
+                  ]
                 },
                 "disable": {
                   "description": "Disables insights for the customer.",
@@ -695,7 +705,10 @@
                   },
                   "response": {
                     "$ref": "GoogleChromeManagementVersionsV1DisableInsightsResponse"
-                  }
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/chrome.management.securityinsights"
+                  ]
                 },
                 "enable": {
                   "description": "Enables insights for the customer and sets up required chrome connectors.",
@@ -720,7 +733,272 @@
                   },
                   "response": {
                     "$ref": "GoogleChromeManagementVersionsV1EnableInsightsResponse"
-                  }
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/chrome.management.securityinsights"
+                  ]
+                },
+                "queryContentTransfers": {
+                  "description": "Returns a high-level summary of content transfers for a given customer.",
+                  "flatPath": "v1/customers/{customersId}/enterprise/securityInsights:queryContentTransfers",
+                  "httpMethod": "GET",
+                  "id": "chromemanagement.customers.enterprise.securityInsights.queryContentTransfers",
+                  "parameterOrder": [
+                    "customer"
+                  ],
+                  "parameters": {
+                    "customer": {
+                      "description": "Required. The customer ID in the format \"customers/{customer_id}\".",
+                      "location": "path",
+                      "pattern": "^customers/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "filter": {
+                      "description": "Optional. The filter to apply to the request. For syntax, see AIP-160. Data is not available for events older than 180 days, and may be unavailable or inaccurate for time ranges less than 4 hours. If `event_time` is not specified, results will be returned for the last 30 days. Supported fields for filtering: - `event_time` Supported operators: - `>=` and `<=` for `event_time` Supported conjunctions: - `AND` Example: `event_time >= \"2024-01-01T00:00:00Z\" AND event_time <= \"2024-01-02T00:00:00Z\"`",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+customer}/enterprise/securityInsights:queryContentTransfers",
+                  "response": {
+                    "$ref": "GoogleChromeManagementVersionsV1QueryContentTransfersResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/chrome.management.securityinsights",
+                    "https://www.googleapis.com/auth/chrome.management.securityinsights.readonly"
+                  ]
+                },
+                "queryContentTransfersBreakdowns": {
+                  "description": "Returns summaries of content transfers for a given metric and breakdown dimension.",
+                  "flatPath": "v1/customers/{customersId}/enterprise/securityInsights:queryContentTransfersBreakdowns",
+                  "httpMethod": "GET",
+                  "id": "chromemanagement.customers.enterprise.securityInsights.queryContentTransfersBreakdowns",
+                  "parameterOrder": [
+                    "customer"
+                  ],
+                  "parameters": {
+                    "breakdown": {
+                      "description": "Optional. The dimension to break down the content transfers by. Defaults to USER.",
+                      "enum": [
+                        "CONTENT_TRANSFERS_BREAKDOWN_DIMENSION_UNSPECIFIED",
+                        "USER",
+                        "EVENT_DOMAIN",
+                        "CONTENT_CATEGORY"
+                      ],
+                      "enumDescriptions": [
+                        "Unspecified breakdown dimension. Defaults to USER.",
+                        "Breakdown by user.",
+                        "Breakdown by event domain.",
+                        "Breakdown by content category."
+                      ],
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "customer": {
+                      "description": "Required. The customer ID in the format \"customers/{customer_id}\".",
+                      "location": "path",
+                      "pattern": "^customers/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "filter": {
+                      "description": "Optional. The filter to apply to the request. For syntax, see AIP-160. Data is not available for events older than 180 days or more recent than 48 hours ago. If `event_time` is not specified, results will end 48 hours ago. Supported fields for filtering: - `user` - `event_domain` - `content_category` - `event_time` Filtering by `user` or `event_domain` requires the `breakdown` dimension to be set to the corresponding value (e.g., you must set `breakdown = USER` to filter by `user`). Supported operators: - `=` for `user`, `event_domain`, and `content_category`. - `<=` for `event_time`. Supported conjunctions: - `AND` Example: `user = \"testuser\" AND event_time <= \"2024-01-02T00:00:00Z\"`",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "fixedTimeRange": {
+                      "description": "Optional. The fixed time range to return the breakdowns for. Defaults to FIXED_TIME_RANGE_FOUR_WEEKS. Fixed time ranges are used to allow for precomputation and optimize response times.",
+                      "enum": [
+                        "FIXED_TIME_RANGE_UNSPECIFIED",
+                        "FIXED_TIME_RANGE_FOUR_HOURS",
+                        "FIXED_TIME_RANGE_ONE_DAY",
+                        "FIXED_TIME_RANGE_ONE_WEEK",
+                        "FIXED_TIME_RANGE_FOUR_WEEKS"
+                      ],
+                      "enumDescriptions": [
+                        "Unspecified fixed time range. Defaults to FIXED_TIME_RANGE_FOUR_WEEKS.",
+                        "Four hours.",
+                        "One day.",
+                        "One week.",
+                        "Four weeks."
+                      ],
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "metric": {
+                      "description": "Optional. The metric to return the breakdowns for. Defaults to CONTENT_TRANSFERS_METRIC_TOTAL_TRANSFERS.",
+                      "enum": [
+                        "CONTENT_TRANSFERS_METRIC_UNSPECIFIED",
+                        "CONTENT_TRANSFERS_METRIC_TOTAL_TRANSFERS",
+                        "CONTENT_TRANSFERS_METRIC_TOTAL_UPLOADS",
+                        "CONTENT_TRANSFERS_METRIC_TOTAL_DOWNLOADS",
+                        "CONTENT_TRANSFERS_METRIC_TOTAL_PRINTS",
+                        "CONTENT_TRANSFERS_METRIC_TOTAL_SENSITIVE_TRANSFERS",
+                        "CONTENT_TRANSFERS_METRIC_SENSITIVE_UPLOADS",
+                        "CONTENT_TRANSFERS_METRIC_SENSITIVE_DOWNLOADS",
+                        "CONTENT_TRANSFERS_METRIC_SENSITIVE_PRINTS"
+                      ],
+                      "enumDescriptions": [
+                        "Unspecified content transfers metric. Defaults to CONTENT_TRANSFERS_METRIC_TOTAL_TRANSFERS.",
+                        "The total number of content transfers (sensitive and non-sensitive). This is the sum of the total_uploads, total_downloads, and total_prints.",
+                        "The total number of content uploads (sensitive and non-sensitive).",
+                        "The total number of content downloads (sensitive and non-sensitive).",
+                        "The total number of content prints (sensitive and non-sensitive).",
+                        "The total number of sensitive content transfers. This is the sum of the sensitive_uploads, sensitive_downloads, and sensitive_prints.",
+                        "The number of sensitive content uploads.",
+                        "The number of sensitive content downloads.",
+                        "The number of sensitive content prints."
+                      ],
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. The maximum number of breakdowns to return. The service may return fewer than this value. If unspecified, at most 50 breakdowns will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A page token, received from a previous `QueryContentTransfersBreakdowns` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `QueryContentTransfersBreakdowns` must match the call that provided the page token.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+customer}/enterprise/securityInsights:queryContentTransfersBreakdowns",
+                  "response": {
+                    "$ref": "GoogleChromeManagementVersionsV1QueryContentTransfersBreakdownsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/chrome.management.securityinsights",
+                    "https://www.googleapis.com/auth/chrome.management.securityinsights.readonly"
+                  ]
+                },
+                "queryUrlVisits": {
+                  "description": "Returns a high-level summary of URL visits for a given customer. Requires a Chrome Enterprise Premium subscription. If the customer does not have this subscription, query results will be empty.",
+                  "flatPath": "v1/customers/{customersId}/enterprise/securityInsights:queryUrlVisits",
+                  "httpMethod": "GET",
+                  "id": "chromemanagement.customers.enterprise.securityInsights.queryUrlVisits",
+                  "parameterOrder": [
+                    "customer"
+                  ],
+                  "parameters": {
+                    "customer": {
+                      "description": "Required. The customer ID in the format \"customers/{customer_id}\".",
+                      "location": "path",
+                      "pattern": "^customers/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "filter": {
+                      "description": "Optional. The filter to apply to the request. For syntax, see AIP-160. Data is not available for events older than 180 days, and may be unavailable or inaccurate for time ranges less than 4 hours. If `event_time` is not specified, results will be returned for the last 30 days. Supported fields for filtering: - `event_time` Supported operators: - `>=` and `<=` for `event_time` Supported conjunctions: - `AND` Example: `event_time >= \"2024-01-01T00:00:00Z\" AND event_time <= \"2024-01-02T00:00:00Z\"`",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+customer}/enterprise/securityInsights:queryUrlVisits",
+                  "response": {
+                    "$ref": "GoogleChromeManagementVersionsV1QueryUrlVisitsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/chrome.management.securityinsights",
+                    "https://www.googleapis.com/auth/chrome.management.securityinsights.readonly"
+                  ]
+                },
+                "queryUrlVisitsBreakdowns": {
+                  "description": "Returns summaries of URL visits for a given metric and breakdown dimension. Requires a Chrome Enterprise Premium subscription. If the customer does not have this subscription, query results will be empty.",
+                  "flatPath": "v1/customers/{customersId}/enterprise/securityInsights:queryUrlVisitsBreakdowns",
+                  "httpMethod": "GET",
+                  "id": "chromemanagement.customers.enterprise.securityInsights.queryUrlVisitsBreakdowns",
+                  "parameterOrder": [
+                    "customer"
+                  ],
+                  "parameters": {
+                    "breakdown": {
+                      "description": "Optional. The dimension to break down the URL visits by. Defaults to USER.",
+                      "enum": [
+                        "URL_VISITS_BREAKDOWN_DIMENSION_UNSPECIFIED",
+                        "USER",
+                        "EVENT_DOMAIN"
+                      ],
+                      "enumDescriptions": [
+                        "Unspecified breakdown dimension. Defaults to USER.",
+                        "Breakdown by user.",
+                        "Breakdown by event domain."
+                      ],
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "customer": {
+                      "description": "Required. The customer ID in the format \"customers/{customer_id}\".",
+                      "location": "path",
+                      "pattern": "^customers/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "filter": {
+                      "description": "Optional. The filter to apply to the request. For syntax, see AIP-160. Data is not available for events older than 180 days or more recent than 48 hours ago. If `event_time` is not specified, results will end 48 hours ago. Supported fields for filtering: - `user` - `event_domain` - `event_time` Filtering by `user` or `event_domain` requires the `breakdown` dimension to be set to the corresponding value (e.g., you must set `breakdown = USER` to filter by `user`). Supported operators: - `=` for `user` and `event_domain`. - `<=` for `event_time`. Supported conjunctions: - `AND` Example: `user = \"testuser\" AND event_time <= \"2024-01-02T00:00:00Z\"`",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "fixedTimeRange": {
+                      "description": "Optional. The fixed time range to return the breakdowns for. Defaults to FIXED_TIME_RANGE_FOUR_WEEKS. Fixed time ranges are used to allow for precomputation and optimize response times.",
+                      "enum": [
+                        "FIXED_TIME_RANGE_UNSPECIFIED",
+                        "FIXED_TIME_RANGE_FOUR_HOURS",
+                        "FIXED_TIME_RANGE_ONE_DAY",
+                        "FIXED_TIME_RANGE_ONE_WEEK",
+                        "FIXED_TIME_RANGE_FOUR_WEEKS"
+                      ],
+                      "enumDescriptions": [
+                        "Unspecified fixed time range. Defaults to FIXED_TIME_RANGE_FOUR_WEEKS.",
+                        "Four hours.",
+                        "One day.",
+                        "One week.",
+                        "Four weeks."
+                      ],
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "metric": {
+                      "description": "Optional. The metric to return the breakdowns for. Defaults to URL_VISITS_METRIC_TOTAL_SUSPICIOUS_URL_VISITS.",
+                      "enum": [
+                        "URL_VISITS_METRIC_UNSPECIFIED",
+                        "URL_VISITS_METRIC_TOTAL_SUSPICIOUS_URL_VISITS",
+                        "URL_VISITS_METRIC_HIGH_RISK_URL_VISITS",
+                        "URL_VISITS_METRIC_MEDIUM_RISK_URL_VISITS",
+                        "URL_VISITS_METRIC_LOW_RISK_URL_VISITS"
+                      ],
+                      "enumDescriptions": [
+                        "Unspecified URL visits metric. Defaults to URL_VISITS_METRIC_TOTAL_SUSPICIOUS_URL_VISITS.",
+                        "The total number of suspicious URL visits. This is the sum of the high_risk_url_visits, medium_risk_url_visits, and low_risk_url_visits.",
+                        "The number of suspicious URL visits with high risk.",
+                        "The number of suspicious URL visits with medium risk.",
+                        "The number of suspicious URL visits with low risk."
+                      ],
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. The maximum number of breakdowns to return. The service may return fewer than this value. If unspecified, at most 50 breakdowns will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A page token, received from a previous `QueryUrlVisitsBreakdowns` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `QueryUrlVisitsBreakdowns` must match the call that provided the page token.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+customer}/enterprise/securityInsights:queryUrlVisitsBreakdowns",
+                  "response": {
+                    "$ref": "GoogleChromeManagementVersionsV1QueryUrlVisitsBreakdownsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/chrome.management.securityinsights",
+                    "https://www.googleapis.com/auth/chrome.management.securityinsights.readonly"
+                  ]
                 }
               }
             }
@@ -1147,6 +1425,52 @@
               "path": "v1/{+customer}/reports:countChromeHardwareFleetDevices",
               "response": {
                 "$ref": "GoogleChromeManagementV1CountChromeHardwareFleetDevicesResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/chrome.management.reports.readonly"
+              ]
+            },
+            "countChromeProfileVersions": {
+              "description": "Generate report of installed Chrome versions on managed profiles.",
+              "flatPath": "v1/customers/{customersId}/reports:countChromeProfileVersions",
+              "httpMethod": "GET",
+              "id": "chromemanagement.customers.reports.countChromeProfileVersions",
+              "parameterOrder": [
+                "customer"
+              ],
+              "parameters": {
+                "customer": {
+                  "description": "Required. Customer id or \"my_customer\" to use the customer associated to the account making the request.",
+                  "location": "path",
+                  "pattern": "^customers/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "filter": {
+                  "description": "Optional. Query string to filter results, AND-separated fields in EBNF syntax. Note: OR operations are not supported in this filter. Supported filter fields: * last_active_date",
+                  "location": "query",
+                  "type": "string"
+                },
+                "orgUnitId": {
+                  "description": "The ID of the organizational unit. If omitted, all data will be returned.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "pageSize": {
+                  "description": "Optional. Maximum number of results to return. Maximum and default are 100.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "Optional. Token to specify the page of the request to be returned.",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+customer}/reports:countChromeProfileVersions",
+              "response": {
+                "$ref": "GoogleChromeManagementV1CountChromeProfileVersionsResponse"
               },
               "scopes": [
                 "https://www.googleapis.com/auth/chrome.management.reports.readonly"
@@ -2085,7 +2409,7 @@
       }
     }
   },
-  "revision": "20260520",
+  "revision": "20260715",
   "rootUrl": "https://chromemanagement.googleapis.com/",
   "schemas": {
     "GoogleChromeManagementV1AndroidAppInfo": {
@@ -2984,6 +3308,29 @@
             "$ref": "GoogleChromeManagementV1DeviceHardwareCountReport"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementV1CountChromeProfileVersionsResponse": {
+      "description": "Response containing requested managed profile versions details and counts.",
+      "id": "GoogleChromeManagementV1CountChromeProfileVersionsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "Token to specify the next page of the request.",
+          "type": "string"
+        },
+        "profileBrowserVersions": {
+          "description": "List of all browser versions reported for profiles and their install counts.",
+          "items": {
+            "$ref": "GoogleChromeManagementV1BrowserVersion"
+          },
+          "type": "array"
+        },
+        "totalSize": {
+          "description": "Total number browser versions matching request.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -3928,6 +4275,12 @@
           "readOnly": true,
           "type": "array"
         },
+        "profileCount": {
+          "description": "Output only. Count of Chrome Profiles with this app installed.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
         "riskAssessment": {
           "$ref": "GoogleChromeManagementV1RiskAssessmentData",
           "description": "Output only. If available, the risk assessment data about this extension.",
@@ -4615,10 +4968,17 @@
             "RISK_ASSESSMENT_PROVIDER_LAYERX",
             "RISK_ASSESSMENT_PROVIDER_SPIN_AI_V2"
           ],
+          "enumDeprecated": [
+            false,
+            false,
+            true,
+            false,
+            false
+          ],
           "enumDescriptions": [
             "Default value when no provider is specified.",
             "CRXcavator.",
-            "Spin.Ai.",
+            "Deprecated: Please use RISK_ASSESSMENT_PROVIDER_SPIN_AI_V2 instead. Spin.Ai.",
             "LayerX Security.",
             "Spin.AI V2."
           ],
@@ -6694,6 +7054,67 @@
       },
       "type": "object"
     },
+    "GoogleChromeManagementVersionsV1ContentTransfersBreakdown": {
+      "description": "A content transfers summary for a given breakdown dimension.",
+      "id": "GoogleChromeManagementVersionsV1ContentTransfersBreakdown",
+      "properties": {
+        "contentCategory": {
+          "description": "The content category of the content transfers.",
+          "type": "string"
+        },
+        "eventDomain": {
+          "description": "The event domain of the content transfers.",
+          "type": "string"
+        },
+        "summary": {
+          "$ref": "GoogleChromeManagementVersionsV1ContentTransfersSummary",
+          "description": "The summary of content transfers for the breakdown dimension."
+        },
+        "user": {
+          "description": "The user that transferred the content.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementVersionsV1ContentTransfersSummary": {
+      "description": "Summary of content transfers for a given metric.",
+      "id": "GoogleChromeManagementVersionsV1ContentTransfersSummary",
+      "properties": {
+        "count": {
+          "description": "The count of the content transfers metric.",
+          "format": "int64",
+          "type": "string"
+        },
+        "metric": {
+          "description": "The type of content transfers metric.",
+          "enum": [
+            "CONTENT_TRANSFERS_METRIC_UNSPECIFIED",
+            "CONTENT_TRANSFERS_METRIC_TOTAL_TRANSFERS",
+            "CONTENT_TRANSFERS_METRIC_TOTAL_UPLOADS",
+            "CONTENT_TRANSFERS_METRIC_TOTAL_DOWNLOADS",
+            "CONTENT_TRANSFERS_METRIC_TOTAL_PRINTS",
+            "CONTENT_TRANSFERS_METRIC_TOTAL_SENSITIVE_TRANSFERS",
+            "CONTENT_TRANSFERS_METRIC_SENSITIVE_UPLOADS",
+            "CONTENT_TRANSFERS_METRIC_SENSITIVE_DOWNLOADS",
+            "CONTENT_TRANSFERS_METRIC_SENSITIVE_PRINTS"
+          ],
+          "enumDescriptions": [
+            "Unspecified content transfers metric. Defaults to CONTENT_TRANSFERS_METRIC_TOTAL_TRANSFERS.",
+            "The total number of content transfers (sensitive and non-sensitive). This is the sum of the total_uploads, total_downloads, and total_prints.",
+            "The total number of content uploads (sensitive and non-sensitive).",
+            "The total number of content downloads (sensitive and non-sensitive).",
+            "The total number of content prints (sensitive and non-sensitive).",
+            "The total number of sensitive content transfers. This is the sum of the sensitive_uploads, sensitive_downloads, and sensitive_prints.",
+            "The number of sensitive content uploads.",
+            "The number of sensitive content downloads.",
+            "The number of sensitive content prints."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleChromeManagementVersionsV1CrowdStrikeConfig": {
       "description": "CrowdStrike connector config.",
       "id": "GoogleChromeManagementVersionsV1CrowdStrikeConfig",
@@ -7104,6 +7525,70 @@
         "xdrSettings": {
           "$ref": "GoogleChromeManagementVersionsV1XdrSettings",
           "description": "Required. The XDR settings for the Pub/Sub XDR config."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementVersionsV1QueryContentTransfersBreakdownsResponse": {
+      "description": "Response message for QueryContentTransfersBreakdowns.",
+      "id": "GoogleChromeManagementVersionsV1QueryContentTransfersBreakdownsResponse",
+      "properties": {
+        "contentTransfersBreakdowns": {
+          "description": "The content transfer breakdowns from the specified insight.",
+          "items": {
+            "$ref": "GoogleChromeManagementVersionsV1ContentTransfersBreakdown"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementVersionsV1QueryContentTransfersResponse": {
+      "description": "Response message for QueryContentTransfers.",
+      "id": "GoogleChromeManagementVersionsV1QueryContentTransfersResponse",
+      "properties": {
+        "summaries": {
+          "description": "A collection of summaries for various content transfers metrics.",
+          "items": {
+            "$ref": "GoogleChromeManagementVersionsV1ContentTransfersSummary"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementVersionsV1QueryUrlVisitsBreakdownsResponse": {
+      "description": "Response message for QueryUrlVisitsBreakdowns.",
+      "id": "GoogleChromeManagementVersionsV1QueryUrlVisitsBreakdownsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "urlVisitsBreakdowns": {
+          "description": "The URL visit breakdowns from the specified insight.",
+          "items": {
+            "$ref": "GoogleChromeManagementVersionsV1UrlVisitsBreakdown"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementVersionsV1QueryUrlVisitsResponse": {
+      "description": "Response message for QueryUrlVisits.",
+      "id": "GoogleChromeManagementVersionsV1QueryUrlVisitsResponse",
+      "properties": {
+        "summaries": {
+          "description": "A collection of summaries for various URL visit metrics.",
+          "items": {
+            "$ref": "GoogleChromeManagementVersionsV1UrlVisitsSummary"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -7693,6 +8178,55 @@
       "description": "Response message for publishing an issued certificate for a certificate provisioning process.",
       "id": "GoogleChromeManagementVersionsV1UploadCertificateResponse",
       "properties": {},
+      "type": "object"
+    },
+    "GoogleChromeManagementVersionsV1UrlVisitsBreakdown": {
+      "description": "A URL visits summary for a given breakdown dimension.",
+      "id": "GoogleChromeManagementVersionsV1UrlVisitsBreakdown",
+      "properties": {
+        "eventDomain": {
+          "description": "The event domain of the URL visits.",
+          "type": "string"
+        },
+        "summary": {
+          "$ref": "GoogleChromeManagementVersionsV1UrlVisitsSummary",
+          "description": "The summary of URL visits for the breakdown dimension."
+        },
+        "user": {
+          "description": "The user that visited the URL.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementVersionsV1UrlVisitsSummary": {
+      "description": "Summary of URL visits for a given metric.",
+      "id": "GoogleChromeManagementVersionsV1UrlVisitsSummary",
+      "properties": {
+        "count": {
+          "description": "The count of the URL visits metric.",
+          "format": "int64",
+          "type": "string"
+        },
+        "metric": {
+          "description": "The type of URL visits metric.",
+          "enum": [
+            "URL_VISITS_METRIC_UNSPECIFIED",
+            "URL_VISITS_METRIC_TOTAL_SUSPICIOUS_URL_VISITS",
+            "URL_VISITS_METRIC_HIGH_RISK_URL_VISITS",
+            "URL_VISITS_METRIC_MEDIUM_RISK_URL_VISITS",
+            "URL_VISITS_METRIC_LOW_RISK_URL_VISITS"
+          ],
+          "enumDescriptions": [
+            "Unspecified URL visits metric. Defaults to URL_VISITS_METRIC_TOTAL_SUSPICIOUS_URL_VISITS.",
+            "The total number of suspicious URL visits. This is the sum of the high_risk_url_visits, medium_risk_url_visits, and low_risk_url_visits.",
+            "The number of suspicious URL visits with high risk.",
+            "The number of suspicious URL visits with medium risk.",
+            "The number of suspicious URL visits with low risk."
+          ],
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "GoogleChromeManagementVersionsV1XdrSettings": {

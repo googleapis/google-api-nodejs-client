@@ -1061,8 +1061,7 @@ export namespace searchconsole_v1 {
         | BodyResponseCallback<Schema$WmxSitemap>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$WmxSitemap>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$WmxSitemap> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$WmxSitemap>>
@@ -1184,8 +1183,7 @@ export namespace searchconsole_v1 {
     list(
       params: Params$Resource$Sitemaps$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$SitemapsListResponse>,
+        MethodOptions | BodyResponseCallback<Schema$SitemapsListResponse>,
       callback: BodyResponseCallback<Schema$SitemapsListResponse>
     ): void;
     list(
@@ -1784,8 +1782,7 @@ export namespace searchconsole_v1 {
         | BodyResponseCallback<Schema$WmxSite>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$WmxSite>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$WmxSite> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$WmxSite>>
@@ -2086,8 +2083,7 @@ export namespace searchconsole_v1 {
     inspect(
       params: Params$Resource$Urlinspection$Index$Inspect,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$InspectUrlIndexResponse>,
+        MethodOptions | BodyResponseCallback<Schema$InspectUrlIndexResponse>,
       callback: BodyResponseCallback<Schema$InspectUrlIndexResponse>
     ): void;
     inspect(

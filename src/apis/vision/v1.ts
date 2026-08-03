@@ -5266,8 +5266,7 @@ export namespace vision_v1 {
     annotate(
       params: Params$Resource$Files$Annotate,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$BatchAnnotateFilesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$BatchAnnotateFilesResponse>,
       callback: BodyResponseCallback<Schema$BatchAnnotateFilesResponse>
     ): void;
     annotate(
@@ -5435,8 +5434,7 @@ export namespace vision_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5757,8 +5755,7 @@ export namespace vision_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5930,8 +5927,7 @@ export namespace vision_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -6085,8 +6081,7 @@ export namespace vision_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -6220,8 +6215,7 @@ export namespace vision_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -6361,8 +6355,7 @@ export namespace vision_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -6489,8 +6482,7 @@ export namespace vision_v1 {
     list(
       params: Params$Resource$Operations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListOperationsResponse>,
       callback: BodyResponseCallback<Schema$ListOperationsResponse>
     ): void;
     list(
@@ -6705,8 +6697,7 @@ export namespace vision_v1 {
     annotate(
       params: Params$Resource$Projects$Files$Annotate,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$BatchAnnotateFilesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$BatchAnnotateFilesResponse>,
       callback: BodyResponseCallback<Schema$BatchAnnotateFilesResponse>
     ): void;
     annotate(
@@ -6881,8 +6872,7 @@ export namespace vision_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -7220,8 +7210,7 @@ export namespace vision_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -7403,8 +7392,7 @@ export namespace vision_v1 {
     annotate(
       params: Params$Resource$Projects$Locations$Files$Annotate,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$BatchAnnotateFilesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$BatchAnnotateFilesResponse>,
       callback: BodyResponseCallback<Schema$BatchAnnotateFilesResponse>
     ): void;
     annotate(
@@ -7579,8 +7567,7 @@ export namespace vision_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -7919,8 +7906,7 @@ export namespace vision_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -8094,8 +8080,7 @@ export namespace vision_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -8266,8 +8251,7 @@ export namespace vision_v1 {
         | BodyResponseCallback<Schema$Product>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Product>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Product> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Product>>
@@ -8404,8 +8388,7 @@ export namespace vision_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -8545,8 +8528,7 @@ export namespace vision_v1 {
         | BodyResponseCallback<Schema$Product>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Product>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Product> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Product>>
@@ -8669,8 +8651,7 @@ export namespace vision_v1 {
     list(
       params: Params$Resource$Projects$Locations$Products$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListProductsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListProductsResponse>,
       callback: BodyResponseCallback<Schema$ListProductsResponse>
     ): void;
     list(
@@ -8847,8 +8828,7 @@ export namespace vision_v1 {
         | BodyResponseCallback<Schema$Product>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Product>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Product> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Product>>
@@ -8998,8 +8978,7 @@ export namespace vision_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -9366,8 +9345,7 @@ export namespace vision_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -9854,8 +9832,7 @@ export namespace vision_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -10011,8 +9988,7 @@ export namespace vision_v1 {
         | BodyResponseCallback<Schema$ProductSet>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$ProductSet>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$ProductSet> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$ProductSet>>
@@ -10149,8 +10125,7 @@ export namespace vision_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -10289,8 +10264,7 @@ export namespace vision_v1 {
         | BodyResponseCallback<Schema$ProductSet>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$ProductSet>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$ProductSet> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$ProductSet>>
@@ -10438,8 +10412,7 @@ export namespace vision_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -10565,8 +10538,7 @@ export namespace vision_v1 {
     list(
       params: Params$Resource$Projects$Locations$Productsets$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListProductSetsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListProductSetsResponse>,
       callback: BodyResponseCallback<Schema$ListProductSetsResponse>
     ): void;
     list(
@@ -10741,8 +10713,7 @@ export namespace vision_v1 {
         | BodyResponseCallback<Schema$ProductSet>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$ProductSet>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$ProductSet> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$ProductSet>>
@@ -10884,8 +10855,7 @@ export namespace vision_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -11304,8 +11274,7 @@ export namespace vision_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>

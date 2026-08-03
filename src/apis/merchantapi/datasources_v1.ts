@@ -182,7 +182,7 @@ export namespace merchantapi_datasources_v1 {
    */
   export interface Schema$DataSourceReference {
     /**
-     * Optional. The name of the primary data source. Format: `accounts/{account\}/dataSources/{datasource\}`
+     * Optional. Deprecated: Use `self` instead to reference the primary data source. The name of the primary data source. Format: `accounts/{account\}/dataSources/{datasource\}`
      */
     primaryDataSourceName?: string | null;
     /**
@@ -199,7 +199,7 @@ export namespace merchantapi_datasources_v1 {
    */
   export interface Schema$DefaultRule {
     /**
-     * Required. The list of data sources linked in the [default rule](https://support.google.com/merchants/answer/7450276). This list is ordered by the default rule priority of joining the data. It might include none or multiple references to `self` and supplemental data sources. The list must not be empty. To link the data source to the default rule, you need to add a new reference to this list (in sequential order). To unlink the data source from the default rule, you need to remove the given reference from this list. Changing the order of this list will result in changing the priority of data sources in the default rule. For example, providing the following list: [`1001`, `self`] will take attribute values from supplemental data source `1001`, and fallback to `self` if the attribute is not set in `1001`.
+     * Required. The list of data sources linked in the [default rule](https://support.google.com/merchants/answer/7450276). This list is ordered by the default rule priority of joining the data. It might include none or multiple references to `self` and supplemental data sources. The list must not be empty. To link the data source to the default rule, you need to add a new reference to this list (in sequential order). To unlink the data source from the default rule, you need to remove the given reference from this list. Changing the order of this list will result in changing the priority of data sources in the default rule. For example, providing the following list: [`1001`, `self`] will take attribute values from supplemental data source `1001`, and fallback to `self` if the attribute is not set in `1001`. Warning: The update (patch) and create call replaces the entire default rule setup. It doesn't work as an addition or append. If `self` is missing from the list of `take_from_data_sources`, the API will ignore attributes from the primary data source itself.
      */
     takeFromDataSources?: Schema$DataSourceReference[];
   }
@@ -391,7 +391,7 @@ export namespace merchantapi_datasources_v1 {
      */
     countries?: string[] | null;
     /**
-     * Optional. Default rule management of the data source. If set, the linked data sources will be replaced.
+     * Optional. Default rule management of the data source. If set, the linked data sources will be replaced. Warning: The update (patch) and create call replaces the entire default rule setup. It doesn't work as an addition or append. If `self` is missing from the list of `take_from_data_sources`, the API will ignore attributes from the primary data source itself.
      */
     defaultRule?: Schema$DefaultRule;
     /**
@@ -672,8 +672,7 @@ export namespace merchantapi_datasources_v1 {
         | BodyResponseCallback<Schema$DataSource>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$DataSource>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$DataSource> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$DataSource>>
@@ -807,8 +806,7 @@ export namespace merchantapi_datasources_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -948,8 +946,7 @@ export namespace merchantapi_datasources_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -1096,8 +1093,7 @@ export namespace merchantapi_datasources_v1 {
         | BodyResponseCallback<Schema$DataSource>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$DataSource>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$DataSource> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$DataSource>>
@@ -1220,8 +1216,7 @@ export namespace merchantapi_datasources_v1 {
     list(
       params: Params$Resource$Accounts$Datasources$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListDataSourcesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListDataSourcesResponse>,
       callback: BodyResponseCallback<Schema$ListDataSourcesResponse>
     ): void;
     list(
@@ -1409,8 +1404,7 @@ export namespace merchantapi_datasources_v1 {
         | BodyResponseCallback<Schema$DataSource>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$DataSource>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$DataSource> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$DataSource>>
@@ -1624,8 +1618,7 @@ export namespace merchantapi_datasources_v1 {
         | BodyResponseCallback<Schema$FileUpload>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$FileUpload>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$FileUpload> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$FileUpload>>

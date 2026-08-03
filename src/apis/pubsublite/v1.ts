@@ -734,8 +734,7 @@ export namespace pubsublite_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -870,8 +869,7 @@ export namespace pubsublite_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -1009,8 +1007,7 @@ export namespace pubsublite_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -1135,8 +1132,7 @@ export namespace pubsublite_v1 {
     list(
       params: Params$Resource$Admin$Projects$Locations$Operations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListOperationsResponse>,
       callback: BodyResponseCallback<Schema$ListOperationsResponse>
     ): void;
     list(
@@ -1497,8 +1493,7 @@ export namespace pubsublite_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -1755,8 +1750,7 @@ export namespace pubsublite_v1 {
     list(
       params: Params$Resource$Admin$Projects$Locations$Reservations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListReservationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListReservationsResponse>,
       callback: BodyResponseCallback<Schema$ListReservationsResponse>
     ): void;
     list(
@@ -2450,8 +2444,7 @@ export namespace pubsublite_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -2710,8 +2703,7 @@ export namespace pubsublite_v1 {
     list(
       params: Params$Resource$Admin$Projects$Locations$Subscriptions$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListSubscriptionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListSubscriptionsResponse>,
       callback: BodyResponseCallback<Schema$ListSubscriptionsResponse>
     ): void;
     list(
@@ -3034,8 +3026,7 @@ export namespace pubsublite_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3272,8 +3263,7 @@ export namespace pubsublite_v1 {
         | BodyResponseCallback<Schema$Topic>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Topic>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Topic> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Topic>>
@@ -3407,8 +3397,7 @@ export namespace pubsublite_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -3544,8 +3533,7 @@ export namespace pubsublite_v1 {
         | BodyResponseCallback<Schema$Topic>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Topic>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Topic> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Topic>>
@@ -3974,8 +3962,7 @@ export namespace pubsublite_v1 {
         | BodyResponseCallback<Schema$Topic>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Topic>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Topic> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Topic>>
@@ -4375,8 +4362,7 @@ export namespace pubsublite_v1 {
     commitCursor(
       params: Params$Resource$Cursor$Projects$Locations$Subscriptions$Commitcursor,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$CommitCursorResponse>,
+        MethodOptions | BodyResponseCallback<Schema$CommitCursorResponse>,
       callback: BodyResponseCallback<Schema$CommitCursorResponse>
     ): void;
     commitCursor(
@@ -4747,8 +4733,7 @@ export namespace pubsublite_v1 {
     computeHeadCursor(
       params: Params$Resource$Topicstats$Projects$Locations$Topics$Computeheadcursor,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ComputeHeadCursorResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ComputeHeadCursorResponse>,
       callback: BodyResponseCallback<Schema$ComputeHeadCursorResponse>
     ): void;
     computeHeadCursor(
@@ -5053,8 +5038,7 @@ export namespace pubsublite_v1 {
     computeTimeCursor(
       params: Params$Resource$Topicstats$Projects$Locations$Topics$Computetimecursor,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ComputeTimeCursorResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ComputeTimeCursorResponse>,
       callback: BodyResponseCallback<Schema$ComputeTimeCursorResponse>
     ): void;
     computeTimeCursor(

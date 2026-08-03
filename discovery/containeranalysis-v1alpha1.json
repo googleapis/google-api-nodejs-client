@@ -1454,7 +1454,7 @@
       }
     }
   },
-  "revision": "20260505",
+  "revision": "20260703",
   "rootUrl": "https://containeranalysis.googleapis.com/",
   "schemas": {
     "AISkillAnalysisNote": {
@@ -1476,6 +1476,16 @@
         },
         "maxSeverity": {
           "description": "Optional. Maximum severity found among findings.",
+          "enum": [
+            "SEVERITY_UNSPECIFIED",
+            "CRITICAL",
+            "HIGH"
+          ],
+          "enumDescriptions": [
+            "Unspecified severity.",
+            "Critical severity.",
+            "High severity."
+          ],
           "type": "string"
         },
         "skillName": {
@@ -2142,6 +2152,24 @@
             "No impact (N). Defined in CVSS v2, v3, v4.",
             "Partial impact (P). Defined in CVSS v2.",
             "Complete impact (C). Defined in CVSS v2."
+          ],
+          "type": "string"
+        },
+        "exploitMaturity": {
+          "description": "Optional. Exploit Maturity (E). Defined in CVSS v4.",
+          "enum": [
+            "EXPLOIT_MATURITY_UNSPECIFIED",
+            "EXPLOIT_MATURITY_NOT_DEFINED",
+            "EXPLOIT_MATURITY_ATTACKED",
+            "EXPLOIT_MATURITY_POC",
+            "EXPLOIT_MATURITY_UNREPORTED"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "Exploit maturity: Not defined (E:X). Defined in CVSS v4.",
+            "Exploit maturity: Attacked (E:A). Defined in CVSS v4.",
+            "Exploit maturity: Proof-of-concept (E:P). Defined in CVSS v4.",
+            "Exploit maturity: Unreported (E:U). Defined in CVSS v4."
           ],
           "type": "string"
         },
@@ -3146,12 +3174,14 @@
             "N1_HIGHCPU_32",
             "E2_HIGHCPU_8",
             "E2_HIGHCPU_32",
-            "E2_MEDIUM"
+            "E2_MEDIUM",
+            "E2_STANDARD_2"
           ],
           "enumDeprecated": [
             false,
             true,
             true,
+            false,
             false,
             false,
             false
@@ -3162,7 +3192,8 @@
             "Highcpu machine with 32 CPUs.",
             "Highcpu e2 machine with 8 CPUs.",
             "Highcpu e2 machine with 32 CPUs.",
-            "E2 machine with 1 CPU."
+            "E2 machine with 1 CPU.",
+            "E2 machine with 2 CPUs."
           ],
           "type": "string"
         },
@@ -4929,16 +4960,44 @@
           "description": "Optional. Category of the finding.",
           "type": "string"
         },
+        "details": {
+          "description": "Optional. Description of the finding category.",
+          "type": "string"
+        },
         "location": {
           "$ref": "FindingLocation",
           "description": "Optional. Location (path and line) where the finding was detected."
         },
         "scanner": {
           "description": "Optional. Scanner determines which engine (e.g. static, llm) emitted the finding.",
+          "enum": [
+            "SCANNER_UNSPECIFIED",
+            "STATIC",
+            "LLM",
+            "WS_POLICY",
+            "GOOGLE_ANTIVIRUS"
+          ],
+          "enumDescriptions": [
+            "Unspecified scanner.",
+            "Static scanner.",
+            "LLM scanner.",
+            "WS_POLICY scanner.",
+            "Google AntiVirus Service scanner."
+          ],
           "type": "string"
         },
         "severity": {
           "description": "Optional. Severity of the finding.",
+          "enum": [
+            "SEVERITY_UNSPECIFIED",
+            "CRITICAL",
+            "HIGH"
+          ],
+          "enumDescriptions": [
+            "Unspecified severity.",
+            "Critical severity.",
+            "High severity."
+          ],
           "type": "string"
         }
       },
@@ -7849,6 +7908,10 @@
           "$ref": "CVSS",
           "description": "The CVSS v3 score of this vulnerability."
         },
+        "cvssV4": {
+          "$ref": "CVSS",
+          "description": "Optional. The CVSS v4 score of this vulnerability."
+        },
         "cvssVersion": {
           "description": "Output only. CVSS version used to populate cvss_score and severity.",
           "enum": [
@@ -7975,6 +8038,10 @@
         "cvssV2": {
           "$ref": "CVSS",
           "description": "The full description of the CVSS for version 2."
+        },
+        "cvssV4": {
+          "$ref": "CVSS",
+          "description": "Optional. The full description of the CVSS for version 4."
         },
         "cvssVersion": {
           "description": "CVSS version used to populate cvss_score and severity.",

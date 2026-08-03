@@ -396,8 +396,7 @@ export namespace abusiveexperiencereport_v1 {
     list(
       params: Params$Resource$Violatingsites$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ViolatingSitesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ViolatingSitesResponse>,
       callback: BodyResponseCallback<Schema$ViolatingSitesResponse>
     ): void;
     list(

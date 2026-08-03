@@ -126,6 +126,11 @@
               "location": "query",
               "type": "string"
             },
+            "agentInfoFilter": {
+              "description": "Optional. Filters on agent info fields in the activity. This filter gets applied in conjunction(AND) with other filters. Example: \"agentInfoFilter=agentId=\\\"agent-id\\\" AND agentName=\\\"agent-name\\\" AND agentOwnerEmail=\\\"agent-owner-email\\\"\"",
+              "location": "query",
+              "type": "string"
+            },
             "applicationInfoFilter": {
               "description": "Optional. Used to filter on the `oAuthClientId` field present in [`ApplicationInfo`](#applicationinfo) message. **Usage** ``` GET...&applicationInfoFilter=oAuthClientId=\"clientId\" GET...&applicationInfoFilter=oAuthClientId=%22clientId%22 ```",
               "location": "query",
@@ -173,7 +178,8 @@
                 "takeout",
                 "graduation",
                 "voice",
-                "chrome_sync"
+                "chrome_sync",
+                "workspace_studio"
               ],
               "enumDescriptions": [
                 "The Google Workspace Access Transparency activity reports return information about different types of Access Transparency activity events.",
@@ -215,10 +221,11 @@
                 "The Takeout application's activity reports return information about various types of Takeout activity events.",
                 "The Graduation application's activity reports return information about various types of Graduation activity events.",
                 "The Voice application's activity reports return information about various types of Voice activity events.",
-                "The Chrome Sync application's activity reports return information about various types of Chrome Sync activity events."
+                "The Chrome Sync application's activity reports return information about various types of Chrome Sync activity events.",
+                "The Workspace Studio application's activity reports return information about various types of Workspace Studio activity events."
               ],
               "location": "path",
-              "pattern": "(access_evaluation)|(access_transparency)|(admin)|(admin_data_action)|(assignments)|(calendar)|(chat)|(chrome)|(classroom)|(cloud_search)|(contacts)|(context_aware_access)|(data_studio)|(data_migration)|(directory_sync)|(drive)|(gcp)|(gmail)|(gplus)|(graduation)|(groups)|(groups_enterprise)|(jamboard)|(keep)|(ldap)|(login)|(meet)|(meet_hardware)|(mobile)|(profile)|(rules)|(saml)|(token)|(user_accounts)|(vault)|(gemini_in_workspace_apps)|(tasks)|(takeout)|(voice)|(chrome_sync)",
+              "pattern": "(access_evaluation)|(access_transparency)|(admin)|(admin_data_action)|(assignments)|(calendar)|(chat)|(chrome)|(classroom)|(cloud_search)|(contacts)|(context_aware_access)|(data_studio)|(data_migration)|(directory_sync)|(drive)|(gcp)|(gmail)|(gplus)|(graduation)|(groups)|(groups_enterprise)|(jamboard)|(keep)|(ldap)|(login)|(meet)|(meet_hardware)|(mobile)|(profile)|(rules)|(saml)|(token)|(user_accounts)|(vault)|(gemini_in_workspace_apps)|(tasks)|(takeout)|(voice)|(chrome_sync)|(workspace_studio)",
               "required": true,
               "type": "string"
             },
@@ -226,6 +233,11 @@
               "description": "The unique ID of the customer to retrieve data for.",
               "location": "query",
               "pattern": "C.+|my_customer",
+              "type": "string"
+            },
+            "deviceFilter": {
+              "description": "Optional. Used to filter on the fields present in [`UserDeviceInfo`](#userdeviceinfo) message like `deviceId`, `deviceType`, and `deviceOsVersion`. **Usage** ``` GET...&deviceFilter=deviceId=\"123\" GET...&deviceFilter=deviceType=\"ANDROID\" GET...&deviceFilter=deviceOsVersion=\"14.0\" ```",
+              "location": "query",
               "type": "string"
             },
             "endTime": {
@@ -690,7 +702,7 @@
       }
     }
   },
-  "revision": "20260504",
+  "revision": "20260729",
   "rootUrl": "https://admin.googleapis.com/",
   "schemas": {
     "Activities": {
@@ -727,6 +739,10 @@
         "actor": {
           "description": "User doing the action.",
           "properties": {
+            "agentAttributionInfo": {
+              "$ref": "AgentAttributionInfo",
+              "description": "Details of the AI agent that was the actor for the activity."
+            },
             "applicationInfo": {
               "description": "Details of the application that was the actor for the activity.",
               "properties": {
@@ -964,6 +980,10 @@
           "description": "IP address of the user doing the action. This is the Internet Protocol (IP) address of the user when logging into Google Workspace, which may or may not reflect the user's physical location. For example, the IP address can be the user's proxy server's address or a virtual private network (VPN) address. The API supports IPv4 and IPv6.",
           "type": "string"
         },
+        "isAgenticAction": {
+          "description": "Whether the activity was performed by an agent.",
+          "type": "boolean"
+        },
         "kind": {
           "default": "admin#reports#activity",
           "description": "The type of API resource. For an activity report, the value is `audit#activity`.",
@@ -983,6 +1003,10 @@
             "$ref": "ResourceDetails"
           },
           "type": "array"
+        },
+        "userDeviceInfo": {
+          "$ref": "ActivityUserDeviceInfo",
+          "description": "Device details of the user doing the action."
         }
       },
       "type": "object"
@@ -1029,6 +1053,62 @@
         },
         "subdivisionCode": {
           "description": "ISO 3166-2 region code (states and provinces) for countries of the user doing the action.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ActivityUserDeviceInfo": {
+      "description": "Device details of the user doing the action.",
+      "id": "ActivityUserDeviceInfo",
+      "properties": {
+        "deviceId": {
+          "description": "Output only. Device ID of the user's device.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "deviceOsVersion": {
+          "description": "Output only. Device OS version of the user's device.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "deviceType": {
+          "description": "Output only. The type of the user's device.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AgentAttributionInfo": {
+      "description": "Details of the AI agent that was the actor for the activity.",
+      "id": "AgentAttributionInfo",
+      "properties": {
+        "agentId": {
+          "description": "The ID of the agent.",
+          "type": "string"
+        },
+        "agentName": {
+          "description": "The user visible name of the agent.",
+          "type": "string"
+        },
+        "agentOwner": {
+          "$ref": "AgentAttributionInfoAgentOwner",
+          "description": "The owner of the agent."
+        },
+        "agentType": {
+          "description": "Type of the agent.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AgentAttributionInfoAgentOwner": {
+      "description": "Details of the owner of the AI agent.",
+      "id": "AgentAttributionInfoAgentOwner",
+      "properties": {
+        "email": {
+          "description": "The email of the agent owner.",
           "type": "string"
         }
       },

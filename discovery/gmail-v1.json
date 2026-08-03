@@ -1822,6 +1822,20 @@
                         "userId"
                       ],
                       "parameters": {
+                        "chainValidation": {
+                          "default": "all",
+                          "description": "The type of certificate chain validation to perform at creation. The request will be rejected if the uploaded chain fails to satisfy the requested validation checks. When unspecified, this parameter defaults to `all`.",
+                          "enum": [
+                            "all",
+                            "none"
+                          ],
+                          "enumDescriptions": [
+                            "Enable all certificate chain validation and certificate revocation checks. Recommended for normal use.",
+                            "Disable all certificate chain validation and certificate revocation checks. This may be useful when deliberately creating key pairs with invalid, out-of-use certificate chains to be used only for decryption of historical S/MIME messages. Key pairs created with invalid or revoked certificates cannot be used in a CseIdentity object."
+                          ],
+                          "location": "query",
+                          "type": "string"
+                        },
                         "userId": {
                           "default": "me",
                           "description": "The requester's primary email address. To indicate the authenticated user, you can use the special value `me`.",
@@ -3077,7 +3091,7 @@
       }
     }
   },
-  "revision": "20260525",
+  "revision": "20260727",
   "rootUrl": "https://gmail.googleapis.com/",
   "schemas": {
     "AutoForwarding": {

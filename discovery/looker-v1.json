@@ -355,6 +355,11 @@
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
                       "type": "string"
+                    },
+                    "showDeleted": {
+                      "description": "Optional. Whether to include deleted instances in the response.",
+                      "location": "query",
+                      "type": "boolean"
                     }
                   },
                   "path": "v1/{+parent}/instances",
@@ -447,6 +452,34 @@
                   "path": "v1/{+name}:restore",
                   "request": {
                     "$ref": "RestoreInstanceRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "undelete": {
+                  "description": "Undeletes Looker instance.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}:undelete",
+                  "httpMethod": "POST",
+                  "id": "looker.projects.locations.instances.undelete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Format: projects/{project}/locations/{location}/instances/{instance}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/instances/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:undelete",
+                  "request": {
+                    "$ref": "UndeleteInstanceRequest"
                   },
                   "response": {
                     "$ref": "Operation"
@@ -715,7 +748,7 @@
       }
     }
   },
-  "revision": "20260502",
+  "revision": "20260609",
   "rootUrl": "https://looker.googleapis.com/",
   "schemas": {
     "AdminSettings": {
@@ -1016,6 +1049,10 @@
       "description": "A Looker instance.",
       "id": "Instance",
       "properties": {
+        "acceleratedSecurityPatchEnabled": {
+          "description": "Optional. Accelerated security patch enabled for the instance.",
+          "type": "boolean"
+        },
         "adminSettings": {
           "$ref": "AdminSettings",
           "description": "Looker Instance Admin settings."
@@ -1153,18 +1190,18 @@
             "LOOKER_CORE_TRIAL_EMBED"
           ],
           "enumDescriptions": [
-            "Platform edition is unspecified.",
-            "Trial.",
-            "Standard.",
-            "Subscription Standard.",
-            "Subscription Enterprise.",
-            "Subscription Embed.",
-            "Nonprod Subscription Standard.",
-            "Nonprod Subscription Enterprise.",
-            "Nonprod Subscription Embed.",
-            "Trial Standard.",
-            "Trial Enterprise.",
-            "Trial Embed."
+            "Represents an unspecified platform edition.",
+            "Represents the Looker Core Trial edition.",
+            "Represents the Looker Core Standard edition.",
+            "Represents the Looker Core Standard Annual edition.",
+            "Represents the Looker Core Enterprise Annual edition.",
+            "Represents the Looker Core Embed Annual edition.",
+            "Represents the Looker Core Nonprod Standard Annual edition.",
+            "Represents the Looker Core Nonprod Enterprise Annual edition.",
+            "Represents the Looker Core Nonprod Embed Annual edition.",
+            "Represents the Looker Core Trial Standard edition.",
+            "Represents the Looker Core Trial Enterprise edition.",
+            "Represents the Looker Core Trial Embed edition."
           ],
           "type": "string"
         },
@@ -1184,6 +1221,22 @@
           "description": "Whether public IP is enabled on the Looker instance.",
           "type": "boolean"
         },
+        "releaseChannel": {
+          "description": "Optional. The selected release channel for the instance.",
+          "enum": [
+            "RELEASE_CHANNEL_UNSPECIFIED",
+            "RAPID",
+            "REGULAR",
+            "STABLE"
+          ],
+          "enumDescriptions": [
+            "Unspecified release channel.",
+            "Rapid: Most frequent updates.",
+            "Regular: Balanced, default for production.",
+            "Stable: Least frequent, for maximum stability."
+          ],
+          "type": "string"
+        },
         "reservedRange": {
           "description": "Name of a reserved IP address range within the Instance.consumer_network, to be used for private services access connection. May or may not be specified in a create request.",
           "type": "string"
@@ -1197,6 +1250,23 @@
           "description": "Output only. Reserved for future use.",
           "readOnly": true,
           "type": "boolean"
+        },
+        "softDeleteReason": {
+          "description": "Output only. The reason for the instance being in a soft-deleted state.",
+          "enum": [
+            "SOFT_DELETE_REASON_UNSPECIFIED",
+            "BILLING_ACCOUNT_ISSUE",
+            "TRIAL_EXPIRED",
+            "CUSTOMER_REQUEST"
+          ],
+          "enumDescriptions": [
+            "Soft delete reason is unspecified. This is the default value.",
+            "Instance is soft deleted due to billing account issues.",
+            "Instance is soft deleted due to trial expiration.",
+            "Instance is soft deleted by the customer."
+          ],
+          "readOnly": true,
+          "type": "string"
         },
         "state": {
           "description": "Output only. The state of the instance.",
@@ -1222,6 +1292,12 @@
             "Instance is being exported.",
             "Instance is importing data."
           ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "suspendedTime": {
+          "description": "Output only. The time when the Looker instance was suspended (soft deleted).",
+          "format": "google-datetime",
           "readOnly": true,
           "type": "string"
         },
@@ -1717,6 +1793,12 @@
           "type": "integer"
         }
       },
+      "type": "object"
+    },
+    "UndeleteInstanceRequest": {
+      "description": "Request options for undeleting an instance.",
+      "id": "UndeleteInstanceRequest",
+      "properties": {},
       "type": "object"
     },
     "UserMetadata": {

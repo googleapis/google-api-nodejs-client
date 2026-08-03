@@ -102,7 +102,7 @@ export namespace sqladmin_v1beta4 {
   /**
    * Cloud SQL Admin API
    *
-   * API for Cloud SQL database instance management
+   * Cloud SQL Admin API
    *
    * @example
    * ```js
@@ -359,7 +359,7 @@ export namespace sqladmin_v1beta4 {
      */
     pointInTimeRecoveryEnabled?: boolean | null;
     /**
-     * Reserved for future use.
+     * Optional. Deprecated: replication_log_archiving_enabled is deprecated and will be removed from a future version of the API. Use point_in_time_recovery_enabled instead.
      */
     replicationLogArchivingEnabled?: boolean | null;
     /**
@@ -554,7 +554,7 @@ export namespace sqladmin_v1beta4 {
      */
     destinationInstanceName?: string | null;
     /**
-     * Optional. The fully qualified URI of the VPC network to which the cloned instance will be connected via Private Services Access for private IP. For example:`projects/my-network-project/global/networks/my-network`. This field is only required for cross-project cloning.
+     * Optional. The fully qualified URI of the VPC network to which the cloned instance will be connected via private services access for private IP. For example:`projects/my-network-project/global/networks/my-network`. This field is only required for cross-project cloning.
      */
     destinationNetwork?: string | null;
     /**
@@ -658,6 +658,10 @@ export namespace sqladmin_v1beta4 {
      * `SECOND_GEN`: Cloud SQL database instance. `EXTERNAL`: A database server that is not managed by Google. This property is read-only; use the `tier` property in the `settings` object to determine the database type.
      */
     backendType?: string | null;
+    /**
+     * Optional. Output only. Connection name of the Cloud SQL instance used in connection strings, in the format project:region:instance.
+     */
+    connectionName?: string | null;
     /**
      * Custom subject alternative names for the server certificate.
      */
@@ -786,6 +790,10 @@ export namespace sqladmin_v1beta4 {
      * The current disk usage of the instance in bytes. This property has been deprecated. Use the "cloudsql.googleapis.com/database/disk/bytes_used" metric in Cloud Monitoring API instead. Please see [this announcement](https://groups.google.com/d/msg/google-cloud-sql-announce/I_7-F9EBhT0/BtvFtdFeAgAJ) for details.
      */
     currentDiskSize?: string | null;
+    /**
+     * Optional. If true, instance metadata is sent to the Database Center. If false, instance metadata is not sent to the Database Center.
+     */
+    databaseCenterIntegrationEnabled?: boolean | null;
     /**
      * Output only. Stores the current database version running on the instance including minor version such as `MYSQL_8_0_18`.
      */
@@ -1161,6 +1169,10 @@ export namespace sqladmin_v1beta4 {
      * Optional. Controls how the API should respond when the SQL execution result is incomplete due to the size limit or another error. The default mode is to throw an error.
      */
     partialResultMode?: string | null;
+    /**
+     * Optional. The resource name of the Secret Manager secret holding the password for the user to log into the database. The secret should be created using the regional endpoint (for API) or from the Regional Secrets page (for UI), and stored in the same region as the Cloud SQL instance. The expected resource name format is `projects/{project\}/locations/{location\}/secrets/{secret\}/versions/{secret_version\}`. This field is used together with the `user` field. The secret resource name will not be stored.
+     */
+    passwordSecretVersion?: string | null;
     /**
      * Optional. The maximum number of rows returned per SQL statement.
      */
@@ -1975,6 +1987,10 @@ export namespace sqladmin_v1beta4 {
      */
     clientKey?: string | null;
     /**
+     * Output only. Indicates whether the resource is managed by Database Migration Service.
+     */
+    dmsManaged?: boolean | null;
+    /**
      * The dump file to create the Cloud SQL replica.
      */
     dumpFilePath?: string | null;
@@ -2220,9 +2236,21 @@ export namespace sqladmin_v1beta4 {
    */
   export interface Schema$PerformanceCaptureConfig {
     /**
+     * Optional. Specifies the minimum percentage of CPU utilization to trigger the performance capture. Valid integers range from `10` to `99`. Enter `0` to disable the check.
+     */
+    cpuUtilizationThresholdPercent?: number | null;
+    /**
      * Optional. Enables or disables the performance capture feature.
      */
     enabled?: boolean | null;
+    /**
+     * Optional. Specifies the minimum number of undo log entries in the history list length to trigger the performance capture. Valid integers range from `10000` to `10000000`. Enter `0` to disable the check.
+     */
+    historyListLengthThresholdCount?: number | null;
+    /**
+     * Optional. Specifies the minimum percentage of memory usage to trigger the performance capture. Valid integers range from `10` to `99`. Enter `0` to disable the check.
+     */
+    memoryUsageThresholdPercent?: number | null;
     /**
      * Optional. Specifies the minimum number of consecutive probe threshold that triggers performance capture.
      */
@@ -2240,9 +2268,29 @@ export namespace sqladmin_v1beta4 {
      */
     secondsBehindSourceThreshold?: number | null;
     /**
+     * Optional. Specifies the minimum allowed number of semaphore waits to trigger the performance capture. Valid integers range from `10` to `10000`. Enter `0` to disable the check.
+     */
+    semaphoreWaitThresholdCount?: number | null;
+    /**
      * Optional. Specifies the amount of time in seconds that a transaction needs to have been open before the watcher starts recording it.
      */
     transactionDurationThreshold?: number | null;
+    /**
+     * Optional. Specifies a customer-defined list of users to exclude from transaction termination. Entries can be in the format 'user@host' or just 'user'. A standalone 'user' implies 'user@%', excluding the user from any host. Wildcard '%' is allowed in the host part of the 'user@host' format. Example: `["app_user", "db_admin@10.1.2.3", "report_user@%"]`
+     */
+    transactionKillExcludedUserHosts?: string[] | null;
+    /**
+     * Optional. Specifies the amount of time in seconds that a transaction needs to have been open before the watcher starts terminating it. Valid integers range from `60` to `604800` (7 days). Enter `0` to disable. If enabled (i.e., \> 0), this value must be greater than or equal to `transaction_duration_threshold`. Configurations where `0 < transaction_kill_threshold_seconds < transaction_duration_threshold` will be rejected.
+     */
+    transactionKillThresholdSeconds?: number | null;
+    /**
+     * Optional. Determines which transactions are allowed to be terminated when they exceed `transaction_kill_threshold_seconds`. This allows protecting write-heavy transactions from auto-termination if desired. Defaults to `READ_ONLY_TRANSACTIONS` if unspecified.
+     */
+    transactionKillType?: string | null;
+    /**
+     * Optional. Specifies the minimum allowed number of transactions in lock wait state to trigger the performance capture. Valid integers range from `10` to `10000`. Enter `0` to disable the check.
+     */
+    transactionLockWaitThresholdCount?: number | null;
   }
   /**
    * Perform disk shrink context.
@@ -2386,13 +2434,29 @@ export namespace sqladmin_v1beta4 {
      */
     consumerProject?: string | null;
     /**
+     * Output only. The status of automated DNS provisioning.
+     */
+    instanceAutoDnsStatus?: string | null;
+    /**
      * The IP address of the consumer endpoint.
      */
     ipAddress?: string | null;
     /**
+     * Output only. The service connection policy created automatically for the consumer network when `psc_auto_connection_policy_enabled` is true. It is in the format of: `projects/{project\}/regions/{region\}/serviceConnectionPolicies/{policy_id\}` The `policy_id` is in format of `$NETWORK-$RANDOM`.
+     */
+    serviceConnectionPolicy?: string | null;
+    /**
+     * Output only. The status of service connection policy creation.
+     */
+    serviceConnectionPolicyCreationResult?: string | null;
+    /**
      * The connection status of the consumer endpoint.
      */
     status?: string | null;
+    /**
+     * Output only. The status of automated DNS provisioning for the write endpoint.
+     */
+    writeEndpointAutoDnsStatus?: string | null;
   }
   /**
    * PSC settings for a Cloud SQL instance.
@@ -2407,11 +2471,15 @@ export namespace sqladmin_v1beta4 {
      */
     networkAttachmentUri?: string | null;
     /**
+     * Optional. Whether to set up the PSC service connection policy automatically.
+     */
+    pscAutoConnectionPolicyEnabled?: boolean | null;
+    /**
      * Optional. The list of settings for requested Private Service Connect consumer endpoints that can be used to connect to this Cloud SQL instance.
      */
     pscAutoConnections?: Schema$PscAutoConnectionConfig[];
     /**
-     * Optional. Indicates whether PSC DNS automation is enabled for this instance. When enabled, Cloud SQL provisions a universal DNS record across all networks configured with Private Service Connect (PSC) auto-connections. This will default to true for new instances when Private Service Connect is enabled.
+     * Optional. Indicates whether Private Service Connect DNS automation is enabled for this instance. When enabled, Cloud SQL provisions a universal DNS record across all networks configured with Private Service Connect auto-connections. This will default to true for new instances when Private Service Connect is enabled.
      */
     pscAutoDnsEnabled?: boolean | null;
     /**
@@ -2419,7 +2487,7 @@ export namespace sqladmin_v1beta4 {
      */
     pscEnabled?: boolean | null;
     /**
-     * Optional. Indicates whether PSC write endpoint DNS automation is enabled for this instance. When enabled, Cloud SQL provisions a universal global DNS record across all networks configured with Private Service Connect (PSC) auto-connections that always points to the cluster primary instance. This feature is only supported for Enterprise Plus edition. This will default to true for new enterprise plus instances when `psc_auto_dns_enabled` is enabled.
+     * Optional. Indicates whether Private Service Connect write endpoint DNS automation is enabled for this instance. When enabled, Cloud SQL provisions a universal global DNS record across all networks configured with Private Service Connect auto-connections that points to the cluster primary instance. This feature is only supported for Enterprise Plus edition. This will default to true for new enterprise plus instances when `psc_auto_dns_enabled` is enabled.
      */
     pscWriteEndpointDnsEnabled?: boolean | null;
   }
@@ -3361,6 +3429,10 @@ export namespace sqladmin_v1beta4 {
      * The project ID of the project containing the Cloud SQL database. The Google apps domain is prefixed if applicable. Can be omitted for *update* because it is already specified on the URL.
      */
     project?: string | null;
+    /**
+     * Optional. The server roles for the SQL Server login.
+     */
+    serverRoles?: string[] | null;
     sqlserverUserDetails?: Schema$SqlServerUserDetails;
     /**
      * The user type. It determines the method to authenticate the user during login. The default is the database's built-in user type.
@@ -3543,8 +3615,7 @@ export namespace sqladmin_v1beta4 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3705,8 +3776,7 @@ export namespace sqladmin_v1beta4 {
         | BodyResponseCallback<Schema$BackupRun>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$BackupRun>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$BackupRun> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$BackupRun>>
@@ -3891,8 +3961,7 @@ export namespace sqladmin_v1beta4 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4021,8 +4090,7 @@ export namespace sqladmin_v1beta4 {
     list(
       params: Params$Resource$Backupruns$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$BackupRunsListResponse>,
+        MethodOptions | BodyResponseCallback<Schema$BackupRunsListResponse>,
       callback: BodyResponseCallback<Schema$BackupRunsListResponse>
     ): void;
     list(
@@ -4298,8 +4366,7 @@ export namespace sqladmin_v1beta4 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4457,8 +4524,7 @@ export namespace sqladmin_v1beta4 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4619,8 +4685,7 @@ export namespace sqladmin_v1beta4 {
         | BodyResponseCallback<Schema$Backup>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Backup>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Backup> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Backup>>
@@ -4960,8 +5025,7 @@ export namespace sqladmin_v1beta4 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5278,6 +5342,7 @@ export namespace sqladmin_v1beta4 {
      *   // Example response
      *   // {
      *   //   "backendType": "my_backendType",
+     *   //   "connectionName": "my_connectionName",
      *   //   "customSubjectAlternativeNames": [],
      *   //   "databaseVersion": "my_databaseVersion",
      *   //   "dnsName": "my_dnsName",
@@ -5387,6 +5452,161 @@ export namespace sqladmin_v1beta4 {
         return createAPIRequest<Schema$ConnectSettings>(parameters);
       }
     }
+
+    /**
+     * Retrieves connect settings about a Cloud SQL instance using the instance DNS name.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const sqladmin = google.sqladmin('v1beta4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sql.connect.resolve({
+     *     // Required. Cloud SQL instance ID. This does not include the project ID.
+     *     dnsName: 'placeholder-value',
+     *     // Required. The region of the instance.
+     *     location: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "backendType": "my_backendType",
+     *   //   "connectionName": "my_connectionName",
+     *   //   "customSubjectAlternativeNames": [],
+     *   //   "databaseVersion": "my_databaseVersion",
+     *   //   "dnsName": "my_dnsName",
+     *   //   "dnsNames": [],
+     *   //   "ipAddresses": [],
+     *   //   "kind": "my_kind",
+     *   //   "mdxProtocolSupport": [],
+     *   //   "nodeCount": 0,
+     *   //   "nodes": [],
+     *   //   "pscEnabled": false,
+     *   //   "region": "my_region",
+     *   //   "serverCaCert": {},
+     *   //   "serverCaMode": "my_serverCaMode"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    resolve(
+      params: Params$Resource$Connect$Resolve,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    resolve(
+      params?: Params$Resource$Connect$Resolve,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ConnectSettings>>;
+    resolve(
+      params: Params$Resource$Connect$Resolve,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    resolve(
+      params: Params$Resource$Connect$Resolve,
+      options: MethodOptions | BodyResponseCallback<Schema$ConnectSettings>,
+      callback: BodyResponseCallback<Schema$ConnectSettings>
+    ): void;
+    resolve(
+      params: Params$Resource$Connect$Resolve,
+      callback: BodyResponseCallback<Schema$ConnectSettings>
+    ): void;
+    resolve(callback: BodyResponseCallback<Schema$ConnectSettings>): void;
+    resolve(
+      paramsOrCallback?:
+        | Params$Resource$Connect$Resolve
+        | BodyResponseCallback<Schema$ConnectSettings>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ConnectSettings>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ConnectSettings>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ConnectSettings>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Connect$Resolve;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Connect$Resolve;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/sql/v1beta4/locations/{location}/dns/{dnsName}:resolveConnectSettings'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['location', 'dnsName'],
+        pathParams: ['dnsName', 'location'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ConnectSettings>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ConnectSettings>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Connect$Generateephemeralcert extends StandardParameters {
@@ -5417,6 +5637,16 @@ export namespace sqladmin_v1beta4 {
      * Optional. Optional snapshot read timestamp to trade freshness for performance.
      */
     readTime?: string;
+  }
+  export interface Params$Resource$Connect$Resolve extends StandardParameters {
+    /**
+     * Required. Cloud SQL instance ID. This does not include the project ID.
+     */
+    dnsName?: string;
+    /**
+     * Required. The region of the instance.
+     */
+    location?: string;
   }
 
   export class Resource$Databases {
@@ -5539,8 +5769,7 @@ export namespace sqladmin_v1beta4 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5690,8 +5919,7 @@ export namespace sqladmin_v1beta4 {
         | BodyResponseCallback<Schema$Database>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Database>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Database> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Database>>
@@ -5866,8 +6094,7 @@ export namespace sqladmin_v1beta4 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5990,8 +6217,7 @@ export namespace sqladmin_v1beta4 {
     list(
       params: Params$Resource$Databases$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$DatabasesListResponse>,
+        MethodOptions | BodyResponseCallback<Schema$DatabasesListResponse>,
       callback: BodyResponseCallback<Schema$DatabasesListResponse>
     ): void;
     list(
@@ -6188,8 +6414,7 @@ export namespace sqladmin_v1beta4 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -6366,8 +6591,7 @@ export namespace sqladmin_v1beta4 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -6944,8 +7168,7 @@ export namespace sqladmin_v1beta4 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -7105,8 +7328,7 @@ export namespace sqladmin_v1beta4 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -7268,8 +7490,7 @@ export namespace sqladmin_v1beta4 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -7437,8 +7658,7 @@ export namespace sqladmin_v1beta4 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -7605,8 +7825,7 @@ export namespace sqladmin_v1beta4 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -7772,8 +7991,7 @@ export namespace sqladmin_v1beta4 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -7940,8 +8158,7 @@ export namespace sqladmin_v1beta4 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -8036,6 +8253,7 @@ export namespace sqladmin_v1beta4 {
      *       //   "autoIamAuthn": false,
      *       //   "database": "my_database",
      *       //   "partialResultMode": "my_partialResultMode",
+     *       //   "passwordSecretVersion": "my_passwordSecretVersion",
      *       //   "rowLimit": "my_rowLimit",
      *       //   "sqlStatement": "my_sqlStatement",
      *       //   "user": "my_user"
@@ -8271,8 +8489,7 @@ export namespace sqladmin_v1beta4 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -8439,8 +8656,7 @@ export namespace sqladmin_v1beta4 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -8536,6 +8752,7 @@ export namespace sqladmin_v1beta4 {
      *   //   "connectionName": "my_connectionName",
      *   //   "createTime": "my_createTime",
      *   //   "currentDiskSize": "my_currentDiskSize",
+     *   //   "databaseCenterIntegrationEnabled": false,
      *   //   "databaseInstalledVersion": "my_databaseInstalledVersion",
      *   //   "databaseVersion": "my_databaseVersion",
      *   //   "diskEncryptionConfiguration": {},
@@ -8795,8 +9012,7 @@ export namespace sqladmin_v1beta4 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -8889,6 +9105,7 @@ export namespace sqladmin_v1beta4 {
      *       //   "connectionName": "my_connectionName",
      *       //   "createTime": "my_createTime",
      *       //   "currentDiskSize": "my_currentDiskSize",
+     *       //   "databaseCenterIntegrationEnabled": false,
      *       //   "databaseInstalledVersion": "my_databaseInstalledVersion",
      *       //   "databaseVersion": "my_databaseVersion",
      *       //   "diskEncryptionConfiguration": {},
@@ -9011,8 +9228,7 @@ export namespace sqladmin_v1beta4 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -9140,8 +9356,7 @@ export namespace sqladmin_v1beta4 {
     list(
       params: Params$Resource$Instances$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$InstancesListResponse>,
+        MethodOptions | BodyResponseCallback<Schema$InstancesListResponse>,
       callback: BodyResponseCallback<Schema$InstancesListResponse>
     ): void;
     list(
@@ -9704,6 +9919,10 @@ export namespace sqladmin_v1beta4 {
      *     instance: 'placeholder-value',
      *     // Project ID of the project that contains the instance.
      *     project: 'placeholder-value',
+     *     // Optional. Set PSC config to the same value as the existing config to reconcile the PSC networking.
+     *     reconcilePscNetworking: 'placeholder-value',
+     *     // Optional. Set PSC config to the same value as the existing config and force reconcile the PSC networking.
+     *     reconcilePscNetworkingForce: 'placeholder-value',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -9714,6 +9933,7 @@ export namespace sqladmin_v1beta4 {
      *       //   "connectionName": "my_connectionName",
      *       //   "createTime": "my_createTime",
      *       //   "currentDiskSize": "my_currentDiskSize",
+     *       //   "databaseCenterIntegrationEnabled": false,
      *       //   "databaseInstalledVersion": "my_databaseInstalledVersion",
      *       //   "databaseVersion": "my_databaseVersion",
      *       //   "diskEncryptionConfiguration": {},
@@ -9836,8 +10056,7 @@ export namespace sqladmin_v1beta4 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -10010,8 +10229,7 @@ export namespace sqladmin_v1beta4 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -10180,8 +10398,7 @@ export namespace sqladmin_v1beta4 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -10343,8 +10560,7 @@ export namespace sqladmin_v1beta4 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -10512,8 +10728,7 @@ export namespace sqladmin_v1beta4 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -10827,8 +11042,7 @@ export namespace sqladmin_v1beta4 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -10988,8 +11202,7 @@ export namespace sqladmin_v1beta4 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -11161,8 +11374,7 @@ export namespace sqladmin_v1beta4 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -11332,8 +11544,7 @@ export namespace sqladmin_v1beta4 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -11501,8 +11712,7 @@ export namespace sqladmin_v1beta4 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -11672,8 +11882,7 @@ export namespace sqladmin_v1beta4 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -11833,8 +12042,7 @@ export namespace sqladmin_v1beta4 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -11994,8 +12202,7 @@ export namespace sqladmin_v1beta4 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -12157,8 +12364,7 @@ export namespace sqladmin_v1beta4 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -12326,8 +12532,7 @@ export namespace sqladmin_v1beta4 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -12423,6 +12628,7 @@ export namespace sqladmin_v1beta4 {
      *       //   "connectionName": "my_connectionName",
      *       //   "createTime": "my_createTime",
      *       //   "currentDiskSize": "my_currentDiskSize",
+     *       //   "databaseCenterIntegrationEnabled": false,
      *       //   "databaseInstalledVersion": "my_databaseInstalledVersion",
      *       //   "databaseVersion": "my_databaseVersion",
      *       //   "diskEncryptionConfiguration": {},
@@ -12545,8 +12751,7 @@ export namespace sqladmin_v1beta4 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -12847,6 +13052,14 @@ export namespace sqladmin_v1beta4 {
      * Project ID of the project that contains the instance.
      */
     project?: string;
+    /**
+     * Optional. Set PSC config to the same value as the existing config to reconcile the PSC networking.
+     */
+    reconcilePscNetworking?: boolean;
+    /**
+     * Optional. Set PSC config to the same value as the existing config and force reconcile the PSC networking.
+     */
+    reconcilePscNetworkingForce?: boolean;
 
     /**
      * Request body metadata
@@ -13107,6 +13320,8 @@ export namespace sqladmin_v1beta4 {
      *
      *   // Do the magic
      *   const res = await sql.operations.cancel({
+     *     // Optional. Region of the Cloud SQL instance.
+     *     location: 'placeholder-value',
      *     // Instance operation ID.
      *     operation: 'placeholder-value',
      *     // Project ID of the project that contains the instance.
@@ -13164,8 +13379,7 @@ export namespace sqladmin_v1beta4 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -13247,6 +13461,8 @@ export namespace sqladmin_v1beta4 {
      *
      *   // Do the magic
      *   const res = await sql.operations.get({
+     *     // Optional. Region of the Cloud SQL instance.
+     *     location: 'placeholder-value',
      *     // Instance operation ID.
      *     operation: 'placeholder-value',
      *     // Project ID of the project that contains the instance.
@@ -13325,8 +13541,7 @@ export namespace sqladmin_v1beta4 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -13408,6 +13623,8 @@ export namespace sqladmin_v1beta4 {
      *   const res = await sql.operations.list({
      *     // Cloud SQL instance ID. This does not include the project ID.
      *     instance: 'placeholder-value',
+     *     // Optional. Region of the Cloud SQL instance.
+     *     location: 'placeholder-value',
      *     // Maximum number of operations per response.
      *     maxResults: 'placeholder-value',
      *     // A previously-returned page token representing part of the larger set of results to view.
@@ -13453,8 +13670,7 @@ export namespace sqladmin_v1beta4 {
     list(
       params: Params$Resource$Operations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$OperationsListResponse>,
+        MethodOptions | BodyResponseCallback<Schema$OperationsListResponse>,
       callback: BodyResponseCallback<Schema$OperationsListResponse>
     ): void;
     list(
@@ -13523,6 +13739,10 @@ export namespace sqladmin_v1beta4 {
 
   export interface Params$Resource$Operations$Cancel extends StandardParameters {
     /**
+     * Optional. Region of the Cloud SQL instance.
+     */
+    location?: string;
+    /**
      * Instance operation ID.
      */
     operation?: string;
@@ -13532,6 +13752,10 @@ export namespace sqladmin_v1beta4 {
     project?: string;
   }
   export interface Params$Resource$Operations$Get extends StandardParameters {
+    /**
+     * Optional. Region of the Cloud SQL instance.
+     */
+    location?: string;
     /**
      * Instance operation ID.
      */
@@ -13546,6 +13770,10 @@ export namespace sqladmin_v1beta4 {
      * Cloud SQL instance ID. This does not include the project ID.
      */
     instance?: string;
+    /**
+     * Optional. Region of the Cloud SQL instance.
+     */
+    location?: string;
     /**
      * Maximum number of operations per response.
      */
@@ -14005,8 +14233,7 @@ export namespace sqladmin_v1beta4 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -14176,8 +14403,7 @@ export namespace sqladmin_v1beta4 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -14343,8 +14569,7 @@ export namespace sqladmin_v1beta4 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -14517,8 +14742,7 @@ export namespace sqladmin_v1beta4 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -14952,8 +15176,7 @@ export namespace sqladmin_v1beta4 {
         | BodyResponseCallback<Schema$SslCert>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$SslCert>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$SslCert> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$SslCert>>
@@ -15115,8 +15338,7 @@ export namespace sqladmin_v1beta4 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -15266,8 +15488,7 @@ export namespace sqladmin_v1beta4 {
         | BodyResponseCallback<Schema$SslCert>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$SslCert>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$SslCert> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$SslCert>>
@@ -15400,8 +15621,7 @@ export namespace sqladmin_v1beta4 {
     insert(
       params: Params$Resource$Sslcerts$Insert,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$SslCertsInsertResponse>,
+        MethodOptions | BodyResponseCallback<Schema$SslCertsInsertResponse>,
       callback: BodyResponseCallback<Schema$SslCertsInsertResponse>
     ): void;
     insert(
@@ -15544,8 +15764,7 @@ export namespace sqladmin_v1beta4 {
     list(
       params: Params$Resource$Sslcerts$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$SslCertsListResponse>,
+        MethodOptions | BodyResponseCallback<Schema$SslCertsListResponse>,
       callback: BodyResponseCallback<Schema$SslCertsListResponse>
     ): void;
     list(
@@ -15958,8 +16177,7 @@ export namespace sqladmin_v1beta4 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -16065,6 +16283,7 @@ export namespace sqladmin_v1beta4 {
      *   //   "password": "my_password",
      *   //   "passwordPolicy": {},
      *   //   "project": "my_project",
+     *   //   "serverRoles": [],
      *   //   "sqlserverUserDetails": {},
      *   //   "type": "my_type"
      *   // }
@@ -16116,8 +16335,7 @@ export namespace sqladmin_v1beta4 {
         | BodyResponseCallback<Schema$User>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$User>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$User> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$User>>
@@ -16219,6 +16437,7 @@ export namespace sqladmin_v1beta4 {
      *       //   "password": "my_password",
      *       //   "passwordPolicy": {},
      *       //   "project": "my_project",
+     *       //   "serverRoles": [],
      *       //   "sqlserverUserDetails": {},
      *       //   "type": "my_type"
      *       // }
@@ -16297,8 +16516,7 @@ export namespace sqladmin_v1beta4 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -16534,6 +16752,10 @@ export namespace sqladmin_v1beta4 {
      *     project: 'placeholder-value',
      *     // Optional. Specifies whether to revoke existing roles that are not present in the `database_roles` field. If `false` or unset, the database roles specified in `database_roles` are added to the user's existing roles.
      *     revokeExistingRoles: 'placeholder-value',
+     *     // Optional. Specifies whether to revoke existing roles that are not present in the `server_roles` field. If `false` or unset, the server roles specified in `server_roles` are added to the user's existing server roles.
+     *     revokeExistingServerRoles: 'placeholder-value',
+     *     // Optional. The server roles to grant to the SQL Server login. Existing server roles will not be revoked if revoke_existing_roles is false. body.server_roles will be ignored for update request.
+     *     serverRoles: 'placeholder-value',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -16551,6 +16773,7 @@ export namespace sqladmin_v1beta4 {
      *       //   "password": "my_password",
      *       //   "passwordPolicy": {},
      *       //   "project": "my_project",
+     *       //   "serverRoles": [],
      *       //   "sqlserverUserDetails": {},
      *       //   "type": "my_type"
      *       // }
@@ -16629,8 +16852,7 @@ export namespace sqladmin_v1beta4 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -16764,6 +16986,14 @@ export namespace sqladmin_v1beta4 {
      * Optional. Specifies whether to revoke existing roles that are not present in the `database_roles` field. If `false` or unset, the database roles specified in `database_roles` are added to the user's existing roles.
      */
     revokeExistingRoles?: boolean;
+    /**
+     * Optional. Specifies whether to revoke existing roles that are not present in the `server_roles` field. If `false` or unset, the server roles specified in `server_roles` are added to the user's existing server roles.
+     */
+    revokeExistingServerRoles?: boolean;
+    /**
+     * Optional. The server roles to grant to the SQL Server login. Existing server roles will not be revoked if revoke_existing_roles is false. body.server_roles will be ignored for update request.
+     */
+    serverRoles?: string[];
 
     /**
      * Request body metadata

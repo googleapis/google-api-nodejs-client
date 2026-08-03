@@ -742,8 +742,7 @@ export namespace merchantapi_reviews_v1beta {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -1369,8 +1368,7 @@ export namespace merchantapi_reviews_v1beta {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -1791,8 +1789,7 @@ export namespace merchantapi_reviews_v1beta {
     list(
       params: Params$Resource$Accounts$Productreviews$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListProductReviewsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListProductReviewsResponse>,
       callback: BodyResponseCallback<Schema$ListProductReviewsResponse>
     ): void;
     list(

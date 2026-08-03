@@ -1103,8 +1103,7 @@ export namespace firebasehosting_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -1287,8 +1286,7 @@ export namespace firebasehosting_v1beta1 {
         | BodyResponseCallback<Schema$Site>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Site>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Site> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Site>>
@@ -1426,8 +1424,7 @@ export namespace firebasehosting_v1beta1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -1570,8 +1567,7 @@ export namespace firebasehosting_v1beta1 {
         | BodyResponseCallback<Schema$Site>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Site>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Site> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Site>>
@@ -1711,8 +1707,7 @@ export namespace firebasehosting_v1beta1 {
         | BodyResponseCallback<Schema$SiteConfig>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$SiteConfig>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$SiteConfig> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$SiteConfig>>
@@ -2015,8 +2010,7 @@ export namespace firebasehosting_v1beta1 {
         | BodyResponseCallback<Schema$Site>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Site>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Site> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Site>>
@@ -2165,8 +2159,7 @@ export namespace firebasehosting_v1beta1 {
         | BodyResponseCallback<Schema$SiteConfig>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$SiteConfig>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$SiteConfig> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$SiteConfig>>
@@ -2422,8 +2415,7 @@ export namespace firebasehosting_v1beta1 {
         | BodyResponseCallback<Schema$Channel>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Channel>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Channel> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Channel>>
@@ -2561,8 +2553,7 @@ export namespace firebasehosting_v1beta1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -2709,8 +2700,7 @@ export namespace firebasehosting_v1beta1 {
         | BodyResponseCallback<Schema$Channel>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Channel>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Channel> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Channel>>
@@ -2836,8 +2826,7 @@ export namespace firebasehosting_v1beta1 {
     list(
       params: Params$Resource$Projects$Sites$Channels$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListChannelsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListChannelsResponse>,
       callback: BodyResponseCallback<Schema$ListChannelsResponse>
     ): void;
     list(
@@ -3023,8 +3012,7 @@ export namespace firebasehosting_v1beta1 {
         | BodyResponseCallback<Schema$Channel>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Channel>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Channel> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Channel>>
@@ -3245,8 +3233,7 @@ export namespace firebasehosting_v1beta1 {
         | BodyResponseCallback<Schema$Release>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Release>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Release> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Release>>
@@ -3393,8 +3380,7 @@ export namespace firebasehosting_v1beta1 {
         | BodyResponseCallback<Schema$Release>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Release>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Release> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Release>>
@@ -3520,8 +3506,7 @@ export namespace firebasehosting_v1beta1 {
     list(
       params: Params$Resource$Projects$Sites$Channels$Releases$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListReleasesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListReleasesResponse>,
       callback: BodyResponseCallback<Schema$ListReleasesResponse>
     ): void;
     list(
@@ -3759,8 +3744,7 @@ export namespace firebasehosting_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3910,8 +3894,7 @@ export namespace firebasehosting_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4194,8 +4177,7 @@ export namespace firebasehosting_v1beta1 {
     list(
       params: Params$Resource$Projects$Sites$Customdomains$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListCustomDomainsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListCustomDomainsResponse>,
       callback: BodyResponseCallback<Schema$ListCustomDomainsResponse>
     ): void;
     list(
@@ -4390,8 +4372,7 @@ export namespace firebasehosting_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4541,8 +4522,7 @@ export namespace firebasehosting_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4793,8 +4773,7 @@ export namespace firebasehosting_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4927,8 +4906,7 @@ export namespace firebasehosting_v1beta1 {
     list(
       params: Params$Resource$Projects$Sites$Customdomains$Operations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListOperationsResponse>,
       callback: BodyResponseCallback<Schema$ListOperationsResponse>
     ): void;
     list(
@@ -5143,8 +5121,7 @@ export namespace firebasehosting_v1beta1 {
         | BodyResponseCallback<Schema$Domain>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Domain>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Domain> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Domain>>
@@ -5282,8 +5259,7 @@ export namespace firebasehosting_v1beta1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -5427,8 +5403,7 @@ export namespace firebasehosting_v1beta1 {
         | BodyResponseCallback<Schema$Domain>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Domain>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Domain> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Domain>>
@@ -5731,8 +5706,7 @@ export namespace firebasehosting_v1beta1 {
         | BodyResponseCallback<Schema$Domain>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Domain>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Domain> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Domain>>
@@ -5945,8 +5919,7 @@ export namespace firebasehosting_v1beta1 {
         | BodyResponseCallback<Schema$Release>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Release>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Release> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Release>>
@@ -6093,8 +6066,7 @@ export namespace firebasehosting_v1beta1 {
         | BodyResponseCallback<Schema$Release>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Release>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Release> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Release>>
@@ -6220,8 +6192,7 @@ export namespace firebasehosting_v1beta1 {
     list(
       params: Params$Resource$Projects$Sites$Releases$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListReleasesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListReleasesResponse>,
       callback: BodyResponseCallback<Schema$ListReleasesResponse>
     ): void;
     list(
@@ -6441,8 +6412,7 @@ export namespace firebasehosting_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -6616,8 +6586,7 @@ export namespace firebasehosting_v1beta1 {
         | BodyResponseCallback<Schema$Version>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Version>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Version> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Version>>
@@ -6755,8 +6724,7 @@ export namespace firebasehosting_v1beta1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -6906,8 +6874,7 @@ export namespace firebasehosting_v1beta1 {
         | BodyResponseCallback<Schema$Version>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Version>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Version> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Version>>
@@ -7035,8 +7002,7 @@ export namespace firebasehosting_v1beta1 {
     list(
       params: Params$Resource$Projects$Sites$Versions$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListVersionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListVersionsResponse>,
       callback: BodyResponseCallback<Schema$ListVersionsResponse>
     ): void;
     list(
@@ -7228,8 +7194,7 @@ export namespace firebasehosting_v1beta1 {
         | BodyResponseCallback<Schema$Version>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Version>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Version> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Version>>
@@ -7607,8 +7572,7 @@ export namespace firebasehosting_v1beta1 {
     list(
       params: Params$Resource$Projects$Sites$Versions$Files$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListVersionFilesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListVersionFilesResponse>,
       callback: BodyResponseCallback<Schema$ListVersionFilesResponse>
     ): void;
     list(
@@ -7805,8 +7769,7 @@ export namespace firebasehosting_v1beta1 {
         | BodyResponseCallback<Schema$SiteConfig>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$SiteConfig>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$SiteConfig> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$SiteConfig>>
@@ -7954,8 +7917,7 @@ export namespace firebasehosting_v1beta1 {
         | BodyResponseCallback<Schema$SiteConfig>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$SiteConfig>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$SiteConfig> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$SiteConfig>>
@@ -8149,8 +8111,7 @@ export namespace firebasehosting_v1beta1 {
         | BodyResponseCallback<Schema$Channel>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Channel>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Channel> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Channel>>
@@ -8288,8 +8249,7 @@ export namespace firebasehosting_v1beta1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -8436,8 +8396,7 @@ export namespace firebasehosting_v1beta1 {
         | BodyResponseCallback<Schema$Channel>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Channel>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Channel> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Channel>>
@@ -8563,8 +8522,7 @@ export namespace firebasehosting_v1beta1 {
     list(
       params: Params$Resource$Sites$Channels$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListChannelsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListChannelsResponse>,
       callback: BodyResponseCallback<Schema$ListChannelsResponse>
     ): void;
     list(
@@ -8750,8 +8708,7 @@ export namespace firebasehosting_v1beta1 {
         | BodyResponseCallback<Schema$Channel>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Channel>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Channel> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Channel>>
@@ -8972,8 +8929,7 @@ export namespace firebasehosting_v1beta1 {
         | BodyResponseCallback<Schema$Release>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Release>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Release> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Release>>
@@ -9120,8 +9076,7 @@ export namespace firebasehosting_v1beta1 {
         | BodyResponseCallback<Schema$Release>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Release>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Release> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Release>>
@@ -9247,8 +9202,7 @@ export namespace firebasehosting_v1beta1 {
     list(
       params: Params$Resource$Sites$Channels$Releases$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListReleasesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListReleasesResponse>,
       callback: BodyResponseCallback<Schema$ListReleasesResponse>
     ): void;
     list(
@@ -9469,8 +9423,7 @@ export namespace firebasehosting_v1beta1 {
         | BodyResponseCallback<Schema$Domain>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Domain>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Domain> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Domain>>
@@ -9608,8 +9561,7 @@ export namespace firebasehosting_v1beta1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -9753,8 +9705,7 @@ export namespace firebasehosting_v1beta1 {
         | BodyResponseCallback<Schema$Domain>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Domain>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Domain> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Domain>>
@@ -10057,8 +10008,7 @@ export namespace firebasehosting_v1beta1 {
         | BodyResponseCallback<Schema$Domain>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Domain>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Domain> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Domain>>
@@ -10271,8 +10221,7 @@ export namespace firebasehosting_v1beta1 {
         | BodyResponseCallback<Schema$Release>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Release>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Release> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Release>>
@@ -10419,8 +10368,7 @@ export namespace firebasehosting_v1beta1 {
         | BodyResponseCallback<Schema$Release>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Release>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Release> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Release>>
@@ -10546,8 +10494,7 @@ export namespace firebasehosting_v1beta1 {
     list(
       params: Params$Resource$Sites$Releases$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListReleasesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListReleasesResponse>,
       callback: BodyResponseCallback<Schema$ListReleasesResponse>
     ): void;
     list(
@@ -10767,8 +10714,7 @@ export namespace firebasehosting_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -10942,8 +10888,7 @@ export namespace firebasehosting_v1beta1 {
         | BodyResponseCallback<Schema$Version>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Version>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Version> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Version>>
@@ -11081,8 +11026,7 @@ export namespace firebasehosting_v1beta1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -11232,8 +11176,7 @@ export namespace firebasehosting_v1beta1 {
         | BodyResponseCallback<Schema$Version>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Version>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Version> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Version>>
@@ -11361,8 +11304,7 @@ export namespace firebasehosting_v1beta1 {
     list(
       params: Params$Resource$Sites$Versions$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListVersionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListVersionsResponse>,
       callback: BodyResponseCallback<Schema$ListVersionsResponse>
     ): void;
     list(
@@ -11554,8 +11496,7 @@ export namespace firebasehosting_v1beta1 {
         | BodyResponseCallback<Schema$Version>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Version>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Version> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Version>>
@@ -11933,8 +11874,7 @@ export namespace firebasehosting_v1beta1 {
     list(
       params: Params$Resource$Sites$Versions$Files$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListVersionFilesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListVersionFilesResponse>,
       callback: BodyResponseCallback<Schema$ListVersionFilesResponse>
     ): void;
     list(

@@ -35,10 +35,7 @@ export function container<
 >(
   this: GoogleConfigurable,
   versionOrOptions:
-    | 'v1'
-    | container_v1.Options
-    | 'v1beta1'
-    | container_v1beta1.Options
+    'v1' | container_v1.Options | 'v1beta1' | container_v1beta1.Options
 ) {
   return getAPI<T>('container', versionOrOptions, VERSIONS, this);
 }

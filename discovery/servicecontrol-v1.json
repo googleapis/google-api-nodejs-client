@@ -197,7 +197,7 @@
       }
     }
   },
-  "revision": "20260428",
+  "revision": "20260512",
   "rootUrl": "https://servicecontrol.googleapis.com/",
   "schemas": {
     "AllocateInfo": {
@@ -421,6 +421,10 @@
           },
           "description": "Structured claims presented with the credential. JWTs include `{key: value}` pairs for standard and private claims. The following is a subset of the standard required and optional claims that would typically be presented for a Google-based JWT: {'iss': 'accounts.google.com', 'sub': '113289723416554971153', 'aud': ['123456789012', 'pubsub.googleapis.com'], 'azp': '123456789012.apps.googleusercontent.com', 'email': 'jsmith@example.com', 'iat': 1353601026, 'exp': 1353604926} SAML assertions are similarly specified, but with an identity provider dependent structure.",
           "type": "object"
+        },
+        "credentialId": {
+          "description": "Identifies the client credential id used for authentication. credential_id is in the format of AUTH_METHOD:IDENTIFIER, e.g. \"serviceaccount:XXXXX, apikey:XXXXX\" where the format of the IDENTIFIER can vary for different AUTH_METHODs.",
+          "type": "string"
         },
         "oauth": {
           "$ref": "Oauth",

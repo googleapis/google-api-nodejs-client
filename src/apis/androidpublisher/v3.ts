@@ -114,6 +114,8 @@ export namespace androidpublisher_v3 {
     context: APIRequestContext;
     applications: Resource$Applications;
     apprecovery: Resource$Apprecovery;
+    appstoreappsreview: Resource$Appstoreappsreview;
+    appstorecatalog: Resource$Appstorecatalog;
     edits: Resource$Edits;
     externaltransactions: Resource$Externaltransactions;
     generatedapks: Resource$Generatedapks;
@@ -135,6 +137,8 @@ export namespace androidpublisher_v3 {
 
       this.applications = new Resource$Applications(this.context);
       this.apprecovery = new Resource$Apprecovery(this.context);
+      this.appstoreappsreview = new Resource$Appstoreappsreview(this.context);
+      this.appstorecatalog = new Resource$Appstorecatalog(this.context);
       this.edits = new Resource$Edits(this.context);
       this.externaltransactions = new Resource$Externaltransactions(
         this.context
@@ -436,6 +440,23 @@ export namespace androidpublisher_v3 {
     textureCompressionFormatTargeting?: Schema$TextureCompressionFormatTargeting;
   }
   /**
+   * Contact information for the app.
+   */
+  export interface Schema$AppContactInformation {
+    /**
+     * The contact email for this app. Always set.
+     */
+    contactEmail?: string | null;
+    /**
+     * The contact phone for this app. Optionally provided by the developer.
+     */
+    phoneNumber?: string | null;
+    /**
+     * The contact website url for this app. Optionally provided by the developer.
+     */
+    websiteUrl?: string | null;
+  }
+  /**
    * The app details. The resource for DetailsService.
    */
   export interface Schema$AppDetails {
@@ -505,6 +526,91 @@ export namespace androidpublisher_v3 {
      * Specifies targeting criteria for the recovery action such as regions, android sdk versions, app versions etc.
      */
     targeting?: Schema$Targeting;
+  }
+  /**
+   * Information about active APKs of an app store hosted app.
+   */
+  export interface Schema$AppStoreAppActiveApks {
+    /**
+     * Required. List specifying which APK sets are distributed together. This list should contain all APKs that you're distributing for this app. Add an entry for each individual installable set of APKs.
+     */
+    activeApkSets?: Schema$AppStoreAppActiveApkSet[];
+  }
+  /**
+   * An installable set of active APKs. A set of APKs might only contain 1 APK if the app in question publishes using APKs. If the app uses app bundles (or a similar technology), this set should contain all APKs (even optional ones) that might be installed for this app. A set of APKs should be installable together. If certain APKs are exclusive to one another and cannot be installed together, then a separate AppStoreAppActiveApkSet should be created.
+   */
+  export interface Schema$AppStoreAppActiveApkSet {
+    /**
+     * Required. The ID for the main base application module. Example: base.apk or app.apk.
+     */
+    baseApkId?: string | null;
+    /**
+     * Optional. IDs for split modules that might be installed in combination with the base APK. Can be empty if app bundles (or a similar technology) are not used. Example: config.en.apk.
+     */
+    splitApkId?: string[] | null;
+  }
+  /**
+   * Details about the app.
+   */
+  export interface Schema$AppStoreAppDetails {
+    /**
+     * Required. The app developer's contact email address.
+     */
+    contactEmail?: string | null;
+    /**
+     * Required. The app developer's name.
+     */
+    developerName?: string | null;
+    /**
+     * Optional. Website link for the developer or app.
+     */
+    developerWebsite?: string | null;
+  }
+  /**
+   * A policy declaration with its responses.
+   */
+  export interface Schema$AppStoreAppPolicyDeclaration {
+    /**
+     * Required. ID of the policy declaration.
+     */
+    declarationId?: string | null;
+    /**
+     * Required. Responses provided for this declaration.
+     */
+    responses?: Schema$PolicyResponse[];
+  }
+  /**
+   * A localized store listing. These are the details about the app as shown in your app store.
+   */
+  export interface Schema$AppStoreAppStoreListing {
+    /**
+     * Required. Image ID generated from UploadImage for the main app icon.
+     */
+    appIconId?: string | null;
+    /**
+     * Required. The title of the app.
+     */
+    appName?: string | null;
+    /**
+     * Required. Comprehensive description text about the app.
+     */
+    fullDescription?: string | null;
+    /**
+     * Required. Language code (e.g., "en-US") of the listing.
+     */
+    languageCode?: string | null;
+    /**
+     * Required. Multiple image IDs for screenshot galleries.
+     */
+    screenshotId?: string[] | null;
+    /**
+     * Optional. Quick summary about the app.
+     */
+    shortDescription?: string | null;
+    /**
+     * Optional. Link to a video about the app.
+     */
+    videoLink?: string | null;
   }
   /**
    * Data format for a list of app versions.
@@ -1065,6 +1171,167 @@ export namespace androidpublisher_v3 {
     reasonUserInput?: string | null;
   }
   /**
+   * LINT.IfChange A view of a Google Play app within the Catalog Export for app stores.
+   */
+  export interface Schema$CatalogAppView {
+    /**
+     * Active versions of the app mapped from `android:versionName` manifest attributes.
+     */
+    activeVersionNames?: string[] | null;
+    /**
+     * The category of the app.
+     */
+    appCategory?: string | null;
+    /**
+     * Developer-provided contact information for the app.
+     */
+    appContactInformation?: Schema$AppContactInformation;
+    /**
+     * The subcategory of the app e.g. "GAME_ACTION".
+     */
+    appSubcategory?: string | null;
+    /**
+     * The token used for delivery of the app with the Google Play Inline Install API.
+     */
+    deliveryToken?: string | null;
+    /**
+     * The developer details of the app.
+     */
+    developerDetails?: Schema$DeveloperDetails;
+    /**
+     * The app may specify multiple sets of device compatibility requirements, and a device is considered compatible with the app if it satisfies at least one of `DeviceCompatibilityRequirements`.
+     */
+    deviceCompatibilityRequirements?: Schema$DeviceCompatibilityRequirements[];
+    /**
+     * List of devices excluded from the app's distribution even if they are otherwise compatible with the requirements from device_compatibility_requirements. These are OR-ed, i.e. a device is excluded if it matches any of the identifiers.
+     */
+    excludedDevicesByIdentifier?: Schema$DeviceIdentifier[];
+    /**
+     * List of devices excluded from the app's distribution even if they are otherwise compatible with the requirements from device_compatibility_requirements. A device is excluded if it matches any of given the selectors.
+     */
+    excludedDevicesBySelector?: Schema$CatalogDeviceSelector[];
+    /**
+     * The date when the app was first released.
+     */
+    firstReleaseDate?: Schema$Date;
+    /**
+     * Whether the app has ads.
+     */
+    hasInAppAds?: boolean | null;
+    /**
+     * Whether the app has in-app purchases through Google Play.
+     */
+    hasInAppPurchases?: boolean | null;
+    /**
+     * The IARC certificate ID for the app.
+     */
+    iarcCertificateId?: string | null;
+    /**
+     * Whether the app is targeted to an adult-only (18+) audience.
+     */
+    isAdultOnlyAudience?: boolean | null;
+    /**
+     * The timestamp when the app was last published.
+     */
+    lastPublishTime?: string | null;
+    /**
+     * The localized store listings of the app which are shown on Google Play.
+     */
+    localizedStoreListings?: Schema$LocalizedStoreListings;
+    /**
+     * The package name of the app.
+     */
+    packageName?: string | null;
+    /**
+     * Required permissions declared by the app which apply for all Android SDK versions.
+     */
+    permissions?: Schema$CatalogPermission[];
+    /**
+     * Required permissions declared by the app which apply for Android SDK versions SDK 23 and above.
+     */
+    permissionsSdk23?: Schema$CatalogPermission[];
+    /**
+     * The price of the app in the United States. Empty if the app is free.
+     */
+    priceInTheUnitedStates?: Schema$Money;
+    /**
+     * The URL of the app's privacy policy.
+     */
+    privacyPolicyUrl?: string | null;
+    /**
+     * The sale price of the app in the United States. Only populated for paid apps with an active US sale.
+     */
+    salePriceInTheUnitedStates?: Schema$Money;
+  }
+  /**
+   * Defines a device selector for a device. A device is considered matched if it matches any of given the selectors.
+   */
+  export interface Schema$CatalogDeviceSelector {
+    /**
+     * The device type selector.
+     */
+    deviceTypeSelector?: string | null;
+    /**
+     * Defines a RAM selector for a device.
+     */
+    ramSelector?: Schema$RamSelector;
+    /**
+     * The SOC selectors. A device matches the device selector if it matches any of the SOC selectors.
+     */
+    socSelectors?: Schema$SocSelector[];
+  }
+  /**
+   * A permission declared by an app.
+   */
+  export interface Schema$CatalogPermission {
+    /**
+     * The `maxSdkVersion` attribute indicating up to which Android SDK version the permission is requested.
+     */
+    maxSdkVersion?: number | null;
+    /**
+     * The `name` attribute indicating the permission name.
+     */
+    name?: string | null;
+  }
+  /**
+   * Defines a range of SDK versions. A device is considered compatible uf its\ SDK version falls within the min_sdk_version and max_sdk_version range.
+   */
+  export interface Schema$CatalogSdkVersion {
+    /**
+     * The maximum SDK version required for the app (inclusive).
+     */
+    maxSdkVersion?: string | null;
+    /**
+     * The minimum SDK version required for the app (inclusive).
+     */
+    minSdkVersion?: string | null;
+    /**
+     * The target SDK version for the app.
+     */
+    targetSdkVersion?: string | null;
+  }
+  /**
+   * Coarse Geographic location details for where the consumption happened.
+   */
+  export interface Schema$CoarseLocation {
+    /**
+     * Optional. Highest administrative subdivision which is used for postal addresses of a country or region. For example, this can be a state, a province, an oblast, or a prefecture. For Spain, this is the province and not the autonomous community (for example, "Barcelona" and not "Catalonia"). Many countries don't use an administrative area in postal addresses. For example, in Switzerland, this should be left unpopulated.
+     */
+    administrativeArea?: string | null;
+    /**
+     * Optional. Generally refers to the city or town portion of the address. Examples: US city, IT comune, UK post town. In regions of the world where localities are not well defined or do not fit into this structure well, leave `locality` empty.
+     */
+    locality?: string | null;
+    /**
+     * Required. [CLDR region code](https://cldr.unicode.org/) of the country/region of the address. This value is never inferred and you must ensure the value is correct. Example: "CH" for Switzerland.
+     */
+    regionCode?: string | null;
+    /**
+     * Optional. Sublocality of the address. For example, this can be a neighborhood, borough, or district. For most addresses, you can omit this.
+     */
+    sublocality?: string | null;
+  }
+  /**
    * An entry of conversation between user and developer.
    */
   export interface Schema$Comment {
@@ -1076,6 +1343,48 @@ export namespace androidpublisher_v3 {
      * A comment from a user.
      */
     userComment?: Schema$UserComment;
+  }
+  /**
+   * Compatible screens as listed in the `compatible-screens` Manifest tag.
+   */
+  export interface Schema$CompatibleScreen {
+    /**
+     * Screen density.
+     */
+    density?: string | null;
+    /**
+     * The screen size.
+     */
+    screenSize?: string | null;
+  }
+  /**
+   * List of events, each representing an instance where the user consumed or used the purchased item or service.
+   */
+  export interface Schema$ConsumptionUsageEvent {
+    /**
+     * Optional. Free form text that allows developers to provide more info on the item consumed. Maximum length is 5000 characters.
+     */
+    consumptionItemDescription?: string | null;
+    /**
+     * Optional. Time when the user consumed, used, downloaded, opened, or streamed the content.
+     */
+    consumptionTime?: string | null;
+    /**
+     * Optional. The IP address from which the consumption occurred.
+     */
+    ipAddress?: string | null;
+    /**
+     * Optional. Geographic location where the consumption occurred.
+     */
+    location?: Schema$CoarseLocation;
+    /**
+     * Optional. Obfuscated string that is uniquely associated with the purchaser's user account in the app. https://developer.android.com/reference/com/android/billingclient/api/BillingFlowParams.Builder#setObfuscatedAccountId(java.lang.String)
+     */
+    obfuscatedAccountId?: string | null;
+    /**
+     * Optional. Obfuscated string that is uniquely associated with the purchaser's user profile in the app. https://developer.android.com/reference/com/android/billingclient/api/BillingFlowParams.Builder#setObfuscatedProfileId(java.lang.String)
+     */
+    obfuscatedProfileId?: string | null;
   }
   /**
    * Converted other regions prices.
@@ -1151,6 +1460,19 @@ export namespace androidpublisher_v3 {
     includeRestOfWorld?: boolean | null;
   }
   /**
+   * Request to create a new app record for an app store hosted app.
+   */
+  export interface Schema$CreateAppStoreHostedAppRequest {
+    /**
+     * Required. Package name of the app.
+     */
+    packageName?: string | null;
+  }
+  /**
+   * Response for creating a new app record for an app store hosted app.
+   */
+  export interface Schema$CreateAppStoreHostedAppResponse {}
+  /**
    * Request message for CreateDraftAppRecovery.
    */
   export interface Schema$CreateDraftAppRecoveryRequest {
@@ -1162,6 +1484,23 @@ export namespace androidpublisher_v3 {
      * Specifies targeting criteria for the recovery action such as regions, android sdk versions, app versions etc.
      */
     targeting?: Schema$Targeting;
+  }
+  /**
+   * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp
+   */
+  export interface Schema$Date {
+    /**
+     * Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
+     */
+    day?: number | null;
+    /**
+     * Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
+     */
+    month?: number | null;
+    /**
+     * Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
+     */
+    year?: number | null;
   }
   /**
    * Request message for DeactivateBasePlan.
@@ -1410,9 +1749,87 @@ export namespace androidpublisher_v3 {
     text?: string | null;
   }
   /**
+   * The developer details of a Google Play app.
+   */
+  export interface Schema$DeveloperDetails {
+    /**
+     * The physical address of the developer.
+     */
+    address?: string | null;
+    /**
+     * The contact email of the developer.
+     */
+    contactEmail?: string | null;
+    /**
+     * The developer name of the app.
+     */
+    developerName?: string | null;
+    /**
+     * The phone number of the developer.
+     */
+    phoneNumber?: string | null;
+    /**
+     * The website of the developer.
+     */
+    website?: string | null;
+  }
+  /**
    * Information specific to cancellations initiated by developers.
    */
   export interface Schema$DeveloperInitiatedCancellation {}
+  /**
+   * Defines a set of device compatibility requirements for the app. A device must satisfy all of the requirements in a set to be considered compatible with the app.
+   */
+  export interface Schema$DeviceCompatibilityRequirements {
+    /**
+     * Compatible screens as listed in the `compatible-screens` Manifest tag.
+     */
+    compatibleScreens?: Schema$CompatibleScreen[];
+    /**
+     * Required version of OpenGL ES.
+     */
+    glEsVersion?: number | null;
+    /**
+     * Specifies if the app requires a screen.
+     */
+    isScreenRequired?: boolean | null;
+    /**
+     * List of required ABIs (Application Binary Interface), e.g. `armeabi` or `x86`.
+     */
+    nativePlatforms?: string[] | null;
+    /**
+     * List of required libraries as declared in the `uses-library` manifest tag.
+     */
+    requiredSoftwareLibraries?: string[] | null;
+    /**
+     * The system features that the app requires. A device must have all of the system features to be considered compatible with the app.
+     */
+    requiredSystemFeatures?: string[] | null;
+    /**
+     * Specifies the minimum smallest width required of the screen.
+     */
+    requiresSmallestWidthDp?: string | null;
+    /**
+     * Defines a range of SDK versions that the app is compatible with.
+     */
+    sdkVersion?: Schema$CatalogSdkVersion;
+    /**
+     * Supported gl textures as specified by the `supported-gl-texture` Manifest tag.
+     */
+    supportedGlTextures?: string[] | null;
+    /**
+     * Compatible screens as listed in the `supports-screens` Manifest tag.
+     */
+    supportedScreens?: string[] | null;
+    /**
+     * Value of `android:use32BitAbi` flag retrieved from the Manifest.
+     */
+    use32BitAbi?: string | null;
+    /**
+     * Lists all configurations marked as required by use of the `uses-configuration` manifest tag. Each instance of this proto represents a single `uses-configuration` entry. See http://developer.android.com/guide/topics/manifest/uses-configuration-element.html
+     */
+    usesConfigurations?: Schema$UsesConfiguration[];
+  }
   /**
    * Represents a device feature.
    */
@@ -1460,6 +1877,19 @@ export namespace androidpublisher_v3 {
      * Value of Build.DEVICE.
      */
     buildDevice?: string | null;
+  }
+  /**
+   * Defines a device identifier for a device.
+   */
+  export interface Schema$DeviceIdentifier {
+    /**
+     * The brand of the device.
+     */
+    deviceBrand?: string | null;
+    /**
+     * The model of the device.
+     */
+    deviceModel?: string | null;
   }
   /**
    * Characteristics of the user's device.
@@ -1863,7 +2293,7 @@ export namespace androidpublisher_v3 {
     generatedApks?: Schema$GeneratedApksPerSigningKey[];
   }
   /**
-   * Download metadata for split, standalone and universal APKs, as well as asset pack slices, signed with a given key. Next ID: 10
+   * Download metadata for split, standalone and universal APKs, as well as asset pack slices, signed with a given key.
    */
   export interface Schema$GeneratedApksPerSigningKey {
     /**
@@ -2048,9 +2478,22 @@ export namespace androidpublisher_v3 {
     packageName?: string | null;
   }
   /**
+   * A group of responses.
+   */
+  export interface Schema$Group {
+    /**
+     * Required. Responses within a group.
+     */
+    responses?: Schema$NestedPolicyResponse[];
+  }
+  /**
    * An uploaded image. The resource for ImagesService.
    */
   export interface Schema$Image {
+    /**
+     * Optional. Whether the image was generated by AI. Attested by the developer.
+     */
+    aiGeneratedState?: string | null;
     /**
      * A unique id representing this image.
      */
@@ -2067,6 +2510,15 @@ export namespace androidpublisher_v3 {
      * A URL that will serve a preview of the image.
      */
     url?: string | null;
+  }
+  /**
+   * An image asset.
+   */
+  export interface Schema$ImageAsset {
+    /**
+     * The URL of the image asset.
+     */
+    imageUrl?: string | null;
   }
   /**
    * Response for deleting all images.
@@ -2357,27 +2809,6 @@ export namespace androidpublisher_v3 {
    */
   export interface Schema$IntroductoryPriceDetails {}
   /**
-   * Contains the introductory price information for a subscription.
-   */
-  export interface Schema$IntroductoryPriceInfo {
-    /**
-     * Introductory price of the subscription, not including tax. The currency is the same as price_currency_code. Price is expressed in micro-units, where 1,000,000 micro-units represents one unit of the currency. For example, if the subscription price is €1.99, price_amount_micros is 1990000.
-     */
-    introductoryPriceAmountMicros?: string | null;
-    /**
-     * ISO 4217 currency code for the introductory subscription price. For example, if the price is specified in British pounds sterling, price_currency_code is "GBP".
-     */
-    introductoryPriceCurrencyCode?: string | null;
-    /**
-     * The number of billing period to offer introductory pricing.
-     */
-    introductoryPriceCycles?: number | null;
-    /**
-     * Introductory price period, specified in ISO 8601 format. Common values are (but not limited to) "P1W" (one week), "P1M" (one month), "P3M" (three months), "P6M" (six months), and "P1Y" (one year).
-     */
-    introductoryPricePeriod?: string | null;
-  }
-  /**
    * Details about introductory price offer phase.
    */
   export interface Schema$IntroductoryPriceOfferPhase {}
@@ -2414,6 +2845,19 @@ export namespace androidpublisher_v3 {
      * The replacement mode applied during the purchase.
      */
     replacementMode?: string | null;
+  }
+  /**
+   * A group of responses, with a key.
+   */
+  export interface Schema$KeyedGroup {
+    /**
+     * Required. Key for this group.
+     */
+    key?: string | null;
+    /**
+     * Required. Responses in this group.
+     */
+    responses?: Schema$NestedPolicyResponse[];
   }
   /**
    * Targeting based on language.
@@ -2552,6 +2996,19 @@ export namespace androidpublisher_v3 {
     oneTimeProducts?: Schema$OneTimeProduct[];
   }
   /**
+   * Response message for ListRecentUpdateEvents.
+   */
+  export interface Schema$ListRecentUpdateEventsResponse {
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The list of recent update events.
+     */
+    recentUpdateEvents?: Schema$RecentUpdateEvent[];
+  }
+  /**
    * Response listing all releases for a given track that are either ready to be sent for review, in review, approved, not approved or available.
    */
   export interface Schema$ListReleaseSummariesResponse {
@@ -2598,6 +3055,61 @@ export namespace androidpublisher_v3 {
      * The resulting users.
      */
     users?: Schema$User[];
+  }
+  /**
+   * A localized store listings of the app.
+   */
+  export interface Schema$LocalizedStoreListing {
+    /**
+     * The name of the app in this localization.
+     */
+    appName?: string | null;
+    /**
+     * The feature graphic of the app.
+     */
+    featureGraphic?: Schema$ImageAsset;
+    /**
+     * A longer description of the app in this localization.
+     */
+    fullDescription?: string | null;
+    /**
+     * The icon of the app.
+     */
+    icon?: Schema$ImageAsset;
+    /**
+     * The BCP-47 language code for this localization.
+     */
+    languageCode?: string | null;
+    /**
+     * The phone screenshots of the app.
+     */
+    phoneScreenshots?: Schema$ScreenshotSet;
+    /**
+     * A short description of the app in this localization.
+     */
+    shortDescription?: string | null;
+    /**
+     * The regular tablet screenshots of the app.
+     */
+    tabletRegularScreenshots?: Schema$ScreenshotSet;
+    /**
+     * The small tablet screenshots of the app.
+     */
+    tabletSmallScreenshots?: Schema$ScreenshotSet;
+    /**
+     * The video of the app.
+     */
+    video?: Schema$VideoAsset;
+  }
+  /**
+   * The localized store listings of an app.
+   */
+  export interface Schema$LocalizedStoreListings {
+    /**
+     * The default language code of the app. If a localized store listing is not available for a given language, assets from the default language are used instead.
+     */
+    defaultLanguageCode?: string | null;
+    localizedStoreListings?: Schema$LocalizedStoreListing[];
   }
   /**
    * Localized text in given language.
@@ -2752,6 +3264,35 @@ export namespace androidpublisher_v3 {
      * Value of a multi abi.
      */
     value?: Schema$MultiAbi[];
+  }
+  /**
+   * An individual nested response to a policy question about an app. Nested responses are like regular responses but without groups.
+   */
+  export interface Schema$NestedPolicyResponse {
+    /**
+     * Optional. A boolean response.
+     */
+    booleanResponse?: Schema$PolicyBooleanResponse;
+    /**
+     * Optional. A document response.
+     */
+    documentResponse?: Schema$PolicyDocumentResponse;
+    /**
+     * Optional. A multiple choice response.
+     */
+    multipleChoiceResponse?: Schema$PolicyMultipleChoiceResponse;
+    /**
+     * Required. ID of the question being answered.
+     */
+    questionId?: string | null;
+    /**
+     * Optional. A single choice response.
+     */
+    singleChoiceResponse?: Schema$PolicySingleChoiceResponse;
+    /**
+     * Optional. A string response.
+     */
+    stringResponse?: Schema$PolicyStringResponse;
   }
   /**
    * Offer details information related to a purchase line item.
@@ -3244,6 +3785,31 @@ export namespace androidpublisher_v3 {
     refundEvent?: Schema$RefundEvent;
   }
   /**
+   * Request for the orders.reviewrefund API.
+   */
+  export interface Schema$OrdersReviewRefundRequest {
+    /**
+     * Optional. Percentage of the In-App purchase the customer consumed, in milliunits. Minimum: 0 Maximum: 100,000. For paid apps, this can be omitted. Example : 45200 represents 45.2%.
+     */
+    consumptionPercentageMilliunits?: number | null;
+    /**
+     * Optional. List of events, each representing an instance where the user consumed or used the purchased item or service. Lists with over 1000 items will be rejected.
+     */
+    consumptionUsageEvents?: Schema$ConsumptionUsageEvent[];
+    /**
+     * Required. The pending refund token included in the pending refund review notification.
+     */
+    pendingRefundToken?: string | null;
+    /**
+     * Required. Indicates your preference, based on your operational logic, as to whether the Play Store should grant the refund.
+     */
+    refundPreference?: string | null;
+    /**
+     * Required. Indicates whether you provided a free sample, trial, or information about the functionality prior to the purchase.
+     */
+    sampleContentProvided?: boolean | null;
+  }
+  /**
    * Details of a recurring external transaction product which doesn't belong to any other more specific category.
    */
   export interface Schema$OtherRecurringProduct {}
@@ -3412,6 +3978,114 @@ export namespace androidpublisher_v3 {
      * The number of Play Points applied in this order. E.g. for a 100 points for $2 coupon, this is 100. For coupon stacked with base offer, this is the total points spent across both.
      */
     pointsSpent?: string | null;
+  }
+  /**
+   * Responses that will only ever be a boolean.
+   */
+  export interface Schema$PolicyBooleanResponse {
+    /**
+     * Required. Provided boolean value.
+     */
+    value?: boolean | null;
+  }
+  /**
+   * An uploaded document. Must be a single logical document (e.g. a financial license).
+   */
+  export interface Schema$PolicyDocumentResponse {
+    /**
+     * Required. ID of the uploaded document.
+     */
+    documentId?: string | null;
+    /**
+     * Optional. Expiry date for the document.
+     */
+    expiryDate?: Schema$Date;
+    /**
+     * Optional. True if confirmed that the document does not have an expiry date.
+     */
+    nonExpiring?: boolean | null;
+  }
+  /**
+   * A repeated group of responses.
+   */
+  export interface Schema$PolicyGroupResponse {
+    /**
+     * Optional. Groups of responses to questions.
+     */
+    groups?: Schema$Group[];
+  }
+  /**
+   * A group of responses each identified by a distinct key within an allowed set.
+   */
+  export interface Schema$PolicyKeyedGroupResponse {
+    /**
+     * Optional. Groups of responses to questions. Each KeyedGroup.key must be unique within this list.
+     */
+    groups?: Schema$KeyedGroup[];
+  }
+  /**
+   * Any response where multiple options can be chosen from several possibilities.
+   */
+  export interface Schema$PolicyMultipleChoiceResponse {
+    /**
+     * Optional. Provided values.
+     */
+    values?: string[] | null;
+  }
+  /**
+   * An individual response to a policy question about an app.
+   */
+  export interface Schema$PolicyResponse {
+    /**
+     * Optional. A boolean response.
+     */
+    booleanResponse?: Schema$PolicyBooleanResponse;
+    /**
+     * Optional. A document response.
+     */
+    documentResponse?: Schema$PolicyDocumentResponse;
+    /**
+     * Optional. A group response.
+     */
+    groupResponse?: Schema$PolicyGroupResponse;
+    /**
+     * Optional. A keyed group response.
+     */
+    keyedGroupResponse?: Schema$PolicyKeyedGroupResponse;
+    /**
+     * Optional. A multiple choice response.
+     */
+    multipleChoiceResponse?: Schema$PolicyMultipleChoiceResponse;
+    /**
+     * Required. ID of the question being answered.
+     */
+    questionId?: string | null;
+    /**
+     * Optional. A single choice response.
+     */
+    singleChoiceResponse?: Schema$PolicySingleChoiceResponse;
+    /**
+     * Optional. A string response.
+     */
+    stringResponse?: Schema$PolicyStringResponse;
+  }
+  /**
+   * Any response where a single option is chosen from several possibilities.
+   */
+  export interface Schema$PolicySingleChoiceResponse {
+    /**
+     * Required. Provided value.
+     */
+    value?: string | null;
+  }
+  /**
+   * Any response best encoded as a string. Includes URLs and multiline text fields.
+   */
+  export interface Schema$PolicyStringResponse {
+    /**
+     * Required. Provided string value.
+     */
+    value?: string | null;
   }
   /**
    * Details of a pre-order purchase.
@@ -3695,6 +4369,41 @@ export namespace androidpublisher_v3 {
      * Output only. The purchase state of the purchase.
      */
     purchaseState?: string | null;
+  }
+  /**
+   * Defines a RAM selector for a device.
+   */
+  export interface Schema$RamSelector {
+    /**
+     * This will match any device that has less than or equal ram_mb_less_than_or_equal mb of RAM.
+     */
+    ramMbLessThanOrEqual?: string | null;
+  }
+  /**
+   * Metadata about a recently updated app.
+   */
+  export interface Schema$RecentAppView {
+    /**
+     * Recently updated app view.
+     */
+    appView?: Schema$CatalogAppView;
+  }
+  /**
+   * A recent update event.
+   */
+  export interface Schema$RecentUpdateEvent {
+    /**
+     * The timestamp of the update.
+     */
+    eventTime?: string | null;
+    /**
+     * The package name of the app.
+     */
+    playAppPackageName?: string | null;
+    /**
+     * The type of the update event.
+     */
+    updateType?: string | null;
   }
   /**
    * Represents a transaction that is part of a recurring series of payments. This can be a subscription or a one-time product with multiple payments (such as preorder).
@@ -4151,6 +4860,15 @@ export namespace androidpublisher_v3 {
     value?: Schema$ScreenDensity[];
   }
   /**
+   * A set of screenshots.
+   */
+  export interface Schema$ScreenshotSet {
+    /**
+     * The image assets of the screenshots.
+     */
+    screenshots?: Schema$ImageAsset[];
+  }
+  /**
    * Represents an sdk version.
    */
   export interface Schema$SdkVersion {
@@ -4184,6 +4902,19 @@ export namespace androidpublisher_v3 {
      * A vanity code was applied.
      */
     vanityCode?: Schema$VanityCode;
+  }
+  /**
+   * Defines a SOC selector for a device. This will match any device whose SoC (System on Chip) matches all fields in the selector.
+   */
+  export interface Schema$SocSelector {
+    /**
+     * The manufacturer of the SoC.
+     */
+    socMake?: string | null;
+    /**
+     * The model of the SoC.
+     */
+    socModel?: string | null;
   }
   /**
    * Holds data specific to Split APKs.
@@ -4281,19 +5012,6 @@ export namespace androidpublisher_v3 {
      * Details about taxes and legal compliance.
      */
     taxAndComplianceSettings?: Schema$SubscriptionTaxAndComplianceSettings;
-  }
-  /**
-   * Information provided by the user when they complete the subscription cancellation flow (cancellation reason survey).
-   */
-  export interface Schema$SubscriptionCancelSurveyResult {
-    /**
-     * The cancellation reason the user chose in the survey. Possible values are: 0. Other 1. I don't use this service enough 2. Technical issues 3. Cost-related reasons 4. I found a better app
-     */
-    cancelSurveyReason?: number | null;
-    /**
-     * The customized input cancel reason from the user. Only present when cancelReason is 0.
-     */
-    userInputCancelReason?: string | null;
   }
   /**
    * A SubscriptionDeferralInfo contains the data needed to defer a subscription purchase to a future expiry time.
@@ -4459,140 +5177,6 @@ export namespace androidpublisher_v3 {
     upgradeRule?: Schema$UpgradeTargetingRule;
   }
   /**
-   * Contains the price change information for a subscription that can be used to control the user journey for the price change in the app. This can be in the form of seeking confirmation from the user or tailoring the experience for a successful conversion.
-   */
-  export interface Schema$SubscriptionPriceChange {
-    /**
-     * The new price the subscription will renew with if the price change is accepted by the user.
-     */
-    newPrice?: Schema$Price;
-    /**
-     * The current state of the price change. Possible values are: 0. Outstanding: State for a pending price change waiting for the user to agree. In this state, you can optionally seek confirmation from the user using the In-App API. 1. Accepted: State for an accepted price change that the subscription will renew with unless it's canceled. The price change takes effect on a future date when the subscription renews. Note that the change might not occur when the subscription is renewed next.
-     */
-    state?: number | null;
-  }
-  /**
-   * Deprecated: Use SubscriptionPurchaseV2 instead. A SubscriptionPurchase resource indicates the status of a user's subscription purchase.
-   */
-  export interface Schema$SubscriptionPurchase {
-    /**
-     * The acknowledgement state of the subscription product. Possible values are: 0. Yet to be acknowledged 1. Acknowledged
-     */
-    acknowledgementState?: number | null;
-    /**
-     * Whether the subscription will automatically be renewed when it reaches its current expiry time.
-     */
-    autoRenewing?: boolean | null;
-    /**
-     * Time at which the subscription will be automatically resumed, in milliseconds since the Epoch. Only present if the user has requested to pause the subscription.
-     */
-    autoResumeTimeMillis?: string | null;
-    /**
-     * The reason why a subscription was canceled or is not auto-renewing. Possible values are: 0. User canceled the subscription 1. Subscription was canceled by the system, for example because of a billing problem 2. Subscription was replaced with a new subscription 3. Subscription was canceled by the developer
-     */
-    cancelReason?: number | null;
-    /**
-     * Information provided by the user when they complete the subscription cancellation flow (cancellation reason survey).
-     */
-    cancelSurveyResult?: Schema$SubscriptionCancelSurveyResult;
-    /**
-     * ISO 3166-1 alpha-2 billing country/region code of the user at the time the subscription was granted.
-     */
-    countryCode?: string | null;
-    /**
-     * A developer-specified string that contains supplemental information about an order.
-     */
-    developerPayload?: string | null;
-    /**
-     * The email address of the user when the subscription was purchased. Only present for purchases made with 'Subscribe with Google'.
-     */
-    emailAddress?: string | null;
-    /**
-     * Time at which the subscription will expire, in milliseconds since the Epoch.
-     */
-    expiryTimeMillis?: string | null;
-    /**
-     * User account identifier in the third-party service. Only present if account linking happened as part of the subscription purchase flow.
-     */
-    externalAccountId?: string | null;
-    /**
-     * The family name of the user when the subscription was purchased. Only present for purchases made with 'Subscribe with Google'.
-     */
-    familyName?: string | null;
-    /**
-     * The given name of the user when the subscription was purchased. Only present for purchases made with 'Subscribe with Google'.
-     */
-    givenName?: string | null;
-    /**
-     * Introductory price information of the subscription. This is only present when the subscription was purchased with an introductory price. This field does not indicate the subscription is currently in introductory price period.
-     */
-    introductoryPriceInfo?: Schema$IntroductoryPriceInfo;
-    /**
-     * This kind represents a subscriptionPurchase object in the androidpublisher service.
-     */
-    kind?: string | null;
-    /**
-     * The purchase token of the originating purchase if this subscription is one of the following: 0. Re-signup of a canceled but non-lapsed subscription 1. Upgrade/downgrade from a previous subscription For example, suppose a user originally signs up and you receive purchase token X, then the user cancels and goes through the resignup flow (before their subscription lapses) and you receive purchase token Y, and finally the user upgrades their subscription and you receive purchase token Z. If you call this API with purchase token Z, this field will be set to Y. If you call this API with purchase token Y, this field will be set to X. If you call this API with purchase token X, this field will not be set.
-     */
-    linkedPurchaseToken?: string | null;
-    /**
-     * An obfuscated version of the id that is uniquely associated with the user's account in your app. Present for the following purchases: * If account linking happened as part of the subscription purchase flow. * It was specified using https://developer.android.com/reference/com/android/billingclient/api/BillingFlowParams.Builder#setobfuscatedaccountid when the purchase was made.
-     */
-    obfuscatedExternalAccountId?: string | null;
-    /**
-     * An obfuscated version of the id that is uniquely associated with the user's profile in your app. Only present if specified using https://developer.android.com/reference/com/android/billingclient/api/BillingFlowParams.Builder#setobfuscatedprofileid when the purchase was made.
-     */
-    obfuscatedExternalProfileId?: string | null;
-    /**
-     * The order id of the latest recurring order associated with the purchase of the subscription. If the subscription was canceled because payment was declined, this will be the order id from the payment declined order.
-     */
-    orderId?: string | null;
-    /**
-     * The payment state of the subscription. Possible values are: 0. Payment pending 1. Payment received 2. Free trial 3. Pending deferred upgrade/downgrade Not present for canceled, expired subscriptions.
-     */
-    paymentState?: number | null;
-    /**
-     * Price of the subscription, For tax exclusive countries, the price doesn't include tax. For tax inclusive countries, the price includes tax. Price is expressed in micro-units, where 1,000,000 micro-units represents one unit of the currency. For example, if the subscription price is €1.99, price_amount_micros is 1990000.
-     */
-    priceAmountMicros?: string | null;
-    /**
-     * The latest price change information available. This is present only when there is an upcoming price change for the subscription yet to be applied. Once the subscription renews with the new price or the subscription is canceled, no price change information will be returned.
-     */
-    priceChange?: Schema$SubscriptionPriceChange;
-    /**
-     * ISO 4217 currency code for the subscription price. For example, if the price is specified in British pounds sterling, price_currency_code is "GBP".
-     */
-    priceCurrencyCode?: string | null;
-    /**
-     * The Google profile id of the user when the subscription was purchased. Only present for purchases made with 'Subscribe with Google'.
-     */
-    profileId?: string | null;
-    /**
-     * The profile name of the user when the subscription was purchased. Only present for purchases made with 'Subscribe with Google'.
-     */
-    profileName?: string | null;
-    /**
-     * The promotion code applied on this purchase. This field is only set if a vanity code promotion is applied when the subscription was purchased.
-     */
-    promotionCode?: string | null;
-    /**
-     * The type of promotion applied on this purchase. This field is only set if a promotion is applied when the subscription was purchased. Possible values are: 0. One time code 1. Vanity code
-     */
-    promotionType?: number | null;
-    /**
-     * The type of purchase of the subscription. This field is only set if this purchase was not made using the standard in-app billing flow. Possible values are: 0. Test (i.e. purchased from a license testing account) 1. Promo (i.e. purchased using a promo code)
-     */
-    purchaseType?: number | null;
-    /**
-     * Time at which the subscription was granted, in milliseconds since the Epoch.
-     */
-    startTimeMillis?: string | null;
-    /**
-     * The time at which the subscription was canceled by the user, in milliseconds since the epoch. Only present if cancelReason is 0.
-     */
-    userCancellationTimeMillis?: string | null;
-  }
-  /**
    * Item-level info for a subscription purchase.
    */
   export interface Schema$SubscriptionPurchaseLineItem {
@@ -4700,10 +5284,6 @@ export namespace androidpublisher_v3 {
      * This kind represents a SubscriptionPurchaseV2 object in the androidpublisher service.
      */
     kind?: string | null;
-    /**
-     * Deprecated: Use line_items.latest_successful_order_id instead. The order id of the latest order associated with the purchase of the subscription. For autoRenewing subscription, this is the order id of signup order if it is not renewed yet, or the last recurring order id (success, pending, or declined order). For prepaid subscription, this is the order id associated with the queried purchase token.
-     */
-    latestOrderId?: string | null;
     /**
      * Item-level info for a subscription purchase. The items in the same purchase should be either all with AutoRenewingPlan or all with PrepaidPlan.
      */
@@ -5078,6 +5658,48 @@ export namespace androidpublisher_v3 {
     countryCode?: string | null;
   }
   /**
+   * Request to update the publish status of an app store hosted app. The default state for any app with an update is PUBLISHED. It is not necessary to call this RPC explicitly to set an app to PUBLISHED.
+   */
+  export interface Schema$UpdateAppStoreHostedAppPublishStatusRequest {
+    /**
+     * Required. The new publish state for the hosted app.
+     */
+    publishState?: string | null;
+  }
+  /**
+   * Response for updating the publish status of an app store hosted app.
+   */
+  export interface Schema$UpdateAppStoreHostedAppPublishStatusResponse {}
+  /**
+   * Request to update an app record for an app store hosted app.
+   */
+  export interface Schema$UpdateAppStoreHostedAppRequest {
+    /**
+     * Required. Actively distributed APKs of the app.
+     */
+    activeApks?: Schema$AppStoreAppActiveApks;
+    /**
+     * Required. Localized store listings details of the update.
+     */
+    activeLocalizedStoreListings?: Schema$AppStoreAppStoreListing[];
+    /**
+     * Required. General developer details for the app.
+     */
+    appDetails?: Schema$AppStoreAppDetails;
+    /**
+     * Required. Package name of the app.
+     */
+    packageName?: string | null;
+    /**
+     * Required. Policy declarations provided for the app.
+     */
+    policyDeclarations?: Schema$AppStoreAppPolicyDeclaration[];
+  }
+  /**
+   * Response for updating an app record for an app store hosted app.
+   */
+  export interface Schema$UpdateAppStoreHostedAppResponse {}
+  /**
    * Request message to update the state of a subscription base plan.
    */
   export interface Schema$UpdateBasePlanStateRequest {
@@ -5251,6 +5873,50 @@ export namespace androidpublisher_v3 {
     scope?: Schema$TargetingRuleScope;
   }
   /**
+   * Request to upload an APK.
+   */
+  export interface Schema$UploadApkRequest {}
+  /**
+   * Response for uploading an APK.
+   */
+  export interface Schema$UploadApkResponse {
+    /**
+     * The unique ID of the uploaded APK.
+     */
+    apkId?: string | null;
+  }
+  /**
+   * Request to upload a policy declaration file.
+   */
+  export interface Schema$UploadAppStoreAppPolicyDeclarationFileRequest {
+    /**
+     * Required. Type of the policy declaration file.
+     */
+    fileType?: string | null;
+  }
+  /**
+   * Response for uploading a policy declaration file.
+   */
+  export interface Schema$UploadAppStoreAppPolicyDeclarationFileResponse {
+    /**
+     * The unique ID of the uploaded file.
+     */
+    fileId?: string | null;
+  }
+  /**
+   * Request to upload an image.
+   */
+  export interface Schema$UploadImageRequest {}
+  /**
+   * Response for uploading an image.
+   */
+  export interface Schema$UploadImageResponse {
+    /**
+     * The unique ID of the uploaded image.
+     */
+    imageId?: string | null;
+  }
+  /**
    * A user resource.
    */
   export interface Schema$User {
@@ -5376,6 +6042,31 @@ export namespace androidpublisher_v3 {
     cancelTime?: string | null;
   }
   /**
+   * Represents all configurations marked as required by use of the uses-configuration manifest tag.
+   */
+  export interface Schema$UsesConfiguration {
+    /**
+     * The type of keyboard required.
+     */
+    requiredKeyboardType?: string | null;
+    /**
+     * The navigation device required.
+     */
+    requiredNavigationType?: string | null;
+    /**
+     * The type of touchscreen required.
+     */
+    requiredTouchscreenType?: string | null;
+    /**
+     * Whether or not the application requires a five-way navigation control.
+     */
+    requiresFiveWayNavigation?: boolean | null;
+    /**
+     * Whether or not the application requires a hardware keyboard.
+     */
+    requiresHardwareKeyboard?: boolean | null;
+  }
+  /**
    * A permission used by this APK.
    */
   export interface Schema$UsesPermission {
@@ -5438,6 +6129,15 @@ export namespace androidpublisher_v3 {
      * Texture-compression-format-level targeting
      */
     textureCompressionFormatTargeting?: Schema$TextureCompressionFormatTargeting;
+  }
+  /**
+   * A video asset.
+   */
+  export interface Schema$VideoAsset {
+    /**
+     * The URL of the video asset.
+     */
+    videoUrl?: string | null;
   }
   /**
    * A VoidedPurchase resource indicates a purchase that was either canceled/refunded/charged-back.
@@ -5579,8 +6279,7 @@ export namespace androidpublisher_v3 {
     dataSafety(
       params: Params$Resource$Applications$Datasafety,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$SafetyLabelsUpdateResponse>,
+        MethodOptions | BodyResponseCallback<Schema$SafetyLabelsUpdateResponse>,
       callback: BodyResponseCallback<Schema$SafetyLabelsUpdateResponse>
     ): void;
     dataSafety(
@@ -6408,8 +7107,7 @@ export namespace androidpublisher_v3 {
     addTargeting(
       params: Params$Resource$Apprecovery$Addtargeting,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$AddTargetingResponse>,
+        MethodOptions | BodyResponseCallback<Schema$AddTargetingResponse>,
       callback: BodyResponseCallback<Schema$AddTargetingResponse>
     ): void;
     addTargeting(
@@ -6556,8 +7254,7 @@ export namespace androidpublisher_v3 {
     cancel(
       params: Params$Resource$Apprecovery$Cancel,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$CancelAppRecoveryResponse>,
+        MethodOptions | BodyResponseCallback<Schema$CancelAppRecoveryResponse>,
       callback: BodyResponseCallback<Schema$CancelAppRecoveryResponse>
     ): void;
     cancel(
@@ -6858,8 +7555,7 @@ export namespace androidpublisher_v3 {
     deploy(
       params: Params$Resource$Apprecovery$Deploy,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$DeployAppRecoveryResponse>,
+        MethodOptions | BodyResponseCallback<Schema$DeployAppRecoveryResponse>,
       callback: BodyResponseCallback<Schema$DeployAppRecoveryResponse>
     ): void;
     deploy(
@@ -7002,8 +7698,7 @@ export namespace androidpublisher_v3 {
     list(
       params: Params$Resource$Apprecovery$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListAppRecoveriesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListAppRecoveriesResponse>,
       callback: BodyResponseCallback<Schema$ListAppRecoveriesResponse>
     ): void;
     list(
@@ -7141,6 +7836,1447 @@ export namespace androidpublisher_v3 {
     versionCode?: string;
   }
 
+  export class Resource$Appstoreappsreview {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates an app store hosted app. This must be called before any other RPCs for this hosted app.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.appstoreappsreview.createappstorehostedapp(
+     *     {
+     *       // Required. Package name of the third-party app store.
+     *       appStorePackageName: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "packageName": "my_packageName"
+     *         // }
+     *       },
+     *     },
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    createappstorehostedapp(
+      params: Params$Resource$Appstoreappsreview$Createappstorehostedapp,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    createappstorehostedapp(
+      params?: Params$Resource$Appstoreappsreview$Createappstorehostedapp,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CreateAppStoreHostedAppResponse>>;
+    createappstorehostedapp(
+      params: Params$Resource$Appstoreappsreview$Createappstorehostedapp,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    createappstorehostedapp(
+      params: Params$Resource$Appstoreappsreview$Createappstorehostedapp,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CreateAppStoreHostedAppResponse>,
+      callback: BodyResponseCallback<Schema$CreateAppStoreHostedAppResponse>
+    ): void;
+    createappstorehostedapp(
+      params: Params$Resource$Appstoreappsreview$Createappstorehostedapp,
+      callback: BodyResponseCallback<Schema$CreateAppStoreHostedAppResponse>
+    ): void;
+    createappstorehostedapp(
+      callback: BodyResponseCallback<Schema$CreateAppStoreHostedAppResponse>
+    ): void;
+    createappstorehostedapp(
+      paramsOrCallback?:
+        | Params$Resource$Appstoreappsreview$Createappstorehostedapp
+        | BodyResponseCallback<Schema$CreateAppStoreHostedAppResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CreateAppStoreHostedAppResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CreateAppStoreHostedAppResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$CreateAppStoreHostedAppResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Appstoreappsreview$Createappstorehostedapp;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Appstoreappsreview$Createappstorehostedapp;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/appstore/{appStorePackageName}/apps:create'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['appStorePackageName'],
+        pathParams: ['appStorePackageName'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CreateAppStoreHostedAppResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$CreateAppStoreHostedAppResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates details for an app hosted on an app store. Use this to provide details for a new app, or to update details for an existing app. The update will be sent for review immediately after creation.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.appstoreappsreview.updateappstorehostedapp(
+     *     {
+     *       // Required. Package name of the third-party app store.
+     *       appStorePackageName: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "activeApks": {},
+     *         //   "activeLocalizedStoreListings": [],
+     *         //   "appDetails": {},
+     *         //   "packageName": "my_packageName",
+     *         //   "policyDeclarations": []
+     *         // }
+     *       },
+     *     },
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    updateappstorehostedapp(
+      params: Params$Resource$Appstoreappsreview$Updateappstorehostedapp,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    updateappstorehostedapp(
+      params?: Params$Resource$Appstoreappsreview$Updateappstorehostedapp,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$UpdateAppStoreHostedAppResponse>>;
+    updateappstorehostedapp(
+      params: Params$Resource$Appstoreappsreview$Updateappstorehostedapp,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    updateappstorehostedapp(
+      params: Params$Resource$Appstoreappsreview$Updateappstorehostedapp,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$UpdateAppStoreHostedAppResponse>,
+      callback: BodyResponseCallback<Schema$UpdateAppStoreHostedAppResponse>
+    ): void;
+    updateappstorehostedapp(
+      params: Params$Resource$Appstoreappsreview$Updateappstorehostedapp,
+      callback: BodyResponseCallback<Schema$UpdateAppStoreHostedAppResponse>
+    ): void;
+    updateappstorehostedapp(
+      callback: BodyResponseCallback<Schema$UpdateAppStoreHostedAppResponse>
+    ): void;
+    updateappstorehostedapp(
+      paramsOrCallback?:
+        | Params$Resource$Appstoreappsreview$Updateappstorehostedapp
+        | BodyResponseCallback<Schema$UpdateAppStoreHostedAppResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$UpdateAppStoreHostedAppResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$UpdateAppStoreHostedAppResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$UpdateAppStoreHostedAppResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Appstoreappsreview$Updateappstorehostedapp;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Appstoreappsreview$Updateappstorehostedapp;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/appstore/{appStorePackageName}/apps:update'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['appStorePackageName'],
+        pathParams: ['appStorePackageName'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$UpdateAppStoreHostedAppResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$UpdateAppStoreHostedAppResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates the publish status of an app store hosted app. The default state after calling UpdateAppStoreHostedApp is PUBLISHED. It is not necessary to call this RPC explicitly to set an app to PUBLISHED.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await androidpublisher.appstoreappsreview.updateappstorehostedapppublishstatus(
+     *       {
+     *         // Required. Package name of the third-party app store.
+     *         appStorePackageName: 'placeholder-value',
+     *         // Required. Package name of the app.
+     *         packageName: 'placeholder-value',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "publishState": "my_publishState"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    updateappstorehostedapppublishstatus(
+      params: Params$Resource$Appstoreappsreview$Updateappstorehostedapppublishstatus,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    updateappstorehostedapppublishstatus(
+      params?: Params$Resource$Appstoreappsreview$Updateappstorehostedapppublishstatus,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$UpdateAppStoreHostedAppPublishStatusResponse>
+    >;
+    updateappstorehostedapppublishstatus(
+      params: Params$Resource$Appstoreappsreview$Updateappstorehostedapppublishstatus,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    updateappstorehostedapppublishstatus(
+      params: Params$Resource$Appstoreappsreview$Updateappstorehostedapppublishstatus,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$UpdateAppStoreHostedAppPublishStatusResponse>,
+      callback: BodyResponseCallback<Schema$UpdateAppStoreHostedAppPublishStatusResponse>
+    ): void;
+    updateappstorehostedapppublishstatus(
+      params: Params$Resource$Appstoreappsreview$Updateappstorehostedapppublishstatus,
+      callback: BodyResponseCallback<Schema$UpdateAppStoreHostedAppPublishStatusResponse>
+    ): void;
+    updateappstorehostedapppublishstatus(
+      callback: BodyResponseCallback<Schema$UpdateAppStoreHostedAppPublishStatusResponse>
+    ): void;
+    updateappstorehostedapppublishstatus(
+      paramsOrCallback?:
+        | Params$Resource$Appstoreappsreview$Updateappstorehostedapppublishstatus
+        | BodyResponseCallback<Schema$UpdateAppStoreHostedAppPublishStatusResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$UpdateAppStoreHostedAppPublishStatusResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$UpdateAppStoreHostedAppPublishStatusResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$UpdateAppStoreHostedAppPublishStatusResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Appstoreappsreview$Updateappstorehostedapppublishstatus;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Appstoreappsreview$Updateappstorehostedapppublishstatus;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/appstore/{appStorePackageName}/apps/{packageName}:updateAppStoreHostedAppPublishStatus'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['appStorePackageName', 'packageName'],
+        pathParams: ['appStorePackageName', 'packageName'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$UpdateAppStoreHostedAppPublishStatusResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$UpdateAppStoreHostedAppPublishStatusResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Upload an APK file for the hosted app. Returns an ID to track this APK.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.appstoreappsreview.uploadapk({
+     *     // Required. Package name of the third-party app store.
+     *     appStorePackageName: 'placeholder-value',
+     *     // Required. Package name of the app.
+     *     packageName: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *     media: {
+     *       mimeType: 'placeholder-value',
+     *       body: 'placeholder-value',
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apkId": "my_apkId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    uploadapk(
+      params: Params$Resource$Appstoreappsreview$Uploadapk,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    uploadapk(
+      params?: Params$Resource$Appstoreappsreview$Uploadapk,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$UploadApkResponse>>;
+    uploadapk(
+      params: Params$Resource$Appstoreappsreview$Uploadapk,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    uploadapk(
+      params: Params$Resource$Appstoreappsreview$Uploadapk,
+      options: MethodOptions | BodyResponseCallback<Schema$UploadApkResponse>,
+      callback: BodyResponseCallback<Schema$UploadApkResponse>
+    ): void;
+    uploadapk(
+      params: Params$Resource$Appstoreappsreview$Uploadapk,
+      callback: BodyResponseCallback<Schema$UploadApkResponse>
+    ): void;
+    uploadapk(callback: BodyResponseCallback<Schema$UploadApkResponse>): void;
+    uploadapk(
+      paramsOrCallback?:
+        | Params$Resource$Appstoreappsreview$Uploadapk
+        | BodyResponseCallback<Schema$UploadApkResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$UploadApkResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$UploadApkResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$UploadApkResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Appstoreappsreview$Uploadapk;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Appstoreappsreview$Uploadapk;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/appstore/{appStorePackageName}/apps/{packageName}/apks:upload'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        mediaUrl: (
+          rootUrl +
+          '/upload/androidpublisher/v3/appstore/{appStorePackageName}/apps/{packageName}/apks:upload'
+        ).replace(/([^:]\/)\/+/g, '$1'),
+        requiredParams: ['appStorePackageName', 'packageName'],
+        pathParams: ['appStorePackageName', 'packageName'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$UploadApkResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$UploadApkResponse>(parameters);
+      }
+    }
+
+    /**
+     * Upload a policy declaration file for the hosted app. Returns an ID to track the file.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await androidpublisher.appstoreappsreview.uploadappstoreapppolicydeclarationfile(
+     *       {
+     *         // Required. Package name of the third-party app store.
+     *         appStorePackageName: 'placeholder-value',
+     *         // Required. Package name of the app.
+     *         packageName: 'placeholder-value',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "fileType": "my_fileType"
+     *           // }
+     *         },
+     *         media: {
+     *           mimeType: 'placeholder-value',
+     *           body: 'placeholder-value',
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "fileId": "my_fileId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    uploadappstoreapppolicydeclarationfile(
+      params: Params$Resource$Appstoreappsreview$Uploadappstoreapppolicydeclarationfile,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    uploadappstoreapppolicydeclarationfile(
+      params?: Params$Resource$Appstoreappsreview$Uploadappstoreapppolicydeclarationfile,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$UploadAppStoreAppPolicyDeclarationFileResponse>
+    >;
+    uploadappstoreapppolicydeclarationfile(
+      params: Params$Resource$Appstoreappsreview$Uploadappstoreapppolicydeclarationfile,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    uploadappstoreapppolicydeclarationfile(
+      params: Params$Resource$Appstoreappsreview$Uploadappstoreapppolicydeclarationfile,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$UploadAppStoreAppPolicyDeclarationFileResponse>,
+      callback: BodyResponseCallback<Schema$UploadAppStoreAppPolicyDeclarationFileResponse>
+    ): void;
+    uploadappstoreapppolicydeclarationfile(
+      params: Params$Resource$Appstoreappsreview$Uploadappstoreapppolicydeclarationfile,
+      callback: BodyResponseCallback<Schema$UploadAppStoreAppPolicyDeclarationFileResponse>
+    ): void;
+    uploadappstoreapppolicydeclarationfile(
+      callback: BodyResponseCallback<Schema$UploadAppStoreAppPolicyDeclarationFileResponse>
+    ): void;
+    uploadappstoreapppolicydeclarationfile(
+      paramsOrCallback?:
+        | Params$Resource$Appstoreappsreview$Uploadappstoreapppolicydeclarationfile
+        | BodyResponseCallback<Schema$UploadAppStoreAppPolicyDeclarationFileResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$UploadAppStoreAppPolicyDeclarationFileResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$UploadAppStoreAppPolicyDeclarationFileResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$UploadAppStoreAppPolicyDeclarationFileResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Appstoreappsreview$Uploadappstoreapppolicydeclarationfile;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Appstoreappsreview$Uploadappstoreapppolicydeclarationfile;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/appstore/{appStorePackageName}/apps/{packageName}/policyDeclarationFiles:upload'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        mediaUrl: (
+          rootUrl +
+          '/upload/androidpublisher/v3/appstore/{appStorePackageName}/apps/{packageName}/policyDeclarationFiles:upload'
+        ).replace(/([^:]\/)\/+/g, '$1'),
+        requiredParams: ['appStorePackageName', 'packageName'],
+        pathParams: ['appStorePackageName', 'packageName'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$UploadAppStoreAppPolicyDeclarationFileResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$UploadAppStoreAppPolicyDeclarationFileResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Upload a screenshot or app icon for the hosted app. Returns an ID to track the image.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.appstoreappsreview.uploadimage({
+     *     // Required. Package name of the third-party app store.
+     *     appStorePackageName: 'placeholder-value',
+     *     // Required. Package name of the app.
+     *     packageName: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *     media: {
+     *       mimeType: 'placeholder-value',
+     *       body: 'placeholder-value',
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "imageId": "my_imageId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    uploadimage(
+      params: Params$Resource$Appstoreappsreview$Uploadimage,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    uploadimage(
+      params?: Params$Resource$Appstoreappsreview$Uploadimage,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$UploadImageResponse>>;
+    uploadimage(
+      params: Params$Resource$Appstoreappsreview$Uploadimage,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    uploadimage(
+      params: Params$Resource$Appstoreappsreview$Uploadimage,
+      options: MethodOptions | BodyResponseCallback<Schema$UploadImageResponse>,
+      callback: BodyResponseCallback<Schema$UploadImageResponse>
+    ): void;
+    uploadimage(
+      params: Params$Resource$Appstoreappsreview$Uploadimage,
+      callback: BodyResponseCallback<Schema$UploadImageResponse>
+    ): void;
+    uploadimage(
+      callback: BodyResponseCallback<Schema$UploadImageResponse>
+    ): void;
+    uploadimage(
+      paramsOrCallback?:
+        | Params$Resource$Appstoreappsreview$Uploadimage
+        | BodyResponseCallback<Schema$UploadImageResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$UploadImageResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$UploadImageResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$UploadImageResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Appstoreappsreview$Uploadimage;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Appstoreappsreview$Uploadimage;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/appstore/{appStorePackageName}/apps/{packageName}/images:upload'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        mediaUrl: (
+          rootUrl +
+          '/upload/androidpublisher/v3/appstore/{appStorePackageName}/apps/{packageName}/images:upload'
+        ).replace(/([^:]\/)\/+/g, '$1'),
+        requiredParams: ['appStorePackageName', 'packageName'],
+        pathParams: ['appStorePackageName', 'packageName'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$UploadImageResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$UploadImageResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Appstoreappsreview$Createappstorehostedapp extends StandardParameters {
+    /**
+     * Required. Package name of the third-party app store.
+     */
+    appStorePackageName?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CreateAppStoreHostedAppRequest;
+  }
+  export interface Params$Resource$Appstoreappsreview$Updateappstorehostedapp extends StandardParameters {
+    /**
+     * Required. Package name of the third-party app store.
+     */
+    appStorePackageName?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$UpdateAppStoreHostedAppRequest;
+  }
+  export interface Params$Resource$Appstoreappsreview$Updateappstorehostedapppublishstatus extends StandardParameters {
+    /**
+     * Required. Package name of the third-party app store.
+     */
+    appStorePackageName?: string;
+    /**
+     * Required. Package name of the app.
+     */
+    packageName?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$UpdateAppStoreHostedAppPublishStatusRequest;
+  }
+  export interface Params$Resource$Appstoreappsreview$Uploadapk extends StandardParameters {
+    /**
+     * Required. Package name of the third-party app store.
+     */
+    appStorePackageName?: string;
+    /**
+     * Required. Package name of the app.
+     */
+    packageName?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$UploadApkRequest;
+
+    /**
+     * Media metadata
+     */
+    media?: {
+      /**
+       * Media mime-type
+       */
+      mimeType?: string;
+
+      /**
+       * Media body contents
+       */
+      body?: any;
+    };
+  }
+  export interface Params$Resource$Appstoreappsreview$Uploadappstoreapppolicydeclarationfile extends StandardParameters {
+    /**
+     * Required. Package name of the third-party app store.
+     */
+    appStorePackageName?: string;
+    /**
+     * Required. Package name of the app.
+     */
+    packageName?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$UploadAppStoreAppPolicyDeclarationFileRequest;
+
+    /**
+     * Media metadata
+     */
+    media?: {
+      /**
+       * Media mime-type
+       */
+      mimeType?: string;
+
+      /**
+       * Media body contents
+       */
+      body?: any;
+    };
+  }
+  export interface Params$Resource$Appstoreappsreview$Uploadimage extends StandardParameters {
+    /**
+     * Required. Package name of the third-party app store.
+     */
+    appStorePackageName?: string;
+    /**
+     * Required. Package name of the app.
+     */
+    packageName?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$UploadImageRequest;
+
+    /**
+     * Media metadata
+     */
+    media?: {
+      /**
+       * Media mime-type
+       */
+      mimeType?: string;
+
+      /**
+       * Media body contents
+       */
+      body?: any;
+    };
+  }
+
+  export class Resource$Appstorecatalog {
+    context: APIRequestContext;
+    recentappviews: Resource$Appstorecatalog$Recentappviews;
+    recentupdateevents: Resource$Appstorecatalog$Recentupdateevents;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.recentappviews = new Resource$Appstorecatalog$Recentappviews(
+        this.context
+      );
+      this.recentupdateevents = new Resource$Appstorecatalog$Recentupdateevents(
+        this.context
+      );
+    }
+  }
+
+  export class Resource$Appstorecatalog$Recentappviews {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Returns metadata about a recently updated app.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.appstorecatalog.recentappviews.get({
+     *     // Required. The package name of the app store on behalf of which the request is made.
+     *     appStorePackageName: 'placeholder-value',
+     *     // Required. The package name of the requested Play app.
+     *     playAppPackageName: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appView": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Appstorecatalog$Recentappviews$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Appstorecatalog$Recentappviews$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$RecentAppView>>;
+    get(
+      params: Params$Resource$Appstorecatalog$Recentappviews$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Appstorecatalog$Recentappviews$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$RecentAppView>,
+      callback: BodyResponseCallback<Schema$RecentAppView>
+    ): void;
+    get(
+      params: Params$Resource$Appstorecatalog$Recentappviews$Get,
+      callback: BodyResponseCallback<Schema$RecentAppView>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$RecentAppView>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Appstorecatalog$Recentappviews$Get
+        | BodyResponseCallback<Schema$RecentAppView>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RecentAppView>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RecentAppView>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$RecentAppView>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Appstorecatalog$Recentappviews$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Appstorecatalog$Recentappviews$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/appstorecatalog/{appStorePackageName}/recentAppViews/{playAppPackageName}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['appStorePackageName', 'playAppPackageName'],
+        pathParams: ['appStorePackageName', 'playAppPackageName'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$RecentAppView>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$RecentAppView>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Appstorecatalog$Recentappviews$Get extends StandardParameters {
+    /**
+     * Required. The package name of the app store on behalf of which the request is made.
+     */
+    appStorePackageName?: string;
+    /**
+     * Required. The package name of the requested Play app.
+     */
+    playAppPackageName?: string;
+  }
+
+  export class Resource$Appstorecatalog$Recentupdateevents {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Lists update events for eligible apps in the given time range.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.appstorecatalog.recentupdateevents.list({
+     *     // Required. The package name of the app store on behalf of which the request is made.
+     *     appStorePackageName: 'placeholder-value',
+     *     // Required. The end time of the range (exclusive).
+     *     endTime: 'placeholder-value',
+     *     // Optional. The maximum number of update events to return. The service may return fewer than this value. If unspecified, at most 100 update events will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A page token, received from a previous `ListRecentUpdateEvents` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListRecentUpdateEvents` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The start time of the range (inclusive).
+     *     startTime: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "recentUpdateEvents": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Appstorecatalog$Recentupdateevents$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Appstorecatalog$Recentupdateevents$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListRecentUpdateEventsResponse>>;
+    list(
+      params: Params$Resource$Appstorecatalog$Recentupdateevents$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Appstorecatalog$Recentupdateevents$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListRecentUpdateEventsResponse>,
+      callback: BodyResponseCallback<Schema$ListRecentUpdateEventsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Appstorecatalog$Recentupdateevents$List,
+      callback: BodyResponseCallback<Schema$ListRecentUpdateEventsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListRecentUpdateEventsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Appstorecatalog$Recentupdateevents$List
+        | BodyResponseCallback<Schema$ListRecentUpdateEventsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListRecentUpdateEventsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListRecentUpdateEventsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListRecentUpdateEventsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Appstorecatalog$Recentupdateevents$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Appstorecatalog$Recentupdateevents$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/appstorecatalog/{appStorePackageName}/recentUpdateEvents'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['appStorePackageName'],
+        pathParams: ['appStorePackageName'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListRecentUpdateEventsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListRecentUpdateEventsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Appstorecatalog$Recentupdateevents$List extends StandardParameters {
+    /**
+     * Required. The package name of the app store on behalf of which the request is made.
+     */
+    appStorePackageName?: string;
+    /**
+     * Required. The end time of the range (exclusive).
+     */
+    endTime?: string;
+    /**
+     * Optional. The maximum number of update events to return. The service may return fewer than this value. If unspecified, at most 100 update events will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `ListRecentUpdateEvents` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListRecentUpdateEvents` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The start time of the range (inclusive).
+     */
+    startTime?: string;
+  }
+
   export class Resource$Edits {
     context: APIRequestContext;
     apks: Resource$Edits$Apks;
@@ -7266,8 +9402,7 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<Schema$AppEdit>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$AppEdit>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$AppEdit> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$AppEdit>>
@@ -7538,8 +9673,7 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<Schema$AppEdit>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$AppEdit>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$AppEdit> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$AppEdit>>
@@ -7685,8 +9819,7 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<Schema$AppEdit>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$AppEdit>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$AppEdit> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$AppEdit>>
@@ -7824,8 +9957,7 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<Schema$AppEdit>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$AppEdit>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$AppEdit> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$AppEdit>>
@@ -8333,8 +10465,7 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<Schema$Apk>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Apk>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Apk> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Apk>>
@@ -8695,8 +10826,7 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<Schema$Bundle>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Bundle>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Bundle> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Bundle>>
@@ -8881,8 +11011,7 @@ export namespace androidpublisher_v3 {
     get(
       params: Params$Resource$Edits$Countryavailability$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TrackCountryAvailability>,
+        MethodOptions | BodyResponseCallback<Schema$TrackCountryAvailability>,
       callback: BodyResponseCallback<Schema$TrackCountryAvailability>
     ): void;
     get(
@@ -9288,8 +11417,7 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<Schema$AppDetails>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$AppDetails>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$AppDetails> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$AppDetails>>
@@ -9442,8 +11570,7 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<Schema$AppDetails>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$AppDetails>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$AppDetails> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$AppDetails>>
@@ -9596,8 +11723,7 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<Schema$AppDetails>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$AppDetails>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$AppDetails> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$AppDetails>>
@@ -10686,8 +12812,7 @@ export namespace androidpublisher_v3 {
     deleteall(
       params: Params$Resource$Edits$Images$Deleteall,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ImagesDeleteAllResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ImagesDeleteAllResponse>,
       callback: BodyResponseCallback<Schema$ImagesDeleteAllResponse>
     ): void;
     deleteall(
@@ -10933,6 +13058,8 @@ export namespace androidpublisher_v3 {
      *
      *   // Do the magic
      *   const res = await androidpublisher.edits.images.upload({
+     *     // Optional. Whether the image was generated by AI. Attested by the developer.
+     *     aiGeneratedState: 'placeholder-value',
      *     // Identifier of the edit.
      *     editId: 'placeholder-value',
      *     // Type of the Image.
@@ -10986,8 +13113,7 @@ export namespace androidpublisher_v3 {
     upload(
       params: Params$Resource$Edits$Images$Upload,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ImagesUploadResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ImagesUploadResponse>,
       callback: BodyResponseCallback<Schema$ImagesUploadResponse>
     ): void;
     upload(
@@ -11120,6 +13246,10 @@ export namespace androidpublisher_v3 {
     packageName?: string;
   }
   export interface Params$Resource$Edits$Images$Upload extends StandardParameters {
+    /**
+     * Optional. Whether the image was generated by AI. Attested by the developer.
+     */
+    aiGeneratedState?: string;
     /**
      * Identifier of the edit.
      */
@@ -11528,8 +13658,7 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<Schema$Listing>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Listing>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Listing> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Listing>>
@@ -11651,8 +13780,7 @@ export namespace androidpublisher_v3 {
     list(
       params: Params$Resource$Edits$Listings$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListingsListResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListingsListResponse>,
       callback: BodyResponseCallback<Schema$ListingsListResponse>
     ): void;
     list(
@@ -11829,8 +13957,7 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<Schema$Listing>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Listing>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Listing> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Listing>>
@@ -11987,8 +14114,7 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<Schema$Listing>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Listing>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Listing> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Listing>>
@@ -12223,8 +14349,7 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<Schema$Testers>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Testers>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Testers> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Testers>>
@@ -12373,8 +14498,7 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<Schema$Testers>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Testers>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Testers> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Testers>>
@@ -12523,8 +14647,7 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<Schema$Testers>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Testers>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Testers> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Testers>>
@@ -12734,8 +14857,7 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<Schema$Track>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Track>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Track> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Track>>
@@ -12877,8 +14999,7 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<Schema$Track>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Track>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Track> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Track>>
@@ -13169,8 +15290,7 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<Schema$Track>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Track>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Track> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Track>>
@@ -13321,8 +15441,7 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<Schema$Track>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Track>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Track> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Track>>
@@ -14204,8 +16323,7 @@ export namespace androidpublisher_v3 {
     list(
       params: Params$Resource$Generatedapks$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GeneratedApksListResponse>,
+        MethodOptions | BodyResponseCallback<Schema$GeneratedApksListResponse>,
       callback: BodyResponseCallback<Schema$GeneratedApksListResponse>
     ): void;
     list(
@@ -14408,8 +16526,7 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<Schema$Grant>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Grant>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Grant> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Grant>>
@@ -14689,8 +16806,7 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<Schema$Grant>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Grant>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Grant> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Grant>>
@@ -15757,8 +17873,7 @@ export namespace androidpublisher_v3 {
     list(
       params: Params$Resource$Inappproducts$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$InappproductsListResponse>,
+        MethodOptions | BodyResponseCallback<Schema$InappproductsListResponse>,
       callback: BodyResponseCallback<Schema$InappproductsListResponse>
     ): void;
     list(
@@ -16410,8 +18525,7 @@ export namespace androidpublisher_v3 {
     uploadapk(
       params: Params$Resource$Internalappsharingartifacts$Uploadapk,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$InternalAppSharingArtifact>,
+        MethodOptions | BodyResponseCallback<Schema$InternalAppSharingArtifact>,
       callback: BodyResponseCallback<Schema$InternalAppSharingArtifact>
     ): void;
     uploadapk(
@@ -16566,8 +18680,7 @@ export namespace androidpublisher_v3 {
     uploadbundle(
       params: Params$Resource$Internalappsharingartifacts$Uploadbundle,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$InternalAppSharingArtifact>,
+        MethodOptions | BodyResponseCallback<Schema$InternalAppSharingArtifact>,
       callback: BodyResponseCallback<Schema$InternalAppSharingArtifact>
     ): void;
     uploadbundle(
@@ -20859,8 +22972,7 @@ export namespace androidpublisher_v3 {
     list(
       params: Params$Resource$Monetization$Subscriptions$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListSubscriptionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListSubscriptionsResponse>,
       callback: BodyResponseCallback<Schema$ListSubscriptionsResponse>
     ): void;
     list(
@@ -24228,8 +26340,7 @@ export namespace androidpublisher_v3 {
     batchget(
       params: Params$Resource$Orders$Batchget,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$BatchGetOrdersResponse>,
+        MethodOptions | BodyResponseCallback<Schema$BatchGetOrdersResponse>,
       callback: BodyResponseCallback<Schema$BatchGetOrdersResponse>
     ): void;
     batchget(
@@ -24402,8 +26513,7 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<Schema$Order>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Order>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Order> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Order>>
@@ -24584,6 +26694,151 @@ export namespace androidpublisher_v3 {
         return createAPIRequest<void>(parameters);
       }
     }
+
+    /**
+     * Provide refund preference and purchase usage for a chargeback request
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.orders.reviewrefund({
+     *     // Required. The order ID provided to the user when the subscription or in-app order was purchased.
+     *     orderId: 'placeholder-value',
+     *     // Required. The package name of the application for which this subscription or in-app item was purchased (for example, 'com.some.thing').
+     *     packageName: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "consumptionPercentageMilliunits": 0,
+     *       //   "consumptionUsageEvents": [],
+     *       //   "pendingRefundToken": "my_pendingRefundToken",
+     *       //   "refundPreference": "my_refundPreference",
+     *       //   "sampleContentProvided": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    reviewrefund(
+      params: Params$Resource$Orders$Reviewrefund,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    reviewrefund(
+      params?: Params$Resource$Orders$Reviewrefund,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
+    reviewrefund(
+      params: Params$Resource$Orders$Reviewrefund,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    reviewrefund(
+      params: Params$Resource$Orders$Reviewrefund,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    reviewrefund(
+      params: Params$Resource$Orders$Reviewrefund,
+      callback: BodyResponseCallback<void>
+    ): void;
+    reviewrefund(callback: BodyResponseCallback<void>): void;
+    reviewrefund(
+      paramsOrCallback?:
+        | Params$Resource$Orders$Reviewrefund
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Orders$Reviewrefund;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Orders$Reviewrefund;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/orders/{orderId}:reviewrefund'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['packageName', 'orderId'],
+        pathParams: ['orderId', 'packageName'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<void>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Orders$Batchget extends StandardParameters {
@@ -24619,6 +26874,21 @@ export namespace androidpublisher_v3 {
      * Whether to revoke the purchased item. If set to true, access to the subscription or in-app item will be terminated immediately. If the item is a recurring subscription, all future payments will also be terminated. Consumed in-app items need to be handled by developer's app. (optional).
      */
     revoke?: boolean;
+  }
+  export interface Params$Resource$Orders$Reviewrefund extends StandardParameters {
+    /**
+     * Required. The order ID provided to the user when the subscription or in-app order was purchased.
+     */
+    orderId?: string;
+    /**
+     * Required. The package name of the application for which this subscription or in-app item was purchased (for example, 'com.some.thing').
+     */
+    packageName?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$OrdersReviewRefundRequest;
   }
 
   export class Resource$Purchases {
@@ -25745,448 +28015,6 @@ export namespace androidpublisher_v3 {
         );
       }
     }
-
-    /**
-     * Deprecated: Use purchases.subscriptionsv2.get instead. Checks whether a user's subscription purchase is valid and returns its expiry time.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidpublisher.purchases.subscriptions.get({
-     *     // The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
-     *     packageName: 'placeholder-value',
-     *     // The purchased subscription ID (for example, 'monthly001').
-     *     subscriptionId: 'placeholder-value',
-     *     // The token provided to the user's device when the subscription was purchased.
-     *     token: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "acknowledgementState": 0,
-     *   //   "autoRenewing": false,
-     *   //   "autoResumeTimeMillis": "my_autoResumeTimeMillis",
-     *   //   "cancelReason": 0,
-     *   //   "cancelSurveyResult": {},
-     *   //   "countryCode": "my_countryCode",
-     *   //   "developerPayload": "my_developerPayload",
-     *   //   "emailAddress": "my_emailAddress",
-     *   //   "expiryTimeMillis": "my_expiryTimeMillis",
-     *   //   "externalAccountId": "my_externalAccountId",
-     *   //   "familyName": "my_familyName",
-     *   //   "givenName": "my_givenName",
-     *   //   "introductoryPriceInfo": {},
-     *   //   "kind": "my_kind",
-     *   //   "linkedPurchaseToken": "my_linkedPurchaseToken",
-     *   //   "obfuscatedExternalAccountId": "my_obfuscatedExternalAccountId",
-     *   //   "obfuscatedExternalProfileId": "my_obfuscatedExternalProfileId",
-     *   //   "orderId": "my_orderId",
-     *   //   "paymentState": 0,
-     *   //   "priceAmountMicros": "my_priceAmountMicros",
-     *   //   "priceChange": {},
-     *   //   "priceCurrencyCode": "my_priceCurrencyCode",
-     *   //   "profileId": "my_profileId",
-     *   //   "profileName": "my_profileName",
-     *   //   "promotionCode": "my_promotionCode",
-     *   //   "promotionType": 0,
-     *   //   "purchaseType": 0,
-     *   //   "startTimeMillis": "my_startTimeMillis",
-     *   //   "userCancellationTimeMillis": "my_userCancellationTimeMillis"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    get(
-      params: Params$Resource$Purchases$Subscriptions$Get,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    get(
-      params?: Params$Resource$Purchases$Subscriptions$Get,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$SubscriptionPurchase>>;
-    get(
-      params: Params$Resource$Purchases$Subscriptions$Get,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    get(
-      params: Params$Resource$Purchases$Subscriptions$Get,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$SubscriptionPurchase>,
-      callback: BodyResponseCallback<Schema$SubscriptionPurchase>
-    ): void;
-    get(
-      params: Params$Resource$Purchases$Subscriptions$Get,
-      callback: BodyResponseCallback<Schema$SubscriptionPurchase>
-    ): void;
-    get(callback: BodyResponseCallback<Schema$SubscriptionPurchase>): void;
-    get(
-      paramsOrCallback?:
-        | Params$Resource$Purchases$Subscriptions$Get
-        | BodyResponseCallback<Schema$SubscriptionPurchase>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$SubscriptionPurchase>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$SubscriptionPurchase>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$SubscriptionPurchase>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Purchases$Subscriptions$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Purchases$Subscriptions$Get;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://androidpublisher.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/androidpublisher/v3/applications/{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['packageName', 'subscriptionId', 'token'],
-        pathParams: ['packageName', 'subscriptionId', 'token'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$SubscriptionPurchase>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$SubscriptionPurchase>(parameters);
-      }
-    }
-
-    /**
-     * Deprecated: Use orders.refund instead. Refunds a user's subscription purchase, but the subscription remains valid until its expiration time and it will continue to recur.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidpublisher.purchases.subscriptions.refund({
-     *     // The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
-     *     packageName: 'placeholder-value',
-     *     // "The purchased subscription ID (for example, 'monthly001').
-     *     subscriptionId: 'placeholder-value',
-     *     // The token provided to the user's device when the subscription was purchased.
-     *     token: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    refund(
-      params: Params$Resource$Purchases$Subscriptions$Refund,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    refund(
-      params?: Params$Resource$Purchases$Subscriptions$Refund,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<void>>;
-    refund(
-      params: Params$Resource$Purchases$Subscriptions$Refund,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    refund(
-      params: Params$Resource$Purchases$Subscriptions$Refund,
-      options: MethodOptions | BodyResponseCallback<void>,
-      callback: BodyResponseCallback<void>
-    ): void;
-    refund(
-      params: Params$Resource$Purchases$Subscriptions$Refund,
-      callback: BodyResponseCallback<void>
-    ): void;
-    refund(callback: BodyResponseCallback<void>): void;
-    refund(
-      paramsOrCallback?:
-        | Params$Resource$Purchases$Subscriptions$Refund
-        | BodyResponseCallback<void>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<void>
-        | BodyResponseCallback<Readable>,
-      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<void>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Purchases$Subscriptions$Refund;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Purchases$Subscriptions$Refund;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://androidpublisher.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/androidpublisher/v3/applications/{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}:refund'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['packageName', 'subscriptionId', 'token'],
-        pathParams: ['packageName', 'subscriptionId', 'token'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<void>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<void>(parameters);
-      }
-    }
-
-    /**
-     * Deprecated: Use purchases.subscriptionsv2.revoke instead. Refunds and immediately revokes a user's subscription purchase. Access to the subscription will be terminated immediately and it will stop recurring.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidpublisher.purchases.subscriptions.revoke({
-     *     // The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
-     *     packageName: 'placeholder-value',
-     *     // The purchased subscription ID (for example, 'monthly001').
-     *     subscriptionId: 'placeholder-value',
-     *     // The token provided to the user's device when the subscription was purchased.
-     *     token: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    revoke(
-      params: Params$Resource$Purchases$Subscriptions$Revoke,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    revoke(
-      params?: Params$Resource$Purchases$Subscriptions$Revoke,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<void>>;
-    revoke(
-      params: Params$Resource$Purchases$Subscriptions$Revoke,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    revoke(
-      params: Params$Resource$Purchases$Subscriptions$Revoke,
-      options: MethodOptions | BodyResponseCallback<void>,
-      callback: BodyResponseCallback<void>
-    ): void;
-    revoke(
-      params: Params$Resource$Purchases$Subscriptions$Revoke,
-      callback: BodyResponseCallback<void>
-    ): void;
-    revoke(callback: BodyResponseCallback<void>): void;
-    revoke(
-      paramsOrCallback?:
-        | Params$Resource$Purchases$Subscriptions$Revoke
-        | BodyResponseCallback<void>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<void>
-        | BodyResponseCallback<Readable>,
-      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<void>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Purchases$Subscriptions$Revoke;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Purchases$Subscriptions$Revoke;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://androidpublisher.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/androidpublisher/v3/applications/{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}:revoke'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['packageName', 'subscriptionId', 'token'],
-        pathParams: ['packageName', 'subscriptionId', 'token'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<void>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<void>(parameters);
-      }
-    }
   }
 
   export interface Params$Resource$Purchases$Subscriptions$Acknowledge extends StandardParameters {
@@ -26240,48 +28068,6 @@ export namespace androidpublisher_v3 {
      * Request body metadata
      */
     requestBody?: Schema$SubscriptionPurchasesDeferRequest;
-  }
-  export interface Params$Resource$Purchases$Subscriptions$Get extends StandardParameters {
-    /**
-     * The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
-     */
-    packageName?: string;
-    /**
-     * The purchased subscription ID (for example, 'monthly001').
-     */
-    subscriptionId?: string;
-    /**
-     * The token provided to the user's device when the subscription was purchased.
-     */
-    token?: string;
-  }
-  export interface Params$Resource$Purchases$Subscriptions$Refund extends StandardParameters {
-    /**
-     * The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
-     */
-    packageName?: string;
-    /**
-     * "The purchased subscription ID (for example, 'monthly001').
-     */
-    subscriptionId?: string;
-    /**
-     * The token provided to the user's device when the subscription was purchased.
-     */
-    token?: string;
-  }
-  export interface Params$Resource$Purchases$Subscriptions$Revoke extends StandardParameters {
-    /**
-     * The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
-     */
-    packageName?: string;
-    /**
-     * The purchased subscription ID (for example, 'monthly001').
-     */
-    subscriptionId?: string;
-    /**
-     * The token provided to the user's device when the subscription was purchased.
-     */
-    token?: string;
   }
 
   export class Resource$Purchases$Subscriptionsv2 {
@@ -26650,7 +28436,6 @@ export namespace androidpublisher_v3 {
      *   //   "externalAccountIdentifiers": {},
      *   //   "inGracePeriodStateContext": {},
      *   //   "kind": "my_kind",
-     *   //   "latestOrderId": "my_latestOrderId",
      *   //   "lineItems": [],
      *   //   "linkedPurchaseToken": "my_linkedPurchaseToken",
      *   //   "onHoldStateContext": {},
@@ -26692,8 +28477,7 @@ export namespace androidpublisher_v3 {
     get(
       params: Params$Resource$Purchases$Subscriptionsv2$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$SubscriptionPurchaseV2>,
+        MethodOptions | BodyResponseCallback<Schema$SubscriptionPurchaseV2>,
       callback: BodyResponseCallback<Schema$SubscriptionPurchaseV2>
     ): void;
     get(
@@ -27275,8 +29059,7 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<Schema$Review>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Review>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Review> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Review>>
@@ -27551,8 +29334,7 @@ export namespace androidpublisher_v3 {
     reply(
       params: Params$Resource$Reviews$Reply,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ReviewsReplyResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ReviewsReplyResponse>,
       callback: BodyResponseCallback<Schema$ReviewsReplyResponse>
     ): void;
     reply(
@@ -27790,8 +29572,7 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<Schema$Variant>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Variant>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Variant> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Variant>>
@@ -28069,8 +29850,7 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<Schema$Variant>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Variant>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Variant> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Variant>>
@@ -28191,8 +29971,7 @@ export namespace androidpublisher_v3 {
     list(
       params: Params$Resource$Systemapks$Variants$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$SystemApksListResponse>,
+        MethodOptions | BodyResponseCallback<Schema$SystemApksListResponse>,
       callback: BodyResponseCallback<Schema$SystemApksListResponse>
     ): void;
     list(
@@ -28430,8 +30209,7 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<Schema$User>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$User>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$User> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$User>>
@@ -28861,8 +30639,7 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<Schema$User>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$User>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$User> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$User>>

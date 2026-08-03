@@ -183,6 +183,173 @@
             }
           },
           "resources": {
+            "agentGateways": {
+              "methods": {
+                "create": {
+                  "description": "Creates a new AgentGateway in a given project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/agentGateways",
+                  "httpMethod": "POST",
+                  "id": "networkservices.projects.locations.agentGateways.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "agentGatewayId": {
+                      "description": "Required. Short name of the AgentGateway resource to be created.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent resource of the AgentGateway. Must be in the format `projects/*/locations/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/agentGateways",
+                  "request": {
+                    "$ref": "AgentGateway"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a single AgentGateway.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/agentGateways/{agentGatewaysId}",
+                  "httpMethod": "DELETE",
+                  "id": "networkservices.projects.locations.agentGateways.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "etag": {
+                      "description": "Optional. The etag of the AgentGateway to delete.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "Required. A name of the AgentGateway to delete. Must be in the format `projects/*/locations/*/agentGateways/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/agentGateways/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets details of a single AgentGateway.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/agentGateways/{agentGatewaysId}",
+                  "httpMethod": "GET",
+                  "id": "networkservices.projects.locations.agentGateways.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. A name of the AgentGateway to get. Must be in the format `projects/*/locations/*/agentGateways/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/agentGateways/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "AgentGateway"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists AgentGateways in a given project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/agentGateways",
+                  "httpMethod": "GET",
+                  "id": "networkservices.projects.locations.agentGateways.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "Optional. Maximum number of AgentGateways to return per call.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. The value returned by the last `ListAgentGatewaysResponse` Indicates that this is a continuation of a prior `ListAgentGateways` call, and that the system should return the next page of data.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The project and location from which the AgentGateways should be listed, specified in the format `projects/*/locations/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "returnPartialSuccess": {
+                      "description": "Optional. If true, allow partial responses for multi-regional Aggregated List requests. Otherwise if one of the locations is down or unreachable, the Aggregated List request will fail.",
+                      "location": "query",
+                      "type": "boolean"
+                    }
+                  },
+                  "path": "v1/{+parent}/agentGateways",
+                  "response": {
+                    "$ref": "ListAgentGatewaysResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates the parameters of a single AgentGateway.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/agentGateways/{agentGatewaysId}",
+                  "httpMethod": "PATCH",
+                  "id": "networkservices.projects.locations.agentGateways.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Identifier. Name of the AgentGateway resource. It matches pattern `projects/*/locations/*/agentGateways/`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/agentGateways/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. Field mask is used to specify the fields to be overwritten in the AgentGateway resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "AgentGateway"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
             "authzExtensions": {
               "methods": {
                 "create": {
@@ -2133,6 +2300,370 @@
                 }
               }
             },
+            "multicastConsumerAssociations": {
+              "methods": {
+                "create": {
+                  "description": "Creates a new multicast consumer association in a given project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/multicastConsumerAssociations",
+                  "httpMethod": "POST",
+                  "id": "networkservices.projects.locations.multicastConsumerAssociations.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "multicastConsumerAssociationId": {
+                      "description": "Required. A unique name for the multicast consumer association. The name is restricted to lower-case letters, numbers, and hyphen, with the first character a lower-case letter, and the last a letter or a number. The name must not exceed 48 characters.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent resource of the multicast consumer association. Use the following format: `projects/*/locations/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/multicastConsumerAssociations",
+                  "request": {
+                    "$ref": "MulticastConsumerAssociation"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a single multicast consumer association.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/multicastConsumerAssociations/{multicastConsumerAssociationsId}",
+                  "httpMethod": "DELETE",
+                  "id": "networkservices.projects.locations.multicastConsumerAssociations.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The resource name of the multicast consumer association to delete. Use the following format: `projects/*/locations/*/multicastConsumerAssociations/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/multicastConsumerAssociations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets details of a single multicast consumer association.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/multicastConsumerAssociations/{multicastConsumerAssociationsId}",
+                  "httpMethod": "GET",
+                  "id": "networkservices.projects.locations.multicastConsumerAssociations.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The resource name of the multicast consumer association to get. Use the following format: `projects/*/locations/*/multicastConsumerAssociations/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/multicastConsumerAssociations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "MulticastConsumerAssociation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists multicast consumer associations in a given project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/multicastConsumerAssociations",
+                  "httpMethod": "GET",
+                  "id": "networkservices.projects.locations.multicastConsumerAssociations.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. A filter expression that filters the resources listed in the response. The expression must be of the form ` ` where operators: `<`, `>`, `<=`, `>=`, `!=`, `=`, `:` are supported (colon `:` represents a HAS operator which is roughly synonymous with equality). can refer to a proto or JSON field, or a synthetic field. Field names can be camelCase or snake_case. Examples: * Filter by name: name = \"RESOURCE_NAME\" * Filter by labels: * Resources that have a key named `foo` labels.foo:* * Resources that have a key named `foo` whose value is `bar` labels.foo = bar",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Optional. A field used to sort the results by a certain order.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. The maximum number of multicast consumer associations to return per call.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A page token from an earlier query, as returned in `next_page_token`.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent resource for which to list multicast consumer associations. Use the following format: `projects/*/locations/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/multicastConsumerAssociations",
+                  "response": {
+                    "$ref": "ListMulticastConsumerAssociationsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates the parameters of a single multicast consumer association.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/multicastConsumerAssociations/{multicastConsumerAssociationsId}",
+                  "httpMethod": "PATCH",
+                  "id": "networkservices.projects.locations.multicastConsumerAssociations.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Identifier. The resource name of the multicast consumer association. Use the following format: `projects/*/locations/*/multicastConsumerAssociations/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/multicastConsumerAssociations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. Field mask is used to specify the fields to be overwritten in the MulticastConsumerAssociation resource by the update. The fields specified in the `update_mask` are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all mutable fields present in the request will be overwritten.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "MulticastConsumerAssociation"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
+            "multicastGroupConsumerActivations": {
+              "methods": {
+                "create": {
+                  "description": "Creates a new multicast group consumer activation in a given project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/multicastGroupConsumerActivations",
+                  "httpMethod": "POST",
+                  "id": "networkservices.projects.locations.multicastGroupConsumerActivations.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "multicastGroupConsumerActivationId": {
+                      "description": "Required. A unique name for the multicast group consumer activation. The name is restricted to lower-case letters, numbers, and hyphen, with the first character a lower-case letter, and the last a letter or a number. The name must not exceed 48 characters.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent resource of the multicast group consumer activation. Use the following format: `projects/*/locations/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/multicastGroupConsumerActivations",
+                  "request": {
+                    "$ref": "MulticastGroupConsumerActivation"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a single multicast group consumer activation.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/multicastGroupConsumerActivations/{multicastGroupConsumerActivationsId}",
+                  "httpMethod": "DELETE",
+                  "id": "networkservices.projects.locations.multicastGroupConsumerActivations.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The resource name of the multicast group consumer activation to delete. Use the following format: `projects/*/locations/*/multicastGroupConsumerActivations/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/multicastGroupConsumerActivations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets details of a single multicast group consumer activation.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/multicastGroupConsumerActivations/{multicastGroupConsumerActivationsId}",
+                  "httpMethod": "GET",
+                  "id": "networkservices.projects.locations.multicastGroupConsumerActivations.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The resource name of the multicast group consumer activation to get. Use the following format: `projects/*/locations/*/multicastGroupConsumerActivations/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/multicastGroupConsumerActivations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "MulticastGroupConsumerActivation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists multicast group consumer activations in a given project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/multicastGroupConsumerActivations",
+                  "httpMethod": "GET",
+                  "id": "networkservices.projects.locations.multicastGroupConsumerActivations.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. A filter expression that filters the resources listed in the response. The expression must be of the form ` ` where operators: `<`, `>`, `<=`, `>=`, `!=`, `=`, `:` are supported (colon `:` represents a HAS operator which is roughly synonymous with equality). can refer to a proto or JSON field, or a synthetic field. Field names can be camelCase or snake_case. Examples: * Filter by name: name = \"RESOURCE_NAME\" * Filter by labels: * Resources that have a key named `foo` labels.foo:* * Resources that have a key named `foo` whose value is `bar` labels.foo = bar",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Optional. A field used to sort the results by a certain order.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. The maximum number of multicast group consumer activations to return per call.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A page token from an earlier query, as returned in `next_page_token`.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent resource for which to list multicast group consumer activations. Use the following format: `projects/*/locations/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/multicastGroupConsumerActivations",
+                  "response": {
+                    "$ref": "ListMulticastGroupConsumerActivationsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates the parameters of a single multicast group consumer activation.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/multicastGroupConsumerActivations/{multicastGroupConsumerActivationsId}",
+                  "httpMethod": "PATCH",
+                  "id": "networkservices.projects.locations.multicastGroupConsumerActivations.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Identifier. The resource name of the multicast group consumer activation. Use the following format: `projects/*/locations/*/multicastGroupConsumerActivations/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/multicastGroupConsumerActivations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. Field mask is used to specify the fields to be overwritten in the MulticastGroupConsumerActivation resource by the update. The fields specified in the `update_mask` are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all mutable fields present in the request will be overwritten.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "MulticastGroupConsumerActivation"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
             "operations": {
               "methods": {
                 "cancel": {
@@ -3201,9 +3732,199 @@
       }
     }
   },
-  "revision": "20260424",
+  "revision": "20260710",
   "rootUrl": "https://networkservices.googleapis.com/",
   "schemas": {
+    "AgentGateway": {
+      "description": "AgentGateway represents the agent gateway resource.",
+      "id": "AgentGateway",
+      "properties": {
+        "agentGatewayCard": {
+          "$ref": "AgentGatewayAgentGatewayOutputCard",
+          "description": "Output only. Field for populated AgentGateway card.",
+          "readOnly": true
+        },
+        "createTime": {
+          "description": "Output only. The timestamp when the resource was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. A free-text description of the resource. Max length 1024 characters.",
+          "type": "string"
+        },
+        "etag": {
+          "description": "Optional. Etag of the resource. If this is provided, it must match the server's etag. If the provided etag does not match the server's etag, the request will fail with a 409 ABORTED error.",
+          "type": "string"
+        },
+        "googleManaged": {
+          "$ref": "AgentGatewayGoogleManaged",
+          "description": "Optional. Proxy is orchestrated and managed by GoogleCloud in a tenant project."
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Set of label tags associated with the AgentGateway resource.",
+          "type": "object"
+        },
+        "name": {
+          "description": "Identifier. Name of the AgentGateway resource. It matches pattern `projects/*/locations/*/agentGateways/`.",
+          "type": "string"
+        },
+        "networkConfig": {
+          "$ref": "AgentGatewayNetworkConfig",
+          "description": "Optional. Network configuration for the AgentGateway."
+        },
+        "protocols": {
+          "deprecated": true,
+          "description": "Optional. Deprecated.",
+          "items": {
+            "enum": [
+              "PROTOCOL_UNSPECIFIED",
+              "MCP"
+            ],
+            "enumDescriptions": [
+              "Unspecified protocol.",
+              "Message Control Plane protocol."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "registries": {
+          "description": "Optional. A list of Agent registries containing the agents, MCP servers and tools governed by the Agent Gateway. Note: Currently limited to project-scoped registries Must be of format `//agentregistry.googleapis.com/projects/{project}/locations/{location}/`",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "selfManaged": {
+          "$ref": "AgentGatewaySelfManaged",
+          "description": "Optional. Attach to existing Application Load Balancers or Secure Web Proxies."
+        },
+        "updateTime": {
+          "description": "Output only. The timestamp when the resource was updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AgentGatewayAgentGatewayOutputCard": {
+      "description": "AgentGatewayOutputCard contains informational output-only fields",
+      "id": "AgentGatewayAgentGatewayOutputCard",
+      "properties": {
+        "mtlsEndpoint": {
+          "description": "Output only. mTLS Endpoint associated with this AgentGateway",
+          "readOnly": true,
+          "type": "string"
+        },
+        "rootCertificates": {
+          "description": "Output only. Root Certificates for Agents to validate this AgentGateway",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "serviceExtensionsServiceAccount": {
+          "description": "Output only. Service Account used by Service Extensions to operate.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AgentGatewayGoogleManaged": {
+      "description": "Configuration for Google Managed deployment mode. Proxy is orchestrated and managed by GoogleCloud in a tenant project.",
+      "id": "AgentGatewayGoogleManaged",
+      "properties": {
+        "governedAccessPath": {
+          "description": "Optional. Operating Mode of Agent Gateway.",
+          "enum": [
+            "GOVERNED_ACCESS_PATH_UNSPECIFIED",
+            "AGENT_TO_ANYWHERE",
+            "CLIENT_TO_AGENT"
+          ],
+          "enumDescriptions": [
+            "Governed access path is not specified.",
+            "Govern agent conections to destinations.",
+            "Protect connection to Agent or Tool."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AgentGatewayNetworkConfig": {
+      "description": "NetworkConfig contains network configurations for the AgentGateway.",
+      "id": "AgentGatewayNetworkConfig",
+      "properties": {
+        "dnsPeeringConfig": {
+          "$ref": "AgentGatewayNetworkConfigDnsPeeringConfig",
+          "description": "Optional. Optional DNS peering configuration for connectivity to your private VPC network."
+        },
+        "egress": {
+          "$ref": "AgentGatewayNetworkConfigEgress",
+          "description": "Optional. Optional PSC-Interface network attachment for connectivity to your private VPCs network."
+        }
+      },
+      "type": "object"
+    },
+    "AgentGatewayNetworkConfigDnsPeeringConfig": {
+      "description": "DNS peering config for the user VPC network.",
+      "id": "AgentGatewayNetworkConfigDnsPeeringConfig",
+      "properties": {
+        "domains": {
+          "description": "Required. Domain names for which DNS queries should be forwarded to the target network.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "targetNetwork": {
+          "description": "Required. Target network in 'target project' to which DNS queries should be forwarded to. Must be in format of `projects/{project}/global/networks/{network}`.",
+          "type": "string"
+        },
+        "targetProject": {
+          "description": "Required. Target project ID to which DNS queries should be forwarded to. This can be the same project that contains the AgentGateway or a different project.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AgentGatewayNetworkConfigEgress": {
+      "description": "Configuration for Egress",
+      "id": "AgentGatewayNetworkConfigEgress",
+      "properties": {
+        "networkAttachment": {
+          "description": "Optional. The URI of the Network Attachment resource.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AgentGatewaySelfManaged": {
+      "description": "Configuration for Self Managed deployment mode. Attach to existing Application Load Balancers or Secure Web Proxies.",
+      "id": "AgentGatewaySelfManaged",
+      "properties": {
+        "resourceUri": {
+          "description": "Optional. A supported Google Cloud networking proxy in the Project and Location",
+          "type": "string"
+        },
+        "resourceUris": {
+          "description": "Optional. List of supported Google Cloud networking proxies in the Project and Location. resource_uris is mutually exclusive with resource_uri.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "AuditConfig": {
       "description": "Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { \"audit_configs\": [ { \"service\": \"allServices\", \"audit_log_configs\": [ { \"log_type\": \"DATA_READ\", \"exempted_members\": [ \"user:jose@example.com\" ] }, { \"log_type\": \"DATA_WRITE\" }, { \"log_type\": \"ADMIN_READ\" } ] }, { \"service\": \"sampleservice.googleapis.com\", \"audit_log_configs\": [ { \"log_type\": \"DATA_READ\" }, { \"log_type\": \"DATA_WRITE\", \"exempted_members\": [ \"user:aliya@example.com\" ] } ] } ] } For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts `jose@example.com` from DATA_READ logging, and `aliya@example.com` from DATA_WRITE logging.",
       "id": "AuditConfig",
@@ -3257,7 +3978,7 @@
       "id": "AuthzExtension",
       "properties": {
         "authority": {
-          "description": "Optional. The `:authority` header in the gRPC request sent from Envoy to the extension service. It is required when the `service` field points to a backend service or a wasm plugin.",
+          "description": "Optional. The `:authority` header in the gRPC request sent from Envoy to the extension service. It is required when the `service` field points to a backend service.",
           "type": "string"
         },
         "createTime": {
@@ -3296,7 +4017,7 @@
           "type": "object"
         },
         "loadBalancingScheme": {
-          "description": "Optional. All backend services and forwarding rules referenced by this extension must share the same load balancing scheme. Supported values: `INTERNAL_MANAGED`, `EXTERNAL_MANAGED`. Can be omitted for AuthzExtensions that do not reference a backend service. For more information, refer to [Backend services overview](https://cloud.google.com/load-balancing/docs/backend-service).",
+          "description": "Optional. All backend services and forwarding rules referenced by this extension must share the same load balancing scheme. The supported values are `INTERNAL_MANAGED` and `EXTERNAL_MANAGED`. You can omit this field for `AuthzExtensions` resources that don't reference a backend service. For more information, see [Backend services overview](https://cloud.google.com/load-balancing/docs/backend-service).",
           "enum": [
             "LOAD_BALANCING_SCHEME_UNSPECIFIED",
             "INTERNAL_MANAGED",
@@ -3322,7 +4043,7 @@
           "type": "string"
         },
         "service": {
-          "description": "Required. The reference to the service that runs the extension. To configure a callout extension, `service` must be a fully-qualified reference to a [backend service](https://cloud.google.com/compute/docs/reference/rest/v1/backendServices) in the format: `https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/backendServices/{backendService}` or `https://www.googleapis.com/compute/v1/projects/{project}/global/backendServices/{backendService}`.",
+          "description": "Required. The reference to the service that runs the extension. To configure a callout extension: For global AuthzExtension, `service` must be a fully-qualified reference to a [backend service](https://cloud.google.com/compute/docs/reference/rest/v1/backendServices) in the format: `https://www.googleapis.com/compute/v1/projects/{project}/global/backendServices/{backendService}`. For regional AuthzExtension, `service` must be a fully-qualified reference to one of the following: * a [backend service](https://cloud.google.com/compute/docs/reference/rest/v1/backendServices) in the format: `https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/backendServices/{backendService}`. * a fully qualified domain name that can be resolved by the Google Cloud DNS. * `iap.googleapis.com` and it can only be referenced by an AuthzPolicy with the policyProfile set to REQUEST_AUTHZ. * `modelarmor..rep.googleapis.com` and it can only be referenced by an AuthzPolicy with the policyProfile set to CONTENT_AUTHZ.",
           "type": "string"
         },
         "timeout": {
@@ -3450,7 +4171,8 @@
           "type": "string"
         },
         "clientTlsPolicy": {
-          "description": "Optional. A URL referring to a ClientTlsPolicy resource. ClientTlsPolicy can be set to specify the authentication for traffic from the proxy to the actual endpoints. More specifically, it is applied to the outgoing traffic from the proxy to the endpoint. This is typically used for sidecar model where the proxy identifies itself as endpoint to the control plane, with the connection between sidecar and endpoint requiring authentication. If this field is not set, authentication is disabled(open). Applicable only when EndpointPolicyType is SIDECAR_PROXY.",
+          "deprecated": true,
+          "description": "Optional. Deprecated: This field is not used and is a no-op. A URL referring to a ClientTlsPolicy resource. ClientTlsPolicy can be set to specify the authentication for traffic from the proxy to the actual endpoints. More specifically, it is applied to the outgoing traffic from the proxy to the endpoint. This is typically used for sidecar model where the proxy identifies itself as endpoint to the control plane, with the connection between sidecar and endpoint requiring authentication. If this field is not set, authentication is disabled(open). Applicable only when EndpointPolicyType is SIDECAR_PROXY.",
           "type": "string"
         },
         "createTime": {
@@ -4907,6 +5629,31 @@
       },
       "type": "object"
     },
+    "ListAgentGatewaysResponse": {
+      "description": "Response returned by the ListAgentGateways method.",
+      "id": "ListAgentGatewaysResponse",
+      "properties": {
+        "agentGateways": {
+          "description": "List of AgentGateway resources.",
+          "items": {
+            "$ref": "AgentGateway"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "If there might be more results than those appearing in this response, then `next_page_token` is included. To get the next set of results, call this method again using the value of `next_page_token` as `page_token`.",
+          "type": "string"
+        },
+        "unreachable": {
+          "description": "Unreachable resources. Populated when the request attempts to list all resources across all supported locations, while some locations are temporarily unavailable.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ListAuthzExtensionsResponse": {
       "description": "Message for response to listing `AuthzExtension` resources.",
       "id": "ListAuthzExtensionsResponse",
@@ -5192,6 +5939,56 @@
         },
         "unreachable": {
           "description": "Unreachable resources. Populated when the request opts into `return_partial_success` and reading across collections e.g. when attempting to list all resources across all supported locations.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListMulticastConsumerAssociationsResponse": {
+      "description": "Response message for ListMulticastConsumerAssociations.",
+      "id": "ListMulticastConsumerAssociationsResponse",
+      "properties": {
+        "multicastConsumerAssociations": {
+          "description": "The list of multicast consumer associations.",
+          "items": {
+            "$ref": "MulticastConsumerAssociation"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A page token from an earlier query, as returned in `next_page_token`.",
+          "type": "string"
+        },
+        "unreachable": {
+          "description": "Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListMulticastGroupConsumerActivationsResponse": {
+      "description": "Response message for ListMulticastGroupConsumerActivations.",
+      "id": "ListMulticastGroupConsumerActivationsResponse",
+      "properties": {
+        "multicastGroupConsumerActivations": {
+          "description": "The list of multicast group consumer activations.",
+          "items": {
+            "$ref": "MulticastGroupConsumerActivation"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A page token from an earlier query, as returned in `next_page_token`.",
+          "type": "string"
+        },
+        "unreachable": {
+          "description": "Locations that could not be reached.",
           "items": {
             "type": "string"
           },
@@ -5530,6 +6327,200 @@
         "routeType": {
           "description": "Output only. Type of the route: HttpRoute,GrpcRoute,TcpRoute, or TlsRoute",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MulticastConsumerAssociation": {
+      "description": "Multicast consumer association resource.",
+      "id": "MulticastConsumerAssociation",
+      "properties": {
+        "createTime": {
+          "description": "Output only. [Output only] The timestamp when the multicast consumer association was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. An optional text description of the multicast consumer association.",
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Labels as key-value pairs",
+          "type": "object"
+        },
+        "multicastDomainActivation": {
+          "description": "Optional. The resource name of the multicast domain activation that is in the same zone as this multicast consumer association. Use the following format: `projects/*/locations/*/multicastDomainActivations/*`.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. The resource name of the multicast consumer association. Use the following format: `projects/*/locations/*/multicastConsumerAssociations/*`.",
+          "type": "string"
+        },
+        "network": {
+          "description": "Required. The resource name of the multicast consumer VPC network. Use following format: `projects/{project}/locations/global/networks/{network}`.",
+          "type": "string"
+        },
+        "placementPolicy": {
+          "description": "Output only. [Output only] A Compute Engine (placement policy)[https://cloud.google.com/compute/docs/instances/placement-policies-overview] that can be used to place virtual machine (VM) instances as multicast consumers close to the multicast infrastructure created for this domain, on a best effort basis.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "resourceState": {
+          "deprecated": true,
+          "description": "Output only. [Deprecated] The resource state of the multicast consumer association. Use the state field instead.",
+          "enum": [
+            "CONSUMER_RESOURCE_STATE_UNSPECIFIED",
+            "ACTIVE",
+            "OBSOLETE"
+          ],
+          "enumDescriptions": [
+            "The consumer resource state is not specified.",
+            "The consumer resource state is active.",
+            "The associated admin resource has been deleted. The consumer resource state becomes obsolete."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "$ref": "MulticastResourceState",
+          "description": "Output only. [Output only] The state of the resource.",
+          "readOnly": true
+        },
+        "uniqueId": {
+          "description": "Output only. [Output only] The Google-generated UUID for the resource. This value is unique across all multicast consumer association resources. If a consumer association is deleted and another with the same name is created, the new consumer association is assigned a different unique_id.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. [Output only] The timestamp when the Multicast Consumer Association was most recently updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MulticastGroupConsumerActivation": {
+      "description": "Multicast group consumer activation resource.",
+      "id": "MulticastGroupConsumerActivation",
+      "properties": {
+        "createTime": {
+          "description": "Output only. [Output only] The timestamp when the multicast group consumer activation was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. An optional text description of the multicast group consumer activation.",
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Labels as key-value pairs",
+          "type": "object"
+        },
+        "logConfig": {
+          "$ref": "MulticastLogConfig",
+          "description": "Optional. Specifies the logging options for the activities performed related to the multicast group consumer activation. Defaults to false. If logging is enabled, logs are exported to Cloud Logging."
+        },
+        "multicastConsumerAssociation": {
+          "description": "Required. The resource name of the multicast consumer association that is in the same zone as this multicast group consumer activation. Use the following format: `projects/*/locations/*/multicastConsumerAssociations/*`.",
+          "type": "string"
+        },
+        "multicastGroup": {
+          "deprecated": true,
+          "description": "Optional. The resource name of the multicast group created by the admin in the same zone as this multicast group consumer activation. Use the following format: // `projects/*/locations/*/multicastGroups/*`. This field is deprecated. Use multicast_group_range_activation instead.",
+          "type": "string"
+        },
+        "multicastGroupRangeActivation": {
+          "description": "Required. The resource name of the multicast group range activation created by the admin in the same zone as this multicast group consumer activation. Use the following format: // `projects/*/locations/*/multicastGroupRangeActivations/*`.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. The resource name of the multicast group consumer activation. Use the following format: `projects/*/locations/*/multicastGroupConsumerActivations/*`.",
+          "type": "string"
+        },
+        "resourceState": {
+          "deprecated": true,
+          "description": "Output only. [Deprecated] The resource state of the multicast group consumer activation. Use the state field instead.",
+          "enum": [
+            "CONSUMER_RESOURCE_STATE_UNSPECIFIED",
+            "ACTIVE",
+            "OBSOLETE"
+          ],
+          "enumDescriptions": [
+            "The consumer resource state is not specified.",
+            "The consumer resource state is active.",
+            "The associated admin resource has been deleted. The consumer resource state becomes obsolete."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "$ref": "MulticastResourceState",
+          "description": "Output only. [Output only] The state of the resource.",
+          "readOnly": true
+        },
+        "uniqueId": {
+          "description": "Output only. [Output only] The Google-generated UUID for the resource. This value is unique across all multicast group consumer activation resources. If a group consumer activation is deleted and another with the same name is created, the new group consumer activation is assigned a different unique_id.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. [Output only] The timestamp when the multicast group consumer activation was most recently updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MulticastLogConfig": {
+      "description": "The logging configuration.",
+      "id": "MulticastLogConfig",
+      "properties": {
+        "enabled": {
+          "description": "Optional. Whether to enable logging or not.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "MulticastResourceState": {
+      "description": "The multicast resource's state.",
+      "id": "MulticastResourceState",
+      "properties": {
+        "state": {
+          "description": "Optional. The state of the multicast resource.",
+          "enum": [
+            "STATE_ENUM_UNSPECIFIED",
+            "CREATING",
+            "ACTIVE",
+            "DELETING",
+            "DELETE_FAILED",
+            "UPDATING",
+            "UPDATE_FAILED",
+            "INACTIVE",
+            "OBSOLETE"
+          ],
+          "enumDescriptions": [
+            "The resource is in unspecified state.",
+            "The resource is being created.",
+            "The resource is in a normal state and ready to use.",
+            "The resource is being deleted.",
+            "The resource is failed to be deleted.",
+            "The resource is being updated.",
+            "The resource is failed to be updated.",
+            "The multicast consumer resource that is deactivated by the multicast administrator based on permission.",
+            "The multicast consumer resource that is obsoleted due to multicast admin setup teardown."
+          ],
           "type": "string"
         }
       },
