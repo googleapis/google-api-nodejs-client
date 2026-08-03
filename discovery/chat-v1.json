@@ -679,7 +679,7 @@
           ]
         },
         "search": {
-          "description": "Returns a list of spaces in a Google Workspace organization. For an example, see [Search for and manage spaces](https://developers.google.com/workspace/chat/search-manage-admin). When `use_admin_access` is set to `false`, the results are limited to spaces where the calling user is a joined member. To search with administrator privileges, set `use_admin_access` to `true`. Setting `use_admin_access` to `false` is available under Developer Preview. Supports the following types of [authentication](https://developers.google.com/workspace/chat/authenticate-authorize): - [User authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user) with one of the following authorization scopes: - `https://www.googleapis.com/auth/chat.spaces.readonly` - `https://www.googleapis.com/auth/chat.spaces` - [User authentication with administrator privileges](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user#admin-privileges) and one of the following [authorization scopes](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes): - `https://www.googleapis.com/auth/chat.admin.spaces.readonly` - `https://www.googleapis.com/auth/chat.admin.spaces`",
+          "description": "Returns a list of spaces in a Google Workspace organization. For an example, see [Search for and manage spaces](https://developers.google.com/workspace/chat/search-manage-admin). When `use_admin_access` is set to `false`, the results are limited to spaces where the calling user is a joined member. To search with administrator privileges, set `use_admin_access` to `true`. Supports the following types of [authentication](https://developers.google.com/workspace/chat/authenticate-authorize): - [User authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user) with one of the following authorization scopes: - `https://www.googleapis.com/auth/chat.spaces.readonly` - `https://www.googleapis.com/auth/chat.spaces` - [User authentication with administrator privileges](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user#admin-privileges) and one of the following [authorization scopes](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes): - `https://www.googleapis.com/auth/chat.admin.spaces.readonly` - `https://www.googleapis.com/auth/chat.admin.spaces`",
           "flatPath": "v1/spaces:search",
           "httpMethod": "GET",
           "id": "chat.spaces.search",
@@ -707,7 +707,7 @@
               "type": "string"
             },
             "useAdminAccess": {
-              "description": "When `true`, the method runs using the user's Google Workspace administrator privileges. The calling user must be a Google Workspace administrator with the [manage chat and spaces conversations privilege](https://support.google.com/a/answer/13369245). Requires either the `chat.admin.spaces.readonly` or `chat.admin.spaces` [OAuth 2.0 scope](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes). Setting `use_admin_access` to `false` is available under Developer Preview. [Developer Preview](https://developers.google.com/workspace/preview).",
+              "description": "When `true`, the method runs using the user's Google Workspace administrator privileges. The calling user must be a Google Workspace administrator with the [manage chat and spaces conversations privilege](https://support.google.com/a/answer/13369245). Requires either the `chat.admin.spaces.readonly` or `chat.admin.spaces` [OAuth 2.0 scope](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes).",
               "location": "query",
               "type": "boolean"
             }
@@ -1078,6 +1078,21 @@
                 "name"
               ],
               "parameters": {
+                "markupSyntax": {
+                  "description": "Optional. Specifies the desired output syntax for the Chat message `formatted_text` field.",
+                  "enum": [
+                    "MARKUP_SYNTAX_UNSPECIFIED",
+                    "MARKUP_SYNTAX_CHAT",
+                    "MARKUP_SYNTAX_MARKDOWN"
+                  ],
+                  "enumDescriptions": [
+                    "Represents the unspecified value.",
+                    "Uses Google Chat's markup syntax. See https://developers.google.com/workspace/chat/format-messages#format-texts for more information.",
+                    "Uses Markdown syntax. This syntax is based on the [CommonMark](https://commonmark.org/help/) specification, with additional extensions. See https://developers.google.com/workspace/chat/format-messages#format-texts for more information."
+                  ],
+                  "location": "query",
+                  "type": "string"
+                },
                 "name": {
                   "description": "Required. Resource name of the message. Format: `spaces/{space}/messages/{message}` If you've set a custom ID for your message, you can use the value from the `clientAssignedMessageId` field for `{message}`. For details, see [Name a message] (https://developers.google.com/workspace/chat/create-messages#name_a_created_message).",
                   "location": "path",
@@ -1108,6 +1123,21 @@
               "parameters": {
                 "filter": {
                   "description": "Optional. A query filter. You can filter messages by date (`create_time`) and thread (`thread.name`). To filter messages by the date they were created, specify the `create_time` with a timestamp in [RFC-3339](https://www.rfc-editor.org/rfc/rfc3339) format and double quotation marks. For example, `\"2023-04-21T11:30:00-04:00\"`. You can use the greater than operator `>` to list messages that were created after a timestamp, or the less than operator `<` to list messages that were created before a timestamp. To filter messages within a time interval, use the `AND` operator between two timestamps. To filter by thread, specify the `thread.name`, formatted as `spaces/{space}/threads/{thread}`. You can only specify one `thread.name` per query. To filter by both thread and date, use the `AND` operator in your query. For example, the following queries are valid: ``` create_time > \"2012-04-21T11:30:00-04:00\" create_time > \"2012-04-21T11:30:00-04:00\" AND thread.name = spaces/AAAAAAAAAAA/threads/123 create_time > \"2012-04-21T11:30:00+00:00\" AND create_time < \"2013-01-01T00:00:00+00:00\" AND thread.name = spaces/AAAAAAAAAAA/threads/123 thread.name = spaces/AAAAAAAAAAA/threads/123 ``` Invalid queries are rejected by the server with an `INVALID_ARGUMENT` error.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "markupSyntax": {
+                  "description": "Optional. Specifies the desired output syntax for the Chat message `formatted_text` field.",
+                  "enum": [
+                    "MARKUP_SYNTAX_UNSPECIFIED",
+                    "MARKUP_SYNTAX_CHAT",
+                    "MARKUP_SYNTAX_MARKDOWN"
+                  ],
+                  "enumDescriptions": [
+                    "Represents the unspecified value.",
+                    "Uses Google Chat's markup syntax. See https://developers.google.com/workspace/chat/format-messages#format-texts for more information.",
+                    "Uses Markdown syntax. This syntax is based on the [CommonMark](https://commonmark.org/help/) specification, with additional extensions. See https://developers.google.com/workspace/chat/format-messages#format-texts for more information."
+                  ],
                   "location": "query",
                   "type": "string"
                 },
@@ -1530,8 +1560,7 @@
               },
               "scopes": [
                 "https://www.googleapis.com/auth/chat.users.availability",
-                "https://www.googleapis.com/auth/chat.users.availability.readonly",
-                "https://www.googleapis.com/auth/chat.users.readstate"
+                "https://www.googleapis.com/auth/chat.users.availability.readonly"
               ]
             },
             "markAsActive": {
@@ -1559,8 +1588,7 @@
                 "$ref": "Availability"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/chat.users.availability",
-                "https://www.googleapis.com/auth/chat.users.readstate"
+                "https://www.googleapis.com/auth/chat.users.availability"
               ]
             },
             "markAsAway": {
@@ -1588,8 +1616,7 @@
                 "$ref": "Availability"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/chat.users.availability",
-                "https://www.googleapis.com/auth/chat.users.readstate"
+                "https://www.googleapis.com/auth/chat.users.availability"
               ]
             },
             "markAsDoNotDisturb": {
@@ -1617,8 +1644,7 @@
                 "$ref": "Availability"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/chat.users.availability",
-                "https://www.googleapis.com/auth/chat.users.readstate"
+                "https://www.googleapis.com/auth/chat.users.availability"
               ]
             },
             "patch": {
@@ -1652,8 +1678,7 @@
                 "$ref": "Availability"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/chat.users.availability",
-                "https://www.googleapis.com/auth/chat.users.readstate"
+                "https://www.googleapis.com/auth/chat.users.availability"
               ]
             }
           }
@@ -2052,7 +2077,7 @@
       }
     }
   },
-  "revision": "20260726",
+  "revision": "20260728",
   "rootUrl": "https://chat.googleapis.com/",
   "schemas": {
     "AccessPermissionSetting": {
@@ -5529,6 +5554,20 @@
           "readOnly": true,
           "type": "string"
         },
+        "markupSyntax": {
+          "description": "Optional. Specifies how the server interprets the message `text` field content.",
+          "enum": [
+            "MARKUP_SYNTAX_UNSPECIFIED",
+            "MARKUP_SYNTAX_CHAT",
+            "MARKUP_SYNTAX_MARKDOWN"
+          ],
+          "enumDescriptions": [
+            "Represents the unspecified value.",
+            "Uses Google Chat's markup syntax. See https://developers.google.com/workspace/chat/format-messages#format-texts for more information.",
+            "Uses Markdown syntax. This syntax is based on the [CommonMark](https://commonmark.org/help/) specification, with additional extensions. See https://developers.google.com/workspace/chat/format-messages#format-texts for more information."
+          ],
+          "type": "string"
+        },
         "matchedUrl": {
           "$ref": "MatchedUrl",
           "description": "Output only. A URL in the Chat message `text` field that matches a link preview pattern. For more information, see [Preview links](https://developers.google.com/workspace/chat/preview-links).",
@@ -6044,6 +6083,20 @@
           "description": "Required. A search query. The query can specify one or more search keywords, which are used to filter the results, You can also filter the results using the following message fields: - `create_time`: Accepts a timestamp in [RFC-3339](https://www.rfc-editor.org/rfc/rfc3339) format and the supported comparison operators are: `<` and `>=`. - `sender.name`: The resource name of the sender (`users/{user}`). Only supports `=`. You can use the e-mail as an alias for `{user}`. For example, `users/example@gmail.com`, where `example@gmail.com` is the e-mail of the Google Chat user. - `space.name`: The resource name of the space where the message is posted. (`spaces/{space}`). Only supports `=`. If this filter is not set, the search is performed across all direct messages and spaces the user has access to as a space member. - `space.display_name`: Supports the operator `:` (has) and filters spaces based on a partial match of their display name. Results are limited to the top five space matches. For example, `space.display_name:Project` searches for messages in the top five spaces that contain the word \"Project\" in their display names. - `attachment`: Supports the operator `:*` (has any) to check for the presence of attachments. If `attachment:*` is specified, only messages that have at least one attachment are returned. - `annotations.user_mentions.user.name`: The resource name of the mentioned user (`users/{user}`). Only supports `:` (has). For example: `annotations.user_mentions.user.name:\"users/1234567890\"` returns only messages that contain a mention to the specified user. Alternatively, the alias `me` can be used to filter for messages that mention the caller user, for example: `annotations.user_mentions.user.name:users/me`. You can also use the e-mail as an alias for `{user}`, for example, `users/example@gmail.com`. For advanced filtering, the following functions are also available: - `has_link()`: Returns only messages that have at least one hyperlink in the message text. - `is_unread()`: Filters out messages that have been read by the calling user. Using the `space.display_name` filter requires that the calling credentials include one of the following [authorization scopes](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes): - `https://www.googleapis.com/auth/chat.spaces.readonly` - `https://www.googleapis.com/auth/chat.spaces` Using the `is_unread()` filter requires that the calling credentials include one of the following [authorization scopes](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes): - `https://www.googleapis.com/auth/chat.users.readstate.readonly` - `https://www.googleapis.com/auth/chat.users.readstate` Across different fields, only `AND` operators are supported. A valid example is `sender.name = \"users/1234567890\" AND is_unread()`. The word `AND` is optional and is implied if omitted. For example, `sender.name = \"users/1234567890\" is_unread()` is valid and is equivalent to the previous example. An invalid example is `sender.name = \"users/1234567890\" OR is_unread()` because `OR` is not supported between different fields. Among the same field: - `create_time` supports only `AND`, and can only be used to represent an interval, such as `create_time >= \"2022-01-01T00:00:00+00:00\" AND create_time < \"2023-01-01T00:00:00+00:00\"`. - `sender.name` supports only the `OR` operator, for example: `sender.name = \"users/1234567890\" OR sender.name = \"users/0987654321\"`. - `space.name` supports only the `OR` operator, for example: `space.name = \"spaces/ABCDEFGH\" OR space.name = \"spaces/QWERTYUI\"`. - `space.display_name` supports the operators `AND` and `OR`, but not a mix of both. For example: `space.display_name:Project AND space.display_name:Tasks` returns messages that are in spaces with display names containing both `Project` and `Tasks`, whereas `space.display_name:Project OR space.display_name:Tasks` returns messages that are in spaces with display names containing either `Project` or `Tasks` or both. - `annotations.user_mentions.user.name` supports the operators `AND` and `OR`, but not a mix of both. For example: `annotations.user_mentions.user.name:\"users/1234567890\" AND annotations.user_mentions.user.name:\"users/0987654321\"` returns only messages that mentions both users, whereas `annotations.user_mentions.user.name:\"users/1234567890\" OR annotations.user_mentions.user.name:\"users/0987654321\"` returns messages that mention either user or both. Parentheses are required to disambiguate operator precedence when combining `AND` and `OR` operators in the same query. For example: `(sender.name=\"users/me\" OR sender.name=\"users/123456\") AND is_unread()`. Otherwise, parentheses are optional. The following example queries are valid: ``` \"Pending reports\" AND create_time >= \"2023-01-01T00:00:00Z\" sender.name = \"users/example@gmail.com\" annotations.user_mentions.user.name:\"users/0987654321\" attachment:* AND space.name = \"spaces/ABCDEFGH\" tasks AND is_unread() AND sender.name = \"users/1234567890\" \"things to do\" \"urgent\" (sender.name = \"users/1234567890\") AND (create_time < \"2023-05-01T00:00:00Z\") tasks AND space.name = \"spaces/ABCDEFGH\" AND has_link() \"project one\" is_unread() space.display_name:Project tasks ``` The maximum query length is 1,000 characters. Invalid queries are rejected by the server with an `INVALID_ARGUMENT` error.",
           "type": "string"
         },
+        "markupSyntax": {
+          "description": "Optional. Specifies the desired output syntax for the Chat message `formatted_text` field.",
+          "enum": [
+            "MARKUP_SYNTAX_UNSPECIFIED",
+            "MARKUP_SYNTAX_CHAT",
+            "MARKUP_SYNTAX_MARKDOWN"
+          ],
+          "enumDescriptions": [
+            "Represents the unspecified value.",
+            "Uses Google Chat's markup syntax. See https://developers.google.com/workspace/chat/format-messages#format-texts for more information.",
+            "Uses Markdown syntax. This syntax is based on the [CommonMark](https://commonmark.org/help/) specification, with additional extensions. See https://developers.google.com/workspace/chat/format-messages#format-texts for more information."
+          ],
+          "type": "string"
+        },
         "orderBy": {
           "description": "Optional. How the results list is ordered. Supported attributes to order by are: - `create_time`: Sorts the results by the time of the message creation. Default value. - `relevance`: Sorts the results by relevance. [Developer Preview](https://developers.google.com/workspace/preview). The default ordering is `create_time desc`. Only a single order per query (`create_time` or `relevance`) is supported. Only descending order (`desc`) is supported, and it must be specified after the order attribute.",
           "type": "string"
@@ -6092,6 +6145,18 @@
       },
       "type": "object"
     },
+    "SearchSpaceResult": {
+      "description": "A single result item from a space search.",
+      "id": "SearchSpaceResult",
+      "properties": {
+        "space": {
+          "$ref": "Space",
+          "description": "Output only. The matched space.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
     "SearchSpacesResponse": {
       "description": "Response with a list of spaces corresponding to the search spaces request.",
       "id": "SearchSpacesResponse",
@@ -6099,6 +6164,14 @@
         "nextPageToken": {
           "description": "A token that can be used to retrieve the next page. If this field is empty, there are no subsequent pages.",
           "type": "string"
+        },
+        "results": {
+          "description": "Output only. The list of search results that matched the query.",
+          "items": {
+            "$ref": "SearchSpaceResult"
+          },
+          "readOnly": true,
+          "type": "array"
         },
         "spaces": {
           "deprecated": true,
