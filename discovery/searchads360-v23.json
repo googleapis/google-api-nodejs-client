@@ -757,6 +757,90 @@
             "https://www.googleapis.com/auth/doubleclicksearch"
           ]
         },
+        "uploadCallConversions": {
+          "description": "Processes the given call conversions. List of thrown errors: [AuthenticationError]() [AuthorizationError]() [HeaderError]() [InternalError]() [PartialFailureError]() [QuotaError]() [RequestError]()",
+          "flatPath": "v23/customers/{customersId}:uploadCallConversions",
+          "httpMethod": "POST",
+          "id": "searchads360.customers.uploadCallConversions",
+          "parameterOrder": [
+            "customerId"
+          ],
+          "parameters": {
+            "customerId": {
+              "description": "Required. The ID of the customer performing the upload.",
+              "location": "path",
+              "pattern": "^[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v23/customers/{+customerId}:uploadCallConversions",
+          "request": {
+            "$ref": "GoogleAdsSearchads360V23Services__UploadCallConversionsRequest"
+          },
+          "response": {
+            "$ref": "GoogleAdsSearchads360V23Services__UploadCallConversionsResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/doubleclicksearch"
+          ]
+        },
+        "uploadClickConversions": {
+          "description": "Processes the given click conversions. List of thrown errors: [AuthenticationError]() [AuthorizationError]() [ConversionUploadError]() [HeaderError]() [InternalError]() [PartialFailureError]() [QuotaError]() [RequestError]()",
+          "flatPath": "v23/customers/{customersId}:uploadClickConversions",
+          "httpMethod": "POST",
+          "id": "searchads360.customers.uploadClickConversions",
+          "parameterOrder": [
+            "customerId"
+          ],
+          "parameters": {
+            "customerId": {
+              "description": "Required. The ID of the customer performing the upload.",
+              "location": "path",
+              "pattern": "^[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v23/customers/{+customerId}:uploadClickConversions",
+          "request": {
+            "$ref": "GoogleAdsSearchads360V23Services__UploadClickConversionsRequest"
+          },
+          "response": {
+            "$ref": "GoogleAdsSearchads360V23Services__UploadClickConversionsResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/doubleclicksearch"
+          ]
+        },
+        "uploadConversionAdjustments": {
+          "description": "Processes the given conversion adjustments. List of thrown errors: [AuthenticationError]() [AuthorizationError]() [HeaderError]() [InternalError]() [PartialFailureError]() [QuotaError]() [RequestError]()",
+          "flatPath": "v23/customers/{customersId}:uploadConversionAdjustments",
+          "httpMethod": "POST",
+          "id": "searchads360.customers.uploadConversionAdjustments",
+          "parameterOrder": [
+            "customerId"
+          ],
+          "parameters": {
+            "customerId": {
+              "description": "Required. The ID of the customer performing the upload.",
+              "location": "path",
+              "pattern": "^[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v23/customers/{+customerId}:uploadConversionAdjustments",
+          "request": {
+            "$ref": "GoogleAdsSearchads360V23Services__UploadConversionAdjustmentsRequest"
+          },
+          "response": {
+            "$ref": "GoogleAdsSearchads360V23Services__UploadConversionAdjustmentsResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/doubleclicksearch"
+          ]
+        },
         "uploadUserData": {
           "description": "Uploads the given user data. List of thrown errors: [AuthenticationError]() [AuthorizationError]() [CollectionSizeError]() [FieldError]() [HeaderError]() [InternalError]() [MutateError]() [OfflineUserDataJobError]() [QuotaError]() [RequestError]() [UserDataError]()",
           "flatPath": "v23/customers/{customersId}:uploadUserData",
@@ -4326,6 +4410,38 @@
             }
           }
         },
+        "searchAds360Campaigns": {
+          "methods": {
+            "mutate": {
+              "description": "Updates Search Ads 360 campaigns. Operation statuses are returned. List of thrown errors: [AuthenticationError]() [AuthorizationError]() [HeaderError]() [InternalError]() [MutateError]() [QuotaError]() [RequestError]()",
+              "flatPath": "v23/customers/{customersId}/searchAds360Campaigns:mutate",
+              "httpMethod": "POST",
+              "id": "searchads360.customers.searchAds360Campaigns.mutate",
+              "parameterOrder": [
+                "customerId"
+              ],
+              "parameters": {
+                "customerId": {
+                  "description": "Required. The ID of the customer whose Search Ads 360 campaigns are being modified.",
+                  "location": "path",
+                  "pattern": "^[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v23/customers/{+customerId}/searchAds360Campaigns:mutate",
+              "request": {
+                "$ref": "GoogleAdsSearchads360V23Services__MutateSearchAds360CampaignsRequest"
+              },
+              "response": {
+                "$ref": "GoogleAdsSearchads360V23Services__MutateSearchAds360CampaignsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/doubleclicksearch"
+              ]
+            }
+          }
+        },
         "sharedCriteria": {
           "methods": {
             "mutate": {
@@ -4853,7 +4969,7 @@
       }
     }
   },
-  "revision": "20260413",
+  "revision": "20260729",
   "rootUrl": "https://searchads360.googleapis.com/",
   "schemas": {
     "GoogleAdsSearchads360V0Common__Value": {
@@ -5077,7 +5193,8 @@
             "START_DATE_AFTER_END_DATE",
             "CANNOT_SET_DATE_TO_PAST",
             "AFTER_MAXIMUM_ALLOWABLE_DATE",
-            "CANNOT_MODIFY_START_DATE_IF_ALREADY_STARTED"
+            "CANNOT_MODIFY_START_DATE_IF_ALREADY_STARTED",
+            "REQUESTED_DATE_GRANULARITY_NOT_SUPPORTED"
           ],
           "enumDescriptions": [
             "Enum unspecified.",
@@ -5086,7 +5203,8 @@
             "The start date was after the end date.",
             "Cannot set date to past time",
             "A date was used that is past the system \"last\" date.",
-            "Trying to change start date on a resource that has started."
+            "Trying to change start date on a resource that has started.",
+            "The requested time granularity is not supported for the date range in the query. Metrics with daily, hourly, or weekly segmentation are only available for the last 37 months."
           ],
           "type": "string"
         },
@@ -9495,7 +9613,7 @@
       "type": "object"
     },
     "GoogleAdsSearchads360V23Common__ExpandedTextAdInfo": {
-      "description": "An expanded text ad.",
+      "description": "An expanded text ad. Expanded text ads are deprecated.",
       "id": "GoogleAdsSearchads360V23Common__ExpandedTextAdInfo",
       "properties": {
         "description": {
@@ -11855,7 +11973,7 @@
           "type": "number"
         },
         "allConversionsByConversionDate": {
-          "description": "The total number of conversions. This includes all conversions regardless of the value of include_in_conversions_metric. When this column is selected with date, the values in date column means the conversion date. Details for the by_conversion_date columns are available at https://support.google.com/sa360/answer/9250611.",
+          "description": "The total number of conversions. This includes all conversions regardless of the value of include_in_conversions_metric. When this column is selected with date, the values in date column means the conversion date. Details for the `by_conversion_date` columns are available at [About the \"All conversions\" column](https://support.google.com/sa360/answer/9250611).",
           "format": "double",
           "type": "number"
         },
@@ -11910,7 +12028,7 @@
           "type": "number"
         },
         "allConversionsValueByConversionDate": {
-          "description": "The value of all conversions. When this column is selected with date, the values in date column means the conversion date. Details for the by_conversion_date columns are available at https://support.google.com/sa360/answer/9250611.",
+          "description": "The value of all conversions. When this column is selected with date, the values in date column means the conversion date. Details for the `by_conversion_date` columns are available at [About the \"All conversions\" column](https://support.google.com/sa360/answer/9250611).",
           "format": "double",
           "type": "number"
         },
@@ -11930,12 +12048,12 @@
           "type": "number"
         },
         "averageCpc": {
-          "description": "The total cost of all clicks divided by the total number of clicks received. This metric is a monetary value and returned in the customer's currency by default. See the metrics_currency parameter at https://developers.google.com/search-ads/reporting/query/query-structure#parameters_clause",
+          "description": "The total cost of all clicks divided by the total number of clicks received. This metric is a monetary value and returned in the customer's currency by default. See the `metrics_currency` parameter at [PARAMETERS clause](https://developers.google.com/search-ads/reporting/query/query-structure#parameters_clause).",
           "format": "double",
           "type": "number"
         },
         "averageCpm": {
-          "description": "Average cost-per-thousand impressions (CPM). This metric is a monetary value and returned in the customer's currency by default. See the metrics_currency parameter at https://developers.google.com/search-ads/reporting/query/query-structure#parameters_clause",
+          "description": "Average cost-per-thousand impressions (CPM). This metric is a monetary value and returned in the customer's currency by default. See the `metrics_currency` parameter at [PARAMETERS clause](https://developers.google.com/search-ads/reporting/query/query-structure#parameters_clause).",
           "format": "double",
           "type": "number"
         },
@@ -11960,27 +12078,27 @@
           "type": "string"
         },
         "clientAccountConversions": {
-          "description": "The number of client account conversions. This only includes conversion actions which include_in_client_account_conversions_metric attribute is set to true. If you use conversion-based bidding, your bid strategies will optimize for these conversions.",
+          "description": "The number of client account conversions. This only includes conversion actions which `include_in_client_account_conversions_metric` attribute is set to `true`. If you use conversion-based bidding, your bid strategies will optimize for these conversions.",
           "format": "double",
           "type": "number"
         },
         "clientAccountConversionsValue": {
-          "description": "The value of client account conversions. This only includes conversion actions which include_in_client_account_conversions_metric attribute is set to true. If you use conversion-based bidding, your bid strategies will optimize for these conversions.",
+          "description": "The value of client account conversions. This only includes conversion actions which `include_in_client_account_conversions_metric` attribute is set to `true`. If you use conversion-based bidding, your bid strategies will optimize for these conversions.",
           "format": "double",
           "type": "number"
         },
         "clientAccountCrossSellCostOfGoodsSoldMicros": {
-          "description": "Client account cross-sell cost of goods sold (COGS) is the total cost of products sold as a result of advertising a different product. How it works: You report conversions with cart data for completed purchases on your website. If the ad that was interacted with before the purchase has an associated product (see Shopping Ads) then this product is considered the advertised product. Any product included in the order the customer places is a sold product. If these products don't match then this is considered cross-sell. Cross-sell cost of goods sold is the total cost of the products sold that weren't advertised. Example: Someone clicked on a Shopping ad for a hat then bought the same hat and a shirt. The hat has a cost of goods sold value of $3, the shirt has a cost of goods sold value of $5. The cross-sell cost of goods sold for this order is $5. This metric is only available if you report conversions with cart data. This metric is a monetary value and returned in the customer's currency by default. See the metrics_currency parameter at https://developers.google.com/search-ads/reporting/query/query-structure#parameters_clause",
+          "description": "Client account cross-sell cost of goods sold (COGS) is the total cost of products sold as a result of advertising a different product. How it works: You report conversions with cart data for completed purchases on your website. If the ad that was interacted with before the purchase has an associated product (see Shopping Ads) then this product is considered the advertised product. Any product included in the order the customer places is a sold product. If these products don't match then this is considered cross-sell. Cross-sell cost of goods sold is the total cost of the products sold that weren't advertised. Example: Someone clicked on a Shopping ad for a hat then bought the same hat and a shirt. The hat has a cost of goods sold value of $3, the shirt has a cost of goods sold value of $5. The cross-sell cost of goods sold for this order is $5. This metric is only available if you report conversions with cart data. This metric is a monetary value and returned in the customer's currency by default. See the `metrics_currency` parameter at [PARAMETERS clause](https://developers.google.com/search-ads/reporting/query/query-structure#parameters_clause).",
           "format": "int64",
           "type": "string"
         },
         "clientAccountCrossSellGrossProfitMicros": {
-          "description": "Client account cross-sell gross profit is the profit you made from products sold as a result of advertising a different product, minus cost of goods sold (COGS). How it works: You report conversions with cart data for completed purchases on your website. If the ad that was interacted with before the purchase has an associated product (see Shopping Ads) then this product is considered the advertised product. Any product included in the purchase is a sold product. If these products don't match then this is considered cross-sell. Cross-sell gross profit is the revenue you made from cross-sell attributed to your ads minus the cost of the goods sold. Example: Someone clicked on a Shopping ad for a hat then bought the same hat and a shirt. The shirt is priced $20 and has a cost of goods sold value of $5. The cross-sell gross profit of this order is $15 = $20 - $5. This metric is only available if you report conversions with cart data. This metric is a monetary value and returned in the customer's currency by default. See the metrics_currency parameter at https://developers.google.com/search-ads/reporting/query/query-structure#parameters_clause",
+          "description": "Client account cross-sell gross profit is the profit you made from products sold as a result of advertising a different product, minus cost of goods sold (COGS). How it works: You report conversions with cart data for completed purchases on your website. If the ad that was interacted with before the purchase has an associated product (see Shopping Ads) then this product is considered the advertised product. Any product included in the purchase is a sold product. If these products don't match then this is considered cross-sell. Cross-sell gross profit is the revenue you made from cross-sell attributed to your ads minus the cost of the goods sold. Example: Someone clicked on a Shopping ad for a hat then bought the same hat and a shirt. The shirt is priced $20 and has a cost of goods sold value of $5. The cross-sell gross profit of this order is $15 = $20 - $5. This metric is only available if you report conversions with cart data. This metric is a monetary value and returned in the customer's currency by default. See the `metrics_currency` parameter at [PARAMETERS clause](https://developers.google.com/search-ads/reporting/query/query-structure#parameters_clause).",
           "format": "int64",
           "type": "string"
         },
         "clientAccountCrossSellRevenueMicros": {
-          "description": "Client account cross-sell revenue is the total amount you made from products sold as a result of advertising a different product. How it works: You report conversions with cart data for completed purchases on your website. If the ad that was interacted with before the purchase has an associated product (see Shopping Ads) then this product is considered the advertised product. Any product included in the order the customer places is a sold product. If these products don't match then this is considered cross-sell. Cross-sell revenue is the total value you made from cross-sell attributed to your ads. Example: Someone clicked on a Shopping ad for a hat then bought the same hat and a shirt. The hat is priced $10 and the shirt is priced $20. The cross-sell revenue of this order is $20. This metric is only available if you report conversions with cart data. This metric is a monetary value and returned in the customer's currency by default. See the metrics_currency parameter at https://developers.google.com/search-ads/reporting/query/query-structure#parameters_clause",
+          "description": "Client account cross-sell revenue is the total amount you made from products sold as a result of advertising a different product. How it works: You report conversions with cart data for completed purchases on your website. If the ad that was interacted with before the purchase has an associated product (see Shopping Ads) then this product is considered the advertised product. Any product included in the order the customer places is a sold product. If these products don't match then this is considered cross-sell. Cross-sell revenue is the total value you made from cross-sell attributed to your ads. Example: Someone clicked on a Shopping ad for a hat then bought the same hat and a shirt. The hat is priced $10 and the shirt is priced $20. The cross-sell revenue of this order is $20. This metric is only available if you report conversions with cart data. This metric is a monetary value and returned in the customer's currency by default. See the `metrics_currency` parameter at [PARAMETERS clause](https://developers.google.com/search-ads/reporting/query/query-structure#parameters_clause).",
           "format": "int64",
           "type": "string"
         },
@@ -11990,17 +12108,17 @@
           "type": "number"
         },
         "clientAccountLeadCostOfGoodsSoldMicros": {
-          "description": "Client account lead cost of goods sold (COGS) is the total cost of products sold as a result of advertising the same product. How it works: You report conversions with cart data for completed purchases on your website. If the ad that was interacted with has an associated product (see Shopping Ads) then this product is considered the advertised product. Any product included in the order the customer places is a sold product. If the advertised and sold products match, then the cost of these goods is counted under lead cost of goods sold. Example: Someone clicked on a Shopping ad for a hat then bought the same hat and a shirt. The hat has a cost of goods sold value of $3, the shirt has a cost of goods sold value of $5. The lead cost of goods sold for this order is $3. This metric is only available if you report conversions with cart data. This metric is a monetary value and returned in the customer's currency by default. See the metrics_currency parameter at https://developers.google.com/search-ads/reporting/query/query-structure#parameters_clause",
+          "description": "Client account lead cost of goods sold (COGS) is the total cost of products sold as a result of advertising the same product. How it works: You report conversions with cart data for completed purchases on your website. If the ad that was interacted with has an associated product (see Shopping Ads) then this product is considered the advertised product. Any product included in the order the customer places is a sold product. If the advertised and sold products match, then the cost of these goods is counted under lead cost of goods sold. Example: Someone clicked on a Shopping ad for a hat then bought the same hat and a shirt. The hat has a cost of goods sold value of $3, the shirt has a cost of goods sold value of $5. The lead cost of goods sold for this order is $3. This metric is only available if you report conversions with cart data. This metric is a monetary value and returned in the customer's currency by default. See the `metrics_currency` parameter at [PARAMETERS clause](https://developers.google.com/search-ads/reporting/query/query-structure#parameters_clause).",
           "format": "int64",
           "type": "string"
         },
         "clientAccountLeadGrossProfitMicros": {
-          "description": "Client account lead gross profit is the profit you made from products sold as a result of advertising the same product, minus cost of goods sold (COGS). How it works: You report conversions with cart data for completed purchases on your website. If the ad that was interacted with before the purchase has an associated product (see Shopping Ads) then this product is considered the advertised product. Any product included in the order the customer places is a sold product. If the advertised and sold products match, then the revenue you made from these sales minus the cost of goods sold is your lead gross profit. Example: Someone clicked on a Shopping ad for a hat then bought the same hat and a shirt. The hat is priced $10 and has a cost of goods sold value of $3. The lead gross profit of this order is $7 = $10 - $3. This metric is only available if you report conversions with cart data. This metric is a monetary value and returned in the customer's currency by default. See the metrics_currency parameter at https://developers.google.com/search-ads/reporting/query/query-structure#parameters_clause",
+          "description": "Client account lead gross profit is the profit you made from products sold as a result of advertising the same product, minus cost of goods sold (COGS). How it works: You report conversions with cart data for completed purchases on your website. If the ad that was interacted with before the purchase has an associated product (see Shopping Ads) then this product is considered the advertised product. Any product included in the order the customer places is a sold product. If the advertised and sold products match, then the revenue you made from these sales minus the cost of goods sold is your lead gross profit. Example: Someone clicked on a Shopping ad for a hat then bought the same hat and a shirt. The hat is priced $10 and has a cost of goods sold value of $3. The lead gross profit of this order is $7 = $10 - $3. This metric is only available if you report conversions with cart data. This metric is a monetary value and returned in the customer's currency by default. See the `metrics_currency` parameter at [PARAMETERS clause](https://developers.google.com/search-ads/reporting/query/query-structure#parameters_clause).",
           "format": "int64",
           "type": "string"
         },
         "clientAccountLeadRevenueMicros": {
-          "description": "Client account lead revenue is the total amount you made from products sold as a result of advertising the same product. How it works: You report conversions with cart data for completed purchases on your website. If the ad that was interacted with before the purchase has an associated product (see Shopping Ads) then this product is considered the advertised product. Any product included in the order the customer places is a sold product. If the advertised and sold products match, then the total value you made from the sales of these products is shown under lead revenue. Example: Someone clicked on a Shopping ad for a hat then bought the same hat and a shirt. The hat is priced $10 and the shirt is priced $20. The lead revenue of this order is $10. This metric is only available if you report conversions with cart data. This metric is a monetary value and returned in the customer's currency by default. See the metrics_currency parameter at https://developers.google.com/search-ads/reporting/query/query-structure#parameters_clause",
+          "description": "Client account lead revenue is the total amount you made from products sold as a result of advertising the same product. How it works: You report conversions with cart data for completed purchases on your website. If the ad that was interacted with before the purchase has an associated product (see Shopping Ads) then this product is considered the advertised product. Any product included in the order the customer places is a sold product. If the advertised and sold products match, then the total value you made from the sales of these products is shown under lead revenue. Example: Someone clicked on a Shopping ad for a hat then bought the same hat and a shirt. The hat is priced $10 and the shirt is priced $20. The lead revenue of this order is $10. This metric is only available if you report conversions with cart data. This metric is a monetary value and returned in the customer's currency by default. See the `metrics_currency` parameter at [PARAMETERS clause](https://developers.google.com/search-ads/reporting/query/query-structure#parameters_clause).",
           "format": "int64",
           "type": "string"
         },
@@ -12042,7 +12160,7 @@
           "type": "number"
         },
         "conversionsByConversionDate": {
-          "description": "The sum of conversions by conversion date for biddable conversion types. Can be fractional due to attribution modeling. When this column is selected with date, the values in date column means the conversion date.",
+          "description": "The sum of conversions by conversion date for biddable conversion types. Can be fractional due to attribution modeling. When this column is selected with date, the values in the date column mean the conversion date.",
           "format": "double",
           "type": "number"
         },
@@ -12052,7 +12170,7 @@
           "type": "number"
         },
         "conversionsFromInteractionsValuePerInteraction": {
-          "description": "The value of conversions from interactions divided by the number of ad interactions. This only includes conversion actions which include_in_conversions_metric attribute is set to true. If you use conversion-based bidding, your bid strategies will optimize for these conversions.",
+          "description": "The value of conversions from interactions divided by the number of ad interactions. This only includes conversion actions which `include_in_conversions_metric` attribute is set to `true`. If you use conversion-based bidding, your bid strategies will optimize for these conversions.",
           "format": "double",
           "type": "number"
         },
@@ -12072,7 +12190,7 @@
           "type": "number"
         },
         "costMicros": {
-          "description": "The sum of your cost-per-click (CPC) and cost-per-thousand impressions (CPM) costs during this period. This metric is a monetary value and returned in the customer's currency by default. See the metrics_currency parameter at https://developers.google.com/search-ads/reporting/query/query-structure#parameters_clause",
+          "description": "The sum of your cost-per-click (CPC) and cost-per-thousand impressions (CPM) costs during this period. This metric is a monetary value and returned in the customer's currency by default. See the `metrics_currency` parameter at [PARAMETERS clause](https://developers.google.com/search-ads/reporting/query/query-structure#parameters_clause) for more details.",
           "format": "int64",
           "type": "string"
         },
@@ -12092,17 +12210,17 @@
           "type": "number"
         },
         "costPerCurrentModelAttributedConversion": {
-          "description": "The cost of ad interactions divided by current model attributed conversions. This only includes conversion actions which include_in_conversions_metric attribute is set to true. If you use conversion-based bidding, your bid strategies will optimize for these conversions.",
+          "description": "The cost of ad interactions divided by current model attributed conversions. This only includes conversion actions which `include_in_conversions_metric` attribute is set to `true`. If you use conversion-based bidding, your bid strategies will optimize for these conversions.",
           "format": "double",
           "type": "number"
         },
         "crossDeviceConversions": {
-          "description": "Conversions from when a customer clicks on an ad on one device, then converts on a different device or browser. Cross-device conversions are already included in all_conversions.",
+          "description": "Conversions from when a customer clicks on an ad on one device, then converts on a different device or browser. Cross-device conversions are already included in `all_conversions`.",
           "format": "double",
           "type": "number"
         },
         "crossDeviceConversionsByConversionDate": {
-          "description": "The number of cross-device conversions by conversion date. Details for the by_conversion_date columns are available at https://support.google.com/sa360/answer/9250611.",
+          "description": "The number of cross-device conversions by conversion date. Details for the `by_conversion_date` columns are available at [About the \"All conversions\" column](https://support.google.com/sa360/answer/9250611)",
           "format": "double",
           "type": "number"
         },
@@ -12112,22 +12230,22 @@
           "type": "number"
         },
         "crossDeviceConversionsValueByConversionDate": {
-          "description": "The sum of cross-device conversions value by conversion date. Details for the by_conversion_date columns are available at https://support.google.com/sa360/answer/9250611.",
+          "description": "The sum of cross-device conversions value by conversion date. Details for the `by_conversion_date` columns are available at [About the \"All conversions\" column](https://support.google.com/sa360/answer/9250611)",
           "format": "double",
           "type": "number"
         },
         "crossSellCostOfGoodsSoldMicros": {
-          "description": "Cross-sell cost of goods sold (COGS) is the total cost of products sold as a result of advertising a different product. How it works: You report conversions with cart data for completed purchases on your website. If the ad that was interacted with before the purchase has an associated product (see Shopping Ads) then this product is considered the advertised product. Any product included in the order the customer places is a sold product. If these products don't match then this is considered cross-sell. Cross-sell cost of goods sold is the total cost of the products sold that weren't advertised. Example: Someone clicked on a Shopping ad for a hat then bought the same hat and a shirt. The hat has a cost of goods sold value of $3, the shirt has a cost of goods sold value of $5. The cross-sell cost of goods sold for this order is $5. This metric is only available if you report conversions with cart data. This metric is a monetary value and returned in the customer's currency by default. See the metrics_currency parameter at https://developers.google.com/search-ads/reporting/query/query-structure#parameters_clause",
+          "description": "Cross-sell cost of goods sold (COGS) is the total cost of products sold as a result of advertising a different product. How it works: You report conversions with cart data for completed purchases on your website. If the ad that was interacted with before the purchase has an associated product (see Shopping Ads) then this product is considered the advertised product. Any product included in the order the customer places is a sold product. If these products don't match then this is considered cross-sell. Cross-sell cost of goods sold is the total cost of the products sold that weren't advertised. Example: Someone clicked on a Shopping ad for a hat then bought the same hat and a shirt. The hat has a cost of goods sold value of $3, the shirt has a cost of goods sold value of $5. The cross-sell cost of goods sold for this order is $5. This metric is only available if you report conversions with cart data. This metric is a monetary value and returned in the customer's currency by default. See the `metrics_currency` parameter at [PARAMETERS clause](https://developers.google.com/search-ads/reporting/query/query-structure#parameters_clause).",
           "format": "int64",
           "type": "string"
         },
         "crossSellGrossProfitMicros": {
-          "description": "Cross-sell gross profit is the profit you made from products sold as a result of advertising a different product, minus cost of goods sold (COGS). How it works: You report conversions with cart data for completed purchases on your website. If the ad that was interacted with before the purchase has an associated product (see Shopping Ads) then this product is considered the advertised product. Any product included in the purchase is a sold product. If these products don't match then this is considered cross-sell. Cross-sell gross profit is the revenue you made from cross-sell attributed to your ads minus the cost of the goods sold. Example: Someone clicked on a Shopping ad for a hat then bought the same hat and a shirt. The shirt is priced $20 and has a cost of goods sold value of $5. The cross-sell gross profit of this order is $15 = $20 - $5. This metric is only available if you report conversions with cart data. This metric is a monetary value and returned in the customer's currency by default. See the metrics_currency parameter at https://developers.google.com/search-ads/reporting/query/query-structure#parameters_clause",
+          "description": "Cross-sell gross profit is the profit you made from products sold as a result of advertising a different product, minus cost of goods sold (COGS). How it works: You report conversions with cart data for completed purchases on your website. If the ad that was interacted with before the purchase has an associated product (see Shopping Ads) then this product is considered the advertised product. Any product included in the purchase is a sold product. If these products don't match then this is considered cross-sell. Cross-sell gross profit is the revenue you made from cross-sell attributed to your ads minus the cost of the goods sold. Example: Someone clicked on a Shopping ad for a hat then bought the same hat and a shirt. The shirt is priced $20 and has a cost of goods sold value of $5. The cross-sell gross profit of this order is $15 = $20 - $5. This metric is only available if you report conversions with cart data. This metric is a monetary value and returned in the customer's currency by default. See the `metrics_currency` parameter at [PARAMETERS clause](https://developers.google.com/search-ads/reporting/query/query-structure#parameters_clause).",
           "format": "int64",
           "type": "string"
         },
         "crossSellRevenueMicros": {
-          "description": "Cross-sell revenue is the total amount you made from products sold as a result of advertising a different product. How it works: You report conversions with cart data for completed purchases on your website. If the ad that was interacted with before the purchase has an associated product (see Shopping Ads) then this product is considered the advertised product. Any product included in the order the customer places is a sold product. If these products don't match then this is considered cross-sell. Cross-sell revenue is the total value you made from cross-sell attributed to your ads. Example: Someone clicked on a Shopping ad for a hat then bought the same hat and a shirt. The hat is priced $10 and the shirt is priced $20. The cross-sell revenue of this order is $20. This metric is only available if you report conversions with cart data. This metric is a monetary value and returned in the customer's currency by default. See the metrics_currency parameter at https://developers.google.com/search-ads/reporting/query/query-structure#parameters_clause",
+          "description": "Cross-sell revenue is the total amount you made from products sold as a result of advertising a different product. How it works: You report conversions with cart data for completed purchases on your website. If the ad that was interacted with before the purchase has an associated product (see Shopping Ads) then this product is considered the advertised product. Any product included in the order the customer places is a sold product. If these products don't match then this is considered cross-sell. Cross-sell revenue is the total value you made from cross-sell attributed to your ads. Example: Someone clicked on a Shopping ad for a hat then bought the same hat and a shirt. The hat is priced $10 and the shirt is priced $20. The cross-sell revenue of this order is $20. This metric is only available if you report conversions with cart data. This metric is a monetary value and returned in the customer's currency by default. See the `metrics_currency` parameter at [PARAMETERS clause](https://developers.google.com/search-ads/reporting/query/query-structure#parameters_clause).",
           "format": "int64",
           "type": "string"
         },
@@ -12142,12 +12260,12 @@
           "type": "number"
         },
         "generalInvalidClickRate": {
-          "description": "The percentage of clicks that have been filtered out of your total number of clicks (filtered + non-filtered clicks) due to being general invalid clicks. These are clicks Google considers illegitimate that are detected through routine means of filtration (that is, known invalid data-center traffic, bots and spiders or other crawlers, irregular patterns, etc). You're not charged for them, and they don't affect your account statistics. See the help page at https://support.google.com/campaignmanager/answer/6076504 for details.",
+          "description": "The percentage of clicks that have been filtered out of your total number of clicks (filtered + non-filtered clicks) due to being general invalid clicks. These are clicks Google considers illegitimate that are detected through routine means of filtration (that is, known invalid data-center traffic, bots and spiders or other crawlers, irregular patterns, etc). You're not charged for them, and they don't affect your account statistics. See [Filtering invalid traffic to ensure quality](https://support.google.com/campaignmanager/answer/6076504).",
           "format": "double",
           "type": "number"
         },
         "generalInvalidClicks": {
-          "description": "Number of general invalid clicks. These are a subset of your invalid clicks that are detected through routine means of filtration (such as known invalid data-center traffic, bots and spiders or other crawlers, irregular patterns, etc.). You're not charged for them, and they don't affect your account statistics. See the help page at https://support.google.com/campaignmanager/answer/6076504 for details.",
+          "description": "Number of general invalid clicks. These are a subset of your invalid clicks that are detected through routine means of filtration (such as known invalid data-center traffic, bots and spiders or other crawlers, irregular patterns, etc.). You're not charged for them, and they don't affect your account statistics. See [Filtering invalid traffic to ensure quality](https://support.google.com/campaignmanager/answer/6076504).",
           "format": "int64",
           "type": "string"
         },
@@ -12269,17 +12387,17 @@
           "type": "string"
         },
         "leadCostOfGoodsSoldMicros": {
-          "description": "Lead cost of goods sold (COGS) is the total cost of products sold as a result of advertising the same product. How it works: You report conversions with cart data for completed purchases on your website. If the ad that was interacted with has an associated product (see Shopping Ads) then this product is considered the advertised product. Any product included in the order the customer places is a sold product. If the advertised and sold products match, then the cost of these goods is counted under lead cost of goods sold. Example: Someone clicked on a Shopping ad for a hat then bought the same hat and a shirt. The hat has a cost of goods sold value of $3, the shirt has a cost of goods sold value of $5. The lead cost of goods sold for this order is $3. This metric is only available if you report conversions with cart data. This metric is a monetary value and returned in the customer's currency by default. See the metrics_currency parameter at https://developers.google.com/search-ads/reporting/query/query-structure#parameters_clause",
+          "description": "Lead cost of goods sold (COGS) is the total cost of products sold as a result of advertising the same product. How it works: You report conversions with cart data for completed purchases on your website. If the ad that was interacted with has an associated product (see Shopping Ads) then this product is considered the advertised product. Any product included in the order the customer places is a sold product. If the advertised and sold products match, then the cost of these goods is counted under lead cost of goods sold. Example: Someone clicked on a Shopping ad for a hat then bought the same hat and a shirt. The hat has a cost of goods sold value of $3, the shirt has a cost of goods sold value of $5. The lead cost of goods sold for this order is $3. This metric is only available if you report conversions with cart data. This metric is a monetary value and returned in the customer's currency by default. See the `metrics_currency` parameter at [PARAMETERS clause](https://developers.google.com/search-ads/reporting/query/query-structure#parameters_clause).",
           "format": "int64",
           "type": "string"
         },
         "leadGrossProfitMicros": {
-          "description": "Lead gross profit is the profit you made from products sold as a result of advertising the same product, minus cost of goods sold (COGS). How it works: You report conversions with cart data for completed purchases on your website. If the ad that was interacted with before the purchase has an associated product (see Shopping Ads) then this product is considered the advertised product. Any product included in the order the customer places is a sold product. If the advertised and sold products match, then the revenue you made from these sales minus the cost of goods sold is your lead gross profit. Example: Someone clicked on a Shopping ad for a hat then bought the same hat and a shirt. The hat is priced $10 and has a cost of goods sold value of $3. The lead gross profit of this order is $7 = $10 - $3. This metric is only available if you report conversions with cart data. This metric is a monetary value and returned in the customer's currency by default. See the metrics_currency parameter at https://developers.google.com/search-ads/reporting/query/query-structure#parameters_clause",
+          "description": "Lead gross profit is the profit you made from products sold as a result of advertising the same product, minus cost of goods sold (COGS). How it works: You report conversions with cart data for completed purchases on your website. If the ad that was interacted with before the purchase has an associated product (see Shopping Ads) then this product is considered the advertised product. Any product included in the order the customer places is a sold product. If the advertised and sold products match, then the revenue you made from these sales minus the cost of goods sold is your lead gross profit. Example: Someone clicked on a Shopping ad for a hat then bought the same hat and a shirt. The hat is priced $10 and has a cost of goods sold value of $3. The lead gross profit of this order is $7 = $10 - $3. This metric is only available if you report conversions with cart data. This metric is a monetary value and returned in the customer's currency by default. See the `metrics_currency` parameter at [PARAMETERS clause](https://developers.google.com/search-ads/reporting/query/query-structure#parameters_clause).",
           "format": "int64",
           "type": "string"
         },
         "leadRevenueMicros": {
-          "description": "Lead revenue is the total amount you made from products sold as a result of advertising the same product. How it works: You report conversions with cart data for completed purchases on your website. If the ad that was interacted with before the purchase has an associated product (see Shopping Ads) then this product is considered the advertised product. Any product included in the order the customer places is a sold product. If the advertised and sold products match, then the total value you made from the sales of these products is shown under lead revenue. Example: Someone clicked on a Shopping ad for a hat then bought the same hat and a shirt. The hat is priced $10 and the shirt is priced $20. The lead revenue of this order is $10. This metric is only available if you report conversions with cart data. This metric is a monetary value and returned in the customer's currency by default. See the metrics_currency parameter at https://developers.google.com/search-ads/reporting/query/query-structure#parameters_clause",
+          "description": "Lead revenue is the total amount you made from products sold as a result of advertising the same product. How it works: You report conversions with cart data for completed purchases on your website. If the ad that was interacted with before the purchase has an associated product (see Shopping Ads) then this product is considered the advertised product. Any product included in the order the customer places is a sold product. If the advertised and sold products match, then the total value you made from the sales of these products is shown under lead revenue. Example: Someone clicked on a Shopping ad for a hat then bought the same hat and a shirt. The hat is priced $10 and the shirt is priced $20. The lead revenue of this order is $10. This metric is only available if you report conversions with cart data. This metric is a monetary value and returned in the customer's currency by default. See the `metrics_currency` parameter at [PARAMETERS clause](https://developers.google.com/search-ads/reporting/query/query-structure#parameters_clause).",
           "format": "int64",
           "type": "string"
         },
@@ -12311,7 +12429,7 @@
           "type": "string"
         },
         "searchAbsoluteTopImpressionShare": {
-          "description": "The percentage of the customer's Shopping or Search ad impressions that are shown in the most prominent Shopping position. See https://support.google.com/sa360/answer/9566729 for details. Any value below 0.1 is reported as 0.0999.",
+          "description": "The percentage of the customer's Shopping or Search ad impressions that are shown in the most prominent Shopping position. See [About top and absolute top metrics](https://support.google.com/sa360/answer/9566729) for details. Any value below 0.1 is reported as 0.0999.",
           "format": "double",
           "type": "number"
         },
@@ -12326,7 +12444,7 @@
           "type": "number"
         },
         "searchBudgetLostTopImpressionShare": {
-          "description": "The number estimating how often your ad didn't show adjacent to the top organic search results due to a low budget. Note: Search budget lost top impression share is reported in the range of 0 to 0.9. Any value above 0.9 is reported as 0.9001.",
+          "description": "The estimated percent of times that your ad didn't show adjacent to the top organic search results due to a low budget. Note: Search budget lost top impression share is reported in the range of 0 to 0.9. Any value above 0.9 is reported as 0.9001.",
           "format": "double",
           "type": "number"
         },
@@ -12386,7 +12504,7 @@
           "type": "number"
         },
         "valuePerAllConversionsByConversionDate": {
-          "description": "The value of all conversions divided by the number of all conversions. When this column is selected with date, the values in date column means the conversion date. Details for the by_conversion_date columns are available at https://support.google.com/sa360/answer/9250611.",
+          "description": "The value of all conversions divided by the number of all conversions. When this column is selected with date, the values in date column means the conversion date. Details for the `by_conversion_date` columns are available at [About the \"All conversions\" column](https://support.google.com/sa360/answer/9250611).",
           "format": "double",
           "type": "number"
         },
@@ -13802,7 +13920,7 @@
       "type": "object"
     },
     "GoogleAdsSearchads360V23Common__SearchAds360ExpandedTextAdInfo": {
-      "description": "A Search Ads 360 expanded text ad.",
+      "description": "A Search Ads 360 expanded text ad. Expanded text ads are deprecated. Use SearchAds360ResponsiveSearchAd instead.",
       "id": "GoogleAdsSearchads360V23Common__SearchAds360ExpandedTextAdInfo",
       "properties": {
         "adTrackingId": {
@@ -14153,6 +14271,26 @@
         "keyword": {
           "$ref": "GoogleAdsSearchads360V23Common__Keyword",
           "description": "Keyword criterion."
+        },
+        "mobileDevicePlatform": {
+          "description": "Mobile device platform to which metrics apply.",
+          "enum": [
+            "UNSPECIFIED",
+            "UNKNOWN",
+            "ANDROID",
+            "IOS",
+            "OTHER_MOBILE",
+            "DESKTOP"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "Used for return value only. Represents value unknown in this version. Non-mobile and non-desktop devices will fall into this segment.",
+            "Android devices.",
+            "iOS devices.",
+            "Mobile devices that are not Android or iOS devices.",
+            "Desktop devices."
+          ],
+          "type": "string"
         },
         "month": {
           "description": "Month as represented by the date of the first day of a month. Formatted as yyyy-MM-dd.",
@@ -14696,6 +14834,63 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAdsSearchads360V23Common__SyntheticContentAttestation": {
+      "description": "Represents an attestation about synthetic content from a single source.",
+      "id": "GoogleAdsSearchads360V23Common__SyntheticContentAttestation",
+      "properties": {
+        "source": {
+          "description": "The source of the synthetic content attestation.",
+          "enum": [
+            "UNSPECIFIED",
+            "UNKNOWN",
+            "ADVERTISER_ATTESTED",
+            "GOOGLE_GENERATED_ADVERTISER_REVIEWED",
+            "GOOGLE_GENERATED_FULLY_AUTOMATED"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "Used for return values only. Represents value unknown in this version.",
+            "Attestation provided by the advertiser.",
+            "Google-generated content with advertiser review or input.",
+            "Google-autogenerated content without advertiser review."
+          ],
+          "type": "string"
+        },
+        "status": {
+          "description": "Indicates whether the content is considered synthetic by this source.",
+          "enum": [
+            "UNSPECIFIED",
+            "UNKNOWN",
+            "NOT_SYNTHETIC",
+            "IS_SYNTHETIC"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "Used for return values only. Represents value unknown in this version.",
+            "The content is attested as not synthetic.",
+            "The content is attested as synthetic."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAdsSearchads360V23Common__SyntheticContentInfo": {
+      "description": "Container for synthetic content attestations from different sources, such as the advertiser and Google systems.",
+      "id": "GoogleAdsSearchads360V23Common__SyntheticContentInfo",
+      "properties": {
+        "advertiserAttestation": {
+          "$ref": "GoogleAdsSearchads360V23Common__SyntheticContentAttestation",
+          "description": "Input provided by the advertiser."
+        },
+        "systemAttestation": {
+          "$ref": "GoogleAdsSearchads360V23Common__SyntheticContentAttestation",
+          "description": "Output only. Information about synthetic content generated by Google's systems.",
+          "readOnly": true
         }
       },
       "type": "object"
@@ -17724,7 +17919,10 @@
             "ACCESS_DENIED_FOR_ACCOUNT_TYPE",
             "METRIC_ACCESS_DENIED",
             "CLOUD_PROJECT_NOT_UNDER_ORGANIZATION",
-            "ACTION_NOT_PERMITTED_FOR_SUSPENDED_ACCOUNT"
+            "ACTION_NOT_PERMITTED_FOR_SUSPENDED_ACCOUNT",
+            "SEARCH_ADS360_OTHER_ENGINE_MUTATE_DENIED",
+            "SEARCH_ADS360_MUTATE_ALLOWLIST_DENIED",
+            "SEARCH_ADS360_MUTATE_FIELD_DENIED"
           ],
           "enumDescriptions": [
             "Enum unspecified.",
@@ -17744,7 +17942,10 @@
             "The customer (or login customer) isn't allowed in Search Ads 360 API. It belongs to another ads system.",
             "The developer does not have access to the metrics queried.",
             "The Google Cloud project is not under the required organization.",
-            "The user does not have permission to perform this action on the resource or method because the Google Ads account is suspended."
+            "The user does not have permission to perform this action on the resource or method because the Google Ads account is suspended.",
+            "The user does not have permission to perform mutates on accounts that are not owned by Search Ads 360.",
+            "This account does not have permission to perform mutates using the Search Ads 360 API.",
+            "This field is not allowed for mutates."
           ],
           "type": "string"
         },
@@ -19675,7 +19876,8 @@
             "START_DATE_AFTER_END_DATE",
             "CANNOT_SET_DATE_TO_PAST",
             "AFTER_MAXIMUM_ALLOWABLE_DATE",
-            "CANNOT_MODIFY_START_DATE_IF_ALREADY_STARTED"
+            "CANNOT_MODIFY_START_DATE_IF_ALREADY_STARTED",
+            "REQUESTED_DATE_GRANULARITY_NOT_SUPPORTED"
           ],
           "enumDescriptions": [
             "Enum unspecified.",
@@ -19684,7 +19886,8 @@
             "The start date was after the end date.",
             "Cannot set date to past time",
             "A date was used that is past the system \"last\" date.",
-            "Trying to change start date on a resource that has started."
+            "Trying to change start date on a resource that has started.",
+            "The requested time granularity is not supported for the date range in the query. Metrics with daily, hourly, or weekly segmentation are only available for the last 37 months."
           ],
           "type": "string"
         },
@@ -23968,6 +24171,7 @@
             "GENERATE_VERTICAL_YOUTUBE_VIDEOS",
             "GENERATE_SHORTER_YOUTUBE_VIDEOS",
             "GENERATE_LANDING_PAGE_PREVIEW",
+            "GENERATE_LANDING_PAGE_TEXT",
             "GENERATE_ENHANCED_YOUTUBE_VIDEOS",
             "GENERATE_IMAGE_ENHANCEMENT",
             "GENERATE_IMAGE_EXTRACTION",
@@ -23978,15 +24182,16 @@
           "enumDescriptions": [
             "Not specified.",
             "Used as a return value only. Represents value unknown in this version.",
-            "Text asset automation includes headlines and descriptions. By default, advertisers are opted-in for Performance Max and opted-out for Search.",
+            "Text asset automation (text customization) includes headlines and descriptions, allowing Google to create customized text assets using your existing ads, landing page copy, and generative AI across your campaign's ads. By default, advertisers are opted-in for Performance Max and opted-out for Search. Contrast this with `FINAL_URL_EXPANSION_TEXT_ASSET_AUTOMATION`, which dynamically generates text assets to match the content of dynamically selected landing pages when final URL expansion is active.",
             "Converts horizontal video assets to vertical orientation using content-aware technology. By default, advertisers are opted in for DemandGenVideoResponsiveAd.",
             "Shortens video assets to better capture user attention using content-aware technology.",
             "Generates a preview of the landing page shown in the engagement panel. By using this feature, you confirm that you own all legal rights to the images on the landing page used by this account (or you have permission to share the images with Google). You hereby instruct Google to publish these images on your behalf for advertising or other commercial purposes.",
+            "Generates text information from the landing page to be shown in the engagement panel. Opted in by default for DemandGenVideoResponsiveAd.",
             "Generates video enhancements (vertical and shorter videos) for PMax campaigns. Opted in by default.",
             "Generates image enhancements (AutoCrop and AutoEnhance). Opted in by default for pmax.",
             "Generates image extraction. It defaults to account level Dynamic Image Extension control value.",
             "Adds design elements and embeds text assets into image assets to create images with different aspect ratios. By default, advertisers are opted in for DemandGenMultiAssetAd.",
-            "Controls automation for text assets related to Final URL expansion. This includes automatically creating dynamic landing pages from the final URL and generating text assets from the content of those landing pages. This setting is turned OFF by default for Search campaigns, but it is turned ON by default for Performance Max campaigns.",
+            "Controls automation for text assets related to Final URL expansion. This includes automatically creating dynamic landing pages from the final URL and generating text assets from the content of those landing pages. This setting is turned OFF by default for Search campaigns, but it is turned ON by default for Performance Max campaigns. Enabling final URL expansion also enables text asset automation. There is no way to opt out of text asset automation and still use final URL expansion. Contrast this with standard `TEXT_ASSET_AUTOMATION` (text customization), which customizes copy across all ads in the campaign even when final URL expansion does not occur.",
             "Generates videos using other Assets as input, such as images and text. By default, advertisers are opted in for DemandGenMultiAssetAd."
           ],
           "type": "string"
@@ -27673,7 +27878,7 @@
         },
         "expandedTextAd": {
           "$ref": "GoogleAdsSearchads360V23Common__ExpandedTextAdInfo",
-          "description": "Details pertaining to an expanded text ad."
+          "description": "Details pertaining to an expanded text ad. Expanded text ads are deprecated. Use `ResponsiveSearchAd` instead."
         },
         "finalAppUrls": {
           "description": "A list of final app URLs that will be used on mobile if the user has the specific app installed.",
@@ -27752,7 +27957,7 @@
         },
         "searchAds360ExpandedTextAd": {
           "$ref": "GoogleAdsSearchads360V23Common__SearchAds360ExpandedTextAdInfo",
-          "description": "Immutable. Details pertaining to an expanded text ad."
+          "description": "Immutable. Details pertaining to an expanded text ad. Expanded text ads are deprecated. Use `SearchAds360ResponsiveSearchAd` instead."
         },
         "searchAds360ResponsiveSearchAd": {
           "$ref": "GoogleAdsSearchads360V23Common__SearchAds360ResponsiveSearchAdInfo",
@@ -27777,6 +27982,10 @@
         "smartCampaignAd": {
           "$ref": "GoogleAdsSearchads360V23Common__SmartCampaignAdInfo",
           "description": "Details pertaining to a Smart campaign ad."
+        },
+        "syntheticContentInfo": {
+          "$ref": "GoogleAdsSearchads360V23Common__SyntheticContentInfo",
+          "description": "Synthetic content info for the ad. Only ads with specific ad types are eligible for updates using the `synthetic_content_info` field. Allowed `AdType` values: * `HTML5_UPLOAD_AD` * `DYNAMIC_HTML5_AD` * `IMAGE_AD`"
         },
         "systemManagedResourceSource": {
           "description": "Output only. If this ad is system managed, then this field will indicate the source. This field is read-only.",
@@ -27846,7 +28055,7 @@
             "No value has been specified.",
             "The received value is not known in this version. This is a response-only value.",
             "The ad is a text ad.",
-            "The ad is an expanded text ad.",
+            "The ad is an expanded text ad. Expanded text ads are deprecated.",
             "The ad is an expanded dynamic search ad.",
             "The ad is a hotel ad.",
             "The ad is a Smart Shopping ad.",
@@ -28779,6 +28988,7 @@
             "GENERATE_VERTICAL_YOUTUBE_VIDEOS",
             "GENERATE_SHORTER_YOUTUBE_VIDEOS",
             "GENERATE_LANDING_PAGE_PREVIEW",
+            "GENERATE_LANDING_PAGE_TEXT",
             "GENERATE_ENHANCED_YOUTUBE_VIDEOS",
             "GENERATE_IMAGE_ENHANCEMENT",
             "GENERATE_IMAGE_EXTRACTION",
@@ -28789,15 +28999,16 @@
           "enumDescriptions": [
             "Not specified.",
             "Used as a return value only. Represents value unknown in this version.",
-            "Text asset automation includes headlines and descriptions. By default, advertisers are opted-in for Performance Max and opted-out for Search.",
+            "Text asset automation (text customization) includes headlines and descriptions, allowing Google to create customized text assets using your existing ads, landing page copy, and generative AI across your campaign's ads. By default, advertisers are opted-in for Performance Max and opted-out for Search. Contrast this with `FINAL_URL_EXPANSION_TEXT_ASSET_AUTOMATION`, which dynamically generates text assets to match the content of dynamically selected landing pages when final URL expansion is active.",
             "Converts horizontal video assets to vertical orientation using content-aware technology. By default, advertisers are opted in for DemandGenVideoResponsiveAd.",
             "Shortens video assets to better capture user attention using content-aware technology.",
             "Generates a preview of the landing page shown in the engagement panel. By using this feature, you confirm that you own all legal rights to the images on the landing page used by this account (or you have permission to share the images with Google). You hereby instruct Google to publish these images on your behalf for advertising or other commercial purposes.",
+            "Generates text information from the landing page to be shown in the engagement panel. Opted in by default for DemandGenVideoResponsiveAd.",
             "Generates video enhancements (vertical and shorter videos) for PMax campaigns. Opted in by default.",
             "Generates image enhancements (AutoCrop and AutoEnhance). Opted in by default for pmax.",
             "Generates image extraction. It defaults to account level Dynamic Image Extension control value.",
             "Adds design elements and embeds text assets into image assets to create images with different aspect ratios. By default, advertisers are opted in for DemandGenMultiAssetAd.",
-            "Controls automation for text assets related to Final URL expansion. This includes automatically creating dynamic landing pages from the final URL and generating text assets from the content of those landing pages. This setting is turned OFF by default for Search campaigns, but it is turned ON by default for Performance Max campaigns.",
+            "Controls automation for text assets related to Final URL expansion. This includes automatically creating dynamic landing pages from the final URL and generating text assets from the content of those landing pages. This setting is turned OFF by default for Search campaigns, but it is turned ON by default for Performance Max campaigns. Enabling final URL expansion also enables text asset automation. There is no way to opt out of text asset automation and still use final URL expansion. Contrast this with standard `TEXT_ASSET_AUTOMATION` (text customization), which customizes copy across all ads in the campaign even when final URL expansion does not occur.",
             "Generates videos using other Assets as input, such as images and text. By default, advertisers are opted in for DemandGenMultiAssetAd."
           ],
           "type": "string"
@@ -30649,7 +30860,7 @@
       "type": "object"
     },
     "GoogleAdsSearchads360V23Resources__AgeRangeView": {
-      "description": "An age range view.",
+      "description": "An age range view. Represents the view of a customer's performance metrics (like impressions and clicks) aggregated by age range. All statistics are aggregated at the ad group level. Note: While you can segment metrics by age range using `age_range_view` or by gender using `gender_view`, the Search Ads 360 API does not support segmenting metrics by both age range and gender simultaneously in a single query. Analyzing performance across both dimensions combined is not supported in the Search Ads 360 API.",
       "id": "GoogleAdsSearchads360V23Resources__AgeRangeView",
       "properties": {
         "resourceName": {
@@ -31150,6 +31361,10 @@
         "structuredSnippetAsset": {
           "$ref": "GoogleAdsSearchads360V23Common__StructuredSnippetAsset",
           "description": "A structured snippet asset."
+        },
+        "syntheticContentInfo": {
+          "$ref": "GoogleAdsSearchads360V23Common__SyntheticContentInfo",
+          "description": "Synthetic content info for the asset. Only assets with specific asset types are eligible for updates using the `synthetic_content_info` field. Allowed `AssetType` values: * `IMAGE` * `MEDIA_BUNDLE` * `YOUTUBE_VIDEO`"
         },
         "textAsset": {
           "$ref": "GoogleAdsSearchads360V23Common__TextAsset",
@@ -36500,7 +36715,7 @@
             "Floodlight activity that tracks the number of sales made or the number of items purchased. Can also capture the total value of each sale. Read only.",
             "Conversions that track local actions from Google's products and services after interacting with an ad. Read only.",
             "Conversions reported when a user submits a lead form. Read only.",
-            "Deprecated: The Salesforce integration will be going away and replaced with an improved way to import your conversions from Salesforce. - see https://support.google.com/google-ads/answer/14728349",
+            "Deprecated: The Salesforce integration ended on May 31, 2025. See [Legacy Salesforce integration for conversions upgrade FAQ](//support.google.com/google-ads/answer/14728349).",
             "Conversions imported from Search Ads 360 Floodlight data. Read only.",
             "Call conversions that occur on Smart campaign Ads without call tracking setup, using Smart campaign custom criteria. Read only.",
             "The user clicks on a call element within Google Maps. Smart campaign only. Read only.",
@@ -38248,12 +38463,12 @@
       "id": "GoogleAdsSearchads360V23Resources__CustomerLabel",
       "properties": {
         "customer": {
-          "description": "Output only. The resource name of the customer to which the label is attached. Read only.",
+          "description": "Output only. The resource name of the customer to which the label is attached. This field should not be set when creating a new `CustomerLabel`.",
           "readOnly": true,
           "type": "string"
         },
         "label": {
-          "description": "Output only. The resource name of the label assigned to the customer. Note: the Customer ID portion of the label resource name is not validated when creating a new CustomerLabel.",
+          "description": "Output only. The resource name of the label assigned to the customer. This field should not be set when creating a new `CustomerLabel`. Note: the Customer ID portion of the label resource name is not validated when creating a new `CustomerLabel`.",
           "readOnly": true,
           "type": "string"
         },
@@ -38837,7 +39052,7 @@
       "type": "object"
     },
     "GoogleAdsSearchads360V23Resources__DetailPlacementView": {
-      "description": "A view with metrics aggregated by ad group and URL or YouTube video. This view primarily surfaces placement data from the Google Display Network. While you can select segments like `segments.ad_network_type`, this view generally does not include placement data from other networks, such as the Search Partners network. To understand performance on Search Partners, consider other reports and segmentations.",
+      "description": "A view with metrics aggregated by ad group and URL or YouTube video. Provides granular performance data about specific URLs, YouTube videos, and apps where your ads showed. This offers a more detailed breakdown compared to the group_placement_view. This view primarily surfaces placement data from the Google Display Network. While you can select segments like `segments.ad_network_type`, this view generally does not include placement data from other networks, such as the Search Partners network. To understand performance on Search Partners, consider other reports and segmentations. Data for low-traffic placements may be aggregated.",
       "id": "GoogleAdsSearchads360V23Resources__DetailPlacementView",
       "properties": {
         "displayName": {
@@ -39257,7 +39472,7 @@
       "id": "GoogleAdsSearchads360V23Resources__ExperimentArm",
       "properties": {
         "assetGroups": {
-          "description": "List of asset groups in the experiment arm.",
+          "description": "List of asset groups in the experiment arm. The max length is one. In the Optimize Assets experiment construction, the control arm and treatment arm should both contain the same asset group ID.",
           "items": {
             "$ref": "GoogleAdsSearchads360V23Resources_ExperimentArm_AssetGroupInfo"
           },
@@ -39456,7 +39671,7 @@
       "type": "object"
     },
     "GoogleAdsSearchads360V23Resources__GenderView": {
-      "description": "A gender view. The gender_view resource reflects the effective serving state, rather than what criteria were added. An ad group without gender criteria by default shows to all genders, so all genders appear in gender_view with stats.",
+      "description": "A gender view resource. Represents the view of a customer's performance metrics aggregated by gender. All statistics are aggregated at the ad group level. Note: While you can segment metrics by age range using `age_range_view` or by gender using `gender_view`, the Search Ads 360 API does not support segmenting metrics by both age range and gender simultaneously in a single query. Analyzing performance across both dimensions combined is not supported in the Search Ads 360 API.",
       "id": "GoogleAdsSearchads360V23Resources__GenderView",
       "properties": {
         "resourceName": {
@@ -39774,7 +39989,7 @@
       "type": "object"
     },
     "GoogleAdsSearchads360V23Resources__GroupPlacementView": {
-      "description": "A group placement view.",
+      "description": "A view showing performance data for where your ads actually served on the Display Network and YouTube, including both targeted (managed) and automatic placements. Data for low-traffic placements may be aggregated. The scope of placements shown is influenced by the ad group's `TargetingSetting` for the `PLACEMENT` dimension.",
       "id": "GoogleAdsSearchads360V23Resources__GroupPlacementView",
       "properties": {
         "displayName": {
@@ -41514,7 +41729,7 @@
       "type": "object"
     },
     "GoogleAdsSearchads360V23Resources__ManagedPlacementView": {
-      "description": "A managed placement view.",
+      "description": "A view providing performance data for placements explicitly targeted in your ad groups.",
       "id": "GoogleAdsSearchads360V23Resources__ManagedPlacementView",
       "properties": {
         "resourceName": {
@@ -44656,7 +44871,7 @@
           "type": "string"
         },
         "path": {
-          "description": "Output only. The category to target or exclude. Each subsequent element in the array describes a more specific sub-category. For example, {\"Pets & Animals\", \"Pets\", \"Dogs\"} represents the \"Pets & Animals/Pets/Dogs\" category. List of available topic categories at https://developers.google.com/google-ads/api/reference/data/verticals",
+          "description": "Output only. The category to target or exclude. Each subsequent element in the array describes a more specific sub-category. For example, {\"Pets & Animals\", \"Pets\", \"Dogs\"} represents the \"Pets & Animals/Pets/Dogs\" category. List of available topic categories at https://developers.google.com/google-ads/api/data/topics",
           "items": {
             "type": "string"
           },
@@ -45756,6 +45971,27 @@
         "maximizeConversionsBiddingStrategy": {
           "$ref": "GoogleAdsSearchads360V23Services__MaximizeConversionsBiddingStrategy",
           "description": "Use maximize conversions bidding strategy for forecasting."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAdsSearchads360V23Services_CartData_Item": {
+      "description": "Contains data of the items purchased.",
+      "id": "GoogleAdsSearchads360V23Services_CartData_Item",
+      "properties": {
+        "productId": {
+          "description": "The shopping id of the item. Must be equal to the Merchant Center product identifier.",
+          "type": "string"
+        },
+        "quantity": {
+          "description": "Number of items sold.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "unitPrice": {
+          "description": "Unit price excluding tax, shipping, and any transaction level discounts. The currency code is the same as that in the `ClickConversion` message.",
+          "format": "double",
+          "type": "number"
         }
       },
       "type": "object"
@@ -47565,6 +47801,72 @@
       },
       "type": "object"
     },
+    "GoogleAdsSearchads360V23Services__CallConversion": {
+      "description": "A call conversion.",
+      "id": "GoogleAdsSearchads360V23Services__CallConversion",
+      "properties": {
+        "callStartDateTime": {
+          "description": "The date time at which the call occurred. The timezone must be specified. The format is \"yyyy-mm-dd hh:mm:ss+|-hh:mm\", for example, \"2019-01-01 12:32:45-08:00\".",
+          "type": "string"
+        },
+        "callerId": {
+          "description": "The caller id from which this call was placed. Caller id is expected to be in E.164 format with preceding '+' sign, for example, \"+16502531234\".",
+          "type": "string"
+        },
+        "consent": {
+          "$ref": "GoogleAdsSearchads360V23Common__Consent",
+          "description": "The consent setting for the event."
+        },
+        "conversionAction": {
+          "description": "Resource name of the conversion action associated with this conversion. Note: Although this resource name consists of a customer id and a conversion action id, validation will ignore the customer id and use the conversion action id as the sole identifier of the conversion action.",
+          "type": "string"
+        },
+        "conversionDateTime": {
+          "description": "The date time at which the conversion occurred. Must be after the call time. The timezone must be specified. The format is \"yyyy-mm-dd hh:mm:ss+|-hh:mm\", for example, \"2019-01-01 12:32:45-08:00\".",
+          "type": "string"
+        },
+        "conversionValue": {
+          "description": "The value of the conversion for the advertiser.",
+          "format": "double",
+          "type": "number"
+        },
+        "currencyCode": {
+          "description": "Currency associated with the conversion value. This is the ISO 4217 3-character currency code. For example: USD, EUR.",
+          "type": "string"
+        },
+        "customVariables": {
+          "description": "The custom variables associated with this conversion.",
+          "items": {
+            "$ref": "GoogleAdsSearchads360V23Services__CustomVariable"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAdsSearchads360V23Services__CallConversionResult": {
+      "description": "Identifying information for a successfully processed CallConversionUpload.",
+      "id": "GoogleAdsSearchads360V23Services__CallConversionResult",
+      "properties": {
+        "callStartDateTime": {
+          "description": "The date time at which the call occurred. The format is \"yyyy-mm-dd hh:mm:ss+|-hh:mm\", for example, \"2019-01-01 12:32:45-08:00\".",
+          "type": "string"
+        },
+        "callerId": {
+          "description": "The caller id from which this call was placed. Caller id is expected to be in E.164 format with preceding '+' sign.",
+          "type": "string"
+        },
+        "conversionAction": {
+          "description": "Resource name of the conversion action associated with this conversion.",
+          "type": "string"
+        },
+        "conversionDateTime": {
+          "description": "The date time at which the conversion occurred. The format is \"yyyy-mm-dd hh:mm:ss+|-hh:mm\", for example, \"2019-01-01 12:32:45-08:00\".",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleAdsSearchads360V23Services__CampaignAssetOperation": {
       "description": "A single operation (create, remove) on a campaign asset.",
       "id": "GoogleAdsSearchads360V23Services__CampaignAssetOperation",
@@ -47943,6 +48245,183 @@
       },
       "type": "object"
     },
+    "GoogleAdsSearchads360V23Services__CartData": {
+      "description": "Contains additional information about cart data.",
+      "id": "GoogleAdsSearchads360V23Services__CartData",
+      "properties": {
+        "feedCountryCode": {
+          "description": "The country code associated with the feed where the items are uploaded.",
+          "type": "string"
+        },
+        "feedLanguageCode": {
+          "description": "The language code associated with the feed where the items are uploaded.",
+          "type": "string"
+        },
+        "items": {
+          "description": "Data of the items purchased.",
+          "items": {
+            "$ref": "GoogleAdsSearchads360V23Services_CartData_Item"
+          },
+          "type": "array"
+        },
+        "localTransactionCost": {
+          "description": "Sum of all transaction level discounts, such as free shipping and coupon discounts for the whole cart. The currency code is the same as that in the `ClickConversion` message.",
+          "format": "double",
+          "type": "number"
+        },
+        "merchantId": {
+          "description": "The Merchant Center ID where the items are uploaded.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAdsSearchads360V23Services__ClickConversion": {
+      "description": "A click conversion.",
+      "id": "GoogleAdsSearchads360V23Services__ClickConversion",
+      "properties": {
+        "cartData": {
+          "$ref": "GoogleAdsSearchads360V23Services__CartData",
+          "description": "The cart data associated with this conversion."
+        },
+        "consent": {
+          "$ref": "GoogleAdsSearchads360V23Common__Consent",
+          "description": "The consent setting for the event."
+        },
+        "conversionAction": {
+          "description": "Resource name of the conversion action associated with this conversion. Note: Although this resource name consists of a customer id and a conversion action id, validation will ignore the customer id and use the conversion action id as the sole identifier of the conversion action.",
+          "type": "string"
+        },
+        "conversionDateTime": {
+          "description": "The date time at which the conversion occurred. Must be after the click time. The timezone must be specified. The format is \"yyyy-mm-dd hh:mm:ss+|-hh:mm\", for example, \"2019-01-01 12:32:45-08:00\".",
+          "type": "string"
+        },
+        "conversionEnvironment": {
+          "description": "The environment this conversion was recorded on, for example, App or Web.",
+          "enum": [
+            "UNSPECIFIED",
+            "UNKNOWN",
+            "APP",
+            "WEB"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "Used for return value only. Represents value unknown in this version.",
+            "The conversion was recorded on an app.",
+            "The conversion was recorded on a website."
+          ],
+          "type": "string"
+        },
+        "conversionValue": {
+          "description": "The value of the conversion for the advertiser.",
+          "format": "double",
+          "type": "number"
+        },
+        "currencyCode": {
+          "description": "Currency associated with the conversion value. This is the ISO 4217 3-character currency code. For example: USD, EUR.",
+          "type": "string"
+        },
+        "customVariables": {
+          "description": "The custom variables associated with this conversion.",
+          "items": {
+            "$ref": "GoogleAdsSearchads360V23Services__CustomVariable"
+          },
+          "type": "array"
+        },
+        "customerType": {
+          "description": "Type of the customer associated with the conversion (new or returning).",
+          "enum": [
+            "UNSPECIFIED",
+            "UNKNOWN",
+            "NEW",
+            "RETURNING"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "The value is unknown in this version.",
+            "Converting user is new to the advertiser.",
+            "Converting user is returning to the advertiser. Definition of returning differs among conversion types, such as a second store visit versus a second online purchase."
+          ],
+          "type": "string"
+        },
+        "externalAttributionData": {
+          "$ref": "GoogleAdsSearchads360V23Services__ExternalAttributionData",
+          "description": "Additional data about externally attributed conversions. This field is required for conversions with an externally attributed conversion action, but should not be set otherwise."
+        },
+        "gbraid": {
+          "description": "The URL parameter for clicks associated with app conversions.",
+          "type": "string"
+        },
+        "gclid": {
+          "description": "The Google click ID (gclid) associated with this conversion.",
+          "type": "string"
+        },
+        "orderId": {
+          "description": "The order ID associated with the conversion. An order id can only be used for one conversion per conversion action.",
+          "type": "string"
+        },
+        "sessionAttributesEncoded": {
+          "description": "The session attributes for the event, represented as a base64-encoded JSON string. The content should be generated by Google-provided library. To set session attributes individually, use session_attributes_key_value_pairs instead. This field is only available to allowlisted users. To include this field in conversion imports, upgrade to the Data Manager API.",
+          "format": "byte",
+          "type": "string"
+        },
+        "sessionAttributesKeyValuePairs": {
+          "$ref": "GoogleAdsSearchads360V23Services__SessionAttributesKeyValuePairs",
+          "description": "The session attributes for the event, represented as key-value pairs. This field is only available to allowlisted users. To include this field in conversion imports, upgrade to the Data Manager API."
+        },
+        "userIdentifiers": {
+          "description": "The user identifiers associated with this conversion. Only hashed_email and hashed_phone_number are supported for conversion uploads. The maximum number of user identifiers for each conversion is 5.",
+          "items": {
+            "$ref": "GoogleAdsSearchads360V23Common__UserIdentifier"
+          },
+          "type": "array"
+        },
+        "userIpAddress": {
+          "description": "The IP address of the customer when they arrived on the landing page after an ad click but before a conversion event. This is the IP address of the customer's device, not the advertiser's server. Google Ads does not support IP address matching for end users in the European Economic Area (EEA), United Kingdom (UK), or Switzerland (CH). Add logic to conditionally exclude sharing IP addresses from users from these regions and ensure that you provide users with clear and comprehensive information about the data you collect on your sites, apps, and other properties and get consent where required by law or any applicable Google policies. See [About offline conversion imports](//support.google.com/google-ads/answer/2998031) page for more details. This field is only available to allowlisted users. To include this field in conversion imports, upgrade to the Data Manager API.",
+          "type": "string"
+        },
+        "wbraid": {
+          "description": "The URL parameter for clicks associated with web conversions.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAdsSearchads360V23Services__ClickConversionResult": {
+      "description": "Identifying information for a successfully processed `ClickConversion`.",
+      "id": "GoogleAdsSearchads360V23Services__ClickConversionResult",
+      "properties": {
+        "conversionAction": {
+          "description": "Resource name of the conversion action associated with this conversion.",
+          "type": "string"
+        },
+        "conversionDateTime": {
+          "description": "The date time at which the conversion occurred. The format is \"yyyy-mm-dd hh:mm:ss+|-hh:mm\", for example, \"2019-01-01 12:32:45-08:00\".",
+          "type": "string"
+        },
+        "gbraid": {
+          "description": "The URL parameter for clicks associated with app conversions.",
+          "type": "string"
+        },
+        "gclid": {
+          "description": "The Google Click ID (gclid) associated with this conversion.",
+          "type": "string"
+        },
+        "userIdentifiers": {
+          "description": "The user identifiers associated with this conversion. Only hashed_email and hashed_phone_number are supported for conversion uploads. The maximum number of user identifiers for each conversion is 5.",
+          "items": {
+            "$ref": "GoogleAdsSearchads360V23Common__UserIdentifier"
+          },
+          "type": "array"
+        },
+        "wbraid": {
+          "description": "The URL parameter for clicks associated with web conversions.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleAdsSearchads360V23Services__ConfigureCampaignLifecycleGoalsRequest": {
       "description": "Request message for CampaignLifecycleGoalService.ConfigureCampaignLifecycleGoals.",
       "id": "GoogleAdsSearchads360V23Services__ConfigureCampaignLifecycleGoalsRequest",
@@ -48066,6 +48545,103 @@
         "updateMask": {
           "description": "FieldMask that determines which resource fields are modified in an update.",
           "format": "google-fieldmask",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAdsSearchads360V23Services__ConversionAdjustment": {
+      "description": "A conversion adjustment.",
+      "id": "GoogleAdsSearchads360V23Services__ConversionAdjustment",
+      "properties": {
+        "adjustmentDateTime": {
+          "description": "The date time at which the adjustment occurred. Must be after the conversion_date_time. The timezone must be specified. The format is \"yyyy-mm-dd hh:mm:ss+|-hh:mm\", for example, \"2019-01-01 12:32:45-08:00\".",
+          "type": "string"
+        },
+        "adjustmentType": {
+          "description": "The adjustment type.",
+          "enum": [
+            "UNSPECIFIED",
+            "UNKNOWN",
+            "RETRACTION",
+            "RESTATEMENT",
+            "ENHANCEMENT"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "Represents value unknown in this version.",
+            "Negates a conversion so that its total value and count are both zero.",
+            "Changes the value of a conversion.",
+            "Supplements an existing conversion with provided user identifiers and user agent, which can be used by Google to enhance the conversion count."
+          ],
+          "type": "string"
+        },
+        "conversionAction": {
+          "description": "Resource name of the conversion action associated with this conversion adjustment. Note: Although this resource name consists of a customer id and a conversion action id, validation will ignore the customer id and use the conversion action id as the sole identifier of the conversion action.",
+          "type": "string"
+        },
+        "gclidDateTimePair": {
+          "$ref": "GoogleAdsSearchads360V23Services__GclidDateTimePair",
+          "description": "For adjustments, uniquely identifies a conversion that was reported without an order ID specified. If the adjustment_type is ENHANCEMENT, this value is optional but may be set in addition to the order_id."
+        },
+        "orderId": {
+          "description": "The order ID of the conversion to be adjusted. If the conversion was reported with an order ID specified, that order ID must be used as the identifier here. The order ID is required for enhancements.",
+          "type": "string"
+        },
+        "restatementValue": {
+          "$ref": "GoogleAdsSearchads360V23Services__RestatementValue",
+          "description": "Information needed to restate the conversion's value. Required for restatements. Should not be supplied for retractions. An error will be returned if provided for a retraction. NOTE: If you want to upload a second restatement with a different adjusted value, it must have a new, more recent, adjustment occurrence time. Otherwise, it will be treated as a duplicate of the previous restatement and ignored."
+        },
+        "userAgent": {
+          "description": "The user agent to enhance the original conversion. This can be found in your user's HTTP request header when they convert on your web page. Example, \"Mozilla/5.0 (iPhone; CPU iPhone OS 12_2 like Mac OS X)\". User agent can only be specified in enhancements with user identifiers.",
+          "type": "string"
+        },
+        "userIdentifiers": {
+          "description": "The user identifiers to enhance the original conversion. ConversionAdjustmentUploadService only accepts user identifiers in enhancements. The maximum number of user identifiers for each enhancement is 5.",
+          "items": {
+            "$ref": "GoogleAdsSearchads360V23Common__UserIdentifier"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAdsSearchads360V23Services__ConversionAdjustmentResult": {
+      "description": "Information identifying a successfully processed ConversionAdjustment.",
+      "id": "GoogleAdsSearchads360V23Services__ConversionAdjustmentResult",
+      "properties": {
+        "adjustmentDateTime": {
+          "description": "The date time at which the adjustment occurred. The format is \"yyyy-mm-dd hh:mm:ss+|-hh:mm\", for example, \"2019-01-01 12:32:45-08:00\".",
+          "type": "string"
+        },
+        "adjustmentType": {
+          "description": "The adjustment type.",
+          "enum": [
+            "UNSPECIFIED",
+            "UNKNOWN",
+            "RETRACTION",
+            "RESTATEMENT",
+            "ENHANCEMENT"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "Represents value unknown in this version.",
+            "Negates a conversion so that its total value and count are both zero.",
+            "Changes the value of a conversion.",
+            "Supplements an existing conversion with provided user identifiers and user agent, which can be used by Google to enhance the conversion count."
+          ],
+          "type": "string"
+        },
+        "conversionAction": {
+          "description": "Resource name of the conversion action associated with this conversion adjustment.",
+          "type": "string"
+        },
+        "gclidDateTimePair": {
+          "$ref": "GoogleAdsSearchads360V23Services__GclidDateTimePair",
+          "description": "The gclid and conversion date time of the conversion."
+        },
+        "orderId": {
+          "description": "The order ID of the conversion to be adjusted.",
           "type": "string"
         }
       },
@@ -48498,6 +49074,21 @@
         "updateMask": {
           "description": "FieldMask that determines which resource fields are modified in an update.",
           "format": "google-fieldmask",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAdsSearchads360V23Services__CustomVariable": {
+      "description": "A custom variable.",
+      "id": "GoogleAdsSearchads360V23Services__CustomVariable",
+      "properties": {
+        "conversionCustomVariable": {
+          "description": "Resource name of the custom variable associated with this conversion. Note: Although this resource name consists of a customer id and a conversion custom variable id, validation will ignore the customer id and use the conversion custom variable id as the sole identifier of the conversion custom variable.",
+          "type": "string"
+        },
+        "value": {
+          "description": "The value string of this custom variable. The value of the custom variable should not contain private customer data, such as email addresses or phone numbers.",
           "type": "string"
         }
       },
@@ -49034,6 +49625,22 @@
       },
       "type": "object"
     },
+    "GoogleAdsSearchads360V23Services__ExternalAttributionData": {
+      "description": "Contains additional information about externally attributed conversions.",
+      "id": "GoogleAdsSearchads360V23Services__ExternalAttributionData",
+      "properties": {
+        "externalAttributionCredit": {
+          "description": "Represents the fraction of the conversion that is attributed to the Google Ads click.",
+          "format": "double",
+          "type": "number"
+        },
+        "externalAttributionModel": {
+          "description": "Specifies the attribution model name.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleAdsSearchads360V23Services__FetchIncentiveResponse": {
       "description": "Response from getting the acquisition incentive for a user when they visit a specific marketing page.",
       "id": "GoogleAdsSearchads360V23Services__FetchIncentiveResponse",
@@ -49176,6 +49783,21 @@
             "The cap would define limit per one week.",
             "The cap would define limit per one month."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAdsSearchads360V23Services__GclidDateTimePair": {
+      "description": "Uniquely identifies a conversion that was reported without an order ID specified.",
+      "id": "GoogleAdsSearchads360V23Services__GclidDateTimePair",
+      "properties": {
+        "conversionDateTime": {
+          "description": "The date time at which the original conversion for this adjustment occurred. The timezone must be specified. The format is \"yyyy-mm-dd hh:mm:ss+|-hh:mm\", for example, \"2019-01-01 12:32:45-08:00\".",
+          "type": "string"
+        },
+        "gclid": {
+          "description": "Google click ID (gclid) associated with the original conversion for this adjustment.",
           "type": "string"
         }
       },
@@ -55103,7 +55725,7 @@
       "type": "object"
     },
     "GoogleAdsSearchads360V23Services__MutateCustomerLabelsRequest": {
-      "description": "Request message for CustomerLabelService.MutateCustomerLabels.",
+      "description": "Request message for CustomerLabelService.MutateCustomerLabels. A single `MutateCustomerLabelsRequest` can only modify labels for the single customer account specified in the request. To apply a label to multiple different accounts, separate `MutateCustomerLabelsRequest` calls must be made.",
       "id": "GoogleAdsSearchads360V23Services__MutateCustomerLabelsRequest",
       "properties": {
         "operations": {
@@ -56641,6 +57263,56 @@
       },
       "type": "object"
     },
+    "GoogleAdsSearchads360V23Services__MutateSearchAds360CampaignsRequest": {
+      "description": "Request message for SearchAds360CampaignService.MutateSearchAds360Campaigns.",
+      "id": "GoogleAdsSearchads360V23Services__MutateSearchAds360CampaignsRequest",
+      "properties": {
+        "operations": {
+          "description": "Required. The list of operations to perform on individual Search Ads 360 campaigns.",
+          "items": {
+            "$ref": "GoogleAdsSearchads360V23Services__SearchAds360CampaignOperation"
+          },
+          "type": "array"
+        },
+        "partialFailure": {
+          "description": "If true, successful operations will be carried out and invalid operations will return errors. If false, all operations will be carried out in one transaction if and only if they are all valid. Default is false.",
+          "type": "boolean"
+        },
+        "responseContentType": {
+          "description": "The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation.",
+          "enum": [
+            "UNSPECIFIED",
+            "RESOURCE_NAME_ONLY",
+            "MUTABLE_RESOURCE"
+          ],
+          "enumDescriptions": [
+            "Not specified. Will return the resource name only in the response.",
+            "The mutate response will be the resource name.",
+            "The mutate response will contain the resource name and the resource with mutable fields if possible. Otherwise, only the resource name will be returned."
+          ],
+          "type": "string"
+        },
+        "validateOnly": {
+          "description": "If true, the request is validated but not executed. Only errors are returned, not results.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAdsSearchads360V23Services__MutateSearchAds360CampaignsResponse": {
+      "description": "Response message for Search Ads 360 campaign mutate.",
+      "id": "GoogleAdsSearchads360V23Services__MutateSearchAds360CampaignsResponse",
+      "properties": {
+        "results": {
+          "description": "All results for the mutate.",
+          "items": {
+            "$ref": "GoogleAdsSearchads360V23Services__MutateSearchAds360CampaignResult"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleAdsSearchads360V23Services__MutateSearchAds360Request": {
       "description": "Request message for Service.Mutate.",
       "id": "GoogleAdsSearchads360V23Services__MutateSearchAds360Request",
@@ -57968,6 +58640,22 @@
       },
       "type": "object"
     },
+    "GoogleAdsSearchads360V23Services__RestatementValue": {
+      "description": "Contains information needed to restate a conversion's value.",
+      "id": "GoogleAdsSearchads360V23Services__RestatementValue",
+      "properties": {
+        "adjustedValue": {
+          "description": "The restated conversion value. This is the value of the conversion after restatement. For example, to change the value of a conversion from 100 to 70, an adjusted value of 70 should be reported. NOTE: If you want to upload a second restatement with a different adjusted value, it must have a new, more recent, adjustment occurrence time. Otherwise, it will be treated as a duplicate of the previous restatement and ignored.",
+          "format": "double",
+          "type": "number"
+        },
+        "currencyCode": {
+          "description": "The currency of the restated value. If not provided, then the default currency from the conversion action is used, and if that is not set then the account currency is used. This is the ISO 4217 3-character currency code for example, USD or EUR.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleAdsSearchads360V23Services__RunBatchJobRequest": {
       "description": "Request message for BatchJobService.RunBatchJob.",
       "id": "GoogleAdsSearchads360V23Services__RunBatchJobRequest",
@@ -58942,6 +59630,35 @@
       },
       "type": "object"
     },
+    "GoogleAdsSearchads360V23Services__SessionAttributeKeyValuePair": {
+      "description": "Contains one session attribute of the conversion.",
+      "id": "GoogleAdsSearchads360V23Services__SessionAttributeKeyValuePair",
+      "properties": {
+        "sessionAttributeKey": {
+          "description": "Required. The name of the session attribute.",
+          "type": "string"
+        },
+        "sessionAttributeValue": {
+          "description": "Required. The value of the session attribute.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAdsSearchads360V23Services__SessionAttributesKeyValuePairs": {
+      "description": "Contains session attributes of the conversion, represented as key-value pairs.",
+      "id": "GoogleAdsSearchads360V23Services__SessionAttributesKeyValuePairs",
+      "properties": {
+        "keyValuePairs": {
+          "description": "Required. The session attributes for the conversion.",
+          "items": {
+            "$ref": "GoogleAdsSearchads360V23Services__SessionAttributeKeyValuePair"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleAdsSearchads360V23Services__SharedCriterionOperation": {
       "description": "A single operation (create, remove) on an shared criterion.",
       "id": "GoogleAdsSearchads360V23Services__SharedCriterionOperation",
@@ -59756,6 +60473,146 @@
         "resourceName": {
           "description": "Result of the update.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAdsSearchads360V23Services__UploadCallConversionsRequest": {
+      "description": "Request message for ConversionUploadService.UploadCallConversions.",
+      "id": "GoogleAdsSearchads360V23Services__UploadCallConversionsRequest",
+      "properties": {
+        "conversions": {
+          "description": "Required. The conversions that are being uploaded.",
+          "items": {
+            "$ref": "GoogleAdsSearchads360V23Services__CallConversion"
+          },
+          "type": "array"
+        },
+        "partialFailure": {
+          "description": "Required. If `true`, successful operations will be carried out and invalid operations will return errors. If `false`, all operations will be carried out in one transaction if and only if they are all valid. This should always be set to `true`.",
+          "type": "boolean"
+        },
+        "validateOnly": {
+          "description": "If true, the request is validated but not executed. Only errors are returned, not results.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAdsSearchads360V23Services__UploadCallConversionsResponse": {
+      "description": "Response message for ConversionUploadService.UploadCallConversions.",
+      "id": "GoogleAdsSearchads360V23Services__UploadCallConversionsResponse",
+      "properties": {
+        "partialFailureError": {
+          "$ref": "GoogleRpc__Status",
+          "description": "Errors that pertain to conversion failures in the partial failure mode. Returned when all errors occur inside the conversions. If any errors occur outside the conversions (for example, auth errors), we return an RPC level error."
+        },
+        "results": {
+          "description": "Returned for successfully processed conversions. Proto will be empty for rows that received an error. Results are not returned when `validate_only` is `true`.",
+          "items": {
+            "$ref": "GoogleAdsSearchads360V23Services__CallConversionResult"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAdsSearchads360V23Services__UploadClickConversionsRequest": {
+      "description": "Request message for ConversionUploadService.UploadClickConversions.",
+      "id": "GoogleAdsSearchads360V23Services__UploadClickConversionsRequest",
+      "properties": {
+        "conversions": {
+          "description": "Required. The conversions that are being uploaded.",
+          "items": {
+            "$ref": "GoogleAdsSearchads360V23Services__ClickConversion"
+          },
+          "type": "array"
+        },
+        "jobId": {
+          "description": "Optional. Optional input to set job ID. Must be a non-negative number that is less than 2^31 if provided. If this field is not provided, the API will generate a job ID in the range [2^31, (2^63)-1]. The API will return the value for this request in the `job_id` field of the `UploadClickConversionsResponse`.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "partialFailure": {
+          "description": "Required. If `true`, successful operations will be carried out and invalid operations will return errors. If `false`, all operations will be carried out in one transaction if and only if they are all valid. This should always be set to `true`.",
+          "type": "boolean"
+        },
+        "validateOnly": {
+          "description": "If `true`, the request is validated but not executed. Only errors are returned, not results.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAdsSearchads360V23Services__UploadClickConversionsResponse": {
+      "description": "Response message for ConversionUploadService.UploadClickConversions.",
+      "id": "GoogleAdsSearchads360V23Services__UploadClickConversionsResponse",
+      "properties": {
+        "jobId": {
+          "description": "Job ID for the upload batch.",
+          "format": "int64",
+          "type": "string"
+        },
+        "partialFailureError": {
+          "$ref": "GoogleRpc__Status",
+          "description": "Errors that pertain to conversion failures in the partial failure mode. Returned when all errors occur inside the conversions. If any errors occur outside the conversions (for example, auth errors), we return an RPC level error."
+        },
+        "results": {
+          "description": "Returned for successfully processed conversions. Proto will be empty for rows that received an error. Results are not returned when `validate_only` is `true`.",
+          "items": {
+            "$ref": "GoogleAdsSearchads360V23Services__ClickConversionResult"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAdsSearchads360V23Services__UploadConversionAdjustmentsRequest": {
+      "description": "Request message for ConversionAdjustmentUploadService.UploadConversionAdjustments.",
+      "id": "GoogleAdsSearchads360V23Services__UploadConversionAdjustmentsRequest",
+      "properties": {
+        "conversionAdjustments": {
+          "description": "Required. The conversion adjustments that are being uploaded.",
+          "items": {
+            "$ref": "GoogleAdsSearchads360V23Services__ConversionAdjustment"
+          },
+          "type": "array"
+        },
+        "jobId": {
+          "description": "Optional. Optional input to set job ID. Must be a non-negative number that is less than 2^31 if provided. If this field is not provided, the API will generate a job ID in the range [2^31, (2^63)-1]. The API will return the value for this request in the `job_id` field of the `UploadConversionAdjustmentsResponse`.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "partialFailure": {
+          "description": "Required. If true, successful operations will be carried out and invalid operations will return errors. If false, all operations will be carried out in one transaction if and only if they are all valid. This should always be set to true. See https://developers.google.com/google-ads/api/docs/best-practices/partial-failures for more information about partial failure.",
+          "type": "boolean"
+        },
+        "validateOnly": {
+          "description": "If true, the request is validated but not executed. Only errors are returned, not results.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAdsSearchads360V23Services__UploadConversionAdjustmentsResponse": {
+      "description": "Response message for ConversionAdjustmentUploadService.UploadConversionAdjustments.",
+      "id": "GoogleAdsSearchads360V23Services__UploadConversionAdjustmentsResponse",
+      "properties": {
+        "jobId": {
+          "description": "Job ID for the upload batch.",
+          "format": "int64",
+          "type": "string"
+        },
+        "partialFailureError": {
+          "$ref": "GoogleRpc__Status",
+          "description": "Errors that pertain to conversion adjustment failures in the partial failure mode. Returned when all errors occur inside the adjustments. If any errors occur outside the adjustments (for example, auth errors), we return an RPC level error. See https://developers.google.com/google-ads/api/docs/best-practices/partial-failures for more information about partial failure."
+        },
+        "results": {
+          "description": "Returned for successfully processed conversion adjustments. Proto will be empty for rows that received an error. Results are not returned when validate_only is true.",
+          "items": {
+            "$ref": "GoogleAdsSearchads360V23Services__ConversionAdjustmentResult"
+          },
+          "type": "array"
         }
       },
       "type": "object"
