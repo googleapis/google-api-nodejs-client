@@ -2415,6 +2415,10 @@ export namespace chat_v1 {
      */
     lastUpdateTime?: string | null;
     /**
+     * Optional. Specifies how the server interprets the message `text` field content.
+     */
+    markupSyntax?: string | null;
+    /**
      * Output only. A URL in the Chat message `text` field that matches a link preview pattern. For more information, see [Preview links](https://developers.google.com/workspace/chat/preview-links).
      */
     matchedUrl?: Schema$MatchedUrl;
@@ -2796,6 +2800,10 @@ export namespace chat_v1 {
      */
     filter?: string | null;
     /**
+     * Optional. Specifies the desired output syntax for the Chat message `formatted_text` field.
+     */
+    markupSyntax?: string | null;
+    /**
      * Optional. How the results list is ordered. Supported attributes to order by are: - `create_time`: Sorts the results by the time of the message creation. Default value. - `relevance`: Sorts the results by relevance. [Developer Preview](https://developers.google.com/workspace/preview). The default ordering is `create_time desc`. Only a single order per query (`create_time` or `relevance`) is supported. Only descending order (`desc`) is supported, and it must be specified after the order attribute.
      */
     orderBy?: string | null;
@@ -2826,6 +2834,15 @@ export namespace chat_v1 {
     results?: Schema$SearchMessageResult[];
   }
   /**
+   * A single result item from a space search.
+   */
+  export interface Schema$SearchSpaceResult {
+    /**
+     * Output only. The matched space.
+     */
+    space?: Schema$Space;
+  }
+  /**
    * Response with a list of spaces corresponding to the search spaces request.
    */
   export interface Schema$SearchSpacesResponse {
@@ -2833,6 +2850,10 @@ export namespace chat_v1 {
      * A token that can be used to retrieve the next page. If this field is empty, there are no subsequent pages.
      */
     nextPageToken?: string | null;
+    /**
+     * Output only. The list of search results that matched the query.
+     */
+    results?: Schema$SearchSpaceResult[];
     /**
      * Deprecated: Please use the new `results` field instead. A page of the requested spaces. This field will be populated only when `useAdminAccess` is set to `true` and deprecated in favor of the new `results` field.
      */
@@ -5601,7 +5622,7 @@ export namespace chat_v1 {
     }
 
     /**
-     * Returns a list of spaces in a Google Workspace organization. For an example, see [Search for and manage spaces](https://developers.google.com/workspace/chat/search-manage-admin). When `use_admin_access` is set to `false`, the results are limited to spaces where the calling user is a joined member. To search with administrator privileges, set `use_admin_access` to `true`. Setting `use_admin_access` to `false` is available under Developer Preview. Supports the following types of [authentication](https://developers.google.com/workspace/chat/authenticate-authorize): - [User authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user) with one of the following authorization scopes: - `https://www.googleapis.com/auth/chat.spaces.readonly` - `https://www.googleapis.com/auth/chat.spaces` - [User authentication with administrator privileges](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user#admin-privileges) and one of the following [authorization scopes](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes): - `https://www.googleapis.com/auth/chat.admin.spaces.readonly` - `https://www.googleapis.com/auth/chat.admin.spaces`
+     * Returns a list of spaces in a Google Workspace organization. For an example, see [Search for and manage spaces](https://developers.google.com/workspace/chat/search-manage-admin). When `use_admin_access` is set to `false`, the results are limited to spaces where the calling user is a joined member. To search with administrator privileges, set `use_admin_access` to `true`. Supports the following types of [authentication](https://developers.google.com/workspace/chat/authenticate-authorize): - [User authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user) with one of the following authorization scopes: - `https://www.googleapis.com/auth/chat.spaces.readonly` - `https://www.googleapis.com/auth/chat.spaces` - [User authentication with administrator privileges](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user#admin-privileges) and one of the following [authorization scopes](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes): - `https://www.googleapis.com/auth/chat.admin.spaces.readonly` - `https://www.googleapis.com/auth/chat.admin.spaces`
      * @example
      * ```js
      * // Before running the sample:
@@ -5644,7 +5665,7 @@ export namespace chat_v1 {
      *     pageToken: 'placeholder-value',
      *     // Required. A search query. You can search by using the following parameters when `useAdminAccess` is set to `true`: - `create_time` - `customer` - `display_name` - `external_user_allowed` - `last_active_time` - `space_history_state` - `space_type` When `useAdminAccess` is set to `false`: - `display_name` - `external_user_allowed` - `space_type` `create_time` and `last_active_time` accept a timestamp in [RFC-3339](https://www.rfc-editor.org/rfc/rfc3339) format and the supported comparison operators are: `=`, `<`, `\>`, `<=`, `\>=`. `customer` is required when `useAdminAccess` is set to `true`, and is used to indicate which customer to fetch spaces from. `customers/my_customer` is the only supported value. `display_name` only accepts the `HAS` (`:`) operator. The text to match is first tokenized into tokens and each token is prefix-matched case-insensitively and independently as a substring anywhere in the space's `display_name`. For example, `Fun Eve` matches `Fun event` or `The evening was fun`, but not `notFun event` or `even`. When `useAdminAccess` is set to `false`, `display_name` is required to retrieve meaningful results. Otherwise, the default behavior is to return an empty response. `external_user_allowed` accepts either `true` or `false`. `space_history_state` only accepts values from the [`historyState`] (https://developers.google.com/workspace/chat/api/reference/rest/v1/spaces#Space.HistoryState) field of a `space` resource. `space_type` is required and the only valid value is `SPACE`. Across different fields, only `AND` operators are supported. A valid example is `space_type = "SPACE" AND display_name:"Hello"` and an invalid example is `space_type = "SPACE" OR display_name:"Hello"`. Among the same field, `space_type` doesn't support `AND` or `OR` operators. `display_name`, 'space_history_state', and 'external_user_allowed' only support `OR` operators. `last_active_time` and `create_time` support both `AND` and `OR` operators. `AND` can only be used to represent an interval, such as `last_active_time < "2022-01-01T00:00:00+00:00" AND last_active_time \> "2023-01-01T00:00:00+00:00"`. The following example queries are valid when `useAdminAccess` is set to `true`: ``` customer = "customers/my_customer" AND space_type = "SPACE" customer = "customers/my_customer" AND space_type = "SPACE" AND display_name:"Hello World" customer = "customers/my_customer" AND space_type = "SPACE" AND (last_active_time < "2020-01-01T00:00:00+00:00" OR last_active_time \> "2022-01-01T00:00:00+00:00") customer = "customers/my_customer" AND space_type = "SPACE" AND (display_name:"Hello World" OR display_name:"Fun event") AND (last_active_time \> "2020-01-01T00:00:00+00:00" AND last_active_time < "2022-01-01T00:00:00+00:00") customer = "customers/my_customer" AND space_type = "SPACE" AND (create_time \> "2019-01-01T00:00:00+00:00" AND create_time < "2020-01-01T00:00:00+00:00") AND (external_user_allowed = "true") AND (space_history_state = "HISTORY_ON" OR space_history_state = "HISTORY_OFF") ``` The following example queries are valid when `useAdminAccess` is set to `false`: ``` display_name:"Hello World" AND space_type = "SPACE" (display_name:"Hello" OR display_name:"Fun") AND space_type = "SPACE" (external_user_allowed = "true" AND space_type = "SPACE") // Returns an empty response. (external_user_allowed = "true" AND display_name:"Hello" AND space_type = "SPACE") ```
      *     query: 'placeholder-value',
-     *     // When `true`, the method runs using the user's Google Workspace administrator privileges. The calling user must be a Google Workspace administrator with the [manage chat and spaces conversations privilege](https://support.google.com/a/answer/13369245). Requires either the `chat.admin.spaces.readonly` or `chat.admin.spaces` [OAuth 2.0 scope](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes). Setting `use_admin_access` to `false` is available under Developer Preview. [Developer Preview](https://developers.google.com/workspace/preview).
+     *     // When `true`, the method runs using the user's Google Workspace administrator privileges. The calling user must be a Google Workspace administrator with the [manage chat and spaces conversations privilege](https://support.google.com/a/answer/13369245). Requires either the `chat.admin.spaces.readonly` or `chat.admin.spaces` [OAuth 2.0 scope](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes).
      *     useAdminAccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -5652,6 +5673,7 @@ export namespace chat_v1 {
      *   // Example response
      *   // {
      *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "results": [],
      *   //   "spaces": [],
      *   //   "totalSize": 0
      *   // }
@@ -6029,7 +6051,7 @@ export namespace chat_v1 {
      */
     query?: string;
     /**
-     * When `true`, the method runs using the user's Google Workspace administrator privileges. The calling user must be a Google Workspace administrator with the [manage chat and spaces conversations privilege](https://support.google.com/a/answer/13369245). Requires either the `chat.admin.spaces.readonly` or `chat.admin.spaces` [OAuth 2.0 scope](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes). Setting `use_admin_access` to `false` is available under Developer Preview. [Developer Preview](https://developers.google.com/workspace/preview).
+     * When `true`, the method runs using the user's Google Workspace administrator privileges. The calling user must be a Google Workspace administrator with the [manage chat and spaces conversations privilege](https://support.google.com/a/answer/13369245). Requires either the `chat.admin.spaces.readonly` or `chat.admin.spaces` [OAuth 2.0 scope](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes).
      */
     useAdminAccess?: boolean;
   }
@@ -6997,6 +7019,7 @@ export namespace chat_v1 {
      *       //   "fallbackText": "my_fallbackText",
      *       //   "formattedText": "my_formattedText",
      *       //   "lastUpdateTime": "my_lastUpdateTime",
+     *       //   "markupSyntax": "my_markupSyntax",
      *       //   "matchedUrl": {},
      *       //   "name": "my_name",
      *       //   "privateMessageViewer": {},
@@ -7031,6 +7054,7 @@ export namespace chat_v1 {
      *   //   "fallbackText": "my_fallbackText",
      *   //   "formattedText": "my_formattedText",
      *   //   "lastUpdateTime": "my_lastUpdateTime",
+     *   //   "markupSyntax": "my_markupSyntax",
      *   //   "matchedUrl": {},
      *   //   "name": "my_name",
      *   //   "privateMessageViewer": {},
@@ -7312,6 +7336,8 @@ export namespace chat_v1 {
      *
      *   // Do the magic
      *   const res = await chat.spaces.messages.get({
+     *     // Optional. Specifies the desired output syntax for the Chat message `formatted_text` field.
+     *     markupSyntax: 'placeholder-value',
      *     // Required. Resource name of the message. Format: `spaces/{space\}/messages/{message\}` If you've set a custom ID for your message, you can use the value from the `clientAssignedMessageId` field for `{message\}`. For details, see [Name a message] (https://developers.google.com/workspace/chat/create-messages#name_a_created_message).
      *     name: 'spaces/my-space/messages/my-message',
      *   });
@@ -7335,6 +7361,7 @@ export namespace chat_v1 {
      *   //   "fallbackText": "my_fallbackText",
      *   //   "formattedText": "my_formattedText",
      *   //   "lastUpdateTime": "my_lastUpdateTime",
+     *   //   "markupSyntax": "my_markupSyntax",
      *   //   "matchedUrl": {},
      *   //   "name": "my_name",
      *   //   "privateMessageViewer": {},
@@ -7478,6 +7505,8 @@ export namespace chat_v1 {
      *   const res = await chat.spaces.messages.list({
      *     // Optional. A query filter. You can filter messages by date (`create_time`) and thread (`thread.name`). To filter messages by the date they were created, specify the `create_time` with a timestamp in [RFC-3339](https://www.rfc-editor.org/rfc/rfc3339) format and double quotation marks. For example, `"2023-04-21T11:30:00-04:00"`. You can use the greater than operator `\>` to list messages that were created after a timestamp, or the less than operator `<` to list messages that were created before a timestamp. To filter messages within a time interval, use the `AND` operator between two timestamps. To filter by thread, specify the `thread.name`, formatted as `spaces/{space\}/threads/{thread\}`. You can only specify one `thread.name` per query. To filter by both thread and date, use the `AND` operator in your query. For example, the following queries are valid: ``` create_time \> "2012-04-21T11:30:00-04:00" create_time \> "2012-04-21T11:30:00-04:00" AND thread.name = spaces/AAAAAAAAAAA/threads/123 create_time \> "2012-04-21T11:30:00+00:00" AND create_time < "2013-01-01T00:00:00+00:00" AND thread.name = spaces/AAAAAAAAAAA/threads/123 thread.name = spaces/AAAAAAAAAAA/threads/123 ``` Invalid queries are rejected by the server with an `INVALID_ARGUMENT` error.
      *     filter: 'placeholder-value',
+     *     // Optional. Specifies the desired output syntax for the Chat message `formatted_text` field.
+     *     markupSyntax: 'placeholder-value',
      *     // Optional. How the list of messages is ordered. Specify a value to order by an ordering operation. Valid ordering operation values are as follows: - `ASC` for ascending. - `DESC` for descending. The default ordering is `create_time ASC`.
      *     orderBy: 'placeholder-value',
      *     // Optional. The maximum number of messages returned. The service might return fewer messages than this value. If unspecified, at most 25 are returned. The maximum value is 1000. If you use a value more than 1000, it's automatically changed to 1000. Negative values return an `INVALID_ARGUMENT` error.
@@ -7656,6 +7685,7 @@ export namespace chat_v1 {
      *       //   "fallbackText": "my_fallbackText",
      *       //   "formattedText": "my_formattedText",
      *       //   "lastUpdateTime": "my_lastUpdateTime",
+     *       //   "markupSyntax": "my_markupSyntax",
      *       //   "matchedUrl": {},
      *       //   "name": "my_name",
      *       //   "privateMessageViewer": {},
@@ -7690,6 +7720,7 @@ export namespace chat_v1 {
      *   //   "fallbackText": "my_fallbackText",
      *   //   "formattedText": "my_formattedText",
      *   //   "lastUpdateTime": "my_lastUpdateTime",
+     *   //   "markupSyntax": "my_markupSyntax",
      *   //   "matchedUrl": {},
      *   //   "name": "my_name",
      *   //   "privateMessageViewer": {},
@@ -7837,6 +7868,7 @@ export namespace chat_v1 {
      *       // request body parameters
      *       // {
      *       //   "filter": "my_filter",
+     *       //   "markupSyntax": "my_markupSyntax",
      *       //   "orderBy": "my_orderBy",
      *       //   "pageSize": 0,
      *       //   "pageToken": "my_pageToken",
@@ -8011,6 +8043,7 @@ export namespace chat_v1 {
      *       //   "fallbackText": "my_fallbackText",
      *       //   "formattedText": "my_formattedText",
      *       //   "lastUpdateTime": "my_lastUpdateTime",
+     *       //   "markupSyntax": "my_markupSyntax",
      *       //   "matchedUrl": {},
      *       //   "name": "my_name",
      *       //   "privateMessageViewer": {},
@@ -8045,6 +8078,7 @@ export namespace chat_v1 {
      *   //   "fallbackText": "my_fallbackText",
      *   //   "formattedText": "my_formattedText",
      *   //   "lastUpdateTime": "my_lastUpdateTime",
+     *   //   "markupSyntax": "my_markupSyntax",
      *   //   "matchedUrl": {},
      *   //   "name": "my_name",
      *   //   "privateMessageViewer": {},
@@ -8194,6 +8228,10 @@ export namespace chat_v1 {
   }
   export interface Params$Resource$Spaces$Messages$Get extends StandardParameters {
     /**
+     * Optional. Specifies the desired output syntax for the Chat message `formatted_text` field.
+     */
+    markupSyntax?: string;
+    /**
      * Required. Resource name of the message. Format: `spaces/{space\}/messages/{message\}` If you've set a custom ID for your message, you can use the value from the `clientAssignedMessageId` field for `{message\}`. For details, see [Name a message] (https://developers.google.com/workspace/chat/create-messages#name_a_created_message).
      */
     name?: string;
@@ -8203,6 +8241,10 @@ export namespace chat_v1 {
      * Optional. A query filter. You can filter messages by date (`create_time`) and thread (`thread.name`). To filter messages by the date they were created, specify the `create_time` with a timestamp in [RFC-3339](https://www.rfc-editor.org/rfc/rfc3339) format and double quotation marks. For example, `"2023-04-21T11:30:00-04:00"`. You can use the greater than operator `\>` to list messages that were created after a timestamp, or the less than operator `<` to list messages that were created before a timestamp. To filter messages within a time interval, use the `AND` operator between two timestamps. To filter by thread, specify the `thread.name`, formatted as `spaces/{space\}/threads/{thread\}`. You can only specify one `thread.name` per query. To filter by both thread and date, use the `AND` operator in your query. For example, the following queries are valid: ``` create_time \> "2012-04-21T11:30:00-04:00" create_time \> "2012-04-21T11:30:00-04:00" AND thread.name = spaces/AAAAAAAAAAA/threads/123 create_time \> "2012-04-21T11:30:00+00:00" AND create_time < "2013-01-01T00:00:00+00:00" AND thread.name = spaces/AAAAAAAAAAA/threads/123 thread.name = spaces/AAAAAAAAAAA/threads/123 ``` Invalid queries are rejected by the server with an `INVALID_ARGUMENT` error.
      */
     filter?: string;
+    /**
+     * Optional. Specifies the desired output syntax for the Chat message `formatted_text` field.
+     */
+    markupSyntax?: string;
     /**
      * Optional. How the list of messages is ordered. Specify a value to order by an ordering operation. Valid ordering operation values are as follows: - `ASC` for ascending. - `DESC` for descending. The default ordering is `create_time ASC`.
      */
@@ -9317,7 +9359,6 @@ export namespace chat_v1 {
      *     scopes: [
      *       'https://www.googleapis.com/auth/chat.users.availability',
      *       'https://www.googleapis.com/auth/chat.users.availability.readonly',
-     *       'https://www.googleapis.com/auth/chat.users.readstate',
      *     ],
      *   });
      *
@@ -9455,10 +9496,7 @@ export namespace chat_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/chat.users.availability',
-     *       'https://www.googleapis.com/auth/chat.users.readstate',
-     *     ],
+     *     scopes: ['https://www.googleapis.com/auth/chat.users.availability'],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -9607,10 +9645,7 @@ export namespace chat_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/chat.users.availability',
-     *       'https://www.googleapis.com/auth/chat.users.readstate',
-     *     ],
+     *     scopes: ['https://www.googleapis.com/auth/chat.users.availability'],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -9756,10 +9791,7 @@ export namespace chat_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/chat.users.availability',
-     *       'https://www.googleapis.com/auth/chat.users.readstate',
-     *     ],
+     *     scopes: ['https://www.googleapis.com/auth/chat.users.availability'],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -9910,10 +9942,7 @@ export namespace chat_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/chat.users.availability',
-     *       'https://www.googleapis.com/auth/chat.users.readstate',
-     *     ],
+     *     scopes: ['https://www.googleapis.com/auth/chat.users.availability'],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls

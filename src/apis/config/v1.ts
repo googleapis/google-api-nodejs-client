@@ -960,7 +960,7 @@ export namespace config_v1 {
      */
     createTime?: string | null;
     /**
-     * Optional. Optional deployment reference. If specified, the preview will be performed using the provided deployment's current state and use any relevant fields from the deployment unless explicitly specified in the preview create request.
+     * Optional. Deployment reference. If specified, the preview will be performed using the provided deployment's current state and use any relevant fields from the deployment unless explicitly specified in the preview create request.
      */
     deployment?: string | null;
     /**

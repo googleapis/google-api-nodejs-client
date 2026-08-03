@@ -293,7 +293,7 @@ export namespace sts_v1 {
      */
     n?: string | null;
     /**
-     * Public key use. Currently "jwt-svid".
+     * Public key use. Currently "sig".
      */
     use?: string | null;
   }

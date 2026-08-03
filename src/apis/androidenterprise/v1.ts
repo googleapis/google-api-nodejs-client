@@ -692,10 +692,6 @@ export namespace androidenterprise_v1 {
    */
   export interface Schema$GoogleAuthenticationSettings {
     /**
-     * Whether dedicated devices are allowed.
-     */
-    dedicatedDevicesAllowed?: string | null;
-    /**
      * Whether Google authentication is required.
      */
     googleAuthenticationRequired?: string | null;

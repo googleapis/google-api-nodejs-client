@@ -3332,7 +3332,7 @@
       }
     }
   },
-  "revision": "20260429",
+  "revision": "20260722",
   "rootUrl": "https://beyondcorp.googleapis.com/",
   "schemas": {
     "AllocatedConnection": {
@@ -5184,6 +5184,10 @@
           "format": "int64",
           "type": "string"
         },
+        "signupSource": {
+          "description": "Optional. Input only. The source from which the subscription was initiated, for example \"admin-console-browser-overview\" or \"admin-console-security-insights\".",
+          "type": "string"
+        },
         "sku": {
           "description": "Required. SKU of subscription.",
           "enum": [
@@ -5409,6 +5413,10 @@
           "$ref": "GoogleCloudBeyondcorpSecuritygatewaysV1alphaContextualHeadersDelegatedDeviceInfo",
           "description": "Optional. The device information configuration."
         },
+        "dispatchInfo": {
+          "$ref": "GoogleCloudBeyondcorpSecuritygatewaysV1alphaContextualHeadersDelegatedDispatchInfo",
+          "description": "Optional. The dispatch information configuration."
+        },
         "groupInfo": {
           "$ref": "GoogleCloudBeyondcorpSecuritygatewaysV1alphaContextualHeadersDelegatedGroupInfo",
           "description": "Optional. Group details."
@@ -5442,6 +5450,29 @@
       "properties": {
         "outputType": {
           "description": "Optional. The output type details for the delegated device.",
+          "enum": [
+            "OUTPUT_TYPE_UNSPECIFIED",
+            "PROTOBUF",
+            "JSON",
+            "NONE"
+          ],
+          "enumDescriptions": [
+            "The unspecified output type.",
+            "Protobuf output type.",
+            "JSON output type.",
+            "Explicitly disable header output."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudBeyondcorpSecuritygatewaysV1alphaContextualHeadersDelegatedDispatchInfo": {
+      "description": "The delegated dispatch information configuration.",
+      "id": "GoogleCloudBeyondcorpSecuritygatewaysV1alphaContextualHeadersDelegatedDispatchInfo",
+      "properties": {
+        "outputType": {
+          "description": "Optional. The output type details for the delegated dispatch information.",
           "enum": [
             "OUTPUT_TYPE_UNSPECIFIED",
             "PROTOBUF",

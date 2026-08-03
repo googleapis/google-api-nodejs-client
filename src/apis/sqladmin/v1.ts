@@ -791,6 +791,10 @@ export namespace sqladmin_v1 {
      */
     currentDiskSize?: string | null;
     /**
+     * Optional. If true, instance metadata is sent to the Database Center. If false, instance metadata is not sent to the Database Center.
+     */
+    databaseCenterIntegrationEnabled?: boolean | null;
+    /**
      * Output only. Stores the current database version running on the instance including minor version such as `MYSQL_8_0_18`.
      */
     databaseInstalledVersion?: string | null;
@@ -1979,6 +1983,10 @@ export namespace sqladmin_v1 {
      * PEM representation of the replica's private key. The corresponding public key is encoded in the client's certificate.
      */
     clientKey?: string | null;
+    /**
+     * Output only. Indicates whether the resource is managed by Database Migration Service.
+     */
+    dmsManaged?: boolean | null;
     /**
      * The dump file to create the Cloud SQL replica.
      */
@@ -3424,6 +3432,10 @@ export namespace sqladmin_v1 {
      * The project ID of the project containing the Cloud SQL database. The Google apps domain is prefixed if applicable. Can be omitted for `update` because it is already specified on the URL.
      */
     project?: string | null;
+    /**
+     * Optional. The server roles for the SQL Server login.
+     */
+    serverRoles?: string[] | null;
     sqlserverUserDetails?: Schema$SqlServerUserDetails;
     /**
      * The user type. It determines the method to authenticate the user during login. The default is the database's built-in user type.
@@ -8725,6 +8737,7 @@ export namespace sqladmin_v1 {
      *   //   "connectionName": "my_connectionName",
      *   //   "createTime": "my_createTime",
      *   //   "currentDiskSize": "my_currentDiskSize",
+     *   //   "databaseCenterIntegrationEnabled": false,
      *   //   "databaseInstalledVersion": "my_databaseInstalledVersion",
      *   //   "databaseVersion": "my_databaseVersion",
      *   //   "diskEncryptionConfiguration": {},
@@ -9076,6 +9089,7 @@ export namespace sqladmin_v1 {
      *       //   "connectionName": "my_connectionName",
      *       //   "createTime": "my_createTime",
      *       //   "currentDiskSize": "my_currentDiskSize",
+     *       //   "databaseCenterIntegrationEnabled": false,
      *       //   "databaseInstalledVersion": "my_databaseInstalledVersion",
      *       //   "databaseVersion": "my_databaseVersion",
      *       //   "diskEncryptionConfiguration": {},
@@ -9905,6 +9919,7 @@ export namespace sqladmin_v1 {
      *       //   "connectionName": "my_connectionName",
      *       //   "createTime": "my_createTime",
      *       //   "currentDiskSize": "my_currentDiskSize",
+     *       //   "databaseCenterIntegrationEnabled": false,
      *       //   "databaseInstalledVersion": "my_databaseInstalledVersion",
      *       //   "databaseVersion": "my_databaseVersion",
      *       //   "diskEncryptionConfiguration": {},
@@ -12597,6 +12612,7 @@ export namespace sqladmin_v1 {
      *       //   "connectionName": "my_connectionName",
      *       //   "createTime": "my_createTime",
      *       //   "currentDiskSize": "my_currentDiskSize",
+     *       //   "databaseCenterIntegrationEnabled": false,
      *       //   "databaseInstalledVersion": "my_databaseInstalledVersion",
      *       //   "databaseVersion": "my_databaseVersion",
      *       //   "diskEncryptionConfiguration": {},
@@ -13288,6 +13304,8 @@ export namespace sqladmin_v1 {
      *
      *   // Do the magic
      *   const res = await sql.operations.cancel({
+     *     // Optional. Region of the Cloud SQL instance.
+     *     location: 'placeholder-value',
      *     // Instance operation ID.
      *     operation: 'placeholder-value',
      *     // Project ID of the project that contains the instance.
@@ -13426,6 +13444,8 @@ export namespace sqladmin_v1 {
      *
      *   // Do the magic
      *   const res = await sql.operations.get({
+     *     // Optional. Region of the Cloud SQL instance.
+     *     location: 'placeholder-value',
      *     // Required. Instance operation ID.
      *     operation: 'placeholder-value',
      *     // Required. Project ID of the project that contains the instance.
@@ -13586,6 +13606,8 @@ export namespace sqladmin_v1 {
      *   const res = await sql.operations.list({
      *     // Cloud SQL instance ID. This does not include the project ID.
      *     instance: 'placeholder-value',
+     *     // Optional. Region of the Cloud SQL instance.
+     *     location: 'placeholder-value',
      *     // Maximum number of operations per response.
      *     maxResults: 'placeholder-value',
      *     // A previously-returned page token representing part of the larger set of results to view.
@@ -13701,6 +13723,10 @@ export namespace sqladmin_v1 {
 
   export interface Params$Resource$Operations$Cancel extends StandardParameters {
     /**
+     * Optional. Region of the Cloud SQL instance.
+     */
+    location?: string;
+    /**
      * Instance operation ID.
      */
     operation?: string;
@@ -13710,6 +13736,10 @@ export namespace sqladmin_v1 {
     project?: string;
   }
   export interface Params$Resource$Operations$Get extends StandardParameters {
+    /**
+     * Optional. Region of the Cloud SQL instance.
+     */
+    location?: string;
     /**
      * Required. Instance operation ID.
      */
@@ -13724,6 +13754,10 @@ export namespace sqladmin_v1 {
      * Cloud SQL instance ID. This does not include the project ID.
      */
     instance?: string;
+    /**
+     * Optional. Region of the Cloud SQL instance.
+     */
+    location?: string;
     /**
      * Maximum number of operations per response.
      */
@@ -16230,6 +16264,7 @@ export namespace sqladmin_v1 {
      *   //   "password": "my_password",
      *   //   "passwordPolicy": {},
      *   //   "project": "my_project",
+     *   //   "serverRoles": [],
      *   //   "sqlserverUserDetails": {},
      *   //   "type": "my_type"
      *   // }
@@ -16383,6 +16418,7 @@ export namespace sqladmin_v1 {
      *       //   "password": "my_password",
      *       //   "passwordPolicy": {},
      *       //   "project": "my_project",
+     *       //   "serverRoles": [],
      *       //   "sqlserverUserDetails": {},
      *       //   "type": "my_type"
      *       // }
@@ -16695,6 +16731,10 @@ export namespace sqladmin_v1 {
      *     project: 'placeholder-value',
      *     // Optional. Specifies whether to revoke existing roles that are not present in the `database_roles` field. If `false` or unset, the database roles specified in `database_roles` are added to the user's existing roles.
      *     revokeExistingRoles: 'placeholder-value',
+     *     // Optional. Specifies whether to revoke existing roles that are not present in the `server_roles` field. If `false` or unset, the server roles specified in `server_roles` are added to the user's existing server roles.
+     *     revokeExistingServerRoles: 'placeholder-value',
+     *     // Optional. The server roles to grant to the SQL Server login. Existing server roles will not be revoked if revoke_existing_roles is false. body.server_roles will be ignored for update request.
+     *     serverRoles: 'placeholder-value',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -16712,6 +16752,7 @@ export namespace sqladmin_v1 {
      *       //   "password": "my_password",
      *       //   "passwordPolicy": {},
      *       //   "project": "my_project",
+     *       //   "serverRoles": [],
      *       //   "sqlserverUserDetails": {},
      *       //   "type": "my_type"
      *       // }
@@ -16923,6 +16964,14 @@ export namespace sqladmin_v1 {
      * Optional. Specifies whether to revoke existing roles that are not present in the `database_roles` field. If `false` or unset, the database roles specified in `database_roles` are added to the user's existing roles.
      */
     revokeExistingRoles?: boolean;
+    /**
+     * Optional. Specifies whether to revoke existing roles that are not present in the `server_roles` field. If `false` or unset, the server roles specified in `server_roles` are added to the user's existing server roles.
+     */
+    revokeExistingServerRoles?: boolean;
+    /**
+     * Optional. The server roles to grant to the SQL Server login. Existing server roles will not be revoked if revoke_existing_roles is false. body.server_roles will be ignored for update request.
+     */
+    serverRoles?: string[];
 
     /**
      * Request body metadata

@@ -2811,7 +2811,7 @@
       }
     }
   },
-  "revision": "20260630",
+  "revision": "20260727",
   "rootUrl": "https://container.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -8755,6 +8755,14 @@
             "Clusters subscribed to EXTENDED receive extended support and availability for versions which are known to be stable and reliable in production."
           ],
           "type": "string"
+        },
+        "customVersions": {
+          "description": "Output only. List of custom versions for the channel.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
         },
         "defaultVersion": {
           "description": "The default version for newly created clusters on the channel.",

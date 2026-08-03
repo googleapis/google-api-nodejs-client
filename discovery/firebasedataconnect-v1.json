@@ -1221,7 +1221,7 @@
       }
     }
   },
-  "revision": "20260719",
+  "revision": "20260726",
   "rootUrl": "https://firebasedataconnect.googleapis.com/",
   "schemas": {
     "CancelOperationRequest": {
@@ -2228,6 +2228,14 @@
           "description": "Optional. Stores small amounts of arbitrary data.",
           "type": "object"
         },
+        "connectors": {
+          "description": "Output only. The list of connectors in this service.",
+          "items": {
+            "$ref": "Connector"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "createTime": {
           "description": "Output only. [Output only] Create time stamp.",
           "format": "google-datetime",
@@ -2258,6 +2266,18 @@
           "description": "Output only. A field that if true, indicates that the system is working update the service.",
           "readOnly": true,
           "type": "boolean"
+        },
+        "schemas": {
+          "description": "Output only. The list of schemas in this service.",
+          "items": {
+            "$ref": "Schema"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "source": {
+          "$ref": "Source",
+          "description": "Optional. Input only. The source files for service, schemas, and connectors."
         },
         "uid": {
           "description": "Output only. System-assigned, unique identifier.",
