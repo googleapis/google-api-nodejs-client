@@ -1044,7 +1044,7 @@ export namespace analyticshub_v1 {
      */
     primaryContact?: string | null;
     /**
-     * Optional. Will be deprecated. Email or URL of the primary point of contact of the QueryTemplate. Max Length: 1000 bytes.
+     * Optional. Deprecated: Use `primary_contact` instead. Email or URL of the primary point of contact of the QueryTemplate. Max Length: 1000 bytes.
      */
     proposer?: string | null;
     /**
