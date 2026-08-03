@@ -451,7 +451,7 @@
                   ],
                   "parameters": {
                     "tenant": {
-                      "description": "Optional. Tenant ID, provided as a path parameter.",
+                      "description": "Optional. Opaque routing identifier. Must match the `tenant` value from the selected `AgentInterface` in the Agent Card when that field is set.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/apps/[^/]+$",
                       "required": true,
@@ -1293,7 +1293,7 @@
                       ],
                       "parameters": {
                         "tenant": {
-                          "description": "Optional. Tenant ID, provided as a path parameter.",
+                          "description": "Optional. Opaque routing identifier. Must match the `tenant` value from the selected `AgentInterface` in the Agent Card when that field is set.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/apps/[^/]+/deployments/[^/]+$",
                           "required": true,
@@ -1400,7 +1400,7 @@
                           ],
                           "parameters": {
                             "tenant": {
-                              "description": "Optional. Tenant ID, provided as a path parameter.",
+                              "description": "Optional. Opaque routing identifier. Must match the `tenant` value from the selected `AgentInterface` in the Agent Card when that field is set.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/apps/[^/]+/deployments/[^/]+$",
                               "required": true,
@@ -2699,7 +2699,7 @@
                       ],
                       "parameters": {
                         "tenant": {
-                          "description": "Optional. Tenant ID, provided as a path parameter.",
+                          "description": "Optional. Opaque routing identifier. Must match the `tenant` value from the selected `AgentInterface` in the Agent Card when that field is set.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/apps/[^/]+$",
                           "required": true,
@@ -3484,7 +3484,7 @@
                       ],
                       "parameters": {
                         "tenant": {
-                          "description": "Optional. Tenant ID, provided as a path parameter.",
+                          "description": "Optional. Opaque routing identifier. Must match the `tenant` value from the selected `AgentInterface` in the Agent Card when that field is set.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/apps/[^/]+/versions/[^/]+$",
                           "required": true,
@@ -3590,7 +3590,7 @@
                           ],
                           "parameters": {
                             "tenant": {
-                              "description": "Optional. Tenant ID, provided as a path parameter.",
+                              "description": "Optional. Opaque routing identifier. Must match the `tenant` value from the selected `AgentInterface` in the Agent Card when that field is set.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/apps/[^/]+/versions/[^/]+$",
                               "required": true,
@@ -3752,7 +3752,7 @@
       }
     }
   },
-  "revision": "20260708",
+  "revision": "20260730",
   "rootUrl": "https://ces.googleapis.com/",
   "schemas": {
     "Action": {
@@ -5590,6 +5590,10 @@
         "rootSpan": {
           "$ref": "Span",
           "description": "Optional. The root span of the action processing."
+        },
+        "userIntendedText": {
+          "description": "Optional. The intended ground-truth text from the Simulated Caller (Polysynth). Only populated when word error rate metrics are enabled.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -5961,6 +5965,10 @@
           "$ref": "DataStoreToolRewriterConfig",
           "description": "Optional. The rewriter config."
         },
+        "snippetsConfig": {
+          "$ref": "DataStoreToolSnippetsConfig",
+          "description": "Optional. The snippets configuration."
+        },
         "summarizationConfig": {
           "$ref": "DataStoreToolSummarizationConfig",
           "description": "Optional. The summarization config."
@@ -5983,6 +5991,17 @@
         "prompt": {
           "description": "Optional. The prompt definition. If not set, default prompt will be used.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DataStoreToolSnippetsConfig": {
+      "description": "Snippets configuration.",
+      "id": "DataStoreToolSnippetsConfig",
+      "properties": {
+        "enableSnippets": {
+          "description": "Optional. Whether snippets are enabled.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -6046,6 +6065,26 @@
         "instagramCredentials": {
           "$ref": "InstagramCredentials",
           "description": "Optional. Input only. Ephemeral Instagram credentials required when configuring a Instagram channel profile."
+        },
+        "modality": {
+          "description": "Optional. The modality of the deployment. Note: Deployment-level modality override is gated behind an allowlist. Contact the CXAS team to enable this field.",
+          "enum": [
+            "MODALITY_UNSPECIFIED",
+            "MODALITY_TEXT",
+            "MODALITY_VOICE",
+            "MODALITY_VIDEO"
+          ],
+          "enumDescriptions": [
+            "Unknown modality.",
+            "Text modality.",
+            "Voice modality.",
+            "Video modality."
+          ],
+          "type": "string"
+        },
+        "modelSettings": {
+          "$ref": "ModelSettings",
+          "description": "Optional. Model settings for the deployment. Overrides model settings configured at the app/agent levels. Note: Deployment-level model settings override is gated behind an allowlist. Contact the CXAS team to enable this field."
         },
         "name": {
           "description": "Identifier. The resource name of the deployment. Format: `projects/{project}/locations/{location}/apps/{app}/deployments/{deployment}`",
@@ -6347,12 +6386,10 @@
         },
         "inputAudioConfig": {
           "$ref": "InputAudioConfig",
-          "deprecated": true,
           "description": "Optional. Configuration for processing the input audio."
         },
         "outputAudioConfig": {
           "$ref": "OutputAudioConfig",
-          "deprecated": true,
           "description": "Optional. Configuration for generating the output audio."
         },
         "toolCallBehaviour": {
@@ -7087,9 +7124,27 @@
           "description": "Identifier. The unique identifier of the evaluation result. Format: `projects/{project}/locations/{location}/apps/{app}/evaluations/{evaluation}/results/{result}`",
           "type": "string"
         },
+        "outcomeMetadata": {
+          "description": "Output only. The outcome metadata of the evaluation. Only populated if execution_state is COMPLETE.",
+          "enum": [
+            "OUTCOME_METADATA_UNSPECIFIED",
+            "GRACEFUL_HANDOFF"
+          ],
+          "enumDescriptions": [
+            "Unspecified outcome metadata.",
+            "The evaluation resulted in a graceful handoff to a human representative."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
         "persona": {
           "$ref": "EvaluationPersona",
           "description": "Output only. The persona used to generate the conversation for the evaluation result.",
+          "readOnly": true
+        },
+        "rootSpan": {
+          "$ref": "Span",
+          "description": "Output only. The root span of the evaluation execution, which includes information about each step of the evaluation.",
           "readOnly": true
         },
         "scenarioResult": {
@@ -7743,12 +7798,12 @@
           "type": "string"
         },
         "label": {
-          "description": "Output only. The label associated with each score. Score 1: User Task Satisfied Score 0: User Task Not Satisfied Score -1: User Task Unspecified",
+          "description": "Output only. The label associated with each score. Score 2: Graceful Handoff Score 1: User Task Satisfied Score 0: User Task Not Satisfied Score -1: User Task Unspecified",
           "readOnly": true,
           "type": "string"
         },
         "score": {
-          "description": "Output only. The user task satisfaction score. Can be -1, 0, 1.",
+          "description": "Output only. The user task satisfaction score. Can be -1, 0, 1, 2.",
           "format": "int32",
           "readOnly": true,
           "type": "integer"
@@ -9571,6 +9626,10 @@
             "Overwrite existing data with imported data. If an app with the same `app_id` already exists, its content will be overwritten with the imported app. - Existing resources (Agents, Tools, Examples, Guardrails, Toolsets) in the app will be deleted. - Imported resources will be created as new resources."
           ],
           "type": "string"
+        },
+        "validateOnly": {
+          "description": "Optional. Flag for dry-running the import process. If set to true, the import process will only perform validations and will not make any changes to the existing app or create a new one.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -10153,7 +10212,7 @@
           "type": "string"
         },
         "tenant": {
-          "description": "Tenant ID to be used in the request when calling the agent.",
+          "description": "Optional. An opaque string used for routing requests to a specific agent or tenant when multiple agents are served behind a single A2A endpoint. When set, clients MUST include this value in the `tenant` field of all request messages sent to this interface. The server is responsible for interpreting the value and routing requests accordingly; the protocol does not define its format or semantics.",
           "type": "string"
         },
         "url": {
@@ -10783,7 +10842,7 @@
           "type": "string"
         },
         "tenant": {
-          "description": "Optional. Tenant ID.",
+          "description": "Optional. Opaque routing identifier. Must match the `tenant` value from the selected `AgentInterface` in the Agent Card when that field is set.",
           "type": "string"
         },
         "token": {
@@ -12015,7 +12074,7 @@
           "type": "string"
         },
         "appVersion": {
-          "description": "Optional. The app version to evaluate. Format: `projects/{project}/locations/{location}/apps/{app}/versions/{version}`",
+          "description": "Optional. The app version to evaluate. At most one of `app_version` or `deployment` can be set. Format: `projects/{project}/locations/{location}/apps/{app}/versions/{version}`",
           "type": "string"
         },
         "config": {
@@ -12463,6 +12522,10 @@
           "description": "Optional. The entry agent to handle the session. If not specified, the session will be handled by the root agent of the app. Format: `projects/{project}/locations/{location}/apps/{app}/agents/{agent}`",
           "type": "string"
         },
+        "excludeDiagnosticInfo": {
+          "description": "Optional. Whether to exclude diagnostic info from the session output.",
+          "type": "boolean"
+        },
         "historicalContexts": {
           "description": "Optional. The historical context of the session, including user inputs, agent responses, and other messages. Typically, CES agent would manage session automatically so client doesn't need to explicitly populate this field. However, client can optionally override the historical contexts to force the session start from certain state.",
           "items": {
@@ -12731,6 +12794,11 @@
       "description": "Configuration for how the agent response should be synthesized.",
       "id": "SynthesizeSpeechConfig",
       "properties": {
+        "consentAudioGcsUri": {
+          "deprecated": true,
+          "description": "Optional. Deprecated: Use `custom_voice_samples` in AudioProcessingConfig instead. The Cloud Storage URI to the consent audio for voice cloning.",
+          "type": "string"
+        },
         "instruction": {
           "description": "Optional. The instruction used to synthesize speech when using a generative model.",
           "type": "string"
@@ -12749,7 +12817,8 @@
           "type": "string"
         },
         "voiceSampleGcsUri": {
-          "description": "Optional. The Cloud Storage URI to the audio sample for voice cloning. The audio sample should be a mono-channel, 24kHz WAV file. Note: Please make sure the CES service agent `service-@gcp-sa-ces.iam.gserviceaccount.com` has `storage.objects.get` permission to the Cloud Storage object.",
+          "deprecated": true,
+          "description": "Optional. Deprecated: Use `custom_voice_samples` in AudioProcessingConfig instead. The Cloud Storage URI to the audio sample for voice cloning. The audio sample should be a mono-channel, 24kHz WAV file. Note: Please make sure the CES service agent `service-@gcp-sa-ces.iam.gserviceaccount.com` has `storage.objects.get` permission to the Cloud Storage object.",
           "type": "string"
         }
       },

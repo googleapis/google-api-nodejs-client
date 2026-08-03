@@ -1406,6 +1406,10 @@ export namespace ces_v1beta {
      * Optional. The root span of the action processing.
      */
     rootSpan?: Schema$Span;
+    /**
+     * Optional. The intended ground-truth text from the Simulated Caller (Polysynth). Only populated when word error rate metrics are enabled.
+     */
+    userIntendedText?: string | null;
   }
   /**
    * A DataStore resource in Vertex AI Search.
@@ -1641,6 +1645,10 @@ export namespace ces_v1beta {
      */
     rewriterConfig?: Schema$DataStoreToolRewriterConfig;
     /**
+     * Optional. The snippets configuration.
+     */
+    snippetsConfig?: Schema$DataStoreToolSnippetsConfig;
+    /**
      * Optional. The summarization config.
      */
     summarizationConfig?: Schema$DataStoreToolSummarizationConfig;
@@ -1661,6 +1669,15 @@ export namespace ces_v1beta {
      * Optional. The prompt definition. If not set, default prompt will be used.
      */
     prompt?: string | null;
+  }
+  /**
+   * Snippets configuration.
+   */
+  export interface Schema$DataStoreToolSnippetsConfig {
+    /**
+     * Optional. Whether snippets are enabled.
+     */
+    enableSnippets?: boolean | null;
   }
   /**
    * Summarization configuration.
@@ -1715,6 +1732,14 @@ export namespace ces_v1beta {
      * Optional. Input only. Ephemeral Instagram credentials required when configuring a Instagram channel profile.
      */
     instagramCredentials?: Schema$InstagramCredentials;
+    /**
+     * Optional. The modality of the deployment. Note: Deployment-level modality override is gated behind an allowlist. Contact the CXAS team to enable this field.
+     */
+    modality?: string | null;
+    /**
+     * Optional. Model settings for the deployment. Overrides model settings configured at the app/agent levels. Note: Deployment-level model settings override is gated behind an allowlist. Contact the CXAS team to enable this field.
+     */
+    modelSettings?: Schema$ModelSettings;
     /**
      * Identifier. The resource name of the deployment. Format: `projects/{project\}/locations/{location\}/apps/{app\}/deployments/{deployment\}`
      */
@@ -2405,9 +2430,17 @@ export namespace ces_v1beta {
      */
     name?: string | null;
     /**
+     * Output only. The outcome metadata of the evaluation. Only populated if execution_state is COMPLETE.
+     */
+    outcomeMetadata?: string | null;
+    /**
      * Output only. The persona used to generate the conversation for the evaluation result.
      */
     persona?: Schema$EvaluationPersona;
+    /**
+     * Output only. The root span of the evaluation execution, which includes information about each step of the evaluation.
+     */
+    rootSpan?: Schema$Span;
     /**
      * Output only. The outcome of a scenario evaluation.
      */
@@ -2805,11 +2838,11 @@ export namespace ces_v1beta {
      */
     explanation?: string | null;
     /**
-     * Output only. The label associated with each score. Score 1: User Task Satisfied Score 0: User Task Not Satisfied Score -1: User Task Unspecified
+     * Output only. The label associated with each score. Score 2: Graceful Handoff Score 1: User Task Satisfied Score 0: User Task Not Satisfied Score -1: User Task Unspecified
      */
     label?: string | null;
     /**
-     * Output only. The user task satisfaction score. Can be -1, 0, 1.
+     * Output only. The user task satisfaction score. Can be -1, 0, 1, 2.
      */
     score?: number | null;
   }
@@ -4048,6 +4081,10 @@ export namespace ces_v1beta {
      * Optional. The strategy to use when resolving conflicts during import.
      */
     conflictResolutionStrategy?: string | null;
+    /**
+     * Optional. Flag for dry-running the import process. If set to true, the import process will only perform validations and will not make any changes to the existing app or create a new one.
+     */
+    validateOnly?: boolean | null;
   }
   /**
    * Response message for AgentService.ImportApp.
@@ -4445,7 +4482,7 @@ export namespace ces_v1beta {
      */
     protocolVersion?: string | null;
     /**
-     * Tenant ID to be used in the request when calling the agent.
+     * Optional. An opaque string used for routing requests to a specific agent or tenant when multiple agents are served behind a single A2A endpoint. When set, clients MUST include this value in the `tenant` field of all request messages sent to this interface. The server is responsible for interpreting the value and routing requests accordingly; the protocol does not define its format or semantics.
      */
     tenant?: string | null;
     /**
@@ -4950,7 +4987,7 @@ export namespace ces_v1beta {
      */
     taskId?: string | null;
     /**
-     * Optional. Tenant ID.
+     * Optional. Opaque routing identifier. Must match the `tenant` value from the selected `AgentInterface` in the Agent Card when that field is set.
      */
     tenant?: string | null;
     /**
@@ -5856,7 +5893,7 @@ export namespace ces_v1beta {
      */
     app?: string | null;
     /**
-     * Optional. The app version to evaluate. Format: `projects/{project\}/locations/{location\}/apps/{app\}/versions/{version\}`
+     * Optional. The app version to evaluate. At most one of `app_version` or `deployment` can be set. Format: `projects/{project\}/locations/{location\}/apps/{app\}/versions/{version\}`
      */
     appVersion?: string | null;
     /**
@@ -6166,6 +6203,10 @@ export namespace ces_v1beta {
      */
     entryAgent?: string | null;
     /**
+     * Optional. Whether to exclude diagnostic info from the session output.
+     */
+    excludeDiagnosticInfo?: boolean | null;
+    /**
      * Optional. The historical context of the session, including user inputs, agent responses, and other messages. Typically, CES agent would manage session automatically so client doesn't need to explicitly populate this field. However, client can optionally override the historical contexts to force the session start from certain state.
      */
     historicalContexts?: Schema$Message[];
@@ -6361,6 +6402,10 @@ export namespace ces_v1beta {
    */
   export interface Schema$SynthesizeSpeechConfig {
     /**
+     * Optional. Deprecated: Use `custom_voice_samples` in AudioProcessingConfig instead. The Cloud Storage URI to the consent audio for voice cloning.
+     */
+    consentAudioGcsUri?: string | null;
+    /**
      * Optional. The instruction used to synthesize speech when using a generative model.
      */
     instruction?: string | null;
@@ -6377,7 +6422,7 @@ export namespace ces_v1beta {
      */
     voice?: string | null;
     /**
-     * Optional. The Cloud Storage URI to the audio sample for voice cloning. The audio sample should be a mono-channel, 24kHz WAV file. Note: Please make sure the CES service agent `service-@gcp-sa-ces.iam.gserviceaccount.com` has `storage.objects.get` permission to the Cloud Storage object.
+     * Optional. Deprecated: Use `custom_voice_samples` in AudioProcessingConfig instead. The Cloud Storage URI to the audio sample for voice cloning. The audio sample should be a mono-channel, 24kHz WAV file. Note: Please make sure the CES service agent `service-@gcp-sa-ces.iam.gserviceaccount.com` has `storage.objects.get` permission to the Cloud Storage object.
      */
     voiceSampleGcsUri?: string | null;
   }
@@ -8666,7 +8711,7 @@ export namespace ces_v1beta {
      *
      *   // Do the magic
      *   const res = await ces.projects.locations.apps.getExtendedAgentCard({
-     *     // Optional. Tenant ID, provided as a path parameter.
+     *     // Optional. Opaque routing identifier. Must match the `tenant` value from the selected `AgentInterface` in the Agent Card when that field is set.
      *     tenant: 'projects/my-project/locations/my-location/apps/my-app',
      *   });
      *   console.log(res.data);
@@ -9991,7 +10036,7 @@ export namespace ces_v1beta {
   }
   export interface Params$Resource$Projects$Locations$Apps$Getextendedagentcard extends StandardParameters {
     /**
-     * Optional. Tenant ID, provided as a path parameter.
+     * Optional. Opaque routing identifier. Must match the `tenant` value from the selected `AgentInterface` in the Agent Card when that field is set.
      */
     tenant?: string;
   }
@@ -12214,6 +12259,8 @@ export namespace ces_v1beta {
      *       //   "etag": "my_etag",
      *       //   "experimentConfig": {},
      *       //   "instagramCredentials": {},
+     *       //   "modality": "my_modality",
+     *       //   "modelSettings": {},
      *       //   "name": "my_name",
      *       //   "updateTime": "my_updateTime",
      *       //   "whatsappCredentials": {}
@@ -12231,6 +12278,8 @@ export namespace ces_v1beta {
      *   //   "etag": "my_etag",
      *   //   "experimentConfig": {},
      *   //   "instagramCredentials": {},
+     *   //   "modality": "my_modality",
+     *   //   "modelSettings": {},
      *   //   "name": "my_name",
      *   //   "updateTime": "my_updateTime",
      *   //   "whatsappCredentials": {}
@@ -12517,6 +12566,8 @@ export namespace ces_v1beta {
      *   //   "etag": "my_etag",
      *   //   "experimentConfig": {},
      *   //   "instagramCredentials": {},
+     *   //   "modality": "my_modality",
+     *   //   "modelSettings": {},
      *   //   "name": "my_name",
      *   //   "updateTime": "my_updateTime",
      *   //   "whatsappCredentials": {}
@@ -12649,7 +12700,7 @@ export namespace ces_v1beta {
      *   // Do the magic
      *   const res =
      *     await ces.projects.locations.apps.deployments.getExtendedAgentCard({
-     *       // Optional. Tenant ID, provided as a path parameter.
+     *       // Optional. Opaque routing identifier. Must match the `tenant` value from the selected `AgentInterface` in the Agent Card when that field is set.
      *       tenant:
      *         'projects/my-project/locations/my-location/apps/my-app/deployments/my-deployment',
      *     });
@@ -12970,6 +13021,8 @@ export namespace ces_v1beta {
      *       //   "etag": "my_etag",
      *       //   "experimentConfig": {},
      *       //   "instagramCredentials": {},
+     *       //   "modality": "my_modality",
+     *       //   "modelSettings": {},
      *       //   "name": "my_name",
      *       //   "updateTime": "my_updateTime",
      *       //   "whatsappCredentials": {}
@@ -12987,6 +13040,8 @@ export namespace ces_v1beta {
      *   //   "etag": "my_etag",
      *   //   "experimentConfig": {},
      *   //   "instagramCredentials": {},
+     *   //   "modality": "my_modality",
+     *   //   "modelSettings": {},
      *   //   "name": "my_name",
      *   //   "updateTime": "my_updateTime",
      *   //   "whatsappCredentials": {}
@@ -13119,7 +13174,7 @@ export namespace ces_v1beta {
   }
   export interface Params$Resource$Projects$Locations$Apps$Deployments$Getextendedagentcard extends StandardParameters {
     /**
-     * Optional. Tenant ID, provided as a path parameter.
+     * Optional. Opaque routing identifier. Must match the `tenant` value from the selected `AgentInterface` in the Agent Card when that field is set.
      */
     tenant?: string;
   }
@@ -13197,7 +13252,7 @@ export namespace ces_v1beta {
      *
      *   // Do the magic
      *   const res = await ces.projects.locations.apps.deployments.message.send({
-     *     // Optional. Tenant ID, provided as a path parameter.
+     *     // Optional. Opaque routing identifier. Must match the `tenant` value from the selected `AgentInterface` in the Agent Card when that field is set.
      *     tenant:
      *       'projects/my-project/locations/my-location/apps/my-app/deployments/my-deployment',
      *
@@ -13322,7 +13377,7 @@ export namespace ces_v1beta {
 
   export interface Params$Resource$Projects$Locations$Apps$Deployments$Message$Send extends StandardParameters {
     /**
-     * Optional. Tenant ID, provided as a path parameter.
+     * Optional. Opaque routing identifier. Must match the `tenant` value from the selected `AgentInterface` in the Agent Card when that field is set.
      */
     tenant?: string;
 
@@ -17286,7 +17341,9 @@ export namespace ces_v1beta {
      *   //   "goldenRunMethod": "my_goldenRunMethod",
      *   //   "initiatedBy": "my_initiatedBy",
      *   //   "name": "my_name",
+     *   //   "outcomeMetadata": "my_outcomeMetadata",
      *   //   "persona": {},
+     *   //   "rootSpan": {},
      *   //   "scenarioResult": {}
      *   // }
      * }
@@ -19489,7 +19546,7 @@ export namespace ces_v1beta {
      *
      *   // Do the magic
      *   const res = await ces.projects.locations.apps.message.send({
-     *     // Optional. Tenant ID, provided as a path parameter.
+     *     // Optional. Opaque routing identifier. Must match the `tenant` value from the selected `AgentInterface` in the Agent Card when that field is set.
      *     tenant: 'projects/my-project/locations/my-location/apps/my-app',
      *
      *     // Request body metadata
@@ -19612,7 +19669,7 @@ export namespace ces_v1beta {
 
   export interface Params$Resource$Projects$Locations$Apps$Message$Send extends StandardParameters {
     /**
-     * Optional. Tenant ID, provided as a path parameter.
+     * Optional. Opaque routing identifier. Must match the `tenant` value from the selected `AgentInterface` in the Agent Card when that field is set.
      */
     tenant?: string;
 
@@ -23398,7 +23455,7 @@ export namespace ces_v1beta {
      *
      *   // Do the magic
      *   const res = await ces.projects.locations.apps.versions.getExtendedAgentCard({
-     *     // Optional. Tenant ID, provided as a path parameter.
+     *     // Optional. Opaque routing identifier. Must match the `tenant` value from the selected `AgentInterface` in the Agent Card when that field is set.
      *     tenant:
      *       'projects/my-project/locations/my-location/apps/my-app/versions/my-version',
      *   });
@@ -23854,7 +23911,7 @@ export namespace ces_v1beta {
   }
   export interface Params$Resource$Projects$Locations$Apps$Versions$Getextendedagentcard extends StandardParameters {
     /**
-     * Optional. Tenant ID, provided as a path parameter.
+     * Optional. Opaque routing identifier. Must match the `tenant` value from the selected `AgentInterface` in the Agent Card when that field is set.
      */
     tenant?: string;
   }
@@ -23932,7 +23989,7 @@ export namespace ces_v1beta {
      *
      *   // Do the magic
      *   const res = await ces.projects.locations.apps.versions.message.send({
-     *     // Optional. Tenant ID, provided as a path parameter.
+     *     // Optional. Opaque routing identifier. Must match the `tenant` value from the selected `AgentInterface` in the Agent Card when that field is set.
      *     tenant:
      *       'projects/my-project/locations/my-location/apps/my-app/versions/my-version',
      *
@@ -24057,7 +24114,7 @@ export namespace ces_v1beta {
 
   export interface Params$Resource$Projects$Locations$Apps$Versions$Message$Send extends StandardParameters {
     /**
-     * Optional. Tenant ID, provided as a path parameter.
+     * Optional. Opaque routing identifier. Must match the `tenant` value from the selected `AgentInterface` in the Agent Card when that field is set.
      */
     tenant?: string;
 

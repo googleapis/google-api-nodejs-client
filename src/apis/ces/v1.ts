@@ -1245,6 +1245,10 @@ export namespace ces_v1 {
      * Optional. The root span of the action processing.
      */
     rootSpan?: Schema$Span;
+    /**
+     * Optional. The intended ground-truth text from the Simulated Caller (Polysynth). Only populated when word error rate metrics are enabled.
+     */
+    userIntendedText?: string | null;
   }
   /**
    * A DataStore resource in Vertex AI Search.
@@ -1480,6 +1484,10 @@ export namespace ces_v1 {
      */
     rewriterConfig?: Schema$DataStoreToolRewriterConfig;
     /**
+     * Optional. The snippets configuration.
+     */
+    snippetsConfig?: Schema$DataStoreToolSnippetsConfig;
+    /**
      * Optional. The summarization config.
      */
     summarizationConfig?: Schema$DataStoreToolSummarizationConfig;
@@ -1500,6 +1508,15 @@ export namespace ces_v1 {
      * Optional. The prompt definition. If not set, default prompt will be used.
      */
     prompt?: string | null;
+  }
+  /**
+   * Snippets configuration.
+   */
+  export interface Schema$DataStoreToolSnippetsConfig {
+    /**
+     * Optional. Whether snippets are enabled.
+     */
+    enableSnippets?: boolean | null;
   }
   /**
    * Summarization configuration.
@@ -2270,6 +2287,10 @@ export namespace ces_v1 {
      * Optional. The strategy to use when resolving conflicts during import.
      */
     conflictResolutionStrategy?: string | null;
+    /**
+     * Optional. Flag for dry-running the import process. If set to true, the import process will only perform validations and will not make any changes to the existing app or create a new one.
+     */
+    validateOnly?: boolean | null;
   }
   /**
    * Response message for AgentService.ImportApp.
@@ -3870,6 +3891,10 @@ export namespace ces_v1 {
      */
     entryAgent?: string | null;
     /**
+     * Optional. Whether to exclude diagnostic info from the session output.
+     */
+    excludeDiagnosticInfo?: boolean | null;
+    /**
      * Optional. The historical context of the session, including user inputs, agent responses, and other messages. Typically, CES agent would manage session automatically so client doesn't need to explicitly populate this field. However, client can optionally override the historical contexts to force the session start from certain state.
      */
     historicalContexts?: Schema$Message[];
@@ -4065,7 +4090,7 @@ export namespace ces_v1 {
    */
   export interface Schema$SynthesizeSpeechConfig {
     /**
-     * Optional. The Cloud Storage URI to the consent audio for voice cloning.
+     * Optional. Deprecated: Use `custom_voice_samples` in AudioProcessingConfig instead. The Cloud Storage URI to the consent audio for voice cloning.
      */
     consentAudioGcsUri?: string | null;
     /**
@@ -4085,7 +4110,7 @@ export namespace ces_v1 {
      */
     voice?: string | null;
     /**
-     * Optional. The Cloud Storage URI to the audio sample for voice cloning. The audio sample should be a mono-channel, 24kHz WAV file. Note: Please make sure the CES service agent `service-@gcp-sa-ces.iam.gserviceaccount.com` has `storage.objects.get` permission to the Cloud Storage object.
+     * Optional. Deprecated: Use `custom_voice_samples` in AudioProcessingConfig instead. The Cloud Storage URI to the audio sample for voice cloning. The audio sample should be a mono-channel, 24kHz WAV file. Note: Please make sure the CES service agent `service-@gcp-sa-ces.iam.gserviceaccount.com` has `storage.objects.get` permission to the Cloud Storage object.
      */
     voiceSampleGcsUri?: string | null;
   }
