@@ -2691,7 +2691,7 @@
       }
     }
   },
-  "revision": "20260707",
+  "revision": "20260729",
   "rootUrl": "https://androidenterprise.googleapis.com/",
   "schemas": {
     "Administrator": {
@@ -3558,20 +3558,6 @@
       "description": "Contains settings for Google-provided user authentication.",
       "id": "GoogleAuthenticationSettings",
       "properties": {
-        "dedicatedDevicesAllowed": {
-          "description": "Whether dedicated devices are allowed.",
-          "enum": [
-            "dedicatedDevicesAllowedUnspecified",
-            "disallowed",
-            "allowed"
-          ],
-          "enumDescriptions": [
-            "This value is unused.",
-            "Dedicated devices are not allowed.",
-            "Dedicated devices are allowed."
-          ],
-          "type": "string"
-        },
         "googleAuthenticationRequired": {
           "description": "Whether Google authentication is required.",
           "enum": [
