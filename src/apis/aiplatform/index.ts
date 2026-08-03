@@ -35,7 +35,10 @@ export function aiplatform<
 >(
   this: GoogleConfigurable,
   versionOrOptions:
-    'v1' | aiplatform_v1.Options | 'v1beta1' | aiplatform_v1beta1.Options
+    | 'v1'
+    | aiplatform_v1.Options
+    | 'v1beta1'
+    | aiplatform_v1beta1.Options
 ) {
   return getAPI<T>('aiplatform', versionOrOptions, VERSIONS, this);
 }
