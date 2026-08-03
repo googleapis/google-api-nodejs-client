@@ -680,6 +680,10 @@ export namespace places_v1 {
      */
     editorialSummary?: Schema$GoogleTypeLocalizedText;
     /**
+     * Entrances for this destination.
+     */
+    entrances?: Schema$GoogleMapsPlacesV1PlaceEntrance[];
+    /**
      * The summary of amenities near the EV charging station.
      */
     evChargeAmenitySummary?: Schema$GoogleMapsPlacesV1PlaceEvChargeAmenitySummary;
@@ -767,6 +771,10 @@ export namespace places_v1 {
      * A human-readable phone number for the place, in national format.
      */
     nationalPhoneNumber?: string | null;
+    /**
+     * Navigation points for this destination.
+     */
+    navigationPoints?: Schema$GoogleMapsPlacesV1PlaceNavigationPoint[];
     /**
      * A summary of points of interest near the place.
      */
@@ -1044,6 +1052,19 @@ export namespace places_v1 {
     name?: string | null;
   }
   /**
+   * An entrance is a single latitude/longitude coordinate pair that defines the location of an entry and exit point for a place.
+   */
+  export interface Schema$GoogleMapsPlacesV1PlaceEntrance {
+    /**
+     * The location of the entrance.
+     */
+    location?: Schema$GoogleTypeLatLng;
+    /**
+     * A list of tags that describe the entrance.
+     */
+    tags?: string[] | null;
+  }
+  /**
    * The summary of amenities near the EV charging station. This only applies to places with type `electric_vehicle_charging_station`. The `overview` field is guaranteed to be provided while the other fields are optional.
    */
   export interface Schema$GoogleMapsPlacesV1PlaceEvChargeAmenitySummary {
@@ -1113,6 +1134,31 @@ export namespace places_v1 {
      * A link to write a review for this place on Google Maps.
      */
     writeAReviewUri?: string | null;
+  }
+  /**
+   * A navigation point is a location next to a road where navigation can end.
+   */
+  export interface Schema$GoogleMapsPlacesV1PlaceNavigationPoint {
+    /**
+     * The display name of this navigation point. For example, "5th Ave" or "Gate B".
+     */
+    displayName?: Schema$GoogleTypeLocalizedText;
+    /**
+     * A point next to the road segment where navigation should end. The point is intentionally slightly offset from the road's centerline to clearly mark the side of the road where the place is located.
+     */
+    location?: Schema$GoogleTypeLatLng;
+    /**
+     * A token that can be used to identify this navigation point.
+     */
+    navigationPointToken?: string | null;
+    /**
+     * Travel modes that are appropriate for this navigation point.
+     */
+    travelModes?: string[] | null;
+    /**
+     * Lists `usages` supported by this navigation point. If empty, it does not necessarily mean its usage is restricted in any way. All navigation points can be used for general navigation.
+     */
+    usages?: string[] | null;
   }
   /**
    * A summary of points of interest near the place.
@@ -2164,6 +2210,7 @@ export namespace places_v1 {
      *   //   "dineIn": false,
      *   //   "displayName": {},
      *   //   "editorialSummary": {},
+     *   //   "entrances": [],
      *   //   "evChargeAmenitySummary": {},
      *   //   "evChargeOptions": {},
      *   //   "formattedAddress": "my_formattedAddress",
@@ -2186,6 +2233,7 @@ export namespace places_v1 {
      *   //   "movedPlaceId": "my_movedPlaceId",
      *   //   "name": "my_name",
      *   //   "nationalPhoneNumber": "my_nationalPhoneNumber",
+     *   //   "navigationPoints": [],
      *   //   "neighborhoodSummary": {},
      *   //   "openingDate": {},
      *   //   "outdoorSeating": false,
