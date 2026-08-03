@@ -115,7 +115,7 @@ export namespace cloudsupport_v2 {
     caseClassifications: Resource$Caseclassifications;
     cases: Resource$Cases;
     media: Resource$Media;
-    supportEventSubscriptions: Resource$Supporteventsubscriptions;
+    organizations: Resource$Organizations;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this.context = {
@@ -126,9 +126,7 @@ export namespace cloudsupport_v2 {
       this.caseClassifications = new Resource$Caseclassifications(this.context);
       this.cases = new Resource$Cases(this.context);
       this.media = new Resource$Media(this.context);
-      this.supportEventSubscriptions = new Resource$Supporteventsubscriptions(
-        this.context
-      );
+      this.organizations = new Resource$Organizations(this.context);
     }
   }
 
@@ -3298,7 +3296,17 @@ export namespace cloudsupport_v2 {
     };
   }
 
-  export class Resource$Supporteventsubscriptions {
+  export class Resource$Organizations {
+    context: APIRequestContext;
+    supportEventSubscriptions: Resource$Organizations$Supporteventsubscriptions;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.supportEventSubscriptions =
+        new Resource$Organizations$Supporteventsubscriptions(this.context);
+    }
+  }
+
+  export class Resource$Organizations$Supporteventsubscriptions {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
@@ -3334,25 +3342,27 @@ export namespace cloudsupport_v2 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await cloudsupport.supportEventSubscriptions.create({
-     *     // Required. The parent resource name where the support event subscription will be created. Format: organizations/{organization_id\}
-     *     parent: '[^/]+/[^/]+',
+     *   const res = await cloudsupport.organizations.supportEventSubscriptions.create(
+     *     {
+     *       // Required. The parent resource name where the support event subscription will be created. Format: organizations/{organization_id\}
+     *       parent: 'organizations/my-organization',
      *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "createTime": "my_createTime",
-     *       //   "deleteTime": "my_deleteTime",
-     *       //   "failureReason": "my_failureReason",
-     *       //   "name": "my_name",
-     *       //   "pubSubTopic": "my_pubSubTopic",
-     *       //   "purgeTime": "my_purgeTime",
-     *       //   "state": "my_state",
-     *       //   "updateTime": "my_updateTime"
-     *       // }
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "createTime": "my_createTime",
+     *         //   "deleteTime": "my_deleteTime",
+     *         //   "failureReason": "my_failureReason",
+     *         //   "name": "my_name",
+     *         //   "pubSubTopic": "my_pubSubTopic",
+     *         //   "purgeTime": "my_purgeTime",
+     *         //   "state": "my_state",
+     *         //   "updateTime": "my_updateTime"
+     *         // }
+     *       },
      *     },
-     *   });
+     *   );
      *   console.log(res.data);
      *
      *   // Example response
@@ -3381,26 +3391,26 @@ export namespace cloudsupport_v2 {
      * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
-      params: Params$Resource$Supporteventsubscriptions$Create,
+      params: Params$Resource$Organizations$Supporteventsubscriptions$Create,
       options: StreamMethodOptions
     ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
-      params?: Params$Resource$Supporteventsubscriptions$Create,
+      params?: Params$Resource$Organizations$Supporteventsubscriptions$Create,
       options?: MethodOptions
     ): Promise<GaxiosResponseWithHTTP2<Schema$SupportEventSubscription>>;
     create(
-      params: Params$Resource$Supporteventsubscriptions$Create,
+      params: Params$Resource$Organizations$Supporteventsubscriptions$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
       callback: BodyResponseCallback<Readable>
     ): void;
     create(
-      params: Params$Resource$Supporteventsubscriptions$Create,
+      params: Params$Resource$Organizations$Supporteventsubscriptions$Create,
       options:
         MethodOptions | BodyResponseCallback<Schema$SupportEventSubscription>,
       callback: BodyResponseCallback<Schema$SupportEventSubscription>
     ): void;
     create(
-      params: Params$Resource$Supporteventsubscriptions$Create,
+      params: Params$Resource$Organizations$Supporteventsubscriptions$Create,
       callback: BodyResponseCallback<Schema$SupportEventSubscription>
     ): void;
     create(
@@ -3408,7 +3418,7 @@ export namespace cloudsupport_v2 {
     ): void;
     create(
       paramsOrCallback?:
-        | Params$Resource$Supporteventsubscriptions$Create
+        | Params$Resource$Organizations$Supporteventsubscriptions$Create
         | BodyResponseCallback<Schema$SupportEventSubscription>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
@@ -3424,12 +3434,13 @@ export namespace cloudsupport_v2 {
       | Promise<GaxiosResponseWithHTTP2<Schema$SupportEventSubscription>>
       | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
-        {}) as Params$Resource$Supporteventsubscriptions$Create;
+        {}) as Params$Resource$Organizations$Supporteventsubscriptions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Supporteventsubscriptions$Create;
+        params =
+          {} as Params$Resource$Organizations$Supporteventsubscriptions$Create;
         options = {};
       }
 
@@ -3496,10 +3507,12 @@ export namespace cloudsupport_v2 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await cloudsupport.supportEventSubscriptions.delete({
-     *     // Required. The name of the support event subscription to delete. Format: organizations/{organization_id\}/supportEventSubscriptions/{subscription_id\}
-     *     name: '[^/]+/[^/]+/supportEventSubscriptions/my-supportEventSubscription',
-     *   });
+     *   const res = await cloudsupport.organizations.supportEventSubscriptions.delete(
+     *     {
+     *       // Required. The name of the support event subscription to delete. Format: organizations/{organization_id\}/supportEventSubscriptions/{subscription_id\}
+     *       name: 'organizations/my-organization/supportEventSubscriptions/my-supportEventSubscription',
+     *     },
+     *   );
      *   console.log(res.data);
      *
      *   // Example response
@@ -3528,26 +3541,26 @@ export namespace cloudsupport_v2 {
      * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
-      params: Params$Resource$Supporteventsubscriptions$Delete,
+      params: Params$Resource$Organizations$Supporteventsubscriptions$Delete,
       options: StreamMethodOptions
     ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
-      params?: Params$Resource$Supporteventsubscriptions$Delete,
+      params?: Params$Resource$Organizations$Supporteventsubscriptions$Delete,
       options?: MethodOptions
     ): Promise<GaxiosResponseWithHTTP2<Schema$SupportEventSubscription>>;
     delete(
-      params: Params$Resource$Supporteventsubscriptions$Delete,
+      params: Params$Resource$Organizations$Supporteventsubscriptions$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
       callback: BodyResponseCallback<Readable>
     ): void;
     delete(
-      params: Params$Resource$Supporteventsubscriptions$Delete,
+      params: Params$Resource$Organizations$Supporteventsubscriptions$Delete,
       options:
         MethodOptions | BodyResponseCallback<Schema$SupportEventSubscription>,
       callback: BodyResponseCallback<Schema$SupportEventSubscription>
     ): void;
     delete(
-      params: Params$Resource$Supporteventsubscriptions$Delete,
+      params: Params$Resource$Organizations$Supporteventsubscriptions$Delete,
       callback: BodyResponseCallback<Schema$SupportEventSubscription>
     ): void;
     delete(
@@ -3555,7 +3568,7 @@ export namespace cloudsupport_v2 {
     ): void;
     delete(
       paramsOrCallback?:
-        | Params$Resource$Supporteventsubscriptions$Delete
+        | Params$Resource$Organizations$Supporteventsubscriptions$Delete
         | BodyResponseCallback<Schema$SupportEventSubscription>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
@@ -3571,12 +3584,13 @@ export namespace cloudsupport_v2 {
       | Promise<GaxiosResponseWithHTTP2<Schema$SupportEventSubscription>>
       | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
-        {}) as Params$Resource$Supporteventsubscriptions$Delete;
+        {}) as Params$Resource$Organizations$Supporteventsubscriptions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Supporteventsubscriptions$Delete;
+        params =
+          {} as Params$Resource$Organizations$Supporteventsubscriptions$Delete;
         options = {};
       }
 
@@ -3611,7 +3625,7 @@ export namespace cloudsupport_v2 {
     }
 
     /**
-     * Expunges a support event subscription.
+     * Expunges a support event subscription. EXAMPLES: cURL: ```shell support_event_subscription="organizations/123456789/supportEventSubscriptions/abcdef123456" curl \ --request POST \ --header "Authorization: Bearer $(gcloud auth print-access-token)" \ "https://cloudsupport.googleapis.com/v2/$support_event_subscription:expunge" ``` Python: ```python import googleapiclient.discovery api_version = "v2" supportApiService = googleapiclient.discovery.build( serviceName="cloudsupport", version=api_version, discoveryServiceUrl=f"https://cloudsupport.googleapis.com/$discovery/rest?version={api_version\}", ) request = supportApiService.supportEventSubscriptions().expunge( name="organizations/123456789/supportEventSubscriptions/abcdef123456" ) print(request.execute()) ```
      * @example
      * ```js
      * // Before running the sample:
@@ -3640,16 +3654,17 @@ export namespace cloudsupport_v2 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await cloudsupport.supportEventSubscriptions.expunge({
-     *     // Required. The name of the support event subscription to expunge. Format: organizations/{organization_id\}/supportEventSubscriptions/{subscription_id\}
-     *     name: '[^/]+/[^/]+/supportEventSubscriptions/my-supportEventSubscription',
+     *   const res =
+     *     await cloudsupport.organizations.supportEventSubscriptions.expunge({
+     *       // Required. The name of the support event subscription to expunge. Format: organizations/{organization_id\}/supportEventSubscriptions/{subscription_id\}
+     *       name: 'organizations/my-organization/supportEventSubscriptions/my-supportEventSubscription',
      *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {}
-     *     },
-     *   });
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {}
+     *       },
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -3669,31 +3684,31 @@ export namespace cloudsupport_v2 {
      * @returns A promise if used with async/await, or void if used with a callback.
      */
     expunge(
-      params: Params$Resource$Supporteventsubscriptions$Expunge,
+      params: Params$Resource$Organizations$Supporteventsubscriptions$Expunge,
       options: StreamMethodOptions
     ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     expunge(
-      params?: Params$Resource$Supporteventsubscriptions$Expunge,
+      params?: Params$Resource$Organizations$Supporteventsubscriptions$Expunge,
       options?: MethodOptions
     ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     expunge(
-      params: Params$Resource$Supporteventsubscriptions$Expunge,
+      params: Params$Resource$Organizations$Supporteventsubscriptions$Expunge,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
       callback: BodyResponseCallback<Readable>
     ): void;
     expunge(
-      params: Params$Resource$Supporteventsubscriptions$Expunge,
+      params: Params$Resource$Organizations$Supporteventsubscriptions$Expunge,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
       callback: BodyResponseCallback<Schema$Empty>
     ): void;
     expunge(
-      params: Params$Resource$Supporteventsubscriptions$Expunge,
+      params: Params$Resource$Organizations$Supporteventsubscriptions$Expunge,
       callback: BodyResponseCallback<Schema$Empty>
     ): void;
     expunge(callback: BodyResponseCallback<Schema$Empty>): void;
     expunge(
       paramsOrCallback?:
-        | Params$Resource$Supporteventsubscriptions$Expunge
+        | Params$Resource$Organizations$Supporteventsubscriptions$Expunge
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
@@ -3708,12 +3723,13 @@ export namespace cloudsupport_v2 {
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
       | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
-        {}) as Params$Resource$Supporteventsubscriptions$Expunge;
+        {}) as Params$Resource$Organizations$Supporteventsubscriptions$Expunge;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Supporteventsubscriptions$Expunge;
+        params =
+          {} as Params$Resource$Organizations$Supporteventsubscriptions$Expunge;
         options = {};
       }
 
@@ -3780,9 +3796,9 @@ export namespace cloudsupport_v2 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await cloudsupport.supportEventSubscriptions.get({
+     *   const res = await cloudsupport.organizations.supportEventSubscriptions.get({
      *     // Required. The name of the support event subscription to retrieve. Format: organizations/{organization_id\}/supportEventSubscriptions/{subscription_id\}
-     *     name: '[^/]+/[^/]+/supportEventSubscriptions/my-supportEventSubscription',
+     *     name: 'organizations/my-organization/supportEventSubscriptions/my-supportEventSubscription',
      *   });
      *   console.log(res.data);
      *
@@ -3812,32 +3828,32 @@ export namespace cloudsupport_v2 {
      * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
-      params: Params$Resource$Supporteventsubscriptions$Get,
+      params: Params$Resource$Organizations$Supporteventsubscriptions$Get,
       options: StreamMethodOptions
     ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
-      params?: Params$Resource$Supporteventsubscriptions$Get,
+      params?: Params$Resource$Organizations$Supporteventsubscriptions$Get,
       options?: MethodOptions
     ): Promise<GaxiosResponseWithHTTP2<Schema$SupportEventSubscription>>;
     get(
-      params: Params$Resource$Supporteventsubscriptions$Get,
+      params: Params$Resource$Organizations$Supporteventsubscriptions$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
       callback: BodyResponseCallback<Readable>
     ): void;
     get(
-      params: Params$Resource$Supporteventsubscriptions$Get,
+      params: Params$Resource$Organizations$Supporteventsubscriptions$Get,
       options:
         MethodOptions | BodyResponseCallback<Schema$SupportEventSubscription>,
       callback: BodyResponseCallback<Schema$SupportEventSubscription>
     ): void;
     get(
-      params: Params$Resource$Supporteventsubscriptions$Get,
+      params: Params$Resource$Organizations$Supporteventsubscriptions$Get,
       callback: BodyResponseCallback<Schema$SupportEventSubscription>
     ): void;
     get(callback: BodyResponseCallback<Schema$SupportEventSubscription>): void;
     get(
       paramsOrCallback?:
-        | Params$Resource$Supporteventsubscriptions$Get
+        | Params$Resource$Organizations$Supporteventsubscriptions$Get
         | BodyResponseCallback<Schema$SupportEventSubscription>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
@@ -3853,12 +3869,13 @@ export namespace cloudsupport_v2 {
       | Promise<GaxiosResponseWithHTTP2<Schema$SupportEventSubscription>>
       | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
-        {}) as Params$Resource$Supporteventsubscriptions$Get;
+        {}) as Params$Resource$Organizations$Supporteventsubscriptions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Supporteventsubscriptions$Get;
+        params =
+          {} as Params$Resource$Organizations$Supporteventsubscriptions$Get;
         options = {};
       }
 
@@ -3922,7 +3939,7 @@ export namespace cloudsupport_v2 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await cloudsupport.supportEventSubscriptions.list({
+     *   const res = await cloudsupport.organizations.supportEventSubscriptions.list({
      *     // Optional. Filter expression based on AIP-160. Supported fields: - pub_sub_topic - state Examples: - `pub_sub_topic="projects/example-project/topics/example-topic"` - `state=WORKING` - `pub_sub_topic="projects/example-project/topics/example-topic" AND state=WORKING`
      *     filter: 'placeholder-value',
      *     // Optional. The maximum number of support event subscriptions to return.
@@ -3930,7 +3947,7 @@ export namespace cloudsupport_v2 {
      *     // Optional. A token identifying the page of results to return. If unspecified, the first page is retrieved. When paginating, all other parameters provided to `ListSupportEventSubscriptions` must match the call that provided the page token.
      *     pageToken: 'placeholder-value',
      *     // Required. The fully qualified name of the Cloud resource to list support event subscriptions under. Format: organizations/{organization_id\}
-     *     parent: '[^/]+/[^/]+',
+     *     parent: 'organizations/my-organization',
      *     // Optional. Whether to show deleted subscriptions. By default, deleted subscriptions are not returned.
      *     showDeleted: 'placeholder-value',
      *   });
@@ -3956,29 +3973,29 @@ export namespace cloudsupport_v2 {
      * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
-      params: Params$Resource$Supporteventsubscriptions$List,
+      params: Params$Resource$Organizations$Supporteventsubscriptions$List,
       options: StreamMethodOptions
     ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
-      params?: Params$Resource$Supporteventsubscriptions$List,
+      params?: Params$Resource$Organizations$Supporteventsubscriptions$List,
       options?: MethodOptions
     ): Promise<
       GaxiosResponseWithHTTP2<Schema$ListSupportEventSubscriptionsResponse>
     >;
     list(
-      params: Params$Resource$Supporteventsubscriptions$List,
+      params: Params$Resource$Organizations$Supporteventsubscriptions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
       callback: BodyResponseCallback<Readable>
     ): void;
     list(
-      params: Params$Resource$Supporteventsubscriptions$List,
+      params: Params$Resource$Organizations$Supporteventsubscriptions$List,
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$ListSupportEventSubscriptionsResponse>,
       callback: BodyResponseCallback<Schema$ListSupportEventSubscriptionsResponse>
     ): void;
     list(
-      params: Params$Resource$Supporteventsubscriptions$List,
+      params: Params$Resource$Organizations$Supporteventsubscriptions$List,
       callback: BodyResponseCallback<Schema$ListSupportEventSubscriptionsResponse>
     ): void;
     list(
@@ -3986,7 +4003,7 @@ export namespace cloudsupport_v2 {
     ): void;
     list(
       paramsOrCallback?:
-        | Params$Resource$Supporteventsubscriptions$List
+        | Params$Resource$Organizations$Supporteventsubscriptions$List
         | BodyResponseCallback<Schema$ListSupportEventSubscriptionsResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
@@ -4004,12 +4021,13 @@ export namespace cloudsupport_v2 {
         >
       | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
-        {}) as Params$Resource$Supporteventsubscriptions$List;
+        {}) as Params$Resource$Organizations$Supporteventsubscriptions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Supporteventsubscriptions$List;
+        params =
+          {} as Params$Resource$Organizations$Supporteventsubscriptions$List;
         options = {};
       }
 
@@ -4078,9 +4096,9 @@ export namespace cloudsupport_v2 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await cloudsupport.supportEventSubscriptions.patch({
+     *   const res = await cloudsupport.organizations.supportEventSubscriptions.patch({
      *     // Identifier. The resource name of the support event subscription.
-     *     name: '[^/]+/[^/]+/supportEventSubscriptions/my-supportEventSubscription',
+     *     name: 'organizations/my-organization/supportEventSubscriptions/my-supportEventSubscription',
      *     // Optional. The list of fields to update. The only supported value is pub_sub_topic.
      *     updateMask: 'placeholder-value',
      *
@@ -4127,26 +4145,26 @@ export namespace cloudsupport_v2 {
      * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
-      params: Params$Resource$Supporteventsubscriptions$Patch,
+      params: Params$Resource$Organizations$Supporteventsubscriptions$Patch,
       options: StreamMethodOptions
     ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
-      params?: Params$Resource$Supporteventsubscriptions$Patch,
+      params?: Params$Resource$Organizations$Supporteventsubscriptions$Patch,
       options?: MethodOptions
     ): Promise<GaxiosResponseWithHTTP2<Schema$SupportEventSubscription>>;
     patch(
-      params: Params$Resource$Supporteventsubscriptions$Patch,
+      params: Params$Resource$Organizations$Supporteventsubscriptions$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
       callback: BodyResponseCallback<Readable>
     ): void;
     patch(
-      params: Params$Resource$Supporteventsubscriptions$Patch,
+      params: Params$Resource$Organizations$Supporteventsubscriptions$Patch,
       options:
         MethodOptions | BodyResponseCallback<Schema$SupportEventSubscription>,
       callback: BodyResponseCallback<Schema$SupportEventSubscription>
     ): void;
     patch(
-      params: Params$Resource$Supporteventsubscriptions$Patch,
+      params: Params$Resource$Organizations$Supporteventsubscriptions$Patch,
       callback: BodyResponseCallback<Schema$SupportEventSubscription>
     ): void;
     patch(
@@ -4154,7 +4172,7 @@ export namespace cloudsupport_v2 {
     ): void;
     patch(
       paramsOrCallback?:
-        | Params$Resource$Supporteventsubscriptions$Patch
+        | Params$Resource$Organizations$Supporteventsubscriptions$Patch
         | BodyResponseCallback<Schema$SupportEventSubscription>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
@@ -4170,12 +4188,13 @@ export namespace cloudsupport_v2 {
       | Promise<GaxiosResponseWithHTTP2<Schema$SupportEventSubscription>>
       | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
-        {}) as Params$Resource$Supporteventsubscriptions$Patch;
+        {}) as Params$Resource$Organizations$Supporteventsubscriptions$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Supporteventsubscriptions$Patch;
+        params =
+          {} as Params$Resource$Organizations$Supporteventsubscriptions$Patch;
         options = {};
       }
 
@@ -4210,7 +4229,7 @@ export namespace cloudsupport_v2 {
     }
 
     /**
-     * Undeletes a support event subscription. EXAMPLES: cURL: ```shell support_event_subscription="organizations/123456789/supportEventSubscriptions/abcdef123456" curl \ --request POST \ --header "Authorization: Bearer $(gcloud auth print-access-token)" \ "https://cloudsupport.googleapis.com/v2/$support_event_subscription:undelete" ``` Python: ```python import googleapiclient.discovery api_version = "v2" supportApiService = googleapiclient.discovery.build( serviceName="cloudsupport", version=api_version, discoveryServiceUrl=f"https://cloudsupport.googleapis.com/$discovery/rest?version={api_version\}", ) request = supportApiService.supportEventSubscriptions().undelete( name="organizations/123456789/supportEventSubscriptions/abcdef123456" ) print(request.execute()) ``` Undeletes a support event subscription.
+     * Undeletes a support event subscription. EXAMPLES: cURL: ```shell support_event_subscription="organizations/123456789/supportEventSubscriptions/abcdef123456" curl \ --request POST \ --header "Authorization: Bearer $(gcloud auth print-access-token)" \ "https://cloudsupport.googleapis.com/v2/$support_event_subscription:undelete" ``` Python: ```python import googleapiclient.discovery api_version = "v2" supportApiService = googleapiclient.discovery.build( serviceName="cloudsupport", version=api_version, discoveryServiceUrl=f"https://cloudsupport.googleapis.com/$discovery/rest?version={api_version\}", ) request = supportApiService.supportEventSubscriptions().undelete( name="organizations/123456789/supportEventSubscriptions/abcdef123456" ) print(request.execute()) ```
      * @example
      * ```js
      * // Before running the sample:
@@ -4239,16 +4258,17 @@ export namespace cloudsupport_v2 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await cloudsupport.supportEventSubscriptions.undelete({
-     *     // Required. The name of the support event subscription to undelete. Format: organizations/{organization_id\}/supportEventSubscriptions/{subscription_id\}
-     *     name: '[^/]+/[^/]+/supportEventSubscriptions/my-supportEventSubscription',
+     *   const res =
+     *     await cloudsupport.organizations.supportEventSubscriptions.undelete({
+     *       // Required. The name of the support event subscription to undelete. Format: organizations/{organization_id\}/supportEventSubscriptions/{subscription_id\}
+     *       name: 'organizations/my-organization/supportEventSubscriptions/my-supportEventSubscription',
      *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {}
-     *     },
-     *   });
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {}
+     *       },
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -4277,26 +4297,26 @@ export namespace cloudsupport_v2 {
      * @returns A promise if used with async/await, or void if used with a callback.
      */
     undelete(
-      params: Params$Resource$Supporteventsubscriptions$Undelete,
+      params: Params$Resource$Organizations$Supporteventsubscriptions$Undelete,
       options: StreamMethodOptions
     ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     undelete(
-      params?: Params$Resource$Supporteventsubscriptions$Undelete,
+      params?: Params$Resource$Organizations$Supporteventsubscriptions$Undelete,
       options?: MethodOptions
     ): Promise<GaxiosResponseWithHTTP2<Schema$SupportEventSubscription>>;
     undelete(
-      params: Params$Resource$Supporteventsubscriptions$Undelete,
+      params: Params$Resource$Organizations$Supporteventsubscriptions$Undelete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
       callback: BodyResponseCallback<Readable>
     ): void;
     undelete(
-      params: Params$Resource$Supporteventsubscriptions$Undelete,
+      params: Params$Resource$Organizations$Supporteventsubscriptions$Undelete,
       options:
         MethodOptions | BodyResponseCallback<Schema$SupportEventSubscription>,
       callback: BodyResponseCallback<Schema$SupportEventSubscription>
     ): void;
     undelete(
-      params: Params$Resource$Supporteventsubscriptions$Undelete,
+      params: Params$Resource$Organizations$Supporteventsubscriptions$Undelete,
       callback: BodyResponseCallback<Schema$SupportEventSubscription>
     ): void;
     undelete(
@@ -4304,7 +4324,7 @@ export namespace cloudsupport_v2 {
     ): void;
     undelete(
       paramsOrCallback?:
-        | Params$Resource$Supporteventsubscriptions$Undelete
+        | Params$Resource$Organizations$Supporteventsubscriptions$Undelete
         | BodyResponseCallback<Schema$SupportEventSubscription>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
@@ -4320,12 +4340,13 @@ export namespace cloudsupport_v2 {
       | Promise<GaxiosResponseWithHTTP2<Schema$SupportEventSubscription>>
       | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
-        {}) as Params$Resource$Supporteventsubscriptions$Undelete;
+        {}) as Params$Resource$Organizations$Supporteventsubscriptions$Undelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Supporteventsubscriptions$Undelete;
+        params =
+          {} as Params$Resource$Organizations$Supporteventsubscriptions$Undelete;
         options = {};
       }
 
@@ -4363,7 +4384,7 @@ export namespace cloudsupport_v2 {
     }
   }
 
-  export interface Params$Resource$Supporteventsubscriptions$Create extends StandardParameters {
+  export interface Params$Resource$Organizations$Supporteventsubscriptions$Create extends StandardParameters {
     /**
      * Required. The parent resource name where the support event subscription will be created. Format: organizations/{organization_id\}
      */
@@ -4374,13 +4395,13 @@ export namespace cloudsupport_v2 {
      */
     requestBody?: Schema$SupportEventSubscription;
   }
-  export interface Params$Resource$Supporteventsubscriptions$Delete extends StandardParameters {
+  export interface Params$Resource$Organizations$Supporteventsubscriptions$Delete extends StandardParameters {
     /**
      * Required. The name of the support event subscription to delete. Format: organizations/{organization_id\}/supportEventSubscriptions/{subscription_id\}
      */
     name?: string;
   }
-  export interface Params$Resource$Supporteventsubscriptions$Expunge extends StandardParameters {
+  export interface Params$Resource$Organizations$Supporteventsubscriptions$Expunge extends StandardParameters {
     /**
      * Required. The name of the support event subscription to expunge. Format: organizations/{organization_id\}/supportEventSubscriptions/{subscription_id\}
      */
@@ -4391,13 +4412,13 @@ export namespace cloudsupport_v2 {
      */
     requestBody?: Schema$ExpungeSupportEventSubscriptionRequest;
   }
-  export interface Params$Resource$Supporteventsubscriptions$Get extends StandardParameters {
+  export interface Params$Resource$Organizations$Supporteventsubscriptions$Get extends StandardParameters {
     /**
      * Required. The name of the support event subscription to retrieve. Format: organizations/{organization_id\}/supportEventSubscriptions/{subscription_id\}
      */
     name?: string;
   }
-  export interface Params$Resource$Supporteventsubscriptions$List extends StandardParameters {
+  export interface Params$Resource$Organizations$Supporteventsubscriptions$List extends StandardParameters {
     /**
      * Optional. Filter expression based on AIP-160. Supported fields: - pub_sub_topic - state Examples: - `pub_sub_topic="projects/example-project/topics/example-topic"` - `state=WORKING` - `pub_sub_topic="projects/example-project/topics/example-topic" AND state=WORKING`
      */
@@ -4419,7 +4440,7 @@ export namespace cloudsupport_v2 {
      */
     showDeleted?: boolean;
   }
-  export interface Params$Resource$Supporteventsubscriptions$Patch extends StandardParameters {
+  export interface Params$Resource$Organizations$Supporteventsubscriptions$Patch extends StandardParameters {
     /**
      * Identifier. The resource name of the support event subscription.
      */
@@ -4434,7 +4455,7 @@ export namespace cloudsupport_v2 {
      */
     requestBody?: Schema$SupportEventSubscription;
   }
-  export interface Params$Resource$Supporteventsubscriptions$Undelete extends StandardParameters {
+  export interface Params$Resource$Organizations$Supporteventsubscriptions$Undelete extends StandardParameters {
     /**
      * Required. The name of the support event subscription to undelete. Format: organizations/{organization_id\}/supportEventSubscriptions/{subscription_id\}
      */
