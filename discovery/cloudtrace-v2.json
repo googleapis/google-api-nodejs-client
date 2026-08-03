@@ -377,7 +377,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The resource name of the span in the following format: * `projects/[PROJECT_ID]/traces/[TRACE_ID]/spans/[SPAN_ID]` `[TRACE_ID]` is a unique identifier for a trace within a project; it is a 32-character hexadecimal encoding of a 16-byte array. It should not be zero. `[SPAN_ID]` is a unique identifier for a span within a trace; it is a 16-character hexadecimal encoding of an 8-byte array. It should not be zero. .",
+                      "description": "Identifier. The resource name of the span in the following format: * `projects/[PROJECT_ID]/traces/[TRACE_ID]/spans/[SPAN_ID]` `[TRACE_ID]` is a unique identifier for a trace within a project; it is a 32-character hexadecimal encoding of a 16-byte array. It should not be zero. `[SPAN_ID]` is a unique identifier for a span within a trace; it is a 16-character hexadecimal encoding of an 8-byte array. It should not be zero. .",
                       "location": "path",
                       "pattern": "^projects/[^/]+/traces/[^/]+/spans/[^/]+$",
                       "required": true,
@@ -403,7 +403,7 @@
       }
     }
   },
-  "revision": "20260612",
+  "revision": "20260724",
   "rootUrl": "https://cloudtrace.googleapis.com/",
   "schemas": {
     "Annotation": {
@@ -412,11 +412,11 @@
       "properties": {
         "attributes": {
           "$ref": "Attributes",
-          "description": "A set of attributes on the annotation. You can have up to 4 attributes per Annotation."
+          "description": "Optional. A set of attributes on the annotation. You can have up to 4 attributes per Annotation."
         },
         "description": {
           "$ref": "TruncatableString",
-          "description": "A user-supplied message describing the event. The maximum length for the description is 256 bytes."
+          "description": "Optional. A user-supplied message describing the event. The maximum length for the description is 256 bytes."
         }
       },
       "type": "object"
@@ -426,17 +426,17 @@
       "id": "AttributeValue",
       "properties": {
         "boolValue": {
-          "description": "A Boolean value represented by `true` or `false`.",
+          "description": "Optional. A Boolean value represented by `true` or `false`.",
           "type": "boolean"
         },
         "intValue": {
-          "description": "A 64-bit signed integer.",
+          "description": "Optional. A 64-bit signed integer.",
           "format": "int64",
           "type": "string"
         },
         "stringValue": {
           "$ref": "TruncatableString",
-          "description": "A string up to 256 bytes long."
+          "description": "Optional. A string up to 256 bytes long."
         }
       },
       "type": "object"
@@ -449,11 +449,11 @@
           "additionalProperties": {
             "$ref": "AttributeValue"
           },
-          "description": "A set of attributes. Each attribute's key can be up to 128 bytes long. The value can be a string up to 256 bytes, a signed 64-bit integer, or the boolean values `true` or `false`. For example: \"/instance_id\": { \"string_value\": { \"value\": \"my-instance\" } } \"/http/request_bytes\": { \"int_value\": 300 } \"example.com/myattribute\": { \"bool_value\": false }",
+          "description": "Optional. A set of attributes. Each attribute's key can be up to 128 bytes long. The value can be a string up to 256 bytes, a signed 64-bit integer, or the boolean values `true` or `false`. For example: \"/instance_id\": { \"string_value\": { \"value\": \"my-instance\" } } \"/http/request_bytes\": { \"int_value\": 300 } \"example.com/myattribute\": { \"bool_value\": false }",
           "type": "object"
         },
         "droppedAttributesCount": {
-          "description": "The number of attributes that were discarded. Attributes can be discarded because their keys are too long or because there are too many attributes. If this value is 0 then all attributes are valid.",
+          "description": "Optional. The number of attributes that were discarded. Attributes can be discarded because their keys are too long or because there are too many attributes. If this value is 0 then all attributes are valid.",
           "format": "int32",
           "type": "integer"
         }
@@ -486,18 +486,18 @@
       "properties": {
         "attributes": {
           "$ref": "Attributes",
-          "description": "A set of attributes on the link. Up to 32 attributes can be specified per link."
+          "description": "Optional. A set of attributes on the link. Up to 32 attributes can be specified per link."
         },
         "spanId": {
-          "description": "The `[SPAN_ID]` for a span within a trace.",
+          "description": "Optional. The `[SPAN_ID]` for a span within a trace.",
           "type": "string"
         },
         "traceId": {
-          "description": "The `[TRACE_ID]` for a trace within a project.",
+          "description": "Optional. The `[TRACE_ID]` for a trace within a project.",
           "type": "string"
         },
         "type": {
-          "description": "The relationship of the current span relative to the linked span.",
+          "description": "Optional. The relationship of the current span relative to the linked span.",
           "enum": [
             "TYPE_UNSPECIFIED",
             "CHILD_LINKED_SPAN",
@@ -518,12 +518,12 @@
       "id": "Links",
       "properties": {
         "droppedLinksCount": {
-          "description": "The number of dropped links after the maximum size was enforced. If this value is 0, then no links were dropped.",
+          "description": "Optional. The number of dropped links after the maximum size was enforced. If this value is 0, then no links were dropped.",
           "format": "int32",
           "type": "integer"
         },
         "link": {
-          "description": "A collection of links.",
+          "description": "Optional. A collection of links.",
           "items": {
             "$ref": "Link"
           },
@@ -537,17 +537,17 @@
       "id": "MessageEvent",
       "properties": {
         "compressedSizeBytes": {
-          "description": "The number of compressed bytes sent or received. If missing, the compressed size is assumed to be the same size as the uncompressed size.",
+          "description": "Optional. The number of compressed bytes sent or received. If missing, the compressed size is assumed to be the same size as the uncompressed size.",
           "format": "int64",
           "type": "string"
         },
         "id": {
-          "description": "An identifier for the MessageEvent's message that can be used to match `SENT` and `RECEIVED` MessageEvents.",
+          "description": "Optional. An identifier for the MessageEvent's message that can be used to match `SENT` and `RECEIVED` MessageEvents.",
           "format": "int64",
           "type": "string"
         },
         "type": {
-          "description": "Type of MessageEvent. Indicates whether the message was sent or received.",
+          "description": "Optional. Type of MessageEvent. Indicates whether the message was sent or received.",
           "enum": [
             "TYPE_UNSPECIFIED",
             "SENT",
@@ -561,7 +561,7 @@
           "type": "string"
         },
         "uncompressedSizeBytes": {
-          "description": "The number of uncompressed bytes sent or received.",
+          "description": "Optional. The number of uncompressed bytes sent or received.",
           "format": "int64",
           "type": "string"
         }
@@ -574,11 +574,11 @@
       "properties": {
         "buildId": {
           "$ref": "TruncatableString",
-          "description": "A unique identifier for the module, usually a hash of its contents (up to 128 bytes)."
+          "description": "Optional. A unique identifier for the module, usually a hash of its contents (up to 128 bytes)."
         },
         "module": {
           "$ref": "TruncatableString",
-          "description": "For example: main binary, kernel modules, and dynamic libraries such as libc.so, sharedlib.so (up to 256 bytes)."
+          "description": "Optional. For example: main binary, kernel modules, and dynamic libraries such as libc.so, sharedlib.so (up to 256 bytes)."
         }
       },
       "type": "object"
@@ -589,7 +589,7 @@
       "properties": {
         "attributes": {
           "$ref": "Attributes",
-          "description": "A set of attributes on the span. You can have up to 32 attributes per span."
+          "description": "Optional. A set of attributes on the span. You can have up to 32 attributes per span."
         },
         "childSpanCount": {
           "description": "Optional. The number of child spans that were generated while this span was active. If set, allows implementation to detect missing child spans.",
@@ -607,14 +607,14 @@
         },
         "links": {
           "$ref": "Links",
-          "description": "Links associated with the span. You can have up to 128 links per Span."
+          "description": "Optional. Links associated with the span. You can have up to 128 links per Span."
         },
         "name": {
-          "description": "Required. The resource name of the span in the following format: * `projects/[PROJECT_ID]/traces/[TRACE_ID]/spans/[SPAN_ID]` `[TRACE_ID]` is a unique identifier for a trace within a project; it is a 32-character hexadecimal encoding of a 16-byte array. It should not be zero. `[SPAN_ID]` is a unique identifier for a span within a trace; it is a 16-character hexadecimal encoding of an 8-byte array. It should not be zero. .",
+          "description": "Identifier. The resource name of the span in the following format: * `projects/[PROJECT_ID]/traces/[TRACE_ID]/spans/[SPAN_ID]` `[TRACE_ID]` is a unique identifier for a trace within a project; it is a 32-character hexadecimal encoding of a 16-byte array. It should not be zero. `[SPAN_ID]` is a unique identifier for a span within a trace; it is a 16-character hexadecimal encoding of an 8-byte array. It should not be zero. .",
           "type": "string"
         },
         "parentSpanId": {
-          "description": "The `[SPAN_ID]` of this span's parent span. If this is a root span, then this field must be empty.",
+          "description": "Optional. The `[SPAN_ID]` of this span's parent span. If this is a root span, then this field must be empty.",
           "type": "string"
         },
         "sameProcessAsParentSpan": {
@@ -647,7 +647,7 @@
         },
         "stackTrace": {
           "$ref": "StackTrace",
-          "description": "Stack trace captured at the start of the span."
+          "description": "Optional. Stack trace captured at the start of the span."
         },
         "startTime": {
           "description": "Required. The start time of the span. On the client side, this is the time kept by the local machine where the span execution starts. On the server side, this is the time when the server's application handler starts running.",
@@ -660,7 +660,7 @@
         },
         "timeEvents": {
           "$ref": "TimeEvents",
-          "description": "A set of time events. You can have up to 32 annotations and 128 message events per span."
+          "description": "Optional. A set of time events. You can have up to 32 annotations and 128 message events per span."
         }
       },
       "type": "object"
@@ -670,34 +670,34 @@
       "id": "StackFrame",
       "properties": {
         "columnNumber": {
-          "description": "The column number where the function call appears, if available. This is important in JavaScript because of its anonymous functions.",
+          "description": "Optional. The column number where the function call appears, if available. This is important in JavaScript because of its anonymous functions.",
           "format": "int64",
           "type": "string"
         },
         "fileName": {
           "$ref": "TruncatableString",
-          "description": "The name of the source file where the function call appears (up to 256 bytes)."
+          "description": "Optional. The name of the source file where the function call appears (up to 256 bytes)."
         },
         "functionName": {
           "$ref": "TruncatableString",
-          "description": "The fully-qualified name that uniquely identifies the function or method that is active in this frame (up to 1024 bytes)."
+          "description": "Optional. The fully-qualified name that uniquely identifies the function or method that is active in this frame (up to 1024 bytes)."
         },
         "lineNumber": {
-          "description": "The line number in `file_name` where the function call appears.",
+          "description": "Optional. The line number in `file_name` where the function call appears.",
           "format": "int64",
           "type": "string"
         },
         "loadModule": {
           "$ref": "Module",
-          "description": "The binary module from where the code was loaded."
+          "description": "Optional. The binary module from where the code was loaded."
         },
         "originalFunctionName": {
           "$ref": "TruncatableString",
-          "description": "An un-mangled function name, if `function_name` is mangled. To get information about name mangling, run [this search](https://www.google.com/search?q=cxx+name+mangling). The name can be fully-qualified (up to 1024 bytes)."
+          "description": "Optional. An un-mangled function name, if `function_name` is mangled. To get information about name mangling, run [this search](https://www.google.com/search?q=cxx+name+mangling). The name can be fully-qualified (up to 1024 bytes)."
         },
         "sourceVersion": {
           "$ref": "TruncatableString",
-          "description": "The version of the deployed source code (up to 128 bytes)."
+          "description": "Optional. The version of the deployed source code (up to 128 bytes)."
         }
       },
       "type": "object"
@@ -707,12 +707,12 @@
       "id": "StackFrames",
       "properties": {
         "droppedFramesCount": {
-          "description": "The number of stack frames that were dropped because there were too many stack frames. If this value is 0, then no stack frames were dropped.",
+          "description": "Optional. The number of stack frames that were dropped because there were too many stack frames. If this value is 0, then no stack frames were dropped.",
           "format": "int32",
           "type": "integer"
         },
         "frame": {
-          "description": "Stack frames in this call stack.",
+          "description": "Optional. Stack frames in this call stack.",
           "items": {
             "$ref": "StackFrame"
           },
@@ -727,10 +727,10 @@
       "properties": {
         "stackFrames": {
           "$ref": "StackFrames",
-          "description": "Stack frames in this stack trace. A maximum of 128 frames are allowed."
+          "description": "Optional. Stack frames in this stack trace. A maximum of 128 frames are allowed."
         },
         "stackTraceHashId": {
-          "description": "The hash ID is used to conserve network bandwidth for duplicate stack traces within a single trace. Often multiple spans will have identical stack traces. The first occurrence of a stack trace should contain both the `stackFrame` content and a value in `stackTraceHashId`. Subsequent spans within the same request can refer to that stack trace by only setting `stackTraceHashId`.",
+          "description": "Optional. The hash ID is used to conserve network bandwidth for duplicate stack traces within a single trace. Often multiple spans will have identical stack traces. The first occurrence of a stack trace should contain both the `stackFrame` content and a value in `stackTraceHashId`. Subsequent spans within the same request can refer to that stack trace by only setting `stackTraceHashId`.",
           "format": "int64",
           "type": "string"
         }
@@ -777,7 +777,7 @@
           "description": "An event describing a message sent/received between Spans."
         },
         "time": {
-          "description": "The timestamp indicating the time the event occurred.",
+          "description": "Optional. The timestamp indicating the time the event occurred.",
           "format": "google-datetime",
           "type": "string"
         }
@@ -789,17 +789,17 @@
       "id": "TimeEvents",
       "properties": {
         "droppedAnnotationsCount": {
-          "description": "The number of dropped annotations in all the included time events. If the value is 0, then no annotations were dropped.",
+          "description": "Optional. The number of dropped annotations in all the included time events. If the value is 0, then no annotations were dropped.",
           "format": "int32",
           "type": "integer"
         },
         "droppedMessageEventsCount": {
-          "description": "The number of dropped message events in all the included time events. If the value is 0, then no message events were dropped.",
+          "description": "Optional. The number of dropped message events in all the included time events. If the value is 0, then no message events were dropped.",
           "format": "int32",
           "type": "integer"
         },
         "timeEvent": {
-          "description": "A collection of `TimeEvent`s.",
+          "description": "Optional. A collection of `TimeEvent`s.",
           "items": {
             "$ref": "TimeEvent"
           },
@@ -813,12 +813,12 @@
       "id": "TruncatableString",
       "properties": {
         "truncatedByteCount": {
-          "description": "The number of bytes removed from the original string. If this value is 0, then the string was not shortened.",
+          "description": "Optional. The number of bytes removed from the original string. If this value is 0, then the string was not shortened.",
           "format": "int32",
           "type": "integer"
         },
         "value": {
-          "description": "The shortened string. For example, if the original string is 500 bytes long and the limit of the string is 128 bytes, then `value` contains the first 128 bytes of the 500-byte string. Truncation always happens on a UTF8 character boundary. If there are multi-byte characters in the string, then the length of the shortened string might be less than the size limit.",
+          "description": "Optional. The shortened string. For example, if the original string is 500 bytes long and the limit of the string is 128 bytes, then `value` contains the first 128 bytes of the 500-byte string. Truncation always happens on a UTF8 character boundary. If there are multi-byte characters in the string, then the length of the shortened string might be less than the size limit.",
           "type": "string"
         }
       },
