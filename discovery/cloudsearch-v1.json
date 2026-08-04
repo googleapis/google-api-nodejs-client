@@ -1020,6 +1020,11 @@
                   "location": "query",
                   "type": "string"
                 },
+                "requestOptions.countryCode": {
+                  "description": "Optional. Specifies the country/region where the query originated, as a lowercase ISO 3166-1 alpha-2 region code (using 'uk' instead of 'gb' for the United Kingdom).",
+                  "location": "query",
+                  "type": "string"
+                },
                 "requestOptions.debugOptions.enableDebugging": {
                   "description": "If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.",
                   "location": "query",
@@ -2106,7 +2111,7 @@
       }
     }
   },
-  "revision": "20260610",
+  "revision": "20260729",
   "rootUrl": "https://cloudsearch.googleapis.com/",
   "schemas": {
     "Action": {
@@ -6892,6 +6897,10 @@
       "properties": {
         "clientDisplayLanguageCode": {
           "description": "The BCP-47 language code, such as \"pt\" or \"en\". It represents the user's preferred Display Language.",
+          "type": "string"
+        },
+        "countryCode": {
+          "description": "Optional. Specifies the country/region where the query originated, as a lowercase ISO 3166-1 alpha-2 region code (using 'uk' instead of 'gb' for the United Kingdom).",
           "type": "string"
         },
         "debugOptions": {

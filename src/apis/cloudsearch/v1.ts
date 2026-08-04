@@ -2987,6 +2987,10 @@ export namespace cloudsearch_v1 {
      */
     clientDisplayLanguageCode?: string | null;
     /**
+     * Optional. Specifies the country/region where the query originated, as a lowercase ISO 3166-1 alpha-2 region code (using 'uk' instead of 'gb' for the United Kingdom).
+     */
+    countryCode?: string | null;
+    /**
      * Debug options of the request
      */
     debugOptions?: Schema$DebugOptions;
@@ -7756,6 +7760,8 @@ export namespace cloudsearch_v1 {
      *     pageToken: 'placeholder-value',
      *     // The BCP-47 language code, such as "pt" or "en". It represents the user's preferred Display Language.
      *     'requestOptions.clientDisplayLanguageCode': 'placeholder-value',
+     *     // Optional. Specifies the country/region where the query originated, as a lowercase ISO 3166-1 alpha-2 region code (using 'uk' instead of 'gb' for the United Kingdom).
+     *     'requestOptions.countryCode': 'placeholder-value',
      *     // If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      *     'requestOptions.debugOptions.enableDebugging': 'placeholder-value',
      *     // The BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier. For translations. Set this field using the language set in browser or for the page. In the event that the user's language preference is known, set this field to the known user language. When specified, the documents in search results are biased towards the specified language. The Suggest API uses this field as a hint to make better third-party autocomplete predictions.
@@ -7877,6 +7883,10 @@ export namespace cloudsearch_v1 {
      * The BCP-47 language code, such as "pt" or "en". It represents the user's preferred Display Language.
      */
     'requestOptions.clientDisplayLanguageCode'?: string;
+    /**
+     * Optional. Specifies the country/region where the query originated, as a lowercase ISO 3166-1 alpha-2 region code (using 'uk' instead of 'gb' for the United Kingdom).
+     */
+    'requestOptions.countryCode'?: string;
     /**
      * If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      */
