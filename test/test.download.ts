@@ -153,6 +153,26 @@ describe(__filename, () => {
     scopes.forEach(s => s.done());
   });
 
+  it('should skip downloading schemas for ignored APIs', async () => {
+    const scopes = [
+      nock(
+        'https://raw.githubusercontent.com/googleapis/discovery-artifact-manager/master/discoveries',
+      )
+        .get('/index.json')
+        .reply(200, JSON.stringify(fs.readFileSync(fakeIndexPath, 'utf8')), {
+          'Content-Type': 'application/json',
+        }),
+    ];
+    const mkdirpStub = sandbox.stub(dn.gfs, 'mkdir').resolves();
+    const writeFileStub = sandbox.stub(dn.gfs, 'writeFile');
+    const downloadPath = 'build/test/temp';
+    const ignore = ['fake:v1'];
+    await dn.downloadDiscoveryDocs({discoveryUrl, downloadPath, ignore});
+    assert(mkdirpStub.calledOnce);
+    assert(writeFileStub.calledOnce); // only index.json is written
+    scopes.forEach(s => s.done());
+  });
+
   it('should clean up old files', async () => {
     const readdirSync = sandbox.stub(fs, 'readdirSync');
     const unlinkSync = sandbox.stub(fs, 'unlinkSync');

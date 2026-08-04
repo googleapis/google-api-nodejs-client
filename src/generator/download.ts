@@ -38,6 +38,7 @@ export interface DownloadOptions {
   includePrivate?: boolean;
   discoveryUrl: string;
   downloadPath: string;
+  ignore?: string[];
 }
 
 // exported for mocking purposes
@@ -75,12 +76,7 @@ export async function downloadDiscoveryDocs(
   const apis = discoveryDoc.items;
   const indexPath = path.join(options.downloadPath, 'index.json');
   gfs.writeFile(indexPath, discoveryDoc);
-  let ignore: string[] = [];
-  try {
-    ignore = require('../../../ignore.json').ignore as string[];
-  } catch {
-    // Default to empty array if ignore.json is not found
-  }
+  const ignore = options.ignore || [];
   const queue = new Q({concurrency: 25});
   console.log(`Downloading ${apis.length} APIs...`);
   const changes = await queue.addAll(
