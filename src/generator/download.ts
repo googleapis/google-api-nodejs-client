@@ -75,17 +75,27 @@ export async function downloadDiscoveryDocs(
   const apis = discoveryDoc.items;
   const indexPath = path.join(options.downloadPath, 'index.json');
   gfs.writeFile(indexPath, discoveryDoc);
+  let ignore: string[] = [];
+  try {
+    ignore = require('../../../ignore.json').ignore as string[];
+  } catch {
+    // Default to empty array if ignore.json is not found
+  }
   const queue = new Q({concurrency: 25});
   console.log(`Downloading ${apis.length} APIs...`);
   const changes = await queue.addAll(
     apis.map(api => async () => {
+      const changeSet: ChangeSet = {api, changes: []};
+      if (ignore.includes(api.id)) {
+        console.log(`Skipping API ${api.id}...`);
+        return changeSet;
+      }
       console.log(`Downloading ${api.id}...`);
       const apiPath = path.join(
         options.downloadPath,
         api.id.replace(':', '-') + '.json',
       );
       const url = `${options.discoveryUrl}/${api.name}.${api.version}.json`;
-      const changeSet: ChangeSet = {api, changes: []};
       try {
         const res = await request({url});
         // The keys in the downloaded JSON come back in an arbitrary order from
@@ -109,7 +119,7 @@ export async function downloadDiscoveryDocs(
       return changeSet;
     }),
   );
-  cleanupLibrariesNotInIndexJSON(apis, options);
+  cleanupLibrariesNotInIndexJSON(apis, options, ignore);
   return changes;
 }
 
@@ -153,6 +163,7 @@ export function getApiData(fileName: string): ApiData {
 function cleanupLibrariesNotInIndexJSON(
   apis: gapi.Schema[],
   options: DownloadOptions,
+  ignore: string[] = [],
 ): void {
   const srcPath = path.join(__dirname, '../../../src', 'apis');
   const discoveryDirectory = fs.readdirSync(options.downloadPath);
@@ -161,9 +172,20 @@ function cleanupLibrariesNotInIndexJSON(
   );
   // So that we don't delete index.json
   apisReplaced.push('index.json');
-  const discoveryDocsToDelete = discoveryDirectory.filter(
-    fileName => !apisReplaced.includes(fileName),
-  );
+  const discoveryDocsToDelete = discoveryDirectory.filter(fileName => {
+    if (apisReplaced.includes(fileName)) {
+      return false;
+    }
+    try {
+      const api = getApiData(fileName);
+      if (ignore.includes(`${api.name}:${api.version}`)) {
+        return false;
+      }
+    } catch {
+      // Ignore errors parsing fileName
+    }
+    return true;
+  });
   const clientFilesToDelete = discoveryDocsToDelete.map(docFileName => {
     const api = getApiData(docFileName);
     return path.join(srcPath, api.name, `${api.version}.ts`);
