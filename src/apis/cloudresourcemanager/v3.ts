@@ -122,6 +122,7 @@ export namespace cloudresourcemanager_v3 {
     tagBindings: Resource$Tagbindings;
     tagKeys: Resource$Tagkeys;
     tagValues: Resource$Tagvalues;
+    v3: Resource$V3;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this.context = {
@@ -139,6 +140,7 @@ export namespace cloudresourcemanager_v3 {
       this.tagBindings = new Resource$Tagbindings(this.context);
       this.tagKeys = new Resource$Tagkeys(this.context);
       this.tagValues = new Resource$Tagvalues(this.context);
+      this.v3 = new Resource$V3(this.context);
     }
   }
 
@@ -376,6 +378,19 @@ export namespace cloudresourcemanager_v3 {
      * Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
      */
     title?: string | null;
+  }
+  /**
+   * Response message for FetchResourceSemantics.
+   */
+  export interface Schema$FetchResourceSemanticsResponse {
+    /**
+     * The full resource name for which semantics are returned. Examples: "//compute.googleapis.com/projects/123/zones/us-central1-a/instances/my-instance" "//storage.googleapis.com/projects/_/buckets/my_bucket"
+     */
+    fullResourceName?: string | null;
+    /**
+     * Map of resource semantics (e.g., `"ENVIRONMENT": "PRODUCTION"`).
+     */
+    semantics?: {[key: string]: string} | null;
   }
   /**
    * A folder in an organization's resource hierarchy, used to organize that organization's resources.
@@ -10991,5 +11006,167 @@ export namespace cloudresourcemanager_v3 {
      * Required. The resource name of the parent TagValue. Must be of the form: `tagValues/{tag-value-id\}`.
      */
     parent?: string;
+  }
+
+  export class Resource$V3 {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Returns the semantics associated with the specified resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudresourcemanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudresourcemanager = google.cloudresourcemanager('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudresourcemanager.fetchResourceSemantics({
+     *     // Required. The full resource name of the GCP resource to retrieve semantics for. Examples: "//compute.googleapis.com/projects/123/zones/us-central1-a/instances/my-instance" "//storage.googleapis.com/projects/_/buckets/my_bucket"
+     *     fullResourceName: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "fullResourceName": "my_fullResourceName",
+     *   //   "semantics": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    fetchResourceSemantics(
+      params: Params$Resource$V3$Fetchresourcesemantics,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    fetchResourceSemantics(
+      params?: Params$Resource$V3$Fetchresourcesemantics,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$FetchResourceSemanticsResponse>>;
+    fetchResourceSemantics(
+      params: Params$Resource$V3$Fetchresourcesemantics,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    fetchResourceSemantics(
+      params: Params$Resource$V3$Fetchresourcesemantics,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$FetchResourceSemanticsResponse>,
+      callback: BodyResponseCallback<Schema$FetchResourceSemanticsResponse>
+    ): void;
+    fetchResourceSemantics(
+      params: Params$Resource$V3$Fetchresourcesemantics,
+      callback: BodyResponseCallback<Schema$FetchResourceSemanticsResponse>
+    ): void;
+    fetchResourceSemantics(
+      callback: BodyResponseCallback<Schema$FetchResourceSemanticsResponse>
+    ): void;
+    fetchResourceSemantics(
+      paramsOrCallback?:
+        | Params$Resource$V3$Fetchresourcesemantics
+        | BodyResponseCallback<Schema$FetchResourceSemanticsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$FetchResourceSemanticsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$FetchResourceSemanticsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$FetchResourceSemanticsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$V3$Fetchresourcesemantics;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$V3$Fetchresourcesemantics;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3:fetchResourceSemantics').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$FetchResourceSemanticsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$FetchResourceSemanticsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$V3$Fetchresourcesemantics extends StandardParameters {
+    /**
+     * Required. The full resource name of the GCP resource to retrieve semantics for. Examples: "//compute.googleapis.com/projects/123/zones/us-central1-a/instances/my-instance" "//storage.googleapis.com/projects/_/buckets/my_bucket"
+     */
+    fullResourceName?: string;
   }
 }

@@ -13,6 +13,8 @@
     "healthcare:v1",
     "healthcare:v1beta1",
     "connectors:v2",
-    "poly:v1"
+    "poly:v1",
+    "aiplatform:v1beta1",
+    "analytics:v3"
   ]
 }

@@ -2464,7 +2464,7 @@
       }
     }
   },
-  "revision": "20260715",
+  "revision": "20260730",
   "rootUrl": "https://ces.googleapis.com/",
   "schemas": {
     "Action": {
@@ -4042,6 +4042,10 @@
         "rootSpan": {
           "$ref": "Span",
           "description": "Optional. The root span of the action processing."
+        },
+        "userIntendedText": {
+          "description": "Optional. The intended ground-truth text from the Simulated Caller (Polysynth). Only populated when word error rate metrics are enabled.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -4413,6 +4417,10 @@
           "$ref": "DataStoreToolRewriterConfig",
           "description": "Optional. The rewriter config."
         },
+        "snippetsConfig": {
+          "$ref": "DataStoreToolSnippetsConfig",
+          "description": "Optional. The snippets configuration."
+        },
         "summarizationConfig": {
           "$ref": "DataStoreToolSummarizationConfig",
           "description": "Optional. The summarization config."
@@ -4435,6 +4443,17 @@
         "prompt": {
           "description": "Optional. The prompt definition. If not set, default prompt will be used.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DataStoreToolSnippetsConfig": {
+      "description": "Snippets configuration.",
+      "id": "DataStoreToolSnippetsConfig",
+      "properties": {
+        "enableSnippets": {
+          "description": "Optional. Whether snippets are enabled.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -5562,6 +5581,10 @@
             "Overwrite existing data with imported data. If an app with the same `app_id` already exists, its content will be overwritten with the imported app. - Existing resources (Agents, Tools, Examples, Guardrails, Toolsets) in the app will be deleted. - Imported resources will be created as new resources."
           ],
           "type": "string"
+        },
+        "validateOnly": {
+          "description": "Optional. Flag for dry-running the import process. If set to true, the import process will only perform validations and will not make any changes to the existing app or create a new one.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -7694,6 +7717,10 @@
           "description": "Optional. The entry agent to handle the session. If not specified, the session will be handled by the root agent of the app. Format: `projects/{project}/locations/{location}/apps/{app}/agents/{agent}`",
           "type": "string"
         },
+        "excludeDiagnosticInfo": {
+          "description": "Optional. Whether to exclude diagnostic info from the session output.",
+          "type": "boolean"
+        },
         "historicalContexts": {
           "description": "Optional. The historical context of the session, including user inputs, agent responses, and other messages. Typically, CES agent would manage session automatically so client doesn't need to explicitly populate this field. However, client can optionally override the historical contexts to force the session start from certain state.",
           "items": {
@@ -7963,7 +7990,8 @@
       "id": "SynthesizeSpeechConfig",
       "properties": {
         "consentAudioGcsUri": {
-          "description": "Optional. The Cloud Storage URI to the consent audio for voice cloning.",
+          "deprecated": true,
+          "description": "Optional. Deprecated: Use `custom_voice_samples` in AudioProcessingConfig instead. The Cloud Storage URI to the consent audio for voice cloning.",
           "type": "string"
         },
         "instruction": {
@@ -7984,7 +8012,8 @@
           "type": "string"
         },
         "voiceSampleGcsUri": {
-          "description": "Optional. The Cloud Storage URI to the audio sample for voice cloning. The audio sample should be a mono-channel, 24kHz WAV file. Note: Please make sure the CES service agent `service-@gcp-sa-ces.iam.gserviceaccount.com` has `storage.objects.get` permission to the Cloud Storage object.",
+          "deprecated": true,
+          "description": "Optional. Deprecated: Use `custom_voice_samples` in AudioProcessingConfig instead. The Cloud Storage URI to the audio sample for voice cloning. The audio sample should be a mono-channel, 24kHz WAV file. Note: Please make sure the CES service agent `service-@gcp-sa-ces.iam.gserviceaccount.com` has `storage.objects.get` permission to the Cloud Storage object.",
           "type": "string"
         }
       },

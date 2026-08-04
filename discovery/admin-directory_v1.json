@@ -4729,7 +4729,7 @@
       }
     }
   },
-  "revision": "20260531",
+  "revision": "20260729",
   "rootUrl": "https://admin.googleapis.com/",
   "schemas": {
     "Alias": {
@@ -6570,6 +6570,21 @@
       "properties": {},
       "type": "object"
     },
+    "ExternalId": {
+      "description": "External identifier used to link and identify this group across external directory systems.",
+      "id": "ExternalId",
+      "properties": {
+        "id": {
+          "description": "The unique identifier string assigned by the external provider.",
+          "type": "string"
+        },
+        "namespace": {
+          "description": "The system or identity provider managing this ID.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "FailureInfo": {
       "description": "Info about failures",
       "id": "FailureInfo",
@@ -6758,6 +6773,13 @@
         "etag": {
           "description": "ETag of the resource.",
           "type": "string"
+        },
+        "externalIds": {
+          "description": "Optional. The list of external IDs for the group, such as an immutable identifier from an external identity provider or directory sync client. Each entry contains a namespace and an ID value.",
+          "items": {
+            "$ref": "ExternalId"
+          },
+          "type": "array"
         },
         "id": {
           "description": "Read-only. The unique ID of a group. A group `id` can be used as a group request URI's `groupKey`.",

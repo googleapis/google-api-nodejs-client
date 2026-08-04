@@ -1788,7 +1788,7 @@
       }
     }
   },
-  "revision": "20260623",
+  "revision": "20260722",
   "rootUrl": "https://config.googleapis.com/",
   "schemas": {
     "ApplyResults": {
@@ -3133,7 +3133,7 @@
           "type": "string"
         },
         "deployment": {
-          "description": "Optional. Optional deployment reference. If specified, the preview will be performed using the provided deployment's current state and use any relevant fields from the deployment unless explicitly specified in the preview create request.",
+          "description": "Optional. Deployment reference. If specified, the preview will be performed using the provided deployment's current state and use any relevant fields from the deployment unless explicitly specified in the preview create request.",
           "type": "string"
         },
         "errorCode": {

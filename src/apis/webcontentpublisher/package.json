@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/webcontentpublisher",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "webcontentpublisher",
   "main": "build/index.js",
   "types": "build/index.d.ts",
