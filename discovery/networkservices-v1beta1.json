@@ -183,6 +183,173 @@
             }
           },
           "resources": {
+            "agentConnectivityTemplates": {
+              "methods": {
+                "create": {
+                  "description": "Creates a new AgentConnectivityTemplate in a given project and location.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/agentConnectivityTemplates",
+                  "httpMethod": "POST",
+                  "id": "networkservices.projects.locations.agentConnectivityTemplates.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "agentConnectivityTemplateId": {
+                      "description": "Required. Short name of the AgentConnectivityTemplate resource to be created.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent resource of the AgentConnectivityTemplate. Must be in the format `projects/*/locations/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+parent}/agentConnectivityTemplates",
+                  "request": {
+                    "$ref": "AgentConnectivityTemplate"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a single AgentConnectivityTemplate.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/agentConnectivityTemplates/{agentConnectivityTemplatesId}",
+                  "httpMethod": "DELETE",
+                  "id": "networkservices.projects.locations.agentConnectivityTemplates.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "etag": {
+                      "description": "Optional. The etag of the AgentConnectivityTemplate to delete.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "Required. A name of the AgentConnectivityTemplate to delete. Must be in the format `projects/*/locations/*/agentConnectivityTemplates/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/agentConnectivityTemplates/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets details of a single AgentConnectivityTemplate.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/agentConnectivityTemplates/{agentConnectivityTemplatesId}",
+                  "httpMethod": "GET",
+                  "id": "networkservices.projects.locations.agentConnectivityTemplates.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. A name of the AgentConnectivityTemplate to get. Must be in the format `projects/*/locations/*/agentConnectivityTemplates/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/agentConnectivityTemplates/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "response": {
+                    "$ref": "AgentConnectivityTemplate"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists AgentConnectivityTemplates in a given project and location.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/agentConnectivityTemplates",
+                  "httpMethod": "GET",
+                  "id": "networkservices.projects.locations.agentConnectivityTemplates.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "Optional. Maximum number of AgentConnectivityTemplates to return per call.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. The value returned by the last `ListAgentConnectivityTemplatesResponse` Indicates that this is a continuation of a prior `ListAgentConnectivityTemplates` call, and that the system should return the next page of data.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The project and location from which the AgentConnectivityTemplates should be listed, specified in the format `projects/*/locations/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "returnPartialSuccess": {
+                      "description": "Optional. If true, allow partial responses for multi-regional Aggregated List requests. Otherwise if one of the locations is down or unreachable, the Aggregated List request will fail.",
+                      "location": "query",
+                      "type": "boolean"
+                    }
+                  },
+                  "path": "v1beta1/{+parent}/agentConnectivityTemplates",
+                  "response": {
+                    "$ref": "ListAgentConnectivityTemplatesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates the parameters of a single AgentConnectivityTemplate.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/agentConnectivityTemplates/{agentConnectivityTemplatesId}",
+                  "httpMethod": "PATCH",
+                  "id": "networkservices.projects.locations.agentConnectivityTemplates.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Identifier. Name of the AgentConnectivityTemplate resource. It matches pattern `projects/*/locations/*/agentConnectivityTemplates/`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/agentConnectivityTemplates/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. Field mask is used to specify the fields to be overwritten in the AgentConnectivityTemplate resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "request": {
+                    "$ref": "AgentConnectivityTemplate"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
             "agentGateways": {
               "methods": {
                 "create": {
@@ -3277,9 +3444,82 @@
       }
     }
   },
-  "revision": "20260710",
+  "revision": "20260724",
   "rootUrl": "https://networkservices.googleapis.com/",
   "schemas": {
+    "AgentConnectivityTemplate": {
+      "description": "AgentConnectivityTemplate represents a reusable network configuration.",
+      "id": "AgentConnectivityTemplate",
+      "properties": {
+        "accessPath": {
+          "description": "Required. Immutable. The path of the access. Maps roughly to ingress/egress, though we keep CLIENT_TO_AGENT and AGENT_TO_ANYWHERE as carryovers from Agent Gateway's original resource model. The path is immutable once set. Exactly one path can be set.",
+          "enum": [
+            "ACCESS_PATH_UNSPECIFIED",
+            "CLIENT_TO_AGENT",
+            "AGENT_TO_ANYWHERE"
+          ],
+          "enumDescriptions": [
+            "Unspecified access path.",
+            "Protect connection to Agent or Tool.",
+            "Govern agent connections to destinations."
+          ],
+          "type": "string"
+        },
+        "accessTypes": {
+          "description": "Optional. The types of network access provided to the gateway. Both PUBLIC and PRIVATE can be configured.",
+          "items": {
+            "enum": [
+              "ACCESS_TYPE_UNSPECIFIED",
+              "PUBLIC",
+              "PRIVATE"
+            ],
+            "enumDescriptions": [
+              "Unspecified access type.",
+              "Public network access.",
+              "Private network access."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "createTime": {
+          "description": "Output only. The timestamp when the resource was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. A free-text description of the resource. Max length 1024 characters.",
+          "type": "string"
+        },
+        "egressNetworkConfig": {
+          "$ref": "EgressNetworkConfig",
+          "description": "Optional. Configuration for egress network traffic."
+        },
+        "etag": {
+          "description": "Optional. Etag of the resource. If this is provided, it must match the server's etag. If the provided etag does not match the server's etag, the request will fail with a 409 ABORTED error.",
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Set of label tags associated with the AgentConnectivityTemplate resource.",
+          "type": "object"
+        },
+        "name": {
+          "description": "Identifier. Name of the AgentConnectivityTemplate resource. It matches pattern `projects/*/locations/*/agentConnectivityTemplates/`.",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The timestamp when the resource was updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "AgentGateway": {
       "description": "AgentGateway represents the agent gateway resource.",
       "id": "AgentGateway",
@@ -3575,6 +3815,82 @@
       "description": "The request message for Operations.CancelOperation.",
       "id": "CancelOperationRequest",
       "properties": {},
+      "type": "object"
+    },
+    "DnsPeeringConfig": {
+      "description": "DNS Peering configuration.",
+      "id": "DnsPeeringConfig",
+      "properties": {
+        "domain": {
+          "description": "Optional. The domain to peer.",
+          "type": "string"
+        },
+        "targetNetwork": {
+          "description": "Optional. The target network resource name for DNS peering. Format: projects/{project}/global/networks/{network_id}",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "EgressNetworkConfig": {
+      "id": "EgressNetworkConfig",
+      "properties": {
+        "dnsPeeringConfig": {
+          "$ref": "DnsPeeringConfig",
+          "description": "Optional. DNS Peering configuration."
+        },
+        "networkAttachment": {
+          "description": "Optional. The network attachment resource name. Format: projects/{project}/regions/{region}/networkAttachments/{network_attachment_id}",
+          "type": "string"
+        },
+        "tlsConfig": {
+          "$ref": "EgressNetworkConfigTlsConfig",
+          "description": "Optional. The TLS configuration for the egress traffic."
+        },
+        "trustConfig": {
+          "description": "Optional. The trust config resource name. Format: projects/{project}/locations/{location}/trustConfigs/{trust_config}",
+          "type": "string"
+        },
+        "vpcEgress": {
+          "description": "Optional. The VPC egress setting.",
+          "enum": [
+            "VPC_EGRESS_UNSPECIFIED",
+            "ALL_TRAFFIC",
+            "PRIVATE_RANGES_ONLY"
+          ],
+          "enumDescriptions": [
+            "Unspecified",
+            "All outbound traffic is routed through the VPC connector.",
+            "Only private IP ranges are routed through the VPC connector."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "EgressNetworkConfigTlsConfig": {
+      "description": "Configuration for TLS connections.",
+      "id": "EgressNetworkConfigTlsConfig",
+      "properties": {
+        "additionalRoots": {
+          "description": "Optional. The additional roots to trust.",
+          "enum": [
+            "ADDITIONAL_ROOTS_UNSPECIFIED",
+            "NO_ADDITIONAL_ROOTS",
+            "PUBLICLY_TRUSTED_ROOTS"
+          ],
+          "enumDescriptions": [
+            "Unspecified additional roots.",
+            "Trust only the certificates provided in `trust_config`.",
+            "Trust certificates provided in `trust_config` and publicly trusted roots."
+          ],
+          "type": "string"
+        },
+        "trustConfig": {
+          "description": "Optional. The trust config resource name. Format: projects/{project}/locations/{location}/trustConfigs/{trust_config}",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "Empty": {
@@ -5104,6 +5420,31 @@
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListAgentConnectivityTemplatesResponse": {
+      "description": "Response returned by the ListAgentConnectivityTemplates method.",
+      "id": "ListAgentConnectivityTemplatesResponse",
+      "properties": {
+        "agentConnectivityTemplates": {
+          "description": "List of AgentConnectivityTemplate resources.",
+          "items": {
+            "$ref": "AgentConnectivityTemplate"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "If there might be more results than those appearing in this response, then `next_page_token` is included. To get the next set of results, call this method again using the value of `next_page_token` as `page_token`.",
+          "type": "string"
+        },
+        "unreachable": {
+          "description": "Unordered list. Unreachable resources. Populated when the request attempts to list all resources across all supported locations, while some locations are temporarily unavailable.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
