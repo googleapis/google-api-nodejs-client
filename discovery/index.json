@@ -3771,6 +3771,36 @@
       "version": "v1"
     },
     {
+      "description": "Cloud FTP is a managed service that allows transferring files directly to Google Cloud Storage using SFTP.",
+      "discoveryRestUrl": "https://ftp.googleapis.com/$discovery/rest?version=v1alpha",
+      "documentationLink": "https://cloud.google.com/cloud-ftp/overview",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "id": "ftp:v1alpha",
+      "kind": "discovery#directoryItem",
+      "name": "ftp",
+      "preferred": false,
+      "title": "Cloud FTP API",
+      "version": "v1alpha"
+    },
+    {
+      "description": "Cloud FTP is a managed service that allows transferring files directly to Google Cloud Storage using SFTP.",
+      "discoveryRestUrl": "https://ftp.googleapis.com/$discovery/rest?version=v1",
+      "documentationLink": "https://cloud.google.com/cloud-ftp/overview",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "id": "ftp:v1",
+      "kind": "discovery#directoryItem",
+      "name": "ftp",
+      "preferred": true,
+      "title": "Cloud FTP API",
+      "version": "v1"
+    },
+    {
       "description": "The Google Play Games Service allows developers to enhance games with social leaderboards, achievements, game state, sign-in with Google, and more.",
       "discoveryRestUrl": "https://games.googleapis.com/$discovery/rest?version=v1",
       "documentationLink": "https://developers.google.com/games/",

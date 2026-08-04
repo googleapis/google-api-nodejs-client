@@ -310,6 +310,8 @@ export {firestore_v1beta1} from './apis/firestore/v1beta1';
 export {firestore_v1beta2} from './apis/firestore/v1beta2';
 export {fitness_v1} from './apis/fitness/v1';
 export {forms_v1} from './apis/forms/v1';
+export {ftp_v1} from './apis/ftp/v1';
+export {ftp_v1alpha} from './apis/ftp/v1alpha';
 export {games_v1} from './apis/games/v1';
 export {gamesConfiguration_v1configuration} from './apis/gamesConfiguration/v1configuration';
 export {gamesManagement_v1management} from './apis/gamesManagement/v1management';

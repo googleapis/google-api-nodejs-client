@@ -414,6 +414,7 @@ import {
 import {VERSIONS as firestoreVersions, firestore} from './firestore';
 import {VERSIONS as fitnessVersions, fitness} from './fitness';
 import {VERSIONS as formsVersions, forms} from './forms';
+import {VERSIONS as ftpVersions, ftp} from './ftp';
 import {VERSIONS as gamesVersions, games} from './games';
 import {
   VERSIONS as gamesConfigurationVersions,
@@ -986,6 +987,7 @@ export const APIS: APIList = {
   firestore: firestoreVersions,
   fitness: fitnessVersions,
   forms: formsVersions,
+  ftp: ftpVersions,
   games: gamesVersions,
   gamesConfiguration: gamesConfigurationVersions,
   gamesManagement: gamesManagementVersions,
@@ -1320,6 +1322,7 @@ export class GeneratedAPIs {
   firestore = firestore;
   fitness = fitness;
   forms = forms;
+  ftp = ftp;
   games = games;
   gamesConfiguration = gamesConfiguration;
   gamesManagement = gamesManagement;
