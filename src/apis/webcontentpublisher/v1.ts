@@ -1538,6 +1538,158 @@ export namespace webcontentpublisher_v1 {
         return createAPIRequest<Schema$ListCtasResponse>(parameters);
       }
     }
+
+    /**
+     * Updates a CTA.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/webcontentpublisher.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const webcontentpublisher = google.webcontentpublisher('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await webcontentpublisher.organizations.publications.ctas.patch({
+     *     // Identifier. The resource name of the Cta. Format: organizations/{organization\}/publications/{publication\}/ctas/{cta\}
+     *     name: 'organizations/my-organization/publications/my-publication/ctas/my-cta',
+     *     // Optional. The list of fields to update.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "displayName": "my_displayName",
+     *       //   "name": "my_name",
+     *       //   "newsletterConfig": {},
+     *       //   "state": "my_state",
+     *       //   "type": "my_type"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "newsletterConfig": {},
+     *   //   "state": "my_state",
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Organizations$Publications$Ctas$Patch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patch(
+      params?: Params$Resource$Organizations$Publications$Ctas$Patch,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Cta>>;
+    patch(
+      params: Params$Resource$Organizations$Publications$Ctas$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Organizations$Publications$Ctas$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Cta>,
+      callback: BodyResponseCallback<Schema$Cta>
+    ): void;
+    patch(
+      params: Params$Resource$Organizations$Publications$Ctas$Patch,
+      callback: BodyResponseCallback<Schema$Cta>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Cta>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Publications$Ctas$Patch
+        | BodyResponseCallback<Schema$Cta>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Cta>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Cta> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Cta>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Publications$Ctas$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Publications$Ctas$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://webcontentpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Cta>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Cta>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Organizations$Publications$Ctas$Create extends StandardParameters {
@@ -1574,6 +1726,21 @@ export namespace webcontentpublisher_v1 {
      * Required. The parent publication resource whose CTAs to list. Format: `organizations/{organization\}/publications/{publication\}`.
      */
     parent?: string;
+  }
+  export interface Params$Resource$Organizations$Publications$Ctas$Patch extends StandardParameters {
+    /**
+     * Identifier. The resource name of the Cta. Format: organizations/{organization\}/publications/{publication\}/ctas/{cta\}
+     */
+    name?: string;
+    /**
+     * Optional. The list of fields to update.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Cta;
   }
 
   export class Resource$Publications {

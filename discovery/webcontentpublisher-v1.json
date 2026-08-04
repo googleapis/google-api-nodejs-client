@@ -346,6 +346,37 @@
                     "https://www.googleapis.com/auth/subscribewithgoogle.publications.entitlements.manage",
                     "https://www.googleapis.com/auth/subscribewithgoogle.publications.entitlements.readonly"
                   ]
+                },
+                "patch": {
+                  "description": "Updates a CTA.",
+                  "flatPath": "v1/organizations/{organizationsId}/publications/{publicationsId}/ctas/{ctasId}",
+                  "httpMethod": "PATCH",
+                  "id": "webcontentpublisher.organizations.publications.ctas.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Identifier. The resource name of the Cta. Format: organizations/{organization}/publications/{publication}/ctas/{cta}",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/publications/[^/]+/ctas/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. The list of fields to update.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "Cta"
+                  },
+                  "response": {
+                    "$ref": "Cta"
+                  }
                 }
               }
             }
@@ -394,7 +425,7 @@
       }
     }
   },
-  "revision": "20260724",
+  "revision": "20260801",
   "rootUrl": "https://webcontentpublisher.googleapis.com/",
   "schemas": {
     "CheckFreeAccessResponse": {
