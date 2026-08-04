@@ -541,11 +541,11 @@ export namespace looker_v1 {
    */
   export interface Schema$ListInstancesResponse {
     /**
-     * The list of instances matching the request filters, up to the requested ListInstancesRequest.pageSize.
+     * The list of instances matching the request filters, up to the requested `pageSize`.
      */
     instances?: Schema$Instance[];
     /**
-     * If provided, a page token that can look up the next ListInstancesRequest.pageSize results. If empty, the results list is exhausted.
+     * If provided, a page token that can look up the next `pageSize` results. If empty, the results list is exhausted.
      */
     nextPageToken?: string | null;
     /**
