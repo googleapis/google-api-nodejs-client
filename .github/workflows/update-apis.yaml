@@ -3,11 +3,14 @@ on:
     - cron: "0 1 * * *"
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   update-apis:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/setup-node@v6
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
         with:
           node-version: 22
       - run: gh repo fork googleapis/google-api-nodejs-client --fork-name google-api-nodejs-client-autodisco --clone
