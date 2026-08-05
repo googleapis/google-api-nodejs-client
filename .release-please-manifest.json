@@ -314,7 +314,7 @@
   "src/apis/identitytoolkit": "20.0.0",
   "src/apis/sheets": "14.0.0",
   "src/apis/monitoring": "14.0.0",
-  ".": "174.0.0",
+  ".": "174.0.1",
   "src/apis/cloudcommerceprocurement": "3.0.0",
   "src/apis/datamanager": "5.0.0",
   "src/apis/chromewebstore": "4.0.0",
