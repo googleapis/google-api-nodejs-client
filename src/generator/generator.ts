@@ -113,6 +113,7 @@ export class Generator {
         includePrivate: this.options.includePrivate,
         discoveryUrl,
         downloadPath: discoveryPath,
+        ignore,
       });
     }
 

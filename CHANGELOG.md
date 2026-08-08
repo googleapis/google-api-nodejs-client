@@ -4,6 +4,13 @@
 
 [1]: https://www.npmjs.com/package/googleapis?activeTab=versions
 
+## [174.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/googleapis-v174.0.0...googleapis-v174.0.1) (2026-08-05)
+
+
+### Bug Fixes
+
+* **generator:** respect ignore.json when downloading discovery docs and cleaning up old files ([#3965](https://github.com/googleapis/google-api-nodejs-client/issues/3965)) ([7c7bfdd](https://github.com/googleapis/google-api-nodejs-client/commit/7c7bfdd9ce8aff2d8b590994d6bc56573554eb14))
+
 ## [174.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/googleapis-v173.0.0...googleapis-v174.0.0) (2026-08-03)
 
 
