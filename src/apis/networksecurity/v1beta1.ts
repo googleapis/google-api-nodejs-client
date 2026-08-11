@@ -4982,6 +4982,8 @@ export namespace networksecurity_v1beta1 {
      *       parent: 'organizations/my-organization/locations/my-location',
      *       // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      *       requestId: 'placeholder-value',
+     *       // Optional. If set, validate the request and preview the endpoint, but do not actually create it.
+     *       validateOnly: 'placeholder-value',
      *
      *       // Request body metadata
      *       requestBody: {
@@ -5739,6 +5741,10 @@ export namespace networksecurity_v1beta1 {
      * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
+    /**
+     * Optional. If set, validate the request and preview the endpoint, but do not actually create it.
+     */
+    validateOnly?: boolean;
 
     /**
      * Request body metadata
@@ -17565,6 +17571,8 @@ export namespace networksecurity_v1beta1 {
      *       parent: 'projects/my-project/locations/my-location',
      *       // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      *       requestId: 'placeholder-value',
+     *       // Optional. If set, validate the request and preview the endpoint, but do not actually create it.
+     *       validateOnly: 'placeholder-value',
      *
      *       // Request body metadata
      *       requestBody: {
@@ -18320,6 +18328,10 @@ export namespace networksecurity_v1beta1 {
      * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
+    /**
+     * Optional. If set, validate the request and preview the endpoint, but do not actually create it.
+     */
+    validateOnly?: boolean;
 
     /**
      * Request body metadata
@@ -28286,6 +28298,8 @@ export namespace networksecurity_v1beta1 {
      *
      *   // Do the magic
      *   const res = await networksecurity.projects.locations.sacAttachments.delete({
+     *     // Optional. If set to true, the request will delete the SAC Attachment even if some steps fail (e.g. deleting the remote Symantec Location). This option is a no-op for partners where it does not apply (e.g. Palo Alto Networks). WARNING: Enabling this option may leave dangling resources in the Broadcom/Symantec customer portal that requires manual cleanup.
+     *     ignorePartnerDeletionErrors: 'placeholder-value',
      *     // Required. Name of the resource, in the form `projects/{project\}/locations/{location\}/sacAttachments/{sac_attachment\}`.
      *     name: 'projects/my-project/locations/my-location/sacAttachments/my-sacAttachment',
      *     // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
@@ -28711,6 +28725,10 @@ export namespace networksecurity_v1beta1 {
     requestBody?: Schema$SACAttachment;
   }
   export interface Params$Resource$Projects$Locations$Sacattachments$Delete extends StandardParameters {
+    /**
+     * Optional. If set to true, the request will delete the SAC Attachment even if some steps fail (e.g. deleting the remote Symantec Location). This option is a no-op for partners where it does not apply (e.g. Palo Alto Networks). WARNING: Enabling this option may leave dangling resources in the Broadcom/Symantec customer portal that requires manual cleanup.
+     */
+    ignorePartnerDeletionErrors?: boolean;
     /**
      * Required. Name of the resource, in the form `projects/{project\}/locations/{location\}/sacAttachments/{sac_attachment\}`.
      */
