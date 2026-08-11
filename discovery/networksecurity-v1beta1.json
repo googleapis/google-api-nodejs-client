@@ -535,6 +535,11 @@
                       "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
                       "location": "query",
                       "type": "string"
+                    },
+                    "validateOnly": {
+                      "description": "Optional. If set, validate the request and preview the endpoint, but do not actually create it.",
+                      "location": "query",
+                      "type": "boolean"
                     }
                   },
                   "path": "v1beta1/{+parent}/firewallEndpoints",
@@ -2993,6 +2998,11 @@
                       "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
                       "location": "query",
                       "type": "string"
+                    },
+                    "validateOnly": {
+                      "description": "Optional. If set, validate the request and preview the endpoint, but do not actually create it.",
+                      "location": "query",
+                      "type": "boolean"
                     }
                   },
                   "path": "v1beta1/{+parent}/firewallEndpoints",
@@ -5197,6 +5207,11 @@
                     "name"
                   ],
                   "parameters": {
+                    "ignorePartnerDeletionErrors": {
+                      "description": "Optional. If set to true, the request will delete the SAC Attachment even if some steps fail (e.g. deleting the remote Symantec Location). This option is a no-op for partners where it does not apply (e.g. Palo Alto Networks). WARNING: Enabling this option may leave dangling resources in the Broadcom/Symantec customer portal that requires manual cleanup.",
+                      "location": "query",
+                      "type": "boolean"
+                    },
                     "name": {
                       "description": "Required. Name of the resource, in the form `projects/{project}/locations/{location}/sacAttachments/{sac_attachment}`.",
                       "location": "path",
@@ -6331,7 +6346,7 @@
       }
     }
   },
-  "revision": "20260707",
+  "revision": "20260729",
   "rootUrl": "https://networksecurity.googleapis.com/",
   "schemas": {
     "AddAddressGroupItemsRequest": {
