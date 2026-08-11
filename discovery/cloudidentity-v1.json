@@ -2311,7 +2311,7 @@
       }
     }
   },
-  "revision": "20260617",
+  "revision": "20260803",
   "rootUrl": "https://cloudidentity.googleapis.com/",
   "schemas": {
     "AddIdpCredentialOperationMetadata": {
@@ -4657,7 +4657,7 @@
       "id": "Setting",
       "properties": {
         "type": {
-          "description": "Required. Immutable. The type of the Setting. .",
+          "description": "Required. Immutable. The type of the Setting.",
           "type": "string"
         },
         "value": {
