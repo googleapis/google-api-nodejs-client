@@ -536,6 +536,14 @@ export namespace compute_v1 {
      */
     name?: string | null;
     /**
+     * Output only. Contains standard resource metadata for an AcceleratorType
+     * resource. It is populated for each instance of the AcceleratorType
+     * resource, and includes the api_version the
+     * instance was retrieved through, and its canonical
+     * resource_type name.
+     */
+    resourceMetadata?: Schema$ResourceMetadata;
+    /**
      * Output only. [Output Only] Server-defined, fully qualified URL for this resource.
      */
     selfLink?: string | null;
@@ -8882,6 +8890,14 @@ export namespace compute_v1 {
      * reservation_name or a name_prefix.
      */
     reservationName?: string | null;
+    /**
+     * Output only. Contains standard resource metadata for an FutureReservation
+     * resource. It is populated for each instance of the FutureReservation
+     * resource, and includes the api_version the
+     * instance was retrieved through, and its canonical
+     * resource_type name.
+     */
+    resourceMetadata?: Schema$ResourceMetadata;
     /**
      * Maintenance information for this reservation
      */
@@ -24701,6 +24717,14 @@ export namespace compute_v1 {
      */
     reservationSharingPolicy?: Schema$AllocationReservationSharingPolicy;
     /**
+     * Output only. [Output Only] Contains standard resource metadata for an Allocation
+     * resource. It is populated for each instance of the Allocation
+     * resource, and includes the api_version the
+     * instance was retrieved through, and its canonical
+     * resource_type name.
+     */
+    resourceMetadata?: Schema$ResourceMetadata;
+    /**
      * Resource policies to be added to this reservation. The key is defined by
      * user, and the value is resource policy url. This is to define placement
      * policy with reservation.
@@ -25457,6 +25481,22 @@ export namespace compute_v1 {
      * listed in the backend service.
      */
     group?: string | null;
+  }
+  /**
+   * Standardized resource metadata common to all compute resources.
+   */
+  export interface Schema$ResourceMetadata {
+    /**
+     * The version of the API interface that this resource was retrieved through.
+     * For example, `"2025-01-01"` or `"2025-01-01-preview"`.
+     */
+    apiVersion?: string | null;
+    /**
+     * The canonical resource type name in the format of a resource type
+     * as defined by [AIP-123](https://google.aip.dev/123).
+     * For example, `"compute.googleapis.com/Instance"`.
+     */
+    resourceType?: string | null;
   }
   export interface Schema$ResourcePoliciesScopedList {
     /**
@@ -29228,10 +29268,13 @@ export namespace compute_v1 {
      *    which is resolved based on "userIpRequestHeaders" configured with the
      *    security policy. If there is no "userIpRequestHeaders" configuration or
      *    an IP address cannot be resolved from it, the key type defaults toIP.
+     *    - ASN: The autonomous system number of the originating
+     *    client. If not available, the key type defaults toALL.
+     *    - TLS_JA4_FINGERPRINT: JA4 TLS/SSL fingerprint if the
+     *    client connects using HTTPS, HTTP/2 or HTTP/3. If not available, the
+     *    key type defaults to ALL.
      *
-     * - TLS_JA4_FINGERPRINT: JA4 TLS/SSL fingerprint if the
-     * client connects using HTTPS, HTTP/2 or HTTP/3. If not available, the
-     * key type defaults to ALL.
+     *
      * For "fairshare" action, this value is limited to ALL i.e. a single rate
      * limit threshold is enforced for all the requests matching the rule.
      */
@@ -29321,10 +29364,11 @@ export namespace compute_v1 {
      *    which is resolved based on "userIpRequestHeaders" configured with the
      *    security policy. If there is no "userIpRequestHeaders" configuration
      *    or an IP address cannot be resolved from it, the key type defaults toIP.
-     *
-     * - TLS_JA4_FINGERPRINT: JA4 TLS/SSL fingerprint if the
-     * client connects using HTTPS, HTTP/2 or HTTP/3. If not available, the
-     * key type defaults to ALL.
+     *    - ASN: The autonomous system number of the originating
+     *    client. If not available, the key type defaults toALL.
+     *    - TLS_JA4_FINGERPRINT: JA4 TLS/SSL fingerprint if the
+     *    client connects using HTTPS, HTTP/2 or HTTP/3. If not available, the
+     *    key type defaults to ALL.
      */
     enforceOnKeyType?: string | null;
   }
@@ -36362,6 +36406,7 @@ export namespace compute_v1 {
      *   //   "kind": "my_kind",
      *   //   "maximumCardsPerInstance": 0,
      *   //   "name": "my_name",
+     *   //   "resourceMetadata": {},
      *   //   "selfLink": "my_selfLink",
      *   //   "zone": "my_zone"
      *   // }
@@ -64753,6 +64798,7 @@ export namespace compute_v1 {
      *   //   "planningStatus": "my_planningStatus",
      *   //   "reservationMode": "my_reservationMode",
      *   //   "reservationName": "my_reservationName",
+     *   //   "resourceMetadata": {},
      *   //   "schedulingType": "my_schedulingType",
      *   //   "selfLink": "my_selfLink",
      *   //   "selfLinkWithId": "my_selfLinkWithId",
@@ -64936,6 +64982,7 @@ export namespace compute_v1 {
      *       //   "planningStatus": "my_planningStatus",
      *       //   "reservationMode": "my_reservationMode",
      *       //   "reservationName": "my_reservationName",
+     *       //   "resourceMetadata": {},
      *       //   "schedulingType": "my_schedulingType",
      *       //   "selfLink": "my_selfLink",
      *       //   "selfLinkWithId": "my_selfLinkWithId",
@@ -65402,6 +65449,7 @@ export namespace compute_v1 {
      *       //   "planningStatus": "my_planningStatus",
      *       //   "reservationMode": "my_reservationMode",
      *       //   "reservationName": "my_reservationName",
+     *       //   "resourceMetadata": {},
      *       //   "schedulingType": "my_schedulingType",
      *       //   "selfLink": "my_selfLink",
      *       //   "selfLinkWithId": "my_selfLinkWithId",
@@ -217935,6 +217983,7 @@ export namespace compute_v1 {
      *   //   "params": {},
      *   //   "protectionTier": "my_protectionTier",
      *   //   "reservationSharingPolicy": {},
+     *   //   "resourceMetadata": {},
      *   //   "resourcePolicies": {},
      *   //   "resourceStatus": {},
      *   //   "satisfiesPzs": false,
@@ -218270,6 +218319,7 @@ export namespace compute_v1 {
      *       //   "params": {},
      *       //   "protectionTier": "my_protectionTier",
      *       //   "reservationSharingPolicy": {},
+     *       //   "resourceMetadata": {},
      *       //   "resourcePolicies": {},
      *       //   "resourceStatus": {},
      *       //   "satisfiesPzs": false,
@@ -219431,6 +219481,7 @@ export namespace compute_v1 {
      *       //   "params": {},
      *       //   "protectionTier": "my_protectionTier",
      *       //   "reservationSharingPolicy": {},
+     *       //   "resourceMetadata": {},
      *       //   "resourcePolicies": {},
      *       //   "resourceStatus": {},
      *       //   "satisfiesPzs": false,

@@ -48715,7 +48715,7 @@
       }
     }
   },
-  "revision": "20260722",
+  "revision": "20260729",
   "rootUrl": "https://compute.googleapis.com/",
   "schemas": {
     "AWSV4Signature": {
@@ -48862,6 +48862,11 @@
           "description": "[Output Only] Name of the resource.",
           "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
           "type": "string"
+        },
+        "resourceMetadata": {
+          "$ref": "ResourceMetadata",
+          "description": "Output only. Contains standard resource metadata for an AcceleratorType\nresource. It is populated for each instance of the AcceleratorType\nresource, and includes the api_version the\ninstance was retrieved through, and its canonical\nresource_type name.",
+          "readOnly": true
         },
         "selfLink": {
           "description": "Output only. [Output Only] Server-defined, fully qualified URL for this resource.",
@@ -49014,7 +49019,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -49171,7 +49176,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -49308,7 +49313,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -49725,7 +49730,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -49882,7 +49887,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -50019,7 +50024,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -50913,7 +50918,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -51070,7 +51075,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -51265,7 +51270,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -51854,7 +51859,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -52141,7 +52146,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -52297,7 +52302,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -52459,7 +52464,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -53013,7 +53018,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -53473,7 +53478,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -53630,7 +53635,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -54008,7 +54013,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -55219,7 +55224,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -55376,7 +55381,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -55539,7 +55544,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -55769,7 +55774,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -55958,7 +55963,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -56119,7 +56124,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -56459,7 +56464,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -57121,7 +57126,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -57353,7 +57358,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -57643,7 +57648,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -57800,7 +57805,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -57937,7 +57942,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -58121,7 +58126,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -58429,7 +58434,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -58712,7 +58717,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -59065,7 +59070,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -59258,7 +59263,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -59545,7 +59550,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -60352,7 +60357,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -60521,7 +60526,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -60686,7 +60691,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -60832,6 +60837,11 @@
         "reservationName": {
           "description": "Name of reservations where the capacity is provisioned at the time of\ndelivery of  future reservations. If the reservation with the given name\ndoes not exist already, it is created automatically at the time of Approval\nwith INACTIVE state till specified start-time. Either provide the\nreservation_name or a name_prefix.",
           "type": "string"
+        },
+        "resourceMetadata": {
+          "$ref": "ResourceMetadata",
+          "description": "Output only. Contains standard resource metadata for an FutureReservation\nresource. It is populated for each instance of the FutureReservation\nresource, and includes the api_version the\ninstance was retrieved through, and its canonical\nresource_type name.",
+          "readOnly": true
         },
         "schedulingType": {
           "description": "Maintenance information for this reservation",
@@ -61322,7 +61332,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -61489,7 +61499,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -61626,7 +61636,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -62355,7 +62365,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -62960,7 +62970,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -63201,7 +63211,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -63356,7 +63366,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -63630,7 +63640,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -63898,7 +63908,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -64067,7 +64077,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -64204,7 +64214,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -64369,7 +64379,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -64506,7 +64516,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -64746,7 +64756,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -64935,7 +64945,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -65113,7 +65123,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -65605,7 +65615,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -65971,7 +65981,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -66423,7 +66433,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -66827,7 +66837,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -67333,7 +67343,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -67667,7 +67677,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -67827,7 +67837,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -68268,7 +68278,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -68551,7 +68561,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -68938,7 +68948,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -69757,7 +69767,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -69936,7 +69946,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -70197,7 +70207,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -70367,7 +70377,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -70543,7 +70553,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -70700,7 +70710,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -71268,7 +71278,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -71425,7 +71435,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -71562,7 +71572,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -71926,7 +71936,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -72345,7 +72355,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -72624,7 +72634,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -72786,7 +72796,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -73645,7 +73655,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -74165,7 +74175,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -74518,7 +74528,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -74700,7 +74710,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -75482,7 +75492,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -75722,7 +75732,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -76060,7 +76070,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -76620,7 +76630,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -77115,7 +77125,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -77283,7 +77293,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -77693,7 +77703,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -77980,7 +77990,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -78137,7 +78147,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -78274,7 +78284,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -79158,7 +79168,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -79371,7 +79381,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -79508,7 +79518,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -79733,7 +79743,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -79870,7 +79880,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -80192,7 +80202,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -80401,7 +80411,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -80640,7 +80650,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -80778,7 +80788,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -80963,7 +80973,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -81276,7 +81286,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -82330,7 +82340,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -82821,7 +82831,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -83010,7 +83020,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -83310,7 +83320,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -83465,7 +83475,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -83762,7 +83772,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -83919,7 +83929,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -84071,7 +84081,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -84306,7 +84316,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -84463,7 +84473,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -84600,7 +84610,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -84813,7 +84823,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -84996,7 +85006,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -85133,7 +85143,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -85431,7 +85441,7 @@
                 "type": "string"
               },
               "data": {
-                "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+                "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
                 "items": {
                   "properties": {
                     "key": {
@@ -85601,7 +85611,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -85757,7 +85767,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -85894,7 +85904,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -86283,7 +86293,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -86489,7 +86499,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -86698,7 +86708,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -87235,7 +87245,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -87824,7 +87834,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -88161,7 +88171,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -88316,7 +88326,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -88537,7 +88547,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -89121,7 +89131,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -89328,7 +89338,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -89484,7 +89494,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -89700,7 +89710,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -89874,7 +89884,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -90058,7 +90068,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -90328,7 +90338,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -90606,7 +90616,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -90805,7 +90815,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -91197,7 +91207,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -91365,6 +91375,11 @@
         "reservationSharingPolicy": {
           "$ref": "AllocationReservationSharingPolicy",
           "description": "Specify the reservation sharing policy. If unspecified, the reservation\nwill not be shared with Google Cloud managed services."
+        },
+        "resourceMetadata": {
+          "$ref": "ResourceMetadata",
+          "description": "Output only. [Output Only] Contains standard resource metadata for an Allocation\nresource. It is populated for each instance of the Allocation\nresource, and includes the api_version the\ninstance was retrieved through, and its canonical\nresource_type name.",
+          "readOnly": true
         },
         "resourcePolicies": {
           "additionalProperties": {
@@ -91635,7 +91650,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -91995,7 +92010,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -92151,7 +92166,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -92479,7 +92494,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -92824,7 +92839,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -93084,7 +93099,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -93149,6 +93164,21 @@
       "properties": {
         "group": {
           "description": "A URI referencing one of the instance groups or network endpoint groups\nlisted in the backend service.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ResourceMetadata": {
+      "description": "Standardized resource metadata common to all compute resources.",
+      "id": "ResourceMetadata",
+      "properties": {
+        "apiVersion": {
+          "description": "The version of the API interface that this resource was retrieved through.\nFor example, `\"2025-01-01\"` or `\"2025-01-01-preview\"`.",
+          "type": "string"
+        },
+        "resourceType": {
+          "description": "The canonical resource type name in the format of a resource type\nas defined by [AIP-123](https://google.aip.dev/123).\nFor example, `\"compute.googleapis.com/Instance\"`.",
           "type": "string"
         }
       },
@@ -93265,7 +93295,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -93524,7 +93554,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -93814,7 +93844,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -94878,7 +94908,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -95166,7 +95196,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -95479,7 +95509,7 @@
                 "type": "string"
               },
               "data": {
-                "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+                "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
                 "items": {
                   "properties": {
                     "key": {
@@ -95669,7 +95699,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -96022,7 +96052,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -96504,7 +96534,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -97336,7 +97366,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -97503,7 +97533,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -97670,7 +97700,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -97817,7 +97847,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -98419,7 +98449,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -98565,7 +98595,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -99108,7 +99138,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -99490,7 +99520,7 @@
           "type": "string"
         },
         "enforceOnKey": {
-          "description": "Determines the key to enforce the rate_limit_threshold on. Possible\nvalues are:\n   \n   - ALL: A single rate limit threshold is applied to all\n   the requests matching this rule. This is the default value if\n   \"enforceOnKey\" is not configured.\n   - IP: The source IP address of\n   the request is the key. Each IP has this limit enforced\n   separately.\n   - HTTP_HEADER: The value of the HTTP\n   header whose name is configured under \"enforceOnKeyName\". The key\n   value is truncated to the first 128 bytes of the header value. If no\n   such header is present in the request, the key type defaults toALL.\n   - XFF_IP: The first IP address (i.e. the\n   originating client IP address) specified in the list of IPs under\n   X-Forwarded-For HTTP header. If no such header is present or the value\n   is not a valid IP, the key defaults to the source IP address of\n   the request i.e. key type IP.\n   - HTTP_COOKIE: The value of the HTTP\n   cookie whose name is configured under \"enforceOnKeyName\". The key\n   value is truncated to the first 128 bytes of the cookie value. If no\n   such cookie is present in the request, the key type defaults toALL.\n   - HTTP_PATH: The URL path of the HTTP request. The key\n   value is truncated to the first 128 bytes. \n   - SNI: Server name indication in the TLS session of the\n   HTTPS request. The key value is truncated to the first 128 bytes. The\n   key type defaults to ALL on a HTTP session. \n   - REGION_CODE: The country/region from which the request\n   originates. \n   - TLS_JA3_FINGERPRINT: JA3 TLS/SSL fingerprint if the\n   client connects using HTTPS, HTTP/2 or HTTP/3. If not available, the\n   key type defaults to ALL. \n   - USER_IP: The IP address of the originating client,\n   which is resolved based on \"userIpRequestHeaders\" configured with the\n   security policy. If there is no \"userIpRequestHeaders\" configuration or\n   an IP address cannot be resolved from it, the key type defaults toIP. \n\n- TLS_JA4_FINGERPRINT: JA4 TLS/SSL fingerprint if the\nclient connects using HTTPS, HTTP/2 or HTTP/3. If not available, the\nkey type defaults to ALL. \nFor \"fairshare\" action, this value is limited to ALL i.e. a single rate\nlimit threshold is enforced for all the requests matching the rule.",
+          "description": "Determines the key to enforce the rate_limit_threshold on. Possible\nvalues are:\n   \n   - ALL: A single rate limit threshold is applied to all\n   the requests matching this rule. This is the default value if\n   \"enforceOnKey\" is not configured.\n   - IP: The source IP address of\n   the request is the key. Each IP has this limit enforced\n   separately.\n   - HTTP_HEADER: The value of the HTTP\n   header whose name is configured under \"enforceOnKeyName\". The key\n   value is truncated to the first 128 bytes of the header value. If no\n   such header is present in the request, the key type defaults toALL.\n   - XFF_IP: The first IP address (i.e. the\n   originating client IP address) specified in the list of IPs under\n   X-Forwarded-For HTTP header. If no such header is present or the value\n   is not a valid IP, the key defaults to the source IP address of\n   the request i.e. key type IP.\n   - HTTP_COOKIE: The value of the HTTP\n   cookie whose name is configured under \"enforceOnKeyName\". The key\n   value is truncated to the first 128 bytes of the cookie value. If no\n   such cookie is present in the request, the key type defaults toALL.\n   - HTTP_PATH: The URL path of the HTTP request. The key\n   value is truncated to the first 128 bytes. \n   - SNI: Server name indication in the TLS session of the\n   HTTPS request. The key value is truncated to the first 128 bytes. The\n   key type defaults to ALL on a HTTP session. \n   - REGION_CODE: The country/region from which the request\n   originates. \n   - TLS_JA3_FINGERPRINT: JA3 TLS/SSL fingerprint if the\n   client connects using HTTPS, HTTP/2 or HTTP/3. If not available, the\n   key type defaults to ALL. \n   - USER_IP: The IP address of the originating client,\n   which is resolved based on \"userIpRequestHeaders\" configured with the\n   security policy. If there is no \"userIpRequestHeaders\" configuration or\n   an IP address cannot be resolved from it, the key type defaults toIP. \n   - ASN: The autonomous system number of the originating\n   client. If not available, the key type defaults toALL.\n   - TLS_JA4_FINGERPRINT: JA4 TLS/SSL fingerprint if the\n   client connects using HTTPS, HTTP/2 or HTTP/3. If not available, the\n   key type defaults to ALL. \n\n\nFor \"fairshare\" action, this value is limited to ALL i.e. a single rate\nlimit threshold is enforced for all the requests matching the rule.",
           "enum": [
             "ALL",
             "HTTP_COOKIE",
@@ -99553,7 +99583,7 @@
           "type": "string"
         },
         "enforceOnKeyType": {
-          "description": "Determines the key to enforce the rate_limit_threshold on. Possible\nvalues are:\n   \n   - ALL: A single rate limit threshold is applied to all\n   the requests matching this rule. This is the default value if\n   \"enforceOnKeyConfigs\" is not configured.\n   - IP: The source IP address of\n   the request is the key. Each IP has this limit enforced\n   separately.\n   - HTTP_HEADER: The value of the HTTP\n   header whose name is configured under \"enforceOnKeyName\". The key\n   value is truncated to the first 128 bytes of the header value. If no\n   such header is present in the request, the key type defaults toALL.\n   - XFF_IP: The first IP address (i.e. the\n   originating client IP address) specified in the list of IPs under\n   X-Forwarded-For HTTP header. If no such header is present or the\n   value is not a valid IP, the key defaults to the source IP address of\n   the request i.e. key type IP.\n   - HTTP_COOKIE: The value of the HTTP\n   cookie whose name is configured under \"enforceOnKeyName\". The key\n   value is truncated to the first 128 bytes of the cookie value. If no\n   such cookie is present in the request, the key type defaults toALL.\n   - HTTP_PATH: The URL path of the HTTP request. The key\n   value is truncated to the first 128 bytes. \n   - SNI: Server name indication in the TLS session of\n   the HTTPS request. The key value is truncated to the first 128 bytes.\n   The key type defaults to ALL on a HTTP session. \n   - REGION_CODE: The country/region from which the\n   request originates. \n   - TLS_JA3_FINGERPRINT: JA3 TLS/SSL fingerprint if the\n   client connects using HTTPS, HTTP/2 or HTTP/3. If not available, the\n   key type defaults to ALL. \n   - USER_IP: The IP address of the originating client,\n   which is resolved based on \"userIpRequestHeaders\" configured with the\n   security policy. If there is no \"userIpRequestHeaders\" configuration\n   or an IP address cannot be resolved from it, the key type defaults toIP. \n\n- TLS_JA4_FINGERPRINT: JA4 TLS/SSL fingerprint if the\nclient connects using HTTPS, HTTP/2 or HTTP/3. If not available, the\nkey type defaults to ALL.",
+          "description": "Determines the key to enforce the rate_limit_threshold on. Possible\nvalues are:\n   \n   - ALL: A single rate limit threshold is applied to all\n   the requests matching this rule. This is the default value if\n   \"enforceOnKeyConfigs\" is not configured.\n   - IP: The source IP address of\n   the request is the key. Each IP has this limit enforced\n   separately.\n   - HTTP_HEADER: The value of the HTTP\n   header whose name is configured under \"enforceOnKeyName\". The key\n   value is truncated to the first 128 bytes of the header value. If no\n   such header is present in the request, the key type defaults toALL.\n   - XFF_IP: The first IP address (i.e. the\n   originating client IP address) specified in the list of IPs under\n   X-Forwarded-For HTTP header. If no such header is present or the\n   value is not a valid IP, the key defaults to the source IP address of\n   the request i.e. key type IP.\n   - HTTP_COOKIE: The value of the HTTP\n   cookie whose name is configured under \"enforceOnKeyName\". The key\n   value is truncated to the first 128 bytes of the cookie value. If no\n   such cookie is present in the request, the key type defaults toALL.\n   - HTTP_PATH: The URL path of the HTTP request. The key\n   value is truncated to the first 128 bytes. \n   - SNI: Server name indication in the TLS session of\n   the HTTPS request. The key value is truncated to the first 128 bytes.\n   The key type defaults to ALL on a HTTP session. \n   - REGION_CODE: The country/region from which the\n   request originates. \n   - TLS_JA3_FINGERPRINT: JA3 TLS/SSL fingerprint if the\n   client connects using HTTPS, HTTP/2 or HTTP/3. If not available, the\n   key type defaults to ALL. \n   - USER_IP: The IP address of the originating client,\n   which is resolved based on \"userIpRequestHeaders\" configured with the\n   security policy. If there is no \"userIpRequestHeaders\" configuration\n   or an IP address cannot be resolved from it, the key type defaults toIP. \n   - ASN: The autonomous system number of the originating\n   client. If not available, the key type defaults toALL.\n   - TLS_JA4_FINGERPRINT: JA4 TLS/SSL fingerprint if the\n   client connects using HTTPS, HTTP/2 or HTTP/3. If not available, the\n   key type defaults to ALL.",
           "enum": [
             "ALL",
             "HTTP_COOKIE",
@@ -100036,7 +100066,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -100270,7 +100300,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -100407,7 +100437,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -101029,7 +101059,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -101523,7 +101553,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -101680,7 +101710,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -101893,7 +101923,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -102061,7 +102091,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -102220,7 +102250,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -102369,7 +102399,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -102605,7 +102635,7 @@
                 "type": "string"
               },
               "data": {
-                "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+                "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
                 "items": {
                   "properties": {
                     "key": {
@@ -103042,7 +103072,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -103319,7 +103349,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -103488,7 +103518,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -103855,7 +103885,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -104012,7 +104042,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -104149,7 +104179,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -104286,7 +104316,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -104692,7 +104722,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -104849,7 +104879,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -105165,7 +105195,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -105299,7 +105329,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -105611,7 +105641,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -105748,7 +105778,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -106005,7 +106035,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -106142,7 +106172,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -106462,7 +106492,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -106619,7 +106649,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -106847,7 +106877,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -107004,7 +107034,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -107141,7 +107171,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -107400,7 +107430,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -107575,7 +107605,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -107764,7 +107794,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -108048,7 +108078,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -108185,7 +108215,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -108455,7 +108485,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -108612,7 +108642,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -108877,7 +108907,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -109034,7 +109064,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -109184,7 +109214,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -109631,7 +109661,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -109886,7 +109916,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -110023,7 +110053,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -110362,7 +110392,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -110647,7 +110677,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -110784,7 +110814,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -111050,7 +111080,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -111262,7 +111292,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -111534,7 +111564,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -111691,7 +111721,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -111972,7 +112002,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -112301,7 +112331,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -112470,7 +112500,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -112674,7 +112704,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -113050,7 +113080,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -113286,7 +113316,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
@@ -113536,7 +113566,7 @@
               "type": "string"
             },
             "data": {
-              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
               "items": {
                 "properties": {
                   "key": {
