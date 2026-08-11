@@ -206,7 +206,7 @@ export namespace developerknowledge_v1 {
     referenceIndex?: number | null;
   }
   /**
-   * A Document represents a piece of content from the Developer Knowledge corpus.
+   * A Document represents a page of documentation in the Developer Knowledge corpus, like the page at https://docs.cloud.google.com/storage/docs/creating-buckets.
    */
   export interface Schema$Document {
     /**
@@ -281,7 +281,7 @@ export namespace developerknowledge_v1 {
    */
   export interface Schema$SearchDocumentChunksResponse {
     /**
-     * Optional. Provides a token that can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     * Provides a token that can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
      */
     nextPageToken?: string | null;
     /**
@@ -327,7 +327,7 @@ export namespace developerknowledge_v1 {
      *
      *   // Do the magic
      *   const res = await developerknowledge.documents.batchGet({
-     *     // Required. Specifies the names of the documents to retrieve. A maximum of 20 documents can be retrieved in a batch. The documents are returned in the same order as the `names` in the request. Format: `documents/{uri_without_scheme\}` Example: `documents/docs.cloud.google.com/storage/docs/creating-buckets`
+     *     // Required. Specifies the names of the documents to retrieve. A maximum of 20 documents can be retrieved in a batch. The documents are returned in the same order as the `names` in the request. Format: `documents/{uri_without_scheme\}` Example: `documents/docs.cloud.google.com/storage/docs/creating-buckets` Each name must not exceed 500 characters; values longer than 500 characters will result in an `INVALID_ARGUMENT` error.
      *     names: 'placeholder-value',
      *     // Optional. Specifies the DocumentView of the document. If unspecified, DeveloperKnowledge.BatchGetDocuments defaults to `DOCUMENT_VIEW_CONTENT`.
      *     view: 'placeholder-value',
@@ -470,7 +470,7 @@ export namespace developerknowledge_v1 {
      *
      *   // Do the magic
      *   const res = await developerknowledge.documents.get({
-     *     // Required. Specifies the name of the document to retrieve. Format: `documents/{uri_without_scheme\}` Example: `documents/docs.cloud.google.com/storage/docs/creating-buckets`
+     *     // Required. Specifies the name of the document to retrieve. Format: `documents/{uri_without_scheme\}` Example: `documents/docs.cloud.google.com/storage/docs/creating-buckets` The name must not exceed 500 characters; values longer than 500 characters will result in an `INVALID_ARGUMENT` error.
      *     name: 'documents/.*',
      *     // Optional. Specifies the DocumentView of the document. If unspecified, DeveloperKnowledge.GetDocument defaults to `DOCUMENT_VIEW_CONTENT`.
      *     view: 'placeholder-value',
@@ -619,7 +619,7 @@ export namespace developerknowledge_v1 {
      *     pageSize: 'placeholder-value',
      *     // Optional. Contains a page token, received from a previous `SearchDocumentChunks` call. Provide this to retrieve the subsequent page.
      *     pageToken: 'placeholder-value',
-     *     // Required. Provides the raw query string provided by the user, such as "How to create a Cloud Storage bucket?".
+     *     // Required. Provides the raw query string provided by the user, such as "How to create a Cloud Storage bucket?". The query must not exceed 500 characters; values longer than 500 characters will result in an `INVALID_ARGUMENT` error.
      *     query: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -736,7 +736,7 @@ export namespace developerknowledge_v1 {
 
   export interface Params$Resource$Documents$Batchget extends StandardParameters {
     /**
-     * Required. Specifies the names of the documents to retrieve. A maximum of 20 documents can be retrieved in a batch. The documents are returned in the same order as the `names` in the request. Format: `documents/{uri_without_scheme\}` Example: `documents/docs.cloud.google.com/storage/docs/creating-buckets`
+     * Required. Specifies the names of the documents to retrieve. A maximum of 20 documents can be retrieved in a batch. The documents are returned in the same order as the `names` in the request. Format: `documents/{uri_without_scheme\}` Example: `documents/docs.cloud.google.com/storage/docs/creating-buckets` Each name must not exceed 500 characters; values longer than 500 characters will result in an `INVALID_ARGUMENT` error.
      */
     names?: string[];
     /**
@@ -746,7 +746,7 @@ export namespace developerknowledge_v1 {
   }
   export interface Params$Resource$Documents$Get extends StandardParameters {
     /**
-     * Required. Specifies the name of the document to retrieve. Format: `documents/{uri_without_scheme\}` Example: `documents/docs.cloud.google.com/storage/docs/creating-buckets`
+     * Required. Specifies the name of the document to retrieve. Format: `documents/{uri_without_scheme\}` Example: `documents/docs.cloud.google.com/storage/docs/creating-buckets` The name must not exceed 500 characters; values longer than 500 characters will result in an `INVALID_ARGUMENT` error.
      */
     name?: string;
     /**
@@ -768,7 +768,7 @@ export namespace developerknowledge_v1 {
      */
     pageToken?: string;
     /**
-     * Required. Provides the raw query string provided by the user, such as "How to create a Cloud Storage bucket?".
+     * Required. Provides the raw query string provided by the user, such as "How to create a Cloud Storage bucket?". The query must not exceed 500 characters; values longer than 500 characters will result in an `INVALID_ARGUMENT` error.
      */
     query?: string;
   }
