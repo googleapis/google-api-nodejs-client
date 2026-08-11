@@ -3435,7 +3435,7 @@
       }
     }
   },
-  "revision": "20260720",
+  "revision": "20260729",
   "rootUrl": "https://apihub.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -6500,7 +6500,8 @@
             "CLOUD_ENDPOINTS",
             "API_DISCOVERY",
             "OTHERS",
-            "AWS_API_GATEWAY"
+            "AWS_API_GATEWAY",
+            "AZURE_API_MANAGEMENT"
           ],
           "enumDescriptions": [
             "The gateway type is not specified.",
@@ -6511,7 +6512,8 @@
             "The gateway type is Cloud Endpoints.",
             "The gateway type is API Discovery.",
             "The gateway type for any other types of gateways.",
-            "The gateway type is AWS API Gateway."
+            "The gateway type is AWS API Gateway.",
+            "The gateway type is Azure API Management."
           ],
           "type": "string"
         },
@@ -7401,7 +7403,7 @@
           "type": "array"
         },
         "deployments": {
-          "description": "Optional. The deployments linked to this API version. Note: A particular API version could be deployed to multiple deployments (for dev deployment, UAT deployment, etc) Format is `projects/{project}/locations/{location}/deployments/{deployment}`",
+          "description": "Optional. The deployments linked directly to this API version. Only directly-linked deployments are returned; deployments linked to this version's specs or operations are not included. Note: A particular API version could be deployed to multiple deployments (for dev deployment, UAT deployment, etc) Format is `projects/{project}/locations/{location}/deployments/{deployment}`",
           "items": {
             "type": "string"
           },
