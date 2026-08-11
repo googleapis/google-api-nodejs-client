@@ -207,7 +207,7 @@
       }
     }
   },
-  "revision": "20260703",
+  "revision": "20260801",
   "rootUrl": "https://cloudasset.googleapis.com/",
   "schemas": {
     "AnalyzeIamPolicyLongrunningMetadata": {
@@ -1084,7 +1084,7 @@
       "properties": {
         "addRequestHeader": {
           "$ref": "GoogleIdentityAccesscontextmanagerV1AddRequestHeader",
-          "description": "Adds additional HTTP request headers."
+          "description": "Adds an additional HTTP request header."
         }
       },
       "type": "object"
@@ -1149,7 +1149,7 @@
           "type": "array"
         },
         "pattern": {
-          "description": "URL pattern to allow. Only patterns of \".googleapis.com/*\", \"www.googleapis.com//*\" and \"*.appspot.com/* forms are supported, where should be alphanumerical name.",
+          "description": "URL pattern to allow. Only patterns of \".googleapis.com/*\", \"www.googleapis.com//*\" and \"*.appspot.com/* forms are supported, where should be an alphanumeric name.",
           "type": "string"
         },
         "service": {
@@ -1282,7 +1282,7 @@
               "GOOGLE_APIS_VIA_PRIVATE_PATH"
             ],
             "enumDescriptions": [
-              "Default value. This can not be used.",
+              "Default value. This cannot be used.",
               "Enables VPC Accessible Services enforcement for all APIs (including unsupported APIs) for Private Google Access configured with Private VIP and Private Service Connect Endpoint for Global Google APIs that uses 'all-apis' bundle."
             ],
             "type": "string"
