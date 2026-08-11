@@ -936,7 +936,7 @@
                   ],
                   "parameters": {
                     "dataSourceFamily": {
-                      "description": "Optional. The data source family name to reconcile. If empty, data points from all data sources will be reconciled. Format: `users/me/dataSourceFamilies/{data_source_family}` The supported values are: - `users/me/dataSourceFamilies/all-sources` - default value - `users/me/dataSourceFamilies/google-wearables` - tracker devices - `users/me/dataSourceFamilies/google-sources` - Google first party sources",
+                      "description": "Optional. The data source family name to reconcile. If empty, data points from all data sources will be reconciled. Format: `users/me/dataSourceFamilies/{data_source_family}` - `users/me/dataSourceFamilies/all-sources` - Default value. Includes data from all available data sources. - `users/me/dataSourceFamilies/google-wearables` - Includes data from Google and Fitbit tracker devices (such as Fitbit trackers and Pixel Watch). Excludes manually logged data. - `users/me/dataSourceFamilies/google-sources` - Includes first-party Google data, such as data from tracker devices, manually logged data, and Health Connect.",
                       "location": "query",
                       "type": "string"
                     },
@@ -970,9 +970,17 @@
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/googlehealth.activity_and_fitness.readonly",
+                    "https://www.googleapis.com/auth/googlehealth.activity_and_fitness.writeonly",
                     "https://www.googleapis.com/auth/googlehealth.health_metrics_and_measurements.readonly",
+                    "https://www.googleapis.com/auth/googlehealth.health_metrics_and_measurements.writeonly",
                     "https://www.googleapis.com/auth/googlehealth.location.readonly",
-                    "https://www.googleapis.com/auth/googlehealth.sleep.readonly"
+                    "https://www.googleapis.com/auth/googlehealth.location.writeonly",
+                    "https://www.googleapis.com/auth/googlehealth.logged_symptoms.writeonly",
+                    "https://www.googleapis.com/auth/googlehealth.mindfulness.writeonly",
+                    "https://www.googleapis.com/auth/googlehealth.nutrition.writeonly",
+                    "https://www.googleapis.com/auth/googlehealth.reproductive_health.writeonly",
+                    "https://www.googleapis.com/auth/googlehealth.sleep.readonly",
+                    "https://www.googleapis.com/auth/googlehealth.sleep.writeonly"
                   ]
                 },
                 "rollUp": {
@@ -1078,7 +1086,7 @@
       }
     }
   },
-  "revision": "20260729",
+  "revision": "20260805",
   "rootUrl": "https://health.googleapis.com/",
   "schemas": {
     "ActiveEnergyBurned": {
@@ -1933,7 +1941,7 @@
       "id": "DailyRollUpDataPointsRequest",
       "properties": {
         "dataSourceFamily": {
-          "description": "Optional. The data source family name to roll up. If empty, data points from all available data sources will be rolled up. Format: `users/me/dataSourceFamilies/{data_source_family}` The supported values are: - `users/me/dataSourceFamilies/all-sources` - default value - `users/me/dataSourceFamilies/google-wearables` - tracker devices - `users/me/dataSourceFamilies/google-sources` - Google first party sources",
+          "description": "Optional. The data source family name to roll up. If empty, data points from all available data sources will be rolled up. Format: `users/me/dataSourceFamilies/{data_source_family}` The supported values are: - `users/me/dataSourceFamilies/all-sources` - Default value. Includes data from all available data sources. - `users/me/dataSourceFamilies/google-wearables` - Includes data from Google and Fitbit tracker devices (such as Fitbit trackers and Pixel Watch). Excludes manually logged data. - `users/me/dataSourceFamilies/google-sources` - Includes first-party Google data, such as data from tracker devices, manually logged data, and Health Connect.",
           "type": "string"
         },
         "pageSize": {
@@ -2267,6 +2275,14 @@
           "$ref": "IrregularRhythmNotification",
           "description": "Optional. Data for points in the `irregular-rhythm-notification` session data type collection."
         },
+        "menstrualPeriod": {
+          "$ref": "MenstrualPeriod",
+          "description": "Optional. Data for points in the `menstrual-period` interval data type collection."
+        },
+        "moods": {
+          "$ref": "Moods",
+          "description": "Optional. Data for points in the `moods` sample data type collection."
+        },
         "name": {
           "description": "Identifier. Data point name, only supported for the subset of identifiable data types. For the majority of the data types, individual data points do not need to be identified and this field would be empty. Format: `users/{user}/dataTypes/{data_type}/dataPoints/{data_point}` Example: `users/abcd1234/dataTypes/sleep/dataPoints/a1b2c3d4-e5f6-7890-1234-567890abcdef` The `{user}` ID is a system-generated identifier, as described in Identity.health_user_id. The `{data_type}` ID corresponds to the kebab-case version of the field names in the DataPoint data union field, e.g. `heart-rate` for the `heart_rate` field. The `{data_point}` ID can be client-provided or system-generated. If client-provided, it must be a string of 4-63 characters, containing only lowercase letters, numbers, and hyphens.",
           "type": "string"
@@ -2274,6 +2290,10 @@
         "nutritionLog": {
           "$ref": "NutritionLog",
           "description": "Optional. Data for points in the `nutrition-log` session data type collection."
+        },
+        "ovulationTest": {
+          "$ref": "OvulationTest",
+          "description": "Optional. Data for points in the `ovulation-test` sample data type collection."
         },
         "oxygenSaturation": {
           "$ref": "OxygenSaturation",
@@ -2302,6 +2322,10 @@
         "swimLengthsData": {
           "$ref": "SwimLengthsData",
           "description": "Optional. Data for points in the `swim-lengths-data` interval data type collection."
+        },
+        "symptoms": {
+          "$ref": "Symptoms",
+          "description": "Optional. Data for points in the `symptoms` sample data type collection."
         },
         "timeInHeartRateZone": {
           "$ref": "TimeInHeartRateZone",
@@ -2695,7 +2719,7 @@
           "type": "string"
         },
         "displayName": {
-          "description": "Required. Exercise display name.",
+          "description": "Required. The localized, human-readable name of the exercise. For all exercise types other than `OTHER`, the system ignores client input and overrides this field with a generated name based on `exercise_type` (e.g., \"Walking\" for `WALKING`). If `exercise_type` is `OTHER`, this field can contain the user's custom, free-form display name.",
           "type": "string"
         },
         "exerciseEvents": {
@@ -3908,6 +3932,21 @@
       },
       "type": "object"
     },
+    "MenstrualPeriod": {
+      "description": "Menstrual period record.",
+      "id": "MenstrualPeriod",
+      "properties": {
+        "interval": {
+          "$ref": "ObservationTimeInterval",
+          "description": "Required. Observed interval."
+        },
+        "notes": {
+          "description": "Optional. Standard free-form notes captured at manual logging.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "MetricsSummary": {
       "description": "Summary metrics for an exercise.",
       "id": "MetricsSummary",
@@ -4001,6 +4040,161 @@
           "description": "Optional. Vertical oscillation/stride length between [5.0, 11.0].",
           "format": "double",
           "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "Moods": {
+      "description": "Moods record.",
+      "id": "Moods",
+      "properties": {
+        "moods": {
+          "description": "Required. The moods logged.",
+          "items": {
+            "enum": [
+              "MOOD_UNSPECIFIED",
+              "AMAZED",
+              "AMUSED",
+              "ANGRY",
+              "ANNOYED",
+              "ANXIOUS",
+              "HAPPY",
+              "CONTENT",
+              "SAD",
+              "WORRIED",
+              "FRUSTRATED",
+              "EXCITED",
+              "CALM",
+              "STRESSED",
+              "ASHAMED",
+              "BRAVE",
+              "CONFIDENT",
+              "DISAPPOINTED",
+              "DISCOURAGED",
+              "DISGUSTED",
+              "DRAINED",
+              "EMBARRASSED",
+              "GRATEFUL",
+              "GUILTY",
+              "HOPEFUL",
+              "HOPELESS",
+              "INDIFFERENT",
+              "IRRITATED",
+              "JEALOUS",
+              "JOYFUL",
+              "LONELY",
+              "OVERWHELMED",
+              "PASSIONATE",
+              "PEACEFUL",
+              "PROUD",
+              "RELIEVED",
+              "SATISFIED",
+              "SCARED",
+              "SURPRISED",
+              "ENERGIZED",
+              "FATIGUED",
+              "VERY_CALM",
+              "VERY_STRESSED",
+              "NEUTRAL",
+              "AFRAID",
+              "HURTING",
+              "BORED",
+              "BITTER",
+              "ENVIOUS",
+              "CONFUSED",
+              "CURIOUS",
+              "AWESTRUCK",
+              "INSPIRED",
+              "LONGING",
+              "ACCOMPLISHED",
+              "LOVING",
+              "COMPASSIONATE"
+            ],
+            "enumDescriptions": [
+              "Unspecified mood.",
+              "Amazed.",
+              "Amused.",
+              "Angry.",
+              "Annoyed.",
+              "Anxious.",
+              "Happy.",
+              "Content.",
+              "Sad.",
+              "Worried.",
+              "Frustrated.",
+              "Excited.",
+              "Calm.",
+              "Stressed.",
+              "Ashamed.",
+              "Brave.",
+              "Confident.",
+              "Disappointed.",
+              "Discouraged.",
+              "Disgusted.",
+              "Drained.",
+              "Embarrassed.",
+              "Grateful.",
+              "Guilty.",
+              "Hopeful.",
+              "Hopeless.",
+              "Indifferent.",
+              "Irritated.",
+              "Jealous.",
+              "Joyful.",
+              "Lonely.",
+              "Overwhelmed.",
+              "Passionate.",
+              "Peaceful.",
+              "Proud.",
+              "Relieved.",
+              "Satisfied.",
+              "Scared.",
+              "Surprised.",
+              "Energized.",
+              "Fatigued.",
+              "Very calm.",
+              "Very stressed.",
+              "Neutral.",
+              "Afraid.",
+              "Hurting.",
+              "Bored.",
+              "Bitter.",
+              "Envious.",
+              "Confused.",
+              "Curious.",
+              "Awestruck.",
+              "Inspired.",
+              "Longing.",
+              "Accomplished.",
+              "Loving.",
+              "Compassionate."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "sampleTime": {
+          "$ref": "ObservationSampleTime",
+          "description": "Required. The time at which moods were measured."
+        },
+        "valences": {
+          "description": "Optional. The valences.",
+          "items": {
+            "enum": [
+              "VALENCE_UNSPECIFIED",
+              "UNPLEASANT",
+              "BASELINE",
+              "PLEASANT"
+            ],
+            "enumDescriptions": [
+              "Unspecified valence.",
+              "Unpleasant.",
+              "Baseline.",
+              "Pleasant."
+            ],
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -4428,6 +4622,37 @@
       },
       "type": "object"
     },
+    "OvulationTest": {
+      "description": "Ovulation test record.",
+      "id": "OvulationTest",
+      "properties": {
+        "result": {
+          "description": "Required. The result of the ovulation test.",
+          "enum": [
+            "OVULATION_TEST_RESULT_UNSPECIFIED",
+            "NEGATIVE",
+            "LUTEINIZING_HORMONE_SURGE",
+            "ESTROGEN_SURGE",
+            "POSITIVE",
+            "INDETERMINATE"
+          ],
+          "enumDescriptions": [
+            "Unspecified result.",
+            "Negative result.",
+            "Luteinizing hormone surge.",
+            "Estrogen surge.",
+            "Positive result.",
+            "Indeterminate result."
+          ],
+          "type": "string"
+        },
+        "sampleTime": {
+          "$ref": "ObservationSampleTime",
+          "description": "Required. The time at which ovulation test was measured."
+        }
+      },
+      "type": "object"
+    },
     "OxygenSaturation": {
       "description": "Captures the user's instantaneous oxygen saturation percentage (SpO2).",
       "id": "OxygenSaturation",
@@ -4784,7 +5009,7 @@
       "id": "RollUpDataPointsRequest",
       "properties": {
         "dataSourceFamily": {
-          "description": "Optional. The data source family name to roll up. If empty, data points from all available data sources will be rolled up. Format: `users/me/dataSourceFamilies/{data_source_family}` The supported values are: - `users/me/dataSourceFamilies/all-sources` - default value - `users/me/dataSourceFamilies/google-wearables` - tracker devices - `users/me/dataSourceFamilies/google-sources` - Google first party sources",
+          "description": "Optional. The data source family name to roll up. If empty, data points from all available data sources will be rolled up. Format: `users/me/dataSourceFamilies/{data_source_family}` The supported values are: - `users/me/dataSourceFamilies/all-sources` - Default value. Includes data from all available data sources. - `users/me/dataSourceFamilies/google-wearables` - Includes data from Google and Fitbit tracker devices (such as Fitbit trackers and Pixel Watch). Excludes manually logged data. - `users/me/dataSourceFamilies/google-sources` - Includes first-party Google data, such as data from tracker devices, manually logged data, and Health Connect.",
           "type": "string"
         },
         "pageSize": {
@@ -5055,7 +5280,7 @@
           "type": "boolean"
         },
         "distanceUnit": {
-          "description": "Optional. The measurement unit defined in the user's account settings. Updates to this field are currently not supported.",
+          "description": "Optional. The measurement unit defined in the user's account settings.",
           "enum": [
             "DISTANCE_UNIT_UNSPECIFIED",
             "DISTANCE_UNIT_MILES",
@@ -5236,6 +5461,14 @@
           "items": {
             "$ref": "OutOfBedSegment"
           },
+          "type": "array"
+        },
+        "shortAwakenings": {
+          "description": "Output only. List of short awake segments (under a set threshold) that are part of the sleep session. These can overlap with sleep stages.",
+          "items": {
+            "$ref": "SleepStage"
+          },
+          "readOnly": true,
           "type": "array"
         },
         "stages": {
@@ -5738,6 +5971,88 @@
           "description": "Total number of swim strokes in the interval.",
           "format": "int64",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Symptoms": {
+      "description": "Symptoms logged by the user.",
+      "id": "Symptoms",
+      "properties": {
+        "sampleTime": {
+          "$ref": "ObservationSampleTime",
+          "description": "Required. Time when the symptoms were logged."
+        },
+        "symptoms": {
+          "description": "Required. List of symptoms experienced.",
+          "items": {
+            "enum": [
+              "SYMPTOM_VALUE_UNSPECIFIED",
+              "CRAMPS",
+              "HEADACHE",
+              "TENDER_BREASTS",
+              "ACNE",
+              "SICK",
+              "BLOATED",
+              "HOT_FLASHES",
+              "PMS",
+              "COUGH",
+              "FEVER",
+              "DIFFICULTY_BREATHING",
+              "BACK_PAIN",
+              "SHAKINESS",
+              "HUNGER",
+              "SWEATING",
+              "ANXIETY",
+              "THIRST",
+              "FREQUENT_URINATION",
+              "BLURRED_VISION",
+              "OTHER",
+              "SEX_DRIVE_HIGH",
+              "SEX_DRIVE_MEDIUM",
+              "SEX_DRIVE_LOW",
+              "HEART_PALPITATIONS",
+              "FAINTING",
+              "CHEST_PAIN",
+              "FATIGUE",
+              "CONFUSION",
+              "DIZZINESS"
+            ],
+            "enumDescriptions": [
+              "Unspecified symptom value.",
+              "Abdominal cramps.",
+              "Headache.",
+              "Tender breasts.",
+              "Acne.",
+              "Feeling sick or unwell.",
+              "Bloating or abdominal swelling.",
+              "Hot flashes.",
+              "Premenstrual syndrome symptoms.",
+              "Coughing.",
+              "Fever or elevated body temperature.",
+              "Difficulty breathing or shortness of breath.",
+              "Back pain.",
+              "Shakiness or tremors.",
+              "Excessive hunger.",
+              "Excessive sweating.",
+              "Anxiety or nervousness.",
+              "Excessive thirst.",
+              "Frequent urination.",
+              "Blurred vision.",
+              "Other symptoms.",
+              "High sex drive.",
+              "Medium sex drive.",
+              "Low sex drive.",
+              "Heart palpitations or racing heart.",
+              "Fainting or loss of consciousness.",
+              "Chest pain or discomfort.",
+              "Fatigue or extreme tiredness.",
+              "Confusion or mental fogginess.",
+              "Dizziness or lightheadedness."
+            ],
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
