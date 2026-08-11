@@ -2490,6 +2490,10 @@ export namespace datamigration_v1 {
      */
     pscInterfaceConfig?: Schema$PscInterfaceConfig;
     /**
+     * Reserved Public IP configuration.
+     */
+    reservedPublicIpConfig?: Schema$ReservedPublicIpConfig;
+    /**
      * Output only. Reserved for future use.
      */
     satisfiesPzi?: boolean | null;
@@ -2604,6 +2608,19 @@ export namespace datamigration_v1 {
      * Any data that was used to serve this request. For example, an encrypted stack trace that can be sent back to the service provider for debugging.
      */
     servingData?: string | null;
+  }
+  /**
+   * Reserved Public IP configuration.
+   */
+  export interface Schema$ReservedPublicIpConfig {
+    /**
+     * Output only. The reserved public IPs.
+     */
+    egressPublicIps?: string[] | null;
+    /**
+     * Optional. Number of static public IP addresses to reserve.
+     */
+    natIpsCount?: number | null;
   }
   /**
    * Describes the resource that is being accessed.
@@ -3648,6 +3665,8 @@ export namespace datamigration_v1 {
      *
      *   // Do the magic
      *   const res = await datamigration.projects.locations.fetchStaticIps({
+     *     // Optional. Indicates whether to fetch the reserved public IP addresses allocated for private connections in this location. If false or not set, fetches the shared external static IP addresses instead.
+     *     fetchReservedPublicIps: 'placeholder-value',
      *     // Required. The resource name for the location for which static IPs should be returned. Must be in the format `projects/x/locations/x`.
      *     name: 'projects/my-project/locations/my-location',
      *     // Optional. Maximum number of IPs to return.
@@ -4051,6 +4070,10 @@ export namespace datamigration_v1 {
   }
 
   export interface Params$Resource$Projects$Locations$Fetchstaticips extends StandardParameters {
+    /**
+     * Optional. Indicates whether to fetch the reserved public IP addresses allocated for private connections in this location. If false or not set, fetches the shared external static IP addresses instead.
+     */
+    fetchReservedPublicIps?: boolean;
     /**
      * Required. The resource name for the location for which static IPs should be returned. Must be in the format `projects/x/locations/x`.
      */
@@ -13667,6 +13690,7 @@ export namespace datamigration_v1 {
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "pscInterfaceConfig": {},
+     *       //   "reservedPublicIpConfig": {},
      *       //   "satisfiesPzi": false,
      *       //   "satisfiesPzs": false,
      *       //   "state": "my_state",
@@ -13968,6 +13992,7 @@ export namespace datamigration_v1 {
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "pscInterfaceConfig": {},
+     *   //   "reservedPublicIpConfig": {},
      *   //   "satisfiesPzi": false,
      *   //   "satisfiesPzs": false,
      *   //   "state": "my_state",

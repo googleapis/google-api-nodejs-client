@@ -355,6 +355,11 @@
                 "name"
               ],
               "parameters": {
+                "fetchReservedPublicIps": {
+                  "description": "Optional. Indicates whether to fetch the reserved public IP addresses allocated for private connections in this location. If false or not set, fetches the shared external static IP addresses instead.",
+                  "location": "query",
+                  "type": "boolean"
+                },
                 "name": {
                   "description": "Required. The resource name for the location for which static IPs should be returned. Must be in the format `projects/*/locations/*`.",
                   "location": "path",
@@ -2587,7 +2592,7 @@
       }
     }
   },
-  "revision": "20260718",
+  "revision": "20260802",
   "rootUrl": "https://datamigration.googleapis.com/",
   "schemas": {
     "AlloyDbConnectionProfile": {
@@ -6343,6 +6348,10 @@
           "$ref": "PscInterfaceConfig",
           "description": "PSC Interface configuration."
         },
+        "reservedPublicIpConfig": {
+          "$ref": "ReservedPublicIpConfig",
+          "description": "Reserved Public IP configuration."
+        },
         "satisfiesPzi": {
           "description": "Output only. Reserved for future use.",
           "readOnly": true,
@@ -6502,6 +6511,26 @@
         "servingData": {
           "description": "Any data that was used to serve this request. For example, an encrypted stack trace that can be sent back to the service provider for debugging.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ReservedPublicIpConfig": {
+      "description": "Reserved Public IP configuration.",
+      "id": "ReservedPublicIpConfig",
+      "properties": {
+        "egressPublicIps": {
+          "description": "Output only. The reserved public IPs.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "natIpsCount": {
+          "description": "Optional. Number of static public IP addresses to reserve.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
