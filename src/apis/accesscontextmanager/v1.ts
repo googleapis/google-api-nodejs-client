@@ -1026,11 +1026,11 @@ export namespace accesscontextmanager_v1 {
      */
     maxInactivity?: string | null;
     /**
-     * Optional. The session length. Setting this field to zero is equal to disabling session. Also can set infinite session by flipping the enabled bit to false below. If use_oidc_max_age is true, for OIDC apps, the session length will be the minimum of this field and OIDC max_age param.
+     * Optional. The session length. Setting this field to zero is equal to disabling session. Also can set infinite session by flipping the enabled bit to false below. If use_oidc_max_age is true, for OIDC apps, the session length will be the minimum of this field and OIDC max_age param. If this field is set to zero, session_length_enabled must be set to false or left unset.
      */
     sessionLength?: string | null;
     /**
-     * Optional. This field enables or disables Google Cloud session length. When false, all fields set above will be disregarded and the session length is basically infinite.
+     * Optional. This field enables or disables Google Cloud session length. When false, all fields set above will be disregarded and the session length is basically infinite. If session_length is set to zero, this field must be false.
      */
     sessionLengthEnabled?: boolean | null;
     /**
@@ -6740,6 +6740,8 @@ export namespace accesscontextmanager_v1 {
      *   // Do the magic
      *   const res =
      *     await accesscontextmanager.organizations.gcpUserAccessBindings.list({
+     *       // Optional. The literal filter to apply to the results returned. See https://google.aip.dev/160 for more details. Accepts values: * principal:group_key * principal:service_account OR principal:service_account_project_number. If this field is empty or not one of the above, the default value is "principal:group_key".
+     *       filter: 'placeholder-value',
      *       // Optional. Maximum number of items to return. The server may return fewer items. If left blank, the server may return any number of items.
      *       pageSize: 'placeholder-value',
      *       // Optional. If left blank, returns the first page. To enumerate all items, use the next_page_token from your previous list operation.
@@ -7046,6 +7048,10 @@ export namespace accesscontextmanager_v1 {
     name?: string;
   }
   export interface Params$Resource$Organizations$Gcpuseraccessbindings$List extends StandardParameters {
+    /**
+     * Optional. The literal filter to apply to the results returned. See https://google.aip.dev/160 for more details. Accepts values: * principal:group_key * principal:service_account OR principal:service_account_project_number. If this field is empty or not one of the above, the default value is "principal:group_key".
+     */
+    filter?: string;
     /**
      * Optional. Maximum number of items to return. The server may return fewer items. If left blank, the server may return any number of items.
      */
