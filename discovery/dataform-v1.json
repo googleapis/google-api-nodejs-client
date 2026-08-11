@@ -3220,7 +3220,7 @@
       }
     }
   },
-  "revision": "20260702",
+  "revision": "20260802",
   "rootUrl": "https://dataform.googleapis.com/",
   "schemas": {
     "ActionErrorTable": {
@@ -3423,6 +3423,10 @@
         "defaultSchema": {
           "description": "Optional. The default schema (BigQuery dataset ID).",
           "type": "string"
+        },
+        "pipelineConfig": {
+          "$ref": "PipelineConfig",
+          "description": "Optional. The pipeline options which defines the pipeline type and path within the Git repository."
         },
         "schemaSuffix": {
           "description": "Optional. The suffix that should be appended to all schema (BigQuery dataset ID) names.",
@@ -3640,6 +3644,11 @@
           "description": "Output only. The version of `@dataform/core` that was used for compilation.",
           "readOnly": true,
           "type": "string"
+        },
+        "gcsRepositorySnapshotMetadata": {
+          "$ref": "GcsRepositorySnapshotMetadata",
+          "description": "Output only. Metadata about the repository snapshot used by scheduled notebooks.",
+          "readOnly": true
         },
         "gitCommitish": {
           "description": "Immutable. Git commit/tag/branch name at which the repository should be compiled. Must exist in the remote repository. Examples: - a commit SHA: `12ade345` - a tag: `tag1` - a branch name: `branch1`",
@@ -4133,6 +4142,40 @@
       },
       "type": "object"
     },
+    "GcsRepositorySnapshotDestination": {
+      "description": "Configures the destination for a repository snapshot.",
+      "id": "GcsRepositorySnapshotDestination",
+      "properties": {
+        "repositorySnapshotUri": {
+          "description": "Optional. The Google Cloud Storage destination to upload the repository snapshot to. Format: `gs://bucket-name/path/`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GcsRepositorySnapshotMetadata": {
+      "description": "Metadata about a repository snapshot stored in Google Cloud Storage.",
+      "id": "GcsRepositorySnapshotMetadata",
+      "properties": {
+        "crc32cChecksum": {
+          "description": "Output only. The crc32c checksum of the repository snapshot, big-endian base64 encoded.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "generation": {
+          "description": "Output only. The generation number of the Cloud Storage object. See https://cloud.google.com/storage/docs/metadata#generation-number.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "repositorySnapshotUri": {
+          "description": "Output only. The Google Cloud Storage URI of the repository snapshot.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GitRemoteSettings": {
       "description": "Controls Git remote configuration for a repository.",
       "id": "GitRemoteSettings",
@@ -4252,7 +4295,12 @@
     "InstallNpmPackagesRequest": {
       "description": "`InstallNpmPackages` request message.",
       "id": "InstallNpmPackagesRequest",
-      "properties": {},
+      "properties": {
+        "pipelineConfig": {
+          "$ref": "PipelineConfig",
+          "description": "Optional. The pipeline options which defines the pipeline type and path within the Git repository."
+        }
+      },
       "type": "object"
     },
     "InstallNpmPackagesResponse": {
@@ -4698,6 +4746,11 @@
           "readOnly": true,
           "type": "string"
         },
+        "filePath": {
+          "description": "Output only. The path to the notebook file in the repository.",
+          "readOnly": true,
+          "type": "string"
+        },
         "jobId": {
           "description": "Output only. The ID of the Gemini Enterprise Agent Platform job that executed the notebook in contents and also the ID used for the outputs created in Google Cloud Storage buckets. Only set once the job has started to run.",
           "readOnly": true,
@@ -4717,6 +4770,10 @@
         "gcsOutputBucket": {
           "description": "Optional. The Google Cloud Storage location to upload the result to. Format: `gs://bucket-name`.",
           "type": "string"
+        },
+        "gcsRepositorySnapshotDestination": {
+          "$ref": "GcsRepositorySnapshotDestination",
+          "description": "Optional. The Google Cloud Storage destination to upload the snapshot to. For empty URI it defaults to the provided gcs_output_bucket. Format: `gs://bucket-name/path/`."
         }
       },
       "type": "object"
@@ -4836,6 +4893,33 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "PipelineConfig": {
+      "description": "Defines the pipeline type and path within the Git repository.",
+      "id": "PipelineConfig",
+      "properties": {
+        "path": {
+          "description": "Required. The relative path within the Git repository where the pipeline is defined. For example, for a Dataform pipeline, it is a path to the folder where `workflow_settings.yaml` or `dataform.json` is located.",
+          "type": "string"
+        },
+        "pipelineType": {
+          "description": "Required. The type of the pipeline.",
+          "enum": [
+            "PIPELINE_TYPE_UNSPECIFIED",
+            "DATAFORM",
+            "SQL",
+            "NOTEBOOK"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "Regular Dataform pipeline.",
+            "SQL single file asset.",
+            "Notebook single file asset."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -5278,7 +5362,7 @@
           "type": "string"
         },
         "timeZone": {
-          "description": "Optional. Specifies the time zone to be used when interpreting cron_schedule. Must be a time zone name from the time zone database (https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). If left unspecified, the default is UTC.",
+          "description": "Optional. Specifies the time zone to be used when interpreting cron_schedule. Must be a time zone name from the [time zone database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). If left unspecified, the default is `UTC`.",
           "type": "string"
         }
       },
@@ -5783,7 +5867,7 @@
           "type": "string"
         },
         "timeZone": {
-          "description": "Optional. Specifies the time zone to be used when interpreting cron_schedule. Must be a time zone name from the time zone database (https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). If left unspecified, the default is UTC.",
+          "description": "Optional. Specifies the time zone to be used when interpreting cron_schedule. Must be a time zone name from the [time zone database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). If left unspecified, the default is `UTC`.",
           "type": "string"
         },
         "updateTime": {
@@ -5826,6 +5910,11 @@
           "description": "Output only. The workflow invocation's name.",
           "readOnly": true,
           "type": "string"
+        },
+        "pipelineConfig": {
+          "$ref": "PipelineConfig",
+          "description": "Output only. The pipeline options which defines the pipeline type and path within the Git repository.",
+          "readOnly": true
         },
         "privateResourceMetadata": {
           "$ref": "PrivateResourceMetadata",

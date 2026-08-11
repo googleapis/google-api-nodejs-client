@@ -612,7 +612,7 @@
       }
     }
   },
-  "revision": "20260726",
+  "revision": "20260804",
   "rootUrl": "https://mybusinessbusinessinformation.googleapis.com/",
   "schemas": {
     "AdWordsLocationExtensions": {
@@ -1754,7 +1754,7 @@
         },
         "closeTime": {
           "$ref": "TimeOfDay",
-          "description": "Required. Valid values are 00:00-24:00, where 24:00 represents midnight at the end of the specified day field."
+          "description": "Required. Valid values are 00:00-24:00, where 24:00 represents midnight at the end of the specified day field. Note: In Proto3 JSON mapping, default zero values (00:00) are omitted, producing `{}` for close_time."
         },
         "openDay": {
           "description": "Required. Indicates the day of the week this period starts on.",
@@ -1782,7 +1782,7 @@
         },
         "openTime": {
           "$ref": "TimeOfDay",
-          "description": "Required. Valid values are 00:00-24:00, where 24:00 represents midnight at the end of the specified day field."
+          "description": "Required. Valid values are 00:00-24:00, where 24:00 represents midnight at the end of the specified day field. Note: In Proto3 JSON mapping, default zero values (00:00) are omitted, producing `{}` for open_time."
         }
       },
       "type": "object"

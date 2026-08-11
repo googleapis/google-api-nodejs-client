@@ -748,7 +748,7 @@
       }
     }
   },
-  "revision": "20260609",
+  "revision": "20260726",
   "rootUrl": "https://looker.googleapis.com/",
   "schemas": {
     "AdminSettings": {
@@ -1391,14 +1391,14 @@
       "id": "ListInstancesResponse",
       "properties": {
         "instances": {
-          "description": "The list of instances matching the request filters, up to the requested ListInstancesRequest.pageSize.",
+          "description": "The list of instances matching the request filters, up to the requested `pageSize`.",
           "items": {
             "$ref": "Instance"
           },
           "type": "array"
         },
         "nextPageToken": {
-          "description": "If provided, a page token that can look up the next ListInstancesRequest.pageSize results. If empty, the results list is exhausted.",
+          "description": "If provided, a page token that can look up the next `pageSize` results. If empty, the results list is exhausted.",
           "type": "string"
         },
         "unreachable": {

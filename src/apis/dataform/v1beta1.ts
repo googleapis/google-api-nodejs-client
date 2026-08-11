@@ -292,6 +292,10 @@ export namespace dataform_v1beta1 {
      */
     defaultSchema?: string | null;
     /**
+     * Optional. The pipeline options which defines the pipeline type and path within the Git repository.
+     */
+    pipelineConfig?: Schema$PipelineConfig;
+    /**
      * Optional. The suffix that should be appended to all schema (BigQuery dataset ID) names.
      */
     schemaSuffix?: string | null;
@@ -460,6 +464,10 @@ export namespace dataform_v1beta1 {
      * Output only. The version of `@dataform/core` that was used for compilation.
      */
     dataformCoreVersion?: string | null;
+    /**
+     * Output only. Metadata about the repository snapshot used by scheduled notebooks.
+     */
+    gcsRepositorySnapshotMetadata?: Schema$GcsRepositorySnapshotMetadata;
     /**
      * Immutable. Git commit/tag/branch name at which the repository should be compiled. Must exist in the remote repository. Examples: - a commit SHA: `12ade345` - a tag: `tag1` - a branch name: `branch1`
      */
@@ -858,6 +866,32 @@ export namespace dataform_v1beta1 {
     repository?: Schema$Repository;
   }
   /**
+   * Configures the destination for a repository snapshot.
+   */
+  export interface Schema$GcsRepositorySnapshotDestination {
+    /**
+     * Optional. The Google Cloud Storage destination to upload the repository snapshot to. Format: `gs://bucket-name/path/`.
+     */
+    repositorySnapshotUri?: string | null;
+  }
+  /**
+   * Metadata about a repository snapshot stored in Google Cloud Storage.
+   */
+  export interface Schema$GcsRepositorySnapshotMetadata {
+    /**
+     * Output only. The crc32c checksum of the repository snapshot, big-endian base64 encoded.
+     */
+    crc32cChecksum?: string | null;
+    /**
+     * Output only. The generation number of the Cloud Storage object. See https://cloud.google.com/storage/docs/metadata#generation-number.
+     */
+    generation?: string | null;
+    /**
+     * Output only. The Google Cloud Storage URI of the repository snapshot.
+     */
+    repositorySnapshotUri?: string | null;
+  }
+  /**
    * Controls Git remote configuration for a repository.
    */
   export interface Schema$GitRemoteSettings {
@@ -944,7 +978,12 @@ export namespace dataform_v1beta1 {
   /**
    * `InstallNpmPackages` request message.
    */
-  export interface Schema$InstallNpmPackagesRequest {}
+  export interface Schema$InstallNpmPackagesRequest {
+    /**
+     * Optional. The pipeline options which defines the pipeline type and path within the Git repository.
+     */
+    pipelineConfig?: Schema$PipelineConfig;
+  }
   /**
    * `InstallNpmPackages` response message.
    */
@@ -1268,6 +1307,10 @@ export namespace dataform_v1beta1 {
      */
     contents?: string | null;
     /**
+     * Output only. The path to the notebook file in the repository.
+     */
+    filePath?: string | null;
+    /**
      * Output only. The ID of the Gemini Enterprise Agent Platform job that executed the notebook in contents and also the ID used for the outputs created in Google Cloud Storage buckets. Only set once the job has started to run.
      */
     jobId?: string | null;
@@ -1284,6 +1327,10 @@ export namespace dataform_v1beta1 {
      * Optional. The Google Cloud Storage location to upload the result to. Format: `gs://bucket-name`.
      */
     gcsOutputBucket?: string | null;
+    /**
+     * Optional. The Google Cloud Storage destination to upload the snapshot to. For empty URI it defaults to the provided gcs_output_bucket. Format: `gs://bucket-name/path/`.
+     */
+    gcsRepositorySnapshotDestination?: Schema$GcsRepositorySnapshotDestination;
   }
   /**
    * This resource represents a long-running operation that is the result of a network API call.
@@ -1371,6 +1418,19 @@ export namespace dataform_v1beta1 {
      * Arbitrary, user-defined tags on this action.
      */
     tags?: string[] | null;
+  }
+  /**
+   * Defines the pipeline type and path within the Git repository.
+   */
+  export interface Schema$PipelineConfig {
+    /**
+     * Required. The relative path within the Git repository where the pipeline is defined. For example, for a Dataform pipeline, it is a path to the folder where `workflow_settings.yaml` or `dataform.json` is located.
+     */
+    path?: string | null;
+    /**
+     * Required. The type of the pipeline.
+     */
+    pipelineType?: string | null;
   }
   /**
    * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** ``` { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} ``` **YAML example:** ``` bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 ``` For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
@@ -1685,7 +1745,7 @@ export namespace dataform_v1beta1 {
      */
     releaseCompilationResult?: string | null;
     /**
-     * Optional. Specifies the time zone to be used when interpreting cron_schedule. Must be a time zone name from the time zone database (https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). If left unspecified, the default is UTC.
+     * Optional. Specifies the time zone to be used when interpreting cron_schedule. Must be a time zone name from the [time zone database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). If left unspecified, the default is `UTC`.
      */
     timeZone?: string | null;
   }
@@ -2101,7 +2161,7 @@ export namespace dataform_v1beta1 {
      */
     releaseConfig?: string | null;
     /**
-     * Optional. Specifies the time zone to be used when interpreting cron_schedule. Must be a time zone name from the time zone database (https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). If left unspecified, the default is UTC.
+     * Optional. Specifies the time zone to be used when interpreting cron_schedule. Must be a time zone name from the [time zone database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). If left unspecified, the default is `UTC`.
      */
     timeZone?: string | null;
     /**
@@ -2109,7 +2169,7 @@ export namespace dataform_v1beta1 {
      */
     updateTime?: string | null;
     /**
-     * Optional. Optional trigger configuration for this workflow. If present, the workflow will be triggered based on the specified triggers.
+     * Optional. Trigger configuration for this workflow. If present, the workflow will be triggered based on the specified triggers.
      */
     workflowTriggerConfig?: Schema$WorkflowTriggerConfig;
   }
@@ -2141,6 +2201,10 @@ export namespace dataform_v1beta1 {
      * Output only. The workflow invocation's name.
      */
     name?: string | null;
+    /**
+     * Output only. The pipeline options which defines the pipeline type and path within the Git repository.
+     */
+    pipelineConfig?: Schema$PipelineConfig;
     /**
      * Output only. Metadata indicating whether this resource is user-scoped. `WorkflowInvocation` resource is `user_scoped` only if it is sourced from a compilation result and the compilation result is user-scoped.
      */
@@ -2225,7 +2289,7 @@ export namespace dataform_v1beta1 {
      */
     maxWaitDuration?: string | null;
     /**
-     * Optional. Minimum duration between two consecutive executions. If not specified, the workflow will be executed every time trigger conditions are met and no ongoing workflow execution.
+     * Optional. Minimum duration between two consecutive executions. If not specified, the workflow will be executed every time trigger conditions are met and there is no ongoing workflow execution.
      */
     minExecutionDuration?: string | null;
     /**
@@ -8122,6 +8186,7 @@ export namespace dataform_v1beta1 {
      *         //   "createTime": "my_createTime",
      *         //   "dataEncryptionState": {},
      *         //   "dataformCoreVersion": "my_dataformCoreVersion",
+     *         //   "gcsRepositorySnapshotMetadata": {},
      *         //   "gitCommitish": "my_gitCommitish",
      *         //   "internalMetadata": "my_internalMetadata",
      *         //   "name": "my_name",
@@ -8141,6 +8206,7 @@ export namespace dataform_v1beta1 {
      *   //   "createTime": "my_createTime",
      *   //   "dataEncryptionState": {},
      *   //   "dataformCoreVersion": "my_dataformCoreVersion",
+     *   //   "gcsRepositorySnapshotMetadata": {},
      *   //   "gitCommitish": "my_gitCommitish",
      *   //   "internalMetadata": "my_internalMetadata",
      *   //   "name": "my_name",
@@ -8294,6 +8360,7 @@ export namespace dataform_v1beta1 {
      *   //   "createTime": "my_createTime",
      *   //   "dataEncryptionState": {},
      *   //   "dataformCoreVersion": "my_dataformCoreVersion",
+     *   //   "gcsRepositorySnapshotMetadata": {},
      *   //   "gitCommitish": "my_gitCommitish",
      *   //   "internalMetadata": "my_internalMetadata",
      *   //   "name": "my_name",
@@ -10663,6 +10730,7 @@ export namespace dataform_v1beta1 {
      *         //   "invocationConfig": {},
      *         //   "invocationTiming": {},
      *         //   "name": "my_name",
+     *         //   "pipelineConfig": {},
      *         //   "privateResourceMetadata": {},
      *         //   "resolvedCompilationResult": "my_resolvedCompilationResult",
      *         //   "state": "my_state",
@@ -10680,6 +10748,7 @@ export namespace dataform_v1beta1 {
      *   //   "invocationConfig": {},
      *   //   "invocationTiming": {},
      *   //   "name": "my_name",
+     *   //   "pipelineConfig": {},
      *   //   "privateResourceMetadata": {},
      *   //   "resolvedCompilationResult": "my_resolvedCompilationResult",
      *   //   "state": "my_state",
@@ -10967,6 +11036,7 @@ export namespace dataform_v1beta1 {
      *   //   "invocationConfig": {},
      *   //   "invocationTiming": {},
      *   //   "name": "my_name",
+     *   //   "pipelineConfig": {},
      *   //   "privateResourceMetadata": {},
      *   //   "resolvedCompilationResult": "my_resolvedCompilationResult",
      *   //   "state": "my_state",
@@ -12692,7 +12762,9 @@ export namespace dataform_v1beta1 {
      *         // Request body metadata
      *         requestBody: {
      *           // request body parameters
-     *           // {}
+     *           // {
+     *           //   "pipelineConfig": {}
+     *           // }
      *         },
      *       },
      *     );

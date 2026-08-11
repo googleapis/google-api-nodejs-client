@@ -206,7 +206,7 @@
       }
     }
   },
-  "revision": "20260726",
+  "revision": "20260802",
   "rootUrl": "https://firebaseml.googleapis.com/",
   "schemas": {
     "Date": {
@@ -357,11 +357,20 @@
         },
         "languageAuto": {
           "$ref": "GoogleCloudAiplatformV1beta1AudioTranscriptionConfigLanguageAuto",
-          "description": "Optional. The model will detect the language automatically."
+          "deprecated": true,
+          "description": "Optional. Deprecated: Use top-level `language_codes` instead. The model will detect the language automatically."
+        },
+        "languageCodes": {
+          "description": "Optional. BCP-47 language codes providing hints about the languages present in the audio. If omitted or empty, defaults to automatic language detection.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "languageHints": {
           "$ref": "GoogleCloudAiplatformV1beta1AudioTranscriptionConfigLanguageHints",
-          "description": "Optional. Specifies one or more languages in the audio."
+          "deprecated": true,
+          "description": "Optional. Deprecated: Use top-level `language_codes` instead. Specifies one or more languages in the audio."
         },
         "wordTimestamp": {
           "description": "Optional. Configures word-level timestamp generation.",
@@ -371,17 +380,20 @@
       "type": "object"
     },
     "GoogleCloudAiplatformV1beta1AudioTranscriptionConfigLanguageAuto": {
-      "description": "Indicates the language of the audio should be automatically detected.",
+      "deprecated": true,
+      "description": "Deprecated: Use top-level `language_codes` instead. Indicates the language of the audio should be automatically detected.",
       "id": "GoogleCloudAiplatformV1beta1AudioTranscriptionConfigLanguageAuto",
       "properties": {},
       "type": "object"
     },
     "GoogleCloudAiplatformV1beta1AudioTranscriptionConfigLanguageHints": {
-      "description": "Provides hints to the model about possible languages present in the audio.",
+      "deprecated": true,
+      "description": "Deprecated: Use top-level `language_codes` instead. Provides hints to the model about possible languages present in the audio.",
       "id": "GoogleCloudAiplatformV1beta1AudioTranscriptionConfigLanguageHints",
       "properties": {
         "languageCodes": {
-          "description": "Required. BCP-47 language codes. At least one must be specified.",
+          "deprecated": true,
+          "description": "Required. Deprecated: Use top-level `language_codes` instead. BCP-47 language codes. At least one must be specified.",
           "items": {
             "type": "string"
           },
@@ -1444,6 +1456,7 @@
             "ON_DEMAND",
             "ON_DEMAND_PRIORITY",
             "ON_DEMAND_FLEX",
+            "ON_DEMAND_OFFPEAK",
             "PROVISIONED_THROUGHPUT"
           ],
           "enumDescriptions": [
@@ -1451,6 +1464,7 @@
             "The request was processed using Pay-As-You-Go quota.",
             "Type for Priority Pay-As-You-Go traffic.",
             "Type for Flex traffic.",
+            "Type for Off-Peak Pay-As-You-Go traffic.",
             "Type for Provisioned Throughput traffic."
           ],
           "readOnly": true,
@@ -3600,6 +3614,10 @@
         },
         "gcsUri": {
           "description": "Optional. The Google Cloud Storage URI to store the video output. Required for Vertex if delivery is URI.",
+          "type": "string"
+        },
+        "resolution": {
+          "description": "Optional. The video output resolution. Supported values: \"360p\", \"720p\", \"1080p\", \"4k\".",
           "type": "string"
         }
       },

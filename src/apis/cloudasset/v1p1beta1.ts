@@ -738,7 +738,7 @@ export namespace cloudasset_v1p1beta1 {
    */
   export interface Schema$GoogleIdentityAccesscontextmanagerV1Modifier {
     /**
-     * Adds additional HTTP request headers.
+     * Adds an additional HTTP request header.
      */
     addRequestHeader?: Schema$GoogleIdentityAccesscontextmanagerV1AddRequestHeader;
   }
@@ -777,7 +777,7 @@ export namespace cloudasset_v1p1beta1 {
      */
     modifiers?: Schema$GoogleIdentityAccesscontextmanagerV1Modifier[];
     /**
-     * URL pattern to allow. Only patterns of ".googleapis.com/x", "www.googleapis.com//x" and "*.appspot.com/x forms are supported, where should be alphanumerical name.
+     * URL pattern to allow. Only patterns of ".googleapis.com/x", "www.googleapis.com//x" and "*.appspot.com/x forms are supported, where should be an alphanumeric name.
      */
     pattern?: string | null;
     /**

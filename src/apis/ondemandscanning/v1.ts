@@ -133,9 +133,13 @@ export namespace ondemandscanning_v1 {
      */
     findings?: Schema$Finding[];
     /**
-     * Maximum severity found among findings.
+     * Maximum severity found among findings. Per scanner verdict details.
      */
     maxSeverity?: string | null;
+    /**
+     * Per scanner verdict.
+     */
+    perScannerVerdict?: Schema$PerScannerVerdict;
     /**
      * Name of the skill that produced this analysis.
      */
@@ -1144,6 +1148,45 @@ export namespace ondemandscanning_v1 {
     name?: string | null;
     url?: string | null;
   }
+  /**
+   * Result of Malicious Content LLM scan.
+   */
+  export interface Schema$MaliciousContentLLMResult {
+    /**
+     * Tracks max severity found.
+     */
+    maxSeverity?: string | null;
+    /**
+     * Status of the scan.
+     */
+    scanStatus?: string | null;
+  }
+  /**
+   * Result of Malicious Content Static scan.
+   */
+  export interface Schema$MaliciousContentStaticResult {
+    /**
+     * Tracks max severity found.
+     */
+    maxSeverity?: string | null;
+    /**
+     * Status of the scan.
+     */
+    scanStatus?: string | null;
+  }
+  /**
+   * Result of Malware scan.
+   */
+  export interface Schema$MalwareScanResult {
+    /**
+     * Status of the scan.
+     */
+    scanStatus?: string | null;
+    /**
+     * Verdict of the scan.
+     */
+    verdict?: string | null;
+  }
   export interface Schema$Material {
     digest?: {[key: string]: string} | null;
     uri?: string | null;
@@ -1465,6 +1508,24 @@ export namespace ondemandscanning_v1 {
     licenses?: string[] | null;
     name?: string | null;
     version?: string | null;
+  }
+  export interface Schema$PerScannerVerdict {
+    /**
+     * Malicious Content LLM scan result.
+     */
+    maliciousContentLlmResult?: Schema$MaliciousContentLLMResult;
+    /**
+     * Malicious Content Static scan result.
+     */
+    maliciousContentStaticResult?: Schema$MaliciousContentStaticResult;
+    /**
+     * Malware scan result.
+     */
+    malwareScan?: Schema$MalwareScanResult;
+    /**
+     * Workspace Policy scan result.
+     */
+    workspacePolicy?: Schema$WorkspacePolicyResult;
   }
   /**
    * Selects a repo using a Google Cloud Platform project ID (e.g., winged-cargo-31) and a repo name within that project.
@@ -2079,6 +2140,19 @@ export namespace ondemandscanning_v1 {
      * The localized title of the update.
      */
     title?: string | null;
+  }
+  /**
+   * Result of Workspace Policy scan.
+   */
+  export interface Schema$WorkspacePolicyResult {
+    /**
+     * Status of the scan.
+     */
+    scanStatus?: string | null;
+    /**
+     * Verdict of the scan.
+     */
+    verdict?: string | null;
   }
 
   export class Resource$Projects {

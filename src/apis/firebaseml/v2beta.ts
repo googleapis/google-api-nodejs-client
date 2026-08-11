@@ -218,11 +218,15 @@ export namespace firebaseml_v2beta {
      */
     diarization?: boolean | null;
     /**
-     * Optional. The model will detect the language automatically.
+     * Optional. Deprecated: Use top-level `language_codes` instead. The model will detect the language automatically.
      */
     languageAuto?: Schema$GoogleCloudAiplatformV1beta1AudioTranscriptionConfigLanguageAuto;
     /**
-     * Optional. Specifies one or more languages in the audio.
+     * Optional. BCP-47 language codes providing hints about the languages present in the audio. If omitted or empty, defaults to automatic language detection.
+     */
+    languageCodes?: string[] | null;
+    /**
+     * Optional. Deprecated: Use top-level `language_codes` instead. Specifies one or more languages in the audio.
      */
     languageHints?: Schema$GoogleCloudAiplatformV1beta1AudioTranscriptionConfigLanguageHints;
     /**
@@ -231,15 +235,15 @@ export namespace firebaseml_v2beta {
     wordTimestamp?: boolean | null;
   }
   /**
-   * Indicates the language of the audio should be automatically detected.
+   * Deprecated: Use top-level `language_codes` instead. Indicates the language of the audio should be automatically detected.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1AudioTranscriptionConfigLanguageAuto {}
   /**
-   * Provides hints to the model about possible languages present in the audio.
+   * Deprecated: Use top-level `language_codes` instead. Provides hints to the model about possible languages present in the audio.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1AudioTranscriptionConfigLanguageHints {
     /**
-     * Required. BCP-47 language codes. At least one must be specified.
+     * Required. Deprecated: Use top-level `language_codes` instead. BCP-47 language codes. At least one must be specified.
      */
     languageCodes?: string[] | null;
   }
@@ -2313,6 +2317,10 @@ export namespace firebaseml_v2beta {
      * Optional. The Google Cloud Storage URI to store the video output. Required for Vertex if delivery is URI.
      */
     gcsUri?: string | null;
+    /**
+     * Optional. The video output resolution. Supported values: "360p", "720p", "1080p", "4k".
+     */
+    resolution?: string | null;
   }
   /**
    * Configuration for a voice.

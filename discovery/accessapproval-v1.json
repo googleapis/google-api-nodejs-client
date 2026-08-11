@@ -913,7 +913,7 @@
       }
     }
   },
-  "revision": "20260703",
+  "revision": "20260731",
   "rootUrl": "https://accessapproval.googleapis.com/",
   "schemas": {
     "AccessApprovalServiceAccount": {
@@ -1352,6 +1352,9 @@
             "PQ_SIGN_ML_DSA_44_EXTERNAL_MU",
             "PQ_SIGN_ML_DSA_65_EXTERNAL_MU",
             "PQ_SIGN_ML_DSA_87_EXTERNAL_MU",
+            "KEM_ECDH_P256",
+            "KEM_ECDH_P384",
+            "KEM_ECDH_P521",
             "AES_256_KWP"
           ],
           "enumDescriptions": [
@@ -1402,6 +1405,9 @@
             "The post-quantum Module-Lattice-Based Digital Signature Algorithm, at security level 1. Randomized version supporting externally-computed message representatives.",
             "The post-quantum Module-Lattice-Based Digital Signature Algorithm, at security level 3. Randomized version supporting externally-computed message representatives.",
             "The post-quantum Module-Lattice-Based Digital Signature Algorithm, at security level 5. Randomized version supporting externally-computed message representatives.",
+            "Key encapsulation: Elliptic Curve Diffie-Hellman with NIST P-256 key that returns shared secret.",
+            "Key encapsulation: Elliptic Curve Diffie-Hellman with NIST P-384 key that returns shared secret.",
+            "Key encapsulation: Elliptic Curve Diffie-Hellman with NIST P-521 key that returns shared secret.",
             "AES key wrap with zero padding algorithm (RFC 5649). Can only be used by keys with purpose AES_WRAPPING."
           ],
           "type": "string"

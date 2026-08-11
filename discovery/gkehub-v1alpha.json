@@ -2740,7 +2740,7 @@
       }
     }
   },
-  "revision": "20260719",
+  "revision": "20260731",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
     "AppDevExperienceFeatureSpec": {
@@ -7317,7 +7317,7 @@
       "type": "object"
     },
     "Rollout": {
-      "description": "Rollout contains the Rollout metadata and configuration. Next ID: 28",
+      "description": "Rollout contains the Rollout metadata and configuration. Next ID: 31",
       "id": "Rollout",
       "properties": {
         "completeTime": {

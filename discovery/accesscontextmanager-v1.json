@@ -1174,6 +1174,11 @@
                 "parent"
               ],
               "parameters": {
+                "filter": {
+                  "description": "Optional. The literal filter to apply to the results returned. See https://google.aip.dev/160 for more details. Accepts values: * principal:group_key * principal:service_account OR principal:service_account_project_number. If this field is empty or not one of the above, the default value is \"principal:group_key\".",
+                  "location": "query",
+                  "type": "string"
+                },
                 "pageSize": {
                   "description": "Optional. Maximum number of items to return. The server may return fewer items. If left blank, the server may return any number of items.",
                   "format": "int32",
@@ -1331,7 +1336,7 @@
       }
     }
   },
-  "revision": "20260722",
+  "revision": "20260730",
   "rootUrl": "https://accesscontextmanager.googleapis.com/",
   "schemas": {
     "AccessContextManagerOperationMetadata": {
@@ -2647,12 +2652,12 @@
           "type": "string"
         },
         "sessionLength": {
-          "description": "Optional. The session length. Setting this field to zero is equal to disabling session. Also can set infinite session by flipping the enabled bit to false below. If use_oidc_max_age is true, for OIDC apps, the session length will be the minimum of this field and OIDC max_age param.",
+          "description": "Optional. The session length. Setting this field to zero is equal to disabling session. Also can set infinite session by flipping the enabled bit to false below. If use_oidc_max_age is true, for OIDC apps, the session length will be the minimum of this field and OIDC max_age param. If this field is set to zero, session_length_enabled must be set to false or left unset.",
           "format": "google-duration",
           "type": "string"
         },
         "sessionLengthEnabled": {
-          "description": "Optional. This field enables or disables Google Cloud session length. When false, all fields set above will be disregarded and the session length is basically infinite.",
+          "description": "Optional. This field enables or disables Google Cloud session length. When false, all fields set above will be disregarded and the session length is basically infinite. If session_length is set to zero, this field must be false.",
           "type": "boolean"
         },
         "sessionReauthMethod": {
