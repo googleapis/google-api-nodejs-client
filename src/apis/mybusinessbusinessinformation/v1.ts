@@ -972,7 +972,7 @@ export namespace mybusinessbusinessinformation_v1 {
      */
     closeDay?: string | null;
     /**
-     * Required. Valid values are 00:00-24:00, where 24:00 represents midnight at the end of the specified day field.
+     * Required. Valid values are 00:00-24:00, where 24:00 represents midnight at the end of the specified day field. Note: In Proto3 JSON mapping, default zero values (00:00) are omitted, producing `{\}` for close_time.
      */
     closeTime?: Schema$TimeOfDay;
     /**
@@ -980,7 +980,7 @@ export namespace mybusinessbusinessinformation_v1 {
      */
     openDay?: string | null;
     /**
-     * Required. Valid values are 00:00-24:00, where 24:00 represents midnight at the end of the specified day field.
+     * Required. Valid values are 00:00-24:00, where 24:00 represents midnight at the end of the specified day field. Note: In Proto3 JSON mapping, default zero values (00:00) are omitted, producing `{\}` for open_time.
      */
     openTime?: Schema$TimeOfDay;
   }
