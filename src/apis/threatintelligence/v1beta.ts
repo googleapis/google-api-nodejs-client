@@ -372,6 +372,10 @@ export namespace threatintelligence_v1beta {
      */
     customerProfile?: Schema$CustomerProfileConfig;
     /**
+     * Custom Threat Scenario detail config.
+     */
+    customThreatScenario?: Schema$CustomThreatScenarioConfig;
+    /**
      * Output only. Name of the detail type. Will be set by the server during creation to the name of the field that is set in the detail union.
      */
     detailType?: string | null;
@@ -680,6 +684,15 @@ export namespace threatintelligence_v1beta {
      * Required. The domain name of the web presence.
      */
     domain?: string | null;
+  }
+  /**
+   * CustomThreatScenarioConfig represents a user-defined threat scenario configuration.
+   */
+  export interface Schema$CustomThreatScenarioConfig {
+    /**
+     * Required. The condition driving the scenario, stored as a stringified JSON. This is used to query/filter documents.
+     */
+    documentCondition?: string | null;
   }
   /**
    * Captures the specific details of Data Leak alert.
