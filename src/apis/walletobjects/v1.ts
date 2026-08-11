@@ -2278,6 +2278,15 @@ export namespace walletobjects_v1 {
      */
     value?: string | null;
   }
+  /**
+   * A JSON representation of a pass.
+   */
+  export interface Schema$JsonResource {
+    /**
+     * Required. A JSON string representing the unencoded JWT payload for a pass of the format described at https://developers.google.com/wallet/reference/rest/v1/Jwt. This can be set to either the entire JSON representation described at this link or just the contents of the payload field holding the relevant classes and objects.
+     */
+    json?: string | null;
+  }
   export interface Schema$JwtInsertResponse {
     /**
      * Data that corresponds to the ids of the provided classes and objects in the JWT. resources will only include the non-empty arrays (i.e. if the JWT only includes eventTicketObjects, then that is the only field that will be present in resources).
@@ -2297,6 +2306,23 @@ export namespace walletobjects_v1 {
      */
     jwt?: string | null;
   }
+  /**
+   * Request to validate the JWT or JSON representation of a pass.
+   */
+  export interface Schema$JwtValidateRequest {
+    /**
+     * Optional. A JSON representation of a pass to be validated. Either this or jwt_resource should be set. Requests setting both or neither will be rejected.
+     */
+    jsonResource?: Schema$JsonResource;
+    /**
+     * Optional. A JWT representation of a pass to be validated. Either this or json_resource should be set. Requests setting both or neither will be rejected.
+     */
+    jwtResource?: Schema$JwtResource;
+  }
+  /**
+   * Empty if the resource in the request is valid. Returns exception if invalid.
+   */
+  export interface Schema$JwtValidateResponse {}
   /**
    * A pair of text strings to be displayed in the details view. Note we no longer display LabelValue/LabelValueRow as a table, instead a list of items.
    */
@@ -14848,6 +14874,147 @@ export namespace walletobjects_v1 {
         return createAPIRequest<Schema$JwtInsertResponse>(parameters);
       }
     }
+
+    /**
+     * Checks that the JWT or JSON string in the request represents a valid pass to be saved.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.jwt.validate({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "jsonResource": {},
+     *       //   "jwtResource": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    validate(
+      params: Params$Resource$Jwt$Validate,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    validate(
+      params?: Params$Resource$Jwt$Validate,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$JwtValidateResponse>>;
+    validate(
+      params: Params$Resource$Jwt$Validate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    validate(
+      params: Params$Resource$Jwt$Validate,
+      options: MethodOptions | BodyResponseCallback<Schema$JwtValidateResponse>,
+      callback: BodyResponseCallback<Schema$JwtValidateResponse>
+    ): void;
+    validate(
+      params: Params$Resource$Jwt$Validate,
+      callback: BodyResponseCallback<Schema$JwtValidateResponse>
+    ): void;
+    validate(callback: BodyResponseCallback<Schema$JwtValidateResponse>): void;
+    validate(
+      paramsOrCallback?:
+        | Params$Resource$Jwt$Validate
+        | BodyResponseCallback<Schema$JwtValidateResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$JwtValidateResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$JwtValidateResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$JwtValidateResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Jwt$Validate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Jwt$Validate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://walletobjects.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/walletobjects/v1/jwt/validate').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$JwtValidateResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$JwtValidateResponse>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Jwt$Insert extends StandardParameters {
@@ -14855,6 +15022,12 @@ export namespace walletobjects_v1 {
      * Request body metadata
      */
     requestBody?: Schema$JwtResource;
+  }
+  export interface Params$Resource$Jwt$Validate extends StandardParameters {
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$JwtValidateRequest;
   }
 
   export class Resource$Loyaltyclass {
