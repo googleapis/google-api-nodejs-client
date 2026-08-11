@@ -1034,7 +1034,7 @@
       }
     }
   },
-  "revision": "20260406",
+  "revision": "20260727",
   "rootUrl": "https://servicenetworking.googleapis.com/",
   "schemas": {
     "AddDnsRecordSetMetadata": {
@@ -3190,12 +3190,28 @@
       "description": "Bind API methods to metrics. Binding a method to a metric causes that metric's configured quota behaviors to apply to the method call.",
       "id": "MetricRule",
       "properties": {
+        "agenticMetricCosts": {
+          "additionalProperties": {
+            "format": "int64",
+            "type": "string"
+          },
+          "description": "Optional. Metrics to update when the selected methods are called, and the associated cost applied to each metric, iff the source of the call is an agent. The key of the map is the metric name, and the values are the amount increased for the metric against which the quota limits are defined. The value must not be negative.",
+          "type": "object"
+        },
         "metricCosts": {
           "additionalProperties": {
             "format": "int64",
             "type": "string"
           },
           "description": "Metrics to update when the selected methods are called, and the associated cost applied to each metric. The key of the map is the metric name, and the values are the amount increased for the metric against which the quota limits are defined. The value must not be negative.",
+          "type": "object"
+        },
+        "nonagenticMetricCosts": {
+          "additionalProperties": {
+            "format": "int64",
+            "type": "string"
+          },
+          "description": "Optional. Metrics to update when the selected methods are called, and the associated cost applied to each metric, iff the source of the call is not an agent. The key of the map is the metric name, and the values are the amount increased for the metric against which the quota limits are defined. The value must not be negative.",
           "type": "object"
         },
         "selector": {
@@ -3623,6 +3639,20 @@
         },
         "name": {
           "description": "Name of the quota limit. The name must be provided, and it must be unique within the service. The name can only include alphanumeric characters as well as '-'. The maximum length of the limit name is 64 characters.",
+          "type": "string"
+        },
+        "trafficSource": {
+          "description": "Optional. This is only informational, the logic to allocate the quota to the correct metric (such as in `metric_rules`) should identify which quota metrics to allocate to.",
+          "enum": [
+            "TRAFFIC_SOURCE_UNSPECIFIED",
+            "TRAFFIC_SOURCE_NONAGENTIC",
+            "TRAFFIC_SOURCE_AGENTIC"
+          ],
+          "enumDescriptions": [
+            "This quota limit applies to all traffic. This is the default value.",
+            "This quota limit applies to traffic not recognized as agentic.",
+            "This quota limit applies to only agentic traffic."
+          ],
           "type": "string"
         },
         "unit": {
