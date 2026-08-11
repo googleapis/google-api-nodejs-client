@@ -8038,7 +8038,7 @@
       }
     }
   },
-  "revision": "20260713",
+  "revision": "20260804",
   "rootUrl": "https://dataplex.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -8260,6 +8260,10 @@
       "description": "Request message for ApproveChangeRequest.",
       "id": "GoogleCloudDataplexV1ApproveChangeRequestRequest",
       "properties": {
+        "comment": {
+          "description": "Optional. The comment or reason for approving the ChangeRequest. Maximum length is 1024 characters.",
+          "type": "string"
+        },
         "etag": {
           "description": "Optional. The etag of the ChangeRequest.",
           "type": "string"
@@ -9110,6 +9114,11 @@
         },
         "resource": {
           "description": "Output only. The full resource name of the target resource to be modified. Example: //dataplex.googleapis.com/projects/my-project/locations/us-central1/entryGroups/my-group/entries/my-entry",
+          "readOnly": true,
+          "type": "string"
+        },
+        "reviewerComment": {
+          "description": "Output only. The comment provided by the reviewer when approving or rejecting the ChangeRequest. Maximum length is 1024 characters.",
           "readOnly": true,
           "type": "string"
         },
@@ -12910,6 +12919,37 @@
         },
         "resource": {
           "description": "Name of the resource.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1EntryLinkTypeEvent": {
+      "description": "Payload associated with EntryLinkType related log events.",
+      "id": "GoogleCloudDataplexV1EntryLinkTypeEvent",
+      "properties": {
+        "entryLinkTypeId": {
+          "description": "Name of the resource.",
+          "type": "string"
+        },
+        "eventType": {
+          "description": "The type of the event.",
+          "enum": [
+            "EVENT_TYPE_UNSPECIFIED",
+            "ENTRY_LINK_TYPE_CREATE",
+            "ENTRY_LINK_TYPE_UPDATE",
+            "ENTRY_LINK_TYPE_DELETE"
+          ],
+          "enumDescriptions": [
+            "An unspecified event type.",
+            "EntryLinkType create event.",
+            "EntryLinkType update event.",
+            "EntryLinkType delete event."
+          ],
+          "type": "string"
+        },
+        "message": {
+          "description": "The log message.",
           "type": "string"
         }
       },
