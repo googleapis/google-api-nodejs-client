@@ -7823,7 +7823,7 @@
       }
     }
   },
-  "revision": "20260720",
+  "revision": "20260805",
   "rootUrl": "https://displayvideo.googleapis.com/",
   "schemas": {
     "ActivateManualTriggerRequest": {
@@ -11187,16 +11187,16 @@
           "type": "boolean"
         },
         "syntheticContentAttestationStatus": {
-          "description": "Optional. Whether the creative contains synthetic content or was created using AI.",
+          "description": "Optional. Whether to add a label to the creative as created or edited using AI when served in regions with local AI labeling regulations.",
           "enum": [
             "SYNTHETIC_CONTENT_ATTESTATION_STATUS_UNSPECIFIED",
             "NOT_SYNTHETIC",
             "IS_SYNTHETIC"
           ],
           "enumDescriptions": [
-            "Attestation status is unspecified.",
-            "Not synthetic content.",
-            "Is synthetic content."
+            "No attestation has been provided.",
+            "Attested as not created or edited using AI.",
+            "Attested as created or edited using AI."
           ],
           "type": "string"
         },
