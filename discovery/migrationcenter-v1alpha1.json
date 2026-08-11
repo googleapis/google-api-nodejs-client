@@ -1967,7 +1967,7 @@
                       "type": "string"
                     },
                     "reportConfigId": {
-                      "description": "Required. User specified ID for the report config. It will become the last component of the report config name. The ID must be unique within the project, must conform with RFC-1034, is restricted to lower-cased letters, and has a maximum length of 63 characters. The ID must match the regular expression: [a-z]([a-z0-9-]{0,61}[a-z0-9])?.",
+                      "description": "Required. User specified ID for the report config. It will become the last component of the report config name. The ID must be unique within the project, must conform with RFC-1034, is restricted to lower-cased letters, and has a maximum length of 63 characters. The ID must match the regular expression: `[a-z]([a-z0-9-]{0,61}[a-z0-9])?`.",
                       "location": "query",
                       "type": "string"
                     },
@@ -2115,7 +2115,7 @@
                           "type": "string"
                         },
                         "reportId": {
-                          "description": "Required. User specified id for the report. It will become the last component of the report name. The id must be unique within the project, must conform with RFC-1034, is restricted to lower-cased letters, and has a maximum length of 63 characters. The id must match the regular expression: [a-z]([a-z0-9-]{0,61}[a-z0-9])?.",
+                          "description": "Required. User specified id for the report. It will become the last component of the report name. The id must be unique within the project, must conform with RFC-1034, is restricted to lower-cased letters, and has a maximum length of 63 characters. The id must match the regular expression: `[a-z]([a-z0-9-]{0,61}[a-z0-9])?`.",
                           "location": "query",
                           "type": "string"
                         },
@@ -2722,7 +2722,7 @@
       }
     }
   },
-  "revision": "20260621",
+  "revision": "20260730",
   "rootUrl": "https://migrationcenter.googleapis.com/",
   "schemas": {
     "AddAssetsToGroupRequest": {
@@ -4440,7 +4440,7 @@
           "type": "string"
         },
         "smtEnabled": {
-          "description": "Output only. Whether simultaneous multithreading is enabled (see https://cloud.google.com/compute/docs/instances/set-threads-per-core).",
+          "description": "Output only. Whether simultaneous multithreading is enabled. See https://cloud.google.com/compute/docs/instances/set-threads-per-core.",
           "readOnly": true,
           "type": "boolean"
         },
