@@ -332,6 +332,8 @@
     "src/apis/firebasecrashlytics": {},
     "src/apis/databasecenter": {},
     "src/apis/cloudproductregistry": {},
-    "src/apis/agentidentity": {}
+    "src/apis/agentidentity": {},
+    "src/apis/androiddeveloperidstatus": {},
+    "src/apis/ftp": {}
   }
 }
