@@ -149,6 +149,27 @@ export namespace homegraph_v1 {
     deviceId?: string | null;
   }
   /**
+   * This cluster defines the camera event stream used by GHP for their Cloud-to-Cloud eventing flow
+   */
+  export interface Schema$CameraEventStreamTrait {}
+  /**
+   * Common camera event data.
+   */
+  export interface Schema$CommonEventDataStruct {
+    /**
+     * Contains media urls for the event
+     */
+    mediaUrls?: Schema$MediaUrlsStruct;
+    /**
+     * Camera event session id. Used for identifying a unique event session
+     */
+    sessionId?: string | null;
+    /**
+     * Id of the track this object belongs to
+     */
+    trackId?: string | null;
+  }
+  /**
    * Component of a provider device.
    */
   export interface Schema$Component {
@@ -236,6 +257,15 @@ export namespace homegraph_v1 {
     willReportState?: boolean | null;
   }
   /**
+   * Contains metadata about the cause of presence state change attributed to a device.
+   */
+  export interface Schema$DeviceBlameStruct {
+    /**
+     * Required. Specifies the device blame type.
+     */
+    blameType?: string | null;
+  }
+  /**
    * Device information.
    */
   export interface Schema$DeviceInfo {
@@ -316,6 +346,34 @@ export namespace homegraph_v1 {
      */
     events?: Schema$EventData[];
   }
+  export interface Schema$EveUtilityTrait {
+    /**
+     * Required. Output only. Accepted command list for this trait
+     */
+    acceptedCommandList?: string[] | null;
+    accumulatedControlPoint?: string | null;
+    airPressure?: number | null;
+    altitude?: number | null;
+    childLock?: boolean | null;
+    current?: number | null;
+    getConfig?: string | null;
+    holdPosition?: boolean | null;
+    lastEventTime?: string | null;
+    loggingControlPoint?: string | null;
+    loggingData?: string | null;
+    loggingMetadata?: string | null;
+    loggingTime?: string | null;
+    motionSensitivity?: number | null;
+    obstructionDetected?: boolean | null;
+    openCount?: string | null;
+    rloc16?: number | null;
+    setConfig?: string | null;
+    statusFault?: number | null;
+    voltage?: number | null;
+    watt?: number | null;
+    wattAccumulated?: number | null;
+    weatherTrend?: number | null;
+  }
   /**
    * Contains the set of events for an item.
    */
@@ -350,6 +408,56 @@ export namespace homegraph_v1 {
      * Required. Unique identifier for the device.
      */
     deviceId?: string | null;
+  }
+  export interface Schema$MediaUrlsStruct {
+    /**
+     * URL for a dash manifest for playback
+     */
+    dashManifestUrl?: string | null;
+    /**
+     * URL for a hls master playlist for playback
+     */
+    hlsMasterPlaylistUrl?: string | null;
+    /**
+     * URL for animated preview clip representing the event session
+     */
+    previewUrl?: string | null;
+    /**
+     * URL for thumbnail image representing the event session
+     */
+    thumbnailUrl?: string | null;
+  }
+  /**
+   * Represents a newly detected motion event.
+   */
+  export interface Schema$MotionEvent {
+    commonEventData?: Schema$CommonEventDataStruct;
+    /**
+     * Zones where events are detected in.
+     */
+    zones?: Schema$ZoneStruct[];
+    /**
+     * If set, zones is an empty list.
+     */
+    zonesIsEmpty?: boolean | null;
+  }
+  /**
+   * Provides attributes and events related to partner presence signals. See PartnerPresenceSignal trait:
+   */
+  export interface Schema$PartnerPresenceSignalTrait {}
+  /**
+   * Represents a newly detected person event.
+   */
+  export interface Schema$PersonEvent {
+    commonEventData?: Schema$CommonEventDataStruct;
+    /**
+     * Zones where events are detected in.
+     */
+    zones?: Schema$ZoneStruct[];
+    /**
+     * If set, zones is an empty list.
+     */
+    zonesIsEmpty?: boolean | null;
   }
   /**
    * Request type for the [`Query`](#google.home.graph.v1.HomeGraphApiService.Query) call.
@@ -519,6 +627,32 @@ export namespace homegraph_v1 {
     devices?: Schema$ReportStateAndNotificationDevice;
   }
   /**
+   * Sent when the structure presence state changes.
+   */
+  export interface Schema$StructurePresenceStateChangeEvent {
+    /**
+     * Required. Specifies the presence state.
+     */
+    presenceState?: string | null;
+    /**
+     * Optional. Specifies the presence state change reason.
+     */
+    reason?: Schema$StructurePresenceStateChangeReasonStruct;
+  }
+  /**
+   * Contains the metadata about the cause of the structure presence state change.
+   */
+  export interface Schema$StructurePresenceStateChangeReasonStruct {
+    /**
+     * Optional. Contains metadata about the cause of presence state change attributed to a device.
+     */
+    deviceBlame?: Schema$DeviceBlameStruct;
+    /**
+     * Optional. Contains metadata about the cause of presence state change attributed to a user.
+     */
+    userBlame?: Schema$UserBlameStruct;
+  }
+  /**
    * Request type for the [`Sync`](#google.home.graph.v1.HomeGraphApiService.Sync) call.
    */
   export interface Schema$SyncRequest {
@@ -558,6 +692,14 @@ export namespace homegraph_v1 {
     devices?: Schema$Device[];
   }
   /**
+   * This cluster provides fan control capabilities for thermostats.
+   */
+  export interface Schema$ThermostatFanControlTrait {
+    timerDuration?: string | null;
+    timerEnd?: string | null;
+    timerSpeed?: string | null;
+  }
+  /**
    * Contains the trait payload for a single trait.
    */
   export interface Schema$TraitData {
@@ -573,6 +715,29 @@ export namespace homegraph_v1 {
      * The Provider Home API trait payload.
      */
     trait?: {[key: string]: any} | null;
+  }
+  /**
+   * Contains metadata about the cause of presence state change attributed to a user.
+   */
+  export interface Schema$UserBlameStruct {
+    /**
+     * Required. Specifies the user blame type.
+     */
+    blameType?: string | null;
+    /**
+     * Required. Specifies the email of the user.
+     */
+    userEmail?: string | null;
+  }
+  export interface Schema$ZoneStruct {
+    /**
+     * Name of the zone.
+     */
+    label?: string | null;
+    /**
+     * Id of the zone
+     */
+    zoneId?: string | null;
   }
 
   export class Resource$Agentusers {
