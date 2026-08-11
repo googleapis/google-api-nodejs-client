@@ -498,7 +498,7 @@
       }
     }
   },
-  "revision": "20260617",
+  "revision": "20260729",
   "rootUrl": "https://hypercomputecluster.googleapis.com/",
   "schemas": {
     "BootDisk": {
@@ -1168,14 +1168,16 @@
             "STANDARD",
             "NEARLINE",
             "COLDLINE",
-            "ARCHIVE"
+            "ARCHIVE",
+            "RAPID"
           ],
           "enumDescriptions": [
             "Not set.",
             "Best for data that is frequently accessed.",
             "Low-cost storage for data that is accessed less frequently.",
             "Very low-cost storage for infrequently accessed data.",
-            "Lowest-cost storage for data archiving, online backup, and disaster recovery."
+            "Lowest-cost storage for data archiving, online backup, and disaster recovery.",
+            "Storage class optimized for I/O intensive workloads."
           ],
           "type": "string"
         }
