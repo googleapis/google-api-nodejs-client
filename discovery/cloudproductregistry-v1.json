@@ -3,7 +3,7 @@
   "baseUrl": "https://cloudproductregistry.googleapis.com/",
   "batchPath": "batch",
   "canonicalName": "Cloud Product Registry",
-  "description": "cloudproductregistry.googleapis.com API.",
+  "description": "Cloud Product Registry API provides capabilities to access all first Google Cloud products.",
   "discoveryVersion": "v1",
   "documentationLink": "https://docs.cloud.google.com/product-registry",
   "fullyEncodeReservedExpansion": true,
@@ -329,7 +329,7 @@
       }
     }
   },
-  "revision": "20260611",
+  "revision": "20260805",
   "rootUrl": "https://cloudproductregistry.googleapis.com/",
   "schemas": {
     "ListLogicalProductVariantsResponse": {
