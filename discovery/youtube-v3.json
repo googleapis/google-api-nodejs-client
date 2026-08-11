@@ -4192,7 +4192,7 @@
       }
     }
   },
-  "revision": "20260709",
+  "revision": "20260805",
   "rootUrl": "https://youtube.googleapis.com/",
   "schemas": {
     "AbuseReport": {
@@ -4662,6 +4662,68 @@
             "",
             ""
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AvailabilityConfig": {
+      "description": "Common proto for Live and VOD geo-restrictions",
+      "id": "AvailabilityConfig",
+      "properties": {
+        "globalConfig": {
+          "$ref": "AvailabilityConfigGlobalConfig",
+          "description": "Video is available in all regions except the ones specified in the config."
+        },
+        "regionsConfig": {
+          "$ref": "AvailabilityConfigRegionsConfig",
+          "description": "Video is available in the specified regions only."
+        }
+      },
+      "type": "object"
+    },
+    "AvailabilityConfigGlobalConfig": {
+      "description": "Video is available in all regions except the ones specified in the excluded_region_codes list.",
+      "id": "AvailabilityConfigGlobalConfig",
+      "properties": {
+        "excludedRegionCodes": {
+          "description": "Optional. Regions where video is blocked",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "interval": {
+          "$ref": "Interval",
+          "description": "Default time window where video is available for all non-blocked regions Not supported for upcoming / active live broadcasts. If start time is unspecified, video is already available If end time is unspecified, video is available forever Specified start and end times cannot be more than five years in the future."
+        }
+      },
+      "type": "object"
+    },
+    "AvailabilityConfigRegionsConfig": {
+      "description": "Video is available in the specified regions only.",
+      "id": "AvailabilityConfigRegionsConfig",
+      "properties": {
+        "regionIntervals": {
+          "description": "Required. List of regions and time windows where video is available. If a region is specified multiple times, the union of all intervals is used.",
+          "items": {
+            "$ref": "AvailabilityConfigRegionsConfigRegionInterval"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "AvailabilityConfigRegionsConfigRegionInterval": {
+      "description": "Region and time window where video is available for the region.",
+      "id": "AvailabilityConfigRegionsConfigRegionInterval",
+      "properties": {
+        "interval": {
+          "$ref": "Interval",
+          "description": "Time window where video is available for the region. Not supported for upcoming / active live broadcasts. If start time is unspecified, video is already available If end time is unspecified, video is available forever Specified start and end times cannot be more than five years in the future."
+        },
+        "regionCode": {
+          "description": "Required. Region where video is available",
           "type": "string"
         }
       },
@@ -8297,6 +8359,23 @@
       },
       "type": "object"
     },
+    "Interval": {
+      "description": "Represents a time interval, encoded as a Timestamp start (inclusive) and a Timestamp end (exclusive). The start must be less than or equal to the end. When the start equals the end, the interval is empty (matches no time). When both start and end are unspecified, the interval matches any time.",
+      "id": "Interval",
+      "properties": {
+        "endTime": {
+          "description": "Optional. Exclusive end of the interval. If specified, a Timestamp matching this interval will have to be before the end.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "startTime": {
+          "description": "Optional. Inclusive start of the interval. If specified, a Timestamp matching this interval will have to be the same or after the start.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "InvideoBranding": {
       "description": "Describes an invideo branding.",
       "id": "InvideoBranding",
@@ -8462,6 +8541,10 @@
       "description": "Detailed settings of a broadcast.",
       "id": "LiveBroadcastContentDetails",
       "properties": {
+        "availabilityConfig": {
+          "$ref": "AvailabilityConfig",
+          "description": "Optional. The broadcast's availability config. Used to set specific region availability or block specific regions It is optional - if not set, it is not enforced."
+        },
         "boundStreamId": {
           "description": "This value uniquely identifies the live stream bound to the broadcast.",
           "type": "string"
