@@ -102,7 +102,7 @@ export namespace cloudproductregistry_v1 {
   /**
    * Cloud Product Registry API
    *
-   * cloudproductregistry.googleapis.com API.
+   * Cloud Product Registry API provides capabilities to access all first Google Cloud products.
    *
    * @example
    * ```js
