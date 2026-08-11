@@ -5625,12 +5625,14 @@
                       "enum": [
                         "QA_SCORECARD_SOURCE_UNSPECIFIED",
                         "QA_SCORECARD_SOURCE_CUSTOMER_DEFINED",
-                        "QA_SCORECARD_SOURCE_DISCOVERY_ENGINE"
+                        "QA_SCORECARD_SOURCE_DISCOVERY_ENGINE",
+                        "QA_SCORECARD_SOURCE_INTENT_TAXONOMY"
                       ],
                       "enumDescriptions": [
                         "The source of the scorecard is unspecified. Default to QA_SCORECARD_SOURCE_CUSTOMER_DEFINED.",
                         "The scorecard is a custom scorecard created by the user.",
-                        "The scorecard is a scorecard created through discovery engine deployment."
+                        "The scorecard is a scorecard created through discovery engine deployment.",
+                        "The scorecard is derived from the custom intent taxonomy. Customers can edit question content, but cannot delete the scorecard or add/remove questions."
                       ],
                       "location": "query",
                       "repeated": true,
@@ -5836,12 +5838,14 @@
                           "enum": [
                             "QA_SCORECARD_SOURCE_UNSPECIFIED",
                             "QA_SCORECARD_SOURCE_CUSTOMER_DEFINED",
-                            "QA_SCORECARD_SOURCE_DISCOVERY_ENGINE"
+                            "QA_SCORECARD_SOURCE_DISCOVERY_ENGINE",
+                            "QA_SCORECARD_SOURCE_INTENT_TAXONOMY"
                           ],
                           "enumDescriptions": [
                             "The source of the scorecard is unspecified. Default to QA_SCORECARD_SOURCE_CUSTOMER_DEFINED.",
                             "The scorecard is a custom scorecard created by the user.",
-                            "The scorecard is a scorecard created through discovery engine deployment."
+                            "The scorecard is a scorecard created through discovery engine deployment.",
+                            "The scorecard is derived from the custom intent taxonomy. Customers can edit question content, but cannot delete the scorecard or add/remove questions."
                           ],
                           "location": "query",
                           "repeated": true,
@@ -6232,7 +6236,7 @@
       }
     }
   },
-  "revision": "20260727",
+  "revision": "20260807",
   "rootUrl": "https://contactcenterinsights.googleapis.com/",
   "schemas": {
     "GoogleCloudCesV1mainAgentTransfer": {
@@ -11925,12 +11929,14 @@
           "enum": [
             "QA_SCORECARD_SOURCE_UNSPECIFIED",
             "QA_SCORECARD_SOURCE_CUSTOMER_DEFINED",
-            "QA_SCORECARD_SOURCE_DISCOVERY_ENGINE"
+            "QA_SCORECARD_SOURCE_DISCOVERY_ENGINE",
+            "QA_SCORECARD_SOURCE_INTENT_TAXONOMY"
           ],
           "enumDescriptions": [
             "The source of the scorecard is unspecified. Default to QA_SCORECARD_SOURCE_CUSTOMER_DEFINED.",
             "The scorecard is a custom scorecard created by the user.",
-            "The scorecard is a scorecard created through discovery engine deployment."
+            "The scorecard is a scorecard created through discovery engine deployment.",
+            "The scorecard is derived from the custom intent taxonomy. Customers can edit question content, but cannot delete the scorecard or add/remove questions."
           ],
           "readOnly": true,
           "type": "string"
