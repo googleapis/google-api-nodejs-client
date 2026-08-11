@@ -198,10 +198,16 @@ export namespace searchconsole_v1 {
     operator?: string | null;
   }
   /**
-   * A set of dimension value filters to test against each row. Only rows that pass all filter groups will be returned. All results within a filter group are either AND'ed or OR'ed together, depending on the group type selected. All filter groups are AND'ed together.
+   * A set of `dimension` value filters to test against each row. Only rows that pass all filter groups will be returned. All results within a filter group are either AND'ed or OR'ed together, depending on the group type selected. All filter groups are AND'ed together.
    */
   export interface Schema$ApiDimensionFilterGroup {
+    /**
+     * Optional. A list of single-value filters in this group.
+     */
     filters?: Schema$ApiDimensionFilter[];
+    /**
+     * Optional. The logic operator between filters of the same group.
+     */
     groupType?: string | null;
   }
   /**
