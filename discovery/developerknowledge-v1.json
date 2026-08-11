@@ -115,7 +115,7 @@
           "parameterOrder": [],
           "parameters": {
             "names": {
-              "description": "Required. Specifies the names of the documents to retrieve. A maximum of 20 documents can be retrieved in a batch. The documents are returned in the same order as the `names` in the request. Format: `documents/{uri_without_scheme}` Example: `documents/docs.cloud.google.com/storage/docs/creating-buckets` ",
+              "description": "Required. Specifies the names of the documents to retrieve. A maximum of 20 documents can be retrieved in a batch. The documents are returned in the same order as the `names` in the request. Format: `documents/{uri_without_scheme}` Example: `documents/docs.cloud.google.com/storage/docs/creating-buckets` Each name must not exceed 500 characters; values longer than 500 characters will result in an `INVALID_ARGUMENT` error. ",
               "location": "query",
               "repeated": true,
               "type": "string"
@@ -156,7 +156,7 @@
           ],
           "parameters": {
             "name": {
-              "description": "Required. Specifies the name of the document to retrieve. Format: `documents/{uri_without_scheme}` Example: `documents/docs.cloud.google.com/storage/docs/creating-buckets`",
+              "description": "Required. Specifies the name of the document to retrieve. Format: `documents/{uri_without_scheme}` Example: `documents/docs.cloud.google.com/storage/docs/creating-buckets` The name must not exceed 500 characters; values longer than 500 characters will result in an `INVALID_ARGUMENT` error.",
               "location": "path",
               "pattern": "^documents/.*$",
               "required": true,
@@ -212,7 +212,7 @@
               "type": "string"
             },
             "query": {
-              "description": "Required. Provides the raw query string provided by the user, such as \"How to create a Cloud Storage bucket?\".",
+              "description": "Required. Provides the raw query string provided by the user, such as \"How to create a Cloud Storage bucket?\". The query must not exceed 500 characters; values longer than 500 characters will result in an `INVALID_ARGUMENT` error.",
               "location": "query",
               "type": "string"
             }
@@ -250,7 +250,7 @@
       }
     }
   },
-  "revision": "20260719",
+  "revision": "20260802",
   "rootUrl": "https://developerknowledge.googleapis.com/",
   "schemas": {
     "Answer": {
@@ -369,7 +369,7 @@
       "type": "object"
     },
     "Document": {
-      "description": "A Document represents a piece of content from the Developer Knowledge corpus.",
+      "description": "A Document represents a page of documentation in the Developer Knowledge corpus, like the page at https://docs.cloud.google.com/storage/docs/creating-buckets.",
       "id": "Document",
       "properties": {
         "content": {
@@ -477,7 +477,7 @@
       "id": "SearchDocumentChunksResponse",
       "properties": {
         "nextPageToken": {
-          "description": "Optional. Provides a token that can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "description": "Provides a token that can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
           "type": "string"
         },
         "results": {
