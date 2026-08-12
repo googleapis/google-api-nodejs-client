@@ -1464,7 +1464,7 @@
       }
     }
   },
-  "revision": "20260528",
+  "revision": "20260803",
   "rootUrl": "https://toolresults.googleapis.com/",
   "schemas": {
     "ANR": {
@@ -1586,6 +1586,12 @@
     "AndroidTestLoop": {
       "description": "Test Loops are tests that can be launched by the app itself, determining when to run by listening for an intent.",
       "id": "AndroidTestLoop",
+      "properties": {},
+      "type": "object"
+    },
+    "AntiTamperingTermination": {
+      "description": "Anti-tampering termination was detected.",
+      "id": "AntiTamperingTermination",
       "properties": {},
       "type": "object"
     },
@@ -3647,7 +3653,8 @@
             "logcatCollectionError",
             "detectedAppSplashScreen",
             "assetIssue",
-            "licensingProtectionTermination"
+            "licensingProtectionTermination",
+            "antiTamperingTermination"
           ],
           "enumDescriptions": [
             "Default unspecified type. Do not use. For versioning only.",
@@ -3683,7 +3690,8 @@
             "Problems detected while collecting logcat",
             "Robo detected a splash screen provided by app (vs. Android OS splash screen).",
             "There was an issue with the assets in this test.",
-            "Licensing protection termination (Pairip) was detected."
+            "Licensing protection termination (Pairip) was detected.",
+            "Anti-tampering termination was detected."
           ],
           "type": "string"
         },

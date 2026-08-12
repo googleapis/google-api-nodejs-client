@@ -280,6 +280,10 @@ export namespace dataplex_v1 {
    */
   export interface Schema$GoogleCloudDataplexV1ApproveChangeRequestRequest {
     /**
+     * Optional. The comment or reason for approving the ChangeRequest. Maximum length is 1024 characters.
+     */
+    comment?: string | null;
+    /**
      * Optional. The etag of the ChangeRequest.
      */
     etag?: string | null;
@@ -859,6 +863,10 @@ export namespace dataplex_v1 {
      * Output only. The full resource name of the target resource to be modified. Example: //dataplex.googleapis.com/projects/my-project/locations/us-central1/entryGroups/my-group/entries/my-entry
      */
     resource?: string | null;
+    /**
+     * Output only. The comment provided by the reviewer when approving or rejecting the ChangeRequest. Maximum length is 1024 characters.
+     */
+    reviewerComment?: string | null;
     /**
      * Output only. The current state of the ChangeRequest.
      */
@@ -3525,6 +3533,23 @@ export namespace dataplex_v1 {
      * Name of the resource.
      */
     resource?: string | null;
+  }
+  /**
+   * Payload associated with EntryLinkType related log events.
+   */
+  export interface Schema$GoogleCloudDataplexV1EntryLinkTypeEvent {
+    /**
+     * Name of the resource.
+     */
+    entryLinkTypeId?: string | null;
+    /**
+     * The type of the event.
+     */
+    eventType?: string | null;
+    /**
+     * The log message.
+     */
+    message?: string | null;
   }
   /**
    * Information related to the source system of the data resource that is represented by the entry.
@@ -10920,6 +10945,7 @@ export namespace dataplex_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "comment": "my_comment",
      *       //   "etag": "my_etag"
      *       // }
      *     },
@@ -10949,6 +10975,7 @@ export namespace dataplex_v1 {
      *   //   "name": "my_name",
      *   //   "rejectionComment": "my_rejectionComment",
      *   //   "resource": "my_resource",
+     *   //   "reviewerComment": "my_reviewerComment",
      *   //   "state": "my_state",
      *   //   "uid": "my_uid",
      *   //   "updateEntry": {},
@@ -11263,6 +11290,7 @@ export namespace dataplex_v1 {
      *   //   "name": "my_name",
      *   //   "rejectionComment": "my_rejectionComment",
      *   //   "resource": "my_resource",
+     *   //   "reviewerComment": "my_reviewerComment",
      *   //   "state": "my_state",
      *   //   "uid": "my_uid",
      *   //   "updateEntry": {},
@@ -11748,6 +11776,7 @@ export namespace dataplex_v1 {
      *       //   "name": "my_name",
      *       //   "rejectionComment": "my_rejectionComment",
      *       //   "resource": "my_resource",
+     *       //   "reviewerComment": "my_reviewerComment",
      *       //   "state": "my_state",
      *       //   "uid": "my_uid",
      *       //   "updateEntry": {},
@@ -11783,6 +11812,7 @@ export namespace dataplex_v1 {
      *   //   "name": "my_name",
      *   //   "rejectionComment": "my_rejectionComment",
      *   //   "resource": "my_resource",
+     *   //   "reviewerComment": "my_reviewerComment",
      *   //   "state": "my_state",
      *   //   "uid": "my_uid",
      *   //   "updateEntry": {},
@@ -11966,6 +11996,7 @@ export namespace dataplex_v1 {
      *   //   "name": "my_name",
      *   //   "rejectionComment": "my_rejectionComment",
      *   //   "resource": "my_resource",
+     *   //   "reviewerComment": "my_reviewerComment",
      *   //   "state": "my_state",
      *   //   "uid": "my_uid",
      *   //   "updateEntry": {},

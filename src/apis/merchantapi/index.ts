@@ -26,6 +26,7 @@ import {merchantapi_issueresolution_v1} from './issueresolution_v1';
 import {merchantapi_issueresolution_v1beta} from './issueresolution_v1beta';
 import {merchantapi_lfp_v1} from './lfp_v1';
 import {merchantapi_lfp_v1beta} from './lfp_v1beta';
+import {merchantapi_loyaltycustomers_v1} from './loyaltycustomers_v1';
 import {merchantapi_notifications_v1} from './notifications_v1';
 import {merchantapi_notifications_v1beta} from './notifications_v1beta';
 import {merchantapi_ordertracking_v1} from './ordertracking_v1';
@@ -53,6 +54,7 @@ export const VERSIONS = {
   issueresolution_v1beta: merchantapi_issueresolution_v1beta.Merchantapi,
   lfp_v1: merchantapi_lfp_v1.Merchantapi,
   lfp_v1beta: merchantapi_lfp_v1beta.Merchantapi,
+  loyaltycustomers_v1: merchantapi_loyaltycustomers_v1.Merchantapi,
   notifications_v1: merchantapi_notifications_v1.Merchantapi,
   notifications_v1beta: merchantapi_notifications_v1beta.Merchantapi,
   ordertracking_v1: merchantapi_ordertracking_v1.Merchantapi,
@@ -138,6 +140,12 @@ export function merchantapi(
 export function merchantapi(
   options: merchantapi_lfp_v1beta.Options
 ): merchantapi_lfp_v1beta.Merchantapi;
+export function merchantapi(
+  version: 'loyaltycustomers_v1'
+): merchantapi_loyaltycustomers_v1.Merchantapi;
+export function merchantapi(
+  options: merchantapi_loyaltycustomers_v1.Options
+): merchantapi_loyaltycustomers_v1.Merchantapi;
 export function merchantapi(
   version: 'notifications_v1'
 ): merchantapi_notifications_v1.Merchantapi;
@@ -230,6 +238,7 @@ export function merchantapi<
     | merchantapi_issueresolution_v1beta.Merchantapi
     | merchantapi_lfp_v1.Merchantapi
     | merchantapi_lfp_v1beta.Merchantapi
+    | merchantapi_loyaltycustomers_v1.Merchantapi
     | merchantapi_notifications_v1.Merchantapi
     | merchantapi_notifications_v1beta.Merchantapi
     | merchantapi_ordertracking_v1.Merchantapi
@@ -270,6 +279,8 @@ export function merchantapi<
     | merchantapi_lfp_v1.Options
     | 'lfp_v1beta'
     | merchantapi_lfp_v1beta.Options
+    | 'loyaltycustomers_v1'
+    | merchantapi_loyaltycustomers_v1.Options
     | 'notifications_v1'
     | merchantapi_notifications_v1.Options
     | 'notifications_v1beta'
@@ -314,6 +325,7 @@ export {merchantapi_issueresolution_v1};
 export {merchantapi_issueresolution_v1beta};
 export {merchantapi_lfp_v1};
 export {merchantapi_lfp_v1beta};
+export {merchantapi_loyaltycustomers_v1};
 export {merchantapi_notifications_v1};
 export {merchantapi_notifications_v1beta};
 export {merchantapi_ordertracking_v1};

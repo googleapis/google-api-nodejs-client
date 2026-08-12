@@ -1,0 +1,176 @@
+{
+  "basePath": "",
+  "baseUrl": "https://androiddeveloperidstatus.googleapis.com/",
+  "batchPath": "batch",
+  "canonicalName": "Android Developer ID Status",
+  "description": "Android Developer ID Status API.",
+  "discoveryVersion": "v1",
+  "documentationLink": "https://developer.android.com/developer-verification/guides/check-registration-status",
+  "fullyEncodeReservedExpansion": true,
+  "icons": {
+    "x16": "http://www.google.com/images/icons/product/search-16.gif",
+    "x32": "http://www.google.com/images/icons/product/search-32.gif"
+  },
+  "id": "androiddeveloperidstatus:v1",
+  "kind": "discovery#restDescription",
+  "mtlsRootUrl": "https://androiddeveloperidstatus.mtls.googleapis.com/",
+  "name": "androiddeveloperidstatus",
+  "ownerDomain": "google.com",
+  "ownerName": "Google",
+  "parameters": {
+    "$.xgafv": {
+      "description": "V1 error format.",
+      "enum": [
+        "1",
+        "2"
+      ],
+      "enumDescriptions": [
+        "v1 error format",
+        "v2 error format"
+      ],
+      "location": "query",
+      "type": "string"
+    },
+    "access_token": {
+      "description": "OAuth access token.",
+      "location": "query",
+      "type": "string"
+    },
+    "alt": {
+      "default": "json",
+      "description": "Data format for response.",
+      "enum": [
+        "json",
+        "media",
+        "proto"
+      ],
+      "enumDescriptions": [
+        "Responses with Content-Type of application/json",
+        "Media download with context-dependent Content-Type",
+        "Responses with Content-Type of application/x-protobuf"
+      ],
+      "location": "query",
+      "type": "string"
+    },
+    "callback": {
+      "description": "JSONP",
+      "location": "query",
+      "type": "string"
+    },
+    "fields": {
+      "description": "Selector specifying which fields to include in a partial response.",
+      "location": "query",
+      "type": "string"
+    },
+    "key": {
+      "description": "API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.",
+      "location": "query",
+      "type": "string"
+    },
+    "oauth_token": {
+      "description": "OAuth 2.0 token for the current user.",
+      "location": "query",
+      "type": "string"
+    },
+    "prettyPrint": {
+      "default": "true",
+      "description": "Returns response with indentations and line breaks.",
+      "location": "query",
+      "type": "boolean"
+    },
+    "quotaUser": {
+      "description": "Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.",
+      "location": "query",
+      "type": "string"
+    },
+    "uploadType": {
+      "description": "Legacy upload protocol for media (e.g. \"media\", \"multipart\").",
+      "location": "query",
+      "type": "string"
+    },
+    "upload_protocol": {
+      "description": "Upload protocol for media (e.g. \"raw\", \"multipart\").",
+      "location": "query",
+      "type": "string"
+    }
+  },
+  "protocol": "rest",
+  "resources": {
+    "packages": {
+      "resources": {
+        "packageRegistrationStatus": {
+          "methods": {
+            "check": {
+              "description": "Retrieves the Android Developer ID registration status for a given package.",
+              "flatPath": "v1/packages/{packagesId}/packageRegistrationStatus:check",
+              "httpMethod": "GET",
+              "id": "androiddeveloperidstatus.packages.packageRegistrationStatus.check",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "certificateFingerprint": {
+                  "description": "Optional. The SHA-256 fingerprint of the public certificate represented as a 64-character lowercase hexadecimal string without any colons or separators (e.g., `d6ac89ed1d0a805aad4b087d06d5f41645b814480b133fbc867ef7498d069e06`).",
+                  "location": "query",
+                  "type": "string"
+                },
+                "name": {
+                  "description": "Required. The name of the package registration status resource. Format: packages/{package}/packageRegistrationStatus `{package}` must follow the specific format: The fully-qualified Android package name with dots ('.') replaced by hyphens ('-') (e.g., `com-example-app` instead of `com.example.app`).",
+                  "location": "path",
+                  "pattern": "^packages/[^/]+/packageRegistrationStatus$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}:check",
+              "response": {
+                "$ref": "PackageRegistrationStatus"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "revision": "20260804",
+  "rootUrl": "https://androiddeveloperidstatus.googleapis.com/",
+  "schemas": {
+    "PackageRegistrationStatus": {
+      "description": "Resource message PackageRegistrationStatus.",
+      "id": "PackageRegistrationStatus",
+      "properties": {
+        "certificateFingerprint": {
+          "description": "Output only. The SHA-256 fingerprint of the public certificate represented as a 64-character lowercase hexadecimal string without any colons or separators (e.g., `d6ac89ed1d0a805aad4b087d06d5f41645b814480b133fbc867ef7498d069e06`).",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. The name of the package registration status resource. Format: packages/{package}/packageRegistrationStatus `{package}` must follow the specific format: The fully-qualified Android package name with dots ('.') replaced by hyphens ('-') (e.g., `com-example-app` instead of `com.example.app`).",
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. Registration state of the package, or pair.",
+          "enum": [
+            "REGISTRATION_STATE_UNSPECIFIED",
+            "REGISTERED",
+            "NOT_REGISTERED",
+            "REGISTERED_WITH_ANOTHER_CERTIFICATE_FINGERPRINT"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "Package is registered with the given certificate fingerprint.",
+            "Package is not registered with any public certificate.",
+            "Package is registered with another public certificate fingerprint."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "servicePath": "",
+  "title": "Android Developer ID Status API",
+  "version": "v1",
+  "version_module": true
+}

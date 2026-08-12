@@ -517,7 +517,7 @@
               ]
             },
             "patch": {
-              "description": "Updates an ad asset. Returns the updated ad asset if successful. Supports updating assets of AdAssetType `AD_ASSET_TYPE_YOUTUBE_VIDEO` and `AD_ASSET_TYPE_IMAGE`. Only the `synthetic_content_attestation_status` field is mutable.",
+              "description": "Updates an ad asset. Returns the updated ad asset if successful. Supports updating assets of AdAssetType `AD_ASSET_TYPE_YOUTUBE_VIDEO` and `AD_ASSET_TYPE_IMAGE`. Only the AdAsset.synthetic_content_attestation_status field is mutable.",
               "flatPath": "v4/advertisers/{advertisersId}/adAssets/{adAssetsId}",
               "httpMethod": "PATCH",
               "id": "displayvideo.advertisers.adAssets.patch",
@@ -5023,7 +5023,7 @@
         "reachForecast": {
           "methods": {
             "generateReachForecast": {
-              "description": "Generates a reach forecast for a given advertiser and targeting configuration.",
+              "description": "Generates a reach forecast for a given advertiser and targeting configuration. API support for generating reach forecasts and retrieving related metadata is in beta. This method is only available to allowlisted users.",
               "flatPath": "v4/advertisers/{advertisersId}/reachForecast:generateReachForecast",
               "httpMethod": "POST",
               "id": "displayvideo.advertisers.reachForecast.generateReachForecast",
@@ -5052,7 +5052,7 @@
               ]
             },
             "retrievePlannableLocations": {
-              "description": "Retrieves the list of countries where reach forecasting is supported.",
+              "description": "Retrieves the list of countries where reach forecasting is supported. API support for generating reach forecasts and retrieving related metadata is in beta. This method is only available to allowlisted users.",
               "flatPath": "v4/advertisers/{advertisersId}/reachForecast:retrievePlannableLocations",
               "httpMethod": "GET",
               "id": "displayvideo.advertisers.reachForecast.retrievePlannableLocations",
@@ -5078,7 +5078,7 @@
               ]
             },
             "retrievePlannableProducts": {
-              "description": "Retrieves the list of products that can be planned for a location.",
+              "description": "Retrieves the list of products that can be planned for a location. API support for generating reach forecasts and retrieving related metadata is in beta. This method is only available to allowlisted users.",
               "flatPath": "v4/advertisers/{advertisersId}/reachForecast:retrievePlannableProducts",
               "httpMethod": "GET",
               "id": "displayvideo.advertisers.reachForecast.retrievePlannableProducts",
@@ -5109,7 +5109,7 @@
               ]
             },
             "retrievePlannableUserInterests": {
-              "description": "Retrieves Google Audiences (User Interests) available for forecasting.",
+              "description": "Retrieves Google Audiences (User Interests) available for forecasting. API support for generating reach forecasts and retrieving related metadata is in beta. This method is only available to allowlisted users.",
               "flatPath": "v4/advertisers/{advertisersId}/reachForecast:retrievePlannableUserInterests",
               "httpMethod": "GET",
               "id": "displayvideo.advertisers.reachForecast.retrievePlannableUserInterests",
@@ -5150,7 +5150,7 @@
               ]
             },
             "retrievePlannableUserLists": {
-              "description": "Retrieves first and third party user lists available for forecasting.",
+              "description": "Retrieves first and third party user lists available for forecasting. API support for generating reach forecasts and retrieving related metadata is in beta. This method is only available to allowlisted users.",
               "flatPath": "v4/advertisers/{advertisersId}/reachForecast:retrievePlannableUserLists",
               "httpMethod": "GET",
               "id": "displayvideo.advertisers.reachForecast.retrievePlannableUserLists",
@@ -9618,7 +9618,7 @@
       }
     }
   },
-  "revision": "20260720",
+  "revision": "20260805",
   "rootUrl": "https://displayvideo.googleapis.com/",
   "schemas": {
     "ActiveViewVideoViewabilityMetricConfig": {
@@ -9786,16 +9786,16 @@
           "type": "string"
         },
         "syntheticContentAttestationStatus": {
-          "description": "Optional. Whether the asset contains synthetic content or was created using AI.",
+          "description": "Optional. Whether to add a label to the asset as created or edited using AI when served in regions with local AI labeling regulations.",
           "enum": [
             "SYNTHETIC_CONTENT_ATTESTATION_STATUS_UNSPECIFIED",
             "NOT_SYNTHETIC",
             "IS_SYNTHETIC"
           ],
           "enumDescriptions": [
-            "Attestation status is unspecified.",
-            "Not synthetic content.",
-            "Is synthetic content."
+            "No attestation has been provided.",
+            "Attested as not created or edited using AI.",
+            "Attested as created or edited using AI."
           ],
           "type": "string"
         },
@@ -14292,7 +14292,7 @@
       "id": "ContactInfo",
       "properties": {
         "countryCode": {
-          "description": "Optional. Country code of the member. Must also be set with the following fields: * country_code * hashed_first_name * hashed_last_name * zip_codes",
+          "description": "Optional. Country code of the member. Must also be set with the following fields: * hashed_first_name * hashed_last_name * zip_codes",
           "type": "string"
         },
         "hashedEmails": {
@@ -15338,16 +15338,16 @@
           "type": "boolean"
         },
         "syntheticContentAttestationStatus": {
-          "description": "Optional. Whether the creative contains synthetic content or was created using AI.",
+          "description": "Optional. Whether to add a label to the creative as created or edited using AI when served in regions with local AI labeling regulations.",
           "enum": [
             "SYNTHETIC_CONTENT_ATTESTATION_STATUS_UNSPECIFIED",
             "NOT_SYNTHETIC",
             "IS_SYNTHETIC"
           ],
           "enumDescriptions": [
-            "Attestation status is unspecified.",
-            "Not synthetic content.",
-            "Is synthetic content."
+            "No attestation has been provided.",
+            "Attested as not created or edited using AI.",
+            "Attested as created or edited using AI."
           ],
           "type": "string"
         },
@@ -25424,16 +25424,16 @@
           "type": "string"
         },
         "syntheticContentAttestationStatus": {
-          "description": "Optional. Whether the asset contains synthetic content or was created using AI.",
+          "description": "Optional. Whether to add a label to the asset as created or edited using AI when served in regions with local AI labeling regulations.",
           "enum": [
             "SYNTHETIC_CONTENT_ATTESTATION_STATUS_UNSPECIFIED",
             "NOT_SYNTHETIC",
             "IS_SYNTHETIC"
           ],
           "enumDescriptions": [
-            "Attestation status is unspecified.",
-            "Not synthetic content.",
-            "Is synthetic content."
+            "No attestation has been provided.",
+            "Attested as not created or edited using AI.",
+            "Attested as created or edited using AI."
           ],
           "type": "string"
         }

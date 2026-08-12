@@ -5374,7 +5374,7 @@ export namespace analyticsadmin_v1beta {
     }
 
     /**
-     * Creates a CustomDimension.
+     * Creates a CustomDimension. Warning: It's not permissible to use this method to collect data on individual users. In particular, sending user IDs in custom dimensions violates the [Google Analytics Terms of Service](https://www.google.com/analytics/terms/).
      * @example
      * ```js
      * // Before running the sample:

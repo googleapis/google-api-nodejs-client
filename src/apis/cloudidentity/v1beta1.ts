@@ -2328,7 +2328,7 @@ export namespace cloudidentity_v1beta1 {
    */
   export interface Schema$Setting {
     /**
-     * Required. Immutable. The type of the Setting. .
+     * Required. Immutable. The type of the Setting.
      */
     type?: string | null;
     /**

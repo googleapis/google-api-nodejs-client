@@ -542,6 +542,21 @@
       "version": "v1"
     },
     {
+      "description": "Android Developer ID Status API.",
+      "discoveryRestUrl": "https://androiddeveloperidstatus.googleapis.com/$discovery/rest?version=v1",
+      "documentationLink": "https://developer.android.com/developer-verification/guides/check-registration-status",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "id": "androiddeveloperidstatus:v1",
+      "kind": "discovery#directoryItem",
+      "name": "androiddeveloperidstatus",
+      "preferred": true,
+      "title": "Android Developer ID Status API",
+      "version": "v1"
+    },
+    {
       "description": "Automates Android zero-touch enrollment for device resellers, customers, and EMMs.",
       "discoveryRestUrl": "https://androiddeviceprovisioning.googleapis.com/$discovery/rest?version=v1",
       "documentationLink": "https://developers.google.com/zero-touch/",
@@ -3771,6 +3786,36 @@
       "version": "v1"
     },
     {
+      "description": "A managed, cloud-native solution to move data in and out of Google Cloud by using SSH File Transfer Protocol (SFTP).",
+      "discoveryRestUrl": "https://ftp.googleapis.com/$discovery/rest?version=v1alpha",
+      "documentationLink": "https://docs.cloud.google.com/cloud-ftp",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "id": "ftp:v1alpha",
+      "kind": "discovery#directoryItem",
+      "name": "ftp",
+      "preferred": false,
+      "title": "Cloud FTP API",
+      "version": "v1alpha"
+    },
+    {
+      "description": "A managed, cloud-native solution to move data in and out of Google Cloud by using SSH File Transfer Protocol (SFTP).",
+      "discoveryRestUrl": "https://ftp.googleapis.com/$discovery/rest?version=v1",
+      "documentationLink": "https://docs.cloud.google.com/cloud-ftp",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "id": "ftp:v1",
+      "kind": "discovery#directoryItem",
+      "name": "ftp",
+      "preferred": true,
+      "title": "Cloud FTP API",
+      "version": "v1"
+    },
+    {
       "description": "The Google Play Games Service allows developers to enhance games with social leaderboards, achievements, game state, sign-in with Google, and more.",
       "discoveryRestUrl": "https://games.googleapis.com/$discovery/rest?version=v1",
       "documentationLink": "https://developers.google.com/games/",
@@ -4819,6 +4864,21 @@
       "preferred": false,
       "title": "Merchant API",
       "version": "lfp_v1beta"
+    },
+    {
+      "description": "Programmatically manage your Merchant Center Accounts.",
+      "discoveryRestUrl": "https://merchantapi.googleapis.com/$discovery/rest?version=loyaltycustomers_v1",
+      "documentationLink": "https://developers.google.com/merchant/api",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "id": "merchantapi:loyaltycustomers_v1",
+      "kind": "discovery#directoryItem",
+      "name": "merchantapi",
+      "preferred": false,
+      "title": "Merchant API",
+      "version": "loyaltycustomers_v1"
     },
     {
       "description": "Programmatically manage your Merchant Center Accounts.",

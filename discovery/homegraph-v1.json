@@ -216,7 +216,7 @@
       }
     }
   },
-  "revision": "20260724",
+  "revision": "20260731",
   "rootUrl": "https://homegraph.googleapis.com/",
   "schemas": {
     "AgentDeviceId": {
@@ -240,6 +240,31 @@
         },
         "deviceId": {
           "description": "Unique third-party device ID.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CameraEventStreamTrait": {
+      "description": "This cluster defines the camera event stream used by GHP for their Cloud-to-Cloud eventing flow",
+      "id": "CameraEventStreamTrait",
+      "properties": {},
+      "type": "object"
+    },
+    "CommonEventDataStruct": {
+      "description": "Common camera event data.",
+      "id": "CommonEventDataStruct",
+      "properties": {
+        "mediaUrls": {
+          "$ref": "MediaUrlsStruct",
+          "description": "Contains media urls for the event"
+        },
+        "sessionId": {
+          "description": "Camera event session id. Used for identifying a unique event session",
+          "type": "string"
+        },
+        "trackId": {
+          "description": "Id of the track this object belongs to",
           "type": "string"
         }
       },
@@ -364,6 +389,33 @@
       },
       "type": "object"
     },
+    "DeviceBlameStruct": {
+      "description": "Contains metadata about the cause of presence state change attributed to a device.",
+      "id": "DeviceBlameStruct",
+      "properties": {
+        "blameType": {
+          "description": "Required. Specifies the device blame type.",
+          "enum": [
+            "DEVICE_BLAME_TYPE_ENUM_UNSPECIFIED",
+            "LOCK",
+            "UNLOCK",
+            "MOTION_DETECTION",
+            "TOUCH_INTERACTION",
+            "VOICE_INTERACTION"
+          ],
+          "enumDescriptions": [
+            "Indicates an unspecified device blame type.",
+            "Indicates lock interaction.",
+            "Indicates unlock interaction.",
+            "Indicates motion detection.",
+            "Indicates touch interaction.",
+            "Indicates voice interaction."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "DeviceInfo": {
       "description": "Device information.",
       "id": "DeviceInfo",
@@ -431,6 +483,127 @@
       "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "Empty",
       "properties": {},
+      "type": "object"
+    },
+    "EveUtilityTrait": {
+      "id": "EveUtilityTrait",
+      "properties": {
+        "acceptedCommandList": {
+          "description": "Required. Output only. Accepted command list for this trait",
+          "items": {
+            "enum": [
+              "COMMANDS_UNSPECIFIED"
+            ],
+            "enumDeprecated": [
+              true
+            ],
+            "enumDescriptions": [
+              "Deprecated: This enum exists only to conform to AIP guidelines and should never be used."
+            ],
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "accumulatedControlPoint": {
+          "format": "int64",
+          "type": "string"
+        },
+        "airPressure": {
+          "format": "double",
+          "readOnly": true,
+          "type": "number"
+        },
+        "altitude": {
+          "format": "double",
+          "type": "number"
+        },
+        "childLock": {
+          "type": "boolean"
+        },
+        "current": {
+          "format": "double",
+          "readOnly": true,
+          "type": "number"
+        },
+        "getConfig": {
+          "format": "byte",
+          "readOnly": true,
+          "type": "string"
+        },
+        "holdPosition": {
+          "type": "boolean"
+        },
+        "lastEventTime": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "loggingControlPoint": {
+          "format": "byte",
+          "type": "string"
+        },
+        "loggingData": {
+          "format": "byte",
+          "readOnly": true,
+          "type": "string"
+        },
+        "loggingMetadata": {
+          "format": "byte",
+          "readOnly": true,
+          "type": "string"
+        },
+        "loggingTime": {
+          "format": "byte",
+          "type": "string"
+        },
+        "motionSensitivity": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "obstructionDetected": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "openCount": {
+          "format": "int64",
+          "type": "string"
+        },
+        "rloc16": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "setConfig": {
+          "format": "byte",
+          "type": "string"
+        },
+        "statusFault": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "voltage": {
+          "format": "double",
+          "readOnly": true,
+          "type": "number"
+        },
+        "watt": {
+          "format": "double",
+          "readOnly": true,
+          "type": "number"
+        },
+        "wattAccumulated": {
+          "format": "double",
+          "readOnly": true,
+          "type": "number"
+        },
+        "weatherTrend": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        }
+      },
       "type": "object"
     },
     "EventData": {
@@ -518,6 +691,76 @@
         "deviceId": {
           "description": "Required. Unique identifier for the device.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MediaUrlsStruct": {
+      "id": "MediaUrlsStruct",
+      "properties": {
+        "dashManifestUrl": {
+          "description": "URL for a dash manifest for playback",
+          "type": "string"
+        },
+        "hlsMasterPlaylistUrl": {
+          "description": "URL for a hls master playlist for playback",
+          "type": "string"
+        },
+        "previewUrl": {
+          "description": "URL for animated preview clip representing the event session",
+          "type": "string"
+        },
+        "thumbnailUrl": {
+          "description": "URL for thumbnail image representing the event session",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MotionEvent": {
+      "description": "Represents a newly detected motion event.",
+      "id": "MotionEvent",
+      "properties": {
+        "commonEventData": {
+          "$ref": "CommonEventDataStruct"
+        },
+        "zones": {
+          "description": "Zones where events are detected in.",
+          "items": {
+            "$ref": "ZoneStruct"
+          },
+          "type": "array"
+        },
+        "zonesIsEmpty": {
+          "description": "If set, zones is an empty list.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "PartnerPresenceSignalTrait": {
+      "description": "Provides attributes and events related to partner presence signals. See PartnerPresenceSignal trait:",
+      "id": "PartnerPresenceSignalTrait",
+      "properties": {},
+      "type": "object"
+    },
+    "PersonEvent": {
+      "description": "Represents a newly detected person event.",
+      "id": "PersonEvent",
+      "properties": {
+        "commonEventData": {
+          "$ref": "CommonEventDataStruct"
+        },
+        "zones": {
+          "description": "Zones where events are detected in.",
+          "items": {
+            "$ref": "ZoneStruct"
+          },
+          "type": "array"
+        },
+        "zonesIsEmpty": {
+          "description": "If set, zones is an empty list.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -763,6 +1006,46 @@
       },
       "type": "object"
     },
+    "StructurePresenceStateChangeEvent": {
+      "description": "Sent when the structure presence state changes.",
+      "id": "StructurePresenceStateChangeEvent",
+      "properties": {
+        "presenceState": {
+          "description": "Required. Specifies the presence state.",
+          "enum": [
+            "STRUCTURE_PRESENCE_STATE_ENUM_UNSPECIFIED",
+            "HOME",
+            "AWAY"
+          ],
+          "enumDescriptions": [
+            "Indicates an unknown presence state.",
+            "Indicates home presence state.",
+            "Indicates away presence state."
+          ],
+          "type": "string"
+        },
+        "reason": {
+          "$ref": "StructurePresenceStateChangeReasonStruct",
+          "description": "Optional. Specifies the presence state change reason."
+        }
+      },
+      "type": "object"
+    },
+    "StructurePresenceStateChangeReasonStruct": {
+      "description": "Contains the metadata about the cause of the structure presence state change.",
+      "id": "StructurePresenceStateChangeReasonStruct",
+      "properties": {
+        "deviceBlame": {
+          "$ref": "DeviceBlameStruct",
+          "description": "Optional. Contains metadata about the cause of presence state change attributed to a device."
+        },
+        "userBlame": {
+          "$ref": "UserBlameStruct",
+          "description": "Optional. Contains metadata about the cause of presence state change attributed to a user."
+        }
+      },
+      "type": "object"
+    },
     "SyncRequest": {
       "description": "Request type for the [`Sync`](#google.home.graph.v1.HomeGraphApiService.Sync) call.",
       "id": "SyncRequest",
@@ -811,6 +1094,40 @@
       },
       "type": "object"
     },
+    "ThermostatFanControlTrait": {
+      "description": "This cluster provides fan control capabilities for thermostats.",
+      "id": "ThermostatFanControlTrait",
+      "properties": {
+        "timerDuration": {
+          "format": "int64",
+          "type": "string"
+        },
+        "timerEnd": {
+          "format": "int64",
+          "type": "string"
+        },
+        "timerSpeed": {
+          "enum": [
+            "FAN_SPEED_SETTING_ENUM_UNSPECIFIED",
+            "FAN_SPEED_SETTING_OFF",
+            "FAN_SPEED_SETTING_STAGE1",
+            "FAN_SPEED_SETTING_STAGE2",
+            "FAN_SPEED_SETTING_STAGE3",
+            "FAN_SPEED_SETTING_AUTO"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "TraitData": {
       "description": "Contains the trait payload for a single trait.",
       "id": "TraitData",
@@ -832,6 +1149,46 @@
           },
           "description": "The Provider Home API trait payload.",
           "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "UserBlameStruct": {
+      "description": "Contains metadata about the cause of presence state change attributed to a user.",
+      "id": "UserBlameStruct",
+      "properties": {
+        "blameType": {
+          "description": "Required. Specifies the user blame type.",
+          "enum": [
+            "USER_BLAME_TYPE_ENUM_UNSPECIFIED",
+            "PHONE_LOCATION",
+            "MANUAL_CHANGE"
+          ],
+          "enumDescriptions": [
+            "Indicates an unspecified user blame type.",
+            "Indicates phone location.",
+            "Indicates manual change."
+          ],
+          "type": "string"
+        },
+        "userEmail": {
+          "description": "Required. Specifies the email of the user.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ZoneStruct": {
+      "id": "ZoneStruct",
+      "properties": {
+        "label": {
+          "description": "Name of the zone.",
+          "type": "string"
+        },
+        "zoneId": {
+          "description": "Id of the zone",
+          "format": "int64",
+          "type": "string"
         }
       },
       "type": "object"

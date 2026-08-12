@@ -816,7 +816,7 @@
               ]
             },
             "create": {
-              "description": "Creates a CustomDimension.",
+              "description": "Creates a CustomDimension. Warning: It's not permissible to use this method to collect data on individual users. In particular, sending user IDs in custom dimensions violates the [Google Analytics Terms of Service](https://www.google.com/analytics/terms/).",
               "flatPath": "v1beta/properties/{propertiesId}/customDimensions",
               "httpMethod": "POST",
               "id": "analyticsadmin.properties.customDimensions.create",
@@ -1788,7 +1788,7 @@
       }
     }
   },
-  "revision": "20260628",
+  "revision": "20260802",
   "rootUrl": "https://analyticsadmin.googleapis.com/",
   "schemas": {
     "GoogleAnalyticsAdminV1betaAccessBetweenFilter": {

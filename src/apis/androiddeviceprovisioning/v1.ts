@@ -2204,7 +2204,7 @@ export namespace androiddeviceprovisioning_v1 {
      *
      *   // Do the magic
      *   const res = await androiddeviceprovisioning.customers.devices.list({
-     *     // Optional. The maximum number of devices to show in a page of results. If unset or 0, defaults to 1000. If a value greater than 1000 is specified, it will be coerced to 1000.
+     *     // Optional. The maximum number of devices to show in a page of results. If unset or `0`, defaults to `5000`. If a value greater than `10000` is specified, it will be coerced to `10000`.
      *     pageSize: 'placeholder-value',
      *     // A token specifying which result page to return.
      *     pageToken: 'placeholder-value',
@@ -2626,7 +2626,7 @@ export namespace androiddeviceprovisioning_v1 {
   }
   export interface Params$Resource$Customers$Devices$List extends StandardParameters {
     /**
-     * Optional. The maximum number of devices to show in a page of results. If unset or 0, defaults to 1000. If a value greater than 1000 is specified, it will be coerced to 1000.
+     * Optional. The maximum number of devices to show in a page of results. If unset or `0`, defaults to `5000`. If a value greater than `10000` is specified, it will be coerced to `10000`.
      */
     pageSize?: string;
     /**

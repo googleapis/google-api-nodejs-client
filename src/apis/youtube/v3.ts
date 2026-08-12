@@ -521,6 +521,54 @@ export namespace youtube_v3 {
     type?: string | null;
   }
   /**
+   * Common proto for Live and VOD geo-restrictions
+   */
+  export interface Schema$AvailabilityConfig {
+    /**
+     * Video is available in all regions except the ones specified in the config.
+     */
+    globalConfig?: Schema$AvailabilityConfigGlobalConfig;
+    /**
+     * Video is available in the specified regions only.
+     */
+    regionsConfig?: Schema$AvailabilityConfigRegionsConfig;
+  }
+  /**
+   * Video is available in all regions except the ones specified in the excluded_region_codes list.
+   */
+  export interface Schema$AvailabilityConfigGlobalConfig {
+    /**
+     * Optional. Regions where video is blocked
+     */
+    excludedRegionCodes?: string[] | null;
+    /**
+     * Default time window where video is available for all non-blocked regions Not supported for upcoming / active live broadcasts. If start time is unspecified, video is already available If end time is unspecified, video is available forever Specified start and end times cannot be more than five years in the future.
+     */
+    interval?: Schema$Interval;
+  }
+  /**
+   * Video is available in the specified regions only.
+   */
+  export interface Schema$AvailabilityConfigRegionsConfig {
+    /**
+     * Required. List of regions and time windows where video is available. If a region is specified multiple times, the union of all intervals is used.
+     */
+    regionIntervals?: Schema$AvailabilityConfigRegionsConfigRegionInterval[];
+  }
+  /**
+   * Region and time window where video is available for the region.
+   */
+  export interface Schema$AvailabilityConfigRegionsConfigRegionInterval {
+    /**
+     * Time window where video is available for the region. Not supported for upcoming / active live broadcasts. If start time is unspecified, video is already available If end time is unspecified, video is available forever Specified start and end times cannot be more than five years in the future.
+     */
+    interval?: Schema$Interval;
+    /**
+     * Required. Region where video is available
+     */
+    regionCode?: string | null;
+  }
+  /**
    * Response for the Videos.stats API. Returns VideoStat information about a batch of videos. VideoStat contains a subset of the information in Video that is relevant to statistics and content details. BatchGetStats is intentionally not atomic to provide a better user experience. BatchGetStatsResponse returns a summary to help users understand the outcome of the operation.
    */
   export interface Schema$BatchGetStatsResponse {
@@ -2046,6 +2094,19 @@ export namespace youtube_v3 {
     streamName?: string | null;
   }
   /**
+   * Represents a time interval, encoded as a Timestamp start (inclusive) and a Timestamp end (exclusive). The start must be less than or equal to the end. When the start equals the end, the interval is empty (matches no time). When both start and end are unspecified, the interval matches any time.
+   */
+  export interface Schema$Interval {
+    /**
+     * Optional. Exclusive end of the interval. If specified, a Timestamp matching this interval will have to be before the end.
+     */
+    endTime?: string | null;
+    /**
+     * Optional. Inclusive start of the interval. If specified, a Timestamp matching this interval will have to be the same or after the start.
+     */
+    startTime?: string | null;
+  }
+  /**
    * Describes an invideo branding.
    */
   export interface Schema$InvideoBranding {
@@ -2150,6 +2211,10 @@ export namespace youtube_v3 {
    * Detailed settings of a broadcast.
    */
   export interface Schema$LiveBroadcastContentDetails {
+    /**
+     * Optional. The broadcast's availability config. Used to set specific region availability or block specific regions It is optional - if not set, it is not enforced.
+     */
+    availabilityConfig?: Schema$AvailabilityConfig;
     /**
      * This value uniquely identifies the live stream bound to the broadcast.
      */

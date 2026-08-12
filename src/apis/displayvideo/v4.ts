@@ -205,7 +205,7 @@ export namespace displayvideo_v4 {
      */
     name?: string | null;
     /**
-     * Optional. Whether the asset contains synthetic content or was created using AI.
+     * Optional. Whether to add a label to the asset as created or edited using AI when served in regions with local AI labeling regulations.
      */
     syntheticContentAttestationStatus?: string | null;
     /**
@@ -2561,7 +2561,7 @@ export namespace displayvideo_v4 {
    */
   export interface Schema$ContactInfo {
     /**
-     * Optional. Country code of the member. Must also be set with the following fields: * country_code * hashed_first_name * hashed_last_name * zip_codes
+     * Optional. Country code of the member. Must also be set with the following fields: * hashed_first_name * hashed_last_name * zip_codes
      */
     countryCode?: string | null;
     /**
@@ -2994,7 +2994,7 @@ export namespace displayvideo_v4 {
      */
     skippable?: boolean | null;
     /**
-     * Optional. Whether the creative contains synthetic content or was created using AI.
+     * Optional. Whether to add a label to the creative as created or edited using AI when served in regions with local AI labeling regulations.
      */
     syntheticContentAttestationStatus?: string | null;
     /**
@@ -7439,7 +7439,7 @@ export namespace displayvideo_v4 {
      */
     filename?: string | null;
     /**
-     * Optional. Whether the asset contains synthetic content or was created using AI.
+     * Optional. Whether to add a label to the asset as created or edited using AI when served in regions with local AI labeling regulations.
      */
     syntheticContentAttestationStatus?: string | null;
   }
@@ -9952,7 +9952,7 @@ export namespace displayvideo_v4 {
     }
 
     /**
-     * Updates an ad asset. Returns the updated ad asset if successful. Supports updating assets of AdAssetType `AD_ASSET_TYPE_YOUTUBE_VIDEO` and `AD_ASSET_TYPE_IMAGE`. Only the `synthetic_content_attestation_status` field is mutable.
+     * Updates an ad asset. Returns the updated ad asset if successful. Supports updating assets of AdAssetType `AD_ASSET_TYPE_YOUTUBE_VIDEO` and `AD_ASSET_TYPE_IMAGE`. Only the AdAsset.synthetic_content_attestation_status field is mutable.
      * @example
      * ```js
      * // Before running the sample:
@@ -24915,7 +24915,7 @@ export namespace displayvideo_v4 {
     }
 
     /**
-     * Generates a reach forecast for a given advertiser and targeting configuration.
+     * Generates a reach forecast for a given advertiser and targeting configuration. API support for generating reach forecasts and retrieving related metadata is in beta. This method is only available to allowlisted users.
      * @example
      * ```js
      * // Before running the sample:
@@ -25073,7 +25073,7 @@ export namespace displayvideo_v4 {
     }
 
     /**
-     * Retrieves the list of countries where reach forecasting is supported.
+     * Retrieves the list of countries where reach forecasting is supported. API support for generating reach forecasts and retrieving related metadata is in beta. This method is only available to allowlisted users.
      * @example
      * ```js
      * // Before running the sample:
@@ -25222,7 +25222,7 @@ export namespace displayvideo_v4 {
     }
 
     /**
-     * Retrieves the list of products that can be planned for a location.
+     * Retrieves the list of products that can be planned for a location. API support for generating reach forecasts and retrieving related metadata is in beta. This method is only available to allowlisted users.
      * @example
      * ```js
      * // Before running the sample:
@@ -25373,7 +25373,7 @@ export namespace displayvideo_v4 {
     }
 
     /**
-     * Retrieves Google Audiences (User Interests) available for forecasting.
+     * Retrieves Google Audiences (User Interests) available for forecasting. API support for generating reach forecasts and retrieving related metadata is in beta. This method is only available to allowlisted users.
      * @example
      * ```js
      * // Before running the sample:
@@ -25526,7 +25526,7 @@ export namespace displayvideo_v4 {
     }
 
     /**
-     * Retrieves first and third party user lists available for forecasting.
+     * Retrieves first and third party user lists available for forecasting. API support for generating reach forecasts and retrieving related metadata is in beta. This method is only available to allowlisted users.
      * @example
      * ```js
      * // Before running the sample:

@@ -1935,7 +1935,7 @@ export namespace displayvideo_v2 {
      */
     skippable?: boolean | null;
     /**
-     * Optional. Whether the creative contains synthetic content or was created using AI.
+     * Optional. Whether to add a label to the creative as created or edited using AI when served in regions with local AI labeling regulations.
      */
     syntheticContentAttestationStatus?: string | null;
     /**

@@ -757,7 +757,7 @@ export namespace health_v4 {
    */
   export interface Schema$DailyRollUpDataPointsRequest {
     /**
-     * Optional. The data source family name to roll up. If empty, data points from all available data sources will be rolled up. Format: `users/me/dataSourceFamilies/{data_source_family\}` The supported values are: - `users/me/dataSourceFamilies/all-sources` - default value - `users/me/dataSourceFamilies/google-wearables` - tracker devices - `users/me/dataSourceFamilies/google-sources` - Google first party sources
+     * Optional. The data source family name to roll up. If empty, data points from all available data sources will be rolled up. Format: `users/me/dataSourceFamilies/{data_source_family\}` The supported values are: - `users/me/dataSourceFamilies/all-sources` - Default value. Includes data from all available data sources. - `users/me/dataSourceFamilies/google-wearables` - Includes data from Google and Fitbit tracker devices (such as Fitbit trackers and Pixel Watch). Excludes manually logged data. - `users/me/dataSourceFamilies/google-sources` - Includes first-party Google data, such as data from tracker devices, manually logged data, and Health Connect.
      */
     dataSourceFamily?: string | null;
     /**
@@ -949,6 +949,14 @@ export namespace health_v4 {
      */
     irregularRhythmNotification?: Schema$IrregularRhythmNotification;
     /**
+     * Optional. Data for points in the `menstrual-period` interval data type collection.
+     */
+    menstrualPeriod?: Schema$MenstrualPeriod;
+    /**
+     * Optional. Data for points in the `moods` sample data type collection.
+     */
+    moods?: Schema$Moods;
+    /**
      * Identifier. Data point name, only supported for the subset of identifiable data types. For the majority of the data types, individual data points do not need to be identified and this field would be empty. Format: `users/{user\}/dataTypes/{data_type\}/dataPoints/{data_point\}` Example: `users/abcd1234/dataTypes/sleep/dataPoints/a1b2c3d4-e5f6-7890-1234-567890abcdef` The `{user\}` ID is a system-generated identifier, as described in Identity.health_user_id. The `{data_type\}` ID corresponds to the kebab-case version of the field names in the DataPoint data union field, e.g. `heart-rate` for the `heart_rate` field. The `{data_point\}` ID can be client-provided or system-generated. If client-provided, it must be a string of 4-63 characters, containing only lowercase letters, numbers, and hyphens.
      */
     name?: string | null;
@@ -956,6 +964,10 @@ export namespace health_v4 {
      * Optional. Data for points in the `nutrition-log` session data type collection.
      */
     nutritionLog?: Schema$NutritionLog;
+    /**
+     * Optional. Data for points in the `ovulation-test` sample data type collection.
+     */
+    ovulationTest?: Schema$OvulationTest;
     /**
      * Optional. Data for points in the `oxygen-saturation` sample data type collection.
      */
@@ -984,6 +996,10 @@ export namespace health_v4 {
      * Optional. Data for points in the `swim-lengths-data` interval data type collection.
      */
     swimLengthsData?: Schema$SwimLengthsData;
+    /**
+     * Optional. Data for points in the `symptoms` sample data type collection.
+     */
+    symptoms?: Schema$Symptoms;
     /**
      * Optional. Data for points in the `time-in-heart-rate-zone` interval data type collection.
      */
@@ -1208,7 +1224,7 @@ export namespace health_v4 {
      */
     createTime?: string | null;
     /**
-     * Required. Exercise display name.
+     * Required. The localized, human-readable name of the exercise. For all exercise types other than `OTHER`, the system ignores client input and overrides this field with a generated name based on `exercise_type` (e.g., "Walking" for `WALKING`). If `exercise_type` is `OTHER`, this field can contain the user's custom, free-form display name.
      */
     displayName?: string | null;
     /**
@@ -1807,6 +1823,19 @@ export namespace health_v4 {
     serviceVersion?: string | null;
   }
   /**
+   * Menstrual period record.
+   */
+  export interface Schema$MenstrualPeriod {
+    /**
+     * Required. Observed interval.
+     */
+    interval?: Schema$ObservationTimeInterval;
+    /**
+     * Optional. Standard free-form notes captured at manual logging.
+     */
+    notes?: string | null;
+  }
+  /**
    * Summary metrics for an exercise.
    */
   export interface Schema$MetricsSummary {
@@ -1883,6 +1912,23 @@ export namespace health_v4 {
      * Optional. Vertical oscillation/stride length between [5.0, 11.0].
      */
     avgVerticalRatio?: number | null;
+  }
+  /**
+   * Moods record.
+   */
+  export interface Schema$Moods {
+    /**
+     * Required. The moods logged.
+     */
+    moods?: string[] | null;
+    /**
+     * Required. The time at which moods were measured.
+     */
+    sampleTime?: Schema$ObservationSampleTime;
+    /**
+     * Optional. The valences.
+     */
+    valences?: string[] | null;
   }
   /**
    * Represents the quantity of a nutrient.
@@ -2071,6 +2117,19 @@ export namespace health_v4 {
      * Required. The offset of the user's local time at the start of the segment relative to the Coordinated Universal Time (UTC).
      */
     startUtcOffset?: string | null;
+  }
+  /**
+   * Ovulation test record.
+   */
+  export interface Schema$OvulationTest {
+    /**
+     * Required. The result of the ovulation test.
+     */
+    result?: string | null;
+    /**
+     * Required. The time at which ovulation test was measured.
+     */
+    sampleTime?: Schema$ObservationSampleTime;
   }
   /**
    * Captures the user's instantaneous oxygen saturation percentage (SpO2).
@@ -2470,7 +2529,7 @@ export namespace health_v4 {
    */
   export interface Schema$RollUpDataPointsRequest {
     /**
-     * Optional. The data source family name to roll up. If empty, data points from all available data sources will be rolled up. Format: `users/me/dataSourceFamilies/{data_source_family\}` The supported values are: - `users/me/dataSourceFamilies/all-sources` - default value - `users/me/dataSourceFamilies/google-wearables` - tracker devices - `users/me/dataSourceFamilies/google-sources` - Google first party sources
+     * Optional. The data source family name to roll up. If empty, data points from all available data sources will be rolled up. Format: `users/me/dataSourceFamilies/{data_source_family\}` The supported values are: - `users/me/dataSourceFamilies/all-sources` - Default value. Includes data from all available data sources. - `users/me/dataSourceFamilies/google-wearables` - Includes data from Google and Fitbit tracker devices (such as Fitbit trackers and Pixel Watch). Excludes manually logged data. - `users/me/dataSourceFamilies/google-sources` - Includes first-party Google data, such as data from tracker devices, manually logged data, and Health Connect.
      */
     dataSourceFamily?: string | null;
     /**
@@ -2606,7 +2665,7 @@ export namespace health_v4 {
      */
     autoStrideEnabled?: boolean | null;
     /**
-     * Optional. The measurement unit defined in the user's account settings. Updates to this field are currently not supported.
+     * Optional. The measurement unit defined in the user's account settings.
      */
     distanceUnit?: string | null;
     /**
@@ -2682,6 +2741,10 @@ export namespace health_v4 {
      * Optional. “Out of bed” segments that can overlap with sleep stages.
      */
     outOfBedSegments?: Schema$OutOfBedSegment[];
+    /**
+     * Output only. List of short awake segments (under a set threshold) that are part of the sleep session. These can overlap with sleep stages.
+     */
+    shortAwakenings?: Schema$SleepStage[];
     /**
      * Optional. List of non-overlapping contiguous sleep stage segments that cover the sleep period.
      */
@@ -2967,6 +3030,19 @@ export namespace health_v4 {
      * Total number of swim strokes in the interval.
      */
     strokeCountSum?: string | null;
+  }
+  /**
+   * Symptoms logged by the user.
+   */
+  export interface Schema$Symptoms {
+    /**
+     * Required. Time when the symptoms were logged.
+     */
+    sampleTime?: Schema$ObservationSampleTime;
+    /**
+     * Required. List of symptoms experienced.
+     */
+    symptoms?: string[] | null;
   }
   /**
    * Time in heart rate zone record. It's an interval spent in specific heart rate zone.
@@ -6003,8 +6079,11 @@ export namespace health_v4 {
      *       //   "height": {},
      *       //   "hydrationLog": {},
      *       //   "irregularRhythmNotification": {},
+     *       //   "menstrualPeriod": {},
+     *       //   "moods": {},
      *       //   "name": "my_name",
      *       //   "nutritionLog": {},
+     *       //   "ovulationTest": {},
      *       //   "oxygenSaturation": {},
      *       //   "respiratoryRateSleepSummary": {},
      *       //   "runVo2Max": {},
@@ -6012,6 +6091,7 @@ export namespace health_v4 {
      *       //   "sleep": {},
      *       //   "steps": {},
      *       //   "swimLengthsData": {},
+     *       //   "symptoms": {},
      *       //   "timeInHeartRateZone": {},
      *       //   "vo2Max": {},
      *       //   "weight": {}
@@ -6501,8 +6581,11 @@ export namespace health_v4 {
      *   //   "height": {},
      *   //   "hydrationLog": {},
      *   //   "irregularRhythmNotification": {},
+     *   //   "menstrualPeriod": {},
+     *   //   "moods": {},
      *   //   "name": "my_name",
      *   //   "nutritionLog": {},
+     *   //   "ovulationTest": {},
      *   //   "oxygenSaturation": {},
      *   //   "respiratoryRateSleepSummary": {},
      *   //   "runVo2Max": {},
@@ -6510,6 +6593,7 @@ export namespace health_v4 {
      *   //   "sleep": {},
      *   //   "steps": {},
      *   //   "swimLengthsData": {},
+     *   //   "symptoms": {},
      *   //   "timeInHeartRateZone": {},
      *   //   "vo2Max": {},
      *   //   "weight": {}
@@ -6832,8 +6916,11 @@ export namespace health_v4 {
      *       //   "height": {},
      *       //   "hydrationLog": {},
      *       //   "irregularRhythmNotification": {},
+     *       //   "menstrualPeriod": {},
+     *       //   "moods": {},
      *       //   "name": "my_name",
      *       //   "nutritionLog": {},
+     *       //   "ovulationTest": {},
      *       //   "oxygenSaturation": {},
      *       //   "respiratoryRateSleepSummary": {},
      *       //   "runVo2Max": {},
@@ -6841,6 +6928,7 @@ export namespace health_v4 {
      *       //   "sleep": {},
      *       //   "steps": {},
      *       //   "swimLengthsData": {},
+     *       //   "symptoms": {},
      *       //   "timeInHeartRateZone": {},
      *       //   "vo2Max": {},
      *       //   "weight": {}
@@ -6974,9 +7062,17 @@ export namespace health_v4 {
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
      *       'https://www.googleapis.com/auth/googlehealth.activity_and_fitness.readonly',
+     *       'https://www.googleapis.com/auth/googlehealth.activity_and_fitness.writeonly',
      *       'https://www.googleapis.com/auth/googlehealth.health_metrics_and_measurements.readonly',
+     *       'https://www.googleapis.com/auth/googlehealth.health_metrics_and_measurements.writeonly',
      *       'https://www.googleapis.com/auth/googlehealth.location.readonly',
+     *       'https://www.googleapis.com/auth/googlehealth.location.writeonly',
+     *       'https://www.googleapis.com/auth/googlehealth.logged_symptoms.writeonly',
+     *       'https://www.googleapis.com/auth/googlehealth.mindfulness.writeonly',
+     *       'https://www.googleapis.com/auth/googlehealth.nutrition.writeonly',
+     *       'https://www.googleapis.com/auth/googlehealth.reproductive_health.writeonly',
      *       'https://www.googleapis.com/auth/googlehealth.sleep.readonly',
+     *       'https://www.googleapis.com/auth/googlehealth.sleep.writeonly',
      *     ],
      *   });
      *
@@ -6986,7 +7082,7 @@ export namespace health_v4 {
      *
      *   // Do the magic
      *   const res = await health.users.dataTypes.dataPoints.reconcile({
-     *     // Optional. The data source family name to reconcile. If empty, data points from all data sources will be reconciled. Format: `users/me/dataSourceFamilies/{data_source_family\}` The supported values are: - `users/me/dataSourceFamilies/all-sources` - default value - `users/me/dataSourceFamilies/google-wearables` - tracker devices - `users/me/dataSourceFamilies/google-sources` - Google first party sources
+     *     // Optional. The data source family name to reconcile. If empty, data points from all data sources will be reconciled. Format: `users/me/dataSourceFamilies/{data_source_family\}` - `users/me/dataSourceFamilies/all-sources` - Default value. Includes data from all available data sources. - `users/me/dataSourceFamilies/google-wearables` - Includes data from Google and Fitbit tracker devices (such as Fitbit trackers and Pixel Watch). Excludes manually logged data. - `users/me/dataSourceFamilies/google-sources` - Includes first-party Google data, such as data from tracker devices, manually logged data, and Health Connect.
      *     dataSourceFamily: 'placeholder-value',
      *     // Optional. Filter expression based on https://aip.dev/160. A time range, either physical or civil, can be specified. See the ListDataPointsRequest.filter for the supported fields and syntax.
      *     filter: 'placeholder-value',
@@ -7344,7 +7440,7 @@ export namespace health_v4 {
   }
   export interface Params$Resource$Users$Datatypes$Datapoints$Reconcile extends StandardParameters {
     /**
-     * Optional. The data source family name to reconcile. If empty, data points from all data sources will be reconciled. Format: `users/me/dataSourceFamilies/{data_source_family\}` The supported values are: - `users/me/dataSourceFamilies/all-sources` - default value - `users/me/dataSourceFamilies/google-wearables` - tracker devices - `users/me/dataSourceFamilies/google-sources` - Google first party sources
+     * Optional. The data source family name to reconcile. If empty, data points from all data sources will be reconciled. Format: `users/me/dataSourceFamilies/{data_source_family\}` - `users/me/dataSourceFamilies/all-sources` - Default value. Includes data from all available data sources. - `users/me/dataSourceFamilies/google-wearables` - Includes data from Google and Fitbit tracker devices (such as Fitbit trackers and Pixel Watch). Excludes manually logged data. - `users/me/dataSourceFamilies/google-sources` - Includes first-party Google data, such as data from tracker devices, manually logged data, and Health Connect.
      */
     dataSourceFamily?: string;
     /**

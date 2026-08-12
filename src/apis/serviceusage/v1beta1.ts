@@ -669,6 +669,10 @@ export namespace serviceusage_v1beta1 {
      */
     supportedLocations?: string[] | null;
     /**
+     * Indicates the traffic type attribution for this quota limit (e.g. agentic). This is an informational field used to categorize and filter the quota limits.
+     */
+    trafficSource?: string | null;
+    /**
      * The limit unit. An example unit would be `1/{project\}/{region\}` Note that `{project\}` and `{region\}` are not placeholders in this example; the literal characters `{` and `\}` occur in the string.
      */
     unit?: string | null;
@@ -4828,6 +4832,7 @@ export namespace serviceusage_v1beta1 {
      *   //   "name": "my_name",
      *   //   "quotaBuckets": [],
      *   //   "supportedLocations": [],
+     *   //   "trafficSource": "my_trafficSource",
      *   //   "unit": "my_unit"
      *   // }
      * }
