@@ -141,6 +141,10 @@ export namespace containeranalysis_v1beta1 {
      */
     maxSeverity?: string | null;
     /**
+     * Per scanner verdict.
+     */
+    perScannerVerdict?: Schema$PerScannerVerdict;
+    /**
      * Name of the skill that produced this analysis.
      */
     skillName?: string | null;
@@ -2745,6 +2749,45 @@ export namespace containeranalysis_v1beta1 {
     version?: Schema$Version;
   }
   /**
+   * Result of Malicious Content LLM scan.
+   */
+  export interface Schema$MaliciousContentLLMResult {
+    /**
+     * Tracks max severity found.
+     */
+    maxSeverity?: string | null;
+    /**
+     * Status of the scan.
+     */
+    scanStatus?: string | null;
+  }
+  /**
+   * Result of Malicious Content Static scan.
+   */
+  export interface Schema$MaliciousContentStaticResult {
+    /**
+     * Tracks max severity found.
+     */
+    maxSeverity?: string | null;
+    /**
+     * Status of the scan.
+     */
+    scanStatus?: string | null;
+  }
+  /**
+   * Result of Malware scan.
+   */
+  export interface Schema$MalwareScanResult {
+    /**
+     * Status of the scan.
+     */
+    scanStatus?: string | null;
+    /**
+     * Verdict of the scan.
+     */
+    verdict?: string | null;
+  }
+  /**
    * A type of analysis that can be done for a resource.
    */
   export interface Schema$Note {
@@ -3150,6 +3193,27 @@ export namespace containeranalysis_v1beta1 {
      * The unique URL of the image or the container for which this summary applies.
      */
     resourceUrl?: string | null;
+  }
+  /**
+   * Per scanner verdict details.
+   */
+  export interface Schema$PerScannerVerdict {
+    /**
+     * Malicious Content LLM scan result.
+     */
+    maliciousContentLlmResult?: Schema$MaliciousContentLLMResult;
+    /**
+     * Malicious Content Static scan result.
+     */
+    maliciousContentStaticResult?: Schema$MaliciousContentStaticResult;
+    /**
+     * Malware scan result.
+     */
+    malwareScan?: Schema$MalwareScanResult;
+    /**
+     * Workspace Policy scan result.
+     */
+    workspacePolicy?: Schema$WorkspacePolicyResult;
   }
   /**
    * An attestation wrapper with a PGP-compatible signature. This message only supports `ATTACHED` signatures, where the payload that is signed is included alongside the signature itself in the same file.
@@ -3838,6 +3902,19 @@ export namespace containeranalysis_v1beta1 {
      * Required. The name of the vulnerability.
      */
     name?: string | null;
+  }
+  /**
+   * Result of Workspace Policy scan.
+   */
+  export interface Schema$WorkspacePolicyResult {
+    /**
+     * Status of the scan.
+     */
+    scanStatus?: string | null;
+    /**
+     * Verdict of the scan.
+     */
+    verdict?: string | null;
   }
 
   export class Resource$Projects {
