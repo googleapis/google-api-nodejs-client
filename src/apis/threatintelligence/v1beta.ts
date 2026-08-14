@@ -880,6 +880,15 @@ export namespace threatintelligence_v1beta {
     domain?: string | null;
   }
   /**
+   * Response message for GetPassword.
+   */
+  export interface Schema$GetPasswordResponse {
+    /**
+     * The decrypted cleartext password for the compromised credential.
+     */
+    password?: string | null;
+  }
+  /**
    * Captures the specific details of InitialAccessBroker (IAB) alert.
    */
   export interface Schema$InitialAccessBrokerAlertDetail {
@@ -2478,29 +2487,14 @@ export namespace threatintelligence_v1beta {
      *
      *   // Do the magic
      *   const res = await threatintelligence.projects.alerts.getPassword({
-     *     // Required. Name of the alert to get. Format: projects/{project\}/alerts/{alert\}
+     *     // Required. Name of the alert to get password for. Format: projects/{project\}/alerts/{alert\}
      *     name: 'projects/my-project/alerts/my-alert',
      *   });
      *   console.log(res.data);
      *
      *   // Example response
      *   // {
-     *   //   "aiSummary": "my_aiSummary",
-     *   //   "audit": {},
-     *   //   "configurations": [],
-     *   //   "detail": {},
-     *   //   "displayName": "my_displayName",
-     *   //   "duplicateOf": "my_duplicateOf",
-     *   //   "duplicatedBy": [],
-     *   //   "etag": "my_etag",
-     *   //   "externalId": "my_externalId",
-     *   //   "findingCount": "my_findingCount",
-     *   //   "findings": [],
-     *   //   "name": "my_name",
-     *   //   "priorityAnalysis": {},
-     *   //   "relevanceAnalysis": {},
-     *   //   "severityAnalysis": {},
-     *   //   "state": "my_state"
+     *   //   "password": "my_password"
      *   // }
      * }
      *
@@ -2523,7 +2517,7 @@ export namespace threatintelligence_v1beta {
     getPassword(
       params?: Params$Resource$Projects$Alerts$Getpassword,
       options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$Alert>>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GetPasswordResponse>>;
     getPassword(
       params: Params$Resource$Projects$Alerts$Getpassword,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2531,29 +2525,32 @@ export namespace threatintelligence_v1beta {
     ): void;
     getPassword(
       params: Params$Resource$Projects$Alerts$Getpassword,
-      options: MethodOptions | BodyResponseCallback<Schema$Alert>,
-      callback: BodyResponseCallback<Schema$Alert>
+      options: MethodOptions | BodyResponseCallback<Schema$GetPasswordResponse>,
+      callback: BodyResponseCallback<Schema$GetPasswordResponse>
     ): void;
     getPassword(
       params: Params$Resource$Projects$Alerts$Getpassword,
-      callback: BodyResponseCallback<Schema$Alert>
+      callback: BodyResponseCallback<Schema$GetPasswordResponse>
     ): void;
-    getPassword(callback: BodyResponseCallback<Schema$Alert>): void;
+    getPassword(
+      callback: BodyResponseCallback<Schema$GetPasswordResponse>
+    ): void;
     getPassword(
       paramsOrCallback?:
         | Params$Resource$Projects$Alerts$Getpassword
-        | BodyResponseCallback<Schema$Alert>
+        | BodyResponseCallback<Schema$GetPasswordResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$Alert>
+        | BodyResponseCallback<Schema$GetPasswordResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        BodyResponseCallback<Schema$Alert> | BodyResponseCallback<Readable>
+        | BodyResponseCallback<Schema$GetPasswordResponse>
+        | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Alert>>
+      | Promise<GaxiosResponseWithHTTP2<Schema$GetPasswordResponse>>
       | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Alerts$Getpassword;
@@ -2590,12 +2587,12 @@ export namespace threatintelligence_v1beta {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Alert>(
+        createAPIRequest<Schema$GetPasswordResponse>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$Alert>(parameters);
+        return createAPIRequest<Schema$GetPasswordResponse>(parameters);
       }
     }
 
@@ -3599,7 +3596,7 @@ export namespace threatintelligence_v1beta {
   }
   export interface Params$Resource$Projects$Alerts$Getpassword extends StandardParameters {
     /**
-     * Required. Name of the alert to get. Format: projects/{project\}/alerts/{alert\}
+     * Required. Name of the alert to get password for. Format: projects/{project\}/alerts/{alert\}
      */
     name?: string;
   }

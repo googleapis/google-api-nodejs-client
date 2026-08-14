@@ -9618,7 +9618,7 @@
       }
     }
   },
-  "revision": "20260805",
+  "revision": "20260811",
   "rootUrl": "https://displayvideo.googleapis.com/",
   "schemas": {
     "ActiveViewVideoViewabilityMetricConfig": {
@@ -13677,7 +13677,28 @@
             "GEO_REGION_TYPE_COMMUNE",
             "GEO_REGION_TYPE_COLLOQUIAL_AREA",
             "GEO_REGION_TYPE_POST_TOWN",
-            "GEO_REGION_TYPE_WARD"
+            "GEO_REGION_TYPE_WARD",
+            "GEO_REGION_TYPE_TOWN",
+            "GEO_REGION_TYPE_VILLAGE",
+            "GEO_REGION_TYPE_CITY_DISTRICT",
+            "GEO_REGION_TYPE_SUBURB",
+            "GEO_REGION_TYPE_HAMLET",
+            "GEO_REGION_TYPE_MUNICIPAL_DISTRICT",
+            "GEO_REGION_TYPE_COMMUNITY",
+            "GEO_REGION_TYPE_TOWNSHIP",
+            "GEO_REGION_TYPE_URBAN_DISTRICT",
+            "GEO_REGION_TYPE_RESIDENTIAL_AREA",
+            "GEO_REGION_TYPE_INDEPENDENT_CITY",
+            "GEO_REGION_TYPE_SECTOR",
+            "GEO_REGION_TYPE_AREA",
+            "GEO_REGION_TYPE_ESTATE",
+            "GEO_REGION_TYPE_PARISH",
+            "GEO_REGION_TYPE_SETTLEMENT",
+            "GEO_REGION_TYPE_ZONE",
+            "GEO_REGION_TYPE_COLONY",
+            "GEO_REGION_TYPE_INDUSTRIAL_AREA",
+            "GEO_REGION_TYPE_PROVINCIAL_CITY",
+            "GEO_REGION_TYPE_RURAL_DISTRICT"
           ],
           "enumDescriptions": [
             "The geographic region type is unknown.",
@@ -13719,7 +13740,28 @@
             "The geographic region is a commune.",
             "The geographic region is a colloquial area.",
             "The geographic region is a post town.",
-            "The geographic region is a ward."
+            "The geographic region is a ward.",
+            "The geographic region is a town.",
+            "The geographic region is a village.",
+            "The geographic region is a city district.",
+            "The geographic region is a suburb.",
+            "The geographic region is a hamlet.",
+            "The geographic region is a municipal district.",
+            "The geographic region is a community.",
+            "The geographic region is a township.",
+            "The geographic region is an urban district.",
+            "The geographic region is a residential area.",
+            "The geographic region is an independent city.",
+            "The geographic region is a sector.",
+            "The geographic region is an area.",
+            "The geographic region is an estate.",
+            "The geographic region is a parish.",
+            "The geographic region is a settlement.",
+            "The geographic region is a zone.",
+            "The geographic region is a colony.",
+            "The geographic region is an industrial area.",
+            "The geographic region is a provincial city.",
+            "The geographic region is a rural district."
           ],
           "readOnly": true,
           "type": "string"
@@ -14981,7 +15023,8 @@
             "SDF_VERSION_9",
             "SDF_VERSION_9_1",
             "SDF_VERSION_9_2",
-            "SDF_VERSION_10"
+            "SDF_VERSION_10",
+            "SDF_VERSION_10_1"
           ],
           "enumDeprecated": [
             false,
@@ -15000,6 +15043,7 @@
             true,
             true,
             true,
+            false,
             false,
             false,
             false,
@@ -15025,7 +15069,8 @@
             "SDF version 9. Read the [v9 migration guide](/display-video/api/structured-data-file/v9-migration-guide) before migrating to this version.",
             "SDF version 9.1.",
             "SDF version 9.2.",
-            "SDF version 10."
+            "SDF version 10.",
+            "SDF version 10.1."
           ],
           "type": "string"
         }
@@ -18786,7 +18831,28 @@
             "GEO_REGION_TYPE_COMMUNE",
             "GEO_REGION_TYPE_COLLOQUIAL_AREA",
             "GEO_REGION_TYPE_POST_TOWN",
-            "GEO_REGION_TYPE_WARD"
+            "GEO_REGION_TYPE_WARD",
+            "GEO_REGION_TYPE_TOWN",
+            "GEO_REGION_TYPE_VILLAGE",
+            "GEO_REGION_TYPE_CITY_DISTRICT",
+            "GEO_REGION_TYPE_SUBURB",
+            "GEO_REGION_TYPE_HAMLET",
+            "GEO_REGION_TYPE_MUNICIPAL_DISTRICT",
+            "GEO_REGION_TYPE_COMMUNITY",
+            "GEO_REGION_TYPE_TOWNSHIP",
+            "GEO_REGION_TYPE_URBAN_DISTRICT",
+            "GEO_REGION_TYPE_RESIDENTIAL_AREA",
+            "GEO_REGION_TYPE_INDEPENDENT_CITY",
+            "GEO_REGION_TYPE_SECTOR",
+            "GEO_REGION_TYPE_AREA",
+            "GEO_REGION_TYPE_ESTATE",
+            "GEO_REGION_TYPE_PARISH",
+            "GEO_REGION_TYPE_SETTLEMENT",
+            "GEO_REGION_TYPE_ZONE",
+            "GEO_REGION_TYPE_COLONY",
+            "GEO_REGION_TYPE_INDUSTRIAL_AREA",
+            "GEO_REGION_TYPE_PROVINCIAL_CITY",
+            "GEO_REGION_TYPE_RURAL_DISTRICT"
           ],
           "enumDescriptions": [
             "The geographic region type is unknown.",
@@ -18828,7 +18894,28 @@
             "The geographic region is a commune.",
             "The geographic region is a colloquial area.",
             "The geographic region is a post town.",
-            "The geographic region is a ward."
+            "The geographic region is a ward.",
+            "The geographic region is a town.",
+            "The geographic region is a village.",
+            "The geographic region is a city district.",
+            "The geographic region is a suburb.",
+            "The geographic region is a hamlet.",
+            "The geographic region is a municipal district.",
+            "The geographic region is a community.",
+            "The geographic region is a township.",
+            "The geographic region is an urban district.",
+            "The geographic region is a residential area.",
+            "The geographic region is an independent city.",
+            "The geographic region is a sector.",
+            "The geographic region is an area.",
+            "The geographic region is an estate.",
+            "The geographic region is a parish.",
+            "The geographic region is a settlement.",
+            "The geographic region is a zone.",
+            "The geographic region is a colony.",
+            "The geographic region is an industrial area.",
+            "The geographic region is a provincial city.",
+            "The geographic region is a rural district."
           ],
           "readOnly": true,
           "type": "string"
@@ -18906,7 +18993,28 @@
             "GEO_REGION_TYPE_COMMUNE",
             "GEO_REGION_TYPE_COLLOQUIAL_AREA",
             "GEO_REGION_TYPE_POST_TOWN",
-            "GEO_REGION_TYPE_WARD"
+            "GEO_REGION_TYPE_WARD",
+            "GEO_REGION_TYPE_TOWN",
+            "GEO_REGION_TYPE_VILLAGE",
+            "GEO_REGION_TYPE_CITY_DISTRICT",
+            "GEO_REGION_TYPE_SUBURB",
+            "GEO_REGION_TYPE_HAMLET",
+            "GEO_REGION_TYPE_MUNICIPAL_DISTRICT",
+            "GEO_REGION_TYPE_COMMUNITY",
+            "GEO_REGION_TYPE_TOWNSHIP",
+            "GEO_REGION_TYPE_URBAN_DISTRICT",
+            "GEO_REGION_TYPE_RESIDENTIAL_AREA",
+            "GEO_REGION_TYPE_INDEPENDENT_CITY",
+            "GEO_REGION_TYPE_SECTOR",
+            "GEO_REGION_TYPE_AREA",
+            "GEO_REGION_TYPE_ESTATE",
+            "GEO_REGION_TYPE_PARISH",
+            "GEO_REGION_TYPE_SETTLEMENT",
+            "GEO_REGION_TYPE_ZONE",
+            "GEO_REGION_TYPE_COLONY",
+            "GEO_REGION_TYPE_INDUSTRIAL_AREA",
+            "GEO_REGION_TYPE_PROVINCIAL_CITY",
+            "GEO_REGION_TYPE_RURAL_DISTRICT"
           ],
           "enumDescriptions": [
             "The geographic region type is unknown.",
@@ -18948,7 +19056,28 @@
             "The geographic region is a commune.",
             "The geographic region is a colloquial area.",
             "The geographic region is a post town.",
-            "The geographic region is a ward."
+            "The geographic region is a ward.",
+            "The geographic region is a town.",
+            "The geographic region is a village.",
+            "The geographic region is a city district.",
+            "The geographic region is a suburb.",
+            "The geographic region is a hamlet.",
+            "The geographic region is a municipal district.",
+            "The geographic region is a community.",
+            "The geographic region is a township.",
+            "The geographic region is an urban district.",
+            "The geographic region is a residential area.",
+            "The geographic region is an independent city.",
+            "The geographic region is a sector.",
+            "The geographic region is an area.",
+            "The geographic region is an estate.",
+            "The geographic region is a parish.",
+            "The geographic region is a settlement.",
+            "The geographic region is a zone.",
+            "The geographic region is a colony.",
+            "The geographic region is an industrial area.",
+            "The geographic region is a provincial city.",
+            "The geographic region is a rural district."
           ],
           "readOnly": true,
           "type": "string"
@@ -22941,7 +23070,28 @@
             "GEO_REGION_TYPE_COMMUNE",
             "GEO_REGION_TYPE_COLLOQUIAL_AREA",
             "GEO_REGION_TYPE_POST_TOWN",
-            "GEO_REGION_TYPE_WARD"
+            "GEO_REGION_TYPE_WARD",
+            "GEO_REGION_TYPE_TOWN",
+            "GEO_REGION_TYPE_VILLAGE",
+            "GEO_REGION_TYPE_CITY_DISTRICT",
+            "GEO_REGION_TYPE_SUBURB",
+            "GEO_REGION_TYPE_HAMLET",
+            "GEO_REGION_TYPE_MUNICIPAL_DISTRICT",
+            "GEO_REGION_TYPE_COMMUNITY",
+            "GEO_REGION_TYPE_TOWNSHIP",
+            "GEO_REGION_TYPE_URBAN_DISTRICT",
+            "GEO_REGION_TYPE_RESIDENTIAL_AREA",
+            "GEO_REGION_TYPE_INDEPENDENT_CITY",
+            "GEO_REGION_TYPE_SECTOR",
+            "GEO_REGION_TYPE_AREA",
+            "GEO_REGION_TYPE_ESTATE",
+            "GEO_REGION_TYPE_PARISH",
+            "GEO_REGION_TYPE_SETTLEMENT",
+            "GEO_REGION_TYPE_ZONE",
+            "GEO_REGION_TYPE_COLONY",
+            "GEO_REGION_TYPE_INDUSTRIAL_AREA",
+            "GEO_REGION_TYPE_PROVINCIAL_CITY",
+            "GEO_REGION_TYPE_RURAL_DISTRICT"
           ],
           "enumDescriptions": [
             "The geographic region type is unknown.",
@@ -22983,7 +23133,28 @@
             "The geographic region is a commune.",
             "The geographic region is a colloquial area.",
             "The geographic region is a post town.",
-            "The geographic region is a ward."
+            "The geographic region is a ward.",
+            "The geographic region is a town.",
+            "The geographic region is a village.",
+            "The geographic region is a city district.",
+            "The geographic region is a suburb.",
+            "The geographic region is a hamlet.",
+            "The geographic region is a municipal district.",
+            "The geographic region is a community.",
+            "The geographic region is a township.",
+            "The geographic region is an urban district.",
+            "The geographic region is a residential area.",
+            "The geographic region is an independent city.",
+            "The geographic region is a sector.",
+            "The geographic region is an area.",
+            "The geographic region is an estate.",
+            "The geographic region is a parish.",
+            "The geographic region is a settlement.",
+            "The geographic region is a zone.",
+            "The geographic region is a colony.",
+            "The geographic region is an industrial area.",
+            "The geographic region is a provincial city.",
+            "The geographic region is a rural district."
           ],
           "readOnly": true,
           "type": "string"
@@ -24028,7 +24199,8 @@
             "SDF_VERSION_9",
             "SDF_VERSION_9_1",
             "SDF_VERSION_9_2",
-            "SDF_VERSION_10"
+            "SDF_VERSION_10",
+            "SDF_VERSION_10_1"
           ],
           "enumDeprecated": [
             false,
@@ -24047,6 +24219,7 @@
             true,
             true,
             true,
+            false,
             false,
             false,
             false,
@@ -24072,7 +24245,8 @@
             "SDF version 9. Read the [v9 migration guide](/display-video/api/structured-data-file/v9-migration-guide) before migrating to this version.",
             "SDF version 9.1.",
             "SDF version 9.2.",
-            "SDF version 10."
+            "SDF version 10.",
+            "SDF version 10.1."
           ],
           "type": "string"
         }
@@ -24126,7 +24300,8 @@
             "SDF_VERSION_9",
             "SDF_VERSION_9_1",
             "SDF_VERSION_9_2",
-            "SDF_VERSION_10"
+            "SDF_VERSION_10",
+            "SDF_VERSION_10_1"
           ],
           "enumDeprecated": [
             false,
@@ -24145,6 +24320,7 @@
             true,
             true,
             true,
+            false,
             false,
             false,
             false,
@@ -24170,7 +24346,8 @@
             "SDF version 9. Read the [v9 migration guide](/display-video/api/structured-data-file/v9-migration-guide) before migrating to this version.",
             "SDF version 9.1.",
             "SDF version 9.2.",
-            "SDF version 10."
+            "SDF version 10.",
+            "SDF version 10.1."
           ],
           "type": "string"
         }

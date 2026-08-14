@@ -608,6 +608,10 @@ export namespace admin_reports_v1 {
      */
     groupIdentity?: Schema$GroupIdentity;
     /**
+     * Identity of the shared drive who owns the resource.
+     */
+    sharedDriveIdentity?: Schema$SharedDriveIdentity;
+    /**
      * Identity of the user who owns the resource.
      */
     userIdentity?: Schema$UserIdentity;
@@ -649,6 +653,19 @@ export namespace admin_reports_v1 {
      * Type of the resource - document, email, chat message
      */
     type?: string | null;
+  }
+  /**
+   * Identity of the shared drive who owns the resource.
+   */
+  export interface Schema$SharedDriveIdentity {
+    /**
+     * Shared drive gaia id.
+     */
+    id?: string | null;
+    /**
+     * Shared drive name.
+     */
+    sharedDriveName?: string | null;
   }
   /**
    * JSON template for a usage report.

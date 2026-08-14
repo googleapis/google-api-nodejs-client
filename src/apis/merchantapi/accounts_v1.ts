@@ -308,10 +308,6 @@ export namespace merchantapi_accounts_v1 {
      * Output only. The human-readable display name of the provider account.
      */
     providerDisplayName?: string | null;
-    /**
-     * Service type for UCP Checkout Management. The provider is managing the UCP Checkout capability integration for the merchant.
-     */
-    ucpCheckoutManagement?: Schema$UcpCheckoutManagement;
   }
   /**
    * Additional instructions to add account services during creation of the account.
@@ -1693,7 +1689,7 @@ export namespace merchantapi_accounts_v1 {
     resourceType?: string | null;
   }
   /**
-   * Defines participation in a given program for the specified account. Programs provide a mechanism for adding functionality to a Merchant Center accounts. A typical example of this is the [Free product listings](https://support.google.com/merchants/answer/13889434) program, which enables products from a business's store to be shown across Google for free. The following list is the available set of program resource IDs accessible through the API: * `checkout` * `free-listings` * `product-ratings` * `shopping-ads` * `youtube-affiliate` * `youtube-shopping-checkout`
+   * Defines participation in a given program for the specified account. Programs provide a mechanism for adding functionality to a Merchant Center accounts. A typical example of this is the [Free product listings](https://support.google.com/merchants/answer/13889434) program, which enables products from a business's store to be shown across Google for free. The following list is the available set of program resource IDs accessible through the API: * `checkout` * `free-listings` * `product-ratings` * `shopping-ads` * `ucp-integration` (limited access) * `youtube-affiliate` * `youtube-shopping-checkout`
    */
   export interface Schema$Program {
     /**
@@ -2179,10 +2175,6 @@ export namespace merchantapi_accounts_v1 {
      */
     minTransitDays?: number | null;
   }
-  /**
-   * `UcpCheckoutManagement` payload.
-   */
-  export interface Schema$UcpCheckoutManagement {}
   /**
    * Request message for the `UnclaimHomepage` method.
    */
@@ -11828,8 +11820,7 @@ export namespace merchantapi_accounts_v1 {
      *   //   "name": "my_name",
      *   //   "productsManagement": {},
      *   //   "provider": "my_provider",
-     *   //   "providerDisplayName": "my_providerDisplayName",
-     *   //   "ucpCheckoutManagement": {}
+     *   //   "providerDisplayName": "my_providerDisplayName"
      *   // }
      * }
      *
@@ -11977,8 +11968,7 @@ export namespace merchantapi_accounts_v1 {
      *   //   "name": "my_name",
      *   //   "productsManagement": {},
      *   //   "provider": "my_provider",
-     *   //   "providerDisplayName": "my_providerDisplayName",
-     *   //   "ucpCheckoutManagement": {}
+     *   //   "providerDisplayName": "my_providerDisplayName"
      *   // }
      * }
      *
@@ -12281,8 +12271,7 @@ export namespace merchantapi_accounts_v1 {
      *   //   "name": "my_name",
      *   //   "productsManagement": {},
      *   //   "provider": "my_provider",
-     *   //   "providerDisplayName": "my_providerDisplayName",
-     *   //   "ucpCheckoutManagement": {}
+     *   //   "providerDisplayName": "my_providerDisplayName"
      *   // }
      * }
      *

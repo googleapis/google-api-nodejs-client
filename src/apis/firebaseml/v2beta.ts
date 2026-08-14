@@ -185,11 +185,11 @@ export namespace firebaseml_v2beta {
     sampleRate?: number | null;
   }
   /**
-   * The transcription of an audio part. For multi-speaker audio, each speaker segment is a separate Part with its own AudioTranscription carrying the speaker_label.
+   * The transcription of an audio part. For multi-speaker audio, each speaker segment is a separate `Part` with its own `AudioTranscription` carrying the `speaker_label`.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1AudioTranscription {
     /**
-     * Optional. A label identifying the speaker of this audio segment (e.g. "spk_1", "spk_2"). Present when diarization is set.
+     * Optional. A label identifying the speaker of this audio segment (e.g. `spk_1`, `spk_2`). Present when `diarization` is set.
      */
     speakerLabel?: string | null;
     /**
@@ -197,7 +197,7 @@ export namespace firebaseml_v2beta {
      */
     text?: string | null;
     /**
-     * Optional. Detailed word-level transcriptions and timing details. Present when word_timestamp is set.
+     * Optional. Detailed word-level transcriptions and timing details. Present when `word_timestamp` is set.
      */
     words?: Schema$GoogleCloudAiplatformV1beta1AudioTranscriptionWordInfo[];
   }
@@ -206,7 +206,7 @@ export namespace firebaseml_v2beta {
    */
   export interface Schema$GoogleCloudAiplatformV1beta1AudioTranscriptionConfig {
     /**
-     * Optional. A list of phrases to bias the ASR model towards.
+     * Optional. Deprecated: Use `custom_vocabulary` instead. A list of phrases to bias the speech recognition model towards.
      */
     adaptationPhrases?: string[] | null;
     /**
@@ -936,7 +936,7 @@ export namespace firebaseml_v2beta {
      */
     audioTimestamp?: boolean | null;
     /**
-     * Optional. Config for audio transcription (speech recognition).
+     * Optional. Configuration for audio transcription (speech recognition).
      */
     audioTranscriptionConfig?: Schema$GoogleCloudAiplatformV1beta1AudioTranscriptionConfig;
     /**
@@ -1501,7 +1501,7 @@ export namespace firebaseml_v2beta {
    */
   export interface Schema$GoogleCloudAiplatformV1beta1Part {
     /**
-     * Optional. Audio (input or output) transcription. This is only set when this Part contains audio data.
+     * Optional. Audio (input or output) transcription. This is only set when this `Part` contains audio data.
      */
     audioTranscription?: Schema$GoogleCloudAiplatformV1beta1AudioTranscription;
     /**

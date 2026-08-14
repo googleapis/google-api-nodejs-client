@@ -12,9 +12,9 @@
   "baseUrl": "https://ftp.googleapis.com/",
   "batchPath": "batch",
   "canonicalName": "Cloud FTP",
-  "description": "Cloud FTP is a managed service that allows transferring files directly to Google Cloud Storage using SFTP.",
+  "description": "A managed, cloud-native solution to move data in and out of Google Cloud by using SSH File Transfer Protocol (SFTP).",
   "discoveryVersion": "v1",
-  "documentationLink": "https://cloud.google.com/cloud-ftp/overview",
+  "documentationLink": "https://docs.cloud.google.com/cloud-ftp",
   "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
@@ -335,7 +335,7 @@
                       "type": "string"
                     },
                     "serverId": {
-                      "description": "Required. Id of the requesting object If auto-generating Id server-side, remove this field and server_id from the method_signature of Create RPC",
+                      "description": "Required. A unique ID for the server. Must start with a lowercase letter, and end with a lowercase letter or number. Can contain lowercase letters, numbers, and hyphens. Maximum length is 30 characters.",
                       "location": "query",
                       "type": "string"
                     }
@@ -598,7 +598,7 @@
                           "type": "string"
                         },
                         "userId": {
-                          "description": "Required. Id of the requesting object If auto-generating Id server-side, remove this field and server_id from the method_signature of Create RPC",
+                          "description": "Required. A unique user ID for the SFTP user. The user ID must start with a lowercase letter and can include lowercase letters, numbers, or hyphens.",
                           "location": "query",
                           "type": "string"
                         }
@@ -788,7 +788,7 @@
       }
     }
   },
-  "revision": "20260729",
+  "revision": "20260805",
   "rootUrl": "https://ftp.googleapis.com/",
   "schemas": {
     "AllowedConsumer": {

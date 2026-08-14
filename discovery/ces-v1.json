@@ -890,6 +890,21 @@
                           ],
                           "location": "query",
                           "type": "string"
+                        },
+                        "view": {
+                          "description": "Optional. The view specifying which fields in the response should be populated.",
+                          "enum": [
+                            "CONVERSATION_VIEW_UNSPECIFIED",
+                            "CONVERSATION_VIEW_BASIC",
+                            "CONVERSATION_VIEW_FULL"
+                          ],
+                          "enumDescriptions": [
+                            "Not specified, defaults to CONVERSATION_VIEW_BASIC.",
+                            "The basic view. Returns everything except resolved instructions.",
+                            "The full view. Includes resolved instructions dynamically per turn."
+                          ],
+                          "location": "query",
+                          "type": "string"
                         }
                       },
                       "path": "v1/{+name}",
@@ -2464,7 +2479,7 @@
       }
     }
   },
-  "revision": "20260730",
+  "revision": "20260806",
   "rootUrl": "https://ces.googleapis.com/",
   "schemas": {
     "Action": {
@@ -4039,9 +4054,22 @@
           },
           "type": "array"
         },
+        "resolvedDeveloperInstruction": {
+          "description": "Output only. The full dynamically resolved developer instruction generated from templates. This field is only populated on-demand when requested during history retrieval. It is not persisted.",
+          "readOnly": true,
+          "type": "string"
+        },
         "rootSpan": {
           "$ref": "Span",
           "description": "Optional. The root span of the action processing."
+        },
+        "templateAttributes": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Optional. Variables or configurations referenced by the template engine during dynamic prompt generation. This allows reconstructing the exact prompt sent to the model for this turn.",
+          "type": "object"
         },
         "userIntendedText": {
           "description": "Optional. The intended ground-truth text from the Simulated Caller (Polysynth). Only populated when word error rate metrics are enabled.",
