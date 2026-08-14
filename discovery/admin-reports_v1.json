@@ -702,7 +702,7 @@
       }
     }
   },
-  "revision": "20260729",
+  "revision": "20260809",
   "rootUrl": "https://admin.googleapis.com/",
   "schemas": {
     "Activities": {
@@ -1452,6 +1452,10 @@
           "$ref": "GroupIdentity",
           "description": "Identity of the group who owns the resource."
         },
+        "sharedDriveIdentity": {
+          "$ref": "SharedDriveIdentity",
+          "description": "Identity of the shared drive who owns the resource."
+        },
         "userIdentity": {
           "$ref": "UserIdentity",
           "description": "Identity of the user who owns the resource."
@@ -1499,6 +1503,21 @@
         },
         "type": {
           "description": "Type of the resource - document, email, chat message",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SharedDriveIdentity": {
+      "description": "Identity of the shared drive who owns the resource.",
+      "id": "SharedDriveIdentity",
+      "properties": {
+        "id": {
+          "description": "Shared drive gaia id.",
+          "type": "string"
+        },
+        "sharedDriveName": {
+          "description": "Shared drive name.",
           "type": "string"
         }
       },
