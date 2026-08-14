@@ -323,7 +323,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. Name of the alert to get. Format: projects/{project}/alerts/{alert}",
+                  "description": "Required. Name of the alert to get password for. Format: projects/{project}/alerts/{alert}",
                   "location": "path",
                   "pattern": "^projects/[^/]+/alerts/[^/]+$",
                   "required": true,
@@ -332,7 +332,7 @@
               },
               "path": "v1beta/{+name}:getPassword",
               "response": {
-                "$ref": "Alert"
+                "$ref": "GetPasswordResponse"
               },
               "scopes": [
                 "https://www.googleapis.com/auth/cloud-platform"
@@ -842,7 +842,7 @@
       }
     }
   },
-  "revision": "20260803",
+  "revision": "20260809",
   "rootUrl": "https://threatintelligence.googleapis.com/",
   "schemas": {
     "Alert": {
@@ -1866,6 +1866,17 @@
         },
         "domain": {
           "description": "Required. The domain of the organization to generate the profile for.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GetPasswordResponse": {
+      "description": "Response message for GetPassword.",
+      "id": "GetPasswordResponse",
+      "properties": {
+        "password": {
+          "description": "The decrypted cleartext password for the compromised credential.",
           "type": "string"
         }
       },
