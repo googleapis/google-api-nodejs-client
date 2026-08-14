@@ -315,6 +315,36 @@ export namespace searchads360_v23 {
     requestId?: string | null;
   }
   /**
+   * Loyalty retention campaign goal settings.
+   */
+  export interface Schema$GoogleAdsSearchads360V23Common_CampaignGoalSettings_CampaignLoyaltyRetentionGoalSettings {
+    /**
+     * Whether to adjust bids for loyalty members.
+     */
+    enableBidAdjustmentsForLoyaltyMembers?: boolean | null;
+    /**
+     * Whether to show targeted loyalty member benefits in PLA format in eligible countries.
+     */
+    showTargetedLoyaltyMemberBenefitsInPla?: boolean | null;
+    /**
+     * Loyalty retention goal campaign specific value settings.
+     */
+    valueSettingsOverride?: Schema$GoogleAdsSearchads360V23Common__CustomerLifecycleOptimizationValueSettings;
+  }
+  /**
+   * New Customer Acquisition campaign goal settings.
+   */
+  export interface Schema$GoogleAdsSearchads360V23Common_CampaignGoalSettings_CampaignNewCustomerAcquisitionGoalSettings {
+    /**
+     * New Customer Acquisition goal optimization mode for this campaign. Defaults to TARGET_ALL. Whether the campaign is targeting new customers only.
+     */
+    targetOption?: string | null;
+    /**
+     * New Customer Acquisition goal campaign specific value settings.
+     */
+    valueSettingsOverride?: Schema$GoogleAdsSearchads360V23Common__CustomerLifecycleOptimizationValueSettings;
+  }
+  /**
    * Retention campaign goal settings.
    */
   export interface Schema$GoogleAdsSearchads360V23Common_CampaignGoalSettings_CampaignRetentionGoalSettings {
@@ -13411,6 +13441,14 @@ export namespace searchads360_v23 {
      * Immutable. The resource name of the campaign for this link.
      */
     campaign?: string | null;
+    /**
+     * Loyalty retention goal campaign settings.
+     */
+    campaignLoyaltyRetentionSettings?: Schema$GoogleAdsSearchads360V23Common_CampaignGoalSettings_CampaignLoyaltyRetentionGoalSettings;
+    /**
+     * New customer acquisition goal campaign settings.
+     */
+    campaignNewCustomerAcquisitionSettings?: Schema$GoogleAdsSearchads360V23Common_CampaignGoalSettings_CampaignNewCustomerAcquisitionGoalSettings;
     /**
      * Retention goal campaign settings.
      */
