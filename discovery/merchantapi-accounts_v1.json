@@ -2416,7 +2416,7 @@
               ],
               "enumDescriptions": [
                 "Default value. This value is unused.",
-                "Terms of service for the Merchant Center application."
+                "Terms of Service for the Merchant Center application."
               ],
               "location": "query",
               "type": "string"
@@ -2438,7 +2438,7 @@
       }
     }
   },
-  "revision": "20260722",
+  "revision": "20260807",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "About": {
@@ -2686,10 +2686,6 @@
           "description": "Output only. The human-readable display name of the provider account.",
           "readOnly": true,
           "type": "string"
-        },
-        "ucpCheckoutManagement": {
-          "$ref": "UcpCheckoutManagement",
-          "description": "Service type for UCP Checkout Management. The provider is managing the UCP Checkout capability integration for the merchant."
         }
       },
       "type": "object"
@@ -4913,7 +4909,7 @@
       "type": "object"
     },
     "Program": {
-      "description": "Defines participation in a given program for the specified account. Programs provide a mechanism for adding functionality to a Merchant Center accounts. A typical example of this is the [Free product listings](https://support.google.com/merchants/answer/13889434) program, which enables products from a business's store to be shown across Google for free. The following list is the available set of program resource IDs accessible through the API: * `checkout` * `free-listings` * `product-ratings` * `shopping-ads` * `youtube-affiliate` * `youtube-shopping-checkout`",
+      "description": "Defines participation in a given program for the specified account. Programs provide a mechanism for adding functionality to a Merchant Center accounts. A typical example of this is the [Free product listings](https://support.google.com/merchants/answer/13889434) program, which enables products from a business's store to be shown across Google for free. The following list is the available set of program resource IDs accessible through the API: * `checkout` * `free-listings` * `product-ratings` * `shopping-ads` * `ucp-integration` (limited access) * `youtube-affiliate` * `youtube-shopping-checkout`",
       "id": "Program",
       "properties": {
         "activeRegionCodes": {
@@ -5474,7 +5470,7 @@
           ],
           "enumDescriptions": [
             "Default value. This value is unused.",
-            "Terms of service for the Merchant Center application."
+            "Terms of Service for the Merchant Center application."
           ],
           "type": "string"
         },
@@ -5517,7 +5513,7 @@
           ],
           "enumDescriptions": [
             "Default value. This value is unused.",
-            "Terms of service for the Merchant Center application."
+            "Terms of Service for the Merchant Center application."
           ],
           "type": "string"
         }
@@ -5596,12 +5592,6 @@
           "type": "integer"
         }
       },
-      "type": "object"
-    },
-    "UcpCheckoutManagement": {
-      "description": "`UcpCheckoutManagement` payload.",
-      "id": "UcpCheckoutManagement",
-      "properties": {},
       "type": "object"
     },
     "UnclaimHomepageRequest": {
