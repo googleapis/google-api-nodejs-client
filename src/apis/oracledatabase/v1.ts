@@ -1204,6 +1204,14 @@ export namespace oracledatabase_v1 {
      * Optional. Time zone of VM Cluster to set. Defaults to UTC if not specified.
      */
     timeZone?: Schema$TimeZone;
+    /**
+     * Optional. Specifies whether VM backups are stored on local DB server storage or Exascale storage.
+     */
+    vmBackupStorageType?: string | null;
+    /**
+     * Optional. Specifies whether VM file system storage / VM images are stored on local DB server storage or Exascale storage.
+     */
+    vmFileSystemStorageType?: string | null;
   }
   /**
    * The request for `CloudExadataInfrastructure.ConfigureExascale`.
@@ -1217,6 +1225,10 @@ export namespace oracledatabase_v1 {
      * Required. The total storage to be allocated to Exascale in GBs.
      */
     totalStorageSizeGb?: number | null;
+    /**
+     * Optional. Storage size needed for VM storage on Exascale in GBs.
+     */
+    totalVmStorageSizeGb?: number | null;
   }
   /**
    * The CustomerContact reference as defined by Oracle. https://docs.oracle.com/en-us/iaas/api/#/en/database/20160918/datatypes/CustomerContact
@@ -2130,9 +2142,17 @@ export namespace oracledatabase_v1 {
      */
     availableStorageSizeGb?: number | null;
     /**
+     * Output only. Available storage size for VM storage on Exascale in GBs.
+     */
+    availableVmStorageSizeGb?: number | null;
+    /**
      * Output only. Total storage size needed for Exascale in GBs.
      */
     totalStorageSizeGb?: number | null;
+    /**
+     * Output only. Storage size needed for VM storage on Exascale in GBs.
+     */
+    totalVmStorageSizeGb?: number | null;
   }
   /**
    * The storage details of the ExascaleDbStorageVault.
@@ -8765,7 +8785,8 @@ export namespace oracledatabase_v1 {
      *           // request body parameters
      *           // {
      *           //   "requestId": "my_requestId",
-     *           //   "totalStorageSizeGb": 0
+     *           //   "totalStorageSizeGb": 0,
+     *           //   "totalVmStorageSizeGb": 0
      *           // }
      *         },
      *       },
