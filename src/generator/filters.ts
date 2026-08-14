@@ -118,6 +118,21 @@ export function hasResourceParam(method: SchemaMethod): boolean {
   return !!method.parameters && !!method.parameters['resource'];
 }
 
+export function isReservedParam(
+  p: {reserved?: boolean},
+  pname: string,
+  mpath?: string
+): boolean {
+  if (p && p.reserved) {
+    return true;
+  }
+  if (!mpath) {
+    return false;
+  }
+  const regex = new RegExp(`\\{\\+${pname}(?:[\\}:/=]|$)`);
+  return regex.test(mpath);
+}
+
 const RESERVED_PARAMS = ['resource', 'media', 'auth'];
 
 /**

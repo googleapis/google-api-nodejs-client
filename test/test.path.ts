@@ -232,6 +232,87 @@ describe('Path params', () => {
     );
   });
 
+  it('should throw an error for single-segment path traversal containing "." or ".."', () => {
+    assert.throws(() => {
+      localDrive.files.get({fileId: '.'}, Utils.noop);
+    }, /Invalid value \. for fileId/);
+
+    assert.throws(() => {
+      localDrive.files.get({fileId: '..'}, Utils.noop);
+    }, /Invalid value \.\. for fileId/);
+  });
+
+  it('should throw an error for multi-segment path traversal containing "." or ".." segments', () => {
+    const google = new GoogleApis();
+    const dialogflow = google.dialogflow('v3');
+
+    assert.throws(() => {
+      dialogflow.projects.locations.agents.sessions.detectIntent(
+        {
+          session:
+            'projects/p/locations/l/agents/a/sessions/agents/../subagent',
+        },
+        Utils.noop
+      );
+    }, /Value for session must not contain segments that are exactly \. or \.\./);
+
+    assert.throws(() => {
+      dialogflow.projects.locations.agents.sessions.detectIntent(
+        {
+          session:
+            'projects/p/locations/l/agents/a/sessions/agents/./subagent',
+        },
+        Utils.noop
+      );
+    }, /Value for session must not contain segments that are exactly \. or \.\./);
+  });
+
+  it('should protect against query parameter and fragment injection by percent-encoding in path parameters', done => {
+    const google = new GoogleApis();
+    const dialogflow = google.dialogflow('v3');
+    const p =
+      '/v3/projects/p/locations/l/agents/a/sessions/my-session%3F%24httpMethod%3DDELETE%23:detectIntent';
+
+    nock('https://dialogflow.googleapis.com').post(p).reply(200, {});
+
+    dialogflow.projects.locations.agents.sessions.detectIntent(
+      {
+        session:
+          'projects/p/locations/l/agents/a/sessions/my-session?$httpMethod=DELETE#',
+      },
+      (err: Error | null, res?: GaxiosResponseWithHTTP2 | null) => {
+        if (err) {
+          return done(err);
+        }
+        assert.ok(res?.config.url?.toString().endsWith(p));
+        done();
+      }
+    );
+  });
+
+  it('should strictly percent-encode reserved characters while preserving unreserved characters and slashes in reserved parameters', done => {
+    const google = new GoogleApis();
+    const dialogflow = google.dialogflow('v3');
+    const p =
+      '/v3/projects/p/locations/l/agents/a/sessions/%20%21%40%24%26%27%28%29%2A%2B%2C%3B%3D%3A%25:detectIntent';
+
+    nock('https://dialogflow.googleapis.com').post(p).reply(200, {});
+
+    dialogflow.projects.locations.agents.sessions.detectIntent(
+      {
+        session:
+          'projects/p/locations/l/agents/a/sessions/ !@$&\'()*+,;=:%',
+      },
+      (err: Error | null, res?: GaxiosResponseWithHTTP2 | null) => {
+        if (err) {
+          return done(err);
+        }
+        assert.ok(res?.config.url?.toString().endsWith(p));
+        done();
+      }
+    );
+  });
+
   after(() => {
     nock.cleanAll();
   });
