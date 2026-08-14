@@ -1,5 +1,12 @@
 # Changelog
 
+## [23.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/serviceusage-v23.0.0...serviceusage-v23.1.0) (2026-08-14)
+
+
+### Features
+
+* **serviceusage:** update the API ([466db61](https://github.com/googleapis/google-api-nodejs-client/commit/466db61dd9555a5cb35f664217bc2ff618dd2e2a))
+
 ## [23.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/serviceusage-v22.0.0...serviceusage-v23.0.0) (2026-08-03)
 
 

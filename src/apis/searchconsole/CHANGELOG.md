@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/searchconsole-v7.0.0...searchconsole-v7.1.0) (2026-08-14)
+
+
+### Features
+
+* **searchconsole:** update the API ([5cc5bec](https://github.com/googleapis/google-api-nodejs-client/commit/5cc5bec6e83e59ab59dd8a9ee6d6e02167d2b169))
+
 ## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/searchconsole-v6.0.1...searchconsole-v7.0.0) (2026-08-03)
 
 

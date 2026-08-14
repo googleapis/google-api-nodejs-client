@@ -1,5 +1,12 @@
 # Changelog
 
+## [10.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/oracledatabase-v10.0.0...oracledatabase-v10.1.0) (2026-08-14)
+
+
+### Features
+
+* **oracledatabase:** update the API ([e7bb656](https://github.com/googleapis/google-api-nodejs-client/commit/e7bb6564a2cbf4060d0876a9e323e0dbb7deecf3))
+
 ## [10.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/oracledatabase-v9.0.0...oracledatabase-v10.0.0) (2026-08-03)
 
 
