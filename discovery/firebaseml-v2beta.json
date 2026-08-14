@@ -206,7 +206,7 @@
       }
     }
   },
-  "revision": "20260802",
+  "revision": "20260809",
   "rootUrl": "https://firebaseml.googleapis.com/",
   "schemas": {
     "Date": {
@@ -311,11 +311,11 @@
       "type": "object"
     },
     "GoogleCloudAiplatformV1beta1AudioTranscription": {
-      "description": "The transcription of an audio part. For multi-speaker audio, each speaker segment is a separate Part with its own AudioTranscription carrying the speaker_label.",
+      "description": "The transcription of an audio part. For multi-speaker audio, each speaker segment is a separate `Part` with its own `AudioTranscription` carrying the `speaker_label`.",
       "id": "GoogleCloudAiplatformV1beta1AudioTranscription",
       "properties": {
         "speakerLabel": {
-          "description": "Optional. A label identifying the speaker of this audio segment (e.g. \"spk_1\", \"spk_2\"). Present when diarization is set.",
+          "description": "Optional. A label identifying the speaker of this audio segment (e.g. `spk_1`, `spk_2`). Present when `diarization` is set.",
           "type": "string"
         },
         "text": {
@@ -323,7 +323,7 @@
           "type": "string"
         },
         "words": {
-          "description": "Optional. Detailed word-level transcriptions and timing details. Present when word_timestamp is set.",
+          "description": "Optional. Detailed word-level transcriptions and timing details. Present when `word_timestamp` is set.",
           "items": {
             "$ref": "GoogleCloudAiplatformV1beta1AudioTranscriptionWordInfo"
           },
@@ -338,7 +338,7 @@
       "properties": {
         "adaptationPhrases": {
           "deprecated": true,
-          "description": "Optional. A list of phrases to bias the ASR model towards.",
+          "description": "Optional. Deprecated: Use `custom_vocabulary` instead. A list of phrases to bias the speech recognition model towards.",
           "items": {
             "type": "string"
           },
@@ -1483,7 +1483,7 @@
         },
         "audioTranscriptionConfig": {
           "$ref": "GoogleCloudAiplatformV1beta1AudioTranscriptionConfig",
-          "description": "Optional. Config for audio transcription (speech recognition)."
+          "description": "Optional. Configuration for audio transcription (speech recognition)."
         },
         "candidateCount": {
           "description": "Optional. The number of candidate responses to generate. A higher `candidate_count` can provide more options to choose from, but it also consumes more resources. This can be useful for generating a variety of responses and selecting the best one.",
@@ -2360,7 +2360,7 @@
       "properties": {
         "audioTranscription": {
           "$ref": "GoogleCloudAiplatformV1beta1AudioTranscription",
-          "description": "Optional. Audio (input or output) transcription. This is only set when this Part contains audio data."
+          "description": "Optional. Audio (input or output) transcription. This is only set when this `Part` contains audio data."
         },
         "codeExecutionResult": {
           "$ref": "GoogleCloudAiplatformV1beta1CodeExecutionResult",
