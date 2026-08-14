@@ -543,7 +543,7 @@ export namespace dlp_v2 {
     types?: string[] | null;
   }
   /**
-   * Bounding box encompassing detected text within an image.
+   * Bounding box encompassing detected text within an image. Coordinates are in pixels and strictly within the image or frame bounds.
    */
   export interface Schema$GooglePrivacyDlpV2BoundingBox {
     /**
