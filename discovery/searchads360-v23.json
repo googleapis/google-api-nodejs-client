@@ -4969,7 +4969,7 @@
       }
     }
   },
-  "revision": "20260729",
+  "revision": "20260810",
   "rootUrl": "https://searchads360.googleapis.com/",
   "schemas": {
     "GoogleAdsSearchads360V0Common__Value": {
@@ -5597,6 +5597,52 @@
         "requestId": {
           "description": "The unique ID of the request that is used for debugging purposes.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAdsSearchads360V23Common_CampaignGoalSettings_CampaignLoyaltyRetentionGoalSettings": {
+      "description": "Loyalty retention campaign goal settings.",
+      "id": "GoogleAdsSearchads360V23Common_CampaignGoalSettings_CampaignLoyaltyRetentionGoalSettings",
+      "properties": {
+        "enableBidAdjustmentsForLoyaltyMembers": {
+          "description": "Whether to adjust bids for loyalty members.",
+          "type": "boolean"
+        },
+        "showTargetedLoyaltyMemberBenefitsInPla": {
+          "description": "Whether to show targeted loyalty member benefits in PLA format in eligible countries.",
+          "type": "boolean"
+        },
+        "valueSettingsOverride": {
+          "$ref": "GoogleAdsSearchads360V23Common__CustomerLifecycleOptimizationValueSettings",
+          "description": "Loyalty retention goal campaign specific value settings."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAdsSearchads360V23Common_CampaignGoalSettings_CampaignNewCustomerAcquisitionGoalSettings": {
+      "description": "New Customer Acquisition campaign goal settings.",
+      "id": "GoogleAdsSearchads360V23Common_CampaignGoalSettings_CampaignNewCustomerAcquisitionGoalSettings",
+      "properties": {
+        "targetOption": {
+          "description": "New Customer Acquisition goal optimization mode for this campaign. Defaults to TARGET_ALL. Whether the campaign is targeting new customers only.",
+          "enum": [
+            "UNSPECIFIED",
+            "UNKNOWN",
+            "TARGET_ALL",
+            "TARGET_SPECIFIC"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "Used for return value only. Represents value unknown in this version.",
+            "The mode is used when the campaign optimizes for all customers, which is the default value.",
+            "This mode configures the campaign to target only customers who have previously interacted but are now lapsed or disengaged."
+          ],
+          "type": "string"
+        },
+        "valueSettingsOverride": {
+          "$ref": "GoogleAdsSearchads360V23Common__CustomerLifecycleOptimizationValueSettings",
+          "description": "New Customer Acquisition goal campaign specific value settings."
         }
       },
       "type": "object"
@@ -18639,7 +18685,11 @@
             "HIGH_LIFETIME_VALUE_PRESENT_BUT_VALUE_ABSENT",
             "HIGH_LIFETIME_VALUE_LESS_THAN_OR_EQUAL_TO_VALUE",
             "CUSTOMER_LIFECYCLE_OPTIMIZATION_CAMPAIGN_TYPE_NOT_SUPPORTED",
-            "CUSTOMER_NOT_ALLOWLISTED_FOR_RETENTION_ONLY"
+            "CUSTOMER_NOT_ALLOWLISTED_FOR_RETENTION_ONLY",
+            "CAMPAIGN_OVERRIDE_VALUES_SET_FOR_NEW_CUSTOMER_ACQUISITION_TARGET_SPECIFIC_OPTION",
+            "CAMPAIGN_OVERRIDE_HIGH_LIFETIME_VALUE_NOT_SUPPORTED_FOR_CAMPAIGN_TYPE",
+            "CANNOT_USE_INCOMPATIBLE_CLO_GOALS",
+            "LOYALTY_RETENTION_GOAL_INVALID_MODE"
           ],
           "enumDescriptions": [
             "Enum unspecified.",
@@ -18649,7 +18699,11 @@
             "If high lifetime value is present then value should be present.",
             "High lifetime value should be greater than value.",
             "When using customer lifecycle optimization goal, campaign type should be supported.",
-            "Customer must be allowlisted to use retention only goal."
+            "Customer must be allowlisted to use retention only goal.",
+            "New customer acquisition customer lifecycle optimization goal targeting only new customers should not have campaign override values set.",
+            "New customer acquisition customer lifecycle optimization goal campaign override high lifetime values should only be set for supported campaign type.",
+            "Error when the campaign is attempting to combine incompatible CLO goals.",
+            "At least one mode (either enabling bid adjustments or showing benefits in PLA) must be enabled for loyalty retention goal."
           ],
           "type": "string"
         },
@@ -35308,6 +35362,14 @@
         "campaign": {
           "description": "Immutable. The resource name of the campaign for this link.",
           "type": "string"
+        },
+        "campaignLoyaltyRetentionSettings": {
+          "$ref": "GoogleAdsSearchads360V23Common_CampaignGoalSettings_CampaignLoyaltyRetentionGoalSettings",
+          "description": "Loyalty retention goal campaign settings."
+        },
+        "campaignNewCustomerAcquisitionSettings": {
+          "$ref": "GoogleAdsSearchads360V23Common_CampaignGoalSettings_CampaignNewCustomerAcquisitionGoalSettings",
+          "description": "New customer acquisition goal campaign settings."
         },
         "campaignRetentionSettings": {
           "$ref": "GoogleAdsSearchads360V23Common_CampaignGoalSettings_CampaignRetentionGoalSettings",
