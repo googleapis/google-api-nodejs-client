@@ -1317,7 +1317,7 @@
       }
     }
   },
-  "revision": "20260717",
+  "revision": "20260812",
   "rootUrl": "https://bigqueryreservation.googleapis.com/",
   "schemas": {
     "Assignment": {
@@ -1344,7 +1344,8 @@
             "CONTINUOUS",
             "BACKGROUND_CHANGE_DATA_CAPTURE",
             "BACKGROUND_COLUMN_METADATA_INDEX",
-            "BACKGROUND_SEARCH_INDEX_REFRESH"
+            "BACKGROUND_SEARCH_INDEX_REFRESH",
+            "AUTOMATIC_MATERIALIZED_VIEW_REFRESH"
           ],
           "enumDescriptions": [
             "Invalid type. Requests with this value will be rejected with error code `google.rpc.Code.INVALID_ARGUMENT`.",
@@ -1355,7 +1356,8 @@
             "Continuous SQL jobs will use this reservation. Reservations with continuous assignments cannot be mixed with non-continuous assignments.",
             "Finer granularity background jobs for capturing changes in a source database and streaming them into BigQuery. Reservations with this job type take priority over a default BACKGROUND reservation assignment (if it exists).",
             "Finer granularity background jobs for refreshing cached metadata for BigQuery tables. Reservations with this job type take priority over a default BACKGROUND reservation assignment (if it exists).",
-            "Finer granularity background jobs for refreshing search indexes upon BigQuery table columns. Reservations with this job type take priority over a default BACKGROUND reservation assignment (if it exists)."
+            "Finer granularity background jobs for refreshing search indexes upon BigQuery table columns. Reservations with this job type take priority over a default BACKGROUND reservation assignment (if it exists).",
+            "Automated materialized view refresh jobs will use the reservation. Reservations with this job type will take priority over a default QUERY reservation assignment (if it exists)."
           ],
           "type": "string"
         },
