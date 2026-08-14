@@ -211,11 +211,11 @@ export namespace youtube_v3 {
     exception?: string[] | null;
   }
   /**
-   * An *activity* resource contains information about an action that a particular channel, or user, has taken on YouTube.The actions reported in activity feeds include rating a video, sharing a video, marking a video as a favorite, commenting on a video, uploading a video, and so forth. Each activity resource identifies the type of action, the channel associated with the action, and the resource(s) associated with the action, such as the video that was rated or uploaded.
+   * An `activity` resource contains information about an action that a particular channel, or user, has taken on YouTube. The actions reported in activity feeds include sharing a video, uploading a video, and so forth. Each `activity` resource identifies the type of action, the channel associated with the action, and the resource(s) associated with the action, such as the video that was rated or uploaded.
    */
   export interface Schema$Activity {
     /**
-     * The contentDetails object contains information about the content associated with the activity. For example, if the snippet.type value is videoRated, then the contentDetails object's content identifies the rated video.
+     * The `contentDetails` object contains information about the content associated with the activity. For example, if the `snippet.type` value is `videoRated`, then the `contentDetails` object's content identifies the rated video.
      */
     contentDetails?: Schema$ActivityContentDetails;
     /**
@@ -227,11 +227,11 @@ export namespace youtube_v3 {
      */
     id?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string "youtube#activity".
+     * Identifies what kind of resource this is. Value: The fixed string `"youtube#activity"`.
      */
     kind?: string | null;
     /**
-     * The snippet object contains basic details about the activity, including the activity's type and group ID.
+     * The `snippet` object contains basic details about the activity, including the activity's type and group ID.
      */
     snippet?: Schema$ActivitySnippet;
   }
@@ -240,47 +240,47 @@ export namespace youtube_v3 {
    */
   export interface Schema$ActivityContentDetails {
     /**
-     * The bulletin object contains details about a channel bulletin post. This object is only present if the snippet.type is bulletin.
+     * The `bulletin` object contains details about a channel bulletin post. This object is only present if the `snippet.type` is `bulletin`.
      */
     bulletin?: Schema$ActivityContentDetailsBulletin;
     /**
-     * The channelItem object contains details about a resource which was added to a channel. This property is only present if the snippet.type is channelItem.
+     * The `channelItem` object contains details about a resource which was added to a channel. This property is only present if the `snippet.type` is `channelItem`.
      */
     channelItem?: Schema$ActivityContentDetailsChannelItem;
     /**
-     * The comment object contains information about a resource that received a comment. This property is only present if the snippet.type is comment.
+     * The `comment` object contains information about a resource that received a comment. This property is only present if the `snippet.type` is `comment`.
      */
     comment?: Schema$ActivityContentDetailsComment;
     /**
-     * The favorite object contains information about a video that was marked as a favorite video. This property is only present if the snippet.type is favorite.
+     * The `favorite` object contains information about a video that was marked as a favorite video. This property is only present if the `snippet.type` is `favorite`. Deprecated: This property is no longer returned.
      */
     favorite?: Schema$ActivityContentDetailsFavorite;
     /**
-     * The like object contains information about a resource that received a positive (like) rating. This property is only present if the snippet.type is like.
+     * The `like` object contains information about a resource that received a positive (like) rating. This property is only present if the `snippet.type` is `like`. Deprecated: This property is no longer returned.
      */
     like?: Schema$ActivityContentDetailsLike;
     /**
-     * The playlistItem object contains information about a new playlist item. This property is only present if the snippet.type is playlistItem.
+     * The `playlistItem` object contains information about a new playlist item. This property is only present if the `snippet.type` is `playlistItem`.
      */
     playlistItem?: Schema$ActivityContentDetailsPlaylistItem;
     /**
-     * The promotedItem object contains details about a resource which is being promoted. This property is only present if the snippet.type is promotedItem.
+     * The `promotedItem` object contains details about a resource which is being promoted. This property is only present if the `snippet.type` is `promotedItem`.
      */
     promotedItem?: Schema$ActivityContentDetailsPromotedItem;
     /**
-     * The recommendation object contains information about a recommended resource. This property is only present if the snippet.type is recommendation.
+     * The `recommendation` object contains information about a recommended resource. This property is only present if the `snippet.type` is `recommendation`.
      */
     recommendation?: Schema$ActivityContentDetailsRecommendation;
     /**
-     * The social object contains details about a social network post. This property is only present if the snippet.type is social.
+     * The `social` object contains details about a social network post. This property is only present if the `snippet.type` is `social`.
      */
     social?: Schema$ActivityContentDetailsSocial;
     /**
-     * The subscription object contains information about a channel that a user subscribed to. This property is only present if the snippet.type is subscription.
+     * The `subscription` object contains information about a channel that a user subscribed to. This property is only present if the `snippet.type` is `subscription`. Deprecated: This property is no longer returned.
      */
     subscription?: Schema$ActivityContentDetailsSubscription;
     /**
-     * The upload object contains information about the uploaded video. This property is only present if the snippet.type is upload.
+     * The `upload` object contains information about the uploaded video. This property is only present if the `snippet.type` is `upload`.
      */
     upload?: Schema$ActivityContentDetailsUpload;
   }
@@ -289,7 +289,7 @@ export namespace youtube_v3 {
    */
   export interface Schema$ActivityContentDetailsBulletin {
     /**
-     * The resourceId object contains information that identifies the resource associated with a bulletin post. @mutable youtube.activities.insert
+     * The `resourceId` object contains information that identifies the resource associated with a bulletin post. @mutable youtube.activities.insert
      */
     resourceId?: Schema$ResourceId;
   }
@@ -298,7 +298,7 @@ export namespace youtube_v3 {
    */
   export interface Schema$ActivityContentDetailsChannelItem {
     /**
-     * The resourceId object contains information that identifies the resource that was added to the channel.
+     * The `resourceId` object contains information that identifies the resource that was added to the channel.
      */
     resourceId?: Schema$ResourceId;
   }
@@ -307,25 +307,25 @@ export namespace youtube_v3 {
    */
   export interface Schema$ActivityContentDetailsComment {
     /**
-     * The resourceId object contains information that identifies the resource associated with the comment.
+     * The `resourceId` object contains information that identifies the resource associated with the comment.
      */
     resourceId?: Schema$ResourceId;
   }
   /**
-   * Information about a video that was marked as a favorite video.
+   * Information about a video that was marked as a favorite video. Deprecated: This resource is no longer returned.
    */
   export interface Schema$ActivityContentDetailsFavorite {
     /**
-     * The resourceId object contains information that identifies the resource that was marked as a favorite.
+     * The `resourceId` object contains information that identifies the resource that was marked as a favorite.
      */
     resourceId?: Schema$ResourceId;
   }
   /**
-   * Information about a resource that received a positive (like) rating.
+   * Information about a resource that received a positive (like) rating. Deprecated: This resource is no longer returned.
    */
   export interface Schema$ActivityContentDetailsLike {
     /**
-     * The resourceId object contains information that identifies the rated resource.
+     * The `resourceId` object contains information that identifies the rated resource.
      */
     resourceId?: Schema$ResourceId;
   }
@@ -342,7 +342,7 @@ export namespace youtube_v3 {
      */
     playlistItemId?: string | null;
     /**
-     * The resourceId object contains information about the resource that was added to the playlist.
+     * The `resourceId` object contains information about the resource that was added to the playlist.
      */
     resourceId?: Schema$ResourceId;
   }
@@ -400,11 +400,11 @@ export namespace youtube_v3 {
      */
     reason?: string | null;
     /**
-     * The resourceId object contains information that identifies the recommended resource.
+     * The `resourceId` object contains information that identifies the recommended resource.
      */
     resourceId?: Schema$ResourceId;
     /**
-     * The seedResourceId object contains information about the resource that caused the recommendation.
+     * The `seedResourceId` object contains information about the resource that caused the recommendation.
      */
     seedResourceId?: Schema$ResourceId;
   }
@@ -425,7 +425,7 @@ export namespace youtube_v3 {
      */
     referenceUrl?: string | null;
     /**
-     * The resourceId object encapsulates information that identifies the resource associated with a social network post.
+     * The `resourceId` object encapsulates information that identifies the resource associated with a social network post.
      */
     resourceId?: Schema$ResourceId;
     /**
@@ -434,11 +434,11 @@ export namespace youtube_v3 {
     type?: string | null;
   }
   /**
-   * Information about a channel that a user subscribed to.
+   * Information about a channel that a user subscribed to. Deprecated: This resource is no longer returned.
    */
   export interface Schema$ActivityContentDetailsSubscription {
     /**
-     * The resourceId object contains information that identifies the resource that the user subscribed to.
+     * The `resourceId` object contains information that identifies the resource that the user subscribed to.
      */
     resourceId?: Schema$ResourceId;
   }
@@ -500,7 +500,7 @@ export namespace youtube_v3 {
      */
     description?: string | null;
     /**
-     * The group ID associated with the activity. A group ID identifies user events that are associated with the same user and resource. For example, if a user rates a video and marks the same video as a favorite, the entries for those events would have the same group ID in the user's activity feed. In your user interface, you can avoid repetition by grouping events with the same groupId value.
+     * The group ID associated with the activity. A group ID identifies user events that are associated with the same user and resource. For example, if a user uploads a video and watches the same video, the entries for those events would have the same group ID in the user's activity feed. In your user interface, you can avoid repetition by grouping events with the same `groupId` value.
      */
     groupId?: string | null;
     /**

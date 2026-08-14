@@ -4192,7 +4192,7 @@
       }
     }
   },
-  "revision": "20260805",
+  "revision": "20260810",
   "rootUrl": "https://youtube.googleapis.com/",
   "schemas": {
     "AbuseReport": {
@@ -4247,12 +4247,12 @@
       "type": "object"
     },
     "Activity": {
-      "description": "An *activity* resource contains information about an action that a particular channel, or user, has taken on YouTube.The actions reported in activity feeds include rating a video, sharing a video, marking a video as a favorite, commenting on a video, uploading a video, and so forth. Each activity resource identifies the type of action, the channel associated with the action, and the resource(s) associated with the action, such as the video that was rated or uploaded.",
+      "description": "An `activity` resource contains information about an action that a particular channel, or user, has taken on YouTube. The actions reported in activity feeds include sharing a video, uploading a video, and so forth. Each `activity` resource identifies the type of action, the channel associated with the action, and the resource(s) associated with the action, such as the video that was rated or uploaded.",
       "id": "Activity",
       "properties": {
         "contentDetails": {
           "$ref": "ActivityContentDetails",
-          "description": "The contentDetails object contains information about the content associated with the activity. For example, if the snippet.type value is videoRated, then the contentDetails object's content identifies the rated video."
+          "description": "The `contentDetails` object contains information about the content associated with the activity. For example, if the `snippet.type` value is `videoRated`, then the `contentDetails` object's content identifies the rated video."
         },
         "etag": {
           "description": "Etag of this resource",
@@ -4264,12 +4264,12 @@
         },
         "kind": {
           "default": "youtube#activity",
-          "description": "Identifies what kind of resource this is. Value: the fixed string \"youtube#activity\".",
+          "description": "Identifies what kind of resource this is. Value: The fixed string `\"youtube#activity\"`.",
           "type": "string"
         },
         "snippet": {
           "$ref": "ActivitySnippet",
-          "description": "The snippet object contains basic details about the activity, including the activity's type and group ID."
+          "description": "The `snippet` object contains basic details about the activity, including the activity's type and group ID."
         }
       },
       "type": "object"
@@ -4280,47 +4280,47 @@
       "properties": {
         "bulletin": {
           "$ref": "ActivityContentDetailsBulletin",
-          "description": "The bulletin object contains details about a channel bulletin post. This object is only present if the snippet.type is bulletin."
+          "description": "The `bulletin` object contains details about a channel bulletin post. This object is only present if the `snippet.type` is `bulletin`."
         },
         "channelItem": {
           "$ref": "ActivityContentDetailsChannelItem",
-          "description": "The channelItem object contains details about a resource which was added to a channel. This property is only present if the snippet.type is channelItem."
+          "description": "The `channelItem` object contains details about a resource which was added to a channel. This property is only present if the `snippet.type` is `channelItem`."
         },
         "comment": {
           "$ref": "ActivityContentDetailsComment",
-          "description": "The comment object contains information about a resource that received a comment. This property is only present if the snippet.type is comment."
+          "description": "The `comment` object contains information about a resource that received a comment. This property is only present if the `snippet.type` is `comment`."
         },
         "favorite": {
           "$ref": "ActivityContentDetailsFavorite",
-          "description": "The favorite object contains information about a video that was marked as a favorite video. This property is only present if the snippet.type is favorite."
+          "description": "The `favorite` object contains information about a video that was marked as a favorite video. This property is only present if the `snippet.type` is `favorite`. Deprecated: This property is no longer returned."
         },
         "like": {
           "$ref": "ActivityContentDetailsLike",
-          "description": "The like object contains information about a resource that received a positive (like) rating. This property is only present if the snippet.type is like."
+          "description": "The `like` object contains information about a resource that received a positive (like) rating. This property is only present if the `snippet.type` is `like`. Deprecated: This property is no longer returned."
         },
         "playlistItem": {
           "$ref": "ActivityContentDetailsPlaylistItem",
-          "description": "The playlistItem object contains information about a new playlist item. This property is only present if the snippet.type is playlistItem."
+          "description": "The `playlistItem` object contains information about a new playlist item. This property is only present if the `snippet.type` is `playlistItem`."
         },
         "promotedItem": {
           "$ref": "ActivityContentDetailsPromotedItem",
-          "description": "The promotedItem object contains details about a resource which is being promoted. This property is only present if the snippet.type is promotedItem."
+          "description": "The `promotedItem` object contains details about a resource which is being promoted. This property is only present if the `snippet.type` is `promotedItem`."
         },
         "recommendation": {
           "$ref": "ActivityContentDetailsRecommendation",
-          "description": "The recommendation object contains information about a recommended resource. This property is only present if the snippet.type is recommendation."
+          "description": "The `recommendation` object contains information about a recommended resource. This property is only present if the `snippet.type` is `recommendation`."
         },
         "social": {
           "$ref": "ActivityContentDetailsSocial",
-          "description": "The social object contains details about a social network post. This property is only present if the snippet.type is social."
+          "description": "The `social` object contains details about a social network post. This property is only present if the `snippet.type` is `social`."
         },
         "subscription": {
           "$ref": "ActivityContentDetailsSubscription",
-          "description": "The subscription object contains information about a channel that a user subscribed to. This property is only present if the snippet.type is subscription."
+          "description": "The `subscription` object contains information about a channel that a user subscribed to. This property is only present if the `snippet.type` is `subscription`. Deprecated: This property is no longer returned."
         },
         "upload": {
           "$ref": "ActivityContentDetailsUpload",
-          "description": "The upload object contains information about the uploaded video. This property is only present if the snippet.type is upload."
+          "description": "The `upload` object contains information about the uploaded video. This property is only present if the `snippet.type` is `upload`."
         }
       },
       "type": "object"
@@ -4331,7 +4331,7 @@
       "properties": {
         "resourceId": {
           "$ref": "ResourceId",
-          "description": "The resourceId object contains information that identifies the resource associated with a bulletin post. @mutable youtube.activities.insert"
+          "description": "The `resourceId` object contains information that identifies the resource associated with a bulletin post. @mutable youtube.activities.insert"
         }
       },
       "type": "object"
@@ -4342,7 +4342,7 @@
       "properties": {
         "resourceId": {
           "$ref": "ResourceId",
-          "description": "The resourceId object contains information that identifies the resource that was added to the channel."
+          "description": "The `resourceId` object contains information that identifies the resource that was added to the channel."
         }
       },
       "type": "object"
@@ -4353,29 +4353,29 @@
       "properties": {
         "resourceId": {
           "$ref": "ResourceId",
-          "description": "The resourceId object contains information that identifies the resource associated with the comment."
+          "description": "The `resourceId` object contains information that identifies the resource associated with the comment."
         }
       },
       "type": "object"
     },
     "ActivityContentDetailsFavorite": {
-      "description": "Information about a video that was marked as a favorite video.",
+      "description": "Information about a video that was marked as a favorite video. Deprecated: This resource is no longer returned.",
       "id": "ActivityContentDetailsFavorite",
       "properties": {
         "resourceId": {
           "$ref": "ResourceId",
-          "description": "The resourceId object contains information that identifies the resource that was marked as a favorite."
+          "description": "The `resourceId` object contains information that identifies the resource that was marked as a favorite."
         }
       },
       "type": "object"
     },
     "ActivityContentDetailsLike": {
-      "description": "Information about a resource that received a positive (like) rating.",
+      "description": "Information about a resource that received a positive (like) rating. Deprecated: This resource is no longer returned.",
       "id": "ActivityContentDetailsLike",
       "properties": {
         "resourceId": {
           "$ref": "ResourceId",
-          "description": "The resourceId object contains information that identifies the rated resource."
+          "description": "The `resourceId` object contains information that identifies the rated resource."
         }
       },
       "type": "object"
@@ -4394,7 +4394,7 @@
         },
         "resourceId": {
           "$ref": "ResourceId",
-          "description": "The resourceId object contains information about the resource that was added to the playlist."
+          "description": "The `resourceId` object contains information about the resource that was added to the playlist."
         }
       },
       "type": "object"
@@ -4474,19 +4474,19 @@
           ],
           "enumDescriptions": [
             "",
-            "",
-            "",
+            "Deprecated: This reason is no longer used.",
+            "Deprecated: This reason is no longer used.",
             ""
           ],
           "type": "string"
         },
         "resourceId": {
           "$ref": "ResourceId",
-          "description": "The resourceId object contains information that identifies the recommended resource."
+          "description": "The `resourceId` object contains information that identifies the recommended resource."
         },
         "seedResourceId": {
           "$ref": "ResourceId",
-          "description": "The seedResourceId object contains information about the resource that caused the recommendation."
+          "description": "The `seedResourceId` object contains information about the resource that caused the recommendation."
         }
       },
       "type": "object"
@@ -4509,7 +4509,7 @@
         },
         "resourceId": {
           "$ref": "ResourceId",
-          "description": "The resourceId object encapsulates information that identifies the resource associated with a social network post."
+          "description": "The `resourceId` object encapsulates information that identifies the resource associated with a social network post."
         },
         "type": {
           "description": "The name of the social network.",
@@ -4531,12 +4531,12 @@
       "type": "object"
     },
     "ActivityContentDetailsSubscription": {
-      "description": "Information about a channel that a user subscribed to.",
+      "description": "Information about a channel that a user subscribed to. Deprecated: This resource is no longer returned.",
       "id": "ActivityContentDetailsSubscription",
       "properties": {
         "resourceId": {
           "$ref": "ResourceId",
-          "description": "The resourceId object contains information that identifies the resource that the user subscribed to."
+          "description": "The `resourceId` object contains information that identifies the resource that the user subscribed to."
         }
       },
       "type": "object"
@@ -4616,7 +4616,7 @@
           "type": "string"
         },
         "groupId": {
-          "description": "The group ID associated with the activity. A group ID identifies user events that are associated with the same user and resource. For example, if a user rates a video and marks the same video as a favorite, the entries for those events would have the same group ID in the user's activity feed. In your user interface, you can avoid repetition by grouping events with the same groupId value.",
+          "description": "The group ID associated with the activity. A group ID identifies user events that are associated with the same user and resource. For example, if a user uploads a video and watches the same video, the entries for those events would have the same group ID in the user's activity feed. In your user interface, you can avoid repetition by grouping events with the same `groupId` value.",
           "type": "string"
         },
         "publishedAt": {
@@ -4651,10 +4651,10 @@
           "enumDescriptions": [
             "",
             "",
+            "Deprecated: This type is no longer supported.",
+            "Deprecated: This type is no longer supported.",
             "",
-            "",
-            "",
-            "",
+            "Deprecated: This type is no longer supported.",
             "",
             "",
             "",
