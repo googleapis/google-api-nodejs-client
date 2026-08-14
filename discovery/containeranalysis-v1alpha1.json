@@ -1454,7 +1454,7 @@
       }
     }
   },
-  "revision": "20260703",
+  "revision": "20260805",
   "rootUrl": "https://containeranalysis.googleapis.com/",
   "schemas": {
     "AISkillAnalysisNote": {
@@ -1487,6 +1487,10 @@
             "High severity."
           ],
           "type": "string"
+        },
+        "perScannerVerdict": {
+          "$ref": "PerScannerVerdict",
+          "description": "Optional. Per scanner verdict."
         },
         "skillName": {
           "description": "Optional. Name of the skill that produced this analysis.",
@@ -5768,6 +5772,114 @@
       },
       "type": "object"
     },
+    "MaliciousContentLLMResult": {
+      "description": "Result of Malicious Content LLM scan.",
+      "id": "MaliciousContentLLMResult",
+      "properties": {
+        "maxSeverity": {
+          "description": "Optional. Tracks max severity found.",
+          "enum": [
+            "SEVERITY_UNSPECIFIED",
+            "CRITICAL",
+            "HIGH"
+          ],
+          "enumDescriptions": [
+            "Unspecified severity.",
+            "Critical severity.",
+            "High severity."
+          ],
+          "type": "string"
+        },
+        "scanState": {
+          "description": "Output only. State of the scan.",
+          "enum": [
+            "SCAN_STATE_UNSPECIFIED",
+            "PERFORMED",
+            "NOT_PERFORMED"
+          ],
+          "enumDescriptions": [
+            "Unspecified scan state.",
+            "Scan was performed.",
+            "Scan was not performed."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MaliciousContentStaticResult": {
+      "description": "Result of Malicious Content Static scan.",
+      "id": "MaliciousContentStaticResult",
+      "properties": {
+        "maxSeverity": {
+          "description": "Optional. Tracks max severity found.",
+          "enum": [
+            "SEVERITY_UNSPECIFIED",
+            "CRITICAL",
+            "HIGH"
+          ],
+          "enumDescriptions": [
+            "Unspecified severity.",
+            "Critical severity.",
+            "High severity."
+          ],
+          "type": "string"
+        },
+        "scanState": {
+          "description": "Output only. State of the scan.",
+          "enum": [
+            "SCAN_STATE_UNSPECIFIED",
+            "PERFORMED",
+            "NOT_PERFORMED"
+          ],
+          "enumDescriptions": [
+            "Unspecified scan state.",
+            "Scan was performed.",
+            "Scan was not performed."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MalwareScanResult": {
+      "description": "Result of Malware scan.",
+      "id": "MalwareScanResult",
+      "properties": {
+        "scanState": {
+          "description": "Output only. State of the scan.",
+          "enum": [
+            "SCAN_STATE_UNSPECIFIED",
+            "PERFORMED",
+            "NOT_PERFORMED"
+          ],
+          "enumDescriptions": [
+            "Unspecified scan state.",
+            "Scan was performed.",
+            "Scan was not performed."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "verdict": {
+          "description": "Optional. Verdict of the scan.",
+          "enum": [
+            "VERDICT_UNSPECIFIED",
+            "PASSED",
+            "FAILED"
+          ],
+          "enumDescriptions": [
+            "Unspecified verdict.",
+            "Scanner passed.",
+            "Scanner failed."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Material": {
       "description": "Material is a material used in the generation of the provenance",
       "id": "Material",
@@ -6422,6 +6534,29 @@
         },
         "severityName": {
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PerScannerVerdict": {
+      "description": "Per scanner verdict details.",
+      "id": "PerScannerVerdict",
+      "properties": {
+        "maliciousContentLlmResult": {
+          "$ref": "MaliciousContentLLMResult",
+          "description": "Optional. Malicious Content LLM scan result."
+        },
+        "maliciousContentStaticResult": {
+          "$ref": "MaliciousContentStaticResult",
+          "description": "Optional. Malicious Content Static scan result."
+        },
+        "malwareScan": {
+          "$ref": "MalwareScanResult",
+          "description": "Optional. Malware scan result."
+        },
+        "workspacePolicy": {
+          "$ref": "WorkspacePolicyResult",
+          "description": "Optional. Workspace Policy scan result."
         }
       },
       "type": "object"
@@ -8090,6 +8225,42 @@
             "Medium Impact",
             "High Impact",
             "Critical Impact"
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "WorkspacePolicyResult": {
+      "description": "Result of Workspace Policy scan.",
+      "id": "WorkspacePolicyResult",
+      "properties": {
+        "scanState": {
+          "description": "Output only. State of the scan.",
+          "enum": [
+            "SCAN_STATE_UNSPECIFIED",
+            "PERFORMED",
+            "NOT_PERFORMED"
+          ],
+          "enumDescriptions": [
+            "Unspecified scan state.",
+            "Scan was performed.",
+            "Scan was not performed."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "verdict": {
+          "description": "Optional. Verdict of the scan.",
+          "enum": [
+            "VERDICT_UNSPECIFIED",
+            "PASSED",
+            "FAILED"
+          ],
+          "enumDescriptions": [
+            "Unspecified verdict.",
+            "Scanner passed.",
+            "Scanner failed."
           ],
           "type": "string"
         }
