@@ -2215,6 +2215,56 @@
                 }
               }
             },
+            "sourceUploads": {
+              "methods": {
+                "upload": {
+                  "description": "Uploads a source archive to a Google Cloud Storage bucket through Cloud Run. The uploaded source object should be used for Cloud Run resource deployments. User is responsible for managing the lifecycle of the uploaded object. If uploading through the Cloud Run API to Cloud Storage is not desired, you can use the IAM Deny Policy to deny the `run.locations.uploadSource` permission for all principals.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}:uploadSource",
+                  "httpMethod": "POST",
+                  "id": "run.projects.locations.sourceUploads.upload",
+                  "mediaUpload": {
+                    "accept": [
+                      "*/*"
+                    ],
+                    "maxSize": "262144000",
+                    "protocols": {
+                      "resumable": {
+                        "multipart": true,
+                        "path": "/resumable/upload/v2/{+parent}:uploadSource"
+                      },
+                      "simple": {
+                        "multipart": true,
+                        "path": "/upload/v2/{+parent}:uploadSource"
+                      }
+                    }
+                  },
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The project and location in which the source archive should be uploaded to, specified in the format `projects/*/locations/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+parent}:uploadSource",
+                  "request": {
+                    "$ref": "GoogleCloudRunV2UploadSourceRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudRunV2UploadSourceResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/run"
+                  ],
+                  "supportsMediaUpload": true
+                }
+              }
+            },
             "workerPools": {
               "methods": {
                 "create": {
@@ -2623,7 +2673,7 @@
       }
     }
   },
-  "revision": "20260717",
+  "revision": "20260807",
   "rootUrl": "https://run.googleapis.com/",
   "schemas": {
     "GoogleCloudRunV2BinaryAuthorization": {
@@ -5724,6 +5774,28 @@
         "uri": {
           "description": "Displays the target URI.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRunV2UploadSourceRequest": {
+      "description": "The request message for the UploadSource method.",
+      "id": "GoogleCloudRunV2UploadSourceRequest",
+      "properties": {
+        "service": {
+          "description": "The name of Cloud Run Service upload source archive will be used for.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRunV2UploadSourceResponse": {
+      "description": "The response message for the UploadSource method.",
+      "id": "GoogleCloudRunV2UploadSourceResponse",
+      "properties": {
+        "cloudStorageSource": {
+          "$ref": "GoogleCloudRunV2CloudStorageSource",
+          "description": "The Cloud Storage object path the source archive is uploaded to."
         }
       },
       "type": "object"

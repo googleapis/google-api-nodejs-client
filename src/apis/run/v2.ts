@@ -2193,6 +2193,24 @@ export namespace run_v2 {
     uri?: string | null;
   }
   /**
+   * The request message for the UploadSource method.
+   */
+  export interface Schema$GoogleCloudRunV2UploadSourceRequest {
+    /**
+     * The name of Cloud Run Service upload source archive will be used for.
+     */
+    service?: string | null;
+  }
+  /**
+   * The response message for the UploadSource method.
+   */
+  export interface Schema$GoogleCloudRunV2UploadSourceResponse {
+    /**
+     * The Cloud Storage object path the source archive is uploaded to.
+     */
+    cloudStorageSource?: Schema$GoogleCloudRunV2CloudStorageSource;
+  }
+  /**
    * VersionToPath maps a specific version of a secret to a relative file to mount to, relative to VolumeMount's mount_path.
    */
   export interface Schema$GoogleCloudRunV2VersionToPath {
@@ -3840,6 +3858,7 @@ export namespace run_v2 {
     jobs: Resource$Projects$Locations$Jobs;
     operations: Resource$Projects$Locations$Operations;
     services: Resource$Projects$Locations$Services;
+    sourceUploads: Resource$Projects$Locations$Sourceuploads;
     workerPools: Resource$Projects$Locations$Workerpools;
     constructor(context: APIRequestContext) {
       this.context = context;
@@ -3850,6 +3869,9 @@ export namespace run_v2 {
         this.context
       );
       this.services = new Resource$Projects$Locations$Services(this.context);
+      this.sourceUploads = new Resource$Projects$Locations$Sourceuploads(
+        this.context
+      );
       this.workerPools = new Resource$Projects$Locations$Workerpools(
         this.context
       );
@@ -12051,6 +12073,206 @@ export namespace run_v2 {
      * If true, returns deleted (but unexpired) resources along with active ones.
      */
     showDeleted?: boolean;
+  }
+
+  export class Resource$Projects$Locations$Sourceuploads {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Uploads a source archive to a Google Cloud Storage bucket through Cloud Run. The uploaded source object should be used for Cloud Run resource deployments. User is responsible for managing the lifecycle of the uploaded object. If uploading through the Cloud Run API to Cloud Storage is not desired, you can use the IAM Deny Policy to deny the `run.locations.uploadSource` permission for all principals.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/run',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await run.projects.locations.sourceUploads.upload({
+     *     // Required. The project and location in which the source archive should be uploaded to, specified in the format `projects/x/locations/x`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "service": "my_service"
+     *       // }
+     *     },
+     *     media: {
+     *       mimeType: 'placeholder-value',
+     *       body: 'placeholder-value',
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "cloudStorageSource": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    upload(
+      params: Params$Resource$Projects$Locations$Sourceuploads$Upload,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    upload(
+      params?: Params$Resource$Projects$Locations$Sourceuploads$Upload,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudRunV2UploadSourceResponse>
+    >;
+    upload(
+      params: Params$Resource$Projects$Locations$Sourceuploads$Upload,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    upload(
+      params: Params$Resource$Projects$Locations$Sourceuploads$Upload,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRunV2UploadSourceResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRunV2UploadSourceResponse>
+    ): void;
+    upload(
+      params: Params$Resource$Projects$Locations$Sourceuploads$Upload,
+      callback: BodyResponseCallback<Schema$GoogleCloudRunV2UploadSourceResponse>
+    ): void;
+    upload(
+      callback: BodyResponseCallback<Schema$GoogleCloudRunV2UploadSourceResponse>
+    ): void;
+    upload(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Sourceuploads$Upload
+        | BodyResponseCallback<Schema$GoogleCloudRunV2UploadSourceResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRunV2UploadSourceResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudRunV2UploadSourceResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudRunV2UploadSourceResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Sourceuploads$Upload;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Sourceuploads$Upload;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://run.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}:uploadSource').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        mediaUrl: (rootUrl + '/upload/v2/{+parent}:uploadSource').replace(
+          /([^:]\/)\/+/g,
+          '$1'
+        ),
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudRunV2UploadSourceResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudRunV2UploadSourceResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Sourceuploads$Upload extends StandardParameters {
+    /**
+     * Required. The project and location in which the source archive should be uploaded to, specified in the format `projects/x/locations/x`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudRunV2UploadSourceRequest;
+
+    /**
+     * Media metadata
+     */
+    media?: {
+      /**
+       * Media mime-type
+       */
+      mimeType?: string;
+
+      /**
+       * Media body contents
+       */
+      body?: any;
+    };
   }
 
   export class Resource$Projects$Locations$Workerpools {
