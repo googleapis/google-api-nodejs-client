@@ -306,7 +306,7 @@
       }
     }
   },
-  "revision": "20260802",
+  "revision": "20260809",
   "rootUrl": "https://kmsinventory.googleapis.com/",
   "schemas": {
     "GoogleCloudKmsInventoryV1ListCryptoKeysResponse": {
@@ -620,7 +620,6 @@
             "PQ_SIGN_ML_DSA_87_EXTERNAL_MU",
             "KEM_ECDH_P256",
             "KEM_ECDH_P384",
-            "KEM_ECDH_P521",
             "AES_256_KWP"
           ],
           "enumDescriptions": [
@@ -673,7 +672,6 @@
             "The post-quantum Module-Lattice-Based Digital Signature Algorithm, at security level 5. Randomized version supporting externally-computed message representatives.",
             "Key encapsulation: Elliptic Curve Diffie-Hellman with NIST P-256 key that returns shared secret.",
             "Key encapsulation: Elliptic Curve Diffie-Hellman with NIST P-384 key that returns shared secret.",
-            "Key encapsulation: Elliptic Curve Diffie-Hellman with NIST P-521 key that returns shared secret.",
             "AES key wrap with zero padding algorithm (RFC 5649). Can only be used by keys with purpose AES_WRAPPING."
           ],
           "readOnly": true,
@@ -867,7 +865,6 @@
             "PQ_SIGN_ML_DSA_87_EXTERNAL_MU",
             "KEM_ECDH_P256",
             "KEM_ECDH_P384",
-            "KEM_ECDH_P521",
             "AES_256_KWP"
           ],
           "enumDescriptions": [
@@ -920,7 +917,6 @@
             "The post-quantum Module-Lattice-Based Digital Signature Algorithm, at security level 5. Randomized version supporting externally-computed message representatives.",
             "Key encapsulation: Elliptic Curve Diffie-Hellman with NIST P-256 key that returns shared secret.",
             "Key encapsulation: Elliptic Curve Diffie-Hellman with NIST P-384 key that returns shared secret.",
-            "Key encapsulation: Elliptic Curve Diffie-Hellman with NIST P-521 key that returns shared secret.",
             "AES key wrap with zero padding algorithm (RFC 5649). Can only be used by keys with purpose AES_WRAPPING."
           ],
           "type": "string"
@@ -953,7 +949,7 @@
       "id": "GoogleCloudKmsV1ExternalProtectionLevelOptions",
       "properties": {
         "ekmConnectionBackendOverride": {
-          "description": "Optional. The resource name of the backend environment where the key material of CryptoKeyVersions is associated with. Setting this field overrides the CryptoKeyBackend. This field may be set when CryptoKeyVersions is set to EXTERNAL_VPC. Format: `projects/*/locations/*/ekmConnections/*`.",
+          "description": "Optional. The resource name of the backend environment where the key material of CryptoKeyVersions is associated with. Setting this field overrides the crypto_key_backend. This field may be set when CryptoKeyVersions is set to EXTERNAL_VPC. Format: `projects/*/locations/*/ekmConnections/*`.",
           "type": "string"
         },
         "ekmConnectionKeyPath": {
