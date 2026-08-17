@@ -34,6 +34,12 @@ import {
   APIRequestContext,
 } from 'googleapis-common';
 import {Readable} from 'stream';
+import {
+  validateSingleSegment,
+  validateMultiSegment,
+  encodeWithSlashes,
+  encodeWithoutSlashes,
+} from '../../transcoding';
 
 export namespace homegraph_v1 {
   export interface Options extends GlobalOptions {
@@ -854,11 +860,18 @@ export namespace homegraph_v1 {
         options = {};
       }
 
+      if (params.agentUserId !== undefined && params.agentUserId !== null) {
+        validateMultiSegment('agentUserId', String(params.agentUserId));
+        params.agentUserId = encodeWithoutSlashes(String(params.agentUserId));
+      }
+
       const rootUrl = options.rootUrl || 'https://homegraph.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+agentUserId}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+agentUserId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -1019,7 +1032,9 @@ export namespace homegraph_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/devices:query').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/devices:query')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -1171,10 +1186,9 @@ export namespace homegraph_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/devices:reportStateAndNotification').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/devices:reportStateAndNotification')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -1317,10 +1331,9 @@ export namespace homegraph_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/devices:requestSync').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/devices:requestSync')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -1460,7 +1473,9 @@ export namespace homegraph_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/devices:sync').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/devices:sync')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },

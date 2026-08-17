@@ -133,7 +133,7 @@ export async function synth(options: SynthOptions = {}) {
       if (attempt === 3) {
         throw err;
       }
-      console.log('Waiting 10 seconds before retrying git push...');
+      console.log(`Waiting 10 seconds before retrying git push...`);
       await new Promise(resolve => setTimeout(resolve, 10000));
     }
   }

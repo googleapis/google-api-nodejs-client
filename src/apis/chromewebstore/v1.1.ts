@@ -34,6 +34,12 @@ import {
   APIRequestContext,
 } from 'googleapis-common';
 import {Readable} from 'stream';
+import {
+  validateSingleSegment,
+  validateMultiSegment,
+  encodeWithSlashes,
+  encodeWithoutSlashes,
+} from '../../transcoding';
 
 export namespace chromewebstore_v1_1 {
   export interface Options extends GlobalOptions {
@@ -319,15 +325,19 @@ export namespace chromewebstore_v1_1 {
         options = {};
       }
 
+      if (params.itemId !== undefined && params.itemId !== null) {
+        validateSingleSegment('itemId', String(params.itemId));
+        params.itemId = encodeWithSlashes(String(params.itemId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://chromewebstore.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/chromewebstore/v1.1/items/{itemId}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/chromewebstore/v1.1/items/{itemId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -473,20 +483,18 @@ export namespace chromewebstore_v1_1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/chromewebstore/v1.1/items').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/chromewebstore/v1.1/items')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
           options
         ),
         params,
-        mediaUrl: (rootUrl + '/upload/chromewebstore/v1.1/items').replace(
-          /([^:]\/)\/+/g,
-          '$1'
-        ),
+        mediaUrl: (rootUrl + '/upload/chromewebstore/v1.1/items')
+          .replace(/([^:]\/)\/+/g, '$1')
+          .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
         requiredParams: [],
         pathParams: [],
         context: this.context,
@@ -627,14 +635,19 @@ export namespace chromewebstore_v1_1 {
         options = {};
       }
 
+      if (params.itemId !== undefined && params.itemId !== null) {
+        validateSingleSegment('itemId', String(params.itemId));
+        params.itemId = encodeWithSlashes(String(params.itemId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://chromewebstore.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/chromewebstore/v1.1/items/{itemId}/publish'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/chromewebstore/v1.1/items/{itemId}/publish')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -784,24 +797,28 @@ export namespace chromewebstore_v1_1 {
         options = {};
       }
 
+      if (params.itemId !== undefined && params.itemId !== null) {
+        validateSingleSegment('itemId', String(params.itemId));
+        params.itemId = encodeWithSlashes(String(params.itemId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://chromewebstore.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/chromewebstore/v1.1/items/{itemId}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/chromewebstore/v1.1/items/{itemId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
           options
         ),
         params,
-        mediaUrl: (
-          rootUrl + '/upload/chromewebstore/v1.1/items/{itemId}'
-        ).replace(/([^:]\/)\/+/g, '$1'),
+        mediaUrl: (rootUrl + '/upload/chromewebstore/v1.1/items/{itemId}')
+          .replace(/([^:]\/)\/+/g, '$1')
+          .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
         requiredParams: ['itemId'],
         pathParams: ['itemId'],
         context: this.context,

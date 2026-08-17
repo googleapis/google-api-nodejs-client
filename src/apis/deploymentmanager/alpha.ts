@@ -34,6 +34,12 @@ import {
   APIRequestContext,
 } from 'googleapis-common';
 import {Readable} from 'stream';
+import {
+  validateSingleSegment,
+  validateMultiSegment,
+  encodeWithSlashes,
+  encodeWithoutSlashes,
+} from '../../transcoding';
 
 export namespace deploymentmanager_alpha {
   export interface Options extends GlobalOptions {
@@ -1578,6 +1584,15 @@ export namespace deploymentmanager_alpha {
         options = {};
       }
 
+      if (params.compositeType !== undefined && params.compositeType !== null) {
+        validateSingleSegment('compositeType', String(params.compositeType));
+        params.compositeType = encodeWithSlashes(String(params.compositeType));
+      }
+      if (params.project !== undefined && params.project !== null) {
+        validateSingleSegment('project', String(params.project));
+        params.project = encodeWithSlashes(String(params.project));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://deploymentmanager.googleapis.com/';
       const parameters = {
@@ -1586,7 +1601,9 @@ export namespace deploymentmanager_alpha {
             url: (
               rootUrl +
               '/deploymentmanager/alpha/projects/{project}/global/compositeTypes/{compositeType}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -1734,6 +1751,15 @@ export namespace deploymentmanager_alpha {
         options = {};
       }
 
+      if (params.compositeType !== undefined && params.compositeType !== null) {
+        validateSingleSegment('compositeType', String(params.compositeType));
+        params.compositeType = encodeWithSlashes(String(params.compositeType));
+      }
+      if (params.project !== undefined && params.project !== null) {
+        validateSingleSegment('project', String(params.project));
+        params.project = encodeWithSlashes(String(params.project));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://deploymentmanager.googleapis.com/';
       const parameters = {
@@ -1742,7 +1768,9 @@ export namespace deploymentmanager_alpha {
             url: (
               rootUrl +
               '/deploymentmanager/alpha/projects/{project}/global/compositeTypes/{compositeType}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -1921,6 +1949,11 @@ export namespace deploymentmanager_alpha {
         options = {};
       }
 
+      if (params.project !== undefined && params.project !== null) {
+        validateSingleSegment('project', String(params.project));
+        params.project = encodeWithSlashes(String(params.project));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://deploymentmanager.googleapis.com/';
       const parameters = {
@@ -1929,7 +1962,9 @@ export namespace deploymentmanager_alpha {
             url: (
               rootUrl +
               '/deploymentmanager/alpha/projects/{project}/global/compositeTypes'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -2077,6 +2112,11 @@ export namespace deploymentmanager_alpha {
         options = {};
       }
 
+      if (params.project !== undefined && params.project !== null) {
+        validateSingleSegment('project', String(params.project));
+        params.project = encodeWithSlashes(String(params.project));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://deploymentmanager.googleapis.com/';
       const parameters = {
@@ -2085,7 +2125,9 @@ export namespace deploymentmanager_alpha {
             url: (
               rootUrl +
               '/deploymentmanager/alpha/projects/{project}/global/compositeTypes'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -2267,6 +2309,15 @@ export namespace deploymentmanager_alpha {
         options = {};
       }
 
+      if (params.compositeType !== undefined && params.compositeType !== null) {
+        validateSingleSegment('compositeType', String(params.compositeType));
+        params.compositeType = encodeWithSlashes(String(params.compositeType));
+      }
+      if (params.project !== undefined && params.project !== null) {
+        validateSingleSegment('project', String(params.project));
+        params.project = encodeWithSlashes(String(params.project));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://deploymentmanager.googleapis.com/';
       const parameters = {
@@ -2275,7 +2326,9 @@ export namespace deploymentmanager_alpha {
             url: (
               rootUrl +
               '/deploymentmanager/alpha/projects/{project}/global/compositeTypes/{compositeType}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -2457,6 +2510,15 @@ export namespace deploymentmanager_alpha {
         options = {};
       }
 
+      if (params.compositeType !== undefined && params.compositeType !== null) {
+        validateSingleSegment('compositeType', String(params.compositeType));
+        params.compositeType = encodeWithSlashes(String(params.compositeType));
+      }
+      if (params.project !== undefined && params.project !== null) {
+        validateSingleSegment('project', String(params.project));
+        params.project = encodeWithSlashes(String(params.project));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://deploymentmanager.googleapis.com/';
       const parameters = {
@@ -2465,7 +2527,9 @@ export namespace deploymentmanager_alpha {
             url: (
               rootUrl +
               '/deploymentmanager/alpha/projects/{project}/global/compositeTypes/{compositeType}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -2748,6 +2812,15 @@ export namespace deploymentmanager_alpha {
         options = {};
       }
 
+      if (params.deployment !== undefined && params.deployment !== null) {
+        validateSingleSegment('deployment', String(params.deployment));
+        params.deployment = encodeWithSlashes(String(params.deployment));
+      }
+      if (params.project !== undefined && params.project !== null) {
+        validateSingleSegment('project', String(params.project));
+        params.project = encodeWithSlashes(String(params.project));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://deploymentmanager.googleapis.com/';
       const parameters = {
@@ -2756,7 +2829,9 @@ export namespace deploymentmanager_alpha {
             url: (
               rootUrl +
               '/deploymentmanager/alpha/projects/{project}/global/deployments/{deployment}/cancelPreview'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -2924,6 +2999,15 @@ export namespace deploymentmanager_alpha {
         options = {};
       }
 
+      if (params.deployment !== undefined && params.deployment !== null) {
+        validateSingleSegment('deployment', String(params.deployment));
+        params.deployment = encodeWithSlashes(String(params.deployment));
+      }
+      if (params.project !== undefined && params.project !== null) {
+        validateSingleSegment('project', String(params.project));
+        params.project = encodeWithSlashes(String(params.project));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://deploymentmanager.googleapis.com/';
       const parameters = {
@@ -2932,7 +3016,9 @@ export namespace deploymentmanager_alpha {
             url: (
               rootUrl +
               '/deploymentmanager/alpha/projects/{project}/global/deployments/{deployment}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -3083,6 +3169,15 @@ export namespace deploymentmanager_alpha {
         options = {};
       }
 
+      if (params.deployment !== undefined && params.deployment !== null) {
+        validateSingleSegment('deployment', String(params.deployment));
+        params.deployment = encodeWithSlashes(String(params.deployment));
+      }
+      if (params.project !== undefined && params.project !== null) {
+        validateSingleSegment('project', String(params.project));
+        params.project = encodeWithSlashes(String(params.project));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://deploymentmanager.googleapis.com/';
       const parameters = {
@@ -3091,7 +3186,9 @@ export namespace deploymentmanager_alpha {
             url: (
               rootUrl +
               '/deploymentmanager/alpha/projects/{project}/global/deployments/{deployment}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -3232,6 +3329,15 @@ export namespace deploymentmanager_alpha {
         options = {};
       }
 
+      if (params.project !== undefined && params.project !== null) {
+        validateSingleSegment('project', String(params.project));
+        params.project = encodeWithSlashes(String(params.project));
+      }
+      if (params.resource_ !== undefined && params.resource_ !== null) {
+        validateSingleSegment('resource', String(params.resource_));
+        params.resource_ = encodeWithSlashes(String(params.resource_));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://deploymentmanager.googleapis.com/';
       const parameters = {
@@ -3240,7 +3346,9 @@ export namespace deploymentmanager_alpha {
             url: (
               rootUrl +
               '/deploymentmanager/alpha/projects/{project}/global/deployments/{resource}/getIamPolicy'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -3429,6 +3537,11 @@ export namespace deploymentmanager_alpha {
         options = {};
       }
 
+      if (params.project !== undefined && params.project !== null) {
+        validateSingleSegment('project', String(params.project));
+        params.project = encodeWithSlashes(String(params.project));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://deploymentmanager.googleapis.com/';
       const parameters = {
@@ -3437,7 +3550,9 @@ export namespace deploymentmanager_alpha {
             url: (
               rootUrl +
               '/deploymentmanager/alpha/projects/{project}/global/deployments'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -3582,6 +3697,11 @@ export namespace deploymentmanager_alpha {
         options = {};
       }
 
+      if (params.project !== undefined && params.project !== null) {
+        validateSingleSegment('project', String(params.project));
+        params.project = encodeWithSlashes(String(params.project));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://deploymentmanager.googleapis.com/';
       const parameters = {
@@ -3590,7 +3710,9 @@ export namespace deploymentmanager_alpha {
             url: (
               rootUrl +
               '/deploymentmanager/alpha/projects/{project}/global/deployments'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -3783,6 +3905,15 @@ export namespace deploymentmanager_alpha {
         options = {};
       }
 
+      if (params.deployment !== undefined && params.deployment !== null) {
+        validateSingleSegment('deployment', String(params.deployment));
+        params.deployment = encodeWithSlashes(String(params.deployment));
+      }
+      if (params.project !== undefined && params.project !== null) {
+        validateSingleSegment('project', String(params.project));
+        params.project = encodeWithSlashes(String(params.project));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://deploymentmanager.googleapis.com/';
       const parameters = {
@@ -3791,7 +3922,9 @@ export namespace deploymentmanager_alpha {
             url: (
               rootUrl +
               '/deploymentmanager/alpha/projects/{project}/global/deployments/{deployment}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -3940,6 +4073,15 @@ export namespace deploymentmanager_alpha {
         options = {};
       }
 
+      if (params.project !== undefined && params.project !== null) {
+        validateSingleSegment('project', String(params.project));
+        params.project = encodeWithSlashes(String(params.project));
+      }
+      if (params.resource_ !== undefined && params.resource_ !== null) {
+        validateSingleSegment('resource', String(params.resource_));
+        params.resource_ = encodeWithSlashes(String(params.resource_));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://deploymentmanager.googleapis.com/';
       const parameters = {
@@ -3948,7 +4090,9 @@ export namespace deploymentmanager_alpha {
             url: (
               rootUrl +
               '/deploymentmanager/alpha/projects/{project}/global/deployments/{resource}/setIamPolicy'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -4119,6 +4263,15 @@ export namespace deploymentmanager_alpha {
         options = {};
       }
 
+      if (params.deployment !== undefined && params.deployment !== null) {
+        validateSingleSegment('deployment', String(params.deployment));
+        params.deployment = encodeWithSlashes(String(params.deployment));
+      }
+      if (params.project !== undefined && params.project !== null) {
+        validateSingleSegment('project', String(params.project));
+        params.project = encodeWithSlashes(String(params.project));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://deploymentmanager.googleapis.com/';
       const parameters = {
@@ -4127,7 +4280,9 @@ export namespace deploymentmanager_alpha {
             url: (
               rootUrl +
               '/deploymentmanager/alpha/projects/{project}/global/deployments/{deployment}/stop'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -4275,6 +4430,15 @@ export namespace deploymentmanager_alpha {
         options = {};
       }
 
+      if (params.project !== undefined && params.project !== null) {
+        validateSingleSegment('project', String(params.project));
+        params.project = encodeWithSlashes(String(params.project));
+      }
+      if (params.resource_ !== undefined && params.resource_ !== null) {
+        validateSingleSegment('resource', String(params.resource_));
+        params.resource_ = encodeWithSlashes(String(params.resource_));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://deploymentmanager.googleapis.com/';
       const parameters = {
@@ -4283,7 +4447,9 @@ export namespace deploymentmanager_alpha {
             url: (
               rootUrl +
               '/deploymentmanager/alpha/projects/{project}/global/deployments/{resource}/testIamPermissions'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -4476,6 +4642,15 @@ export namespace deploymentmanager_alpha {
         options = {};
       }
 
+      if (params.deployment !== undefined && params.deployment !== null) {
+        validateSingleSegment('deployment', String(params.deployment));
+        params.deployment = encodeWithSlashes(String(params.deployment));
+      }
+      if (params.project !== undefined && params.project !== null) {
+        validateSingleSegment('project', String(params.project));
+        params.project = encodeWithSlashes(String(params.project));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://deploymentmanager.googleapis.com/';
       const parameters = {
@@ -4484,7 +4659,9 @@ export namespace deploymentmanager_alpha {
             url: (
               rootUrl +
               '/deploymentmanager/alpha/projects/{project}/global/deployments/{deployment}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -4862,6 +5039,19 @@ export namespace deploymentmanager_alpha {
         options = {};
       }
 
+      if (params.deployment !== undefined && params.deployment !== null) {
+        validateSingleSegment('deployment', String(params.deployment));
+        params.deployment = encodeWithSlashes(String(params.deployment));
+      }
+      if (params.manifest !== undefined && params.manifest !== null) {
+        validateSingleSegment('manifest', String(params.manifest));
+        params.manifest = encodeWithSlashes(String(params.manifest));
+      }
+      if (params.project !== undefined && params.project !== null) {
+        validateSingleSegment('project', String(params.project));
+        params.project = encodeWithSlashes(String(params.project));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://deploymentmanager.googleapis.com/';
       const parameters = {
@@ -4870,7 +5060,9 @@ export namespace deploymentmanager_alpha {
             url: (
               rootUrl +
               '/deploymentmanager/alpha/projects/{project}/global/deployments/{deployment}/manifests/{manifest}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -5017,6 +5209,15 @@ export namespace deploymentmanager_alpha {
         options = {};
       }
 
+      if (params.deployment !== undefined && params.deployment !== null) {
+        validateSingleSegment('deployment', String(params.deployment));
+        params.deployment = encodeWithSlashes(String(params.deployment));
+      }
+      if (params.project !== undefined && params.project !== null) {
+        validateSingleSegment('project', String(params.project));
+        params.project = encodeWithSlashes(String(params.project));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://deploymentmanager.googleapis.com/';
       const parameters = {
@@ -5025,7 +5226,9 @@ export namespace deploymentmanager_alpha {
             url: (
               rootUrl +
               '/deploymentmanager/alpha/projects/{project}/global/deployments/{deployment}/manifests'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -5243,6 +5446,15 @@ export namespace deploymentmanager_alpha {
         options = {};
       }
 
+      if (params.operation !== undefined && params.operation !== null) {
+        validateSingleSegment('operation', String(params.operation));
+        params.operation = encodeWithSlashes(String(params.operation));
+      }
+      if (params.project !== undefined && params.project !== null) {
+        validateSingleSegment('project', String(params.project));
+        params.project = encodeWithSlashes(String(params.project));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://deploymentmanager.googleapis.com/';
       const parameters = {
@@ -5251,7 +5463,9 @@ export namespace deploymentmanager_alpha {
             url: (
               rootUrl +
               '/deploymentmanager/alpha/projects/{project}/global/operations/{operation}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -5396,6 +5610,11 @@ export namespace deploymentmanager_alpha {
         options = {};
       }
 
+      if (params.project !== undefined && params.project !== null) {
+        validateSingleSegment('project', String(params.project));
+        params.project = encodeWithSlashes(String(params.project));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://deploymentmanager.googleapis.com/';
       const parameters = {
@@ -5404,7 +5623,9 @@ export namespace deploymentmanager_alpha {
             url: (
               rootUrl +
               '/deploymentmanager/alpha/projects/{project}/global/operations'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -5601,6 +5822,19 @@ export namespace deploymentmanager_alpha {
         options = {};
       }
 
+      if (params.deployment !== undefined && params.deployment !== null) {
+        validateSingleSegment('deployment', String(params.deployment));
+        params.deployment = encodeWithSlashes(String(params.deployment));
+      }
+      if (params.project !== undefined && params.project !== null) {
+        validateSingleSegment('project', String(params.project));
+        params.project = encodeWithSlashes(String(params.project));
+      }
+      if (params.resource_ !== undefined && params.resource_ !== null) {
+        validateSingleSegment('resource', String(params.resource_));
+        params.resource_ = encodeWithSlashes(String(params.resource_));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://deploymentmanager.googleapis.com/';
       const parameters = {
@@ -5609,7 +5843,9 @@ export namespace deploymentmanager_alpha {
             url: (
               rootUrl +
               '/deploymentmanager/alpha/projects/{project}/global/deployments/{deployment}/resources/{resource}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -5756,6 +5992,15 @@ export namespace deploymentmanager_alpha {
         options = {};
       }
 
+      if (params.deployment !== undefined && params.deployment !== null) {
+        validateSingleSegment('deployment', String(params.deployment));
+        params.deployment = encodeWithSlashes(String(params.deployment));
+      }
+      if (params.project !== undefined && params.project !== null) {
+        validateSingleSegment('project', String(params.project));
+        params.project = encodeWithSlashes(String(params.project));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://deploymentmanager.googleapis.com/';
       const parameters = {
@@ -5764,7 +6009,9 @@ export namespace deploymentmanager_alpha {
             url: (
               rootUrl +
               '/deploymentmanager/alpha/projects/{project}/global/deployments/{deployment}/resources'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -5981,6 +6228,15 @@ export namespace deploymentmanager_alpha {
         options = {};
       }
 
+      if (params.project !== undefined && params.project !== null) {
+        validateSingleSegment('project', String(params.project));
+        params.project = encodeWithSlashes(String(params.project));
+      }
+      if (params.typeProvider !== undefined && params.typeProvider !== null) {
+        validateSingleSegment('typeProvider', String(params.typeProvider));
+        params.typeProvider = encodeWithSlashes(String(params.typeProvider));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://deploymentmanager.googleapis.com/';
       const parameters = {
@@ -5989,7 +6245,9 @@ export namespace deploymentmanager_alpha {
             url: (
               rootUrl +
               '/deploymentmanager/alpha/projects/{project}/global/typeProviders/{typeProvider}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -6139,6 +6397,15 @@ export namespace deploymentmanager_alpha {
         options = {};
       }
 
+      if (params.project !== undefined && params.project !== null) {
+        validateSingleSegment('project', String(params.project));
+        params.project = encodeWithSlashes(String(params.project));
+      }
+      if (params.typeProvider !== undefined && params.typeProvider !== null) {
+        validateSingleSegment('typeProvider', String(params.typeProvider));
+        params.typeProvider = encodeWithSlashes(String(params.typeProvider));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://deploymentmanager.googleapis.com/';
       const parameters = {
@@ -6147,7 +6414,9 @@ export namespace deploymentmanager_alpha {
             url: (
               rootUrl +
               '/deploymentmanager/alpha/projects/{project}/global/typeProviders/{typeProvider}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -6293,6 +6562,19 @@ export namespace deploymentmanager_alpha {
         options = {};
       }
 
+      if (params.project !== undefined && params.project !== null) {
+        validateSingleSegment('project', String(params.project));
+        params.project = encodeWithSlashes(String(params.project));
+      }
+      if (params.type !== undefined && params.type !== null) {
+        validateSingleSegment('type', String(params.type));
+        params.type = encodeWithSlashes(String(params.type));
+      }
+      if (params.typeProvider !== undefined && params.typeProvider !== null) {
+        validateSingleSegment('typeProvider', String(params.typeProvider));
+        params.typeProvider = encodeWithSlashes(String(params.typeProvider));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://deploymentmanager.googleapis.com/';
       const parameters = {
@@ -6301,7 +6583,9 @@ export namespace deploymentmanager_alpha {
             url: (
               rootUrl +
               '/deploymentmanager/alpha/projects/{project}/global/typeProviders/{typeProvider}/types/{type}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -6483,6 +6767,11 @@ export namespace deploymentmanager_alpha {
         options = {};
       }
 
+      if (params.project !== undefined && params.project !== null) {
+        validateSingleSegment('project', String(params.project));
+        params.project = encodeWithSlashes(String(params.project));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://deploymentmanager.googleapis.com/';
       const parameters = {
@@ -6491,7 +6780,9 @@ export namespace deploymentmanager_alpha {
             url: (
               rootUrl +
               '/deploymentmanager/alpha/projects/{project}/global/typeProviders'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -6639,6 +6930,11 @@ export namespace deploymentmanager_alpha {
         options = {};
       }
 
+      if (params.project !== undefined && params.project !== null) {
+        validateSingleSegment('project', String(params.project));
+        params.project = encodeWithSlashes(String(params.project));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://deploymentmanager.googleapis.com/';
       const parameters = {
@@ -6647,7 +6943,9 @@ export namespace deploymentmanager_alpha {
             url: (
               rootUrl +
               '/deploymentmanager/alpha/projects/{project}/global/typeProviders'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -6798,6 +7096,15 @@ export namespace deploymentmanager_alpha {
         options = {};
       }
 
+      if (params.project !== undefined && params.project !== null) {
+        validateSingleSegment('project', String(params.project));
+        params.project = encodeWithSlashes(String(params.project));
+      }
+      if (params.typeProvider !== undefined && params.typeProvider !== null) {
+        validateSingleSegment('typeProvider', String(params.typeProvider));
+        params.typeProvider = encodeWithSlashes(String(params.typeProvider));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://deploymentmanager.googleapis.com/';
       const parameters = {
@@ -6806,7 +7113,9 @@ export namespace deploymentmanager_alpha {
             url: (
               rootUrl +
               '/deploymentmanager/alpha/projects/{project}/global/typeProviders/{typeProvider}/types'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -6992,6 +7301,15 @@ export namespace deploymentmanager_alpha {
         options = {};
       }
 
+      if (params.project !== undefined && params.project !== null) {
+        validateSingleSegment('project', String(params.project));
+        params.project = encodeWithSlashes(String(params.project));
+      }
+      if (params.typeProvider !== undefined && params.typeProvider !== null) {
+        validateSingleSegment('typeProvider', String(params.typeProvider));
+        params.typeProvider = encodeWithSlashes(String(params.typeProvider));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://deploymentmanager.googleapis.com/';
       const parameters = {
@@ -7000,7 +7318,9 @@ export namespace deploymentmanager_alpha {
             url: (
               rootUrl +
               '/deploymentmanager/alpha/projects/{project}/global/typeProviders/{typeProvider}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -7184,6 +7504,15 @@ export namespace deploymentmanager_alpha {
         options = {};
       }
 
+      if (params.project !== undefined && params.project !== null) {
+        validateSingleSegment('project', String(params.project));
+        params.project = encodeWithSlashes(String(params.project));
+      }
+      if (params.typeProvider !== undefined && params.typeProvider !== null) {
+        validateSingleSegment('typeProvider', String(params.typeProvider));
+        params.typeProvider = encodeWithSlashes(String(params.typeProvider));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://deploymentmanager.googleapis.com/';
       const parameters = {
@@ -7192,7 +7521,9 @@ export namespace deploymentmanager_alpha {
             url: (
               rootUrl +
               '/deploymentmanager/alpha/projects/{project}/global/typeProviders/{typeProvider}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -7491,6 +7822,15 @@ export namespace deploymentmanager_alpha {
         options = {};
       }
 
+      if (params.project !== undefined && params.project !== null) {
+        validateSingleSegment('project', String(params.project));
+        params.project = encodeWithSlashes(String(params.project));
+      }
+      if (params.type !== undefined && params.type !== null) {
+        validateSingleSegment('type', String(params.type));
+        params.type = encodeWithSlashes(String(params.type));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://deploymentmanager.googleapis.com/';
       const parameters = {
@@ -7499,7 +7839,9 @@ export namespace deploymentmanager_alpha {
             url: (
               rootUrl +
               '/deploymentmanager/alpha/projects/{project}/global/types/{type}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -7643,6 +7985,11 @@ export namespace deploymentmanager_alpha {
         options = {};
       }
 
+      if (params.project !== undefined && params.project !== null) {
+        validateSingleSegment('project', String(params.project));
+        params.project = encodeWithSlashes(String(params.project));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://deploymentmanager.googleapis.com/';
       const parameters = {
@@ -7651,7 +7998,9 @@ export namespace deploymentmanager_alpha {
             url: (
               rootUrl +
               '/deploymentmanager/alpha/projects/{project}/global/types'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },

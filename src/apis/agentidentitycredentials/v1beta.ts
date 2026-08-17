@@ -34,6 +34,12 @@ import {
   APIRequestContext,
 } from 'googleapis-common';
 import {Readable} from 'stream';
+import {
+  validateSingleSegment,
+  validateMultiSegment,
+  encodeWithSlashes,
+  encodeWithoutSlashes,
+} from '../../transcoding';
 
 export namespace agentidentitycredentials_v1beta {
   export interface Options extends GlobalOptions {
@@ -400,14 +406,19 @@ export namespace agentidentitycredentials_v1beta {
         options = {};
       }
 
+      if (params.authProvider !== undefined && params.authProvider !== null) {
+        validateMultiSegment('authProvider', String(params.authProvider));
+        params.authProvider = encodeWithoutSlashes(String(params.authProvider));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://agentidentitycredentials.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v1beta/{+authProvider}/credentials:finalize'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta/{+authProvider}/credentials:finalize')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -566,14 +577,19 @@ export namespace agentidentitycredentials_v1beta {
         options = {};
       }
 
+      if (params.authProvider !== undefined && params.authProvider !== null) {
+        validateMultiSegment('authProvider', String(params.authProvider));
+        params.authProvider = encodeWithoutSlashes(String(params.authProvider));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://agentidentitycredentials.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v1beta/{+authProvider}/credentials:retrieve'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta/{+authProvider}/credentials:retrieve')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },

@@ -34,6 +34,12 @@ import {
   APIRequestContext,
 } from 'googleapis-common';
 import {Readable} from 'stream';
+import {
+  validateSingleSegment,
+  validateMultiSegment,
+  encodeWithSlashes,
+  encodeWithoutSlashes,
+} from '../../transcoding';
 
 export namespace adexchangebuyer2_v2beta1 {
   export interface Options extends GlobalOptions {
@@ -2344,15 +2350,19 @@ export namespace adexchangebuyer2_v2beta1 {
         options = {};
       }
 
+      if (params.accountId !== undefined && params.accountId !== null) {
+        validateSingleSegment('accountId', String(params.accountId));
+        params.accountId = encodeWithSlashes(String(params.accountId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2beta1/accounts/{accountId}/clients').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v2beta1/accounts/{accountId}/clients')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -2491,6 +2501,23 @@ export namespace adexchangebuyer2_v2beta1 {
         options = {};
       }
 
+      if (params.accountId !== undefined && params.accountId !== null) {
+        validateSingleSegment('accountId', String(params.accountId));
+        params.accountId = encodeWithSlashes(String(params.accountId));
+      }
+      if (
+        params.clientAccountId !== undefined &&
+        params.clientAccountId !== null
+      ) {
+        validateSingleSegment(
+          'clientAccountId',
+          String(params.clientAccountId)
+        );
+        params.clientAccountId = encodeWithSlashes(
+          String(params.clientAccountId)
+        );
+      }
+
       const rootUrl =
         options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
@@ -2499,7 +2526,9 @@ export namespace adexchangebuyer2_v2beta1 {
             url: (
               rootUrl +
               '/v2beta1/accounts/{accountId}/clients/{clientAccountId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -2636,15 +2665,19 @@ export namespace adexchangebuyer2_v2beta1 {
         options = {};
       }
 
+      if (params.accountId !== undefined && params.accountId !== null) {
+        validateSingleSegment('accountId', String(params.accountId));
+        params.accountId = encodeWithSlashes(String(params.accountId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2beta1/accounts/{accountId}/clients').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v2beta1/accounts/{accountId}/clients')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -2799,6 +2832,23 @@ export namespace adexchangebuyer2_v2beta1 {
         options = {};
       }
 
+      if (params.accountId !== undefined && params.accountId !== null) {
+        validateSingleSegment('accountId', String(params.accountId));
+        params.accountId = encodeWithSlashes(String(params.accountId));
+      }
+      if (
+        params.clientAccountId !== undefined &&
+        params.clientAccountId !== null
+      ) {
+        validateSingleSegment(
+          'clientAccountId',
+          String(params.clientAccountId)
+        );
+        params.clientAccountId = encodeWithSlashes(
+          String(params.clientAccountId)
+        );
+      }
+
       const rootUrl =
         options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
@@ -2807,7 +2857,9 @@ export namespace adexchangebuyer2_v2beta1 {
             url: (
               rootUrl +
               '/v2beta1/accounts/{accountId}/clients/{clientAccountId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -3014,6 +3066,23 @@ export namespace adexchangebuyer2_v2beta1 {
         options = {};
       }
 
+      if (params.accountId !== undefined && params.accountId !== null) {
+        validateSingleSegment('accountId', String(params.accountId));
+        params.accountId = encodeWithSlashes(String(params.accountId));
+      }
+      if (
+        params.clientAccountId !== undefined &&
+        params.clientAccountId !== null
+      ) {
+        validateSingleSegment(
+          'clientAccountId',
+          String(params.clientAccountId)
+        );
+        params.clientAccountId = encodeWithSlashes(
+          String(params.clientAccountId)
+        );
+      }
+
       const rootUrl =
         options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
@@ -3022,7 +3091,9 @@ export namespace adexchangebuyer2_v2beta1 {
             url: (
               rootUrl +
               '/v2beta1/accounts/{accountId}/clients/{clientAccountId}/invitations'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -3159,6 +3230,27 @@ export namespace adexchangebuyer2_v2beta1 {
         options = {};
       }
 
+      if (params.accountId !== undefined && params.accountId !== null) {
+        validateSingleSegment('accountId', String(params.accountId));
+        params.accountId = encodeWithSlashes(String(params.accountId));
+      }
+      if (
+        params.clientAccountId !== undefined &&
+        params.clientAccountId !== null
+      ) {
+        validateSingleSegment(
+          'clientAccountId',
+          String(params.clientAccountId)
+        );
+        params.clientAccountId = encodeWithSlashes(
+          String(params.clientAccountId)
+        );
+      }
+      if (params.invitationId !== undefined && params.invitationId !== null) {
+        validateSingleSegment('invitationId', String(params.invitationId));
+        params.invitationId = encodeWithSlashes(String(params.invitationId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
@@ -3167,7 +3259,9 @@ export namespace adexchangebuyer2_v2beta1 {
             url: (
               rootUrl +
               '/v2beta1/accounts/{accountId}/clients/{clientAccountId}/invitations/{invitationId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -3312,6 +3406,23 @@ export namespace adexchangebuyer2_v2beta1 {
         options = {};
       }
 
+      if (params.accountId !== undefined && params.accountId !== null) {
+        validateSingleSegment('accountId', String(params.accountId));
+        params.accountId = encodeWithSlashes(String(params.accountId));
+      }
+      if (
+        params.clientAccountId !== undefined &&
+        params.clientAccountId !== null
+      ) {
+        validateSingleSegment(
+          'clientAccountId',
+          String(params.clientAccountId)
+        );
+        params.clientAccountId = encodeWithSlashes(
+          String(params.clientAccountId)
+        );
+      }
+
       const rootUrl =
         options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
@@ -3320,7 +3431,9 @@ export namespace adexchangebuyer2_v2beta1 {
             url: (
               rootUrl +
               '/v2beta1/accounts/{accountId}/clients/{clientAccountId}/invitations'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -3513,6 +3626,27 @@ export namespace adexchangebuyer2_v2beta1 {
         options = {};
       }
 
+      if (params.accountId !== undefined && params.accountId !== null) {
+        validateSingleSegment('accountId', String(params.accountId));
+        params.accountId = encodeWithSlashes(String(params.accountId));
+      }
+      if (
+        params.clientAccountId !== undefined &&
+        params.clientAccountId !== null
+      ) {
+        validateSingleSegment(
+          'clientAccountId',
+          String(params.clientAccountId)
+        );
+        params.clientAccountId = encodeWithSlashes(
+          String(params.clientAccountId)
+        );
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
@@ -3521,7 +3655,9 @@ export namespace adexchangebuyer2_v2beta1 {
             url: (
               rootUrl +
               '/v2beta1/accounts/{accountId}/clients/{clientAccountId}/users/{userId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -3659,6 +3795,23 @@ export namespace adexchangebuyer2_v2beta1 {
         options = {};
       }
 
+      if (params.accountId !== undefined && params.accountId !== null) {
+        validateSingleSegment('accountId', String(params.accountId));
+        params.accountId = encodeWithSlashes(String(params.accountId));
+      }
+      if (
+        params.clientAccountId !== undefined &&
+        params.clientAccountId !== null
+      ) {
+        validateSingleSegment(
+          'clientAccountId',
+          String(params.clientAccountId)
+        );
+        params.clientAccountId = encodeWithSlashes(
+          String(params.clientAccountId)
+        );
+      }
+
       const rootUrl =
         options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
@@ -3667,7 +3820,9 @@ export namespace adexchangebuyer2_v2beta1 {
             url: (
               rootUrl +
               '/v2beta1/accounts/{accountId}/clients/{clientAccountId}/users'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -3814,6 +3969,27 @@ export namespace adexchangebuyer2_v2beta1 {
         options = {};
       }
 
+      if (params.accountId !== undefined && params.accountId !== null) {
+        validateSingleSegment('accountId', String(params.accountId));
+        params.accountId = encodeWithSlashes(String(params.accountId));
+      }
+      if (
+        params.clientAccountId !== undefined &&
+        params.clientAccountId !== null
+      ) {
+        validateSingleSegment(
+          'clientAccountId',
+          String(params.clientAccountId)
+        );
+        params.clientAccountId = encodeWithSlashes(
+          String(params.clientAccountId)
+        );
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
@@ -3822,7 +3998,9 @@ export namespace adexchangebuyer2_v2beta1 {
             url: (
               rootUrl +
               '/v2beta1/accounts/{accountId}/clients/{clientAccountId}/users/{userId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -4074,15 +4252,19 @@ export namespace adexchangebuyer2_v2beta1 {
         options = {};
       }
 
+      if (params.accountId !== undefined && params.accountId !== null) {
+        validateSingleSegment('accountId', String(params.accountId));
+        params.accountId = encodeWithSlashes(String(params.accountId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2beta1/accounts/{accountId}/creatives').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v2beta1/accounts/{accountId}/creatives')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -4238,6 +4420,15 @@ export namespace adexchangebuyer2_v2beta1 {
         options = {};
       }
 
+      if (params.accountId !== undefined && params.accountId !== null) {
+        validateSingleSegment('accountId', String(params.accountId));
+        params.accountId = encodeWithSlashes(String(params.accountId));
+      }
+      if (params.creativeId !== undefined && params.creativeId !== null) {
+        validateSingleSegment('creativeId', String(params.creativeId));
+        params.creativeId = encodeWithSlashes(String(params.creativeId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
@@ -4245,7 +4436,9 @@ export namespace adexchangebuyer2_v2beta1 {
           {
             url: (
               rootUrl + '/v2beta1/accounts/{accountId}/creatives/{creativeId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -4383,15 +4576,19 @@ export namespace adexchangebuyer2_v2beta1 {
         options = {};
       }
 
+      if (params.accountId !== undefined && params.accountId !== null) {
+        validateSingleSegment('accountId', String(params.accountId));
+        params.accountId = encodeWithSlashes(String(params.accountId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2beta1/accounts/{accountId}/creatives').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v2beta1/accounts/{accountId}/creatives')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -4526,6 +4723,15 @@ export namespace adexchangebuyer2_v2beta1 {
         options = {};
       }
 
+      if (params.accountId !== undefined && params.accountId !== null) {
+        validateSingleSegment('accountId', String(params.accountId));
+        params.accountId = encodeWithSlashes(String(params.accountId));
+      }
+      if (params.creativeId !== undefined && params.creativeId !== null) {
+        validateSingleSegment('creativeId', String(params.creativeId));
+        params.creativeId = encodeWithSlashes(String(params.creativeId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
@@ -4534,7 +4740,9 @@ export namespace adexchangebuyer2_v2beta1 {
             url: (
               rootUrl +
               '/v2beta1/accounts/{accountId}/creatives/{creativeId}:stopWatching'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -4723,6 +4931,15 @@ export namespace adexchangebuyer2_v2beta1 {
         options = {};
       }
 
+      if (params.accountId !== undefined && params.accountId !== null) {
+        validateSingleSegment('accountId', String(params.accountId));
+        params.accountId = encodeWithSlashes(String(params.accountId));
+      }
+      if (params.creativeId !== undefined && params.creativeId !== null) {
+        validateSingleSegment('creativeId', String(params.creativeId));
+        params.creativeId = encodeWithSlashes(String(params.creativeId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
@@ -4730,7 +4947,9 @@ export namespace adexchangebuyer2_v2beta1 {
           {
             url: (
               rootUrl + '/v2beta1/accounts/{accountId}/creatives/{creativeId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -4867,6 +5086,15 @@ export namespace adexchangebuyer2_v2beta1 {
         options = {};
       }
 
+      if (params.accountId !== undefined && params.accountId !== null) {
+        validateSingleSegment('accountId', String(params.accountId));
+        params.accountId = encodeWithSlashes(String(params.accountId));
+      }
+      if (params.creativeId !== undefined && params.creativeId !== null) {
+        validateSingleSegment('creativeId', String(params.creativeId));
+        params.creativeId = encodeWithSlashes(String(params.creativeId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
@@ -4875,7 +5103,9 @@ export namespace adexchangebuyer2_v2beta1 {
             url: (
               rootUrl +
               '/v2beta1/accounts/{accountId}/creatives/{creativeId}:watch'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -5108,6 +5338,15 @@ export namespace adexchangebuyer2_v2beta1 {
         options = {};
       }
 
+      if (params.accountId !== undefined && params.accountId !== null) {
+        validateSingleSegment('accountId', String(params.accountId));
+        params.accountId = encodeWithSlashes(String(params.accountId));
+      }
+      if (params.creativeId !== undefined && params.creativeId !== null) {
+        validateSingleSegment('creativeId', String(params.creativeId));
+        params.creativeId = encodeWithSlashes(String(params.creativeId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
@@ -5116,7 +5355,9 @@ export namespace adexchangebuyer2_v2beta1 {
             url: (
               rootUrl +
               '/v2beta1/accounts/{accountId}/creatives/{creativeId}/dealAssociations:add'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -5259,6 +5500,15 @@ export namespace adexchangebuyer2_v2beta1 {
         options = {};
       }
 
+      if (params.accountId !== undefined && params.accountId !== null) {
+        validateSingleSegment('accountId', String(params.accountId));
+        params.accountId = encodeWithSlashes(String(params.accountId));
+      }
+      if (params.creativeId !== undefined && params.creativeId !== null) {
+        validateSingleSegment('creativeId', String(params.creativeId));
+        params.creativeId = encodeWithSlashes(String(params.creativeId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
@@ -5267,7 +5517,9 @@ export namespace adexchangebuyer2_v2beta1 {
             url: (
               rootUrl +
               '/v2beta1/accounts/{accountId}/creatives/{creativeId}/dealAssociations'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -5409,6 +5661,15 @@ export namespace adexchangebuyer2_v2beta1 {
         options = {};
       }
 
+      if (params.accountId !== undefined && params.accountId !== null) {
+        validateSingleSegment('accountId', String(params.accountId));
+        params.accountId = encodeWithSlashes(String(params.accountId));
+      }
+      if (params.creativeId !== undefined && params.creativeId !== null) {
+        validateSingleSegment('creativeId', String(params.creativeId));
+        params.creativeId = encodeWithSlashes(String(params.creativeId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
@@ -5417,7 +5678,9 @@ export namespace adexchangebuyer2_v2beta1 {
             url: (
               rootUrl +
               '/v2beta1/accounts/{accountId}/creatives/{creativeId}/dealAssociations:remove'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -5617,14 +5880,19 @@ export namespace adexchangebuyer2_v2beta1 {
         options = {};
       }
 
+      if (params.accountId !== undefined && params.accountId !== null) {
+        validateSingleSegment('accountId', String(params.accountId));
+        params.accountId = encodeWithSlashes(String(params.accountId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v2beta1/accounts/{accountId}/finalizedProposals'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2beta1/accounts/{accountId}/finalizedProposals')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -5782,6 +6050,15 @@ export namespace adexchangebuyer2_v2beta1 {
         options = {};
       }
 
+      if (params.accountId !== undefined && params.accountId !== null) {
+        validateSingleSegment('accountId', String(params.accountId));
+        params.accountId = encodeWithSlashes(String(params.accountId));
+      }
+      if (params.proposalId !== undefined && params.proposalId !== null) {
+        validateSingleSegment('proposalId', String(params.proposalId));
+        params.proposalId = encodeWithSlashes(String(params.proposalId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
@@ -5790,7 +6067,9 @@ export namespace adexchangebuyer2_v2beta1 {
             url: (
               rootUrl +
               '/v2beta1/accounts/{accountId}/finalizedProposals/{proposalId}:pause'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -5947,6 +6226,15 @@ export namespace adexchangebuyer2_v2beta1 {
         options = {};
       }
 
+      if (params.accountId !== undefined && params.accountId !== null) {
+        validateSingleSegment('accountId', String(params.accountId));
+        params.accountId = encodeWithSlashes(String(params.accountId));
+      }
+      if (params.proposalId !== undefined && params.proposalId !== null) {
+        validateSingleSegment('proposalId', String(params.proposalId));
+        params.proposalId = encodeWithSlashes(String(params.proposalId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
@@ -5955,7 +6243,9 @@ export namespace adexchangebuyer2_v2beta1 {
             url: (
               rootUrl +
               '/v2beta1/accounts/{accountId}/finalizedProposals/{proposalId}:resume'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -6160,6 +6450,15 @@ export namespace adexchangebuyer2_v2beta1 {
         options = {};
       }
 
+      if (params.accountId !== undefined && params.accountId !== null) {
+        validateSingleSegment('accountId', String(params.accountId));
+        params.accountId = encodeWithSlashes(String(params.accountId));
+      }
+      if (params.productId !== undefined && params.productId !== null) {
+        validateSingleSegment('productId', String(params.productId));
+        params.productId = encodeWithSlashes(String(params.productId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
@@ -6167,7 +6466,9 @@ export namespace adexchangebuyer2_v2beta1 {
           {
             url: (
               rootUrl + '/v2beta1/accounts/{accountId}/products/{productId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -6305,15 +6606,19 @@ export namespace adexchangebuyer2_v2beta1 {
         options = {};
       }
 
+      if (params.accountId !== undefined && params.accountId !== null) {
+        validateSingleSegment('accountId', String(params.accountId));
+        params.accountId = encodeWithSlashes(String(params.accountId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2beta1/accounts/{accountId}/products').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v2beta1/accounts/{accountId}/products')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -6506,6 +6811,15 @@ export namespace adexchangebuyer2_v2beta1 {
         options = {};
       }
 
+      if (params.accountId !== undefined && params.accountId !== null) {
+        validateSingleSegment('accountId', String(params.accountId));
+        params.accountId = encodeWithSlashes(String(params.accountId));
+      }
+      if (params.proposalId !== undefined && params.proposalId !== null) {
+        validateSingleSegment('proposalId', String(params.proposalId));
+        params.proposalId = encodeWithSlashes(String(params.proposalId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
@@ -6514,7 +6828,9 @@ export namespace adexchangebuyer2_v2beta1 {
             url: (
               rootUrl +
               '/v2beta1/accounts/{accountId}/proposals/{proposalId}:accept'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -6657,6 +6973,15 @@ export namespace adexchangebuyer2_v2beta1 {
         options = {};
       }
 
+      if (params.accountId !== undefined && params.accountId !== null) {
+        validateSingleSegment('accountId', String(params.accountId));
+        params.accountId = encodeWithSlashes(String(params.accountId));
+      }
+      if (params.proposalId !== undefined && params.proposalId !== null) {
+        validateSingleSegment('proposalId', String(params.proposalId));
+        params.proposalId = encodeWithSlashes(String(params.proposalId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
@@ -6665,7 +6990,9 @@ export namespace adexchangebuyer2_v2beta1 {
             url: (
               rootUrl +
               '/v2beta1/accounts/{accountId}/proposals/{proposalId}:addNote'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -6820,6 +7147,15 @@ export namespace adexchangebuyer2_v2beta1 {
         options = {};
       }
 
+      if (params.accountId !== undefined && params.accountId !== null) {
+        validateSingleSegment('accountId', String(params.accountId));
+        params.accountId = encodeWithSlashes(String(params.accountId));
+      }
+      if (params.proposalId !== undefined && params.proposalId !== null) {
+        validateSingleSegment('proposalId', String(params.proposalId));
+        params.proposalId = encodeWithSlashes(String(params.proposalId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
@@ -6828,7 +7164,9 @@ export namespace adexchangebuyer2_v2beta1 {
             url: (
               rootUrl +
               '/v2beta1/accounts/{accountId}/proposals/{proposalId}:cancelNegotiation'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -6985,6 +7323,15 @@ export namespace adexchangebuyer2_v2beta1 {
         options = {};
       }
 
+      if (params.accountId !== undefined && params.accountId !== null) {
+        validateSingleSegment('accountId', String(params.accountId));
+        params.accountId = encodeWithSlashes(String(params.accountId));
+      }
+      if (params.proposalId !== undefined && params.proposalId !== null) {
+        validateSingleSegment('proposalId', String(params.proposalId));
+        params.proposalId = encodeWithSlashes(String(params.proposalId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
@@ -6993,7 +7340,9 @@ export namespace adexchangebuyer2_v2beta1 {
             url: (
               rootUrl +
               '/v2beta1/accounts/{accountId}/proposals/{proposalId}:completeSetup'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -7166,15 +7515,19 @@ export namespace adexchangebuyer2_v2beta1 {
         options = {};
       }
 
+      if (params.accountId !== undefined && params.accountId !== null) {
+        validateSingleSegment('accountId', String(params.accountId));
+        params.accountId = encodeWithSlashes(String(params.accountId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2beta1/accounts/{accountId}/proposals').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v2beta1/accounts/{accountId}/proposals')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -7323,6 +7676,15 @@ export namespace adexchangebuyer2_v2beta1 {
         options = {};
       }
 
+      if (params.accountId !== undefined && params.accountId !== null) {
+        validateSingleSegment('accountId', String(params.accountId));
+        params.accountId = encodeWithSlashes(String(params.accountId));
+      }
+      if (params.proposalId !== undefined && params.proposalId !== null) {
+        validateSingleSegment('proposalId', String(params.proposalId));
+        params.proposalId = encodeWithSlashes(String(params.proposalId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
@@ -7330,7 +7692,9 @@ export namespace adexchangebuyer2_v2beta1 {
           {
             url: (
               rootUrl + '/v2beta1/accounts/{accountId}/proposals/{proposalId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -7470,15 +7834,19 @@ export namespace adexchangebuyer2_v2beta1 {
         options = {};
       }
 
+      if (params.accountId !== undefined && params.accountId !== null) {
+        validateSingleSegment('accountId', String(params.accountId));
+        params.accountId = encodeWithSlashes(String(params.accountId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2beta1/accounts/{accountId}/proposals').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v2beta1/accounts/{accountId}/proposals')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -7635,6 +8003,15 @@ export namespace adexchangebuyer2_v2beta1 {
         options = {};
       }
 
+      if (params.accountId !== undefined && params.accountId !== null) {
+        validateSingleSegment('accountId', String(params.accountId));
+        params.accountId = encodeWithSlashes(String(params.accountId));
+      }
+      if (params.proposalId !== undefined && params.proposalId !== null) {
+        validateSingleSegment('proposalId', String(params.proposalId));
+        params.proposalId = encodeWithSlashes(String(params.proposalId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
@@ -7643,7 +8020,9 @@ export namespace adexchangebuyer2_v2beta1 {
             url: (
               rootUrl +
               '/v2beta1/accounts/{accountId}/proposals/{proposalId}:pause'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -7798,6 +8177,15 @@ export namespace adexchangebuyer2_v2beta1 {
         options = {};
       }
 
+      if (params.accountId !== undefined && params.accountId !== null) {
+        validateSingleSegment('accountId', String(params.accountId));
+        params.accountId = encodeWithSlashes(String(params.accountId));
+      }
+      if (params.proposalId !== undefined && params.proposalId !== null) {
+        validateSingleSegment('proposalId', String(params.proposalId));
+        params.proposalId = encodeWithSlashes(String(params.proposalId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
@@ -7806,7 +8194,9 @@ export namespace adexchangebuyer2_v2beta1 {
             url: (
               rootUrl +
               '/v2beta1/accounts/{accountId}/proposals/{proposalId}:resume'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -7981,6 +8371,15 @@ export namespace adexchangebuyer2_v2beta1 {
         options = {};
       }
 
+      if (params.accountId !== undefined && params.accountId !== null) {
+        validateSingleSegment('accountId', String(params.accountId));
+        params.accountId = encodeWithSlashes(String(params.accountId));
+      }
+      if (params.proposalId !== undefined && params.proposalId !== null) {
+        validateSingleSegment('proposalId', String(params.proposalId));
+        params.proposalId = encodeWithSlashes(String(params.proposalId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
@@ -7988,7 +8387,9 @@ export namespace adexchangebuyer2_v2beta1 {
           {
             url: (
               rootUrl + '/v2beta1/accounts/{accountId}/proposals/{proposalId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -8292,6 +8693,23 @@ export namespace adexchangebuyer2_v2beta1 {
         options = {};
       }
 
+      if (params.accountId !== undefined && params.accountId !== null) {
+        validateSingleSegment('accountId', String(params.accountId));
+        params.accountId = encodeWithSlashes(String(params.accountId));
+      }
+      if (
+        params.publisherProfileId !== undefined &&
+        params.publisherProfileId !== null
+      ) {
+        validateSingleSegment(
+          'publisherProfileId',
+          String(params.publisherProfileId)
+        );
+        params.publisherProfileId = encodeWithSlashes(
+          String(params.publisherProfileId)
+        );
+      }
+
       const rootUrl =
         options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
@@ -8300,7 +8718,9 @@ export namespace adexchangebuyer2_v2beta1 {
             url: (
               rootUrl +
               '/v2beta1/accounts/{accountId}/publisherProfiles/{publisherProfileId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -8439,14 +8859,19 @@ export namespace adexchangebuyer2_v2beta1 {
         options = {};
       }
 
+      if (params.accountId !== undefined && params.accountId !== null) {
+        validateSingleSegment('accountId', String(params.accountId));
+        params.accountId = encodeWithSlashes(String(params.accountId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v2beta1/accounts/{accountId}/publisherProfiles'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2beta1/accounts/{accountId}/publisherProfiles')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -8702,15 +9127,19 @@ export namespace adexchangebuyer2_v2beta1 {
         options = {};
       }
 
+      if (params.ownerName !== undefined && params.ownerName !== null) {
+        validateMultiSegment('ownerName', String(params.ownerName));
+        params.ownerName = encodeWithoutSlashes(String(params.ownerName));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2beta1/{+ownerName}/filterSets').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v2beta1/{+ownerName}/filterSets')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -8837,12 +9266,19 @@ export namespace adexchangebuyer2_v2beta1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2beta1/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -8984,12 +9420,19 @@ export namespace adexchangebuyer2_v2beta1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2beta1/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -9125,15 +9568,19 @@ export namespace adexchangebuyer2_v2beta1 {
         options = {};
       }
 
+      if (params.ownerName !== undefined && params.ownerName !== null) {
+        validateMultiSegment('ownerName', String(params.ownerName));
+        params.ownerName = encodeWithoutSlashes(String(params.ownerName));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2beta1/{+ownerName}/filterSets').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v2beta1/{+ownerName}/filterSets')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -9321,15 +9768,21 @@ export namespace adexchangebuyer2_v2beta1 {
         options = {};
       }
 
+      if (params.filterSetName !== undefined && params.filterSetName !== null) {
+        validateMultiSegment('filterSetName', String(params.filterSetName));
+        params.filterSetName = encodeWithoutSlashes(
+          String(params.filterSetName)
+        );
+      }
+
       const rootUrl =
         options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2beta1/{+filterSetName}/bidMetrics').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v2beta1/{+filterSetName}/bidMetrics')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -9493,14 +9946,21 @@ export namespace adexchangebuyer2_v2beta1 {
         options = {};
       }
 
+      if (params.filterSetName !== undefined && params.filterSetName !== null) {
+        validateMultiSegment('filterSetName', String(params.filterSetName));
+        params.filterSetName = encodeWithoutSlashes(
+          String(params.filterSetName)
+        );
+      }
+
       const rootUrl =
         options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v2beta1/{+filterSetName}/bidResponseErrors'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2beta1/{+filterSetName}/bidResponseErrors')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -9672,14 +10132,21 @@ export namespace adexchangebuyer2_v2beta1 {
         options = {};
       }
 
+      if (params.filterSetName !== undefined && params.filterSetName !== null) {
+        validateMultiSegment('filterSetName', String(params.filterSetName));
+        params.filterSetName = encodeWithoutSlashes(
+          String(params.filterSetName)
+        );
+      }
+
       const rootUrl =
         options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v2beta1/{+filterSetName}/bidResponsesWithoutBids'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2beta1/{+filterSetName}/bidResponsesWithoutBids')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -9847,14 +10314,21 @@ export namespace adexchangebuyer2_v2beta1 {
         options = {};
       }
 
+      if (params.filterSetName !== undefined && params.filterSetName !== null) {
+        validateMultiSegment('filterSetName', String(params.filterSetName));
+        params.filterSetName = encodeWithoutSlashes(
+          String(params.filterSetName)
+        );
+      }
+
       const rootUrl =
         options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v2beta1/{+filterSetName}/filteredBidRequests'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2beta1/{+filterSetName}/filteredBidRequests')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -10027,15 +10501,21 @@ export namespace adexchangebuyer2_v2beta1 {
         options = {};
       }
 
+      if (params.filterSetName !== undefined && params.filterSetName !== null) {
+        validateMultiSegment('filterSetName', String(params.filterSetName));
+        params.filterSetName = encodeWithoutSlashes(
+          String(params.filterSetName)
+        );
+      }
+
       const rootUrl =
         options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2beta1/{+filterSetName}/filteredBids').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v2beta1/{+filterSetName}/filteredBids')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -10207,6 +10687,25 @@ export namespace adexchangebuyer2_v2beta1 {
         options = {};
       }
 
+      if (
+        params.creativeStatusId !== undefined &&
+        params.creativeStatusId !== null
+      ) {
+        validateSingleSegment(
+          'creativeStatusId',
+          String(params.creativeStatusId)
+        );
+        params.creativeStatusId = encodeWithSlashes(
+          String(params.creativeStatusId)
+        );
+      }
+      if (params.filterSetName !== undefined && params.filterSetName !== null) {
+        validateMultiSegment('filterSetName', String(params.filterSetName));
+        params.filterSetName = encodeWithoutSlashes(
+          String(params.filterSetName)
+        );
+      }
+
       const rootUrl =
         options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
@@ -10215,7 +10714,9 @@ export namespace adexchangebuyer2_v2beta1 {
             url: (
               rootUrl +
               '/v2beta1/{+filterSetName}/filteredBids/{creativeStatusId}/creatives'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -10394,6 +10895,25 @@ export namespace adexchangebuyer2_v2beta1 {
         options = {};
       }
 
+      if (
+        params.creativeStatusId !== undefined &&
+        params.creativeStatusId !== null
+      ) {
+        validateSingleSegment(
+          'creativeStatusId',
+          String(params.creativeStatusId)
+        );
+        params.creativeStatusId = encodeWithSlashes(
+          String(params.creativeStatusId)
+        );
+      }
+      if (params.filterSetName !== undefined && params.filterSetName !== null) {
+        validateMultiSegment('filterSetName', String(params.filterSetName));
+        params.filterSetName = encodeWithoutSlashes(
+          String(params.filterSetName)
+        );
+      }
+
       const rootUrl =
         options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
@@ -10402,7 +10922,9 @@ export namespace adexchangebuyer2_v2beta1 {
             url: (
               rootUrl +
               '/v2beta1/{+filterSetName}/filteredBids/{creativeStatusId}/details'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -10572,14 +11094,21 @@ export namespace adexchangebuyer2_v2beta1 {
         options = {};
       }
 
+      if (params.filterSetName !== undefined && params.filterSetName !== null) {
+        validateMultiSegment('filterSetName', String(params.filterSetName));
+        params.filterSetName = encodeWithoutSlashes(
+          String(params.filterSetName)
+        );
+      }
+
       const rootUrl =
         options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v2beta1/{+filterSetName}/impressionMetrics'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2beta1/{+filterSetName}/impressionMetrics')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -10742,15 +11271,21 @@ export namespace adexchangebuyer2_v2beta1 {
         options = {};
       }
 
+      if (params.filterSetName !== undefined && params.filterSetName !== null) {
+        validateMultiSegment('filterSetName', String(params.filterSetName));
+        params.filterSetName = encodeWithoutSlashes(
+          String(params.filterSetName)
+        );
+      }
+
       const rootUrl =
         options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2beta1/{+filterSetName}/losingBids').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v2beta1/{+filterSetName}/losingBids')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -10920,14 +11455,21 @@ export namespace adexchangebuyer2_v2beta1 {
         options = {};
       }
 
+      if (params.filterSetName !== undefined && params.filterSetName !== null) {
+        validateMultiSegment('filterSetName', String(params.filterSetName));
+        params.filterSetName = encodeWithoutSlashes(
+          String(params.filterSetName)
+        );
+      }
+
       const rootUrl =
         options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v2beta1/{+filterSetName}/nonBillableWinningBids'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2beta1/{+filterSetName}/nonBillableWinningBids')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -11143,15 +11685,19 @@ export namespace adexchangebuyer2_v2beta1 {
         options = {};
       }
 
+      if (params.ownerName !== undefined && params.ownerName !== null) {
+        validateMultiSegment('ownerName', String(params.ownerName));
+        params.ownerName = encodeWithoutSlashes(String(params.ownerName));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2beta1/{+ownerName}/filterSets').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v2beta1/{+ownerName}/filterSets')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -11278,12 +11824,19 @@ export namespace adexchangebuyer2_v2beta1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2beta1/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -11425,12 +11978,19 @@ export namespace adexchangebuyer2_v2beta1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2beta1/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -11566,15 +12126,19 @@ export namespace adexchangebuyer2_v2beta1 {
         options = {};
       }
 
+      if (params.ownerName !== undefined && params.ownerName !== null) {
+        validateMultiSegment('ownerName', String(params.ownerName));
+        params.ownerName = encodeWithoutSlashes(String(params.ownerName));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2beta1/{+ownerName}/filterSets').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v2beta1/{+ownerName}/filterSets')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -11759,15 +12323,21 @@ export namespace adexchangebuyer2_v2beta1 {
         options = {};
       }
 
+      if (params.filterSetName !== undefined && params.filterSetName !== null) {
+        validateMultiSegment('filterSetName', String(params.filterSetName));
+        params.filterSetName = encodeWithoutSlashes(
+          String(params.filterSetName)
+        );
+      }
+
       const rootUrl =
         options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2beta1/{+filterSetName}/bidMetrics').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v2beta1/{+filterSetName}/bidMetrics')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -11929,14 +12499,21 @@ export namespace adexchangebuyer2_v2beta1 {
         options = {};
       }
 
+      if (params.filterSetName !== undefined && params.filterSetName !== null) {
+        validateMultiSegment('filterSetName', String(params.filterSetName));
+        params.filterSetName = encodeWithoutSlashes(
+          String(params.filterSetName)
+        );
+      }
+
       const rootUrl =
         options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v2beta1/{+filterSetName}/bidResponseErrors'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2beta1/{+filterSetName}/bidResponseErrors')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -12105,14 +12682,21 @@ export namespace adexchangebuyer2_v2beta1 {
         options = {};
       }
 
+      if (params.filterSetName !== undefined && params.filterSetName !== null) {
+        validateMultiSegment('filterSetName', String(params.filterSetName));
+        params.filterSetName = encodeWithoutSlashes(
+          String(params.filterSetName)
+        );
+      }
+
       const rootUrl =
         options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v2beta1/{+filterSetName}/bidResponsesWithoutBids'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2beta1/{+filterSetName}/bidResponsesWithoutBids')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -12277,14 +12861,21 @@ export namespace adexchangebuyer2_v2beta1 {
         options = {};
       }
 
+      if (params.filterSetName !== undefined && params.filterSetName !== null) {
+        validateMultiSegment('filterSetName', String(params.filterSetName));
+        params.filterSetName = encodeWithoutSlashes(
+          String(params.filterSetName)
+        );
+      }
+
       const rootUrl =
         options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v2beta1/{+filterSetName}/filteredBidRequests'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2beta1/{+filterSetName}/filteredBidRequests')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -12452,15 +13043,21 @@ export namespace adexchangebuyer2_v2beta1 {
         options = {};
       }
 
+      if (params.filterSetName !== undefined && params.filterSetName !== null) {
+        validateMultiSegment('filterSetName', String(params.filterSetName));
+        params.filterSetName = encodeWithoutSlashes(
+          String(params.filterSetName)
+        );
+      }
+
       const rootUrl =
         options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2beta1/{+filterSetName}/filteredBids').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v2beta1/{+filterSetName}/filteredBids')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -12629,6 +13226,25 @@ export namespace adexchangebuyer2_v2beta1 {
         options = {};
       }
 
+      if (
+        params.creativeStatusId !== undefined &&
+        params.creativeStatusId !== null
+      ) {
+        validateSingleSegment(
+          'creativeStatusId',
+          String(params.creativeStatusId)
+        );
+        params.creativeStatusId = encodeWithSlashes(
+          String(params.creativeStatusId)
+        );
+      }
+      if (params.filterSetName !== undefined && params.filterSetName !== null) {
+        validateMultiSegment('filterSetName', String(params.filterSetName));
+        params.filterSetName = encodeWithoutSlashes(
+          String(params.filterSetName)
+        );
+      }
+
       const rootUrl =
         options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
@@ -12637,7 +13253,9 @@ export namespace adexchangebuyer2_v2beta1 {
             url: (
               rootUrl +
               '/v2beta1/{+filterSetName}/filteredBids/{creativeStatusId}/creatives'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -12813,6 +13431,25 @@ export namespace adexchangebuyer2_v2beta1 {
         options = {};
       }
 
+      if (
+        params.creativeStatusId !== undefined &&
+        params.creativeStatusId !== null
+      ) {
+        validateSingleSegment(
+          'creativeStatusId',
+          String(params.creativeStatusId)
+        );
+        params.creativeStatusId = encodeWithSlashes(
+          String(params.creativeStatusId)
+        );
+      }
+      if (params.filterSetName !== undefined && params.filterSetName !== null) {
+        validateMultiSegment('filterSetName', String(params.filterSetName));
+        params.filterSetName = encodeWithoutSlashes(
+          String(params.filterSetName)
+        );
+      }
+
       const rootUrl =
         options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
@@ -12821,7 +13458,9 @@ export namespace adexchangebuyer2_v2beta1 {
             url: (
               rootUrl +
               '/v2beta1/{+filterSetName}/filteredBids/{creativeStatusId}/details'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -12989,14 +13628,21 @@ export namespace adexchangebuyer2_v2beta1 {
         options = {};
       }
 
+      if (params.filterSetName !== undefined && params.filterSetName !== null) {
+        validateMultiSegment('filterSetName', String(params.filterSetName));
+        params.filterSetName = encodeWithoutSlashes(
+          String(params.filterSetName)
+        );
+      }
+
       const rootUrl =
         options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v2beta1/{+filterSetName}/impressionMetrics'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2beta1/{+filterSetName}/impressionMetrics')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -13156,15 +13802,21 @@ export namespace adexchangebuyer2_v2beta1 {
         options = {};
       }
 
+      if (params.filterSetName !== undefined && params.filterSetName !== null) {
+        validateMultiSegment('filterSetName', String(params.filterSetName));
+        params.filterSetName = encodeWithoutSlashes(
+          String(params.filterSetName)
+        );
+      }
+
       const rootUrl =
         options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2beta1/{+filterSetName}/losingBids').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v2beta1/{+filterSetName}/losingBids')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -13331,14 +13983,21 @@ export namespace adexchangebuyer2_v2beta1 {
         options = {};
       }
 
+      if (params.filterSetName !== undefined && params.filterSetName !== null) {
+        validateMultiSegment('filterSetName', String(params.filterSetName));
+        params.filterSetName = encodeWithoutSlashes(
+          String(params.filterSetName)
+        );
+      }
+
       const rootUrl =
         options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v2beta1/{+filterSetName}/nonBillableWinningBids'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2beta1/{+filterSetName}/nonBillableWinningBids')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -13561,15 +14220,19 @@ export namespace adexchangebuyer2_v2beta1 {
         options = {};
       }
 
+      if (params.ownerName !== undefined && params.ownerName !== null) {
+        validateMultiSegment('ownerName', String(params.ownerName));
+        params.ownerName = encodeWithoutSlashes(String(params.ownerName));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2beta1/{+ownerName}/filterSets').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v2beta1/{+ownerName}/filterSets')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -13696,12 +14359,19 @@ export namespace adexchangebuyer2_v2beta1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2beta1/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -13843,12 +14513,19 @@ export namespace adexchangebuyer2_v2beta1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2beta1/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -13984,15 +14661,19 @@ export namespace adexchangebuyer2_v2beta1 {
         options = {};
       }
 
+      if (params.ownerName !== undefined && params.ownerName !== null) {
+        validateMultiSegment('ownerName', String(params.ownerName));
+        params.ownerName = encodeWithoutSlashes(String(params.ownerName));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2beta1/{+ownerName}/filterSets').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v2beta1/{+ownerName}/filterSets')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -14177,15 +14858,21 @@ export namespace adexchangebuyer2_v2beta1 {
         options = {};
       }
 
+      if (params.filterSetName !== undefined && params.filterSetName !== null) {
+        validateMultiSegment('filterSetName', String(params.filterSetName));
+        params.filterSetName = encodeWithoutSlashes(
+          String(params.filterSetName)
+        );
+      }
+
       const rootUrl =
         options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2beta1/{+filterSetName}/bidMetrics').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v2beta1/{+filterSetName}/bidMetrics')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -14346,14 +15033,21 @@ export namespace adexchangebuyer2_v2beta1 {
         options = {};
       }
 
+      if (params.filterSetName !== undefined && params.filterSetName !== null) {
+        validateMultiSegment('filterSetName', String(params.filterSetName));
+        params.filterSetName = encodeWithoutSlashes(
+          String(params.filterSetName)
+        );
+      }
+
       const rootUrl =
         options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v2beta1/{+filterSetName}/bidResponseErrors'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2beta1/{+filterSetName}/bidResponseErrors')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -14522,14 +15216,21 @@ export namespace adexchangebuyer2_v2beta1 {
         options = {};
       }
 
+      if (params.filterSetName !== undefined && params.filterSetName !== null) {
+        validateMultiSegment('filterSetName', String(params.filterSetName));
+        params.filterSetName = encodeWithoutSlashes(
+          String(params.filterSetName)
+        );
+      }
+
       const rootUrl =
         options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v2beta1/{+filterSetName}/bidResponsesWithoutBids'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2beta1/{+filterSetName}/bidResponsesWithoutBids')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -14695,14 +15396,21 @@ export namespace adexchangebuyer2_v2beta1 {
         options = {};
       }
 
+      if (params.filterSetName !== undefined && params.filterSetName !== null) {
+        validateMultiSegment('filterSetName', String(params.filterSetName));
+        params.filterSetName = encodeWithoutSlashes(
+          String(params.filterSetName)
+        );
+      }
+
       const rootUrl =
         options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v2beta1/{+filterSetName}/filteredBidRequests'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2beta1/{+filterSetName}/filteredBidRequests')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -14870,15 +15578,21 @@ export namespace adexchangebuyer2_v2beta1 {
         options = {};
       }
 
+      if (params.filterSetName !== undefined && params.filterSetName !== null) {
+        validateMultiSegment('filterSetName', String(params.filterSetName));
+        params.filterSetName = encodeWithoutSlashes(
+          String(params.filterSetName)
+        );
+      }
+
       const rootUrl =
         options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2beta1/{+filterSetName}/filteredBids').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v2beta1/{+filterSetName}/filteredBids')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -15047,6 +15761,25 @@ export namespace adexchangebuyer2_v2beta1 {
         options = {};
       }
 
+      if (
+        params.creativeStatusId !== undefined &&
+        params.creativeStatusId !== null
+      ) {
+        validateSingleSegment(
+          'creativeStatusId',
+          String(params.creativeStatusId)
+        );
+        params.creativeStatusId = encodeWithSlashes(
+          String(params.creativeStatusId)
+        );
+      }
+      if (params.filterSetName !== undefined && params.filterSetName !== null) {
+        validateMultiSegment('filterSetName', String(params.filterSetName));
+        params.filterSetName = encodeWithoutSlashes(
+          String(params.filterSetName)
+        );
+      }
+
       const rootUrl =
         options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
@@ -15055,7 +15788,9 @@ export namespace adexchangebuyer2_v2beta1 {
             url: (
               rootUrl +
               '/v2beta1/{+filterSetName}/filteredBids/{creativeStatusId}/creatives'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -15231,6 +15966,25 @@ export namespace adexchangebuyer2_v2beta1 {
         options = {};
       }
 
+      if (
+        params.creativeStatusId !== undefined &&
+        params.creativeStatusId !== null
+      ) {
+        validateSingleSegment(
+          'creativeStatusId',
+          String(params.creativeStatusId)
+        );
+        params.creativeStatusId = encodeWithSlashes(
+          String(params.creativeStatusId)
+        );
+      }
+      if (params.filterSetName !== undefined && params.filterSetName !== null) {
+        validateMultiSegment('filterSetName', String(params.filterSetName));
+        params.filterSetName = encodeWithoutSlashes(
+          String(params.filterSetName)
+        );
+      }
+
       const rootUrl =
         options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
@@ -15239,7 +15993,9 @@ export namespace adexchangebuyer2_v2beta1 {
             url: (
               rootUrl +
               '/v2beta1/{+filterSetName}/filteredBids/{creativeStatusId}/details'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -15406,14 +16162,21 @@ export namespace adexchangebuyer2_v2beta1 {
         options = {};
       }
 
+      if (params.filterSetName !== undefined && params.filterSetName !== null) {
+        validateMultiSegment('filterSetName', String(params.filterSetName));
+        params.filterSetName = encodeWithoutSlashes(
+          String(params.filterSetName)
+        );
+      }
+
       const rootUrl =
         options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v2beta1/{+filterSetName}/impressionMetrics'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2beta1/{+filterSetName}/impressionMetrics')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -15573,15 +16336,21 @@ export namespace adexchangebuyer2_v2beta1 {
         options = {};
       }
 
+      if (params.filterSetName !== undefined && params.filterSetName !== null) {
+        validateMultiSegment('filterSetName', String(params.filterSetName));
+        params.filterSetName = encodeWithoutSlashes(
+          String(params.filterSetName)
+        );
+      }
+
       const rootUrl =
         options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2beta1/{+filterSetName}/losingBids').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v2beta1/{+filterSetName}/losingBids')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -15748,14 +16517,21 @@ export namespace adexchangebuyer2_v2beta1 {
         options = {};
       }
 
+      if (params.filterSetName !== undefined && params.filterSetName !== null) {
+        validateMultiSegment('filterSetName', String(params.filterSetName));
+        params.filterSetName = encodeWithoutSlashes(
+          String(params.filterSetName)
+        );
+      }
+
       const rootUrl =
         options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v2beta1/{+filterSetName}/nonBillableWinningBids'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2beta1/{+filterSetName}/nonBillableWinningBids')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },

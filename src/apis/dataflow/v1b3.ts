@@ -34,6 +34,12 @@ import {
   APIRequestContext,
 } from 'googleapis-common';
 import {Readable} from 'stream';
+import {
+  validateSingleSegment,
+  validateMultiSegment,
+  encodeWithSlashes,
+  encodeWithoutSlashes,
+} from '../../transcoding';
 
 export namespace dataflow_v1b3 {
   export interface Options extends GlobalOptions {
@@ -4559,14 +4565,18 @@ export namespace dataflow_v1b3 {
         options = {};
       }
 
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateSingleSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithSlashes(String(params.projectId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1b3/projects/{projectId}/snapshots').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1b3/projects/{projectId}/snapshots')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -4711,13 +4721,18 @@ export namespace dataflow_v1b3 {
         options = {};
       }
 
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateSingleSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithSlashes(String(params.projectId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v1b3/projects/{projectId}/WorkerMessages'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1b3/projects/{projectId}/WorkerMessages')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -4903,13 +4918,18 @@ export namespace dataflow_v1b3 {
         options = {};
       }
 
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateSingleSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithSlashes(String(params.projectId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v1b3/projects/{projectId}/jobs:aggregated'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1b3/projects/{projectId}/jobs:aggregated')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -5111,14 +5131,18 @@ export namespace dataflow_v1b3 {
         options = {};
       }
 
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateSingleSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithSlashes(String(params.projectId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1b3/projects/{projectId}/jobs').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1b3/projects/{projectId}/jobs')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -5284,14 +5308,22 @@ export namespace dataflow_v1b3 {
         options = {};
       }
 
+      if (params.jobId !== undefined && params.jobId !== null) {
+        validateSingleSegment('jobId', String(params.jobId));
+        params.jobId = encodeWithSlashes(String(params.jobId));
+      }
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateSingleSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithSlashes(String(params.projectId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1b3/projects/{projectId}/jobs/{jobId}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1b3/projects/{projectId}/jobs/{jobId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -5430,13 +5462,22 @@ export namespace dataflow_v1b3 {
         options = {};
       }
 
+      if (params.jobId !== undefined && params.jobId !== null) {
+        validateSingleSegment('jobId', String(params.jobId));
+        params.jobId = encodeWithSlashes(String(params.jobId));
+      }
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateSingleSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithSlashes(String(params.projectId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v1b3/projects/{projectId}/jobs/{jobId}/metrics'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1b3/projects/{projectId}/jobs/{jobId}/metrics')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -5583,14 +5624,18 @@ export namespace dataflow_v1b3 {
         options = {};
       }
 
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateSingleSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithSlashes(String(params.projectId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1b3/projects/{projectId}/jobs').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1b3/projects/{projectId}/jobs')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -5744,13 +5789,22 @@ export namespace dataflow_v1b3 {
         options = {};
       }
 
+      if (params.jobId !== undefined && params.jobId !== null) {
+        validateSingleSegment('jobId', String(params.jobId));
+        params.jobId = encodeWithSlashes(String(params.jobId));
+      }
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateSingleSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithSlashes(String(params.projectId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v1b3/projects/{projectId}/jobs/{jobId}:snapshot'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1b3/projects/{projectId}/jobs/{jobId}:snapshot')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -5952,14 +6006,22 @@ export namespace dataflow_v1b3 {
         options = {};
       }
 
+      if (params.jobId !== undefined && params.jobId !== null) {
+        validateSingleSegment('jobId', String(params.jobId));
+        params.jobId = encodeWithSlashes(String(params.jobId));
+      }
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateSingleSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithSlashes(String(params.projectId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1b3/projects/{projectId}/jobs/{jobId}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1b3/projects/{projectId}/jobs/{jobId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -6272,6 +6334,15 @@ export namespace dataflow_v1b3 {
         options = {};
       }
 
+      if (params.jobId !== undefined && params.jobId !== null) {
+        validateSingleSegment('jobId', String(params.jobId));
+        params.jobId = encodeWithSlashes(String(params.jobId));
+      }
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateSingleSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithSlashes(String(params.projectId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -6279,7 +6350,9 @@ export namespace dataflow_v1b3 {
             url: (
               rootUrl +
               '/v1b3/projects/{projectId}/jobs/{jobId}/debug/getConfig'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -6427,6 +6500,15 @@ export namespace dataflow_v1b3 {
         options = {};
       }
 
+      if (params.jobId !== undefined && params.jobId !== null) {
+        validateSingleSegment('jobId', String(params.jobId));
+        params.jobId = encodeWithSlashes(String(params.jobId));
+      }
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateSingleSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithSlashes(String(params.projectId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -6434,7 +6516,9 @@ export namespace dataflow_v1b3 {
             url: (
               rootUrl +
               '/v1b3/projects/{projectId}/jobs/{jobId}/debug/sendCapture'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -6622,13 +6706,22 @@ export namespace dataflow_v1b3 {
         options = {};
       }
 
+      if (params.jobId !== undefined && params.jobId !== null) {
+        validateSingleSegment('jobId', String(params.jobId));
+        params.jobId = encodeWithSlashes(String(params.jobId));
+      }
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateSingleSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithSlashes(String(params.projectId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v1b3/projects/{projectId}/jobs/{jobId}/messages'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1b3/projects/{projectId}/jobs/{jobId}/messages')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -6822,6 +6915,15 @@ export namespace dataflow_v1b3 {
         options = {};
       }
 
+      if (params.jobId !== undefined && params.jobId !== null) {
+        validateSingleSegment('jobId', String(params.jobId));
+        params.jobId = encodeWithSlashes(String(params.jobId));
+      }
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateSingleSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithSlashes(String(params.projectId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -6829,7 +6931,9 @@ export namespace dataflow_v1b3 {
             url: (
               rootUrl +
               '/v1b3/projects/{projectId}/jobs/{jobId}/workItems:lease'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -6982,6 +7086,15 @@ export namespace dataflow_v1b3 {
         options = {};
       }
 
+      if (params.jobId !== undefined && params.jobId !== null) {
+        validateSingleSegment('jobId', String(params.jobId));
+        params.jobId = encodeWithSlashes(String(params.jobId));
+      }
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateSingleSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithSlashes(String(params.projectId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -6989,7 +7102,9 @@ export namespace dataflow_v1b3 {
             url: (
               rootUrl +
               '/v1b3/projects/{projectId}/jobs/{jobId}/workItems:reportStatus'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -7186,6 +7301,15 @@ export namespace dataflow_v1b3 {
         options = {};
       }
 
+      if (params.location !== undefined && params.location !== null) {
+        validateSingleSegment('location', String(params.location));
+        params.location = encodeWithSlashes(String(params.location));
+      }
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateSingleSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithSlashes(String(params.projectId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -7193,7 +7317,9 @@ export namespace dataflow_v1b3 {
             url: (
               rootUrl +
               '/v1b3/projects/{projectId}/locations/{location}/WorkerMessages'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -7363,6 +7489,15 @@ export namespace dataflow_v1b3 {
         options = {};
       }
 
+      if (params.location !== undefined && params.location !== null) {
+        validateSingleSegment('location', String(params.location));
+        params.location = encodeWithSlashes(String(params.location));
+      }
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateSingleSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithSlashes(String(params.projectId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -7370,7 +7505,9 @@ export namespace dataflow_v1b3 {
             url: (
               rootUrl +
               '/v1b3/projects/{projectId}/locations/{location}/flexTemplates:launch'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -7611,13 +7748,24 @@ export namespace dataflow_v1b3 {
         options = {};
       }
 
+      if (params.location !== undefined && params.location !== null) {
+        validateSingleSegment('location', String(params.location));
+        params.location = encodeWithSlashes(String(params.location));
+      }
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateSingleSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithSlashes(String(params.projectId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/v1b3/projects/{projectId}/locations/{location}/jobs'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -7783,6 +7931,19 @@ export namespace dataflow_v1b3 {
         options = {};
       }
 
+      if (params.jobId !== undefined && params.jobId !== null) {
+        validateSingleSegment('jobId', String(params.jobId));
+        params.jobId = encodeWithSlashes(String(params.jobId));
+      }
+      if (params.location !== undefined && params.location !== null) {
+        validateSingleSegment('location', String(params.location));
+        params.location = encodeWithSlashes(String(params.location));
+      }
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateSingleSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithSlashes(String(params.projectId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -7790,7 +7951,9 @@ export namespace dataflow_v1b3 {
             url: (
               rootUrl +
               '/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -7935,6 +8098,19 @@ export namespace dataflow_v1b3 {
         options = {};
       }
 
+      if (params.jobId !== undefined && params.jobId !== null) {
+        validateSingleSegment('jobId', String(params.jobId));
+        params.jobId = encodeWithSlashes(String(params.jobId));
+      }
+      if (params.location !== undefined && params.location !== null) {
+        validateSingleSegment('location', String(params.location));
+        params.location = encodeWithSlashes(String(params.location));
+      }
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateSingleSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithSlashes(String(params.projectId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -7942,7 +8118,9 @@ export namespace dataflow_v1b3 {
             url: (
               rootUrl +
               '/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}/executionDetails'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -8081,6 +8259,19 @@ export namespace dataflow_v1b3 {
         options = {};
       }
 
+      if (params.jobId !== undefined && params.jobId !== null) {
+        validateSingleSegment('jobId', String(params.jobId));
+        params.jobId = encodeWithSlashes(String(params.jobId));
+      }
+      if (params.location !== undefined && params.location !== null) {
+        validateSingleSegment('location', String(params.location));
+        params.location = encodeWithSlashes(String(params.location));
+      }
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateSingleSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithSlashes(String(params.projectId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -8088,7 +8279,9 @@ export namespace dataflow_v1b3 {
             url: (
               rootUrl +
               '/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}/metrics'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -8235,13 +8428,24 @@ export namespace dataflow_v1b3 {
         options = {};
       }
 
+      if (params.location !== undefined && params.location !== null) {
+        validateSingleSegment('location', String(params.location));
+        params.location = encodeWithSlashes(String(params.location));
+      }
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateSingleSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithSlashes(String(params.projectId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/v1b3/projects/{projectId}/locations/{location}/jobs'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -8397,6 +8601,19 @@ export namespace dataflow_v1b3 {
         options = {};
       }
 
+      if (params.jobId !== undefined && params.jobId !== null) {
+        validateSingleSegment('jobId', String(params.jobId));
+        params.jobId = encodeWithSlashes(String(params.jobId));
+      }
+      if (params.location !== undefined && params.location !== null) {
+        validateSingleSegment('location', String(params.location));
+        params.location = encodeWithSlashes(String(params.location));
+      }
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateSingleSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithSlashes(String(params.projectId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -8404,7 +8621,9 @@ export namespace dataflow_v1b3 {
             url: (
               rootUrl +
               '/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}:snapshot'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -8606,6 +8825,19 @@ export namespace dataflow_v1b3 {
         options = {};
       }
 
+      if (params.jobId !== undefined && params.jobId !== null) {
+        validateSingleSegment('jobId', String(params.jobId));
+        params.jobId = encodeWithSlashes(String(params.jobId));
+      }
+      if (params.location !== undefined && params.location !== null) {
+        validateSingleSegment('location', String(params.location));
+        params.location = encodeWithSlashes(String(params.location));
+      }
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateSingleSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithSlashes(String(params.projectId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -8613,7 +8845,9 @@ export namespace dataflow_v1b3 {
             url: (
               rootUrl +
               '/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -8924,6 +9158,19 @@ export namespace dataflow_v1b3 {
         options = {};
       }
 
+      if (params.jobId !== undefined && params.jobId !== null) {
+        validateSingleSegment('jobId', String(params.jobId));
+        params.jobId = encodeWithSlashes(String(params.jobId));
+      }
+      if (params.location !== undefined && params.location !== null) {
+        validateSingleSegment('location', String(params.location));
+        params.location = encodeWithSlashes(String(params.location));
+      }
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateSingleSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithSlashes(String(params.projectId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -8931,7 +9178,9 @@ export namespace dataflow_v1b3 {
             url: (
               rootUrl +
               '/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}/debug/getConfig'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -9084,6 +9333,19 @@ export namespace dataflow_v1b3 {
         options = {};
       }
 
+      if (params.jobId !== undefined && params.jobId !== null) {
+        validateSingleSegment('jobId', String(params.jobId));
+        params.jobId = encodeWithSlashes(String(params.jobId));
+      }
+      if (params.location !== undefined && params.location !== null) {
+        validateSingleSegment('location', String(params.location));
+        params.location = encodeWithSlashes(String(params.location));
+      }
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateSingleSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithSlashes(String(params.projectId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -9091,7 +9353,9 @@ export namespace dataflow_v1b3 {
             url: (
               rootUrl +
               '/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}/debug/getWorkerStacktraces'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -9244,6 +9508,19 @@ export namespace dataflow_v1b3 {
         options = {};
       }
 
+      if (params.jobId !== undefined && params.jobId !== null) {
+        validateSingleSegment('jobId', String(params.jobId));
+        params.jobId = encodeWithSlashes(String(params.jobId));
+      }
+      if (params.location !== undefined && params.location !== null) {
+        validateSingleSegment('location', String(params.location));
+        params.location = encodeWithSlashes(String(params.location));
+      }
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateSingleSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithSlashes(String(params.projectId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -9251,7 +9528,9 @@ export namespace dataflow_v1b3 {
             url: (
               rootUrl +
               '/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}/debug/sendCapture'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -9466,6 +9745,19 @@ export namespace dataflow_v1b3 {
         options = {};
       }
 
+      if (params.jobId !== undefined && params.jobId !== null) {
+        validateSingleSegment('jobId', String(params.jobId));
+        params.jobId = encodeWithSlashes(String(params.jobId));
+      }
+      if (params.location !== undefined && params.location !== null) {
+        validateSingleSegment('location', String(params.location));
+        params.location = encodeWithSlashes(String(params.location));
+      }
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateSingleSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithSlashes(String(params.projectId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -9473,7 +9765,9 @@ export namespace dataflow_v1b3 {
             url: (
               rootUrl +
               '/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}/messages'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -9653,6 +9947,19 @@ export namespace dataflow_v1b3 {
         options = {};
       }
 
+      if (params.jobId !== undefined && params.jobId !== null) {
+        validateSingleSegment('jobId', String(params.jobId));
+        params.jobId = encodeWithSlashes(String(params.jobId));
+      }
+      if (params.location !== undefined && params.location !== null) {
+        validateSingleSegment('location', String(params.location));
+        params.location = encodeWithSlashes(String(params.location));
+      }
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateSingleSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithSlashes(String(params.projectId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -9660,7 +9967,9 @@ export namespace dataflow_v1b3 {
             url: (
               rootUrl +
               '/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}/snapshots'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -9836,6 +10145,23 @@ export namespace dataflow_v1b3 {
         options = {};
       }
 
+      if (params.jobId !== undefined && params.jobId !== null) {
+        validateSingleSegment('jobId', String(params.jobId));
+        params.jobId = encodeWithSlashes(String(params.jobId));
+      }
+      if (params.location !== undefined && params.location !== null) {
+        validateSingleSegment('location', String(params.location));
+        params.location = encodeWithSlashes(String(params.location));
+      }
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateSingleSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithSlashes(String(params.projectId));
+      }
+      if (params.stageId !== undefined && params.stageId !== null) {
+        validateSingleSegment('stageId', String(params.stageId));
+        params.stageId = encodeWithSlashes(String(params.stageId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -9843,7 +10169,9 @@ export namespace dataflow_v1b3 {
             url: (
               rootUrl +
               '/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}/stages/{stageId}/executionDetails'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -10039,6 +10367,19 @@ export namespace dataflow_v1b3 {
         options = {};
       }
 
+      if (params.jobId !== undefined && params.jobId !== null) {
+        validateSingleSegment('jobId', String(params.jobId));
+        params.jobId = encodeWithSlashes(String(params.jobId));
+      }
+      if (params.location !== undefined && params.location !== null) {
+        validateSingleSegment('location', String(params.location));
+        params.location = encodeWithSlashes(String(params.location));
+      }
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateSingleSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithSlashes(String(params.projectId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -10046,7 +10387,9 @@ export namespace dataflow_v1b3 {
             url: (
               rootUrl +
               '/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}/workItems:lease'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -10202,6 +10545,19 @@ export namespace dataflow_v1b3 {
         options = {};
       }
 
+      if (params.jobId !== undefined && params.jobId !== null) {
+        validateSingleSegment('jobId', String(params.jobId));
+        params.jobId = encodeWithSlashes(String(params.jobId));
+      }
+      if (params.location !== undefined && params.location !== null) {
+        validateSingleSegment('location', String(params.location));
+        params.location = encodeWithSlashes(String(params.location));
+      }
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateSingleSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithSlashes(String(params.projectId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -10209,7 +10565,9 @@ export namespace dataflow_v1b3 {
             url: (
               rootUrl +
               '/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}/workItems:reportStatus'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -10393,6 +10751,19 @@ export namespace dataflow_v1b3 {
         options = {};
       }
 
+      if (params.location !== undefined && params.location !== null) {
+        validateSingleSegment('location', String(params.location));
+        params.location = encodeWithSlashes(String(params.location));
+      }
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateSingleSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithSlashes(String(params.projectId));
+      }
+      if (params.snapshotId !== undefined && params.snapshotId !== null) {
+        validateSingleSegment('snapshotId', String(params.snapshotId));
+        params.snapshotId = encodeWithSlashes(String(params.snapshotId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -10400,7 +10771,9 @@ export namespace dataflow_v1b3 {
             url: (
               rootUrl +
               '/v1b3/projects/{projectId}/locations/{location}/snapshots/{snapshotId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -10545,6 +10918,19 @@ export namespace dataflow_v1b3 {
         options = {};
       }
 
+      if (params.location !== undefined && params.location !== null) {
+        validateSingleSegment('location', String(params.location));
+        params.location = encodeWithSlashes(String(params.location));
+      }
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateSingleSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithSlashes(String(params.projectId));
+      }
+      if (params.snapshotId !== undefined && params.snapshotId !== null) {
+        validateSingleSegment('snapshotId', String(params.snapshotId));
+        params.snapshotId = encodeWithSlashes(String(params.snapshotId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -10552,7 +10938,9 @@ export namespace dataflow_v1b3 {
             url: (
               rootUrl +
               '/v1b3/projects/{projectId}/locations/{location}/snapshots/{snapshotId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -10690,6 +11078,15 @@ export namespace dataflow_v1b3 {
         options = {};
       }
 
+      if (params.location !== undefined && params.location !== null) {
+        validateSingleSegment('location', String(params.location));
+        params.location = encodeWithSlashes(String(params.location));
+      }
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateSingleSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithSlashes(String(params.projectId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -10697,7 +11094,9 @@ export namespace dataflow_v1b3 {
             url: (
               rootUrl +
               '/v1b3/projects/{projectId}/locations/{location}/snapshots'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -10921,6 +11320,15 @@ export namespace dataflow_v1b3 {
         options = {};
       }
 
+      if (params.location !== undefined && params.location !== null) {
+        validateSingleSegment('location', String(params.location));
+        params.location = encodeWithSlashes(String(params.location));
+      }
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateSingleSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithSlashes(String(params.projectId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -10928,7 +11336,9 @@ export namespace dataflow_v1b3 {
             url: (
               rootUrl +
               '/v1b3/projects/{projectId}/locations/{location}/templates'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -11070,6 +11480,15 @@ export namespace dataflow_v1b3 {
         options = {};
       }
 
+      if (params.location !== undefined && params.location !== null) {
+        validateSingleSegment('location', String(params.location));
+        params.location = encodeWithSlashes(String(params.location));
+      }
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateSingleSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithSlashes(String(params.projectId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -11077,7 +11496,9 @@ export namespace dataflow_v1b3 {
             url: (
               rootUrl +
               '/v1b3/projects/{projectId}/locations/{location}/templates:get'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -11233,6 +11654,15 @@ export namespace dataflow_v1b3 {
         options = {};
       }
 
+      if (params.location !== undefined && params.location !== null) {
+        validateSingleSegment('location', String(params.location));
+        params.location = encodeWithSlashes(String(params.location));
+      }
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateSingleSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithSlashes(String(params.projectId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -11240,7 +11670,9 @@ export namespace dataflow_v1b3 {
             url: (
               rootUrl +
               '/v1b3/projects/{projectId}/locations/{location}/templates:launch'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -11457,13 +11889,22 @@ export namespace dataflow_v1b3 {
         options = {};
       }
 
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateSingleSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithSlashes(String(params.projectId));
+      }
+      if (params.snapshotId !== undefined && params.snapshotId !== null) {
+        validateSingleSegment('snapshotId', String(params.snapshotId));
+        params.snapshotId = encodeWithSlashes(String(params.snapshotId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v1b3/projects/{projectId}/snapshots/{snapshotId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1b3/projects/{projectId}/snapshots/{snapshotId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -11601,14 +12042,18 @@ export namespace dataflow_v1b3 {
         options = {};
       }
 
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateSingleSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithSlashes(String(params.projectId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1b3/projects/{projectId}/snapshots').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1b3/projects/{projectId}/snapshots')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -11816,14 +12261,18 @@ export namespace dataflow_v1b3 {
         options = {};
       }
 
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateSingleSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithSlashes(String(params.projectId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1b3/projects/{projectId}/templates').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1b3/projects/{projectId}/templates')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -11965,14 +12414,18 @@ export namespace dataflow_v1b3 {
         options = {};
       }
 
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateSingleSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithSlashes(String(params.projectId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1b3/projects/{projectId}/templates:get').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1b3/projects/{projectId}/templates:get')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -12128,13 +12581,18 @@ export namespace dataflow_v1b3 {
         options = {};
       }
 
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateSingleSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithSlashes(String(params.projectId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v1b3/projects/{projectId}/templates:launch'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1b3/projects/{projectId}/templates:launch')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },

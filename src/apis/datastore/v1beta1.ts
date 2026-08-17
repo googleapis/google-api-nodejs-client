@@ -34,6 +34,12 @@ import {
   APIRequestContext,
 } from 'googleapis-common';
 import {Readable} from 'stream';
+import {
+  validateSingleSegment,
+  validateMultiSegment,
+  encodeWithSlashes,
+  encodeWithoutSlashes,
+} from '../../transcoding';
 
 export namespace datastore_v1beta1 {
   export interface Options extends GlobalOptions {
@@ -629,14 +635,18 @@ export namespace datastore_v1beta1 {
         options = {};
       }
 
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateSingleSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithSlashes(String(params.projectId));
+      }
+
       const rootUrl = options.rootUrl || 'https://datastore.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/projects/{projectId}:export').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta1/projects/{projectId}:export')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -785,14 +795,18 @@ export namespace datastore_v1beta1 {
         options = {};
       }
 
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateSingleSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithSlashes(String(params.projectId));
+      }
+
       const rootUrl = options.rootUrl || 'https://datastore.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/projects/{projectId}:import').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta1/projects/{projectId}:import')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },

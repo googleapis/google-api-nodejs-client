@@ -34,6 +34,12 @@ import {
   APIRequestContext,
 } from 'googleapis-common';
 import {Readable} from 'stream';
+import {
+  validateSingleSegment,
+  validateMultiSegment,
+  encodeWithSlashes,
+  encodeWithoutSlashes,
+} from '../../transcoding';
 
 export namespace androiddeviceprovisioning_v1 {
   export interface Options extends GlobalOptions {
@@ -1040,7 +1046,9 @@ export namespace androiddeviceprovisioning_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/customers').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/customers')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -1218,15 +1226,19 @@ export namespace androiddeviceprovisioning_v1 {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androiddeviceprovisioning.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+parent}/configurations').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/{+parent}/configurations')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -1353,12 +1365,19 @@ export namespace androiddeviceprovisioning_v1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androiddeviceprovisioning.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -1498,12 +1517,19 @@ export namespace androiddeviceprovisioning_v1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androiddeviceprovisioning.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -1641,15 +1667,19 @@ export namespace androiddeviceprovisioning_v1 {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androiddeviceprovisioning.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+parent}/configurations').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/{+parent}/configurations')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -1811,12 +1841,19 @@ export namespace androiddeviceprovisioning_v1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androiddeviceprovisioning.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -2005,15 +2042,19 @@ export namespace androiddeviceprovisioning_v1 {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androiddeviceprovisioning.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+parent}/devices:applyConfiguration').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/{+parent}/devices:applyConfiguration')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -2147,12 +2188,19 @@ export namespace androiddeviceprovisioning_v1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androiddeviceprovisioning.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -2291,15 +2339,19 @@ export namespace androiddeviceprovisioning_v1 {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androiddeviceprovisioning.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+parent}/devices').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/{+parent}/devices')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -2435,14 +2487,19 @@ export namespace androiddeviceprovisioning_v1 {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androiddeviceprovisioning.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v1/{+parent}/devices:removeConfiguration'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+parent}/devices:removeConfiguration')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -2577,15 +2634,19 @@ export namespace androiddeviceprovisioning_v1 {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androiddeviceprovisioning.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+parent}/devices:unclaim').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/{+parent}/devices:unclaim')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -2777,12 +2838,19 @@ export namespace androiddeviceprovisioning_v1 {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androiddeviceprovisioning.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+parent}/dpcs').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+parent}/dpcs')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -2928,12 +2996,19 @@ export namespace androiddeviceprovisioning_v1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androiddeviceprovisioning.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -3105,15 +3180,19 @@ export namespace androiddeviceprovisioning_v1 {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androiddeviceprovisioning.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+parent}/customers').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/{+parent}/customers')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -3250,15 +3329,19 @@ export namespace androiddeviceprovisioning_v1 {
         options = {};
       }
 
+      if (params.partnerId !== undefined && params.partnerId !== null) {
+        validateMultiSegment('partnerId', String(params.partnerId));
+        params.partnerId = encodeWithoutSlashes(String(params.partnerId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androiddeviceprovisioning.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/partners/{+partnerId}/customers').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/partners/{+partnerId}/customers')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -3437,15 +3520,19 @@ export namespace androiddeviceprovisioning_v1 {
         options = {};
       }
 
+      if (params.partnerId !== undefined && params.partnerId !== null) {
+        validateMultiSegment('partnerId', String(params.partnerId));
+        params.partnerId = encodeWithoutSlashes(String(params.partnerId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androiddeviceprovisioning.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/partners/{+partnerId}/devices:claim').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/partners/{+partnerId}/devices:claim')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -3586,14 +3673,19 @@ export namespace androiddeviceprovisioning_v1 {
         options = {};
       }
 
+      if (params.partnerId !== undefined && params.partnerId !== null) {
+        validateMultiSegment('partnerId', String(params.partnerId));
+        params.partnerId = encodeWithoutSlashes(String(params.partnerId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androiddeviceprovisioning.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v1/partners/{+partnerId}/devices:claimAsync'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/partners/{+partnerId}/devices:claimAsync')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -3745,6 +3837,11 @@ export namespace androiddeviceprovisioning_v1 {
         options = {};
       }
 
+      if (params.partnerId !== undefined && params.partnerId !== null) {
+        validateMultiSegment('partnerId', String(params.partnerId));
+        params.partnerId = encodeWithoutSlashes(String(params.partnerId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androiddeviceprovisioning.googleapis.com/';
       const parameters = {
@@ -3752,7 +3849,9 @@ export namespace androiddeviceprovisioning_v1 {
           {
             url: (
               rootUrl + '/v1/partners/{+partnerId}/devices:findByIdentifier'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -3901,14 +4000,19 @@ export namespace androiddeviceprovisioning_v1 {
         options = {};
       }
 
+      if (params.partnerId !== undefined && params.partnerId !== null) {
+        validateMultiSegment('partnerId', String(params.partnerId));
+        params.partnerId = encodeWithoutSlashes(String(params.partnerId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androiddeviceprovisioning.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v1/partners/{+partnerId}/devices:findByOwner'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/partners/{+partnerId}/devices:findByOwner')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -4042,12 +4146,19 @@ export namespace androiddeviceprovisioning_v1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androiddeviceprovisioning.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -4189,14 +4300,19 @@ export namespace androiddeviceprovisioning_v1 {
         options = {};
       }
 
+      if (params.partnerId !== undefined && params.partnerId !== null) {
+        validateMultiSegment('partnerId', String(params.partnerId));
+        params.partnerId = encodeWithoutSlashes(String(params.partnerId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androiddeviceprovisioning.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v1/partners/{+partnerId}/devices:getSimLockState'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/partners/{+partnerId}/devices:getSimLockState')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -4338,6 +4454,20 @@ export namespace androiddeviceprovisioning_v1 {
         options = {};
       }
 
+      if (params.deviceId !== undefined && params.deviceId !== null) {
+        validateMultiSegment('deviceId', String(params.deviceId));
+        params.deviceId = encodeWithoutSlashes(String(params.deviceId));
+      }
+      if (
+        params.metadataOwnerId !== undefined &&
+        params.metadataOwnerId !== null
+      ) {
+        validateMultiSegment('metadataOwnerId', String(params.metadataOwnerId));
+        params.metadataOwnerId = encodeWithoutSlashes(
+          String(params.metadataOwnerId)
+        );
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androiddeviceprovisioning.googleapis.com/';
       const parameters = {
@@ -4346,7 +4476,9 @@ export namespace androiddeviceprovisioning_v1 {
             url: (
               rootUrl +
               '/v1/partners/{+metadataOwnerId}/devices/{+deviceId}/metadata'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -4485,14 +4617,19 @@ export namespace androiddeviceprovisioning_v1 {
         options = {};
       }
 
+      if (params.partnerId !== undefined && params.partnerId !== null) {
+        validateMultiSegment('partnerId', String(params.partnerId));
+        params.partnerId = encodeWithoutSlashes(String(params.partnerId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androiddeviceprovisioning.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v1/partners/{+partnerId}/devices:unclaim'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/partners/{+partnerId}/devices:unclaim')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -4633,14 +4770,19 @@ export namespace androiddeviceprovisioning_v1 {
         options = {};
       }
 
+      if (params.partnerId !== undefined && params.partnerId !== null) {
+        validateMultiSegment('partnerId', String(params.partnerId));
+        params.partnerId = encodeWithoutSlashes(String(params.partnerId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androiddeviceprovisioning.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v1/partners/{+partnerId}/devices:unclaimAsync'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/partners/{+partnerId}/devices:unclaimAsync')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -4782,6 +4924,11 @@ export namespace androiddeviceprovisioning_v1 {
         options = {};
       }
 
+      if (params.partnerId !== undefined && params.partnerId !== null) {
+        validateMultiSegment('partnerId', String(params.partnerId));
+        params.partnerId = encodeWithoutSlashes(String(params.partnerId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androiddeviceprovisioning.googleapis.com/';
       const parameters = {
@@ -4789,7 +4936,9 @@ export namespace androiddeviceprovisioning_v1 {
           {
             url: (
               rootUrl + '/v1/partners/{+partnerId}/devices:updateMetadataAsync'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -5044,15 +5193,19 @@ export namespace androiddeviceprovisioning_v1 {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androiddeviceprovisioning.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+parent}/vendors').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/{+parent}/vendors')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -5214,15 +5367,19 @@ export namespace androiddeviceprovisioning_v1 {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androiddeviceprovisioning.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+parent}/customers').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/{+parent}/customers')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },

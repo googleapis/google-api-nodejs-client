@@ -34,6 +34,12 @@ import {
   APIRequestContext,
 } from 'googleapis-common';
 import {Readable} from 'stream';
+import {
+  validateSingleSegment,
+  validateMultiSegment,
+  encodeWithSlashes,
+  encodeWithoutSlashes,
+} from '../../transcoding';
 
 export namespace container_v1beta1 {
   export interface Options extends GlobalOptions {
@@ -6283,13 +6289,18 @@ export namespace container_v1beta1 {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl = options.rootUrl || 'https://container.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v1beta1/{+parent}/aggregated/usableSubnetworks'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta1/{+parent}/aggregated/usableSubnetworks')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -6467,14 +6478,18 @@ export namespace container_v1beta1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://container.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}/serverConfig').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta1/{+name}/serverConfig')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -6609,14 +6624,18 @@ export namespace container_v1beta1 {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl = options.rootUrl || 'https://container.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+parent}/locations').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta1/{+parent}/locations')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -6797,13 +6816,18 @@ export namespace container_v1beta1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://container.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v1beta1/{+name}:checkAutopilotCompatibility'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta1/{+name}:checkAutopilotCompatibility')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -6963,13 +6987,18 @@ export namespace container_v1beta1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://container.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v1beta1/{+name}:completeControlPlaneUpgrade'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta1/{+name}:completeControlPlaneUpgrade')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -7127,14 +7156,18 @@ export namespace container_v1beta1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://container.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}:completeIpRotation').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta1/{+name}:completeIpRotation')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -7291,14 +7324,18 @@ export namespace container_v1beta1 {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl = options.rootUrl || 'https://container.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+parent}/clusters').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta1/{+parent}/clusters')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -7450,11 +7487,18 @@ export namespace container_v1beta1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://container.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta1/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -7601,14 +7645,18 @@ export namespace container_v1beta1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://container.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}:fetchClusterUpgradeInfo').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta1/{+name}:fetchClusterUpgradeInfo')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -7843,11 +7891,18 @@ export namespace container_v1beta1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://container.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta1/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -7981,14 +8036,18 @@ export namespace container_v1beta1 {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl = options.rootUrl || 'https://container.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+parent}/jwks').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta1/{+parent}/jwks')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -8128,14 +8187,18 @@ export namespace container_v1beta1 {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl = options.rootUrl || 'https://container.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+parent}/clusters').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta1/{+parent}/clusters')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -8293,14 +8356,18 @@ export namespace container_v1beta1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://container.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}:setAddons').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta1/{+name}:setAddons')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -8459,14 +8526,18 @@ export namespace container_v1beta1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://container.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}:setLegacyAbac').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta1/{+name}:setLegacyAbac')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -8624,14 +8695,18 @@ export namespace container_v1beta1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://container.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}:setLocations').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta1/{+name}:setLocations')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -8789,14 +8864,18 @@ export namespace container_v1beta1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://container.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}:setLogging').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta1/{+name}:setLogging')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -8957,14 +9036,18 @@ export namespace container_v1beta1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://container.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}:setMaintenancePolicy').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta1/{+name}:setMaintenancePolicy')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -9124,14 +9207,18 @@ export namespace container_v1beta1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://container.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}:setMasterAuth').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta1/{+name}:setMasterAuth')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -9290,14 +9377,18 @@ export namespace container_v1beta1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://container.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}:setMonitoring').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta1/{+name}:setMonitoring')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -9456,14 +9547,18 @@ export namespace container_v1beta1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://container.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}:setNetworkPolicy').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta1/{+name}:setNetworkPolicy')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -9623,14 +9718,18 @@ export namespace container_v1beta1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://container.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}:setResourceLabels').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta1/{+name}:setResourceLabels')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -9789,14 +9888,18 @@ export namespace container_v1beta1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://container.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}:startIpRotation').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta1/{+name}:startIpRotation')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -9954,11 +10057,18 @@ export namespace container_v1beta1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://container.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta1/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -10116,14 +10226,18 @@ export namespace container_v1beta1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://container.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}:updateMaster').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta1/{+name}:updateMaster')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -10506,14 +10620,18 @@ export namespace container_v1beta1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://container.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}:completeUpgrade').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta1/{+name}:completeUpgrade')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -10672,14 +10790,18 @@ export namespace container_v1beta1 {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl = options.rootUrl || 'https://container.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+parent}/nodePools').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta1/{+parent}/nodePools')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -10834,11 +10956,18 @@ export namespace container_v1beta1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://container.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta1/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -10987,13 +11116,18 @@ export namespace container_v1beta1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://container.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v1beta1/{+name}:fetchNodePoolUpgradeInfo'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta1/{+name}:fetchNodePoolUpgradeInfo')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -11159,11 +11293,18 @@ export namespace container_v1beta1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://container.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta1/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -11305,14 +11446,18 @@ export namespace container_v1beta1 {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl = options.rootUrl || 'https://container.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+parent}/nodePools').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta1/{+parent}/nodePools')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -11472,14 +11617,18 @@ export namespace container_v1beta1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://container.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}:rollback').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta1/{+name}:rollback')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -11640,14 +11789,18 @@ export namespace container_v1beta1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://container.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}:setAutoscaling').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta1/{+name}:setAutoscaling')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -11808,14 +11961,18 @@ export namespace container_v1beta1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://container.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}:setManagement').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta1/{+name}:setManagement')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -11975,14 +12132,18 @@ export namespace container_v1beta1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://container.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}:setSize').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta1/{+name}:setSize')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -12177,11 +12338,18 @@ export namespace container_v1beta1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://container.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta1/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -12482,13 +12650,20 @@ export namespace container_v1beta1 {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl = options.rootUrl || 'https://container.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/v1beta1/{+parent}/.well-known/openid-configuration'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -12643,14 +12818,18 @@ export namespace container_v1beta1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://container.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}:cancel').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta1/{+name}:cancel')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -12803,11 +12982,18 @@ export namespace container_v1beta1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://container.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta1/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -12947,14 +13133,18 @@ export namespace container_v1beta1 {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl = options.rootUrl || 'https://container.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+parent}/operations').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta1/{+parent}/operations')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -13153,6 +13343,15 @@ export namespace container_v1beta1 {
         options = {};
       }
 
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateSingleSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithSlashes(String(params.projectId));
+      }
+      if (params.zone !== undefined && params.zone !== null) {
+        validateSingleSegment('zone', String(params.zone));
+        params.zone = encodeWithSlashes(String(params.zone));
+      }
+
       const rootUrl = options.rootUrl || 'https://container.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -13160,7 +13359,9 @@ export namespace container_v1beta1 {
             url: (
               rootUrl +
               '/v1beta1/projects/{projectId}/zones/{zone}/serverconfig'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -13348,6 +13549,19 @@ export namespace container_v1beta1 {
         options = {};
       }
 
+      if (params.clusterId !== undefined && params.clusterId !== null) {
+        validateSingleSegment('clusterId', String(params.clusterId));
+        params.clusterId = encodeWithSlashes(String(params.clusterId));
+      }
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateSingleSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithSlashes(String(params.projectId));
+      }
+      if (params.zone !== undefined && params.zone !== null) {
+        validateSingleSegment('zone', String(params.zone));
+        params.zone = encodeWithSlashes(String(params.zone));
+      }
+
       const rootUrl = options.rootUrl || 'https://container.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -13355,7 +13569,9 @@ export namespace container_v1beta1 {
             url: (
               rootUrl +
               '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}/addons'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -13513,13 +13729,18 @@ export namespace container_v1beta1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://container.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v1beta1/{+name}:completeControlPlaneUpgrade'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta1/{+name}:completeControlPlaneUpgrade')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -13681,6 +13902,19 @@ export namespace container_v1beta1 {
         options = {};
       }
 
+      if (params.clusterId !== undefined && params.clusterId !== null) {
+        validateSingleSegment('clusterId', String(params.clusterId));
+        params.clusterId = encodeWithSlashes(String(params.clusterId));
+      }
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateSingleSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithSlashes(String(params.projectId));
+      }
+      if (params.zone !== undefined && params.zone !== null) {
+        validateSingleSegment('zone', String(params.zone));
+        params.zone = encodeWithSlashes(String(params.zone));
+      }
+
       const rootUrl = options.rootUrl || 'https://container.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -13688,7 +13922,9 @@ export namespace container_v1beta1 {
             url: (
               rootUrl +
               '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}:completeIpRotation'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -13847,13 +14083,24 @@ export namespace container_v1beta1 {
         options = {};
       }
 
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateSingleSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithSlashes(String(params.projectId));
+      }
+      if (params.zone !== undefined && params.zone !== null) {
+        validateSingleSegment('zone', String(params.zone));
+        params.zone = encodeWithSlashes(String(params.zone));
+      }
+
       const rootUrl = options.rootUrl || 'https://container.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/v1beta1/projects/{projectId}/zones/{zone}/clusters'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -14005,6 +14252,19 @@ export namespace container_v1beta1 {
         options = {};
       }
 
+      if (params.clusterId !== undefined && params.clusterId !== null) {
+        validateSingleSegment('clusterId', String(params.clusterId));
+        params.clusterId = encodeWithSlashes(String(params.clusterId));
+      }
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateSingleSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithSlashes(String(params.projectId));
+      }
+      if (params.zone !== undefined && params.zone !== null) {
+        validateSingleSegment('zone', String(params.zone));
+        params.zone = encodeWithSlashes(String(params.zone));
+      }
+
       const rootUrl = options.rootUrl || 'https://container.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -14012,7 +14272,9 @@ export namespace container_v1beta1 {
             url: (
               rootUrl +
               '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -14158,14 +14420,18 @@ export namespace container_v1beta1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://container.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}:fetchClusterUpgradeInfo').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta1/{+name}:fetchClusterUpgradeInfo')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -14400,6 +14666,19 @@ export namespace container_v1beta1 {
         options = {};
       }
 
+      if (params.clusterId !== undefined && params.clusterId !== null) {
+        validateSingleSegment('clusterId', String(params.clusterId));
+        params.clusterId = encodeWithSlashes(String(params.clusterId));
+      }
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateSingleSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithSlashes(String(params.projectId));
+      }
+      if (params.zone !== undefined && params.zone !== null) {
+        validateSingleSegment('zone', String(params.zone));
+        params.zone = encodeWithSlashes(String(params.zone));
+      }
+
       const rootUrl = options.rootUrl || 'https://container.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -14407,7 +14686,9 @@ export namespace container_v1beta1 {
             url: (
               rootUrl +
               '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -14569,6 +14850,19 @@ export namespace container_v1beta1 {
         options = {};
       }
 
+      if (params.clusterId !== undefined && params.clusterId !== null) {
+        validateSingleSegment('clusterId', String(params.clusterId));
+        params.clusterId = encodeWithSlashes(String(params.clusterId));
+      }
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateSingleSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithSlashes(String(params.projectId));
+      }
+      if (params.zone !== undefined && params.zone !== null) {
+        validateSingleSegment('zone', String(params.zone));
+        params.zone = encodeWithSlashes(String(params.zone));
+      }
+
       const rootUrl = options.rootUrl || 'https://container.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -14576,7 +14870,9 @@ export namespace container_v1beta1 {
             url: (
               rootUrl +
               '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}/legacyAbac'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -14716,13 +15012,24 @@ export namespace container_v1beta1 {
         options = {};
       }
 
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateSingleSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithSlashes(String(params.projectId));
+      }
+      if (params.zone !== undefined && params.zone !== null) {
+        validateSingleSegment('zone', String(params.zone));
+        params.zone = encodeWithSlashes(String(params.zone));
+      }
+
       const rootUrl = options.rootUrl || 'https://container.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/v1beta1/projects/{projectId}/zones/{zone}/clusters'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -14884,6 +15191,19 @@ export namespace container_v1beta1 {
         options = {};
       }
 
+      if (params.clusterId !== undefined && params.clusterId !== null) {
+        validateSingleSegment('clusterId', String(params.clusterId));
+        params.clusterId = encodeWithSlashes(String(params.clusterId));
+      }
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateSingleSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithSlashes(String(params.projectId));
+      }
+      if (params.zone !== undefined && params.zone !== null) {
+        validateSingleSegment('zone', String(params.zone));
+        params.zone = encodeWithSlashes(String(params.zone));
+      }
+
       const rootUrl = options.rootUrl || 'https://container.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -14891,7 +15211,9 @@ export namespace container_v1beta1 {
             url: (
               rootUrl +
               '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}/locations'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -15053,6 +15375,19 @@ export namespace container_v1beta1 {
         options = {};
       }
 
+      if (params.clusterId !== undefined && params.clusterId !== null) {
+        validateSingleSegment('clusterId', String(params.clusterId));
+        params.clusterId = encodeWithSlashes(String(params.clusterId));
+      }
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateSingleSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithSlashes(String(params.projectId));
+      }
+      if (params.zone !== undefined && params.zone !== null) {
+        validateSingleSegment('zone', String(params.zone));
+        params.zone = encodeWithSlashes(String(params.zone));
+      }
+
       const rootUrl = options.rootUrl || 'https://container.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -15060,7 +15395,9 @@ export namespace container_v1beta1 {
             url: (
               rootUrl +
               '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}/logging'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -15222,6 +15559,19 @@ export namespace container_v1beta1 {
         options = {};
       }
 
+      if (params.clusterId !== undefined && params.clusterId !== null) {
+        validateSingleSegment('clusterId', String(params.clusterId));
+        params.clusterId = encodeWithSlashes(String(params.clusterId));
+      }
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateSingleSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithSlashes(String(params.projectId));
+      }
+      if (params.zone !== undefined && params.zone !== null) {
+        validateSingleSegment('zone', String(params.zone));
+        params.zone = encodeWithSlashes(String(params.zone));
+      }
+
       const rootUrl = options.rootUrl || 'https://container.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -15229,7 +15579,9 @@ export namespace container_v1beta1 {
             url: (
               rootUrl +
               '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}/master'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -15391,6 +15743,19 @@ export namespace container_v1beta1 {
         options = {};
       }
 
+      if (params.clusterId !== undefined && params.clusterId !== null) {
+        validateSingleSegment('clusterId', String(params.clusterId));
+        params.clusterId = encodeWithSlashes(String(params.clusterId));
+      }
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateSingleSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithSlashes(String(params.projectId));
+      }
+      if (params.zone !== undefined && params.zone !== null) {
+        validateSingleSegment('zone', String(params.zone));
+        params.zone = encodeWithSlashes(String(params.zone));
+      }
+
       const rootUrl = options.rootUrl || 'https://container.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -15398,7 +15763,9 @@ export namespace container_v1beta1 {
             url: (
               rootUrl +
               '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}/monitoring'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -15561,6 +15928,19 @@ export namespace container_v1beta1 {
         options = {};
       }
 
+      if (params.clusterId !== undefined && params.clusterId !== null) {
+        validateSingleSegment('clusterId', String(params.clusterId));
+        params.clusterId = encodeWithSlashes(String(params.clusterId));
+      }
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateSingleSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithSlashes(String(params.projectId));
+      }
+      if (params.zone !== undefined && params.zone !== null) {
+        validateSingleSegment('zone', String(params.zone));
+        params.zone = encodeWithSlashes(String(params.zone));
+      }
+
       const rootUrl = options.rootUrl || 'https://container.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -15568,7 +15948,9 @@ export namespace container_v1beta1 {
             url: (
               rootUrl +
               '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}/resourceLabels'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -15733,6 +16115,19 @@ export namespace container_v1beta1 {
         options = {};
       }
 
+      if (params.clusterId !== undefined && params.clusterId !== null) {
+        validateSingleSegment('clusterId', String(params.clusterId));
+        params.clusterId = encodeWithSlashes(String(params.clusterId));
+      }
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateSingleSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithSlashes(String(params.projectId));
+      }
+      if (params.zone !== undefined && params.zone !== null) {
+        validateSingleSegment('zone', String(params.zone));
+        params.zone = encodeWithSlashes(String(params.zone));
+      }
+
       const rootUrl = options.rootUrl || 'https://container.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -15740,7 +16135,9 @@ export namespace container_v1beta1 {
             url: (
               rootUrl +
               '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}:setMaintenancePolicy'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -15903,6 +16300,19 @@ export namespace container_v1beta1 {
         options = {};
       }
 
+      if (params.clusterId !== undefined && params.clusterId !== null) {
+        validateSingleSegment('clusterId', String(params.clusterId));
+        params.clusterId = encodeWithSlashes(String(params.clusterId));
+      }
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateSingleSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithSlashes(String(params.projectId));
+      }
+      if (params.zone !== undefined && params.zone !== null) {
+        validateSingleSegment('zone', String(params.zone));
+        params.zone = encodeWithSlashes(String(params.zone));
+      }
+
       const rootUrl = options.rootUrl || 'https://container.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -15910,7 +16320,9 @@ export namespace container_v1beta1 {
             url: (
               rootUrl +
               '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}:setMasterAuth'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -16072,6 +16484,19 @@ export namespace container_v1beta1 {
         options = {};
       }
 
+      if (params.clusterId !== undefined && params.clusterId !== null) {
+        validateSingleSegment('clusterId', String(params.clusterId));
+        params.clusterId = encodeWithSlashes(String(params.clusterId));
+      }
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateSingleSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithSlashes(String(params.projectId));
+      }
+      if (params.zone !== undefined && params.zone !== null) {
+        validateSingleSegment('zone', String(params.zone));
+        params.zone = encodeWithSlashes(String(params.zone));
+      }
+
       const rootUrl = options.rootUrl || 'https://container.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -16079,7 +16504,9 @@ export namespace container_v1beta1 {
             url: (
               rootUrl +
               '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}:setNetworkPolicy'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -16241,6 +16668,19 @@ export namespace container_v1beta1 {
         options = {};
       }
 
+      if (params.clusterId !== undefined && params.clusterId !== null) {
+        validateSingleSegment('clusterId', String(params.clusterId));
+        params.clusterId = encodeWithSlashes(String(params.clusterId));
+      }
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateSingleSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithSlashes(String(params.projectId));
+      }
+      if (params.zone !== undefined && params.zone !== null) {
+        validateSingleSegment('zone', String(params.zone));
+        params.zone = encodeWithSlashes(String(params.zone));
+      }
+
       const rootUrl = options.rootUrl || 'https://container.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -16248,7 +16688,9 @@ export namespace container_v1beta1 {
             url: (
               rootUrl +
               '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}:startIpRotation'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -16410,6 +16852,19 @@ export namespace container_v1beta1 {
         options = {};
       }
 
+      if (params.clusterId !== undefined && params.clusterId !== null) {
+        validateSingleSegment('clusterId', String(params.clusterId));
+        params.clusterId = encodeWithSlashes(String(params.clusterId));
+      }
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateSingleSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithSlashes(String(params.projectId));
+      }
+      if (params.zone !== undefined && params.zone !== null) {
+        validateSingleSegment('zone', String(params.zone));
+        params.zone = encodeWithSlashes(String(params.zone));
+      }
+
       const rootUrl = options.rootUrl || 'https://container.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -16417,7 +16872,9 @@ export namespace container_v1beta1 {
             url: (
               rootUrl +
               '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -16924,6 +17381,23 @@ export namespace container_v1beta1 {
         options = {};
       }
 
+      if (params.clusterId !== undefined && params.clusterId !== null) {
+        validateSingleSegment('clusterId', String(params.clusterId));
+        params.clusterId = encodeWithSlashes(String(params.clusterId));
+      }
+      if (params.nodePoolId !== undefined && params.nodePoolId !== null) {
+        validateSingleSegment('nodePoolId', String(params.nodePoolId));
+        params.nodePoolId = encodeWithSlashes(String(params.nodePoolId));
+      }
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateSingleSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithSlashes(String(params.projectId));
+      }
+      if (params.zone !== undefined && params.zone !== null) {
+        validateSingleSegment('zone', String(params.zone));
+        params.zone = encodeWithSlashes(String(params.zone));
+      }
+
       const rootUrl = options.rootUrl || 'https://container.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -16931,7 +17405,9 @@ export namespace container_v1beta1 {
             url: (
               rootUrl +
               '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}/nodePools/{nodePoolId}/autoscaling'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -17093,6 +17569,19 @@ export namespace container_v1beta1 {
         options = {};
       }
 
+      if (params.clusterId !== undefined && params.clusterId !== null) {
+        validateSingleSegment('clusterId', String(params.clusterId));
+        params.clusterId = encodeWithSlashes(String(params.clusterId));
+      }
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateSingleSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithSlashes(String(params.projectId));
+      }
+      if (params.zone !== undefined && params.zone !== null) {
+        validateSingleSegment('zone', String(params.zone));
+        params.zone = encodeWithSlashes(String(params.zone));
+      }
+
       const rootUrl = options.rootUrl || 'https://container.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -17100,7 +17589,9 @@ export namespace container_v1beta1 {
             url: (
               rootUrl +
               '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}/nodePools'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -17254,6 +17745,23 @@ export namespace container_v1beta1 {
         options = {};
       }
 
+      if (params.clusterId !== undefined && params.clusterId !== null) {
+        validateSingleSegment('clusterId', String(params.clusterId));
+        params.clusterId = encodeWithSlashes(String(params.clusterId));
+      }
+      if (params.nodePoolId !== undefined && params.nodePoolId !== null) {
+        validateSingleSegment('nodePoolId', String(params.nodePoolId));
+        params.nodePoolId = encodeWithSlashes(String(params.nodePoolId));
+      }
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateSingleSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithSlashes(String(params.projectId));
+      }
+      if (params.zone !== undefined && params.zone !== null) {
+        validateSingleSegment('zone', String(params.zone));
+        params.zone = encodeWithSlashes(String(params.zone));
+      }
+
       const rootUrl = options.rootUrl || 'https://container.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -17261,7 +17769,9 @@ export namespace container_v1beta1 {
             url: (
               rootUrl +
               '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}/nodePools/{nodePoolId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -17408,13 +17918,18 @@ export namespace container_v1beta1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://container.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v1beta1/{+name}:fetchNodePoolUpgradeInfo'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta1/{+name}:fetchNodePoolUpgradeInfo')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -17579,6 +18094,23 @@ export namespace container_v1beta1 {
         options = {};
       }
 
+      if (params.clusterId !== undefined && params.clusterId !== null) {
+        validateSingleSegment('clusterId', String(params.clusterId));
+        params.clusterId = encodeWithSlashes(String(params.clusterId));
+      }
+      if (params.nodePoolId !== undefined && params.nodePoolId !== null) {
+        validateSingleSegment('nodePoolId', String(params.nodePoolId));
+        params.nodePoolId = encodeWithSlashes(String(params.nodePoolId));
+      }
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateSingleSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithSlashes(String(params.projectId));
+      }
+      if (params.zone !== undefined && params.zone !== null) {
+        validateSingleSegment('zone', String(params.zone));
+        params.zone = encodeWithSlashes(String(params.zone));
+      }
+
       const rootUrl = options.rootUrl || 'https://container.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -17586,7 +18118,9 @@ export namespace container_v1beta1 {
             url: (
               rootUrl +
               '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}/nodePools/{nodePoolId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -17727,6 +18261,19 @@ export namespace container_v1beta1 {
         options = {};
       }
 
+      if (params.clusterId !== undefined && params.clusterId !== null) {
+        validateSingleSegment('clusterId', String(params.clusterId));
+        params.clusterId = encodeWithSlashes(String(params.clusterId));
+      }
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateSingleSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithSlashes(String(params.projectId));
+      }
+      if (params.zone !== undefined && params.zone !== null) {
+        validateSingleSegment('zone', String(params.zone));
+        params.zone = encodeWithSlashes(String(params.zone));
+      }
+
       const rootUrl = options.rootUrl || 'https://container.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -17734,7 +18281,9 @@ export namespace container_v1beta1 {
             url: (
               rootUrl +
               '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}/nodePools'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -17900,6 +18449,23 @@ export namespace container_v1beta1 {
         options = {};
       }
 
+      if (params.clusterId !== undefined && params.clusterId !== null) {
+        validateSingleSegment('clusterId', String(params.clusterId));
+        params.clusterId = encodeWithSlashes(String(params.clusterId));
+      }
+      if (params.nodePoolId !== undefined && params.nodePoolId !== null) {
+        validateSingleSegment('nodePoolId', String(params.nodePoolId));
+        params.nodePoolId = encodeWithSlashes(String(params.nodePoolId));
+      }
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateSingleSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithSlashes(String(params.projectId));
+      }
+      if (params.zone !== undefined && params.zone !== null) {
+        validateSingleSegment('zone', String(params.zone));
+        params.zone = encodeWithSlashes(String(params.zone));
+      }
+
       const rootUrl = options.rootUrl || 'https://container.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -17907,7 +18473,9 @@ export namespace container_v1beta1 {
             url: (
               rootUrl +
               '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}/nodePools/{nodePoolId}:rollback'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -18073,6 +18641,23 @@ export namespace container_v1beta1 {
         options = {};
       }
 
+      if (params.clusterId !== undefined && params.clusterId !== null) {
+        validateSingleSegment('clusterId', String(params.clusterId));
+        params.clusterId = encodeWithSlashes(String(params.clusterId));
+      }
+      if (params.nodePoolId !== undefined && params.nodePoolId !== null) {
+        validateSingleSegment('nodePoolId', String(params.nodePoolId));
+        params.nodePoolId = encodeWithSlashes(String(params.nodePoolId));
+      }
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateSingleSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithSlashes(String(params.projectId));
+      }
+      if (params.zone !== undefined && params.zone !== null) {
+        validateSingleSegment('zone', String(params.zone));
+        params.zone = encodeWithSlashes(String(params.zone));
+      }
+
       const rootUrl = options.rootUrl || 'https://container.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -18080,7 +18665,9 @@ export namespace container_v1beta1 {
             url: (
               rootUrl +
               '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}/nodePools/{nodePoolId}/setManagement'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -18246,6 +18833,23 @@ export namespace container_v1beta1 {
         options = {};
       }
 
+      if (params.clusterId !== undefined && params.clusterId !== null) {
+        validateSingleSegment('clusterId', String(params.clusterId));
+        params.clusterId = encodeWithSlashes(String(params.clusterId));
+      }
+      if (params.nodePoolId !== undefined && params.nodePoolId !== null) {
+        validateSingleSegment('nodePoolId', String(params.nodePoolId));
+        params.nodePoolId = encodeWithSlashes(String(params.nodePoolId));
+      }
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateSingleSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithSlashes(String(params.projectId));
+      }
+      if (params.zone !== undefined && params.zone !== null) {
+        validateSingleSegment('zone', String(params.zone));
+        params.zone = encodeWithSlashes(String(params.zone));
+      }
+
       const rootUrl = options.rootUrl || 'https://container.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -18253,7 +18857,9 @@ export namespace container_v1beta1 {
             url: (
               rootUrl +
               '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}/nodePools/{nodePoolId}/setSize'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -18453,6 +19059,23 @@ export namespace container_v1beta1 {
         options = {};
       }
 
+      if (params.clusterId !== undefined && params.clusterId !== null) {
+        validateSingleSegment('clusterId', String(params.clusterId));
+        params.clusterId = encodeWithSlashes(String(params.clusterId));
+      }
+      if (params.nodePoolId !== undefined && params.nodePoolId !== null) {
+        validateSingleSegment('nodePoolId', String(params.nodePoolId));
+        params.nodePoolId = encodeWithSlashes(String(params.nodePoolId));
+      }
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateSingleSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithSlashes(String(params.projectId));
+      }
+      if (params.zone !== undefined && params.zone !== null) {
+        validateSingleSegment('zone', String(params.zone));
+        params.zone = encodeWithSlashes(String(params.zone));
+      }
+
       const rootUrl = options.rootUrl || 'https://container.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -18460,7 +19083,9 @@ export namespace container_v1beta1 {
             url: (
               rootUrl +
               '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}/nodePools/{nodePoolId}/update'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -18819,6 +19444,19 @@ export namespace container_v1beta1 {
         options = {};
       }
 
+      if (params.operationId !== undefined && params.operationId !== null) {
+        validateSingleSegment('operationId', String(params.operationId));
+        params.operationId = encodeWithSlashes(String(params.operationId));
+      }
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateSingleSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithSlashes(String(params.projectId));
+      }
+      if (params.zone !== undefined && params.zone !== null) {
+        validateSingleSegment('zone', String(params.zone));
+        params.zone = encodeWithSlashes(String(params.zone));
+      }
+
       const rootUrl = options.rootUrl || 'https://container.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -18826,7 +19464,9 @@ export namespace container_v1beta1 {
             url: (
               rootUrl +
               '/v1beta1/projects/{projectId}/zones/{zone}/operations/{operationId}:cancel'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -18979,6 +19619,19 @@ export namespace container_v1beta1 {
         options = {};
       }
 
+      if (params.operationId !== undefined && params.operationId !== null) {
+        validateSingleSegment('operationId', String(params.operationId));
+        params.operationId = encodeWithSlashes(String(params.operationId));
+      }
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateSingleSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithSlashes(String(params.projectId));
+      }
+      if (params.zone !== undefined && params.zone !== null) {
+        validateSingleSegment('zone', String(params.zone));
+        params.zone = encodeWithSlashes(String(params.zone));
+      }
+
       const rootUrl = options.rootUrl || 'https://container.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -18986,7 +19639,9 @@ export namespace container_v1beta1 {
             url: (
               rootUrl +
               '/v1beta1/projects/{projectId}/zones/{zone}/operations/{operationId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -19126,13 +19781,24 @@ export namespace container_v1beta1 {
         options = {};
       }
 
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateSingleSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithSlashes(String(params.projectId));
+      }
+      if (params.zone !== undefined && params.zone !== null) {
+        validateSingleSegment('zone', String(params.zone));
+        params.zone = encodeWithSlashes(String(params.zone));
+      }
+
       const rootUrl = options.rootUrl || 'https://container.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/v1beta1/projects/{projectId}/zones/{zone}/operations'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },

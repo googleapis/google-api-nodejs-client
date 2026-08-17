@@ -34,6 +34,12 @@ import {
   APIRequestContext,
 } from 'googleapis-common';
 import {Readable} from 'stream';
+import {
+  validateSingleSegment,
+  validateMultiSegment,
+  encodeWithSlashes,
+  encodeWithoutSlashes,
+} from '../../transcoding';
 
 export namespace safebrowsing_v5 {
   export interface Options extends GlobalOptions {
@@ -515,7 +521,9 @@ export namespace safebrowsing_v5 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v5/hashes:search').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v5/hashes:search')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -684,14 +692,18 @@ export namespace safebrowsing_v5 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateSingleSegment('name', String(params.name));
+        params.name = encodeWithSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://safebrowsing.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v5/hashList/{name}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v5/hashList/{name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -867,10 +879,9 @@ export namespace safebrowsing_v5 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v5/hashLists:batchGet').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v5/hashLists:batchGet')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -1016,7 +1027,9 @@ export namespace safebrowsing_v5 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v5/hashLists').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v5/hashLists')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -1196,7 +1209,9 @@ export namespace safebrowsing_v5 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v5/urls:search').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v5/urls:search')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },

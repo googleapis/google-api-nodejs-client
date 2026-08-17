@@ -34,6 +34,12 @@ import {
   APIRequestContext,
 } from 'googleapis-common';
 import {Readable} from 'stream';
+import {
+  validateSingleSegment,
+  validateMultiSegment,
+  encodeWithSlashes,
+  encodeWithoutSlashes,
+} from '../../transcoding';
 
 export namespace admin_datatransfer_v1 {
   export interface Options extends GlobalOptions {
@@ -382,13 +388,20 @@ export namespace admin_datatransfer_v1 {
         options = {};
       }
 
+      if (params.applicationId !== undefined && params.applicationId !== null) {
+        validateSingleSegment('applicationId', String(params.applicationId));
+        params.applicationId = encodeWithSlashes(String(params.applicationId));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/admin/datatransfer/v1/applications/{applicationId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -533,10 +546,9 @@ export namespace admin_datatransfer_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/admin/datatransfer/v1/applications').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/admin/datatransfer/v1/applications')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -703,13 +715,23 @@ export namespace admin_datatransfer_v1 {
         options = {};
       }
 
+      if (
+        params.dataTransferId !== undefined &&
+        params.dataTransferId !== null
+      ) {
+        validateSingleSegment('dataTransferId', String(params.dataTransferId));
+        params.dataTransferId = encodeWithSlashes(
+          String(params.dataTransferId)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/admin/datatransfer/v1/transfers/{dataTransferId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/admin/datatransfer/v1/transfers/{dataTransferId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -861,10 +883,9 @@ export namespace admin_datatransfer_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/admin/datatransfer/v1/transfers').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/admin/datatransfer/v1/transfers')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -1016,10 +1037,9 @@ export namespace admin_datatransfer_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/admin/datatransfer/v1/transfers').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/admin/datatransfer/v1/transfers')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },

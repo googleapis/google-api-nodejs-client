@@ -34,6 +34,12 @@ import {
   APIRequestContext,
 } from 'googleapis-common';
 import {Readable} from 'stream';
+import {
+  validateSingleSegment,
+  validateMultiSegment,
+  encodeWithSlashes,
+  encodeWithoutSlashes,
+} from '../../transcoding';
 
 export namespace doubleclickbidmanager_v2 {
   export interface Options extends GlobalOptions {
@@ -501,7 +507,9 @@ export namespace doubleclickbidmanager_v2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2/queries').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/queries')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -623,15 +631,19 @@ export namespace doubleclickbidmanager_v2 {
         options = {};
       }
 
+      if (params.queryId !== undefined && params.queryId !== null) {
+        validateSingleSegment('queryId', String(params.queryId));
+        params.queryId = encodeWithSlashes(String(params.queryId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://doubleclickbidmanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2/queries/{queryId}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v2/queries/{queryId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -762,15 +774,19 @@ export namespace doubleclickbidmanager_v2 {
         options = {};
       }
 
+      if (params.queryId !== undefined && params.queryId !== null) {
+        validateSingleSegment('queryId', String(params.queryId));
+        params.queryId = encodeWithSlashes(String(params.queryId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://doubleclickbidmanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2/queries/{queryId}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v2/queries/{queryId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -909,7 +925,9 @@ export namespace doubleclickbidmanager_v2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2/queries').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/queries')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -1049,15 +1067,19 @@ export namespace doubleclickbidmanager_v2 {
         options = {};
       }
 
+      if (params.queryId !== undefined && params.queryId !== null) {
+        validateSingleSegment('queryId', String(params.queryId));
+        params.queryId = encodeWithSlashes(String(params.queryId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://doubleclickbidmanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2/queries/{queryId}:run').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v2/queries/{queryId}:run')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -1245,15 +1267,23 @@ export namespace doubleclickbidmanager_v2 {
         options = {};
       }
 
+      if (params.queryId !== undefined && params.queryId !== null) {
+        validateSingleSegment('queryId', String(params.queryId));
+        params.queryId = encodeWithSlashes(String(params.queryId));
+      }
+      if (params.reportId !== undefined && params.reportId !== null) {
+        validateSingleSegment('reportId', String(params.reportId));
+        params.reportId = encodeWithSlashes(String(params.reportId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://doubleclickbidmanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2/queries/{queryId}/reports/{reportId}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v2/queries/{queryId}/reports/{reportId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -1390,15 +1420,19 @@ export namespace doubleclickbidmanager_v2 {
         options = {};
       }
 
+      if (params.queryId !== undefined && params.queryId !== null) {
+        validateSingleSegment('queryId', String(params.queryId));
+        params.queryId = encodeWithSlashes(String(params.queryId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://doubleclickbidmanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2/queries/{queryId}/reports').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v2/queries/{queryId}/reports')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },

@@ -34,6 +34,12 @@ import {
   APIRequestContext,
 } from 'googleapis-common';
 import {Readable} from 'stream';
+import {
+  validateSingleSegment,
+  validateMultiSegment,
+  encodeWithSlashes,
+  encodeWithoutSlashes,
+} from '../../transcoding';
 
 export namespace identitytoolkit_v3 {
   export interface Options extends GlobalOptions {
@@ -1684,9 +1690,9 @@ export namespace identitytoolkit_v3 {
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/identitytoolkit/v3/relyingparty/createAuthUri'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/identitytoolkit/v3/relyingparty/createAuthUri')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -1830,9 +1836,9 @@ export namespace identitytoolkit_v3 {
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/identitytoolkit/v3/relyingparty/deleteAccount'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/identitytoolkit/v3/relyingparty/deleteAccount')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -1982,9 +1988,9 @@ export namespace identitytoolkit_v3 {
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/identitytoolkit/v3/relyingparty/downloadAccount'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/identitytoolkit/v3/relyingparty/downloadAccount')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -2134,9 +2140,9 @@ export namespace identitytoolkit_v3 {
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/identitytoolkit/v3/relyingparty/emailLinkSignin'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/identitytoolkit/v3/relyingparty/emailLinkSignin')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -2283,9 +2289,9 @@ export namespace identitytoolkit_v3 {
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/identitytoolkit/v3/relyingparty/getAccountInfo'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/identitytoolkit/v3/relyingparty/getAccountInfo')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -2447,7 +2453,9 @@ export namespace identitytoolkit_v3 {
             url: (
               rootUrl +
               '/identitytoolkit/v3/relyingparty/getOobConfirmationCode'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -2604,9 +2612,9 @@ export namespace identitytoolkit_v3 {
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/identitytoolkit/v3/relyingparty/getProjectConfig'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/identitytoolkit/v3/relyingparty/getProjectConfig')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -2745,9 +2753,9 @@ export namespace identitytoolkit_v3 {
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/identitytoolkit/v3/relyingparty/publicKeys'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/identitytoolkit/v3/relyingparty/publicKeys')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -2887,7 +2895,9 @@ export namespace identitytoolkit_v3 {
           {
             url: (
               rootUrl + '/identitytoolkit/v3/relyingparty/getRecaptchaParam'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -3035,9 +3045,9 @@ export namespace identitytoolkit_v3 {
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/identitytoolkit/v3/relyingparty/resetPassword'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/identitytoolkit/v3/relyingparty/resetPassword')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -3189,7 +3199,9 @@ export namespace identitytoolkit_v3 {
           {
             url: (
               rootUrl + '/identitytoolkit/v3/relyingparty/sendVerificationCode'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -3366,9 +3378,9 @@ export namespace identitytoolkit_v3 {
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/identitytoolkit/v3/relyingparty/setAccountInfo'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/identitytoolkit/v3/relyingparty/setAccountInfo')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -3525,9 +3537,9 @@ export namespace identitytoolkit_v3 {
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/identitytoolkit/v3/relyingparty/setProjectConfig'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/identitytoolkit/v3/relyingparty/setProjectConfig')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -3677,9 +3689,9 @@ export namespace identitytoolkit_v3 {
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/identitytoolkit/v3/relyingparty/signOutUser'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/identitytoolkit/v3/relyingparty/signOutUser')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -3842,9 +3854,9 @@ export namespace identitytoolkit_v3 {
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/identitytoolkit/v3/relyingparty/signupNewUser'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/identitytoolkit/v3/relyingparty/signupNewUser')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -4003,9 +4015,9 @@ export namespace identitytoolkit_v3 {
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/identitytoolkit/v3/relyingparty/uploadAccount'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/identitytoolkit/v3/relyingparty/uploadAccount')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -4197,9 +4209,9 @@ export namespace identitytoolkit_v3 {
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/identitytoolkit/v3/relyingparty/verifyAssertion'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/identitytoolkit/v3/relyingparty/verifyAssertion')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -4350,7 +4362,9 @@ export namespace identitytoolkit_v3 {
           {
             url: (
               rootUrl + '/identitytoolkit/v3/relyingparty/verifyCustomToken'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -4513,9 +4527,9 @@ export namespace identitytoolkit_v3 {
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/identitytoolkit/v3/relyingparty/verifyPassword'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/identitytoolkit/v3/relyingparty/verifyPassword')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -4679,7 +4693,9 @@ export namespace identitytoolkit_v3 {
           {
             url: (
               rootUrl + '/identitytoolkit/v3/relyingparty/verifyPhoneNumber'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },

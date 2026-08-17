@@ -34,6 +34,12 @@ import {
   APIRequestContext,
 } from 'googleapis-common';
 import {Readable} from 'stream';
+import {
+  validateSingleSegment,
+  validateMultiSegment,
+  encodeWithSlashes,
+  encodeWithoutSlashes,
+} from '../../transcoding';
 
 export namespace safebrowsing_v4 {
   export interface Options extends GlobalOptions {
@@ -699,14 +705,23 @@ export namespace safebrowsing_v4 {
         options = {};
       }
 
+      if (
+        params.encodedRequest !== undefined &&
+        params.encodedRequest !== null
+      ) {
+        validateSingleSegment('encodedRequest', String(params.encodedRequest));
+        params.encodedRequest = encodeWithSlashes(
+          String(params.encodedRequest)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://safebrowsing.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v4/encodedFullHashes/{encodedRequest}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v4/encodedFullHashes/{encodedRequest}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -872,14 +887,23 @@ export namespace safebrowsing_v4 {
         options = {};
       }
 
+      if (
+        params.encodedRequest !== undefined &&
+        params.encodedRequest !== null
+      ) {
+        validateSingleSegment('encodedRequest', String(params.encodedRequest));
+        params.encodedRequest = encodeWithSlashes(
+          String(params.encodedRequest)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://safebrowsing.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v4/encodedUpdates/{encodedRequest}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v4/encodedUpdates/{encodedRequest}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -1054,10 +1078,9 @@ export namespace safebrowsing_v4 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v4/fullHashes:find').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v4/fullHashes:find')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -1215,7 +1238,9 @@ export namespace safebrowsing_v4 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v4/threatHits').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v4/threatHits')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -1367,7 +1392,9 @@ export namespace safebrowsing_v4 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v4/threatLists').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v4/threatLists')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -1527,10 +1554,9 @@ export namespace safebrowsing_v4 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v4/threatListUpdates:fetch').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v4/threatListUpdates:fetch')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -1694,10 +1720,9 @@ export namespace safebrowsing_v4 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v4/threatMatches:find').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v4/threatMatches:find')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },

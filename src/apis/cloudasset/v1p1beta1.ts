@@ -34,6 +34,12 @@ import {
   APIRequestContext,
 } from 'googleapis-common';
 import {Readable} from 'stream';
+import {
+  validateSingleSegment,
+  validateMultiSegment,
+  encodeWithSlashes,
+  encodeWithoutSlashes,
+} from '../../transcoding';
 
 export namespace cloudasset_v1p1beta1 {
   export interface Options extends GlobalOptions {
@@ -1139,13 +1145,18 @@ export namespace cloudasset_v1p1beta1 {
         options = {};
       }
 
+      if (params.scope !== undefined && params.scope !== null) {
+        validateMultiSegment('scope', String(params.scope));
+        params.scope = encodeWithoutSlashes(String(params.scope));
+      }
+
       const rootUrl = options.rootUrl || 'https://cloudasset.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v1p1beta1/{+scope}/iamPolicies:searchAll'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1p1beta1/{+scope}/iamPolicies:searchAll')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -1317,14 +1328,18 @@ export namespace cloudasset_v1p1beta1 {
         options = {};
       }
 
+      if (params.scope !== undefined && params.scope !== null) {
+        validateMultiSegment('scope', String(params.scope));
+        params.scope = encodeWithoutSlashes(String(params.scope));
+      }
+
       const rootUrl = options.rootUrl || 'https://cloudasset.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1p1beta1/{+scope}/resources:searchAll').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1p1beta1/{+scope}/resources:searchAll')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },

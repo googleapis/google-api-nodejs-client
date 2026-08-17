@@ -34,6 +34,12 @@ import {
   APIRequestContext,
 } from 'googleapis-common';
 import {Readable} from 'stream';
+import {
+  validateSingleSegment,
+  validateMultiSegment,
+  encodeWithSlashes,
+  encodeWithoutSlashes,
+} from '../../transcoding';
 
 export namespace policytroubleshooter_v3beta {
   export interface Options extends GlobalOptions {
@@ -1246,10 +1252,9 @@ export namespace policytroubleshooter_v3beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v3beta/iam:troubleshoot').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v3beta/iam:troubleshoot')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -1403,10 +1408,9 @@ export namespace policytroubleshooter_v3beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v3beta/iam:troubleshootError').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v3beta/iam:troubleshootError')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },

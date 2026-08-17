@@ -34,6 +34,12 @@ import {
   APIRequestContext,
 } from 'googleapis-common';
 import {Readable} from 'stream';
+import {
+  validateSingleSegment,
+  validateMultiSegment,
+  encodeWithSlashes,
+  encodeWithoutSlashes,
+} from '../../transcoding';
 
 export namespace alertcenter_v1beta1 {
   export interface Options extends GlobalOptions {
@@ -1653,10 +1659,9 @@ export namespace alertcenter_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/alerts:batchDelete').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta1/alerts:batchDelete')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -1801,10 +1806,9 @@ export namespace alertcenter_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/alerts:batchUndelete').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta1/alerts:batchUndelete')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -1932,14 +1936,18 @@ export namespace alertcenter_v1beta1 {
         options = {};
       }
 
+      if (params.alertId !== undefined && params.alertId !== null) {
+        validateSingleSegment('alertId', String(params.alertId));
+        params.alertId = encodeWithSlashes(String(params.alertId));
+      }
+
       const rootUrl = options.rootUrl || 'https://alertcenter.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/alerts/{alertId}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta1/alerts/{alertId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -2081,14 +2089,18 @@ export namespace alertcenter_v1beta1 {
         options = {};
       }
 
+      if (params.alertId !== undefined && params.alertId !== null) {
+        validateSingleSegment('alertId', String(params.alertId));
+        params.alertId = encodeWithSlashes(String(params.alertId));
+      }
+
       const rootUrl = options.rootUrl || 'https://alertcenter.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/alerts/{alertId}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta1/alerts/{alertId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -2226,14 +2238,18 @@ export namespace alertcenter_v1beta1 {
         options = {};
       }
 
+      if (params.alertId !== undefined && params.alertId !== null) {
+        validateSingleSegment('alertId', String(params.alertId));
+        params.alertId = encodeWithSlashes(String(params.alertId));
+      }
+
       const rootUrl = options.rootUrl || 'https://alertcenter.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/alerts/{alertId}/metadata').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta1/alerts/{alertId}/metadata')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -2375,7 +2391,9 @@ export namespace alertcenter_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/alerts').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta1/alerts')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -2523,14 +2541,18 @@ export namespace alertcenter_v1beta1 {
         options = {};
       }
 
+      if (params.alertId !== undefined && params.alertId !== null) {
+        validateSingleSegment('alertId', String(params.alertId));
+        params.alertId = encodeWithSlashes(String(params.alertId));
+      }
+
       const rootUrl = options.rootUrl || 'https://alertcenter.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/alerts/{alertId}:undelete').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta1/alerts/{alertId}:undelete')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -2763,14 +2785,18 @@ export namespace alertcenter_v1beta1 {
         options = {};
       }
 
+      if (params.alertId !== undefined && params.alertId !== null) {
+        validateSingleSegment('alertId', String(params.alertId));
+        params.alertId = encodeWithSlashes(String(params.alertId));
+      }
+
       const rootUrl = options.rootUrl || 'https://alertcenter.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/alerts/{alertId}/feedback').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta1/alerts/{alertId}/feedback')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -2907,14 +2933,18 @@ export namespace alertcenter_v1beta1 {
         options = {};
       }
 
+      if (params.alertId !== undefined && params.alertId !== null) {
+        validateSingleSegment('alertId', String(params.alertId));
+        params.alertId = encodeWithSlashes(String(params.alertId));
+      }
+
       const rootUrl = options.rootUrl || 'https://alertcenter.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/alerts/{alertId}/feedback').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta1/alerts/{alertId}/feedback')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -3084,7 +3114,9 @@ export namespace alertcenter_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/settings').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta1/settings')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -3225,7 +3257,9 @@ export namespace alertcenter_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/settings').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta1/settings')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },

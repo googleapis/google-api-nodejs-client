@@ -34,6 +34,12 @@ import {
   APIRequestContext,
 } from 'googleapis-common';
 import {Readable} from 'stream';
+import {
+  validateSingleSegment,
+  validateMultiSegment,
+  encodeWithSlashes,
+  encodeWithoutSlashes,
+} from '../../transcoding';
 
 export namespace bigquery_v2 {
   export interface Options extends GlobalOptions {
@@ -6225,6 +6231,15 @@ export namespace bigquery_v2 {
         options = {};
       }
 
+      if (params.datasetId !== undefined && params.datasetId !== null) {
+        validateMultiSegment('datasetId', String(params.datasetId));
+        params.datasetId = encodeWithoutSlashes(String(params.datasetId));
+      }
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateMultiSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithoutSlashes(String(params.projectId));
+      }
+
       const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -6232,7 +6247,9 @@ export namespace bigquery_v2 {
             url: (
               rootUrl +
               '/bigquery/v2/projects/{+projectId}/datasets/{+datasetId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -6400,6 +6417,15 @@ export namespace bigquery_v2 {
         options = {};
       }
 
+      if (params.datasetId !== undefined && params.datasetId !== null) {
+        validateMultiSegment('datasetId', String(params.datasetId));
+        params.datasetId = encodeWithoutSlashes(String(params.datasetId));
+      }
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateMultiSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithoutSlashes(String(params.projectId));
+      }
+
       const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -6407,7 +6433,9 @@ export namespace bigquery_v2 {
             url: (
               rootUrl +
               '/bigquery/v2/projects/{+projectId}/datasets/{+datasetId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -6608,13 +6636,18 @@ export namespace bigquery_v2 {
         options = {};
       }
 
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateMultiSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithoutSlashes(String(params.projectId));
+      }
+
       const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/bigquery/v2/projects/{+projectId}/datasets'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/bigquery/v2/projects/{+projectId}/datasets')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -6759,13 +6792,18 @@ export namespace bigquery_v2 {
         options = {};
       }
 
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateMultiSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithoutSlashes(String(params.projectId));
+      }
+
       const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/bigquery/v2/projects/{+projectId}/datasets'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/bigquery/v2/projects/{+projectId}/datasets')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -6970,6 +7008,15 @@ export namespace bigquery_v2 {
         options = {};
       }
 
+      if (params.datasetId !== undefined && params.datasetId !== null) {
+        validateMultiSegment('datasetId', String(params.datasetId));
+        params.datasetId = encodeWithoutSlashes(String(params.datasetId));
+      }
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateMultiSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithoutSlashes(String(params.projectId));
+      }
+
       const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -6977,7 +7024,9 @@ export namespace bigquery_v2 {
             url: (
               rootUrl +
               '/bigquery/v2/projects/{+projectId}/datasets/{+datasetId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -7149,6 +7198,15 @@ export namespace bigquery_v2 {
         options = {};
       }
 
+      if (params.datasetId !== undefined && params.datasetId !== null) {
+        validateMultiSegment('datasetId', String(params.datasetId));
+        params.datasetId = encodeWithoutSlashes(String(params.datasetId));
+      }
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateMultiSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithoutSlashes(String(params.projectId));
+      }
+
       const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -7156,7 +7214,9 @@ export namespace bigquery_v2 {
             url: (
               rootUrl +
               '/bigquery/v2/projects/{+projectId}/datasets/{+datasetId}:undelete'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -7361,6 +7421,15 @@ export namespace bigquery_v2 {
         options = {};
       }
 
+      if (params.datasetId !== undefined && params.datasetId !== null) {
+        validateMultiSegment('datasetId', String(params.datasetId));
+        params.datasetId = encodeWithoutSlashes(String(params.datasetId));
+      }
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateMultiSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithoutSlashes(String(params.projectId));
+      }
+
       const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -7368,7 +7437,9 @@ export namespace bigquery_v2 {
             url: (
               rootUrl +
               '/bigquery/v2/projects/{+projectId}/datasets/{+datasetId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -7643,6 +7714,15 @@ export namespace bigquery_v2 {
         options = {};
       }
 
+      if (params.jobId !== undefined && params.jobId !== null) {
+        validateMultiSegment('jobId', String(params.jobId));
+        params.jobId = encodeWithoutSlashes(String(params.jobId));
+      }
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateMultiSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithoutSlashes(String(params.projectId));
+      }
+
       const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -7650,7 +7730,9 @@ export namespace bigquery_v2 {
             url: (
               rootUrl +
               '/bigquery/v2/projects/{+projectId}/jobs/{+jobId}/cancel'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -7779,6 +7861,15 @@ export namespace bigquery_v2 {
         options = {};
       }
 
+      if (params.jobId !== undefined && params.jobId !== null) {
+        validateMultiSegment('jobId', String(params.jobId));
+        params.jobId = encodeWithoutSlashes(String(params.jobId));
+      }
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateMultiSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithoutSlashes(String(params.projectId));
+      }
+
       const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -7786,7 +7877,9 @@ export namespace bigquery_v2 {
             url: (
               rootUrl +
               '/bigquery/v2/projects/{+projectId}/jobs/{+jobId}/delete'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -7932,13 +8025,22 @@ export namespace bigquery_v2 {
         options = {};
       }
 
+      if (params.jobId !== undefined && params.jobId !== null) {
+        validateMultiSegment('jobId', String(params.jobId));
+        params.jobId = encodeWithoutSlashes(String(params.jobId));
+      }
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateMultiSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithoutSlashes(String(params.projectId));
+      }
+
       const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/bigquery/v2/projects/{+projectId}/jobs/{+jobId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/bigquery/v2/projects/{+projectId}/jobs/{+jobId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -8102,13 +8204,24 @@ export namespace bigquery_v2 {
         options = {};
       }
 
+      if (params.jobId !== undefined && params.jobId !== null) {
+        validateMultiSegment('jobId', String(params.jobId));
+        params.jobId = encodeWithoutSlashes(String(params.jobId));
+      }
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateMultiSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithoutSlashes(String(params.projectId));
+      }
+
       const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/bigquery/v2/projects/{+projectId}/queries/{+jobId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -8274,23 +8387,27 @@ export namespace bigquery_v2 {
         options = {};
       }
 
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateMultiSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithoutSlashes(String(params.projectId));
+      }
+
       const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/bigquery/v2/projects/{+projectId}/jobs').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/bigquery/v2/projects/{+projectId}/jobs')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
           options
         ),
         params,
-        mediaUrl: (
-          rootUrl + '/upload/bigquery/v2/projects/{+projectId}/jobs'
-        ).replace(/([^:]\/)\/+/g, '$1'),
+        mediaUrl: (rootUrl + '/upload/bigquery/v2/projects/{+projectId}/jobs')
+          .replace(/([^:]\/)\/+/g, '$1')
+          .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
         context: this.context,
@@ -8436,14 +8553,18 @@ export namespace bigquery_v2 {
         options = {};
       }
 
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateMultiSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithoutSlashes(String(params.projectId));
+      }
+
       const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/bigquery/v2/projects/{+projectId}/jobs').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/bigquery/v2/projects/{+projectId}/jobs')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -8633,13 +8754,18 @@ export namespace bigquery_v2 {
         options = {};
       }
 
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateMultiSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithoutSlashes(String(params.projectId));
+      }
+
       const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/bigquery/v2/projects/{+projectId}/queries'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/bigquery/v2/projects/{+projectId}/queries')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -8931,6 +9057,19 @@ export namespace bigquery_v2 {
         options = {};
       }
 
+      if (params.datasetId !== undefined && params.datasetId !== null) {
+        validateMultiSegment('datasetId', String(params.datasetId));
+        params.datasetId = encodeWithoutSlashes(String(params.datasetId));
+      }
+      if (params.modelId !== undefined && params.modelId !== null) {
+        validateMultiSegment('modelId', String(params.modelId));
+        params.modelId = encodeWithoutSlashes(String(params.modelId));
+      }
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateMultiSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithoutSlashes(String(params.projectId));
+      }
+
       const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -8938,7 +9077,9 @@ export namespace bigquery_v2 {
             url: (
               rootUrl +
               '/bigquery/v2/projects/{+projectId}/datasets/{+datasetId}/models/{+modelId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -9094,6 +9235,19 @@ export namespace bigquery_v2 {
         options = {};
       }
 
+      if (params.datasetId !== undefined && params.datasetId !== null) {
+        validateMultiSegment('datasetId', String(params.datasetId));
+        params.datasetId = encodeWithoutSlashes(String(params.datasetId));
+      }
+      if (params.modelId !== undefined && params.modelId !== null) {
+        validateMultiSegment('modelId', String(params.modelId));
+        params.modelId = encodeWithoutSlashes(String(params.modelId));
+      }
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateMultiSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithoutSlashes(String(params.projectId));
+      }
+
       const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -9101,7 +9255,9 @@ export namespace bigquery_v2 {
             url: (
               rootUrl +
               '/bigquery/v2/projects/{+projectId}/datasets/{+datasetId}/models/{+modelId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -9241,6 +9397,15 @@ export namespace bigquery_v2 {
         options = {};
       }
 
+      if (params.datasetId !== undefined && params.datasetId !== null) {
+        validateMultiSegment('datasetId', String(params.datasetId));
+        params.datasetId = encodeWithoutSlashes(String(params.datasetId));
+      }
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateMultiSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithoutSlashes(String(params.projectId));
+      }
+
       const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -9248,7 +9413,9 @@ export namespace bigquery_v2 {
             url: (
               rootUrl +
               '/bigquery/v2/projects/{+projectId}/datasets/{+datasetId}/models'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -9431,6 +9598,19 @@ export namespace bigquery_v2 {
         options = {};
       }
 
+      if (params.datasetId !== undefined && params.datasetId !== null) {
+        validateMultiSegment('datasetId', String(params.datasetId));
+        params.datasetId = encodeWithoutSlashes(String(params.datasetId));
+      }
+      if (params.modelId !== undefined && params.modelId !== null) {
+        validateMultiSegment('modelId', String(params.modelId));
+        params.modelId = encodeWithoutSlashes(String(params.modelId));
+      }
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateMultiSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithoutSlashes(String(params.projectId));
+      }
+
       const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -9438,7 +9618,9 @@ export namespace bigquery_v2 {
             url: (
               rootUrl +
               '/bigquery/v2/projects/{+projectId}/datasets/{+datasetId}/models/{+modelId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -9649,13 +9831,18 @@ export namespace bigquery_v2 {
         options = {};
       }
 
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateMultiSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithoutSlashes(String(params.projectId));
+      }
+
       const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/bigquery/v2/projects/{+projectId}/serviceAccount'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/bigquery/v2/projects/{+projectId}/serviceAccount')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -9798,10 +9985,9 @@ export namespace bigquery_v2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/bigquery/v2/projects').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/bigquery/v2/projects')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -9954,6 +10140,19 @@ export namespace bigquery_v2 {
         options = {};
       }
 
+      if (params.datasetId !== undefined && params.datasetId !== null) {
+        validateMultiSegment('datasetId', String(params.datasetId));
+        params.datasetId = encodeWithoutSlashes(String(params.datasetId));
+      }
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateMultiSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithoutSlashes(String(params.projectId));
+      }
+      if (params.routineId !== undefined && params.routineId !== null) {
+        validateMultiSegment('routineId', String(params.routineId));
+        params.routineId = encodeWithoutSlashes(String(params.routineId));
+      }
+
       const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -9961,7 +10160,9 @@ export namespace bigquery_v2 {
             url: (
               rootUrl +
               '/bigquery/v2/projects/{+projectId}/datasets/{+datasetId}/routines/{+routineId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -10119,6 +10320,19 @@ export namespace bigquery_v2 {
         options = {};
       }
 
+      if (params.datasetId !== undefined && params.datasetId !== null) {
+        validateMultiSegment('datasetId', String(params.datasetId));
+        params.datasetId = encodeWithoutSlashes(String(params.datasetId));
+      }
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateMultiSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithoutSlashes(String(params.projectId));
+      }
+      if (params.routineId !== undefined && params.routineId !== null) {
+        validateMultiSegment('routineId', String(params.routineId));
+        params.routineId = encodeWithoutSlashes(String(params.routineId));
+      }
+
       const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -10126,7 +10340,9 @@ export namespace bigquery_v2 {
             url: (
               rootUrl +
               '/bigquery/v2/projects/{+projectId}/datasets/{+datasetId}/routines/{+routineId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -10270,14 +10486,18 @@ export namespace bigquery_v2 {
         options = {};
       }
 
+      if (params.resource_ !== undefined && params.resource_ !== null) {
+        validateMultiSegment('resource', String(params.resource_));
+        params.resource_ = encodeWithoutSlashes(String(params.resource_));
+      }
+
       const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/bigquery/v2/{+resource}:getIamPolicy').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/bigquery/v2/{+resource}:getIamPolicy')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -10458,6 +10678,15 @@ export namespace bigquery_v2 {
         options = {};
       }
 
+      if (params.datasetId !== undefined && params.datasetId !== null) {
+        validateMultiSegment('datasetId', String(params.datasetId));
+        params.datasetId = encodeWithoutSlashes(String(params.datasetId));
+      }
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateMultiSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithoutSlashes(String(params.projectId));
+      }
+
       const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -10465,7 +10694,9 @@ export namespace bigquery_v2 {
             url: (
               rootUrl +
               '/bigquery/v2/projects/{+projectId}/datasets/{+datasetId}/routines'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -10610,6 +10841,15 @@ export namespace bigquery_v2 {
         options = {};
       }
 
+      if (params.datasetId !== undefined && params.datasetId !== null) {
+        validateMultiSegment('datasetId', String(params.datasetId));
+        params.datasetId = encodeWithoutSlashes(String(params.datasetId));
+      }
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateMultiSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithoutSlashes(String(params.projectId));
+      }
+
       const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -10617,7 +10857,9 @@ export namespace bigquery_v2 {
             url: (
               rootUrl +
               '/bigquery/v2/projects/{+projectId}/datasets/{+datasetId}/routines'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -10761,14 +11003,18 @@ export namespace bigquery_v2 {
         options = {};
       }
 
+      if (params.resource_ !== undefined && params.resource_ !== null) {
+        validateMultiSegment('resource', String(params.resource_));
+        params.resource_ = encodeWithoutSlashes(String(params.resource_));
+      }
+
       const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/bigquery/v2/{+resource}:setIamPolicy').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/bigquery/v2/{+resource}:setIamPolicy')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -10913,13 +11159,18 @@ export namespace bigquery_v2 {
         options = {};
       }
 
+      if (params.resource_ !== undefined && params.resource_ !== null) {
+        validateMultiSegment('resource', String(params.resource_));
+        params.resource_ = encodeWithoutSlashes(String(params.resource_));
+      }
+
       const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/bigquery/v2/{+resource}:testIamPermissions'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/bigquery/v2/{+resource}:testIamPermissions')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -11102,6 +11353,19 @@ export namespace bigquery_v2 {
         options = {};
       }
 
+      if (params.datasetId !== undefined && params.datasetId !== null) {
+        validateMultiSegment('datasetId', String(params.datasetId));
+        params.datasetId = encodeWithoutSlashes(String(params.datasetId));
+      }
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateMultiSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithoutSlashes(String(params.projectId));
+      }
+      if (params.routineId !== undefined && params.routineId !== null) {
+        validateMultiSegment('routineId', String(params.routineId));
+        params.routineId = encodeWithoutSlashes(String(params.routineId));
+      }
+
       const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -11109,7 +11373,9 @@ export namespace bigquery_v2 {
             url: (
               rootUrl +
               '/bigquery/v2/projects/{+projectId}/datasets/{+datasetId}/routines/{+routineId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -11381,6 +11647,19 @@ export namespace bigquery_v2 {
         options = {};
       }
 
+      if (params.datasetId !== undefined && params.datasetId !== null) {
+        validateMultiSegment('datasetId', String(params.datasetId));
+        params.datasetId = encodeWithoutSlashes(String(params.datasetId));
+      }
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateMultiSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithoutSlashes(String(params.projectId));
+      }
+      if (params.tableId !== undefined && params.tableId !== null) {
+        validateMultiSegment('tableId', String(params.tableId));
+        params.tableId = encodeWithoutSlashes(String(params.tableId));
+      }
+
       const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -11388,7 +11667,9 @@ export namespace bigquery_v2 {
             url: (
               rootUrl +
               '/bigquery/v2/projects/{+projectId}/datasets/{+datasetId}/tables/{+tableId}/rowAccessPolicies:batchDelete'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -11522,6 +11803,23 @@ export namespace bigquery_v2 {
         options = {};
       }
 
+      if (params.datasetId !== undefined && params.datasetId !== null) {
+        validateMultiSegment('datasetId', String(params.datasetId));
+        params.datasetId = encodeWithoutSlashes(String(params.datasetId));
+      }
+      if (params.policyId !== undefined && params.policyId !== null) {
+        validateMultiSegment('policyId', String(params.policyId));
+        params.policyId = encodeWithoutSlashes(String(params.policyId));
+      }
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateMultiSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithoutSlashes(String(params.projectId));
+      }
+      if (params.tableId !== undefined && params.tableId !== null) {
+        validateMultiSegment('tableId', String(params.tableId));
+        params.tableId = encodeWithoutSlashes(String(params.tableId));
+      }
+
       const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -11529,7 +11827,9 @@ export namespace bigquery_v2 {
             url: (
               rootUrl +
               '/bigquery/v2/projects/{+projectId}/datasets/{+datasetId}/tables/{+tableId}/rowAccessPolicies/{+policyId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -11674,6 +11974,23 @@ export namespace bigquery_v2 {
         options = {};
       }
 
+      if (params.datasetId !== undefined && params.datasetId !== null) {
+        validateMultiSegment('datasetId', String(params.datasetId));
+        params.datasetId = encodeWithoutSlashes(String(params.datasetId));
+      }
+      if (params.policyId !== undefined && params.policyId !== null) {
+        validateMultiSegment('policyId', String(params.policyId));
+        params.policyId = encodeWithoutSlashes(String(params.policyId));
+      }
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateMultiSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithoutSlashes(String(params.projectId));
+      }
+      if (params.tableId !== undefined && params.tableId !== null) {
+        validateMultiSegment('tableId', String(params.tableId));
+        params.tableId = encodeWithoutSlashes(String(params.tableId));
+      }
+
       const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -11681,7 +11998,9 @@ export namespace bigquery_v2 {
             url: (
               rootUrl +
               '/bigquery/v2/projects/{+projectId}/datasets/{+datasetId}/tables/{+tableId}/rowAccessPolicies/{+policyId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -11826,14 +12145,18 @@ export namespace bigquery_v2 {
         options = {};
       }
 
+      if (params.resource_ !== undefined && params.resource_ !== null) {
+        validateMultiSegment('resource', String(params.resource_));
+        params.resource_ = encodeWithoutSlashes(String(params.resource_));
+      }
+
       const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/bigquery/v2/{+resource}:getIamPolicy').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/bigquery/v2/{+resource}:getIamPolicy')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -11988,6 +12311,19 @@ export namespace bigquery_v2 {
         options = {};
       }
 
+      if (params.datasetId !== undefined && params.datasetId !== null) {
+        validateMultiSegment('datasetId', String(params.datasetId));
+        params.datasetId = encodeWithoutSlashes(String(params.datasetId));
+      }
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateMultiSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithoutSlashes(String(params.projectId));
+      }
+      if (params.tableId !== undefined && params.tableId !== null) {
+        validateMultiSegment('tableId', String(params.tableId));
+        params.tableId = encodeWithoutSlashes(String(params.tableId));
+      }
+
       const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -11995,7 +12331,9 @@ export namespace bigquery_v2 {
             url: (
               rootUrl +
               '/bigquery/v2/projects/{+projectId}/datasets/{+datasetId}/tables/{+tableId}/rowAccessPolicies'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -12142,6 +12480,19 @@ export namespace bigquery_v2 {
         options = {};
       }
 
+      if (params.datasetId !== undefined && params.datasetId !== null) {
+        validateMultiSegment('datasetId', String(params.datasetId));
+        params.datasetId = encodeWithoutSlashes(String(params.datasetId));
+      }
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateMultiSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithoutSlashes(String(params.projectId));
+      }
+      if (params.tableId !== undefined && params.tableId !== null) {
+        validateMultiSegment('tableId', String(params.tableId));
+        params.tableId = encodeWithoutSlashes(String(params.tableId));
+      }
+
       const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -12149,7 +12500,9 @@ export namespace bigquery_v2 {
             url: (
               rootUrl +
               '/bigquery/v2/projects/{+projectId}/datasets/{+datasetId}/tables/{+tableId}/rowAccessPolicies'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -12297,13 +12650,18 @@ export namespace bigquery_v2 {
         options = {};
       }
 
+      if (params.resource_ !== undefined && params.resource_ !== null) {
+        validateMultiSegment('resource', String(params.resource_));
+        params.resource_ = encodeWithoutSlashes(String(params.resource_));
+      }
+
       const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/bigquery/v2/{+resource}:testIamPermissions'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/bigquery/v2/{+resource}:testIamPermissions')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -12460,6 +12818,23 @@ export namespace bigquery_v2 {
         options = {};
       }
 
+      if (params.datasetId !== undefined && params.datasetId !== null) {
+        validateMultiSegment('datasetId', String(params.datasetId));
+        params.datasetId = encodeWithoutSlashes(String(params.datasetId));
+      }
+      if (params.policyId !== undefined && params.policyId !== null) {
+        validateMultiSegment('policyId', String(params.policyId));
+        params.policyId = encodeWithoutSlashes(String(params.policyId));
+      }
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateMultiSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithoutSlashes(String(params.projectId));
+      }
+      if (params.tableId !== undefined && params.tableId !== null) {
+        validateMultiSegment('tableId', String(params.tableId));
+        params.tableId = encodeWithoutSlashes(String(params.tableId));
+      }
+
       const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -12467,7 +12842,9 @@ export namespace bigquery_v2 {
             url: (
               rootUrl +
               '/bigquery/v2/projects/{+projectId}/datasets/{+datasetId}/tables/{+tableId}/rowAccessPolicies/{+policyId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -12775,6 +13152,19 @@ export namespace bigquery_v2 {
         options = {};
       }
 
+      if (params.datasetId !== undefined && params.datasetId !== null) {
+        validateMultiSegment('datasetId', String(params.datasetId));
+        params.datasetId = encodeWithoutSlashes(String(params.datasetId));
+      }
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateMultiSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithoutSlashes(String(params.projectId));
+      }
+      if (params.tableId !== undefined && params.tableId !== null) {
+        validateMultiSegment('tableId', String(params.tableId));
+        params.tableId = encodeWithoutSlashes(String(params.tableId));
+      }
+
       const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -12782,7 +13172,9 @@ export namespace bigquery_v2 {
             url: (
               rootUrl +
               '/bigquery/v2/projects/{+projectId}/datasets/{+datasetId}/tables/{+tableId}/insertAll'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -12935,6 +13327,19 @@ export namespace bigquery_v2 {
         options = {};
       }
 
+      if (params.datasetId !== undefined && params.datasetId !== null) {
+        validateMultiSegment('datasetId', String(params.datasetId));
+        params.datasetId = encodeWithoutSlashes(String(params.datasetId));
+      }
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateMultiSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithoutSlashes(String(params.projectId));
+      }
+      if (params.tableId !== undefined && params.tableId !== null) {
+        validateMultiSegment('tableId', String(params.tableId));
+        params.tableId = encodeWithoutSlashes(String(params.tableId));
+      }
+
       const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -12942,7 +13347,9 @@ export namespace bigquery_v2 {
             url: (
               rootUrl +
               '/bigquery/v2/projects/{+projectId}/datasets/{+datasetId}/tables/{+tableId}/data'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -13136,6 +13543,19 @@ export namespace bigquery_v2 {
         options = {};
       }
 
+      if (params.datasetId !== undefined && params.datasetId !== null) {
+        validateMultiSegment('datasetId', String(params.datasetId));
+        params.datasetId = encodeWithoutSlashes(String(params.datasetId));
+      }
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateMultiSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithoutSlashes(String(params.projectId));
+      }
+      if (params.tableId !== undefined && params.tableId !== null) {
+        validateMultiSegment('tableId', String(params.tableId));
+        params.tableId = encodeWithoutSlashes(String(params.tableId));
+      }
+
       const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -13143,7 +13563,9 @@ export namespace bigquery_v2 {
             url: (
               rootUrl +
               '/bigquery/v2/projects/{+projectId}/datasets/{+datasetId}/tables/{+tableId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -13334,6 +13756,19 @@ export namespace bigquery_v2 {
         options = {};
       }
 
+      if (params.datasetId !== undefined && params.datasetId !== null) {
+        validateMultiSegment('datasetId', String(params.datasetId));
+        params.datasetId = encodeWithoutSlashes(String(params.datasetId));
+      }
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateMultiSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithoutSlashes(String(params.projectId));
+      }
+      if (params.tableId !== undefined && params.tableId !== null) {
+        validateMultiSegment('tableId', String(params.tableId));
+        params.tableId = encodeWithoutSlashes(String(params.tableId));
+      }
+
       const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -13341,7 +13776,9 @@ export namespace bigquery_v2 {
             url: (
               rootUrl +
               '/bigquery/v2/projects/{+projectId}/datasets/{+datasetId}/tables/{+tableId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -13485,14 +13922,18 @@ export namespace bigquery_v2 {
         options = {};
       }
 
+      if (params.resource_ !== undefined && params.resource_ !== null) {
+        validateMultiSegment('resource', String(params.resource_));
+        params.resource_ = encodeWithoutSlashes(String(params.resource_));
+      }
+
       const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/bigquery/v2/{+resource}:getIamPolicy').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/bigquery/v2/{+resource}:getIamPolicy')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -13735,6 +14176,15 @@ export namespace bigquery_v2 {
         options = {};
       }
 
+      if (params.datasetId !== undefined && params.datasetId !== null) {
+        validateMultiSegment('datasetId', String(params.datasetId));
+        params.datasetId = encodeWithoutSlashes(String(params.datasetId));
+      }
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateMultiSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithoutSlashes(String(params.projectId));
+      }
+
       const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -13742,7 +14192,9 @@ export namespace bigquery_v2 {
             url: (
               rootUrl +
               '/bigquery/v2/projects/{+projectId}/datasets/{+datasetId}/tables'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -13884,6 +14336,15 @@ export namespace bigquery_v2 {
         options = {};
       }
 
+      if (params.datasetId !== undefined && params.datasetId !== null) {
+        validateMultiSegment('datasetId', String(params.datasetId));
+        params.datasetId = encodeWithoutSlashes(String(params.datasetId));
+      }
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateMultiSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithoutSlashes(String(params.projectId));
+      }
+
       const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -13891,7 +14352,9 @@ export namespace bigquery_v2 {
             url: (
               rootUrl +
               '/bigquery/v2/projects/{+projectId}/datasets/{+datasetId}/tables'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -14138,6 +14601,19 @@ export namespace bigquery_v2 {
         options = {};
       }
 
+      if (params.datasetId !== undefined && params.datasetId !== null) {
+        validateMultiSegment('datasetId', String(params.datasetId));
+        params.datasetId = encodeWithoutSlashes(String(params.datasetId));
+      }
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateMultiSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithoutSlashes(String(params.projectId));
+      }
+      if (params.tableId !== undefined && params.tableId !== null) {
+        validateMultiSegment('tableId', String(params.tableId));
+        params.tableId = encodeWithoutSlashes(String(params.tableId));
+      }
+
       const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -14145,7 +14621,9 @@ export namespace bigquery_v2 {
             url: (
               rootUrl +
               '/bigquery/v2/projects/{+projectId}/datasets/{+datasetId}/tables/{+tableId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -14289,14 +14767,18 @@ export namespace bigquery_v2 {
         options = {};
       }
 
+      if (params.resource_ !== undefined && params.resource_ !== null) {
+        validateMultiSegment('resource', String(params.resource_));
+        params.resource_ = encodeWithoutSlashes(String(params.resource_));
+      }
+
       const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/bigquery/v2/{+resource}:setIamPolicy').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/bigquery/v2/{+resource}:setIamPolicy')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -14441,13 +14923,18 @@ export namespace bigquery_v2 {
         options = {};
       }
 
+      if (params.resource_ !== undefined && params.resource_ !== null) {
+        validateMultiSegment('resource', String(params.resource_));
+        params.resource_ = encodeWithoutSlashes(String(params.resource_));
+      }
+
       const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/bigquery/v2/{+resource}:testIamPermissions'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/bigquery/v2/{+resource}:testIamPermissions')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -14694,6 +15181,19 @@ export namespace bigquery_v2 {
         options = {};
       }
 
+      if (params.datasetId !== undefined && params.datasetId !== null) {
+        validateMultiSegment('datasetId', String(params.datasetId));
+        params.datasetId = encodeWithoutSlashes(String(params.datasetId));
+      }
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateMultiSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithoutSlashes(String(params.projectId));
+      }
+      if (params.tableId !== undefined && params.tableId !== null) {
+        validateMultiSegment('tableId', String(params.tableId));
+        params.tableId = encodeWithoutSlashes(String(params.tableId));
+      }
+
       const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -14701,7 +15201,9 @@ export namespace bigquery_v2 {
             url: (
               rootUrl +
               '/bigquery/v2/projects/{+projectId}/datasets/{+datasetId}/tables/{+tableId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },

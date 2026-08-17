@@ -34,6 +34,12 @@ import {
   APIRequestContext,
 } from 'googleapis-common';
 import {Readable} from 'stream';
+import {
+  validateSingleSegment,
+  validateMultiSegment,
+  encodeWithSlashes,
+  encodeWithoutSlashes,
+} from '../../transcoding';
 
 export namespace drive_v3 {
   export interface Options extends GlobalOptions {
@@ -2150,7 +2156,9 @@ export namespace drive_v3 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/drive/v3/about').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/drive/v3/about')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -2303,13 +2311,24 @@ export namespace drive_v3 {
         options = {};
       }
 
+      if (params.fileId !== undefined && params.fileId !== null) {
+        validateSingleSegment('fileId', String(params.fileId));
+        params.fileId = encodeWithSlashes(String(params.fileId));
+      }
+      if (params.proposalId !== undefined && params.proposalId !== null) {
+        validateSingleSegment('proposalId', String(params.proposalId));
+        params.proposalId = encodeWithSlashes(String(params.proposalId));
+      }
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/drive/v3/files/{fileId}/accessproposals/{proposalId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -2454,14 +2473,18 @@ export namespace drive_v3 {
         options = {};
       }
 
+      if (params.fileId !== undefined && params.fileId !== null) {
+        validateSingleSegment('fileId', String(params.fileId));
+        params.fileId = encodeWithSlashes(String(params.fileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/drive/v3/files/{fileId}/accessproposals').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/drive/v3/files/{fileId}/accessproposals')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -2600,6 +2623,15 @@ export namespace drive_v3 {
         options = {};
       }
 
+      if (params.fileId !== undefined && params.fileId !== null) {
+        validateSingleSegment('fileId', String(params.fileId));
+        params.fileId = encodeWithSlashes(String(params.fileId));
+      }
+      if (params.proposalId !== undefined && params.proposalId !== null) {
+        validateSingleSegment('proposalId', String(params.proposalId));
+        params.proposalId = encodeWithSlashes(String(params.proposalId));
+      }
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2607,7 +2639,9 @@ export namespace drive_v3 {
             url: (
               rootUrl +
               '/drive/v3/files/{fileId}/accessproposals/{proposalId}:resolve'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -2807,6 +2841,15 @@ export namespace drive_v3 {
         options = {};
       }
 
+      if (params.approvalId !== undefined && params.approvalId !== null) {
+        validateSingleSegment('approvalId', String(params.approvalId));
+        params.approvalId = encodeWithSlashes(String(params.approvalId));
+      }
+      if (params.fileId !== undefined && params.fileId !== null) {
+        validateSingleSegment('fileId', String(params.fileId));
+        params.fileId = encodeWithSlashes(String(params.fileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2814,7 +2857,9 @@ export namespace drive_v3 {
             url: (
               rootUrl +
               '/drive/v3/files/{fileId}/approvals/{approvalId}:approve'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -2966,13 +3011,24 @@ export namespace drive_v3 {
         options = {};
       }
 
+      if (params.approvalId !== undefined && params.approvalId !== null) {
+        validateSingleSegment('approvalId', String(params.approvalId));
+        params.approvalId = encodeWithSlashes(String(params.approvalId));
+      }
+      if (params.fileId !== undefined && params.fileId !== null) {
+        validateSingleSegment('fileId', String(params.fileId));
+        params.fileId = encodeWithSlashes(String(params.fileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/drive/v3/files/{fileId}/approvals/{approvalId}:cancel'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -3125,6 +3181,15 @@ export namespace drive_v3 {
         options = {};
       }
 
+      if (params.approvalId !== undefined && params.approvalId !== null) {
+        validateSingleSegment('approvalId', String(params.approvalId));
+        params.approvalId = encodeWithSlashes(String(params.approvalId));
+      }
+      if (params.fileId !== undefined && params.fileId !== null) {
+        validateSingleSegment('fileId', String(params.fileId));
+        params.fileId = encodeWithSlashes(String(params.fileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3132,7 +3197,9 @@ export namespace drive_v3 {
             url: (
               rootUrl +
               '/drive/v3/files/{fileId}/approvals/{approvalId}:comment'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -3285,6 +3352,15 @@ export namespace drive_v3 {
         options = {};
       }
 
+      if (params.approvalId !== undefined && params.approvalId !== null) {
+        validateSingleSegment('approvalId', String(params.approvalId));
+        params.approvalId = encodeWithSlashes(String(params.approvalId));
+      }
+      if (params.fileId !== undefined && params.fileId !== null) {
+        validateSingleSegment('fileId', String(params.fileId));
+        params.fileId = encodeWithSlashes(String(params.fileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3292,7 +3368,9 @@ export namespace drive_v3 {
             url: (
               rootUrl +
               '/drive/v3/files/{fileId}/approvals/{approvalId}:decline'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -3439,13 +3517,22 @@ export namespace drive_v3 {
         options = {};
       }
 
+      if (params.approvalId !== undefined && params.approvalId !== null) {
+        validateSingleSegment('approvalId', String(params.approvalId));
+        params.approvalId = encodeWithSlashes(String(params.approvalId));
+      }
+      if (params.fileId !== undefined && params.fileId !== null) {
+        validateSingleSegment('fileId', String(params.fileId));
+        params.fileId = encodeWithSlashes(String(params.fileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/drive/v3/files/{fileId}/approvals/{approvalId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/drive/v3/files/{fileId}/approvals/{approvalId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -3587,14 +3674,18 @@ export namespace drive_v3 {
         options = {};
       }
 
+      if (params.fileId !== undefined && params.fileId !== null) {
+        validateSingleSegment('fileId', String(params.fileId));
+        params.fileId = encodeWithSlashes(String(params.fileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/drive/v3/files/{fileId}/approvals').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/drive/v3/files/{fileId}/approvals')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -3749,6 +3840,15 @@ export namespace drive_v3 {
         options = {};
       }
 
+      if (params.approvalId !== undefined && params.approvalId !== null) {
+        validateSingleSegment('approvalId', String(params.approvalId));
+        params.approvalId = encodeWithSlashes(String(params.approvalId));
+      }
+      if (params.fileId !== undefined && params.fileId !== null) {
+        validateSingleSegment('fileId', String(params.fileId));
+        params.fileId = encodeWithSlashes(String(params.fileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3756,7 +3856,9 @@ export namespace drive_v3 {
             url: (
               rootUrl +
               '/drive/v3/files/{fileId}/approvals/{approvalId}:reassign'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -3910,14 +4012,18 @@ export namespace drive_v3 {
         options = {};
       }
 
+      if (params.fileId !== undefined && params.fileId !== null) {
+        validateSingleSegment('fileId', String(params.fileId));
+        params.fileId = encodeWithSlashes(String(params.fileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/drive/v3/files/{fileId}/approvals:start').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/drive/v3/files/{fileId}/approvals:start')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -4194,14 +4300,18 @@ export namespace drive_v3 {
         options = {};
       }
 
+      if (params.appId !== undefined && params.appId !== null) {
+        validateSingleSegment('appId', String(params.appId));
+        params.appId = encodeWithSlashes(String(params.appId));
+      }
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/drive/v3/apps/{appId}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/drive/v3/apps/{appId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -4340,7 +4450,9 @@ export namespace drive_v3 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/drive/v3/apps').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/drive/v3/apps')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -4520,10 +4632,9 @@ export namespace drive_v3 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/drive/v3/changes/startPageToken').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/drive/v3/changes/startPageToken')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -4693,7 +4804,9 @@ export namespace drive_v3 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/drive/v3/changes').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/drive/v3/changes')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -4886,10 +4999,9 @@ export namespace drive_v3 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/drive/v3/changes/watch').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/drive/v3/changes/watch')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -5185,10 +5297,9 @@ export namespace drive_v3 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/drive/v3/channels/stop').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/drive/v3/channels/stop')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -5367,14 +5478,18 @@ export namespace drive_v3 {
         options = {};
       }
 
+      if (params.fileId !== undefined && params.fileId !== null) {
+        validateSingleSegment('fileId', String(params.fileId));
+        params.fileId = encodeWithSlashes(String(params.fileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/drive/v3/files/{fileId}/comments').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/drive/v3/files/{fileId}/comments')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -5501,13 +5616,22 @@ export namespace drive_v3 {
         options = {};
       }
 
+      if (params.commentId !== undefined && params.commentId !== null) {
+        validateSingleSegment('commentId', String(params.commentId));
+        params.commentId = encodeWithSlashes(String(params.commentId));
+      }
+      if (params.fileId !== undefined && params.fileId !== null) {
+        validateSingleSegment('fileId', String(params.fileId));
+        params.fileId = encodeWithSlashes(String(params.fileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/drive/v3/files/{fileId}/comments/{commentId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/drive/v3/files/{fileId}/comments/{commentId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -5657,13 +5781,22 @@ export namespace drive_v3 {
         options = {};
       }
 
+      if (params.commentId !== undefined && params.commentId !== null) {
+        validateSingleSegment('commentId', String(params.commentId));
+        params.commentId = encodeWithSlashes(String(params.commentId));
+      }
+      if (params.fileId !== undefined && params.fileId !== null) {
+        validateSingleSegment('fileId', String(params.fileId));
+        params.fileId = encodeWithSlashes(String(params.fileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/drive/v3/files/{fileId}/comments/{commentId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/drive/v3/files/{fileId}/comments/{commentId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -5807,14 +5940,18 @@ export namespace drive_v3 {
         options = {};
       }
 
+      if (params.fileId !== undefined && params.fileId !== null) {
+        validateSingleSegment('fileId', String(params.fileId));
+        params.fileId = encodeWithSlashes(String(params.fileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/drive/v3/files/{fileId}/comments').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/drive/v3/files/{fileId}/comments')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -5981,13 +6118,22 @@ export namespace drive_v3 {
         options = {};
       }
 
+      if (params.commentId !== undefined && params.commentId !== null) {
+        validateSingleSegment('commentId', String(params.commentId));
+        params.commentId = encodeWithSlashes(String(params.commentId));
+      }
+      if (params.fileId !== undefined && params.fileId !== null) {
+        validateSingleSegment('fileId', String(params.fileId));
+        params.fileId = encodeWithSlashes(String(params.fileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/drive/v3/files/{fileId}/comments/{commentId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/drive/v3/files/{fileId}/comments/{commentId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -6229,7 +6375,9 @@ export namespace drive_v3 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/drive/v3/drives').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/drive/v3/drives')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -6355,14 +6503,18 @@ export namespace drive_v3 {
         options = {};
       }
 
+      if (params.driveId !== undefined && params.driveId !== null) {
+        validateSingleSegment('driveId', String(params.driveId));
+        params.driveId = encodeWithSlashes(String(params.driveId));
+      }
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/drive/v3/drives/{driveId}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/drive/v3/drives/{driveId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -6506,14 +6658,18 @@ export namespace drive_v3 {
         options = {};
       }
 
+      if (params.driveId !== undefined && params.driveId !== null) {
+        validateSingleSegment('driveId', String(params.driveId));
+        params.driveId = encodeWithSlashes(String(params.driveId));
+      }
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/drive/v3/drives/{driveId}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/drive/v3/drives/{driveId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -6652,14 +6808,18 @@ export namespace drive_v3 {
         options = {};
       }
 
+      if (params.driveId !== undefined && params.driveId !== null) {
+        validateSingleSegment('driveId', String(params.driveId));
+        params.driveId = encodeWithSlashes(String(params.driveId));
+      }
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/drive/v3/drives/{driveId}/hide').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/drive/v3/drives/{driveId}/hide')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -6802,7 +6962,9 @@ export namespace drive_v3 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/drive/v3/drives').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/drive/v3/drives')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -6941,14 +7103,18 @@ export namespace drive_v3 {
         options = {};
       }
 
+      if (params.driveId !== undefined && params.driveId !== null) {
+        validateSingleSegment('driveId', String(params.driveId));
+        params.driveId = encodeWithSlashes(String(params.driveId));
+      }
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/drive/v3/drives/{driveId}/unhide').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/drive/v3/drives/{driveId}/unhide')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -7108,14 +7274,18 @@ export namespace drive_v3 {
         options = {};
       }
 
+      if (params.driveId !== undefined && params.driveId !== null) {
+        validateSingleSegment('driveId', String(params.driveId));
+        params.driveId = encodeWithSlashes(String(params.driveId));
+      }
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/drive/v3/drives/{driveId}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/drive/v3/drives/{driveId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -7488,14 +7658,18 @@ export namespace drive_v3 {
         options = {};
       }
 
+      if (params.fileId !== undefined && params.fileId !== null) {
+        validateSingleSegment('fileId', String(params.fileId));
+        params.fileId = encodeWithSlashes(String(params.fileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/drive/v3/files/{fileId}/copy').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/drive/v3/files/{fileId}/copy')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -7787,17 +7961,18 @@ export namespace drive_v3 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/drive/v3/files').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/drive/v3/files')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
           options
         ),
         params,
-        mediaUrl: (rootUrl + '/upload/drive/v3/files').replace(
-          /([^:]\/)\/+/g,
-          '$1'
-        ),
+        mediaUrl: (rootUrl + '/upload/drive/v3/files')
+          .replace(/([^:]\/)\/+/g, '$1')
+          .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
         requiredParams: [],
         pathParams: [],
         context: this.context,
@@ -7923,14 +8098,18 @@ export namespace drive_v3 {
         options = {};
       }
 
+      if (params.fileId !== undefined && params.fileId !== null) {
+        validateSingleSegment('fileId', String(params.fileId));
+        params.fileId = encodeWithSlashes(String(params.fileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/drive/v3/files/{fileId}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/drive/v3/files/{fileId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -8070,14 +8249,18 @@ export namespace drive_v3 {
         options = {};
       }
 
+      if (params.fileId !== undefined && params.fileId !== null) {
+        validateSingleSegment('fileId', String(params.fileId));
+        params.fileId = encodeWithSlashes(String(params.fileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/drive/v3/files/{fileId}/download').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/drive/v3/files/{fileId}/download')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -8205,10 +8388,9 @@ export namespace drive_v3 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/drive/v3/files/trash').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/drive/v3/files/trash')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -8337,14 +8519,18 @@ export namespace drive_v3 {
         options = {};
       }
 
+      if (params.fileId !== undefined && params.fileId !== null) {
+        validateSingleSegment('fileId', String(params.fileId));
+        params.fileId = encodeWithSlashes(String(params.fileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/drive/v3/files/{fileId}/export').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/drive/v3/files/{fileId}/export')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -8487,10 +8673,9 @@ export namespace drive_v3 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/drive/v3/files/generateCseToken').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/drive/v3/files/generateCseToken')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -8634,10 +8819,9 @@ export namespace drive_v3 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/drive/v3/files/generateIds').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/drive/v3/files/generateIds')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -8848,14 +9032,18 @@ export namespace drive_v3 {
         options = {};
       }
 
+      if (params.fileId !== undefined && params.fileId !== null) {
+        validateSingleSegment('fileId', String(params.fileId));
+        params.fileId = encodeWithSlashes(String(params.fileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/drive/v3/files/{fileId}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/drive/v3/files/{fileId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -9027,7 +9215,9 @@ export namespace drive_v3 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/drive/v3/files').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/drive/v3/files')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -9168,14 +9358,18 @@ export namespace drive_v3 {
         options = {};
       }
 
+      if (params.fileId !== undefined && params.fileId !== null) {
+        validateSingleSegment('fileId', String(params.fileId));
+        params.fileId = encodeWithSlashes(String(params.fileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/drive/v3/files/{fileId}/listLabels').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/drive/v3/files/{fileId}/listLabels')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -9322,14 +9516,18 @@ export namespace drive_v3 {
         options = {};
       }
 
+      if (params.fileId !== undefined && params.fileId !== null) {
+        validateSingleSegment('fileId', String(params.fileId));
+        params.fileId = encodeWithSlashes(String(params.fileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/drive/v3/files/{fileId}/modifyLabels').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/drive/v3/files/{fileId}/modifyLabels')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -9623,24 +9821,27 @@ export namespace drive_v3 {
         options = {};
       }
 
+      if (params.fileId !== undefined && params.fileId !== null) {
+        validateSingleSegment('fileId', String(params.fileId));
+        params.fileId = encodeWithSlashes(String(params.fileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/drive/v3/files/{fileId}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/drive/v3/files/{fileId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
           options
         ),
         params,
-        mediaUrl: (rootUrl + '/upload/drive/v3/files/{fileId}').replace(
-          /([^:]\/)\/+/g,
-          '$1'
-        ),
+        mediaUrl: (rootUrl + '/upload/drive/v3/files/{fileId}')
+          .replace(/([^:]\/)\/+/g, '$1')
+          .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
         requiredParams: ['fileId'],
         pathParams: ['fileId'],
         context: this.context,
@@ -9807,14 +10008,18 @@ export namespace drive_v3 {
         options = {};
       }
 
+      if (params.fileId !== undefined && params.fileId !== null) {
+        validateSingleSegment('fileId', String(params.fileId));
+        params.fileId = encodeWithSlashes(String(params.fileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/drive/v3/files/{fileId}/watch').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/drive/v3/files/{fileId}/watch')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -10346,14 +10551,18 @@ export namespace drive_v3 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateSingleSegment('name', String(params.name));
+        params.name = encodeWithSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/drive/v3/operations/{name}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/drive/v3/operations/{name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -10555,14 +10764,18 @@ export namespace drive_v3 {
         options = {};
       }
 
+      if (params.fileId !== undefined && params.fileId !== null) {
+        validateSingleSegment('fileId', String(params.fileId));
+        params.fileId = encodeWithSlashes(String(params.fileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/drive/v3/files/{fileId}/permissions').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/drive/v3/files/{fileId}/permissions')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -10698,13 +10911,24 @@ export namespace drive_v3 {
         options = {};
       }
 
+      if (params.fileId !== undefined && params.fileId !== null) {
+        validateSingleSegment('fileId', String(params.fileId));
+        params.fileId = encodeWithSlashes(String(params.fileId));
+      }
+      if (params.permissionId !== undefined && params.permissionId !== null) {
+        validateSingleSegment('permissionId', String(params.permissionId));
+        params.permissionId = encodeWithSlashes(String(params.permissionId));
+      }
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/drive/v3/files/{fileId}/permissions/{permissionId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -10863,13 +11087,24 @@ export namespace drive_v3 {
         options = {};
       }
 
+      if (params.fileId !== undefined && params.fileId !== null) {
+        validateSingleSegment('fileId', String(params.fileId));
+        params.fileId = encodeWithSlashes(String(params.fileId));
+      }
+      if (params.permissionId !== undefined && params.permissionId !== null) {
+        validateSingleSegment('permissionId', String(params.permissionId));
+        params.permissionId = encodeWithSlashes(String(params.permissionId));
+      }
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/drive/v3/files/{fileId}/permissions/{permissionId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -11020,14 +11255,18 @@ export namespace drive_v3 {
         options = {};
       }
 
+      if (params.fileId !== undefined && params.fileId !== null) {
+        validateSingleSegment('fileId', String(params.fileId));
+        params.fileId = encodeWithSlashes(String(params.fileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/drive/v3/files/{fileId}/permissions').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/drive/v3/files/{fileId}/permissions')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -11211,13 +11450,24 @@ export namespace drive_v3 {
         options = {};
       }
 
+      if (params.fileId !== undefined && params.fileId !== null) {
+        validateSingleSegment('fileId', String(params.fileId));
+        params.fileId = encodeWithSlashes(String(params.fileId));
+      }
+      if (params.permissionId !== undefined && params.permissionId !== null) {
+        validateSingleSegment('permissionId', String(params.permissionId));
+        params.permissionId = encodeWithSlashes(String(params.permissionId));
+      }
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/drive/v3/files/{fileId}/permissions/{permissionId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -11550,13 +11800,24 @@ export namespace drive_v3 {
         options = {};
       }
 
+      if (params.commentId !== undefined && params.commentId !== null) {
+        validateSingleSegment('commentId', String(params.commentId));
+        params.commentId = encodeWithSlashes(String(params.commentId));
+      }
+      if (params.fileId !== undefined && params.fileId !== null) {
+        validateSingleSegment('fileId', String(params.fileId));
+        params.fileId = encodeWithSlashes(String(params.fileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/drive/v3/files/{fileId}/comments/{commentId}/replies'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -11685,6 +11946,19 @@ export namespace drive_v3 {
         options = {};
       }
 
+      if (params.commentId !== undefined && params.commentId !== null) {
+        validateSingleSegment('commentId', String(params.commentId));
+        params.commentId = encodeWithSlashes(String(params.commentId));
+      }
+      if (params.fileId !== undefined && params.fileId !== null) {
+        validateSingleSegment('fileId', String(params.fileId));
+        params.fileId = encodeWithSlashes(String(params.fileId));
+      }
+      if (params.replyId !== undefined && params.replyId !== null) {
+        validateSingleSegment('replyId', String(params.replyId));
+        params.replyId = encodeWithSlashes(String(params.replyId));
+      }
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -11692,7 +11966,9 @@ export namespace drive_v3 {
             url: (
               rootUrl +
               '/drive/v3/files/{fileId}/comments/{commentId}/replies/{replyId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -11841,6 +12117,19 @@ export namespace drive_v3 {
         options = {};
       }
 
+      if (params.commentId !== undefined && params.commentId !== null) {
+        validateSingleSegment('commentId', String(params.commentId));
+        params.commentId = encodeWithSlashes(String(params.commentId));
+      }
+      if (params.fileId !== undefined && params.fileId !== null) {
+        validateSingleSegment('fileId', String(params.fileId));
+        params.fileId = encodeWithSlashes(String(params.fileId));
+      }
+      if (params.replyId !== undefined && params.replyId !== null) {
+        validateSingleSegment('replyId', String(params.replyId));
+        params.replyId = encodeWithSlashes(String(params.replyId));
+      }
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -11848,7 +12137,9 @@ export namespace drive_v3 {
             url: (
               rootUrl +
               '/drive/v3/files/{fileId}/comments/{commentId}/replies/{replyId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -11991,13 +12282,24 @@ export namespace drive_v3 {
         options = {};
       }
 
+      if (params.commentId !== undefined && params.commentId !== null) {
+        validateSingleSegment('commentId', String(params.commentId));
+        params.commentId = encodeWithSlashes(String(params.commentId));
+      }
+      if (params.fileId !== undefined && params.fileId !== null) {
+        validateSingleSegment('fileId', String(params.fileId));
+        params.fileId = encodeWithSlashes(String(params.fileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/drive/v3/files/{fileId}/comments/{commentId}/replies'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -12160,6 +12462,19 @@ export namespace drive_v3 {
         options = {};
       }
 
+      if (params.commentId !== undefined && params.commentId !== null) {
+        validateSingleSegment('commentId', String(params.commentId));
+        params.commentId = encodeWithSlashes(String(params.commentId));
+      }
+      if (params.fileId !== undefined && params.fileId !== null) {
+        validateSingleSegment('fileId', String(params.fileId));
+        params.fileId = encodeWithSlashes(String(params.fileId));
+      }
+      if (params.replyId !== undefined && params.replyId !== null) {
+        validateSingleSegment('replyId', String(params.replyId));
+        params.replyId = encodeWithSlashes(String(params.replyId));
+      }
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -12167,7 +12482,9 @@ export namespace drive_v3 {
             url: (
               rootUrl +
               '/drive/v3/files/{fileId}/comments/{commentId}/replies/{replyId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -12391,13 +12708,22 @@ export namespace drive_v3 {
         options = {};
       }
 
+      if (params.fileId !== undefined && params.fileId !== null) {
+        validateSingleSegment('fileId', String(params.fileId));
+        params.fileId = encodeWithSlashes(String(params.fileId));
+      }
+      if (params.revisionId !== undefined && params.revisionId !== null) {
+        validateSingleSegment('revisionId', String(params.revisionId));
+        params.revisionId = encodeWithSlashes(String(params.revisionId));
+      }
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/drive/v3/files/{fileId}/revisions/{revisionId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/drive/v3/files/{fileId}/revisions/{revisionId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -12551,13 +12877,22 @@ export namespace drive_v3 {
         options = {};
       }
 
+      if (params.fileId !== undefined && params.fileId !== null) {
+        validateSingleSegment('fileId', String(params.fileId));
+        params.fileId = encodeWithSlashes(String(params.fileId));
+      }
+      if (params.revisionId !== undefined && params.revisionId !== null) {
+        validateSingleSegment('revisionId', String(params.revisionId));
+        params.revisionId = encodeWithSlashes(String(params.revisionId));
+      }
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/drive/v3/files/{fileId}/revisions/{revisionId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/drive/v3/files/{fileId}/revisions/{revisionId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -12701,14 +13036,18 @@ export namespace drive_v3 {
         options = {};
       }
 
+      if (params.fileId !== undefined && params.fileId !== null) {
+        validateSingleSegment('fileId', String(params.fileId));
+        params.fileId = encodeWithSlashes(String(params.fileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/drive/v3/files/{fileId}/revisions').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/drive/v3/files/{fileId}/revisions')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -12876,13 +13215,22 @@ export namespace drive_v3 {
         options = {};
       }
 
+      if (params.fileId !== undefined && params.fileId !== null) {
+        validateSingleSegment('fileId', String(params.fileId));
+        params.fileId = encodeWithSlashes(String(params.fileId));
+      }
+      if (params.revisionId !== undefined && params.revisionId !== null) {
+        validateSingleSegment('revisionId', String(params.revisionId));
+        params.revisionId = encodeWithSlashes(String(params.revisionId));
+      }
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/drive/v3/files/{fileId}/revisions/{revisionId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/drive/v3/files/{fileId}/revisions/{revisionId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -13104,10 +13452,9 @@ export namespace drive_v3 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/drive/v3/teamdrives').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/drive/v3/teamdrives')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -13230,14 +13577,18 @@ export namespace drive_v3 {
         options = {};
       }
 
+      if (params.teamDriveId !== undefined && params.teamDriveId !== null) {
+        validateSingleSegment('teamDriveId', String(params.teamDriveId));
+        params.teamDriveId = encodeWithSlashes(String(params.teamDriveId));
+      }
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/drive/v3/teamdrives/{teamDriveId}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/drive/v3/teamdrives/{teamDriveId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -13380,14 +13731,18 @@ export namespace drive_v3 {
         options = {};
       }
 
+      if (params.teamDriveId !== undefined && params.teamDriveId !== null) {
+        validateSingleSegment('teamDriveId', String(params.teamDriveId));
+        params.teamDriveId = encodeWithSlashes(String(params.teamDriveId));
+      }
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/drive/v3/teamdrives/{teamDriveId}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/drive/v3/teamdrives/{teamDriveId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -13531,10 +13886,9 @@ export namespace drive_v3 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/drive/v3/teamdrives').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/drive/v3/teamdrives')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -13693,14 +14047,18 @@ export namespace drive_v3 {
         options = {};
       }
 
+      if (params.teamDriveId !== undefined && params.teamDriveId !== null) {
+        validateSingleSegment('teamDriveId', String(params.teamDriveId));
+        params.teamDriveId = encodeWithSlashes(String(params.teamDriveId));
+      }
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/drive/v3/teamdrives/{teamDriveId}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/drive/v3/teamdrives/{teamDriveId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },

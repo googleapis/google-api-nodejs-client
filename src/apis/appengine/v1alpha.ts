@@ -34,6 +34,12 @@ import {
   APIRequestContext,
 } from 'googleapis-common';
 import {Readable} from 'stream';
+import {
+  validateSingleSegment,
+  validateMultiSegment,
+  encodeWithSlashes,
+  encodeWithoutSlashes,
+} from '../../transcoding';
 
 export namespace appengine_v1alpha {
   export interface Options extends GlobalOptions {
@@ -845,13 +851,18 @@ export namespace appengine_v1alpha {
         options = {};
       }
 
+      if (params.appsId !== undefined && params.appsId !== null) {
+        validateSingleSegment('appsId', String(params.appsId));
+        params.appsId = encodeWithSlashes(String(params.appsId));
+      }
+
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v1alpha/apps/{appsId}/authorizedCertificates'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1alpha/apps/{appsId}/authorizedCertificates')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -980,6 +991,23 @@ export namespace appengine_v1alpha {
         options = {};
       }
 
+      if (params.appsId !== undefined && params.appsId !== null) {
+        validateSingleSegment('appsId', String(params.appsId));
+        params.appsId = encodeWithSlashes(String(params.appsId));
+      }
+      if (
+        params.authorizedCertificatesId !== undefined &&
+        params.authorizedCertificatesId !== null
+      ) {
+        validateSingleSegment(
+          'authorizedCertificatesId',
+          String(params.authorizedCertificatesId)
+        );
+        params.authorizedCertificatesId = encodeWithSlashes(
+          String(params.authorizedCertificatesId)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -987,7 +1015,9 @@ export namespace appengine_v1alpha {
             url: (
               rootUrl +
               '/v1alpha/apps/{appsId}/authorizedCertificates/{authorizedCertificatesId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -1134,6 +1164,23 @@ export namespace appengine_v1alpha {
         options = {};
       }
 
+      if (params.appsId !== undefined && params.appsId !== null) {
+        validateSingleSegment('appsId', String(params.appsId));
+        params.appsId = encodeWithSlashes(String(params.appsId));
+      }
+      if (
+        params.authorizedCertificatesId !== undefined &&
+        params.authorizedCertificatesId !== null
+      ) {
+        validateSingleSegment(
+          'authorizedCertificatesId',
+          String(params.authorizedCertificatesId)
+        );
+        params.authorizedCertificatesId = encodeWithSlashes(
+          String(params.authorizedCertificatesId)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1141,7 +1188,9 @@ export namespace appengine_v1alpha {
             url: (
               rootUrl +
               '/v1alpha/apps/{appsId}/authorizedCertificates/{authorizedCertificatesId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -1290,13 +1339,18 @@ export namespace appengine_v1alpha {
         options = {};
       }
 
+      if (params.appsId !== undefined && params.appsId !== null) {
+        validateSingleSegment('appsId', String(params.appsId));
+        params.appsId = encodeWithSlashes(String(params.appsId));
+      }
+
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v1alpha/apps/{appsId}/authorizedCertificates'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1alpha/apps/{appsId}/authorizedCertificates')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -1457,6 +1511,23 @@ export namespace appengine_v1alpha {
         options = {};
       }
 
+      if (params.appsId !== undefined && params.appsId !== null) {
+        validateSingleSegment('appsId', String(params.appsId));
+        params.appsId = encodeWithSlashes(String(params.appsId));
+      }
+      if (
+        params.authorizedCertificatesId !== undefined &&
+        params.authorizedCertificatesId !== null
+      ) {
+        validateSingleSegment(
+          'authorizedCertificatesId',
+          String(params.authorizedCertificatesId)
+        );
+        params.authorizedCertificatesId = encodeWithSlashes(
+          String(params.authorizedCertificatesId)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1464,7 +1535,9 @@ export namespace appengine_v1alpha {
             url: (
               rootUrl +
               '/v1alpha/apps/{appsId}/authorizedCertificates/{authorizedCertificatesId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -1687,14 +1760,18 @@ export namespace appengine_v1alpha {
         options = {};
       }
 
+      if (params.appsId !== undefined && params.appsId !== null) {
+        validateSingleSegment('appsId', String(params.appsId));
+        params.appsId = encodeWithSlashes(String(params.appsId));
+      }
+
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha/apps/{appsId}/authorizedDomains').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1alpha/apps/{appsId}/authorizedDomains')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -1866,14 +1943,18 @@ export namespace appengine_v1alpha {
         options = {};
       }
 
+      if (params.appsId !== undefined && params.appsId !== null) {
+        validateSingleSegment('appsId', String(params.appsId));
+        params.appsId = encodeWithSlashes(String(params.appsId));
+      }
+
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha/apps/{appsId}/domainMappings').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1alpha/apps/{appsId}/domainMappings')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -2008,6 +2089,23 @@ export namespace appengine_v1alpha {
         options = {};
       }
 
+      if (params.appsId !== undefined && params.appsId !== null) {
+        validateSingleSegment('appsId', String(params.appsId));
+        params.appsId = encodeWithSlashes(String(params.appsId));
+      }
+      if (
+        params.domainMappingsId !== undefined &&
+        params.domainMappingsId !== null
+      ) {
+        validateSingleSegment(
+          'domainMappingsId',
+          String(params.domainMappingsId)
+        );
+        params.domainMappingsId = encodeWithSlashes(
+          String(params.domainMappingsId)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2015,7 +2113,9 @@ export namespace appengine_v1alpha {
             url: (
               rootUrl +
               '/v1alpha/apps/{appsId}/domainMappings/{domainMappingsId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -2154,6 +2254,23 @@ export namespace appengine_v1alpha {
         options = {};
       }
 
+      if (params.appsId !== undefined && params.appsId !== null) {
+        validateSingleSegment('appsId', String(params.appsId));
+        params.appsId = encodeWithSlashes(String(params.appsId));
+      }
+      if (
+        params.domainMappingsId !== undefined &&
+        params.domainMappingsId !== null
+      ) {
+        validateSingleSegment(
+          'domainMappingsId',
+          String(params.domainMappingsId)
+        );
+        params.domainMappingsId = encodeWithSlashes(
+          String(params.domainMappingsId)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2161,7 +2278,9 @@ export namespace appengine_v1alpha {
             url: (
               rootUrl +
               '/v1alpha/apps/{appsId}/domainMappings/{domainMappingsId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -2303,14 +2422,18 @@ export namespace appengine_v1alpha {
         options = {};
       }
 
+      if (params.appsId !== undefined && params.appsId !== null) {
+        validateSingleSegment('appsId', String(params.appsId));
+        params.appsId = encodeWithSlashes(String(params.appsId));
+      }
+
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha/apps/{appsId}/domainMappings').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1alpha/apps/{appsId}/domainMappings')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -2460,6 +2583,23 @@ export namespace appengine_v1alpha {
         options = {};
       }
 
+      if (params.appsId !== undefined && params.appsId !== null) {
+        validateSingleSegment('appsId', String(params.appsId));
+        params.appsId = encodeWithSlashes(String(params.appsId));
+      }
+      if (
+        params.domainMappingsId !== undefined &&
+        params.domainMappingsId !== null
+      ) {
+        validateSingleSegment(
+          'domainMappingsId',
+          String(params.domainMappingsId)
+        );
+        params.domainMappingsId = encodeWithSlashes(
+          String(params.domainMappingsId)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2467,7 +2607,9 @@ export namespace appengine_v1alpha {
             url: (
               rootUrl +
               '/v1alpha/apps/{appsId}/domainMappings/{domainMappingsId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -2690,13 +2832,22 @@ export namespace appengine_v1alpha {
         options = {};
       }
 
+      if (params.appsId !== undefined && params.appsId !== null) {
+        validateSingleSegment('appsId', String(params.appsId));
+        params.appsId = encodeWithSlashes(String(params.appsId));
+      }
+      if (params.locationsId !== undefined && params.locationsId !== null) {
+        validateSingleSegment('locationsId', String(params.locationsId));
+        params.locationsId = encodeWithSlashes(String(params.locationsId));
+      }
+
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v1alpha/apps/{appsId}/locations/{locationsId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1alpha/apps/{appsId}/locations/{locationsId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -2840,14 +2991,18 @@ export namespace appengine_v1alpha {
         options = {};
       }
 
+      if (params.appsId !== undefined && params.appsId !== null) {
+        validateSingleSegment('appsId', String(params.appsId));
+        params.appsId = encodeWithSlashes(String(params.appsId));
+      }
+
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha/apps/{appsId}/locations').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1alpha/apps/{appsId}/locations')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -3026,13 +3181,22 @@ export namespace appengine_v1alpha {
         options = {};
       }
 
+      if (params.appsId !== undefined && params.appsId !== null) {
+        validateSingleSegment('appsId', String(params.appsId));
+        params.appsId = encodeWithSlashes(String(params.appsId));
+      }
+      if (params.operationsId !== undefined && params.operationsId !== null) {
+        validateSingleSegment('operationsId', String(params.operationsId));
+        params.operationsId = encodeWithSlashes(String(params.operationsId));
+      }
+
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v1alpha/apps/{appsId}/operations/{operationsId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1alpha/apps/{appsId}/operations/{operationsId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -3177,14 +3341,18 @@ export namespace appengine_v1alpha {
         options = {};
       }
 
+      if (params.appsId !== undefined && params.appsId !== null) {
+        validateSingleSegment('appsId', String(params.appsId));
+        params.appsId = encodeWithSlashes(String(params.appsId));
+      }
+
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha/apps/{appsId}/operations').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1alpha/apps/{appsId}/operations')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -3380,13 +3548,24 @@ export namespace appengine_v1alpha {
         options = {};
       }
 
+      if (params.locationsId !== undefined && params.locationsId !== null) {
+        validateSingleSegment('locationsId', String(params.locationsId));
+        params.locationsId = encodeWithSlashes(String(params.locationsId));
+      }
+      if (params.projectsId !== undefined && params.projectsId !== null) {
+        validateSingleSegment('projectsId', String(params.projectsId));
+        params.projectsId = encodeWithSlashes(String(params.projectsId));
+      }
+
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/v1alpha/projects/{projectsId}/locations/{locationsId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -3530,14 +3709,18 @@ export namespace appengine_v1alpha {
         options = {};
       }
 
+      if (params.projectsId !== undefined && params.projectsId !== null) {
+        validateSingleSegment('projectsId', String(params.projectsId));
+        params.projectsId = encodeWithSlashes(String(params.projectsId));
+      }
+
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha/projects/{projectsId}/locations').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1alpha/projects/{projectsId}/locations')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -3762,6 +3945,24 @@ export namespace appengine_v1alpha {
         options = {};
       }
 
+      if (
+        params.applicationsId !== undefined &&
+        params.applicationsId !== null
+      ) {
+        validateSingleSegment('applicationsId', String(params.applicationsId));
+        params.applicationsId = encodeWithSlashes(
+          String(params.applicationsId)
+        );
+      }
+      if (params.locationsId !== undefined && params.locationsId !== null) {
+        validateSingleSegment('locationsId', String(params.locationsId));
+        params.locationsId = encodeWithSlashes(String(params.locationsId));
+      }
+      if (params.projectsId !== undefined && params.projectsId !== null) {
+        validateSingleSegment('projectsId', String(params.projectsId));
+        params.projectsId = encodeWithSlashes(String(params.projectsId));
+      }
+
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3769,7 +3970,9 @@ export namespace appengine_v1alpha {
             url: (
               rootUrl +
               '/v1alpha/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}/authorizedCertificates'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -3906,6 +4109,36 @@ export namespace appengine_v1alpha {
         options = {};
       }
 
+      if (
+        params.applicationsId !== undefined &&
+        params.applicationsId !== null
+      ) {
+        validateSingleSegment('applicationsId', String(params.applicationsId));
+        params.applicationsId = encodeWithSlashes(
+          String(params.applicationsId)
+        );
+      }
+      if (
+        params.authorizedCertificatesId !== undefined &&
+        params.authorizedCertificatesId !== null
+      ) {
+        validateSingleSegment(
+          'authorizedCertificatesId',
+          String(params.authorizedCertificatesId)
+        );
+        params.authorizedCertificatesId = encodeWithSlashes(
+          String(params.authorizedCertificatesId)
+        );
+      }
+      if (params.locationsId !== undefined && params.locationsId !== null) {
+        validateSingleSegment('locationsId', String(params.locationsId));
+        params.locationsId = encodeWithSlashes(String(params.locationsId));
+      }
+      if (params.projectsId !== undefined && params.projectsId !== null) {
+        validateSingleSegment('projectsId', String(params.projectsId));
+        params.projectsId = encodeWithSlashes(String(params.projectsId));
+      }
+
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3913,7 +4146,9 @@ export namespace appengine_v1alpha {
             url: (
               rootUrl +
               '/v1alpha/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}/authorizedCertificates/{authorizedCertificatesId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -4076,6 +4311,36 @@ export namespace appengine_v1alpha {
         options = {};
       }
 
+      if (
+        params.applicationsId !== undefined &&
+        params.applicationsId !== null
+      ) {
+        validateSingleSegment('applicationsId', String(params.applicationsId));
+        params.applicationsId = encodeWithSlashes(
+          String(params.applicationsId)
+        );
+      }
+      if (
+        params.authorizedCertificatesId !== undefined &&
+        params.authorizedCertificatesId !== null
+      ) {
+        validateSingleSegment(
+          'authorizedCertificatesId',
+          String(params.authorizedCertificatesId)
+        );
+        params.authorizedCertificatesId = encodeWithSlashes(
+          String(params.authorizedCertificatesId)
+        );
+      }
+      if (params.locationsId !== undefined && params.locationsId !== null) {
+        validateSingleSegment('locationsId', String(params.locationsId));
+        params.locationsId = encodeWithSlashes(String(params.locationsId));
+      }
+      if (params.projectsId !== undefined && params.projectsId !== null) {
+        validateSingleSegment('projectsId', String(params.projectsId));
+        params.projectsId = encodeWithSlashes(String(params.projectsId));
+      }
+
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4083,7 +4348,9 @@ export namespace appengine_v1alpha {
             url: (
               rootUrl +
               '/v1alpha/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}/authorizedCertificates/{authorizedCertificatesId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -4250,6 +4517,24 @@ export namespace appengine_v1alpha {
         options = {};
       }
 
+      if (
+        params.applicationsId !== undefined &&
+        params.applicationsId !== null
+      ) {
+        validateSingleSegment('applicationsId', String(params.applicationsId));
+        params.applicationsId = encodeWithSlashes(
+          String(params.applicationsId)
+        );
+      }
+      if (params.locationsId !== undefined && params.locationsId !== null) {
+        validateSingleSegment('locationsId', String(params.locationsId));
+        params.locationsId = encodeWithSlashes(String(params.locationsId));
+      }
+      if (params.projectsId !== undefined && params.projectsId !== null) {
+        validateSingleSegment('projectsId', String(params.projectsId));
+        params.projectsId = encodeWithSlashes(String(params.projectsId));
+      }
+
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4257,7 +4542,9 @@ export namespace appengine_v1alpha {
             url: (
               rootUrl +
               '/v1alpha/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}/authorizedCertificates'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -4426,6 +4713,36 @@ export namespace appengine_v1alpha {
         options = {};
       }
 
+      if (
+        params.applicationsId !== undefined &&
+        params.applicationsId !== null
+      ) {
+        validateSingleSegment('applicationsId', String(params.applicationsId));
+        params.applicationsId = encodeWithSlashes(
+          String(params.applicationsId)
+        );
+      }
+      if (
+        params.authorizedCertificatesId !== undefined &&
+        params.authorizedCertificatesId !== null
+      ) {
+        validateSingleSegment(
+          'authorizedCertificatesId',
+          String(params.authorizedCertificatesId)
+        );
+        params.authorizedCertificatesId = encodeWithSlashes(
+          String(params.authorizedCertificatesId)
+        );
+      }
+      if (params.locationsId !== undefined && params.locationsId !== null) {
+        validateSingleSegment('locationsId', String(params.locationsId));
+        params.locationsId = encodeWithSlashes(String(params.locationsId));
+      }
+      if (params.projectsId !== undefined && params.projectsId !== null) {
+        validateSingleSegment('projectsId', String(params.projectsId));
+        params.projectsId = encodeWithSlashes(String(params.projectsId));
+      }
+
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4433,7 +4750,9 @@ export namespace appengine_v1alpha {
             url: (
               rootUrl +
               '/v1alpha/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}/authorizedCertificates/{authorizedCertificatesId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -4712,6 +5031,24 @@ export namespace appengine_v1alpha {
         options = {};
       }
 
+      if (
+        params.applicationsId !== undefined &&
+        params.applicationsId !== null
+      ) {
+        validateSingleSegment('applicationsId', String(params.applicationsId));
+        params.applicationsId = encodeWithSlashes(
+          String(params.applicationsId)
+        );
+      }
+      if (params.locationsId !== undefined && params.locationsId !== null) {
+        validateSingleSegment('locationsId', String(params.locationsId));
+        params.locationsId = encodeWithSlashes(String(params.locationsId));
+      }
+      if (params.projectsId !== undefined && params.projectsId !== null) {
+        validateSingleSegment('projectsId', String(params.projectsId));
+        params.projectsId = encodeWithSlashes(String(params.projectsId));
+      }
+
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4719,7 +5056,9 @@ export namespace appengine_v1alpha {
             url: (
               rootUrl +
               '/v1alpha/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}/authorizedDomains'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -4905,6 +5244,24 @@ export namespace appengine_v1alpha {
         options = {};
       }
 
+      if (
+        params.applicationsId !== undefined &&
+        params.applicationsId !== null
+      ) {
+        validateSingleSegment('applicationsId', String(params.applicationsId));
+        params.applicationsId = encodeWithSlashes(
+          String(params.applicationsId)
+        );
+      }
+      if (params.locationsId !== undefined && params.locationsId !== null) {
+        validateSingleSegment('locationsId', String(params.locationsId));
+        params.locationsId = encodeWithSlashes(String(params.locationsId));
+      }
+      if (params.projectsId !== undefined && params.projectsId !== null) {
+        validateSingleSegment('projectsId', String(params.projectsId));
+        params.projectsId = encodeWithSlashes(String(params.projectsId));
+      }
+
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4912,7 +5269,9 @@ export namespace appengine_v1alpha {
             url: (
               rootUrl +
               '/v1alpha/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}/domainMappings'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -5053,6 +5412,36 @@ export namespace appengine_v1alpha {
         options = {};
       }
 
+      if (
+        params.applicationsId !== undefined &&
+        params.applicationsId !== null
+      ) {
+        validateSingleSegment('applicationsId', String(params.applicationsId));
+        params.applicationsId = encodeWithSlashes(
+          String(params.applicationsId)
+        );
+      }
+      if (
+        params.domainMappingsId !== undefined &&
+        params.domainMappingsId !== null
+      ) {
+        validateSingleSegment(
+          'domainMappingsId',
+          String(params.domainMappingsId)
+        );
+        params.domainMappingsId = encodeWithSlashes(
+          String(params.domainMappingsId)
+        );
+      }
+      if (params.locationsId !== undefined && params.locationsId !== null) {
+        validateSingleSegment('locationsId', String(params.locationsId));
+        params.locationsId = encodeWithSlashes(String(params.locationsId));
+      }
+      if (params.projectsId !== undefined && params.projectsId !== null) {
+        validateSingleSegment('projectsId', String(params.projectsId));
+        params.projectsId = encodeWithSlashes(String(params.projectsId));
+      }
+
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5060,7 +5449,9 @@ export namespace appengine_v1alpha {
             url: (
               rootUrl +
               '/v1alpha/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}/domainMappings/{domainMappingsId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -5215,6 +5606,36 @@ export namespace appengine_v1alpha {
         options = {};
       }
 
+      if (
+        params.applicationsId !== undefined &&
+        params.applicationsId !== null
+      ) {
+        validateSingleSegment('applicationsId', String(params.applicationsId));
+        params.applicationsId = encodeWithSlashes(
+          String(params.applicationsId)
+        );
+      }
+      if (
+        params.domainMappingsId !== undefined &&
+        params.domainMappingsId !== null
+      ) {
+        validateSingleSegment(
+          'domainMappingsId',
+          String(params.domainMappingsId)
+        );
+        params.domainMappingsId = encodeWithSlashes(
+          String(params.domainMappingsId)
+        );
+      }
+      if (params.locationsId !== undefined && params.locationsId !== null) {
+        validateSingleSegment('locationsId', String(params.locationsId));
+        params.locationsId = encodeWithSlashes(String(params.locationsId));
+      }
+      if (params.projectsId !== undefined && params.projectsId !== null) {
+        validateSingleSegment('projectsId', String(params.projectsId));
+        params.projectsId = encodeWithSlashes(String(params.projectsId));
+      }
+
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5222,7 +5643,9 @@ export namespace appengine_v1alpha {
             url: (
               rootUrl +
               '/v1alpha/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}/domainMappings/{domainMappingsId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -5380,6 +5803,24 @@ export namespace appengine_v1alpha {
         options = {};
       }
 
+      if (
+        params.applicationsId !== undefined &&
+        params.applicationsId !== null
+      ) {
+        validateSingleSegment('applicationsId', String(params.applicationsId));
+        params.applicationsId = encodeWithSlashes(
+          String(params.applicationsId)
+        );
+      }
+      if (params.locationsId !== undefined && params.locationsId !== null) {
+        validateSingleSegment('locationsId', String(params.locationsId));
+        params.locationsId = encodeWithSlashes(String(params.locationsId));
+      }
+      if (params.projectsId !== undefined && params.projectsId !== null) {
+        validateSingleSegment('projectsId', String(params.projectsId));
+        params.projectsId = encodeWithSlashes(String(params.projectsId));
+      }
+
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5387,7 +5828,9 @@ export namespace appengine_v1alpha {
             url: (
               rootUrl +
               '/v1alpha/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}/domainMappings'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -5543,6 +5986,36 @@ export namespace appengine_v1alpha {
         options = {};
       }
 
+      if (
+        params.applicationsId !== undefined &&
+        params.applicationsId !== null
+      ) {
+        validateSingleSegment('applicationsId', String(params.applicationsId));
+        params.applicationsId = encodeWithSlashes(
+          String(params.applicationsId)
+        );
+      }
+      if (
+        params.domainMappingsId !== undefined &&
+        params.domainMappingsId !== null
+      ) {
+        validateSingleSegment(
+          'domainMappingsId',
+          String(params.domainMappingsId)
+        );
+        params.domainMappingsId = encodeWithSlashes(
+          String(params.domainMappingsId)
+        );
+      }
+      if (params.locationsId !== undefined && params.locationsId !== null) {
+        validateSingleSegment('locationsId', String(params.locationsId));
+        params.locationsId = encodeWithSlashes(String(params.locationsId));
+      }
+      if (params.projectsId !== undefined && params.projectsId !== null) {
+        validateSingleSegment('projectsId', String(params.projectsId));
+        params.projectsId = encodeWithSlashes(String(params.projectsId));
+      }
+
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5550,7 +6023,9 @@ export namespace appengine_v1alpha {
             url: (
               rootUrl +
               '/v1alpha/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}/domainMappings/{domainMappingsId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -5825,6 +6300,19 @@ export namespace appengine_v1alpha {
         options = {};
       }
 
+      if (params.locationsId !== undefined && params.locationsId !== null) {
+        validateSingleSegment('locationsId', String(params.locationsId));
+        params.locationsId = encodeWithSlashes(String(params.locationsId));
+      }
+      if (params.operationsId !== undefined && params.operationsId !== null) {
+        validateSingleSegment('operationsId', String(params.operationsId));
+        params.operationsId = encodeWithSlashes(String(params.operationsId));
+      }
+      if (params.projectsId !== undefined && params.projectsId !== null) {
+        validateSingleSegment('projectsId', String(params.projectsId));
+        params.projectsId = encodeWithSlashes(String(params.projectsId));
+      }
+
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5832,7 +6320,9 @@ export namespace appengine_v1alpha {
             url: (
               rootUrl +
               '/v1alpha/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -5979,6 +6469,15 @@ export namespace appengine_v1alpha {
         options = {};
       }
 
+      if (params.locationsId !== undefined && params.locationsId !== null) {
+        validateSingleSegment('locationsId', String(params.locationsId));
+        params.locationsId = encodeWithSlashes(String(params.locationsId));
+      }
+      if (params.projectsId !== undefined && params.projectsId !== null) {
+        validateSingleSegment('projectsId', String(params.projectsId));
+        params.projectsId = encodeWithSlashes(String(params.projectsId));
+      }
+
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5986,7 +6485,9 @@ export namespace appengine_v1alpha {
             url: (
               rootUrl +
               '/v1alpha/projects/{projectsId}/locations/{locationsId}/operations'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },

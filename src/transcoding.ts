@@ -16,7 +16,7 @@
 // Checks that the segment is not exactly '.' or '..' (directory traversal indicators).
 export function validateSingleSegment(
   propertyName: string,
-  value: string,
+  value: string
 ): void {
   if (value === '.' || value === '..') {
     throw new Error(`Invalid value ${value} for ${propertyName}`);
@@ -29,13 +29,13 @@ export function validateSingleSegment(
 // legitimate resource names containing dots (e.g., domain-scoped project IDs).
 export function validateMultiSegment(
   propertyName: string,
-  value: string,
+  value: string
 ): void {
   if (value) {
     const segments = value.split('/');
     if (segments.some(segment => segment === '.' || segment === '..')) {
       throw new Error(
-        `Value for ${propertyName} must not contain segments that are exactly . or ..`,
+        `Value for ${propertyName} must not contain segments that are exactly . or ..`
       );
     }
   }
@@ -48,7 +48,7 @@ export function validateMultiSegment(
 export function strictEncodeURIComponent(str: string): string {
   return encodeURIComponent(str).replace(
     /[!'()*]/g,
-    character => '%' + character.charCodeAt(0).toString(16).toUpperCase(),
+    character => '%' + character.charCodeAt(0).toString(16).toUpperCase()
   );
 }
 

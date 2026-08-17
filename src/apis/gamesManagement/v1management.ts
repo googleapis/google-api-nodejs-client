@@ -34,6 +34,12 @@ import {
   APIRequestContext,
 } from 'googleapis-common';
 import {Readable} from 'stream';
+import {
+  validateSingleSegment,
+  validateMultiSegment,
+  encodeWithSlashes,
+  encodeWithoutSlashes,
+} from '../../transcoding';
 
 export namespace gamesManagement_v1management {
   export interface Options extends GlobalOptions {
@@ -482,6 +488,11 @@ export namespace gamesManagement_v1management {
         options = {};
       }
 
+      if (params.achievementId !== undefined && params.achievementId !== null) {
+        validateSingleSegment('achievementId', String(params.achievementId));
+        params.achievementId = encodeWithSlashes(String(params.achievementId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://gamesmanagement.googleapis.com/';
       const parameters = {
@@ -489,7 +500,9 @@ export namespace gamesManagement_v1management {
           {
             url: (
               rootUrl + '/games/v1management/achievements/{achievementId}/reset'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -626,10 +639,9 @@ export namespace gamesManagement_v1management {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/games/v1management/achievements/reset').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/games/v1management/achievements/reset')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -756,7 +768,9 @@ export namespace gamesManagement_v1management {
           {
             url: (
               rootUrl + '/games/v1management/achievements/resetAllForAllPlayers'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -879,6 +893,11 @@ export namespace gamesManagement_v1management {
         options = {};
       }
 
+      if (params.achievementId !== undefined && params.achievementId !== null) {
+        validateSingleSegment('achievementId', String(params.achievementId));
+        params.achievementId = encodeWithSlashes(String(params.achievementId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://gamesmanagement.googleapis.com/';
       const parameters = {
@@ -887,7 +906,9 @@ export namespace gamesManagement_v1management {
             url: (
               rootUrl +
               '/games/v1management/achievements/{achievementId}/resetForAllPlayers'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -1024,7 +1045,9 @@ export namespace gamesManagement_v1management {
             url: (
               rootUrl +
               '/games/v1management/achievements/resetMultipleForAllPlayers'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -1188,6 +1211,11 @@ export namespace gamesManagement_v1management {
         options = {};
       }
 
+      if (params.applicationId !== undefined && params.applicationId !== null) {
+        validateSingleSegment('applicationId', String(params.applicationId));
+        params.applicationId = encodeWithSlashes(String(params.applicationId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://gamesmanagement.googleapis.com/';
       const parameters = {
@@ -1196,7 +1224,9 @@ export namespace gamesManagement_v1management {
             url: (
               rootUrl +
               '/games/v1management/applications/{applicationId}/players/hidden'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -1340,14 +1370,19 @@ export namespace gamesManagement_v1management {
         options = {};
       }
 
+      if (params.eventId !== undefined && params.eventId !== null) {
+        validateSingleSegment('eventId', String(params.eventId));
+        params.eventId = encodeWithSlashes(String(params.eventId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://gamesmanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/games/v1management/events/{eventId}/reset'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/games/v1management/events/{eventId}/reset')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -1471,10 +1506,9 @@ export namespace gamesManagement_v1management {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/games/v1management/events/reset').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/games/v1management/events/reset')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -1599,9 +1633,9 @@ export namespace gamesManagement_v1management {
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/games/v1management/events/resetAllForAllPlayers'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/games/v1management/events/resetAllForAllPlayers')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -1724,6 +1758,11 @@ export namespace gamesManagement_v1management {
         options = {};
       }
 
+      if (params.eventId !== undefined && params.eventId !== null) {
+        validateSingleSegment('eventId', String(params.eventId));
+        params.eventId = encodeWithSlashes(String(params.eventId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://gamesmanagement.googleapis.com/';
       const parameters = {
@@ -1732,7 +1771,9 @@ export namespace gamesManagement_v1management {
             url: (
               rootUrl +
               '/games/v1management/events/{eventId}/resetForAllPlayers'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -1868,7 +1909,9 @@ export namespace gamesManagement_v1management {
           {
             url: (
               rootUrl + '/games/v1management/events/resetMultipleForAllPlayers'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -2020,6 +2063,15 @@ export namespace gamesManagement_v1management {
         options = {};
       }
 
+      if (params.applicationId !== undefined && params.applicationId !== null) {
+        validateSingleSegment('applicationId', String(params.applicationId));
+        params.applicationId = encodeWithSlashes(String(params.applicationId));
+      }
+      if (params.playerId !== undefined && params.playerId !== null) {
+        validateSingleSegment('playerId', String(params.playerId));
+        params.playerId = encodeWithSlashes(String(params.playerId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://gamesmanagement.googleapis.com/';
       const parameters = {
@@ -2028,7 +2080,9 @@ export namespace gamesManagement_v1management {
             url: (
               rootUrl +
               '/games/v1management/applications/{applicationId}/players/hidden/{playerId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -2152,6 +2206,15 @@ export namespace gamesManagement_v1management {
         options = {};
       }
 
+      if (params.applicationId !== undefined && params.applicationId !== null) {
+        validateSingleSegment('applicationId', String(params.applicationId));
+        params.applicationId = encodeWithSlashes(String(params.applicationId));
+      }
+      if (params.playerId !== undefined && params.playerId !== null) {
+        validateSingleSegment('playerId', String(params.playerId));
+        params.playerId = encodeWithSlashes(String(params.playerId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://gamesmanagement.googleapis.com/';
       const parameters = {
@@ -2160,7 +2223,9 @@ export namespace gamesManagement_v1management {
             url: (
               rootUrl +
               '/games/v1management/applications/{applicationId}/players/hidden/{playerId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -2322,6 +2387,11 @@ export namespace gamesManagement_v1management {
         options = {};
       }
 
+      if (params.leaderboardId !== undefined && params.leaderboardId !== null) {
+        validateSingleSegment('leaderboardId', String(params.leaderboardId));
+        params.leaderboardId = encodeWithSlashes(String(params.leaderboardId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://gamesmanagement.googleapis.com/';
       const parameters = {
@@ -2330,7 +2400,9 @@ export namespace gamesManagement_v1management {
             url: (
               rootUrl +
               '/games/v1management/leaderboards/{leaderboardId}/scores/reset'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -2466,10 +2538,9 @@ export namespace gamesManagement_v1management {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/games/v1management/scores/reset').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/games/v1management/scores/reset')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -2594,9 +2665,9 @@ export namespace gamesManagement_v1management {
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/games/v1management/scores/resetAllForAllPlayers'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/games/v1management/scores/resetAllForAllPlayers')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -2719,6 +2790,11 @@ export namespace gamesManagement_v1management {
         options = {};
       }
 
+      if (params.leaderboardId !== undefined && params.leaderboardId !== null) {
+        validateSingleSegment('leaderboardId', String(params.leaderboardId));
+        params.leaderboardId = encodeWithSlashes(String(params.leaderboardId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://gamesmanagement.googleapis.com/';
       const parameters = {
@@ -2727,7 +2803,9 @@ export namespace gamesManagement_v1management {
             url: (
               rootUrl +
               '/games/v1management/leaderboards/{leaderboardId}/scores/resetForAllPlayers'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -2863,7 +2941,9 @@ export namespace gamesManagement_v1management {
           {
             url: (
               rootUrl + '/games/v1management/scores/resetMultipleForAllPlayers'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },

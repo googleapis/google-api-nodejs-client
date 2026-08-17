@@ -34,6 +34,12 @@ import {
   APIRequestContext,
 } from 'googleapis-common';
 import {Readable} from 'stream';
+import {
+  validateSingleSegment,
+  validateMultiSegment,
+  encodeWithSlashes,
+  encodeWithoutSlashes,
+} from '../../transcoding';
 
 export namespace pagespeedonline_v5 {
   export interface Options extends GlobalOptions {
@@ -976,10 +982,9 @@ export namespace pagespeedonline_v5 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/pagespeedonline/v5/runPagespeed').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/pagespeedonline/v5/runPagespeed')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },

@@ -34,6 +34,12 @@ import {
   APIRequestContext,
 } from 'googleapis-common';
 import {Readable} from 'stream';
+import {
+  validateSingleSegment,
+  validateMultiSegment,
+  encodeWithSlashes,
+  encodeWithoutSlashes,
+} from '../../transcoding';
 
 export namespace indexing_v3 {
   export interface Options extends GlobalOptions {
@@ -292,10 +298,9 @@ export namespace indexing_v3 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v3/urlNotifications/metadata').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v3/urlNotifications/metadata')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -440,10 +445,9 @@ export namespace indexing_v3 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v3/urlNotifications:publish').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v3/urlNotifications:publish')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },

@@ -34,6 +34,12 @@ import {
   APIRequestContext,
 } from 'googleapis-common';
 import {Readable} from 'stream';
+import {
+  validateSingleSegment,
+  validateMultiSegment,
+  encodeWithSlashes,
+  encodeWithoutSlashes,
+} from '../../transcoding';
 
 export namespace doubleclicksearch_v2 {
   export interface Options extends GlobalOptions {
@@ -706,6 +712,27 @@ export namespace doubleclicksearch_v2 {
         options = {};
       }
 
+      if (params.advertiserId !== undefined && params.advertiserId !== null) {
+        validateSingleSegment('advertiserId', String(params.advertiserId));
+        params.advertiserId = encodeWithSlashes(String(params.advertiserId));
+      }
+      if (params.agencyId !== undefined && params.agencyId !== null) {
+        validateSingleSegment('agencyId', String(params.agencyId));
+        params.agencyId = encodeWithSlashes(String(params.agencyId));
+      }
+      if (
+        params.engineAccountId !== undefined &&
+        params.engineAccountId !== null
+      ) {
+        validateSingleSegment(
+          'engineAccountId',
+          String(params.engineAccountId)
+        );
+        params.engineAccountId = encodeWithSlashes(
+          String(params.engineAccountId)
+        );
+      }
+
       const rootUrl =
         options.rootUrl || 'https://doubleclicksearch.googleapis.com/';
       const parameters = {
@@ -714,7 +741,9 @@ export namespace doubleclicksearch_v2 {
             url: (
               rootUrl +
               '/doubleclicksearch/v2/agency/{agencyId}/advertiser/{advertiserId}/engine/{engineAccountId}/conversion'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -877,6 +906,11 @@ export namespace doubleclicksearch_v2 {
         options = {};
       }
 
+      if (params.customerId !== undefined && params.customerId !== null) {
+        validateSingleSegment('customerId', String(params.customerId));
+        params.customerId = encodeWithSlashes(String(params.customerId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://doubleclicksearch.googleapis.com/';
       const parameters = {
@@ -884,7 +918,9 @@ export namespace doubleclicksearch_v2 {
           {
             url: (
               rootUrl + '/doubleclicksearch/v2/customer/{customerId}/conversion'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -1032,10 +1068,9 @@ export namespace doubleclicksearch_v2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/doubleclicksearch/v2/conversion').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/doubleclicksearch/v2/conversion')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -1177,10 +1212,9 @@ export namespace doubleclicksearch_v2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/doubleclicksearch/v2/conversion').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/doubleclicksearch/v2/conversion')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -1325,7 +1359,9 @@ export namespace doubleclicksearch_v2 {
           {
             url: (
               rootUrl + '/doubleclicksearch/v2/conversion/updateAvailability'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -1610,10 +1646,9 @@ export namespace doubleclicksearch_v2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/doubleclicksearch/v2/reports/generate').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/doubleclicksearch/v2/reports/generate')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -1749,15 +1784,19 @@ export namespace doubleclicksearch_v2 {
         options = {};
       }
 
+      if (params.reportId !== undefined && params.reportId !== null) {
+        validateSingleSegment('reportId', String(params.reportId));
+        params.reportId = encodeWithSlashes(String(params.reportId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://doubleclicksearch.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/doubleclicksearch/v2/reports/{reportId}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/doubleclicksearch/v2/reports/{reportId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -1881,6 +1920,20 @@ export namespace doubleclicksearch_v2 {
         options = {};
       }
 
+      if (
+        params.reportFragment !== undefined &&
+        params.reportFragment !== null
+      ) {
+        validateSingleSegment('reportFragment', String(params.reportFragment));
+        params.reportFragment = encodeWithSlashes(
+          String(params.reportFragment)
+        );
+      }
+      if (params.reportId !== undefined && params.reportId !== null) {
+        validateSingleSegment('reportId', String(params.reportId));
+        params.reportId = encodeWithSlashes(String(params.reportId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://doubleclicksearch.googleapis.com/';
       const parameters = {
@@ -1889,7 +1942,9 @@ export namespace doubleclicksearch_v2 {
             url: (
               rootUrl +
               '/doubleclicksearch/v2/reports/{reportId}/files/{reportFragment}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -2021,6 +2076,15 @@ export namespace doubleclicksearch_v2 {
         options = {};
       }
 
+      if (params.advertiserId !== undefined && params.advertiserId !== null) {
+        validateSingleSegment('advertiserId', String(params.advertiserId));
+        params.advertiserId = encodeWithSlashes(String(params.advertiserId));
+      }
+      if (params.agencyId !== undefined && params.agencyId !== null) {
+        validateSingleSegment('agencyId', String(params.agencyId));
+        params.agencyId = encodeWithSlashes(String(params.agencyId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://doubleclicksearch.googleapis.com/';
       const parameters = {
@@ -2029,7 +2093,9 @@ export namespace doubleclicksearch_v2 {
             url: (
               rootUrl +
               '/doubleclicksearch/v2/agency/{agencyId}/advertiser/{advertiserId}/idmapping'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -2188,10 +2254,9 @@ export namespace doubleclicksearch_v2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/doubleclicksearch/v2/reports').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/doubleclicksearch/v2/reports')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -2370,6 +2435,15 @@ export namespace doubleclicksearch_v2 {
         options = {};
       }
 
+      if (params.advertiserId !== undefined && params.advertiserId !== null) {
+        validateSingleSegment('advertiserId', String(params.advertiserId));
+        params.advertiserId = encodeWithSlashes(String(params.advertiserId));
+      }
+      if (params.agencyId !== undefined && params.agencyId !== null) {
+        validateSingleSegment('agencyId', String(params.agencyId));
+        params.agencyId = encodeWithSlashes(String(params.agencyId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://doubleclicksearch.googleapis.com/';
       const parameters = {
@@ -2378,7 +2452,9 @@ export namespace doubleclicksearch_v2 {
             url: (
               rootUrl +
               '/doubleclicksearch/v2/agency/{agencyId}/advertiser/{advertiserId}/savedcolumns'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
