@@ -1,5 +1,12 @@
 # Changelog
 
+## [8.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/apikeys-v8.0.0...apikeys-v8.1.0) (2026-08-14)
+
+
+### Features
+
+* **apikeys:** update the API ([602fdeb](https://github.com/googleapis/google-api-nodejs-client/commit/602fdeb9d29d97f6de7c6526ef384fe6297b9cf0))
+
 ## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/apikeys-v7.0.0...apikeys-v8.0.0) (2026-08-03)
 
 

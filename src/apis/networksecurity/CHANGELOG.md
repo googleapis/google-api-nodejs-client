@@ -1,5 +1,12 @@
 # Changelog
 
+## [17.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/networksecurity-v17.0.0...networksecurity-v17.1.0) (2026-08-14)
+
+
+### Features
+
+* **networksecurity:** update the API ([3204136](https://github.com/googleapis/google-api-nodejs-client/commit/3204136ce3d4d5ad291843bbed54dd3defa1d0b9))
+
 ## [17.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/networksecurity-v16.0.0...networksecurity-v17.0.0) (2026-08-03)
 
 

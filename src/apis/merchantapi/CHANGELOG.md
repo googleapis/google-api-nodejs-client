@@ -1,5 +1,21 @@
 # Changelog
 
+## [20.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/merchantapi-v19.0.0...merchantapi-v20.0.0) (2026-08-14)
+
+
+### ⚠ BREAKING CHANGES
+
+* **merchantapi:** This release has breaking changes.
+
+### Features
+
+* **merchantapi:** update the API ([e55fbe0](https://github.com/googleapis/google-api-nodejs-client/commit/e55fbe008f47ba9eb6e17004a99d4675e2db0a8f))
+
+
+### Bug Fixes
+
+* **merchantapi:** update the API ([11cbf29](https://github.com/googleapis/google-api-nodejs-client/commit/11cbf29467478219e2ac7774f6b638efd1886fd7))
+
 ## [19.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/merchantapi-v18.0.0...merchantapi-v19.0.0) (2026-08-03)
 
 

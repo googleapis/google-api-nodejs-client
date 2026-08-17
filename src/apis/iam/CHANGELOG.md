@@ -1,5 +1,12 @@
 # Changelog
 
+## [38.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/iam-v38.0.0...iam-v38.0.1) (2026-08-14)
+
+
+### Bug Fixes
+
+* **iam:** update the API ([de6fba9](https://github.com/googleapis/google-api-nodejs-client/commit/de6fba97cf84b8fe31764337673943ce7aa90698))
+
 ## [38.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/iam-v37.0.0...iam-v38.0.0) (2026-08-03)
 
 

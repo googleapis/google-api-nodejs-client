@@ -1,5 +1,12 @@
 # Changelog
 
+## [19.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/migrationcenter-v19.0.0...migrationcenter-v19.0.1) (2026-08-14)
+
+
+### Bug Fixes
+
+* **migrationcenter:** update the API ([2d815c8](https://github.com/googleapis/google-api-nodejs-client/commit/2d815c85cbc34f14fe89a125c0049bf6272aa430))
+
 ## [19.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/migrationcenter-v18.0.0...migrationcenter-v19.0.0) (2026-08-03)
 
 
