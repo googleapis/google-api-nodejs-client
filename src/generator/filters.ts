@@ -121,7 +121,7 @@ export function hasResourceParam(method: SchemaMethod): boolean {
 export function isReservedParam(
   p: {reserved?: boolean},
   pname: string,
-  mpath?: string
+  mpath?: string,
 ): boolean {
   if (p && p.reserved) {
     return true;

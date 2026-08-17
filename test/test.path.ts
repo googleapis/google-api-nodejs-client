@@ -252,17 +252,16 @@ describe('Path params', () => {
           session:
             'projects/p/locations/l/agents/a/sessions/agents/../subagent',
         },
-        Utils.noop
+        Utils.noop,
       );
     }, /Value for session must not contain segments that are exactly \. or \.\./);
 
     assert.throws(() => {
       dialogflow.projects.locations.agents.sessions.detectIntent(
         {
-          session:
-            'projects/p/locations/l/agents/a/sessions/agents/./subagent',
+          session: 'projects/p/locations/l/agents/a/sessions/agents/./subagent',
         },
-        Utils.noop
+        Utils.noop,
       );
     }, /Value for session must not contain segments that are exactly \. or \.\./);
   });
@@ -286,7 +285,7 @@ describe('Path params', () => {
         }
         assert.ok(res?.config.url?.toString().endsWith(p));
         done();
-      }
+      },
     );
   });
 
@@ -300,8 +299,7 @@ describe('Path params', () => {
 
     dialogflow.projects.locations.agents.sessions.detectIntent(
       {
-        session:
-          'projects/p/locations/l/agents/a/sessions/ !@$&\'()*+,;=:%',
+        session: "projects/p/locations/l/agents/a/sessions/ !@$&'()*+,;=:%",
       },
       (err: Error | null, res?: GaxiosResponseWithHTTP2 | null) => {
         if (err) {
@@ -309,7 +307,7 @@ describe('Path params', () => {
         }
         assert.ok(res?.config.url?.toString().endsWith(p));
         done();
-      }
+      },
     );
   });
 
