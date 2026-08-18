@@ -1152,6 +1152,56 @@
             "https://www.googleapis.com/auth/compute",
             "https://www.googleapis.com/auth/compute.readonly"
           ]
+        },
+        "updatePublicPtr": {
+          "description": "Set a custom ptr domain name on regional address.",
+          "flatPath": "projects/{project}/regions/{region}/addresses/{address}:updatePublicPtr",
+          "httpMethod": "POST",
+          "id": "compute.addresses.updatePublicPtr",
+          "parameterOrder": [
+            "project",
+            "region",
+            "address"
+          ],
+          "parameters": {
+            "address": {
+              "description": "Name of the address resource to update.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
+              "required": true,
+              "type": "string"
+            },
+            "project": {
+              "description": "Source project ID where the address belongs.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "region": {
+              "description": "Name of the region for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+              "required": true,
+              "type": "string"
+            },
+            "requestId": {
+              "description": "An optional request ID to identify requests. Specify a unique request ID so\nthat if you must retry your request, the server will know to ignore the\nrequest if it has already been completed.\n\nFor example, consider a situation where you make an initial request and\nthe request times out. If you make the request again with the same\nrequest ID, the server can check if original operation with the same\nrequest ID was received, and if so, will ignore the second request. This\nprevents clients from accidentally creating duplicate commitments.\n\nThe request ID must be\na valid UUID with the exception that zero UUID is not supported\n(00000000-0000-0000-0000-000000000000).",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/regions/{region}/addresses/{address}:updatePublicPtr",
+          "request": {
+            "$ref": "RegionAddressesUpdatePublicPtrRequest"
+          },
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute"
+          ]
         }
       }
     },
@@ -42458,6 +42508,55 @@
             "https://www.googleapis.com/auth/compute.readonly"
           ]
         },
+        "getIamPolicy": {
+          "description": "Gets the access control policy for a resource. May be empty if no such\npolicy or resource exists.",
+          "flatPath": "projects/{project}/regions/{region}/sslPolicies/{resource}/getIamPolicy",
+          "httpMethod": "GET",
+          "id": "compute.regionSslPolicies.getIamPolicy",
+          "parameterOrder": [
+            "project",
+            "region",
+            "resource"
+          ],
+          "parameters": {
+            "optionsRequestedPolicyVersion": {
+              "description": "Requested IAM Policy version.",
+              "format": "int32",
+              "location": "query",
+              "type": "integer"
+            },
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "region": {
+              "description": "The name of the region for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+              "required": true,
+              "type": "string"
+            },
+            "resource": {
+              "description": "Name or id of the resource for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/regions/{region}/sslPolicies/{resource}/getIamPolicy",
+          "response": {
+            "$ref": "Policy"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute",
+            "https://www.googleapis.com/auth/compute.readonly"
+          ]
+        },
         "insert": {
           "description": "Creates a new policy in the specified project and region using the data\nincluded in the request.",
           "flatPath": "projects/{project}/regions/{region}/sslPolicies",
@@ -42669,6 +42768,51 @@
           },
           "response": {
             "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute"
+          ]
+        },
+        "setIamPolicy": {
+          "description": "Sets the access control policy on the specified resource.\nReplaces any existing policy.",
+          "flatPath": "projects/{project}/regions/{region}/sslPolicies/{resource}/setIamPolicy",
+          "httpMethod": "POST",
+          "id": "compute.regionSslPolicies.setIamPolicy",
+          "parameterOrder": [
+            "project",
+            "region",
+            "resource"
+          ],
+          "parameters": {
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "region": {
+              "description": "The name of the region for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+              "required": true,
+              "type": "string"
+            },
+            "resource": {
+              "description": "Name or id of the resource for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/regions/{region}/sslPolicies/{resource}/setIamPolicy",
+          "request": {
+            "$ref": "RegionSetPolicyRequest"
+          },
+          "response": {
+            "$ref": "Policy"
           },
           "scopes": [
             "https://www.googleapis.com/auth/cloud-platform",
@@ -46846,6 +46990,11 @@
             "router"
           ],
           "parameters": {
+            "etag": {
+              "description": "ETag for optimistic concurrency control as described by AIP 154. Used to\nprevent conflicting updates. If provided, the request will succeed only if\nthe etag matches the current etag of the router; otherwise, the request\nfails with an ABORTED error.",
+              "location": "query",
+              "type": "string"
+            },
             "project": {
               "description": "Project ID for this request.",
               "location": "path",
@@ -50603,6 +50752,47 @@
             "https://www.googleapis.com/auth/compute.readonly"
           ]
         },
+        "getIamPolicy": {
+          "description": "Gets the access control policy for a resource. May be empty if no such\npolicy or resource exists.",
+          "flatPath": "projects/{project}/global/sslPolicies/{resource}/getIamPolicy",
+          "httpMethod": "GET",
+          "id": "compute.sslPolicies.getIamPolicy",
+          "parameterOrder": [
+            "project",
+            "resource"
+          ],
+          "parameters": {
+            "optionsRequestedPolicyVersion": {
+              "description": "Requested IAM Policy version.",
+              "format": "int32",
+              "location": "query",
+              "type": "integer"
+            },
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "resource": {
+              "description": "Name or id of the resource for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9_]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/global/sslPolicies/{resource}/getIamPolicy",
+          "response": {
+            "$ref": "Policy"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute",
+            "https://www.googleapis.com/auth/compute.readonly"
+          ]
+        },
         "insert": {
           "description": "Returns the specified SSL policy resource.",
           "flatPath": "projects/{project}/global/sslPolicies",
@@ -50782,6 +50972,43 @@
           },
           "response": {
             "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute"
+          ]
+        },
+        "setIamPolicy": {
+          "description": "Sets the access control policy on the specified resource.\nReplaces any existing policy.",
+          "flatPath": "projects/{project}/global/sslPolicies/{resource}/setIamPolicy",
+          "httpMethod": "POST",
+          "id": "compute.sslPolicies.setIamPolicy",
+          "parameterOrder": [
+            "project",
+            "resource"
+          ],
+          "parameters": {
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "resource": {
+              "description": "Name or id of the resource for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9_]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/global/sslPolicies/{resource}/setIamPolicy",
+          "request": {
+            "$ref": "GlobalSetPolicyRequest"
+          },
+          "response": {
+            "$ref": "Policy"
           },
           "scopes": [
             "https://www.googleapis.com/auth/cloud-platform",
@@ -58142,7 +58369,7 @@
       }
     }
   },
-  "revision": "20260729",
+  "revision": "20260807",
   "rootUrl": "https://compute.googleapis.com/",
   "schemas": {
     "AWSV4Signature": {
@@ -59174,6 +59401,15 @@
         },
         "prefixLength": {
           "description": "The prefix length if the resource represents an IP range.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "ptrDomainName": {
+          "description": "The public DNS PTR record to be configured for this external\nIP.",
+          "type": "string"
+        },
+        "ptrDomainNameTtl": {
+          "description": "The TTL in seconds for public DNS PTR record.",
           "format": "int32",
           "type": "integer"
         },
@@ -61391,7 +61627,7 @@
       "id": "Backend",
       "properties": {
         "balancingMode": {
-          "description": "Specifies how to determine whether the backend of a load balancer can\nhandle additional traffic or is fully loaded. For usage guidelines, see\nConnection balancing mode.\n\nBackends must use compatible balancing modes. For more information, see\nSupported balancing modes and target capacity settings and\nRestrictions and guidance for instance groups.\n\nNote: Currently, if you use the API to configure incompatible balancing\nmodes, the configuration might be accepted even though it has no impact\nand is ignored. Specifically, Backend.maxUtilization is ignored when\nBackend.balancingMode is RATE. In the future, this incompatible combination\nwill be rejected.",
+          "description": "Specifies how to determine whether the backend of a load balancer can\nhandle additional traffic or is fully loaded. For usage guidelines, see\nConnection balancing mode.\n\nBackends must use compatible balancing modes. Backends of a backend\nservice may use different balancing modes. For more information, see \nSupported balancing modes and target capacity settings and\nRestrictions and guidance for instance groups.\n\nNote: Currently, if you use the API to configure incompatible balancing\nmodes, the configuration might be accepted even though it has no impact\nand is ignored. Specifically, Backend.maxUtilization is ignored when\nBackend.balancingMode is RATE. In the future, this incompatible combination\nwill be rejected.",
           "enum": [
             "CONNECTION",
             "CUSTOM_METRICS",
@@ -61425,7 +61661,7 @@
           "type": "string"
         },
         "failover": {
-          "description": "This field designates whether this is a failover backend. More than one\nfailover backend can be configured for a given BackendService.",
+          "description": "This field designates whether this is a failover backend. More than one\nfailover backend can be configured for a given BackendService.\n\nThis field can only be used for a regional external Passthrough Network\nLoad Balancer or a regional internal Passthrough Network Load Balancer.",
           "type": "boolean"
         },
         "group": {
@@ -61487,7 +61723,7 @@
           "description": "Information about the resource or system that manages the backend."
         },
         "preference": {
-          "description": "This field indicates whether this backend should be fully utilized before\nsending traffic to backends with default preference. The possible values\nare:\n   \n   - PREFERRED: Backends with this preference level will be\n   filled up to their capacity limits first, based on RTT.\n   - DEFAULT:  If preferred backends don't have enough\n   capacity, backends in this layer would be used and traffic would be\n   assigned based on the load balancing algorithm you use. This is the\n   default",
+          "description": "This field indicates whether this backend should be fully utilized before\nsending traffic to backends with default preference. The possible values\nare:\n   \n   - PREFERRED: Backends with this preference level will be\n   filled up to their capacity limits first, based on RTT.\n   - DEFAULT:  If preferred backends don't have enough\n   capacity, backends in this layer would be used and traffic would be\n   assigned based on the load balancing algorithm you use. This is the\n   default\n\n\n\nFor global external Passthrough Network Load Balancers, the following\nrestrictions apply:\n   \n   - At most one backend can be marked as PREFERRED.\n   - PREFERRED and DEFAULT backends cannot reside\n   in the same Cloud region.",
           "enum": [
             "DEFAULT",
             "PREFERENCE_UNSPECIFIED",
@@ -61808,7 +62044,7 @@
           "description": "The CacheKeyPolicy for this CdnPolicy."
         },
         "cacheMode": {
-          "description": "Specifies the cache setting for all responses from this backend.\nThe possible values are:USE_ORIGIN_HEADERS Requires the origin to set valid caching\nheaders to cache content. Responses without these headers will not be\ncached at Google's edge, and will require a full trip to the origin on\nevery request, potentially impacting performance and increasing load on\nthe origin server.FORCE_CACHE_ALL Cache all content, ignoring any \"private\",\n\"no-store\" or \"no-cache\" directives in Cache-Control response headers.\nWarning: this may result in Cloud CDN caching private,\nper-user (user identifiable) content.CACHE_ALL_STATIC Automatically cache static content,\nincluding common image formats, media (video and audio), and web assets\n(JavaScript and CSS). Requests and responses that are marked as\nuncacheable, as well as dynamic content (including HTML), will not be\ncached.\n\nIf no value is provided for cdnPolicy.cacheMode, it defaults\nto CACHE_ALL_STATIC.",
+          "description": "Specifies the cache setting for all responses from this backend.\nThe possible values are:\nUSE_ORIGIN_HEADERS Requires the origin to set valid caching\nheaders to cache content. Responses without these headers will not be\ncached at Google's edge, and will require a full trip to the origin on\nevery request, potentially impacting performance and increasing load on\nthe origin server.\nFORCE_CACHE_ALL Cache all content, ignoring any \"private\",\n\"no-store\" or \"no-cache\" directives in Cache-Control response headers.\nWarning: this may result in Cloud CDN caching private,\nper-user (user identifiable) content.\nCACHE_ALL_STATIC Automatically cache static content,\nincluding common image formats, media (video and audio), and web assets\n(JavaScript and CSS). Requests and responses that are marked as\nuncacheable, as well as dynamic content (including HTML), will not be\ncached.\n\nIf no value is provided for cdnPolicy.cacheMode, it defaults\nto CACHE_ALL_STATIC.",
           "enum": [
             "CACHE_ALL_STATIC",
             "FORCE_CACHE_ALL",
@@ -62531,7 +62767,7 @@
         },
         "failoverPolicy": {
           "$ref": "BackendServiceFailoverPolicy",
-          "description": "Requires at least one backend instance group to be defined\nas a backup (failover) backend.\nFor load balancers that have configurable failover:\n[Internal passthrough Network Load\nBalancers](https://cloud.google.com/load-balancing/docs/internal/failover-overview)\nand [external passthrough Network Load\nBalancers](https://cloud.google.com/load-balancing/docs/network/networklb-failover-overview).\n\nfailoverPolicy cannot be specified with haPolicy."
+          "description": "Requires at least one backend instance group to be defined\nas a backup (failover) backend.\nFor load balancers that have configurable failover:\n[Internal passthrough Network Load\nBalancers](https://cloud.google.com/load-balancing/docs/internal/failover-overview)\nand [external passthrough Network Load\nBalancers](https://cloud.google.com/load-balancing/docs/network/networklb-failover-overview).\nfailoverPolicy cannot be specified with haPolicy.failoverPolicy cannot be used by global external Passthrough\nNetwork Load Balancers."
         },
         "fingerprint": {
           "description": "Fingerprint of this resource. A hash of the contents stored in this object.\nThis field is used in optimistic locking. This field will be ignored when\ninserting a BackendService. An up-to-date fingerprint must be provided in\norder to update the BackendService, otherwise the request will\nfail with error 412 conditionNotMet.\n\nTo see the latest fingerprint, make a get() request to\nretrieve a BackendService.",
@@ -62540,7 +62776,7 @@
         },
         "haPolicy": {
           "$ref": "BackendServiceHAPolicy",
-          "description": "Configures self-managed High Availability (HA) for External and Internal\nProtocol Forwarding.\n\nThe backends of this regional backend service must only specify zonal\nnetwork endpoint groups (NEGs) of type GCE_VM_IP.\n\nWhen haPolicy is set for an Internal Passthrough Network Load Balancer, the\nregional backend service must set the network field. All zonal NEGs must\nbelong to the same network. However, individual NEGs can\nbelong to different subnetworks of that network.\n\nWhen haPolicy is specified, the set of attached network endpoints across\nall backends comprise an High Availability domain from which one endpoint\nis selected as the active endpoint (the leader) that receives all\ntraffic.\n\nhaPolicy can be added only at backend service creation time. Once set up,\nit cannot be deleted.\n\nNote that haPolicy is not for load balancing, and therefore cannot be\nspecified with sessionAffinity, connectionTrackingPolicy, and\nfailoverPolicy.\n\nhaPolicy requires customers to be responsible for tracking backend\nendpoint health and electing a leader among the healthy endpoints.\nTherefore, haPolicy cannot be specified with healthChecks.\n\nhaPolicy can only be specified for External Passthrough Network Load\nBalancers and Internal Passthrough Network Load Balancers."
+          "description": "Configures self-managed High Availability (HA) for External and Internal\nProtocol Forwarding.\n\nThe backends of this regional backend service must only specify zonal\nnetwork endpoint groups (NEGs) of type GCE_VM_IP.\n\nWhen haPolicy is set for an Internal Passthrough Network Load Balancer, the\nregional backend service must set the network field. All zonal NEGs must\nbelong to the same network. However, individual NEGs can\nbelong to different subnetworks of that network.\n\nWhen haPolicy is specified, the set of attached network endpoints across\nall backends comprise an High Availability domain from which one endpoint\nis selected as the active endpoint (the leader) that receives all\ntraffic.\n\nhaPolicy can be added only at backend service creation time. Once set up,\nit cannot be deleted.\n\nNote that haPolicy is not for load balancing, and therefore cannot be\nspecified with sessionAffinity, connectionTrackingPolicy, and\nfailoverPolicy.\n\nhaPolicy requires customers to be responsible for tracking backend\nendpoint health and electing a leader among the healthy endpoints.\nTherefore, haPolicy cannot be specified with healthChecks.\nhaPolicy can only be specified for External Passthrough\nNetwork Load Balancers and Internal Passthrough Network Load Balancers.haPolicy cannot be used by global external Passthrough Network\nLoad Balancers."
         },
         "healthChecks": {
           "description": "The list of URLs to the healthChecks, httpHealthChecks (legacy), or\nhttpsHealthChecks (legacy) resource for health checking this backend\nservice. Not all backend services support legacy health checks. See\nLoad balancer guide. Currently, at most one health check can be\nspecified for each backend service. Backend services with\ninstance group or zonal NEG backends must have a health check unless\nhaPolicy is specified. Backend services with internet or serverless NEG\nbackends must not have a health check.\n\nhealthChecks[] cannot be specified with haPolicy.",
@@ -62581,7 +62817,7 @@
           "type": "string"
         },
         "loadBalancingScheme": {
-          "description": "Specifies the load balancer type. A backend service\ncreated for one type of load balancer cannot be used with another.\nFor more information, refer toChoosing\na load balancer.",
+          "description": "Specifies the load balancer type. A backend service\ncreated for one type of load balancer cannot be used with another.\nFor more information, refer to\nBackend services product and scheme table.",
           "enum": [
             "EXTERNAL",
             "EXTERNAL_MANAGED",
@@ -62610,7 +62846,7 @@
           "type": "array"
         },
         "localityLbPolicy": {
-          "description": "The load balancing algorithm used within the scope of the locality. The\npossible values are:\n   \n   - ROUND_ROBIN: This is a simple policy in which each healthy\n   backend is selected in round robin order. This is the default.\n   - LEAST_REQUEST: An O(1) algorithm which\n   selects two random healthy hosts and picks the host which has fewer active\n   requests.\n   - RING_HASH: The ring/modulo hash load balancer implements\n   consistent hashing to backends. The algorithm has the property that the\n   addition/removal of a host from a set of N hosts only affects 1/N of the\n   requests.\n   - RANDOM: The load balancer selects a random healthy\n   host.\n   - ORIGINAL_DESTINATION: Backend host is selected\n   based on the client connection metadata, i.e., connections are opened to\n   the same address as the destination address of the incoming connection\n   before the connection was redirected to the load balancer.\n   - MAGLEV: used as a drop in replacement for the ring hash\n   load balancer. Maglev is not as stable as ring hash but has faster table\n   lookup build times and host selection times. For more information about\n   Maglev, see Maglev:\n   A Fast and Reliable Software Network Load Balancer.\n   - WEIGHTED_ROUND_ROBIN: Per-endpoint Weighted Round Robin\n   Load Balancing using weights computed from Backend reported Custom Metrics.\n   If set, the Backend Service responses are expected to contain non-standard\n   HTTP response header field Endpoint-Load-Metrics. The reported\n   metrics to use for computing the weights are specified via thecustomMetrics field.\n   \n   This field is applicable to either:\n      - A regional backend service with the service protocol set to HTTP,\n      HTTPS, HTTP2 or H2C, and load_balancing_scheme set to\n      INTERNAL_MANAGED. \n      - A global backend service with the\n      load_balancing_scheme set to INTERNAL_SELF_MANAGED, INTERNAL_MANAGED, or\n      EXTERNAL_MANAGED.\n   \n   \n   If sessionAffinity is not configured—that is, if session\n   affinity remains at the default value of NONE—then the\n   default value for localityLbPolicy\n   is ROUND_ROBIN. If session affinity is set to a value other\n   than NONE,\n   then the default value for localityLbPolicy isMAGLEV.\n   \n   Only ROUND_ROBIN and RING_HASH are supported\n   when the backend service is referenced by a URL map that is bound to\n   target gRPC proxy that has validateForProxyless field set to true.\n   \n   localityLbPolicy cannot be specified with haPolicy.",
+          "description": "The load balancing algorithm used within the scope of the locality. The\npossible values are:\n   \n   - ROUND_ROBIN: This is a simple policy in which each healthy\n   backend is selected in round robin order. This is the default.\n   - LEAST_REQUEST: An O(1) algorithm which\n   selects two random healthy hosts and picks the host which has fewer active\n   requests.\n   - RING_HASH: The ring/modulo hash load balancer implements\n   consistent hashing to backends. The algorithm has the property that the\n   addition/removal of a host from a set of N hosts only affects 1/N of the\n   requests.\n   - RANDOM: The load balancer selects a random healthy\n   host.\n   - ORIGINAL_DESTINATION: Backend host is selected\n   based on the client connection metadata, i.e., connections are opened to\n   the same address as the destination address of the incoming connection\n   before the connection was redirected to the load balancer.\n   - MAGLEV: used as a drop in replacement for the ring hash\n   load balancer. Maglev is not as stable as ring hash but has faster table\n   lookup build times and host selection times. For more information about\n   Maglev, see Maglev:\n   A Fast and Reliable Software Network Load Balancer.\n   - WEIGHTED_ROUND_ROBIN: Per-endpoint Weighted Round Robin\n   Load Balancing using weights computed from Backend reported Custom Metrics.\n   If set, the Backend Service responses are expected to contain non-standard\n   HTTP response header field Endpoint-Load-Metrics. The reported\n   metrics to use for computing the weights are specified via thecustomMetrics field.\n   - WEIGHTED_MAGLEV: Per-endpoint weighted load balancing via\n   health check reported weights. If set, the backend service must configure\n   an HTTP-based Health Check, and health check replies are expected to\n   contain the non-standard HTTP response header fieldX-Load-Balancing-Endpoint-Weight to specify the per-endpoint\n   weights. If set, load balancing is weighted based on the per-endpoint\n   weights reported in the last processed health check replies, as long as\n   every instance either reported a valid weight or had UNAVAILABLE_WEIGHT.\n   Otherwise, load balancing remains equal-weight.\n\n\n\nThis field is applicable to either:\n   \n   - A regional backend service with the service protocol set to HTTP,\n   HTTPS, HTTP2 or H2C, and load_balancing_scheme set to\n   INTERNAL_MANAGED. \n   - A global backend service with the\n   load_balancing_scheme set to INTERNAL_SELF_MANAGED, INTERNAL_MANAGED, or\n   EXTERNAL_MANAGED.\n\n\n\nIf sessionAffinity is not configured—that is, if session\naffinity remains at the default value of NONE—then the\ndefault value for localityLbPolicy\nis ROUND_ROBIN. If session affinity is set to a value other\nthan NONE,\nthen the default value for localityLbPolicy isMAGLEV.\n\nOnly ROUND_ROBIN and RING_HASH are supported\nwhen the backend service is referenced by a URL map that is bound to\ntarget gRPC proxy that has validateForProxyless field set to true.\n\nlocalityLbPolicy cannot be specified with haPolicy.",
           "enum": [
             "INVALID_LB_POLICY",
             "LEAST_REQUEST",
@@ -62688,7 +62924,7 @@
           "type": "string"
         },
         "protocol": {
-          "description": "The protocol this BackendService uses to communicate\nwith backends.\n\nPossible values are HTTP, HTTPS, HTTP2, H2C, TCP, SSL, UDP or GRPC.\ndepending on the chosen load balancer or Traffic Director configuration.\nRefer to the documentation for the load balancers or for Traffic Director\nfor more information.\n\nMust be set to GRPC when the backend service is referenced by a URL map\nthat is bound to target gRPC proxy.",
+          "description": "The protocol this BackendService uses to communicate with backends.\n\nPossible values are HTTP, HTTPS, HTTP2, H2C, TCP, SSL, UDP, GRPC, or\nUNSPECIFIED, depending on the chosen load balancer or Traffic Director\nconfiguration.\nRefer to \nLoad balancing features for more information.\n\nMust be set to GRPC when the backend service is referenced by a URL map\nthat is bound to target gRPC proxy.",
           "enum": [
             "ALL",
             "GRPC",
@@ -62984,7 +63220,7 @@
           "description": "The CacheKeyPolicy for this CdnPolicy."
         },
         "cacheMode": {
-          "description": "Specifies the cache setting for all responses from this backend.\nThe possible values are:USE_ORIGIN_HEADERS Requires the origin to set valid caching\nheaders to cache content. Responses without these headers will not be\ncached at Google's edge, and will require a full trip to the origin on\nevery request, potentially impacting performance and increasing load on\nthe origin server.FORCE_CACHE_ALL Cache all content, ignoring any \"private\",\n\"no-store\" or \"no-cache\" directives in Cache-Control response headers.\nWarning: this may result in Cloud CDN caching private,\nper-user (user identifiable) content.CACHE_ALL_STATIC Automatically cache static content,\nincluding common image formats, media (video and audio), and web assets\n(JavaScript and CSS). Requests and responses that are marked as\nuncacheable, as well as dynamic content (including HTML), will not be\ncached.\n\nIf no value is provided for cdnPolicy.cacheMode, it defaults\nto CACHE_ALL_STATIC.",
+          "description": "Specifies the cache setting for all responses from this backend.\nThe possible values are:\nUSE_ORIGIN_HEADERS Requires the origin to set valid caching\nheaders to cache content. Responses without these headers will not be\ncached at Google's edge, and will require a full trip to the origin on\nevery request, potentially impacting performance and increasing load on\nthe origin server.\nFORCE_CACHE_ALL Cache all content, ignoring any \"private\",\n\"no-store\" or \"no-cache\" directives in Cache-Control response headers.\nWarning: this may result in Cloud CDN caching private,\nper-user (user identifiable) content.\nCACHE_ALL_STATIC Automatically cache static content,\nincluding common image formats, media (video and audio), and web assets\n(JavaScript and CSS). Requests and responses that are marked as\nuncacheable, as well as dynamic content (including HTML), will not be\ncached.\n\nIf no value is provided for cdnPolicy.cacheMode, it defaults\nto CACHE_ALL_STATIC.",
           "enum": [
             "CACHE_ALL_STATIC",
             "FORCE_CACHE_ALL",
@@ -65068,14 +65304,14 @@
       "id": "CapacityAdviceRequestInstanceFlexibilityPolicyInstanceSelectionAttachedDisk",
       "properties": {
         "type": {
-          "description": "Specifies the type of the disk.\nThis field must be set to SCRATCH.",
+          "description": "Specifies the type of the disk.",
           "enum": [
             "DISK_TYPE_UNSPECIFIED",
             "SCRATCH"
           ],
           "enumDescriptions": [
-            "",
-            ""
+            "Default value, unspecified disk type.",
+            "Scratch disk (Local SSD)."
           ],
           "type": "string"
         }
@@ -65692,6 +65928,7 @@
             "NETWORK_OPTIMIZED_U4S",
             "STORAGE_OPTIMIZED_Z3",
             "STORAGE_OPTIMIZED_Z4D",
+            "STORAGE_OPTIMIZED_Z4M",
             "TYPE_UNSPECIFIED"
           ],
           "enumDescriptions": [
@@ -65745,6 +65982,7 @@
             "CUD bucket for NETWORK_OPTIMIZED_U4S machines.",
             "",
             "CUD bucket for Z4D machines.",
+            "CUD bucket for Z4M (bare metal) machines.",
             "Note for internal users: When adding a new enum Type for v1, make sure\nto also add it in the comment for the `optional Type type` definition.\nThis ensures that the public documentation displays the new enum Type."
           ],
           "type": "string"
@@ -71624,10 +71862,11 @@
       "id": "ForwardingRule",
       "properties": {
         "IPAddress": {
-          "description": "IP address for which this forwarding rule accepts traffic. When a client\nsends traffic to this IP address, the forwarding rule directs the traffic\nto the referenced target or backendService.\nWhile creating a forwarding rule, specifying an IPAddress is\nrequired under the following circumstances:\n\n   \n   - When the target is set to targetGrpcProxy andvalidateForProxyless is set to true, theIPAddress should be set to 0.0.0.0.\n   - When the target is a Private Service Connect Google APIs\n   bundle, you must specify an IPAddress.\n\n\nOtherwise, you can optionally specify an IP address that references an\nexisting static (reserved) IP address resource. When omitted, Google Cloud\nassigns an ephemeral IP address.\n\nUse one of the following formats to specify an IP address while creating a\nforwarding rule:\n\n* IP address number, as in `100.1.2.3`\n* IPv6 address range, as in `2600:1234::/96`\n* Full resource URL, as inhttps://www.googleapis.com/compute/v1/projects/project_id/regions/region/addresses/address-name\n* Partial URL or by name, as in:\n   \n   - projects/project_id/regions/region/addresses/address-name\n   - regions/region/addresses/address-name\n   - global/addresses/address-name\n   - address-name\n\n\n\nThe forwarding rule's target or backendService,\nand in most cases, also the loadBalancingScheme, determine the\ntype of IP address that you can use. For detailed information, see\n[IP address\nspecifications](https://cloud.google.com/load-balancing/docs/forwarding-rule-concepts#ip_address_specifications).\n\nWhen reading an IPAddress, the API always returns the IP\naddress number.",
+          "description": "IP address for which this forwarding rule accepts traffic. When a client\nsends traffic to this IP address, the forwarding rule directs the traffic\nto the referenced target or backendService.\nWhile creating a forwarding rule, specifying an IPAddress is\nrequired under the following circumstances:\n\n   \n   - When the target is set to targetGrpcProxy andvalidateForProxyless is set to true, theIPAddress should be set to 0.0.0.0.\n   - When the target is a Private Service Connect Google APIs\n   bundle, you must specify an IPAddress.\n\n\nOtherwise, you can optionally specify an IP address that references an\nexisting static (reserved) IP address resource. When omitted, Google Cloud\nassigns an ephemeral IP address.\n\nUse one of the following formats to specify an IP address while creating a\nforwarding rule:\n\n* IP address number, as in `100.1.2.3`\n* IPv6 address range, as in `2600:1234::/96`\n* Full resource URL, as inhttps://www.googleapis.com/compute/v1/projects/project_id/regions/region/addresses/address-name\n* Partial URL or by name, as in:\n   \n   - projects/project_id/regions/region/addresses/address-name\n   - regions/region/addresses/address-name\n   - global/addresses/address-name\n   - address-name\n\n\n\nThe IP address can only be set at creation. Once set, it cannot be updated.\n\nThe forwarding rule's target or backendService,\nand in most cases, also the loadBalancingScheme, determine the\ntype of IP address that you can use. For detailed information, see\n[IP address\nspecifications](https://cloud.google.com/load-balancing/docs/forwarding-rule-concepts#ip_address_specifications).\n\nWhen reading an IPAddress, the API always returns the IP\naddress number.\n\nWhen creating a global external Passthrough Network Load Balancer\nforwarding rule (a parent forwarding rule), you must use theIPAddresses field, but the Google Cloud generated child\nforwarding rules set the IPAddress field instead. Refer to theavailabilityGroup field for further details.",
           "type": "string"
         },
         "IPAddresses": {
+          "description": "IP addresses for which this forwarding rule accepts traffic. All IP\naddresses must have the same IP version, IPv4 or IPv6. When a client sends\ntraffic that matches one of the specified IP addresses, protocol and ports,\nthe forwarding rule directs the traffic to the referencedbackendService. All IP addresses are served by the same set of\nbackends, and they share the target capacities specified in the backend\nservice fairly.\n\nGlobal external Passthrough Network Load Balancer requires two IP addresses\nfor each forwarding rule to provide high availability when both IP\naddresses are used to serve client requests. The two IP addresses must come\nfrom global IP pools that belong to two distinct Availability\nGroups, represented by the purposePASSTHROUGH_LOAD_BALANCER_AVAILABILITY_GROUP0 andPASSTHROUGH_LOAD_BALANCER_AVAILABILITY_GROUP1. TheIPAddresses field specifies zero, one, or two IP addresses:\n   \n   - If omitted, Google Cloud assigns two ephemeral IP addresses, one from\n   each Availability Group.\n   - If you specify one IP address that references an existing static IP\n   address resource from one Availability Group, Google Cloud assigns an\n   ephemeral IP address from the other Availability Group.\n   - If you specify two IP addresses that reference existing static IP\n   address resources, they are required to be from different Availability\n   Groups.\n\n\n\nFor global external Passthrough Network Load Balancer, each IP address can be one of the following:\n   \n   - A static or ephemeral IPv4 address from a Google-owned IP pool.\n   - A static IPv4 address from a global public delegated prefix.\n   - A static or ephemeral IPv6 /96 prefix from a Google-owned IP pool.\n\n\n\nFor global external Passthrough Network Load Balancer, the two IP addresses\ncan be of different types. One IP address can be from a BYOIP prefix while\nthe other is from a Google-owned IP pool. One IP address can be static\nwhile the other is ephemeral. However, both IP addresses must have the same\nIP version, IPv4 or IPv6.\n\nThe IP addresses can only be set at creation and cannot be updated.\n\nWhen creating a global external Passthrough Network Load Balancer\nforwarding rule (a parent forwarding rule), you must use theIPAddresses field, but the Google Cloud-generated child\nforwarding rules set the IPAddress field instead. Refer to theavailabilityGroup field for further details.\n\nRefer to the IPAddress field for the formats that can be used\nto specify IP addresses while creating a forwarding rule.\n\nBecause Passthrough Network Load Balancers do not terminate or translate\ntraffic, the backend stack types must be compatible with the forwarding\nrule IP version:\n   \n   - If the forwarding rule IP version is IPv4, backends should be\n   configured as dual-stack or IPv4-only.\n   - If the forwarding rule IP version is IPv6, backends should be\n   configured as dual-stack or IPv6-only.",
           "items": {
             "type": "string"
           },
@@ -71678,7 +71917,7 @@
           "type": "array"
         },
         "availabilityGroup": {
-          "description": "[Output Only] Specifies the availability group of the forwarding rule. This\nfield is for use by global external passthrough load balancers (load\nbalancing scheme EXTERNAL_PASSTHROUGH) and is set for the child forwarding\nrules only.",
+          "description": "Output only. [Output Only] Specifies the load balancing availability group, one of the\ntwo that collectively provide high availability.\n\nSpecifies the availability group of the forwarding rule. This\nfield is for use by global external passthrough load balancers (load\nbalancing scheme EXTERNAL_PASSTHROUGH) and is set for the\nchild forwarding rules only. The possible values are:\n   \n   - AVAILABILITY_GROUP0: Set for the child forwarding rule\n   that is programmed on the AVAILABILITY_GROUP0 load balancing\n   stack. The child forwarding rule has the same IP protocol, port, and\n   backend service settings as the parent forwarding rule, but has only one of\n   the two IP addresses of the parent forwarding rule, the one with the\n   purpose PASSTHROUGH_LOAD_BALANCER_AVAILABILITY_GROUP0.\n   - AVAILABILITY_GROUP1: Set for the child forwarding rule\n   that is programmed on the AVAILABILITY_GROUP1 load balancing\n   stack. The child forwarding rule has the same IP protocol, port and backend\n   service settings as the parent forwarding rule, but has only one of the two\n   IP addresses of the parent forwarding rule, the one with the purposePASSTHROUGH_LOAD_BALANCER_AVAILABILITY_GROUP1.\n\n\n\nFor each global external Passthrough Network Load Balancer forwarding rule\n(a parent forwarding rule) that you create, Google Cloud generates two\noutput-only child forwarding rules, one forAVAILABILITY_GROUP0 and one forAVAILABILITY_GROUP1.",
           "enum": [
             "AVAILABILITY_GROUP0",
             "AVAILABILITY_GROUP1",
@@ -71689,10 +71928,11 @@
             "",
             ""
           ],
+          "readOnly": true,
           "type": "string"
         },
         "backendService": {
-          "description": "Identifies the backend service to which the forwarding rule sends traffic.\nRequired for internal and external passthrough Network Load Balancers;\nmust be omitted for all other load balancer types.",
+          "description": "Identifies the backend service to which the forwarding rule sends traffic.\n\nIt is a required field for the following load balancers:\n   \n   - Internal passthrough Network Load Balancers\n   - Backend service-based regional external passthrough Network Load\n   Balancers\n   - Global external passthrough Network Load Balancers\n\n\n\nIt cannot be set by other load balancer types and protocol forwarding\nrules.",
           "type": "string"
         },
         "baseForwardingRule": {
@@ -71701,7 +71941,7 @@
           "type": "string"
         },
         "childForwardingRules": {
-          "description": "Output only. [Output Only] Applicable only to the parent forwarding rule of global\nexternal passthrough load balancers. This field contains the list of child\nforwarding rule URLs associated with the parent forwarding rule: one for\neach availability group. AVAILABILITY_GROUP0 will be the first element, and\nAVAILABILITY_GROUP1 will be the second element.",
+          "description": "Output only. [Output Only] The resource URLs for the child forwarding rules.\n\nApplicable only to the parent forwarding rule of global\nexternal passthrough load balancers. This field contains the list of child\nforwarding rule URLs associated with the parent forwarding rule: one for\neach availability group. AVAILABILITY_GROUP0 will be the first element, and\nAVAILABILITY_GROUP1 will be the second element. Refer to theavailabilityGroup field for further details. It cannot be set\nby any other forwarding rules.",
           "items": {
             "type": "string"
           },
@@ -71787,7 +72027,7 @@
           "type": "object"
         },
         "loadBalancingScheme": {
-          "description": "Specifies the forwarding rule type.\n\nFor more information about forwarding rules, refer to\nForwarding rule concepts.",
+          "description": "Specifies the forwarding rule type.\n\nFor more information, refer to \nForwarding rule product and scheme table.",
           "enum": [
             "EXTERNAL",
             "EXTERNAL_MANAGED",
@@ -71816,7 +72056,7 @@
           "type": "array"
         },
         "name": {
-          "description": "Name of the resource; provided by the client when the resource is created.\nThe name must be 1-63 characters long, and comply withRFC1035.\nSpecifically, the name must be 1-63 characters long and match the regular\nexpression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first\ncharacter must be a lowercase letter, and all following characters must\nbe a dash, lowercase letter, or digit, except the last character, which\ncannot be a dash.\n\nFor Private Service Connect forwarding rules that forward traffic to Google\nAPIs, the forwarding rule name must be a 1-20 characters string with\nlowercase letters and numbers and must start with a letter.",
+          "description": "Name of the resource; provided by the client when the resource is created.\nThe name must be 1-63 characters long, and comply withRFC1035.\nSpecifically, the name must be 1-63 characters long and match the regular\nexpression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first\ncharacter must be a lowercase letter, and all following characters must\nbe a dash, lowercase letter, or digit, except the last character, which\ncannot be a dash.\n\nFor Private Service Connect forwarding rules that forward traffic to Google\nAPIs, the forwarding rule name must be a 1-20 characters string with\nlowercase letters and numbers and must start with a letter.\n\nFor global external Passthrough Network Load Balancer forwarding rules, the\nforwarding rule name must be 1-43 characters long. For each global external\nPassthrough Network Load Balancer forwarding rule (a parent forwarding\nrule) that you create, Google Cloud generates two output-only child\nforwarding rules that are named by concatenating the parent forwarding rule\nname with the `-ag0` and `-ag1` suffixes, respectively. Refer to theavailabilityGroup field for further details.",
           "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
           "type": "string"
         },
@@ -71847,16 +72087,16 @@
           "type": "boolean"
         },
         "parentForwardingRule": {
-          "description": "Output only. [Output Only] Applicable only to the child forwarding rules of global external\npassthrough load balancers. This field contains the URL of the parent\nforwarding rule.",
+          "description": "Output only. [Output Only] The resource URL for the parent forwarding rule.\n\nApplicable only to the child forwarding rules of global external\npassthrough load balancers. This field contains the URL of the parent\nforwarding rule.",
           "readOnly": true,
           "type": "string"
         },
         "portRange": {
-          "description": "The ports, portRange, and allPorts\nfields are mutually exclusive. Only packets addressed to ports in the\nspecified range will be forwarded to the backends configured with this\nforwarding rule.\n\nThe portRange field has the following limitations:\n   \n   - It requires that the forwarding rule IPProtocol be TCP,\n   UDP, or SCTP, and\n   - It's applicable only to the following products: external passthrough\n   Network Load Balancers, internal and external proxy Network Load Balancers,\n   internal and external Application Load Balancers, external protocol\n   forwarding, and Classic VPN.\n   - Some products have restrictions on what ports can be used. See \n   port specifications for details.\n\n\n\nFor external forwarding rules, two or more forwarding rules cannot use the\nsame [IPAddress, IPProtocol] pair, and cannot have overlappingportRanges.\n\nFor internal forwarding rules within the same VPC network, two or more\nforwarding rules cannot use the same [IPAddress, IPProtocol]\npair, and cannot have overlapping portRanges.\n\n@pattern: \\\\d+(?:-\\\\d+)?",
+          "description": "The ports, portRange, and allPorts\nfields are mutually exclusive. Only packets addressed to ports in the\nspecified range will be forwarded to the backends configured with this\nforwarding rule.\n\nThe portRange field has the following limitations:\n   \n   - It requires that the forwarding rule IPProtocol be TCP,\n   UDP, or SCTP, and\n   - It's applicable only to the following products: external passthrough\n   Network Load Balancers, internal and external proxy Network Load Balancers,\n   internal and external Application Load Balancers, external protocol\n   forwarding, and Classic VPN.\n   - Some products have restrictions on what ports can be used. See \n   port specifications for details.\n\n\n\nFor external forwarding rules, two or more forwarding rules cannot use the\nsame [IPAddress, IPProtocol] pair (specified inIPAddress, IPAddresses, IPProtocol\nfields) if they have overlapping portRanges.\n\nFor internal forwarding rules within the same VPC network, two or more\nforwarding rules cannot use the same [IPAddress, IPProtocol]\npair, and cannot have overlapping portRanges.\n\n@pattern: \\\\d+(?:-\\\\d+)?",
           "type": "string"
         },
         "ports": {
-          "description": "The ports, portRange, and allPorts\nfields are mutually exclusive. Only packets addressed to ports in the\nspecified range will be forwarded to the backends configured with this\nforwarding rule.\n\nThe ports field has the following limitations:\n   \n   - It requires that the forwarding rule IPProtocol be TCP,\n   UDP, or SCTP, and\n   - It's applicable only to the following products: internal passthrough\n   Network Load Balancers, backend service-based external passthrough Network\n   Load Balancers, and internal protocol forwarding.\n   - You can specify a list of up to five ports by number, separated by\n   commas. The ports can be contiguous or discontiguous.\n\n\n\nFor external forwarding rules, two or more forwarding rules cannot use the\nsame [IPAddress, IPProtocol] pair if they share at least one\nport number.\n\nFor internal forwarding rules within the same VPC network, two or more\nforwarding rules cannot use the same [IPAddress, IPProtocol]\npair if they share at least one port number.\n\n@pattern: \\\\d+(?:-\\\\d+)?",
+          "description": "The ports, portRange, and allPorts\nfields are mutually exclusive. Only packets addressed to ports in the\nspecified range will be forwarded to the backends configured with this\nforwarding rule.\n\nThe ports field has the following limitations:\n   \n   - It requires that the forwarding rule IPProtocol be TCP,\n   UDP, or SCTP, and\n   - It's applicable only to the following products: internal passthrough\n   Network Load Balancers, backend service-based external passthrough Network\n   Load Balancers, and internal protocol forwarding.\n   - You can specify a list of up to five ports by number, separated by\n   commas. The ports can be contiguous or discontiguous.\n\n\n\nFor external forwarding rules, two or more forwarding rules cannot use the\nsame [IPAddress, IPProtocol] pair (specified inIPAddress, IPAddresses, IPProtocol\nfields) if they share at least one port number.\n\nFor internal forwarding rules within the same VPC network, two or more\nforwarding rules cannot use the same [IPAddress, IPProtocol]\npair if they share at least one port number.\n\n@pattern: \\\\d+(?:-\\\\d+)?",
           "items": {
             "type": "string"
           },
@@ -71931,7 +72171,7 @@
           "type": "string"
         },
         "target": {
-          "description": "The URL of the target resource to receive the matched traffic.  For\nregional forwarding rules, this target must be in the same region as the\nforwarding rule. For global forwarding rules, this target must be a global\nload balancing resource.\n\nThe forwarded traffic must be of a type appropriate to the target object.\n   \n   \n     -  For load balancers, see the \"Target\" column in [Port specifications](https://cloud.google.com/load-balancing/docs/forwarding-rule-concepts#ip_address_specifications).\n     -  For Private Service Connect forwarding rules that forward traffic to Google APIs, provide the name of a supported Google API bundle:\n       \n      \n            -  vpc-sc -  APIs that support VPC Service Controls. \n            -  all-apis - All supported Google APIs. \n          \n     \n     -  For Private Service Connect forwarding rules that forward traffic to managed services, the target must be a service attachment. The target is not mutable once set as a service attachment.",
+          "description": "The URL of the target resource to receive the matched traffic.  For\nregional forwarding rules, this target must be in the same region as the\nforwarding rule. For global forwarding rules, this target must be a global\nload balancing resource.\n\nThe forwarded traffic must be of a type appropriate to the target object.\n   \n   \n     -  For load balancers, see the \"Target\" column in [Port specifications](https://cloud.google.com/load-balancing/docs/forwarding-rule-concepts#ip_address_specifications).\n     -  For Private Service Connect forwarding rules that forward traffic to Google APIs, provide the name of a supported Google API bundle:\n       \n      \n            -  vpc-sc -  APIs that support VPC Service Controls. \n            -  all-apis - All supported Google APIs. \n          \n     \n     -  For Private Service Connect forwarding rules that forward traffic to managed services, the target must be a service attachment. The target is not mutable once set as a service attachment. \n\n\n\nThe following load balancers cannot set the target field (they should set the backendService field instead):\n   \n   - Internal passthrough Network Load Balancers\n   - Backend service-based regional external passthrough Network Load\n   Balancers\n   - Global external passthrough Network Load Balancers",
           "type": "string"
         }
       },
@@ -75112,26 +75352,15 @@
           "description": "An optional description of this resource. Provide this property when you\ncreate the resource.",
           "type": "string"
         },
-        "failoverCapacity": {
-          "deprecated": true,
-          "description": "Capacity guarantee settings for the event of a failover.\nThis determines whether capacity is guaranteed to be available\nin the zones used by the HaController.\nDeprecated: This field is deprecated and has no effect.",
-          "enum": [
-            "BEST_EFFORT_CAPACITY",
-            "FAILOVER_CAPACITY_UNSPECIFIED"
-          ],
-          "enumDescriptions": [
-            "Failover will attempt to allocate resources in the secondary zone\nat the time of failover.",
-            ""
-          ],
-          "type": "string"
-        },
         "failoverInitiation": {
           "description": "Indicates how failover should be initiated.",
           "enum": [
+            "AUTOMATIC",
             "FAILOVER_INITIATION_UNSPECIFIED",
             "MANUAL_ONLY"
           ],
           "enumDescriptions": [
+            "Failover will be initiated automatically in case of an outage",
             "",
             "Failover will be initiated only when compute.haControllers.failover\nmethod is called."
           ],
@@ -75168,19 +75397,6 @@
           "readOnly": true,
           "type": "string"
         },
-        "secondaryZoneCapacity": {
-          "deprecated": true,
-          "description": "Indicates the capacity guarantees in the secondary zone.",
-          "enum": [
-            "BEST_EFFORT",
-            "SECONDARY_ZONE_CAPACITY_UNSPECIFIED"
-          ],
-          "enumDescriptions": [
-            "Failover will succeed only if at the time of failover the secondary zone\nhas enough capacity to host the instance.",
-            ""
-          ],
-          "type": "string"
-        },
         "selfLink": {
           "description": "Output only. [Output only] Server-defined URL for the resource.",
           "readOnly": true,
@@ -75188,6 +75404,39 @@
         },
         "selfLinkWithId": {
           "description": "Output only. [Output Only] Server-defined URL for this resource with the resource id.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The current state of the HA Controller.",
+          "enum": [
+            "ACTIVE",
+            "CREATING",
+            "DELETING",
+            "FAILOVER_IN_PROGRESS",
+            "FAILOVER_UNAVAILABLE",
+            "MULTI_ZONE_FAILURE",
+            "PENDING_FAILOVER",
+            "STARTING",
+            "STATE_UNSPECIFIED",
+            "STOPPED",
+            "STOPPING",
+            "UPDATING"
+          ],
+          "enumDescriptions": [
+            "The HA Controller is active and ready to perform failover.",
+            "The HA Controller is being created.",
+            "The HA Controller is being deleted.",
+            "The HA Controller is in the process of failing over.",
+            "The HA Controller is not ready to perform failover.",
+            "The HA Controller requires a failover operation to be performed but the\nsecondary zone is not available to failover to.",
+            "The HA Controller requires a failover operation to be performed.",
+            "The HA Controller is being started.",
+            "Unspecified state.",
+            "The HA Controller is stopped.",
+            "The HA Controller is being stopped.",
+            "The HA Controller is being updated."
+          ],
           "readOnly": true,
           "type": "string"
         },
@@ -75297,6 +75546,12 @@
         "failoverCompleteTimestamp": {
           "description": "Output only. [Output Only] Timestamp of the failover completion.\nFilled only if the failover is completed, in lastFailoverInfo.",
           "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "failoverDuration": {
+          "description": "Output only. The duration of the last failover.",
+          "format": "google-duration",
           "readOnly": true,
           "type": "string"
         },
@@ -80532,8 +80787,15 @@
           "type": "string"
         },
         "machineType": {
-          "description": "Full or partial URL of the machine type resource to use for this instance,\nin the format:zones/zone/machineTypes/machine-type. This is provided by the client\nwhen the instance is created. For example, the following is a valid partial\nurl to a predefined\nmachine type:\n\nzones/us-central1-f/machineTypes/n1-standard-1\n\n\nTo create acustom\nmachine type, provide a URL to a machine type in the following format,\nwhere CPUS is 1 or an even number up to 32 (2,\n4, 6, ... 24, etc), and MEMORY is the total\nmemory for this instance. Memory must be a multiple of 256 MB and must\nbe supplied in MB (e.g. 5 GB of memory is 5120 MB):\n\nzones/zone/machineTypes/custom-CPUS-MEMORY\n\n\nFor example: zones/us-central1-f/machineTypes/custom-4-5120\nFor a full list of restrictions, read theSpecifications\nfor custom machine types.",
+          "description": "Full or partial URL of the machine type resource to use for this instance,\nin the format:zones/zone/machineTypes/machine-type. This is provided by the client\nwhen the instance is created. For example, the following is a valid partial\nurl to a predefined\nmachine type:\n\nzones/us-central1-f/machineTypes/n1-standard-1\n\n\nTo create acustom\nmachine type, provide a URL to a machine type in the following format,\nwhere CPUS is 1 or an even number up to 32 (2,\n4, 6, ... 24, etc), and MEMORY is the total\nmemory for this instance. Memory must be a multiple of 256 MB and must\nbe supplied in MB (e.g. 5 GB of memory is 5120 MB):\n\nzones/zone/machineTypes/custom-CPUS-MEMORY\n\n\nFor example: zones/us-central1-f/machineTypes/custom-4-5120\n\nFor a full list of restrictions, read theSpecifications\nfor custom machine types.",
           "type": "string"
+        },
+        "managementInterfaces": {
+          "additionalProperties": {
+            "$ref": "InstanceManagementInterface"
+          },
+          "description": "Map of management interfaces. Keys must be valid RFC1035 names and at most\n63 characters long.",
+          "type": "object"
         },
         "metadata": {
           "$ref": "Metadata",
@@ -84934,6 +85196,73 @@
         "message": {
           "description": "Output only. Error message.",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "InstanceManagementInterface": {
+      "description": "Represents Out-of-Band (OOB) Host Management Interface configuration\ndetails for direct host control.",
+      "id": "InstanceManagementInterface",
+      "properties": {
+        "authenticationConfig": {
+          "$ref": "InstanceManagementInterfaceAuthenticationConfig",
+          "description": "The authentication configuration for secure connection."
+        },
+        "ipv4Address": {
+          "description": "The IPv4 internal IP address assigned to this management interface\nendpoint. This address will be used by the customer to route traffic to\nthe management interface.",
+          "type": "string"
+        },
+        "ipv6Address": {
+          "description": "The IPv6 internal IP address assigned to this management interface\nendpoint. This address will be used by the customer to route traffic to\nthe management interface if IPv6 is supported and configured.",
+          "type": "string"
+        },
+        "network": {
+          "description": "The URL of the VPC network to which the management interface endpoint is\nattached. The customer must ensure that this network is correctly\nconfigured for routing to the instance.",
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. [Output Only] The current state of the management interface endpoint.",
+          "enum": [
+            "ACTIVE",
+            "INACTIVE",
+            "PENDING",
+            "STATE_UNSPECIFIED"
+          ],
+          "enumDescriptions": [
+            "Endpoint is active and ready.",
+            "Endpoint is inactive or failed.",
+            "Endpoint is pending creation.",
+            "State unspecified."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "subnetwork": {
+          "description": "The URL of the subnetwork from which to assign the IP address for the\nendpoint. The subnetwork must belong to the specified network and have\navailable IP addresses.",
+          "type": "string"
+        },
+        "type": {
+          "description": "Required. The type of management service this interface provides.\nSupported types include HOST_MANAGEMENT for direct host control.",
+          "enum": [
+            "HOST_MANAGEMENT",
+            "TYPE_UNSPECIFIED"
+          ],
+          "enumDescriptions": [
+            "Host management type.",
+            "Type unspecified."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "InstanceManagementInterfaceAuthenticationConfig": {
+      "description": "Authentication configuration for the management interface, typically\nusing mTLS.",
+      "id": "InstanceManagementInterfaceAuthenticationConfig",
+      "properties": {
+        "trustConfig": {
+          "description": "Required. Resource name of the Cloud Certificate Manager TrustConfig used to\nvalidate client certificates for mTLS. Format:\nprojects/{project}/locations/{location}/trustConfigs/{trust_config}",
           "type": "string"
         }
       },
@@ -97742,6 +98071,15 @@
           "format": "int32",
           "type": "integer"
         },
+        "internalNicLoadBalancingIpv6Address": {
+          "description": "[Output Only] This field specifies the internal IPv6 network address\nassigned to the CX9 Network Interface Card, which facilitates the routing\nof traffic between NICs. For any single CX9 Network Interface Card, the\nidentical internalNicLoadBalancingIpv6Address is assigned across all four\nassociated ports.",
+          "type": "string"
+        },
+        "internalNicLoadBalancingIpv6PrefixLength": {
+          "description": "[Output Only] The prefix length of the internal IPv6 Nic load balancing\nprefix.",
+          "format": "int32",
+          "type": "integer"
+        },
         "ipv6AccessConfigs": {
           "description": "An array of IPv6 access configurations for this interface. Currently, only\none IPv6 access config, DIRECT_IPV6, is supported. If there\nis no ipv6AccessConfig specified, then this instance will\nhave no external IPv6 Internet access.",
           "items": {
@@ -108774,11 +109112,11 @@
       "id": "RegexRewrite",
       "properties": {
         "pathPattern": {
-          "description": "The regular expression used to match against the URL path.\nIt uses RE2 syntax with the following constraints:\n   \n   \n     - Any single character operators\n     - Groups are allowed to have only submatch operator inside\n     - Groups are allowed only without any char repetition, e.g.\n     .*\n     - Any char repetition, e.g. .*, is\n     only allowed to be used in a single regex together with:\n       \n      \n            - Empty string operators\n            - Other repetitions\n            - Ranges\n            - Repetitions of ranges\n          \n     \n     - Ranges are only allowed to have:\n       \n      \n            - Character range\n            - Digits range\n            - Symbols listed in characters allowed for ranges",
+          "description": "Required. The regular expression used to match against the URL path.\nIt uses RE2 syntax with the following constraints:\n   \n   \n     - Any single character operators\n     - Groups are allowed to have only submatch operator inside\n     - Groups are allowed only without any char repetition, e.g.\n     .*\n     - Any char repetition, e.g. .*, is\n     only allowed to be used in a single regex together with:\n       \n      \n            - Empty string operators\n            - Other repetitions\n            - Ranges\n            - Repetitions of ranges\n          \n     \n     - Ranges are only allowed to have:\n       \n      \n            - Character range\n            - Digits range\n            - Symbols listed in characters allowed for ranges",
           "type": "string"
         },
         "pathSubstitution": {
-          "description": "Required when path pattern is specified. Used to rewrite matching parts of\nthe path.",
+          "description": "Required. Required when path pattern is specified. Used to rewrite matching parts of\nthe path.",
           "type": "string"
         }
       },
@@ -108993,6 +109331,21 @@
         "destinationAddress": {
           "description": "The URL of the destination address to move to. This can be a full or\npartial URL. For example, the following are all valid URLs to a address:\n   \n   - https://www.googleapis.com/compute/v1/projects/project/regions/region/addresses/address \n   - projects/project/regions/region/addresses/address\n\n\nNote that destination project must be different from the source project. So/regions/region/addresses/address is not valid partial url.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RegionAddressesUpdatePublicPtrRequest": {
+      "id": "RegionAddressesUpdatePublicPtrRequest",
+      "properties": {
+        "ptrDomainName": {
+          "description": "The public DNS PTR record to be configured for this external IP.",
+          "type": "string"
+        },
+        "ptrDomainNameTtl": {
+          "description": "The TTL in seconds for public DNS PTR record.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -116356,6 +116709,10 @@
         "encryptedInterconnectRouter": {
           "description": "Indicates if a router is dedicated for use with encrypted VLAN\nattachments (interconnectAttachments).",
           "type": "boolean"
+        },
+        "etag": {
+          "description": "ETag for optimistic concurrency control as described by AIP 154. Used to\nprevent conflicting updates. If provided, the request will succeed only if\nthe etag matches the current etag of the router; otherwise, the request\nfails with an ABORTED error.",
+          "type": "string"
         },
         "id": {
           "description": "[Output Only] The unique identifier for the resource. This identifier is\ndefined by the server.",
@@ -129206,7 +129563,7 @@
       "id": "TargetPool",
       "properties": {
         "backupPool": {
-          "description": "The server-defined URL for the resource. This field is applicable only when\nthe containing target pool is serving a forwarding rule as the primary\npool, and its failoverRatio field is properly set to a value\nbetween [0, 1].backupPool and failoverRatio together define\nthe fallback behavior of the primary target pool: if the ratio of the\nhealthy instances in the primary pool is at or belowfailoverRatio, traffic arriving at the load-balanced\nIP will be directed to the backup pool.\n\nIn case where failoverRatio and backupPool\nare not set, or all the instances in the backup pool are unhealthy,\nthe traffic will be directed back to the primary pool in the \"force\"\nmode, where traffic will be spread to the healthy instances with the\nbest effort, or to all instances when no instance is healthy.",
+          "description": "The server-defined URL for the resource. This field is applicable only when\nthe containing target pool is serving a forwarding rule as the primary\npool, and its failoverRatio field is properly set to a value\nbetween [0, 1].\nbackupPool and failoverRatio together define\nthe fallback behavior of the primary target pool: if the ratio of the\nhealthy instances in the primary pool is at or belowfailoverRatio, traffic arriving at the load-balanced\nIP will be directed to the backup pool.\n\nIn case where failoverRatio and backupPool\nare not set, or all the instances in the backup pool are unhealthy,\nthe traffic will be directed back to the primary pool in the \"force\"\nmode, where traffic will be spread to the healthy instances with the\nbest effort, or to all instances when no instance is healthy.",
           "type": "string"
         },
         "creationTimestamp": {
@@ -134473,6 +134830,14 @@
           "description": "IP address of the peer VPN gateway. Only IPv4 is supported. This field can\nbe set only for Classic VPN tunnels.",
           "type": "string"
         },
+        "pqcPhase1": {
+          "$ref": "VpnTunnelPqc",
+          "description": "User specified list of PQC key exchange mechanisms (KEMs) to use for the\nphase 1 of the IKE protocol."
+        },
+        "pqcPhase2": {
+          "$ref": "VpnTunnelPqc",
+          "description": "User specified list of PQC key exchange mechanisms (KEMs) to use for the\nphase 2 of the IKE protocol."
+        },
         "region": {
           "description": "[Output Only] URL of the region where the VPN tunnel resides.\nYou must specify this field as part of the HTTP request URL. It is\nnot settable as a field in the request body.",
           "type": "string"
@@ -134546,6 +134911,139 @@
           "description": "The interface ID of the VPN gateway with which this VPN tunnel is\nassociated.\nPossible values are: `0`, `1`.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "VpnTunnelAdditionalKeyExchanges": {
+      "description": "User specified list of PQC key exchanges.",
+      "id": "VpnTunnelAdditionalKeyExchanges",
+      "properties": {
+        "ke1s": {
+          "items": {
+            "enum": [
+              "KEY_ENCAPSULATION_MECHANISM_UNSPECIFIED",
+              "KE_NONE",
+              "ML_KEM_1024",
+              "ML_KEM_768"
+            ],
+            "enumDescriptions": [
+              "",
+              "",
+              "",
+              ""
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "ke2s": {
+          "items": {
+            "enum": [
+              "KEY_ENCAPSULATION_MECHANISM_UNSPECIFIED",
+              "KE_NONE",
+              "ML_KEM_1024",
+              "ML_KEM_768"
+            ],
+            "enumDescriptions": [
+              "",
+              "",
+              "",
+              ""
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "ke3s": {
+          "items": {
+            "enum": [
+              "KEY_ENCAPSULATION_MECHANISM_UNSPECIFIED",
+              "KE_NONE",
+              "ML_KEM_1024",
+              "ML_KEM_768"
+            ],
+            "enumDescriptions": [
+              "",
+              "",
+              "",
+              ""
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "ke4s": {
+          "items": {
+            "enum": [
+              "KEY_ENCAPSULATION_MECHANISM_UNSPECIFIED",
+              "KE_NONE",
+              "ML_KEM_1024",
+              "ML_KEM_768"
+            ],
+            "enumDescriptions": [
+              "",
+              "",
+              "",
+              ""
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "ke5s": {
+          "items": {
+            "enum": [
+              "KEY_ENCAPSULATION_MECHANISM_UNSPECIFIED",
+              "KE_NONE",
+              "ML_KEM_1024",
+              "ML_KEM_768"
+            ],
+            "enumDescriptions": [
+              "",
+              "",
+              "",
+              ""
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "ke6s": {
+          "items": {
+            "enum": [
+              "KEY_ENCAPSULATION_MECHANISM_UNSPECIFIED",
+              "KE_NONE",
+              "ML_KEM_1024",
+              "ML_KEM_768"
+            ],
+            "enumDescriptions": [
+              "",
+              "",
+              "",
+              ""
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "ke7s": {
+          "items": {
+            "enum": [
+              "KEY_ENCAPSULATION_MECHANISM_UNSPECIFIED",
+              "KE_NONE",
+              "ML_KEM_1024",
+              "ML_KEM_768"
+            ],
+            "enumDescriptions": [
+              "",
+              "",
+              "",
+              ""
+            ],
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -134947,6 +135445,28 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "VpnTunnelPqc": {
+      "id": "VpnTunnelPqc",
+      "properties": {
+        "keys": {
+          "$ref": "VpnTunnelAdditionalKeyExchanges"
+        },
+        "mode": {
+          "enum": [
+            "DISABLED",
+            "ENABLED",
+            "PQC_MODE_UNSPECIFIED"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -135621,6 +136141,18 @@
           "enumDescriptions": [
             "Set the port line protocol down when inline probes detect a fault. This\nsetting is only permitted on port mode pseudowires.",
             "Default."
+          ],
+          "type": "string"
+        },
+        "flowManagement": {
+          "description": "The flow management configuration for the wire.",
+          "enum": [
+            "DYNAMIC_PATH",
+            "FIXED_PATH"
+          ],
+          "enumDescriptions": [
+            "The wire uses dynamic paths.",
+            "The wire uses fixed paths."
           ],
           "type": "string"
         },

@@ -1017,6 +1017,15 @@ export namespace compute_alpha {
      */
     prefixLength?: number | null;
     /**
+     * The public DNS PTR record to be configured for this external
+     * IP.
+     */
+    ptrDomainName?: string | null;
+    /**
+     * The TTL in seconds for public DNS PTR record.
+     */
+    ptrDomainNameTtl?: number | null;
+    /**
      * The purpose of this resource, which can be one of the following values:
      *
      *
@@ -2664,7 +2673,8 @@ export namespace compute_alpha {
      * handle additional traffic or is fully loaded. For usage guidelines, see
      * Connection balancing mode.
      *
-     * Backends must use compatible balancing modes. For more information, see
+     * Backends must use compatible balancing modes. Backends of a backend
+     * service may use different balancing modes. For more information, see
      * Supported balancing modes and target capacity settings and
      * Restrictions and guidance for instance groups.
      *
@@ -2703,6 +2713,9 @@ export namespace compute_alpha {
     /**
      * This field designates whether this is a failover backend. More than one
      * failover backend can be configured for a given BackendService.
+     *
+     * This field can only be used for a regional external Passthrough Network
+     * Load Balancer or a regional internal Passthrough Network Load Balancer.
      */
     failover?: boolean | null;
     /**
@@ -2810,6 +2823,15 @@ export namespace compute_alpha {
      *    capacity, backends in this layer would be used and traffic would be
      *    assigned based on the load balancing algorithm you use. This is the
      *    default
+     *
+     *
+     *
+     * For global external Passthrough Network Load Balancers, the following
+     * restrictions apply:
+     *
+     *    - At most one backend can be marked as PREFERRED.
+     *    - PREFERRED and DEFAULT backends cannot reside
+     *    in the same Cloud region.
      */
     preference?: string | null;
     /**
@@ -2979,14 +3001,17 @@ export namespace compute_alpha {
     cacheKeyPolicy?: Schema$BackendBucketCdnPolicyCacheKeyPolicy;
     /**
      * Specifies the cache setting for all responses from this backend.
-     * The possible values are:USE_ORIGIN_HEADERS Requires the origin to set valid caching
+     * The possible values are:
+     * USE_ORIGIN_HEADERS Requires the origin to set valid caching
      * headers to cache content. Responses without these headers will not be
      * cached at Google's edge, and will require a full trip to the origin on
      * every request, potentially impacting performance and increasing load on
-     * the origin server.FORCE_CACHE_ALL Cache all content, ignoring any "private",
+     * the origin server.
+     * FORCE_CACHE_ALL Cache all content, ignoring any "private",
      * "no-store" or "no-cache" directives in Cache-Control response headers.
      * Warning: this may result in Cloud CDN caching private,
-     * per-user (user identifiable) content.CACHE_ALL_STATIC Automatically cache static content,
+     * per-user (user identifiable) content.
+     * CACHE_ALL_STATIC Automatically cache static content,
      * including common image formats, media (video and audio), and web assets
      * (JavaScript and CSS). Requests and responses that are marked as
      * uncacheable, as well as dynamic content (including HTML), will not be
@@ -3455,8 +3480,8 @@ export namespace compute_alpha {
      * Balancers](https://cloud.google.com/load-balancing/docs/internal/failover-overview)
      * and [external passthrough Network Load
      * Balancers](https://cloud.google.com/load-balancing/docs/network/networklb-failover-overview).
-     *
-     * failoverPolicy cannot be specified with haPolicy.
+     * failoverPolicy cannot be specified with haPolicy.failoverPolicy cannot be used by global external Passthrough
+     * Network Load Balancers.
      */
     failoverPolicy?: Schema$BackendServiceFailoverPolicy;
     /**
@@ -3497,9 +3522,9 @@ export namespace compute_alpha {
      * haPolicy requires customers to be responsible for tracking backend
      * endpoint health and electing a leader among the healthy endpoints.
      * Therefore, haPolicy cannot be specified with healthChecks.
-     *
-     * haPolicy can only be specified for External Passthrough Network Load
-     * Balancers and Internal Passthrough Network Load Balancers.
+     * haPolicy can only be specified for External Passthrough
+     * Network Load Balancers and Internal Passthrough Network Load Balancers.haPolicy cannot be used by global external Passthrough Network
+     * Load Balancers.
      */
     haPolicy?: Schema$BackendServiceHAPolicy;
     /**
@@ -3569,8 +3594,8 @@ export namespace compute_alpha {
     /**
      * Specifies the load balancer type. A backend service
      * created for one type of load balancer cannot be used with another.
-     * For more information, refer toChoosing
-     * a load balancer.
+     * For more information, refer to
+     * Backend services product and scheme table.
      */
     loadBalancingScheme?: string | null;
     /**
@@ -3617,28 +3642,40 @@ export namespace compute_alpha {
      *    If set, the Backend Service responses are expected to contain non-standard
      *    HTTP response header field Endpoint-Load-Metrics. The reported
      *    metrics to use for computing the weights are specified via thecustomMetrics field.
+     *    - WEIGHTED_MAGLEV: Per-endpoint weighted load balancing via
+     *    health check reported weights. If set, the backend service must configure
+     *    an HTTP-based Health Check, and health check replies are expected to
+     *    contain the non-standard HTTP response header fieldX-Load-Balancing-Endpoint-Weight to specify the per-endpoint
+     *    weights. If set, load balancing is weighted based on the per-endpoint
+     *    weights reported in the last processed health check replies, as long as
+     *    every instance either reported a valid weight or had UNAVAILABLE_WEIGHT.
+     *    Otherwise, load balancing remains equal-weight.
      *
-     *    This field is applicable to either:
-     *       - A regional backend service with the service protocol set to HTTP,
-     *       HTTPS, HTTP2 or H2C, and load_balancing_scheme set to
-     *       INTERNAL_MANAGED.
-     *       - A global backend service with the
-     *       load_balancing_scheme set to INTERNAL_SELF_MANAGED, INTERNAL_MANAGED, or
-     *       EXTERNAL_MANAGED.
      *
      *
-     *    If sessionAffinity is not configured—that is, if session
-     *    affinity remains at the default value of NONE—then the
-     *    default value for localityLbPolicy
-     *    is ROUND_ROBIN. If session affinity is set to a value other
-     *    than NONE,
-     *    then the default value for localityLbPolicy isMAGLEV.
+     * This field is applicable to either:
      *
-     *    Only ROUND_ROBIN and RING_HASH are supported
-     *    when the backend service is referenced by a URL map that is bound to
-     *    target gRPC proxy that has validateForProxyless field set to true.
+     *    - A regional backend service with the service protocol set to HTTP,
+     *    HTTPS, HTTP2 or H2C, and load_balancing_scheme set to
+     *    INTERNAL_MANAGED.
+     *    - A global backend service with the
+     *    load_balancing_scheme set to INTERNAL_SELF_MANAGED, INTERNAL_MANAGED, or
+     *    EXTERNAL_MANAGED.
      *
-     *    localityLbPolicy cannot be specified with haPolicy.
+     *
+     *
+     * If sessionAffinity is not configured—that is, if session
+     * affinity remains at the default value of NONE—then the
+     * default value for localityLbPolicy
+     * is ROUND_ROBIN. If session affinity is set to a value other
+     * than NONE,
+     * then the default value for localityLbPolicy isMAGLEV.
+     *
+     * Only ROUND_ROBIN and RING_HASH are supported
+     * when the backend service is referenced by a URL map that is bound to
+     * target gRPC proxy that has validateForProxyless field set to true.
+     *
+     * localityLbPolicy cannot be specified with haPolicy.
      */
     localityLbPolicy?: string | null;
     /**
@@ -3765,13 +3802,13 @@ export namespace compute_alpha {
      */
     portName?: string | null;
     /**
-     * The protocol this BackendService uses to communicate
-     * with backends.
+     * The protocol this BackendService uses to communicate with backends.
      *
-     * Possible values are HTTP, HTTPS, HTTP2, H2C, TCP, SSL, UDP or GRPC.
-     * depending on the chosen load balancer or Traffic Director configuration.
-     * Refer to the documentation for the load balancers or for Traffic Director
-     * for more information.
+     * Possible values are HTTP, HTTPS, HTTP2, H2C, TCP, SSL, UDP, GRPC, or
+     * UNSPECIFIED, depending on the chosen load balancer or Traffic Director
+     * configuration.
+     * Refer to
+     * Load balancing features for more information.
      *
      * Must be set to GRPC when the backend service is referenced by a URL map
      * that is bound to target gRPC proxy.
@@ -3927,14 +3964,17 @@ export namespace compute_alpha {
     cacheKeyPolicy?: Schema$CacheKeyPolicy;
     /**
      * Specifies the cache setting for all responses from this backend.
-     * The possible values are:USE_ORIGIN_HEADERS Requires the origin to set valid caching
+     * The possible values are:
+     * USE_ORIGIN_HEADERS Requires the origin to set valid caching
      * headers to cache content. Responses without these headers will not be
      * cached at Google's edge, and will require a full trip to the origin on
      * every request, potentially impacting performance and increasing load on
-     * the origin server.FORCE_CACHE_ALL Cache all content, ignoring any "private",
+     * the origin server.
+     * FORCE_CACHE_ALL Cache all content, ignoring any "private",
      * "no-store" or "no-cache" directives in Cache-Control response headers.
      * Warning: this may result in Cloud CDN caching private,
-     * per-user (user identifiable) content.CACHE_ALL_STATIC Automatically cache static content,
+     * per-user (user identifiable) content.
+     * CACHE_ALL_STATIC Automatically cache static content,
      * including common image formats, media (video and audio), and web assets
      * (JavaScript and CSS). Requests and responses that are marked as
      * uncacheable, as well as dynamic content (including HTML), will not be
@@ -5858,7 +5898,6 @@ export namespace compute_alpha {
   export interface Schema$CapacityAdviceRequestInstanceFlexibilityPolicyInstanceSelectionAttachedDisk {
     /**
      * Specifies the type of the disk.
-     * This field must be set to SCRATCH.
      */
     type?: string | null;
   }
@@ -9947,16 +9986,47 @@ export namespace compute_alpha {
      */
     attachedExtensions?: Schema$ForwardingRuleAttachedExtension[];
     /**
-     * [Output Only] Specifies the availability group of the forwarding rule. This
+     * Output only. [Output Only] Specifies the load balancing availability group, one of the
+     * two that collectively provide high availability.
+     *
+     * Specifies the availability group of the forwarding rule. This
      * field is for use by global external passthrough load balancers (load
-     * balancing scheme EXTERNAL_PASSTHROUGH) and is set for the child forwarding
-     * rules only.
+     * balancing scheme EXTERNAL_PASSTHROUGH) and is set for the
+     * child forwarding rules only. The possible values are:
+     *
+     *    - AVAILABILITY_GROUP0: Set for the child forwarding rule
+     *    that is programmed on the AVAILABILITY_GROUP0 load balancing
+     *    stack. The child forwarding rule has the same IP protocol, port, and
+     *    backend service settings as the parent forwarding rule, but has only one of
+     *    the two IP addresses of the parent forwarding rule, the one with the
+     *    purpose PASSTHROUGH_LOAD_BALANCER_AVAILABILITY_GROUP0.
+     *    - AVAILABILITY_GROUP1: Set for the child forwarding rule
+     *    that is programmed on the AVAILABILITY_GROUP1 load balancing
+     *    stack. The child forwarding rule has the same IP protocol, port and backend
+     *    service settings as the parent forwarding rule, but has only one of the two
+     *    IP addresses of the parent forwarding rule, the one with the purposePASSTHROUGH_LOAD_BALANCER_AVAILABILITY_GROUP1.
+     *
+     *
+     *
+     * For each global external Passthrough Network Load Balancer forwarding rule
+     * (a parent forwarding rule) that you create, Google Cloud generates two
+     * output-only child forwarding rules, one forAVAILABILITY_GROUP0 and one forAVAILABILITY_GROUP1.
      */
     availabilityGroup?: string | null;
     /**
      * Identifies the backend service to which the forwarding rule sends traffic.
-     * Required for internal and external passthrough Network Load Balancers;
-     * must be omitted for all other load balancer types.
+     *
+     * It is a required field for the following load balancers:
+     *
+     *    - Internal passthrough Network Load Balancers
+     *    - Backend service-based regional external passthrough Network Load
+     *    Balancers
+     *    - Global external passthrough Network Load Balancers
+     *
+     *
+     *
+     * It cannot be set by other load balancer types and protocol forwarding
+     * rules.
      */
     backendService?: string | null;
     /**
@@ -9969,11 +10039,14 @@ export namespace compute_alpha {
      */
     baseForwardingRule?: string | null;
     /**
-     * Output only. [Output Only] Applicable only to the parent forwarding rule of global
+     * Output only. [Output Only] The resource URLs for the child forwarding rules.
+     *
+     * Applicable only to the parent forwarding rule of global
      * external passthrough load balancers. This field contains the list of child
      * forwarding rule URLs associated with the parent forwarding rule: one for
      * each availability group. AVAILABILITY_GROUP0 will be the first element, and
-     * AVAILABILITY_GROUP1 will be the second element.
+     * AVAILABILITY_GROUP1 will be the second element. Refer to theavailabilityGroup field for further details. It cannot be set
+     * by any other forwarding rules.
      */
     childForwardingRules?: string[] | null;
     /**
@@ -10064,6 +10137,8 @@ export namespace compute_alpha {
      *
      *
      *
+     * The IP address can only be set at creation. Once set, it cannot be updated.
+     *
      * The forwarding rule's target or backendService,
      * and in most cases, also the loadBalancingScheme, determine the
      * type of IP address that you can use. For detailed information, see
@@ -10072,8 +10147,69 @@ export namespace compute_alpha {
      *
      * When reading an IPAddress, the API always returns the IP
      * address number.
+     *
+     * When creating a global external Passthrough Network Load Balancer
+     * forwarding rule (a parent forwarding rule), you must use theIPAddresses field, but the Google Cloud generated child
+     * forwarding rules set the IPAddress field instead. Refer to theavailabilityGroup field for further details.
      */
     IPAddress?: string | null;
+    /**
+     * IP addresses for which this forwarding rule accepts traffic. All IP
+     * addresses must have the same IP version, IPv4 or IPv6. When a client sends
+     * traffic that matches one of the specified IP addresses, protocol and ports,
+     * the forwarding rule directs the traffic to the referencedbackendService. All IP addresses are served by the same set of
+     * backends, and they share the target capacities specified in the backend
+     * service fairly.
+     *
+     * Global external Passthrough Network Load Balancer requires two IP addresses
+     * for each forwarding rule to provide high availability when both IP
+     * addresses are used to serve client requests. The two IP addresses must come
+     * from global IP pools that belong to two distinct Availability
+     * Groups, represented by the purposePASSTHROUGH_LOAD_BALANCER_AVAILABILITY_GROUP0 andPASSTHROUGH_LOAD_BALANCER_AVAILABILITY_GROUP1. TheIPAddresses field specifies zero, one, or two IP addresses:
+     *
+     *    - If omitted, Google Cloud assigns two ephemeral IP addresses, one from
+     *    each Availability Group.
+     *    - If you specify one IP address that references an existing static IP
+     *    address resource from one Availability Group, Google Cloud assigns an
+     *    ephemeral IP address from the other Availability Group.
+     *    - If you specify two IP addresses that reference existing static IP
+     *    address resources, they are required to be from different Availability
+     *    Groups.
+     *
+     *
+     *
+     * For global external Passthrough Network Load Balancer, each IP address can be one of the following:
+     *
+     *    - A static or ephemeral IPv4 address from a Google-owned IP pool.
+     *    - A static IPv4 address from a global public delegated prefix.
+     *    - A static or ephemeral IPv6 /96 prefix from a Google-owned IP pool.
+     *
+     *
+     *
+     * For global external Passthrough Network Load Balancer, the two IP addresses
+     * can be of different types. One IP address can be from a BYOIP prefix while
+     * the other is from a Google-owned IP pool. One IP address can be static
+     * while the other is ephemeral. However, both IP addresses must have the same
+     * IP version, IPv4 or IPv6.
+     *
+     * The IP addresses can only be set at creation and cannot be updated.
+     *
+     * When creating a global external Passthrough Network Load Balancer
+     * forwarding rule (a parent forwarding rule), you must use theIPAddresses field, but the Google Cloud-generated child
+     * forwarding rules set the IPAddress field instead. Refer to theavailabilityGroup field for further details.
+     *
+     * Refer to the IPAddress field for the formats that can be used
+     * to specify IP addresses while creating a forwarding rule.
+     *
+     * Because Passthrough Network Load Balancers do not terminate or translate
+     * traffic, the backend stack types must be compatible with the forwarding
+     * rule IP version:
+     *
+     *    - If the forwarding rule IP version is IPv4, backends should be
+     *    configured as dual-stack or IPv4-only.
+     *    - If the forwarding rule IP version is IPv6, backends should be
+     *    configured as dual-stack or IPv6-only.
+     */
     IPAddresses?: string[] | null;
     /**
      * Resource reference of a PublicDelegatedPrefix. The PDP must
@@ -10135,8 +10271,8 @@ export namespace compute_alpha {
     /**
      * Specifies the forwarding rule type.
      *
-     * For more information about forwarding rules, refer to
-     * Forwarding rule concepts.
+     * For more information, refer to
+     * Forwarding rule product and scheme table.
      */
     loadBalancingScheme?: string | null;
     /**
@@ -10174,6 +10310,13 @@ export namespace compute_alpha {
      * For Private Service Connect forwarding rules that forward traffic to Google
      * APIs, the forwarding rule name must be a 1-20 characters string with
      * lowercase letters and numbers and must start with a letter.
+     *
+     * For global external Passthrough Network Load Balancer forwarding rules, the
+     * forwarding rule name must be 1-43 characters long. For each global external
+     * Passthrough Network Load Balancer forwarding rule (a parent forwarding
+     * rule) that you create, Google Cloud generates two output-only child
+     * forwarding rules that are named by concatenating the parent forwarding rule
+     * name with the `-ag0` and `-ag1` suffixes, respectively. Refer to theavailabilityGroup field for further details.
      */
     name?: string | null;
     /**
@@ -10208,7 +10351,9 @@ export namespace compute_alpha {
      */
     noAutomateDnsZone?: boolean | null;
     /**
-     * Output only. [Output Only] Applicable only to the child forwarding rules of global external
+     * Output only. [Output Only] The resource URL for the parent forwarding rule.
+     *
+     * Applicable only to the child forwarding rules of global external
      * passthrough load balancers. This field contains the URL of the parent
      * forwarding rule.
      */
@@ -10233,7 +10378,8 @@ export namespace compute_alpha {
      *
      *
      * For external forwarding rules, two or more forwarding rules cannot use the
-     * same [IPAddress, IPProtocol] pair, and cannot have overlappingportRanges.
+     * same [IPAddress, IPProtocol] pair (specified inIPAddress, IPAddresses, IPProtocol
+     * fields) if they have overlapping portRanges.
      *
      * For internal forwarding rules within the same VPC network, two or more
      * forwarding rules cannot use the same [IPAddress, IPProtocol]
@@ -10261,8 +10407,8 @@ export namespace compute_alpha {
      *
      *
      * For external forwarding rules, two or more forwarding rules cannot use the
-     * same [IPAddress, IPProtocol] pair if they share at least one
-     * port number.
+     * same [IPAddress, IPProtocol] pair (specified inIPAddress, IPAddresses, IPProtocol
+     * fields) if they share at least one port number.
      *
      * For internal forwarding rules within the same VPC network, two or more
      * forwarding rules cannot use the same [IPAddress, IPProtocol]
@@ -10355,6 +10501,15 @@ export namespace compute_alpha {
      *
      *
      *      -  For Private Service Connect forwarding rules that forward traffic to managed services, the target must be a service attachment. The target is not mutable once set as a service attachment.
+     *
+     *
+     *
+     * The following load balancers cannot set the target field (they should set the backendService field instead):
+     *
+     *    - Internal passthrough Network Load Balancers
+     *    - Backend service-based regional external passthrough Network Load
+     *    Balancers
+     *    - Global external passthrough Network Load Balancers
      */
     target?: string | null;
   }
@@ -11891,13 +12046,6 @@ export namespace compute_alpha {
      */
     description?: string | null;
     /**
-     * Capacity guarantee settings for the event of a failover.
-     * This determines whether capacity is guaranteed to be available
-     * in the zones used by the HaController.
-     * Deprecated: This field is deprecated and has no effect.
-     */
-    failoverCapacity?: string | null;
-    /**
      * Indicates how failover should be initiated.
      */
     failoverInitiation?: string | null;
@@ -11944,10 +12092,6 @@ export namespace compute_alpha {
      */
     region?: string | null;
     /**
-     * Indicates the capacity guarantees in the secondary zone.
-     */
-    secondaryZoneCapacity?: string | null;
-    /**
      * Output only. [Output only] Server-defined URL for the resource.
      */
     selfLink?: string | null;
@@ -11955,6 +12099,10 @@ export namespace compute_alpha {
      * Output only. [Output Only] Server-defined URL for this resource with the resource id.
      */
     selfLinkWithId?: string | null;
+    /**
+     * Output only. The current state of the HA Controller.
+     */
+    state?: string | null;
     /**
      * Output only. [Output Only] Status information for the HaController resource.
      */
@@ -12140,6 +12288,10 @@ export namespace compute_alpha {
      * Filled only if the failover is completed, in lastFailoverInfo.
      */
     failoverCompleteTimestamp?: string | null;
+    /**
+     * Output only. The duration of the last failover.
+     */
+    failoverDuration?: string | null;
     /**
      * Output only. [Output Only] Indicates if failover has been triggered automatically or
      * manually.
@@ -15212,10 +15364,18 @@ export namespace compute_alpha {
      *
      *
      * For example: zones/us-central1-f/machineTypes/custom-4-5120
+     *
      * For a full list of restrictions, read theSpecifications
      * for custom machine types.
      */
     machineType?: string | null;
+    /**
+     * Map of management interfaces. Keys must be valid RFC1035 names and at most
+     * 63 characters long.
+     */
+    managementInterfaces?: {
+      [key: string]: Schema$InstanceManagementInterface;
+    } | null;
     /**
      * The metadata key/value pairs assigned
      * to this instance. This includes metadata keys that were explicitly defined
@@ -17563,6 +17723,61 @@ export namespace compute_alpha {
      * Output only. Error message.
      */
     message?: string | null;
+  }
+  /**
+   * Represents Out-of-Band (OOB) Host Management Interface configuration
+   * details for direct host control.
+   */
+  export interface Schema$InstanceManagementInterface {
+    /**
+     * The authentication configuration for secure connection.
+     */
+    authenticationConfig?: Schema$InstanceManagementInterfaceAuthenticationConfig;
+    /**
+     * The IPv4 internal IP address assigned to this management interface
+     * endpoint. This address will be used by the customer to route traffic to
+     * the management interface.
+     */
+    ipv4Address?: string | null;
+    /**
+     * The IPv6 internal IP address assigned to this management interface
+     * endpoint. This address will be used by the customer to route traffic to
+     * the management interface if IPv6 is supported and configured.
+     */
+    ipv6Address?: string | null;
+    /**
+     * The URL of the VPC network to which the management interface endpoint is
+     * attached. The customer must ensure that this network is correctly
+     * configured for routing to the instance.
+     */
+    network?: string | null;
+    /**
+     * Output only. [Output Only] The current state of the management interface endpoint.
+     */
+    state?: string | null;
+    /**
+     * The URL of the subnetwork from which to assign the IP address for the
+     * endpoint. The subnetwork must belong to the specified network and have
+     * available IP addresses.
+     */
+    subnetwork?: string | null;
+    /**
+     * Required. The type of management service this interface provides.
+     * Supported types include HOST_MANAGEMENT for direct host control.
+     */
+    type?: string | null;
+  }
+  /**
+   * Authentication configuration for the management interface, typically
+   * using mTLS.
+   */
+  export interface Schema$InstanceManagementInterfaceAuthenticationConfig {
+    /**
+     * Required. Resource name of the Cloud Certificate Manager TrustConfig used to
+     * validate client certificates for mTLS. Format:
+     * projects/{project\}/locations/{location\}/trustConfigs/{trust_config\}
+     */
+    trustConfig?: string | null;
   }
   export interface Schema$InstanceMoveRequest {
     /**
@@ -24554,6 +24769,19 @@ export namespace compute_alpha {
      */
     internalIpv6PrefixLength?: number | null;
     /**
+     * [Output Only] This field specifies the internal IPv6 network address
+     * assigned to the CX9 Network Interface Card, which facilitates the routing
+     * of traffic between NICs. For any single CX9 Network Interface Card, the
+     * identical internalNicLoadBalancingIpv6Address is assigned across all four
+     * associated ports.
+     */
+    internalNicLoadBalancingIpv6Address?: string | null;
+    /**
+     * [Output Only] The prefix length of the internal IPv6 Nic load balancing
+     * prefix.
+     */
+    internalNicLoadBalancingIpv6PrefixLength?: number | null;
+    /**
      * An array of IPv6 access configurations for this interface. Currently, only
      * one IPv6 access config, DIRECT_IPV6, is supported. If there
      * is no ipv6AccessConfig specified, then this instance will
@@ -29475,7 +29703,7 @@ export namespace compute_alpha {
    */
   export interface Schema$RegexRewrite {
     /**
-     * The regular expression used to match against the URL path.
+     * Required. The regular expression used to match against the URL path.
      * It uses RE2 syntax with the following constraints:
      *
      *
@@ -29502,7 +29730,7 @@ export namespace compute_alpha {
      */
     pathPattern?: string | null;
     /**
-     * Required when path pattern is specified. Used to rewrite matching parts of
+     * Required. Required when path pattern is specified. Used to rewrite matching parts of
      * the path.
      */
     pathSubstitution?: string | null;
@@ -29594,6 +29822,16 @@ export namespace compute_alpha {
      * Note that destination project must be different from the source project. So/regions/region/addresses/address is not valid partial url.
      */
     destinationAddress?: string | null;
+  }
+  export interface Schema$RegionAddressesUpdatePublicPtrRequest {
+    /**
+     * The public DNS PTR record to be configured for this external IP.
+     */
+    ptrDomainName?: string | null;
+    /**
+     * The TTL in seconds for public DNS PTR record.
+     */
+    ptrDomainNameTtl?: number | null;
   }
   /**
    * Contains a list of autoscalers.
@@ -33119,6 +33357,13 @@ export namespace compute_alpha {
      * attachments (interconnectAttachments).
      */
     encryptedInterconnectRouter?: boolean | null;
+    /**
+     * ETag for optimistic concurrency control as described by AIP 154. Used to
+     * prevent conflicting updates. If provided, the request will succeed only if
+     * the etag matches the current etag of the router; otherwise, the request
+     * fails with an ABORTED error.
+     */
+    etag?: string | null;
     /**
      * [Output Only] The unique identifier for the resource. This identifier is
      * defined by the server.
@@ -40042,7 +40287,8 @@ export namespace compute_alpha {
      * The server-defined URL for the resource. This field is applicable only when
      * the containing target pool is serving a forwarding rule as the primary
      * pool, and its failoverRatio field is properly set to a value
-     * between [0, 1].backupPool and failoverRatio together define
+     * between [0, 1].
+     * backupPool and failoverRatio together define
      * the fallback behavior of the primary target pool: if the ratio of the
      * healthy instances in the primary pool is at or belowfailoverRatio, traffic arriving at the load-balanced
      * IP will be directed to the backup pool.
@@ -42599,6 +42845,16 @@ export namespace compute_alpha {
      */
     peerIp?: string | null;
     /**
+     * User specified list of PQC key exchange mechanisms (KEMs) to use for the
+     * phase 1 of the IKE protocol.
+     */
+    pqcPhase1?: Schema$VpnTunnelPqc;
+    /**
+     * User specified list of PQC key exchange mechanisms (KEMs) to use for the
+     * phase 2 of the IKE protocol.
+     */
+    pqcPhase2?: Schema$VpnTunnelPqc;
+    /**
      * [Output Only] URL of the region where the VPN tunnel resides.
      * You must specify this field as part of the HTTP request URL. It is
      * not settable as a field in the request body.
@@ -42683,6 +42939,18 @@ export namespace compute_alpha {
      * Possible values are: `0`, `1`.
      */
     vpnGatewayInterface?: number | null;
+  }
+  /**
+   * User specified list of PQC key exchanges.
+   */
+  export interface Schema$VpnTunnelAdditionalKeyExchanges {
+    ke1s?: string[] | null;
+    ke2s?: string[] | null;
+    ke3s?: string[] | null;
+    ke4s?: string[] | null;
+    ke5s?: string[] | null;
+    ke6s?: string[] | null;
+    ke7s?: string[] | null;
   }
   export interface Schema$VpnTunnelAggregatedList {
     /**
@@ -42794,6 +43062,10 @@ export namespace compute_alpha {
     encryption?: string[] | null;
     integrity?: string[] | null;
     pfs?: string[] | null;
+  }
+  export interface Schema$VpnTunnelPqc {
+    keys?: Schema$VpnTunnelAdditionalKeyExchanges;
+    mode?: string | null;
   }
   export interface Schema$VpnTunnelsScopedList {
     /**
@@ -43245,6 +43517,10 @@ export namespace compute_alpha {
      *    pseudowires.
      */
     faultResponse?: string | null;
+    /**
+     * The flow management configuration for the wire.
+     */
+    flowManagement?: string | null;
     /**
      * The network service class.
      */
@@ -45990,6 +46266,8 @@ export namespace compute_alpha {
      *   //   "networkAttachment": "my_networkAttachment",
      *   //   "networkTier": "my_networkTier",
      *   //   "prefixLength": 0,
+     *   //   "ptrDomainName": "my_ptrDomainName",
+     *   //   "ptrDomainNameTtl": 0,
      *   //   "purpose": "my_purpose",
      *   //   "region": "my_region",
      *   //   "selfLink": "my_selfLink",
@@ -46169,6 +46447,8 @@ export namespace compute_alpha {
      *       //   "networkAttachment": "my_networkAttachment",
      *       //   "networkTier": "my_networkTier",
      *       //   "prefixLength": 0,
+     *       //   "ptrDomainName": "my_ptrDomainName",
+     *       //   "ptrDomainNameTtl": 0,
      *       //   "purpose": "my_purpose",
      *       //   "region": "my_region",
      *       //   "selfLink": "my_selfLink",
@@ -47095,6 +47375,202 @@ export namespace compute_alpha {
         return createAPIRequest<Schema$TestPermissionsResponse>(parameters);
       }
     }
+
+    /**
+     * Set a custom ptr domain name on regional address.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.addresses.updatePublicPtr({
+     *     // Name of the address resource to update.
+     *     address: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
+     *     // Source project ID where the address belongs.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // Name of the region for this request.
+     *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *     // An optional request ID to identify requests. Specify a unique request ID so
+     *     // that if you must retry your request, the server will know to ignore the
+     *     // request if it has already been completed.
+     *     //
+     *     // For example, consider a situation where you make an initial request and
+     *     // the request times out. If you make the request again with the same
+     *     // request ID, the server can check if original operation with the same
+     *     // request ID was received, and if so, will ignore the second request. This
+     *     // prevents clients from accidentally creating duplicate commitments.
+     *     //
+     *     // The request ID must be
+     *     // a valid UUID with the exception that zero UUID is not supported
+     *     // (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "ptrDomainName": "my_ptrDomainName",
+     *       //   "ptrDomainNameTtl": 0
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientOperationId": "my_clientOperationId",
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "firewallPolicyRuleOperationMetadata": {},
+     *   //   "getHealthOperationMetadata": {},
+     *   //   "getVersionOperationMetadata": {},
+     *   //   "httpErrorMessage": "my_httpErrorMessage",
+     *   //   "httpErrorStatusCode": 0,
+     *   //   "id": "my_id",
+     *   //   "insertTime": "my_insertTime",
+     *   //   "instancesBulkInsertOperationMetadata": {},
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationGroupId": "my_operationGroupId",
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": 0,
+     *   //   "region": "my_region",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "selfLinkWithId": "my_selfLinkWithId",
+     *   //   "setCommonInstanceMetadataOperationMetadata": {},
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "user": "my_user",
+     *   //   "warnings": [],
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    updatePublicPtr(
+      params: Params$Resource$Addresses$Updatepublicptr,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    updatePublicPtr(
+      params?: Params$Resource$Addresses$Updatepublicptr,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    updatePublicPtr(
+      params: Params$Resource$Addresses$Updatepublicptr,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    updatePublicPtr(
+      params: Params$Resource$Addresses$Updatepublicptr,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    updatePublicPtr(
+      params: Params$Resource$Addresses$Updatepublicptr,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    updatePublicPtr(callback: BodyResponseCallback<Schema$Operation>): void;
+    updatePublicPtr(
+      paramsOrCallback?:
+        | Params$Resource$Addresses$Updatepublicptr
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Addresses$Updatepublicptr;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Addresses$Updatepublicptr;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/alpha/projects/{project}/regions/{region}/addresses/{address}:updatePublicPtr'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region', 'address'],
+        pathParams: ['address', 'project', 'region'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Addresses$Aggregatedlist extends StandardParameters {
@@ -47487,6 +47963,41 @@ export namespace compute_alpha {
      * Request body metadata
      */
     requestBody?: Schema$TestPermissionsRequest;
+  }
+  export interface Params$Resource$Addresses$Updatepublicptr extends StandardParameters {
+    /**
+     * Name of the address resource to update.
+     */
+    address?: string;
+    /**
+     * Source project ID where the address belongs.
+     */
+    project?: string;
+    /**
+     * Name of the region for this request.
+     */
+    region?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID so
+     * that if you must retry your request, the server will know to ignore the
+     * request if it has already been completed.
+     *
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same
+     * request ID, the server can check if original operation with the same
+     * request ID was received, and if so, will ignore the second request. This
+     * prevents clients from accidentally creating duplicate commitments.
+     *
+     * The request ID must be
+     * a valid UUID with the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RegionAddressesUpdatePublicPtrRequest;
   }
 
   export class Resource$Advice {
@@ -83084,6 +83595,8 @@ export namespace compute_alpha {
      *   //   "networkAttachment": "my_networkAttachment",
      *   //   "networkTier": "my_networkTier",
      *   //   "prefixLength": 0,
+     *   //   "ptrDomainName": "my_ptrDomainName",
+     *   //   "ptrDomainNameTtl": 0,
      *   //   "purpose": "my_purpose",
      *   //   "region": "my_region",
      *   //   "selfLink": "my_selfLink",
@@ -83409,6 +83922,8 @@ export namespace compute_alpha {
      *       //   "networkAttachment": "my_networkAttachment",
      *       //   "networkTier": "my_networkTier",
      *       //   "prefixLength": 0,
+     *       //   "ptrDomainName": "my_ptrDomainName",
+     *       //   "ptrDomainNameTtl": 0,
      *       //   "purpose": "my_purpose",
      *       //   "region": "my_region",
      *       //   "selfLink": "my_selfLink",
@@ -94707,7 +95222,6 @@ export namespace compute_alpha {
      *   //   "backendServices": [],
      *   //   "creationTimestamp": "my_creationTimestamp",
      *   //   "description": "my_description",
-     *   //   "failoverCapacity": "my_failoverCapacity",
      *   //   "failoverInitiation": "my_failoverInitiation",
      *   //   "id": "my_id",
      *   //   "instanceName": "my_instanceName",
@@ -94715,9 +95229,9 @@ export namespace compute_alpha {
      *   //   "name": "my_name",
      *   //   "networkingAutoConfiguration": {},
      *   //   "region": "my_region",
-     *   //   "secondaryZoneCapacity": "my_secondaryZoneCapacity",
      *   //   "selfLink": "my_selfLink",
      *   //   "selfLinkWithId": "my_selfLinkWithId",
+     *   //   "state": "my_state",
      *   //   "status": {},
      *   //   "zoneConfigurations": {}
      *   // }
@@ -94869,7 +95383,6 @@ export namespace compute_alpha {
      *       //   "backendServices": [],
      *       //   "creationTimestamp": "my_creationTimestamp",
      *       //   "description": "my_description",
-     *       //   "failoverCapacity": "my_failoverCapacity",
      *       //   "failoverInitiation": "my_failoverInitiation",
      *       //   "id": "my_id",
      *       //   "instanceName": "my_instanceName",
@@ -94877,9 +95390,9 @@ export namespace compute_alpha {
      *       //   "name": "my_name",
      *       //   "networkingAutoConfiguration": {},
      *       //   "region": "my_region",
-     *       //   "secondaryZoneCapacity": "my_secondaryZoneCapacity",
      *       //   "selfLink": "my_selfLink",
      *       //   "selfLinkWithId": "my_selfLinkWithId",
+     *       //   "state": "my_state",
      *       //   "status": {},
      *       //   "zoneConfigurations": {}
      *       // }
@@ -95309,7 +95822,6 @@ export namespace compute_alpha {
      *       //   "backendServices": [],
      *       //   "creationTimestamp": "my_creationTimestamp",
      *       //   "description": "my_description",
-     *       //   "failoverCapacity": "my_failoverCapacity",
      *       //   "failoverInitiation": "my_failoverInitiation",
      *       //   "id": "my_id",
      *       //   "instanceName": "my_instanceName",
@@ -95317,9 +95829,9 @@ export namespace compute_alpha {
      *       //   "name": "my_name",
      *       //   "networkingAutoConfiguration": {},
      *       //   "region": "my_region",
-     *       //   "secondaryZoneCapacity": "my_secondaryZoneCapacity",
      *       //   "selfLink": "my_selfLink",
      *       //   "selfLinkWithId": "my_selfLinkWithId",
+     *       //   "state": "my_state",
      *       //   "status": {},
      *       //   "zoneConfigurations": {}
      *       // }
@@ -116939,6 +117451,8 @@ export namespace compute_alpha {
      *       //   "fingerprint": "my_fingerprint",
      *       //   "igmpQuery": "my_igmpQuery",
      *       //   "internalIpv6PrefixLength": 0,
+     *       //   "internalNicLoadBalancingIpv6Address": "my_internalNicLoadBalancingIpv6Address",
+     *       //   "internalNicLoadBalancingIpv6PrefixLength": 0,
      *       //   "ipv6AccessConfigs": [],
      *       //   "ipv6AccessType": "my_ipv6AccessType",
      *       //   "ipv6Address": "my_ipv6Address",
@@ -118813,6 +119327,7 @@ export namespace compute_alpha {
      *   //   "lastSuspendedTimestamp": "my_lastSuspendedTimestamp",
      *   //   "localSsdEncryptionMode": "my_localSsdEncryptionMode",
      *   //   "machineType": "my_machineType",
+     *   //   "managementInterfaces": {},
      *   //   "metadata": {},
      *   //   "minCpuPlatform": "my_minCpuPlatform",
      *   //   "name": "my_name",
@@ -120445,6 +120960,7 @@ export namespace compute_alpha {
      *       //   "lastSuspendedTimestamp": "my_lastSuspendedTimestamp",
      *       //   "localSsdEncryptionMode": "my_localSsdEncryptionMode",
      *       //   "machineType": "my_machineType",
+     *       //   "managementInterfaces": {},
      *       //   "metadata": {},
      *       //   "minCpuPlatform": "my_minCpuPlatform",
      *       //   "name": "my_name",
@@ -126834,6 +127350,7 @@ export namespace compute_alpha {
      *       //   "lastSuspendedTimestamp": "my_lastSuspendedTimestamp",
      *       //   "localSsdEncryptionMode": "my_localSsdEncryptionMode",
      *       //   "machineType": "my_machineType",
+     *       //   "managementInterfaces": {},
      *       //   "metadata": {},
      *       //   "minCpuPlatform": "my_minCpuPlatform",
      *       //   "name": "my_name",
@@ -127485,6 +128002,8 @@ export namespace compute_alpha {
      *       //   "fingerprint": "my_fingerprint",
      *       //   "igmpQuery": "my_igmpQuery",
      *       //   "internalIpv6PrefixLength": 0,
+     *       //   "internalNicLoadBalancingIpv6Address": "my_internalNicLoadBalancingIpv6Address",
+     *       //   "internalNicLoadBalancingIpv6PrefixLength": 0,
      *       //   "ipv6AccessConfigs": [],
      *       //   "ipv6AccessType": "my_ipv6AccessType",
      *       //   "ipv6Address": "my_ipv6Address",
@@ -255310,6 +255829,157 @@ export namespace compute_alpha {
     }
 
     /**
+     * Gets the access control policy for a resource. May be empty if no such
+     * policy or resource exists.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.regionSslPolicies.getIamPolicy({
+     *     // Requested IAM Policy version.
+     *     optionsRequestedPolicyVersion: 'placeholder-value',
+     *     // Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // The name of the region for this request.
+     *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *     // Name or id of the resource for this request.
+     *     resource: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getIamPolicy(
+      params: Params$Resource$Regionsslpolicies$Getiampolicy,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    getIamPolicy(
+      params?: Params$Resource$Regionsslpolicies$Getiampolicy,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
+    getIamPolicy(
+      params: Params$Resource$Regionsslpolicies$Getiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getIamPolicy(
+      params: Params$Resource$Regionsslpolicies$Getiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    getIamPolicy(
+      params: Params$Resource$Regionsslpolicies$Getiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+      paramsOrCallback?:
+        | Params$Resource$Regionsslpolicies$Getiampolicy
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Regionsslpolicies$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regionsslpolicies$Getiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/alpha/projects/{project}/regions/{region}/sslPolicies/{resource}/getIamPolicy'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region', 'resource'],
+        pathParams: ['project', 'region', 'resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+    /**
      * Creates a new policy in the specified project and region using the data
      * included in the request.
      * @example
@@ -256211,6 +256881,164 @@ export namespace compute_alpha {
     }
 
     /**
+     * Sets the access control policy on the specified resource.
+     * Replaces any existing policy.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.regionSslPolicies.setIamPolicy({
+     *     // Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // The name of the region for this request.
+     *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *     // Name or id of the resource for this request.
+     *     resource: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "bindings": [],
+     *       //   "etag": "my_etag",
+     *       //   "policy": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    setIamPolicy(
+      params: Params$Resource$Regionsslpolicies$Setiampolicy,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    setIamPolicy(
+      params?: Params$Resource$Regionsslpolicies$Setiampolicy,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
+    setIamPolicy(
+      params: Params$Resource$Regionsslpolicies$Setiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    setIamPolicy(
+      params: Params$Resource$Regionsslpolicies$Setiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    setIamPolicy(
+      params: Params$Resource$Regionsslpolicies$Setiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+      paramsOrCallback?:
+        | Params$Resource$Regionsslpolicies$Setiampolicy
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Regionsslpolicies$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regionsslpolicies$Setiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/alpha/projects/{project}/regions/{region}/sslPolicies/{resource}/setIamPolicy'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region', 'resource'],
+        pathParams: ['project', 'region', 'resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+    /**
      * Returns permissions that a caller has on the specified resource.
      * @example
      * ```js
@@ -256413,6 +257241,24 @@ export namespace compute_alpha {
      * and comply with RFC1035.
      */
     sslPolicy?: string;
+  }
+  export interface Params$Resource$Regionsslpolicies$Getiampolicy extends StandardParameters {
+    /**
+     * Requested IAM Policy version.
+     */
+    optionsRequestedPolicyVersion?: number;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * The name of the region for this request.
+     */
+    region?: string;
+    /**
+     * Name or id of the resource for this request.
+     */
+    resource?: string;
   }
   export interface Params$Resource$Regionsslpolicies$Insert extends StandardParameters {
     /**
@@ -256696,6 +257542,25 @@ export namespace compute_alpha {
      * Request body metadata
      */
     requestBody?: Schema$SslPolicy;
+  }
+  export interface Params$Resource$Regionsslpolicies$Setiampolicy extends StandardParameters {
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * The name of the region for this request.
+     */
+    region?: string;
+    /**
+     * Name or id of the resource for this request.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RegionSetPolicyRequest;
   }
   export interface Params$Resource$Regionsslpolicies$Testiampermissions extends StandardParameters {
     /**
@@ -275494,6 +276359,11 @@ export namespace compute_alpha {
      *
      *   // Do the magic
      *   const res = await compute.routers.delete({
+     *     // ETag for optimistic concurrency control as described by AIP 154. Used to
+     *     // prevent conflicting updates. If provided, the request will succeed only if
+     *     // the etag matches the current etag of the router; otherwise, the request
+     *     // fails with an ABORTED error.
+     *     etag: 'placeholder-value',
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
@@ -276076,6 +276946,7 @@ export namespace compute_alpha {
      *   //   "creationTimestamp": "my_creationTimestamp",
      *   //   "description": "my_description",
      *   //   "encryptedInterconnectRouter": false,
+     *   //   "etag": "my_etag",
      *   //   "id": "my_id",
      *   //   "interfaces": [],
      *   //   "kind": "my_kind",
@@ -277107,6 +277978,7 @@ export namespace compute_alpha {
      *       //   "creationTimestamp": "my_creationTimestamp",
      *       //   "description": "my_description",
      *       //   "encryptedInterconnectRouter": false,
+     *       //   "etag": "my_etag",
      *       //   "id": "my_id",
      *       //   "interfaces": [],
      *       //   "kind": "my_kind",
@@ -278305,6 +279177,7 @@ export namespace compute_alpha {
      *       //   "creationTimestamp": "my_creationTimestamp",
      *       //   "description": "my_description",
      *       //   "encryptedInterconnectRouter": false,
+     *       //   "etag": "my_etag",
      *       //   "id": "my_id",
      *       //   "interfaces": [],
      *       //   "kind": "my_kind",
@@ -278901,6 +279774,7 @@ export namespace compute_alpha {
      *       //   "creationTimestamp": "my_creationTimestamp",
      *       //   "description": "my_description",
      *       //   "encryptedInterconnectRouter": false,
+     *       //   "etag": "my_etag",
      *       //   "id": "my_id",
      *       //   "interfaces": [],
      *       //   "kind": "my_kind",
@@ -279246,6 +280120,7 @@ export namespace compute_alpha {
      *       //   "creationTimestamp": "my_creationTimestamp",
      *       //   "description": "my_description",
      *       //   "encryptedInterconnectRouter": false,
+     *       //   "etag": "my_etag",
      *       //   "id": "my_id",
      *       //   "interfaces": [],
      *       //   "kind": "my_kind",
@@ -279910,6 +280785,13 @@ export namespace compute_alpha {
     serviceProjectNumber?: string;
   }
   export interface Params$Resource$Routers$Delete extends StandardParameters {
+    /**
+     * ETag for optimistic concurrency control as described by AIP 154. Used to
+     * prevent conflicting updates. If provided, the request will succeed only if
+     * the etag matches the current etag of the router; otherwise, the request
+     * fails with an ABORTED error.
+     */
+    etag?: string;
     /**
      * Project ID for this request.
      */
@@ -294241,6 +295123,155 @@ export namespace compute_alpha {
     }
 
     /**
+     * Gets the access control policy for a resource. May be empty if no such
+     * policy or resource exists.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.sslPolicies.getIamPolicy({
+     *     // Requested IAM Policy version.
+     *     optionsRequestedPolicyVersion: 'placeholder-value',
+     *     // Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // Name or id of the resource for this request.
+     *     resource: '[a-z](?:[-a-z0-9_]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getIamPolicy(
+      params: Params$Resource$Sslpolicies$Getiampolicy,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    getIamPolicy(
+      params?: Params$Resource$Sslpolicies$Getiampolicy,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
+    getIamPolicy(
+      params: Params$Resource$Sslpolicies$Getiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getIamPolicy(
+      params: Params$Resource$Sslpolicies$Getiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    getIamPolicy(
+      params: Params$Resource$Sslpolicies$Getiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+      paramsOrCallback?:
+        | Params$Resource$Sslpolicies$Getiampolicy
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Sslpolicies$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Sslpolicies$Getiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/alpha/projects/{project}/global/sslPolicies/{resource}/getIamPolicy'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'resource'],
+        pathParams: ['project', 'resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+    /**
      * Returns the specified SSL policy resource.
      * @example
      * ```js
@@ -295130,6 +296161,162 @@ export namespace compute_alpha {
     }
 
     /**
+     * Sets the access control policy on the specified resource.
+     * Replaces any existing policy.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.sslPolicies.setIamPolicy({
+     *     // Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // Name or id of the resource for this request.
+     *     resource: '[a-z](?:[-a-z0-9_]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "bindings": [],
+     *       //   "etag": "my_etag",
+     *       //   "policy": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    setIamPolicy(
+      params: Params$Resource$Sslpolicies$Setiampolicy,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    setIamPolicy(
+      params?: Params$Resource$Sslpolicies$Setiampolicy,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
+    setIamPolicy(
+      params: Params$Resource$Sslpolicies$Setiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    setIamPolicy(
+      params: Params$Resource$Sslpolicies$Setiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    setIamPolicy(
+      params: Params$Resource$Sslpolicies$Setiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+      paramsOrCallback?:
+        | Params$Resource$Sslpolicies$Setiampolicy
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Sslpolicies$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Sslpolicies$Setiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/alpha/projects/{project}/global/sslPolicies/{resource}/setIamPolicy'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'resource'],
+        pathParams: ['project', 'resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+    /**
      * Returns permissions that a caller has on the specified resource.
      * @example
      * ```js
@@ -295442,6 +296629,20 @@ export namespace compute_alpha {
      */
     sslPolicy?: string;
   }
+  export interface Params$Resource$Sslpolicies$Getiampolicy extends StandardParameters {
+    /**
+     * Requested IAM Policy version.
+     */
+    optionsRequestedPolicyVersion?: number;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name or id of the resource for this request.
+     */
+    resource?: string;
+  }
   export interface Params$Resource$Sslpolicies$Insert extends StandardParameters {
     /**
      * Project ID for this request.
@@ -295708,6 +296909,21 @@ export namespace compute_alpha {
      * Request body metadata
      */
     requestBody?: Schema$SslPolicy;
+  }
+  export interface Params$Resource$Sslpolicies$Setiampolicy extends StandardParameters {
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name or id of the resource for this request.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GlobalSetPolicyRequest;
   }
   export interface Params$Resource$Sslpolicies$Testiampermissions extends StandardParameters {
     /**
@@ -324337,6 +325553,8 @@ export namespace compute_alpha {
      *   //   "peerExternalGatewayInterface": 0,
      *   //   "peerGcpGateway": "my_peerGcpGateway",
      *   //   "peerIp": "my_peerIp",
+     *   //   "pqcPhase1": {},
+     *   //   "pqcPhase2": {},
      *   //   "region": "my_region",
      *   //   "remoteTrafficSelector": [],
      *   //   "router": "my_router",
@@ -324519,6 +325737,8 @@ export namespace compute_alpha {
      *       //   "peerExternalGatewayInterface": 0,
      *       //   "peerGcpGateway": "my_peerGcpGateway",
      *       //   "peerIp": "my_peerIp",
+     *       //   "pqcPhase1": {},
+     *       //   "pqcPhase2": {},
      *       //   "region": "my_region",
      *       //   "remoteTrafficSelector": [],
      *       //   "router": "my_router",
