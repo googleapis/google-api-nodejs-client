@@ -137,9 +137,17 @@ export namespace networkservices_v1 {
      */
     accessTypes?: string[] | null;
     /**
+     * Optional. The compute environment where the agent is hosted. Exactly one type of compute must be chosen.
+     */
+    agentCompute?: string | null;
+    /**
      * Output only. The timestamp when the resource was created.
      */
     createTime?: string | null;
+    /**
+     * Required. The deployment model for the gateway.
+     */
+    deploymentModel?: string | null;
     /**
      * Optional. A free-text description of the resource. Max length 1024 characters.
      */
@@ -547,6 +555,175 @@ export namespace networkservices_v1 {
      * Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
      */
     title?: string | null;
+  }
+  /**
+   * `ExtensionBinding` is a resource representing the attachment of an extension to a service.
+   */
+  export interface Schema$ExtensionBinding {
+    /**
+     * Output only. The timestamp when the resource was created.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. A human-readable description of the resource.
+     */
+    description?: string | null;
+    /**
+     * Optional. Etag of the resource. If provided, it must match the server's etag. If the provided etag does not match the server's etag, the request will fail with a 409 ABORTED error.
+     */
+    etag?: string | null;
+    /**
+     * Optional. Determines the behavior of the extension binding when the call to the extension fails or times out. Default value is `FALSE`. When set to `TRUE`, failures of the extension are silently ignored.
+     */
+    failOpen?: boolean | null;
+    /**
+     * Optional. Set of labels associated with the `ExtensionBinding` resource. The format must comply with [the following requirements](https://cloud.google.com/compute/docs/labeling-resources#requirements).
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Optional. A list of match conditions to match against the incoming request. The extension will be invoked if at least one condition matches the request, or if no match conditions are specified. Limited to 5 conditions.
+     */
+    matchConditions?: Schema$ExtensionBindingMatchCondition[];
+    /**
+     * Identifier. Name of the `ExtensionBinding` resource in the following format: `projects/{project\}/locations/{location\}/extensionBindings/{extension_binding\}`.
+     */
+    name?: string | null;
+    /**
+     * Optional. Priority of the extension binding. Lower numbers indicate higher priority. Priority of extension bindings are used to determine the order in which extension bindings are applied to a request.
+     */
+    priority?: number | null;
+    /**
+     * Required. The name of the extension that this binding should attach to target resources. Format: For Google-provided extensions, specify the service endpoint (see [Model Armor integration](https://docs.cloud.google.com/model-armor/integrations))
+     */
+    producerExtension?: string | null;
+    /**
+     * Optional. Additional metadata that should be passed to the attached extension with each request.
+     */
+    producerMetadata?: {[key: string]: string} | null;
+    /**
+     * Required. Specifies a target to which this `ExtensionBinding` should be attached. The target can be either a single resource or a scope of resources.
+     */
+    target?: Schema$ExtensionBindingTarget;
+    /**
+     * Output only. The timestamp when the resource was updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Conditions to match against the incoming request.
+   */
+  export interface Schema$ExtensionBindingMatchCondition {
+    /**
+     * Optional. Describes properties of a destination of a request. If specified, the extension will only be invoked on requests to destinations that match the specified criteria.
+     */
+    to?: Schema$ExtensionBindingMatchConditionTo;
+  }
+  /**
+   * Determines how an HTTP header should be matched.
+   */
+  export interface Schema$ExtensionBindingMatchConditionHeaderMatch {
+    /**
+     * Required. Specifies the name of the header in the request.
+     */
+    name?: string | null;
+    /**
+     * Optional. Specifies how the header match will be performed.
+     */
+    value?: Schema$ExtensionBindingMatchConditionStringMatch;
+  }
+  /**
+   * Specifies matching logic for string values.
+   */
+  export interface Schema$ExtensionBindingMatchConditionStringMatch {
+    /**
+     * Optional. The input string must have the substring specified here. Note: empty contains match is not allowed, please use regex instead. Examples: * ``abc`` matches the value ``xyz.abc.def``
+     */
+    contains?: string | null;
+    /**
+     * Optional. The input string must match exactly the string specified here. Examples: * ``abc`` only matches the value ``abc``.
+     */
+    exact?: string | null;
+    /**
+     * Optional. If true, indicates the exact/prefix/suffix/contains matching should be case insensitive. For example, the matcher ``data`` will match both input string ``Data`` and ``data`` if set to true.
+     */
+    ignoreCase?: boolean | null;
+    /**
+     * Optional. The input string must have the prefix specified here. Note: empty prefix is not allowed. Examples: * ``abc`` matches the value ``abc.xyz``
+     */
+    prefix?: string | null;
+    /**
+     * Optional. The input string must have the suffix specified here. Note: empty prefix is not allowed, please use regex instead. Examples: * ``abc`` matches the value ``xyz.abc``
+     */
+    suffix?: string | null;
+  }
+  /**
+   * Describes properties of one or more destinations of a request.
+   */
+  export interface Schema$ExtensionBindingMatchConditionTo {
+    /**
+     * Optional. Describes properties of destination of a request. Within a destination, the match follows AND semantics across fields and OR semantics within a field, i.e. a match occurs when ANY path matches AND ANY header matches and ANY method matches. At least one of destination or not_destination must be specified.
+     */
+    destination?: Schema$ExtensionBindingMatchConditionToDestination;
+    /**
+     * Optional. Describes the negated properties of the request destination. Extension will not be invoked on requests that match the criteria specified in this field. At least one of destination or not_destination must be specified.
+     */
+    notDestination?: Schema$ExtensionBindingMatchConditionToDestination;
+  }
+  /**
+   * Describes properties of a single destination.
+   */
+  export interface Schema$ExtensionBindingMatchConditionToDestination {
+    /**
+     * Optional. A set of HTTP headers to match against. If not specified, requests with any headers are matched.
+     */
+    headerSet?: Schema$ExtensionBindingMatchConditionToDestinationHeaderSet;
+    /**
+     * Optional. A list of HTTP Hosts to match against. Limited to 10 hosts. If not specified, any host is allowed. If specified, a match occurs if any of the hosts matches the host value in the request.
+     */
+    hosts?: Schema$ExtensionBindingMatchConditionStringMatch[];
+    /**
+     * Optional. A list of paths to match against. Limited to 10 paths. If not specified, any path is allowed. Note that this path match includes the query parameters. For gRPC services, this should be a fully-qualified name of the form /package.service/method.
+     */
+    paths?: Schema$ExtensionBindingMatchConditionStringMatch[];
+    /**
+     * Optional. A list of non-empty strings whose value is matched against the resource value. If not specified, any resource is allowed. If specified, a match occurs if any of the resources matches the resource value in the request. Limited to 5 resources.
+     */
+    resources?: Schema$ExtensionBindingMatchConditionStringMatch[];
+  }
+  /**
+   * Describes a set of HTTP headers to match against.
+   */
+  export interface Schema$ExtensionBindingMatchConditionToDestinationHeaderSet {
+    /**
+     * Required. A list of headers to match against in http header. If multiple header matches are provided, they will be evaluated as an AND, i.e. all header matches must match for the request to match.
+     */
+    headers?: Schema$ExtensionBindingMatchConditionHeaderMatch[];
+  }
+  /**
+   * Specifies a list of targets to which this `ExtensionBinding` should attach.
+   */
+  export interface Schema$ExtensionBindingTarget {
+    /**
+     * Optional. The reference to the target resource, to which this binding should attach. Exactly one of `resources` or `scope` must be set. For Agent Gateway, this would be the full resource name, in the format: `projects/{project\}/locations/{location\}/agentGateways/{agent_gateway\}`. For AI App, this would be the full resource name, in the format: `projects/{project\}/locations/{location\}/applications/{application\}`.
+     */
+    resources?: string[] | null;
+    /**
+     * Optional. Specifies the scope of resources to which this binding should attach. Exactly one of `resources` or `scope` must be set.
+     */
+    scope?: Schema$ExtensionBindingTargetScope;
+  }
+  /**
+   * Specifies the scope of resources to which this binding should attach.
+   */
+  export interface Schema$ExtensionBindingTargetScope {
+    /**
+     * Required. Parent resource name specification, in the format: `projects/{project_number\}`.
+     */
+    parent?: string | null;
+    /**
+     * Required. Type of the resource to which the binding should attach. Limited to 1 resource type.
+     */
+    resourceTypes?: string[] | null;
   }
   /**
    * A single extension chain wrapper that contains the match conditions and extensions to execute.
@@ -1568,6 +1745,23 @@ export namespace networkservices_v1 {
     unreachable?: string[] | null;
   }
   /**
+   * Response returned by the `ListExtensionBindings` method.
+   */
+  export interface Schema$ListExtensionBindingsResponse {
+    /**
+     * List of `ExtensionBinding` resources.
+     */
+    extensionBindings?: Schema$ExtensionBinding[];
+    /**
+     * If there might be more results than those appearing in this response, then `next_page_token` is included. To get the next set of results, call this method again using the value of `next_page_token` as `page_token`.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Unordered list. Unreachable resources. Populated when the request attempts to list all resources across all supported locations, while some locations are temporarily unavailable. The resource names are in the format `projects/{project\}/locations/{location\}/extensionBindings/{extension_binding\}`.
+     */
+    unreachable?: string[] | null;
+  }
+  /**
    * Response returned by the ListGatewayRouteViews method.
    */
   export interface Schema$ListGatewayRouteViewsResponse {
@@ -1781,6 +1975,23 @@ export namespace networkservices_v1 {
     operations?: Schema$Operation[];
     /**
      * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations.
+     */
+    unreachable?: string[] | null;
+  }
+  /**
+   * Response returned by the `ListProducerExtensions` method.
+   */
+  export interface Schema$ListProducerExtensionsResponse {
+    /**
+     * If there might be more results than those appearing in this response, then `next_page_token` is included. To get the next set of results, call this method again using the value of `next_page_token` as `page_token`.
+     */
+    nextPageToken?: string | null;
+    /**
+     * List of `ProducerExtension` resources.
+     */
+    producerExtensions?: Schema$ProducerExtension[];
+    /**
+     * Unordered list. Unreachable resources. Populated when the request attempts to list all resources across all supported locations, while some locations are temporarily unavailable. The resource names are in the format: `projects/{project\}/locations/{location\}/producerExtensions/{producer_extension\}`.
      */
     unreachable?: string[] | null;
   }
@@ -2180,6 +2391,64 @@ export namespace networkservices_v1 {
      * Specifies the format of the policy. Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected. Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations: * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     version?: number | null;
+  }
+  /**
+   * `ProducerExtension` is a resource representing producer defined configuration for their service extension.
+   */
+  export interface Schema$ProducerExtension {
+    /**
+     * Output only. The timestamp when the resource was created.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. A human-readable description of the resource.
+     */
+    description?: string | null;
+    /**
+     * Optional. Etag of the resource. If this is provided, it must match the server's etag. If the provided etag does not match the server's etag, the request will fail with a 409 ABORTED error.
+     */
+    etag?: string | null;
+    /**
+     * Required. The configuration for the service that this `ProducerExtension` offers.
+     */
+    extensionSettings?: Schema$ProducerExtensionExtensionSettings;
+    /**
+     * Optional. Set of labels associated with the `ProducerExtension` resource. The format must comply with [the following requirements]((https://cloud.google.com/compute/docs/labeling-resources#requirements).
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Identifier. Name of the `ProducerExtension` resource in the following format: `projects/{project\}/locations/{location\}/producerExtensions/{producer_extension\}`.
+     */
+    name?: string | null;
+    /**
+     * Required. The phase in which this `ProducerExtension` should execute.
+     */
+    phase?: string | null;
+    /**
+     * Output only. The timestamp when the resource was updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * The configuration for the service that this `ProducerExtension` offers.
+   */
+  export interface Schema$ProducerExtensionExtensionSettings {
+    /**
+     * Optional. The `:authority` header in the request sent to the extension service.
+     */
+    authority?: string | null;
+    /**
+     * Optional. Whether the extension should function in observability mode.
+     */
+    observabilityMode?: boolean | null;
+    /**
+     * Required. URI of the PSC attachment.
+     */
+    service?: string | null;
+    /**
+     * Required. The event types supported by the extension.
+     */
+    supportedEvents?: string[] | null;
   }
   export interface Schema$RetryFilterPerRouteConfig {
     /**
@@ -2715,6 +2984,7 @@ export namespace networkservices_v1 {
     edgeCacheOrigins: Resource$Projects$Locations$Edgecacheorigins;
     edgeCacheServices: Resource$Projects$Locations$Edgecacheservices;
     endpointPolicies: Resource$Projects$Locations$Endpointpolicies;
+    extensionBindings: Resource$Projects$Locations$Extensionbindings;
     gateways: Resource$Projects$Locations$Gateways;
     grpcRoutes: Resource$Projects$Locations$Grpcroutes;
     httpRoutes: Resource$Projects$Locations$Httproutes;
@@ -2725,6 +2995,7 @@ export namespace networkservices_v1 {
     multicastConsumerAssociations: Resource$Projects$Locations$Multicastconsumerassociations;
     multicastGroupConsumerActivations: Resource$Projects$Locations$Multicastgroupconsumeractivations;
     operations: Resource$Projects$Locations$Operations;
+    producerExtensions: Resource$Projects$Locations$Producerextensions;
     serviceBindings: Resource$Projects$Locations$Servicebindings;
     serviceLbPolicies: Resource$Projects$Locations$Servicelbpolicies;
     tcpRoutes: Resource$Projects$Locations$Tcproutes;
@@ -2753,6 +3024,8 @@ export namespace networkservices_v1 {
       this.endpointPolicies = new Resource$Projects$Locations$Endpointpolicies(
         this.context
       );
+      this.extensionBindings =
+        new Resource$Projects$Locations$Extensionbindings(this.context);
       this.gateways = new Resource$Projects$Locations$Gateways(this.context);
       this.grpcRoutes = new Resource$Projects$Locations$Grpcroutes(
         this.context
@@ -2779,6 +3052,8 @@ export namespace networkservices_v1 {
       this.operations = new Resource$Projects$Locations$Operations(
         this.context
       );
+      this.producerExtensions =
+        new Resource$Projects$Locations$Producerextensions(this.context);
       this.serviceBindings = new Resource$Projects$Locations$Servicebindings(
         this.context
       );
@@ -3156,7 +3431,9 @@ export namespace networkservices_v1 {
      *         // {
      *         //   "accessPath": "my_accessPath",
      *         //   "accessTypes": [],
+     *         //   "agentCompute": "my_agentCompute",
      *         //   "createTime": "my_createTime",
+     *         //   "deploymentModel": "my_deploymentModel",
      *         //   "description": "my_description",
      *         //   "egressNetworkConfig": {},
      *         //   "etag": "my_etag",
@@ -3457,7 +3734,9 @@ export namespace networkservices_v1 {
      *   // {
      *   //   "accessPath": "my_accessPath",
      *   //   "accessTypes": [],
+     *   //   "agentCompute": "my_agentCompute",
      *   //   "createTime": "my_createTime",
+     *   //   "deploymentModel": "my_deploymentModel",
      *   //   "description": "my_description",
      *   //   "egressNetworkConfig": {},
      *   //   "etag": "my_etag",
@@ -3763,7 +4042,9 @@ export namespace networkservices_v1 {
      *         // {
      *         //   "accessPath": "my_accessPath",
      *         //   "accessTypes": [],
+     *         //   "agentCompute": "my_agentCompute",
      *         //   "createTime": "my_createTime",
+     *         //   "deploymentModel": "my_deploymentModel",
      *         //   "description": "my_description",
      *         //   "egressNetworkConfig": {},
      *         //   "etag": "my_etag",
@@ -7926,6 +8207,839 @@ export namespace networkservices_v1 {
      * Request body metadata
      */
     requestBody?: Schema$EndpointPolicy;
+  }
+
+  export class Resource$Projects$Locations$Extensionbindings {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a new `ExtensionBinding` resource in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkservices.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networkservices = google.networkservices('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await networkservices.projects.locations.extensionBindings.create(
+     *     {
+     *       // Required. Short name of the `ExtensionBinding` resource to be created.
+     *       extensionBindingId: 'placeholder-value',
+     *       // Required. The parent resource of the `ExtensionBinding` resource. Must be in the format `projects/{project\}/locations/{location\}`.
+     *       parent: 'projects/my-project/locations/my-location',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "createTime": "my_createTime",
+     *         //   "description": "my_description",
+     *         //   "etag": "my_etag",
+     *         //   "failOpen": false,
+     *         //   "labels": {},
+     *         //   "matchConditions": [],
+     *         //   "name": "my_name",
+     *         //   "priority": 0,
+     *         //   "producerExtension": "my_producerExtension",
+     *         //   "producerMetadata": {},
+     *         //   "target": {},
+     *         //   "updateTime": "my_updateTime"
+     *         // }
+     *       },
+     *     },
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Extensionbindings$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Projects$Locations$Extensionbindings$Create,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    create(
+      params: Params$Resource$Projects$Locations$Extensionbindings$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Extensionbindings$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Extensionbindings$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Extensionbindings$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Extensionbindings$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Extensionbindings$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkservices.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/extensionBindings').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes the specified `ExtensionBinding` resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkservices.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networkservices = google.networkservices('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await networkservices.projects.locations.extensionBindings.delete(
+     *     {
+     *       // Optional. The etag of the ExtensionBinding to delete.
+     *       etag: 'placeholder-value',
+     *       // Required. A name of the `ExtensionBinding` resource to delete. Must be in the format `projects/{project\}/locations/{location\}/extensionBindings/{extension_binding\}`.
+     *       name: 'projects/my-project/locations/my-location/extensionBindings/my-extensionBinding',
+     *     },
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Extensionbindings$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Extensionbindings$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    delete(
+      params: Params$Resource$Projects$Locations$Extensionbindings$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Extensionbindings$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Extensionbindings$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Extensionbindings$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Extensionbindings$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Extensionbindings$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkservices.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Gets details of the specified `ExtensionBinding` resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkservices.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networkservices = google.networkservices('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await networkservices.projects.locations.extensionBindings.get({
+     *     // Required. A name of the `ExtensionBinding` resource to get. Must be in the format `projects/{project\}/locations/{location\}/extensionBindings/{extension_binding\}`.
+     *     name: 'projects/my-project/locations/my-location/extensionBindings/my-extensionBinding',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "failOpen": false,
+     *   //   "labels": {},
+     *   //   "matchConditions": [],
+     *   //   "name": "my_name",
+     *   //   "priority": 0,
+     *   //   "producerExtension": "my_producerExtension",
+     *   //   "producerMetadata": {},
+     *   //   "target": {},
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Extensionbindings$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Extensionbindings$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ExtensionBinding>>;
+    get(
+      params: Params$Resource$Projects$Locations$Extensionbindings$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Extensionbindings$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$ExtensionBinding>,
+      callback: BodyResponseCallback<Schema$ExtensionBinding>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Extensionbindings$Get,
+      callback: BodyResponseCallback<Schema$ExtensionBinding>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$ExtensionBinding>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Extensionbindings$Get
+        | BodyResponseCallback<Schema$ExtensionBinding>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ExtensionBinding>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ExtensionBinding>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ExtensionBinding>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Extensionbindings$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Extensionbindings$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkservices.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ExtensionBinding>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ExtensionBinding>(parameters);
+      }
+    }
+
+    /**
+     * Lists `ExtensionBinding` resources in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkservices.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networkservices = google.networkservices('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await networkservices.projects.locations.extensionBindings.list({
+     *     // Optional. Maximum number of `ExtensionBinding` resources to return per call.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. The value returned by the last `ListExtensionBindingsResponse` Indicates that this is a continuation of a prior `ListExtensionBindings` call, and that the system should return the next page of data.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The project and location from which the `ExtensionBinding` resources should be listed, specified in the format `projects/{project\}/locations/{location\}`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "extensionBindings": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Extensionbindings$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Extensionbindings$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListExtensionBindingsResponse>>;
+    list(
+      params: Params$Resource$Projects$Locations$Extensionbindings$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Extensionbindings$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListExtensionBindingsResponse>,
+      callback: BodyResponseCallback<Schema$ListExtensionBindingsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Extensionbindings$List,
+      callback: BodyResponseCallback<Schema$ListExtensionBindingsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListExtensionBindingsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Extensionbindings$List
+        | BodyResponseCallback<Schema$ListExtensionBindingsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListExtensionBindingsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListExtensionBindingsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListExtensionBindingsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Extensionbindings$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Extensionbindings$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkservices.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/extensionBindings').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListExtensionBindingsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListExtensionBindingsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates the parameters of the specified `ExtensionBinding` resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkservices.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networkservices = google.networkservices('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await networkservices.projects.locations.extensionBindings.patch({
+     *     // Identifier. Name of the `ExtensionBinding` resource in the following format: `projects/{project\}/locations/{location\}/extensionBindings/{extension_binding\}`.
+     *     name: 'projects/my-project/locations/my-location/extensionBindings/my-extensionBinding',
+     *     // Optional. Field mask is used to specify the fields to be overwritten in the `ExtensionBinding` resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "etag": "my_etag",
+     *       //   "failOpen": false,
+     *       //   "labels": {},
+     *       //   "matchConditions": [],
+     *       //   "name": "my_name",
+     *       //   "priority": 0,
+     *       //   "producerExtension": "my_producerExtension",
+     *       //   "producerMetadata": {},
+     *       //   "target": {},
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Extensionbindings$Patch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Extensionbindings$Patch,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    patch(
+      params: Params$Resource$Projects$Locations$Extensionbindings$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Extensionbindings$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Extensionbindings$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Extensionbindings$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Extensionbindings$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Extensionbindings$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkservices.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Extensionbindings$Create extends StandardParameters {
+    /**
+     * Required. Short name of the `ExtensionBinding` resource to be created.
+     */
+    extensionBindingId?: string;
+    /**
+     * Required. The parent resource of the `ExtensionBinding` resource. Must be in the format `projects/{project\}/locations/{location\}`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ExtensionBinding;
+  }
+  export interface Params$Resource$Projects$Locations$Extensionbindings$Delete extends StandardParameters {
+    /**
+     * Optional. The etag of the ExtensionBinding to delete.
+     */
+    etag?: string;
+    /**
+     * Required. A name of the `ExtensionBinding` resource to delete. Must be in the format `projects/{project\}/locations/{location\}/extensionBindings/{extension_binding\}`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Extensionbindings$Get extends StandardParameters {
+    /**
+     * Required. A name of the `ExtensionBinding` resource to get. Must be in the format `projects/{project\}/locations/{location\}/extensionBindings/{extension_binding\}`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Extensionbindings$List extends StandardParameters {
+    /**
+     * Optional. Maximum number of `ExtensionBinding` resources to return per call.
+     */
+    pageSize?: number;
+    /**
+     * Optional. The value returned by the last `ListExtensionBindingsResponse` Indicates that this is a continuation of a prior `ListExtensionBindings` call, and that the system should return the next page of data.
+     */
+    pageToken?: string;
+    /**
+     * Required. The project and location from which the `ExtensionBinding` resources should be listed, specified in the format `projects/{project\}/locations/{location\}`.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Extensionbindings$Patch extends StandardParameters {
+    /**
+     * Identifier. Name of the `ExtensionBinding` resource in the following format: `projects/{project\}/locations/{location\}/extensionBindings/{extension_binding\}`.
+     */
+    name?: string;
+    /**
+     * Optional. Field mask is used to specify the fields to be overwritten in the `ExtensionBinding` resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ExtensionBinding;
   }
 
   export class Resource$Projects$Locations$Gateways {
@@ -16752,6 +17866,655 @@ export namespace networkservices_v1 {
      * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      */
     returnPartialSuccess?: boolean;
+  }
+
+  export class Resource$Projects$Locations$Producerextensions {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a new `ProducerExtension` resource in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkservices.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networkservices = google.networkservices('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await networkservices.projects.locations.producerExtensions.create({
+     *       // Required. The parent resource of the `ProducerExtension` resource. Must be in the format `projects/{project\}/locations/{location\}`.
+     *       parent: 'projects/my-project/locations/my-location',
+     *       // Required. Short name of the `ProducerExtension` resource to be created.
+     *       producerExtensionId: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "createTime": "my_createTime",
+     *         //   "description": "my_description",
+     *         //   "etag": "my_etag",
+     *         //   "extensionSettings": {},
+     *         //   "labels": {},
+     *         //   "name": "my_name",
+     *         //   "phase": "my_phase",
+     *         //   "updateTime": "my_updateTime"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Producerextensions$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Projects$Locations$Producerextensions$Create,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    create(
+      params: Params$Resource$Projects$Locations$Producerextensions$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Producerextensions$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Producerextensions$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Producerextensions$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Producerextensions$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Producerextensions$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkservices.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/producerExtensions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes the specified `ProducerExtension` resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkservices.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networkservices = google.networkservices('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await networkservices.projects.locations.producerExtensions.delete({
+     *       // Optional. The etag of the ProducerExtension to delete.
+     *       etag: 'placeholder-value',
+     *       // Required. A name of the `ProducerExtension` resource to delete. Must be in the format `projects/{project\}/locations/{location\}/producerExtensions/{producer_extension\}`.
+     *       name: 'projects/my-project/locations/my-location/producerExtensions/my-producerExtension',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Producerextensions$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Producerextensions$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    delete(
+      params: Params$Resource$Projects$Locations$Producerextensions$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Producerextensions$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Producerextensions$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Producerextensions$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Producerextensions$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Producerextensions$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkservices.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Gets details of the specified `ProducerExtension` resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkservices.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networkservices = google.networkservices('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await networkservices.projects.locations.producerExtensions.get({
+     *     // Required. A name of the `ProducerExtension` resource to get. Must be in the format `projects/{project\}/locations/{location\}/producerExtensions/{producer_extension\}`.
+     *     name: 'projects/my-project/locations/my-location/producerExtensions/my-producerExtension',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "extensionSettings": {},
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "phase": "my_phase",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Producerextensions$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Producerextensions$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ProducerExtension>>;
+    get(
+      params: Params$Resource$Projects$Locations$Producerextensions$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Producerextensions$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$ProducerExtension>,
+      callback: BodyResponseCallback<Schema$ProducerExtension>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Producerextensions$Get,
+      callback: BodyResponseCallback<Schema$ProducerExtension>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$ProducerExtension>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Producerextensions$Get
+        | BodyResponseCallback<Schema$ProducerExtension>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ProducerExtension>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ProducerExtension>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ProducerExtension>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Producerextensions$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Producerextensions$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkservices.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ProducerExtension>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ProducerExtension>(parameters);
+      }
+    }
+
+    /**
+     * Lists `ProducerExtension` resources in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkservices.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networkservices = google.networkservices('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await networkservices.projects.locations.producerExtensions.list({
+     *     // Optional. Maximum number of `ProducerExtension` resources to return per call.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. The value returned by the last `ListProducerExtensionsResponse` Indicates that this is a continuation of a prior `ListProducerExtensions` call, and that the system should return the next page of data.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The project and location from which the `ProducerExtension` resources should be listed, specified in the format `projects/{project\}/locations/{location\}`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "producerExtensions": [],
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Producerextensions$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Producerextensions$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListProducerExtensionsResponse>>;
+    list(
+      params: Params$Resource$Projects$Locations$Producerextensions$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Producerextensions$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListProducerExtensionsResponse>,
+      callback: BodyResponseCallback<Schema$ListProducerExtensionsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Producerextensions$List,
+      callback: BodyResponseCallback<Schema$ListProducerExtensionsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListProducerExtensionsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Producerextensions$List
+        | BodyResponseCallback<Schema$ListProducerExtensionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListProducerExtensionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListProducerExtensionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListProducerExtensionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Producerextensions$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Producerextensions$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkservices.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/producerExtensions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListProducerExtensionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListProducerExtensionsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Producerextensions$Create extends StandardParameters {
+    /**
+     * Required. The parent resource of the `ProducerExtension` resource. Must be in the format `projects/{project\}/locations/{location\}`.
+     */
+    parent?: string;
+    /**
+     * Required. Short name of the `ProducerExtension` resource to be created.
+     */
+    producerExtensionId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ProducerExtension;
+  }
+  export interface Params$Resource$Projects$Locations$Producerextensions$Delete extends StandardParameters {
+    /**
+     * Optional. The etag of the ProducerExtension to delete.
+     */
+    etag?: string;
+    /**
+     * Required. A name of the `ProducerExtension` resource to delete. Must be in the format `projects/{project\}/locations/{location\}/producerExtensions/{producer_extension\}`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Producerextensions$Get extends StandardParameters {
+    /**
+     * Required. A name of the `ProducerExtension` resource to get. Must be in the format `projects/{project\}/locations/{location\}/producerExtensions/{producer_extension\}`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Producerextensions$List extends StandardParameters {
+    /**
+     * Optional. Maximum number of `ProducerExtension` resources to return per call.
+     */
+    pageSize?: number;
+    /**
+     * Optional. The value returned by the last `ListProducerExtensionsResponse` Indicates that this is a continuation of a prior `ListProducerExtensions` call, and that the system should return the next page of data.
+     */
+    pageToken?: string;
+    /**
+     * Required. The project and location from which the `ProducerExtension` resources should be listed, specified in the format `projects/{project\}/locations/{location\}`.
+     */
+    parent?: string;
   }
 
   export class Resource$Projects$Locations$Servicebindings {
