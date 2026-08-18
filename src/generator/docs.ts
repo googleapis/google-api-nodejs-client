@@ -17,7 +17,6 @@ import * as fs from 'fs';
 import * as nunjucks from 'nunjucks';
 import * as path from 'path';
 import {promisify} from 'util';
-import Q from 'p-queue';
 
 const rootPath = path.join(__dirname, '../../..');
 const srcPath = path.join(rootPath, 'src');
@@ -35,11 +34,11 @@ export const gfs = {
 };
 
 /**
- * Iterate over each API directory, and use the `compodoc` tool to generate
- * reference API documentation in the `docs` folder. This folder is ignored
- * in git, so a publish must be done with `npm run publish-docs`.
+ * Generate reference documentation for all built APIs with JSDoc in the
+ * `docs` folder. This folder is ignored in git, so a publish must be done with
+ * `npm run publish-docs`.
  *
- * To use this, run `npm run generate-docs`.
+ * To use this, run `npm run docs`.
  */
 export async function main() {
   if (!gfs.exists(docsPath)) {
@@ -51,25 +50,13 @@ export async function main() {
   });
   const contents = nunjucks.render(templatePath, {apis: dirs});
   await gfs.writeFile(indexPath, contents);
-  const q = new Q({concurrency: 10});
   console.log(`Generating docs for ${dirs.length} APIs...`);
-  let i = 0;
-  const promises = dirs.map(dir => {
-    return q
-      .add(() =>
-        gfs.execa(process.execPath, [
-          '--max-old-space-size=4096',
-          './node_modules/.bin/jsdoc',
-          '-c',
-          '.jsdoc.js',
-        ]),
-      )
-      .then(() => {
-        i++;
-        console.log(`[${i}/${dirs.length}] ${dir}`);
-      });
-  });
-  await Promise.all(promises);
+  await gfs.execa(process.execPath, [
+    '--max-old-space-size=4096',
+    './node_modules/.bin/jsdoc',
+    '-c',
+    '.jsdoc.js',
+  ]);
 }
 
 if (require.main === module) {
