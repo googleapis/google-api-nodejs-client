@@ -34,6 +34,12 @@ import {
   APIRequestContext,
 } from 'googleapis-common';
 import {Readable} from 'stream';
+import {
+  validateSingleSegment,
+  validateMultiSegment,
+  encodeWithSlashes,
+  encodeWithoutSlashes,
+} from '../../transcoding';
 
 export namespace fitness_v1 {
   export interface Options extends GlobalOptions {
@@ -687,13 +693,18 @@ export namespace fitness_v1 {
         options = {};
       }
 
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://fitness.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/fitness/v1/users/{userId}/dataset:aggregate'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/fitness/v1/users/{userId}/dataset:aggregate')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -881,14 +892,18 @@ export namespace fitness_v1 {
         options = {};
       }
 
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://fitness.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/fitness/v1/users/{userId}/dataSources').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/fitness/v1/users/{userId}/dataSources')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -1038,13 +1053,24 @@ export namespace fitness_v1 {
         options = {};
       }
 
+      if (params.dataSourceId !== undefined && params.dataSourceId !== null) {
+        validateSingleSegment('dataSourceId', String(params.dataSourceId));
+        params.dataSourceId = encodeWithSlashes(String(params.dataSourceId));
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://fitness.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/fitness/v1/users/{userId}/dataSources/{dataSourceId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -1205,13 +1231,24 @@ export namespace fitness_v1 {
         options = {};
       }
 
+      if (params.dataSourceId !== undefined && params.dataSourceId !== null) {
+        validateSingleSegment('dataSourceId', String(params.dataSourceId));
+        params.dataSourceId = encodeWithSlashes(String(params.dataSourceId));
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://fitness.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/fitness/v1/users/{userId}/dataSources/{dataSourceId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -1367,14 +1404,18 @@ export namespace fitness_v1 {
         options = {};
       }
 
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://fitness.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/fitness/v1/users/{userId}/dataSources').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/fitness/v1/users/{userId}/dataSources')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -1539,13 +1580,24 @@ export namespace fitness_v1 {
         options = {};
       }
 
+      if (params.dataSourceId !== undefined && params.dataSourceId !== null) {
+        validateSingleSegment('dataSourceId', String(params.dataSourceId));
+        params.dataSourceId = encodeWithSlashes(String(params.dataSourceId));
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://fitness.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/fitness/v1/users/{userId}/dataSources/{dataSourceId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -1775,6 +1827,15 @@ export namespace fitness_v1 {
         options = {};
       }
 
+      if (params.dataSourceId !== undefined && params.dataSourceId !== null) {
+        validateSingleSegment('dataSourceId', String(params.dataSourceId));
+        params.dataSourceId = encodeWithSlashes(String(params.dataSourceId));
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://fitness.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1782,7 +1843,9 @@ export namespace fitness_v1 {
             url: (
               rootUrl +
               '/fitness/v1/users/{userId}/dataSources/{dataSourceId}/dataPointChanges'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -1949,6 +2012,19 @@ export namespace fitness_v1 {
         options = {};
       }
 
+      if (params.datasetId !== undefined && params.datasetId !== null) {
+        validateSingleSegment('datasetId', String(params.datasetId));
+        params.datasetId = encodeWithSlashes(String(params.datasetId));
+      }
+      if (params.dataSourceId !== undefined && params.dataSourceId !== null) {
+        validateSingleSegment('dataSourceId', String(params.dataSourceId));
+        params.dataSourceId = encodeWithSlashes(String(params.dataSourceId));
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://fitness.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1956,7 +2032,9 @@ export namespace fitness_v1 {
             url: (
               rootUrl +
               '/fitness/v1/users/{userId}/dataSources/{dataSourceId}/datasets/{datasetId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -2120,6 +2198,19 @@ export namespace fitness_v1 {
         options = {};
       }
 
+      if (params.datasetId !== undefined && params.datasetId !== null) {
+        validateSingleSegment('datasetId', String(params.datasetId));
+        params.datasetId = encodeWithSlashes(String(params.datasetId));
+      }
+      if (params.dataSourceId !== undefined && params.dataSourceId !== null) {
+        validateSingleSegment('dataSourceId', String(params.dataSourceId));
+        params.dataSourceId = encodeWithSlashes(String(params.dataSourceId));
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://fitness.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2127,7 +2218,9 @@ export namespace fitness_v1 {
             url: (
               rootUrl +
               '/fitness/v1/users/{userId}/dataSources/{dataSourceId}/datasets/{datasetId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -2288,6 +2381,19 @@ export namespace fitness_v1 {
         options = {};
       }
 
+      if (params.datasetId !== undefined && params.datasetId !== null) {
+        validateSingleSegment('datasetId', String(params.datasetId));
+        params.datasetId = encodeWithSlashes(String(params.datasetId));
+      }
+      if (params.dataSourceId !== undefined && params.dataSourceId !== null) {
+        validateSingleSegment('dataSourceId', String(params.dataSourceId));
+        params.dataSourceId = encodeWithSlashes(String(params.dataSourceId));
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://fitness.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2295,7 +2401,9 @@ export namespace fitness_v1 {
             url: (
               rootUrl +
               '/fitness/v1/users/{userId}/dataSources/{dataSourceId}/datasets/{datasetId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -2486,13 +2594,22 @@ export namespace fitness_v1 {
         options = {};
       }
 
+      if (params.sessionId !== undefined && params.sessionId !== null) {
+        validateSingleSegment('sessionId', String(params.sessionId));
+        params.sessionId = encodeWithSlashes(String(params.sessionId));
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://fitness.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/fitness/v1/users/{userId}/sessions/{sessionId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/fitness/v1/users/{userId}/sessions/{sessionId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -2659,14 +2776,18 @@ export namespace fitness_v1 {
         options = {};
       }
 
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://fitness.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/fitness/v1/users/{userId}/sessions').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/fitness/v1/users/{userId}/sessions')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -2824,13 +2945,22 @@ export namespace fitness_v1 {
         options = {};
       }
 
+      if (params.sessionId !== undefined && params.sessionId !== null) {
+        validateSingleSegment('sessionId', String(params.sessionId));
+        params.sessionId = encodeWithSlashes(String(params.sessionId));
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://fitness.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/fitness/v1/users/{userId}/sessions/{sessionId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/fitness/v1/users/{userId}/sessions/{sessionId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },

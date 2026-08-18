@@ -34,6 +34,12 @@ import {
   APIRequestContext,
 } from 'googleapis-common';
 import {Readable} from 'stream';
+import {
+  validateSingleSegment,
+  validateMultiSegment,
+  encodeWithSlashes,
+  encodeWithoutSlashes,
+} from '../../transcoding';
 
 export namespace searchads360_v0 {
   export interface Options extends GlobalOptions {
@@ -6080,10 +6086,9 @@ export namespace searchads360_v0 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v0/customers:listAccessibleCustomers').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v0/customers:listAccessibleCustomers')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -6241,14 +6246,18 @@ export namespace searchads360_v0 {
         options = {};
       }
 
+      if (params.resourceName !== undefined && params.resourceName !== null) {
+        validateMultiSegment('resourceName', String(params.resourceName));
+        params.resourceName = encodeWithoutSlashes(String(params.resourceName));
+      }
+
       const rootUrl = options.rootUrl || 'https://searchads360.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v0/{+resourceName}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v0/{+resourceName}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -6388,13 +6397,18 @@ export namespace searchads360_v0 {
         options = {};
       }
 
+      if (params.customerId !== undefined && params.customerId !== null) {
+        validateMultiSegment('customerId', String(params.customerId));
+        params.customerId = encodeWithoutSlashes(String(params.customerId));
+      }
+
       const rootUrl = options.rootUrl || 'https://searchads360.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v0/customers/{+customerId}/customColumns'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v0/customers/{+customerId}/customColumns')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -6576,13 +6590,18 @@ export namespace searchads360_v0 {
         options = {};
       }
 
+      if (params.customerId !== undefined && params.customerId !== null) {
+        validateMultiSegment('customerId', String(params.customerId));
+        params.customerId = encodeWithoutSlashes(String(params.customerId));
+      }
+
       const rootUrl = options.rootUrl || 'https://searchads360.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v0/customers/{+customerId}/searchAds360:search'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v0/customers/{+customerId}/searchAds360:search')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -6754,14 +6773,18 @@ export namespace searchads360_v0 {
         options = {};
       }
 
+      if (params.resourceName !== undefined && params.resourceName !== null) {
+        validateMultiSegment('resourceName', String(params.resourceName));
+        params.resourceName = encodeWithoutSlashes(String(params.resourceName));
+      }
+
       const rootUrl = options.rootUrl || 'https://searchads360.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v0/{+resourceName}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v0/{+resourceName}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -6914,10 +6937,9 @@ export namespace searchads360_v0 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v0/searchAds360Fields:search').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v0/searchAds360Fields:search')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },

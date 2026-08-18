@@ -34,6 +34,12 @@ import {
   APIRequestContext,
 } from 'googleapis-common';
 import {Readable} from 'stream';
+import {
+  validateSingleSegment,
+  validateMultiSegment,
+  encodeWithSlashes,
+  encodeWithoutSlashes,
+} from '../../transcoding';
 
 export namespace chromemanagement_v1 {
   export interface Options extends GlobalOptions {
@@ -3799,14 +3805,19 @@ export namespace chromemanagement_v1 {
         options = {};
       }
 
+      if (params.customer !== undefined && params.customer !== null) {
+        validateMultiSegment('customer', String(params.customer));
+        params.customer = encodeWithoutSlashes(String(params.customer));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://chromemanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v1/{+customer}/apps:countChromeAppRequests'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+customer}/apps:countChromeAppRequests')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -3960,6 +3971,11 @@ export namespace chromemanagement_v1 {
         options = {};
       }
 
+      if (params.customer !== undefined && params.customer !== null) {
+        validateMultiSegment('customer', String(params.customer));
+        params.customer = encodeWithoutSlashes(String(params.customer));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://chromemanagement.googleapis.com/';
       const parameters = {
@@ -3967,7 +3983,9 @@ export namespace chromemanagement_v1 {
           {
             url: (
               rootUrl + '/v1/{+customer}/apps:fetchDevicesRequestingExtension'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -4121,6 +4139,11 @@ export namespace chromemanagement_v1 {
         options = {};
       }
 
+      if (params.customer !== undefined && params.customer !== null) {
+        validateMultiSegment('customer', String(params.customer));
+        params.customer = encodeWithoutSlashes(String(params.customer));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://chromemanagement.googleapis.com/';
       const parameters = {
@@ -4128,7 +4151,9 @@ export namespace chromemanagement_v1 {
           {
             url: (
               rootUrl + '/v1/{+customer}/apps:fetchUsersRequestingExtension'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -4363,12 +4388,19 @@ export namespace chromemanagement_v1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://chromemanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -4543,12 +4575,19 @@ export namespace chromemanagement_v1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://chromemanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -4723,12 +4762,19 @@ export namespace chromemanagement_v1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://chromemanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -4895,12 +4941,19 @@ export namespace chromemanagement_v1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://chromemanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+name}:claim').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}:claim')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -5056,12 +5109,19 @@ export namespace chromemanagement_v1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://chromemanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -5211,15 +5271,19 @@ export namespace chromemanagement_v1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://chromemanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+name}:setFailure').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/{+name}:setFailure')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -5369,15 +5433,19 @@ export namespace chromemanagement_v1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://chromemanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+name}:signData').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/{+name}:signData')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -5525,15 +5593,19 @@ export namespace chromemanagement_v1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://chromemanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+name}:uploadCertificate').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/{+name}:uploadCertificate')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -5734,12 +5806,19 @@ export namespace chromemanagement_v1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://chromemanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -5909,15 +5988,19 @@ export namespace chromemanagement_v1 {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://chromemanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+parent}/connectorConfigs').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/{+parent}/connectorConfigs')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -6047,12 +6130,19 @@ export namespace chromemanagement_v1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://chromemanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -6194,12 +6284,19 @@ export namespace chromemanagement_v1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://chromemanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -6344,15 +6441,19 @@ export namespace chromemanagement_v1 {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://chromemanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+parent}/connectorConfigs').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/{+parent}/connectorConfigs')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -6510,12 +6611,19 @@ export namespace chromemanagement_v1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://chromemanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -6736,6 +6844,11 @@ export namespace chromemanagement_v1 {
         options = {};
       }
 
+      if (params.customer !== undefined && params.customer !== null) {
+        validateMultiSegment('customer', String(params.customer));
+        params.customer = encodeWithoutSlashes(String(params.customer));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://chromemanagement.googleapis.com/';
       const parameters = {
@@ -6744,7 +6857,9 @@ export namespace chromemanagement_v1 {
             url: (
               rootUrl +
               '/v1/{+customer}/enterprise/securityInsights:checkEnablementStatus'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -6894,6 +7009,11 @@ export namespace chromemanagement_v1 {
         options = {};
       }
 
+      if (params.customer !== undefined && params.customer !== null) {
+        validateMultiSegment('customer', String(params.customer));
+        params.customer = encodeWithoutSlashes(String(params.customer));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://chromemanagement.googleapis.com/';
       const parameters = {
@@ -6901,7 +7021,9 @@ export namespace chromemanagement_v1 {
           {
             url: (
               rootUrl + '/v1/{+customer}/enterprise/securityInsights:disable'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -7053,6 +7175,11 @@ export namespace chromemanagement_v1 {
         options = {};
       }
 
+      if (params.customer !== undefined && params.customer !== null) {
+        validateMultiSegment('customer', String(params.customer));
+        params.customer = encodeWithoutSlashes(String(params.customer));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://chromemanagement.googleapis.com/';
       const parameters = {
@@ -7060,7 +7187,9 @@ export namespace chromemanagement_v1 {
           {
             url: (
               rootUrl + '/v1/{+customer}/enterprise/securityInsights:enable'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -7209,6 +7338,11 @@ export namespace chromemanagement_v1 {
         options = {};
       }
 
+      if (params.customer !== undefined && params.customer !== null) {
+        validateMultiSegment('customer', String(params.customer));
+        params.customer = encodeWithoutSlashes(String(params.customer));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://chromemanagement.googleapis.com/';
       const parameters = {
@@ -7217,7 +7351,9 @@ export namespace chromemanagement_v1 {
             url: (
               rootUrl +
               '/v1/{+customer}/enterprise/securityInsights:queryContentTransfers'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -7377,6 +7513,11 @@ export namespace chromemanagement_v1 {
         options = {};
       }
 
+      if (params.customer !== undefined && params.customer !== null) {
+        validateMultiSegment('customer', String(params.customer));
+        params.customer = encodeWithoutSlashes(String(params.customer));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://chromemanagement.googleapis.com/';
       const parameters = {
@@ -7385,7 +7526,9 @@ export namespace chromemanagement_v1 {
             url: (
               rootUrl +
               '/v1/{+customer}/enterprise/securityInsights:queryContentTransfersBreakdowns'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -7534,6 +7677,11 @@ export namespace chromemanagement_v1 {
         options = {};
       }
 
+      if (params.customer !== undefined && params.customer !== null) {
+        validateMultiSegment('customer', String(params.customer));
+        params.customer = encodeWithoutSlashes(String(params.customer));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://chromemanagement.googleapis.com/';
       const parameters = {
@@ -7542,7 +7690,9 @@ export namespace chromemanagement_v1 {
             url: (
               rootUrl +
               '/v1/{+customer}/enterprise/securityInsights:queryUrlVisits'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -7702,6 +7852,11 @@ export namespace chromemanagement_v1 {
         options = {};
       }
 
+      if (params.customer !== undefined && params.customer !== null) {
+        validateMultiSegment('customer', String(params.customer));
+        params.customer = encodeWithoutSlashes(String(params.customer));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://chromemanagement.googleapis.com/';
       const parameters = {
@@ -7710,7 +7865,9 @@ export namespace chromemanagement_v1 {
             url: (
               rootUrl +
               '/v1/{+customer}/enterprise/securityInsights:queryUrlVisitsBreakdowns'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -7958,12 +8115,19 @@ export namespace chromemanagement_v1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://chromemanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -8130,12 +8294,19 @@ export namespace chromemanagement_v1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://chromemanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -8288,15 +8459,19 @@ export namespace chromemanagement_v1 {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://chromemanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+parent}/profiles').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/{+parent}/profiles')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -8498,15 +8673,19 @@ export namespace chromemanagement_v1 {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://chromemanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+parent}/commands').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/{+parent}/commands')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -8655,12 +8834,19 @@ export namespace chromemanagement_v1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://chromemanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -8809,15 +8995,19 @@ export namespace chromemanagement_v1 {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://chromemanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+parent}/commands').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/{+parent}/commands')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -9005,14 +9195,19 @@ export namespace chromemanagement_v1 {
         options = {};
       }
 
+      if (params.customer !== undefined && params.customer !== null) {
+        validateMultiSegment('customer', String(params.customer));
+        params.customer = encodeWithoutSlashes(String(params.customer));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://chromemanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v1/{+customer}/reports:countActiveDevices'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+customer}/reports:countActiveDevices')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -9162,6 +9357,11 @@ export namespace chromemanagement_v1 {
         options = {};
       }
 
+      if (params.customer !== undefined && params.customer !== null) {
+        validateMultiSegment('customer', String(params.customer));
+        params.customer = encodeWithoutSlashes(String(params.customer));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://chromemanagement.googleapis.com/';
       const parameters = {
@@ -9170,7 +9370,9 @@ export namespace chromemanagement_v1 {
             url: (
               rootUrl +
               '/v1/{+customer}/reports:countChromeBrowsersNeedingAttention'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -9318,14 +9520,19 @@ export namespace chromemanagement_v1 {
         options = {};
       }
 
+      if (params.customer !== undefined && params.customer !== null) {
+        validateMultiSegment('customer', String(params.customer));
+        params.customer = encodeWithoutSlashes(String(params.customer));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://chromemanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v1/{+customer}/reports:countChromeCrashEvents'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+customer}/reports:countChromeCrashEvents')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -9477,6 +9684,11 @@ export namespace chromemanagement_v1 {
         options = {};
       }
 
+      if (params.customer !== undefined && params.customer !== null) {
+        validateMultiSegment('customer', String(params.customer));
+        params.customer = encodeWithoutSlashes(String(params.customer));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://chromemanagement.googleapis.com/';
       const parameters = {
@@ -9485,7 +9697,9 @@ export namespace chromemanagement_v1 {
             url: (
               rootUrl +
               '/v1/{+customer}/reports:countChromeDevicesReachingAutoExpirationDate'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -9639,6 +9853,11 @@ export namespace chromemanagement_v1 {
         options = {};
       }
 
+      if (params.customer !== undefined && params.customer !== null) {
+        validateMultiSegment('customer', String(params.customer));
+        params.customer = encodeWithoutSlashes(String(params.customer));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://chromemanagement.googleapis.com/';
       const parameters = {
@@ -9647,7 +9866,9 @@ export namespace chromemanagement_v1 {
             url: (
               rootUrl +
               '/v1/{+customer}/reports:countChromeDevicesThatNeedAttention'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -9798,6 +10019,11 @@ export namespace chromemanagement_v1 {
         options = {};
       }
 
+      if (params.customer !== undefined && params.customer !== null) {
+        validateMultiSegment('customer', String(params.customer));
+        params.customer = encodeWithoutSlashes(String(params.customer));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://chromemanagement.googleapis.com/';
       const parameters = {
@@ -9806,7 +10032,9 @@ export namespace chromemanagement_v1 {
             url: (
               rootUrl +
               '/v1/{+customer}/reports:countChromeHardwareFleetDevices'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -9960,6 +10188,11 @@ export namespace chromemanagement_v1 {
         options = {};
       }
 
+      if (params.customer !== undefined && params.customer !== null) {
+        validateMultiSegment('customer', String(params.customer));
+        params.customer = encodeWithoutSlashes(String(params.customer));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://chromemanagement.googleapis.com/';
       const parameters = {
@@ -9967,7 +10200,9 @@ export namespace chromemanagement_v1 {
           {
             url: (
               rootUrl + '/v1/{+customer}/reports:countChromeProfileVersions'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -10119,14 +10354,19 @@ export namespace chromemanagement_v1 {
         options = {};
       }
 
+      if (params.customer !== undefined && params.customer !== null) {
+        validateMultiSegment('customer', String(params.customer));
+        params.customer = encodeWithoutSlashes(String(params.customer));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://chromemanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v1/{+customer}/reports:countChromeVersions'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+customer}/reports:countChromeVersions')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -10277,14 +10517,19 @@ export namespace chromemanagement_v1 {
         options = {};
       }
 
+      if (params.customer !== undefined && params.customer !== null) {
+        validateMultiSegment('customer', String(params.customer));
+        params.customer = encodeWithoutSlashes(String(params.customer));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://chromemanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v1/{+customer}/reports:countDevicesPerBootType'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+customer}/reports:countDevicesPerBootType')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -10441,6 +10686,11 @@ export namespace chromemanagement_v1 {
         options = {};
       }
 
+      if (params.customer !== undefined && params.customer !== null) {
+        validateMultiSegment('customer', String(params.customer));
+        params.customer = encodeWithoutSlashes(String(params.customer));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://chromemanagement.googleapis.com/';
       const parameters = {
@@ -10448,7 +10698,9 @@ export namespace chromemanagement_v1 {
           {
             url: (
               rootUrl + '/v1/{+customer}/reports:countDevicesPerReleaseChannel'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -10602,14 +10854,19 @@ export namespace chromemanagement_v1 {
         options = {};
       }
 
+      if (params.customer !== undefined && params.customer !== null) {
+        validateMultiSegment('customer', String(params.customer));
+        params.customer = encodeWithoutSlashes(String(params.customer));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://chromemanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v1/{+customer}/reports:countInstalledApps'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+customer}/reports:countInstalledApps')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -10764,14 +11021,19 @@ export namespace chromemanagement_v1 {
         options = {};
       }
 
+      if (params.customer !== undefined && params.customer !== null) {
+        validateMultiSegment('customer', String(params.customer));
+        params.customer = encodeWithoutSlashes(String(params.customer));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://chromemanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v1/{+customer}/reports:countPrintJobsByPrinter'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+customer}/reports:countPrintJobsByPrinter')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -10925,14 +11187,19 @@ export namespace chromemanagement_v1 {
         options = {};
       }
 
+      if (params.customer !== undefined && params.customer !== null) {
+        validateMultiSegment('customer', String(params.customer));
+        params.customer = encodeWithoutSlashes(String(params.customer));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://chromemanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v1/{+customer}/reports:countPrintJobsByUser'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+customer}/reports:countPrintJobsByUser')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -11086,14 +11353,19 @@ export namespace chromemanagement_v1 {
         options = {};
       }
 
+      if (params.customer !== undefined && params.customer !== null) {
+        validateMultiSegment('customer', String(params.customer));
+        params.customer = encodeWithoutSlashes(String(params.customer));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://chromemanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v1/{+customer}/reports:enumeratePrintJobs'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+customer}/reports:enumeratePrintJobs')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -11252,14 +11524,19 @@ export namespace chromemanagement_v1 {
         options = {};
       }
 
+      if (params.customer !== undefined && params.customer !== null) {
+        validateMultiSegment('customer', String(params.customer));
+        params.customer = encodeWithoutSlashes(String(params.customer));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://chromemanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v1/{+customer}/reports:findInstalledAppDevices'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+customer}/reports:findInstalledAppDevices')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -11420,14 +11697,19 @@ export namespace chromemanagement_v1 {
         options = {};
       }
 
+      if (params.customer !== undefined && params.customer !== null) {
+        validateMultiSegment('customer', String(params.customer));
+        params.customer = encodeWithoutSlashes(String(params.customer));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://chromemanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v1/{+customer}/reports:findInstalledAppProfiles'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+customer}/reports:findInstalledAppProfiles')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -11966,12 +12248,19 @@ export namespace chromemanagement_v1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://chromemanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -12122,15 +12411,19 @@ export namespace chromemanagement_v1 {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://chromemanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+parent}/telemetry/devices').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/{+parent}/telemetry/devices')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -12321,15 +12614,19 @@ export namespace chromemanagement_v1 {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://chromemanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+parent}/telemetry/events').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/{+parent}/telemetry/events')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -12517,14 +12814,19 @@ export namespace chromemanagement_v1 {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://chromemanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v1/{+parent}/telemetry/notificationConfigs'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+parent}/telemetry/notificationConfigs')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -12658,12 +12960,19 @@ export namespace chromemanagement_v1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://chromemanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -12810,14 +13119,19 @@ export namespace chromemanagement_v1 {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://chromemanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v1/{+parent}/telemetry/notificationConfigs'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+parent}/telemetry/notificationConfigs')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -13005,12 +13319,19 @@ export namespace chromemanagement_v1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://chromemanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -13161,15 +13482,19 @@ export namespace chromemanagement_v1 {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://chromemanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+parent}/telemetry/users').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/{+parent}/telemetry/users')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -13357,12 +13682,19 @@ export namespace chromemanagement_v1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://chromemanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+name}:move').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}:move')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -13517,12 +13849,19 @@ export namespace chromemanagement_v1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://chromemanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}:cancel')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -13650,12 +13989,19 @@ export namespace chromemanagement_v1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://chromemanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -13802,12 +14148,19 @@ export namespace chromemanagement_v1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://chromemanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },

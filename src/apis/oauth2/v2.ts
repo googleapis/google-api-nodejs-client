@@ -34,6 +34,12 @@ import {
   APIRequestContext,
 } from 'googleapis-common';
 import {Readable} from 'stream';
+import {
+  validateSingleSegment,
+  validateMultiSegment,
+  encodeWithSlashes,
+  encodeWithoutSlashes,
+} from '../../transcoding';
 
 export namespace oauth2_v2 {
   export interface Options extends GlobalOptions {
@@ -224,10 +230,9 @@ export namespace oauth2_v2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/oauth2/v2/tokeninfo').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/oauth2/v2/tokeninfo')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -466,10 +471,9 @@ export namespace oauth2_v2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/oauth2/v2/userinfo').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/oauth2/v2/userinfo')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -630,7 +634,9 @@ export namespace oauth2_v2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/userinfo/v2/me').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/userinfo/v2/me')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },

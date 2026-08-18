@@ -34,6 +34,12 @@ import {
   APIRequestContext,
 } from 'googleapis-common';
 import {Readable} from 'stream';
+import {
+  validateSingleSegment,
+  validateMultiSegment,
+  encodeWithSlashes,
+  encodeWithoutSlashes,
+} from '../../transcoding';
 
 export namespace firebaseml_v2beta {
   export interface Options extends GlobalOptions {
@@ -2532,14 +2538,18 @@ export namespace firebaseml_v2beta {
         options = {};
       }
 
+      if (params.endpoint !== undefined && params.endpoint !== null) {
+        validateMultiSegment('endpoint', String(params.endpoint));
+        params.endpoint = encodeWithoutSlashes(String(params.endpoint));
+      }
+
       const rootUrl = options.rootUrl || 'https://firebaseml.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2beta/{+endpoint}:countTokens').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v2beta/{+endpoint}:countTokens')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -2703,14 +2713,18 @@ export namespace firebaseml_v2beta {
         options = {};
       }
 
+      if (params.model !== undefined && params.model !== null) {
+        validateMultiSegment('model', String(params.model));
+        params.model = encodeWithoutSlashes(String(params.model));
+      }
+
       const rootUrl = options.rootUrl || 'https://firebaseml.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2beta/{+model}:generateContent').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v2beta/{+model}:generateContent')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -2876,14 +2890,18 @@ export namespace firebaseml_v2beta {
         options = {};
       }
 
+      if (params.model !== undefined && params.model !== null) {
+        validateMultiSegment('model', String(params.model));
+        params.model = encodeWithoutSlashes(String(params.model));
+      }
+
       const rootUrl = options.rootUrl || 'https://firebaseml.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2beta/{+model}:streamGenerateContent').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v2beta/{+model}:streamGenerateContent')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },

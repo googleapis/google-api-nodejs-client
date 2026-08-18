@@ -34,6 +34,12 @@ import {
   APIRequestContext,
 } from 'googleapis-common';
 import {Readable} from 'stream';
+import {
+  validateSingleSegment,
+  validateMultiSegment,
+  encodeWithSlashes,
+  encodeWithoutSlashes,
+} from '../../transcoding';
 
 export namespace discovery_v1 {
   export interface Options extends GlobalOptions {
@@ -598,14 +604,22 @@ export namespace discovery_v1 {
         options = {};
       }
 
+      if (params.api !== undefined && params.api !== null) {
+        validateSingleSegment('api', String(params.api));
+        params.api = encodeWithSlashes(String(params.api));
+      }
+      if (params.version !== undefined && params.version !== null) {
+        validateSingleSegment('version', String(params.version));
+        params.version = encodeWithSlashes(String(params.version));
+      }
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/discovery/v1/apis/{api}/{version}/rest').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/discovery/v1/apis/{api}/{version}/rest')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -742,7 +756,9 @@ export namespace discovery_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/discovery/v1/apis').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/discovery/v1/apis')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },

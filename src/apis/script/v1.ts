@@ -34,6 +34,12 @@ import {
   APIRequestContext,
 } from 'googleapis-common';
 import {Readable} from 'stream';
+import {
+  validateSingleSegment,
+  validateMultiSegment,
+  encodeWithSlashes,
+  encodeWithoutSlashes,
+} from '../../transcoding';
 
 export namespace script_v1 {
   export interface Options extends GlobalOptions {
@@ -793,7 +799,9 @@ export namespace script_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/processes').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/processes')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -950,10 +958,9 @@ export namespace script_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/processes:listScriptProcesses').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/processes:listScriptProcesses')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -1197,7 +1204,9 @@ export namespace script_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/projects').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/projects')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -1334,14 +1343,18 @@ export namespace script_v1 {
         options = {};
       }
 
+      if (params.scriptId !== undefined && params.scriptId !== null) {
+        validateSingleSegment('scriptId', String(params.scriptId));
+        params.scriptId = encodeWithSlashes(String(params.scriptId));
+      }
+
       const rootUrl = options.rootUrl || 'https://script.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/projects/{scriptId}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/projects/{scriptId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -1476,14 +1489,18 @@ export namespace script_v1 {
         options = {};
       }
 
+      if (params.scriptId !== undefined && params.scriptId !== null) {
+        validateSingleSegment('scriptId', String(params.scriptId));
+        params.scriptId = encodeWithSlashes(String(params.scriptId));
+      }
+
       const rootUrl = options.rootUrl || 'https://script.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/projects/{scriptId}/content').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/projects/{scriptId}/content')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -1618,14 +1635,18 @@ export namespace script_v1 {
         options = {};
       }
 
+      if (params.scriptId !== undefined && params.scriptId !== null) {
+        validateSingleSegment('scriptId', String(params.scriptId));
+        params.scriptId = encodeWithSlashes(String(params.scriptId));
+      }
+
       const rootUrl = options.rootUrl || 'https://script.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/projects/{scriptId}/metrics').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/projects/{scriptId}/metrics')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -1764,14 +1785,18 @@ export namespace script_v1 {
         options = {};
       }
 
+      if (params.scriptId !== undefined && params.scriptId !== null) {
+        validateSingleSegment('scriptId', String(params.scriptId));
+        params.scriptId = encodeWithSlashes(String(params.scriptId));
+      }
+
       const rootUrl = options.rootUrl || 'https://script.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/projects/{scriptId}/content').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/projects/{scriptId}/content')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -1969,14 +1994,18 @@ export namespace script_v1 {
         options = {};
       }
 
+      if (params.scriptId !== undefined && params.scriptId !== null) {
+        validateSingleSegment('scriptId', String(params.scriptId));
+        params.scriptId = encodeWithSlashes(String(params.scriptId));
+      }
+
       const rootUrl = options.rootUrl || 'https://script.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/projects/{scriptId}/deployments').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/projects/{scriptId}/deployments')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -2105,13 +2134,24 @@ export namespace script_v1 {
         options = {};
       }
 
+      if (params.deploymentId !== undefined && params.deploymentId !== null) {
+        validateSingleSegment('deploymentId', String(params.deploymentId));
+        params.deploymentId = encodeWithSlashes(String(params.deploymentId));
+      }
+      if (params.scriptId !== undefined && params.scriptId !== null) {
+        validateSingleSegment('scriptId', String(params.scriptId));
+        params.scriptId = encodeWithSlashes(String(params.scriptId));
+      }
+
       const rootUrl = options.rootUrl || 'https://script.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/v1/projects/{scriptId}/deployments/{deploymentId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -2248,13 +2288,24 @@ export namespace script_v1 {
         options = {};
       }
 
+      if (params.deploymentId !== undefined && params.deploymentId !== null) {
+        validateSingleSegment('deploymentId', String(params.deploymentId));
+        params.deploymentId = encodeWithSlashes(String(params.deploymentId));
+      }
+      if (params.scriptId !== undefined && params.scriptId !== null) {
+        validateSingleSegment('scriptId', String(params.scriptId));
+        params.scriptId = encodeWithSlashes(String(params.scriptId));
+      }
+
       const rootUrl = options.rootUrl || 'https://script.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/v1/projects/{scriptId}/deployments/{deploymentId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -2393,14 +2444,18 @@ export namespace script_v1 {
         options = {};
       }
 
+      if (params.scriptId !== undefined && params.scriptId !== null) {
+        validateSingleSegment('scriptId', String(params.scriptId));
+        params.scriptId = encodeWithSlashes(String(params.scriptId));
+      }
+
       const rootUrl = options.rootUrl || 'https://script.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/projects/{scriptId}/deployments').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/projects/{scriptId}/deployments')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -2542,13 +2597,24 @@ export namespace script_v1 {
         options = {};
       }
 
+      if (params.deploymentId !== undefined && params.deploymentId !== null) {
+        validateSingleSegment('deploymentId', String(params.deploymentId));
+        params.deploymentId = encodeWithSlashes(String(params.deploymentId));
+      }
+      if (params.scriptId !== undefined && params.scriptId !== null) {
+        validateSingleSegment('scriptId', String(params.scriptId));
+        params.scriptId = encodeWithSlashes(String(params.scriptId));
+      }
+
       const rootUrl = options.rootUrl || 'https://script.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/v1/projects/{scriptId}/deployments/{deploymentId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -2759,14 +2825,18 @@ export namespace script_v1 {
         options = {};
       }
 
+      if (params.scriptId !== undefined && params.scriptId !== null) {
+        validateSingleSegment('scriptId', String(params.scriptId));
+        params.scriptId = encodeWithSlashes(String(params.scriptId));
+      }
+
       const rootUrl = options.rootUrl || 'https://script.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/projects/{scriptId}/versions').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/projects/{scriptId}/versions')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -2903,13 +2973,22 @@ export namespace script_v1 {
         options = {};
       }
 
+      if (params.scriptId !== undefined && params.scriptId !== null) {
+        validateSingleSegment('scriptId', String(params.scriptId));
+        params.scriptId = encodeWithSlashes(String(params.scriptId));
+      }
+      if (params.versionNumber !== undefined && params.versionNumber !== null) {
+        validateSingleSegment('versionNumber', String(params.versionNumber));
+        params.versionNumber = encodeWithSlashes(String(params.versionNumber));
+      }
+
       const rootUrl = options.rootUrl || 'https://script.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v1/projects/{scriptId}/versions/{versionNumber}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/projects/{scriptId}/versions/{versionNumber}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -3048,14 +3127,18 @@ export namespace script_v1 {
         options = {};
       }
 
+      if (params.scriptId !== undefined && params.scriptId !== null) {
+        validateSingleSegment('scriptId', String(params.scriptId));
+        params.scriptId = encodeWithSlashes(String(params.scriptId));
+      }
+
       const rootUrl = options.rootUrl || 'https://script.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/projects/{scriptId}/versions').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/projects/{scriptId}/versions')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -3251,14 +3334,18 @@ export namespace script_v1 {
         options = {};
       }
 
+      if (params.scriptId !== undefined && params.scriptId !== null) {
+        validateSingleSegment('scriptId', String(params.scriptId));
+        params.scriptId = encodeWithSlashes(String(params.scriptId));
+      }
+
       const rootUrl = options.rootUrl || 'https://script.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/scripts/{scriptId}:run').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/scripts/{scriptId}:run')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },

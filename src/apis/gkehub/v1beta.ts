@@ -34,6 +34,12 @@ import {
   APIRequestContext,
 } from 'googleapis-common';
 import {Readable} from 'stream';
+import {
+  validateSingleSegment,
+  validateMultiSegment,
+  encodeWithSlashes,
+  encodeWithoutSlashes,
+} from '../../transcoding';
 
 export namespace gkehub_v1beta {
   export interface Options extends GlobalOptions {
@@ -3781,14 +3787,18 @@ export namespace gkehub_v1beta {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+parent}/fleets').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta/{+parent}/fleets')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -3972,11 +3982,18 @@ export namespace gkehub_v1beta {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -4116,14 +4133,18 @@ export namespace gkehub_v1beta {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}/locations').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta/{+name}/locations')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -4317,14 +4338,18 @@ export namespace gkehub_v1beta {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+parent}/features').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta/{+parent}/features')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -4461,11 +4486,18 @@ export namespace gkehub_v1beta {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -4609,11 +4641,18 @@ export namespace gkehub_v1beta {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -4747,14 +4786,18 @@ export namespace gkehub_v1beta {
         options = {};
       }
 
+      if (params.resource_ !== undefined && params.resource_ !== null) {
+        validateMultiSegment('resource', String(params.resource_));
+        params.resource_ = encodeWithoutSlashes(String(params.resource_));
+      }
+
       const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+resource}:getIamPolicy').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta/{+resource}:getIamPolicy')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -4896,14 +4939,18 @@ export namespace gkehub_v1beta {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+parent}/features').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta/{+parent}/features')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -5061,11 +5108,18 @@ export namespace gkehub_v1beta {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -5206,14 +5260,18 @@ export namespace gkehub_v1beta {
         options = {};
       }
 
+      if (params.resource_ !== undefined && params.resource_ !== null) {
+        validateMultiSegment('resource', String(params.resource_));
+        params.resource_ = encodeWithoutSlashes(String(params.resource_));
+      }
+
       const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+resource}:setIamPolicy').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta/{+resource}:setIamPolicy')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -5355,14 +5413,18 @@ export namespace gkehub_v1beta {
         options = {};
       }
 
+      if (params.resource_ !== undefined && params.resource_ !== null) {
+        validateMultiSegment('resource', String(params.resource_));
+        params.resource_ = encodeWithoutSlashes(String(params.resource_));
+      }
+
       const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+resource}:testIamPermissions').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta/{+resource}:testIamPermissions')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -5639,14 +5701,18 @@ export namespace gkehub_v1beta {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+parent}/fleets').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta/{+parent}/fleets')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -5779,11 +5845,18 @@ export namespace gkehub_v1beta {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -5920,11 +5993,18 @@ export namespace gkehub_v1beta {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -6059,14 +6139,18 @@ export namespace gkehub_v1beta {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+parent}/fleets').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta/{+parent}/fleets')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -6217,11 +6301,18 @@ export namespace gkehub_v1beta {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -6449,14 +6540,18 @@ export namespace gkehub_v1beta {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+parent}/memberships').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta/{+parent}/memberships')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -6593,11 +6688,18 @@ export namespace gkehub_v1beta {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -6745,14 +6847,18 @@ export namespace gkehub_v1beta {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}:generateConnectManifest').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta/{+name}:generateConnectManifest')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -6897,11 +7003,18 @@ export namespace gkehub_v1beta {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -7037,14 +7150,18 @@ export namespace gkehub_v1beta {
         options = {};
       }
 
+      if (params.resource_ !== undefined && params.resource_ !== null) {
+        validateMultiSegment('resource', String(params.resource_));
+        params.resource_ = encodeWithoutSlashes(String(params.resource_));
+      }
+
       const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+resource}:getIamPolicy').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta/{+resource}:getIamPolicy')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -7185,14 +7302,18 @@ export namespace gkehub_v1beta {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+parent}/memberships').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta/{+parent}/memberships')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -7351,11 +7472,18 @@ export namespace gkehub_v1beta {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -7498,14 +7626,18 @@ export namespace gkehub_v1beta {
         options = {};
       }
 
+      if (params.resource_ !== undefined && params.resource_ !== null) {
+        validateMultiSegment('resource', String(params.resource_));
+        params.resource_ = encodeWithoutSlashes(String(params.resource_));
+      }
+
       const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+resource}:setIamPolicy').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta/{+resource}:setIamPolicy')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -7648,14 +7780,18 @@ export namespace gkehub_v1beta {
         options = {};
       }
 
+      if (params.resource_ !== undefined && params.resource_ !== null) {
+        validateMultiSegment('resource', String(params.resource_));
+        params.resource_ = encodeWithoutSlashes(String(params.resource_));
+      }
+
       const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+resource}:testIamPermissions').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta/{+resource}:testIamPermissions')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -7957,14 +8093,18 @@ export namespace gkehub_v1beta {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+parent}/bindings').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta/{+parent}/bindings')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -8098,11 +8238,18 @@ export namespace gkehub_v1beta {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -8240,11 +8387,18 @@ export namespace gkehub_v1beta {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -8388,14 +8542,18 @@ export namespace gkehub_v1beta {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+parent}/bindings').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta/{+parent}/bindings')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -8548,11 +8706,18 @@ export namespace gkehub_v1beta {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -8775,14 +8940,18 @@ export namespace gkehub_v1beta {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+parent}/rbacrolebindings').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta/{+parent}/rbacrolebindings')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -8917,11 +9086,18 @@ export namespace gkehub_v1beta {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -9083,6 +9259,11 @@ export namespace gkehub_v1beta {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -9090,7 +9271,9 @@ export namespace gkehub_v1beta {
             url: (
               rootUrl +
               '/v1beta/{+parent}/rbacrolebindings:generateMembershipRBACRoleBindingYAML'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -9232,11 +9415,18 @@ export namespace gkehub_v1beta {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -9384,14 +9574,18 @@ export namespace gkehub_v1beta {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+parent}/rbacrolebindings').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta/{+parent}/rbacrolebindings')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -9547,11 +9741,18 @@ export namespace gkehub_v1beta {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -9763,14 +9964,18 @@ export namespace gkehub_v1beta {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}:cancel').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta/{+name}:cancel')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -9897,11 +10102,18 @@ export namespace gkehub_v1beta {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -10034,11 +10246,18 @@ export namespace gkehub_v1beta {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -10179,14 +10398,18 @@ export namespace gkehub_v1beta {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}/operations').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta/{+name}/operations')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -10378,14 +10601,18 @@ export namespace gkehub_v1beta {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}:cancel').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta/{+name}:cancel')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -10520,11 +10747,18 @@ export namespace gkehub_v1beta {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -10666,14 +10900,18 @@ export namespace gkehub_v1beta {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}:forceCompleteStage').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta/{+name}:forceCompleteStage')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -10819,11 +11057,18 @@ export namespace gkehub_v1beta {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -10961,14 +11206,18 @@ export namespace gkehub_v1beta {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+parent}/rollouts').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta/{+parent}/rollouts')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -11107,14 +11356,18 @@ export namespace gkehub_v1beta {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}:pause').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta/{+name}:pause')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -11256,14 +11509,18 @@ export namespace gkehub_v1beta {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}:resume').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta/{+name}:resume')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -11510,14 +11767,18 @@ export namespace gkehub_v1beta {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+parent}/rolloutSequences').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta/{+parent}/rolloutSequences')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -11651,11 +11912,18 @@ export namespace gkehub_v1beta {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -11802,11 +12070,18 @@ export namespace gkehub_v1beta {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -11947,14 +12222,18 @@ export namespace gkehub_v1beta {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+parent}/rolloutSequences').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta/{+parent}/rolloutSequences')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -12117,11 +12396,18 @@ export namespace gkehub_v1beta {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -12265,14 +12551,18 @@ export namespace gkehub_v1beta {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}:upgrade').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta/{+name}:upgrade')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -12508,14 +12798,18 @@ export namespace gkehub_v1beta {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+parent}/scopes').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta/{+parent}/scopes')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -12648,11 +12942,18 @@ export namespace gkehub_v1beta {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -12788,11 +13089,18 @@ export namespace gkehub_v1beta {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -12926,14 +13234,18 @@ export namespace gkehub_v1beta {
         options = {};
       }
 
+      if (params.resource_ !== undefined && params.resource_ !== null) {
+        validateMultiSegment('resource', String(params.resource_));
+        params.resource_ = encodeWithoutSlashes(String(params.resource_));
+      }
+
       const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+resource}:getIamPolicy').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta/{+resource}:getIamPolicy')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -13068,14 +13380,18 @@ export namespace gkehub_v1beta {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+parent}/scopes').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta/{+parent}/scopes')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -13218,14 +13534,18 @@ export namespace gkehub_v1beta {
         options = {};
       }
 
+      if (params.scopeName !== undefined && params.scopeName !== null) {
+        validateMultiSegment('scopeName', String(params.scopeName));
+        params.scopeName = encodeWithoutSlashes(String(params.scopeName));
+      }
+
       const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+scopeName}:listMemberships').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta/{+scopeName}:listMemberships')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -13366,14 +13686,18 @@ export namespace gkehub_v1beta {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+parent}/scopes:listPermitted').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta/{+parent}/scopes:listPermitted')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -13523,11 +13847,18 @@ export namespace gkehub_v1beta {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -13668,14 +13999,18 @@ export namespace gkehub_v1beta {
         options = {};
       }
 
+      if (params.resource_ !== undefined && params.resource_ !== null) {
+        validateMultiSegment('resource', String(params.resource_));
+        params.resource_ = encodeWithoutSlashes(String(params.resource_));
+      }
+
       const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+resource}:setIamPolicy').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta/{+resource}:setIamPolicy')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -13817,14 +14152,18 @@ export namespace gkehub_v1beta {
         options = {};
       }
 
+      if (params.resource_ !== undefined && params.resource_ !== null) {
+        validateMultiSegment('resource', String(params.resource_));
+        params.resource_ = encodeWithoutSlashes(String(params.resource_));
+      }
+
       const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+resource}:testIamPermissions').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta/{+resource}:testIamPermissions')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -14104,14 +14443,18 @@ export namespace gkehub_v1beta {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+parent}/namespaces').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta/{+parent}/namespaces')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -14245,11 +14588,18 @@ export namespace gkehub_v1beta {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -14386,11 +14736,18 @@ export namespace gkehub_v1beta {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -14530,14 +14887,18 @@ export namespace gkehub_v1beta {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+parent}/namespaces').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta/{+parent}/namespaces')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -14689,11 +15050,18 @@ export namespace gkehub_v1beta {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -14910,14 +15278,18 @@ export namespace gkehub_v1beta {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+parent}/rbacrolebindings').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta/{+parent}/rbacrolebindings')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -15051,11 +15423,18 @@ export namespace gkehub_v1beta {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -15195,11 +15574,18 @@ export namespace gkehub_v1beta {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -15343,14 +15729,18 @@ export namespace gkehub_v1beta {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+parent}/rbacrolebindings').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta/{+parent}/rbacrolebindings')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -15505,11 +15895,18 @@ export namespace gkehub_v1beta {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },

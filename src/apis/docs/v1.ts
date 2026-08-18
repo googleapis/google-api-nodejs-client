@@ -34,6 +34,12 @@ import {
   APIRequestContext,
 } from 'googleapis-common';
 import {Readable} from 'stream';
+import {
+  validateSingleSegment,
+  validateMultiSegment,
+  encodeWithSlashes,
+  encodeWithoutSlashes,
+} from '../../transcoding';
 
 export namespace docs_v1 {
   export interface Options extends GlobalOptions {
@@ -3895,14 +3901,18 @@ export namespace docs_v1 {
         options = {};
       }
 
+      if (params.documentId !== undefined && params.documentId !== null) {
+        validateSingleSegment('documentId', String(params.documentId));
+        params.documentId = encodeWithSlashes(String(params.documentId));
+      }
+
       const rootUrl = options.rootUrl || 'https://docs.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/documents/{documentId}:batchUpdate').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/documents/{documentId}:batchUpdate')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -4075,7 +4085,9 @@ export namespace docs_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/documents').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/documents')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -4229,14 +4241,18 @@ export namespace docs_v1 {
         options = {};
       }
 
+      if (params.documentId !== undefined && params.documentId !== null) {
+        validateSingleSegment('documentId', String(params.documentId));
+        params.documentId = encodeWithSlashes(String(params.documentId));
+      }
+
       const rootUrl = options.rootUrl || 'https://docs.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/documents/{documentId}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/documents/{documentId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },

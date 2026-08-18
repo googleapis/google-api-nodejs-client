@@ -34,6 +34,12 @@ import {
   APIRequestContext,
 } from 'googleapis-common';
 import {Readable} from 'stream';
+import {
+  validateSingleSegment,
+  validateMultiSegment,
+  encodeWithSlashes,
+  encodeWithoutSlashes,
+} from '../../transcoding';
 
 export namespace osconfig_v1 {
   export interface Options extends GlobalOptions {
@@ -2273,11 +2279,18 @@ export namespace osconfig_v1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://osconfig.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -2424,11 +2437,18 @@ export namespace osconfig_v1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://osconfig.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -2613,11 +2633,18 @@ export namespace osconfig_v1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://osconfig.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -2758,14 +2785,18 @@ export namespace osconfig_v1 {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl = options.rootUrl || 'https://osconfig.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+parent}/inventories').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/{+parent}/inventories')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -2957,11 +2988,18 @@ export namespace osconfig_v1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://osconfig.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -3111,14 +3149,18 @@ export namespace osconfig_v1 {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl = options.rootUrl || 'https://osconfig.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+parent}/reports').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/{+parent}/reports')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -3287,11 +3329,18 @@ export namespace osconfig_v1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://osconfig.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -3438,14 +3487,18 @@ export namespace osconfig_v1 {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl = options.rootUrl || 'https://osconfig.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+parent}/vulnerabilityReports').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/{+parent}/vulnerabilityReports')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -3642,14 +3695,18 @@ export namespace osconfig_v1 {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl = options.rootUrl || 'https://osconfig.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+parent}/osPolicyAssignments').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/{+parent}/osPolicyAssignments')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -3785,11 +3842,18 @@ export namespace osconfig_v1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://osconfig.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -3932,11 +3996,18 @@ export namespace osconfig_v1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://osconfig.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -4076,14 +4147,18 @@ export namespace osconfig_v1 {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl = options.rootUrl || 'https://osconfig.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+parent}/osPolicyAssignments').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/{+parent}/osPolicyAssignments')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -4230,14 +4305,18 @@ export namespace osconfig_v1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://osconfig.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+name}:listRevisions').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/{+name}:listRevisions')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -4399,11 +4478,18 @@ export namespace osconfig_v1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://osconfig.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -4632,11 +4718,18 @@ export namespace osconfig_v1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://osconfig.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}:cancel')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -4771,11 +4864,18 @@ export namespace osconfig_v1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://osconfig.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -4962,14 +5062,18 @@ export namespace osconfig_v1 {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl = options.rootUrl || 'https://osconfig.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+parent}/patchDeployments').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/{+parent}/patchDeployments')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -5096,11 +5200,18 @@ export namespace osconfig_v1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://osconfig.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -5241,11 +5352,18 @@ export namespace osconfig_v1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://osconfig.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -5384,14 +5502,18 @@ export namespace osconfig_v1 {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl = options.rootUrl || 'https://osconfig.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+parent}/patchDeployments').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/{+parent}/patchDeployments')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -5555,11 +5677,18 @@ export namespace osconfig_v1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://osconfig.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -5706,11 +5835,18 @@ export namespace osconfig_v1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://osconfig.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+name}:pause').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}:pause')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -5857,11 +5993,18 @@ export namespace osconfig_v1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://osconfig.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+name}:resume').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}:resume')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -6100,11 +6243,18 @@ export namespace osconfig_v1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://osconfig.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}:cancel')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -6261,14 +6411,18 @@ export namespace osconfig_v1 {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl = options.rootUrl || 'https://osconfig.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+parent}/patchJobs:execute').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/{+parent}/patchJobs:execute')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -6411,11 +6565,18 @@ export namespace osconfig_v1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://osconfig.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -6553,14 +6714,18 @@ export namespace osconfig_v1 {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl = options.rootUrl || 'https://osconfig.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+parent}/patchJobs').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/{+parent}/patchJobs')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -6759,14 +6924,18 @@ export namespace osconfig_v1 {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl = options.rootUrl || 'https://osconfig.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+parent}/instanceDetails').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/{+parent}/instanceDetails')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },

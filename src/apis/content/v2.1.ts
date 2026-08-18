@@ -34,6 +34,12 @@ import {
   APIRequestContext,
 } from 'googleapis-common';
 import {Readable} from 'stream';
+import {
+  validateSingleSegment,
+  validateMultiSegment,
+  encodeWithSlashes,
+  encodeWithoutSlashes,
+} from '../../transcoding';
 
 export namespace content_v2_1 {
   export interface Options extends GlobalOptions {
@@ -7081,10 +7087,9 @@ export namespace content_v2_1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/content/v2.1/accounts/authinfo').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/content/v2.1/accounts/authinfo')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -7222,6 +7227,15 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.accountId !== undefined && params.accountId !== null) {
+        validateSingleSegment('accountId', String(params.accountId));
+        params.accountId = encodeWithSlashes(String(params.accountId));
+      }
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
@@ -7230,7 +7244,9 @@ export namespace content_v2_1 {
             url: (
               rootUrl +
               '/content/v2.1/{merchantId}/accounts/{accountId}/claimwebsite'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -7377,10 +7393,9 @@ export namespace content_v2_1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/content/v2.1/accounts/batch').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/content/v2.1/accounts/batch')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -7506,14 +7521,23 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.accountId !== undefined && params.accountId !== null) {
+        validateSingleSegment('accountId', String(params.accountId));
+        params.accountId = encodeWithSlashes(String(params.accountId));
+      }
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/content/v2.1/{merchantId}/accounts/{accountId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/content/v2.1/{merchantId}/accounts/{accountId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -7662,14 +7686,23 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.accountId !== undefined && params.accountId !== null) {
+        validateSingleSegment('accountId', String(params.accountId));
+        params.accountId = encodeWithSlashes(String(params.accountId));
+      }
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/content/v2.1/{merchantId}/accounts/{accountId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/content/v2.1/{merchantId}/accounts/{accountId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -7839,15 +7872,19 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/content/v2.1/{merchantId}/accounts').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/content/v2.1/{merchantId}/accounts')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -7992,6 +8029,15 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.accountId !== undefined && params.accountId !== null) {
+        validateSingleSegment('accountId', String(params.accountId));
+        params.accountId = encodeWithSlashes(String(params.accountId));
+      }
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
@@ -7999,7 +8045,9 @@ export namespace content_v2_1 {
           {
             url: (
               rootUrl + '/content/v2.1/{merchantId}/accounts/{accountId}/link'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -8141,15 +8189,19 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/content/v2.1/{merchantId}/accounts').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/content/v2.1/{merchantId}/accounts')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -8290,6 +8342,15 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.accountId !== undefined && params.accountId !== null) {
+        validateSingleSegment('accountId', String(params.accountId));
+        params.accountId = encodeWithSlashes(String(params.accountId));
+      }
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
@@ -8298,7 +8359,9 @@ export namespace content_v2_1 {
             url: (
               rootUrl +
               '/content/v2.1/{merchantId}/accounts/{accountId}/listlinks'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -8449,6 +8512,15 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.accountId !== undefined && params.accountId !== null) {
+        validateSingleSegment('accountId', String(params.accountId));
+        params.accountId = encodeWithSlashes(String(params.accountId));
+      }
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
@@ -8457,7 +8529,9 @@ export namespace content_v2_1 {
             url: (
               rootUrl +
               '/content/v2.1/{merchantId}/accounts/{accountId}/requestphoneverification'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -8631,14 +8705,23 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.accountId !== undefined && params.accountId !== null) {
+        validateSingleSegment('accountId', String(params.accountId));
+        params.accountId = encodeWithSlashes(String(params.accountId));
+      }
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/content/v2.1/{merchantId}/accounts/{accountId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/content/v2.1/{merchantId}/accounts/{accountId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -8782,6 +8865,15 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.accountId !== undefined && params.accountId !== null) {
+        validateSingleSegment('accountId', String(params.accountId));
+        params.accountId = encodeWithSlashes(String(params.accountId));
+      }
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
@@ -8790,7 +8882,9 @@ export namespace content_v2_1 {
             url: (
               rootUrl +
               '/content/v2.1/{merchantId}/accounts/{accountId}/updatelabels'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -8937,6 +9031,15 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.accountId !== undefined && params.accountId !== null) {
+        validateSingleSegment('accountId', String(params.accountId));
+        params.accountId = encodeWithSlashes(String(params.accountId));
+      }
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
@@ -8945,7 +9048,9 @@ export namespace content_v2_1 {
             url: (
               rootUrl +
               '/content/v2.1/{merchantId}/accounts/{accountId}/verifyphonenumber'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -9274,14 +9379,19 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.accountId !== undefined && params.accountId !== null) {
+        validateSingleSegment('accountId', String(params.accountId));
+        params.accountId = encodeWithSlashes(String(params.accountId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/content/v2.1/accounts/{accountId}/credentials'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/content/v2.1/accounts/{accountId}/credentials')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -9446,14 +9556,19 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.accountId !== undefined && params.accountId !== null) {
+        validateSingleSegment('accountId', String(params.accountId));
+        params.accountId = encodeWithSlashes(String(params.accountId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/content/v2.1/accounts/{accountId}/labels'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/content/v2.1/accounts/{accountId}/labels')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -9578,6 +9693,15 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.accountId !== undefined && params.accountId !== null) {
+        validateSingleSegment('accountId', String(params.accountId));
+        params.accountId = encodeWithSlashes(String(params.accountId));
+      }
+      if (params.labelId !== undefined && params.labelId !== null) {
+        validateSingleSegment('labelId', String(params.labelId));
+        params.labelId = encodeWithSlashes(String(params.labelId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
@@ -9585,7 +9709,9 @@ export namespace content_v2_1 {
           {
             url: (
               rootUrl + '/content/v2.1/accounts/{accountId}/labels/{labelId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -9723,14 +9849,19 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.accountId !== undefined && params.accountId !== null) {
+        validateSingleSegment('accountId', String(params.accountId));
+        params.accountId = encodeWithSlashes(String(params.accountId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/content/v2.1/accounts/{accountId}/labels'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/content/v2.1/accounts/{accountId}/labels')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -9878,6 +10009,15 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.accountId !== undefined && params.accountId !== null) {
+        validateSingleSegment('accountId', String(params.accountId));
+        params.accountId = encodeWithSlashes(String(params.accountId));
+      }
+      if (params.labelId !== undefined && params.labelId !== null) {
+        validateSingleSegment('labelId', String(params.labelId));
+        params.labelId = encodeWithSlashes(String(params.labelId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
@@ -9885,7 +10025,9 @@ export namespace content_v2_1 {
           {
             url: (
               rootUrl + '/content/v2.1/accounts/{accountId}/labels/{labelId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -10088,14 +10230,19 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.accountId !== undefined && params.accountId !== null) {
+        validateSingleSegment('accountId', String(params.accountId));
+        params.accountId = encodeWithSlashes(String(params.accountId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/content/v2.1/accounts/{accountId}/returncarrier'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/content/v2.1/accounts/{accountId}/returncarrier')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -10220,6 +10367,23 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.accountId !== undefined && params.accountId !== null) {
+        validateSingleSegment('accountId', String(params.accountId));
+        params.accountId = encodeWithSlashes(String(params.accountId));
+      }
+      if (
+        params.carrierAccountId !== undefined &&
+        params.carrierAccountId !== null
+      ) {
+        validateSingleSegment(
+          'carrierAccountId',
+          String(params.carrierAccountId)
+        );
+        params.carrierAccountId = encodeWithSlashes(
+          String(params.carrierAccountId)
+        );
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
@@ -10228,7 +10392,9 @@ export namespace content_v2_1 {
             url: (
               rootUrl +
               '/content/v2.1/accounts/{accountId}/returncarrier/{carrierAccountId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -10366,14 +10532,19 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.accountId !== undefined && params.accountId !== null) {
+        validateSingleSegment('accountId', String(params.accountId));
+        params.accountId = encodeWithSlashes(String(params.accountId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/content/v2.1/accounts/{accountId}/returncarrier'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/content/v2.1/accounts/{accountId}/returncarrier')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -10522,6 +10693,23 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.accountId !== undefined && params.accountId !== null) {
+        validateSingleSegment('accountId', String(params.accountId));
+        params.accountId = encodeWithSlashes(String(params.accountId));
+      }
+      if (
+        params.carrierAccountId !== undefined &&
+        params.carrierAccountId !== null
+      ) {
+        validateSingleSegment(
+          'carrierAccountId',
+          String(params.carrierAccountId)
+        );
+        params.carrierAccountId = encodeWithSlashes(
+          String(params.carrierAccountId)
+        );
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
@@ -10530,7 +10718,9 @@ export namespace content_v2_1 {
             url: (
               rootUrl +
               '/content/v2.1/accounts/{accountId}/returncarrier/{carrierAccountId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -10729,10 +10919,9 @@ export namespace content_v2_1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/content/v2.1/accountstatuses/batch').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/content/v2.1/accountstatuses/batch')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -10873,6 +11062,15 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.accountId !== undefined && params.accountId !== null) {
+        validateSingleSegment('accountId', String(params.accountId));
+        params.accountId = encodeWithSlashes(String(params.accountId));
+      }
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
@@ -10880,7 +11078,9 @@ export namespace content_v2_1 {
           {
             url: (
               rootUrl + '/content/v2.1/{merchantId}/accountstatuses/{accountId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -11024,14 +11224,19 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/content/v2.1/{merchantId}/accountstatuses'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/content/v2.1/{merchantId}/accountstatuses')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -11226,10 +11431,9 @@ export namespace content_v2_1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/content/v2.1/accounttax/batch').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/content/v2.1/accounttax/batch')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -11363,14 +11567,23 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.accountId !== undefined && params.accountId !== null) {
+        validateSingleSegment('accountId', String(params.accountId));
+        params.accountId = encodeWithSlashes(String(params.accountId));
+      }
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/content/v2.1/{merchantId}/accounttax/{accountId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/content/v2.1/{merchantId}/accounttax/{accountId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -11506,15 +11719,19 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/content/v2.1/{merchantId}/accounttax').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/content/v2.1/{merchantId}/accounttax')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -11657,14 +11874,23 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.accountId !== undefined && params.accountId !== null) {
+        validateSingleSegment('accountId', String(params.accountId));
+        params.accountId = encodeWithSlashes(String(params.accountId));
+      }
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/content/v2.1/{merchantId}/accounttax/{accountId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/content/v2.1/{merchantId}/accounttax/{accountId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -11878,15 +12104,19 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/content/v2.1/{merchantId}/collections').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/content/v2.1/{merchantId}/collections')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -12011,6 +12241,15 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.collectionId !== undefined && params.collectionId !== null) {
+        validateSingleSegment('collectionId', String(params.collectionId));
+        params.collectionId = encodeWithSlashes(String(params.collectionId));
+      }
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
@@ -12018,7 +12257,9 @@ export namespace content_v2_1 {
           {
             url: (
               rootUrl + '/content/v2.1/{merchantId}/collections/{collectionId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -12160,6 +12401,15 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.collectionId !== undefined && params.collectionId !== null) {
+        validateSingleSegment('collectionId', String(params.collectionId));
+        params.collectionId = encodeWithSlashes(String(params.collectionId));
+      }
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
@@ -12167,7 +12417,9 @@ export namespace content_v2_1 {
           {
             url: (
               rootUrl + '/content/v2.1/{merchantId}/collections/{collectionId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -12302,15 +12554,19 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/content/v2.1/{merchantId}/collections').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/content/v2.1/{merchantId}/collections')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -12499,6 +12755,15 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.collectionId !== undefined && params.collectionId !== null) {
+        validateSingleSegment('collectionId', String(params.collectionId));
+        params.collectionId = encodeWithSlashes(String(params.collectionId));
+      }
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
@@ -12507,7 +12772,9 @@ export namespace content_v2_1 {
             url: (
               rootUrl +
               '/content/v2.1/{merchantId}/collectionstatuses/{collectionId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -12646,14 +12913,19 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/content/v2.1/{merchantId}/collectionstatuses'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/content/v2.1/{merchantId}/collectionstatuses')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -12833,14 +13105,19 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/content/v2.1/{merchantId}/conversionsources'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/content/v2.1/{merchantId}/conversionsources')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -12965,6 +13242,23 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (
+        params.conversionSourceId !== undefined &&
+        params.conversionSourceId !== null
+      ) {
+        validateSingleSegment(
+          'conversionSourceId',
+          String(params.conversionSourceId)
+        );
+        params.conversionSourceId = encodeWithSlashes(
+          String(params.conversionSourceId)
+        );
+      }
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
@@ -12973,7 +13267,9 @@ export namespace content_v2_1 {
             url: (
               rootUrl +
               '/content/v2.1/{merchantId}/conversionsources/{conversionSourceId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -13109,6 +13405,23 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (
+        params.conversionSourceId !== undefined &&
+        params.conversionSourceId !== null
+      ) {
+        validateSingleSegment(
+          'conversionSourceId',
+          String(params.conversionSourceId)
+        );
+        params.conversionSourceId = encodeWithSlashes(
+          String(params.conversionSourceId)
+        );
+      }
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
@@ -13117,7 +13430,9 @@ export namespace content_v2_1 {
             url: (
               rootUrl +
               '/content/v2.1/{merchantId}/conversionsources/{conversionSourceId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -13258,14 +13573,19 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/content/v2.1/{merchantId}/conversionsources'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/content/v2.1/{merchantId}/conversionsources')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -13417,6 +13737,23 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (
+        params.conversionSourceId !== undefined &&
+        params.conversionSourceId !== null
+      ) {
+        validateSingleSegment(
+          'conversionSourceId',
+          String(params.conversionSourceId)
+        );
+        params.conversionSourceId = encodeWithSlashes(
+          String(params.conversionSourceId)
+        );
+      }
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
@@ -13425,7 +13762,9 @@ export namespace content_v2_1 {
             url: (
               rootUrl +
               '/content/v2.1/{merchantId}/conversionsources/{conversionSourceId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -13556,6 +13895,23 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (
+        params.conversionSourceId !== undefined &&
+        params.conversionSourceId !== null
+      ) {
+        validateSingleSegment(
+          'conversionSourceId',
+          String(params.conversionSourceId)
+        );
+        params.conversionSourceId = encodeWithSlashes(
+          String(params.conversionSourceId)
+        );
+      }
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
@@ -13564,7 +13920,9 @@ export namespace content_v2_1 {
             url: (
               rootUrl +
               '/content/v2.1/{merchantId}/conversionsources/{conversionSourceId}:undelete'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -13790,14 +14148,23 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.cssDomainId !== undefined && params.cssDomainId !== null) {
+        validateSingleSegment('cssDomainId', String(params.cssDomainId));
+        params.cssDomainId = encodeWithSlashes(String(params.cssDomainId));
+      }
+      if (params.cssGroupId !== undefined && params.cssGroupId !== null) {
+        validateSingleSegment('cssGroupId', String(params.cssGroupId));
+        params.cssGroupId = encodeWithSlashes(String(params.cssGroupId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/content/v2.1/{cssGroupId}/csses/{cssDomainId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/content/v2.1/{cssGroupId}/csses/{cssDomainId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -13931,15 +14298,19 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.cssGroupId !== undefined && params.cssGroupId !== null) {
+        validateSingleSegment('cssGroupId', String(params.cssGroupId));
+        params.cssGroupId = encodeWithSlashes(String(params.cssGroupId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/content/v2.1/{cssGroupId}/csses').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/content/v2.1/{cssGroupId}/csses')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -14083,6 +14454,15 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.cssDomainId !== undefined && params.cssDomainId !== null) {
+        validateSingleSegment('cssDomainId', String(params.cssDomainId));
+        params.cssDomainId = encodeWithSlashes(String(params.cssDomainId));
+      }
+      if (params.cssGroupId !== undefined && params.cssGroupId !== null) {
+        validateSingleSegment('cssGroupId', String(params.cssGroupId));
+        params.cssGroupId = encodeWithSlashes(String(params.cssGroupId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
@@ -14091,7 +14471,9 @@ export namespace content_v2_1 {
             url: (
               rootUrl +
               '/content/v2.1/{cssGroupId}/csses/{cssDomainId}/updatelabels'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -14283,10 +14665,9 @@ export namespace content_v2_1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/content/v2.1/datafeeds/batch').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/content/v2.1/datafeeds/batch')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -14412,14 +14793,23 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.datafeedId !== undefined && params.datafeedId !== null) {
+        validateSingleSegment('datafeedId', String(params.datafeedId));
+        params.datafeedId = encodeWithSlashes(String(params.datafeedId));
+      }
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/content/v2.1/{merchantId}/datafeeds/{datafeedId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/content/v2.1/{merchantId}/datafeeds/{datafeedId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -14554,6 +14944,15 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.datafeedId !== undefined && params.datafeedId !== null) {
+        validateSingleSegment('datafeedId', String(params.datafeedId));
+        params.datafeedId = encodeWithSlashes(String(params.datafeedId));
+      }
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
@@ -14562,7 +14961,9 @@ export namespace content_v2_1 {
             url: (
               rootUrl +
               '/content/v2.1/{merchantId}/datafeeds/{datafeedId}/fetchNow'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -14700,14 +15101,23 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.datafeedId !== undefined && params.datafeedId !== null) {
+        validateSingleSegment('datafeedId', String(params.datafeedId));
+        params.datafeedId = encodeWithSlashes(String(params.datafeedId));
+      }
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/content/v2.1/{merchantId}/datafeeds/{datafeedId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/content/v2.1/{merchantId}/datafeeds/{datafeedId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -14859,15 +15269,19 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/content/v2.1/{merchantId}/datafeeds').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/content/v2.1/{merchantId}/datafeeds')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -15003,15 +15417,19 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/content/v2.1/{merchantId}/datafeeds').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/content/v2.1/{merchantId}/datafeeds')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -15165,14 +15583,23 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.datafeedId !== undefined && params.datafeedId !== null) {
+        validateSingleSegment('datafeedId', String(params.datafeedId));
+        params.datafeedId = encodeWithSlashes(String(params.datafeedId));
+      }
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/content/v2.1/{merchantId}/datafeeds/{datafeedId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/content/v2.1/{merchantId}/datafeeds/{datafeedId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -15405,10 +15832,9 @@ export namespace content_v2_1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/content/v2.1/datafeedstatuses/batch').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/content/v2.1/datafeedstatuses/batch')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -15558,6 +15984,15 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.datafeedId !== undefined && params.datafeedId !== null) {
+        validateSingleSegment('datafeedId', String(params.datafeedId));
+        params.datafeedId = encodeWithSlashes(String(params.datafeedId));
+      }
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
@@ -15566,7 +16001,9 @@ export namespace content_v2_1 {
             url: (
               rootUrl +
               '/content/v2.1/{merchantId}/datafeedstatuses/{datafeedId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -15706,14 +16143,19 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/content/v2.1/{merchantId}/datafeedstatuses'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/content/v2.1/{merchantId}/datafeedstatuses')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -15901,14 +16343,19 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/content/v2.1/{merchantId}/freelistingsprogram'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/content/v2.1/{merchantId}/freelistingsprogram')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -16039,6 +16486,11 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
@@ -16047,7 +16499,9 @@ export namespace content_v2_1 {
             url: (
               rootUrl +
               '/content/v2.1/{merchantId}/freelistingsprogram/requestreview'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -16196,6 +16650,11 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
@@ -16204,7 +16663,9 @@ export namespace content_v2_1 {
             url: (
               rootUrl +
               '/content/v2.1/{merchantId}/freelistingsprogram/checkoutsettings'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -16340,6 +16801,11 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
@@ -16348,7 +16814,9 @@ export namespace content_v2_1 {
             url: (
               rootUrl +
               '/content/v2.1/{merchantId}/freelistingsprogram/checkoutsettings'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -16493,6 +16961,11 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
@@ -16501,7 +16974,9 @@ export namespace content_v2_1 {
             url: (
               rootUrl +
               '/content/v2.1/{merchantId}/freelistingsprogram/checkoutsettings'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -16677,10 +17152,9 @@ export namespace content_v2_1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/content/v2.1/liasettings/batch').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/content/v2.1/liasettings/batch')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -16815,6 +17289,15 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.accountId !== undefined && params.accountId !== null) {
+        validateSingleSegment('accountId', String(params.accountId));
+        params.accountId = encodeWithSlashes(String(params.accountId));
+      }
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
@@ -16822,7 +17305,9 @@ export namespace content_v2_1 {
           {
             url: (
               rootUrl + '/content/v2.1/{merchantId}/liasettings/{accountId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -16964,6 +17449,15 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.accountId !== undefined && params.accountId !== null) {
+        validateSingleSegment('accountId', String(params.accountId));
+        params.accountId = encodeWithSlashes(String(params.accountId));
+      }
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
@@ -16972,7 +17466,9 @@ export namespace content_v2_1 {
             url: (
               rootUrl +
               '/content/v2.1/{merchantId}/liasettings/{accountId}/accessiblegmbaccounts'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -17110,15 +17606,19 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/content/v2.1/{merchantId}/liasettings').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/content/v2.1/{merchantId}/liasettings')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -17259,9 +17759,9 @@ export namespace content_v2_1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/content/v2.1/liasettings/posdataproviders'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/content/v2.1/liasettings/posdataproviders')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -17405,6 +17905,15 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.accountId !== undefined && params.accountId !== null) {
+        validateSingleSegment('accountId', String(params.accountId));
+        params.accountId = encodeWithSlashes(String(params.accountId));
+      }
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
@@ -17413,7 +17922,9 @@ export namespace content_v2_1 {
             url: (
               rootUrl +
               '/content/v2.1/{merchantId}/liasettings/{accountId}/requestgmbaccess'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -17557,6 +18068,19 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.accountId !== undefined && params.accountId !== null) {
+        validateSingleSegment('accountId', String(params.accountId));
+        params.accountId = encodeWithSlashes(String(params.accountId));
+      }
+      if (params.country !== undefined && params.country !== null) {
+        validateSingleSegment('country', String(params.country));
+        params.country = encodeWithSlashes(String(params.country));
+      }
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
@@ -17565,7 +18089,9 @@ export namespace content_v2_1 {
             url: (
               rootUrl +
               '/content/v2.1/{merchantId}/liasettings/{accountId}/requestinventoryverification/{country}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -17716,6 +18242,15 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.accountId !== undefined && params.accountId !== null) {
+        validateSingleSegment('accountId', String(params.accountId));
+        params.accountId = encodeWithSlashes(String(params.accountId));
+      }
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
@@ -17724,7 +18259,9 @@ export namespace content_v2_1 {
             url: (
               rootUrl +
               '/content/v2.1/{merchantId}/liasettings/{accountId}/setinventoryverificationcontact'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -17876,6 +18413,15 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.accountId !== undefined && params.accountId !== null) {
+        validateSingleSegment('accountId', String(params.accountId));
+        params.accountId = encodeWithSlashes(String(params.accountId));
+      }
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
@@ -17884,7 +18430,9 @@ export namespace content_v2_1 {
             url: (
               rootUrl +
               '/content/v2.1/{merchantId}/liasettings/{accountId}/setomnichannelexperience'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -18030,6 +18578,15 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.accountId !== undefined && params.accountId !== null) {
+        validateSingleSegment('accountId', String(params.accountId));
+        params.accountId = encodeWithSlashes(String(params.accountId));
+      }
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
@@ -18038,7 +18595,9 @@ export namespace content_v2_1 {
             url: (
               rootUrl +
               '/content/v2.1/{merchantId}/liasettings/{accountId}/setposdataprovider'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -18184,6 +18743,15 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.accountId !== undefined && params.accountId !== null) {
+        validateSingleSegment('accountId', String(params.accountId));
+        params.accountId = encodeWithSlashes(String(params.accountId));
+      }
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
@@ -18191,7 +18759,9 @@ export namespace content_v2_1 {
           {
             url: (
               rootUrl + '/content/v2.1/{merchantId}/liasettings/{accountId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -18502,10 +19072,9 @@ export namespace content_v2_1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/content/v2.1/localinventory/batch').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/content/v2.1/localinventory/batch')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -18667,6 +19236,15 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+      if (params.productId !== undefined && params.productId !== null) {
+        validateSingleSegment('productId', String(params.productId));
+        params.productId = encodeWithSlashes(String(params.productId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
@@ -18675,7 +19253,9 @@ export namespace content_v2_1 {
             url: (
               rootUrl +
               '/content/v2.1/{merchantId}/products/{productId}/localinventory'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -18852,6 +19432,11 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
@@ -18860,7 +19445,9 @@ export namespace content_v2_1 {
             url: (
               rootUrl +
               '/content/v2.1/{merchantId}/merchantsupport/renderaccountissues'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -19010,6 +19597,15 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+      if (params.productId !== undefined && params.productId !== null) {
+        validateSingleSegment('productId', String(params.productId));
+        params.productId = encodeWithSlashes(String(params.productId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
@@ -19018,7 +19614,9 @@ export namespace content_v2_1 {
             url: (
               rootUrl +
               '/content/v2.1/{merchantId}/merchantsupport/renderproductissues/{productId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -19162,6 +19760,11 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
@@ -19170,7 +19773,9 @@ export namespace content_v2_1 {
             url: (
               rootUrl +
               '/content/v2.1/{merchantId}/merchantsupport/triggeraction'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -19391,14 +19996,19 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/content/v2.1/{merchantId}/ordertrackingsignals'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/content/v2.1/{merchantId}/ordertrackingsignals')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -19560,10 +20170,9 @@ export namespace content_v2_1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/content/v2.1/pos/batch').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/content/v2.1/pos/batch')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -19689,6 +20298,27 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+      if (params.storeCode !== undefined && params.storeCode !== null) {
+        validateSingleSegment('storeCode', String(params.storeCode));
+        params.storeCode = encodeWithSlashes(String(params.storeCode));
+      }
+      if (
+        params.targetMerchantId !== undefined &&
+        params.targetMerchantId !== null
+      ) {
+        validateSingleSegment(
+          'targetMerchantId',
+          String(params.targetMerchantId)
+        );
+        params.targetMerchantId = encodeWithSlashes(
+          String(params.targetMerchantId)
+        );
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
@@ -19697,7 +20327,9 @@ export namespace content_v2_1 {
             url: (
               rootUrl +
               '/content/v2.1/{merchantId}/pos/{targetMerchantId}/store/{storeCode}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -19838,6 +20470,27 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+      if (params.storeCode !== undefined && params.storeCode !== null) {
+        validateSingleSegment('storeCode', String(params.storeCode));
+        params.storeCode = encodeWithSlashes(String(params.storeCode));
+      }
+      if (
+        params.targetMerchantId !== undefined &&
+        params.targetMerchantId !== null
+      ) {
+        validateSingleSegment(
+          'targetMerchantId',
+          String(params.targetMerchantId)
+        );
+        params.targetMerchantId = encodeWithSlashes(
+          String(params.targetMerchantId)
+        );
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
@@ -19846,7 +20499,9 @@ export namespace content_v2_1 {
             url: (
               rootUrl +
               '/content/v2.1/{merchantId}/pos/{targetMerchantId}/store/{storeCode}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -20002,6 +20657,23 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+      if (
+        params.targetMerchantId !== undefined &&
+        params.targetMerchantId !== null
+      ) {
+        validateSingleSegment(
+          'targetMerchantId',
+          String(params.targetMerchantId)
+        );
+        params.targetMerchantId = encodeWithSlashes(
+          String(params.targetMerchantId)
+        );
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
@@ -20010,7 +20682,9 @@ export namespace content_v2_1 {
             url: (
               rootUrl +
               '/content/v2.1/{merchantId}/pos/{targetMerchantId}/store'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -20171,6 +20845,23 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+      if (
+        params.targetMerchantId !== undefined &&
+        params.targetMerchantId !== null
+      ) {
+        validateSingleSegment(
+          'targetMerchantId',
+          String(params.targetMerchantId)
+        );
+        params.targetMerchantId = encodeWithSlashes(
+          String(params.targetMerchantId)
+        );
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
@@ -20179,7 +20870,9 @@ export namespace content_v2_1 {
             url: (
               rootUrl +
               '/content/v2.1/{merchantId}/pos/{targetMerchantId}/inventory'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -20311,6 +21004,23 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+      if (
+        params.targetMerchantId !== undefined &&
+        params.targetMerchantId !== null
+      ) {
+        validateSingleSegment(
+          'targetMerchantId',
+          String(params.targetMerchantId)
+        );
+        params.targetMerchantId = encodeWithSlashes(
+          String(params.targetMerchantId)
+        );
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
@@ -20319,7 +21029,9 @@ export namespace content_v2_1 {
             url: (
               rootUrl +
               '/content/v2.1/{merchantId}/pos/{targetMerchantId}/store'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -20475,6 +21187,23 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+      if (
+        params.targetMerchantId !== undefined &&
+        params.targetMerchantId !== null
+      ) {
+        validateSingleSegment(
+          'targetMerchantId',
+          String(params.targetMerchantId)
+        );
+        params.targetMerchantId = encodeWithSlashes(
+          String(params.targetMerchantId)
+        );
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
@@ -20482,7 +21211,9 @@ export namespace content_v2_1 {
           {
             url: (
               rootUrl + '/content/v2.1/{merchantId}/pos/{targetMerchantId}/sale'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -20719,14 +21450,19 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/content/v2.1/{merchantId}/productdeliverytime'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/content/v2.1/{merchantId}/productdeliverytime')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -20851,6 +21587,15 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+      if (params.productId !== undefined && params.productId !== null) {
+        validateSingleSegment('productId', String(params.productId));
+        params.productId = encodeWithSlashes(String(params.productId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
@@ -20859,7 +21604,9 @@ export namespace content_v2_1 {
             url: (
               rootUrl +
               '/content/v2.1/{merchantId}/productdeliverytime/{productId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -20992,6 +21739,15 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+      if (params.productId !== undefined && params.productId !== null) {
+        validateSingleSegment('productId', String(params.productId));
+        params.productId = encodeWithSlashes(String(params.productId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
@@ -21000,7 +21756,9 @@ export namespace content_v2_1 {
             url: (
               rootUrl +
               '/content/v2.1/{merchantId}/productdeliverytime/{productId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -21184,10 +21942,9 @@ export namespace content_v2_1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/content/v2.1/products/batch').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/content/v2.1/products/batch')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -21313,14 +22070,23 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+      if (params.productId !== undefined && params.productId !== null) {
+        validateSingleSegment('productId', String(params.productId));
+        params.productId = encodeWithSlashes(String(params.productId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/content/v2.1/{merchantId}/products/{productId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/content/v2.1/{merchantId}/products/{productId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -21553,14 +22319,23 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+      if (params.productId !== undefined && params.productId !== null) {
+        validateSingleSegment('productId', String(params.productId));
+        params.productId = encodeWithSlashes(String(params.productId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/content/v2.1/{merchantId}/products/{productId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/content/v2.1/{merchantId}/products/{productId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -21904,15 +22679,19 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/content/v2.1/{merchantId}/products').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/content/v2.1/{merchantId}/products')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -22048,15 +22827,19 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/content/v2.1/{merchantId}/products').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/content/v2.1/{merchantId}/products')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -22402,14 +23185,23 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+      if (params.productId !== undefined && params.productId !== null) {
+        validateSingleSegment('productId', String(params.productId));
+        params.productId = encodeWithSlashes(String(params.productId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/content/v2.1/{merchantId}/products/{productId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/content/v2.1/{merchantId}/products/{productId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -22644,10 +23436,9 @@ export namespace content_v2_1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/content/v2.1/productstatuses/batch').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/content/v2.1/productstatuses/batch')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -22791,6 +23582,15 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+      if (params.productId !== undefined && params.productId !== null) {
+        validateSingleSegment('productId', String(params.productId));
+        params.productId = encodeWithSlashes(String(params.productId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
@@ -22798,7 +23598,9 @@ export namespace content_v2_1 {
           {
             url: (
               rootUrl + '/content/v2.1/{merchantId}/productstatuses/{productId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -22940,14 +23742,19 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/content/v2.1/{merchantId}/productstatuses'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/content/v2.1/{merchantId}/productstatuses')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -23216,15 +24023,19 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/content/v2.1/{merchantId}/promotions').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/content/v2.1/{merchantId}/promotions')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -23397,14 +24208,23 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.id !== undefined && params.id !== null) {
+        validateSingleSegment('id', String(params.id));
+        params.id = encodeWithSlashes(String(params.id));
+      }
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/content/v2.1/{merchantId}/promotions/{id}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/content/v2.1/{merchantId}/promotions/{id}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -23543,15 +24363,19 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/content/v2.1/{merchantId}/promotions').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/content/v2.1/{merchantId}/promotions')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -23737,6 +24561,11 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
@@ -23744,7 +24573,9 @@ export namespace content_v2_1 {
           {
             url: (
               rootUrl + '/content/v2.1/{merchantId}/pubsubnotificationsettings'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -23889,6 +24720,11 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
@@ -23896,7 +24732,9 @@ export namespace content_v2_1 {
           {
             url: (
               rootUrl + '/content/v2.1/{merchantId}/pubsubnotificationsettings'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -24056,15 +24894,19 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/content/v2.1/{merchantId}/quotas').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/content/v2.1/{merchantId}/quotas')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -24225,6 +25067,11 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
@@ -24232,7 +25079,9 @@ export namespace content_v2_1 {
           {
             url: (
               rootUrl + '/content/v2.1/{merchantId}/recommendations/generate'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -24368,6 +25217,11 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
@@ -24376,7 +25230,9 @@ export namespace content_v2_1 {
             url: (
               rootUrl +
               '/content/v2.1/{merchantId}/recommendations/reportInteraction'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -24558,10 +25414,9 @@ export namespace content_v2_1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/content/v2.1/regionalinventory/batch').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/content/v2.1/regionalinventory/batch')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -24715,6 +25570,15 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+      if (params.productId !== undefined && params.productId !== null) {
+        validateSingleSegment('productId', String(params.productId));
+        params.productId = encodeWithSlashes(String(params.productId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
@@ -24723,7 +25587,9 @@ export namespace content_v2_1 {
             url: (
               rootUrl +
               '/content/v2.1/{merchantId}/products/{productId}/regionalinventory'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -24902,15 +25768,19 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/content/v2.1/{merchantId}/regions').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/content/v2.1/{merchantId}/regions')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -25034,14 +25904,23 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+      if (params.regionId !== undefined && params.regionId !== null) {
+        validateSingleSegment('regionId', String(params.regionId));
+        params.regionId = encodeWithSlashes(String(params.regionId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/content/v2.1/{merchantId}/regions/{regionId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/content/v2.1/{merchantId}/regions/{regionId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -25177,14 +26056,23 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+      if (params.regionId !== undefined && params.regionId !== null) {
+        validateSingleSegment('regionId', String(params.regionId));
+        params.regionId = encodeWithSlashes(String(params.regionId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/content/v2.1/{merchantId}/regions/{regionId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/content/v2.1/{merchantId}/regions/{regionId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -25318,15 +26206,19 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/content/v2.1/{merchantId}/regions').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/content/v2.1/{merchantId}/regions')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -25478,14 +26370,23 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+      if (params.regionId !== undefined && params.regionId !== null) {
+        validateSingleSegment('regionId', String(params.regionId));
+        params.regionId = encodeWithSlashes(String(params.regionId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/content/v2.1/{merchantId}/regions/{regionId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/content/v2.1/{merchantId}/regions/{regionId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -25701,14 +26602,19 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/content/v2.1/{merchantId}/reports/search'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/content/v2.1/{merchantId}/reports/search')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -25883,14 +26789,19 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/content/v2.1/{merchantId}/returnpolicyonline'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/content/v2.1/{merchantId}/returnpolicyonline')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -26015,6 +26926,20 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+      if (
+        params.returnPolicyId !== undefined &&
+        params.returnPolicyId !== null
+      ) {
+        validateSingleSegment('returnPolicyId', String(params.returnPolicyId));
+        params.returnPolicyId = encodeWithSlashes(
+          String(params.returnPolicyId)
+        );
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
@@ -26023,7 +26948,9 @@ export namespace content_v2_1 {
             url: (
               rootUrl +
               '/content/v2.1/{merchantId}/returnpolicyonline/{returnPolicyId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -26164,6 +27091,20 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+      if (
+        params.returnPolicyId !== undefined &&
+        params.returnPolicyId !== null
+      ) {
+        validateSingleSegment('returnPolicyId', String(params.returnPolicyId));
+        params.returnPolicyId = encodeWithSlashes(
+          String(params.returnPolicyId)
+        );
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
@@ -26172,7 +27113,9 @@ export namespace content_v2_1 {
             url: (
               rootUrl +
               '/content/v2.1/{merchantId}/returnpolicyonline/{returnPolicyId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -26306,14 +27249,19 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/content/v2.1/{merchantId}/returnpolicyonline'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/content/v2.1/{merchantId}/returnpolicyonline')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -26473,6 +27421,20 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+      if (
+        params.returnPolicyId !== undefined &&
+        params.returnPolicyId !== null
+      ) {
+        validateSingleSegment('returnPolicyId', String(params.returnPolicyId));
+        params.returnPolicyId = encodeWithSlashes(
+          String(params.returnPolicyId)
+        );
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
@@ -26481,7 +27443,9 @@ export namespace content_v2_1 {
             url: (
               rootUrl +
               '/content/v2.1/{merchantId}/returnpolicyonline/{returnPolicyId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -26690,10 +27654,9 @@ export namespace content_v2_1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/content/v2.1/shippingsettings/batch').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/content/v2.1/shippingsettings/batch')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -26830,6 +27793,15 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.accountId !== undefined && params.accountId !== null) {
+        validateSingleSegment('accountId', String(params.accountId));
+        params.accountId = encodeWithSlashes(String(params.accountId));
+      }
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
@@ -26838,7 +27810,9 @@ export namespace content_v2_1 {
             url: (
               rootUrl +
               '/content/v2.1/{merchantId}/shippingsettings/{accountId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -26977,14 +27951,19 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/content/v2.1/{merchantId}/supportedCarriers'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/content/v2.1/{merchantId}/supportedCarriers')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -27125,14 +28104,19 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/content/v2.1/{merchantId}/supportedHolidays'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/content/v2.1/{merchantId}/supportedHolidays')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -27274,6 +28258,11 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
@@ -27281,7 +28270,9 @@ export namespace content_v2_1 {
           {
             url: (
               rootUrl + '/content/v2.1/{merchantId}/supportedPickupServices'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -27423,14 +28414,19 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/content/v2.1/{merchantId}/shippingsettings'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/content/v2.1/{merchantId}/shippingsettings')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -27578,6 +28574,15 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.accountId !== undefined && params.accountId !== null) {
+        validateSingleSegment('accountId', String(params.accountId));
+        params.accountId = encodeWithSlashes(String(params.accountId));
+      }
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
@@ -27586,7 +28591,9 @@ export namespace content_v2_1 {
             url: (
               rootUrl +
               '/content/v2.1/{merchantId}/shippingsettings/{accountId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -27789,14 +28796,19 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/content/v2.1/{merchantId}/shoppingadsprogram'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/content/v2.1/{merchantId}/shoppingadsprogram')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -27927,6 +28939,11 @@ export namespace content_v2_1 {
         options = {};
       }
 
+      if (params.merchantId !== undefined && params.merchantId !== null) {
+        validateSingleSegment('merchantId', String(params.merchantId));
+        params.merchantId = encodeWithSlashes(String(params.merchantId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
@@ -27935,7 +28952,9 @@ export namespace content_v2_1 {
             url: (
               rootUrl +
               '/content/v2.1/{merchantId}/shoppingadsprogram/requestreview'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },

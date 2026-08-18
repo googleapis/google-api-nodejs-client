@@ -34,6 +34,12 @@ import {
   APIRequestContext,
 } from 'googleapis-common';
 import {Readable} from 'stream';
+import {
+  validateSingleSegment,
+  validateMultiSegment,
+  encodeWithSlashes,
+  encodeWithoutSlashes,
+} from '../../transcoding';
 
 export namespace accessapproval_v1 {
   export interface Options extends GlobalOptions {
@@ -538,12 +544,19 @@ export namespace accessapproval_v1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://accessapproval.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -690,12 +703,19 @@ export namespace accessapproval_v1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://accessapproval.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -830,12 +850,19 @@ export namespace accessapproval_v1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://accessapproval.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -1008,12 +1035,19 @@ export namespace accessapproval_v1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://accessapproval.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -1202,15 +1236,19 @@ export namespace accessapproval_v1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://accessapproval.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+name}:approve').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/{+name}:approve')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -1356,15 +1394,19 @@ export namespace accessapproval_v1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://accessapproval.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+name}:dismiss').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/{+name}:dismiss')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -1504,12 +1546,19 @@ export namespace accessapproval_v1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://accessapproval.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -1655,15 +1704,19 @@ export namespace accessapproval_v1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://accessapproval.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+name}:invalidate').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/{+name}:invalidate')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -1804,15 +1857,19 @@ export namespace accessapproval_v1 {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://accessapproval.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+parent}/approvalRequests').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/{+parent}/approvalRequests')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -2013,12 +2070,19 @@ export namespace accessapproval_v1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://accessapproval.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -2165,12 +2229,19 @@ export namespace accessapproval_v1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://accessapproval.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -2305,12 +2376,19 @@ export namespace accessapproval_v1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://accessapproval.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -2484,12 +2562,19 @@ export namespace accessapproval_v1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://accessapproval.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -2678,15 +2763,19 @@ export namespace accessapproval_v1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://accessapproval.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+name}:approve').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/{+name}:approve')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -2832,15 +2921,19 @@ export namespace accessapproval_v1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://accessapproval.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+name}:dismiss').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/{+name}:dismiss')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -2980,12 +3073,19 @@ export namespace accessapproval_v1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://accessapproval.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -3132,15 +3232,19 @@ export namespace accessapproval_v1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://accessapproval.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+name}:invalidate').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/{+name}:invalidate')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -3281,15 +3385,19 @@ export namespace accessapproval_v1 {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://accessapproval.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+parent}/approvalRequests').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/{+parent}/approvalRequests')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -3489,12 +3597,19 @@ export namespace accessapproval_v1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://accessapproval.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -3641,12 +3756,19 @@ export namespace accessapproval_v1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://accessapproval.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -3781,12 +3903,19 @@ export namespace accessapproval_v1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://accessapproval.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -3959,12 +4088,19 @@ export namespace accessapproval_v1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://accessapproval.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -4153,15 +4289,19 @@ export namespace accessapproval_v1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://accessapproval.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+name}:approve').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/{+name}:approve')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -4307,15 +4447,19 @@ export namespace accessapproval_v1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://accessapproval.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+name}:dismiss').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/{+name}:dismiss')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -4455,12 +4599,19 @@ export namespace accessapproval_v1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://accessapproval.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -4606,15 +4757,19 @@ export namespace accessapproval_v1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://accessapproval.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+name}:invalidate').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/{+name}:invalidate')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -4755,15 +4910,19 @@ export namespace accessapproval_v1 {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://accessapproval.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+parent}/approvalRequests').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/{+parent}/approvalRequests')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },

@@ -34,6 +34,12 @@ import {
   APIRequestContext,
 } from 'googleapis-common';
 import {Readable} from 'stream';
+import {
+  validateSingleSegment,
+  validateMultiSegment,
+  encodeWithSlashes,
+  encodeWithoutSlashes,
+} from '../../transcoding';
 
 export namespace health_v4 {
   export interface Options extends GlobalOptions {
@@ -3382,14 +3388,18 @@ export namespace health_v4 {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl = options.rootUrl || 'https://health.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v4/{+parent}/subscribers').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v4/{+parent}/subscribers')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -3524,11 +3534,18 @@ export namespace health_v4 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://health.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v4/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v4/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -3665,14 +3682,18 @@ export namespace health_v4 {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl = options.rootUrl || 'https://health.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v4/{+parent}/subscribers').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v4/{+parent}/subscribers')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -3821,11 +3842,18 @@ export namespace health_v4 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://health.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v4/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v4/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -4031,14 +4059,18 @@ export namespace health_v4 {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl = options.rootUrl || 'https://health.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v4/{+parent}/subscriptions').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v4/{+parent}/subscriptions')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -4166,11 +4198,18 @@ export namespace health_v4 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://health.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v4/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v4/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -4310,14 +4349,18 @@ export namespace health_v4 {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl = options.rootUrl || 'https://health.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v4/{+parent}/subscriptions').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v4/{+parent}/subscriptions')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -4461,11 +4504,18 @@ export namespace health_v4 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://health.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v4/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v4/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -4679,14 +4729,18 @@ export namespace health_v4 {
         options = {};
       }
 
+      if (params.externalShlId !== undefined && params.externalShlId !== null) {
+        validateSingleSegment('externalShlId', String(params.externalShlId));
+        params.externalShlId = encodeWithSlashes(String(params.externalShlId));
+      }
+
       const rootUrl = options.rootUrl || 'https://health.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v4/shl/m/{externalShlId}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v4/shl/m/{externalShlId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -4837,13 +4891,22 @@ export namespace health_v4 {
         options = {};
       }
 
+      if (params.externalShlId !== undefined && params.externalShlId !== null) {
+        validateSingleSegment('externalShlId', String(params.externalShlId));
+        params.externalShlId = encodeWithSlashes(String(params.externalShlId));
+      }
+      if (params.resourceToken !== undefined && params.resourceToken !== null) {
+        validateSingleSegment('resourceToken', String(params.resourceToken));
+        params.resourceToken = encodeWithSlashes(String(params.resourceToken));
+      }
+
       const rootUrl = options.rootUrl || 'https://health.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v4/shl/r/{externalShlId}/{resourceToken}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v4/shl/r/{externalShlId}/{resourceToken}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -5004,11 +5067,18 @@ export namespace health_v4 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://health.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v4/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v4/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -5140,11 +5210,18 @@ export namespace health_v4 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://health.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v4/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v4/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -5278,11 +5355,18 @@ export namespace health_v4 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://health.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v4/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v4/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -5425,11 +5509,18 @@ export namespace health_v4 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://health.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v4/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v4/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -5580,11 +5671,18 @@ export namespace health_v4 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://health.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v4/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v4/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -5751,11 +5849,18 @@ export namespace health_v4 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://health.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v4/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v4/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -5976,14 +6081,18 @@ export namespace health_v4 {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl = options.rootUrl || 'https://health.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v4/{+parent}/dataPoints:batchDelete').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v4/{+parent}/dataPoints:batchDelete')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -6176,14 +6285,18 @@ export namespace health_v4 {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl = options.rootUrl || 'https://health.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v4/{+parent}/dataPoints').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v4/{+parent}/dataPoints')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -6334,14 +6447,18 @@ export namespace health_v4 {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl = options.rootUrl || 'https://health.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v4/{+parent}/dataPoints:dailyRollUp').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v4/{+parent}/dataPoints:dailyRollUp')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -6482,14 +6599,18 @@ export namespace health_v4 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://health.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v4/{+name}:exportExerciseTcx').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v4/{+name}:exportExerciseTcx')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -6666,11 +6787,18 @@ export namespace health_v4 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://health.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v4/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v4/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -6813,14 +6941,18 @@ export namespace health_v4 {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl = options.rootUrl || 'https://health.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v4/{+parent}/dataPoints').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v4/{+parent}/dataPoints')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -7013,11 +7145,18 @@ export namespace health_v4 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://health.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v4/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v4/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -7173,14 +7312,18 @@ export namespace health_v4 {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl = options.rootUrl || 'https://health.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v4/{+parent}/dataPoints:reconcile').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v4/{+parent}/dataPoints:reconcile')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -7331,14 +7474,18 @@ export namespace health_v4 {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl = options.rootUrl || 'https://health.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v4/{+parent}/dataPoints:rollUp').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v4/{+parent}/dataPoints:rollUp')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -7594,11 +7741,18 @@ export namespace health_v4 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://health.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v4/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v4/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -7736,14 +7890,18 @@ export namespace health_v4 {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl = options.rootUrl || 'https://health.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v4/{+parent}/pairedDevices').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v4/{+parent}/pairedDevices')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },

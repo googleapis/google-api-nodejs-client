@@ -34,6 +34,12 @@ import {
   APIRequestContext,
 } from 'googleapis-common';
 import {Readable} from 'stream';
+import {
+  validateSingleSegment,
+  validateMultiSegment,
+  encodeWithSlashes,
+  encodeWithoutSlashes,
+} from '../../transcoding';
 
 export namespace books_v1 {
   export interface Options extends GlobalOptions {
@@ -1347,13 +1353,22 @@ export namespace books_v1 {
         options = {};
       }
 
+      if (params.shelf !== undefined && params.shelf !== null) {
+        validateSingleSegment('shelf', String(params.shelf));
+        params.shelf = encodeWithSlashes(String(params.shelf));
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://books.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/books/v1/users/{userId}/bookshelves/{shelf}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/books/v1/users/{userId}/bookshelves/{shelf}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -1485,14 +1500,18 @@ export namespace books_v1 {
         options = {};
       }
 
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://books.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/books/v1/users/{userId}/bookshelves').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/books/v1/users/{userId}/bookshelves')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -1665,13 +1684,24 @@ export namespace books_v1 {
         options = {};
       }
 
+      if (params.shelf !== undefined && params.shelf !== null) {
+        validateSingleSegment('shelf', String(params.shelf));
+        params.shelf = encodeWithSlashes(String(params.shelf));
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://books.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/books/v1/users/{userId}/bookshelves/{shelf}/volumes'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -1851,10 +1881,9 @@ export namespace books_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/books/v1/cloudloading/addBook').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/books/v1/cloudloading/addBook')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -1985,10 +2014,9 @@ export namespace books_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/books/v1/cloudloading/deleteBook').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/books/v1/cloudloading/deleteBook')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -2136,10 +2164,9 @@ export namespace books_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/books/v1/cloudloading/updateBook').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/books/v1/cloudloading/updateBook')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -2311,10 +2338,9 @@ export namespace books_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/books/v1/dictionary/listOfflineMetadata').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/books/v1/dictionary/listOfflineMetadata')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -2462,10 +2488,9 @@ export namespace books_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/books/v1/familysharing/getFamilyInfo').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/books/v1/familysharing/getFamilyInfo')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -2600,10 +2625,9 @@ export namespace books_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/books/v1/familysharing/share').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/books/v1/familysharing/share')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -2738,10 +2762,9 @@ export namespace books_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/books/v1/familysharing/unshare').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/books/v1/familysharing/unshare')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -2936,13 +2959,24 @@ export namespace books_v1 {
         options = {};
       }
 
+      if (params.summaryId !== undefined && params.summaryId !== null) {
+        validateSingleSegment('summaryId', String(params.summaryId));
+        params.summaryId = encodeWithSlashes(String(params.summaryId));
+      }
+      if (params.volumeId !== undefined && params.volumeId !== null) {
+        validateSingleSegment('volumeId', String(params.volumeId));
+        params.volumeId = encodeWithSlashes(String(params.volumeId));
+      }
+
       const rootUrl = options.rootUrl || 'https://books.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/books/v1/volumes/{volumeId}/layersummary/{summaryId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -3081,13 +3115,18 @@ export namespace books_v1 {
         options = {};
       }
 
+      if (params.volumeId !== undefined && params.volumeId !== null) {
+        validateSingleSegment('volumeId', String(params.volumeId));
+        params.volumeId = encodeWithSlashes(String(params.volumeId));
+      }
+
       const rootUrl = options.rootUrl || 'https://books.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/books/v1/volumes/{volumeId}/layersummary'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/books/v1/volumes/{volumeId}/layersummary')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -3292,6 +3331,27 @@ export namespace books_v1 {
         options = {};
       }
 
+      if (
+        params.annotationDataId !== undefined &&
+        params.annotationDataId !== null
+      ) {
+        validateSingleSegment(
+          'annotationDataId',
+          String(params.annotationDataId)
+        );
+        params.annotationDataId = encodeWithSlashes(
+          String(params.annotationDataId)
+        );
+      }
+      if (params.layerId !== undefined && params.layerId !== null) {
+        validateSingleSegment('layerId', String(params.layerId));
+        params.layerId = encodeWithSlashes(String(params.layerId));
+      }
+      if (params.volumeId !== undefined && params.volumeId !== null) {
+        validateSingleSegment('volumeId', String(params.volumeId));
+        params.volumeId = encodeWithSlashes(String(params.volumeId));
+      }
+
       const rootUrl = options.rootUrl || 'https://books.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3299,7 +3359,9 @@ export namespace books_v1 {
             url: (
               rootUrl +
               '/books/v1/volumes/{volumeId}/layers/{layerId}/data/{annotationDataId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -3461,13 +3523,24 @@ export namespace books_v1 {
         options = {};
       }
 
+      if (params.layerId !== undefined && params.layerId !== null) {
+        validateSingleSegment('layerId', String(params.layerId));
+        params.layerId = encodeWithSlashes(String(params.layerId));
+      }
+      if (params.volumeId !== undefined && params.volumeId !== null) {
+        validateSingleSegment('volumeId', String(params.volumeId));
+        params.volumeId = encodeWithSlashes(String(params.volumeId));
+      }
+
       const rootUrl = options.rootUrl || 'https://books.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/books/v1/volumes/{volumeId}/layers/{layerId}/data'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -3722,6 +3795,19 @@ export namespace books_v1 {
         options = {};
       }
 
+      if (params.annotationId !== undefined && params.annotationId !== null) {
+        validateSingleSegment('annotationId', String(params.annotationId));
+        params.annotationId = encodeWithSlashes(String(params.annotationId));
+      }
+      if (params.layerId !== undefined && params.layerId !== null) {
+        validateSingleSegment('layerId', String(params.layerId));
+        params.layerId = encodeWithSlashes(String(params.layerId));
+      }
+      if (params.volumeId !== undefined && params.volumeId !== null) {
+        validateSingleSegment('volumeId', String(params.volumeId));
+        params.volumeId = encodeWithSlashes(String(params.volumeId));
+      }
+
       const rootUrl = options.rootUrl || 'https://books.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3729,7 +3815,9 @@ export namespace books_v1 {
             url: (
               rootUrl +
               '/books/v1/volumes/{volumeId}/layers/{layerId}/annotations/{annotationId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -3891,13 +3979,22 @@ export namespace books_v1 {
         options = {};
       }
 
+      if (params.layerId !== undefined && params.layerId !== null) {
+        validateSingleSegment('layerId', String(params.layerId));
+        params.layerId = encodeWithSlashes(String(params.layerId));
+      }
+      if (params.volumeId !== undefined && params.volumeId !== null) {
+        validateSingleSegment('volumeId', String(params.volumeId));
+        params.volumeId = encodeWithSlashes(String(params.volumeId));
+      }
+
       const rootUrl = options.rootUrl || 'https://books.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/books/v1/volumes/{volumeId}/layers/{layerId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/books/v1/volumes/{volumeId}/layers/{layerId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -4125,10 +4222,9 @@ export namespace books_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/books/v1/myconfig/getUserSettings').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/books/v1/myconfig/getUserSettings')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -4271,10 +4367,9 @@ export namespace books_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/books/v1/myconfig/releaseDownloadAccess').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/books/v1/myconfig/releaseDownloadAccess')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -4422,10 +4517,9 @@ export namespace books_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/books/v1/myconfig/requestAccess').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/books/v1/myconfig/requestAccess')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -4574,10 +4668,9 @@ export namespace books_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/books/v1/myconfig/syncVolumeLicenses').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/books/v1/myconfig/syncVolumeLicenses')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -4722,10 +4815,9 @@ export namespace books_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/books/v1/myconfig/updateUserSettings').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/books/v1/myconfig/updateUserSettings')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -4967,13 +5059,18 @@ export namespace books_v1 {
         options = {};
       }
 
+      if (params.annotationId !== undefined && params.annotationId !== null) {
+        validateSingleSegment('annotationId', String(params.annotationId));
+        params.annotationId = encodeWithSlashes(String(params.annotationId));
+      }
+
       const rootUrl = options.rootUrl || 'https://books.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/books/v1/mylibrary/annotations/{annotationId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/books/v1/mylibrary/annotations/{annotationId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -5152,10 +5249,9 @@ export namespace books_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/books/v1/mylibrary/annotations').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/books/v1/mylibrary/annotations')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -5310,10 +5406,9 @@ export namespace books_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/books/v1/mylibrary/annotations').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/books/v1/mylibrary/annotations')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -5452,10 +5547,9 @@ export namespace books_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/books/v1/mylibrary/annotations/summary').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/books/v1/mylibrary/annotations/summary')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -5626,13 +5720,18 @@ export namespace books_v1 {
         options = {};
       }
 
+      if (params.annotationId !== undefined && params.annotationId !== null) {
+        validateSingleSegment('annotationId', String(params.annotationId));
+        params.annotationId = encodeWithSlashes(String(params.annotationId));
+      }
+
       const rootUrl = options.rootUrl || 'https://books.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/books/v1/mylibrary/annotations/{annotationId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/books/v1/mylibrary/annotations/{annotationId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -5879,13 +5978,18 @@ export namespace books_v1 {
         options = {};
       }
 
+      if (params.shelf !== undefined && params.shelf !== null) {
+        validateSingleSegment('shelf', String(params.shelf));
+        params.shelf = encodeWithSlashes(String(params.shelf));
+      }
+
       const rootUrl = options.rootUrl || 'https://books.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/books/v1/mylibrary/bookshelves/{shelf}/addVolume'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/books/v1/mylibrary/bookshelves/{shelf}/addVolume')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -6014,13 +6118,20 @@ export namespace books_v1 {
         options = {};
       }
 
+      if (params.shelf !== undefined && params.shelf !== null) {
+        validateSingleSegment('shelf', String(params.shelf));
+        params.shelf = encodeWithSlashes(String(params.shelf));
+      }
+
       const rootUrl = options.rootUrl || 'https://books.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/books/v1/mylibrary/bookshelves/{shelf}/clearVolumes'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -6160,14 +6271,18 @@ export namespace books_v1 {
         options = {};
       }
 
+      if (params.shelf !== undefined && params.shelf !== null) {
+        validateSingleSegment('shelf', String(params.shelf));
+        params.shelf = encodeWithSlashes(String(params.shelf));
+      }
+
       const rootUrl = options.rootUrl || 'https://books.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/books/v1/mylibrary/bookshelves/{shelf}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/books/v1/mylibrary/bookshelves/{shelf}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -6302,10 +6417,9 @@ export namespace books_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/books/v1/mylibrary/bookshelves').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/books/v1/mylibrary/bookshelves')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -6438,13 +6552,20 @@ export namespace books_v1 {
         options = {};
       }
 
+      if (params.shelf !== undefined && params.shelf !== null) {
+        validateSingleSegment('shelf', String(params.shelf));
+        params.shelf = encodeWithSlashes(String(params.shelf));
+      }
+
       const rootUrl = options.rootUrl || 'https://books.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/books/v1/mylibrary/bookshelves/{shelf}/moveVolume'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -6577,13 +6698,20 @@ export namespace books_v1 {
         options = {};
       }
 
+      if (params.shelf !== undefined && params.shelf !== null) {
+        validateSingleSegment('shelf', String(params.shelf));
+        params.shelf = encodeWithSlashes(String(params.shelf));
+      }
+
       const rootUrl = options.rootUrl || 'https://books.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/books/v1/mylibrary/bookshelves/{shelf}/removeVolume'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -6816,13 +6944,18 @@ export namespace books_v1 {
         options = {};
       }
 
+      if (params.shelf !== undefined && params.shelf !== null) {
+        validateSingleSegment('shelf', String(params.shelf));
+        params.shelf = encodeWithSlashes(String(params.shelf));
+      }
+
       const rootUrl = options.rootUrl || 'https://books.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/books/v1/mylibrary/bookshelves/{shelf}/volumes'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/books/v1/mylibrary/bookshelves/{shelf}/volumes')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -7004,13 +7137,18 @@ export namespace books_v1 {
         options = {};
       }
 
+      if (params.volumeId !== undefined && params.volumeId !== null) {
+        validateSingleSegment('volumeId', String(params.volumeId));
+        params.volumeId = encodeWithSlashes(String(params.volumeId));
+      }
+
       const rootUrl = options.rootUrl || 'https://books.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/books/v1/mylibrary/readingpositions/{volumeId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/books/v1/mylibrary/readingpositions/{volumeId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -7149,6 +7287,11 @@ export namespace books_v1 {
         options = {};
       }
 
+      if (params.volumeId !== undefined && params.volumeId !== null) {
+        validateSingleSegment('volumeId', String(params.volumeId));
+        params.volumeId = encodeWithSlashes(String(params.volumeId));
+      }
+
       const rootUrl = options.rootUrl || 'https://books.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -7156,7 +7299,9 @@ export namespace books_v1 {
             url: (
               rootUrl +
               '/books/v1/mylibrary/readingpositions/{volumeId}/setPosition'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -7360,10 +7505,9 @@ export namespace books_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/books/v1/notification/get').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/books/v1/notification/get')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -7519,10 +7663,9 @@ export namespace books_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/books/v1/onboarding/listCategories').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/books/v1/onboarding/listCategories')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -7665,10 +7808,9 @@ export namespace books_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/books/v1/onboarding/listCategoryVolumes').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/books/v1/onboarding/listCategoryVolumes')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -7844,10 +7986,9 @@ export namespace books_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/books/v1/personalizedstream/get').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/books/v1/personalizedstream/get')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -8014,10 +8155,9 @@ export namespace books_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/books/v1/promooffer/accept').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/books/v1/promooffer/accept')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -8160,10 +8300,9 @@ export namespace books_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/books/v1/promooffer/dismiss').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/books/v1/promooffer/dismiss')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -8306,10 +8445,9 @@ export namespace books_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/books/v1/promooffer/get').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/books/v1/promooffer/get')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -8542,10 +8680,9 @@ export namespace books_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/books/v1/series/get').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/books/v1/series/get')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -8699,10 +8836,9 @@ export namespace books_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/books/v1/series/membership/get').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/books/v1/series/membership/get')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -8882,14 +9018,18 @@ export namespace books_v1 {
         options = {};
       }
 
+      if (params.volumeId !== undefined && params.volumeId !== null) {
+        validateSingleSegment('volumeId', String(params.volumeId));
+        params.volumeId = encodeWithSlashes(String(params.volumeId));
+      }
+
       const rootUrl = options.rootUrl || 'https://books.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/books/v1/volumes/{volumeId}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/books/v1/volumes/{volumeId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -9049,7 +9189,9 @@ export namespace books_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/books/v1/volumes').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/books/v1/volumes')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -9284,14 +9426,18 @@ export namespace books_v1 {
         options = {};
       }
 
+      if (params.volumeId !== undefined && params.volumeId !== null) {
+        validateSingleSegment('volumeId', String(params.volumeId));
+        params.volumeId = encodeWithSlashes(String(params.volumeId));
+      }
+
       const rootUrl = options.rootUrl || 'https://books.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/books/v1/volumes/{volumeId}/associated').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/books/v1/volumes/{volumeId}/associated')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -9468,10 +9614,9 @@ export namespace books_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/books/v1/volumes/mybooks').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/books/v1/volumes/mybooks')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -9648,10 +9793,9 @@ export namespace books_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/books/v1/volumes/recommended').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/books/v1/volumes/recommended')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -9799,10 +9943,9 @@ export namespace books_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/books/v1/volumes/recommended/rate').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/books/v1/volumes/recommended/rate')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -9989,10 +10132,9 @@ export namespace books_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/books/v1/volumes/useruploaded').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/books/v1/volumes/useruploaded')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },

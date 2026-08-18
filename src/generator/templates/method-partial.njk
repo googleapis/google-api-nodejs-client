@@ -47,15 +47,33 @@
     options = {};
   }
 
+  {% if m.parameters %}
+  {% for pname, p in m.parameters|dictsort %}
+  {% if p.location == 'path' %}
+  {% set safePName = pname|getSafeParamName %}
+  {% set isReserved = p|isReservedParam(pname, m.path) %}
+  if (params.{{ safePName }} !== undefined && params.{{ safePName }} !== null) {
+    {% if isReserved %}
+    validateMultiSegment('{{ pname }}', String(params.{{ safePName }}));
+    params.{{ safePName }} = encodeWithoutSlashes(String(params.{{ safePName }}));
+    {% else %}
+    validateSingleSegment('{{ pname }}', String(params.{{ safePName }}));
+    params.{{ safePName }} = encodeWithSlashes(String(params.{{ safePName }}));
+    {% endif %}
+  }
+  {% endif %}
+  {% endfor %}
+  {% endif %}
+
   const rootUrl = options.rootUrl || {{ rootApi.rootUrl|buildurl|safe }};
   const parameters = {
     options: Object.assign({
-      url: (rootUrl + {{ ('/' + rootApi.servicePath + m.path)|buildurl|safe }}).replace(/([^:]\/)\/+/g, '$1'),
+      url: (rootUrl + {{ ('/' + rootApi.servicePath + m.path)|buildurl|safe }}).replace(/([^:]\/)\/+/g, '$1').replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
       method: '{{ m.httpMethod }}',
       apiVersion: '{{ m.apiVersion }}'
     }, options),
     params,
-    {% if m.mediaUpload.protocols.simple.path %}mediaUrl: (rootUrl + {{ ('/' + m.mediaUpload.protocols.simple.path)|buildurl|safe }}).replace(/([^:]\/)\/+/g, '$1'),{% endif %}
+    {% if m.mediaUpload.protocols.simple.path %}mediaUrl: (rootUrl + {{ ('/' + m.mediaUpload.protocols.simple.path)|buildurl|safe }}).replace(/([^:]\/)\/+/g, '$1').replace(/\{([^+:][^}]*)\}/g, '{+$1}'),{% endif %}
     requiredParams: [{% if m.parameterOrder.length %}'{{ m.parameterOrder|join("', '")|safe }}'{% endif %}],
     pathParams: [{% if pathParams.length %}'{{ pathParams|join("', '")|safe }}'{% endif %}],
     context: this.context,

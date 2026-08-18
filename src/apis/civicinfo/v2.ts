@@ -34,6 +34,12 @@ import {
   APIRequestContext,
 } from 'googleapis-common';
 import {Readable} from 'stream';
+import {
+  validateSingleSegment,
+  validateMultiSegment,
+  encodeWithSlashes,
+  encodeWithoutSlashes,
+} from '../../transcoding';
 
 export namespace civicinfo_v2 {
   export interface Options extends GlobalOptions {
@@ -821,10 +827,9 @@ export namespace civicinfo_v2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/civicinfo/v2/divisionsByAddress').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/civicinfo/v2/divisionsByAddress')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -968,10 +973,9 @@ export namespace civicinfo_v2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/civicinfo/v2/divisions').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/civicinfo/v2/divisions')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -1136,10 +1140,9 @@ export namespace civicinfo_v2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/civicinfo/v2/elections').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/civicinfo/v2/elections')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -1302,10 +1305,9 @@ export namespace civicinfo_v2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/civicinfo/v2/voterinfo').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/civicinfo/v2/voterinfo')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },

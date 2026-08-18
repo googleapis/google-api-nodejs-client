@@ -34,6 +34,12 @@ import {
   APIRequestContext,
 } from 'googleapis-common';
 import {Readable} from 'stream';
+import {
+  validateSingleSegment,
+  validateMultiSegment,
+  encodeWithSlashes,
+  encodeWithoutSlashes,
+} from '../../transcoding';
 
 export namespace displayvideo_v3 {
   export interface Options extends GlobalOptions {
@@ -6966,14 +6972,18 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.advertiserId !== undefined && params.advertiserId !== null) {
+        validateMultiSegment('advertiserId', String(params.advertiserId));
+        params.advertiserId = encodeWithoutSlashes(String(params.advertiserId));
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v3/advertisers/{+advertiserId}:audit').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v3/advertisers/{+advertiserId}:audit')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -7143,7 +7153,9 @@ export namespace displayvideo_v3 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v3/advertisers').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v3/advertisers')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -7270,14 +7282,18 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.advertiserId !== undefined && params.advertiserId !== null) {
+        validateMultiSegment('advertiserId', String(params.advertiserId));
+        params.advertiserId = encodeWithoutSlashes(String(params.advertiserId));
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v3/advertisers/{+advertiserId}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v3/advertisers/{+advertiserId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -7424,6 +7440,11 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.advertiserId !== undefined && params.advertiserId !== null) {
+        validateMultiSegment('advertiserId', String(params.advertiserId));
+        params.advertiserId = encodeWithoutSlashes(String(params.advertiserId));
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -7431,7 +7452,9 @@ export namespace displayvideo_v3 {
             url: (
               rootUrl +
               '/v3/advertisers/{+advertiserId}:editAssignedTargetingOptions'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -7577,14 +7600,18 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.advertiserId !== undefined && params.advertiserId !== null) {
+        validateMultiSegment('advertiserId', String(params.advertiserId));
+        params.advertiserId = encodeWithoutSlashes(String(params.advertiserId));
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v3/advertisers/{+advertiserId}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v3/advertisers/{+advertiserId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -7727,7 +7754,9 @@ export namespace displayvideo_v3 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v3/advertisers').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v3/advertisers')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -7874,6 +7903,11 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.advertiserId !== undefined && params.advertiserId !== null) {
+        validateMultiSegment('advertiserId', String(params.advertiserId));
+        params.advertiserId = encodeWithoutSlashes(String(params.advertiserId));
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -7881,7 +7915,9 @@ export namespace displayvideo_v3 {
             url: (
               rootUrl +
               '/v3/advertisers/{+advertiserId}:listAssignedTargetingOptions'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -8054,14 +8090,18 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.advertiserId !== undefined && params.advertiserId !== null) {
+        validateMultiSegment('advertiserId', String(params.advertiserId));
+        params.advertiserId = encodeWithoutSlashes(String(params.advertiserId));
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v3/advertisers/{+advertiserId}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v3/advertisers/{+advertiserId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -8344,13 +8384,18 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.advertiserId !== undefined && params.advertiserId !== null) {
+        validateMultiSegment('advertiserId', String(params.advertiserId));
+        params.advertiserId = encodeWithoutSlashes(String(params.advertiserId));
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v3/advertisers/{+advertiserId}/adGroupAds'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v3/advertisers/{+advertiserId}/adGroupAds')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -8479,6 +8524,15 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.adGroupAdId !== undefined && params.adGroupAdId !== null) {
+        validateMultiSegment('adGroupAdId', String(params.adGroupAdId));
+        params.adGroupAdId = encodeWithoutSlashes(String(params.adGroupAdId));
+      }
+      if (params.advertiserId !== undefined && params.advertiserId !== null) {
+        validateMultiSegment('advertiserId', String(params.advertiserId));
+        params.advertiserId = encodeWithoutSlashes(String(params.advertiserId));
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -8486,7 +8540,9 @@ export namespace displayvideo_v3 {
             url: (
               rootUrl +
               '/v3/advertisers/{+advertiserId}/adGroupAds/{+adGroupAdId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -8637,6 +8693,15 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.adGroupAdId !== undefined && params.adGroupAdId !== null) {
+        validateMultiSegment('adGroupAdId', String(params.adGroupAdId));
+        params.adGroupAdId = encodeWithoutSlashes(String(params.adGroupAdId));
+      }
+      if (params.advertiserId !== undefined && params.advertiserId !== null) {
+        validateMultiSegment('advertiserId', String(params.advertiserId));
+        params.advertiserId = encodeWithoutSlashes(String(params.advertiserId));
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -8644,7 +8709,9 @@ export namespace displayvideo_v3 {
             url: (
               rootUrl +
               '/v3/advertisers/{+advertiserId}/adGroupAds/{+adGroupAdId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -8784,13 +8851,18 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.advertiserId !== undefined && params.advertiserId !== null) {
+        validateMultiSegment('advertiserId', String(params.advertiserId));
+        params.advertiserId = encodeWithoutSlashes(String(params.advertiserId));
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v3/advertisers/{+advertiserId}/adGroupAds'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v3/advertisers/{+advertiserId}/adGroupAds')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -8971,6 +9043,15 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.adGroupAdId !== undefined && params.adGroupAdId !== null) {
+        validateMultiSegment('adGroupAdId', String(params.adGroupAdId));
+        params.adGroupAdId = encodeWithoutSlashes(String(params.adGroupAdId));
+      }
+      if (params.advertiserId !== undefined && params.advertiserId !== null) {
+        validateMultiSegment('advertiserId', String(params.advertiserId));
+        params.advertiserId = encodeWithoutSlashes(String(params.advertiserId));
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -8978,7 +9059,9 @@ export namespace displayvideo_v3 {
             url: (
               rootUrl +
               '/v3/advertisers/{+advertiserId}/adGroupAds/{+adGroupAdId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -9214,6 +9297,11 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.advertiserId !== undefined && params.advertiserId !== null) {
+        validateMultiSegment('advertiserId', String(params.advertiserId));
+        params.advertiserId = encodeWithoutSlashes(String(params.advertiserId));
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -9221,7 +9309,9 @@ export namespace displayvideo_v3 {
             url: (
               rootUrl +
               '/v3/advertisers/{+advertiserId}/adGroups:bulkEditAssignedTargetingOptions'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -9376,6 +9466,11 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.advertiserId !== undefined && params.advertiserId !== null) {
+        validateMultiSegment('advertiserId', String(params.advertiserId));
+        params.advertiserId = encodeWithoutSlashes(String(params.advertiserId));
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -9383,7 +9478,9 @@ export namespace displayvideo_v3 {
             url: (
               rootUrl +
               '/v3/advertisers/{+advertiserId}/adGroups:bulkListAdGroupAssignedTargetingOptions'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -9542,14 +9639,18 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.advertiserId !== undefined && params.advertiserId !== null) {
+        validateMultiSegment('advertiserId', String(params.advertiserId));
+        params.advertiserId = encodeWithoutSlashes(String(params.advertiserId));
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v3/advertisers/{+advertiserId}/adGroups').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v3/advertisers/{+advertiserId}/adGroups')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -9678,13 +9779,24 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.adGroupId !== undefined && params.adGroupId !== null) {
+        validateMultiSegment('adGroupId', String(params.adGroupId));
+        params.adGroupId = encodeWithoutSlashes(String(params.adGroupId));
+      }
+      if (params.advertiserId !== undefined && params.advertiserId !== null) {
+        validateMultiSegment('advertiserId', String(params.advertiserId));
+        params.advertiserId = encodeWithoutSlashes(String(params.advertiserId));
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/v3/advertisers/{+advertiserId}/adGroups/{+adGroupId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -9825,13 +9937,24 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.adGroupId !== undefined && params.adGroupId !== null) {
+        validateMultiSegment('adGroupId', String(params.adGroupId));
+        params.adGroupId = encodeWithoutSlashes(String(params.adGroupId));
+      }
+      if (params.advertiserId !== undefined && params.advertiserId !== null) {
+        validateMultiSegment('advertiserId', String(params.advertiserId));
+        params.advertiserId = encodeWithoutSlashes(String(params.advertiserId));
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/v3/advertisers/{+advertiserId}/adGroups/{+adGroupId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -9971,14 +10094,18 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.advertiserId !== undefined && params.advertiserId !== null) {
+        validateMultiSegment('advertiserId', String(params.advertiserId));
+        params.advertiserId = encodeWithoutSlashes(String(params.advertiserId));
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v3/advertisers/{+advertiserId}/adGroups').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v3/advertisers/{+advertiserId}/adGroups')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -10139,13 +10266,24 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.adGroupId !== undefined && params.adGroupId !== null) {
+        validateMultiSegment('adGroupId', String(params.adGroupId));
+        params.adGroupId = encodeWithoutSlashes(String(params.adGroupId));
+      }
+      if (params.advertiserId !== undefined && params.advertiserId !== null) {
+        validateMultiSegment('advertiserId', String(params.advertiserId));
+        params.advertiserId = encodeWithoutSlashes(String(params.advertiserId));
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/v3/advertisers/{+advertiserId}/adGroups/{+adGroupId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -10531,6 +10669,21 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.adGroupId !== undefined && params.adGroupId !== null) {
+        validateMultiSegment('adGroupId', String(params.adGroupId));
+        params.adGroupId = encodeWithoutSlashes(String(params.adGroupId));
+      }
+      if (params.advertiserId !== undefined && params.advertiserId !== null) {
+        validateMultiSegment('advertiserId', String(params.advertiserId));
+        params.advertiserId = encodeWithoutSlashes(String(params.advertiserId));
+      }
+      if (params.targetingType !== undefined && params.targetingType !== null) {
+        validateMultiSegment('targetingType', String(params.targetingType));
+        params.targetingType = encodeWithoutSlashes(
+          String(params.targetingType)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -10538,7 +10691,9 @@ export namespace displayvideo_v3 {
             url: (
               rootUrl +
               '/v3/advertisers/{+advertiserId}/adGroups/{+adGroupId}/targetingTypes/{+targetingType}/assignedTargetingOptions'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -10675,6 +10830,33 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.adGroupId !== undefined && params.adGroupId !== null) {
+        validateMultiSegment('adGroupId', String(params.adGroupId));
+        params.adGroupId = encodeWithoutSlashes(String(params.adGroupId));
+      }
+      if (params.advertiserId !== undefined && params.advertiserId !== null) {
+        validateMultiSegment('advertiserId', String(params.advertiserId));
+        params.advertiserId = encodeWithoutSlashes(String(params.advertiserId));
+      }
+      if (
+        params.assignedTargetingOptionId !== undefined &&
+        params.assignedTargetingOptionId !== null
+      ) {
+        validateMultiSegment(
+          'assignedTargetingOptionId',
+          String(params.assignedTargetingOptionId)
+        );
+        params.assignedTargetingOptionId = encodeWithoutSlashes(
+          String(params.assignedTargetingOptionId)
+        );
+      }
+      if (params.targetingType !== undefined && params.targetingType !== null) {
+        validateMultiSegment('targetingType', String(params.targetingType));
+        params.targetingType = encodeWithoutSlashes(
+          String(params.targetingType)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -10682,7 +10864,9 @@ export namespace displayvideo_v3 {
             url: (
               rootUrl +
               '/v3/advertisers/{+advertiserId}/adGroups/{+adGroupId}/targetingTypes/{+targetingType}/assignedTargetingOptions/{+assignedTargetingOptionId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -10887,6 +11071,33 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.adGroupId !== undefined && params.adGroupId !== null) {
+        validateMultiSegment('adGroupId', String(params.adGroupId));
+        params.adGroupId = encodeWithoutSlashes(String(params.adGroupId));
+      }
+      if (params.advertiserId !== undefined && params.advertiserId !== null) {
+        validateMultiSegment('advertiserId', String(params.advertiserId));
+        params.advertiserId = encodeWithoutSlashes(String(params.advertiserId));
+      }
+      if (
+        params.assignedTargetingOptionId !== undefined &&
+        params.assignedTargetingOptionId !== null
+      ) {
+        validateMultiSegment(
+          'assignedTargetingOptionId',
+          String(params.assignedTargetingOptionId)
+        );
+        params.assignedTargetingOptionId = encodeWithoutSlashes(
+          String(params.assignedTargetingOptionId)
+        );
+      }
+      if (params.targetingType !== undefined && params.targetingType !== null) {
+        validateMultiSegment('targetingType', String(params.targetingType));
+        params.targetingType = encodeWithoutSlashes(
+          String(params.targetingType)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -10894,7 +11105,9 @@ export namespace displayvideo_v3 {
             url: (
               rootUrl +
               '/v3/advertisers/{+advertiserId}/adGroups/{+adGroupId}/targetingTypes/{+targetingType}/assignedTargetingOptions/{+assignedTargetingOptionId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -11059,6 +11272,21 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.adGroupId !== undefined && params.adGroupId !== null) {
+        validateMultiSegment('adGroupId', String(params.adGroupId));
+        params.adGroupId = encodeWithoutSlashes(String(params.adGroupId));
+      }
+      if (params.advertiserId !== undefined && params.advertiserId !== null) {
+        validateMultiSegment('advertiserId', String(params.advertiserId));
+        params.advertiserId = encodeWithoutSlashes(String(params.advertiserId));
+      }
+      if (params.targetingType !== undefined && params.targetingType !== null) {
+        validateMultiSegment('targetingType', String(params.targetingType));
+        params.targetingType = encodeWithoutSlashes(
+          String(params.targetingType)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -11066,7 +11294,9 @@ export namespace displayvideo_v3 {
             url: (
               rootUrl +
               '/v3/advertisers/{+advertiserId}/adGroups/{+adGroupId}/targetingTypes/{+targetingType}/assignedTargetingOptions'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -11303,23 +11533,27 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.advertiserId !== undefined && params.advertiserId !== null) {
+        validateMultiSegment('advertiserId', String(params.advertiserId));
+        params.advertiserId = encodeWithoutSlashes(String(params.advertiserId));
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v3/advertisers/{+advertiserId}/assets').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v3/advertisers/{+advertiserId}/assets')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
           options
         ),
         params,
-        mediaUrl: (
-          rootUrl + '/upload/v3/advertisers/{+advertiserId}/assets'
-        ).replace(/([^:]\/)\/+/g, '$1'),
+        mediaUrl: (rootUrl + '/upload/v3/advertisers/{+advertiserId}/assets')
+          .replace(/([^:]\/)\/+/g, '$1')
+          .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
         requiredParams: ['advertiserId'],
         pathParams: ['advertiserId'],
         context: this.context,
@@ -11505,13 +11739,18 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.advertiserId !== undefined && params.advertiserId !== null) {
+        validateMultiSegment('advertiserId', String(params.advertiserId));
+        params.advertiserId = encodeWithoutSlashes(String(params.advertiserId));
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v3/advertisers/{+advertiserId}/campaigns'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v3/advertisers/{+advertiserId}/campaigns')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -11643,6 +11882,15 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.advertiserId !== undefined && params.advertiserId !== null) {
+        validateMultiSegment('advertiserId', String(params.advertiserId));
+        params.advertiserId = encodeWithoutSlashes(String(params.advertiserId));
+      }
+      if (params.campaignId !== undefined && params.campaignId !== null) {
+        validateMultiSegment('campaignId', String(params.campaignId));
+        params.campaignId = encodeWithoutSlashes(String(params.campaignId));
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -11650,7 +11898,9 @@ export namespace displayvideo_v3 {
             url: (
               rootUrl +
               '/v3/advertisers/{+advertiserId}/campaigns/{+campaignId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -11793,6 +12043,15 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.advertiserId !== undefined && params.advertiserId !== null) {
+        validateMultiSegment('advertiserId', String(params.advertiserId));
+        params.advertiserId = encodeWithoutSlashes(String(params.advertiserId));
+      }
+      if (params.campaignId !== undefined && params.campaignId !== null) {
+        validateMultiSegment('campaignId', String(params.campaignId));
+        params.campaignId = encodeWithoutSlashes(String(params.campaignId));
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -11800,7 +12059,9 @@ export namespace displayvideo_v3 {
             url: (
               rootUrl +
               '/v3/advertisers/{+advertiserId}/campaigns/{+campaignId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -11943,13 +12204,18 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.advertiserId !== undefined && params.advertiserId !== null) {
+        validateMultiSegment('advertiserId', String(params.advertiserId));
+        params.advertiserId = encodeWithoutSlashes(String(params.advertiserId));
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v3/advertisers/{+advertiserId}/campaigns'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v3/advertisers/{+advertiserId}/campaigns')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -12111,6 +12377,15 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.advertiserId !== undefined && params.advertiserId !== null) {
+        validateMultiSegment('advertiserId', String(params.advertiserId));
+        params.advertiserId = encodeWithoutSlashes(String(params.advertiserId));
+      }
+      if (params.campaignId !== undefined && params.campaignId !== null) {
+        validateMultiSegment('campaignId', String(params.campaignId));
+        params.campaignId = encodeWithoutSlashes(String(params.campaignId));
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -12118,7 +12393,9 @@ export namespace displayvideo_v3 {
             url: (
               rootUrl +
               '/v3/advertisers/{+advertiserId}/campaigns/{+campaignId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -12351,14 +12628,18 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.advertiserId !== undefined && params.advertiserId !== null) {
+        validateMultiSegment('advertiserId', String(params.advertiserId));
+        params.advertiserId = encodeWithoutSlashes(String(params.advertiserId));
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v3/advertisers/{+advertiserId}/channels').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v3/advertisers/{+advertiserId}/channels')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -12497,13 +12778,24 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.advertiserId !== undefined && params.advertiserId !== null) {
+        validateMultiSegment('advertiserId', String(params.advertiserId));
+        params.advertiserId = encodeWithoutSlashes(String(params.advertiserId));
+      }
+      if (params.channelId !== undefined && params.channelId !== null) {
+        validateMultiSegment('channelId', String(params.channelId));
+        params.channelId = encodeWithoutSlashes(String(params.channelId));
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/v3/advertisers/{+advertiserId}/channels/{+channelId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -12645,14 +12937,18 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.advertiserId !== undefined && params.advertiserId !== null) {
+        validateMultiSegment('advertiserId', String(params.advertiserId));
+        params.advertiserId = encodeWithoutSlashes(String(params.advertiserId));
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v3/advertisers/{+advertiserId}/channels').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v3/advertisers/{+advertiserId}/channels')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -12807,13 +13103,24 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.advertiserId !== undefined && params.advertiserId !== null) {
+        validateMultiSegment('advertiserId', String(params.advertiserId));
+        params.advertiserId = encodeWithoutSlashes(String(params.advertiserId));
+      }
+      if (params.channelId !== undefined && params.channelId !== null) {
+        validateSingleSegment('channelId', String(params.channelId));
+        params.channelId = encodeWithSlashes(String(params.channelId));
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/v3/advertisers/{+advertiserId}/channels/{channelId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -13045,6 +13352,15 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.advertiserId !== undefined && params.advertiserId !== null) {
+        validateSingleSegment('advertiserId', String(params.advertiserId));
+        params.advertiserId = encodeWithSlashes(String(params.advertiserId));
+      }
+      if (params.channelId !== undefined && params.channelId !== null) {
+        validateMultiSegment('channelId', String(params.channelId));
+        params.channelId = encodeWithoutSlashes(String(params.channelId));
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -13052,7 +13368,9 @@ export namespace displayvideo_v3 {
             url: (
               rootUrl +
               '/v3/advertisers/{advertiserId}/channels/{+channelId}/sites:bulkEdit'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -13195,6 +13513,15 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.advertiserId !== undefined && params.advertiserId !== null) {
+        validateSingleSegment('advertiserId', String(params.advertiserId));
+        params.advertiserId = encodeWithSlashes(String(params.advertiserId));
+      }
+      if (params.channelId !== undefined && params.channelId !== null) {
+        validateMultiSegment('channelId', String(params.channelId));
+        params.channelId = encodeWithoutSlashes(String(params.channelId));
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -13202,7 +13529,9 @@ export namespace displayvideo_v3 {
             url: (
               rootUrl +
               '/v3/advertisers/{advertiserId}/channels/{+channelId}/sites'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -13335,6 +13664,19 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.advertiserId !== undefined && params.advertiserId !== null) {
+        validateSingleSegment('advertiserId', String(params.advertiserId));
+        params.advertiserId = encodeWithSlashes(String(params.advertiserId));
+      }
+      if (params.channelId !== undefined && params.channelId !== null) {
+        validateMultiSegment('channelId', String(params.channelId));
+        params.channelId = encodeWithoutSlashes(String(params.channelId));
+      }
+      if (params.urlOrAppId !== undefined && params.urlOrAppId !== null) {
+        validateMultiSegment('urlOrAppId', String(params.urlOrAppId));
+        params.urlOrAppId = encodeWithoutSlashes(String(params.urlOrAppId));
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -13342,7 +13684,9 @@ export namespace displayvideo_v3 {
             url: (
               rootUrl +
               '/v3/advertisers/{advertiserId}/channels/{+channelId}/sites/{+urlOrAppId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -13485,6 +13829,15 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.advertiserId !== undefined && params.advertiserId !== null) {
+        validateMultiSegment('advertiserId', String(params.advertiserId));
+        params.advertiserId = encodeWithoutSlashes(String(params.advertiserId));
+      }
+      if (params.channelId !== undefined && params.channelId !== null) {
+        validateMultiSegment('channelId', String(params.channelId));
+        params.channelId = encodeWithoutSlashes(String(params.channelId));
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -13492,7 +13845,9 @@ export namespace displayvideo_v3 {
             url: (
               rootUrl +
               '/v3/advertisers/{+advertiserId}/channels/{+channelId}/sites'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -13635,6 +13990,15 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.advertiserId !== undefined && params.advertiserId !== null) {
+        validateSingleSegment('advertiserId', String(params.advertiserId));
+        params.advertiserId = encodeWithSlashes(String(params.advertiserId));
+      }
+      if (params.channelId !== undefined && params.channelId !== null) {
+        validateMultiSegment('channelId', String(params.channelId));
+        params.channelId = encodeWithoutSlashes(String(params.channelId));
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -13642,7 +14006,9 @@ export namespace displayvideo_v3 {
             url: (
               rootUrl +
               '/v3/advertisers/{advertiserId}/channels/{+channelId}/sites:replace'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -13978,13 +14344,18 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.advertiserId !== undefined && params.advertiserId !== null) {
+        validateMultiSegment('advertiserId', String(params.advertiserId));
+        params.advertiserId = encodeWithoutSlashes(String(params.advertiserId));
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v3/advertisers/{+advertiserId}/creatives'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v3/advertisers/{+advertiserId}/creatives')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -14113,6 +14484,15 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.advertiserId !== undefined && params.advertiserId !== null) {
+        validateMultiSegment('advertiserId', String(params.advertiserId));
+        params.advertiserId = encodeWithoutSlashes(String(params.advertiserId));
+      }
+      if (params.creativeId !== undefined && params.creativeId !== null) {
+        validateMultiSegment('creativeId', String(params.creativeId));
+        params.creativeId = encodeWithoutSlashes(String(params.creativeId));
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -14120,7 +14500,9 @@ export namespace displayvideo_v3 {
             url: (
               rootUrl +
               '/v3/advertisers/{+advertiserId}/creatives/{+creativeId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -14298,6 +14680,15 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.advertiserId !== undefined && params.advertiserId !== null) {
+        validateMultiSegment('advertiserId', String(params.advertiserId));
+        params.advertiserId = encodeWithoutSlashes(String(params.advertiserId));
+      }
+      if (params.creativeId !== undefined && params.creativeId !== null) {
+        validateMultiSegment('creativeId', String(params.creativeId));
+        params.creativeId = encodeWithoutSlashes(String(params.creativeId));
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -14305,7 +14696,9 @@ export namespace displayvideo_v3 {
             url: (
               rootUrl +
               '/v3/advertisers/{+advertiserId}/creatives/{+creativeId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -14445,13 +14838,18 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.advertiserId !== undefined && params.advertiserId !== null) {
+        validateMultiSegment('advertiserId', String(params.advertiserId));
+        params.advertiserId = encodeWithoutSlashes(String(params.advertiserId));
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v3/advertisers/{+advertiserId}/creatives'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v3/advertisers/{+advertiserId}/creatives')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -14686,6 +15084,15 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.advertiserId !== undefined && params.advertiserId !== null) {
+        validateMultiSegment('advertiserId', String(params.advertiserId));
+        params.advertiserId = encodeWithoutSlashes(String(params.advertiserId));
+      }
+      if (params.creativeId !== undefined && params.creativeId !== null) {
+        validateMultiSegment('creativeId', String(params.creativeId));
+        params.creativeId = encodeWithoutSlashes(String(params.creativeId));
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -14693,7 +15100,9 @@ export namespace displayvideo_v3 {
             url: (
               rootUrl +
               '/v3/advertisers/{+advertiserId}/creatives/{+creativeId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -14943,13 +15352,18 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.advertiserId !== undefined && params.advertiserId !== null) {
+        validateMultiSegment('advertiserId', String(params.advertiserId));
+        params.advertiserId = encodeWithoutSlashes(String(params.advertiserId));
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v3/advertisers/{+advertiserId}/insertionOrders'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v3/advertisers/{+advertiserId}/insertionOrders')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -15078,6 +15492,23 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.advertiserId !== undefined && params.advertiserId !== null) {
+        validateMultiSegment('advertiserId', String(params.advertiserId));
+        params.advertiserId = encodeWithoutSlashes(String(params.advertiserId));
+      }
+      if (
+        params.insertionOrderId !== undefined &&
+        params.insertionOrderId !== null
+      ) {
+        validateMultiSegment(
+          'insertionOrderId',
+          String(params.insertionOrderId)
+        );
+        params.insertionOrderId = encodeWithoutSlashes(
+          String(params.insertionOrderId)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -15085,7 +15516,9 @@ export namespace displayvideo_v3 {
             url: (
               rootUrl +
               '/v3/advertisers/{+advertiserId}/insertionOrders/{+insertionOrderId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -15233,6 +15666,23 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.advertiserId !== undefined && params.advertiserId !== null) {
+        validateMultiSegment('advertiserId', String(params.advertiserId));
+        params.advertiserId = encodeWithoutSlashes(String(params.advertiserId));
+      }
+      if (
+        params.insertionOrderId !== undefined &&
+        params.insertionOrderId !== null
+      ) {
+        validateMultiSegment(
+          'insertionOrderId',
+          String(params.insertionOrderId)
+        );
+        params.insertionOrderId = encodeWithoutSlashes(
+          String(params.insertionOrderId)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -15240,7 +15690,9 @@ export namespace displayvideo_v3 {
             url: (
               rootUrl +
               '/v3/advertisers/{+advertiserId}/insertionOrders/{+insertionOrderId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -15383,13 +15835,18 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.advertiserId !== undefined && params.advertiserId !== null) {
+        validateMultiSegment('advertiserId', String(params.advertiserId));
+        params.advertiserId = encodeWithoutSlashes(String(params.advertiserId));
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v3/advertisers/{+advertiserId}/insertionOrders'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v3/advertisers/{+advertiserId}/insertionOrders')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -15563,6 +16020,23 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.advertiserId !== undefined && params.advertiserId !== null) {
+        validateMultiSegment('advertiserId', String(params.advertiserId));
+        params.advertiserId = encodeWithoutSlashes(String(params.advertiserId));
+      }
+      if (
+        params.insertionOrderId !== undefined &&
+        params.insertionOrderId !== null
+      ) {
+        validateMultiSegment(
+          'insertionOrderId',
+          String(params.insertionOrderId)
+        );
+        params.insertionOrderId = encodeWithoutSlashes(
+          String(params.insertionOrderId)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -15570,7 +16044,9 @@ export namespace displayvideo_v3 {
             url: (
               rootUrl +
               '/v3/advertisers/{+advertiserId}/insertionOrders/{+insertionOrderId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -15793,14 +16269,18 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.advertiserId !== undefined && params.advertiserId !== null) {
+        validateMultiSegment('advertiserId', String(params.advertiserId));
+        params.advertiserId = encodeWithoutSlashes(String(params.advertiserId));
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v3/advertisers/{+advertiserId}/invoices').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v3/advertisers/{+advertiserId}/invoices')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -15940,6 +16420,11 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.advertiserId !== undefined && params.advertiserId !== null) {
+        validateMultiSegment('advertiserId', String(params.advertiserId));
+        params.advertiserId = encodeWithoutSlashes(String(params.advertiserId));
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -15947,7 +16432,9 @@ export namespace displayvideo_v3 {
             url: (
               rootUrl +
               '/v3/advertisers/{+advertiserId}/invoices:lookupInvoiceCurrency'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -16145,6 +16632,11 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.advertiserId !== undefined && params.advertiserId !== null) {
+        validateMultiSegment('advertiserId', String(params.advertiserId));
+        params.advertiserId = encodeWithoutSlashes(String(params.advertiserId));
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -16152,7 +16644,9 @@ export namespace displayvideo_v3 {
             url: (
               rootUrl +
               '/v3/advertisers/{+advertiserId}/lineItems:bulkEditAssignedTargetingOptions'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -16305,6 +16799,11 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.advertiserId !== undefined && params.advertiserId !== null) {
+        validateMultiSegment('advertiserId', String(params.advertiserId));
+        params.advertiserId = encodeWithoutSlashes(String(params.advertiserId));
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -16312,7 +16811,9 @@ export namespace displayvideo_v3 {
             url: (
               rootUrl +
               '/v3/advertisers/{+advertiserId}/lineItems:bulkListAssignedTargetingOptions'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -16461,13 +16962,20 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.advertiserId !== undefined && params.advertiserId !== null) {
+        validateMultiSegment('advertiserId', String(params.advertiserId));
+        params.advertiserId = encodeWithoutSlashes(String(params.advertiserId));
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/v3/advertisers/{+advertiserId}/lineItems:bulkUpdate'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -16658,13 +17166,18 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.advertiserId !== undefined && params.advertiserId !== null) {
+        validateMultiSegment('advertiserId', String(params.advertiserId));
+        params.advertiserId = encodeWithoutSlashes(String(params.advertiserId));
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v3/advertisers/{+advertiserId}/lineItems'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v3/advertisers/{+advertiserId}/lineItems')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -16793,6 +17306,15 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.advertiserId !== undefined && params.advertiserId !== null) {
+        validateMultiSegment('advertiserId', String(params.advertiserId));
+        params.advertiserId = encodeWithoutSlashes(String(params.advertiserId));
+      }
+      if (params.lineItemId !== undefined && params.lineItemId !== null) {
+        validateMultiSegment('lineItemId', String(params.lineItemId));
+        params.lineItemId = encodeWithoutSlashes(String(params.lineItemId));
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -16800,7 +17322,9 @@ export namespace displayvideo_v3 {
             url: (
               rootUrl +
               '/v3/advertisers/{+advertiserId}/lineItems/{+lineItemId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -16944,6 +17468,15 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.advertiserId !== undefined && params.advertiserId !== null) {
+        validateMultiSegment('advertiserId', String(params.advertiserId));
+        params.advertiserId = encodeWithoutSlashes(String(params.advertiserId));
+      }
+      if (params.lineItemId !== undefined && params.lineItemId !== null) {
+        validateMultiSegment('lineItemId', String(params.lineItemId));
+        params.lineItemId = encodeWithoutSlashes(String(params.lineItemId));
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -16951,7 +17484,9 @@ export namespace displayvideo_v3 {
             url: (
               rootUrl +
               '/v3/advertisers/{+advertiserId}/lineItems/{+lineItemId}:duplicate'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -17109,6 +17644,15 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.advertiserId !== undefined && params.advertiserId !== null) {
+        validateMultiSegment('advertiserId', String(params.advertiserId));
+        params.advertiserId = encodeWithoutSlashes(String(params.advertiserId));
+      }
+      if (params.lineItemId !== undefined && params.lineItemId !== null) {
+        validateMultiSegment('lineItemId', String(params.lineItemId));
+        params.lineItemId = encodeWithoutSlashes(String(params.lineItemId));
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -17116,7 +17660,9 @@ export namespace displayvideo_v3 {
             url: (
               rootUrl +
               '/v3/advertisers/{+advertiserId}/lineItems/{+lineItemId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -17256,13 +17802,18 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.advertiserId !== undefined && params.advertiserId !== null) {
+        validateMultiSegment('advertiserId', String(params.advertiserId));
+        params.advertiserId = encodeWithoutSlashes(String(params.advertiserId));
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v3/advertisers/{+advertiserId}/lineItems'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v3/advertisers/{+advertiserId}/lineItems')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -17457,6 +18008,15 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.advertiserId !== undefined && params.advertiserId !== null) {
+        validateMultiSegment('advertiserId', String(params.advertiserId));
+        params.advertiserId = encodeWithoutSlashes(String(params.advertiserId));
+      }
+      if (params.lineItemId !== undefined && params.lineItemId !== null) {
+        validateMultiSegment('lineItemId', String(params.lineItemId));
+        params.lineItemId = encodeWithoutSlashes(String(params.lineItemId));
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -17464,7 +18024,9 @@ export namespace displayvideo_v3 {
             url: (
               rootUrl +
               '/v3/advertisers/{+advertiserId}/lineItems/{+lineItemId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -17876,6 +18438,21 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.advertiserId !== undefined && params.advertiserId !== null) {
+        validateMultiSegment('advertiserId', String(params.advertiserId));
+        params.advertiserId = encodeWithoutSlashes(String(params.advertiserId));
+      }
+      if (params.lineItemId !== undefined && params.lineItemId !== null) {
+        validateMultiSegment('lineItemId', String(params.lineItemId));
+        params.lineItemId = encodeWithoutSlashes(String(params.lineItemId));
+      }
+      if (params.targetingType !== undefined && params.targetingType !== null) {
+        validateMultiSegment('targetingType', String(params.targetingType));
+        params.targetingType = encodeWithoutSlashes(
+          String(params.targetingType)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -17883,7 +18460,9 @@ export namespace displayvideo_v3 {
             url: (
               rootUrl +
               '/v3/advertisers/{+advertiserId}/lineItems/{+lineItemId}/targetingTypes/{+targetingType}/assignedTargetingOptions'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -18020,6 +18599,33 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.advertiserId !== undefined && params.advertiserId !== null) {
+        validateMultiSegment('advertiserId', String(params.advertiserId));
+        params.advertiserId = encodeWithoutSlashes(String(params.advertiserId));
+      }
+      if (
+        params.assignedTargetingOptionId !== undefined &&
+        params.assignedTargetingOptionId !== null
+      ) {
+        validateMultiSegment(
+          'assignedTargetingOptionId',
+          String(params.assignedTargetingOptionId)
+        );
+        params.assignedTargetingOptionId = encodeWithoutSlashes(
+          String(params.assignedTargetingOptionId)
+        );
+      }
+      if (params.lineItemId !== undefined && params.lineItemId !== null) {
+        validateMultiSegment('lineItemId', String(params.lineItemId));
+        params.lineItemId = encodeWithoutSlashes(String(params.lineItemId));
+      }
+      if (params.targetingType !== undefined && params.targetingType !== null) {
+        validateMultiSegment('targetingType', String(params.targetingType));
+        params.targetingType = encodeWithoutSlashes(
+          String(params.targetingType)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -18027,7 +18633,9 @@ export namespace displayvideo_v3 {
             url: (
               rootUrl +
               '/v3/advertisers/{+advertiserId}/lineItems/{+lineItemId}/targetingTypes/{+targetingType}/assignedTargetingOptions/{+assignedTargetingOptionId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -18232,6 +18840,33 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.advertiserId !== undefined && params.advertiserId !== null) {
+        validateMultiSegment('advertiserId', String(params.advertiserId));
+        params.advertiserId = encodeWithoutSlashes(String(params.advertiserId));
+      }
+      if (
+        params.assignedTargetingOptionId !== undefined &&
+        params.assignedTargetingOptionId !== null
+      ) {
+        validateMultiSegment(
+          'assignedTargetingOptionId',
+          String(params.assignedTargetingOptionId)
+        );
+        params.assignedTargetingOptionId = encodeWithoutSlashes(
+          String(params.assignedTargetingOptionId)
+        );
+      }
+      if (params.lineItemId !== undefined && params.lineItemId !== null) {
+        validateMultiSegment('lineItemId', String(params.lineItemId));
+        params.lineItemId = encodeWithoutSlashes(String(params.lineItemId));
+      }
+      if (params.targetingType !== undefined && params.targetingType !== null) {
+        validateMultiSegment('targetingType', String(params.targetingType));
+        params.targetingType = encodeWithoutSlashes(
+          String(params.targetingType)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -18239,7 +18874,9 @@ export namespace displayvideo_v3 {
             url: (
               rootUrl +
               '/v3/advertisers/{+advertiserId}/lineItems/{+lineItemId}/targetingTypes/{+targetingType}/assignedTargetingOptions/{+assignedTargetingOptionId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -18404,6 +19041,21 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.advertiserId !== undefined && params.advertiserId !== null) {
+        validateMultiSegment('advertiserId', String(params.advertiserId));
+        params.advertiserId = encodeWithoutSlashes(String(params.advertiserId));
+      }
+      if (params.lineItemId !== undefined && params.lineItemId !== null) {
+        validateMultiSegment('lineItemId', String(params.lineItemId));
+        params.lineItemId = encodeWithoutSlashes(String(params.lineItemId));
+      }
+      if (params.targetingType !== undefined && params.targetingType !== null) {
+        validateMultiSegment('targetingType', String(params.targetingType));
+        params.targetingType = encodeWithoutSlashes(
+          String(params.targetingType)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -18411,7 +19063,9 @@ export namespace displayvideo_v3 {
             url: (
               rootUrl +
               '/v3/advertisers/{+advertiserId}/lineItems/{+lineItemId}/targetingTypes/{+targetingType}/assignedTargetingOptions'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -18655,13 +19309,18 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.advertiserId !== undefined && params.advertiserId !== null) {
+        validateMultiSegment('advertiserId', String(params.advertiserId));
+        params.advertiserId = encodeWithoutSlashes(String(params.advertiserId));
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v3/advertisers/{+advertiserId}/locationLists'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v3/advertisers/{+advertiserId}/locationLists')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -18797,6 +19456,20 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.advertiserId !== undefined && params.advertiserId !== null) {
+        validateMultiSegment('advertiserId', String(params.advertiserId));
+        params.advertiserId = encodeWithoutSlashes(String(params.advertiserId));
+      }
+      if (
+        params.locationListId !== undefined &&
+        params.locationListId !== null
+      ) {
+        validateMultiSegment('locationListId', String(params.locationListId));
+        params.locationListId = encodeWithoutSlashes(
+          String(params.locationListId)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -18804,7 +19477,9 @@ export namespace displayvideo_v3 {
             url: (
               rootUrl +
               '/v3/advertisers/{+advertiserId}/locationLists/{+locationListId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -18946,13 +19621,18 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.advertiserId !== undefined && params.advertiserId !== null) {
+        validateMultiSegment('advertiserId', String(params.advertiserId));
+        params.advertiserId = encodeWithoutSlashes(String(params.advertiserId));
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v3/advertisers/{+advertiserId}/locationLists'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v3/advertisers/{+advertiserId}/locationLists')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -19102,6 +19782,20 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.advertiserId !== undefined && params.advertiserId !== null) {
+        validateMultiSegment('advertiserId', String(params.advertiserId));
+        params.advertiserId = encodeWithoutSlashes(String(params.advertiserId));
+      }
+      if (
+        params.locationListId !== undefined &&
+        params.locationListId !== null
+      ) {
+        validateSingleSegment('locationListId', String(params.locationListId));
+        params.locationListId = encodeWithSlashes(
+          String(params.locationListId)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -19109,7 +19803,9 @@ export namespace displayvideo_v3 {
             url: (
               rootUrl +
               '/v3/advertisers/{+advertiserId}/locationLists/{locationListId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -19330,6 +20026,20 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.advertiserId !== undefined && params.advertiserId !== null) {
+        validateSingleSegment('advertiserId', String(params.advertiserId));
+        params.advertiserId = encodeWithSlashes(String(params.advertiserId));
+      }
+      if (
+        params.locationListId !== undefined &&
+        params.locationListId !== null
+      ) {
+        validateMultiSegment('locationListId', String(params.locationListId));
+        params.locationListId = encodeWithoutSlashes(
+          String(params.locationListId)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -19337,7 +20047,9 @@ export namespace displayvideo_v3 {
             url: (
               rootUrl +
               '/v3/advertisers/{advertiserId}/locationLists/{+locationListId}/assignedLocations:bulkEdit'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -19485,6 +20197,20 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.advertiserId !== undefined && params.advertiserId !== null) {
+        validateSingleSegment('advertiserId', String(params.advertiserId));
+        params.advertiserId = encodeWithSlashes(String(params.advertiserId));
+      }
+      if (
+        params.locationListId !== undefined &&
+        params.locationListId !== null
+      ) {
+        validateSingleSegment('locationListId', String(params.locationListId));
+        params.locationListId = encodeWithSlashes(
+          String(params.locationListId)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -19492,7 +20218,9 @@ export namespace displayvideo_v3 {
             url: (
               rootUrl +
               '/v3/advertisers/{advertiserId}/locationLists/{locationListId}/assignedLocations'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -19625,6 +20353,32 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.advertiserId !== undefined && params.advertiserId !== null) {
+        validateSingleSegment('advertiserId', String(params.advertiserId));
+        params.advertiserId = encodeWithSlashes(String(params.advertiserId));
+      }
+      if (
+        params.assignedLocationId !== undefined &&
+        params.assignedLocationId !== null
+      ) {
+        validateMultiSegment(
+          'assignedLocationId',
+          String(params.assignedLocationId)
+        );
+        params.assignedLocationId = encodeWithoutSlashes(
+          String(params.assignedLocationId)
+        );
+      }
+      if (
+        params.locationListId !== undefined &&
+        params.locationListId !== null
+      ) {
+        validateSingleSegment('locationListId', String(params.locationListId));
+        params.locationListId = encodeWithSlashes(
+          String(params.locationListId)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -19632,7 +20386,9 @@ export namespace displayvideo_v3 {
             url: (
               rootUrl +
               '/v3/advertisers/{advertiserId}/locationLists/{locationListId}/assignedLocations/{+assignedLocationId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -19783,6 +20539,20 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.advertiserId !== undefined && params.advertiserId !== null) {
+        validateSingleSegment('advertiserId', String(params.advertiserId));
+        params.advertiserId = encodeWithSlashes(String(params.advertiserId));
+      }
+      if (
+        params.locationListId !== undefined &&
+        params.locationListId !== null
+      ) {
+        validateSingleSegment('locationListId', String(params.locationListId));
+        params.locationListId = encodeWithSlashes(
+          String(params.locationListId)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -19790,7 +20560,9 @@ export namespace displayvideo_v3 {
             url: (
               rootUrl +
               '/v3/advertisers/{advertiserId}/locationLists/{locationListId}/assignedLocations'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -20021,13 +20793,20 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.advertiserId !== undefined && params.advertiserId !== null) {
+        validateMultiSegment('advertiserId', String(params.advertiserId));
+        params.advertiserId = encodeWithoutSlashes(String(params.advertiserId));
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/v3/advertisers/{+advertiserId}/negativeKeywordLists'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -20156,6 +20935,23 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.advertiserId !== undefined && params.advertiserId !== null) {
+        validateMultiSegment('advertiserId', String(params.advertiserId));
+        params.advertiserId = encodeWithoutSlashes(String(params.advertiserId));
+      }
+      if (
+        params.negativeKeywordListId !== undefined &&
+        params.negativeKeywordListId !== null
+      ) {
+        validateMultiSegment(
+          'negativeKeywordListId',
+          String(params.negativeKeywordListId)
+        );
+        params.negativeKeywordListId = encodeWithoutSlashes(
+          String(params.negativeKeywordListId)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -20163,7 +20959,9 @@ export namespace displayvideo_v3 {
             url: (
               rootUrl +
               '/v3/advertisers/{+advertiserId}/negativeKeywordLists/{+negativeKeywordListId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -20299,6 +21097,23 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.advertiserId !== undefined && params.advertiserId !== null) {
+        validateMultiSegment('advertiserId', String(params.advertiserId));
+        params.advertiserId = encodeWithoutSlashes(String(params.advertiserId));
+      }
+      if (
+        params.negativeKeywordListId !== undefined &&
+        params.negativeKeywordListId !== null
+      ) {
+        validateMultiSegment(
+          'negativeKeywordListId',
+          String(params.negativeKeywordListId)
+        );
+        params.negativeKeywordListId = encodeWithoutSlashes(
+          String(params.negativeKeywordListId)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -20306,7 +21121,9 @@ export namespace displayvideo_v3 {
             url: (
               rootUrl +
               '/v3/advertisers/{+advertiserId}/negativeKeywordLists/{+negativeKeywordListId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -20449,13 +21266,20 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.advertiserId !== undefined && params.advertiserId !== null) {
+        validateMultiSegment('advertiserId', String(params.advertiserId));
+        params.advertiserId = encodeWithoutSlashes(String(params.advertiserId));
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/v3/advertisers/{+advertiserId}/negativeKeywordLists'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -20607,6 +21431,23 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.advertiserId !== undefined && params.advertiserId !== null) {
+        validateMultiSegment('advertiserId', String(params.advertiserId));
+        params.advertiserId = encodeWithoutSlashes(String(params.advertiserId));
+      }
+      if (
+        params.negativeKeywordListId !== undefined &&
+        params.negativeKeywordListId !== null
+      ) {
+        validateSingleSegment(
+          'negativeKeywordListId',
+          String(params.negativeKeywordListId)
+        );
+        params.negativeKeywordListId = encodeWithSlashes(
+          String(params.negativeKeywordListId)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -20614,7 +21455,9 @@ export namespace displayvideo_v3 {
             url: (
               rootUrl +
               '/v3/advertisers/{+advertiserId}/negativeKeywordLists/{negativeKeywordListId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -20839,6 +21682,23 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.advertiserId !== undefined && params.advertiserId !== null) {
+        validateSingleSegment('advertiserId', String(params.advertiserId));
+        params.advertiserId = encodeWithSlashes(String(params.advertiserId));
+      }
+      if (
+        params.negativeKeywordListId !== undefined &&
+        params.negativeKeywordListId !== null
+      ) {
+        validateMultiSegment(
+          'negativeKeywordListId',
+          String(params.negativeKeywordListId)
+        );
+        params.negativeKeywordListId = encodeWithoutSlashes(
+          String(params.negativeKeywordListId)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -20846,7 +21706,9 @@ export namespace displayvideo_v3 {
             url: (
               rootUrl +
               '/v3/advertisers/{advertiserId}/negativeKeywordLists/{+negativeKeywordListId}/negativeKeywords:bulkEdit'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -20994,6 +21856,23 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.advertiserId !== undefined && params.advertiserId !== null) {
+        validateSingleSegment('advertiserId', String(params.advertiserId));
+        params.advertiserId = encodeWithSlashes(String(params.advertiserId));
+      }
+      if (
+        params.negativeKeywordListId !== undefined &&
+        params.negativeKeywordListId !== null
+      ) {
+        validateMultiSegment(
+          'negativeKeywordListId',
+          String(params.negativeKeywordListId)
+        );
+        params.negativeKeywordListId = encodeWithoutSlashes(
+          String(params.negativeKeywordListId)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -21001,7 +21880,9 @@ export namespace displayvideo_v3 {
             url: (
               rootUrl +
               '/v3/advertisers/{advertiserId}/negativeKeywordLists/{+negativeKeywordListId}/negativeKeywords'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -21136,6 +22017,27 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.advertiserId !== undefined && params.advertiserId !== null) {
+        validateSingleSegment('advertiserId', String(params.advertiserId));
+        params.advertiserId = encodeWithSlashes(String(params.advertiserId));
+      }
+      if (params.keywordValue !== undefined && params.keywordValue !== null) {
+        validateMultiSegment('keywordValue', String(params.keywordValue));
+        params.keywordValue = encodeWithoutSlashes(String(params.keywordValue));
+      }
+      if (
+        params.negativeKeywordListId !== undefined &&
+        params.negativeKeywordListId !== null
+      ) {
+        validateMultiSegment(
+          'negativeKeywordListId',
+          String(params.negativeKeywordListId)
+        );
+        params.negativeKeywordListId = encodeWithoutSlashes(
+          String(params.negativeKeywordListId)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -21143,7 +22045,9 @@ export namespace displayvideo_v3 {
             url: (
               rootUrl +
               '/v3/advertisers/{advertiserId}/negativeKeywordLists/{+negativeKeywordListId}/negativeKeywords/{+keywordValue}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -21294,6 +22198,23 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.advertiserId !== undefined && params.advertiserId !== null) {
+        validateMultiSegment('advertiserId', String(params.advertiserId));
+        params.advertiserId = encodeWithoutSlashes(String(params.advertiserId));
+      }
+      if (
+        params.negativeKeywordListId !== undefined &&
+        params.negativeKeywordListId !== null
+      ) {
+        validateMultiSegment(
+          'negativeKeywordListId',
+          String(params.negativeKeywordListId)
+        );
+        params.negativeKeywordListId = encodeWithoutSlashes(
+          String(params.negativeKeywordListId)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -21301,7 +22222,9 @@ export namespace displayvideo_v3 {
             url: (
               rootUrl +
               '/v3/advertisers/{+advertiserId}/negativeKeywordLists/{+negativeKeywordListId}/negativeKeywords'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -21451,6 +22374,23 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.advertiserId !== undefined && params.advertiserId !== null) {
+        validateSingleSegment('advertiserId', String(params.advertiserId));
+        params.advertiserId = encodeWithSlashes(String(params.advertiserId));
+      }
+      if (
+        params.negativeKeywordListId !== undefined &&
+        params.negativeKeywordListId !== null
+      ) {
+        validateMultiSegment(
+          'negativeKeywordListId',
+          String(params.negativeKeywordListId)
+        );
+        params.negativeKeywordListId = encodeWithoutSlashes(
+          String(params.negativeKeywordListId)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -21458,7 +22398,9 @@ export namespace displayvideo_v3 {
             url: (
               rootUrl +
               '/v3/advertisers/{advertiserId}/negativeKeywordLists/{+negativeKeywordListId}/negativeKeywords:replace'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -21820,6 +22762,17 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.advertiserId !== undefined && params.advertiserId !== null) {
+        validateMultiSegment('advertiserId', String(params.advertiserId));
+        params.advertiserId = encodeWithoutSlashes(String(params.advertiserId));
+      }
+      if (params.targetingType !== undefined && params.targetingType !== null) {
+        validateMultiSegment('targetingType', String(params.targetingType));
+        params.targetingType = encodeWithoutSlashes(
+          String(params.targetingType)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -21827,7 +22780,9 @@ export namespace displayvideo_v3 {
             url: (
               rootUrl +
               '/v3/advertisers/{+advertiserId}/targetingTypes/{+targetingType}/assignedTargetingOptions'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -21962,6 +22917,29 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.advertiserId !== undefined && params.advertiserId !== null) {
+        validateMultiSegment('advertiserId', String(params.advertiserId));
+        params.advertiserId = encodeWithoutSlashes(String(params.advertiserId));
+      }
+      if (
+        params.assignedTargetingOptionId !== undefined &&
+        params.assignedTargetingOptionId !== null
+      ) {
+        validateMultiSegment(
+          'assignedTargetingOptionId',
+          String(params.assignedTargetingOptionId)
+        );
+        params.assignedTargetingOptionId = encodeWithoutSlashes(
+          String(params.assignedTargetingOptionId)
+        );
+      }
+      if (params.targetingType !== undefined && params.targetingType !== null) {
+        validateMultiSegment('targetingType', String(params.targetingType));
+        params.targetingType = encodeWithoutSlashes(
+          String(params.targetingType)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -21969,7 +22947,9 @@ export namespace displayvideo_v3 {
             url: (
               rootUrl +
               '/v3/advertisers/{+advertiserId}/targetingTypes/{+targetingType}/assignedTargetingOptions/{+assignedTargetingOptionId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -22168,6 +23148,29 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.advertiserId !== undefined && params.advertiserId !== null) {
+        validateMultiSegment('advertiserId', String(params.advertiserId));
+        params.advertiserId = encodeWithoutSlashes(String(params.advertiserId));
+      }
+      if (
+        params.assignedTargetingOptionId !== undefined &&
+        params.assignedTargetingOptionId !== null
+      ) {
+        validateMultiSegment(
+          'assignedTargetingOptionId',
+          String(params.assignedTargetingOptionId)
+        );
+        params.assignedTargetingOptionId = encodeWithoutSlashes(
+          String(params.assignedTargetingOptionId)
+        );
+      }
+      if (params.targetingType !== undefined && params.targetingType !== null) {
+        validateMultiSegment('targetingType', String(params.targetingType));
+        params.targetingType = encodeWithoutSlashes(
+          String(params.targetingType)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -22175,7 +23178,9 @@ export namespace displayvideo_v3 {
             url: (
               rootUrl +
               '/v3/advertisers/{+advertiserId}/targetingTypes/{+targetingType}/assignedTargetingOptions/{+assignedTargetingOptionId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -22336,6 +23341,17 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.advertiserId !== undefined && params.advertiserId !== null) {
+        validateMultiSegment('advertiserId', String(params.advertiserId));
+        params.advertiserId = encodeWithoutSlashes(String(params.advertiserId));
+      }
+      if (params.targetingType !== undefined && params.targetingType !== null) {
+        validateMultiSegment('targetingType', String(params.targetingType));
+        params.targetingType = encodeWithoutSlashes(
+          String(params.targetingType)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -22343,7 +23359,9 @@ export namespace displayvideo_v3 {
             url: (
               rootUrl +
               '/v3/advertisers/{+advertiserId}/targetingTypes/{+targetingType}/assignedTargetingOptions'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -22558,13 +23576,26 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (
+        params.combinedAudienceId !== undefined &&
+        params.combinedAudienceId !== null
+      ) {
+        validateMultiSegment(
+          'combinedAudienceId',
+          String(params.combinedAudienceId)
+        );
+        params.combinedAudienceId = encodeWithoutSlashes(
+          String(params.combinedAudienceId)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v3/combinedAudiences/{+combinedAudienceId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v3/combinedAudiences/{+combinedAudienceId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -22713,10 +23744,9 @@ export namespace displayvideo_v3 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v3/combinedAudiences').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v3/combinedAudiences')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -22926,10 +23956,9 @@ export namespace displayvideo_v3 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v3/customBiddingAlgorithms').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v3/customBiddingAlgorithms')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -23072,6 +24101,19 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (
+        params.customBiddingAlgorithmId !== undefined &&
+        params.customBiddingAlgorithmId !== null
+      ) {
+        validateMultiSegment(
+          'customBiddingAlgorithmId',
+          String(params.customBiddingAlgorithmId)
+        );
+        params.customBiddingAlgorithmId = encodeWithoutSlashes(
+          String(params.customBiddingAlgorithmId)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -23079,7 +24121,9 @@ export namespace displayvideo_v3 {
             url: (
               rootUrl +
               '/v3/customBiddingAlgorithms/{+customBiddingAlgorithmId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -23232,10 +24276,9 @@ export namespace displayvideo_v3 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v3/customBiddingAlgorithms').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v3/customBiddingAlgorithms')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -23394,6 +24437,19 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (
+        params.customBiddingAlgorithmId !== undefined &&
+        params.customBiddingAlgorithmId !== null
+      ) {
+        validateMultiSegment(
+          'customBiddingAlgorithmId',
+          String(params.customBiddingAlgorithmId)
+        );
+        params.customBiddingAlgorithmId = encodeWithoutSlashes(
+          String(params.customBiddingAlgorithmId)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -23401,7 +24457,9 @@ export namespace displayvideo_v3 {
             url: (
               rootUrl +
               '/v3/customBiddingAlgorithms/{+customBiddingAlgorithmId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -23539,6 +24597,19 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (
+        params.customBiddingAlgorithmId !== undefined &&
+        params.customBiddingAlgorithmId !== null
+      ) {
+        validateMultiSegment(
+          'customBiddingAlgorithmId',
+          String(params.customBiddingAlgorithmId)
+        );
+        params.customBiddingAlgorithmId = encodeWithoutSlashes(
+          String(params.customBiddingAlgorithmId)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -23546,7 +24617,9 @@ export namespace displayvideo_v3 {
             url: (
               rootUrl +
               '/v3/customBiddingAlgorithms/{+customBiddingAlgorithmId}:uploadRules'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -23685,6 +24758,19 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (
+        params.customBiddingAlgorithmId !== undefined &&
+        params.customBiddingAlgorithmId !== null
+      ) {
+        validateMultiSegment(
+          'customBiddingAlgorithmId',
+          String(params.customBiddingAlgorithmId)
+        );
+        params.customBiddingAlgorithmId = encodeWithoutSlashes(
+          String(params.customBiddingAlgorithmId)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -23692,7 +24778,9 @@ export namespace displayvideo_v3 {
             url: (
               rootUrl +
               '/v3/customBiddingAlgorithms/{+customBiddingAlgorithmId}:uploadScript'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -23949,6 +25037,19 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (
+        params.customBiddingAlgorithmId !== undefined &&
+        params.customBiddingAlgorithmId !== null
+      ) {
+        validateMultiSegment(
+          'customBiddingAlgorithmId',
+          String(params.customBiddingAlgorithmId)
+        );
+        params.customBiddingAlgorithmId = encodeWithoutSlashes(
+          String(params.customBiddingAlgorithmId)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -23956,7 +25057,9 @@ export namespace displayvideo_v3 {
             url: (
               rootUrl +
               '/v3/customBiddingAlgorithms/{+customBiddingAlgorithmId}/rules'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -24103,6 +25206,31 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (
+        params.customBiddingAlgorithmId !== undefined &&
+        params.customBiddingAlgorithmId !== null
+      ) {
+        validateMultiSegment(
+          'customBiddingAlgorithmId',
+          String(params.customBiddingAlgorithmId)
+        );
+        params.customBiddingAlgorithmId = encodeWithoutSlashes(
+          String(params.customBiddingAlgorithmId)
+        );
+      }
+      if (
+        params.customBiddingAlgorithmRulesId !== undefined &&
+        params.customBiddingAlgorithmRulesId !== null
+      ) {
+        validateMultiSegment(
+          'customBiddingAlgorithmRulesId',
+          String(params.customBiddingAlgorithmRulesId)
+        );
+        params.customBiddingAlgorithmRulesId = encodeWithoutSlashes(
+          String(params.customBiddingAlgorithmRulesId)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -24110,7 +25238,9 @@ export namespace displayvideo_v3 {
             url: (
               rootUrl +
               '/v3/customBiddingAlgorithms/{+customBiddingAlgorithmId}/rules/{+customBiddingAlgorithmRulesId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -24265,6 +25395,19 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (
+        params.customBiddingAlgorithmId !== undefined &&
+        params.customBiddingAlgorithmId !== null
+      ) {
+        validateMultiSegment(
+          'customBiddingAlgorithmId',
+          String(params.customBiddingAlgorithmId)
+        );
+        params.customBiddingAlgorithmId = encodeWithoutSlashes(
+          String(params.customBiddingAlgorithmId)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -24272,7 +25415,9 @@ export namespace displayvideo_v3 {
             url: (
               rootUrl +
               '/v3/customBiddingAlgorithms/{+customBiddingAlgorithmId}/rules'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -24501,6 +25646,19 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (
+        params.customBiddingAlgorithmId !== undefined &&
+        params.customBiddingAlgorithmId !== null
+      ) {
+        validateMultiSegment(
+          'customBiddingAlgorithmId',
+          String(params.customBiddingAlgorithmId)
+        );
+        params.customBiddingAlgorithmId = encodeWithoutSlashes(
+          String(params.customBiddingAlgorithmId)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -24508,7 +25666,9 @@ export namespace displayvideo_v3 {
             url: (
               rootUrl +
               '/v3/customBiddingAlgorithms/{+customBiddingAlgorithmId}/scripts'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -24651,6 +25811,31 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (
+        params.customBiddingAlgorithmId !== undefined &&
+        params.customBiddingAlgorithmId !== null
+      ) {
+        validateMultiSegment(
+          'customBiddingAlgorithmId',
+          String(params.customBiddingAlgorithmId)
+        );
+        params.customBiddingAlgorithmId = encodeWithoutSlashes(
+          String(params.customBiddingAlgorithmId)
+        );
+      }
+      if (
+        params.customBiddingScriptId !== undefined &&
+        params.customBiddingScriptId !== null
+      ) {
+        validateMultiSegment(
+          'customBiddingScriptId',
+          String(params.customBiddingScriptId)
+        );
+        params.customBiddingScriptId = encodeWithoutSlashes(
+          String(params.customBiddingScriptId)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -24658,7 +25843,9 @@ export namespace displayvideo_v3 {
             url: (
               rootUrl +
               '/v3/customBiddingAlgorithms/{+customBiddingAlgorithmId}/scripts/{+customBiddingScriptId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -24807,6 +25994,19 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (
+        params.customBiddingAlgorithmId !== undefined &&
+        params.customBiddingAlgorithmId !== null
+      ) {
+        validateMultiSegment(
+          'customBiddingAlgorithmId',
+          String(params.customBiddingAlgorithmId)
+        );
+        params.customBiddingAlgorithmId = encodeWithoutSlashes(
+          String(params.customBiddingAlgorithmId)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -24814,7 +26014,9 @@ export namespace displayvideo_v3 {
             url: (
               rootUrl +
               '/v3/customBiddingAlgorithms/{+customBiddingAlgorithmId}/scripts'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -25019,14 +26221,18 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.customListId !== undefined && params.customListId !== null) {
+        validateMultiSegment('customListId', String(params.customListId));
+        params.customListId = encodeWithoutSlashes(String(params.customListId));
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v3/customLists/{+customListId}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v3/customLists/{+customListId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -25169,7 +26375,9 @@ export namespace displayvideo_v3 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v3/customLists').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v3/customLists')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -25350,13 +26558,26 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (
+        params.floodlightGroupId !== undefined &&
+        params.floodlightGroupId !== null
+      ) {
+        validateMultiSegment(
+          'floodlightGroupId',
+          String(params.floodlightGroupId)
+        );
+        params.floodlightGroupId = encodeWithoutSlashes(
+          String(params.floodlightGroupId)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v3/floodlightGroups/{+floodlightGroupId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v3/floodlightGroups/{+floodlightGroupId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -25510,14 +26731,26 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (
+        params.floodlightGroupId !== undefined &&
+        params.floodlightGroupId !== null
+      ) {
+        validateSingleSegment(
+          'floodlightGroupId',
+          String(params.floodlightGroupId)
+        );
+        params.floodlightGroupId = encodeWithSlashes(
+          String(params.floodlightGroupId)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v3/floodlightGroups/{floodlightGroupId}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v3/floodlightGroups/{floodlightGroupId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -25696,6 +26929,31 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (
+        params.floodlightActivityId !== undefined &&
+        params.floodlightActivityId !== null
+      ) {
+        validateMultiSegment(
+          'floodlightActivityId',
+          String(params.floodlightActivityId)
+        );
+        params.floodlightActivityId = encodeWithoutSlashes(
+          String(params.floodlightActivityId)
+        );
+      }
+      if (
+        params.floodlightGroupId !== undefined &&
+        params.floodlightGroupId !== null
+      ) {
+        validateMultiSegment(
+          'floodlightGroupId',
+          String(params.floodlightGroupId)
+        );
+        params.floodlightGroupId = encodeWithoutSlashes(
+          String(params.floodlightGroupId)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -25703,7 +26961,9 @@ export namespace displayvideo_v3 {
             url: (
               rootUrl +
               '/v3/floodlightGroups/{+floodlightGroupId}/floodlightActivities/{+floodlightActivityId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -25851,6 +27111,19 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (
+        params.floodlightGroupId !== undefined &&
+        params.floodlightGroupId !== null
+      ) {
+        validateMultiSegment(
+          'floodlightGroupId',
+          String(params.floodlightGroupId)
+        );
+        params.floodlightGroupId = encodeWithoutSlashes(
+          String(params.floodlightGroupId)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -25858,7 +27131,9 @@ export namespace displayvideo_v3 {
             url: (
               rootUrl +
               '/v3/floodlightGroups/{+floodlightGroupId}/floodlightActivities'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -26041,14 +27316,26 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (
+        params.googleAudienceId !== undefined &&
+        params.googleAudienceId !== null
+      ) {
+        validateMultiSegment(
+          'googleAudienceId',
+          String(params.googleAudienceId)
+        );
+        params.googleAudienceId = encodeWithoutSlashes(
+          String(params.googleAudienceId)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v3/googleAudiences/{+googleAudienceId}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v3/googleAudiences/{+googleAudienceId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -26197,10 +27484,9 @@ export namespace displayvideo_v3 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v3/googleAudiences').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v3/googleAudiences')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -26418,10 +27704,9 @@ export namespace displayvideo_v3 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v3/guaranteedOrders').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v3/guaranteedOrders')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -26573,6 +27858,19 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (
+        params.guaranteedOrderId !== undefined &&
+        params.guaranteedOrderId !== null
+      ) {
+        validateMultiSegment(
+          'guaranteedOrderId',
+          String(params.guaranteedOrderId)
+        );
+        params.guaranteedOrderId = encodeWithoutSlashes(
+          String(params.guaranteedOrderId)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -26580,7 +27878,9 @@ export namespace displayvideo_v3 {
             url: (
               rootUrl +
               '/v3/guaranteedOrders/{+guaranteedOrderId}:editGuaranteedOrderReadAccessors'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -26729,13 +28029,26 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (
+        params.guaranteedOrderId !== undefined &&
+        params.guaranteedOrderId !== null
+      ) {
+        validateMultiSegment(
+          'guaranteedOrderId',
+          String(params.guaranteedOrderId)
+        );
+        params.guaranteedOrderId = encodeWithoutSlashes(
+          String(params.guaranteedOrderId)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v3/guaranteedOrders/{+guaranteedOrderId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v3/guaranteedOrders/{+guaranteedOrderId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -26884,10 +28197,9 @@ export namespace displayvideo_v3 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v3/guaranteedOrders').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v3/guaranteedOrders')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -27059,13 +28371,26 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (
+        params.guaranteedOrderId !== undefined &&
+        params.guaranteedOrderId !== null
+      ) {
+        validateMultiSegment(
+          'guaranteedOrderId',
+          String(params.guaranteedOrderId)
+        );
+        params.guaranteedOrderId = encodeWithoutSlashes(
+          String(params.guaranteedOrderId)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v3/guaranteedOrders/{+guaranteedOrderId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v3/guaranteedOrders/{+guaranteedOrderId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -27316,10 +28641,9 @@ export namespace displayvideo_v3 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v3/inventorySourceGroups').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v3/inventorySourceGroups')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -27450,13 +28774,28 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (
+        params.inventorySourceGroupId !== undefined &&
+        params.inventorySourceGroupId !== null
+      ) {
+        validateMultiSegment(
+          'inventorySourceGroupId',
+          String(params.inventorySourceGroupId)
+        );
+        params.inventorySourceGroupId = encodeWithoutSlashes(
+          String(params.inventorySourceGroupId)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/v3/inventorySourceGroups/{+inventorySourceGroupId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -27593,13 +28932,28 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (
+        params.inventorySourceGroupId !== undefined &&
+        params.inventorySourceGroupId !== null
+      ) {
+        validateMultiSegment(
+          'inventorySourceGroupId',
+          String(params.inventorySourceGroupId)
+        );
+        params.inventorySourceGroupId = encodeWithoutSlashes(
+          String(params.inventorySourceGroupId)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/v3/inventorySourceGroups/{+inventorySourceGroupId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -27752,10 +29106,9 @@ export namespace displayvideo_v3 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v3/inventorySourceGroups').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v3/inventorySourceGroups')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -27906,13 +29259,28 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (
+        params.inventorySourceGroupId !== undefined &&
+        params.inventorySourceGroupId !== null
+      ) {
+        validateSingleSegment(
+          'inventorySourceGroupId',
+          String(params.inventorySourceGroupId)
+        );
+        params.inventorySourceGroupId = encodeWithSlashes(
+          String(params.inventorySourceGroupId)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/v3/inventorySourceGroups/{inventorySourceGroupId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -28163,6 +29531,19 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (
+        params.inventorySourceGroupId !== undefined &&
+        params.inventorySourceGroupId !== null
+      ) {
+        validateMultiSegment(
+          'inventorySourceGroupId',
+          String(params.inventorySourceGroupId)
+        );
+        params.inventorySourceGroupId = encodeWithoutSlashes(
+          String(params.inventorySourceGroupId)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -28170,7 +29551,9 @@ export namespace displayvideo_v3 {
             url: (
               rootUrl +
               '/v3/inventorySourceGroups/{+inventorySourceGroupId}/assignedInventorySources:bulkEdit'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -28323,6 +29706,19 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (
+        params.inventorySourceGroupId !== undefined &&
+        params.inventorySourceGroupId !== null
+      ) {
+        validateMultiSegment(
+          'inventorySourceGroupId',
+          String(params.inventorySourceGroupId)
+        );
+        params.inventorySourceGroupId = encodeWithoutSlashes(
+          String(params.inventorySourceGroupId)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -28330,7 +29726,9 @@ export namespace displayvideo_v3 {
             url: (
               rootUrl +
               '/v3/inventorySourceGroups/{+inventorySourceGroupId}/assignedInventorySources'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -28465,6 +29863,31 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (
+        params.assignedInventorySourceId !== undefined &&
+        params.assignedInventorySourceId !== null
+      ) {
+        validateMultiSegment(
+          'assignedInventorySourceId',
+          String(params.assignedInventorySourceId)
+        );
+        params.assignedInventorySourceId = encodeWithoutSlashes(
+          String(params.assignedInventorySourceId)
+        );
+      }
+      if (
+        params.inventorySourceGroupId !== undefined &&
+        params.inventorySourceGroupId !== null
+      ) {
+        validateMultiSegment(
+          'inventorySourceGroupId',
+          String(params.inventorySourceGroupId)
+        );
+        params.inventorySourceGroupId = encodeWithoutSlashes(
+          String(params.inventorySourceGroupId)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -28472,7 +29895,9 @@ export namespace displayvideo_v3 {
             url: (
               rootUrl +
               '/v3/inventorySourceGroups/{+inventorySourceGroupId}/assignedInventorySources/{+assignedInventorySourceId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -28625,6 +30050,19 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (
+        params.inventorySourceGroupId !== undefined &&
+        params.inventorySourceGroupId !== null
+      ) {
+        validateMultiSegment(
+          'inventorySourceGroupId',
+          String(params.inventorySourceGroupId)
+        );
+        params.inventorySourceGroupId = encodeWithoutSlashes(
+          String(params.inventorySourceGroupId)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -28632,7 +30070,9 @@ export namespace displayvideo_v3 {
             url: (
               rootUrl +
               '/v3/inventorySourceGroups/{+inventorySourceGroupId}/assignedInventorySources'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -28855,14 +30295,18 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.resourceName !== undefined && params.resourceName !== null) {
+        validateMultiSegment('resourceName', String(params.resourceName));
+        params.resourceName = encodeWithoutSlashes(String(params.resourceName));
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/download/{+resourceName}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/download/{+resourceName}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -29007,24 +30451,27 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.resourceName !== undefined && params.resourceName !== null) {
+        validateMultiSegment('resourceName', String(params.resourceName));
+        params.resourceName = encodeWithoutSlashes(String(params.resourceName));
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/media/{+resourceName}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/media/{+resourceName}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
           options
         ),
         params,
-        mediaUrl: (rootUrl + '/upload/media/{+resourceName}').replace(
-          /([^:]\/)\/+/g,
-          '$1'
-        ),
+        mediaUrl: (rootUrl + '/upload/media/{+resourceName}')
+          .replace(/([^:]\/)\/+/g, '$1')
+          .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
         requiredParams: ['resourceName'],
         pathParams: ['resourceName'],
         context: this.context,
@@ -29209,13 +30656,20 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.partnerId !== undefined && params.partnerId !== null) {
+        validateMultiSegment('partnerId', String(params.partnerId));
+        params.partnerId = encodeWithoutSlashes(String(params.partnerId));
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/v3/partners/{+partnerId}:editAssignedTargetingOptions'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -29354,14 +30808,18 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.partnerId !== undefined && params.partnerId !== null) {
+        validateMultiSegment('partnerId', String(params.partnerId));
+        params.partnerId = encodeWithoutSlashes(String(params.partnerId));
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v3/partners/{+partnerId}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v3/partners/{+partnerId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -29502,7 +30960,9 @@ export namespace displayvideo_v3 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v3/partners').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v3/partners')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -29698,14 +31158,18 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.partnerId !== undefined && params.partnerId !== null) {
+        validateMultiSegment('partnerId', String(params.partnerId));
+        params.partnerId = encodeWithoutSlashes(String(params.partnerId));
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v3/partners/{+partnerId}/channels').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v3/partners/{+partnerId}/channels')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -29844,13 +31308,22 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.channelId !== undefined && params.channelId !== null) {
+        validateMultiSegment('channelId', String(params.channelId));
+        params.channelId = encodeWithoutSlashes(String(params.channelId));
+      }
+      if (params.partnerId !== undefined && params.partnerId !== null) {
+        validateMultiSegment('partnerId', String(params.partnerId));
+        params.partnerId = encodeWithoutSlashes(String(params.partnerId));
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v3/partners/{+partnerId}/channels/{+channelId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v3/partners/{+partnerId}/channels/{+channelId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -29992,14 +31465,18 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.partnerId !== undefined && params.partnerId !== null) {
+        validateMultiSegment('partnerId', String(params.partnerId));
+        params.partnerId = encodeWithoutSlashes(String(params.partnerId));
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v3/partners/{+partnerId}/channels').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v3/partners/{+partnerId}/channels')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -30154,13 +31631,22 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.channelId !== undefined && params.channelId !== null) {
+        validateSingleSegment('channelId', String(params.channelId));
+        params.channelId = encodeWithSlashes(String(params.channelId));
+      }
+      if (params.partnerId !== undefined && params.partnerId !== null) {
+        validateMultiSegment('partnerId', String(params.partnerId));
+        params.partnerId = encodeWithoutSlashes(String(params.partnerId));
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v3/partners/{+partnerId}/channels/{channelId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v3/partners/{+partnerId}/channels/{channelId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -30392,6 +31878,15 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.channelId !== undefined && params.channelId !== null) {
+        validateMultiSegment('channelId', String(params.channelId));
+        params.channelId = encodeWithoutSlashes(String(params.channelId));
+      }
+      if (params.partnerId !== undefined && params.partnerId !== null) {
+        validateSingleSegment('partnerId', String(params.partnerId));
+        params.partnerId = encodeWithSlashes(String(params.partnerId));
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -30399,7 +31894,9 @@ export namespace displayvideo_v3 {
             url: (
               rootUrl +
               '/v3/partners/{partnerId}/channels/{+channelId}/sites:bulkEdit'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -30542,13 +32039,24 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.channelId !== undefined && params.channelId !== null) {
+        validateMultiSegment('channelId', String(params.channelId));
+        params.channelId = encodeWithoutSlashes(String(params.channelId));
+      }
+      if (params.partnerId !== undefined && params.partnerId !== null) {
+        validateSingleSegment('partnerId', String(params.partnerId));
+        params.partnerId = encodeWithSlashes(String(params.partnerId));
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/v3/partners/{partnerId}/channels/{+channelId}/sites'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -30681,6 +32189,19 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.channelId !== undefined && params.channelId !== null) {
+        validateMultiSegment('channelId', String(params.channelId));
+        params.channelId = encodeWithoutSlashes(String(params.channelId));
+      }
+      if (params.partnerId !== undefined && params.partnerId !== null) {
+        validateSingleSegment('partnerId', String(params.partnerId));
+        params.partnerId = encodeWithSlashes(String(params.partnerId));
+      }
+      if (params.urlOrAppId !== undefined && params.urlOrAppId !== null) {
+        validateMultiSegment('urlOrAppId', String(params.urlOrAppId));
+        params.urlOrAppId = encodeWithoutSlashes(String(params.urlOrAppId));
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -30688,7 +32209,9 @@ export namespace displayvideo_v3 {
             url: (
               rootUrl +
               '/v3/partners/{partnerId}/channels/{+channelId}/sites/{+urlOrAppId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -30831,13 +32354,24 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.channelId !== undefined && params.channelId !== null) {
+        validateMultiSegment('channelId', String(params.channelId));
+        params.channelId = encodeWithoutSlashes(String(params.channelId));
+      }
+      if (params.partnerId !== undefined && params.partnerId !== null) {
+        validateMultiSegment('partnerId', String(params.partnerId));
+        params.partnerId = encodeWithoutSlashes(String(params.partnerId));
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/v3/partners/{+partnerId}/channels/{+channelId}/sites'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -30980,6 +32514,15 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.channelId !== undefined && params.channelId !== null) {
+        validateMultiSegment('channelId', String(params.channelId));
+        params.channelId = encodeWithoutSlashes(String(params.channelId));
+      }
+      if (params.partnerId !== undefined && params.partnerId !== null) {
+        validateSingleSegment('partnerId', String(params.partnerId));
+        params.partnerId = encodeWithSlashes(String(params.partnerId));
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -30987,7 +32530,9 @@ export namespace displayvideo_v3 {
             url: (
               rootUrl +
               '/v3/partners/{partnerId}/channels/{+channelId}/sites:replace'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -31357,6 +32902,17 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.partnerId !== undefined && params.partnerId !== null) {
+        validateMultiSegment('partnerId', String(params.partnerId));
+        params.partnerId = encodeWithoutSlashes(String(params.partnerId));
+      }
+      if (params.targetingType !== undefined && params.targetingType !== null) {
+        validateMultiSegment('targetingType', String(params.targetingType));
+        params.targetingType = encodeWithoutSlashes(
+          String(params.targetingType)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -31364,7 +32920,9 @@ export namespace displayvideo_v3 {
             url: (
               rootUrl +
               '/v3/partners/{+partnerId}/targetingTypes/{+targetingType}/assignedTargetingOptions'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -31497,6 +33055,29 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (
+        params.assignedTargetingOptionId !== undefined &&
+        params.assignedTargetingOptionId !== null
+      ) {
+        validateMultiSegment(
+          'assignedTargetingOptionId',
+          String(params.assignedTargetingOptionId)
+        );
+        params.assignedTargetingOptionId = encodeWithoutSlashes(
+          String(params.assignedTargetingOptionId)
+        );
+      }
+      if (params.partnerId !== undefined && params.partnerId !== null) {
+        validateMultiSegment('partnerId', String(params.partnerId));
+        params.partnerId = encodeWithoutSlashes(String(params.partnerId));
+      }
+      if (params.targetingType !== undefined && params.targetingType !== null) {
+        validateMultiSegment('targetingType', String(params.targetingType));
+        params.targetingType = encodeWithoutSlashes(
+          String(params.targetingType)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -31504,7 +33085,9 @@ export namespace displayvideo_v3 {
             url: (
               rootUrl +
               '/v3/partners/{+partnerId}/targetingTypes/{+targetingType}/assignedTargetingOptions/{+assignedTargetingOptionId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -31699,6 +33282,29 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (
+        params.assignedTargetingOptionId !== undefined &&
+        params.assignedTargetingOptionId !== null
+      ) {
+        validateMultiSegment(
+          'assignedTargetingOptionId',
+          String(params.assignedTargetingOptionId)
+        );
+        params.assignedTargetingOptionId = encodeWithoutSlashes(
+          String(params.assignedTargetingOptionId)
+        );
+      }
+      if (params.partnerId !== undefined && params.partnerId !== null) {
+        validateMultiSegment('partnerId', String(params.partnerId));
+        params.partnerId = encodeWithoutSlashes(String(params.partnerId));
+      }
+      if (params.targetingType !== undefined && params.targetingType !== null) {
+        validateMultiSegment('targetingType', String(params.targetingType));
+        params.targetingType = encodeWithoutSlashes(
+          String(params.targetingType)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -31706,7 +33312,9 @@ export namespace displayvideo_v3 {
             url: (
               rootUrl +
               '/v3/partners/{+partnerId}/targetingTypes/{+targetingType}/assignedTargetingOptions/{+assignedTargetingOptionId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -31861,6 +33469,17 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.partnerId !== undefined && params.partnerId !== null) {
+        validateMultiSegment('partnerId', String(params.partnerId));
+        params.partnerId = encodeWithoutSlashes(String(params.partnerId));
+      }
+      if (params.targetingType !== undefined && params.targetingType !== null) {
+        validateMultiSegment('targetingType', String(params.targetingType));
+        params.targetingType = encodeWithoutSlashes(
+          String(params.targetingType)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -31868,7 +33487,9 @@ export namespace displayvideo_v3 {
             url: (
               rootUrl +
               '/v3/partners/{+partnerId}/targetingTypes/{+targetingType}/assignedTargetingOptions'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -32096,10 +33717,9 @@ export namespace displayvideo_v3 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v3/sdfdownloadtasks').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v3/sdfdownloadtasks')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -32249,11 +33869,18 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v3/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -32448,6 +34075,25 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (
+        params.targetingOptionId !== undefined &&
+        params.targetingOptionId !== null
+      ) {
+        validateMultiSegment(
+          'targetingOptionId',
+          String(params.targetingOptionId)
+        );
+        params.targetingOptionId = encodeWithoutSlashes(
+          String(params.targetingOptionId)
+        );
+      }
+      if (params.targetingType !== undefined && params.targetingType !== null) {
+        validateMultiSegment('targetingType', String(params.targetingType));
+        params.targetingType = encodeWithoutSlashes(
+          String(params.targetingType)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -32455,7 +34101,9 @@ export namespace displayvideo_v3 {
             url: (
               rootUrl +
               '/v3/targetingTypes/{+targetingType}/targetingOptions/{+targetingOptionId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -32600,13 +34248,22 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.targetingType !== undefined && params.targetingType !== null) {
+        validateMultiSegment('targetingType', String(params.targetingType));
+        params.targetingType = encodeWithoutSlashes(
+          String(params.targetingType)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/v3/targetingTypes/{+targetingType}/targetingOptions'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -32756,6 +34413,13 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.targetingType !== undefined && params.targetingType !== null) {
+        validateMultiSegment('targetingType', String(params.targetingType));
+        params.targetingType = encodeWithoutSlashes(
+          String(params.targetingType)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -32763,7 +34427,9 @@ export namespace displayvideo_v3 {
             url: (
               rootUrl +
               '/v3/targetingTypes/{+targetingType}/targetingOptions:search'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -32971,13 +34637,18 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.userId !== undefined && params.userId !== null) {
+        validateMultiSegment('userId', String(params.userId));
+        params.userId = encodeWithoutSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v3/users/{+userId}:bulkEditAssignedUserRoles'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v3/users/{+userId}:bulkEditAssignedUserRoles')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -33126,7 +34797,9 @@ export namespace displayvideo_v3 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v3/users').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v3/users')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -33252,14 +34925,18 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.userId !== undefined && params.userId !== null) {
+        validateMultiSegment('userId', String(params.userId));
+        params.userId = encodeWithoutSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v3/users/{+userId}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v3/users/{+userId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -33392,14 +35069,18 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.userId !== undefined && params.userId !== null) {
+        validateMultiSegment('userId', String(params.userId));
+        params.userId = encodeWithoutSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v3/users/{+userId}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v3/users/{+userId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -33539,7 +35220,9 @@ export namespace displayvideo_v3 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v3/users').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v3/users')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -33687,14 +35370,18 @@ export namespace displayvideo_v3 {
         options = {};
       }
 
+      if (params.userId !== undefined && params.userId !== null) {
+        validateMultiSegment('userId', String(params.userId));
+        params.userId = encodeWithoutSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v3/users/{+userId}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v3/users/{+userId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },

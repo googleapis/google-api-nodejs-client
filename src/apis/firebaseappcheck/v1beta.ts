@@ -34,6 +34,12 @@ import {
   APIRequestContext,
 } from 'googleapis-common';
 import {Readable} from 'stream';
+import {
+  validateSingleSegment,
+  validateMultiSegment,
+  encodeWithSlashes,
+  encodeWithoutSlashes,
+} from '../../transcoding';
 
 export namespace firebaseappcheck_v1beta {
   export interface Options extends GlobalOptions {
@@ -936,12 +942,19 @@ export namespace firebaseappcheck_v1beta {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://firebaseappcheck.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -1111,14 +1124,19 @@ export namespace firebaseappcheck_v1beta {
         options = {};
       }
 
+      if (params.app !== undefined && params.app !== null) {
+        validateMultiSegment('app', String(params.app));
+        params.app = encodeWithoutSlashes(String(params.app));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://firebaseappcheck.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v1beta/{+app}:exchangeAppAttestAssertion'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta/{+app}:exchangeAppAttestAssertion')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -1275,14 +1293,19 @@ export namespace firebaseappcheck_v1beta {
         options = {};
       }
 
+      if (params.app !== undefined && params.app !== null) {
+        validateMultiSegment('app', String(params.app));
+        params.app = encodeWithoutSlashes(String(params.app));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://firebaseappcheck.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v1beta/{+app}:exchangeAppAttestAttestation'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta/{+app}:exchangeAppAttestAttestation')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -1436,15 +1459,19 @@ export namespace firebaseappcheck_v1beta {
         options = {};
       }
 
+      if (params.app !== undefined && params.app !== null) {
+        validateMultiSegment('app', String(params.app));
+        params.app = encodeWithoutSlashes(String(params.app));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://firebaseappcheck.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+app}:exchangeDebugToken').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta/{+app}:exchangeDebugToken')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -1594,14 +1621,19 @@ export namespace firebaseappcheck_v1beta {
         options = {};
       }
 
+      if (params.app !== undefined && params.app !== null) {
+        validateMultiSegment('app', String(params.app));
+        params.app = encodeWithoutSlashes(String(params.app));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://firebaseappcheck.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v1beta/{+app}:generateAppAttestChallenge'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta/{+app}:generateAppAttestChallenge')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -1808,15 +1840,19 @@ export namespace firebaseappcheck_v1beta {
         options = {};
       }
 
+      if (params.project !== undefined && params.project !== null) {
+        validateMultiSegment('project', String(params.project));
+        params.project = encodeWithoutSlashes(String(params.project));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://firebaseappcheck.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+project}:verifyAppCheckToken').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta/{+project}:verifyAppCheckToken')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -2016,14 +2052,19 @@ export namespace firebaseappcheck_v1beta {
         options = {};
       }
 
+      if (params.app !== undefined && params.app !== null) {
+        validateMultiSegment('app', String(params.app));
+        params.app = encodeWithoutSlashes(String(params.app));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://firebaseappcheck.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v1beta/{+app}:exchangeAppAttestAssertion'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta/{+app}:exchangeAppAttestAssertion')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -2182,14 +2223,19 @@ export namespace firebaseappcheck_v1beta {
         options = {};
       }
 
+      if (params.app !== undefined && params.app !== null) {
+        validateMultiSegment('app', String(params.app));
+        params.app = encodeWithoutSlashes(String(params.app));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://firebaseappcheck.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v1beta/{+app}:exchangeAppAttestAttestation'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta/{+app}:exchangeAppAttestAttestation')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -2344,15 +2390,19 @@ export namespace firebaseappcheck_v1beta {
         options = {};
       }
 
+      if (params.app !== undefined && params.app !== null) {
+        validateMultiSegment('app', String(params.app));
+        params.app = encodeWithoutSlashes(String(params.app));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://firebaseappcheck.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+app}:exchangeCustomToken').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta/{+app}:exchangeCustomToken')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -2506,15 +2556,19 @@ export namespace firebaseappcheck_v1beta {
         options = {};
       }
 
+      if (params.app !== undefined && params.app !== null) {
+        validateMultiSegment('app', String(params.app));
+        params.app = encodeWithoutSlashes(String(params.app));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://firebaseappcheck.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+app}:exchangeDebugToken').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta/{+app}:exchangeDebugToken')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -2668,15 +2722,19 @@ export namespace firebaseappcheck_v1beta {
         options = {};
       }
 
+      if (params.app !== undefined && params.app !== null) {
+        validateMultiSegment('app', String(params.app));
+        params.app = encodeWithoutSlashes(String(params.app));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://firebaseappcheck.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+app}:exchangeDeviceCheckToken').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta/{+app}:exchangeDeviceCheckToken')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -2830,14 +2888,19 @@ export namespace firebaseappcheck_v1beta {
         options = {};
       }
 
+      if (params.app !== undefined && params.app !== null) {
+        validateMultiSegment('app', String(params.app));
+        params.app = encodeWithoutSlashes(String(params.app));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://firebaseappcheck.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v1beta/{+app}:exchangePlayIntegrityToken'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta/{+app}:exchangePlayIntegrityToken')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -2993,14 +3056,19 @@ export namespace firebaseappcheck_v1beta {
         options = {};
       }
 
+      if (params.app !== undefined && params.app !== null) {
+        validateMultiSegment('app', String(params.app));
+        params.app = encodeWithoutSlashes(String(params.app));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://firebaseappcheck.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v1beta/{+app}:exchangeRecaptchaEnterpriseToken'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta/{+app}:exchangeRecaptchaEnterpriseToken')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -3153,15 +3221,19 @@ export namespace firebaseappcheck_v1beta {
         options = {};
       }
 
+      if (params.app !== undefined && params.app !== null) {
+        validateMultiSegment('app', String(params.app));
+        params.app = encodeWithoutSlashes(String(params.app));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://firebaseappcheck.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+app}:exchangeRecaptchaToken').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta/{+app}:exchangeRecaptchaToken')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -3315,15 +3387,19 @@ export namespace firebaseappcheck_v1beta {
         options = {};
       }
 
+      if (params.app !== undefined && params.app !== null) {
+        validateMultiSegment('app', String(params.app));
+        params.app = encodeWithoutSlashes(String(params.app));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://firebaseappcheck.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+app}:exchangeRecaptchaV3Token').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta/{+app}:exchangeRecaptchaV3Token')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -3473,14 +3549,19 @@ export namespace firebaseappcheck_v1beta {
         options = {};
       }
 
+      if (params.app !== undefined && params.app !== null) {
+        validateMultiSegment('app', String(params.app));
+        params.app = encodeWithoutSlashes(String(params.app));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://firebaseappcheck.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v1beta/{+app}:generateAppAttestChallenge'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta/{+app}:generateAppAttestChallenge')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -3632,14 +3713,19 @@ export namespace firebaseappcheck_v1beta {
         options = {};
       }
 
+      if (params.app !== undefined && params.app !== null) {
+        validateMultiSegment('app', String(params.app));
+        params.app = encodeWithoutSlashes(String(params.app));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://firebaseappcheck.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v1beta/{+app}:generatePlayIntegrityChallenge'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta/{+app}:generatePlayIntegrityChallenge')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -3913,14 +3999,19 @@ export namespace firebaseappcheck_v1beta {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://firebaseappcheck.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v1beta/{+parent}/apps/-/appAttestConfig:batchGet'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta/{+parent}/apps/-/appAttestConfig:batchGet')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -4064,12 +4155,19 @@ export namespace firebaseappcheck_v1beta {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://firebaseappcheck.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -4224,12 +4322,19 @@ export namespace firebaseappcheck_v1beta {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://firebaseappcheck.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -4427,15 +4532,19 @@ export namespace firebaseappcheck_v1beta {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://firebaseappcheck.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+parent}/debugTokens').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta/{+parent}/debugTokens')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -4570,12 +4679,19 @@ export namespace firebaseappcheck_v1beta {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://firebaseappcheck.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -4720,12 +4836,19 @@ export namespace firebaseappcheck_v1beta {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://firebaseappcheck.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -4873,15 +4996,19 @@ export namespace firebaseappcheck_v1beta {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://firebaseappcheck.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+parent}/debugTokens').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta/{+parent}/debugTokens')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -5042,12 +5169,19 @@ export namespace firebaseappcheck_v1beta {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://firebaseappcheck.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -5256,6 +5390,11 @@ export namespace firebaseappcheck_v1beta {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://firebaseappcheck.googleapis.com/';
       const parameters = {
@@ -5263,7 +5402,9 @@ export namespace firebaseappcheck_v1beta {
           {
             url: (
               rootUrl + '/v1beta/{+parent}/apps/-/deviceCheckConfig:batchGet'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -5410,12 +5551,19 @@ export namespace firebaseappcheck_v1beta {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://firebaseappcheck.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -5576,12 +5724,19 @@ export namespace firebaseappcheck_v1beta {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://firebaseappcheck.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -5768,6 +5923,11 @@ export namespace firebaseappcheck_v1beta {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://firebaseappcheck.googleapis.com/';
       const parameters = {
@@ -5775,7 +5935,9 @@ export namespace firebaseappcheck_v1beta {
           {
             url: (
               rootUrl + '/v1beta/{+parent}/apps/-/playIntegrityConfig:batchGet'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -5922,12 +6084,19 @@ export namespace firebaseappcheck_v1beta {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://firebaseappcheck.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -6088,12 +6257,19 @@ export namespace firebaseappcheck_v1beta {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://firebaseappcheck.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -6277,14 +6453,19 @@ export namespace firebaseappcheck_v1beta {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://firebaseappcheck.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v1beta/{+parent}/apps/-/recaptchaConfig:batchGet'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta/{+parent}/apps/-/recaptchaConfig:batchGet')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -6431,12 +6612,19 @@ export namespace firebaseappcheck_v1beta {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://firebaseappcheck.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -6597,12 +6785,19 @@ export namespace firebaseappcheck_v1beta {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://firebaseappcheck.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -6788,6 +6983,11 @@ export namespace firebaseappcheck_v1beta {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://firebaseappcheck.googleapis.com/';
       const parameters = {
@@ -6796,7 +6996,9 @@ export namespace firebaseappcheck_v1beta {
             url: (
               rootUrl +
               '/v1beta/{+parent}/apps/-/recaptchaEnterpriseConfig:batchGet'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -6944,12 +7146,19 @@ export namespace firebaseappcheck_v1beta {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://firebaseappcheck.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -7110,12 +7319,19 @@ export namespace firebaseappcheck_v1beta {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://firebaseappcheck.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -7299,6 +7515,11 @@ export namespace firebaseappcheck_v1beta {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://firebaseappcheck.googleapis.com/';
       const parameters = {
@@ -7306,7 +7527,9 @@ export namespace firebaseappcheck_v1beta {
           {
             url: (
               rootUrl + '/v1beta/{+parent}/apps/-/recaptchaV3Config:batchGet'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -7453,12 +7676,19 @@ export namespace firebaseappcheck_v1beta {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://firebaseappcheck.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -7619,12 +7849,19 @@ export namespace firebaseappcheck_v1beta {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://firebaseappcheck.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -7819,15 +8056,19 @@ export namespace firebaseappcheck_v1beta {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://firebaseappcheck.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+parent}/services:batchUpdate').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta/{+parent}/services:batchUpdate')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -7974,12 +8215,19 @@ export namespace firebaseappcheck_v1beta {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://firebaseappcheck.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -8127,15 +8375,19 @@ export namespace firebaseappcheck_v1beta {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://firebaseappcheck.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+parent}/services').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta/{+parent}/services')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -8296,12 +8548,19 @@ export namespace firebaseappcheck_v1beta {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://firebaseappcheck.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -8509,14 +8768,19 @@ export namespace firebaseappcheck_v1beta {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://firebaseappcheck.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v1beta/{+parent}/resourcePolicies:batchUpdate'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta/{+parent}/resourcePolicies:batchUpdate')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -8676,15 +8940,19 @@ export namespace firebaseappcheck_v1beta {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://firebaseappcheck.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+parent}/resourcePolicies').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta/{+parent}/resourcePolicies')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -8820,12 +9088,19 @@ export namespace firebaseappcheck_v1beta {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://firebaseappcheck.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -8970,12 +9245,19 @@ export namespace firebaseappcheck_v1beta {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://firebaseappcheck.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -9125,15 +9407,19 @@ export namespace firebaseappcheck_v1beta {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://firebaseappcheck.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+parent}/resourcePolicies').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta/{+parent}/resourcePolicies')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -9294,12 +9580,19 @@ export namespace firebaseappcheck_v1beta {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://firebaseappcheck.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },

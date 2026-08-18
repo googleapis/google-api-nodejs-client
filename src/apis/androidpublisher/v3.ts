@@ -34,6 +34,12 @@ import {
   APIRequestContext,
 } from 'googleapis-common';
 import {Readable} from 'stream';
+import {
+  validateSingleSegment,
+  validateMultiSegment,
+  encodeWithSlashes,
+  encodeWithoutSlashes,
+} from '../../transcoding';
 
 export namespace androidpublisher_v3 {
   export interface Options extends GlobalOptions {
@@ -6321,6 +6327,11 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -6329,7 +6340,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/dataSafety'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -6494,6 +6507,11 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -6502,7 +6520,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/deviceTierConfigs'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -6637,6 +6657,23 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (
+        params.deviceTierConfigId !== undefined &&
+        params.deviceTierConfigId !== null
+      ) {
+        validateSingleSegment(
+          'deviceTierConfigId',
+          String(params.deviceTierConfigId)
+        );
+        params.deviceTierConfigId = encodeWithSlashes(
+          String(params.deviceTierConfigId)
+        );
+      }
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -6645,7 +6682,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/deviceTierConfigs/{deviceTierConfigId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -6784,6 +6823,11 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -6792,7 +6836,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/deviceTierConfigs'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -6984,15 +7030,19 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/androidpublisher/v3/{+parent}/releases').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/androidpublisher/v3/{+parent}/releases')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -7149,6 +7199,15 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.appRecoveryId !== undefined && params.appRecoveryId !== null) {
+        validateSingleSegment('appRecoveryId', String(params.appRecoveryId));
+        params.appRecoveryId = encodeWithSlashes(String(params.appRecoveryId));
+      }
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -7157,7 +7216,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/appRecoveries/{appRecoveryId}:addTargeting'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -7296,6 +7357,15 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.appRecoveryId !== undefined && params.appRecoveryId !== null) {
+        validateSingleSegment('appRecoveryId', String(params.appRecoveryId));
+        params.appRecoveryId = encodeWithSlashes(String(params.appRecoveryId));
+      }
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -7304,7 +7374,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/appRecoveries/{appRecoveryId}:cancel'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -7450,6 +7522,11 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -7458,7 +7535,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/appRecoveries'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -7597,6 +7676,15 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.appRecoveryId !== undefined && params.appRecoveryId !== null) {
+        validateSingleSegment('appRecoveryId', String(params.appRecoveryId));
+        params.appRecoveryId = encodeWithSlashes(String(params.appRecoveryId));
+      }
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -7605,7 +7693,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/appRecoveries/{appRecoveryId}:deploy'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -7739,6 +7829,11 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -7747,7 +7842,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/appRecoveries'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -7964,6 +8061,19 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (
+        params.appStorePackageName !== undefined &&
+        params.appStorePackageName !== null
+      ) {
+        validateSingleSegment(
+          'appStorePackageName',
+          String(params.appStorePackageName)
+        );
+        params.appStorePackageName = encodeWithSlashes(
+          String(params.appStorePackageName)
+        );
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -7972,7 +8082,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/appstore/{appStorePackageName}/apps:create'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -8121,6 +8233,19 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (
+        params.appStorePackageName !== undefined &&
+        params.appStorePackageName !== null
+      ) {
+        validateSingleSegment(
+          'appStorePackageName',
+          String(params.appStorePackageName)
+        );
+        params.appStorePackageName = encodeWithSlashes(
+          String(params.appStorePackageName)
+        );
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -8129,7 +8254,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/appstore/{appStorePackageName}/apps:update'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -8281,6 +8408,23 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (
+        params.appStorePackageName !== undefined &&
+        params.appStorePackageName !== null
+      ) {
+        validateSingleSegment(
+          'appStorePackageName',
+          String(params.appStorePackageName)
+        );
+        params.appStorePackageName = encodeWithSlashes(
+          String(params.appStorePackageName)
+        );
+      }
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -8289,7 +8433,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/appstore/{appStorePackageName}/apps/{packageName}:updateAppStoreHostedAppPublishStatus'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -8433,6 +8579,23 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (
+        params.appStorePackageName !== undefined &&
+        params.appStorePackageName !== null
+      ) {
+        validateSingleSegment(
+          'appStorePackageName',
+          String(params.appStorePackageName)
+        );
+        params.appStorePackageName = encodeWithSlashes(
+          String(params.appStorePackageName)
+        );
+      }
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -8441,7 +8604,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/appstore/{appStorePackageName}/apps/{packageName}/apks:upload'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -8451,7 +8616,9 @@ export namespace androidpublisher_v3 {
         mediaUrl: (
           rootUrl +
           '/upload/androidpublisher/v3/appstore/{appStorePackageName}/apps/{packageName}/apks:upload'
-        ).replace(/([^:]\/)\/+/g, '$1'),
+        )
+          .replace(/([^:]\/)\/+/g, '$1')
+          .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
         requiredParams: ['appStorePackageName', 'packageName'],
         pathParams: ['appStorePackageName', 'packageName'],
         context: this.context,
@@ -8601,6 +8768,23 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (
+        params.appStorePackageName !== undefined &&
+        params.appStorePackageName !== null
+      ) {
+        validateSingleSegment(
+          'appStorePackageName',
+          String(params.appStorePackageName)
+        );
+        params.appStorePackageName = encodeWithSlashes(
+          String(params.appStorePackageName)
+        );
+      }
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -8609,7 +8793,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/appstore/{appStorePackageName}/apps/{packageName}/policyDeclarationFiles:upload'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -8619,7 +8805,9 @@ export namespace androidpublisher_v3 {
         mediaUrl: (
           rootUrl +
           '/upload/androidpublisher/v3/appstore/{appStorePackageName}/apps/{packageName}/policyDeclarationFiles:upload'
-        ).replace(/([^:]\/)\/+/g, '$1'),
+        )
+          .replace(/([^:]\/)\/+/g, '$1')
+          .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
         requiredParams: ['appStorePackageName', 'packageName'],
         pathParams: ['appStorePackageName', 'packageName'],
         context: this.context,
@@ -8759,6 +8947,23 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (
+        params.appStorePackageName !== undefined &&
+        params.appStorePackageName !== null
+      ) {
+        validateSingleSegment(
+          'appStorePackageName',
+          String(params.appStorePackageName)
+        );
+        params.appStorePackageName = encodeWithSlashes(
+          String(params.appStorePackageName)
+        );
+      }
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -8767,7 +8972,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/appstore/{appStorePackageName}/apps/{packageName}/images:upload'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -8777,7 +8984,9 @@ export namespace androidpublisher_v3 {
         mediaUrl: (
           rootUrl +
           '/upload/androidpublisher/v3/appstore/{appStorePackageName}/apps/{packageName}/images:upload'
-        ).replace(/([^:]\/)\/+/g, '$1'),
+        )
+          .replace(/([^:]\/)\/+/g, '$1')
+          .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
         requiredParams: ['appStorePackageName', 'packageName'],
         pathParams: ['appStorePackageName', 'packageName'],
         context: this.context,
@@ -9053,6 +9262,31 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (
+        params.appStorePackageName !== undefined &&
+        params.appStorePackageName !== null
+      ) {
+        validateSingleSegment(
+          'appStorePackageName',
+          String(params.appStorePackageName)
+        );
+        params.appStorePackageName = encodeWithSlashes(
+          String(params.appStorePackageName)
+        );
+      }
+      if (
+        params.playAppPackageName !== undefined &&
+        params.playAppPackageName !== null
+      ) {
+        validateSingleSegment(
+          'playAppPackageName',
+          String(params.playAppPackageName)
+        );
+        params.playAppPackageName = encodeWithSlashes(
+          String(params.playAppPackageName)
+        );
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -9061,7 +9295,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/appstorecatalog/{appStorePackageName}/recentAppViews/{playAppPackageName}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -9222,6 +9458,19 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (
+        params.appStorePackageName !== undefined &&
+        params.appStorePackageName !== null
+      ) {
+        validateSingleSegment(
+          'appStorePackageName',
+          String(params.appStorePackageName)
+        );
+        params.appStorePackageName = encodeWithSlashes(
+          String(params.appStorePackageName)
+        );
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -9230,7 +9479,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/appstorecatalog/{appStorePackageName}/recentUpdateEvents'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -9421,6 +9672,15 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.editId !== undefined && params.editId !== null) {
+        validateSingleSegment('editId', String(params.editId));
+        params.editId = encodeWithSlashes(String(params.editId));
+      }
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -9429,7 +9689,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/edits/{editId}:commit'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -9553,6 +9815,15 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.editId !== undefined && params.editId !== null) {
+        validateSingleSegment('editId', String(params.editId));
+        params.editId = encodeWithSlashes(String(params.editId));
+      }
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -9561,7 +9832,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/edits/{editId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -9692,6 +9965,15 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.editId !== undefined && params.editId !== null) {
+        validateSingleSegment('editId', String(params.editId));
+        params.editId = encodeWithSlashes(String(params.editId));
+      }
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -9700,7 +9982,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/edits/{editId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -9838,6 +10122,11 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -9845,7 +10134,9 @@ export namespace androidpublisher_v3 {
           {
             url: (
               rootUrl + '/androidpublisher/v3/applications/{packageName}/edits'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -9976,6 +10267,15 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.editId !== undefined && params.editId !== null) {
+        validateSingleSegment('editId', String(params.editId));
+        params.editId = encodeWithSlashes(String(params.editId));
+      }
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -9984,7 +10284,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/edits/{editId}:validate'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -10195,6 +10497,15 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.editId !== undefined && params.editId !== null) {
+        validateSingleSegment('editId', String(params.editId));
+        params.editId = encodeWithSlashes(String(params.editId));
+      }
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -10203,7 +10514,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/edits/{editId}/apks/externallyHosted'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -10337,6 +10650,15 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.editId !== undefined && params.editId !== null) {
+        validateSingleSegment('editId', String(params.editId));
+        params.editId = encodeWithSlashes(String(params.editId));
+      }
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -10345,7 +10667,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/edits/{editId}/apks'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -10485,6 +10809,15 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.editId !== undefined && params.editId !== null) {
+        validateSingleSegment('editId', String(params.editId));
+        params.editId = encodeWithSlashes(String(params.editId));
+      }
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -10493,7 +10826,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/edits/{editId}/apks'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -10503,7 +10838,9 @@ export namespace androidpublisher_v3 {
         mediaUrl: (
           rootUrl +
           '/upload/androidpublisher/v3/applications/{packageName}/edits/{editId}/apks'
-        ).replace(/([^:]\/)\/+/g, '$1'),
+        )
+          .replace(/([^:]\/)\/+/g, '$1')
+          .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
         requiredParams: ['packageName', 'editId'],
         pathParams: ['editId', 'packageName'],
         context: this.context,
@@ -10693,6 +11030,15 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.editId !== undefined && params.editId !== null) {
+        validateSingleSegment('editId', String(params.editId));
+        params.editId = encodeWithSlashes(String(params.editId));
+      }
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -10701,7 +11047,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/edits/{editId}/bundles'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -10846,6 +11194,15 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.editId !== undefined && params.editId !== null) {
+        validateSingleSegment('editId', String(params.editId));
+        params.editId = encodeWithSlashes(String(params.editId));
+      }
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -10854,7 +11211,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/edits/{editId}/bundles'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -10864,7 +11223,9 @@ export namespace androidpublisher_v3 {
         mediaUrl: (
           rootUrl +
           '/upload/androidpublisher/v3/applications/{packageName}/edits/{editId}/bundles'
-        ).replace(/([^:]\/)\/+/g, '$1'),
+        )
+          .replace(/([^:]\/)\/+/g, '$1')
+          .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
         requiredParams: ['packageName', 'editId'],
         pathParams: ['editId', 'packageName'],
         context: this.context,
@@ -11051,6 +11412,19 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.editId !== undefined && params.editId !== null) {
+        validateSingleSegment('editId', String(params.editId));
+        params.editId = encodeWithSlashes(String(params.editId));
+      }
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+      if (params.track !== undefined && params.track !== null) {
+        validateSingleSegment('track', String(params.track));
+        params.track = encodeWithSlashes(String(params.track));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -11059,7 +11433,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/edits/{editId}/countryAvailability/{track}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -11233,6 +11609,36 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (
+        params.apkVersionCode !== undefined &&
+        params.apkVersionCode !== null
+      ) {
+        validateSingleSegment('apkVersionCode', String(params.apkVersionCode));
+        params.apkVersionCode = encodeWithSlashes(
+          String(params.apkVersionCode)
+        );
+      }
+      if (
+        params.deobfuscationFileType !== undefined &&
+        params.deobfuscationFileType !== null
+      ) {
+        validateSingleSegment(
+          'deobfuscationFileType',
+          String(params.deobfuscationFileType)
+        );
+        params.deobfuscationFileType = encodeWithSlashes(
+          String(params.deobfuscationFileType)
+        );
+      }
+      if (params.editId !== undefined && params.editId !== null) {
+        validateSingleSegment('editId', String(params.editId));
+        params.editId = encodeWithSlashes(String(params.editId));
+      }
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -11241,7 +11647,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/deobfuscationFiles/{deobfuscationFileType}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -11251,7 +11659,9 @@ export namespace androidpublisher_v3 {
         mediaUrl: (
           rootUrl +
           '/upload/androidpublisher/v3/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/deobfuscationFiles/{deobfuscationFileType}'
-        ).replace(/([^:]\/)\/+/g, '$1'),
+        )
+          .replace(/([^:]\/)\/+/g, '$1')
+          .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
         requiredParams: [
           'packageName',
           'editId',
@@ -11437,6 +11847,15 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.editId !== undefined && params.editId !== null) {
+        validateSingleSegment('editId', String(params.editId));
+        params.editId = encodeWithSlashes(String(params.editId));
+      }
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -11445,7 +11864,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/edits/{editId}/details'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -11590,6 +12011,15 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.editId !== undefined && params.editId !== null) {
+        validateSingleSegment('editId', String(params.editId));
+        params.editId = encodeWithSlashes(String(params.editId));
+      }
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -11598,7 +12028,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/edits/{editId}/details'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -11743,6 +12175,15 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.editId !== undefined && params.editId !== null) {
+        validateSingleSegment('editId', String(params.editId));
+        params.editId = encodeWithSlashes(String(params.editId));
+      }
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -11751,7 +12192,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/edits/{editId}/details'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -11936,6 +12379,36 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (
+        params.apkVersionCode !== undefined &&
+        params.apkVersionCode !== null
+      ) {
+        validateSingleSegment('apkVersionCode', String(params.apkVersionCode));
+        params.apkVersionCode = encodeWithSlashes(
+          String(params.apkVersionCode)
+        );
+      }
+      if (params.editId !== undefined && params.editId !== null) {
+        validateSingleSegment('editId', String(params.editId));
+        params.editId = encodeWithSlashes(String(params.editId));
+      }
+      if (
+        params.expansionFileType !== undefined &&
+        params.expansionFileType !== null
+      ) {
+        validateSingleSegment(
+          'expansionFileType',
+          String(params.expansionFileType)
+        );
+        params.expansionFileType = encodeWithSlashes(
+          String(params.expansionFileType)
+        );
+      }
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -11944,7 +12417,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/expansionFiles/{expansionFileType}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -12100,6 +12575,36 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (
+        params.apkVersionCode !== undefined &&
+        params.apkVersionCode !== null
+      ) {
+        validateSingleSegment('apkVersionCode', String(params.apkVersionCode));
+        params.apkVersionCode = encodeWithSlashes(
+          String(params.apkVersionCode)
+        );
+      }
+      if (params.editId !== undefined && params.editId !== null) {
+        validateSingleSegment('editId', String(params.editId));
+        params.editId = encodeWithSlashes(String(params.editId));
+      }
+      if (
+        params.expansionFileType !== undefined &&
+        params.expansionFileType !== null
+      ) {
+        validateSingleSegment(
+          'expansionFileType',
+          String(params.expansionFileType)
+        );
+        params.expansionFileType = encodeWithSlashes(
+          String(params.expansionFileType)
+        );
+      }
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -12108,7 +12613,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/expansionFiles/{expansionFileType}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -12264,6 +12771,36 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (
+        params.apkVersionCode !== undefined &&
+        params.apkVersionCode !== null
+      ) {
+        validateSingleSegment('apkVersionCode', String(params.apkVersionCode));
+        params.apkVersionCode = encodeWithSlashes(
+          String(params.apkVersionCode)
+        );
+      }
+      if (params.editId !== undefined && params.editId !== null) {
+        validateSingleSegment('editId', String(params.editId));
+        params.editId = encodeWithSlashes(String(params.editId));
+      }
+      if (
+        params.expansionFileType !== undefined &&
+        params.expansionFileType !== null
+      ) {
+        validateSingleSegment(
+          'expansionFileType',
+          String(params.expansionFileType)
+        );
+        params.expansionFileType = encodeWithSlashes(
+          String(params.expansionFileType)
+        );
+      }
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -12272,7 +12809,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/expansionFiles/{expansionFileType}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -12430,6 +12969,36 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (
+        params.apkVersionCode !== undefined &&
+        params.apkVersionCode !== null
+      ) {
+        validateSingleSegment('apkVersionCode', String(params.apkVersionCode));
+        params.apkVersionCode = encodeWithSlashes(
+          String(params.apkVersionCode)
+        );
+      }
+      if (params.editId !== undefined && params.editId !== null) {
+        validateSingleSegment('editId', String(params.editId));
+        params.editId = encodeWithSlashes(String(params.editId));
+      }
+      if (
+        params.expansionFileType !== undefined &&
+        params.expansionFileType !== null
+      ) {
+        validateSingleSegment(
+          'expansionFileType',
+          String(params.expansionFileType)
+        );
+        params.expansionFileType = encodeWithSlashes(
+          String(params.expansionFileType)
+        );
+      }
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -12438,7 +13007,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/expansionFiles/{expansionFileType}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -12448,7 +13019,9 @@ export namespace androidpublisher_v3 {
         mediaUrl: (
           rootUrl +
           '/upload/androidpublisher/v3/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/expansionFiles/{expansionFileType}'
-        ).replace(/([^:]\/)\/+/g, '$1'),
+        )
+          .replace(/([^:]\/)\/+/g, '$1')
+          .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
         requiredParams: [
           'packageName',
           'editId',
@@ -12695,6 +13268,27 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.editId !== undefined && params.editId !== null) {
+        validateSingleSegment('editId', String(params.editId));
+        params.editId = encodeWithSlashes(String(params.editId));
+      }
+      if (params.imageId !== undefined && params.imageId !== null) {
+        validateSingleSegment('imageId', String(params.imageId));
+        params.imageId = encodeWithSlashes(String(params.imageId));
+      }
+      if (params.imageType !== undefined && params.imageType !== null) {
+        validateSingleSegment('imageType', String(params.imageType));
+        params.imageType = encodeWithSlashes(String(params.imageType));
+      }
+      if (params.language !== undefined && params.language !== null) {
+        validateSingleSegment('language', String(params.language));
+        params.language = encodeWithSlashes(String(params.language));
+      }
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -12703,7 +13297,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/edits/{editId}/listings/{language}/{imageType}/{imageId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -12854,6 +13450,23 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.editId !== undefined && params.editId !== null) {
+        validateSingleSegment('editId', String(params.editId));
+        params.editId = encodeWithSlashes(String(params.editId));
+      }
+      if (params.imageType !== undefined && params.imageType !== null) {
+        validateSingleSegment('imageType', String(params.imageType));
+        params.imageType = encodeWithSlashes(String(params.imageType));
+      }
+      if (params.language !== undefined && params.language !== null) {
+        validateSingleSegment('language', String(params.language));
+        params.language = encodeWithSlashes(String(params.language));
+      }
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -12862,7 +13475,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/edits/{editId}/listings/{language}/{imageType}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -12998,6 +13613,23 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.editId !== undefined && params.editId !== null) {
+        validateSingleSegment('editId', String(params.editId));
+        params.editId = encodeWithSlashes(String(params.editId));
+      }
+      if (params.imageType !== undefined && params.imageType !== null) {
+        validateSingleSegment('imageType', String(params.imageType));
+        params.imageType = encodeWithSlashes(String(params.imageType));
+      }
+      if (params.language !== undefined && params.language !== null) {
+        validateSingleSegment('language', String(params.language));
+        params.language = encodeWithSlashes(String(params.language));
+      }
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -13006,7 +13638,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/edits/{editId}/listings/{language}/{imageType}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -13153,6 +13787,23 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.editId !== undefined && params.editId !== null) {
+        validateSingleSegment('editId', String(params.editId));
+        params.editId = encodeWithSlashes(String(params.editId));
+      }
+      if (params.imageType !== undefined && params.imageType !== null) {
+        validateSingleSegment('imageType', String(params.imageType));
+        params.imageType = encodeWithSlashes(String(params.imageType));
+      }
+      if (params.language !== undefined && params.language !== null) {
+        validateSingleSegment('language', String(params.language));
+        params.language = encodeWithSlashes(String(params.language));
+      }
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -13161,7 +13812,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/edits/{editId}/listings/{language}/{imageType}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -13171,7 +13824,9 @@ export namespace androidpublisher_v3 {
         mediaUrl: (
           rootUrl +
           '/upload/androidpublisher/v3/applications/{packageName}/edits/{editId}/listings/{language}/{imageType}'
-        ).replace(/([^:]\/)\/+/g, '$1'),
+        )
+          .replace(/([^:]\/)\/+/g, '$1')
+          .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
         requiredParams: ['packageName', 'editId', 'language', 'imageType'],
         pathParams: ['editId', 'imageType', 'language', 'packageName'],
         context: this.context,
@@ -13400,6 +14055,19 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.editId !== undefined && params.editId !== null) {
+        validateSingleSegment('editId', String(params.editId));
+        params.editId = encodeWithSlashes(String(params.editId));
+      }
+      if (params.language !== undefined && params.language !== null) {
+        validateSingleSegment('language', String(params.language));
+        params.language = encodeWithSlashes(String(params.language));
+      }
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -13408,7 +14076,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/edits/{editId}/listings/{language}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -13533,6 +14203,15 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.editId !== undefined && params.editId !== null) {
+        validateSingleSegment('editId', String(params.editId));
+        params.editId = encodeWithSlashes(String(params.editId));
+      }
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -13541,7 +14220,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/edits/{editId}/listings'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -13678,6 +14359,19 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.editId !== undefined && params.editId !== null) {
+        validateSingleSegment('editId', String(params.editId));
+        params.editId = encodeWithSlashes(String(params.editId));
+      }
+      if (params.language !== undefined && params.language !== null) {
+        validateSingleSegment('language', String(params.language));
+        params.language = encodeWithSlashes(String(params.language));
+      }
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -13686,7 +14380,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/edits/{editId}/listings/{language}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -13820,6 +14516,15 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.editId !== undefined && params.editId !== null) {
+        validateSingleSegment('editId', String(params.editId));
+        params.editId = encodeWithSlashes(String(params.editId));
+      }
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -13828,7 +14533,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/edits/{editId}/listings'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -13977,6 +14684,19 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.editId !== undefined && params.editId !== null) {
+        validateSingleSegment('editId', String(params.editId));
+        params.editId = encodeWithSlashes(String(params.editId));
+      }
+      if (params.language !== undefined && params.language !== null) {
+        validateSingleSegment('language', String(params.language));
+        params.language = encodeWithSlashes(String(params.language));
+      }
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -13985,7 +14705,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/edits/{editId}/listings/{language}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -14134,6 +14856,19 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.editId !== undefined && params.editId !== null) {
+        validateSingleSegment('editId', String(params.editId));
+        params.editId = encodeWithSlashes(String(params.editId));
+      }
+      if (params.language !== undefined && params.language !== null) {
+        validateSingleSegment('language', String(params.language));
+        params.language = encodeWithSlashes(String(params.language));
+      }
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -14142,7 +14877,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/edits/{editId}/listings/{language}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -14369,6 +15106,19 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.editId !== undefined && params.editId !== null) {
+        validateSingleSegment('editId', String(params.editId));
+        params.editId = encodeWithSlashes(String(params.editId));
+      }
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+      if (params.track !== undefined && params.track !== null) {
+        validateSingleSegment('track', String(params.track));
+        params.track = encodeWithSlashes(String(params.track));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -14377,7 +15127,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/edits/{editId}/testers/{track}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -14518,6 +15270,19 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.editId !== undefined && params.editId !== null) {
+        validateSingleSegment('editId', String(params.editId));
+        params.editId = encodeWithSlashes(String(params.editId));
+      }
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+      if (params.track !== undefined && params.track !== null) {
+        validateSingleSegment('track', String(params.track));
+        params.track = encodeWithSlashes(String(params.track));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -14526,7 +15291,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/edits/{editId}/testers/{track}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -14667,6 +15434,19 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.editId !== undefined && params.editId !== null) {
+        validateSingleSegment('editId', String(params.editId));
+        params.editId = encodeWithSlashes(String(params.editId));
+      }
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+      if (params.track !== undefined && params.track !== null) {
+        validateSingleSegment('track', String(params.track));
+        params.track = encodeWithSlashes(String(params.track));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -14675,7 +15455,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/edits/{editId}/testers/{track}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -14877,6 +15659,15 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.editId !== undefined && params.editId !== null) {
+        validateSingleSegment('editId', String(params.editId));
+        params.editId = encodeWithSlashes(String(params.editId));
+      }
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -14885,7 +15676,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/edits/{editId}/tracks'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -15018,6 +15811,19 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.editId !== undefined && params.editId !== null) {
+        validateSingleSegment('editId', String(params.editId));
+        params.editId = encodeWithSlashes(String(params.editId));
+      }
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+      if (params.track !== undefined && params.track !== null) {
+        validateSingleSegment('track', String(params.track));
+        params.track = encodeWithSlashes(String(params.track));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -15026,7 +15832,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/edits/{editId}/tracks/{track}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -15159,6 +15967,15 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.editId !== undefined && params.editId !== null) {
+        validateSingleSegment('editId', String(params.editId));
+        params.editId = encodeWithSlashes(String(params.editId));
+      }
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -15167,7 +15984,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/edits/{editId}/tracks'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -15310,6 +16129,19 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.editId !== undefined && params.editId !== null) {
+        validateSingleSegment('editId', String(params.editId));
+        params.editId = encodeWithSlashes(String(params.editId));
+      }
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+      if (params.track !== undefined && params.track !== null) {
+        validateSingleSegment('track', String(params.track));
+        params.track = encodeWithSlashes(String(params.track));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -15318,7 +16150,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/edits/{editId}/tracks/{track}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -15461,6 +16295,19 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.editId !== undefined && params.editId !== null) {
+        validateSingleSegment('editId', String(params.editId));
+        params.editId = encodeWithSlashes(String(params.editId));
+      }
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+      if (params.track !== undefined && params.track !== null) {
+        validateSingleSegment('track', String(params.track));
+        params.track = encodeWithSlashes(String(params.track));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -15469,7 +16316,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/edits/{editId}/tracks/{track}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -15726,6 +16575,11 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -15733,7 +16587,9 @@ export namespace androidpublisher_v3 {
           {
             url: (
               rootUrl + '/androidpublisher/v3/{+parent}/externalTransactions'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -15881,15 +16737,19 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/androidpublisher/v3/{+name}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/androidpublisher/v3/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -16047,15 +16907,19 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/androidpublisher/v3/{+name}:refund').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/androidpublisher/v3/{+name}:refund')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -16222,6 +17086,19 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.downloadId !== undefined && params.downloadId !== null) {
+        validateSingleSegment('downloadId', String(params.downloadId));
+        params.downloadId = encodeWithSlashes(String(params.downloadId));
+      }
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+      if (params.versionCode !== undefined && params.versionCode !== null) {
+        validateSingleSegment('versionCode', String(params.versionCode));
+        params.versionCode = encodeWithSlashes(String(params.versionCode));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -16230,7 +17107,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/generatedApks/{versionCode}/downloads/{downloadId}:download'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -16365,6 +17244,15 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+      if (params.versionCode !== undefined && params.versionCode !== null) {
+        validateSingleSegment('versionCode', String(params.versionCode));
+        params.versionCode = encodeWithSlashes(String(params.versionCode));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -16373,7 +17261,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/generatedApks/{versionCode}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -16545,15 +17435,19 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/androidpublisher/v3/{+parent}/grants').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/androidpublisher/v3/{+parent}/grants')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -16675,15 +17569,19 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/androidpublisher/v3/{+name}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/androidpublisher/v3/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -16825,15 +17723,19 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/androidpublisher/v3/{+name}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/androidpublisher/v3/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -17004,6 +17906,11 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -17012,7 +17919,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/inappproducts:batchDelete'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -17148,6 +18057,11 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -17156,7 +18070,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/inappproducts:batchGet'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -17304,6 +18220,11 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -17312,7 +18233,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/inappproducts:batchUpdate'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -17441,6 +18364,15 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+      if (params.sku !== undefined && params.sku !== null) {
+        validateSingleSegment('sku', String(params.sku));
+        params.sku = encodeWithSlashes(String(params.sku));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -17449,7 +18381,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/inappproducts/{sku}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -17593,6 +18527,15 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+      if (params.sku !== undefined && params.sku !== null) {
+        validateSingleSegment('sku', String(params.sku));
+        params.sku = encodeWithSlashes(String(params.sku));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -17601,7 +18544,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/inappproducts/{sku}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -17765,6 +18710,11 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -17773,7 +18723,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/inappproducts'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -17915,6 +18867,11 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -17923,7 +18880,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/inappproducts'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -18091,6 +19050,15 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+      if (params.sku !== undefined && params.sku !== null) {
+        validateSingleSegment('sku', String(params.sku));
+        params.sku = encodeWithSlashes(String(params.sku));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -18099,7 +19067,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/inappproducts/{sku}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -18269,6 +19239,15 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+      if (params.sku !== undefined && params.sku !== null) {
+        validateSingleSegment('sku', String(params.sku));
+        params.sku = encodeWithSlashes(String(params.sku));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -18277,7 +19256,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/inappproducts/{sku}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -18567,6 +19548,11 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -18575,7 +19561,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/internalappsharing/{packageName}/artifacts/apk'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -18585,7 +19573,9 @@ export namespace androidpublisher_v3 {
         mediaUrl: (
           rootUrl +
           '/upload/androidpublisher/v3/applications/internalappsharing/{packageName}/artifacts/apk'
-        ).replace(/([^:]\/)\/+/g, '$1'),
+        )
+          .replace(/([^:]\/)\/+/g, '$1')
+          .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
         requiredParams: ['packageName'],
         pathParams: ['packageName'],
         context: this.context,
@@ -18722,6 +19712,11 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -18730,7 +19725,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/internalappsharing/{packageName}/artifacts/bundle'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -18740,7 +19737,9 @@ export namespace androidpublisher_v3 {
         mediaUrl: (
           rootUrl +
           '/upload/androidpublisher/v3/applications/internalappsharing/{packageName}/artifacts/bundle'
-        ).replace(/([^:]\/)\/+/g, '$1'),
+        )
+          .replace(/([^:]\/)\/+/g, '$1')
+          .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
         requiredParams: ['packageName'],
         pathParams: ['packageName'],
         context: this.context,
@@ -18947,6 +19946,11 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -18955,7 +19959,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/pricing:convertRegionPrices'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -19108,6 +20114,11 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -19116,7 +20127,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/oneTimeProducts:batchDelete'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -19252,6 +20265,11 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -19260,7 +20278,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/oneTimeProducts:batchGet'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -19408,6 +20428,11 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -19416,7 +20441,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/oneTimeProducts:batchUpdate'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -19545,6 +20572,15 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+      if (params.productId !== undefined && params.productId !== null) {
+        validateSingleSegment('productId', String(params.productId));
+        params.productId = encodeWithSlashes(String(params.productId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -19553,7 +20589,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/oneTimeProducts/{productId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -19692,6 +20730,15 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+      if (params.productId !== undefined && params.productId !== null) {
+        validateSingleSegment('productId', String(params.productId));
+        params.productId = encodeWithSlashes(String(params.productId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -19700,7 +20747,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/oneTimeProducts/{productId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -19839,6 +20888,11 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -19847,7 +20901,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/oneTimeProducts'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -20009,6 +21065,15 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+      if (params.productId !== undefined && params.productId !== null) {
+        validateSingleSegment('productId', String(params.productId));
+        params.productId = encodeWithSlashes(String(params.productId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -20017,7 +21082,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/onetimeproducts/{productId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -20268,6 +21335,15 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+      if (params.productId !== undefined && params.productId !== null) {
+        validateSingleSegment('productId', String(params.productId));
+        params.productId = encodeWithSlashes(String(params.productId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -20276,7 +21352,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/oneTimeProducts/{productId}/purchaseOptions:batchDelete'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -20428,6 +21506,15 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+      if (params.productId !== undefined && params.productId !== null) {
+        validateSingleSegment('productId', String(params.productId));
+        params.productId = encodeWithSlashes(String(params.productId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -20436,7 +21523,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/oneTimeProducts/{productId}/purchaseOptions:batchUpdateStates'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -20637,6 +21726,31 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.offerId !== undefined && params.offerId !== null) {
+        validateSingleSegment('offerId', String(params.offerId));
+        params.offerId = encodeWithSlashes(String(params.offerId));
+      }
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+      if (params.productId !== undefined && params.productId !== null) {
+        validateSingleSegment('productId', String(params.productId));
+        params.productId = encodeWithSlashes(String(params.productId));
+      }
+      if (
+        params.purchaseOptionId !== undefined &&
+        params.purchaseOptionId !== null
+      ) {
+        validateSingleSegment(
+          'purchaseOptionId',
+          String(params.purchaseOptionId)
+        );
+        params.purchaseOptionId = encodeWithSlashes(
+          String(params.purchaseOptionId)
+        );
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -20645,7 +21759,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/oneTimeProducts/{productId}/purchaseOptions/{purchaseOptionId}/offers/{offerId}:activate'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -20789,6 +21905,27 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+      if (params.productId !== undefined && params.productId !== null) {
+        validateSingleSegment('productId', String(params.productId));
+        params.productId = encodeWithSlashes(String(params.productId));
+      }
+      if (
+        params.purchaseOptionId !== undefined &&
+        params.purchaseOptionId !== null
+      ) {
+        validateSingleSegment(
+          'purchaseOptionId',
+          String(params.purchaseOptionId)
+        );
+        params.purchaseOptionId = encodeWithSlashes(
+          String(params.purchaseOptionId)
+        );
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -20797,7 +21934,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/oneTimeProducts/{productId}/purchaseOptions/{purchaseOptionId}/offers:batchDelete'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -20951,6 +22090,27 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+      if (params.productId !== undefined && params.productId !== null) {
+        validateSingleSegment('productId', String(params.productId));
+        params.productId = encodeWithSlashes(String(params.productId));
+      }
+      if (
+        params.purchaseOptionId !== undefined &&
+        params.purchaseOptionId !== null
+      ) {
+        validateSingleSegment(
+          'purchaseOptionId',
+          String(params.purchaseOptionId)
+        );
+        params.purchaseOptionId = encodeWithSlashes(
+          String(params.purchaseOptionId)
+        );
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -20959,7 +22119,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/oneTimeProducts/{productId}/purchaseOptions/{purchaseOptionId}/offers:batchGet'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -21115,6 +22277,27 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+      if (params.productId !== undefined && params.productId !== null) {
+        validateSingleSegment('productId', String(params.productId));
+        params.productId = encodeWithSlashes(String(params.productId));
+      }
+      if (
+        params.purchaseOptionId !== undefined &&
+        params.purchaseOptionId !== null
+      ) {
+        validateSingleSegment(
+          'purchaseOptionId',
+          String(params.purchaseOptionId)
+        );
+        params.purchaseOptionId = encodeWithSlashes(
+          String(params.purchaseOptionId)
+        );
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -21123,7 +22306,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/oneTimeProducts/{productId}/purchaseOptions/{purchaseOptionId}/offers:batchUpdate'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -21279,6 +22464,27 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+      if (params.productId !== undefined && params.productId !== null) {
+        validateSingleSegment('productId', String(params.productId));
+        params.productId = encodeWithSlashes(String(params.productId));
+      }
+      if (
+        params.purchaseOptionId !== undefined &&
+        params.purchaseOptionId !== null
+      ) {
+        validateSingleSegment(
+          'purchaseOptionId',
+          String(params.purchaseOptionId)
+        );
+        params.purchaseOptionId = encodeWithSlashes(
+          String(params.purchaseOptionId)
+        );
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -21287,7 +22493,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/oneTimeProducts/{productId}/purchaseOptions/{purchaseOptionId}/offers:batchUpdateStates'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -21450,6 +22658,31 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.offerId !== undefined && params.offerId !== null) {
+        validateSingleSegment('offerId', String(params.offerId));
+        params.offerId = encodeWithSlashes(String(params.offerId));
+      }
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+      if (params.productId !== undefined && params.productId !== null) {
+        validateSingleSegment('productId', String(params.productId));
+        params.productId = encodeWithSlashes(String(params.productId));
+      }
+      if (
+        params.purchaseOptionId !== undefined &&
+        params.purchaseOptionId !== null
+      ) {
+        validateSingleSegment(
+          'purchaseOptionId',
+          String(params.purchaseOptionId)
+        );
+        params.purchaseOptionId = encodeWithSlashes(
+          String(params.purchaseOptionId)
+        );
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -21458,7 +22691,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/oneTimeProducts/{productId}/purchaseOptions/{purchaseOptionId}/offers/{offerId}:cancel'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -21626,6 +22861,31 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.offerId !== undefined && params.offerId !== null) {
+        validateSingleSegment('offerId', String(params.offerId));
+        params.offerId = encodeWithSlashes(String(params.offerId));
+      }
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+      if (params.productId !== undefined && params.productId !== null) {
+        validateSingleSegment('productId', String(params.productId));
+        params.productId = encodeWithSlashes(String(params.productId));
+      }
+      if (
+        params.purchaseOptionId !== undefined &&
+        params.purchaseOptionId !== null
+      ) {
+        validateSingleSegment(
+          'purchaseOptionId',
+          String(params.purchaseOptionId)
+        );
+        params.purchaseOptionId = encodeWithSlashes(
+          String(params.purchaseOptionId)
+        );
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -21634,7 +22894,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/oneTimeProducts/{productId}/purchaseOptions/{purchaseOptionId}/offers/{offerId}:deactivate'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -21790,6 +23052,27 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+      if (params.productId !== undefined && params.productId !== null) {
+        validateSingleSegment('productId', String(params.productId));
+        params.productId = encodeWithSlashes(String(params.productId));
+      }
+      if (
+        params.purchaseOptionId !== undefined &&
+        params.purchaseOptionId !== null
+      ) {
+        validateSingleSegment(
+          'purchaseOptionId',
+          String(params.purchaseOptionId)
+        );
+        params.purchaseOptionId = encodeWithSlashes(
+          String(params.purchaseOptionId)
+        );
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -21798,7 +23081,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/oneTimeProducts/{productId}/purchaseOptions/{purchaseOptionId}/offers'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -22123,6 +23408,15 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+      if (params.productId !== undefined && params.productId !== null) {
+        validateSingleSegment('productId', String(params.productId));
+        params.productId = encodeWithSlashes(String(params.productId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -22131,7 +23425,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/subscriptions/{productId}:archive'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -22267,6 +23563,11 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -22275,7 +23576,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/subscriptions:batchGet'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -22423,6 +23726,11 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -22431,7 +23739,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/subscriptions:batchUpdate'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -22587,6 +23897,11 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -22595,7 +23910,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/subscriptions'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -22720,6 +24037,15 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+      if (params.productId !== undefined && params.productId !== null) {
+        validateSingleSegment('productId', String(params.productId));
+        params.productId = encodeWithSlashes(String(params.productId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -22728,7 +24054,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/subscriptions/{productId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -22866,6 +24194,15 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+      if (params.productId !== undefined && params.productId !== null) {
+        validateSingleSegment('productId', String(params.productId));
+        params.productId = encodeWithSlashes(String(params.productId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -22874,7 +24211,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/subscriptions/{productId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -23014,6 +24353,11 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -23022,7 +24366,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/subscriptions'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -23182,6 +24528,15 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+      if (params.productId !== undefined && params.productId !== null) {
+        validateSingleSegment('productId', String(params.productId));
+        params.productId = encodeWithSlashes(String(params.productId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -23190,7 +24545,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/subscriptions/{productId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -23479,6 +24836,19 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.basePlanId !== undefined && params.basePlanId !== null) {
+        validateSingleSegment('basePlanId', String(params.basePlanId));
+        params.basePlanId = encodeWithSlashes(String(params.basePlanId));
+      }
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+      if (params.productId !== undefined && params.productId !== null) {
+        validateSingleSegment('productId', String(params.productId));
+        params.productId = encodeWithSlashes(String(params.productId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -23487,7 +24857,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/subscriptions/{productId}/basePlans/{basePlanId}:activate'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -23639,6 +25011,15 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+      if (params.productId !== undefined && params.productId !== null) {
+        validateSingleSegment('productId', String(params.productId));
+        params.productId = encodeWithSlashes(String(params.productId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -23647,7 +25028,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/subscriptions/{productId}/basePlans:batchMigratePrices'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -23801,6 +25184,15 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+      if (params.productId !== undefined && params.productId !== null) {
+        validateSingleSegment('productId', String(params.productId));
+        params.productId = encodeWithSlashes(String(params.productId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -23809,7 +25201,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/subscriptions/{productId}/basePlans:batchUpdateStates'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -23964,6 +25358,19 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.basePlanId !== undefined && params.basePlanId !== null) {
+        validateSingleSegment('basePlanId', String(params.basePlanId));
+        params.basePlanId = encodeWithSlashes(String(params.basePlanId));
+      }
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+      if (params.productId !== undefined && params.productId !== null) {
+        validateSingleSegment('productId', String(params.productId));
+        params.productId = encodeWithSlashes(String(params.productId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -23972,7 +25379,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/subscriptions/{productId}/basePlans/{basePlanId}:deactivate'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -24101,6 +25510,19 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.basePlanId !== undefined && params.basePlanId !== null) {
+        validateSingleSegment('basePlanId', String(params.basePlanId));
+        params.basePlanId = encodeWithSlashes(String(params.basePlanId));
+      }
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+      if (params.productId !== undefined && params.productId !== null) {
+        validateSingleSegment('productId', String(params.productId));
+        params.productId = encodeWithSlashes(String(params.productId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -24109,7 +25531,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/subscriptions/{productId}/basePlans/{basePlanId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -24260,6 +25684,19 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.basePlanId !== undefined && params.basePlanId !== null) {
+        validateSingleSegment('basePlanId', String(params.basePlanId));
+        params.basePlanId = encodeWithSlashes(String(params.basePlanId));
+      }
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+      if (params.productId !== undefined && params.productId !== null) {
+        validateSingleSegment('productId', String(params.productId));
+        params.productId = encodeWithSlashes(String(params.productId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -24268,7 +25705,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/subscriptions/{productId}/basePlans/{basePlanId}:migratePrices'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -24540,6 +25979,23 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.basePlanId !== undefined && params.basePlanId !== null) {
+        validateSingleSegment('basePlanId', String(params.basePlanId));
+        params.basePlanId = encodeWithSlashes(String(params.basePlanId));
+      }
+      if (params.offerId !== undefined && params.offerId !== null) {
+        validateSingleSegment('offerId', String(params.offerId));
+        params.offerId = encodeWithSlashes(String(params.offerId));
+      }
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+      if (params.productId !== undefined && params.productId !== null) {
+        validateSingleSegment('productId', String(params.productId));
+        params.productId = encodeWithSlashes(String(params.productId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -24548,7 +26004,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/subscriptions/{productId}/basePlans/{basePlanId}/offers/{offerId}:activate'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -24702,6 +26160,19 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.basePlanId !== undefined && params.basePlanId !== null) {
+        validateSingleSegment('basePlanId', String(params.basePlanId));
+        params.basePlanId = encodeWithSlashes(String(params.basePlanId));
+      }
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+      if (params.productId !== undefined && params.productId !== null) {
+        validateSingleSegment('productId', String(params.productId));
+        params.productId = encodeWithSlashes(String(params.productId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -24710,7 +26181,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/subscriptions/{productId}/basePlans/{basePlanId}/offers:batchGet'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -24866,6 +26339,19 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.basePlanId !== undefined && params.basePlanId !== null) {
+        validateSingleSegment('basePlanId', String(params.basePlanId));
+        params.basePlanId = encodeWithSlashes(String(params.basePlanId));
+      }
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+      if (params.productId !== undefined && params.productId !== null) {
+        validateSingleSegment('productId', String(params.productId));
+        params.productId = encodeWithSlashes(String(params.productId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -24874,7 +26360,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/subscriptions/{productId}/basePlans/{basePlanId}/offers:batchUpdate'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -25030,6 +26518,19 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.basePlanId !== undefined && params.basePlanId !== null) {
+        validateSingleSegment('basePlanId', String(params.basePlanId));
+        params.basePlanId = encodeWithSlashes(String(params.basePlanId));
+      }
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+      if (params.productId !== undefined && params.productId !== null) {
+        validateSingleSegment('productId', String(params.productId));
+        params.productId = encodeWithSlashes(String(params.productId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -25038,7 +26539,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/subscriptions/{productId}/basePlans/{basePlanId}/offers:batchUpdateStates'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -25206,6 +26709,19 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.basePlanId !== undefined && params.basePlanId !== null) {
+        validateSingleSegment('basePlanId', String(params.basePlanId));
+        params.basePlanId = encodeWithSlashes(String(params.basePlanId));
+      }
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+      if (params.productId !== undefined && params.productId !== null) {
+        validateSingleSegment('productId', String(params.productId));
+        params.productId = encodeWithSlashes(String(params.productId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -25214,7 +26730,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/subscriptions/{productId}/basePlans/{basePlanId}/offers'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -25375,6 +26893,23 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.basePlanId !== undefined && params.basePlanId !== null) {
+        validateSingleSegment('basePlanId', String(params.basePlanId));
+        params.basePlanId = encodeWithSlashes(String(params.basePlanId));
+      }
+      if (params.offerId !== undefined && params.offerId !== null) {
+        validateSingleSegment('offerId', String(params.offerId));
+        params.offerId = encodeWithSlashes(String(params.offerId));
+      }
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+      if (params.productId !== undefined && params.productId !== null) {
+        validateSingleSegment('productId', String(params.productId));
+        params.productId = encodeWithSlashes(String(params.productId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -25383,7 +26918,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/subscriptions/{productId}/basePlans/{basePlanId}/offers/{offerId}:deactivate'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -25514,6 +27051,23 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.basePlanId !== undefined && params.basePlanId !== null) {
+        validateSingleSegment('basePlanId', String(params.basePlanId));
+        params.basePlanId = encodeWithSlashes(String(params.basePlanId));
+      }
+      if (params.offerId !== undefined && params.offerId !== null) {
+        validateSingleSegment('offerId', String(params.offerId));
+        params.offerId = encodeWithSlashes(String(params.offerId));
+      }
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+      if (params.productId !== undefined && params.productId !== null) {
+        validateSingleSegment('productId', String(params.productId));
+        params.productId = encodeWithSlashes(String(params.productId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -25522,7 +27076,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/subscriptions/{productId}/basePlans/{basePlanId}/offers/{offerId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -25669,6 +27225,23 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.basePlanId !== undefined && params.basePlanId !== null) {
+        validateSingleSegment('basePlanId', String(params.basePlanId));
+        params.basePlanId = encodeWithSlashes(String(params.basePlanId));
+      }
+      if (params.offerId !== undefined && params.offerId !== null) {
+        validateSingleSegment('offerId', String(params.offerId));
+        params.offerId = encodeWithSlashes(String(params.offerId));
+      }
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+      if (params.productId !== undefined && params.productId !== null) {
+        validateSingleSegment('productId', String(params.productId));
+        params.productId = encodeWithSlashes(String(params.productId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -25677,7 +27250,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/subscriptions/{productId}/basePlans/{basePlanId}/offers/{offerId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -25822,6 +27397,19 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.basePlanId !== undefined && params.basePlanId !== null) {
+        validateSingleSegment('basePlanId', String(params.basePlanId));
+        params.basePlanId = encodeWithSlashes(String(params.basePlanId));
+      }
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+      if (params.productId !== undefined && params.productId !== null) {
+        validateSingleSegment('productId', String(params.productId));
+        params.productId = encodeWithSlashes(String(params.productId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -25830,7 +27418,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/subscriptions/{productId}/basePlans/{basePlanId}/offers'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -26004,6 +27594,23 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.basePlanId !== undefined && params.basePlanId !== null) {
+        validateSingleSegment('basePlanId', String(params.basePlanId));
+        params.basePlanId = encodeWithSlashes(String(params.basePlanId));
+      }
+      if (params.offerId !== undefined && params.offerId !== null) {
+        validateSingleSegment('offerId', String(params.offerId));
+        params.offerId = encodeWithSlashes(String(params.offerId));
+      }
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+      if (params.productId !== undefined && params.productId !== null) {
+        validateSingleSegment('productId', String(params.productId));
+        params.productId = encodeWithSlashes(String(params.productId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -26012,7 +27619,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/subscriptions/{productId}/basePlans/{basePlanId}/offers/{offerId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -26381,6 +27990,11 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -26389,7 +28003,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/orders:batchGet'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -26532,6 +28148,15 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.orderId !== undefined && params.orderId !== null) {
+        validateSingleSegment('orderId', String(params.orderId));
+        params.orderId = encodeWithSlashes(String(params.orderId));
+      }
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -26540,7 +28165,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/orders/{orderId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -26666,6 +28293,15 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.orderId !== undefined && params.orderId !== null) {
+        validateSingleSegment('orderId', String(params.orderId));
+        params.orderId = encodeWithSlashes(String(params.orderId));
+      }
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -26674,7 +28310,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/orders/{orderId}:refund'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -26811,6 +28449,15 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.orderId !== undefined && params.orderId !== null) {
+        validateSingleSegment('orderId', String(params.orderId));
+        params.orderId = encodeWithSlashes(String(params.orderId));
+      }
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -26819,7 +28466,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/orders/{orderId}:reviewrefund'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -27032,6 +28681,19 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+      if (params.productId !== undefined && params.productId !== null) {
+        validateSingleSegment('productId', String(params.productId));
+        params.productId = encodeWithSlashes(String(params.productId));
+      }
+      if (params.token !== undefined && params.token !== null) {
+        validateSingleSegment('token', String(params.token));
+        params.token = encodeWithSlashes(String(params.token));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -27040,7 +28702,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/purchases/products/{productId}/tokens/{token}:acknowledge'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -27167,6 +28831,19 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+      if (params.productId !== undefined && params.productId !== null) {
+        validateSingleSegment('productId', String(params.productId));
+        params.productId = encodeWithSlashes(String(params.productId));
+      }
+      if (params.token !== undefined && params.token !== null) {
+        validateSingleSegment('token', String(params.token));
+        params.token = encodeWithSlashes(String(params.token));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -27175,7 +28852,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/purchases/products/{productId}/tokens/{token}:consume'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -27323,6 +29002,19 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+      if (params.productId !== undefined && params.productId !== null) {
+        validateSingleSegment('productId', String(params.productId));
+        params.productId = encodeWithSlashes(String(params.productId));
+      }
+      if (params.token !== undefined && params.token !== null) {
+        validateSingleSegment('token', String(params.token));
+        params.token = encodeWithSlashes(String(params.token));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -27331,7 +29023,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/purchases/products/{productId}/tokens/{token}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -27530,6 +29224,15 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+      if (params.token !== undefined && params.token !== null) {
+        validateSingleSegment('token', String(params.token));
+        params.token = encodeWithSlashes(String(params.token));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -27538,7 +29241,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/purchases/productsv2/tokens/{token}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -27692,6 +29397,24 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+      if (
+        params.subscriptionId !== undefined &&
+        params.subscriptionId !== null
+      ) {
+        validateSingleSegment('subscriptionId', String(params.subscriptionId));
+        params.subscriptionId = encodeWithSlashes(
+          String(params.subscriptionId)
+        );
+      }
+      if (params.token !== undefined && params.token !== null) {
+        validateSingleSegment('token', String(params.token));
+        params.token = encodeWithSlashes(String(params.token));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -27700,7 +29423,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}:acknowledge'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -27827,6 +29552,24 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+      if (
+        params.subscriptionId !== undefined &&
+        params.subscriptionId !== null
+      ) {
+        validateSingleSegment('subscriptionId', String(params.subscriptionId));
+        params.subscriptionId = encodeWithSlashes(
+          String(params.subscriptionId)
+        );
+      }
+      if (params.token !== undefined && params.token !== null) {
+        validateSingleSegment('token', String(params.token));
+        params.token = encodeWithSlashes(String(params.token));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -27835,7 +29578,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}:cancel'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -27985,6 +29730,24 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+      if (
+        params.subscriptionId !== undefined &&
+        params.subscriptionId !== null
+      ) {
+        validateSingleSegment('subscriptionId', String(params.subscriptionId));
+        params.subscriptionId = encodeWithSlashes(
+          String(params.subscriptionId)
+        );
+      }
+      if (params.token !== undefined && params.token !== null) {
+        validateSingleSegment('token', String(params.token));
+        params.token = encodeWithSlashes(String(params.token));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -27993,7 +29756,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}:defer'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -28201,6 +29966,15 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+      if (params.token !== undefined && params.token !== null) {
+        validateSingleSegment('token', String(params.token));
+        params.token = encodeWithSlashes(String(params.token));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -28209,7 +29983,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/purchases/subscriptionsv2/tokens/{token}:cancel'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -28359,6 +30135,15 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+      if (params.token !== undefined && params.token !== null) {
+        validateSingleSegment('token', String(params.token));
+        params.token = encodeWithSlashes(String(params.token));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -28367,7 +30152,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/purchases/subscriptionsv2/tokens/{token}:defer'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -28517,6 +30304,15 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+      if (params.token !== undefined && params.token !== null) {
+        validateSingleSegment('token', String(params.token));
+        params.token = encodeWithSlashes(String(params.token));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -28525,7 +30321,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/purchases/subscriptionsv2/tokens/{token}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -28671,6 +30469,15 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+      if (params.token !== undefined && params.token !== null) {
+        validateSingleSegment('token', String(params.token));
+        params.token = encodeWithSlashes(String(params.token));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -28679,7 +30486,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/purchases/subscriptionsv2/tokens/{token}:revoke'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -28894,6 +30703,11 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -28902,7 +30716,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/purchases/voidedpurchases'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -29078,6 +30894,15 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+      if (params.reviewId !== undefined && params.reviewId !== null) {
+        validateSingleSegment('reviewId', String(params.reviewId));
+        params.reviewId = encodeWithSlashes(String(params.reviewId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -29086,7 +30911,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/reviews/{reviewId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -29225,6 +31052,11 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -29233,7 +31065,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/reviews'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -29373,6 +31207,15 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+      if (params.reviewId !== undefined && params.reviewId !== null) {
+        validateSingleSegment('reviewId', String(params.reviewId));
+        params.reviewId = encodeWithSlashes(String(params.reviewId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -29381,7 +31224,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/reviews/{reviewId}:reply'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -29592,6 +31437,15 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+      if (params.versionCode !== undefined && params.versionCode !== null) {
+        validateSingleSegment('versionCode', String(params.versionCode));
+        params.versionCode = encodeWithSlashes(String(params.versionCode));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -29600,7 +31454,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/systemApks/{versionCode}/variants'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -29727,6 +31583,19 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+      if (params.variantId !== undefined && params.variantId !== null) {
+        validateSingleSegment('variantId', String(params.variantId));
+        params.variantId = encodeWithSlashes(String(params.variantId));
+      }
+      if (params.versionCode !== undefined && params.versionCode !== null) {
+        validateSingleSegment('versionCode', String(params.versionCode));
+        params.versionCode = encodeWithSlashes(String(params.versionCode));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -29735,7 +31604,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/systemApks/{versionCode}/variants/{variantId}:download'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -29870,6 +31741,19 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+      if (params.variantId !== undefined && params.variantId !== null) {
+        validateSingleSegment('variantId', String(params.variantId));
+        params.variantId = encodeWithSlashes(String(params.variantId));
+      }
+      if (params.versionCode !== undefined && params.versionCode !== null) {
+        validateSingleSegment('versionCode', String(params.versionCode));
+        params.versionCode = encodeWithSlashes(String(params.versionCode));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -29878,7 +31762,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/systemApks/{versionCode}/variants/{variantId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -30011,6 +31897,15 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateSingleSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithSlashes(String(params.packageName));
+      }
+      if (params.versionCode !== undefined && params.versionCode !== null) {
+        validateSingleSegment('versionCode', String(params.versionCode));
+        params.versionCode = encodeWithSlashes(String(params.versionCode));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
@@ -30019,7 +31914,9 @@ export namespace androidpublisher_v3 {
             url: (
               rootUrl +
               '/androidpublisher/v3/applications/{packageName}/systemApks/{versionCode}/variants'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -30228,15 +32125,19 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/androidpublisher/v3/{+parent}/users').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/androidpublisher/v3/{+parent}/users')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -30358,15 +32259,19 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/androidpublisher/v3/{+name}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/androidpublisher/v3/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -30500,15 +32405,19 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/androidpublisher/v3/{+parent}/users').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/androidpublisher/v3/{+parent}/users')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -30658,15 +32567,19 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/androidpublisher/v3/{+name}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/androidpublisher/v3/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },

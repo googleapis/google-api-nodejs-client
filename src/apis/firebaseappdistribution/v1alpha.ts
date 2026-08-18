@@ -34,6 +34,12 @@ import {
   APIRequestContext,
 } from 'googleapis-common';
 import {Readable} from 'stream';
+import {
+  validateSingleSegment,
+  validateMultiSegment,
+  encodeWithSlashes,
+  encodeWithoutSlashes,
+} from '../../transcoding';
 
 export namespace firebaseappdistribution_v1alpha {
   export interface Options extends GlobalOptions {
@@ -1229,15 +1235,24 @@ export namespace firebaseappdistribution_v1alpha {
         options = {};
       }
 
+      if (
+        params.mobilesdkAppId !== undefined &&
+        params.mobilesdkAppId !== null
+      ) {
+        validateSingleSegment('mobilesdkAppId', String(params.mobilesdkAppId));
+        params.mobilesdkAppId = encodeWithSlashes(
+          String(params.mobilesdkAppId)
+        );
+      }
+
       const rootUrl =
         options.rootUrl || 'https://firebaseappdistribution.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha/apps/{mobilesdkAppId}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1alpha/apps/{mobilesdkAppId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -1376,15 +1391,24 @@ export namespace firebaseappdistribution_v1alpha {
         options = {};
       }
 
+      if (
+        params.mobilesdkAppId !== undefined &&
+        params.mobilesdkAppId !== null
+      ) {
+        validateSingleSegment('mobilesdkAppId', String(params.mobilesdkAppId));
+        params.mobilesdkAppId = encodeWithSlashes(
+          String(params.mobilesdkAppId)
+        );
+      }
+
       const rootUrl =
         options.rootUrl || 'https://firebaseappdistribution.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha/apps/{mobilesdkAppId}/jwt').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1alpha/apps/{mobilesdkAppId}/jwt')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -1561,6 +1585,20 @@ export namespace firebaseappdistribution_v1alpha {
         options = {};
       }
 
+      if (
+        params.mobilesdkAppId !== undefined &&
+        params.mobilesdkAppId !== null
+      ) {
+        validateSingleSegment('mobilesdkAppId', String(params.mobilesdkAppId));
+        params.mobilesdkAppId = encodeWithSlashes(
+          String(params.mobilesdkAppId)
+        );
+      }
+      if (params.releaseId !== undefined && params.releaseId !== null) {
+        validateSingleSegment('releaseId', String(params.releaseId));
+        params.releaseId = encodeWithSlashes(String(params.releaseId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://firebaseappdistribution.googleapis.com/';
       const parameters = {
@@ -1569,7 +1607,9 @@ export namespace firebaseappdistribution_v1alpha {
             url: (
               rootUrl +
               '/v1alpha/apps/{mobilesdkAppId}/releases/{releaseId}/enable_access'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -1740,6 +1780,20 @@ export namespace firebaseappdistribution_v1alpha {
         options = {};
       }
 
+      if (
+        params.mobilesdkAppId !== undefined &&
+        params.mobilesdkAppId !== null
+      ) {
+        validateSingleSegment('mobilesdkAppId', String(params.mobilesdkAppId));
+        params.mobilesdkAppId = encodeWithSlashes(
+          String(params.mobilesdkAppId)
+        );
+      }
+      if (params.releaseId !== undefined && params.releaseId !== null) {
+        validateSingleSegment('releaseId', String(params.releaseId));
+        params.releaseId = encodeWithSlashes(String(params.releaseId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://firebaseappdistribution.googleapis.com/';
       const parameters = {
@@ -1748,7 +1802,9 @@ export namespace firebaseappdistribution_v1alpha {
             url: (
               rootUrl +
               '/v1alpha/apps/{mobilesdkAppId}/releases/{releaseId}/notes'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -1913,6 +1969,20 @@ export namespace firebaseappdistribution_v1alpha {
         options = {};
       }
 
+      if (
+        params.mobilesdkAppId !== undefined &&
+        params.mobilesdkAppId !== null
+      ) {
+        validateSingleSegment('mobilesdkAppId', String(params.mobilesdkAppId));
+        params.mobilesdkAppId = encodeWithSlashes(
+          String(params.mobilesdkAppId)
+        );
+      }
+      if (params.uploadHash !== undefined && params.uploadHash !== null) {
+        validateSingleSegment('uploadHash', String(params.uploadHash));
+        params.uploadHash = encodeWithSlashes(String(params.uploadHash));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://firebaseappdistribution.googleapis.com/';
       const parameters = {
@@ -1921,7 +1991,9 @@ export namespace firebaseappdistribution_v1alpha {
             url: (
               rootUrl +
               '/v1alpha/apps/{mobilesdkAppId}/release_by_hash/{uploadHash}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -2081,6 +2153,16 @@ export namespace firebaseappdistribution_v1alpha {
         options = {};
       }
 
+      if (
+        params.mobilesdkAppId !== undefined &&
+        params.mobilesdkAppId !== null
+      ) {
+        validateSingleSegment('mobilesdkAppId', String(params.mobilesdkAppId));
+        params.mobilesdkAppId = encodeWithSlashes(
+          String(params.mobilesdkAppId)
+        );
+      }
+
       const rootUrl =
         options.rootUrl || 'https://firebaseappdistribution.googleapis.com/';
       const parameters = {
@@ -2088,7 +2170,9 @@ export namespace firebaseappdistribution_v1alpha {
           {
             url: (
               rootUrl + '/v1alpha/apps/{mobilesdkAppId}/testers:getTesterUdids'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -2251,6 +2335,20 @@ export namespace firebaseappdistribution_v1alpha {
         options = {};
       }
 
+      if (
+        params.mobilesdkAppId !== undefined &&
+        params.mobilesdkAppId !== null
+      ) {
+        validateSingleSegment('mobilesdkAppId', String(params.mobilesdkAppId));
+        params.mobilesdkAppId = encodeWithSlashes(
+          String(params.mobilesdkAppId)
+        );
+      }
+      if (params.uploadToken !== undefined && params.uploadToken !== null) {
+        validateSingleSegment('uploadToken', String(params.uploadToken));
+        params.uploadToken = encodeWithSlashes(String(params.uploadToken));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://firebaseappdistribution.googleapis.com/';
       const parameters = {
@@ -2259,7 +2357,9 @@ export namespace firebaseappdistribution_v1alpha {
             url: (
               rootUrl +
               '/v1alpha/apps/{mobilesdkAppId}/upload_status/{uploadToken}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -2423,12 +2523,19 @@ export namespace firebaseappdistribution_v1alpha {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://firebaseappdistribution.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1alpha/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -2590,12 +2697,19 @@ export namespace firebaseappdistribution_v1alpha {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://firebaseappdistribution.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1alpha/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -2753,12 +2867,19 @@ export namespace firebaseappdistribution_v1alpha {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://firebaseappdistribution.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1alpha/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -2936,15 +3057,19 @@ export namespace firebaseappdistribution_v1alpha {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://firebaseappdistribution.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha/{+name}:cancel').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1alpha/{+name}:cancel')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -3112,15 +3237,19 @@ export namespace firebaseappdistribution_v1alpha {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://firebaseappdistribution.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha/{+parent}/tests').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1alpha/{+parent}/tests')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -3268,12 +3397,19 @@ export namespace firebaseappdistribution_v1alpha {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://firebaseappdistribution.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1alpha/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -3420,15 +3556,19 @@ export namespace firebaseappdistribution_v1alpha {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://firebaseappdistribution.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha/{+parent}/tests').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1alpha/{+parent}/tests')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -3623,15 +3763,19 @@ export namespace firebaseappdistribution_v1alpha {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://firebaseappdistribution.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha/{+parent}/testCases:batchDelete').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1alpha/{+parent}/testCases:batchDelete')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -3779,15 +3923,19 @@ export namespace firebaseappdistribution_v1alpha {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://firebaseappdistribution.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha/{+parent}/testCases:batchUpdate').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1alpha/{+parent}/testCases:batchUpdate')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -3935,15 +4083,19 @@ export namespace firebaseappdistribution_v1alpha {
         options = {};
       }
 
+      if (params.testCase !== undefined && params.testCase !== null) {
+        validateMultiSegment('testCase', String(params.testCase));
+        params.testCase = encodeWithoutSlashes(String(params.testCase));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://firebaseappdistribution.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha/{+testCase}:clearTestCaseCache').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1alpha/{+testCase}:clearTestCaseCache')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -4103,15 +4255,19 @@ export namespace firebaseappdistribution_v1alpha {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://firebaseappdistribution.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha/{+parent}/testCases').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1alpha/{+parent}/testCases')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -4241,12 +4397,19 @@ export namespace firebaseappdistribution_v1alpha {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://firebaseappdistribution.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1alpha/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -4389,12 +4552,19 @@ export namespace firebaseappdistribution_v1alpha {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://firebaseappdistribution.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1alpha/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -4539,15 +4709,19 @@ export namespace firebaseappdistribution_v1alpha {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://firebaseappdistribution.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha/{+parent}/testCases').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1alpha/{+parent}/testCases')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -4707,12 +4881,19 @@ export namespace firebaseappdistribution_v1alpha {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://firebaseappdistribution.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1alpha/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -4951,15 +5132,19 @@ export namespace firebaseappdistribution_v1alpha {
         options = {};
       }
 
+      if (params.project !== undefined && params.project !== null) {
+        validateMultiSegment('project', String(params.project));
+        params.project = encodeWithoutSlashes(String(params.project));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://firebaseappdistribution.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha/{+project}/testers:udids').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1alpha/{+project}/testers:udids')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },

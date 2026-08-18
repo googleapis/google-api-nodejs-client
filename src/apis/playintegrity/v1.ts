@@ -34,6 +34,12 @@ import {
   APIRequestContext,
 } from 'googleapis-common';
 import {Readable} from 'stream';
+import {
+  validateSingleSegment,
+  validateMultiSegment,
+  encodeWithSlashes,
+  encodeWithoutSlashes,
+} from '../../transcoding';
 
 export namespace playintegrity_v1 {
   export interface Options extends GlobalOptions {
@@ -584,15 +590,19 @@ export namespace playintegrity_v1 {
         options = {};
       }
 
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateMultiSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithoutSlashes(String(params.packageName));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://playintegrity.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+packageName}/deviceRecall:write').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/{+packageName}/deviceRecall:write')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -753,15 +763,19 @@ export namespace playintegrity_v1 {
         options = {};
       }
 
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateMultiSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithoutSlashes(String(params.packageName));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://playintegrity.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+packageName}:decodeIntegrityToken').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/{+packageName}:decodeIntegrityToken')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -905,14 +919,19 @@ export namespace playintegrity_v1 {
         options = {};
       }
 
+      if (params.packageName !== undefined && params.packageName !== null) {
+        validateMultiSegment('packageName', String(params.packageName));
+        params.packageName = encodeWithoutSlashes(String(params.packageName));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://playintegrity.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v1/{+packageName}:decodePcIntegrityToken'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+packageName}:decodePcIntegrityToken')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },

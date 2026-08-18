@@ -34,6 +34,12 @@ import {
   APIRequestContext,
 } from 'googleapis-common';
 import {Readable} from 'stream';
+import {
+  validateSingleSegment,
+  validateMultiSegment,
+  encodeWithSlashes,
+  encodeWithoutSlashes,
+} from '../../transcoding';
 
 export namespace licensing_v1 {
   export interface Options extends GlobalOptions {
@@ -309,6 +315,19 @@ export namespace licensing_v1 {
         options = {};
       }
 
+      if (params.productId !== undefined && params.productId !== null) {
+        validateSingleSegment('productId', String(params.productId));
+        params.productId = encodeWithSlashes(String(params.productId));
+      }
+      if (params.skuId !== undefined && params.skuId !== null) {
+        validateSingleSegment('skuId', String(params.skuId));
+        params.skuId = encodeWithSlashes(String(params.skuId));
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://licensing.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -316,7 +335,9 @@ export namespace licensing_v1 {
             url: (
               rootUrl +
               '/apps/licensing/v1/product/{productId}/sku/{skuId}/user/{userId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -457,6 +478,19 @@ export namespace licensing_v1 {
         options = {};
       }
 
+      if (params.productId !== undefined && params.productId !== null) {
+        validateSingleSegment('productId', String(params.productId));
+        params.productId = encodeWithSlashes(String(params.productId));
+      }
+      if (params.skuId !== undefined && params.skuId !== null) {
+        validateSingleSegment('skuId', String(params.skuId));
+        params.skuId = encodeWithSlashes(String(params.skuId));
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://licensing.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -464,7 +498,9 @@ export namespace licensing_v1 {
             url: (
               rootUrl +
               '/apps/licensing/v1/product/{productId}/sku/{skuId}/user/{userId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -611,6 +647,15 @@ export namespace licensing_v1 {
         options = {};
       }
 
+      if (params.productId !== undefined && params.productId !== null) {
+        validateSingleSegment('productId', String(params.productId));
+        params.productId = encodeWithSlashes(String(params.productId));
+      }
+      if (params.skuId !== undefined && params.skuId !== null) {
+        validateSingleSegment('skuId', String(params.skuId));
+        params.skuId = encodeWithSlashes(String(params.skuId));
+      }
+
       const rootUrl = options.rootUrl || 'https://licensing.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -618,7 +663,9 @@ export namespace licensing_v1 {
             url: (
               rootUrl +
               '/apps/licensing/v1/product/{productId}/sku/{skuId}/user'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -760,13 +807,18 @@ export namespace licensing_v1 {
         options = {};
       }
 
+      if (params.productId !== undefined && params.productId !== null) {
+        validateSingleSegment('productId', String(params.productId));
+        params.productId = encodeWithSlashes(String(params.productId));
+      }
+
       const rootUrl = options.rootUrl || 'https://licensing.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/apps/licensing/v1/product/{productId}/users'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/apps/licensing/v1/product/{productId}/users')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -910,6 +962,15 @@ export namespace licensing_v1 {
         options = {};
       }
 
+      if (params.productId !== undefined && params.productId !== null) {
+        validateSingleSegment('productId', String(params.productId));
+        params.productId = encodeWithSlashes(String(params.productId));
+      }
+      if (params.skuId !== undefined && params.skuId !== null) {
+        validateSingleSegment('skuId', String(params.skuId));
+        params.skuId = encodeWithSlashes(String(params.skuId));
+      }
+
       const rootUrl = options.rootUrl || 'https://licensing.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -917,7 +978,9 @@ export namespace licensing_v1 {
             url: (
               rootUrl +
               '/apps/licensing/v1/product/{productId}/sku/{skuId}/users'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -1073,6 +1136,19 @@ export namespace licensing_v1 {
         options = {};
       }
 
+      if (params.productId !== undefined && params.productId !== null) {
+        validateSingleSegment('productId', String(params.productId));
+        params.productId = encodeWithSlashes(String(params.productId));
+      }
+      if (params.skuId !== undefined && params.skuId !== null) {
+        validateSingleSegment('skuId', String(params.skuId));
+        params.skuId = encodeWithSlashes(String(params.skuId));
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://licensing.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1080,7 +1156,9 @@ export namespace licensing_v1 {
             url: (
               rootUrl +
               '/apps/licensing/v1/product/{productId}/sku/{skuId}/user/{userId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -1236,6 +1314,19 @@ export namespace licensing_v1 {
         options = {};
       }
 
+      if (params.productId !== undefined && params.productId !== null) {
+        validateSingleSegment('productId', String(params.productId));
+        params.productId = encodeWithSlashes(String(params.productId));
+      }
+      if (params.skuId !== undefined && params.skuId !== null) {
+        validateSingleSegment('skuId', String(params.skuId));
+        params.skuId = encodeWithSlashes(String(params.skuId));
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://licensing.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1243,7 +1334,9 @@ export namespace licensing_v1 {
             url: (
               rootUrl +
               '/apps/licensing/v1/product/{productId}/sku/{skuId}/user/{userId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },

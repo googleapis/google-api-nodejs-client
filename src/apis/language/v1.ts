@@ -34,6 +34,12 @@ import {
   APIRequestContext,
 } from 'googleapis-common';
 import {Readable} from 'stream';
+import {
+  validateSingleSegment,
+  validateMultiSegment,
+  encodeWithSlashes,
+  encodeWithoutSlashes,
+} from '../../transcoding';
 
 export namespace language_v1 {
   export interface Options extends GlobalOptions {
@@ -2754,10 +2760,9 @@ export namespace language_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/documents:analyzeEntities').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/documents:analyzeEntities')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -2905,10 +2910,9 @@ export namespace language_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/documents:analyzeEntitySentiment').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/documents:analyzeEntitySentiment')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -3058,10 +3062,9 @@ export namespace language_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/documents:analyzeSentiment').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/documents:analyzeSentiment')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -3209,10 +3212,9 @@ export namespace language_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/documents:analyzeSyntax').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/documents:analyzeSyntax')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -3365,10 +3367,9 @@ export namespace language_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/documents:annotateText').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/documents:annotateText')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -3514,10 +3515,9 @@ export namespace language_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/documents:classifyText').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/documents:classifyText')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -3662,10 +3662,9 @@ export namespace language_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/documents:moderateText').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/documents:moderateText')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },

@@ -73,6 +73,7 @@ export class Generator {
     this.env.addFilter('getPathParams', filters.getPathParams);
     this.env.addFilter('getSafeParamName', filters.getSafeParamName);
     this.env.addFilter('hasResourceParam', filters.hasResourceParam);
+    this.env.addFilter('isReservedParam', filters.isReservedParam);
   }
 
   /**

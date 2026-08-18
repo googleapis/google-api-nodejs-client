@@ -34,6 +34,12 @@ import {
   APIRequestContext,
 } from 'googleapis-common';
 import {Readable} from 'stream';
+import {
+  validateSingleSegment,
+  validateMultiSegment,
+  encodeWithSlashes,
+  encodeWithoutSlashes,
+} from '../../transcoding';
 
 export namespace calendar_v3 {
   export interface Options extends GlobalOptions {
@@ -1346,13 +1352,22 @@ export namespace calendar_v3 {
         options = {};
       }
 
+      if (params.calendarId !== undefined && params.calendarId !== null) {
+        validateSingleSegment('calendarId', String(params.calendarId));
+        params.calendarId = encodeWithSlashes(String(params.calendarId));
+      }
+      if (params.ruleId !== undefined && params.ruleId !== null) {
+        validateSingleSegment('ruleId', String(params.ruleId));
+        params.ruleId = encodeWithSlashes(String(params.ruleId));
+      }
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/calendar/v3/calendars/{calendarId}/acl/{ruleId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/calendar/v3/calendars/{calendarId}/acl/{ruleId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -1491,13 +1506,22 @@ export namespace calendar_v3 {
         options = {};
       }
 
+      if (params.calendarId !== undefined && params.calendarId !== null) {
+        validateSingleSegment('calendarId', String(params.calendarId));
+        params.calendarId = encodeWithSlashes(String(params.calendarId));
+      }
+      if (params.ruleId !== undefined && params.ruleId !== null) {
+        validateSingleSegment('ruleId', String(params.ruleId));
+        params.ruleId = encodeWithSlashes(String(params.ruleId));
+      }
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/calendar/v3/calendars/{calendarId}/acl/{ruleId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/calendar/v3/calendars/{calendarId}/acl/{ruleId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -1646,14 +1670,18 @@ export namespace calendar_v3 {
         options = {};
       }
 
+      if (params.calendarId !== undefined && params.calendarId !== null) {
+        validateSingleSegment('calendarId', String(params.calendarId));
+        params.calendarId = encodeWithSlashes(String(params.calendarId));
+      }
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/calendar/v3/calendars/{calendarId}/acl').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/calendar/v3/calendars/{calendarId}/acl')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -1800,14 +1828,18 @@ export namespace calendar_v3 {
         options = {};
       }
 
+      if (params.calendarId !== undefined && params.calendarId !== null) {
+        validateSingleSegment('calendarId', String(params.calendarId));
+        params.calendarId = encodeWithSlashes(String(params.calendarId));
+      }
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/calendar/v3/calendars/{calendarId}/acl').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/calendar/v3/calendars/{calendarId}/acl')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -1958,13 +1990,22 @@ export namespace calendar_v3 {
         options = {};
       }
 
+      if (params.calendarId !== undefined && params.calendarId !== null) {
+        validateSingleSegment('calendarId', String(params.calendarId));
+        params.calendarId = encodeWithSlashes(String(params.calendarId));
+      }
+      if (params.ruleId !== undefined && params.ruleId !== null) {
+        validateSingleSegment('ruleId', String(params.ruleId));
+        params.ruleId = encodeWithSlashes(String(params.ruleId));
+      }
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/calendar/v3/calendars/{calendarId}/acl/{ruleId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/calendar/v3/calendars/{calendarId}/acl/{ruleId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -2115,13 +2156,22 @@ export namespace calendar_v3 {
         options = {};
       }
 
+      if (params.calendarId !== undefined && params.calendarId !== null) {
+        validateSingleSegment('calendarId', String(params.calendarId));
+        params.calendarId = encodeWithSlashes(String(params.calendarId));
+      }
+      if (params.ruleId !== undefined && params.ruleId !== null) {
+        validateSingleSegment('ruleId', String(params.ruleId));
+        params.ruleId = encodeWithSlashes(String(params.ruleId));
+      }
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/calendar/v3/calendars/{calendarId}/acl/{ruleId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/calendar/v3/calendars/{calendarId}/acl/{ruleId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -2290,13 +2340,18 @@ export namespace calendar_v3 {
         options = {};
       }
 
+      if (params.calendarId !== undefined && params.calendarId !== null) {
+        validateSingleSegment('calendarId', String(params.calendarId));
+        params.calendarId = encodeWithSlashes(String(params.calendarId));
+      }
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/calendar/v3/calendars/{calendarId}/acl/watch'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/calendar/v3/calendars/{calendarId}/acl/watch')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -2559,13 +2614,18 @@ export namespace calendar_v3 {
         options = {};
       }
 
+      if (params.calendarId !== undefined && params.calendarId !== null) {
+        validateSingleSegment('calendarId', String(params.calendarId));
+        params.calendarId = encodeWithSlashes(String(params.calendarId));
+      }
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/calendar/v3/users/me/calendarList/{calendarId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/calendar/v3/users/me/calendarList/{calendarId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -2720,13 +2780,18 @@ export namespace calendar_v3 {
         options = {};
       }
 
+      if (params.calendarId !== undefined && params.calendarId !== null) {
+        validateSingleSegment('calendarId', String(params.calendarId));
+        params.calendarId = encodeWithSlashes(String(params.calendarId));
+      }
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/calendar/v3/users/me/calendarList/{calendarId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/calendar/v3/users/me/calendarList/{calendarId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -2911,10 +2976,9 @@ export namespace calendar_v3 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/calendar/v3/users/me/calendarList').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/calendar/v3/users/me/calendarList')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -3073,10 +3137,9 @@ export namespace calendar_v3 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/calendar/v3/users/me/calendarList').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/calendar/v3/users/me/calendarList')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -3260,13 +3323,18 @@ export namespace calendar_v3 {
         options = {};
       }
 
+      if (params.calendarId !== undefined && params.calendarId !== null) {
+        validateSingleSegment('calendarId', String(params.calendarId));
+        params.calendarId = encodeWithSlashes(String(params.calendarId));
+      }
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/calendar/v3/users/me/calendarList/{calendarId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/calendar/v3/users/me/calendarList/{calendarId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -3450,13 +3518,18 @@ export namespace calendar_v3 {
         options = {};
       }
 
+      if (params.calendarId !== undefined && params.calendarId !== null) {
+        validateSingleSegment('calendarId', String(params.calendarId));
+        params.calendarId = encodeWithSlashes(String(params.calendarId));
+      }
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/calendar/v3/users/me/calendarList/{calendarId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/calendar/v3/users/me/calendarList/{calendarId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -3636,10 +3709,9 @@ export namespace calendar_v3 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/calendar/v3/users/me/calendarList/watch').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/calendar/v3/users/me/calendarList/watch')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -3898,13 +3970,18 @@ export namespace calendar_v3 {
         options = {};
       }
 
+      if (params.calendarId !== undefined && params.calendarId !== null) {
+        validateSingleSegment('calendarId', String(params.calendarId));
+        params.calendarId = encodeWithSlashes(String(params.calendarId));
+      }
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/calendar/v3/calendars/{calendarId}/clear'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/calendar/v3/calendars/{calendarId}/clear')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -4030,14 +4107,18 @@ export namespace calendar_v3 {
         options = {};
       }
 
+      if (params.calendarId !== undefined && params.calendarId !== null) {
+        validateSingleSegment('calendarId', String(params.calendarId));
+        params.calendarId = encodeWithSlashes(String(params.calendarId));
+      }
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/calendar/v3/calendars/{calendarId}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/calendar/v3/calendars/{calendarId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -4181,14 +4262,18 @@ export namespace calendar_v3 {
         options = {};
       }
 
+      if (params.calendarId !== undefined && params.calendarId !== null) {
+        validateSingleSegment('calendarId', String(params.calendarId));
+        params.calendarId = encodeWithSlashes(String(params.calendarId));
+      }
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/calendar/v3/calendars/{calendarId}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/calendar/v3/calendars/{calendarId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -4352,10 +4437,9 @@ export namespace calendar_v3 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/calendar/v3/calendars').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/calendar/v3/calendars')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -4515,14 +4599,18 @@ export namespace calendar_v3 {
         options = {};
       }
 
+      if (params.calendarId !== undefined && params.calendarId !== null) {
+        validateSingleSegment('calendarId', String(params.calendarId));
+        params.calendarId = encodeWithSlashes(String(params.calendarId));
+      }
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/calendar/v3/calendars/{calendarId}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/calendar/v3/calendars/{calendarId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -4654,13 +4742,20 @@ export namespace calendar_v3 {
         options = {};
       }
 
+      if (params.calendarId !== undefined && params.calendarId !== null) {
+        validateSingleSegment('calendarId', String(params.calendarId));
+        params.calendarId = encodeWithSlashes(String(params.calendarId));
+      }
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/calendar/v3/calendars/{calendarId}/transferOwnership'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -4820,14 +4915,18 @@ export namespace calendar_v3 {
         options = {};
       }
 
+      if (params.calendarId !== undefined && params.calendarId !== null) {
+        validateSingleSegment('calendarId', String(params.calendarId));
+        params.calendarId = encodeWithSlashes(String(params.calendarId));
+      }
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/calendar/v3/calendars/{calendarId}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/calendar/v3/calendars/{calendarId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -5050,10 +5149,9 @@ export namespace calendar_v3 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/calendar/v3/channels/stop').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/calendar/v3/channels/stop')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -5209,10 +5307,9 @@ export namespace calendar_v3 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/calendar/v3/colors').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/calendar/v3/colors')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -5356,13 +5453,24 @@ export namespace calendar_v3 {
         options = {};
       }
 
+      if (params.calendarId !== undefined && params.calendarId !== null) {
+        validateSingleSegment('calendarId', String(params.calendarId));
+        params.calendarId = encodeWithSlashes(String(params.calendarId));
+      }
+      if (params.eventId !== undefined && params.eventId !== null) {
+        validateSingleSegment('eventId', String(params.eventId));
+        params.eventId = encodeWithSlashes(String(params.eventId));
+      }
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/calendar/v3/calendars/{calendarId}/events/{eventId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -5551,13 +5659,24 @@ export namespace calendar_v3 {
         options = {};
       }
 
+      if (params.calendarId !== undefined && params.calendarId !== null) {
+        validateSingleSegment('calendarId', String(params.calendarId));
+        params.calendarId = encodeWithSlashes(String(params.calendarId));
+      }
+      if (params.eventId !== undefined && params.eventId !== null) {
+        validateSingleSegment('eventId', String(params.eventId));
+        params.eventId = encodeWithSlashes(String(params.eventId));
+      }
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/calendar/v3/calendars/{calendarId}/events/{eventId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -5791,13 +5910,18 @@ export namespace calendar_v3 {
         options = {};
       }
 
+      if (params.calendarId !== undefined && params.calendarId !== null) {
+        validateSingleSegment('calendarId', String(params.calendarId));
+        params.calendarId = encodeWithSlashes(String(params.calendarId));
+      }
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/calendar/v3/calendars/{calendarId}/events/import'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/calendar/v3/calendars/{calendarId}/events/import')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -6038,13 +6162,18 @@ export namespace calendar_v3 {
         options = {};
       }
 
+      if (params.calendarId !== undefined && params.calendarId !== null) {
+        validateSingleSegment('calendarId', String(params.calendarId));
+        params.calendarId = encodeWithSlashes(String(params.calendarId));
+      }
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/calendar/v3/calendars/{calendarId}/events'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/calendar/v3/calendars/{calendarId}/events')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -6212,6 +6341,15 @@ export namespace calendar_v3 {
         options = {};
       }
 
+      if (params.calendarId !== undefined && params.calendarId !== null) {
+        validateSingleSegment('calendarId', String(params.calendarId));
+        params.calendarId = encodeWithSlashes(String(params.calendarId));
+      }
+      if (params.eventId !== undefined && params.eventId !== null) {
+        validateSingleSegment('eventId', String(params.eventId));
+        params.eventId = encodeWithSlashes(String(params.eventId));
+      }
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -6219,7 +6357,9 @@ export namespace calendar_v3 {
             url: (
               rootUrl +
               '/calendar/v3/calendars/{calendarId}/events/{eventId}/instances'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -6429,13 +6569,18 @@ export namespace calendar_v3 {
         options = {};
       }
 
+      if (params.calendarId !== undefined && params.calendarId !== null) {
+        validateSingleSegment('calendarId', String(params.calendarId));
+        params.calendarId = encodeWithSlashes(String(params.calendarId));
+      }
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/calendar/v3/calendars/{calendarId}/events'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/calendar/v3/calendars/{calendarId}/events')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -6620,6 +6765,15 @@ export namespace calendar_v3 {
         options = {};
       }
 
+      if (params.calendarId !== undefined && params.calendarId !== null) {
+        validateSingleSegment('calendarId', String(params.calendarId));
+        params.calendarId = encodeWithSlashes(String(params.calendarId));
+      }
+      if (params.eventId !== undefined && params.eventId !== null) {
+        validateSingleSegment('eventId', String(params.eventId));
+        params.eventId = encodeWithSlashes(String(params.eventId));
+      }
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -6627,7 +6781,9 @@ export namespace calendar_v3 {
             url: (
               rootUrl +
               '/calendar/v3/calendars/{calendarId}/events/{eventId}/move'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -6872,13 +7028,24 @@ export namespace calendar_v3 {
         options = {};
       }
 
+      if (params.calendarId !== undefined && params.calendarId !== null) {
+        validateSingleSegment('calendarId', String(params.calendarId));
+        params.calendarId = encodeWithSlashes(String(params.calendarId));
+      }
+      if (params.eventId !== undefined && params.eventId !== null) {
+        validateSingleSegment('eventId', String(params.eventId));
+        params.eventId = encodeWithSlashes(String(params.eventId));
+      }
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/calendar/v3/calendars/{calendarId}/events/{eventId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -7062,13 +7229,20 @@ export namespace calendar_v3 {
         options = {};
       }
 
+      if (params.calendarId !== undefined && params.calendarId !== null) {
+        validateSingleSegment('calendarId', String(params.calendarId));
+        params.calendarId = encodeWithSlashes(String(params.calendarId));
+      }
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/calendar/v3/calendars/{calendarId}/events/quickAdd'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -7313,13 +7487,24 @@ export namespace calendar_v3 {
         options = {};
       }
 
+      if (params.calendarId !== undefined && params.calendarId !== null) {
+        validateSingleSegment('calendarId', String(params.calendarId));
+        params.calendarId = encodeWithSlashes(String(params.calendarId));
+      }
+      if (params.eventId !== undefined && params.eventId !== null) {
+        validateSingleSegment('eventId', String(params.eventId));
+        params.eventId = encodeWithSlashes(String(params.eventId));
+      }
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/calendar/v3/calendars/{calendarId}/events/{eventId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -7545,13 +7730,18 @@ export namespace calendar_v3 {
         options = {};
       }
 
+      if (params.calendarId !== undefined && params.calendarId !== null) {
+        validateSingleSegment('calendarId', String(params.calendarId));
+        params.calendarId = encodeWithSlashes(String(params.calendarId));
+      }
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/calendar/v3/calendars/{calendarId}/events/watch'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/calendar/v3/calendars/{calendarId}/events/watch')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -8206,10 +8396,9 @@ export namespace calendar_v3 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/calendar/v3/freeBusy').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/calendar/v3/freeBusy')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -8358,14 +8547,18 @@ export namespace calendar_v3 {
         options = {};
       }
 
+      if (params.setting !== undefined && params.setting !== null) {
+        validateSingleSegment('setting', String(params.setting));
+        params.setting = encodeWithSlashes(String(params.setting));
+      }
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/calendar/v3/users/me/settings/{setting}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/calendar/v3/users/me/settings/{setting}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -8512,10 +8705,9 @@ export namespace calendar_v3 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/calendar/v3/users/me/settings').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/calendar/v3/users/me/settings')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -8684,10 +8876,9 @@ export namespace calendar_v3 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/calendar/v3/users/me/settings/watch').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/calendar/v3/users/me/settings/watch')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },

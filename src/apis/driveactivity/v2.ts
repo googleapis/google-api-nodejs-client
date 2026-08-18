@@ -34,6 +34,12 @@ import {
   APIRequestContext,
 } from 'googleapis-common';
 import {Readable} from 'stream';
+import {
+  validateSingleSegment,
+  validateMultiSegment,
+  encodeWithSlashes,
+  encodeWithoutSlashes,
+} from '../../transcoding';
 
 export namespace driveactivity_v2 {
   export interface Options extends GlobalOptions {
@@ -1175,7 +1181,9 @@ export namespace driveactivity_v2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2/activity:query').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/activity:query')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },

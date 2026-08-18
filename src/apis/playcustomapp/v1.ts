@@ -34,6 +34,12 @@ import {
   APIRequestContext,
 } from 'googleapis-common';
 import {Readable} from 'stream';
+import {
+  validateSingleSegment,
+  validateMultiSegment,
+  encodeWithSlashes,
+  encodeWithoutSlashes,
+} from '../../transcoding';
 
 export namespace playcustomapp_v1 {
   export interface Options extends GlobalOptions {
@@ -300,14 +306,19 @@ export namespace playcustomapp_v1 {
         options = {};
       }
 
+      if (params.account !== undefined && params.account !== null) {
+        validateSingleSegment('account', String(params.account));
+        params.account = encodeWithSlashes(String(params.account));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://playcustomapp.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/playcustomapp/v1/accounts/{account}/customApps'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/playcustomapp/v1/accounts/{account}/customApps')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -316,7 +327,9 @@ export namespace playcustomapp_v1 {
         params,
         mediaUrl: (
           rootUrl + '/upload/playcustomapp/v1/accounts/{account}/customApps'
-        ).replace(/([^:]\/)\/+/g, '$1'),
+        )
+          .replace(/([^:]\/)\/+/g, '$1')
+          .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
         requiredParams: ['account'],
         pathParams: ['account'],
         context: this.context,

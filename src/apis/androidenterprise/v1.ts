@@ -34,6 +34,12 @@ import {
   APIRequestContext,
 } from 'googleapis-common';
 import {Readable} from 'stream';
+import {
+  validateSingleSegment,
+  validateMultiSegment,
+  encodeWithSlashes,
+  encodeWithoutSlashes,
+} from '../../transcoding';
 
 export namespace androidenterprise_v1 {
   export interface Options extends GlobalOptions {
@@ -1721,6 +1727,19 @@ export namespace androidenterprise_v1 {
         options = {};
       }
 
+      if (params.deviceId !== undefined && params.deviceId !== null) {
+        validateSingleSegment('deviceId', String(params.deviceId));
+        params.deviceId = encodeWithSlashes(String(params.deviceId));
+      }
+      if (params.enterpriseId !== undefined && params.enterpriseId !== null) {
+        validateSingleSegment('enterpriseId', String(params.enterpriseId));
+        params.enterpriseId = encodeWithSlashes(String(params.enterpriseId));
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidenterprise.googleapis.com/';
       const parameters = {
@@ -1729,7 +1748,9 @@ export namespace androidenterprise_v1 {
             url: (
               rootUrl +
               '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/forceReportUpload'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -1871,6 +1892,19 @@ export namespace androidenterprise_v1 {
         options = {};
       }
 
+      if (params.deviceId !== undefined && params.deviceId !== null) {
+        validateSingleSegment('deviceId', String(params.deviceId));
+        params.deviceId = encodeWithSlashes(String(params.deviceId));
+      }
+      if (params.enterpriseId !== undefined && params.enterpriseId !== null) {
+        validateSingleSegment('enterpriseId', String(params.enterpriseId));
+        params.enterpriseId = encodeWithSlashes(String(params.enterpriseId));
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidenterprise.googleapis.com/';
       const parameters = {
@@ -1879,7 +1913,9 @@ export namespace androidenterprise_v1 {
             url: (
               rootUrl +
               '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -2012,6 +2048,19 @@ export namespace androidenterprise_v1 {
         options = {};
       }
 
+      if (params.deviceId !== undefined && params.deviceId !== null) {
+        validateSingleSegment('deviceId', String(params.deviceId));
+        params.deviceId = encodeWithSlashes(String(params.deviceId));
+      }
+      if (params.enterpriseId !== undefined && params.enterpriseId !== null) {
+        validateSingleSegment('enterpriseId', String(params.enterpriseId));
+        params.enterpriseId = encodeWithSlashes(String(params.enterpriseId));
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidenterprise.googleapis.com/';
       const parameters = {
@@ -2020,7 +2069,9 @@ export namespace androidenterprise_v1 {
             url: (
               rootUrl +
               '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/state'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -2151,6 +2202,15 @@ export namespace androidenterprise_v1 {
         options = {};
       }
 
+      if (params.enterpriseId !== undefined && params.enterpriseId !== null) {
+        validateSingleSegment('enterpriseId', String(params.enterpriseId));
+        params.enterpriseId = encodeWithSlashes(String(params.enterpriseId));
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidenterprise.googleapis.com/';
       const parameters = {
@@ -2159,7 +2219,9 @@ export namespace androidenterprise_v1 {
             url: (
               rootUrl +
               '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -2300,6 +2362,19 @@ export namespace androidenterprise_v1 {
         options = {};
       }
 
+      if (params.deviceId !== undefined && params.deviceId !== null) {
+        validateSingleSegment('deviceId', String(params.deviceId));
+        params.deviceId = encodeWithSlashes(String(params.deviceId));
+      }
+      if (params.enterpriseId !== undefined && params.enterpriseId !== null) {
+        validateSingleSegment('enterpriseId', String(params.enterpriseId));
+        params.enterpriseId = encodeWithSlashes(String(params.enterpriseId));
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidenterprise.googleapis.com/';
       const parameters = {
@@ -2308,7 +2383,9 @@ export namespace androidenterprise_v1 {
             url: (
               rootUrl +
               '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/state'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -2470,6 +2547,19 @@ export namespace androidenterprise_v1 {
         options = {};
       }
 
+      if (params.deviceId !== undefined && params.deviceId !== null) {
+        validateSingleSegment('deviceId', String(params.deviceId));
+        params.deviceId = encodeWithSlashes(String(params.deviceId));
+      }
+      if (params.enterpriseId !== undefined && params.enterpriseId !== null) {
+        validateSingleSegment('enterpriseId', String(params.enterpriseId));
+        params.enterpriseId = encodeWithSlashes(String(params.enterpriseId));
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidenterprise.googleapis.com/';
       const parameters = {
@@ -2478,7 +2568,9 @@ export namespace androidenterprise_v1 {
             url: (
               rootUrl +
               '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -2724,6 +2816,11 @@ export namespace androidenterprise_v1 {
         options = {};
       }
 
+      if (params.enterpriseId !== undefined && params.enterpriseId !== null) {
+        validateSingleSegment('enterpriseId', String(params.enterpriseId));
+        params.enterpriseId = encodeWithSlashes(String(params.enterpriseId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidenterprise.googleapis.com/';
       const parameters = {
@@ -2732,7 +2829,9 @@ export namespace androidenterprise_v1 {
             url: (
               rootUrl +
               '/androidenterprise/v1/enterprises/{enterpriseId}/enrollmentTokens'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -2882,7 +2981,9 @@ export namespace androidenterprise_v1 {
             url: (
               rootUrl +
               '/androidenterprise/v1/enterprises/acknowledgeNotificationSet'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -3024,9 +3125,9 @@ export namespace androidenterprise_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/androidenterprise/v1/enterprises/completeSignup'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/androidenterprise/v1/enterprises/completeSignup')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -3174,6 +3275,11 @@ export namespace androidenterprise_v1 {
         options = {};
       }
 
+      if (params.enterpriseId !== undefined && params.enterpriseId !== null) {
+        validateSingleSegment('enterpriseId', String(params.enterpriseId));
+        params.enterpriseId = encodeWithSlashes(String(params.enterpriseId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidenterprise.googleapis.com/';
       const parameters = {
@@ -3182,7 +3288,9 @@ export namespace androidenterprise_v1 {
             url: (
               rootUrl +
               '/androidenterprise/v1/enterprises/{enterpriseId}/createWebToken'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -3336,10 +3444,9 @@ export namespace androidenterprise_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/androidenterprise/v1/enterprises/enroll').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/androidenterprise/v1/enterprises/enroll')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -3481,6 +3588,11 @@ export namespace androidenterprise_v1 {
         options = {};
       }
 
+      if (params.enterpriseId !== undefined && params.enterpriseId !== null) {
+        validateSingleSegment('enterpriseId', String(params.enterpriseId));
+        params.enterpriseId = encodeWithSlashes(String(params.enterpriseId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidenterprise.googleapis.com/';
       const parameters = {
@@ -3489,7 +3601,9 @@ export namespace androidenterprise_v1 {
             url: (
               rootUrl +
               '/androidenterprise/v1/enterprises/{enterpriseId}/generateEnterpriseUpgradeUrl'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -3631,9 +3745,9 @@ export namespace androidenterprise_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/androidenterprise/v1/enterprises/signupUrl'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/androidenterprise/v1/enterprises/signupUrl')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -3767,14 +3881,19 @@ export namespace androidenterprise_v1 {
         options = {};
       }
 
+      if (params.enterpriseId !== undefined && params.enterpriseId !== null) {
+        validateSingleSegment('enterpriseId', String(params.enterpriseId));
+        params.enterpriseId = encodeWithSlashes(String(params.enterpriseId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidenterprise.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -3909,6 +4028,11 @@ export namespace androidenterprise_v1 {
         options = {};
       }
 
+      if (params.enterpriseId !== undefined && params.enterpriseId !== null) {
+        validateSingleSegment('enterpriseId', String(params.enterpriseId));
+        params.enterpriseId = encodeWithSlashes(String(params.enterpriseId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidenterprise.googleapis.com/';
       const parameters = {
@@ -3917,7 +4041,9 @@ export namespace androidenterprise_v1 {
             url: (
               rootUrl +
               '/androidenterprise/v1/enterprises/{enterpriseId}/serviceAccount'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -4048,6 +4174,11 @@ export namespace androidenterprise_v1 {
         options = {};
       }
 
+      if (params.enterpriseId !== undefined && params.enterpriseId !== null) {
+        validateSingleSegment('enterpriseId', String(params.enterpriseId));
+        params.enterpriseId = encodeWithSlashes(String(params.enterpriseId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidenterprise.googleapis.com/';
       const parameters = {
@@ -4056,7 +4187,9 @@ export namespace androidenterprise_v1 {
             url: (
               rootUrl +
               '/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -4191,10 +4324,9 @@ export namespace androidenterprise_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/androidenterprise/v1/enterprises').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/androidenterprise/v1/enterprises')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -4334,7 +4466,9 @@ export namespace androidenterprise_v1 {
           {
             url: (
               rootUrl + '/androidenterprise/v1/enterprises/pullNotificationSet'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -4473,6 +4607,11 @@ export namespace androidenterprise_v1 {
         options = {};
       }
 
+      if (params.enterpriseId !== undefined && params.enterpriseId !== null) {
+        validateSingleSegment('enterpriseId', String(params.enterpriseId));
+        params.enterpriseId = encodeWithSlashes(String(params.enterpriseId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidenterprise.googleapis.com/';
       const parameters = {
@@ -4481,7 +4620,9 @@ export namespace androidenterprise_v1 {
             url: (
               rootUrl +
               '/androidenterprise/v1/enterprises/{enterpriseId}/sendTestPushNotification'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -4621,6 +4762,11 @@ export namespace androidenterprise_v1 {
         options = {};
       }
 
+      if (params.enterpriseId !== undefined && params.enterpriseId !== null) {
+        validateSingleSegment('enterpriseId', String(params.enterpriseId));
+        params.enterpriseId = encodeWithSlashes(String(params.enterpriseId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidenterprise.googleapis.com/';
       const parameters = {
@@ -4629,7 +4775,9 @@ export namespace androidenterprise_v1 {
             url: (
               rootUrl +
               '/androidenterprise/v1/enterprises/{enterpriseId}/account'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -4769,6 +4917,11 @@ export namespace androidenterprise_v1 {
         options = {};
       }
 
+      if (params.enterpriseId !== undefined && params.enterpriseId !== null) {
+        validateSingleSegment('enterpriseId', String(params.enterpriseId));
+        params.enterpriseId = encodeWithSlashes(String(params.enterpriseId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidenterprise.googleapis.com/';
       const parameters = {
@@ -4777,7 +4930,9 @@ export namespace androidenterprise_v1 {
             url: (
               rootUrl +
               '/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -4900,6 +5055,11 @@ export namespace androidenterprise_v1 {
         options = {};
       }
 
+      if (params.enterpriseId !== undefined && params.enterpriseId !== null) {
+        validateSingleSegment('enterpriseId', String(params.enterpriseId));
+        params.enterpriseId = encodeWithSlashes(String(params.enterpriseId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidenterprise.googleapis.com/';
       const parameters = {
@@ -4908,7 +5068,9 @@ export namespace androidenterprise_v1 {
             url: (
               rootUrl +
               '/androidenterprise/v1/enterprises/{enterpriseId}/unenroll'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -5177,6 +5339,19 @@ export namespace androidenterprise_v1 {
         options = {};
       }
 
+      if (params.enterpriseId !== undefined && params.enterpriseId !== null) {
+        validateSingleSegment('enterpriseId', String(params.enterpriseId));
+        params.enterpriseId = encodeWithSlashes(String(params.enterpriseId));
+      }
+      if (params.entitlementId !== undefined && params.entitlementId !== null) {
+        validateSingleSegment('entitlementId', String(params.entitlementId));
+        params.entitlementId = encodeWithSlashes(String(params.entitlementId));
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidenterprise.googleapis.com/';
       const parameters = {
@@ -5185,7 +5360,9 @@ export namespace androidenterprise_v1 {
             url: (
               rootUrl +
               '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/entitlements/{entitlementId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -5319,6 +5496,19 @@ export namespace androidenterprise_v1 {
         options = {};
       }
 
+      if (params.enterpriseId !== undefined && params.enterpriseId !== null) {
+        validateSingleSegment('enterpriseId', String(params.enterpriseId));
+        params.enterpriseId = encodeWithSlashes(String(params.enterpriseId));
+      }
+      if (params.entitlementId !== undefined && params.entitlementId !== null) {
+        validateSingleSegment('entitlementId', String(params.entitlementId));
+        params.entitlementId = encodeWithSlashes(String(params.entitlementId));
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidenterprise.googleapis.com/';
       const parameters = {
@@ -5327,7 +5517,9 @@ export namespace androidenterprise_v1 {
             url: (
               rootUrl +
               '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/entitlements/{entitlementId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -5460,6 +5652,15 @@ export namespace androidenterprise_v1 {
         options = {};
       }
 
+      if (params.enterpriseId !== undefined && params.enterpriseId !== null) {
+        validateSingleSegment('enterpriseId', String(params.enterpriseId));
+        params.enterpriseId = encodeWithSlashes(String(params.enterpriseId));
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidenterprise.googleapis.com/';
       const parameters = {
@@ -5468,7 +5669,9 @@ export namespace androidenterprise_v1 {
             url: (
               rootUrl +
               '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/entitlements'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -5614,6 +5817,19 @@ export namespace androidenterprise_v1 {
         options = {};
       }
 
+      if (params.enterpriseId !== undefined && params.enterpriseId !== null) {
+        validateSingleSegment('enterpriseId', String(params.enterpriseId));
+        params.enterpriseId = encodeWithSlashes(String(params.enterpriseId));
+      }
+      if (params.entitlementId !== undefined && params.entitlementId !== null) {
+        validateSingleSegment('entitlementId', String(params.entitlementId));
+        params.entitlementId = encodeWithSlashes(String(params.entitlementId));
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidenterprise.googleapis.com/';
       const parameters = {
@@ -5622,7 +5838,9 @@ export namespace androidenterprise_v1 {
             url: (
               rootUrl +
               '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/entitlements/{entitlementId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -5828,6 +6046,20 @@ export namespace androidenterprise_v1 {
         options = {};
       }
 
+      if (params.enterpriseId !== undefined && params.enterpriseId !== null) {
+        validateSingleSegment('enterpriseId', String(params.enterpriseId));
+        params.enterpriseId = encodeWithSlashes(String(params.enterpriseId));
+      }
+      if (
+        params.groupLicenseId !== undefined &&
+        params.groupLicenseId !== null
+      ) {
+        validateSingleSegment('groupLicenseId', String(params.groupLicenseId));
+        params.groupLicenseId = encodeWithSlashes(
+          String(params.groupLicenseId)
+        );
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidenterprise.googleapis.com/';
       const parameters = {
@@ -5836,7 +6068,9 @@ export namespace androidenterprise_v1 {
             url: (
               rootUrl +
               '/androidenterprise/v1/enterprises/{enterpriseId}/groupLicenses/{groupLicenseId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -5969,6 +6203,11 @@ export namespace androidenterprise_v1 {
         options = {};
       }
 
+      if (params.enterpriseId !== undefined && params.enterpriseId !== null) {
+        validateSingleSegment('enterpriseId', String(params.enterpriseId));
+        params.enterpriseId = encodeWithSlashes(String(params.enterpriseId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidenterprise.googleapis.com/';
       const parameters = {
@@ -5977,7 +6216,9 @@ export namespace androidenterprise_v1 {
             url: (
               rootUrl +
               '/androidenterprise/v1/enterprises/{enterpriseId}/groupLicenses'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -6137,6 +6378,20 @@ export namespace androidenterprise_v1 {
         options = {};
       }
 
+      if (params.enterpriseId !== undefined && params.enterpriseId !== null) {
+        validateSingleSegment('enterpriseId', String(params.enterpriseId));
+        params.enterpriseId = encodeWithSlashes(String(params.enterpriseId));
+      }
+      if (
+        params.groupLicenseId !== undefined &&
+        params.groupLicenseId !== null
+      ) {
+        validateSingleSegment('groupLicenseId', String(params.groupLicenseId));
+        params.groupLicenseId = encodeWithSlashes(
+          String(params.groupLicenseId)
+        );
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidenterprise.googleapis.com/';
       const parameters = {
@@ -6145,7 +6400,9 @@ export namespace androidenterprise_v1 {
             url: (
               rootUrl +
               '/androidenterprise/v1/enterprises/{enterpriseId}/groupLicenses/{groupLicenseId}/users'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -6293,6 +6550,23 @@ export namespace androidenterprise_v1 {
         options = {};
       }
 
+      if (params.deviceId !== undefined && params.deviceId !== null) {
+        validateSingleSegment('deviceId', String(params.deviceId));
+        params.deviceId = encodeWithSlashes(String(params.deviceId));
+      }
+      if (params.enterpriseId !== undefined && params.enterpriseId !== null) {
+        validateSingleSegment('enterpriseId', String(params.enterpriseId));
+        params.enterpriseId = encodeWithSlashes(String(params.enterpriseId));
+      }
+      if (params.installId !== undefined && params.installId !== null) {
+        validateSingleSegment('installId', String(params.installId));
+        params.installId = encodeWithSlashes(String(params.installId));
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidenterprise.googleapis.com/';
       const parameters = {
@@ -6301,7 +6575,9 @@ export namespace androidenterprise_v1 {
             url: (
               rootUrl +
               '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/installs/{installId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -6437,6 +6713,23 @@ export namespace androidenterprise_v1 {
         options = {};
       }
 
+      if (params.deviceId !== undefined && params.deviceId !== null) {
+        validateSingleSegment('deviceId', String(params.deviceId));
+        params.deviceId = encodeWithSlashes(String(params.deviceId));
+      }
+      if (params.enterpriseId !== undefined && params.enterpriseId !== null) {
+        validateSingleSegment('enterpriseId', String(params.enterpriseId));
+        params.enterpriseId = encodeWithSlashes(String(params.enterpriseId));
+      }
+      if (params.installId !== undefined && params.installId !== null) {
+        validateSingleSegment('installId', String(params.installId));
+        params.installId = encodeWithSlashes(String(params.installId));
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidenterprise.googleapis.com/';
       const parameters = {
@@ -6445,7 +6738,9 @@ export namespace androidenterprise_v1 {
             url: (
               rootUrl +
               '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/installs/{installId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -6579,6 +6874,19 @@ export namespace androidenterprise_v1 {
         options = {};
       }
 
+      if (params.deviceId !== undefined && params.deviceId !== null) {
+        validateSingleSegment('deviceId', String(params.deviceId));
+        params.deviceId = encodeWithSlashes(String(params.deviceId));
+      }
+      if (params.enterpriseId !== undefined && params.enterpriseId !== null) {
+        validateSingleSegment('enterpriseId', String(params.enterpriseId));
+        params.enterpriseId = encodeWithSlashes(String(params.enterpriseId));
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidenterprise.googleapis.com/';
       const parameters = {
@@ -6587,7 +6895,9 @@ export namespace androidenterprise_v1 {
             url: (
               rootUrl +
               '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/installs'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -6733,6 +7043,23 @@ export namespace androidenterprise_v1 {
         options = {};
       }
 
+      if (params.deviceId !== undefined && params.deviceId !== null) {
+        validateSingleSegment('deviceId', String(params.deviceId));
+        params.deviceId = encodeWithSlashes(String(params.deviceId));
+      }
+      if (params.enterpriseId !== undefined && params.enterpriseId !== null) {
+        validateSingleSegment('enterpriseId', String(params.enterpriseId));
+        params.enterpriseId = encodeWithSlashes(String(params.enterpriseId));
+      }
+      if (params.installId !== undefined && params.installId !== null) {
+        validateSingleSegment('installId', String(params.installId));
+        params.installId = encodeWithSlashes(String(params.installId));
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidenterprise.googleapis.com/';
       const parameters = {
@@ -6741,7 +7068,9 @@ export namespace androidenterprise_v1 {
             url: (
               rootUrl +
               '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/installs/{installId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -6951,6 +7280,31 @@ export namespace androidenterprise_v1 {
         options = {};
       }
 
+      if (params.deviceId !== undefined && params.deviceId !== null) {
+        validateSingleSegment('deviceId', String(params.deviceId));
+        params.deviceId = encodeWithSlashes(String(params.deviceId));
+      }
+      if (params.enterpriseId !== undefined && params.enterpriseId !== null) {
+        validateSingleSegment('enterpriseId', String(params.enterpriseId));
+        params.enterpriseId = encodeWithSlashes(String(params.enterpriseId));
+      }
+      if (
+        params.managedConfigurationForDeviceId !== undefined &&
+        params.managedConfigurationForDeviceId !== null
+      ) {
+        validateSingleSegment(
+          'managedConfigurationForDeviceId',
+          String(params.managedConfigurationForDeviceId)
+        );
+        params.managedConfigurationForDeviceId = encodeWithSlashes(
+          String(params.managedConfigurationForDeviceId)
+        );
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidenterprise.googleapis.com/';
       const parameters = {
@@ -6959,7 +7313,9 @@ export namespace androidenterprise_v1 {
             url: (
               rootUrl +
               '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/managedConfigurationsForDevice/{managedConfigurationForDeviceId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -7109,6 +7465,31 @@ export namespace androidenterprise_v1 {
         options = {};
       }
 
+      if (params.deviceId !== undefined && params.deviceId !== null) {
+        validateSingleSegment('deviceId', String(params.deviceId));
+        params.deviceId = encodeWithSlashes(String(params.deviceId));
+      }
+      if (params.enterpriseId !== undefined && params.enterpriseId !== null) {
+        validateSingleSegment('enterpriseId', String(params.enterpriseId));
+        params.enterpriseId = encodeWithSlashes(String(params.enterpriseId));
+      }
+      if (
+        params.managedConfigurationForDeviceId !== undefined &&
+        params.managedConfigurationForDeviceId !== null
+      ) {
+        validateSingleSegment(
+          'managedConfigurationForDeviceId',
+          String(params.managedConfigurationForDeviceId)
+        );
+        params.managedConfigurationForDeviceId = encodeWithSlashes(
+          String(params.managedConfigurationForDeviceId)
+        );
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidenterprise.googleapis.com/';
       const parameters = {
@@ -7117,7 +7498,9 @@ export namespace androidenterprise_v1 {
             url: (
               rootUrl +
               '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/managedConfigurationsForDevice/{managedConfigurationForDeviceId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -7269,6 +7652,19 @@ export namespace androidenterprise_v1 {
         options = {};
       }
 
+      if (params.deviceId !== undefined && params.deviceId !== null) {
+        validateSingleSegment('deviceId', String(params.deviceId));
+        params.deviceId = encodeWithSlashes(String(params.deviceId));
+      }
+      if (params.enterpriseId !== undefined && params.enterpriseId !== null) {
+        validateSingleSegment('enterpriseId', String(params.enterpriseId));
+        params.enterpriseId = encodeWithSlashes(String(params.enterpriseId));
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidenterprise.googleapis.com/';
       const parameters = {
@@ -7277,7 +7673,9 @@ export namespace androidenterprise_v1 {
             url: (
               rootUrl +
               '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/managedConfigurationsForDevice'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -7430,6 +7828,31 @@ export namespace androidenterprise_v1 {
         options = {};
       }
 
+      if (params.deviceId !== undefined && params.deviceId !== null) {
+        validateSingleSegment('deviceId', String(params.deviceId));
+        params.deviceId = encodeWithSlashes(String(params.deviceId));
+      }
+      if (params.enterpriseId !== undefined && params.enterpriseId !== null) {
+        validateSingleSegment('enterpriseId', String(params.enterpriseId));
+        params.enterpriseId = encodeWithSlashes(String(params.enterpriseId));
+      }
+      if (
+        params.managedConfigurationForDeviceId !== undefined &&
+        params.managedConfigurationForDeviceId !== null
+      ) {
+        validateSingleSegment(
+          'managedConfigurationForDeviceId',
+          String(params.managedConfigurationForDeviceId)
+        );
+        params.managedConfigurationForDeviceId = encodeWithSlashes(
+          String(params.managedConfigurationForDeviceId)
+        );
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidenterprise.googleapis.com/';
       const parameters = {
@@ -7438,7 +7861,9 @@ export namespace androidenterprise_v1 {
             url: (
               rootUrl +
               '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/managedConfigurationsForDevice/{managedConfigurationForDeviceId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -7656,6 +8081,27 @@ export namespace androidenterprise_v1 {
         options = {};
       }
 
+      if (params.enterpriseId !== undefined && params.enterpriseId !== null) {
+        validateSingleSegment('enterpriseId', String(params.enterpriseId));
+        params.enterpriseId = encodeWithSlashes(String(params.enterpriseId));
+      }
+      if (
+        params.managedConfigurationForUserId !== undefined &&
+        params.managedConfigurationForUserId !== null
+      ) {
+        validateSingleSegment(
+          'managedConfigurationForUserId',
+          String(params.managedConfigurationForUserId)
+        );
+        params.managedConfigurationForUserId = encodeWithSlashes(
+          String(params.managedConfigurationForUserId)
+        );
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidenterprise.googleapis.com/';
       const parameters = {
@@ -7664,7 +8110,9 @@ export namespace androidenterprise_v1 {
             url: (
               rootUrl +
               '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/managedConfigurationsForUser/{managedConfigurationForUserId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -7806,6 +8254,27 @@ export namespace androidenterprise_v1 {
         options = {};
       }
 
+      if (params.enterpriseId !== undefined && params.enterpriseId !== null) {
+        validateSingleSegment('enterpriseId', String(params.enterpriseId));
+        params.enterpriseId = encodeWithSlashes(String(params.enterpriseId));
+      }
+      if (
+        params.managedConfigurationForUserId !== undefined &&
+        params.managedConfigurationForUserId !== null
+      ) {
+        validateSingleSegment(
+          'managedConfigurationForUserId',
+          String(params.managedConfigurationForUserId)
+        );
+        params.managedConfigurationForUserId = encodeWithSlashes(
+          String(params.managedConfigurationForUserId)
+        );
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidenterprise.googleapis.com/';
       const parameters = {
@@ -7814,7 +8283,9 @@ export namespace androidenterprise_v1 {
             url: (
               rootUrl +
               '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/managedConfigurationsForUser/{managedConfigurationForUserId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -7958,6 +8429,15 @@ export namespace androidenterprise_v1 {
         options = {};
       }
 
+      if (params.enterpriseId !== undefined && params.enterpriseId !== null) {
+        validateSingleSegment('enterpriseId', String(params.enterpriseId));
+        params.enterpriseId = encodeWithSlashes(String(params.enterpriseId));
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidenterprise.googleapis.com/';
       const parameters = {
@@ -7966,7 +8446,9 @@ export namespace androidenterprise_v1 {
             url: (
               rootUrl +
               '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/managedConfigurationsForUser'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -8117,6 +8599,27 @@ export namespace androidenterprise_v1 {
         options = {};
       }
 
+      if (params.enterpriseId !== undefined && params.enterpriseId !== null) {
+        validateSingleSegment('enterpriseId', String(params.enterpriseId));
+        params.enterpriseId = encodeWithSlashes(String(params.enterpriseId));
+      }
+      if (
+        params.managedConfigurationForUserId !== undefined &&
+        params.managedConfigurationForUserId !== null
+      ) {
+        validateSingleSegment(
+          'managedConfigurationForUserId',
+          String(params.managedConfigurationForUserId)
+        );
+        params.managedConfigurationForUserId = encodeWithSlashes(
+          String(params.managedConfigurationForUserId)
+        );
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidenterprise.googleapis.com/';
       const parameters = {
@@ -8125,7 +8628,9 @@ export namespace androidenterprise_v1 {
             url: (
               rootUrl +
               '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/managedConfigurationsForUser/{managedConfigurationForUserId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -8334,6 +8839,15 @@ export namespace androidenterprise_v1 {
         options = {};
       }
 
+      if (params.enterpriseId !== undefined && params.enterpriseId !== null) {
+        validateSingleSegment('enterpriseId', String(params.enterpriseId));
+        params.enterpriseId = encodeWithSlashes(String(params.enterpriseId));
+      }
+      if (params.productId !== undefined && params.productId !== null) {
+        validateSingleSegment('productId', String(params.productId));
+        params.productId = encodeWithSlashes(String(params.productId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidenterprise.googleapis.com/';
       const parameters = {
@@ -8342,7 +8856,9 @@ export namespace androidenterprise_v1 {
             url: (
               rootUrl +
               '/androidenterprise/v1/enterprises/{enterpriseId}/products/{productId}/managedConfigurationsSettings'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -8494,14 +9010,19 @@ export namespace androidenterprise_v1 {
         options = {};
       }
 
+      if (params.permissionId !== undefined && params.permissionId !== null) {
+        validateSingleSegment('permissionId', String(params.permissionId));
+        params.permissionId = encodeWithSlashes(String(params.permissionId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidenterprise.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/androidenterprise/v1/permissions/{permissionId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/androidenterprise/v1/permissions/{permissionId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -8652,6 +9173,15 @@ export namespace androidenterprise_v1 {
         options = {};
       }
 
+      if (params.enterpriseId !== undefined && params.enterpriseId !== null) {
+        validateSingleSegment('enterpriseId', String(params.enterpriseId));
+        params.enterpriseId = encodeWithSlashes(String(params.enterpriseId));
+      }
+      if (params.productId !== undefined && params.productId !== null) {
+        validateSingleSegment('productId', String(params.productId));
+        params.productId = encodeWithSlashes(String(params.productId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidenterprise.googleapis.com/';
       const parameters = {
@@ -8660,7 +9190,9 @@ export namespace androidenterprise_v1 {
             url: (
               rootUrl +
               '/androidenterprise/v1/enterprises/{enterpriseId}/products/{productId}/approve'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -8802,6 +9334,15 @@ export namespace androidenterprise_v1 {
         options = {};
       }
 
+      if (params.enterpriseId !== undefined && params.enterpriseId !== null) {
+        validateSingleSegment('enterpriseId', String(params.enterpriseId));
+        params.enterpriseId = encodeWithSlashes(String(params.enterpriseId));
+      }
+      if (params.productId !== undefined && params.productId !== null) {
+        validateSingleSegment('productId', String(params.productId));
+        params.productId = encodeWithSlashes(String(params.productId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidenterprise.googleapis.com/';
       const parameters = {
@@ -8810,7 +9351,9 @@ export namespace androidenterprise_v1 {
             url: (
               rootUrl +
               '/androidenterprise/v1/enterprises/{enterpriseId}/products/{productId}/generateApprovalUrl'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -8969,6 +9512,15 @@ export namespace androidenterprise_v1 {
         options = {};
       }
 
+      if (params.enterpriseId !== undefined && params.enterpriseId !== null) {
+        validateSingleSegment('enterpriseId', String(params.enterpriseId));
+        params.enterpriseId = encodeWithSlashes(String(params.enterpriseId));
+      }
+      if (params.productId !== undefined && params.productId !== null) {
+        validateSingleSegment('productId', String(params.productId));
+        params.productId = encodeWithSlashes(String(params.productId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidenterprise.googleapis.com/';
       const parameters = {
@@ -8977,7 +9529,9 @@ export namespace androidenterprise_v1 {
             url: (
               rootUrl +
               '/androidenterprise/v1/enterprises/{enterpriseId}/products/{productId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -9115,6 +9669,15 @@ export namespace androidenterprise_v1 {
         options = {};
       }
 
+      if (params.enterpriseId !== undefined && params.enterpriseId !== null) {
+        validateSingleSegment('enterpriseId', String(params.enterpriseId));
+        params.enterpriseId = encodeWithSlashes(String(params.enterpriseId));
+      }
+      if (params.productId !== undefined && params.productId !== null) {
+        validateSingleSegment('productId', String(params.productId));
+        params.productId = encodeWithSlashes(String(params.productId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidenterprise.googleapis.com/';
       const parameters = {
@@ -9123,7 +9686,9 @@ export namespace androidenterprise_v1 {
             url: (
               rootUrl +
               '/androidenterprise/v1/enterprises/{enterpriseId}/products/{productId}/appRestrictionsSchema'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -9258,6 +9823,15 @@ export namespace androidenterprise_v1 {
         options = {};
       }
 
+      if (params.enterpriseId !== undefined && params.enterpriseId !== null) {
+        validateSingleSegment('enterpriseId', String(params.enterpriseId));
+        params.enterpriseId = encodeWithSlashes(String(params.enterpriseId));
+      }
+      if (params.productId !== undefined && params.productId !== null) {
+        validateSingleSegment('productId', String(params.productId));
+        params.productId = encodeWithSlashes(String(params.productId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidenterprise.googleapis.com/';
       const parameters = {
@@ -9266,7 +9840,9 @@ export namespace androidenterprise_v1 {
             url: (
               rootUrl +
               '/androidenterprise/v1/enterprises/{enterpriseId}/products/{productId}/permissions'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -9408,6 +9984,11 @@ export namespace androidenterprise_v1 {
         options = {};
       }
 
+      if (params.enterpriseId !== undefined && params.enterpriseId !== null) {
+        validateSingleSegment('enterpriseId', String(params.enterpriseId));
+        params.enterpriseId = encodeWithSlashes(String(params.enterpriseId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidenterprise.googleapis.com/';
       const parameters = {
@@ -9416,7 +9997,9 @@ export namespace androidenterprise_v1 {
             url: (
               rootUrl +
               '/androidenterprise/v1/enterprises/{enterpriseId}/products'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -9541,6 +10124,15 @@ export namespace androidenterprise_v1 {
         options = {};
       }
 
+      if (params.enterpriseId !== undefined && params.enterpriseId !== null) {
+        validateSingleSegment('enterpriseId', String(params.enterpriseId));
+        params.enterpriseId = encodeWithSlashes(String(params.enterpriseId));
+      }
+      if (params.productId !== undefined && params.productId !== null) {
+        validateSingleSegment('productId', String(params.productId));
+        params.productId = encodeWithSlashes(String(params.productId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidenterprise.googleapis.com/';
       const parameters = {
@@ -9549,7 +10141,9 @@ export namespace androidenterprise_v1 {
             url: (
               rootUrl +
               '/androidenterprise/v1/enterprises/{enterpriseId}/products/{productId}/unapprove'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -9785,6 +10379,15 @@ export namespace androidenterprise_v1 {
         options = {};
       }
 
+      if (params.enterpriseId !== undefined && params.enterpriseId !== null) {
+        validateSingleSegment('enterpriseId', String(params.enterpriseId));
+        params.enterpriseId = encodeWithSlashes(String(params.enterpriseId));
+      }
+      if (params.keyId !== undefined && params.keyId !== null) {
+        validateSingleSegment('keyId', String(params.keyId));
+        params.keyId = encodeWithSlashes(String(params.keyId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidenterprise.googleapis.com/';
       const parameters = {
@@ -9793,7 +10396,9 @@ export namespace androidenterprise_v1 {
             url: (
               rootUrl +
               '/androidenterprise/v1/enterprises/{enterpriseId}/serviceAccountKeys/{keyId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -9937,6 +10542,11 @@ export namespace androidenterprise_v1 {
         options = {};
       }
 
+      if (params.enterpriseId !== undefined && params.enterpriseId !== null) {
+        validateSingleSegment('enterpriseId', String(params.enterpriseId));
+        params.enterpriseId = encodeWithSlashes(String(params.enterpriseId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidenterprise.googleapis.com/';
       const parameters = {
@@ -9945,7 +10555,9 @@ export namespace androidenterprise_v1 {
             url: (
               rootUrl +
               '/androidenterprise/v1/enterprises/{enterpriseId}/serviceAccountKeys'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -10079,6 +10691,11 @@ export namespace androidenterprise_v1 {
         options = {};
       }
 
+      if (params.enterpriseId !== undefined && params.enterpriseId !== null) {
+        validateSingleSegment('enterpriseId', String(params.enterpriseId));
+        params.enterpriseId = encodeWithSlashes(String(params.enterpriseId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidenterprise.googleapis.com/';
       const parameters = {
@@ -10087,7 +10704,9 @@ export namespace androidenterprise_v1 {
             url: (
               rootUrl +
               '/androidenterprise/v1/enterprises/{enterpriseId}/serviceAccountKeys'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -10251,6 +10870,19 @@ export namespace androidenterprise_v1 {
         options = {};
       }
 
+      if (params.clusterId !== undefined && params.clusterId !== null) {
+        validateSingleSegment('clusterId', String(params.clusterId));
+        params.clusterId = encodeWithSlashes(String(params.clusterId));
+      }
+      if (params.enterpriseId !== undefined && params.enterpriseId !== null) {
+        validateSingleSegment('enterpriseId', String(params.enterpriseId));
+        params.enterpriseId = encodeWithSlashes(String(params.enterpriseId));
+      }
+      if (params.pageId !== undefined && params.pageId !== null) {
+        validateSingleSegment('pageId', String(params.pageId));
+        params.pageId = encodeWithSlashes(String(params.pageId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidenterprise.googleapis.com/';
       const parameters = {
@@ -10259,7 +10891,9 @@ export namespace androidenterprise_v1 {
             url: (
               rootUrl +
               '/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}/clusters/{clusterId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -10396,6 +11030,19 @@ export namespace androidenterprise_v1 {
         options = {};
       }
 
+      if (params.clusterId !== undefined && params.clusterId !== null) {
+        validateSingleSegment('clusterId', String(params.clusterId));
+        params.clusterId = encodeWithSlashes(String(params.clusterId));
+      }
+      if (params.enterpriseId !== undefined && params.enterpriseId !== null) {
+        validateSingleSegment('enterpriseId', String(params.enterpriseId));
+        params.enterpriseId = encodeWithSlashes(String(params.enterpriseId));
+      }
+      if (params.pageId !== undefined && params.pageId !== null) {
+        validateSingleSegment('pageId', String(params.pageId));
+        params.pageId = encodeWithSlashes(String(params.pageId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidenterprise.googleapis.com/';
       const parameters = {
@@ -10404,7 +11051,9 @@ export namespace androidenterprise_v1 {
             url: (
               rootUrl +
               '/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}/clusters/{clusterId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -10550,6 +11199,15 @@ export namespace androidenterprise_v1 {
         options = {};
       }
 
+      if (params.enterpriseId !== undefined && params.enterpriseId !== null) {
+        validateSingleSegment('enterpriseId', String(params.enterpriseId));
+        params.enterpriseId = encodeWithSlashes(String(params.enterpriseId));
+      }
+      if (params.pageId !== undefined && params.pageId !== null) {
+        validateSingleSegment('pageId', String(params.pageId));
+        params.pageId = encodeWithSlashes(String(params.pageId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidenterprise.googleapis.com/';
       const parameters = {
@@ -10558,7 +11216,9 @@ export namespace androidenterprise_v1 {
             url: (
               rootUrl +
               '/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}/clusters'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -10694,6 +11354,15 @@ export namespace androidenterprise_v1 {
         options = {};
       }
 
+      if (params.enterpriseId !== undefined && params.enterpriseId !== null) {
+        validateSingleSegment('enterpriseId', String(params.enterpriseId));
+        params.enterpriseId = encodeWithSlashes(String(params.enterpriseId));
+      }
+      if (params.pageId !== undefined && params.pageId !== null) {
+        validateSingleSegment('pageId', String(params.pageId));
+        params.pageId = encodeWithSlashes(String(params.pageId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidenterprise.googleapis.com/';
       const parameters = {
@@ -10702,7 +11371,9 @@ export namespace androidenterprise_v1 {
             url: (
               rootUrl +
               '/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}/clusters'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -10852,6 +11523,19 @@ export namespace androidenterprise_v1 {
         options = {};
       }
 
+      if (params.clusterId !== undefined && params.clusterId !== null) {
+        validateSingleSegment('clusterId', String(params.clusterId));
+        params.clusterId = encodeWithSlashes(String(params.clusterId));
+      }
+      if (params.enterpriseId !== undefined && params.enterpriseId !== null) {
+        validateSingleSegment('enterpriseId', String(params.enterpriseId));
+        params.enterpriseId = encodeWithSlashes(String(params.enterpriseId));
+      }
+      if (params.pageId !== undefined && params.pageId !== null) {
+        validateSingleSegment('pageId', String(params.pageId));
+        params.pageId = encodeWithSlashes(String(params.pageId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidenterprise.googleapis.com/';
       const parameters = {
@@ -10860,7 +11544,9 @@ export namespace androidenterprise_v1 {
             url: (
               rootUrl +
               '/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}/clusters/{clusterId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -11065,6 +11751,15 @@ export namespace androidenterprise_v1 {
         options = {};
       }
 
+      if (params.enterpriseId !== undefined && params.enterpriseId !== null) {
+        validateSingleSegment('enterpriseId', String(params.enterpriseId));
+        params.enterpriseId = encodeWithSlashes(String(params.enterpriseId));
+      }
+      if (params.pageId !== undefined && params.pageId !== null) {
+        validateSingleSegment('pageId', String(params.pageId));
+        params.pageId = encodeWithSlashes(String(params.pageId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidenterprise.googleapis.com/';
       const parameters = {
@@ -11073,7 +11768,9 @@ export namespace androidenterprise_v1 {
             url: (
               rootUrl +
               '/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -11206,6 +11903,15 @@ export namespace androidenterprise_v1 {
         options = {};
       }
 
+      if (params.enterpriseId !== undefined && params.enterpriseId !== null) {
+        validateSingleSegment('enterpriseId', String(params.enterpriseId));
+        params.enterpriseId = encodeWithSlashes(String(params.enterpriseId));
+      }
+      if (params.pageId !== undefined && params.pageId !== null) {
+        validateSingleSegment('pageId', String(params.pageId));
+        params.pageId = encodeWithSlashes(String(params.pageId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidenterprise.googleapis.com/';
       const parameters = {
@@ -11214,7 +11920,9 @@ export namespace androidenterprise_v1 {
             url: (
               rootUrl +
               '/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -11355,6 +12063,11 @@ export namespace androidenterprise_v1 {
         options = {};
       }
 
+      if (params.enterpriseId !== undefined && params.enterpriseId !== null) {
+        validateSingleSegment('enterpriseId', String(params.enterpriseId));
+        params.enterpriseId = encodeWithSlashes(String(params.enterpriseId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidenterprise.googleapis.com/';
       const parameters = {
@@ -11363,7 +12076,9 @@ export namespace androidenterprise_v1 {
             url: (
               rootUrl +
               '/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -11497,6 +12212,11 @@ export namespace androidenterprise_v1 {
         options = {};
       }
 
+      if (params.enterpriseId !== undefined && params.enterpriseId !== null) {
+        validateSingleSegment('enterpriseId', String(params.enterpriseId));
+        params.enterpriseId = encodeWithSlashes(String(params.enterpriseId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidenterprise.googleapis.com/';
       const parameters = {
@@ -11505,7 +12225,9 @@ export namespace androidenterprise_v1 {
             url: (
               rootUrl +
               '/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -11650,6 +12372,15 @@ export namespace androidenterprise_v1 {
         options = {};
       }
 
+      if (params.enterpriseId !== undefined && params.enterpriseId !== null) {
+        validateSingleSegment('enterpriseId', String(params.enterpriseId));
+        params.enterpriseId = encodeWithSlashes(String(params.enterpriseId));
+      }
+      if (params.pageId !== undefined && params.pageId !== null) {
+        validateSingleSegment('pageId', String(params.pageId));
+        params.pageId = encodeWithSlashes(String(params.pageId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidenterprise.googleapis.com/';
       const parameters = {
@@ -11658,7 +12389,9 @@ export namespace androidenterprise_v1 {
             url: (
               rootUrl +
               '/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -11842,6 +12575,15 @@ export namespace androidenterprise_v1 {
         options = {};
       }
 
+      if (params.enterpriseId !== undefined && params.enterpriseId !== null) {
+        validateSingleSegment('enterpriseId', String(params.enterpriseId));
+        params.enterpriseId = encodeWithSlashes(String(params.enterpriseId));
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidenterprise.googleapis.com/';
       const parameters = {
@@ -11850,7 +12592,9 @@ export namespace androidenterprise_v1 {
             url: (
               rootUrl +
               '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -11984,6 +12728,15 @@ export namespace androidenterprise_v1 {
         options = {};
       }
 
+      if (params.enterpriseId !== undefined && params.enterpriseId !== null) {
+        validateSingleSegment('enterpriseId', String(params.enterpriseId));
+        params.enterpriseId = encodeWithSlashes(String(params.enterpriseId));
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidenterprise.googleapis.com/';
       const parameters = {
@@ -11992,7 +12745,9 @@ export namespace androidenterprise_v1 {
             url: (
               rootUrl +
               '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/authenticationToken'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -12127,6 +12882,15 @@ export namespace androidenterprise_v1 {
         options = {};
       }
 
+      if (params.enterpriseId !== undefined && params.enterpriseId !== null) {
+        validateSingleSegment('enterpriseId', String(params.enterpriseId));
+        params.enterpriseId = encodeWithSlashes(String(params.enterpriseId));
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidenterprise.googleapis.com/';
       const parameters = {
@@ -12135,7 +12899,9 @@ export namespace androidenterprise_v1 {
             url: (
               rootUrl +
               '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -12270,6 +13036,15 @@ export namespace androidenterprise_v1 {
         options = {};
       }
 
+      if (params.enterpriseId !== undefined && params.enterpriseId !== null) {
+        validateSingleSegment('enterpriseId', String(params.enterpriseId));
+        params.enterpriseId = encodeWithSlashes(String(params.enterpriseId));
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidenterprise.googleapis.com/';
       const parameters = {
@@ -12278,7 +13053,9 @@ export namespace androidenterprise_v1 {
             url: (
               rootUrl +
               '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/availableProductSet'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -12424,6 +13201,11 @@ export namespace androidenterprise_v1 {
         options = {};
       }
 
+      if (params.enterpriseId !== undefined && params.enterpriseId !== null) {
+        validateSingleSegment('enterpriseId', String(params.enterpriseId));
+        params.enterpriseId = encodeWithSlashes(String(params.enterpriseId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidenterprise.googleapis.com/';
       const parameters = {
@@ -12431,7 +13213,9 @@ export namespace androidenterprise_v1 {
           {
             url: (
               rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/users'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -12562,6 +13346,11 @@ export namespace androidenterprise_v1 {
         options = {};
       }
 
+      if (params.enterpriseId !== undefined && params.enterpriseId !== null) {
+        validateSingleSegment('enterpriseId', String(params.enterpriseId));
+        params.enterpriseId = encodeWithSlashes(String(params.enterpriseId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidenterprise.googleapis.com/';
       const parameters = {
@@ -12569,7 +13358,9 @@ export namespace androidenterprise_v1 {
           {
             url: (
               rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/users'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -12694,6 +13485,15 @@ export namespace androidenterprise_v1 {
         options = {};
       }
 
+      if (params.enterpriseId !== undefined && params.enterpriseId !== null) {
+        validateSingleSegment('enterpriseId', String(params.enterpriseId));
+        params.enterpriseId = encodeWithSlashes(String(params.enterpriseId));
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidenterprise.googleapis.com/';
       const parameters = {
@@ -12702,7 +13502,9 @@ export namespace androidenterprise_v1 {
             url: (
               rootUrl +
               '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/deviceAccess'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -12847,6 +13649,15 @@ export namespace androidenterprise_v1 {
         options = {};
       }
 
+      if (params.enterpriseId !== undefined && params.enterpriseId !== null) {
+        validateSingleSegment('enterpriseId', String(params.enterpriseId));
+        params.enterpriseId = encodeWithSlashes(String(params.enterpriseId));
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidenterprise.googleapis.com/';
       const parameters = {
@@ -12855,7 +13666,9 @@ export namespace androidenterprise_v1 {
             url: (
               rootUrl +
               '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/availableProductSet'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -13003,6 +13816,15 @@ export namespace androidenterprise_v1 {
         options = {};
       }
 
+      if (params.enterpriseId !== undefined && params.enterpriseId !== null) {
+        validateSingleSegment('enterpriseId', String(params.enterpriseId));
+        params.enterpriseId = encodeWithSlashes(String(params.enterpriseId));
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidenterprise.googleapis.com/';
       const parameters = {
@@ -13011,7 +13833,9 @@ export namespace androidenterprise_v1 {
             url: (
               rootUrl +
               '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -13244,6 +14068,15 @@ export namespace androidenterprise_v1 {
         options = {};
       }
 
+      if (params.enterpriseId !== undefined && params.enterpriseId !== null) {
+        validateSingleSegment('enterpriseId', String(params.enterpriseId));
+        params.enterpriseId = encodeWithSlashes(String(params.enterpriseId));
+      }
+      if (params.webAppId !== undefined && params.webAppId !== null) {
+        validateSingleSegment('webAppId', String(params.webAppId));
+        params.webAppId = encodeWithSlashes(String(params.webAppId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidenterprise.googleapis.com/';
       const parameters = {
@@ -13252,7 +14085,9 @@ export namespace androidenterprise_v1 {
             url: (
               rootUrl +
               '/androidenterprise/v1/enterprises/{enterpriseId}/webApps/{webAppId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -13388,6 +14223,15 @@ export namespace androidenterprise_v1 {
         options = {};
       }
 
+      if (params.enterpriseId !== undefined && params.enterpriseId !== null) {
+        validateSingleSegment('enterpriseId', String(params.enterpriseId));
+        params.enterpriseId = encodeWithSlashes(String(params.enterpriseId));
+      }
+      if (params.webAppId !== undefined && params.webAppId !== null) {
+        validateSingleSegment('webAppId', String(params.webAppId));
+        params.webAppId = encodeWithSlashes(String(params.webAppId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidenterprise.googleapis.com/';
       const parameters = {
@@ -13396,7 +14240,9 @@ export namespace androidenterprise_v1 {
             url: (
               rootUrl +
               '/androidenterprise/v1/enterprises/{enterpriseId}/webApps/{webAppId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -13544,6 +14390,11 @@ export namespace androidenterprise_v1 {
         options = {};
       }
 
+      if (params.enterpriseId !== undefined && params.enterpriseId !== null) {
+        validateSingleSegment('enterpriseId', String(params.enterpriseId));
+        params.enterpriseId = encodeWithSlashes(String(params.enterpriseId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidenterprise.googleapis.com/';
       const parameters = {
@@ -13552,7 +14403,9 @@ export namespace androidenterprise_v1 {
             url: (
               rootUrl +
               '/androidenterprise/v1/enterprises/{enterpriseId}/webApps'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -13681,6 +14534,11 @@ export namespace androidenterprise_v1 {
         options = {};
       }
 
+      if (params.enterpriseId !== undefined && params.enterpriseId !== null) {
+        validateSingleSegment('enterpriseId', String(params.enterpriseId));
+        params.enterpriseId = encodeWithSlashes(String(params.enterpriseId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidenterprise.googleapis.com/';
       const parameters = {
@@ -13689,7 +14547,9 @@ export namespace androidenterprise_v1 {
             url: (
               rootUrl +
               '/androidenterprise/v1/enterprises/{enterpriseId}/webApps'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -13839,6 +14699,15 @@ export namespace androidenterprise_v1 {
         options = {};
       }
 
+      if (params.enterpriseId !== undefined && params.enterpriseId !== null) {
+        validateSingleSegment('enterpriseId', String(params.enterpriseId));
+        params.enterpriseId = encodeWithSlashes(String(params.enterpriseId));
+      }
+      if (params.webAppId !== undefined && params.webAppId !== null) {
+        validateSingleSegment('webAppId', String(params.webAppId));
+        params.webAppId = encodeWithSlashes(String(params.webAppId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://androidenterprise.googleapis.com/';
       const parameters = {
@@ -13847,7 +14716,9 @@ export namespace androidenterprise_v1 {
             url: (
               rootUrl +
               '/androidenterprise/v1/enterprises/{enterpriseId}/webApps/{webAppId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },

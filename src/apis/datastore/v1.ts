@@ -34,6 +34,12 @@ import {
   APIRequestContext,
 } from 'googleapis-common';
 import {Readable} from 'stream';
+import {
+  validateSingleSegment,
+  validateMultiSegment,
+  encodeWithSlashes,
+  encodeWithoutSlashes,
+} from '../../transcoding';
 
 export namespace datastore_v1 {
   export interface Options extends GlobalOptions {
@@ -1711,14 +1717,18 @@ export namespace datastore_v1 {
         options = {};
       }
 
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateSingleSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithSlashes(String(params.projectId));
+      }
+
       const rootUrl = options.rootUrl || 'https://datastore.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/projects/{projectId}:allocateIds').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/projects/{projectId}:allocateIds')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -1864,13 +1874,18 @@ export namespace datastore_v1 {
         options = {};
       }
 
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateSingleSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithSlashes(String(params.projectId));
+      }
+
       const rootUrl = options.rootUrl || 'https://datastore.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v1/projects/{projectId}:beginTransaction'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/projects/{projectId}:beginTransaction')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -2017,14 +2032,18 @@ export namespace datastore_v1 {
         options = {};
       }
 
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateSingleSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithSlashes(String(params.projectId));
+      }
+
       const rootUrl = options.rootUrl || 'https://datastore.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/projects/{projectId}:commit').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/projects/{projectId}:commit')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -2173,14 +2192,18 @@ export namespace datastore_v1 {
         options = {};
       }
 
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateSingleSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithSlashes(String(params.projectId));
+      }
+
       const rootUrl = options.rootUrl || 'https://datastore.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/projects/{projectId}:export').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/projects/{projectId}:export')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -2329,14 +2352,18 @@ export namespace datastore_v1 {
         options = {};
       }
 
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateSingleSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithSlashes(String(params.projectId));
+      }
+
       const rootUrl = options.rootUrl || 'https://datastore.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/projects/{projectId}:import').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/projects/{projectId}:import')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -2484,14 +2511,18 @@ export namespace datastore_v1 {
         options = {};
       }
 
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateSingleSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithSlashes(String(params.projectId));
+      }
+
       const rootUrl = options.rootUrl || 'https://datastore.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/projects/{projectId}:lookup').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/projects/{projectId}:lookup')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -2632,14 +2663,18 @@ export namespace datastore_v1 {
         options = {};
       }
 
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateSingleSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithSlashes(String(params.projectId));
+      }
+
       const rootUrl = options.rootUrl || 'https://datastore.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/projects/{projectId}:reserveIds').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/projects/{projectId}:reserveIds')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -2780,14 +2815,18 @@ export namespace datastore_v1 {
         options = {};
       }
 
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateSingleSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithSlashes(String(params.projectId));
+      }
+
       const rootUrl = options.rootUrl || 'https://datastore.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/projects/{projectId}:rollback').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/projects/{projectId}:rollback')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -2941,13 +2980,18 @@ export namespace datastore_v1 {
         options = {};
       }
 
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateSingleSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithSlashes(String(params.projectId));
+      }
+
       const rootUrl = options.rootUrl || 'https://datastore.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v1/projects/{projectId}:runAggregationQuery'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/projects/{projectId}:runAggregationQuery')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -3098,14 +3142,18 @@ export namespace datastore_v1 {
         options = {};
       }
 
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateSingleSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithSlashes(String(params.projectId));
+      }
+
       const rootUrl = options.rootUrl || 'https://datastore.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/projects/{projectId}:runQuery').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/projects/{projectId}:runQuery')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -3376,14 +3424,18 @@ export namespace datastore_v1 {
         options = {};
       }
 
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateSingleSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithSlashes(String(params.projectId));
+      }
+
       const rootUrl = options.rootUrl || 'https://datastore.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/projects/{projectId}/indexes').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/projects/{projectId}/indexes')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -3525,13 +3577,22 @@ export namespace datastore_v1 {
         options = {};
       }
 
+      if (params.indexId !== undefined && params.indexId !== null) {
+        validateSingleSegment('indexId', String(params.indexId));
+        params.indexId = encodeWithSlashes(String(params.indexId));
+      }
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateSingleSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithSlashes(String(params.projectId));
+      }
+
       const rootUrl = options.rootUrl || 'https://datastore.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v1/projects/{projectId}/indexes/{indexId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/projects/{projectId}/indexes/{indexId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -3675,13 +3736,22 @@ export namespace datastore_v1 {
         options = {};
       }
 
+      if (params.indexId !== undefined && params.indexId !== null) {
+        validateSingleSegment('indexId', String(params.indexId));
+        params.indexId = encodeWithSlashes(String(params.indexId));
+      }
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateSingleSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithSlashes(String(params.projectId));
+      }
+
       const rootUrl = options.rootUrl || 'https://datastore.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v1/projects/{projectId}/indexes/{indexId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/projects/{projectId}/indexes/{indexId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -3828,14 +3898,18 @@ export namespace datastore_v1 {
         options = {};
       }
 
+      if (params.projectId !== undefined && params.projectId !== null) {
+        validateSingleSegment('projectId', String(params.projectId));
+        params.projectId = encodeWithSlashes(String(params.projectId));
+      }
+
       const rootUrl = options.rootUrl || 'https://datastore.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/projects/{projectId}/indexes').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/projects/{projectId}/indexes')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -4024,11 +4098,18 @@ export namespace datastore_v1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://datastore.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}:cancel')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -4158,11 +4239,18 @@ export namespace datastore_v1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://datastore.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -4302,11 +4390,18 @@ export namespace datastore_v1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://datastore.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -4457,14 +4552,18 @@ export namespace datastore_v1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://datastore.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+name}/operations').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/{+name}/operations')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },

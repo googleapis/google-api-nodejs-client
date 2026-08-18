@@ -34,6 +34,12 @@ import {
   APIRequestContext,
 } from 'googleapis-common';
 import {Readable} from 'stream';
+import {
+  validateSingleSegment,
+  validateMultiSegment,
+  encodeWithSlashes,
+  encodeWithoutSlashes,
+} from '../../transcoding';
 
 export namespace groupssettings_v1 {
   export interface Options extends GlobalOptions {
@@ -738,14 +744,18 @@ export namespace groupssettings_v1 {
         options = {};
       }
 
+      if (params.groupUniqueId !== undefined && params.groupUniqueId !== null) {
+        validateSingleSegment('groupUniqueId', String(params.groupUniqueId));
+        params.groupUniqueId = encodeWithSlashes(String(params.groupUniqueId));
+      }
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/groups/v1/groups/{groupUniqueId}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/groups/v1/groups/{groupUniqueId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -1003,14 +1013,18 @@ export namespace groupssettings_v1 {
         options = {};
       }
 
+      if (params.groupUniqueId !== undefined && params.groupUniqueId !== null) {
+        validateSingleSegment('groupUniqueId', String(params.groupUniqueId));
+        params.groupUniqueId = encodeWithSlashes(String(params.groupUniqueId));
+      }
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/groups/v1/groups/{groupUniqueId}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/groups/v1/groups/{groupUniqueId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -1268,14 +1282,18 @@ export namespace groupssettings_v1 {
         options = {};
       }
 
+      if (params.groupUniqueId !== undefined && params.groupUniqueId !== null) {
+        validateSingleSegment('groupUniqueId', String(params.groupUniqueId));
+        params.groupUniqueId = encodeWithSlashes(String(params.groupUniqueId));
+      }
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/groups/v1/groups/{groupUniqueId}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/groups/v1/groups/{groupUniqueId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },

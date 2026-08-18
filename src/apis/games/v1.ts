@@ -34,6 +34,12 @@ import {
   APIRequestContext,
 } from 'googleapis-common';
 import {Readable} from 'stream';
+import {
+  validateSingleSegment,
+  validateMultiSegment,
+  encodeWithSlashes,
+  encodeWithoutSlashes,
+} from '../../transcoding';
 
 export namespace games_v1 {
   export interface Options extends GlobalOptions {
@@ -2016,7 +2022,9 @@ export namespace games_v1 {
           {
             url: (
               rootUrl + '/games/v1/accesstokens/generatePlayGroupingApiToken'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -2168,7 +2176,9 @@ export namespace games_v1 {
             url: (
               rootUrl +
               '/games/v1/accesstokens/generateRecallPlayGroupingApiToken'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -2350,10 +2360,9 @@ export namespace games_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/games/v1/achievements').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/games/v1/achievements')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -2517,13 +2526,18 @@ export namespace games_v1 {
         options = {};
       }
 
+      if (params.achievementId !== undefined && params.achievementId !== null) {
+        validateSingleSegment('achievementId', String(params.achievementId));
+        params.achievementId = encodeWithSlashes(String(params.achievementId));
+      }
+
       const rootUrl = options.rootUrl || 'https://games.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/games/v1/achievements/{achievementId}/increment'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/games/v1/achievements/{achievementId}/increment')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -2669,13 +2683,18 @@ export namespace games_v1 {
         options = {};
       }
 
+      if (params.playerId !== undefined && params.playerId !== null) {
+        validateSingleSegment('playerId', String(params.playerId));
+        params.playerId = encodeWithSlashes(String(params.playerId));
+      }
+
       const rootUrl = options.rootUrl || 'https://games.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/games/v1/players/{playerId}/achievements'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/games/v1/players/{playerId}/achievements')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -2811,13 +2830,18 @@ export namespace games_v1 {
         options = {};
       }
 
+      if (params.achievementId !== undefined && params.achievementId !== null) {
+        validateSingleSegment('achievementId', String(params.achievementId));
+        params.achievementId = encodeWithSlashes(String(params.achievementId));
+      }
+
       const rootUrl = options.rootUrl || 'https://games.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/games/v1/achievements/{achievementId}/reveal'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/games/v1/achievements/{achievementId}/reveal')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -2959,13 +2983,20 @@ export namespace games_v1 {
         options = {};
       }
 
+      if (params.achievementId !== undefined && params.achievementId !== null) {
+        validateSingleSegment('achievementId', String(params.achievementId));
+        params.achievementId = encodeWithSlashes(String(params.achievementId));
+      }
+
       const rootUrl = options.rootUrl || 'https://games.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/games/v1/achievements/{achievementId}/setStepsAtLeast'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -3101,13 +3132,18 @@ export namespace games_v1 {
         options = {};
       }
 
+      if (params.achievementId !== undefined && params.achievementId !== null) {
+        validateSingleSegment('achievementId', String(params.achievementId));
+        params.achievementId = encodeWithSlashes(String(params.achievementId));
+      }
+
       const rootUrl = options.rootUrl || 'https://games.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/games/v1/achievements/{achievementId}/unlock'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/games/v1/achievements/{achievementId}/unlock')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -3256,10 +3292,9 @@ export namespace games_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/games/v1/achievements/updateMultiple').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/games/v1/achievements/updateMultiple')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -3478,14 +3513,18 @@ export namespace games_v1 {
         options = {};
       }
 
+      if (params.applicationId !== undefined && params.applicationId !== null) {
+        validateSingleSegment('applicationId', String(params.applicationId));
+        params.applicationId = encodeWithSlashes(String(params.applicationId));
+      }
+
       const rootUrl = options.rootUrl || 'https://games.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/games/v1/applications/{applicationId}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/games/v1/applications/{applicationId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -3620,10 +3659,9 @@ export namespace games_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/games/v1/applications/getEndPoint').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/games/v1/applications/getEndPoint')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -3747,10 +3785,9 @@ export namespace games_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/games/v1/applications/played').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/games/v1/applications/played')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -3885,13 +3922,18 @@ export namespace games_v1 {
         options = {};
       }
 
+      if (params.applicationId !== undefined && params.applicationId !== null) {
+        validateSingleSegment('applicationId', String(params.applicationId));
+        params.applicationId = encodeWithSlashes(String(params.applicationId));
+      }
+
       const rootUrl = options.rootUrl || 'https://games.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/games/v1/applications/{applicationId}/verify'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/games/v1/applications/{applicationId}/verify')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -4073,7 +4115,9 @@ export namespace games_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/games/v1/events').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/games/v1/events')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -4217,10 +4261,9 @@ export namespace games_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/games/v1/eventDefinitions').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/games/v1/eventDefinitions')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -4367,7 +4410,9 @@ export namespace games_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/games/v1/events').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/games/v1/events')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -4550,14 +4595,18 @@ export namespace games_v1 {
         options = {};
       }
 
+      if (params.leaderboardId !== undefined && params.leaderboardId !== null) {
+        validateSingleSegment('leaderboardId', String(params.leaderboardId));
+        params.leaderboardId = encodeWithSlashes(String(params.leaderboardId));
+      }
+
       const rootUrl = options.rootUrl || 'https://games.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/games/v1/leaderboards/{leaderboardId}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/games/v1/leaderboards/{leaderboardId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -4698,10 +4747,9 @@ export namespace games_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/games/v1/leaderboards').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/games/v1/leaderboards')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -4868,10 +4916,9 @@ export namespace games_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/games/v1/metagameConfig').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/games/v1/metagameConfig')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -5014,13 +5061,24 @@ export namespace games_v1 {
         options = {};
       }
 
+      if (params.collection !== undefined && params.collection !== null) {
+        validateSingleSegment('collection', String(params.collection));
+        params.collection = encodeWithSlashes(String(params.collection));
+      }
+      if (params.playerId !== undefined && params.playerId !== null) {
+        validateSingleSegment('playerId', String(params.playerId));
+        params.playerId = encodeWithSlashes(String(params.playerId));
+      }
+
       const rootUrl = options.rootUrl || 'https://games.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/games/v1/players/{playerId}/categories/{collection}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -5196,6 +5254,11 @@ export namespace games_v1 {
         options = {};
       }
 
+      if (params.playerId !== undefined && params.playerId !== null) {
+        validateSingleSegment('playerId', String(params.playerId));
+        params.playerId = encodeWithSlashes(String(params.playerId));
+      }
+
       const rootUrl = options.rootUrl || 'https://games.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5203,7 +5266,9 @@ export namespace games_v1 {
             url: (
               rootUrl +
               '/games/v1/players/{playerId}/gameEvents:batchRecordEvents'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -5366,14 +5431,18 @@ export namespace games_v1 {
         options = {};
       }
 
+      if (params.playerId !== undefined && params.playerId !== null) {
+        validateSingleSegment('playerId', String(params.playerId));
+        params.playerId = encodeWithSlashes(String(params.playerId));
+      }
+
       const rootUrl = options.rootUrl || 'https://games.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/games/v1/players/{playerId}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/games/v1/players/{playerId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -5515,9 +5584,9 @@ export namespace games_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/games/v1/players/me/multipleApplicationPlayerIds'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/games/v1/players/me/multipleApplicationPlayerIds')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -5653,10 +5722,9 @@ export namespace games_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/games/v1/players/me/scopedIds').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/games/v1/players/me/scopedIds')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -5793,13 +5861,18 @@ export namespace games_v1 {
         options = {};
       }
 
+      if (params.collection !== undefined && params.collection !== null) {
+        validateSingleSegment('collection', String(params.collection));
+        params.collection = encodeWithSlashes(String(params.collection));
+      }
+
       const rootUrl = options.rootUrl || 'https://games.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/games/v1/players/me/players/{collection}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/games/v1/players/me/players/{collection}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -5986,13 +6059,18 @@ export namespace games_v1 {
         options = {};
       }
 
+      if (params.sessionId !== undefined && params.sessionId !== null) {
+        validateSingleSegment('sessionId', String(params.sessionId));
+        params.sessionId = encodeWithSlashes(String(params.sessionId));
+      }
+
       const rootUrl = options.rootUrl || 'https://games.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/games/v1/recall/gamesPlayerTokens/{sessionId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/games/v1/recall/gamesPlayerTokens/{sessionId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -6132,6 +6210,11 @@ export namespace games_v1 {
         options = {};
       }
 
+      if (params.sessionId !== undefined && params.sessionId !== null) {
+        validateSingleSegment('sessionId', String(params.sessionId));
+        params.sessionId = encodeWithSlashes(String(params.sessionId));
+      }
+
       const rootUrl = options.rootUrl || 'https://games.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -6139,7 +6222,9 @@ export namespace games_v1 {
             url: (
               rootUrl +
               '/games/v1/recall/developerGamesLastPlayerToken/{sessionId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -6288,10 +6373,9 @@ export namespace games_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/games/v1/recall:linkPersona').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/games/v1/recall:linkPersona')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -6433,10 +6517,9 @@ export namespace games_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/games/v1/recall:resetPersona').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/games/v1/recall:resetPersona')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -6570,14 +6653,18 @@ export namespace games_v1 {
         options = {};
       }
 
+      if (params.sessionId !== undefined && params.sessionId !== null) {
+        validateSingleSegment('sessionId', String(params.sessionId));
+        params.sessionId = encodeWithSlashes(String(params.sessionId));
+      }
+
       const rootUrl = options.rootUrl || 'https://games.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/games/v1/recall/tokens/{sessionId}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/games/v1/recall/tokens/{sessionId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -6723,10 +6810,9 @@ export namespace games_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/games/v1/recall:unlinkPersona').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/games/v1/recall:unlinkPersona')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -6910,10 +6996,9 @@ export namespace games_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/games/v1/revisions/check').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/games/v1/revisions/check')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -7079,6 +7164,19 @@ export namespace games_v1 {
         options = {};
       }
 
+      if (params.leaderboardId !== undefined && params.leaderboardId !== null) {
+        validateSingleSegment('leaderboardId', String(params.leaderboardId));
+        params.leaderboardId = encodeWithSlashes(String(params.leaderboardId));
+      }
+      if (params.playerId !== undefined && params.playerId !== null) {
+        validateSingleSegment('playerId', String(params.playerId));
+        params.playerId = encodeWithSlashes(String(params.playerId));
+      }
+      if (params.timeSpan !== undefined && params.timeSpan !== null) {
+        validateSingleSegment('timeSpan', String(params.timeSpan));
+        params.timeSpan = encodeWithSlashes(String(params.timeSpan));
+      }
+
       const rootUrl = options.rootUrl || 'https://games.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -7086,7 +7184,9 @@ export namespace games_v1 {
             url: (
               rootUrl +
               '/games/v1/players/{playerId}/leaderboards/{leaderboardId}/scores/{timeSpan}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -7232,6 +7332,15 @@ export namespace games_v1 {
         options = {};
       }
 
+      if (params.collection !== undefined && params.collection !== null) {
+        validateSingleSegment('collection', String(params.collection));
+        params.collection = encodeWithSlashes(String(params.collection));
+      }
+      if (params.leaderboardId !== undefined && params.leaderboardId !== null) {
+        validateSingleSegment('leaderboardId', String(params.leaderboardId));
+        params.leaderboardId = encodeWithSlashes(String(params.leaderboardId));
+      }
+
       const rootUrl = options.rootUrl || 'https://games.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -7239,7 +7348,9 @@ export namespace games_v1 {
             url: (
               rootUrl +
               '/games/v1/leaderboards/{leaderboardId}/scores/{collection}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -7388,6 +7499,15 @@ export namespace games_v1 {
         options = {};
       }
 
+      if (params.collection !== undefined && params.collection !== null) {
+        validateSingleSegment('collection', String(params.collection));
+        params.collection = encodeWithSlashes(String(params.collection));
+      }
+      if (params.leaderboardId !== undefined && params.leaderboardId !== null) {
+        validateSingleSegment('leaderboardId', String(params.leaderboardId));
+        params.leaderboardId = encodeWithSlashes(String(params.leaderboardId));
+      }
+
       const rootUrl = options.rootUrl || 'https://games.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -7395,7 +7515,9 @@ export namespace games_v1 {
             url: (
               rootUrl +
               '/games/v1/leaderboards/{leaderboardId}/window/{collection}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -7535,13 +7657,18 @@ export namespace games_v1 {
         options = {};
       }
 
+      if (params.leaderboardId !== undefined && params.leaderboardId !== null) {
+        validateSingleSegment('leaderboardId', String(params.leaderboardId));
+        params.leaderboardId = encodeWithSlashes(String(params.leaderboardId));
+      }
+
       const rootUrl = options.rootUrl || 'https://games.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/games/v1/leaderboards/{leaderboardId}/scores'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/games/v1/leaderboards/{leaderboardId}/scores')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -7688,10 +7815,9 @@ export namespace games_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/games/v1/leaderboards/scores').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/games/v1/leaderboards/scores')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -7961,14 +8087,18 @@ export namespace games_v1 {
         options = {};
       }
 
+      if (params.snapshotId !== undefined && params.snapshotId !== null) {
+        validateSingleSegment('snapshotId', String(params.snapshotId));
+        params.snapshotId = encodeWithSlashes(String(params.snapshotId));
+      }
+
       const rootUrl = options.rootUrl || 'https://games.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/games/v1/snapshots/{snapshotId}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/games/v1/snapshots/{snapshotId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -8109,14 +8239,18 @@ export namespace games_v1 {
         options = {};
       }
 
+      if (params.playerId !== undefined && params.playerId !== null) {
+        validateSingleSegment('playerId', String(params.playerId));
+        params.playerId = encodeWithSlashes(String(params.playerId));
+      }
+
       const rootUrl = options.rootUrl || 'https://games.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/games/v1/players/{playerId}/snapshots').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/games/v1/players/{playerId}/snapshots')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -8292,7 +8426,9 @@ export namespace games_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/games/v1/stats').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/games/v1/stats')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },

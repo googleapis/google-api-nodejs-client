@@ -34,6 +34,12 @@ import {
   APIRequestContext,
 } from 'googleapis-common';
 import {Readable} from 'stream';
+import {
+  validateSingleSegment,
+  validateMultiSegment,
+  encodeWithSlashes,
+  encodeWithoutSlashes,
+} from '../../transcoding';
 
 export namespace blogger_v3 {
   export interface Options extends GlobalOptions {
@@ -752,11 +758,18 @@ export namespace blogger_v3 {
         options = {};
       }
 
+      if (params.blogId !== undefined && params.blogId !== null) {
+        validateSingleSegment('blogId', String(params.blogId));
+        params.blogId = encodeWithSlashes(String(params.blogId));
+      }
+
       const rootUrl = options.rootUrl || 'https://blogger.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v3/blogs/{blogId}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v3/blogs/{blogId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -904,7 +917,9 @@ export namespace blogger_v3 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v3/blogs/byurl').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v3/blogs/byurl')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -1044,14 +1059,18 @@ export namespace blogger_v3 {
         options = {};
       }
 
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://blogger.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v3/users/{userId}/blogs').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v3/users/{userId}/blogs')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -1243,14 +1262,22 @@ export namespace blogger_v3 {
         options = {};
       }
 
+      if (params.blogId !== undefined && params.blogId !== null) {
+        validateSingleSegment('blogId', String(params.blogId));
+        params.blogId = encodeWithSlashes(String(params.blogId));
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://blogger.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v3/users/{userId}/blogs/{blogId}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v3/users/{userId}/blogs/{blogId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -1413,6 +1440,19 @@ export namespace blogger_v3 {
         options = {};
       }
 
+      if (params.blogId !== undefined && params.blogId !== null) {
+        validateSingleSegment('blogId', String(params.blogId));
+        params.blogId = encodeWithSlashes(String(params.blogId));
+      }
+      if (params.commentId !== undefined && params.commentId !== null) {
+        validateSingleSegment('commentId', String(params.commentId));
+        params.commentId = encodeWithSlashes(String(params.commentId));
+      }
+      if (params.postId !== undefined && params.postId !== null) {
+        validateSingleSegment('postId', String(params.postId));
+        params.postId = encodeWithSlashes(String(params.postId));
+      }
+
       const rootUrl = options.rootUrl || 'https://blogger.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1420,7 +1460,9 @@ export namespace blogger_v3 {
             url: (
               rootUrl +
               '/v3/blogs/{blogId}/posts/{postId}/comments/{commentId}/approve'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -1545,13 +1587,28 @@ export namespace blogger_v3 {
         options = {};
       }
 
+      if (params.blogId !== undefined && params.blogId !== null) {
+        validateSingleSegment('blogId', String(params.blogId));
+        params.blogId = encodeWithSlashes(String(params.blogId));
+      }
+      if (params.commentId !== undefined && params.commentId !== null) {
+        validateSingleSegment('commentId', String(params.commentId));
+        params.commentId = encodeWithSlashes(String(params.commentId));
+      }
+      if (params.postId !== undefined && params.postId !== null) {
+        validateSingleSegment('postId', String(params.postId));
+        params.postId = encodeWithSlashes(String(params.postId));
+      }
+
       const rootUrl = options.rootUrl || 'https://blogger.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/v3/blogs/{blogId}/posts/{postId}/comments/{commentId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -1697,13 +1754,28 @@ export namespace blogger_v3 {
         options = {};
       }
 
+      if (params.blogId !== undefined && params.blogId !== null) {
+        validateSingleSegment('blogId', String(params.blogId));
+        params.blogId = encodeWithSlashes(String(params.blogId));
+      }
+      if (params.commentId !== undefined && params.commentId !== null) {
+        validateSingleSegment('commentId', String(params.commentId));
+        params.commentId = encodeWithSlashes(String(params.commentId));
+      }
+      if (params.postId !== undefined && params.postId !== null) {
+        validateSingleSegment('postId', String(params.postId));
+        params.postId = encodeWithSlashes(String(params.postId));
+      }
+
       const rootUrl = options.rootUrl || 'https://blogger.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/v3/blogs/{blogId}/posts/{postId}/comments/{commentId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -1854,13 +1926,22 @@ export namespace blogger_v3 {
         options = {};
       }
 
+      if (params.blogId !== undefined && params.blogId !== null) {
+        validateSingleSegment('blogId', String(params.blogId));
+        params.blogId = encodeWithSlashes(String(params.blogId));
+      }
+      if (params.postId !== undefined && params.postId !== null) {
+        validateSingleSegment('postId', String(params.postId));
+        params.postId = encodeWithSlashes(String(params.postId));
+      }
+
       const rootUrl = options.rootUrl || 'https://blogger.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v3/blogs/{blogId}/posts/{postId}/comments'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v3/blogs/{blogId}/posts/{postId}/comments')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -2008,14 +2089,18 @@ export namespace blogger_v3 {
         options = {};
       }
 
+      if (params.blogId !== undefined && params.blogId !== null) {
+        validateSingleSegment('blogId', String(params.blogId));
+        params.blogId = encodeWithSlashes(String(params.blogId));
+      }
+
       const rootUrl = options.rootUrl || 'https://blogger.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v3/blogs/{blogId}/comments').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v3/blogs/{blogId}/comments')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -2157,6 +2242,19 @@ export namespace blogger_v3 {
         options = {};
       }
 
+      if (params.blogId !== undefined && params.blogId !== null) {
+        validateSingleSegment('blogId', String(params.blogId));
+        params.blogId = encodeWithSlashes(String(params.blogId));
+      }
+      if (params.commentId !== undefined && params.commentId !== null) {
+        validateSingleSegment('commentId', String(params.commentId));
+        params.commentId = encodeWithSlashes(String(params.commentId));
+      }
+      if (params.postId !== undefined && params.postId !== null) {
+        validateSingleSegment('postId', String(params.postId));
+        params.postId = encodeWithSlashes(String(params.postId));
+      }
+
       const rootUrl = options.rootUrl || 'https://blogger.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2164,7 +2262,9 @@ export namespace blogger_v3 {
             url: (
               rootUrl +
               '/v3/blogs/{blogId}/posts/{postId}/comments/{commentId}/spam'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -2306,6 +2406,19 @@ export namespace blogger_v3 {
         options = {};
       }
 
+      if (params.blogId !== undefined && params.blogId !== null) {
+        validateSingleSegment('blogId', String(params.blogId));
+        params.blogId = encodeWithSlashes(String(params.blogId));
+      }
+      if (params.commentId !== undefined && params.commentId !== null) {
+        validateSingleSegment('commentId', String(params.commentId));
+        params.commentId = encodeWithSlashes(String(params.commentId));
+      }
+      if (params.postId !== undefined && params.postId !== null) {
+        validateSingleSegment('postId', String(params.postId));
+        params.postId = encodeWithSlashes(String(params.postId));
+      }
+
       const rootUrl = options.rootUrl || 'https://blogger.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2313,7 +2426,9 @@ export namespace blogger_v3 {
             url: (
               rootUrl +
               '/v3/blogs/{blogId}/posts/{postId}/comments/{commentId}/removecontent'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -2588,14 +2703,22 @@ export namespace blogger_v3 {
         options = {};
       }
 
+      if (params.blogId !== undefined && params.blogId !== null) {
+        validateSingleSegment('blogId', String(params.blogId));
+        params.blogId = encodeWithSlashes(String(params.blogId));
+      }
+      if (params.pageId !== undefined && params.pageId !== null) {
+        validateSingleSegment('pageId', String(params.pageId));
+        params.pageId = encodeWithSlashes(String(params.pageId));
+      }
+
       const rootUrl = options.rootUrl || 'https://blogger.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v3/blogs/{blogId}/pages/{pageId}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v3/blogs/{blogId}/pages/{pageId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -2741,14 +2864,22 @@ export namespace blogger_v3 {
         options = {};
       }
 
+      if (params.blogId !== undefined && params.blogId !== null) {
+        validateSingleSegment('blogId', String(params.blogId));
+        params.blogId = encodeWithSlashes(String(params.blogId));
+      }
+      if (params.pageId !== undefined && params.pageId !== null) {
+        validateSingleSegment('pageId', String(params.pageId));
+        params.pageId = encodeWithSlashes(String(params.pageId));
+      }
+
       const rootUrl = options.rootUrl || 'https://blogger.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v3/blogs/{blogId}/pages/{pageId}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v3/blogs/{blogId}/pages/{pageId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -2909,14 +3040,18 @@ export namespace blogger_v3 {
         options = {};
       }
 
+      if (params.blogId !== undefined && params.blogId !== null) {
+        validateSingleSegment('blogId', String(params.blogId));
+        params.blogId = encodeWithSlashes(String(params.blogId));
+      }
+
       const rootUrl = options.rootUrl || 'https://blogger.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v3/blogs/{blogId}/pages').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v3/blogs/{blogId}/pages')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -3059,14 +3194,18 @@ export namespace blogger_v3 {
         options = {};
       }
 
+      if (params.blogId !== undefined && params.blogId !== null) {
+        validateSingleSegment('blogId', String(params.blogId));
+        params.blogId = encodeWithSlashes(String(params.blogId));
+      }
+
       const rootUrl = options.rootUrl || 'https://blogger.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v3/blogs/{blogId}/pages').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v3/blogs/{blogId}/pages')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -3231,14 +3370,22 @@ export namespace blogger_v3 {
         options = {};
       }
 
+      if (params.blogId !== undefined && params.blogId !== null) {
+        validateSingleSegment('blogId', String(params.blogId));
+        params.blogId = encodeWithSlashes(String(params.blogId));
+      }
+      if (params.pageId !== undefined && params.pageId !== null) {
+        validateSingleSegment('pageId', String(params.pageId));
+        params.pageId = encodeWithSlashes(String(params.pageId));
+      }
+
       const rootUrl = options.rootUrl || 'https://blogger.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v3/blogs/{blogId}/pages/{pageId}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v3/blogs/{blogId}/pages/{pageId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -3379,13 +3526,22 @@ export namespace blogger_v3 {
         options = {};
       }
 
+      if (params.blogId !== undefined && params.blogId !== null) {
+        validateSingleSegment('blogId', String(params.blogId));
+        params.blogId = encodeWithSlashes(String(params.blogId));
+      }
+      if (params.pageId !== undefined && params.pageId !== null) {
+        validateSingleSegment('pageId', String(params.pageId));
+        params.pageId = encodeWithSlashes(String(params.pageId));
+      }
+
       const rootUrl = options.rootUrl || 'https://blogger.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v3/blogs/{blogId}/pages/{pageId}/publish'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v3/blogs/{blogId}/pages/{pageId}/publish')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -3526,14 +3682,22 @@ export namespace blogger_v3 {
         options = {};
       }
 
+      if (params.blogId !== undefined && params.blogId !== null) {
+        validateSingleSegment('blogId', String(params.blogId));
+        params.blogId = encodeWithSlashes(String(params.blogId));
+      }
+      if (params.pageId !== undefined && params.pageId !== null) {
+        validateSingleSegment('pageId', String(params.pageId));
+        params.pageId = encodeWithSlashes(String(params.pageId));
+      }
+
       const rootUrl = options.rootUrl || 'https://blogger.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v3/blogs/{blogId}/pages/{pageId}/revert').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v3/blogs/{blogId}/pages/{pageId}/revert')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -3698,14 +3862,22 @@ export namespace blogger_v3 {
         options = {};
       }
 
+      if (params.blogId !== undefined && params.blogId !== null) {
+        validateSingleSegment('blogId', String(params.blogId));
+        params.blogId = encodeWithSlashes(String(params.blogId));
+      }
+      if (params.pageId !== undefined && params.pageId !== null) {
+        validateSingleSegment('pageId', String(params.pageId));
+        params.pageId = encodeWithSlashes(String(params.pageId));
+      }
+
       const rootUrl = options.rootUrl || 'https://blogger.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v3/blogs/{blogId}/pages/{pageId}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v3/blogs/{blogId}/pages/{pageId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -3979,14 +4151,18 @@ export namespace blogger_v3 {
         options = {};
       }
 
+      if (params.blogId !== undefined && params.blogId !== null) {
+        validateSingleSegment('blogId', String(params.blogId));
+        params.blogId = encodeWithSlashes(String(params.blogId));
+      }
+
       const rootUrl = options.rootUrl || 'https://blogger.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v3/blogs/{blogId}/pageviews').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v3/blogs/{blogId}/pageviews')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -4129,14 +4305,22 @@ export namespace blogger_v3 {
         options = {};
       }
 
+      if (params.blogId !== undefined && params.blogId !== null) {
+        validateSingleSegment('blogId', String(params.blogId));
+        params.blogId = encodeWithSlashes(String(params.blogId));
+      }
+      if (params.postId !== undefined && params.postId !== null) {
+        validateSingleSegment('postId', String(params.postId));
+        params.postId = encodeWithSlashes(String(params.postId));
+      }
+
       const rootUrl = options.rootUrl || 'https://blogger.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v3/blogs/{blogId}/posts/{postId}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v3/blogs/{blogId}/posts/{postId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -4295,14 +4479,22 @@ export namespace blogger_v3 {
         options = {};
       }
 
+      if (params.blogId !== undefined && params.blogId !== null) {
+        validateSingleSegment('blogId', String(params.blogId));
+        params.blogId = encodeWithSlashes(String(params.blogId));
+      }
+      if (params.postId !== undefined && params.postId !== null) {
+        validateSingleSegment('postId', String(params.postId));
+        params.postId = encodeWithSlashes(String(params.postId));
+      }
+
       const rootUrl = options.rootUrl || 'https://blogger.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v3/blogs/{blogId}/posts/{postId}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v3/blogs/{blogId}/posts/{postId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -4457,14 +4649,18 @@ export namespace blogger_v3 {
         options = {};
       }
 
+      if (params.blogId !== undefined && params.blogId !== null) {
+        validateSingleSegment('blogId', String(params.blogId));
+        params.blogId = encodeWithSlashes(String(params.blogId));
+      }
+
       const rootUrl = options.rootUrl || 'https://blogger.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v3/blogs/{blogId}/posts/bypath').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v3/blogs/{blogId}/posts/bypath')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -4643,14 +4839,18 @@ export namespace blogger_v3 {
         options = {};
       }
 
+      if (params.blogId !== undefined && params.blogId !== null) {
+        validateSingleSegment('blogId', String(params.blogId));
+        params.blogId = encodeWithSlashes(String(params.blogId));
+      }
+
       const rootUrl = options.rootUrl || 'https://blogger.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v3/blogs/{blogId}/posts').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v3/blogs/{blogId}/posts')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -4806,14 +5006,18 @@ export namespace blogger_v3 {
         options = {};
       }
 
+      if (params.blogId !== undefined && params.blogId !== null) {
+        validateSingleSegment('blogId', String(params.blogId));
+        params.blogId = encodeWithSlashes(String(params.blogId));
+      }
+
       const rootUrl = options.rootUrl || 'https://blogger.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v3/blogs/{blogId}/posts').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v3/blogs/{blogId}/posts')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -4998,14 +5202,22 @@ export namespace blogger_v3 {
         options = {};
       }
 
+      if (params.blogId !== undefined && params.blogId !== null) {
+        validateSingleSegment('blogId', String(params.blogId));
+        params.blogId = encodeWithSlashes(String(params.blogId));
+      }
+      if (params.postId !== undefined && params.postId !== null) {
+        validateSingleSegment('postId', String(params.postId));
+        params.postId = encodeWithSlashes(String(params.postId));
+      }
+
       const rootUrl = options.rootUrl || 'https://blogger.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v3/blogs/{blogId}/posts/{postId}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v3/blogs/{blogId}/posts/{postId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -5155,13 +5367,22 @@ export namespace blogger_v3 {
         options = {};
       }
 
+      if (params.blogId !== undefined && params.blogId !== null) {
+        validateSingleSegment('blogId', String(params.blogId));
+        params.blogId = encodeWithSlashes(String(params.blogId));
+      }
+      if (params.postId !== undefined && params.postId !== null) {
+        validateSingleSegment('postId', String(params.postId));
+        params.postId = encodeWithSlashes(String(params.postId));
+      }
+
       const rootUrl = options.rootUrl || 'https://blogger.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v3/blogs/{blogId}/posts/{postId}/publish'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v3/blogs/{blogId}/posts/{postId}/publish')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -5309,14 +5530,22 @@ export namespace blogger_v3 {
         options = {};
       }
 
+      if (params.blogId !== undefined && params.blogId !== null) {
+        validateSingleSegment('blogId', String(params.blogId));
+        params.blogId = encodeWithSlashes(String(params.blogId));
+      }
+      if (params.postId !== undefined && params.postId !== null) {
+        validateSingleSegment('postId', String(params.postId));
+        params.postId = encodeWithSlashes(String(params.postId));
+      }
+
       const rootUrl = options.rootUrl || 'https://blogger.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v3/blogs/{blogId}/posts/{postId}/revert').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v3/blogs/{blogId}/posts/{postId}/revert')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -5456,14 +5685,18 @@ export namespace blogger_v3 {
         options = {};
       }
 
+      if (params.blogId !== undefined && params.blogId !== null) {
+        validateSingleSegment('blogId', String(params.blogId));
+        params.blogId = encodeWithSlashes(String(params.blogId));
+      }
+
       const rootUrl = options.rootUrl || 'https://blogger.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v3/blogs/{blogId}/posts/search').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v3/blogs/{blogId}/posts/search')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -5648,14 +5881,22 @@ export namespace blogger_v3 {
         options = {};
       }
 
+      if (params.blogId !== undefined && params.blogId !== null) {
+        validateSingleSegment('blogId', String(params.blogId));
+        params.blogId = encodeWithSlashes(String(params.blogId));
+      }
+      if (params.postId !== undefined && params.postId !== null) {
+        validateSingleSegment('postId', String(params.postId));
+        params.postId = encodeWithSlashes(String(params.postId));
+      }
+
       const rootUrl = options.rootUrl || 'https://blogger.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v3/blogs/{blogId}/posts/{postId}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v3/blogs/{blogId}/posts/{postId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -6046,13 +6287,26 @@ export namespace blogger_v3 {
         options = {};
       }
 
+      if (params.blogId !== undefined && params.blogId !== null) {
+        validateSingleSegment('blogId', String(params.blogId));
+        params.blogId = encodeWithSlashes(String(params.blogId));
+      }
+      if (params.postId !== undefined && params.postId !== null) {
+        validateSingleSegment('postId', String(params.postId));
+        params.postId = encodeWithSlashes(String(params.postId));
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://blogger.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v3/users/{userId}/blogs/{blogId}/posts/{postId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v3/users/{userId}/blogs/{blogId}/posts/{postId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -6206,14 +6460,22 @@ export namespace blogger_v3 {
         options = {};
       }
 
+      if (params.blogId !== undefined && params.blogId !== null) {
+        validateSingleSegment('blogId', String(params.blogId));
+        params.blogId = encodeWithSlashes(String(params.blogId));
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://blogger.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v3/users/{userId}/blogs/{blogId}/posts').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v3/users/{userId}/blogs/{blogId}/posts')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -6423,11 +6685,18 @@ export namespace blogger_v3 {
         options = {};
       }
 
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://blogger.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v3/users/{userId}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v3/users/{userId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },

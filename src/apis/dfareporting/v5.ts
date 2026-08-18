@@ -34,6 +34,12 @@ import {
   APIRequestContext,
 } from 'googleapis-common';
 import {Readable} from 'stream';
+import {
+  validateSingleSegment,
+  validateMultiSegment,
+  encodeWithSlashes,
+  encodeWithoutSlashes,
+} from '../../transcoding';
 
 export namespace dfareporting_v5 {
   export interface Options extends GlobalOptions {
@@ -7606,6 +7612,23 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+      if (
+        params.summaryAccountId !== undefined &&
+        params.summaryAccountId !== null
+      ) {
+        validateMultiSegment(
+          'summaryAccountId',
+          String(params.summaryAccountId)
+        );
+        params.summaryAccountId = encodeWithoutSlashes(
+          String(params.summaryAccountId)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -7613,7 +7636,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/accountActiveAdSummaries/{+summaryAccountId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -7766,6 +7791,15 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.id !== undefined && params.id !== null) {
+        validateMultiSegment('id', String(params.id));
+        params.id = encodeWithoutSlashes(String(params.id));
+      }
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -7773,7 +7807,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/accountPermissionGroups/{+id}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -7912,6 +7948,11 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -7919,7 +7960,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/accountPermissionGroups'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -8082,6 +8125,15 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.id !== undefined && params.id !== null) {
+        validateMultiSegment('id', String(params.id));
+        params.id = encodeWithoutSlashes(String(params.id));
+      }
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -8089,7 +8141,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/accountPermissions/{+id}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -8224,6 +8278,11 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -8231,7 +8290,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/accountPermissions'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -8405,6 +8466,15 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.id !== undefined && params.id !== null) {
+        validateMultiSegment('id', String(params.id));
+        params.id = encodeWithoutSlashes(String(params.id));
+      }
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -8412,7 +8482,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/accounts/{+id}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -8558,13 +8630,20 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/accounts'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -8738,13 +8817,20 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/accounts'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -8916,13 +9002,20 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/accounts'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -9147,6 +9240,15 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.id !== undefined && params.id !== null) {
+        validateMultiSegment('id', String(params.id));
+        params.id = encodeWithoutSlashes(String(params.id));
+      }
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateSingleSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -9154,7 +9256,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{profileId}/accountUserProfiles/{+id}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -9322,6 +9426,11 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -9329,7 +9438,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/accountUserProfiles'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -9483,6 +9594,11 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -9490,7 +9606,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/accountUserProfiles'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -9662,6 +9780,11 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -9669,7 +9792,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/accountUserProfiles'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -9837,6 +9962,11 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -9844,7 +9974,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/accountUserProfiles'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -10110,13 +10242,24 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.id !== undefined && params.id !== null) {
+        validateMultiSegment('id', String(params.id));
+        params.id = encodeWithoutSlashes(String(params.id));
+      }
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/ads/{+id}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -10330,13 +10473,18 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/ads'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/ads')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -10513,13 +10661,18 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/ads'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/ads')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -10735,13 +10888,18 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/ads'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/ads')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -10955,13 +11113,18 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/ads'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/ads')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -11239,6 +11402,15 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.id !== undefined && params.id !== null) {
+        validateMultiSegment('id', String(params.id));
+        params.id = encodeWithoutSlashes(String(params.id));
+      }
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -11246,7 +11418,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/advertiserGroups/{+id}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -11381,6 +11555,15 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.id !== undefined && params.id !== null) {
+        validateMultiSegment('id', String(params.id));
+        params.id = encodeWithoutSlashes(String(params.id));
+      }
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -11388,7 +11571,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/advertiserGroups/{+id}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -11532,6 +11717,11 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -11539,7 +11729,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/advertiserGroups'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -11687,6 +11879,11 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -11694,7 +11891,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/advertiserGroups'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -11842,6 +12041,11 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -11849,7 +12053,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/advertiserGroups'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -11993,6 +12199,11 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -12000,7 +12211,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/advertiserGroups'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -12239,6 +12452,15 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.advertiserId !== undefined && params.advertiserId !== null) {
+        validateMultiSegment('advertiserId', String(params.advertiserId));
+        params.advertiserId = encodeWithoutSlashes(String(params.advertiserId));
+      }
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -12246,7 +12468,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/advertisers/{+advertiserId}/invoices'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -12416,6 +12640,15 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.id !== undefined && params.id !== null) {
+        validateMultiSegment('id', String(params.id));
+        params.id = encodeWithoutSlashes(String(params.id));
+      }
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -12423,7 +12656,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/advertiserLandingPages/{+id}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -12573,6 +12808,11 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -12580,7 +12820,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/advertiserLandingPages'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -12740,6 +12982,11 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -12747,7 +12994,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/advertiserLandingPages'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -12901,6 +13150,11 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -12908,7 +13162,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/advertiserLandingPages'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -13058,6 +13314,11 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -13065,7 +13326,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/advertiserLandingPages'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -13312,6 +13575,15 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.id !== undefined && params.id !== null) {
+        validateMultiSegment('id', String(params.id));
+        params.id = encodeWithoutSlashes(String(params.id));
+      }
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -13319,7 +13591,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/advertisers/{+id}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -13488,13 +13762,20 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/advertisers'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -13650,13 +13931,20 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/advertisers'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -13827,13 +14115,20 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/advertisers'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -14002,13 +14297,20 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/advertisers'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -14265,6 +14567,23 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (
+        params.billingProfileId !== undefined &&
+        params.billingProfileId !== null
+      ) {
+        validateMultiSegment(
+          'billingProfileId',
+          String(params.billingProfileId)
+        );
+        params.billingProfileId = encodeWithoutSlashes(
+          String(params.billingProfileId)
+        );
+      }
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -14272,7 +14591,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/billingProfiles/{+billingProfileId}/billingAssignments'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -14409,6 +14730,23 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (
+        params.billingProfileId !== undefined &&
+        params.billingProfileId !== null
+      ) {
+        validateMultiSegment(
+          'billingProfileId',
+          String(params.billingProfileId)
+        );
+        params.billingProfileId = encodeWithoutSlashes(
+          String(params.billingProfileId)
+        );
+      }
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -14416,7 +14754,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/billingProfiles/{+billingProfileId}/billingAssignments'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -14595,6 +14935,15 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.id !== undefined && params.id !== null) {
+        validateMultiSegment('id', String(params.id));
+        params.id = encodeWithoutSlashes(String(params.id));
+      }
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -14602,7 +14951,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/billingProfiles/{+id}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -14758,6 +15109,11 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -14765,7 +15121,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/billingProfiles'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -14927,6 +15285,11 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -14934,7 +15297,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/billingProfiles'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -15144,6 +15509,23 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (
+        params.billingProfileId !== undefined &&
+        params.billingProfileId !== null
+      ) {
+        validateMultiSegment(
+          'billingProfileId',
+          String(params.billingProfileId)
+        );
+        params.billingProfileId = encodeWithoutSlashes(
+          String(params.billingProfileId)
+        );
+      }
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -15151,7 +15533,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/billingProfiles/{+billingProfileId}/billingRates'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -15300,13 +15684,20 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/browsers'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -15466,6 +15857,15 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.campaignId !== undefined && params.campaignId !== null) {
+        validateMultiSegment('campaignId', String(params.campaignId));
+        params.campaignId = encodeWithoutSlashes(String(params.campaignId));
+      }
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -15473,7 +15873,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/campaigns/{+campaignId}/campaignCreativeAssociations'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -15621,6 +16023,15 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.campaignId !== undefined && params.campaignId !== null) {
+        validateMultiSegment('campaignId', String(params.campaignId));
+        params.campaignId = encodeWithoutSlashes(String(params.campaignId));
+      }
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -15628,7 +16039,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/campaigns/{+campaignId}/campaignCreativeAssociations'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -15832,6 +16245,15 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.id !== undefined && params.id !== null) {
+        validateMultiSegment('id', String(params.id));
+        params.id = encodeWithoutSlashes(String(params.id));
+      }
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -15839,7 +16261,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/campaigns/{+id}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -16029,13 +16453,20 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/campaigns'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -16193,13 +16624,20 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/campaigns'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -16391,13 +16829,20 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/campaigns'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -16587,13 +17032,20 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/campaigns'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -16849,6 +17301,15 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.id !== undefined && params.id !== null) {
+        validateMultiSegment('id', String(params.id));
+        params.id = encodeWithoutSlashes(String(params.id));
+      }
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -16856,7 +17317,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/changeLogs/{+id}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -17008,13 +17471,20 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/changeLogs'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -17216,13 +17686,18 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/cities'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/cities')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -17386,6 +17861,15 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.id !== undefined && params.id !== null) {
+        validateMultiSegment('id', String(params.id));
+        params.id = encodeWithoutSlashes(String(params.id));
+      }
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -17393,7 +17877,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/connectionTypes/{+id}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -17528,6 +18014,11 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -17535,7 +18026,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/connectionTypes'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -17684,6 +18177,15 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.id !== undefined && params.id !== null) {
+        validateMultiSegment('id', String(params.id));
+        params.id = encodeWithoutSlashes(String(params.id));
+      }
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -17691,7 +18193,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/contentCategories/{+id}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -17826,6 +18330,15 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.id !== undefined && params.id !== null) {
+        validateMultiSegment('id', String(params.id));
+        params.id = encodeWithoutSlashes(String(params.id));
+      }
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -17833,7 +18346,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/contentCategories/{+id}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -17977,6 +18492,11 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -17984,7 +18504,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/contentCategories'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -18132,6 +18654,11 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -18139,7 +18666,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/contentCategories'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -18287,6 +18816,11 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -18294,7 +18828,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/contentCategories'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -18438,6 +18974,11 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -18445,7 +18986,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/contentCategories'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -18686,6 +19229,11 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateSingleSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -18693,7 +19241,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{profileId}/conversions/batchinsert'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -18841,6 +19391,11 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateSingleSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -18848,7 +19403,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{profileId}/conversions/batchupdate'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -19015,6 +19572,15 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.dartId !== undefined && params.dartId !== null) {
+        validateMultiSegment('dartId', String(params.dartId));
+        params.dartId = encodeWithoutSlashes(String(params.dartId));
+      }
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -19022,7 +19588,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/countries/{+dartId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -19153,13 +19721,20 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/countries'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -19348,6 +19923,15 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.advertiserId !== undefined && params.advertiserId !== null) {
+        validateMultiSegment('advertiserId', String(params.advertiserId));
+        params.advertiserId = encodeWithoutSlashes(String(params.advertiserId));
+      }
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -19355,7 +19939,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/creativeAssets/{+advertiserId}/creativeAssets'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -19365,7 +19951,9 @@ export namespace dfareporting_v5 {
         mediaUrl: (
           rootUrl +
           '/upload/dfareporting/v5/userprofiles/{+profileId}/creativeAssets/{+advertiserId}/creativeAssets'
-        ).replace(/([^:]\/)\/+/g, '$1'),
+        )
+          .replace(/([^:]\/)\/+/g, '$1')
+          .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
         requiredParams: ['profileId', 'advertiserId'],
         pathParams: ['advertiserId', 'profileId'],
         context: this.context,
@@ -19522,6 +20110,15 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.id !== undefined && params.id !== null) {
+        validateMultiSegment('id', String(params.id));
+        params.id = encodeWithoutSlashes(String(params.id));
+      }
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -19529,7 +20126,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/creativeFields/{+id}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -19667,6 +20266,15 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.id !== undefined && params.id !== null) {
+        validateMultiSegment('id', String(params.id));
+        params.id = encodeWithoutSlashes(String(params.id));
+      }
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -19674,7 +20282,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/creativeFields/{+id}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -19824,6 +20434,11 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -19831,7 +20446,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/creativeFields'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -19980,6 +20597,11 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -19987,7 +20609,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/creativeFields'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -20139,6 +20763,11 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -20146,7 +20775,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/creativeFields'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -20296,6 +20927,11 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -20303,7 +20939,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/creativeFields'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -20529,6 +21167,24 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (
+        params.creativeFieldId !== undefined &&
+        params.creativeFieldId !== null
+      ) {
+        validateMultiSegment('creativeFieldId', String(params.creativeFieldId));
+        params.creativeFieldId = encodeWithoutSlashes(
+          String(params.creativeFieldId)
+        );
+      }
+      if (params.id !== undefined && params.id !== null) {
+        validateMultiSegment('id', String(params.id));
+        params.id = encodeWithoutSlashes(String(params.id));
+      }
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -20536,7 +21192,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/creativeFields/{+creativeFieldId}/creativeFieldValues/{+id}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -20672,6 +21330,24 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (
+        params.creativeFieldId !== undefined &&
+        params.creativeFieldId !== null
+      ) {
+        validateMultiSegment('creativeFieldId', String(params.creativeFieldId));
+        params.creativeFieldId = encodeWithoutSlashes(
+          String(params.creativeFieldId)
+        );
+      }
+      if (params.id !== undefined && params.id !== null) {
+        validateMultiSegment('id', String(params.id));
+        params.id = encodeWithoutSlashes(String(params.id));
+      }
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -20679,7 +21355,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/creativeFields/{+creativeFieldId}/creativeFieldValues/{+id}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -20823,6 +21501,20 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (
+        params.creativeFieldId !== undefined &&
+        params.creativeFieldId !== null
+      ) {
+        validateMultiSegment('creativeFieldId', String(params.creativeFieldId));
+        params.creativeFieldId = encodeWithoutSlashes(
+          String(params.creativeFieldId)
+        );
+      }
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -20830,7 +21522,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/creativeFields/{+creativeFieldId}/creativeFieldValues'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -20980,6 +21674,20 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (
+        params.creativeFieldId !== undefined &&
+        params.creativeFieldId !== null
+      ) {
+        validateMultiSegment('creativeFieldId', String(params.creativeFieldId));
+        params.creativeFieldId = encodeWithoutSlashes(
+          String(params.creativeFieldId)
+        );
+      }
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -20987,7 +21695,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/creativeFields/{+creativeFieldId}/creativeFieldValues'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -21135,6 +21845,20 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (
+        params.creativeFieldId !== undefined &&
+        params.creativeFieldId !== null
+      ) {
+        validateMultiSegment('creativeFieldId', String(params.creativeFieldId));
+        params.creativeFieldId = encodeWithoutSlashes(
+          String(params.creativeFieldId)
+        );
+      }
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -21142,7 +21866,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/creativeFields/{+creativeFieldId}/creativeFieldValues'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -21286,6 +22012,20 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (
+        params.creativeFieldId !== undefined &&
+        params.creativeFieldId !== null
+      ) {
+        validateMultiSegment('creativeFieldId', String(params.creativeFieldId));
+        params.creativeFieldId = encodeWithoutSlashes(
+          String(params.creativeFieldId)
+        );
+      }
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -21293,7 +22033,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/creativeFields/{+creativeFieldId}/creativeFieldValues'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -21551,6 +22293,15 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.id !== undefined && params.id !== null) {
+        validateMultiSegment('id', String(params.id));
+        params.id = encodeWithoutSlashes(String(params.id));
+      }
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -21558,7 +22309,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/creativeGroups/{+id}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -21710,6 +22463,11 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -21717,7 +22475,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/creativeGroups'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -21868,6 +22628,11 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -21875,7 +22640,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/creativeGroups'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -22029,6 +22796,11 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -22036,7 +22808,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/creativeGroups'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -22188,6 +22962,11 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -22195,7 +22974,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/creativeGroups'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -22481,6 +23262,15 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.id !== undefined && params.id !== null) {
+        validateMultiSegment('id', String(params.id));
+        params.id = encodeWithoutSlashes(String(params.id));
+      }
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -22488,7 +23278,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/creatives/{+id}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -22750,13 +23542,20 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/creatives'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -22920,13 +23719,20 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/creatives'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -23190,13 +23996,20 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/creatives'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -23458,13 +24271,20 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/creatives'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -23738,6 +24558,11 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateSingleSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -23745,7 +24570,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{profileId}/dimensionvalues/query'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -23912,6 +24739,15 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.id !== undefined && params.id !== null) {
+        validateMultiSegment('id', String(params.id));
+        params.id = encodeWithoutSlashes(String(params.id));
+      }
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -23919,7 +24755,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/directorySites/{+id}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -24073,6 +24911,11 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -24080,7 +24923,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/directorySites'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -24237,6 +25082,11 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -24244,7 +25094,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/directorySites'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -24462,13 +25314,22 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.dynamicFeedId !== undefined && params.dynamicFeedId !== null) {
+        validateMultiSegment('dynamicFeedId', String(params.dynamicFeedId));
+        params.dynamicFeedId = encodeWithoutSlashes(
+          String(params.dynamicFeedId)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/dfareporting/v5/studio/dynamicFeeds/{+dynamicFeedId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -24618,10 +25479,9 @@ export namespace dfareporting_v5 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/dfareporting/v5/studio/dynamicFeeds').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/dfareporting/v5/studio/dynamicFeeds')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -24761,6 +25621,13 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.dynamicFeedId !== undefined && params.dynamicFeedId !== null) {
+        validateMultiSegment('dynamicFeedId', String(params.dynamicFeedId));
+        params.dynamicFeedId = encodeWithoutSlashes(
+          String(params.dynamicFeedId)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -24768,7 +25635,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/studio/dynamicFeeds/{+dynamicFeedId}/retransform'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -24927,10 +25796,9 @@ export namespace dfareporting_v5 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/dfareporting/v5/studio/dynamicFeeds').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/dfareporting/v5/studio/dynamicFeeds')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -25100,6 +25968,19 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (
+        params.dynamicProfileId !== undefined &&
+        params.dynamicProfileId !== null
+      ) {
+        validateMultiSegment(
+          'dynamicProfileId',
+          String(params.dynamicProfileId)
+        );
+        params.dynamicProfileId = encodeWithoutSlashes(
+          String(params.dynamicProfileId)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -25107,7 +25988,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/studio/dynamicProfiles/{+dynamicProfileId}/generateCode'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -25249,6 +26132,19 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (
+        params.dynamicProfileId !== undefined &&
+        params.dynamicProfileId !== null
+      ) {
+        validateMultiSegment(
+          'dynamicProfileId',
+          String(params.dynamicProfileId)
+        );
+        params.dynamicProfileId = encodeWithoutSlashes(
+          String(params.dynamicProfileId)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -25256,7 +26152,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/studio/dynamicProfiles/{+dynamicProfileId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -25415,10 +26313,9 @@ export namespace dfareporting_v5 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/dfareporting/v5/studio/dynamicProfiles').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/dfareporting/v5/studio/dynamicProfiles')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -25541,6 +26438,19 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (
+        params.dynamicProfileId !== undefined &&
+        params.dynamicProfileId !== null
+      ) {
+        validateMultiSegment(
+          'dynamicProfileId',
+          String(params.dynamicProfileId)
+        );
+        params.dynamicProfileId = encodeWithoutSlashes(
+          String(params.dynamicProfileId)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -25548,7 +26458,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/studio/dynamicProfiles/{+dynamicProfileId}/publish'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -25707,10 +26619,9 @@ export namespace dfareporting_v5 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/dfareporting/v5/studio/dynamicProfiles').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/dfareporting/v5/studio/dynamicProfiles')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -25877,6 +26788,15 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.objectId !== undefined && params.objectId !== null) {
+        validateMultiSegment('objectId', String(params.objectId));
+        params.objectId = encodeWithoutSlashes(String(params.objectId));
+      }
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -25884,7 +26804,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/dynamicTargetingKeys/{+objectId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -26028,6 +26950,11 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -26035,7 +26962,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/dynamicTargetingKeys'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -26182,6 +27111,11 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -26189,7 +27123,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/dynamicTargetingKeys'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -26374,6 +27310,15 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.id !== undefined && params.id !== null) {
+        validateMultiSegment('id', String(params.id));
+        params.id = encodeWithoutSlashes(String(params.id));
+      }
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -26381,7 +27326,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/eventTags/{+id}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -26528,6 +27475,15 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.id !== undefined && params.id !== null) {
+        validateMultiSegment('id', String(params.id));
+        params.id = encodeWithoutSlashes(String(params.id));
+      }
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -26535,7 +27491,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/eventTags/{+id}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -26705,13 +27663,20 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/eventTags'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -26862,13 +27827,20 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/eventTags'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -27040,13 +28012,20 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/eventTags'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -27216,13 +28195,20 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/eventTags'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -27472,13 +28458,24 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.fileId !== undefined && params.fileId !== null) {
+        validateSingleSegment('fileId', String(params.fileId));
+        params.fileId = encodeWithSlashes(String(params.fileId));
+      }
+      if (params.reportId !== undefined && params.reportId !== null) {
+        validateSingleSegment('reportId', String(params.reportId));
+        params.reportId = encodeWithSlashes(String(params.reportId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/dfareporting/v5/reports/{reportId}/files/{fileId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -27619,13 +28616,18 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateSingleSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/dfareporting/v5/userprofiles/{profileId}/files'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/dfareporting/v5/userprofiles/{profileId}/files')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -27794,6 +28796,15 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.id !== undefined && params.id !== null) {
+        validateMultiSegment('id', String(params.id));
+        params.id = encodeWithoutSlashes(String(params.id));
+      }
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -27801,7 +28812,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/floodlightActivities/{+id}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -27943,6 +28956,11 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -27950,7 +28968,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/floodlightActivities/generatetag'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -28113,6 +29133,15 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.id !== undefined && params.id !== null) {
+        validateMultiSegment('id', String(params.id));
+        params.id = encodeWithoutSlashes(String(params.id));
+      }
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -28120,7 +29149,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/floodlightActivities/{+id}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -28316,6 +29347,11 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -28323,7 +29359,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/floodlightActivities'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -28489,6 +29527,11 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -28496,7 +29539,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/floodlightActivities'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -28696,6 +29741,11 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -28703,7 +29753,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/floodlightActivities'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -28899,6 +29951,11 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -28906,7 +29963,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/floodlightActivities'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -29183,6 +30242,15 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.id !== undefined && params.id !== null) {
+        validateMultiSegment('id', String(params.id));
+        params.id = encodeWithoutSlashes(String(params.id));
+      }
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -29190,7 +30258,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/floodlightActivityGroups/{+id}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -29353,6 +30423,11 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -29360,7 +30435,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/floodlightActivityGroups'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -29518,6 +30595,11 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -29525,7 +30607,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/floodlightActivityGroups'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -29690,6 +30774,11 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -29697,7 +30786,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/floodlightActivityGroups'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -29860,6 +30951,11 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -29867,7 +30963,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/floodlightActivityGroups'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -30114,6 +31212,15 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.id !== undefined && params.id !== null) {
+        validateMultiSegment('id', String(params.id));
+        params.id = encodeWithoutSlashes(String(params.id));
+      }
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -30121,7 +31228,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/floodlightConfigurations/{+id}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -30262,6 +31371,11 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -30269,7 +31383,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/floodlightConfigurations'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -30446,6 +31562,11 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -30453,7 +31574,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/floodlightConfigurations'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -30628,6 +31751,11 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -30635,7 +31763,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/floodlightConfigurations'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -30820,13 +31950,20 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/languages'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -30970,13 +32107,18 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/metros'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/metros')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -31124,6 +32266,15 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.id !== undefined && params.id !== null) {
+        validateMultiSegment('id', String(params.id));
+        params.id = encodeWithoutSlashes(String(params.id));
+      }
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -31131,7 +32282,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/mobileApps/{+id}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -31273,13 +32426,20 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/mobileApps'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -31459,6 +32619,15 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.id !== undefined && params.id !== null) {
+        validateMultiSegment('id', String(params.id));
+        params.id = encodeWithoutSlashes(String(params.id));
+      }
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -31466,7 +32635,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/mobileCarriers/{+id}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -31600,6 +32771,11 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -31607,7 +32783,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/mobileCarriers'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -31767,6 +32945,15 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.dartId !== undefined && params.dartId !== null) {
+        validateMultiSegment('dartId', String(params.dartId));
+        params.dartId = encodeWithoutSlashes(String(params.dartId));
+      }
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -31774,7 +32961,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/operatingSystems/{+dartId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -31909,6 +33098,11 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -31916,7 +33110,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/operatingSystems'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -32080,6 +33276,15 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.id !== undefined && params.id !== null) {
+        validateMultiSegment('id', String(params.id));
+        params.id = encodeWithoutSlashes(String(params.id));
+      }
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -32087,7 +33292,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/operatingSystemVersions/{+id}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -32226,6 +33433,11 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -32233,7 +33445,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/operatingSystemVersions'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -32416,6 +33630,15 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.id !== undefined && params.id !== null) {
+        validateMultiSegment('id', String(params.id));
+        params.id = encodeWithoutSlashes(String(params.id));
+      }
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -32423,7 +33646,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/placementGroups/{+id}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -32611,6 +33836,11 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -32618,7 +33848,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/placementGroups'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -32792,6 +34024,11 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -32799,7 +34036,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/placementGroups'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -32989,6 +34228,11 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -32996,7 +34240,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/placementGroups'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -33184,6 +34430,11 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -33191,7 +34442,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/placementGroups'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -33475,6 +34728,11 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -33482,7 +34740,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/placements/generatetags'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -33661,6 +34921,15 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.id !== undefined && params.id !== null) {
+        validateMultiSegment('id', String(params.id));
+        params.id = encodeWithoutSlashes(String(params.id));
+      }
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -33668,7 +34937,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/placements/{+id}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -33899,13 +35170,20 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/placements'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -34081,13 +35359,20 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/placements'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -34319,13 +35604,20 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/placements'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -34556,13 +35848,20 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/placements'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -34866,6 +36165,15 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.id !== undefined && params.id !== null) {
+        validateMultiSegment('id', String(params.id));
+        params.id = encodeWithoutSlashes(String(params.id));
+      }
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -34873,7 +36181,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/placementStrategies/{+id}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -35008,6 +36318,15 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.id !== undefined && params.id !== null) {
+        validateMultiSegment('id', String(params.id));
+        params.id = encodeWithoutSlashes(String(params.id));
+      }
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -35015,7 +36334,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/placementStrategies/{+id}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -35159,6 +36480,11 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -35166,7 +36492,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/placementStrategies'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -35314,6 +36642,11 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -35321,7 +36654,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/placementStrategies'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -35469,6 +36804,11 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -35476,7 +36816,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/placementStrategies'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -35620,6 +36962,11 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -35627,7 +36974,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/placementStrategies'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -35856,6 +37205,15 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.id !== undefined && params.id !== null) {
+        validateMultiSegment('id', String(params.id));
+        params.id = encodeWithoutSlashes(String(params.id));
+      }
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -35863,7 +37221,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/platformTypes/{+id}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -35997,6 +37357,11 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -36004,7 +37369,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/platformTypes'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -36162,6 +37529,15 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.code !== undefined && params.code !== null) {
+        validateMultiSegment('code', String(params.code));
+        params.code = encodeWithoutSlashes(String(params.code));
+      }
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -36169,7 +37545,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/postalCodes/{+code}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -36300,13 +37678,20 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/postalCodes'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -36460,13 +37845,20 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/regions'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -36624,6 +38016,15 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.id !== undefined && params.id !== null) {
+        validateMultiSegment('id', String(params.id));
+        params.id = encodeWithoutSlashes(String(params.id));
+      }
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -36631,7 +38032,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/remarketingLists/{+id}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -36793,6 +38196,11 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -36800,7 +38208,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/remarketingLists'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -36952,6 +38362,11 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -36959,7 +38374,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/remarketingLists'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -37125,6 +38542,11 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -37132,7 +38554,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/remarketingLists'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -37294,6 +38718,11 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -37301,7 +38730,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/remarketingLists'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -37530,6 +38961,23 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+      if (
+        params.remarketingListId !== undefined &&
+        params.remarketingListId !== null
+      ) {
+        validateMultiSegment(
+          'remarketingListId',
+          String(params.remarketingListId)
+        );
+        params.remarketingListId = encodeWithoutSlashes(
+          String(params.remarketingListId)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -37537,7 +38985,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/remarketingListShares/{+remarketingListId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -37684,6 +39134,11 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -37691,7 +39146,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/remarketingListShares'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -37836,6 +39293,11 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -37843,7 +39305,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/remarketingListShares'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -38033,6 +39497,11 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateSingleSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -38040,7 +39509,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{profileId}/reportdata/query'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -38189,6 +39660,15 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateSingleSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithSlashes(String(params.profileId));
+      }
+      if (params.reportId !== undefined && params.reportId !== null) {
+        validateSingleSegment('reportId', String(params.reportId));
+        params.reportId = encodeWithSlashes(String(params.reportId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -38196,7 +39676,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{profileId}/reports/{reportId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -38343,6 +39825,15 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateSingleSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithSlashes(String(params.profileId));
+      }
+      if (params.reportId !== undefined && params.reportId !== null) {
+        validateSingleSegment('reportId', String(params.reportId));
+        params.reportId = encodeWithSlashes(String(params.reportId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -38350,7 +39841,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{profileId}/reports/{reportId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -38520,13 +40013,18 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateSingleSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/dfareporting/v5/userprofiles/{profileId}/reports'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/dfareporting/v5/userprofiles/{profileId}/reports')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -38667,13 +40165,18 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateSingleSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/dfareporting/v5/userprofiles/{profileId}/reports'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/dfareporting/v5/userprofiles/{profileId}/reports')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -38814,6 +40317,15 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateSingleSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithSlashes(String(params.profileId));
+      }
+      if (params.reportId !== undefined && params.reportId !== null) {
+        validateSingleSegment('reportId', String(params.reportId));
+        params.reportId = encodeWithSlashes(String(params.reportId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -38821,7 +40333,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{profileId}/reports/{reportId}/run'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -38993,6 +40507,15 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateSingleSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithSlashes(String(params.profileId));
+      }
+      if (params.reportId !== undefined && params.reportId !== null) {
+        validateSingleSegment('reportId', String(params.reportId));
+        params.reportId = encodeWithSlashes(String(params.reportId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -39000,7 +40523,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{profileId}/reports/{reportId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -39255,6 +40780,11 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateSingleSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -39262,7 +40792,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{profileId}/reports/compatiblefields/query'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -39423,6 +40955,19 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.fileId !== undefined && params.fileId !== null) {
+        validateSingleSegment('fileId', String(params.fileId));
+        params.fileId = encodeWithSlashes(String(params.fileId));
+      }
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateSingleSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithSlashes(String(params.profileId));
+      }
+      if (params.reportId !== undefined && params.reportId !== null) {
+        validateSingleSegment('reportId', String(params.reportId));
+        params.reportId = encodeWithSlashes(String(params.reportId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -39430,7 +40975,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{profileId}/reports/{reportId}/files/{fileId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -39572,6 +41119,15 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateSingleSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithSlashes(String(params.profileId));
+      }
+      if (params.reportId !== undefined && params.reportId !== null) {
+        validateSingleSegment('reportId', String(params.reportId));
+        params.reportId = encodeWithSlashes(String(params.reportId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -39579,7 +41135,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{profileId}/reports/{reportId}/files'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -39770,13 +41328,24 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.id !== undefined && params.id !== null) {
+        validateMultiSegment('id', String(params.id));
+        params.id = encodeWithoutSlashes(String(params.id));
+      }
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/sites/{+id}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -39938,13 +41507,18 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/sites'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/sites')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -40105,13 +41679,18 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/sites'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/sites')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -40275,13 +41854,18 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/sites'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/sites')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -40443,13 +42027,18 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/sites'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/sites')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -40704,13 +42293,24 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.id !== undefined && params.id !== null) {
+        validateMultiSegment('id', String(params.id));
+        params.id = encodeWithoutSlashes(String(params.id));
+      }
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/sizes/{+id}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -40854,13 +42454,18 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/sizes'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/sizes')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -40998,13 +42603,18 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/sizes'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/sizes')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -41204,19 +42814,18 @@ export namespace dfareporting_v5 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/dfareporting/v5/studio/creativeAssets').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/dfareporting/v5/studio/creativeAssets')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
           options
         ),
         params,
-        mediaUrl: (
-          rootUrl + '/upload/dfareporting/v5/studio/creativeAssets'
-        ).replace(/([^:]\/)\/+/g, '$1'),
+        mediaUrl: (rootUrl + '/upload/dfareporting/v5/studio/creativeAssets')
+          .replace(/([^:]\/)\/+/g, '$1')
+          .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
         requiredParams: [],
         pathParams: [],
         context: this.context,
@@ -41383,13 +42992,28 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (
+        params.studioCreativeId !== undefined &&
+        params.studioCreativeId !== null
+      ) {
+        validateMultiSegment(
+          'studioCreativeId',
+          String(params.studioCreativeId)
+        );
+        params.studioCreativeId = encodeWithoutSlashes(
+          String(params.studioCreativeId)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/dfareporting/v5/studio/creatives/{+studioCreativeId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -41552,10 +43176,9 @@ export namespace dfareporting_v5 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/dfareporting/v5/studio/creatives').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/dfareporting/v5/studio/creatives')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -41678,6 +43301,19 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (
+        params.studioCreativeId !== undefined &&
+        params.studioCreativeId !== null
+      ) {
+        validateMultiSegment(
+          'studioCreativeId',
+          String(params.studioCreativeId)
+        );
+        params.studioCreativeId = encodeWithoutSlashes(
+          String(params.studioCreativeId)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -41685,7 +43321,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/studio/creatives/{+studioCreativeId}/publish'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -41845,6 +43483,15 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.id !== undefined && params.id !== null) {
+        validateMultiSegment('id', String(params.id));
+        params.id = encodeWithoutSlashes(String(params.id));
+      }
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -41852,7 +43499,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/subaccounts/{+id}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -41997,13 +43646,20 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/subaccounts'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -42147,13 +43803,20 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/subaccounts'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -42300,13 +43963,20 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/subaccounts'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -42451,13 +44121,20 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/subaccounts'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -42686,6 +44363,15 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.id !== undefined && params.id !== null) {
+        validateMultiSegment('id', String(params.id));
+        params.id = encodeWithoutSlashes(String(params.id));
+      }
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -42693,7 +44379,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/targetableRemarketingLists/{+id}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -42847,6 +44535,11 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -42854,7 +44547,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/targetableRemarketingLists'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -43053,6 +44748,15 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.id !== undefined && params.id !== null) {
+        validateMultiSegment('id', String(params.id));
+        params.id = encodeWithoutSlashes(String(params.id));
+      }
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -43060,7 +44764,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/targetingTemplates/{+id}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -43224,6 +44930,11 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -43231,7 +44942,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/targetingTemplates'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -43381,6 +45094,11 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -43388,7 +45106,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/targetingTemplates'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -43556,6 +45276,11 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -43563,7 +45288,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/targetingTemplates'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -43727,6 +45454,11 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -43734,7 +45466,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/targetingTemplates'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -43963,6 +45697,15 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.id !== undefined && params.id !== null) {
+        validateMultiSegment('id', String(params.id));
+        params.id = encodeWithoutSlashes(String(params.id));
+      }
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -43970,7 +45713,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/tvCampaignDetails/{+id}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -44143,6 +45888,11 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -44150,7 +45900,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/tvCampaignSummaries'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -44322,13 +46074,18 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateSingleSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/dfareporting/v5/userprofiles/{profileId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/dfareporting/v5/userprofiles/{profileId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -44465,10 +46222,9 @@ export namespace dfareporting_v5 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/dfareporting/v5/userprofiles').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/dfareporting/v5/userprofiles')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -44618,6 +46374,15 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.id !== undefined && params.id !== null) {
+        validateMultiSegment('id', String(params.id));
+        params.id = encodeWithoutSlashes(String(params.id));
+      }
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -44625,7 +46390,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/userRolePermissionGroups/{+id}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -44764,6 +46531,11 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -44771,7 +46543,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/userRolePermissionGroups'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -44933,6 +46707,15 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.id !== undefined && params.id !== null) {
+        validateMultiSegment('id', String(params.id));
+        params.id = encodeWithoutSlashes(String(params.id));
+      }
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -44940,7 +46723,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/userRolePermissions/{+id}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -45077,6 +46862,11 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -45084,7 +46874,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/userRolePermissions'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -45238,6 +47030,15 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.id !== undefined && params.id !== null) {
+        validateMultiSegment('id', String(params.id));
+        params.id = encodeWithoutSlashes(String(params.id));
+      }
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -45245,7 +47046,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/userRoles/{+id}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -45382,6 +47185,15 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.id !== undefined && params.id !== null) {
+        validateMultiSegment('id', String(params.id));
+        params.id = encodeWithoutSlashes(String(params.id));
+      }
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -45389,7 +47201,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/userRoles/{+id}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -45539,13 +47353,20 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/userRoles'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -45693,13 +47514,20 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/userRoles'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -45851,13 +47679,20 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/userRoles'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -46007,13 +47842,20 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/userRoles'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -46251,6 +48093,15 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.id !== undefined && params.id !== null) {
+        validateMultiSegment('id', String(params.id));
+        params.id = encodeWithoutSlashes(String(params.id));
+      }
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -46258,7 +48109,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/videoFormats/{+id}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -46390,6 +48243,11 @@ export namespace dfareporting_v5 {
         options = {};
       }
 
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -46397,7 +48255,9 @@ export namespace dfareporting_v5 {
             url: (
               rootUrl +
               '/dfareporting/v5/userprofiles/{+profileId}/videoFormats'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },

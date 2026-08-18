@@ -34,6 +34,12 @@ import {
   APIRequestContext,
 } from 'googleapis-common';
 import {Readable} from 'stream';
+import {
+  validateSingleSegment,
+  validateMultiSegment,
+  encodeWithSlashes,
+  encodeWithoutSlashes,
+} from '../../transcoding';
 
 export namespace searchconsole_v1 {
   export interface Options extends GlobalOptions {
@@ -786,6 +792,11 @@ export namespace searchconsole_v1 {
         options = {};
       }
 
+      if (params.siteUrl !== undefined && params.siteUrl !== null) {
+        validateSingleSegment('siteUrl', String(params.siteUrl));
+        params.siteUrl = encodeWithSlashes(String(params.siteUrl));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://searchconsole.googleapis.com/';
       const parameters = {
@@ -793,7 +804,9 @@ export namespace searchconsole_v1 {
           {
             url: (
               rootUrl + '/webmasters/v3/sites/{siteUrl}/searchAnalytics/query'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -938,6 +951,15 @@ export namespace searchconsole_v1 {
         options = {};
       }
 
+      if (params.feedpath !== undefined && params.feedpath !== null) {
+        validateSingleSegment('feedpath', String(params.feedpath));
+        params.feedpath = encodeWithSlashes(String(params.feedpath));
+      }
+      if (params.siteUrl !== undefined && params.siteUrl !== null) {
+        validateSingleSegment('siteUrl', String(params.siteUrl));
+        params.siteUrl = encodeWithSlashes(String(params.siteUrl));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://searchconsole.googleapis.com/';
       const parameters = {
@@ -945,7 +967,9 @@ export namespace searchconsole_v1 {
           {
             url: (
               rootUrl + '/webmasters/v3/sites/{siteUrl}/sitemaps/{feedpath}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -1086,6 +1110,15 @@ export namespace searchconsole_v1 {
         options = {};
       }
 
+      if (params.feedpath !== undefined && params.feedpath !== null) {
+        validateSingleSegment('feedpath', String(params.feedpath));
+        params.feedpath = encodeWithSlashes(String(params.feedpath));
+      }
+      if (params.siteUrl !== undefined && params.siteUrl !== null) {
+        validateSingleSegment('siteUrl', String(params.siteUrl));
+        params.siteUrl = encodeWithSlashes(String(params.siteUrl));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://searchconsole.googleapis.com/';
       const parameters = {
@@ -1093,7 +1126,9 @@ export namespace searchconsole_v1 {
           {
             url: (
               rootUrl + '/webmasters/v3/sites/{siteUrl}/sitemaps/{feedpath}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -1228,15 +1263,19 @@ export namespace searchconsole_v1 {
         options = {};
       }
 
+      if (params.siteUrl !== undefined && params.siteUrl !== null) {
+        validateSingleSegment('siteUrl', String(params.siteUrl));
+        params.siteUrl = encodeWithSlashes(String(params.siteUrl));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://searchconsole.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/webmasters/v3/sites/{siteUrl}/sitemaps').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/webmasters/v3/sites/{siteUrl}/sitemaps')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -1360,6 +1399,15 @@ export namespace searchconsole_v1 {
         options = {};
       }
 
+      if (params.feedpath !== undefined && params.feedpath !== null) {
+        validateSingleSegment('feedpath', String(params.feedpath));
+        params.feedpath = encodeWithSlashes(String(params.feedpath));
+      }
+      if (params.siteUrl !== undefined && params.siteUrl !== null) {
+        validateSingleSegment('siteUrl', String(params.siteUrl));
+        params.siteUrl = encodeWithSlashes(String(params.siteUrl));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://searchconsole.googleapis.com/';
       const parameters = {
@@ -1367,7 +1415,9 @@ export namespace searchconsole_v1 {
           {
             url: (
               rootUrl + '/webmasters/v3/sites/{siteUrl}/sitemaps/{feedpath}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -1537,15 +1587,19 @@ export namespace searchconsole_v1 {
         options = {};
       }
 
+      if (params.siteUrl !== undefined && params.siteUrl !== null) {
+        validateSingleSegment('siteUrl', String(params.siteUrl));
+        params.siteUrl = encodeWithSlashes(String(params.siteUrl));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://searchconsole.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/webmasters/v3/sites/{siteUrl}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/webmasters/v3/sites/{siteUrl}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -1667,15 +1721,19 @@ export namespace searchconsole_v1 {
         options = {};
       }
 
+      if (params.siteUrl !== undefined && params.siteUrl !== null) {
+        validateSingleSegment('siteUrl', String(params.siteUrl));
+        params.siteUrl = encodeWithSlashes(String(params.siteUrl));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://searchconsole.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/webmasters/v3/sites/{siteUrl}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/webmasters/v3/sites/{siteUrl}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -1807,15 +1865,19 @@ export namespace searchconsole_v1 {
         options = {};
       }
 
+      if (params.siteUrl !== undefined && params.siteUrl !== null) {
+        validateSingleSegment('siteUrl', String(params.siteUrl));
+        params.siteUrl = encodeWithSlashes(String(params.siteUrl));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://searchconsole.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/webmasters/v3/sites/{siteUrl}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/webmasters/v3/sites/{siteUrl}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -1949,10 +2011,9 @@ export namespace searchconsole_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/webmasters/v3/sites').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/webmasters/v3/sites')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -2136,10 +2197,9 @@ export namespace searchconsole_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/urlInspection/index:inspect').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/urlInspection/index:inspect')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -2313,9 +2373,9 @@ export namespace searchconsole_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v1/urlTestingTools/mobileFriendlyTest:run'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/urlTestingTools/mobileFriendlyTest:run')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },

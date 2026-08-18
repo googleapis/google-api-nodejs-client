@@ -34,6 +34,12 @@ import {
   APIRequestContext,
 } from 'googleapis-common';
 import {Readable} from 'stream';
+import {
+  validateSingleSegment,
+  validateMultiSegment,
+  encodeWithSlashes,
+  encodeWithoutSlashes,
+} from '../../transcoding';
 
 export namespace gmail_v1 {
   export interface Options extends GlobalOptions {
@@ -1170,14 +1176,18 @@ export namespace gmail_v1 {
         options = {};
       }
 
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://gmail.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/gmail/v1/users/{userId}/profile').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/gmail/v1/users/{userId}/profile')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -1304,14 +1314,18 @@ export namespace gmail_v1 {
         options = {};
       }
 
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://gmail.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/gmail/v1/users/{userId}/stop').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/gmail/v1/users/{userId}/stop')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -1457,14 +1471,18 @@ export namespace gmail_v1 {
         options = {};
       }
 
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://gmail.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/gmail/v1/users/{userId}/watch').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/gmail/v1/users/{userId}/watch')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -1643,24 +1661,27 @@ export namespace gmail_v1 {
         options = {};
       }
 
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://gmail.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/gmail/v1/users/{userId}/drafts').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/gmail/v1/users/{userId}/drafts')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
           options
         ),
         params,
-        mediaUrl: (rootUrl + '/upload/gmail/v1/users/{userId}/drafts').replace(
-          /([^:]\/)\/+/g,
-          '$1'
-        ),
+        mediaUrl: (rootUrl + '/upload/gmail/v1/users/{userId}/drafts')
+          .replace(/([^:]\/)\/+/g, '$1')
+          .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
         requiredParams: ['userId'],
         pathParams: ['userId'],
         context: this.context,
@@ -1784,14 +1805,22 @@ export namespace gmail_v1 {
         options = {};
       }
 
+      if (params.id !== undefined && params.id !== null) {
+        validateSingleSegment('id', String(params.id));
+        params.id = encodeWithSlashes(String(params.id));
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://gmail.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/gmail/v1/users/{userId}/drafts/{id}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/gmail/v1/users/{userId}/drafts/{id}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -1929,14 +1958,22 @@ export namespace gmail_v1 {
         options = {};
       }
 
+      if (params.id !== undefined && params.id !== null) {
+        validateSingleSegment('id', String(params.id));
+        params.id = encodeWithSlashes(String(params.id));
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://gmail.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/gmail/v1/users/{userId}/drafts/{id}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/gmail/v1/users/{userId}/drafts/{id}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -2081,14 +2118,18 @@ export namespace gmail_v1 {
         options = {};
       }
 
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://gmail.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/gmail/v1/users/{userId}/drafts').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/gmail/v1/users/{userId}/drafts')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -2244,23 +2285,27 @@ export namespace gmail_v1 {
         options = {};
       }
 
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://gmail.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/gmail/v1/users/{userId}/drafts/send').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/gmail/v1/users/{userId}/drafts/send')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
           options
         ),
         params,
-        mediaUrl: (
-          rootUrl + '/upload/gmail/v1/users/{userId}/drafts/send'
-        ).replace(/([^:]\/)\/+/g, '$1'),
+        mediaUrl: (rootUrl + '/upload/gmail/v1/users/{userId}/drafts/send')
+          .replace(/([^:]\/)\/+/g, '$1')
+          .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
         requiredParams: ['userId'],
         pathParams: ['userId'],
         context: this.context,
@@ -2404,23 +2449,31 @@ export namespace gmail_v1 {
         options = {};
       }
 
+      if (params.id !== undefined && params.id !== null) {
+        validateSingleSegment('id', String(params.id));
+        params.id = encodeWithSlashes(String(params.id));
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://gmail.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/gmail/v1/users/{userId}/drafts/{id}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/gmail/v1/users/{userId}/drafts/{id}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
           options
         ),
         params,
-        mediaUrl: (
-          rootUrl + '/upload/gmail/v1/users/{userId}/drafts/{id}'
-        ).replace(/([^:]\/)\/+/g, '$1'),
+        mediaUrl: (rootUrl + '/upload/gmail/v1/users/{userId}/drafts/{id}')
+          .replace(/([^:]\/)\/+/g, '$1')
+          .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
         requiredParams: ['userId', 'id'],
         pathParams: ['id', 'userId'],
         context: this.context,
@@ -2697,14 +2750,18 @@ export namespace gmail_v1 {
         options = {};
       }
 
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://gmail.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/gmail/v1/users/{userId}/history').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/gmail/v1/users/{userId}/history')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -2897,14 +2954,18 @@ export namespace gmail_v1 {
         options = {};
       }
 
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://gmail.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/gmail/v1/users/{userId}/labels').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/gmail/v1/users/{userId}/labels')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -3033,14 +3094,22 @@ export namespace gmail_v1 {
         options = {};
       }
 
+      if (params.id !== undefined && params.id !== null) {
+        validateSingleSegment('id', String(params.id));
+        params.id = encodeWithSlashes(String(params.id));
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://gmail.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/gmail/v1/users/{userId}/labels/{id}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/gmail/v1/users/{userId}/labels/{id}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -3185,14 +3254,22 @@ export namespace gmail_v1 {
         options = {};
       }
 
+      if (params.id !== undefined && params.id !== null) {
+        validateSingleSegment('id', String(params.id));
+        params.id = encodeWithSlashes(String(params.id));
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://gmail.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/gmail/v1/users/{userId}/labels/{id}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/gmail/v1/users/{userId}/labels/{id}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -3328,14 +3405,18 @@ export namespace gmail_v1 {
         options = {};
       }
 
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://gmail.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/gmail/v1/users/{userId}/labels').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/gmail/v1/users/{userId}/labels')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -3496,14 +3577,22 @@ export namespace gmail_v1 {
         options = {};
       }
 
+      if (params.id !== undefined && params.id !== null) {
+        validateSingleSegment('id', String(params.id));
+        params.id = encodeWithSlashes(String(params.id));
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://gmail.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/gmail/v1/users/{userId}/labels/{id}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/gmail/v1/users/{userId}/labels/{id}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -3664,14 +3753,22 @@ export namespace gmail_v1 {
         options = {};
       }
 
+      if (params.id !== undefined && params.id !== null) {
+        validateSingleSegment('id', String(params.id));
+        params.id = encodeWithSlashes(String(params.id));
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://gmail.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/gmail/v1/users/{userId}/labels/{id}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/gmail/v1/users/{userId}/labels/{id}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -3879,13 +3976,18 @@ export namespace gmail_v1 {
         options = {};
       }
 
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://gmail.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/gmail/v1/users/{userId}/messages/batchDelete'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/gmail/v1/users/{userId}/messages/batchDelete')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -4023,13 +4125,18 @@ export namespace gmail_v1 {
         options = {};
       }
 
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://gmail.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/gmail/v1/users/{userId}/messages/batchModify'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/gmail/v1/users/{userId}/messages/batchModify')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -4154,14 +4261,22 @@ export namespace gmail_v1 {
         options = {};
       }
 
+      if (params.id !== undefined && params.id !== null) {
+        validateSingleSegment('id', String(params.id));
+        params.id = encodeWithSlashes(String(params.id));
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://gmail.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/gmail/v1/users/{userId}/messages/{id}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/gmail/v1/users/{userId}/messages/{id}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -4313,14 +4428,22 @@ export namespace gmail_v1 {
         options = {};
       }
 
+      if (params.id !== undefined && params.id !== null) {
+        validateSingleSegment('id', String(params.id));
+        params.id = encodeWithSlashes(String(params.id));
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://gmail.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/gmail/v1/users/{userId}/messages/{id}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/gmail/v1/users/{userId}/messages/{id}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -4491,23 +4614,27 @@ export namespace gmail_v1 {
         options = {};
       }
 
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://gmail.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/gmail/v1/users/{userId}/messages/import').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/gmail/v1/users/{userId}/messages/import')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
           options
         ),
         params,
-        mediaUrl: (
-          rootUrl + '/upload/gmail/v1/users/{userId}/messages/import'
-        ).replace(/([^:]\/)\/+/g, '$1'),
+        mediaUrl: (rootUrl + '/upload/gmail/v1/users/{userId}/messages/import')
+          .replace(/([^:]\/)\/+/g, '$1')
+          .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
         requiredParams: ['userId'],
         pathParams: ['userId'],
         context: this.context,
@@ -4668,23 +4795,27 @@ export namespace gmail_v1 {
         options = {};
       }
 
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://gmail.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/gmail/v1/users/{userId}/messages').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/gmail/v1/users/{userId}/messages')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
           options
         ),
         params,
-        mediaUrl: (
-          rootUrl + '/upload/gmail/v1/users/{userId}/messages'
-        ).replace(/([^:]\/)\/+/g, '$1'),
+        mediaUrl: (rootUrl + '/upload/gmail/v1/users/{userId}/messages')
+          .replace(/([^:]\/)\/+/g, '$1')
+          .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
         requiredParams: ['userId'],
         pathParams: ['userId'],
         context: this.context,
@@ -4826,14 +4957,18 @@ export namespace gmail_v1 {
         options = {};
       }
 
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://gmail.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/gmail/v1/users/{userId}/messages').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/gmail/v1/users/{userId}/messages')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -4987,13 +5122,22 @@ export namespace gmail_v1 {
         options = {};
       }
 
+      if (params.id !== undefined && params.id !== null) {
+        validateSingleSegment('id', String(params.id));
+        params.id = encodeWithSlashes(String(params.id));
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://gmail.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/gmail/v1/users/{userId}/messages/{id}/modify'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/gmail/v1/users/{userId}/messages/{id}/modify')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -5158,23 +5302,27 @@ export namespace gmail_v1 {
         options = {};
       }
 
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://gmail.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/gmail/v1/users/{userId}/messages/send').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/gmail/v1/users/{userId}/messages/send')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
           options
         ),
         params,
-        mediaUrl: (
-          rootUrl + '/upload/gmail/v1/users/{userId}/messages/send'
-        ).replace(/([^:]\/)\/+/g, '$1'),
+        mediaUrl: (rootUrl + '/upload/gmail/v1/users/{userId}/messages/send')
+          .replace(/([^:]\/)\/+/g, '$1')
+          .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
         requiredParams: ['userId'],
         pathParams: ['userId'],
         context: this.context,
@@ -5311,13 +5459,22 @@ export namespace gmail_v1 {
         options = {};
       }
 
+      if (params.id !== undefined && params.id !== null) {
+        validateSingleSegment('id', String(params.id));
+        params.id = encodeWithSlashes(String(params.id));
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://gmail.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/gmail/v1/users/{userId}/messages/{id}/trash'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/gmail/v1/users/{userId}/messages/{id}/trash')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -5460,13 +5617,22 @@ export namespace gmail_v1 {
         options = {};
       }
 
+      if (params.id !== undefined && params.id !== null) {
+        validateSingleSegment('id', String(params.id));
+        params.id = encodeWithSlashes(String(params.id));
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://gmail.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/gmail/v1/users/{userId}/messages/{id}/untrash'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/gmail/v1/users/{userId}/messages/{id}/untrash')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -5829,6 +5995,19 @@ export namespace gmail_v1 {
         options = {};
       }
 
+      if (params.id !== undefined && params.id !== null) {
+        validateSingleSegment('id', String(params.id));
+        params.id = encodeWithSlashes(String(params.id));
+      }
+      if (params.messageId !== undefined && params.messageId !== null) {
+        validateSingleSegment('messageId', String(params.messageId));
+        params.messageId = encodeWithSlashes(String(params.messageId));
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://gmail.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5836,7 +6015,9 @@ export namespace gmail_v1 {
             url: (
               rootUrl +
               '/gmail/v1/users/{userId}/messages/{messageId}/attachments/{id}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -6008,13 +6189,18 @@ export namespace gmail_v1 {
         options = {};
       }
 
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://gmail.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/gmail/v1/users/{userId}/settings/autoForwarding'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/gmail/v1/users/{userId}/settings/autoForwarding')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -6152,14 +6338,18 @@ export namespace gmail_v1 {
         options = {};
       }
 
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://gmail.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/gmail/v1/users/{userId}/settings/imap').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/gmail/v1/users/{userId}/settings/imap')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -6294,13 +6484,18 @@ export namespace gmail_v1 {
         options = {};
       }
 
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://gmail.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/gmail/v1/users/{userId}/settings/language'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/gmail/v1/users/{userId}/settings/language')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -6436,14 +6631,18 @@ export namespace gmail_v1 {
         options = {};
       }
 
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://gmail.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/gmail/v1/users/{userId}/settings/pop').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/gmail/v1/users/{userId}/settings/pop')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -6585,13 +6784,18 @@ export namespace gmail_v1 {
         options = {};
       }
 
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://gmail.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/gmail/v1/users/{userId}/settings/vacation'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/gmail/v1/users/{userId}/settings/vacation')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -6735,13 +6939,18 @@ export namespace gmail_v1 {
         options = {};
       }
 
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://gmail.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/gmail/v1/users/{userId}/settings/autoForwarding'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/gmail/v1/users/{userId}/settings/autoForwarding')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -6885,14 +7094,18 @@ export namespace gmail_v1 {
         options = {};
       }
 
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://gmail.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/gmail/v1/users/{userId}/settings/imap').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/gmail/v1/users/{userId}/settings/imap')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -7032,13 +7245,18 @@ export namespace gmail_v1 {
         options = {};
       }
 
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://gmail.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/gmail/v1/users/{userId}/settings/language'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/gmail/v1/users/{userId}/settings/language')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -7178,14 +7396,18 @@ export namespace gmail_v1 {
         options = {};
       }
 
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://gmail.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/gmail/v1/users/{userId}/settings/pop').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/gmail/v1/users/{userId}/settings/pop')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -7339,13 +7561,18 @@ export namespace gmail_v1 {
         options = {};
       }
 
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://gmail.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/gmail/v1/users/{userId}/settings/vacation'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/gmail/v1/users/{userId}/settings/vacation')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -7596,13 +7823,18 @@ export namespace gmail_v1 {
         options = {};
       }
 
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://gmail.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/gmail/v1/users/{userId}/settings/cse/identities'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/gmail/v1/users/{userId}/settings/cse/identities')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -7730,6 +7962,23 @@ export namespace gmail_v1 {
         options = {};
       }
 
+      if (
+        params.cseEmailAddress !== undefined &&
+        params.cseEmailAddress !== null
+      ) {
+        validateSingleSegment(
+          'cseEmailAddress',
+          String(params.cseEmailAddress)
+        );
+        params.cseEmailAddress = encodeWithSlashes(
+          String(params.cseEmailAddress)
+        );
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://gmail.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -7737,7 +7986,9 @@ export namespace gmail_v1 {
             url: (
               rootUrl +
               '/gmail/v1/users/{userId}/settings/cse/identities/{cseEmailAddress}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -7877,6 +8128,23 @@ export namespace gmail_v1 {
         options = {};
       }
 
+      if (
+        params.cseEmailAddress !== undefined &&
+        params.cseEmailAddress !== null
+      ) {
+        validateSingleSegment(
+          'cseEmailAddress',
+          String(params.cseEmailAddress)
+        );
+        params.cseEmailAddress = encodeWithSlashes(
+          String(params.cseEmailAddress)
+        );
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://gmail.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -7884,7 +8152,9 @@ export namespace gmail_v1 {
             url: (
               rootUrl +
               '/gmail/v1/users/{userId}/settings/cse/identities/{cseEmailAddress}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -8028,13 +8298,18 @@ export namespace gmail_v1 {
         options = {};
       }
 
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://gmail.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/gmail/v1/users/{userId}/settings/cse/identities'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/gmail/v1/users/{userId}/settings/cse/identities')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -8181,6 +8456,15 @@ export namespace gmail_v1 {
         options = {};
       }
 
+      if (params.emailAddress !== undefined && params.emailAddress !== null) {
+        validateSingleSegment('emailAddress', String(params.emailAddress));
+        params.emailAddress = encodeWithSlashes(String(params.emailAddress));
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://gmail.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -8188,7 +8472,9 @@ export namespace gmail_v1 {
             url: (
               rootUrl +
               '/gmail/v1/users/{userId}/settings/cse/identities/{emailAddress}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -8410,13 +8696,18 @@ export namespace gmail_v1 {
         options = {};
       }
 
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://gmail.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/gmail/v1/users/{userId}/settings/cse/keypairs'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/gmail/v1/users/{userId}/settings/cse/keypairs')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -8562,6 +8853,15 @@ export namespace gmail_v1 {
         options = {};
       }
 
+      if (params.keyPairId !== undefined && params.keyPairId !== null) {
+        validateSingleSegment('keyPairId', String(params.keyPairId));
+        params.keyPairId = encodeWithSlashes(String(params.keyPairId));
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://gmail.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -8569,7 +8869,9 @@ export namespace gmail_v1 {
             url: (
               rootUrl +
               '/gmail/v1/users/{userId}/settings/cse/keypairs/{keyPairId}:disable'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -8715,6 +9017,15 @@ export namespace gmail_v1 {
         options = {};
       }
 
+      if (params.keyPairId !== undefined && params.keyPairId !== null) {
+        validateSingleSegment('keyPairId', String(params.keyPairId));
+        params.keyPairId = encodeWithSlashes(String(params.keyPairId));
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://gmail.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -8722,7 +9033,9 @@ export namespace gmail_v1 {
             url: (
               rootUrl +
               '/gmail/v1/users/{userId}/settings/cse/keypairs/{keyPairId}:enable'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -8865,6 +9178,15 @@ export namespace gmail_v1 {
         options = {};
       }
 
+      if (params.keyPairId !== undefined && params.keyPairId !== null) {
+        validateSingleSegment('keyPairId', String(params.keyPairId));
+        params.keyPairId = encodeWithSlashes(String(params.keyPairId));
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://gmail.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -8872,7 +9194,9 @@ export namespace gmail_v1 {
             url: (
               rootUrl +
               '/gmail/v1/users/{userId}/settings/cse/keypairs/{keyPairId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -9014,13 +9338,18 @@ export namespace gmail_v1 {
         options = {};
       }
 
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://gmail.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/gmail/v1/users/{userId}/settings/cse/keypairs'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/gmail/v1/users/{userId}/settings/cse/keypairs')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -9154,6 +9483,15 @@ export namespace gmail_v1 {
         options = {};
       }
 
+      if (params.keyPairId !== undefined && params.keyPairId !== null) {
+        validateSingleSegment('keyPairId', String(params.keyPairId));
+        params.keyPairId = encodeWithSlashes(String(params.keyPairId));
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://gmail.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -9161,7 +9499,9 @@ export namespace gmail_v1 {
             url: (
               rootUrl +
               '/gmail/v1/users/{userId}/settings/cse/keypairs/{keyPairId}:obliterate'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -9392,13 +9732,18 @@ export namespace gmail_v1 {
         options = {};
       }
 
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://gmail.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/gmail/v1/users/{userId}/settings/delegates'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/gmail/v1/users/{userId}/settings/delegates')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -9523,6 +9868,15 @@ export namespace gmail_v1 {
         options = {};
       }
 
+      if (params.delegateEmail !== undefined && params.delegateEmail !== null) {
+        validateSingleSegment('delegateEmail', String(params.delegateEmail));
+        params.delegateEmail = encodeWithSlashes(String(params.delegateEmail));
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://gmail.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -9530,7 +9884,9 @@ export namespace gmail_v1 {
             url: (
               rootUrl +
               '/gmail/v1/users/{userId}/settings/delegates/{delegateEmail}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -9667,6 +10023,15 @@ export namespace gmail_v1 {
         options = {};
       }
 
+      if (params.delegateEmail !== undefined && params.delegateEmail !== null) {
+        validateSingleSegment('delegateEmail', String(params.delegateEmail));
+        params.delegateEmail = encodeWithSlashes(String(params.delegateEmail));
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://gmail.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -9674,7 +10039,9 @@ export namespace gmail_v1 {
             url: (
               rootUrl +
               '/gmail/v1/users/{userId}/settings/delegates/{delegateEmail}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -9810,13 +10177,18 @@ export namespace gmail_v1 {
         options = {};
       }
 
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://gmail.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/gmail/v1/users/{userId}/settings/delegates'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/gmail/v1/users/{userId}/settings/delegates')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -10002,13 +10374,18 @@ export namespace gmail_v1 {
         options = {};
       }
 
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://gmail.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/gmail/v1/users/{userId}/settings/filters'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/gmail/v1/users/{userId}/settings/filters')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -10133,13 +10510,22 @@ export namespace gmail_v1 {
         options = {};
       }
 
+      if (params.id !== undefined && params.id !== null) {
+        validateSingleSegment('id', String(params.id));
+        params.id = encodeWithSlashes(String(params.id));
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://gmail.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/gmail/v1/users/{userId}/settings/filters/{id}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/gmail/v1/users/{userId}/settings/filters/{id}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -10277,13 +10663,22 @@ export namespace gmail_v1 {
         options = {};
       }
 
+      if (params.id !== undefined && params.id !== null) {
+        validateSingleSegment('id', String(params.id));
+        params.id = encodeWithSlashes(String(params.id));
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://gmail.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/gmail/v1/users/{userId}/settings/filters/{id}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/gmail/v1/users/{userId}/settings/filters/{id}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -10418,13 +10813,18 @@ export namespace gmail_v1 {
         options = {};
       }
 
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://gmail.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/gmail/v1/users/{userId}/settings/filters'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/gmail/v1/users/{userId}/settings/filters')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -10610,13 +11010,20 @@ export namespace gmail_v1 {
         options = {};
       }
 
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://gmail.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/gmail/v1/users/{userId}/settings/forwardingAddresses'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -10742,6 +11149,23 @@ export namespace gmail_v1 {
         options = {};
       }
 
+      if (
+        params.forwardingEmail !== undefined &&
+        params.forwardingEmail !== null
+      ) {
+        validateSingleSegment(
+          'forwardingEmail',
+          String(params.forwardingEmail)
+        );
+        params.forwardingEmail = encodeWithSlashes(
+          String(params.forwardingEmail)
+        );
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://gmail.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -10749,7 +11173,9 @@ export namespace gmail_v1 {
             url: (
               rootUrl +
               '/gmail/v1/users/{userId}/settings/forwardingAddresses/{forwardingEmail}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -10887,6 +11313,23 @@ export namespace gmail_v1 {
         options = {};
       }
 
+      if (
+        params.forwardingEmail !== undefined &&
+        params.forwardingEmail !== null
+      ) {
+        validateSingleSegment(
+          'forwardingEmail',
+          String(params.forwardingEmail)
+        );
+        params.forwardingEmail = encodeWithSlashes(
+          String(params.forwardingEmail)
+        );
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://gmail.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -10894,7 +11337,9 @@ export namespace gmail_v1 {
             url: (
               rootUrl +
               '/gmail/v1/users/{userId}/settings/forwardingAddresses/{forwardingEmail}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -11033,13 +11478,20 @@ export namespace gmail_v1 {
         options = {};
       }
 
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://gmail.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/gmail/v1/users/{userId}/settings/forwardingAddresses'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -11243,14 +11695,18 @@ export namespace gmail_v1 {
         options = {};
       }
 
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://gmail.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/gmail/v1/users/{userId}/settings/sendAs').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/gmail/v1/users/{userId}/settings/sendAs')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -11375,13 +11831,24 @@ export namespace gmail_v1 {
         options = {};
       }
 
+      if (params.sendAsEmail !== undefined && params.sendAsEmail !== null) {
+        validateSingleSegment('sendAsEmail', String(params.sendAsEmail));
+        params.sendAsEmail = encodeWithSlashes(String(params.sendAsEmail));
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://gmail.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -11525,13 +11992,24 @@ export namespace gmail_v1 {
         options = {};
       }
 
+      if (params.sendAsEmail !== undefined && params.sendAsEmail !== null) {
+        validateSingleSegment('sendAsEmail', String(params.sendAsEmail));
+        params.sendAsEmail = encodeWithSlashes(String(params.sendAsEmail));
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://gmail.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -11666,14 +12144,18 @@ export namespace gmail_v1 {
         options = {};
       }
 
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://gmail.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/gmail/v1/users/{userId}/settings/sendAs').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/gmail/v1/users/{userId}/settings/sendAs')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -11831,13 +12313,24 @@ export namespace gmail_v1 {
         options = {};
       }
 
+      if (params.sendAsEmail !== undefined && params.sendAsEmail !== null) {
+        validateSingleSegment('sendAsEmail', String(params.sendAsEmail));
+        params.sendAsEmail = encodeWithSlashes(String(params.sendAsEmail));
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://gmail.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -11995,13 +12488,24 @@ export namespace gmail_v1 {
         options = {};
       }
 
+      if (params.sendAsEmail !== undefined && params.sendAsEmail !== null) {
+        validateSingleSegment('sendAsEmail', String(params.sendAsEmail));
+        params.sendAsEmail = encodeWithSlashes(String(params.sendAsEmail));
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://gmail.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -12126,6 +12630,15 @@ export namespace gmail_v1 {
         options = {};
       }
 
+      if (params.sendAsEmail !== undefined && params.sendAsEmail !== null) {
+        validateSingleSegment('sendAsEmail', String(params.sendAsEmail));
+        params.sendAsEmail = encodeWithSlashes(String(params.sendAsEmail));
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://gmail.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -12133,7 +12646,9 @@ export namespace gmail_v1 {
             url: (
               rootUrl +
               '/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}/verify'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -12348,6 +12863,19 @@ export namespace gmail_v1 {
         options = {};
       }
 
+      if (params.id !== undefined && params.id !== null) {
+        validateSingleSegment('id', String(params.id));
+        params.id = encodeWithSlashes(String(params.id));
+      }
+      if (params.sendAsEmail !== undefined && params.sendAsEmail !== null) {
+        validateSingleSegment('sendAsEmail', String(params.sendAsEmail));
+        params.sendAsEmail = encodeWithSlashes(String(params.sendAsEmail));
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://gmail.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -12355,7 +12883,9 @@ export namespace gmail_v1 {
             url: (
               rootUrl +
               '/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}/smimeInfo/{id}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -12500,6 +13030,19 @@ export namespace gmail_v1 {
         options = {};
       }
 
+      if (params.id !== undefined && params.id !== null) {
+        validateSingleSegment('id', String(params.id));
+        params.id = encodeWithSlashes(String(params.id));
+      }
+      if (params.sendAsEmail !== undefined && params.sendAsEmail !== null) {
+        validateSingleSegment('sendAsEmail', String(params.sendAsEmail));
+        params.sendAsEmail = encodeWithSlashes(String(params.sendAsEmail));
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://gmail.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -12507,7 +13050,9 @@ export namespace gmail_v1 {
             url: (
               rootUrl +
               '/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}/smimeInfo/{id}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -12661,6 +13206,15 @@ export namespace gmail_v1 {
         options = {};
       }
 
+      if (params.sendAsEmail !== undefined && params.sendAsEmail !== null) {
+        validateSingleSegment('sendAsEmail', String(params.sendAsEmail));
+        params.sendAsEmail = encodeWithSlashes(String(params.sendAsEmail));
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://gmail.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -12668,7 +13222,9 @@ export namespace gmail_v1 {
             url: (
               rootUrl +
               '/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}/smimeInfo'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -12807,6 +13363,15 @@ export namespace gmail_v1 {
         options = {};
       }
 
+      if (params.sendAsEmail !== undefined && params.sendAsEmail !== null) {
+        validateSingleSegment('sendAsEmail', String(params.sendAsEmail));
+        params.sendAsEmail = encodeWithSlashes(String(params.sendAsEmail));
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://gmail.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -12814,7 +13379,9 @@ export namespace gmail_v1 {
             url: (
               rootUrl +
               '/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}/smimeInfo'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -12945,6 +13512,19 @@ export namespace gmail_v1 {
         options = {};
       }
 
+      if (params.id !== undefined && params.id !== null) {
+        validateSingleSegment('id', String(params.id));
+        params.id = encodeWithSlashes(String(params.id));
+      }
+      if (params.sendAsEmail !== undefined && params.sendAsEmail !== null) {
+        validateSingleSegment('sendAsEmail', String(params.sendAsEmail));
+        params.sendAsEmail = encodeWithSlashes(String(params.sendAsEmail));
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://gmail.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -12952,7 +13532,9 @@ export namespace gmail_v1 {
             url: (
               rootUrl +
               '/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}/smimeInfo/{id}/setDefault'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -13152,14 +13734,22 @@ export namespace gmail_v1 {
         options = {};
       }
 
+      if (params.id !== undefined && params.id !== null) {
+        validateSingleSegment('id', String(params.id));
+        params.id = encodeWithSlashes(String(params.id));
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://gmail.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/gmail/v1/users/{userId}/threads/{id}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/gmail/v1/users/{userId}/threads/{id}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -13305,14 +13895,22 @@ export namespace gmail_v1 {
         options = {};
       }
 
+      if (params.id !== undefined && params.id !== null) {
+        validateSingleSegment('id', String(params.id));
+        params.id = encodeWithSlashes(String(params.id));
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://gmail.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/gmail/v1/users/{userId}/threads/{id}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/gmail/v1/users/{userId}/threads/{id}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -13459,14 +14057,18 @@ export namespace gmail_v1 {
         options = {};
       }
 
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://gmail.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/gmail/v1/users/{userId}/threads').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/gmail/v1/users/{userId}/threads')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -13612,13 +14214,22 @@ export namespace gmail_v1 {
         options = {};
       }
 
+      if (params.id !== undefined && params.id !== null) {
+        validateSingleSegment('id', String(params.id));
+        params.id = encodeWithSlashes(String(params.id));
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://gmail.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/gmail/v1/users/{userId}/threads/{id}/modify'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/gmail/v1/users/{userId}/threads/{id}/modify')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -13755,13 +14366,22 @@ export namespace gmail_v1 {
         options = {};
       }
 
+      if (params.id !== undefined && params.id !== null) {
+        validateSingleSegment('id', String(params.id));
+        params.id = encodeWithSlashes(String(params.id));
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://gmail.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/gmail/v1/users/{userId}/threads/{id}/trash'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/gmail/v1/users/{userId}/threads/{id}/trash')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -13898,13 +14518,22 @@ export namespace gmail_v1 {
         options = {};
       }
 
+      if (params.id !== undefined && params.id !== null) {
+        validateSingleSegment('id', String(params.id));
+        params.id = encodeWithSlashes(String(params.id));
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://gmail.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/gmail/v1/users/{userId}/threads/{id}/untrash'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/gmail/v1/users/{userId}/threads/{id}/untrash')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },

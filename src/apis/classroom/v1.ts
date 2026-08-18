@@ -34,6 +34,12 @@ import {
   APIRequestContext,
 } from 'googleapis-common';
 import {Readable} from 'stream';
+import {
+  validateSingleSegment,
+  validateMultiSegment,
+  encodeWithSlashes,
+  encodeWithoutSlashes,
+} from '../../transcoding';
 
 export namespace classroom_v1 {
   export interface Options extends GlobalOptions {
@@ -1948,7 +1954,9 @@ export namespace classroom_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/courses').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/courses')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -2074,11 +2082,18 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.id !== undefined && params.id !== null) {
+        validateSingleSegment('id', String(params.id));
+        params.id = encodeWithSlashes(String(params.id));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/courses/{id}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/courses/{id}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -2229,11 +2244,18 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.id !== undefined && params.id !== null) {
+        validateSingleSegment('id', String(params.id));
+        params.id = encodeWithSlashes(String(params.id));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/courses/{id}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/courses/{id}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -2370,13 +2392,18 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.courseId !== undefined && params.courseId !== null) {
+        validateSingleSegment('courseId', String(params.courseId));
+        params.courseId = encodeWithSlashes(String(params.courseId));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v1/courses/{courseId}/gradingPeriodSettings'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/courses/{courseId}/gradingPeriodSettings')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -2521,7 +2548,9 @@ export namespace classroom_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/courses').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/courses')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -2699,11 +2728,18 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.id !== undefined && params.id !== null) {
+        validateSingleSegment('id', String(params.id));
+        params.id = encodeWithSlashes(String(params.id));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/courses/{id}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/courses/{id}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -2879,11 +2915,18 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.id !== undefined && params.id !== null) {
+        validateSingleSegment('id', String(params.id));
+        params.id = encodeWithSlashes(String(params.id));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/courses/{id}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/courses/{id}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -3028,13 +3071,18 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.courseId !== undefined && params.courseId !== null) {
+        validateSingleSegment('courseId', String(params.courseId));
+        params.courseId = encodeWithSlashes(String(params.courseId));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v1/courses/{courseId}/gradingPeriodSettings'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/courses/{courseId}/gradingPeriodSettings')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -3267,14 +3315,18 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.courseId !== undefined && params.courseId !== null) {
+        validateSingleSegment('courseId', String(params.courseId));
+        params.courseId = encodeWithSlashes(String(params.courseId));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/courses/{courseId}/aliases').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/courses/{courseId}/aliases')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -3403,14 +3455,22 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.alias !== undefined && params.alias !== null) {
+        validateSingleSegment('alias', String(params.alias));
+        params.alias = encodeWithSlashes(String(params.alias));
+      }
+      if (params.courseId !== undefined && params.courseId !== null) {
+        validateSingleSegment('courseId', String(params.courseId));
+        params.courseId = encodeWithSlashes(String(params.courseId));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/courses/{courseId}/aliases/{alias}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/courses/{courseId}/aliases/{alias}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -3551,14 +3611,18 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.courseId !== undefined && params.courseId !== null) {
+        validateSingleSegment('courseId', String(params.courseId));
+        params.courseId = encodeWithSlashes(String(params.courseId));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/courses/{courseId}/aliases').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/courses/{courseId}/aliases')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -3764,14 +3828,18 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.courseId !== undefined && params.courseId !== null) {
+        validateSingleSegment('courseId', String(params.courseId));
+        params.courseId = encodeWithSlashes(String(params.courseId));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/courses/{courseId}/announcements').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/courses/{courseId}/announcements')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -3900,13 +3968,22 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.courseId !== undefined && params.courseId !== null) {
+        validateSingleSegment('courseId', String(params.courseId));
+        params.courseId = encodeWithSlashes(String(params.courseId));
+      }
+      if (params.id !== undefined && params.id !== null) {
+        validateSingleSegment('id', String(params.id));
+        params.id = encodeWithSlashes(String(params.id));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v1/courses/{courseId}/announcements/{id}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/courses/{courseId}/announcements/{id}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -4052,13 +4129,22 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.courseId !== undefined && params.courseId !== null) {
+        validateSingleSegment('courseId', String(params.courseId));
+        params.courseId = encodeWithSlashes(String(params.courseId));
+      }
+      if (params.id !== undefined && params.id !== null) {
+        validateSingleSegment('id', String(params.id));
+        params.id = encodeWithSlashes(String(params.id));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v1/courses/{courseId}/announcements/{id}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/courses/{courseId}/announcements/{id}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -4204,6 +4290,15 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.courseId !== undefined && params.courseId !== null) {
+        validateSingleSegment('courseId', String(params.courseId));
+        params.courseId = encodeWithSlashes(String(params.courseId));
+      }
+      if (params.itemId !== undefined && params.itemId !== null) {
+        validateSingleSegment('itemId', String(params.itemId));
+        params.itemId = encodeWithSlashes(String(params.itemId));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4211,7 +4306,9 @@ export namespace classroom_v1 {
             url: (
               rootUrl +
               '/v1/courses/{courseId}/announcements/{itemId}/addOnContext'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -4356,14 +4453,18 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.courseId !== undefined && params.courseId !== null) {
+        validateSingleSegment('courseId', String(params.courseId));
+        params.courseId = encodeWithSlashes(String(params.courseId));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/courses/{courseId}/announcements').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/courses/{courseId}/announcements')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -4515,6 +4616,15 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.courseId !== undefined && params.courseId !== null) {
+        validateSingleSegment('courseId', String(params.courseId));
+        params.courseId = encodeWithSlashes(String(params.courseId));
+      }
+      if (params.id !== undefined && params.id !== null) {
+        validateSingleSegment('id', String(params.id));
+        params.id = encodeWithSlashes(String(params.id));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4522,7 +4632,9 @@ export namespace classroom_v1 {
             url: (
               rootUrl +
               '/v1/courses/{courseId}/announcements/{id}:modifyAssignees'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -4686,13 +4798,22 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.courseId !== undefined && params.courseId !== null) {
+        validateSingleSegment('courseId', String(params.courseId));
+        params.courseId = encodeWithSlashes(String(params.courseId));
+      }
+      if (params.id !== undefined && params.id !== null) {
+        validateSingleSegment('id', String(params.id));
+        params.id = encodeWithSlashes(String(params.id));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v1/courses/{courseId}/announcements/{id}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/courses/{courseId}/announcements/{id}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -4976,6 +5097,15 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.courseId !== undefined && params.courseId !== null) {
+        validateSingleSegment('courseId', String(params.courseId));
+        params.courseId = encodeWithSlashes(String(params.courseId));
+      }
+      if (params.itemId !== undefined && params.itemId !== null) {
+        validateSingleSegment('itemId', String(params.itemId));
+        params.itemId = encodeWithSlashes(String(params.itemId));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4983,7 +5113,9 @@ export namespace classroom_v1 {
             url: (
               rootUrl +
               '/v1/courses/{courseId}/announcements/{itemId}/addOnAttachments'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -5117,6 +5249,19 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.attachmentId !== undefined && params.attachmentId !== null) {
+        validateSingleSegment('attachmentId', String(params.attachmentId));
+        params.attachmentId = encodeWithSlashes(String(params.attachmentId));
+      }
+      if (params.courseId !== undefined && params.courseId !== null) {
+        validateSingleSegment('courseId', String(params.courseId));
+        params.courseId = encodeWithSlashes(String(params.courseId));
+      }
+      if (params.itemId !== undefined && params.itemId !== null) {
+        validateSingleSegment('itemId', String(params.itemId));
+        params.itemId = encodeWithSlashes(String(params.itemId));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5124,7 +5269,9 @@ export namespace classroom_v1 {
             url: (
               rootUrl +
               '/v1/courses/{courseId}/announcements/{itemId}/addOnAttachments/{attachmentId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -5275,6 +5422,19 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.attachmentId !== undefined && params.attachmentId !== null) {
+        validateSingleSegment('attachmentId', String(params.attachmentId));
+        params.attachmentId = encodeWithSlashes(String(params.attachmentId));
+      }
+      if (params.courseId !== undefined && params.courseId !== null) {
+        validateSingleSegment('courseId', String(params.courseId));
+        params.courseId = encodeWithSlashes(String(params.courseId));
+      }
+      if (params.itemId !== undefined && params.itemId !== null) {
+        validateSingleSegment('itemId', String(params.itemId));
+        params.itemId = encodeWithSlashes(String(params.itemId));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5282,7 +5442,9 @@ export namespace classroom_v1 {
             url: (
               rootUrl +
               '/v1/courses/{courseId}/announcements/{itemId}/addOnAttachments/{attachmentId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -5429,6 +5591,15 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.courseId !== undefined && params.courseId !== null) {
+        validateSingleSegment('courseId', String(params.courseId));
+        params.courseId = encodeWithSlashes(String(params.courseId));
+      }
+      if (params.itemId !== undefined && params.itemId !== null) {
+        validateSingleSegment('itemId', String(params.itemId));
+        params.itemId = encodeWithSlashes(String(params.itemId));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5436,7 +5607,9 @@ export namespace classroom_v1 {
             url: (
               rootUrl +
               '/v1/courses/{courseId}/announcements/{itemId}/addOnAttachments'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -5607,6 +5780,19 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.attachmentId !== undefined && params.attachmentId !== null) {
+        validateSingleSegment('attachmentId', String(params.attachmentId));
+        params.attachmentId = encodeWithSlashes(String(params.attachmentId));
+      }
+      if (params.courseId !== undefined && params.courseId !== null) {
+        validateSingleSegment('courseId', String(params.courseId));
+        params.courseId = encodeWithSlashes(String(params.courseId));
+      }
+      if (params.itemId !== undefined && params.itemId !== null) {
+        validateSingleSegment('itemId', String(params.itemId));
+        params.itemId = encodeWithSlashes(String(params.itemId));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5614,7 +5800,9 @@ export namespace classroom_v1 {
             url: (
               rootUrl +
               '/v1/courses/{courseId}/announcements/{itemId}/addOnAttachments/{attachmentId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -5922,14 +6110,18 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.courseId !== undefined && params.courseId !== null) {
+        validateSingleSegment('courseId', String(params.courseId));
+        params.courseId = encodeWithSlashes(String(params.courseId));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/courses/{courseId}/courseWork').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/courses/{courseId}/courseWork')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -6058,14 +6250,22 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.courseId !== undefined && params.courseId !== null) {
+        validateSingleSegment('courseId', String(params.courseId));
+        params.courseId = encodeWithSlashes(String(params.courseId));
+      }
+      if (params.id !== undefined && params.id !== null) {
+        validateSingleSegment('id', String(params.id));
+        params.id = encodeWithSlashes(String(params.id));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/courses/{courseId}/courseWork/{id}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/courses/{courseId}/courseWork/{id}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -6224,14 +6424,22 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.courseId !== undefined && params.courseId !== null) {
+        validateSingleSegment('courseId', String(params.courseId));
+        params.courseId = encodeWithSlashes(String(params.courseId));
+      }
+      if (params.id !== undefined && params.id !== null) {
+        validateSingleSegment('id', String(params.id));
+        params.id = encodeWithSlashes(String(params.id));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/courses/{courseId}/courseWork/{id}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/courses/{courseId}/courseWork/{id}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -6377,6 +6585,15 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.courseId !== undefined && params.courseId !== null) {
+        validateSingleSegment('courseId', String(params.courseId));
+        params.courseId = encodeWithSlashes(String(params.courseId));
+      }
+      if (params.itemId !== undefined && params.itemId !== null) {
+        validateSingleSegment('itemId', String(params.itemId));
+        params.itemId = encodeWithSlashes(String(params.itemId));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -6384,7 +6601,9 @@ export namespace classroom_v1 {
             url: (
               rootUrl +
               '/v1/courses/{courseId}/courseWork/{itemId}/addOnContext'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -6529,14 +6748,18 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.courseId !== undefined && params.courseId !== null) {
+        validateSingleSegment('courseId', String(params.courseId));
+        params.courseId = encodeWithSlashes(String(params.courseId));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/courses/{courseId}/courseWork').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/courses/{courseId}/courseWork')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -6699,13 +6922,24 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.courseId !== undefined && params.courseId !== null) {
+        validateSingleSegment('courseId', String(params.courseId));
+        params.courseId = encodeWithSlashes(String(params.courseId));
+      }
+      if (params.id !== undefined && params.id !== null) {
+        validateSingleSegment('id', String(params.id));
+        params.id = encodeWithSlashes(String(params.id));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/v1/courses/{courseId}/courseWork/{id}:modifyAssignees'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -6892,14 +7126,22 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.courseId !== undefined && params.courseId !== null) {
+        validateSingleSegment('courseId', String(params.courseId));
+        params.courseId = encodeWithSlashes(String(params.courseId));
+      }
+      if (params.id !== undefined && params.id !== null) {
+        validateSingleSegment('id', String(params.id));
+        params.id = encodeWithSlashes(String(params.id));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/courses/{courseId}/courseWork/{id}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/courses/{courseId}/courseWork/{id}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -7054,6 +7296,15 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.courseId !== undefined && params.courseId !== null) {
+        validateSingleSegment('courseId', String(params.courseId));
+        params.courseId = encodeWithSlashes(String(params.courseId));
+      }
+      if (params.courseWorkId !== undefined && params.courseWorkId !== null) {
+        validateSingleSegment('courseWorkId', String(params.courseWorkId));
+        params.courseWorkId = encodeWithSlashes(String(params.courseWorkId));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -7061,7 +7312,9 @@ export namespace classroom_v1 {
             url: (
               rootUrl +
               '/v1/courses/{courseId}/courseWork/{courseWorkId}/rubric'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -7373,6 +7626,15 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.courseId !== undefined && params.courseId !== null) {
+        validateSingleSegment('courseId', String(params.courseId));
+        params.courseId = encodeWithSlashes(String(params.courseId));
+      }
+      if (params.itemId !== undefined && params.itemId !== null) {
+        validateSingleSegment('itemId', String(params.itemId));
+        params.itemId = encodeWithSlashes(String(params.itemId));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -7380,7 +7642,9 @@ export namespace classroom_v1 {
             url: (
               rootUrl +
               '/v1/courses/{courseId}/courseWork/{itemId}/addOnAttachments'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -7514,6 +7778,19 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.attachmentId !== undefined && params.attachmentId !== null) {
+        validateSingleSegment('attachmentId', String(params.attachmentId));
+        params.attachmentId = encodeWithSlashes(String(params.attachmentId));
+      }
+      if (params.courseId !== undefined && params.courseId !== null) {
+        validateSingleSegment('courseId', String(params.courseId));
+        params.courseId = encodeWithSlashes(String(params.courseId));
+      }
+      if (params.itemId !== undefined && params.itemId !== null) {
+        validateSingleSegment('itemId', String(params.itemId));
+        params.itemId = encodeWithSlashes(String(params.itemId));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -7521,7 +7798,9 @@ export namespace classroom_v1 {
             url: (
               rootUrl +
               '/v1/courses/{courseId}/courseWork/{itemId}/addOnAttachments/{attachmentId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -7671,6 +7950,19 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.attachmentId !== undefined && params.attachmentId !== null) {
+        validateSingleSegment('attachmentId', String(params.attachmentId));
+        params.attachmentId = encodeWithSlashes(String(params.attachmentId));
+      }
+      if (params.courseId !== undefined && params.courseId !== null) {
+        validateSingleSegment('courseId', String(params.courseId));
+        params.courseId = encodeWithSlashes(String(params.courseId));
+      }
+      if (params.itemId !== undefined && params.itemId !== null) {
+        validateSingleSegment('itemId', String(params.itemId));
+        params.itemId = encodeWithSlashes(String(params.itemId));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -7678,7 +7970,9 @@ export namespace classroom_v1 {
             url: (
               rootUrl +
               '/v1/courses/{courseId}/courseWork/{itemId}/addOnAttachments/{attachmentId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -7824,6 +8118,15 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.courseId !== undefined && params.courseId !== null) {
+        validateSingleSegment('courseId', String(params.courseId));
+        params.courseId = encodeWithSlashes(String(params.courseId));
+      }
+      if (params.itemId !== undefined && params.itemId !== null) {
+        validateSingleSegment('itemId', String(params.itemId));
+        params.itemId = encodeWithSlashes(String(params.itemId));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -7831,7 +8134,9 @@ export namespace classroom_v1 {
             url: (
               rootUrl +
               '/v1/courses/{courseId}/courseWork/{itemId}/addOnAttachments'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -8002,6 +8307,19 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.attachmentId !== undefined && params.attachmentId !== null) {
+        validateSingleSegment('attachmentId', String(params.attachmentId));
+        params.attachmentId = encodeWithSlashes(String(params.attachmentId));
+      }
+      if (params.courseId !== undefined && params.courseId !== null) {
+        validateSingleSegment('courseId', String(params.courseId));
+        params.courseId = encodeWithSlashes(String(params.courseId));
+      }
+      if (params.itemId !== undefined && params.itemId !== null) {
+        validateSingleSegment('itemId', String(params.itemId));
+        params.itemId = encodeWithSlashes(String(params.itemId));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -8009,7 +8327,9 @@ export namespace classroom_v1 {
             url: (
               rootUrl +
               '/v1/courses/{courseId}/courseWork/{itemId}/addOnAttachments/{attachmentId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -8286,6 +8606,23 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.attachmentId !== undefined && params.attachmentId !== null) {
+        validateSingleSegment('attachmentId', String(params.attachmentId));
+        params.attachmentId = encodeWithSlashes(String(params.attachmentId));
+      }
+      if (params.courseId !== undefined && params.courseId !== null) {
+        validateSingleSegment('courseId', String(params.courseId));
+        params.courseId = encodeWithSlashes(String(params.courseId));
+      }
+      if (params.itemId !== undefined && params.itemId !== null) {
+        validateSingleSegment('itemId', String(params.itemId));
+        params.itemId = encodeWithSlashes(String(params.itemId));
+      }
+      if (params.submissionId !== undefined && params.submissionId !== null) {
+        validateSingleSegment('submissionId', String(params.submissionId));
+        params.submissionId = encodeWithSlashes(String(params.submissionId));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -8293,7 +8630,9 @@ export namespace classroom_v1 {
             url: (
               rootUrl +
               '/v1/courses/{courseId}/courseWork/{itemId}/addOnAttachments/{attachmentId}/studentSubmissions/{submissionId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -8463,6 +8802,23 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.attachmentId !== undefined && params.attachmentId !== null) {
+        validateSingleSegment('attachmentId', String(params.attachmentId));
+        params.attachmentId = encodeWithSlashes(String(params.attachmentId));
+      }
+      if (params.courseId !== undefined && params.courseId !== null) {
+        validateSingleSegment('courseId', String(params.courseId));
+        params.courseId = encodeWithSlashes(String(params.courseId));
+      }
+      if (params.itemId !== undefined && params.itemId !== null) {
+        validateSingleSegment('itemId', String(params.itemId));
+        params.itemId = encodeWithSlashes(String(params.itemId));
+      }
+      if (params.submissionId !== undefined && params.submissionId !== null) {
+        validateSingleSegment('submissionId', String(params.submissionId));
+        params.submissionId = encodeWithSlashes(String(params.submissionId));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -8470,7 +8826,9 @@ export namespace classroom_v1 {
             url: (
               rootUrl +
               '/v1/courses/{courseId}/courseWork/{itemId}/addOnAttachments/{attachmentId}/studentSubmissions/{submissionId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -8684,6 +9042,15 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.courseId !== undefined && params.courseId !== null) {
+        validateSingleSegment('courseId', String(params.courseId));
+        params.courseId = encodeWithSlashes(String(params.courseId));
+      }
+      if (params.courseWorkId !== undefined && params.courseWorkId !== null) {
+        validateSingleSegment('courseWorkId', String(params.courseWorkId));
+        params.courseWorkId = encodeWithSlashes(String(params.courseWorkId));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -8691,7 +9058,9 @@ export namespace classroom_v1 {
             url: (
               rootUrl +
               '/v1/courses/{courseId}/courseWork/{courseWorkId}/rubrics'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -8822,6 +9191,19 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.courseId !== undefined && params.courseId !== null) {
+        validateSingleSegment('courseId', String(params.courseId));
+        params.courseId = encodeWithSlashes(String(params.courseId));
+      }
+      if (params.courseWorkId !== undefined && params.courseWorkId !== null) {
+        validateSingleSegment('courseWorkId', String(params.courseWorkId));
+        params.courseWorkId = encodeWithSlashes(String(params.courseWorkId));
+      }
+      if (params.id !== undefined && params.id !== null) {
+        validateSingleSegment('id', String(params.id));
+        params.id = encodeWithSlashes(String(params.id));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -8829,7 +9211,9 @@ export namespace classroom_v1 {
             url: (
               rootUrl +
               '/v1/courses/{courseId}/courseWork/{courseWorkId}/rubrics/{id}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -8973,6 +9357,19 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.courseId !== undefined && params.courseId !== null) {
+        validateSingleSegment('courseId', String(params.courseId));
+        params.courseId = encodeWithSlashes(String(params.courseId));
+      }
+      if (params.courseWorkId !== undefined && params.courseWorkId !== null) {
+        validateSingleSegment('courseWorkId', String(params.courseWorkId));
+        params.courseWorkId = encodeWithSlashes(String(params.courseWorkId));
+      }
+      if (params.id !== undefined && params.id !== null) {
+        validateSingleSegment('id', String(params.id));
+        params.id = encodeWithSlashes(String(params.id));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -8980,7 +9377,9 @@ export namespace classroom_v1 {
             url: (
               rootUrl +
               '/v1/courses/{courseId}/courseWork/{courseWorkId}/rubrics/{id}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -9122,6 +9521,15 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.courseId !== undefined && params.courseId !== null) {
+        validateSingleSegment('courseId', String(params.courseId));
+        params.courseId = encodeWithSlashes(String(params.courseId));
+      }
+      if (params.courseWorkId !== undefined && params.courseWorkId !== null) {
+        validateSingleSegment('courseWorkId', String(params.courseWorkId));
+        params.courseWorkId = encodeWithSlashes(String(params.courseWorkId));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -9129,7 +9537,9 @@ export namespace classroom_v1 {
             url: (
               rootUrl +
               '/v1/courses/{courseId}/courseWork/{courseWorkId}/rubrics'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -9284,6 +9694,19 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.courseId !== undefined && params.courseId !== null) {
+        validateSingleSegment('courseId', String(params.courseId));
+        params.courseId = encodeWithSlashes(String(params.courseId));
+      }
+      if (params.courseWorkId !== undefined && params.courseWorkId !== null) {
+        validateSingleSegment('courseWorkId', String(params.courseWorkId));
+        params.courseWorkId = encodeWithSlashes(String(params.courseWorkId));
+      }
+      if (params.id !== undefined && params.id !== null) {
+        validateSingleSegment('id', String(params.id));
+        params.id = encodeWithSlashes(String(params.id));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -9291,7 +9714,9 @@ export namespace classroom_v1 {
             url: (
               rootUrl +
               '/v1/courses/{courseId}/courseWork/{courseWorkId}/rubrics/{id}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -9543,6 +9968,19 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.courseId !== undefined && params.courseId !== null) {
+        validateSingleSegment('courseId', String(params.courseId));
+        params.courseId = encodeWithSlashes(String(params.courseId));
+      }
+      if (params.courseWorkId !== undefined && params.courseWorkId !== null) {
+        validateSingleSegment('courseWorkId', String(params.courseWorkId));
+        params.courseWorkId = encodeWithSlashes(String(params.courseWorkId));
+      }
+      if (params.id !== undefined && params.id !== null) {
+        validateSingleSegment('id', String(params.id));
+        params.id = encodeWithSlashes(String(params.id));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -9550,7 +9988,9 @@ export namespace classroom_v1 {
             url: (
               rootUrl +
               '/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -9705,6 +10145,15 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.courseId !== undefined && params.courseId !== null) {
+        validateSingleSegment('courseId', String(params.courseId));
+        params.courseId = encodeWithSlashes(String(params.courseId));
+      }
+      if (params.courseWorkId !== undefined && params.courseWorkId !== null) {
+        validateSingleSegment('courseWorkId', String(params.courseWorkId));
+        params.courseWorkId = encodeWithSlashes(String(params.courseWorkId));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -9712,7 +10161,9 @@ export namespace classroom_v1 {
             url: (
               rootUrl +
               '/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -9881,6 +10332,19 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.courseId !== undefined && params.courseId !== null) {
+        validateSingleSegment('courseId', String(params.courseId));
+        params.courseId = encodeWithSlashes(String(params.courseId));
+      }
+      if (params.courseWorkId !== undefined && params.courseWorkId !== null) {
+        validateSingleSegment('courseWorkId', String(params.courseWorkId));
+        params.courseWorkId = encodeWithSlashes(String(params.courseWorkId));
+      }
+      if (params.id !== undefined && params.id !== null) {
+        validateSingleSegment('id', String(params.id));
+        params.id = encodeWithSlashes(String(params.id));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -9888,7 +10352,9 @@ export namespace classroom_v1 {
             url: (
               rootUrl +
               '/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}:modifyAttachments'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -10072,6 +10538,19 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.courseId !== undefined && params.courseId !== null) {
+        validateSingleSegment('courseId', String(params.courseId));
+        params.courseId = encodeWithSlashes(String(params.courseId));
+      }
+      if (params.courseWorkId !== undefined && params.courseWorkId !== null) {
+        validateSingleSegment('courseWorkId', String(params.courseWorkId));
+        params.courseWorkId = encodeWithSlashes(String(params.courseWorkId));
+      }
+      if (params.id !== undefined && params.id !== null) {
+        validateSingleSegment('id', String(params.id));
+        params.id = encodeWithSlashes(String(params.id));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -10079,7 +10558,9 @@ export namespace classroom_v1 {
             url: (
               rootUrl +
               '/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -10217,6 +10698,19 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.courseId !== undefined && params.courseId !== null) {
+        validateSingleSegment('courseId', String(params.courseId));
+        params.courseId = encodeWithSlashes(String(params.courseId));
+      }
+      if (params.courseWorkId !== undefined && params.courseWorkId !== null) {
+        validateSingleSegment('courseWorkId', String(params.courseWorkId));
+        params.courseWorkId = encodeWithSlashes(String(params.courseWorkId));
+      }
+      if (params.id !== undefined && params.id !== null) {
+        validateSingleSegment('id', String(params.id));
+        params.id = encodeWithSlashes(String(params.id));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -10224,7 +10718,9 @@ export namespace classroom_v1 {
             url: (
               rootUrl +
               '/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}:reclaim'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -10362,6 +10858,19 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.courseId !== undefined && params.courseId !== null) {
+        validateSingleSegment('courseId', String(params.courseId));
+        params.courseId = encodeWithSlashes(String(params.courseId));
+      }
+      if (params.courseWorkId !== undefined && params.courseWorkId !== null) {
+        validateSingleSegment('courseWorkId', String(params.courseWorkId));
+        params.courseWorkId = encodeWithSlashes(String(params.courseWorkId));
+      }
+      if (params.id !== undefined && params.id !== null) {
+        validateSingleSegment('id', String(params.id));
+        params.id = encodeWithSlashes(String(params.id));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -10369,7 +10878,9 @@ export namespace classroom_v1 {
             url: (
               rootUrl +
               '/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}:return'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -10507,6 +11018,19 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.courseId !== undefined && params.courseId !== null) {
+        validateSingleSegment('courseId', String(params.courseId));
+        params.courseId = encodeWithSlashes(String(params.courseId));
+      }
+      if (params.courseWorkId !== undefined && params.courseWorkId !== null) {
+        validateSingleSegment('courseWorkId', String(params.courseWorkId));
+        params.courseWorkId = encodeWithSlashes(String(params.courseWorkId));
+      }
+      if (params.id !== undefined && params.id !== null) {
+        validateSingleSegment('id', String(params.id));
+        params.id = encodeWithSlashes(String(params.id));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -10514,7 +11038,9 @@ export namespace classroom_v1 {
             url: (
               rootUrl +
               '/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}:turnIn'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -10832,13 +11358,18 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.courseId !== undefined && params.courseId !== null) {
+        validateSingleSegment('courseId', String(params.courseId));
+        params.courseId = encodeWithSlashes(String(params.courseId));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v1/courses/{courseId}/courseWorkMaterials'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/courses/{courseId}/courseWorkMaterials')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -10967,13 +11498,22 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.courseId !== undefined && params.courseId !== null) {
+        validateSingleSegment('courseId', String(params.courseId));
+        params.courseId = encodeWithSlashes(String(params.courseId));
+      }
+      if (params.id !== undefined && params.id !== null) {
+        validateSingleSegment('id', String(params.id));
+        params.id = encodeWithSlashes(String(params.id));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v1/courses/{courseId}/courseWorkMaterials/{id}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/courses/{courseId}/courseWorkMaterials/{id}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -11121,13 +11661,22 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.courseId !== undefined && params.courseId !== null) {
+        validateSingleSegment('courseId', String(params.courseId));
+        params.courseId = encodeWithSlashes(String(params.courseId));
+      }
+      if (params.id !== undefined && params.id !== null) {
+        validateSingleSegment('id', String(params.id));
+        params.id = encodeWithSlashes(String(params.id));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v1/courses/{courseId}/courseWorkMaterials/{id}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/courses/{courseId}/courseWorkMaterials/{id}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -11274,6 +11823,15 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.courseId !== undefined && params.courseId !== null) {
+        validateSingleSegment('courseId', String(params.courseId));
+        params.courseId = encodeWithSlashes(String(params.courseId));
+      }
+      if (params.itemId !== undefined && params.itemId !== null) {
+        validateSingleSegment('itemId', String(params.itemId));
+        params.itemId = encodeWithSlashes(String(params.itemId));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -11281,7 +11839,9 @@ export namespace classroom_v1 {
             url: (
               rootUrl +
               '/v1/courses/{courseId}/courseWorkMaterials/{itemId}/addOnContext'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -11431,13 +11991,18 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.courseId !== undefined && params.courseId !== null) {
+        validateSingleSegment('courseId', String(params.courseId));
+        params.courseId = encodeWithSlashes(String(params.courseId));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v1/courses/{courseId}/courseWorkMaterials'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/courses/{courseId}/courseWorkMaterials')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -11607,13 +12172,22 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.courseId !== undefined && params.courseId !== null) {
+        validateSingleSegment('courseId', String(params.courseId));
+        params.courseId = encodeWithSlashes(String(params.courseId));
+      }
+      if (params.id !== undefined && params.id !== null) {
+        validateSingleSegment('id', String(params.id));
+        params.id = encodeWithSlashes(String(params.id));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v1/courses/{courseId}/courseWorkMaterials/{id}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/courses/{courseId}/courseWorkMaterials/{id}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -11891,6 +12465,15 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.courseId !== undefined && params.courseId !== null) {
+        validateSingleSegment('courseId', String(params.courseId));
+        params.courseId = encodeWithSlashes(String(params.courseId));
+      }
+      if (params.itemId !== undefined && params.itemId !== null) {
+        validateSingleSegment('itemId', String(params.itemId));
+        params.itemId = encodeWithSlashes(String(params.itemId));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -11898,7 +12481,9 @@ export namespace classroom_v1 {
             url: (
               rootUrl +
               '/v1/courses/{courseId}/courseWorkMaterials/{itemId}/addOnAttachments'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -12033,6 +12618,19 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.attachmentId !== undefined && params.attachmentId !== null) {
+        validateSingleSegment('attachmentId', String(params.attachmentId));
+        params.attachmentId = encodeWithSlashes(String(params.attachmentId));
+      }
+      if (params.courseId !== undefined && params.courseId !== null) {
+        validateSingleSegment('courseId', String(params.courseId));
+        params.courseId = encodeWithSlashes(String(params.courseId));
+      }
+      if (params.itemId !== undefined && params.itemId !== null) {
+        validateSingleSegment('itemId', String(params.itemId));
+        params.itemId = encodeWithSlashes(String(params.itemId));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -12040,7 +12638,9 @@ export namespace classroom_v1 {
             url: (
               rootUrl +
               '/v1/courses/{courseId}/courseWorkMaterials/{itemId}/addOnAttachments/{attachmentId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -12191,6 +12791,19 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.attachmentId !== undefined && params.attachmentId !== null) {
+        validateSingleSegment('attachmentId', String(params.attachmentId));
+        params.attachmentId = encodeWithSlashes(String(params.attachmentId));
+      }
+      if (params.courseId !== undefined && params.courseId !== null) {
+        validateSingleSegment('courseId', String(params.courseId));
+        params.courseId = encodeWithSlashes(String(params.courseId));
+      }
+      if (params.itemId !== undefined && params.itemId !== null) {
+        validateSingleSegment('itemId', String(params.itemId));
+        params.itemId = encodeWithSlashes(String(params.itemId));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -12198,7 +12811,9 @@ export namespace classroom_v1 {
             url: (
               rootUrl +
               '/v1/courses/{courseId}/courseWorkMaterials/{itemId}/addOnAttachments/{attachmentId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -12347,6 +12962,15 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.courseId !== undefined && params.courseId !== null) {
+        validateSingleSegment('courseId', String(params.courseId));
+        params.courseId = encodeWithSlashes(String(params.courseId));
+      }
+      if (params.itemId !== undefined && params.itemId !== null) {
+        validateSingleSegment('itemId', String(params.itemId));
+        params.itemId = encodeWithSlashes(String(params.itemId));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -12354,7 +12978,9 @@ export namespace classroom_v1 {
             url: (
               rootUrl +
               '/v1/courses/{courseId}/courseWorkMaterials/{itemId}/addOnAttachments'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -12526,6 +13152,19 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.attachmentId !== undefined && params.attachmentId !== null) {
+        validateSingleSegment('attachmentId', String(params.attachmentId));
+        params.attachmentId = encodeWithSlashes(String(params.attachmentId));
+      }
+      if (params.courseId !== undefined && params.courseId !== null) {
+        validateSingleSegment('courseId', String(params.courseId));
+        params.courseId = encodeWithSlashes(String(params.courseId));
+      }
+      if (params.itemId !== undefined && params.itemId !== null) {
+        validateSingleSegment('itemId', String(params.itemId));
+        params.itemId = encodeWithSlashes(String(params.itemId));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -12533,7 +13172,9 @@ export namespace classroom_v1 {
             url: (
               rootUrl +
               '/v1/courses/{courseId}/courseWorkMaterials/{itemId}/addOnAttachments/{attachmentId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -12799,13 +13440,24 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.courseId !== undefined && params.courseId !== null) {
+        validateSingleSegment('courseId', String(params.courseId));
+        params.courseId = encodeWithSlashes(String(params.courseId));
+      }
+      if (params.postId !== undefined && params.postId !== null) {
+        validateSingleSegment('postId', String(params.postId));
+        params.postId = encodeWithSlashes(String(params.postId));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/v1/courses/{courseId}/posts/{postId}/addOnContext'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -13006,13 +13658,24 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.courseId !== undefined && params.courseId !== null) {
+        validateSingleSegment('courseId', String(params.courseId));
+        params.courseId = encodeWithSlashes(String(params.courseId));
+      }
+      if (params.postId !== undefined && params.postId !== null) {
+        validateSingleSegment('postId', String(params.postId));
+        params.postId = encodeWithSlashes(String(params.postId));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/v1/courses/{courseId}/posts/{postId}/addOnAttachments'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -13145,6 +13808,19 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.attachmentId !== undefined && params.attachmentId !== null) {
+        validateSingleSegment('attachmentId', String(params.attachmentId));
+        params.attachmentId = encodeWithSlashes(String(params.attachmentId));
+      }
+      if (params.courseId !== undefined && params.courseId !== null) {
+        validateSingleSegment('courseId', String(params.courseId));
+        params.courseId = encodeWithSlashes(String(params.courseId));
+      }
+      if (params.postId !== undefined && params.postId !== null) {
+        validateSingleSegment('postId', String(params.postId));
+        params.postId = encodeWithSlashes(String(params.postId));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -13152,7 +13828,9 @@ export namespace classroom_v1 {
             url: (
               rootUrl +
               '/v1/courses/{courseId}/posts/{postId}/addOnAttachments/{attachmentId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -13302,6 +13980,19 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.attachmentId !== undefined && params.attachmentId !== null) {
+        validateSingleSegment('attachmentId', String(params.attachmentId));
+        params.attachmentId = encodeWithSlashes(String(params.attachmentId));
+      }
+      if (params.courseId !== undefined && params.courseId !== null) {
+        validateSingleSegment('courseId', String(params.courseId));
+        params.courseId = encodeWithSlashes(String(params.courseId));
+      }
+      if (params.postId !== undefined && params.postId !== null) {
+        validateSingleSegment('postId', String(params.postId));
+        params.postId = encodeWithSlashes(String(params.postId));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -13309,7 +14000,9 @@ export namespace classroom_v1 {
             url: (
               rootUrl +
               '/v1/courses/{courseId}/posts/{postId}/addOnAttachments/{attachmentId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -13455,13 +14148,24 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.courseId !== undefined && params.courseId !== null) {
+        validateSingleSegment('courseId', String(params.courseId));
+        params.courseId = encodeWithSlashes(String(params.courseId));
+      }
+      if (params.postId !== undefined && params.postId !== null) {
+        validateSingleSegment('postId', String(params.postId));
+        params.postId = encodeWithSlashes(String(params.postId));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/v1/courses/{courseId}/posts/{postId}/addOnAttachments'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -13631,6 +14335,19 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.attachmentId !== undefined && params.attachmentId !== null) {
+        validateSingleSegment('attachmentId', String(params.attachmentId));
+        params.attachmentId = encodeWithSlashes(String(params.attachmentId));
+      }
+      if (params.courseId !== undefined && params.courseId !== null) {
+        validateSingleSegment('courseId', String(params.courseId));
+        params.courseId = encodeWithSlashes(String(params.courseId));
+      }
+      if (params.postId !== undefined && params.postId !== null) {
+        validateSingleSegment('postId', String(params.postId));
+        params.postId = encodeWithSlashes(String(params.postId));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -13638,7 +14355,9 @@ export namespace classroom_v1 {
             url: (
               rootUrl +
               '/v1/courses/{courseId}/posts/{postId}/addOnAttachments/{attachmentId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -13915,6 +14634,23 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.attachmentId !== undefined && params.attachmentId !== null) {
+        validateSingleSegment('attachmentId', String(params.attachmentId));
+        params.attachmentId = encodeWithSlashes(String(params.attachmentId));
+      }
+      if (params.courseId !== undefined && params.courseId !== null) {
+        validateSingleSegment('courseId', String(params.courseId));
+        params.courseId = encodeWithSlashes(String(params.courseId));
+      }
+      if (params.postId !== undefined && params.postId !== null) {
+        validateSingleSegment('postId', String(params.postId));
+        params.postId = encodeWithSlashes(String(params.postId));
+      }
+      if (params.submissionId !== undefined && params.submissionId !== null) {
+        validateSingleSegment('submissionId', String(params.submissionId));
+        params.submissionId = encodeWithSlashes(String(params.submissionId));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -13922,7 +14658,9 @@ export namespace classroom_v1 {
             url: (
               rootUrl +
               '/v1/courses/{courseId}/posts/{postId}/addOnAttachments/{attachmentId}/studentSubmissions/{submissionId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -14090,6 +14828,23 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.attachmentId !== undefined && params.attachmentId !== null) {
+        validateSingleSegment('attachmentId', String(params.attachmentId));
+        params.attachmentId = encodeWithSlashes(String(params.attachmentId));
+      }
+      if (params.courseId !== undefined && params.courseId !== null) {
+        validateSingleSegment('courseId', String(params.courseId));
+        params.courseId = encodeWithSlashes(String(params.courseId));
+      }
+      if (params.postId !== undefined && params.postId !== null) {
+        validateSingleSegment('postId', String(params.postId));
+        params.postId = encodeWithSlashes(String(params.postId));
+      }
+      if (params.submissionId !== undefined && params.submissionId !== null) {
+        validateSingleSegment('submissionId', String(params.submissionId));
+        params.submissionId = encodeWithSlashes(String(params.submissionId));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -14097,7 +14852,9 @@ export namespace classroom_v1 {
             url: (
               rootUrl +
               '/v1/courses/{courseId}/posts/{postId}/addOnAttachments/{attachmentId}/studentSubmissions/{submissionId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -14305,14 +15062,18 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.courseId !== undefined && params.courseId !== null) {
+        validateSingleSegment('courseId', String(params.courseId));
+        params.courseId = encodeWithSlashes(String(params.courseId));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/courses/{courseId}/studentGroups').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/courses/{courseId}/studentGroups')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -14441,13 +15202,22 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.courseId !== undefined && params.courseId !== null) {
+        validateSingleSegment('courseId', String(params.courseId));
+        params.courseId = encodeWithSlashes(String(params.courseId));
+      }
+      if (params.id !== undefined && params.id !== null) {
+        validateSingleSegment('id', String(params.id));
+        params.id = encodeWithSlashes(String(params.id));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v1/courses/{courseId}/studentGroups/{id}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/courses/{courseId}/studentGroups/{id}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -14588,14 +15358,18 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.courseId !== undefined && params.courseId !== null) {
+        validateSingleSegment('courseId', String(params.courseId));
+        params.courseId = encodeWithSlashes(String(params.courseId));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/courses/{courseId}/studentGroups').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/courses/{courseId}/studentGroups')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -14741,13 +15515,22 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.courseId !== undefined && params.courseId !== null) {
+        validateSingleSegment('courseId', String(params.courseId));
+        params.courseId = encodeWithSlashes(String(params.courseId));
+      }
+      if (params.id !== undefined && params.id !== null) {
+        validateSingleSegment('id', String(params.id));
+        params.id = encodeWithSlashes(String(params.id));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v1/courses/{courseId}/studentGroups/{id}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/courses/{courseId}/studentGroups/{id}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -14954,6 +15737,20 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.courseId !== undefined && params.courseId !== null) {
+        validateSingleSegment('courseId', String(params.courseId));
+        params.courseId = encodeWithSlashes(String(params.courseId));
+      }
+      if (
+        params.studentGroupId !== undefined &&
+        params.studentGroupId !== null
+      ) {
+        validateSingleSegment('studentGroupId', String(params.studentGroupId));
+        params.studentGroupId = encodeWithSlashes(
+          String(params.studentGroupId)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -14961,7 +15758,9 @@ export namespace classroom_v1 {
             url: (
               rootUrl +
               '/v1/courses/{courseId}/studentGroups/{studentGroupId}/studentGroupMembers'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -15093,6 +15892,24 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.courseId !== undefined && params.courseId !== null) {
+        validateSingleSegment('courseId', String(params.courseId));
+        params.courseId = encodeWithSlashes(String(params.courseId));
+      }
+      if (
+        params.studentGroupId !== undefined &&
+        params.studentGroupId !== null
+      ) {
+        validateSingleSegment('studentGroupId', String(params.studentGroupId));
+        params.studentGroupId = encodeWithSlashes(
+          String(params.studentGroupId)
+        );
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -15100,7 +15917,9 @@ export namespace classroom_v1 {
             url: (
               rootUrl +
               '/v1/courses/{courseId}/studentGroups/{studentGroupId}/studentGroupMembers/{userId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -15245,6 +16064,20 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.courseId !== undefined && params.courseId !== null) {
+        validateSingleSegment('courseId', String(params.courseId));
+        params.courseId = encodeWithSlashes(String(params.courseId));
+      }
+      if (
+        params.studentGroupId !== undefined &&
+        params.studentGroupId !== null
+      ) {
+        validateSingleSegment('studentGroupId', String(params.studentGroupId));
+        params.studentGroupId = encodeWithSlashes(
+          String(params.studentGroupId)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -15252,7 +16085,9 @@ export namespace classroom_v1 {
             url: (
               rootUrl +
               '/v1/courses/{courseId}/studentGroups/{studentGroupId}/studentGroupMembers'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -15458,14 +16293,18 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.courseId !== undefined && params.courseId !== null) {
+        validateSingleSegment('courseId', String(params.courseId));
+        params.courseId = encodeWithSlashes(String(params.courseId));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/courses/{courseId}/students').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/courses/{courseId}/students')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -15594,14 +16433,22 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.courseId !== undefined && params.courseId !== null) {
+        validateSingleSegment('courseId', String(params.courseId));
+        params.courseId = encodeWithSlashes(String(params.courseId));
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/courses/{courseId}/students/{userId}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/courses/{courseId}/students/{userId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -15740,14 +16587,22 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.courseId !== undefined && params.courseId !== null) {
+        validateSingleSegment('courseId', String(params.courseId));
+        params.courseId = encodeWithSlashes(String(params.courseId));
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/courses/{courseId}/students/{userId}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/courses/{courseId}/students/{userId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -15888,14 +16743,18 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.courseId !== undefined && params.courseId !== null) {
+        validateSingleSegment('courseId', String(params.courseId));
+        params.courseId = encodeWithSlashes(String(params.courseId));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/courses/{courseId}/students').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/courses/{courseId}/students')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -16097,14 +16956,18 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.courseId !== undefined && params.courseId !== null) {
+        validateSingleSegment('courseId', String(params.courseId));
+        params.courseId = encodeWithSlashes(String(params.courseId));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/courses/{courseId}/teachers').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/courses/{courseId}/teachers')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -16233,14 +17096,22 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.courseId !== undefined && params.courseId !== null) {
+        validateSingleSegment('courseId', String(params.courseId));
+        params.courseId = encodeWithSlashes(String(params.courseId));
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/courses/{courseId}/teachers/{userId}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/courses/{courseId}/teachers/{userId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -16378,14 +17249,22 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.courseId !== undefined && params.courseId !== null) {
+        validateSingleSegment('courseId', String(params.courseId));
+        params.courseId = encodeWithSlashes(String(params.courseId));
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/courses/{courseId}/teachers/{userId}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/courses/{courseId}/teachers/{userId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -16526,14 +17405,18 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.courseId !== undefined && params.courseId !== null) {
+        validateSingleSegment('courseId', String(params.courseId));
+        params.courseId = encodeWithSlashes(String(params.courseId));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/courses/{courseId}/teachers').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/courses/{courseId}/teachers')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -16729,14 +17612,18 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.courseId !== undefined && params.courseId !== null) {
+        validateSingleSegment('courseId', String(params.courseId));
+        params.courseId = encodeWithSlashes(String(params.courseId));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/courses/{courseId}/topics').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/courses/{courseId}/topics')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -16865,14 +17752,22 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.courseId !== undefined && params.courseId !== null) {
+        validateSingleSegment('courseId', String(params.courseId));
+        params.courseId = encodeWithSlashes(String(params.courseId));
+      }
+      if (params.id !== undefined && params.id !== null) {
+        validateSingleSegment('id', String(params.id));
+        params.id = encodeWithSlashes(String(params.id));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/courses/{courseId}/topics/{id}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/courses/{courseId}/topics/{id}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -17009,14 +17904,22 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.courseId !== undefined && params.courseId !== null) {
+        validateSingleSegment('courseId', String(params.courseId));
+        params.courseId = encodeWithSlashes(String(params.courseId));
+      }
+      if (params.id !== undefined && params.id !== null) {
+        validateSingleSegment('id', String(params.id));
+        params.id = encodeWithSlashes(String(params.id));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/courses/{courseId}/topics/{id}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/courses/{courseId}/topics/{id}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -17154,14 +18057,18 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.courseId !== undefined && params.courseId !== null) {
+        validateSingleSegment('courseId', String(params.courseId));
+        params.courseId = encodeWithSlashes(String(params.courseId));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/courses/{courseId}/topics').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/courses/{courseId}/topics')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -17308,14 +18215,22 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.courseId !== undefined && params.courseId !== null) {
+        validateSingleSegment('courseId', String(params.courseId));
+        params.courseId = encodeWithSlashes(String(params.courseId));
+      }
+      if (params.id !== undefined && params.id !== null) {
+        validateSingleSegment('id', String(params.id));
+        params.id = encodeWithSlashes(String(params.id));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/courses/{courseId}/topics/{id}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/courses/{courseId}/topics/{id}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -17514,14 +18429,18 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.id !== undefined && params.id !== null) {
+        validateSingleSegment('id', String(params.id));
+        params.id = encodeWithSlashes(String(params.id));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/invitations/{id}:accept').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/invitations/{id}:accept')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -17665,7 +18584,9 @@ export namespace classroom_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/invitations').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/invitations')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -17792,14 +18713,18 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.id !== undefined && params.id !== null) {
+        validateSingleSegment('id', String(params.id));
+        params.id = encodeWithSlashes(String(params.id));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/invitations/{id}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/invitations/{id}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -17933,14 +18858,18 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.id !== undefined && params.id !== null) {
+        validateSingleSegment('id', String(params.id));
+        params.id = encodeWithSlashes(String(params.id));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/invitations/{id}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/invitations/{id}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -18084,7 +19013,9 @@ export namespace classroom_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/invitations').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/invitations')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -18279,7 +19210,9 @@ export namespace classroom_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/registrations').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/registrations')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -18406,14 +19339,23 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (
+        params.registrationId !== undefined &&
+        params.registrationId !== null
+      ) {
+        validateSingleSegment('registrationId', String(params.registrationId));
+        params.registrationId = encodeWithSlashes(
+          String(params.registrationId)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/registrations/{registrationId}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/registrations/{registrationId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -18578,14 +19520,18 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/userProfiles/{userId}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/userProfiles/{userId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -18747,13 +19693,18 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.studentId !== undefined && params.studentId !== null) {
+        validateSingleSegment('studentId', String(params.studentId));
+        params.studentId = encodeWithSlashes(String(params.studentId));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v1/userProfiles/{studentId}/guardianInvitations'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/userProfiles/{studentId}/guardianInvitations')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -18892,6 +19843,15 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.invitationId !== undefined && params.invitationId !== null) {
+        validateSingleSegment('invitationId', String(params.invitationId));
+        params.invitationId = encodeWithSlashes(String(params.invitationId));
+      }
+      if (params.studentId !== undefined && params.studentId !== null) {
+        validateSingleSegment('studentId', String(params.studentId));
+        params.studentId = encodeWithSlashes(String(params.studentId));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -18899,7 +19859,9 @@ export namespace classroom_v1 {
             url: (
               rootUrl +
               '/v1/userProfiles/{studentId}/guardianInvitations/{invitationId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -19045,13 +20007,18 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.studentId !== undefined && params.studentId !== null) {
+        validateSingleSegment('studentId', String(params.studentId));
+        params.studentId = encodeWithSlashes(String(params.studentId));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v1/userProfiles/{studentId}/guardianInvitations'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/userProfiles/{studentId}/guardianInvitations')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -19205,6 +20172,15 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.invitationId !== undefined && params.invitationId !== null) {
+        validateSingleSegment('invitationId', String(params.invitationId));
+        params.invitationId = encodeWithSlashes(String(params.invitationId));
+      }
+      if (params.studentId !== undefined && params.studentId !== null) {
+        validateSingleSegment('studentId', String(params.studentId));
+        params.studentId = encodeWithSlashes(String(params.studentId));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -19212,7 +20188,9 @@ export namespace classroom_v1 {
             url: (
               rootUrl +
               '/v1/userProfiles/{studentId}/guardianInvitations/{invitationId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -19413,13 +20391,24 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.guardianId !== undefined && params.guardianId !== null) {
+        validateSingleSegment('guardianId', String(params.guardianId));
+        params.guardianId = encodeWithSlashes(String(params.guardianId));
+      }
+      if (params.studentId !== undefined && params.studentId !== null) {
+        validateSingleSegment('studentId', String(params.studentId));
+        params.studentId = encodeWithSlashes(String(params.studentId));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/v1/userProfiles/{studentId}/guardians/{guardianId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -19557,13 +20546,24 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.guardianId !== undefined && params.guardianId !== null) {
+        validateSingleSegment('guardianId', String(params.guardianId));
+        params.guardianId = encodeWithSlashes(String(params.guardianId));
+      }
+      if (params.studentId !== undefined && params.studentId !== null) {
+        validateSingleSegment('studentId', String(params.studentId));
+        params.studentId = encodeWithSlashes(String(params.studentId));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/v1/userProfiles/{studentId}/guardians/{guardianId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -19705,14 +20705,18 @@ export namespace classroom_v1 {
         options = {};
       }
 
+      if (params.studentId !== undefined && params.studentId !== null) {
+        validateSingleSegment('studentId', String(params.studentId));
+        params.studentId = encodeWithSlashes(String(params.studentId));
+      }
+
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/userProfiles/{studentId}/guardians').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/userProfiles/{studentId}/guardians')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },

@@ -34,6 +34,12 @@ import {
   APIRequestContext,
 } from 'googleapis-common';
 import {Readable} from 'stream';
+import {
+  validateSingleSegment,
+  validateMultiSegment,
+  encodeWithSlashes,
+  encodeWithoutSlashes,
+} from '../../transcoding';
 
 export namespace firebasedynamiclinks_v1 {
   export interface Options extends GlobalOptions {
@@ -827,10 +833,9 @@ export namespace firebasedynamiclinks_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/managedShortLinks:create').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/managedShortLinks:create')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -995,7 +1000,9 @@ export namespace firebasedynamiclinks_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/shortLinks').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/shortLinks')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -1145,15 +1152,19 @@ export namespace firebasedynamiclinks_v1 {
         options = {};
       }
 
+      if (params.dynamicLink !== undefined && params.dynamicLink !== null) {
+        validateSingleSegment('dynamicLink', String(params.dynamicLink));
+        params.dynamicLink = encodeWithSlashes(String(params.dynamicLink));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://firebasedynamiclinks.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{dynamicLink}/linkStats').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/{dynamicLink}/linkStats')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -1323,10 +1334,9 @@ export namespace firebasedynamiclinks_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/installAttribution').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/installAttribution')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -1483,10 +1493,9 @@ export namespace firebasedynamiclinks_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/reopenAttribution').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/reopenAttribution')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },

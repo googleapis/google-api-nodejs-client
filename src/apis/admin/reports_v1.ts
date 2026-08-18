@@ -34,6 +34,12 @@ import {
   APIRequestContext,
 } from 'googleapis-common';
 import {Readable} from 'stream';
+import {
+  validateSingleSegment,
+  validateMultiSegment,
+  encodeWithSlashes,
+  encodeWithoutSlashes,
+} from '../../transcoding';
 
 export namespace admin_reports_v1 {
   export interface Options extends GlobalOptions {
@@ -901,6 +907,23 @@ export namespace admin_reports_v1 {
         options = {};
       }
 
+      if (
+        params.applicationName !== undefined &&
+        params.applicationName !== null
+      ) {
+        validateSingleSegment(
+          'applicationName',
+          String(params.applicationName)
+        );
+        params.applicationName = encodeWithSlashes(
+          String(params.applicationName)
+        );
+      }
+      if (params.userKey !== undefined && params.userKey !== null) {
+        validateSingleSegment('userKey', String(params.userKey));
+        params.userKey = encodeWithSlashes(String(params.userKey));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -908,7 +931,9 @@ export namespace admin_reports_v1 {
             url: (
               rootUrl +
               '/admin/reports/v1/activity/users/{userKey}/applications/{applicationName}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -1088,6 +1113,23 @@ export namespace admin_reports_v1 {
         options = {};
       }
 
+      if (
+        params.applicationName !== undefined &&
+        params.applicationName !== null
+      ) {
+        validateSingleSegment(
+          'applicationName',
+          String(params.applicationName)
+        );
+        params.applicationName = encodeWithSlashes(
+          String(params.applicationName)
+        );
+      }
+      if (params.userKey !== undefined && params.userKey !== null) {
+        validateSingleSegment('userKey', String(params.userKey));
+        params.userKey = encodeWithSlashes(String(params.userKey));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1095,7 +1137,9 @@ export namespace admin_reports_v1 {
             url: (
               rootUrl +
               '/admin/reports/v1/activity/users/{userKey}/applications/{applicationName}/watch'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -1376,10 +1420,9 @@ export namespace admin_reports_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/admin/reports_v1/channels/stop').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/admin/reports_v1/channels/stop')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -1534,14 +1577,18 @@ export namespace admin_reports_v1 {
         options = {};
       }
 
+      if (params.date !== undefined && params.date !== null) {
+        validateSingleSegment('date', String(params.date));
+        params.date = encodeWithSlashes(String(params.date));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/admin/reports/v1/usage/dates/{date}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/admin/reports/v1/usage/dates/{date}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -1716,6 +1763,19 @@ export namespace admin_reports_v1 {
         options = {};
       }
 
+      if (params.date !== undefined && params.date !== null) {
+        validateSingleSegment('date', String(params.date));
+        params.date = encodeWithSlashes(String(params.date));
+      }
+      if (params.entityKey !== undefined && params.entityKey !== null) {
+        validateSingleSegment('entityKey', String(params.entityKey));
+        params.entityKey = encodeWithSlashes(String(params.entityKey));
+      }
+      if (params.entityType !== undefined && params.entityType !== null) {
+        validateSingleSegment('entityType', String(params.entityType));
+        params.entityType = encodeWithSlashes(String(params.entityType));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1723,7 +1783,9 @@ export namespace admin_reports_v1 {
             url: (
               rootUrl +
               '/admin/reports/v1/usage/{entityType}/{entityKey}/dates/{date}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -1917,13 +1979,24 @@ export namespace admin_reports_v1 {
         options = {};
       }
 
+      if (params.date !== undefined && params.date !== null) {
+        validateSingleSegment('date', String(params.date));
+        params.date = encodeWithSlashes(String(params.date));
+      }
+      if (params.userKey !== undefined && params.userKey !== null) {
+        validateSingleSegment('userKey', String(params.userKey));
+        params.userKey = encodeWithSlashes(String(params.userKey));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/admin/reports/v1/usage/users/{userKey}/dates/{date}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },

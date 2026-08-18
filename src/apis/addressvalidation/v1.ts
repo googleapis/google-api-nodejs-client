@@ -34,6 +34,12 @@ import {
   APIRequestContext,
 } from 'googleapis-common';
 import {Readable} from 'stream';
+import {
+  validateSingleSegment,
+  validateMultiSegment,
+  encodeWithSlashes,
+  encodeWithoutSlashes,
+} from '../../transcoding';
 
 export namespace addressvalidation_v1 {
   export interface Options extends GlobalOptions {
@@ -797,10 +803,9 @@ export namespace addressvalidation_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1:provideValidationFeedback').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1:provideValidationFeedback')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -958,10 +963,9 @@ export namespace addressvalidation_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1:validateAddress').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1:validateAddress')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },

@@ -34,6 +34,12 @@ import {
   APIRequestContext,
 } from 'googleapis-common';
 import {Readable} from 'stream';
+import {
+  validateSingleSegment,
+  validateMultiSegment,
+  encodeWithSlashes,
+  encodeWithoutSlashes,
+} from '../../transcoding';
 
 export namespace customsearch_v1 {
   export interface Options extends GlobalOptions {
@@ -583,7 +589,9 @@ export namespace customsearch_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/customsearch/v1').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/customsearch/v1')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -929,10 +937,9 @@ export namespace customsearch_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/customsearch/v1/siterestrict').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/customsearch/v1/siterestrict')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },

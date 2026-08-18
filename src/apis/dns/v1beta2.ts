@@ -34,6 +34,12 @@ import {
   APIRequestContext,
 } from 'googleapis-common';
 import {Readable} from 'stream';
+import {
+  validateSingleSegment,
+  validateMultiSegment,
+  encodeWithSlashes,
+  encodeWithoutSlashes,
+} from '../../transcoding';
 
 export namespace dns_v1beta2 {
   export interface Options extends GlobalOptions {
@@ -1376,6 +1382,15 @@ export namespace dns_v1beta2 {
         options = {};
       }
 
+      if (params.managedZone !== undefined && params.managedZone !== null) {
+        validateSingleSegment('managedZone', String(params.managedZone));
+        params.managedZone = encodeWithSlashes(String(params.managedZone));
+      }
+      if (params.project !== undefined && params.project !== null) {
+        validateSingleSegment('project', String(params.project));
+        params.project = encodeWithSlashes(String(params.project));
+      }
+
       const rootUrl = options.rootUrl || 'https://dns.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1383,7 +1398,9 @@ export namespace dns_v1beta2 {
             url: (
               rootUrl +
               '/dns/v1beta2/projects/{project}/managedZones/{managedZone}/changes'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -1528,6 +1545,19 @@ export namespace dns_v1beta2 {
         options = {};
       }
 
+      if (params.changeId !== undefined && params.changeId !== null) {
+        validateSingleSegment('changeId', String(params.changeId));
+        params.changeId = encodeWithSlashes(String(params.changeId));
+      }
+      if (params.managedZone !== undefined && params.managedZone !== null) {
+        validateSingleSegment('managedZone', String(params.managedZone));
+        params.managedZone = encodeWithSlashes(String(params.managedZone));
+      }
+      if (params.project !== undefined && params.project !== null) {
+        validateSingleSegment('project', String(params.project));
+        params.project = encodeWithSlashes(String(params.project));
+      }
+
       const rootUrl = options.rootUrl || 'https://dns.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1535,7 +1565,9 @@ export namespace dns_v1beta2 {
             url: (
               rootUrl +
               '/dns/v1beta2/projects/{project}/managedZones/{managedZone}/changes/{changeId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -1681,6 +1713,15 @@ export namespace dns_v1beta2 {
         options = {};
       }
 
+      if (params.managedZone !== undefined && params.managedZone !== null) {
+        validateSingleSegment('managedZone', String(params.managedZone));
+        params.managedZone = encodeWithSlashes(String(params.managedZone));
+      }
+      if (params.project !== undefined && params.project !== null) {
+        validateSingleSegment('project', String(params.project));
+        params.project = encodeWithSlashes(String(params.project));
+      }
+
       const rootUrl = options.rootUrl || 'https://dns.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1688,7 +1729,9 @@ export namespace dns_v1beta2 {
             url: (
               rootUrl +
               '/dns/v1beta2/projects/{project}/managedZones/{managedZone}/changes'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -1910,6 +1953,19 @@ export namespace dns_v1beta2 {
         options = {};
       }
 
+      if (params.dnsKeyId !== undefined && params.dnsKeyId !== null) {
+        validateSingleSegment('dnsKeyId', String(params.dnsKeyId));
+        params.dnsKeyId = encodeWithSlashes(String(params.dnsKeyId));
+      }
+      if (params.managedZone !== undefined && params.managedZone !== null) {
+        validateSingleSegment('managedZone', String(params.managedZone));
+        params.managedZone = encodeWithSlashes(String(params.managedZone));
+      }
+      if (params.project !== undefined && params.project !== null) {
+        validateSingleSegment('project', String(params.project));
+        params.project = encodeWithSlashes(String(params.project));
+      }
+
       const rootUrl = options.rootUrl || 'https://dns.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1917,7 +1973,9 @@ export namespace dns_v1beta2 {
             url: (
               rootUrl +
               '/dns/v1beta2/projects/{project}/managedZones/{managedZone}/dnsKeys/{dnsKeyId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -2061,6 +2119,15 @@ export namespace dns_v1beta2 {
         options = {};
       }
 
+      if (params.managedZone !== undefined && params.managedZone !== null) {
+        validateSingleSegment('managedZone', String(params.managedZone));
+        params.managedZone = encodeWithSlashes(String(params.managedZone));
+      }
+      if (params.project !== undefined && params.project !== null) {
+        validateSingleSegment('project', String(params.project));
+        params.project = encodeWithSlashes(String(params.project));
+      }
+
       const rootUrl = options.rootUrl || 'https://dns.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2068,7 +2135,9 @@ export namespace dns_v1beta2 {
             url: (
               rootUrl +
               '/dns/v1beta2/projects/{project}/managedZones/{managedZone}/dnsKeys'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -2267,6 +2336,19 @@ export namespace dns_v1beta2 {
         options = {};
       }
 
+      if (params.managedZone !== undefined && params.managedZone !== null) {
+        validateSingleSegment('managedZone', String(params.managedZone));
+        params.managedZone = encodeWithSlashes(String(params.managedZone));
+      }
+      if (params.operation !== undefined && params.operation !== null) {
+        validateSingleSegment('operation', String(params.operation));
+        params.operation = encodeWithSlashes(String(params.operation));
+      }
+      if (params.project !== undefined && params.project !== null) {
+        validateSingleSegment('project', String(params.project));
+        params.project = encodeWithSlashes(String(params.project));
+      }
+
       const rootUrl = options.rootUrl || 'https://dns.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2274,7 +2356,9 @@ export namespace dns_v1beta2 {
             url: (
               rootUrl +
               '/dns/v1beta2/projects/{project}/managedZones/{managedZone}/operations/{operation}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -2427,6 +2511,15 @@ export namespace dns_v1beta2 {
         options = {};
       }
 
+      if (params.managedZone !== undefined && params.managedZone !== null) {
+        validateSingleSegment('managedZone', String(params.managedZone));
+        params.managedZone = encodeWithSlashes(String(params.managedZone));
+      }
+      if (params.project !== undefined && params.project !== null) {
+        validateSingleSegment('project', String(params.project));
+        params.project = encodeWithSlashes(String(params.project));
+      }
+
       const rootUrl = options.rootUrl || 'https://dns.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2434,7 +2527,9 @@ export namespace dns_v1beta2 {
             url: (
               rootUrl +
               '/dns/v1beta2/projects/{project}/managedZones/{managedZone}/operations'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -2659,13 +2754,18 @@ export namespace dns_v1beta2 {
         options = {};
       }
 
+      if (params.project !== undefined && params.project !== null) {
+        validateSingleSegment('project', String(params.project));
+        params.project = encodeWithSlashes(String(params.project));
+      }
+
       const rootUrl = options.rootUrl || 'https://dns.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/dns/v1beta2/projects/{project}/managedZones'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/dns/v1beta2/projects/{project}/managedZones')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -2795,6 +2895,15 @@ export namespace dns_v1beta2 {
         options = {};
       }
 
+      if (params.managedZone !== undefined && params.managedZone !== null) {
+        validateSingleSegment('managedZone', String(params.managedZone));
+        params.managedZone = encodeWithSlashes(String(params.managedZone));
+      }
+      if (params.project !== undefined && params.project !== null) {
+        validateSingleSegment('project', String(params.project));
+        params.project = encodeWithSlashes(String(params.project));
+      }
+
       const rootUrl = options.rootUrl || 'https://dns.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2802,7 +2911,9 @@ export namespace dns_v1beta2 {
             url: (
               rootUrl +
               '/dns/v1beta2/projects/{project}/managedZones/{managedZone}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -2956,6 +3067,15 @@ export namespace dns_v1beta2 {
         options = {};
       }
 
+      if (params.managedZone !== undefined && params.managedZone !== null) {
+        validateSingleSegment('managedZone', String(params.managedZone));
+        params.managedZone = encodeWithSlashes(String(params.managedZone));
+      }
+      if (params.project !== undefined && params.project !== null) {
+        validateSingleSegment('project', String(params.project));
+        params.project = encodeWithSlashes(String(params.project));
+      }
+
       const rootUrl = options.rootUrl || 'https://dns.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2963,7 +3083,9 @@ export namespace dns_v1beta2 {
             url: (
               rootUrl +
               '/dns/v1beta2/projects/{project}/managedZones/{managedZone}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -3111,14 +3233,18 @@ export namespace dns_v1beta2 {
         options = {};
       }
 
+      if (params.resource_ !== undefined && params.resource_ !== null) {
+        validateMultiSegment('resource', String(params.resource_));
+        params.resource_ = encodeWithoutSlashes(String(params.resource_));
+      }
+
       const rootUrl = options.rootUrl || 'https://dns.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/dns/v1beta2/{+resource}:getIamPolicy').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/dns/v1beta2/{+resource}:getIamPolicy')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -3262,13 +3388,18 @@ export namespace dns_v1beta2 {
         options = {};
       }
 
+      if (params.project !== undefined && params.project !== null) {
+        validateSingleSegment('project', String(params.project));
+        params.project = encodeWithSlashes(String(params.project));
+      }
+
       const rootUrl = options.rootUrl || 'https://dns.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/dns/v1beta2/projects/{project}/managedZones'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/dns/v1beta2/projects/{project}/managedZones')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -3435,6 +3566,15 @@ export namespace dns_v1beta2 {
         options = {};
       }
 
+      if (params.managedZone !== undefined && params.managedZone !== null) {
+        validateSingleSegment('managedZone', String(params.managedZone));
+        params.managedZone = encodeWithSlashes(String(params.managedZone));
+      }
+      if (params.project !== undefined && params.project !== null) {
+        validateSingleSegment('project', String(params.project));
+        params.project = encodeWithSlashes(String(params.project));
+      }
+
       const rootUrl = options.rootUrl || 'https://dns.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3442,7 +3582,9 @@ export namespace dns_v1beta2 {
             url: (
               rootUrl +
               '/dns/v1beta2/projects/{project}/managedZones/{managedZone}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -3589,14 +3731,18 @@ export namespace dns_v1beta2 {
         options = {};
       }
 
+      if (params.resource_ !== undefined && params.resource_ !== null) {
+        validateMultiSegment('resource', String(params.resource_));
+        params.resource_ = encodeWithoutSlashes(String(params.resource_));
+      }
+
       const rootUrl = options.rootUrl || 'https://dns.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/dns/v1beta2/{+resource}:setIamPolicy').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/dns/v1beta2/{+resource}:setIamPolicy')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -3747,13 +3893,18 @@ export namespace dns_v1beta2 {
         options = {};
       }
 
+      if (params.resource_ !== undefined && params.resource_ !== null) {
+        validateMultiSegment('resource', String(params.resource_));
+        params.resource_ = encodeWithoutSlashes(String(params.resource_));
+      }
+
       const rootUrl = options.rootUrl || 'https://dns.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/dns/v1beta2/{+resource}:testIamPermissions'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/dns/v1beta2/{+resource}:testIamPermissions')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -3922,6 +4073,15 @@ export namespace dns_v1beta2 {
         options = {};
       }
 
+      if (params.managedZone !== undefined && params.managedZone !== null) {
+        validateSingleSegment('managedZone', String(params.managedZone));
+        params.managedZone = encodeWithSlashes(String(params.managedZone));
+      }
+      if (params.project !== undefined && params.project !== null) {
+        validateSingleSegment('project', String(params.project));
+        params.project = encodeWithSlashes(String(params.project));
+      }
+
       const rootUrl = options.rootUrl || 'https://dns.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3929,7 +4089,9 @@ export namespace dns_v1beta2 {
             url: (
               rootUrl +
               '/dns/v1beta2/projects/{project}/managedZones/{managedZone}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -4226,14 +4388,18 @@ export namespace dns_v1beta2 {
         options = {};
       }
 
+      if (params.project !== undefined && params.project !== null) {
+        validateSingleSegment('project', String(params.project));
+        params.project = encodeWithSlashes(String(params.project));
+      }
+
       const rootUrl = options.rootUrl || 'https://dns.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/dns/v1beta2/projects/{project}/policies').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/dns/v1beta2/projects/{project}/policies')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -4362,13 +4528,22 @@ export namespace dns_v1beta2 {
         options = {};
       }
 
+      if (params.policy !== undefined && params.policy !== null) {
+        validateSingleSegment('policy', String(params.policy));
+        params.policy = encodeWithSlashes(String(params.policy));
+      }
+      if (params.project !== undefined && params.project !== null) {
+        validateSingleSegment('project', String(params.project));
+        params.project = encodeWithSlashes(String(params.project));
+      }
+
       const rootUrl = options.rootUrl || 'https://dns.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/dns/v1beta2/projects/{project}/policies/{policy}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/dns/v1beta2/projects/{project}/policies/{policy}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -4513,13 +4688,22 @@ export namespace dns_v1beta2 {
         options = {};
       }
 
+      if (params.policy !== undefined && params.policy !== null) {
+        validateSingleSegment('policy', String(params.policy));
+        params.policy = encodeWithSlashes(String(params.policy));
+      }
+      if (params.project !== undefined && params.project !== null) {
+        validateSingleSegment('project', String(params.project));
+        params.project = encodeWithSlashes(String(params.project));
+      }
+
       const rootUrl = options.rootUrl || 'https://dns.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/dns/v1beta2/projects/{project}/policies/{policy}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/dns/v1beta2/projects/{project}/policies/{policy}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -4660,14 +4844,18 @@ export namespace dns_v1beta2 {
         options = {};
       }
 
+      if (params.project !== undefined && params.project !== null) {
+        validateSingleSegment('project', String(params.project));
+        params.project = encodeWithSlashes(String(params.project));
+      }
+
       const rootUrl = options.rootUrl || 'https://dns.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/dns/v1beta2/projects/{project}/policies').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/dns/v1beta2/projects/{project}/policies')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -4820,13 +5008,22 @@ export namespace dns_v1beta2 {
         options = {};
       }
 
+      if (params.policy !== undefined && params.policy !== null) {
+        validateSingleSegment('policy', String(params.policy));
+        params.policy = encodeWithSlashes(String(params.policy));
+      }
+      if (params.project !== undefined && params.project !== null) {
+        validateSingleSegment('project', String(params.project));
+        params.project = encodeWithSlashes(String(params.project));
+      }
+
       const rootUrl = options.rootUrl || 'https://dns.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/dns/v1beta2/projects/{project}/policies/{policy}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/dns/v1beta2/projects/{project}/policies/{policy}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -4979,13 +5176,22 @@ export namespace dns_v1beta2 {
         options = {};
       }
 
+      if (params.policy !== undefined && params.policy !== null) {
+        validateSingleSegment('policy', String(params.policy));
+        params.policy = encodeWithSlashes(String(params.policy));
+      }
+      if (params.project !== undefined && params.project !== null) {
+        validateSingleSegment('project', String(params.project));
+        params.project = encodeWithSlashes(String(params.project));
+      }
+
       const rootUrl = options.rootUrl || 'https://dns.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/dns/v1beta2/projects/{project}/policies/{policy}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/dns/v1beta2/projects/{project}/policies/{policy}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -5226,14 +5432,18 @@ export namespace dns_v1beta2 {
         options = {};
       }
 
+      if (params.project !== undefined && params.project !== null) {
+        validateSingleSegment('project', String(params.project));
+        params.project = encodeWithSlashes(String(params.project));
+      }
+
       const rootUrl = options.rootUrl || 'https://dns.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/dns/v1beta2/projects/{project}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/dns/v1beta2/projects/{project}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -5408,6 +5618,15 @@ export namespace dns_v1beta2 {
         options = {};
       }
 
+      if (params.managedZone !== undefined && params.managedZone !== null) {
+        validateSingleSegment('managedZone', String(params.managedZone));
+        params.managedZone = encodeWithSlashes(String(params.managedZone));
+      }
+      if (params.project !== undefined && params.project !== null) {
+        validateSingleSegment('project', String(params.project));
+        params.project = encodeWithSlashes(String(params.project));
+      }
+
       const rootUrl = options.rootUrl || 'https://dns.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5415,7 +5634,9 @@ export namespace dns_v1beta2 {
             url: (
               rootUrl +
               '/dns/v1beta2/projects/{project}/managedZones/{managedZone}/rrsets'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -5549,6 +5770,23 @@ export namespace dns_v1beta2 {
         options = {};
       }
 
+      if (params.managedZone !== undefined && params.managedZone !== null) {
+        validateSingleSegment('managedZone', String(params.managedZone));
+        params.managedZone = encodeWithSlashes(String(params.managedZone));
+      }
+      if (params.name !== undefined && params.name !== null) {
+        validateSingleSegment('name', String(params.name));
+        params.name = encodeWithSlashes(String(params.name));
+      }
+      if (params.project !== undefined && params.project !== null) {
+        validateSingleSegment('project', String(params.project));
+        params.project = encodeWithSlashes(String(params.project));
+      }
+      if (params.type !== undefined && params.type !== null) {
+        validateSingleSegment('type', String(params.type));
+        params.type = encodeWithSlashes(String(params.type));
+      }
+
       const rootUrl = options.rootUrl || 'https://dns.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5556,7 +5794,9 @@ export namespace dns_v1beta2 {
             url: (
               rootUrl +
               '/dns/v1beta2/projects/{project}/managedZones/{managedZone}/rrsets/{name}/{type}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -5705,6 +5945,23 @@ export namespace dns_v1beta2 {
         options = {};
       }
 
+      if (params.managedZone !== undefined && params.managedZone !== null) {
+        validateSingleSegment('managedZone', String(params.managedZone));
+        params.managedZone = encodeWithSlashes(String(params.managedZone));
+      }
+      if (params.name !== undefined && params.name !== null) {
+        validateSingleSegment('name', String(params.name));
+        params.name = encodeWithSlashes(String(params.name));
+      }
+      if (params.project !== undefined && params.project !== null) {
+        validateSingleSegment('project', String(params.project));
+        params.project = encodeWithSlashes(String(params.project));
+      }
+      if (params.type !== undefined && params.type !== null) {
+        validateSingleSegment('type', String(params.type));
+        params.type = encodeWithSlashes(String(params.type));
+      }
+
       const rootUrl = options.rootUrl || 'https://dns.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5712,7 +5969,9 @@ export namespace dns_v1beta2 {
             url: (
               rootUrl +
               '/dns/v1beta2/projects/{project}/managedZones/{managedZone}/rrsets/{name}/{type}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -5865,6 +6124,15 @@ export namespace dns_v1beta2 {
         options = {};
       }
 
+      if (params.managedZone !== undefined && params.managedZone !== null) {
+        validateSingleSegment('managedZone', String(params.managedZone));
+        params.managedZone = encodeWithSlashes(String(params.managedZone));
+      }
+      if (params.project !== undefined && params.project !== null) {
+        validateSingleSegment('project', String(params.project));
+        params.project = encodeWithSlashes(String(params.project));
+      }
+
       const rootUrl = options.rootUrl || 'https://dns.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5872,7 +6140,9 @@ export namespace dns_v1beta2 {
             url: (
               rootUrl +
               '/dns/v1beta2/projects/{project}/managedZones/{managedZone}/rrsets'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -6035,6 +6305,23 @@ export namespace dns_v1beta2 {
         options = {};
       }
 
+      if (params.managedZone !== undefined && params.managedZone !== null) {
+        validateSingleSegment('managedZone', String(params.managedZone));
+        params.managedZone = encodeWithSlashes(String(params.managedZone));
+      }
+      if (params.name !== undefined && params.name !== null) {
+        validateSingleSegment('name', String(params.name));
+        params.name = encodeWithSlashes(String(params.name));
+      }
+      if (params.project !== undefined && params.project !== null) {
+        validateSingleSegment('project', String(params.project));
+        params.project = encodeWithSlashes(String(params.project));
+      }
+      if (params.type !== undefined && params.type !== null) {
+        validateSingleSegment('type', String(params.type));
+        params.type = encodeWithSlashes(String(params.type));
+      }
+
       const rootUrl = options.rootUrl || 'https://dns.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -6042,7 +6329,9 @@ export namespace dns_v1beta2 {
             url: (
               rootUrl +
               '/dns/v1beta2/projects/{project}/managedZones/{managedZone}/rrsets/{name}/{type}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -6325,13 +6614,18 @@ export namespace dns_v1beta2 {
         options = {};
       }
 
+      if (params.project !== undefined && params.project !== null) {
+        validateSingleSegment('project', String(params.project));
+        params.project = encodeWithSlashes(String(params.project));
+      }
+
       const rootUrl = options.rootUrl || 'https://dns.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/dns/v1beta2/projects/{project}/responsePolicies'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/dns/v1beta2/projects/{project}/responsePolicies')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -6461,6 +6755,20 @@ export namespace dns_v1beta2 {
         options = {};
       }
 
+      if (params.project !== undefined && params.project !== null) {
+        validateSingleSegment('project', String(params.project));
+        params.project = encodeWithSlashes(String(params.project));
+      }
+      if (
+        params.responsePolicy !== undefined &&
+        params.responsePolicy !== null
+      ) {
+        validateSingleSegment('responsePolicy', String(params.responsePolicy));
+        params.responsePolicy = encodeWithSlashes(
+          String(params.responsePolicy)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://dns.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -6468,7 +6776,9 @@ export namespace dns_v1beta2 {
             url: (
               rootUrl +
               '/dns/v1beta2/projects/{project}/responsePolicies/{responsePolicy}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -6613,6 +6923,20 @@ export namespace dns_v1beta2 {
         options = {};
       }
 
+      if (params.project !== undefined && params.project !== null) {
+        validateSingleSegment('project', String(params.project));
+        params.project = encodeWithSlashes(String(params.project));
+      }
+      if (
+        params.responsePolicy !== undefined &&
+        params.responsePolicy !== null
+      ) {
+        validateSingleSegment('responsePolicy', String(params.responsePolicy));
+        params.responsePolicy = encodeWithSlashes(
+          String(params.responsePolicy)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://dns.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -6620,7 +6944,9 @@ export namespace dns_v1beta2 {
             url: (
               rootUrl +
               '/dns/v1beta2/projects/{project}/responsePolicies/{responsePolicy}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -6764,13 +7090,18 @@ export namespace dns_v1beta2 {
         options = {};
       }
 
+      if (params.project !== undefined && params.project !== null) {
+        validateSingleSegment('project', String(params.project));
+        params.project = encodeWithSlashes(String(params.project));
+      }
+
       const rootUrl = options.rootUrl || 'https://dns.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/dns/v1beta2/projects/{project}/responsePolicies'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/dns/v1beta2/projects/{project}/responsePolicies')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -6927,6 +7258,20 @@ export namespace dns_v1beta2 {
         options = {};
       }
 
+      if (params.project !== undefined && params.project !== null) {
+        validateSingleSegment('project', String(params.project));
+        params.project = encodeWithSlashes(String(params.project));
+      }
+      if (
+        params.responsePolicy !== undefined &&
+        params.responsePolicy !== null
+      ) {
+        validateSingleSegment('responsePolicy', String(params.responsePolicy));
+        params.responsePolicy = encodeWithSlashes(
+          String(params.responsePolicy)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://dns.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -6934,7 +7279,9 @@ export namespace dns_v1beta2 {
             url: (
               rootUrl +
               '/dns/v1beta2/projects/{project}/responsePolicies/{responsePolicy}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -7091,6 +7438,20 @@ export namespace dns_v1beta2 {
         options = {};
       }
 
+      if (params.project !== undefined && params.project !== null) {
+        validateSingleSegment('project', String(params.project));
+        params.project = encodeWithSlashes(String(params.project));
+      }
+      if (
+        params.responsePolicy !== undefined &&
+        params.responsePolicy !== null
+      ) {
+        validateSingleSegment('responsePolicy', String(params.responsePolicy));
+        params.responsePolicy = encodeWithSlashes(
+          String(params.responsePolicy)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://dns.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -7098,7 +7459,9 @@ export namespace dns_v1beta2 {
             url: (
               rootUrl +
               '/dns/v1beta2/projects/{project}/responsePolicies/{responsePolicy}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -7356,6 +7719,20 @@ export namespace dns_v1beta2 {
         options = {};
       }
 
+      if (params.project !== undefined && params.project !== null) {
+        validateSingleSegment('project', String(params.project));
+        params.project = encodeWithSlashes(String(params.project));
+      }
+      if (
+        params.responsePolicy !== undefined &&
+        params.responsePolicy !== null
+      ) {
+        validateSingleSegment('responsePolicy', String(params.responsePolicy));
+        params.responsePolicy = encodeWithSlashes(
+          String(params.responsePolicy)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://dns.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -7363,7 +7740,9 @@ export namespace dns_v1beta2 {
             url: (
               rootUrl +
               '/dns/v1beta2/projects/{project}/responsePolicies/{responsePolicy}/rules'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -7495,6 +7874,32 @@ export namespace dns_v1beta2 {
         options = {};
       }
 
+      if (params.project !== undefined && params.project !== null) {
+        validateSingleSegment('project', String(params.project));
+        params.project = encodeWithSlashes(String(params.project));
+      }
+      if (
+        params.responsePolicy !== undefined &&
+        params.responsePolicy !== null
+      ) {
+        validateSingleSegment('responsePolicy', String(params.responsePolicy));
+        params.responsePolicy = encodeWithSlashes(
+          String(params.responsePolicy)
+        );
+      }
+      if (
+        params.responsePolicyRule !== undefined &&
+        params.responsePolicyRule !== null
+      ) {
+        validateSingleSegment(
+          'responsePolicyRule',
+          String(params.responsePolicyRule)
+        );
+        params.responsePolicyRule = encodeWithSlashes(
+          String(params.responsePolicyRule)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://dns.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -7502,7 +7907,9 @@ export namespace dns_v1beta2 {
             url: (
               rootUrl +
               '/dns/v1beta2/projects/{project}/responsePolicies/{responsePolicy}/rules/{responsePolicyRule}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -7647,6 +8054,32 @@ export namespace dns_v1beta2 {
         options = {};
       }
 
+      if (params.project !== undefined && params.project !== null) {
+        validateSingleSegment('project', String(params.project));
+        params.project = encodeWithSlashes(String(params.project));
+      }
+      if (
+        params.responsePolicy !== undefined &&
+        params.responsePolicy !== null
+      ) {
+        validateSingleSegment('responsePolicy', String(params.responsePolicy));
+        params.responsePolicy = encodeWithSlashes(
+          String(params.responsePolicy)
+        );
+      }
+      if (
+        params.responsePolicyRule !== undefined &&
+        params.responsePolicyRule !== null
+      ) {
+        validateSingleSegment(
+          'responsePolicyRule',
+          String(params.responsePolicyRule)
+        );
+        params.responsePolicyRule = encodeWithSlashes(
+          String(params.responsePolicyRule)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://dns.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -7654,7 +8087,9 @@ export namespace dns_v1beta2 {
             url: (
               rootUrl +
               '/dns/v1beta2/projects/{project}/responsePolicies/{responsePolicy}/rules/{responsePolicyRule}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -7800,6 +8235,20 @@ export namespace dns_v1beta2 {
         options = {};
       }
 
+      if (params.project !== undefined && params.project !== null) {
+        validateSingleSegment('project', String(params.project));
+        params.project = encodeWithSlashes(String(params.project));
+      }
+      if (
+        params.responsePolicy !== undefined &&
+        params.responsePolicy !== null
+      ) {
+        validateSingleSegment('responsePolicy', String(params.responsePolicy));
+        params.responsePolicy = encodeWithSlashes(
+          String(params.responsePolicy)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://dns.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -7807,7 +8256,9 @@ export namespace dns_v1beta2 {
             url: (
               rootUrl +
               '/dns/v1beta2/projects/{project}/responsePolicies/{responsePolicy}/rules'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -7968,6 +8419,32 @@ export namespace dns_v1beta2 {
         options = {};
       }
 
+      if (params.project !== undefined && params.project !== null) {
+        validateSingleSegment('project', String(params.project));
+        params.project = encodeWithSlashes(String(params.project));
+      }
+      if (
+        params.responsePolicy !== undefined &&
+        params.responsePolicy !== null
+      ) {
+        validateSingleSegment('responsePolicy', String(params.responsePolicy));
+        params.responsePolicy = encodeWithSlashes(
+          String(params.responsePolicy)
+        );
+      }
+      if (
+        params.responsePolicyRule !== undefined &&
+        params.responsePolicyRule !== null
+      ) {
+        validateSingleSegment(
+          'responsePolicyRule',
+          String(params.responsePolicyRule)
+        );
+        params.responsePolicyRule = encodeWithSlashes(
+          String(params.responsePolicyRule)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://dns.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -7975,7 +8452,9 @@ export namespace dns_v1beta2 {
             url: (
               rootUrl +
               '/dns/v1beta2/projects/{project}/responsePolicies/{responsePolicy}/rules/{responsePolicyRule}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -8136,6 +8615,32 @@ export namespace dns_v1beta2 {
         options = {};
       }
 
+      if (params.project !== undefined && params.project !== null) {
+        validateSingleSegment('project', String(params.project));
+        params.project = encodeWithSlashes(String(params.project));
+      }
+      if (
+        params.responsePolicy !== undefined &&
+        params.responsePolicy !== null
+      ) {
+        validateSingleSegment('responsePolicy', String(params.responsePolicy));
+        params.responsePolicy = encodeWithSlashes(
+          String(params.responsePolicy)
+        );
+      }
+      if (
+        params.responsePolicyRule !== undefined &&
+        params.responsePolicyRule !== null
+      ) {
+        validateSingleSegment(
+          'responsePolicyRule',
+          String(params.responsePolicyRule)
+        );
+        params.responsePolicyRule = encodeWithSlashes(
+          String(params.responsePolicyRule)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://dns.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -8143,7 +8648,9 @@ export namespace dns_v1beta2 {
             url: (
               rootUrl +
               '/dns/v1beta2/projects/{project}/responsePolicies/{responsePolicy}/rules/{responsePolicyRule}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },

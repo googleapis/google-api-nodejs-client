@@ -34,6 +34,12 @@ import {
   APIRequestContext,
 } from 'googleapis-common';
 import {Readable} from 'stream';
+import {
+  validateSingleSegment,
+  validateMultiSegment,
+  encodeWithSlashes,
+  encodeWithoutSlashes,
+} from '../../transcoding';
 
 export namespace clouderrorreporting_v1beta1 {
   export interface Options extends GlobalOptions {
@@ -518,15 +524,19 @@ export namespace clouderrorreporting_v1beta1 {
         options = {};
       }
 
+      if (params.projectName !== undefined && params.projectName !== null) {
+        validateMultiSegment('projectName', String(params.projectName));
+        params.projectName = encodeWithoutSlashes(String(params.projectName));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://clouderrorreporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+projectName}/events').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta1/{+projectName}/events')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -686,15 +696,19 @@ export namespace clouderrorreporting_v1beta1 {
         options = {};
       }
 
+      if (params.projectName !== undefined && params.projectName !== null) {
+        validateMultiSegment('projectName', String(params.projectName));
+        params.projectName = encodeWithoutSlashes(String(params.projectName));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://clouderrorreporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+projectName}/events').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta1/{+projectName}/events')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -836,15 +850,19 @@ export namespace clouderrorreporting_v1beta1 {
         options = {};
       }
 
+      if (params.projectName !== undefined && params.projectName !== null) {
+        validateMultiSegment('projectName', String(params.projectName));
+        params.projectName = encodeWithoutSlashes(String(params.projectName));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://clouderrorreporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+projectName}/events:report').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta1/{+projectName}/events:report')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -1029,15 +1047,19 @@ export namespace clouderrorreporting_v1beta1 {
         options = {};
       }
 
+      if (params.groupName !== undefined && params.groupName !== null) {
+        validateMultiSegment('groupName', String(params.groupName));
+        params.groupName = encodeWithoutSlashes(String(params.groupName));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://clouderrorreporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+groupName}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta1/{+groupName}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -1180,12 +1202,19 @@ export namespace clouderrorreporting_v1beta1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://clouderrorreporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta1/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -1365,15 +1394,19 @@ export namespace clouderrorreporting_v1beta1 {
         options = {};
       }
 
+      if (params.projectName !== undefined && params.projectName !== null) {
+        validateMultiSegment('projectName', String(params.projectName));
+        params.projectName = encodeWithoutSlashes(String(params.projectName));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://clouderrorreporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+projectName}/groupStats').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta1/{+projectName}/groupStats')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -1570,15 +1603,19 @@ export namespace clouderrorreporting_v1beta1 {
         options = {};
       }
 
+      if (params.projectName !== undefined && params.projectName !== null) {
+        validateMultiSegment('projectName', String(params.projectName));
+        params.projectName = encodeWithoutSlashes(String(params.projectName));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://clouderrorreporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+projectName}/events').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta1/{+projectName}/events')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -1738,15 +1775,19 @@ export namespace clouderrorreporting_v1beta1 {
         options = {};
       }
 
+      if (params.projectName !== undefined && params.projectName !== null) {
+        validateMultiSegment('projectName', String(params.projectName));
+        params.projectName = encodeWithoutSlashes(String(params.projectName));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://clouderrorreporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+projectName}/events').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta1/{+projectName}/events')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -1920,15 +1961,19 @@ export namespace clouderrorreporting_v1beta1 {
         options = {};
       }
 
+      if (params.groupName !== undefined && params.groupName !== null) {
+        validateMultiSegment('groupName', String(params.groupName));
+        params.groupName = encodeWithoutSlashes(String(params.groupName));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://clouderrorreporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+groupName}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta1/{+groupName}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -2071,12 +2116,19 @@ export namespace clouderrorreporting_v1beta1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://clouderrorreporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta1/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -2256,15 +2308,19 @@ export namespace clouderrorreporting_v1beta1 {
         options = {};
       }
 
+      if (params.projectName !== undefined && params.projectName !== null) {
+        validateMultiSegment('projectName', String(params.projectName));
+        params.projectName = encodeWithoutSlashes(String(params.projectName));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://clouderrorreporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+projectName}/groupStats').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta1/{+projectName}/groupStats')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },

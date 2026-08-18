@@ -34,6 +34,12 @@ import {
   APIRequestContext,
 } from 'googleapis-common';
 import {Readable} from 'stream';
+import {
+  validateSingleSegment,
+  validateMultiSegment,
+  encodeWithSlashes,
+  encodeWithoutSlashes,
+} from '../../transcoding';
 
 export namespace dfareporting_v3_5 {
   export interface Options extends GlobalOptions {
@@ -523,6 +529,15 @@ export namespace dfareporting_v3_5 {
         options = {};
       }
 
+      if (params.advertiserId !== undefined && params.advertiserId !== null) {
+        validateMultiSegment('advertiserId', String(params.advertiserId));
+        params.advertiserId = encodeWithoutSlashes(String(params.advertiserId));
+      }
+      if (params.profileId !== undefined && params.profileId !== null) {
+        validateMultiSegment('profileId', String(params.profileId));
+        params.profileId = encodeWithoutSlashes(String(params.profileId));
+      }
+
       const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -530,7 +545,9 @@ export namespace dfareporting_v3_5 {
             url: (
               rootUrl +
               '/dfareporting/v3.5/userprofiles/{+profileId}/creativeAssets/{+advertiserId}/creativeAssets'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -540,7 +557,9 @@ export namespace dfareporting_v3_5 {
         mediaUrl: (
           rootUrl +
           '/upload/dfareporting/v3.5/userprofiles/{+profileId}/creativeAssets/{+advertiserId}/creativeAssets'
-        ).replace(/([^:]\/)\/+/g, '$1'),
+        )
+          .replace(/([^:]\/)\/+/g, '$1')
+          .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
         requiredParams: ['profileId', 'advertiserId'],
         pathParams: ['advertiserId', 'profileId'],
         context: this.context,

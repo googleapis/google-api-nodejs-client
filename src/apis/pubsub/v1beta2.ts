@@ -34,6 +34,12 @@ import {
   APIRequestContext,
 } from 'googleapis-common';
 import {Readable} from 'stream';
+import {
+  validateSingleSegment,
+  validateMultiSegment,
+  encodeWithSlashes,
+  encodeWithoutSlashes,
+} from '../../transcoding';
 
 export namespace pubsub_v1beta2 {
   export interface Options extends GlobalOptions {
@@ -553,14 +559,18 @@ export namespace pubsub_v1beta2 {
         options = {};
       }
 
+      if (params.subscription !== undefined && params.subscription !== null) {
+        validateMultiSegment('subscription', String(params.subscription));
+        params.subscription = encodeWithoutSlashes(String(params.subscription));
+      }
+
       const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta2/{+subscription}:acknowledge').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta2/{+subscription}:acknowledge')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -707,11 +717,18 @@ export namespace pubsub_v1beta2 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta2/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -841,14 +858,18 @@ export namespace pubsub_v1beta2 {
         options = {};
       }
 
+      if (params.subscription !== undefined && params.subscription !== null) {
+        validateMultiSegment('subscription', String(params.subscription));
+        params.subscription = encodeWithoutSlashes(String(params.subscription));
+      }
+
       const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta2/{+subscription}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta2/{+subscription}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -984,14 +1005,18 @@ export namespace pubsub_v1beta2 {
         options = {};
       }
 
+      if (params.subscription !== undefined && params.subscription !== null) {
+        validateMultiSegment('subscription', String(params.subscription));
+        params.subscription = encodeWithoutSlashes(String(params.subscription));
+      }
+
       const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta2/{+subscription}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta2/{+subscription}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -1127,14 +1152,18 @@ export namespace pubsub_v1beta2 {
         options = {};
       }
 
+      if (params.resource_ !== undefined && params.resource_ !== null) {
+        validateMultiSegment('resource', String(params.resource_));
+        params.resource_ = encodeWithoutSlashes(String(params.resource_));
+      }
+
       const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta2/{+resource}:getIamPolicy').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta2/{+resource}:getIamPolicy')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -1275,14 +1304,18 @@ export namespace pubsub_v1beta2 {
         options = {};
       }
 
+      if (params.project !== undefined && params.project !== null) {
+        validateMultiSegment('project', String(params.project));
+        params.project = encodeWithoutSlashes(String(params.project));
+      }
+
       const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta2/{+project}/subscriptions').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta2/{+project}/subscriptions')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -1422,13 +1455,18 @@ export namespace pubsub_v1beta2 {
         options = {};
       }
 
+      if (params.subscription !== undefined && params.subscription !== null) {
+        validateMultiSegment('subscription', String(params.subscription));
+        params.subscription = encodeWithoutSlashes(String(params.subscription));
+      }
+
       const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v1beta2/{+subscription}:modifyAckDeadline'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta2/{+subscription}:modifyAckDeadline')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -1566,13 +1604,18 @@ export namespace pubsub_v1beta2 {
         options = {};
       }
 
+      if (params.subscription !== undefined && params.subscription !== null) {
+        validateMultiSegment('subscription', String(params.subscription));
+        params.subscription = encodeWithoutSlashes(String(params.subscription));
+      }
+
       const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v1beta2/{+subscription}:modifyPushConfig'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta2/{+subscription}:modifyPushConfig')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -1714,14 +1757,18 @@ export namespace pubsub_v1beta2 {
         options = {};
       }
 
+      if (params.subscription !== undefined && params.subscription !== null) {
+        validateMultiSegment('subscription', String(params.subscription));
+        params.subscription = encodeWithoutSlashes(String(params.subscription));
+      }
+
       const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta2/{+subscription}:pull').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta2/{+subscription}:pull')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -1863,14 +1910,18 @@ export namespace pubsub_v1beta2 {
         options = {};
       }
 
+      if (params.resource_ !== undefined && params.resource_ !== null) {
+        validateMultiSegment('resource', String(params.resource_));
+        params.resource_ = encodeWithoutSlashes(String(params.resource_));
+      }
+
       const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta2/{+resource}:setIamPolicy').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta2/{+resource}:setIamPolicy')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -2015,14 +2066,18 @@ export namespace pubsub_v1beta2 {
         options = {};
       }
 
+      if (params.resource_ !== undefined && params.resource_ !== null) {
+        validateMultiSegment('resource', String(params.resource_));
+        params.resource_ = encodeWithoutSlashes(String(params.resource_));
+      }
+
       const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta2/{+resource}:testIamPermissions').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta2/{+resource}:testIamPermissions')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -2287,11 +2342,18 @@ export namespace pubsub_v1beta2 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta2/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -2421,11 +2483,18 @@ export namespace pubsub_v1beta2 {
         options = {};
       }
 
+      if (params.topic !== undefined && params.topic !== null) {
+        validateMultiSegment('topic', String(params.topic));
+        params.topic = encodeWithoutSlashes(String(params.topic));
+      }
+
       const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta2/{+topic}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta2/{+topic}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -2557,11 +2626,18 @@ export namespace pubsub_v1beta2 {
         options = {};
       }
 
+      if (params.topic !== undefined && params.topic !== null) {
+        validateMultiSegment('topic', String(params.topic));
+        params.topic = encodeWithoutSlashes(String(params.topic));
+      }
+
       const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta2/{+topic}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta2/{+topic}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -2697,14 +2773,18 @@ export namespace pubsub_v1beta2 {
         options = {};
       }
 
+      if (params.resource_ !== undefined && params.resource_ !== null) {
+        validateMultiSegment('resource', String(params.resource_));
+        params.resource_ = encodeWithoutSlashes(String(params.resource_));
+      }
+
       const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta2/{+resource}:getIamPolicy').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta2/{+resource}:getIamPolicy')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -2842,14 +2922,18 @@ export namespace pubsub_v1beta2 {
         options = {};
       }
 
+      if (params.project !== undefined && params.project !== null) {
+        validateMultiSegment('project', String(params.project));
+        params.project = encodeWithoutSlashes(String(params.project));
+      }
+
       const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta2/{+project}/topics').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta2/{+project}/topics')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -2990,14 +3074,18 @@ export namespace pubsub_v1beta2 {
         options = {};
       }
 
+      if (params.topic !== undefined && params.topic !== null) {
+        validateMultiSegment('topic', String(params.topic));
+        params.topic = encodeWithoutSlashes(String(params.topic));
+      }
+
       const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta2/{+topic}:publish').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta2/{+topic}:publish')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -3139,14 +3227,18 @@ export namespace pubsub_v1beta2 {
         options = {};
       }
 
+      if (params.resource_ !== undefined && params.resource_ !== null) {
+        validateMultiSegment('resource', String(params.resource_));
+        params.resource_ = encodeWithoutSlashes(String(params.resource_));
+      }
+
       const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta2/{+resource}:setIamPolicy').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta2/{+resource}:setIamPolicy')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -3290,14 +3382,18 @@ export namespace pubsub_v1beta2 {
         options = {};
       }
 
+      if (params.resource_ !== undefined && params.resource_ !== null) {
+        validateMultiSegment('resource', String(params.resource_));
+        params.resource_ = encodeWithoutSlashes(String(params.resource_));
+      }
+
       const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta2/{+resource}:testIamPermissions').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta2/{+resource}:testIamPermissions')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -3527,14 +3623,18 @@ export namespace pubsub_v1beta2 {
         options = {};
       }
 
+      if (params.topic !== undefined && params.topic !== null) {
+        validateMultiSegment('topic', String(params.topic));
+        params.topic = encodeWithoutSlashes(String(params.topic));
+      }
+
       const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta2/{+topic}/subscriptions').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta2/{+topic}/subscriptions')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },

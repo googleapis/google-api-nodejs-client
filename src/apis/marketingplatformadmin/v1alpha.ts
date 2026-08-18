@@ -34,6 +34,12 @@ import {
   APIRequestContext,
 } from 'googleapis-common';
 import {Readable} from 'stream';
+import {
+  validateSingleSegment,
+  validateMultiSegment,
+  encodeWithSlashes,
+  encodeWithoutSlashes,
+} from '../../transcoding';
 
 export namespace marketingplatformadmin_v1alpha {
   export interface Options extends GlobalOptions {
@@ -490,6 +496,11 @@ export namespace marketingplatformadmin_v1alpha {
         options = {};
       }
 
+      if (params.organization !== undefined && params.organization !== null) {
+        validateMultiSegment('organization', String(params.organization));
+        params.organization = encodeWithoutSlashes(String(params.organization));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://marketingplatformadmin.googleapis.com/';
       const parameters = {
@@ -498,7 +509,9 @@ export namespace marketingplatformadmin_v1alpha {
             url: (
               rootUrl +
               '/v1alpha/{+organization}:findSalesPartnerManagedClients'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -634,12 +647,19 @@ export namespace marketingplatformadmin_v1alpha {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://marketingplatformadmin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1alpha/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -783,10 +803,9 @@ export namespace marketingplatformadmin_v1alpha {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha/organizations').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1alpha/organizations')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -932,14 +951,19 @@ export namespace marketingplatformadmin_v1alpha {
         options = {};
       }
 
+      if (params.organization !== undefined && params.organization !== null) {
+        validateMultiSegment('organization', String(params.organization));
+        params.organization = encodeWithoutSlashes(String(params.organization));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://marketingplatformadmin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v1alpha/{+organization}:reportPropertyUsage'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1alpha/{+organization}:reportPropertyUsage')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -1134,15 +1158,19 @@ export namespace marketingplatformadmin_v1alpha {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://marketingplatformadmin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha/{+parent}/analyticsAccountLinks').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1alpha/{+parent}/analyticsAccountLinks')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -1273,12 +1301,19 @@ export namespace marketingplatformadmin_v1alpha {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://marketingplatformadmin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1alpha/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -1425,15 +1460,19 @@ export namespace marketingplatformadmin_v1alpha {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://marketingplatformadmin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha/{+parent}/analyticsAccountLinks').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1alpha/{+parent}/analyticsAccountLinks')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -1583,6 +1622,19 @@ export namespace marketingplatformadmin_v1alpha {
         options = {};
       }
 
+      if (
+        params.analyticsAccountLink !== undefined &&
+        params.analyticsAccountLink !== null
+      ) {
+        validateMultiSegment(
+          'analyticsAccountLink',
+          String(params.analyticsAccountLink)
+        );
+        params.analyticsAccountLink = encodeWithoutSlashes(
+          String(params.analyticsAccountLink)
+        );
+      }
+
       const rootUrl =
         options.rootUrl || 'https://marketingplatformadmin.googleapis.com/';
       const parameters = {
@@ -1591,7 +1643,9 @@ export namespace marketingplatformadmin_v1alpha {
             url: (
               rootUrl +
               '/v1alpha/{+analyticsAccountLink}:setPropertyServiceLevel'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },

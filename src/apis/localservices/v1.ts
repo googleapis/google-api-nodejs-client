@@ -34,6 +34,12 @@ import {
   APIRequestContext,
 } from 'googleapis-common';
 import {Readable} from 'stream';
+import {
+  validateSingleSegment,
+  validateMultiSegment,
+  encodeWithSlashes,
+  encodeWithoutSlashes,
+} from '../../transcoding';
 
 export namespace localservices_v1 {
   export interface Options extends GlobalOptions {
@@ -529,10 +535,9 @@ export namespace localservices_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/accountReports:search').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/accountReports:search')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -740,10 +745,9 @@ export namespace localservices_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/detailedLeadReports:search').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/detailedLeadReports:search')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },

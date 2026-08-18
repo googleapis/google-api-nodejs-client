@@ -34,6 +34,12 @@ import {
   APIRequestContext,
 } from 'googleapis-common';
 import {Readable} from 'stream';
+import {
+  validateSingleSegment,
+  validateMultiSegment,
+  encodeWithSlashes,
+  encodeWithoutSlashes,
+} from '../../transcoding';
 
 export namespace people_v1 {
   export interface Options extends GlobalOptions {
@@ -1748,10 +1754,9 @@ export namespace people_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/contactGroups:batchGet').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/contactGroups:batchGet')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -1901,7 +1906,9 @@ export namespace people_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/contactGroups').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/contactGroups')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -2030,14 +2037,18 @@ export namespace people_v1 {
         options = {};
       }
 
+      if (params.resourceName !== undefined && params.resourceName !== null) {
+        validateMultiSegment('resourceName', String(params.resourceName));
+        params.resourceName = encodeWithoutSlashes(String(params.resourceName));
+      }
+
       const rootUrl = options.rootUrl || 'https://people.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+resourceName}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/{+resourceName}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -2182,14 +2193,18 @@ export namespace people_v1 {
         options = {};
       }
 
+      if (params.resourceName !== undefined && params.resourceName !== null) {
+        validateMultiSegment('resourceName', String(params.resourceName));
+        params.resourceName = encodeWithoutSlashes(String(params.resourceName));
+      }
+
       const rootUrl = options.rootUrl || 'https://people.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+resourceName}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/{+resourceName}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -2338,7 +2353,9 @@ export namespace people_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/contactGroups').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/contactGroups')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -2486,14 +2503,18 @@ export namespace people_v1 {
         options = {};
       }
 
+      if (params.resourceName !== undefined && params.resourceName !== null) {
+        validateMultiSegment('resourceName', String(params.resourceName));
+        params.resourceName = encodeWithoutSlashes(String(params.resourceName));
+      }
+
       const rootUrl = options.rootUrl || 'https://people.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+resourceName}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/{+resourceName}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -2722,14 +2743,18 @@ export namespace people_v1 {
         options = {};
       }
 
+      if (params.resourceName !== undefined && params.resourceName !== null) {
+        validateMultiSegment('resourceName', String(params.resourceName));
+        params.resourceName = encodeWithoutSlashes(String(params.resourceName));
+      }
+
       const rootUrl = options.rootUrl || 'https://people.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+resourceName}/members:modify').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/{+resourceName}/members:modify')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -2932,13 +2957,20 @@ export namespace people_v1 {
         options = {};
       }
 
+      if (params.resourceName !== undefined && params.resourceName !== null) {
+        validateMultiSegment('resourceName', String(params.resourceName));
+        params.resourceName = encodeWithoutSlashes(String(params.resourceName));
+      }
+
       const rootUrl = options.rootUrl || 'https://people.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/v1/{+resourceName}:copyOtherContactToMyContactsGroup'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -3088,7 +3120,9 @@ export namespace people_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/otherContacts').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/otherContacts')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -3226,10 +3260,9 @@ export namespace people_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/otherContacts:search').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/otherContacts:search')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -3435,10 +3468,9 @@ export namespace people_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/people:batchCreateContacts').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/people:batchCreateContacts')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -3574,10 +3606,9 @@ export namespace people_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/people:batchDeleteContacts').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/people:batchDeleteContacts')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -3723,10 +3754,9 @@ export namespace people_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/people:batchUpdateContacts').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/people:batchUpdateContacts')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -3943,10 +3973,9 @@ export namespace people_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/people:createContact').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/people:createContact')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -4073,14 +4102,18 @@ export namespace people_v1 {
         options = {};
       }
 
+      if (params.resourceName !== undefined && params.resourceName !== null) {
+        validateMultiSegment('resourceName', String(params.resourceName));
+        params.resourceName = encodeWithoutSlashes(String(params.resourceName));
+      }
+
       const rootUrl = options.rootUrl || 'https://people.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+resourceName}:deleteContact').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/{+resourceName}:deleteContact')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -4217,14 +4250,18 @@ export namespace people_v1 {
         options = {};
       }
 
+      if (params.resourceName !== undefined && params.resourceName !== null) {
+        validateMultiSegment('resourceName', String(params.resourceName));
+        params.resourceName = encodeWithoutSlashes(String(params.resourceName));
+      }
+
       const rootUrl = options.rootUrl || 'https://people.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+resourceName}:deleteContactPhoto').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/{+resourceName}:deleteContactPhoto')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -4408,14 +4445,18 @@ export namespace people_v1 {
         options = {};
       }
 
+      if (params.resourceName !== undefined && params.resourceName !== null) {
+        validateMultiSegment('resourceName', String(params.resourceName));
+        params.resourceName = encodeWithoutSlashes(String(params.resourceName));
+      }
+
       const rootUrl = options.rootUrl || 'https://people.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+resourceName}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/{+resourceName}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -4568,10 +4609,9 @@ export namespace people_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/people:batchGet').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/people:batchGet')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -4723,10 +4763,9 @@ export namespace people_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/people:listDirectoryPeople').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/people:listDirectoryPeople')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -4869,10 +4908,9 @@ export namespace people_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/people:searchContacts').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/people:searchContacts')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -5022,10 +5060,9 @@ export namespace people_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/people:searchDirectoryPeople').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/people:searchDirectoryPeople')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -5244,14 +5281,18 @@ export namespace people_v1 {
         options = {};
       }
 
+      if (params.resourceName !== undefined && params.resourceName !== null) {
+        validateMultiSegment('resourceName', String(params.resourceName));
+        params.resourceName = encodeWithoutSlashes(String(params.resourceName));
+      }
+
       const rootUrl = options.rootUrl || 'https://people.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+resourceName}:updateContact').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/{+resourceName}:updateContact')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -5394,14 +5435,18 @@ export namespace people_v1 {
         options = {};
       }
 
+      if (params.resourceName !== undefined && params.resourceName !== null) {
+        validateMultiSegment('resourceName', String(params.resourceName));
+        params.resourceName = encodeWithoutSlashes(String(params.resourceName));
+      }
+
       const rootUrl = options.rootUrl || 'https://people.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+resourceName}:updateContactPhoto').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/{+resourceName}:updateContactPhoto')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -5760,14 +5805,18 @@ export namespace people_v1 {
         options = {};
       }
 
+      if (params.resourceName !== undefined && params.resourceName !== null) {
+        validateMultiSegment('resourceName', String(params.resourceName));
+        params.resourceName = encodeWithoutSlashes(String(params.resourceName));
+      }
+
       const rootUrl = options.rootUrl || 'https://people.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+resourceName}/connections').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/{+resourceName}/connections')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },

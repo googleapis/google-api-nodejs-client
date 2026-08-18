@@ -34,6 +34,12 @@ import {
   APIRequestContext,
 } from 'googleapis-common';
 import {Readable} from 'stream';
+import {
+  validateSingleSegment,
+  validateMultiSegment,
+  encodeWithSlashes,
+  encodeWithoutSlashes,
+} from '../../transcoding';
 
 export namespace airquality_v1 {
   export interface Options extends GlobalOptions {
@@ -680,10 +686,9 @@ export namespace airquality_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/currentConditions:lookup').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/currentConditions:lookup')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -849,10 +854,9 @@ export namespace airquality_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/forecast:lookup').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/forecast:lookup')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -1017,7 +1021,9 @@ export namespace airquality_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/history:lookup').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/history:lookup')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -1177,13 +1183,32 @@ export namespace airquality_v1 {
         options = {};
       }
 
+      if (params.mapType !== undefined && params.mapType !== null) {
+        validateSingleSegment('mapType', String(params.mapType));
+        params.mapType = encodeWithSlashes(String(params.mapType));
+      }
+      if (params.x !== undefined && params.x !== null) {
+        validateSingleSegment('x', String(params.x));
+        params.x = encodeWithSlashes(String(params.x));
+      }
+      if (params.y !== undefined && params.y !== null) {
+        validateSingleSegment('y', String(params.y));
+        params.y = encodeWithSlashes(String(params.y));
+      }
+      if (params.zoom !== undefined && params.zoom !== null) {
+        validateSingleSegment('zoom', String(params.zoom));
+        params.zoom = encodeWithSlashes(String(params.zoom));
+      }
+
       const rootUrl = options.rootUrl || 'https://airquality.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/v1/mapTypes/{mapType}/heatmapTiles/{zoom}/{x}/{y}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },

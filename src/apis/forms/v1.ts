@@ -34,6 +34,12 @@ import {
   APIRequestContext,
 } from 'googleapis-common';
 import {Readable} from 'stream';
+import {
+  validateSingleSegment,
+  validateMultiSegment,
+  encodeWithSlashes,
+  encodeWithoutSlashes,
+} from '../../transcoding';
 
 export namespace forms_v1 {
   export interface Options extends GlobalOptions {
@@ -1223,14 +1229,18 @@ export namespace forms_v1 {
         options = {};
       }
 
+      if (params.formId !== undefined && params.formId !== null) {
+        validateSingleSegment('formId', String(params.formId));
+        params.formId = encodeWithSlashes(String(params.formId));
+      }
+
       const rootUrl = options.rootUrl || 'https://forms.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/forms/{formId}:batchUpdate').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/forms/{formId}:batchUpdate')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -1388,7 +1398,9 @@ export namespace forms_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/forms').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/forms')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -1529,11 +1541,18 @@ export namespace forms_v1 {
         options = {};
       }
 
+      if (params.formId !== undefined && params.formId !== null) {
+        validateSingleSegment('formId', String(params.formId));
+        params.formId = encodeWithSlashes(String(params.formId));
+      }
+
       const rootUrl = options.rootUrl || 'https://forms.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/forms/{formId}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/forms/{formId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -1680,14 +1699,18 @@ export namespace forms_v1 {
         options = {};
       }
 
+      if (params.formId !== undefined && params.formId !== null) {
+        validateSingleSegment('formId', String(params.formId));
+        params.formId = encodeWithSlashes(String(params.formId));
+      }
+
       const rootUrl = options.rootUrl || 'https://forms.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/forms/{formId}:setPublishSettings').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/forms/{formId}:setPublishSettings')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -1876,13 +1899,22 @@ export namespace forms_v1 {
         options = {};
       }
 
+      if (params.formId !== undefined && params.formId !== null) {
+        validateSingleSegment('formId', String(params.formId));
+        params.formId = encodeWithSlashes(String(params.formId));
+      }
+      if (params.responseId !== undefined && params.responseId !== null) {
+        validateSingleSegment('responseId', String(params.responseId));
+        params.responseId = encodeWithSlashes(String(params.responseId));
+      }
+
       const rootUrl = options.rootUrl || 'https://forms.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v1/forms/{formId}/responses/{responseId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/forms/{formId}/responses/{responseId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -2026,14 +2058,18 @@ export namespace forms_v1 {
         options = {};
       }
 
+      if (params.formId !== undefined && params.formId !== null) {
+        validateSingleSegment('formId', String(params.formId));
+        params.formId = encodeWithSlashes(String(params.formId));
+      }
+
       const rootUrl = options.rootUrl || 'https://forms.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/forms/{formId}/responses').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/forms/{formId}/responses')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -2220,14 +2256,18 @@ export namespace forms_v1 {
         options = {};
       }
 
+      if (params.formId !== undefined && params.formId !== null) {
+        validateSingleSegment('formId', String(params.formId));
+        params.formId = encodeWithSlashes(String(params.formId));
+      }
+
       const rootUrl = options.rootUrl || 'https://forms.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/forms/{formId}/watches').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/forms/{formId}/watches')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -2363,14 +2403,22 @@ export namespace forms_v1 {
         options = {};
       }
 
+      if (params.formId !== undefined && params.formId !== null) {
+        validateSingleSegment('formId', String(params.formId));
+        params.formId = encodeWithSlashes(String(params.formId));
+      }
+      if (params.watchId !== undefined && params.watchId !== null) {
+        validateSingleSegment('watchId', String(params.watchId));
+        params.watchId = encodeWithSlashes(String(params.watchId));
+      }
+
       const rootUrl = options.rootUrl || 'https://forms.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/forms/{formId}/watches/{watchId}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/forms/{formId}/watches/{watchId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -2507,14 +2555,18 @@ export namespace forms_v1 {
         options = {};
       }
 
+      if (params.formId !== undefined && params.formId !== null) {
+        validateSingleSegment('formId', String(params.formId));
+        params.formId = encodeWithSlashes(String(params.formId));
+      }
+
       const rootUrl = options.rootUrl || 'https://forms.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/forms/{formId}/watches').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/forms/{formId}/watches')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -2664,13 +2716,22 @@ export namespace forms_v1 {
         options = {};
       }
 
+      if (params.formId !== undefined && params.formId !== null) {
+        validateSingleSegment('formId', String(params.formId));
+        params.formId = encodeWithSlashes(String(params.formId));
+      }
+      if (params.watchId !== undefined && params.watchId !== null) {
+        validateSingleSegment('watchId', String(params.watchId));
+        params.watchId = encodeWithSlashes(String(params.watchId));
+      }
+
       const rootUrl = options.rootUrl || 'https://forms.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v1/forms/{formId}/watches/{watchId}:renew'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/forms/{formId}/watches/{watchId}:renew')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },

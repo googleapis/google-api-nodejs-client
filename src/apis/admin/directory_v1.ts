@@ -34,6 +34,12 @@ import {
   APIRequestContext,
 } from 'googleapis-common';
 import {Readable} from 'stream';
+import {
+  validateSingleSegment,
+  validateMultiSegment,
+  encodeWithSlashes,
+  encodeWithoutSlashes,
+} from '../../transcoding';
 
 export namespace admin_directory_v1 {
   export interface Options extends GlobalOptions {
@@ -3108,13 +3114,22 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.codeId !== undefined && params.codeId !== null) {
+        validateSingleSegment('codeId', String(params.codeId));
+        params.codeId = encodeWithSlashes(String(params.codeId));
+      }
+      if (params.userKey !== undefined && params.userKey !== null) {
+        validateSingleSegment('userKey', String(params.userKey));
+        params.userKey = encodeWithSlashes(String(params.userKey));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/admin/directory/v1/users/{userKey}/asps/{codeId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/admin/directory/v1/users/{userKey}/asps/{codeId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -3250,13 +3265,22 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.codeId !== undefined && params.codeId !== null) {
+        validateSingleSegment('codeId', String(params.codeId));
+        params.codeId = encodeWithSlashes(String(params.codeId));
+      }
+      if (params.userKey !== undefined && params.userKey !== null) {
+        validateSingleSegment('userKey', String(params.userKey));
+        params.userKey = encodeWithSlashes(String(params.userKey));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/admin/directory/v1/users/{userKey}/asps/{codeId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/admin/directory/v1/users/{userKey}/asps/{codeId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -3386,14 +3410,18 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.userKey !== undefined && params.userKey !== null) {
+        validateSingleSegment('userKey', String(params.userKey));
+        params.userKey = encodeWithSlashes(String(params.userKey));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/admin/directory/v1/users/{userKey}/asps').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/admin/directory/v1/users/{userKey}/asps')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -3573,10 +3601,9 @@ export namespace admin_directory_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/admin/directory_v1/channels/stop').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/admin/directory_v1/channels/stop')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -3724,6 +3751,15 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.customerId !== undefined && params.customerId !== null) {
+        validateSingleSegment('customerId', String(params.customerId));
+        params.customerId = encodeWithSlashes(String(params.customerId));
+      }
+      if (params.resourceId !== undefined && params.resourceId !== null) {
+        validateSingleSegment('resourceId', String(params.resourceId));
+        params.resourceId = encodeWithSlashes(String(params.resourceId));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3731,7 +3767,9 @@ export namespace admin_directory_v1 {
             url: (
               rootUrl +
               '/admin/directory/v1/customer/{customerId}/devices/chromeos/{resourceId}/action'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -3921,6 +3959,15 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.customerId !== undefined && params.customerId !== null) {
+        validateSingleSegment('customerId', String(params.customerId));
+        params.customerId = encodeWithSlashes(String(params.customerId));
+      }
+      if (params.deviceId !== undefined && params.deviceId !== null) {
+        validateSingleSegment('deviceId', String(params.deviceId));
+        params.deviceId = encodeWithSlashes(String(params.deviceId));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3928,7 +3975,9 @@ export namespace admin_directory_v1 {
             url: (
               rootUrl +
               '/admin/directory/v1/customer/{customerId}/devices/chromeos/{deviceId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -4080,6 +4129,11 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.customerId !== undefined && params.customerId !== null) {
+        validateSingleSegment('customerId', String(params.customerId));
+        params.customerId = encodeWithSlashes(String(params.customerId));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4087,7 +4141,9 @@ export namespace admin_directory_v1 {
             url: (
               rootUrl +
               '/admin/directory/v1/customer/{customerId}/devices/chromeos'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -4220,6 +4276,11 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.customerId !== undefined && params.customerId !== null) {
+        validateSingleSegment('customerId', String(params.customerId));
+        params.customerId = encodeWithSlashes(String(params.customerId));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4227,7 +4288,9 @@ export namespace admin_directory_v1 {
             url: (
               rootUrl +
               '/admin/directory/v1/customer/{customerId}/devices/chromeos/moveDevicesToOu'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -4475,6 +4538,15 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.customerId !== undefined && params.customerId !== null) {
+        validateSingleSegment('customerId', String(params.customerId));
+        params.customerId = encodeWithSlashes(String(params.customerId));
+      }
+      if (params.deviceId !== undefined && params.deviceId !== null) {
+        validateSingleSegment('deviceId', String(params.deviceId));
+        params.deviceId = encodeWithSlashes(String(params.deviceId));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4482,7 +4554,9 @@ export namespace admin_directory_v1 {
             url: (
               rootUrl +
               '/admin/directory/v1/customer/{customerId}/devices/chromeos/{deviceId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -4730,6 +4804,15 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.customerId !== undefined && params.customerId !== null) {
+        validateSingleSegment('customerId', String(params.customerId));
+        params.customerId = encodeWithSlashes(String(params.customerId));
+      }
+      if (params.deviceId !== undefined && params.deviceId !== null) {
+        validateSingleSegment('deviceId', String(params.deviceId));
+        params.deviceId = encodeWithSlashes(String(params.deviceId));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4737,7 +4820,9 @@ export namespace admin_directory_v1 {
             url: (
               rootUrl +
               '/admin/directory/v1/customer/{customerId}/devices/chromeos/{deviceId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -5036,6 +5121,11 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.customerId !== undefined && params.customerId !== null) {
+        validateSingleSegment('customerId', String(params.customerId));
+        params.customerId = encodeWithSlashes(String(params.customerId));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5043,7 +5133,9 @@ export namespace admin_directory_v1 {
             url: (
               rootUrl +
               '/admin/directory/v1/customer/{customerId}/devices/chromeos:batchChangeStatus'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -5189,6 +5281,11 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.customerId !== undefined && params.customerId !== null) {
+        validateSingleSegment('customerId', String(params.customerId));
+        params.customerId = encodeWithSlashes(String(params.customerId));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5196,7 +5293,9 @@ export namespace admin_directory_v1 {
             url: (
               rootUrl +
               '/admin/directory/v1/customer/{customerId}/devices/chromeos:countChromeOsDevices'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -5347,6 +5446,15 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.customerId !== undefined && params.customerId !== null) {
+        validateSingleSegment('customerId', String(params.customerId));
+        params.customerId = encodeWithSlashes(String(params.customerId));
+      }
+      if (params.deviceId !== undefined && params.deviceId !== null) {
+        validateSingleSegment('deviceId', String(params.deviceId));
+        params.deviceId = encodeWithSlashes(String(params.deviceId));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5354,7 +5462,9 @@ export namespace admin_directory_v1 {
             url: (
               rootUrl +
               '/admin/directory/v1/customer/{customerId}/devices/chromeos/{deviceId}:issueCommand'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -5555,6 +5665,19 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.commandId !== undefined && params.commandId !== null) {
+        validateSingleSegment('commandId', String(params.commandId));
+        params.commandId = encodeWithSlashes(String(params.commandId));
+      }
+      if (params.customerId !== undefined && params.customerId !== null) {
+        validateSingleSegment('customerId', String(params.customerId));
+        params.customerId = encodeWithSlashes(String(params.customerId));
+      }
+      if (params.deviceId !== undefined && params.deviceId !== null) {
+        validateSingleSegment('deviceId', String(params.deviceId));
+        params.deviceId = encodeWithSlashes(String(params.deviceId));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5562,7 +5685,9 @@ export namespace admin_directory_v1 {
             url: (
               rootUrl +
               '/admin/directory/v1/customer/{customerId}/devices/chromeos/{deviceId}/commands/{commandId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -5727,13 +5852,18 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.customerKey !== undefined && params.customerKey !== null) {
+        validateSingleSegment('customerKey', String(params.customerKey));
+        params.customerKey = encodeWithSlashes(String(params.customerKey));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/admin/directory/v1/customers/{customerKey}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/admin/directory/v1/customers/{customerKey}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -5885,13 +6015,18 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.customerKey !== undefined && params.customerKey !== null) {
+        validateSingleSegment('customerKey', String(params.customerKey));
+        params.customerKey = encodeWithSlashes(String(params.customerKey));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/admin/directory/v1/customers/{customerKey}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/admin/directory/v1/customers/{customerKey}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -6043,13 +6178,18 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.customerKey !== undefined && params.customerKey !== null) {
+        validateSingleSegment('customerKey', String(params.customerKey));
+        params.customerKey = encodeWithSlashes(String(params.customerKey));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/admin/directory/v1/customers/{customerKey}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/admin/directory/v1/customers/{customerKey}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -6242,6 +6382,11 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -6249,7 +6394,9 @@ export namespace admin_directory_v1 {
             url: (
               rootUrl +
               '/admin/directory/v1/{+parent}/chrome/printers:batchCreatePrinters'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -6393,6 +6540,11 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -6400,7 +6552,9 @@ export namespace admin_directory_v1 {
             url: (
               rootUrl +
               '/admin/directory/v1/{+parent}/chrome/printers:batchDeletePrinters'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -6555,13 +6709,18 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/admin/directory/v1/{+parent}/chrome/printers'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/admin/directory/v1/{+parent}/chrome/printers')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -6688,14 +6847,18 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/admin/directory/v1/{+name}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/admin/directory/v1/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -6836,14 +6999,18 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/admin/directory/v1/{+name}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/admin/directory/v1/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -6988,13 +7155,18 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/admin/directory/v1/{+parent}/chrome/printers'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/admin/directory/v1/{+parent}/chrome/printers')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -7138,6 +7310,11 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -7145,7 +7322,9 @@ export namespace admin_directory_v1 {
             url: (
               rootUrl +
               '/admin/directory/v1/{+parent}/chrome/printers:listPrinterModels'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -7304,14 +7483,18 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/admin/directory/v1/{+name}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/admin/directory/v1/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -7573,6 +7756,11 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -7580,7 +7768,9 @@ export namespace admin_directory_v1 {
             url: (
               rootUrl +
               '/admin/directory/v1/{+parent}/chrome/printServers:batchCreatePrintServers'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -7728,6 +7918,11 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -7735,7 +7930,9 @@ export namespace admin_directory_v1 {
             url: (
               rootUrl +
               '/admin/directory/v1/{+parent}/chrome/printServers:batchDeletePrintServers'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -7887,13 +8084,18 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/admin/directory/v1/{+parent}/chrome/printServers'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/admin/directory/v1/{+parent}/chrome/printServers')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -8020,14 +8222,18 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/admin/directory/v1/{+name}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/admin/directory/v1/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -8166,14 +8372,18 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/admin/directory/v1/{+name}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/admin/directory/v1/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -8318,13 +8528,18 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.parent !== undefined && params.parent !== null) {
+        validateMultiSegment('parent', String(params.parent));
+        params.parent = encodeWithoutSlashes(String(params.parent));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/admin/directory/v1/{+parent}/chrome/printServers'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/admin/directory/v1/{+parent}/chrome/printServers')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -8476,14 +8691,18 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.name !== undefined && params.name !== null) {
+        validateMultiSegment('name', String(params.name));
+        params.name = encodeWithoutSlashes(String(params.name));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/admin/directory/v1/{+name}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/admin/directory/v1/{+name}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -8702,6 +8921,23 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.customer !== undefined && params.customer !== null) {
+        validateSingleSegment('customer', String(params.customer));
+        params.customer = encodeWithSlashes(String(params.customer));
+      }
+      if (
+        params.domainAliasName !== undefined &&
+        params.domainAliasName !== null
+      ) {
+        validateSingleSegment(
+          'domainAliasName',
+          String(params.domainAliasName)
+        );
+        params.domainAliasName = encodeWithSlashes(
+          String(params.domainAliasName)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -8709,7 +8945,9 @@ export namespace admin_directory_v1 {
             url: (
               rootUrl +
               '/admin/directory/v1/customer/{customer}/domainaliases/{domainAliasName}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -8849,6 +9087,23 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.customer !== undefined && params.customer !== null) {
+        validateSingleSegment('customer', String(params.customer));
+        params.customer = encodeWithSlashes(String(params.customer));
+      }
+      if (
+        params.domainAliasName !== undefined &&
+        params.domainAliasName !== null
+      ) {
+        validateSingleSegment(
+          'domainAliasName',
+          String(params.domainAliasName)
+        );
+        params.domainAliasName = encodeWithSlashes(
+          String(params.domainAliasName)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -8856,7 +9111,9 @@ export namespace admin_directory_v1 {
             url: (
               rootUrl +
               '/admin/directory/v1/customer/{customer}/domainaliases/{domainAliasName}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -9004,13 +9261,20 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.customer !== undefined && params.customer !== null) {
+        validateSingleSegment('customer', String(params.customer));
+        params.customer = encodeWithSlashes(String(params.customer));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/admin/directory/v1/customer/{customer}/domainaliases'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -9147,13 +9411,20 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.customer !== undefined && params.customer !== null) {
+        validateSingleSegment('customer', String(params.customer));
+        params.customer = encodeWithSlashes(String(params.customer));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/admin/directory/v1/customer/{customer}/domainaliases'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -9326,6 +9597,15 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.customer !== undefined && params.customer !== null) {
+        validateSingleSegment('customer', String(params.customer));
+        params.customer = encodeWithSlashes(String(params.customer));
+      }
+      if (params.domainName !== undefined && params.domainName !== null) {
+        validateSingleSegment('domainName', String(params.domainName));
+        params.domainName = encodeWithSlashes(String(params.domainName));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -9333,7 +9613,9 @@ export namespace admin_directory_v1 {
             url: (
               rootUrl +
               '/admin/directory/v1/customer/{customer}/domains/{domainName}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -9472,6 +9754,15 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.customer !== undefined && params.customer !== null) {
+        validateSingleSegment('customer', String(params.customer));
+        params.customer = encodeWithSlashes(String(params.customer));
+      }
+      if (params.domainName !== undefined && params.domainName !== null) {
+        validateSingleSegment('domainName', String(params.domainName));
+        params.domainName = encodeWithSlashes(String(params.domainName));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -9479,7 +9770,9 @@ export namespace admin_directory_v1 {
             url: (
               rootUrl +
               '/admin/directory/v1/customer/{customer}/domains/{domainName}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -9627,13 +9920,18 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.customer !== undefined && params.customer !== null) {
+        validateSingleSegment('customer', String(params.customer));
+        params.customer = encodeWithSlashes(String(params.customer));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/admin/directory/v1/customer/{customer}/domains'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/admin/directory/v1/customer/{customer}/domains')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -9766,13 +10064,18 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.customer !== undefined && params.customer !== null) {
+        validateSingleSegment('customer', String(params.customer));
+        params.customer = encodeWithSlashes(String(params.customer));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/admin/directory/v1/customer/{customer}/domains'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/admin/directory/v1/customer/{customer}/domains')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -9941,14 +10244,18 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.groupKey !== undefined && params.groupKey !== null) {
+        validateSingleSegment('groupKey', String(params.groupKey));
+        params.groupKey = encodeWithSlashes(String(params.groupKey));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/admin/directory/v1/groups/{groupKey}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/admin/directory/v1/groups/{groupKey}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -10089,14 +10396,18 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.groupKey !== undefined && params.groupKey !== null) {
+        validateSingleSegment('groupKey', String(params.groupKey));
+        params.groupKey = encodeWithSlashes(String(params.groupKey));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/admin/directory/v1/groups/{groupKey}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/admin/directory/v1/groups/{groupKey}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -10253,10 +10564,9 @@ export namespace admin_directory_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/admin/directory/v1/groups').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/admin/directory/v1/groups')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -10408,10 +10718,9 @@ export namespace admin_directory_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/admin/directory/v1/groups').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/admin/directory/v1/groups')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -10567,14 +10876,18 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.groupKey !== undefined && params.groupKey !== null) {
+        validateSingleSegment('groupKey', String(params.groupKey));
+        params.groupKey = encodeWithSlashes(String(params.groupKey));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/admin/directory/v1/groups/{groupKey}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/admin/directory/v1/groups/{groupKey}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -10730,14 +11043,18 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.groupKey !== undefined && params.groupKey !== null) {
+        validateSingleSegment('groupKey', String(params.groupKey));
+        params.groupKey = encodeWithSlashes(String(params.groupKey));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/admin/directory/v1/groups/{groupKey}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/admin/directory/v1/groups/{groupKey}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -10944,13 +11261,24 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.alias !== undefined && params.alias !== null) {
+        validateSingleSegment('alias', String(params.alias));
+        params.alias = encodeWithSlashes(String(params.alias));
+      }
+      if (params.groupKey !== undefined && params.groupKey !== null) {
+        validateSingleSegment('groupKey', String(params.groupKey));
+        params.groupKey = encodeWithSlashes(String(params.groupKey));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/admin/directory/v1/groups/{groupKey}/aliases/{alias}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -11095,13 +11423,18 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.groupKey !== undefined && params.groupKey !== null) {
+        validateSingleSegment('groupKey', String(params.groupKey));
+        params.groupKey = encodeWithSlashes(String(params.groupKey));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/admin/directory/v1/groups/{groupKey}/aliases'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/admin/directory/v1/groups/{groupKey}/aliases')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -11235,13 +11568,18 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.groupKey !== undefined && params.groupKey !== null) {
+        validateSingleSegment('groupKey', String(params.groupKey));
+        params.groupKey = encodeWithSlashes(String(params.groupKey));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/admin/directory/v1/groups/{groupKey}/aliases'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/admin/directory/v1/groups/{groupKey}/aliases')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -11403,6 +11741,15 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.groupKey !== undefined && params.groupKey !== null) {
+        validateSingleSegment('groupKey', String(params.groupKey));
+        params.groupKey = encodeWithSlashes(String(params.groupKey));
+      }
+      if (params.memberKey !== undefined && params.memberKey !== null) {
+        validateSingleSegment('memberKey', String(params.memberKey));
+        params.memberKey = encodeWithSlashes(String(params.memberKey));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -11410,7 +11757,9 @@ export namespace admin_directory_v1 {
             url: (
               rootUrl +
               '/admin/directory/v1/groups/{groupKey}/members/{memberKey}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -11552,6 +11901,15 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.groupKey !== undefined && params.groupKey !== null) {
+        validateSingleSegment('groupKey', String(params.groupKey));
+        params.groupKey = encodeWithSlashes(String(params.groupKey));
+      }
+      if (params.memberKey !== undefined && params.memberKey !== null) {
+        validateSingleSegment('memberKey', String(params.memberKey));
+        params.memberKey = encodeWithSlashes(String(params.memberKey));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -11559,7 +11917,9 @@ export namespace admin_directory_v1 {
             url: (
               rootUrl +
               '/admin/directory/v1/groups/{groupKey}/members/{memberKey}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -11696,6 +12056,15 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.groupKey !== undefined && params.groupKey !== null) {
+        validateSingleSegment('groupKey', String(params.groupKey));
+        params.groupKey = encodeWithSlashes(String(params.groupKey));
+      }
+      if (params.memberKey !== undefined && params.memberKey !== null) {
+        validateSingleSegment('memberKey', String(params.memberKey));
+        params.memberKey = encodeWithSlashes(String(params.memberKey));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -11703,7 +12072,9 @@ export namespace admin_directory_v1 {
             url: (
               rootUrl +
               '/admin/directory/v1/groups/{groupKey}/hasMember/{memberKey}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -11856,13 +12227,18 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.groupKey !== undefined && params.groupKey !== null) {
+        validateSingleSegment('groupKey', String(params.groupKey));
+        params.groupKey = encodeWithSlashes(String(params.groupKey));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/admin/directory/v1/groups/{groupKey}/members'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/admin/directory/v1/groups/{groupKey}/members')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -12006,13 +12382,18 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.groupKey !== undefined && params.groupKey !== null) {
+        validateSingleSegment('groupKey', String(params.groupKey));
+        params.groupKey = encodeWithSlashes(String(params.groupKey));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/admin/directory/v1/groups/{groupKey}/members'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/admin/directory/v1/groups/{groupKey}/members')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -12167,6 +12548,15 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.groupKey !== undefined && params.groupKey !== null) {
+        validateSingleSegment('groupKey', String(params.groupKey));
+        params.groupKey = encodeWithSlashes(String(params.groupKey));
+      }
+      if (params.memberKey !== undefined && params.memberKey !== null) {
+        validateSingleSegment('memberKey', String(params.memberKey));
+        params.memberKey = encodeWithSlashes(String(params.memberKey));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -12174,7 +12564,9 @@ export namespace admin_directory_v1 {
             url: (
               rootUrl +
               '/admin/directory/v1/groups/{groupKey}/members/{memberKey}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -12329,6 +12721,15 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.groupKey !== undefined && params.groupKey !== null) {
+        validateSingleSegment('groupKey', String(params.groupKey));
+        params.groupKey = encodeWithSlashes(String(params.groupKey));
+      }
+      if (params.memberKey !== undefined && params.memberKey !== null) {
+        validateSingleSegment('memberKey', String(params.memberKey));
+        params.memberKey = encodeWithSlashes(String(params.memberKey));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -12336,7 +12737,9 @@ export namespace admin_directory_v1 {
             url: (
               rootUrl +
               '/admin/directory/v1/groups/{groupKey}/members/{memberKey}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -12573,6 +12976,15 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.customerId !== undefined && params.customerId !== null) {
+        validateSingleSegment('customerId', String(params.customerId));
+        params.customerId = encodeWithSlashes(String(params.customerId));
+      }
+      if (params.resourceId !== undefined && params.resourceId !== null) {
+        validateSingleSegment('resourceId', String(params.resourceId));
+        params.resourceId = encodeWithSlashes(String(params.resourceId));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -12580,7 +12992,9 @@ export namespace admin_directory_v1 {
             url: (
               rootUrl +
               '/admin/directory/v1/customer/{customerId}/devices/mobile/{resourceId}/action'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -12705,6 +13119,15 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.customerId !== undefined && params.customerId !== null) {
+        validateSingleSegment('customerId', String(params.customerId));
+        params.customerId = encodeWithSlashes(String(params.customerId));
+      }
+      if (params.resourceId !== undefined && params.resourceId !== null) {
+        validateSingleSegment('resourceId', String(params.resourceId));
+        params.resourceId = encodeWithSlashes(String(params.resourceId));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -12712,7 +13135,9 @@ export namespace admin_directory_v1 {
             url: (
               rootUrl +
               '/admin/directory/v1/customer/{customerId}/devices/mobile/{resourceId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -12889,6 +13314,15 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.customerId !== undefined && params.customerId !== null) {
+        validateSingleSegment('customerId', String(params.customerId));
+        params.customerId = encodeWithSlashes(String(params.customerId));
+      }
+      if (params.resourceId !== undefined && params.resourceId !== null) {
+        validateSingleSegment('resourceId', String(params.resourceId));
+        params.resourceId = encodeWithSlashes(String(params.resourceId));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -12896,7 +13330,9 @@ export namespace admin_directory_v1 {
             url: (
               rootUrl +
               '/admin/directory/v1/customer/{customerId}/devices/mobile/{resourceId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -13045,6 +13481,11 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.customerId !== undefined && params.customerId !== null) {
+        validateSingleSegment('customerId', String(params.customerId));
+        params.customerId = encodeWithSlashes(String(params.customerId));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -13052,7 +13493,9 @@ export namespace admin_directory_v1 {
             url: (
               rootUrl +
               '/admin/directory/v1/customer/{customerId}/devices/mobile'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -13253,6 +13696,15 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.customerId !== undefined && params.customerId !== null) {
+        validateSingleSegment('customerId', String(params.customerId));
+        params.customerId = encodeWithSlashes(String(params.customerId));
+      }
+      if (params.orgUnitPath !== undefined && params.orgUnitPath !== null) {
+        validateMultiSegment('orgUnitPath', String(params.orgUnitPath));
+        params.orgUnitPath = encodeWithoutSlashes(String(params.orgUnitPath));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -13260,7 +13712,9 @@ export namespace admin_directory_v1 {
             url: (
               rootUrl +
               '/admin/directory/v1/customer/{customerId}/orgunits/{+orgUnitPath}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -13401,6 +13855,15 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.customerId !== undefined && params.customerId !== null) {
+        validateSingleSegment('customerId', String(params.customerId));
+        params.customerId = encodeWithSlashes(String(params.customerId));
+      }
+      if (params.orgUnitPath !== undefined && params.orgUnitPath !== null) {
+        validateMultiSegment('orgUnitPath', String(params.orgUnitPath));
+        params.orgUnitPath = encodeWithoutSlashes(String(params.orgUnitPath));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -13408,7 +13871,9 @@ export namespace admin_directory_v1 {
             url: (
               rootUrl +
               '/admin/directory/v1/customer/{customerId}/orgunits/{+orgUnitPath}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -13560,13 +14025,20 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.customerId !== undefined && params.customerId !== null) {
+        validateSingleSegment('customerId', String(params.customerId));
+        params.customerId = encodeWithSlashes(String(params.customerId));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/admin/directory/v1/customer/{customerId}/orgunits'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -13703,13 +14175,20 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.customerId !== undefined && params.customerId !== null) {
+        validateSingleSegment('customerId', String(params.customerId));
+        params.customerId = encodeWithSlashes(String(params.customerId));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/admin/directory/v1/customer/{customerId}/orgunits'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -13863,6 +14342,15 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.customerId !== undefined && params.customerId !== null) {
+        validateSingleSegment('customerId', String(params.customerId));
+        params.customerId = encodeWithSlashes(String(params.customerId));
+      }
+      if (params.orgUnitPath !== undefined && params.orgUnitPath !== null) {
+        validateMultiSegment('orgUnitPath', String(params.orgUnitPath));
+        params.orgUnitPath = encodeWithoutSlashes(String(params.orgUnitPath));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -13870,7 +14358,9 @@ export namespace admin_directory_v1 {
             url: (
               rootUrl +
               '/admin/directory/v1/customer/{customerId}/orgunits/{+orgUnitPath}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -14024,6 +14514,15 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.customerId !== undefined && params.customerId !== null) {
+        validateSingleSegment('customerId', String(params.customerId));
+        params.customerId = encodeWithSlashes(String(params.customerId));
+      }
+      if (params.orgUnitPath !== undefined && params.orgUnitPath !== null) {
+        validateMultiSegment('orgUnitPath', String(params.orgUnitPath));
+        params.orgUnitPath = encodeWithoutSlashes(String(params.orgUnitPath));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -14031,7 +14530,9 @@ export namespace admin_directory_v1 {
             url: (
               rootUrl +
               '/admin/directory/v1/customer/{customerId}/orgunits/{+orgUnitPath}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -14247,6 +14748,11 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.customer !== undefined && params.customer !== null) {
+        validateSingleSegment('customer', String(params.customer));
+        params.customer = encodeWithSlashes(String(params.customer));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -14254,7 +14760,9 @@ export namespace admin_directory_v1 {
             url: (
               rootUrl +
               '/admin/directory/v1/customer/{customer}/roles/ALL/privileges'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -14408,6 +14916,15 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.buildingId !== undefined && params.buildingId !== null) {
+        validateSingleSegment('buildingId', String(params.buildingId));
+        params.buildingId = encodeWithSlashes(String(params.buildingId));
+      }
+      if (params.customer !== undefined && params.customer !== null) {
+        validateSingleSegment('customer', String(params.customer));
+        params.customer = encodeWithSlashes(String(params.customer));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -14415,7 +14932,9 @@ export namespace admin_directory_v1 {
             url: (
               rootUrl +
               '/admin/directory/v1/customer/{customer}/resources/buildings/{buildingId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -14556,6 +15075,15 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.buildingId !== undefined && params.buildingId !== null) {
+        validateSingleSegment('buildingId', String(params.buildingId));
+        params.buildingId = encodeWithSlashes(String(params.buildingId));
+      }
+      if (params.customer !== undefined && params.customer !== null) {
+        validateSingleSegment('customer', String(params.customer));
+        params.customer = encodeWithSlashes(String(params.customer));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -14563,7 +15091,9 @@ export namespace admin_directory_v1 {
             url: (
               rootUrl +
               '/admin/directory/v1/customer/{customer}/resources/buildings/{buildingId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -14718,6 +15248,11 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.customer !== undefined && params.customer !== null) {
+        validateSingleSegment('customer', String(params.customer));
+        params.customer = encodeWithSlashes(String(params.customer));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -14725,7 +15260,9 @@ export namespace admin_directory_v1 {
             url: (
               rootUrl +
               '/admin/directory/v1/customer/{customer}/resources/buildings'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -14864,6 +15401,11 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.customer !== undefined && params.customer !== null) {
+        validateSingleSegment('customer', String(params.customer));
+        params.customer = encodeWithSlashes(String(params.customer));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -14871,7 +15413,9 @@ export namespace admin_directory_v1 {
             url: (
               rootUrl +
               '/admin/directory/v1/customer/{customer}/resources/buildings'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -15028,6 +15572,15 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.buildingId !== undefined && params.buildingId !== null) {
+        validateSingleSegment('buildingId', String(params.buildingId));
+        params.buildingId = encodeWithSlashes(String(params.buildingId));
+      }
+      if (params.customer !== undefined && params.customer !== null) {
+        validateSingleSegment('customer', String(params.customer));
+        params.customer = encodeWithSlashes(String(params.customer));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -15035,7 +15588,9 @@ export namespace admin_directory_v1 {
             url: (
               rootUrl +
               '/admin/directory/v1/customer/{customer}/resources/buildings/{buildingId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -15192,6 +15747,15 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.buildingId !== undefined && params.buildingId !== null) {
+        validateSingleSegment('buildingId', String(params.buildingId));
+        params.buildingId = encodeWithSlashes(String(params.buildingId));
+      }
+      if (params.customer !== undefined && params.customer !== null) {
+        validateSingleSegment('customer', String(params.customer));
+        params.customer = encodeWithSlashes(String(params.customer));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -15199,7 +15763,9 @@ export namespace admin_directory_v1 {
             url: (
               rootUrl +
               '/admin/directory/v1/customer/{customer}/resources/buildings/{buildingId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -15421,6 +15987,23 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (
+        params.calendarResourceId !== undefined &&
+        params.calendarResourceId !== null
+      ) {
+        validateSingleSegment(
+          'calendarResourceId',
+          String(params.calendarResourceId)
+        );
+        params.calendarResourceId = encodeWithSlashes(
+          String(params.calendarResourceId)
+        );
+      }
+      if (params.customer !== undefined && params.customer !== null) {
+        validateSingleSegment('customer', String(params.customer));
+        params.customer = encodeWithSlashes(String(params.customer));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -15428,7 +16011,9 @@ export namespace admin_directory_v1 {
             url: (
               rootUrl +
               '/admin/directory/v1/customer/{customer}/resources/calendars/{calendarResourceId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -15577,6 +16162,23 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (
+        params.calendarResourceId !== undefined &&
+        params.calendarResourceId !== null
+      ) {
+        validateSingleSegment(
+          'calendarResourceId',
+          String(params.calendarResourceId)
+        );
+        params.calendarResourceId = encodeWithSlashes(
+          String(params.calendarResourceId)
+        );
+      }
+      if (params.customer !== undefined && params.customer !== null) {
+        validateSingleSegment('customer', String(params.customer));
+        params.customer = encodeWithSlashes(String(params.customer));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -15584,7 +16186,9 @@ export namespace admin_directory_v1 {
             url: (
               rootUrl +
               '/admin/directory/v1/customer/{customer}/resources/calendars/{calendarResourceId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -15752,6 +16356,11 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.customer !== undefined && params.customer !== null) {
+        validateSingleSegment('customer', String(params.customer));
+        params.customer = encodeWithSlashes(String(params.customer));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -15759,7 +16368,9 @@ export namespace admin_directory_v1 {
             url: (
               rootUrl +
               '/admin/directory/v1/customer/{customer}/resources/calendars'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -15903,6 +16514,11 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.customer !== undefined && params.customer !== null) {
+        validateSingleSegment('customer', String(params.customer));
+        params.customer = encodeWithSlashes(String(params.customer));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -15910,7 +16526,9 @@ export namespace admin_directory_v1 {
             url: (
               rootUrl +
               '/admin/directory/v1/customer/{customer}/resources/calendars'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -16080,6 +16698,23 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (
+        params.calendarResourceId !== undefined &&
+        params.calendarResourceId !== null
+      ) {
+        validateSingleSegment(
+          'calendarResourceId',
+          String(params.calendarResourceId)
+        );
+        params.calendarResourceId = encodeWithSlashes(
+          String(params.calendarResourceId)
+        );
+      }
+      if (params.customer !== undefined && params.customer !== null) {
+        validateSingleSegment('customer', String(params.customer));
+        params.customer = encodeWithSlashes(String(params.customer));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -16087,7 +16722,9 @@ export namespace admin_directory_v1 {
             url: (
               rootUrl +
               '/admin/directory/v1/customer/{customer}/resources/calendars/{calendarResourceId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -16257,6 +16894,23 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (
+        params.calendarResourceId !== undefined &&
+        params.calendarResourceId !== null
+      ) {
+        validateSingleSegment(
+          'calendarResourceId',
+          String(params.calendarResourceId)
+        );
+        params.calendarResourceId = encodeWithSlashes(
+          String(params.calendarResourceId)
+        );
+      }
+      if (params.customer !== undefined && params.customer !== null) {
+        validateSingleSegment('customer', String(params.customer));
+        params.customer = encodeWithSlashes(String(params.customer));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -16264,7 +16918,9 @@ export namespace admin_directory_v1 {
             url: (
               rootUrl +
               '/admin/directory/v1/customer/{customer}/resources/calendars/{calendarResourceId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -16482,6 +17138,15 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.customer !== undefined && params.customer !== null) {
+        validateSingleSegment('customer', String(params.customer));
+        params.customer = encodeWithSlashes(String(params.customer));
+      }
+      if (params.featureKey !== undefined && params.featureKey !== null) {
+        validateSingleSegment('featureKey', String(params.featureKey));
+        params.featureKey = encodeWithSlashes(String(params.featureKey));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -16489,7 +17154,9 @@ export namespace admin_directory_v1 {
             url: (
               rootUrl +
               '/admin/directory/v1/customer/{customer}/resources/features/{featureKey}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -16625,6 +17292,15 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.customer !== undefined && params.customer !== null) {
+        validateSingleSegment('customer', String(params.customer));
+        params.customer = encodeWithSlashes(String(params.customer));
+      }
+      if (params.featureKey !== undefined && params.featureKey !== null) {
+        validateSingleSegment('featureKey', String(params.featureKey));
+        params.featureKey = encodeWithSlashes(String(params.featureKey));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -16632,7 +17308,9 @@ export namespace admin_directory_v1 {
             url: (
               rootUrl +
               '/admin/directory/v1/customer/{customer}/resources/features/{featureKey}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -16775,6 +17453,11 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.customer !== undefined && params.customer !== null) {
+        validateSingleSegment('customer', String(params.customer));
+        params.customer = encodeWithSlashes(String(params.customer));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -16782,7 +17465,9 @@ export namespace admin_directory_v1 {
             url: (
               rootUrl +
               '/admin/directory/v1/customer/{customer}/resources/features'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -16921,6 +17606,11 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.customer !== undefined && params.customer !== null) {
+        validateSingleSegment('customer', String(params.customer));
+        params.customer = encodeWithSlashes(String(params.customer));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -16928,7 +17618,9 @@ export namespace admin_directory_v1 {
             url: (
               rootUrl +
               '/admin/directory/v1/customer/{customer}/resources/features'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -17073,6 +17765,15 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.customer !== undefined && params.customer !== null) {
+        validateSingleSegment('customer', String(params.customer));
+        params.customer = encodeWithSlashes(String(params.customer));
+      }
+      if (params.featureKey !== undefined && params.featureKey !== null) {
+        validateSingleSegment('featureKey', String(params.featureKey));
+        params.featureKey = encodeWithSlashes(String(params.featureKey));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -17080,7 +17781,9 @@ export namespace admin_directory_v1 {
             url: (
               rootUrl +
               '/admin/directory/v1/customer/{customer}/resources/features/{featureKey}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -17215,6 +17918,15 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.customer !== undefined && params.customer !== null) {
+        validateSingleSegment('customer', String(params.customer));
+        params.customer = encodeWithSlashes(String(params.customer));
+      }
+      if (params.oldName !== undefined && params.oldName !== null) {
+        validateSingleSegment('oldName', String(params.oldName));
+        params.oldName = encodeWithSlashes(String(params.oldName));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -17222,7 +17934,9 @@ export namespace admin_directory_v1 {
             url: (
               rootUrl +
               '/admin/directory/v1/customer/{customer}/resources/features/{oldName}/rename'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -17367,6 +18081,15 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.customer !== undefined && params.customer !== null) {
+        validateSingleSegment('customer', String(params.customer));
+        params.customer = encodeWithSlashes(String(params.customer));
+      }
+      if (params.featureKey !== undefined && params.featureKey !== null) {
+        validateSingleSegment('featureKey', String(params.featureKey));
+        params.featureKey = encodeWithSlashes(String(params.featureKey));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -17374,7 +18097,9 @@ export namespace admin_directory_v1 {
             url: (
               rootUrl +
               '/admin/directory/v1/customer/{customer}/resources/features/{featureKey}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -17597,6 +18322,23 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.customer !== undefined && params.customer !== null) {
+        validateSingleSegment('customer', String(params.customer));
+        params.customer = encodeWithSlashes(String(params.customer));
+      }
+      if (
+        params.roleAssignmentId !== undefined &&
+        params.roleAssignmentId !== null
+      ) {
+        validateSingleSegment(
+          'roleAssignmentId',
+          String(params.roleAssignmentId)
+        );
+        params.roleAssignmentId = encodeWithSlashes(
+          String(params.roleAssignmentId)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -17604,7 +18346,9 @@ export namespace admin_directory_v1 {
             url: (
               rootUrl +
               '/admin/directory/v1/customer/{customer}/roleassignments/{roleAssignmentId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -17747,6 +18491,23 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.customer !== undefined && params.customer !== null) {
+        validateSingleSegment('customer', String(params.customer));
+        params.customer = encodeWithSlashes(String(params.customer));
+      }
+      if (
+        params.roleAssignmentId !== undefined &&
+        params.roleAssignmentId !== null
+      ) {
+        validateSingleSegment(
+          'roleAssignmentId',
+          String(params.roleAssignmentId)
+        );
+        params.roleAssignmentId = encodeWithSlashes(
+          String(params.roleAssignmentId)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -17754,7 +18515,9 @@ export namespace admin_directory_v1 {
             url: (
               rootUrl +
               '/admin/directory/v1/customer/{customer}/roleassignments/{roleAssignmentId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -17908,6 +18671,11 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.customer !== undefined && params.customer !== null) {
+        validateSingleSegment('customer', String(params.customer));
+        params.customer = encodeWithSlashes(String(params.customer));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -17915,7 +18683,9 @@ export namespace admin_directory_v1 {
             url: (
               rootUrl +
               '/admin/directory/v1/customer/{customer}/roleassignments'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -18061,6 +18831,11 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.customer !== undefined && params.customer !== null) {
+        validateSingleSegment('customer', String(params.customer));
+        params.customer = encodeWithSlashes(String(params.customer));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -18068,7 +18843,9 @@ export namespace admin_directory_v1 {
             url: (
               rootUrl +
               '/admin/directory/v1/customer/{customer}/roleassignments'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -18257,13 +19034,24 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.customer !== undefined && params.customer !== null) {
+        validateSingleSegment('customer', String(params.customer));
+        params.customer = encodeWithSlashes(String(params.customer));
+      }
+      if (params.roleId !== undefined && params.roleId !== null) {
+        validateSingleSegment('roleId', String(params.roleId));
+        params.roleId = encodeWithSlashes(String(params.roleId));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/admin/directory/v1/customer/{customer}/roles/{roleId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -18403,13 +19191,24 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.customer !== undefined && params.customer !== null) {
+        validateSingleSegment('customer', String(params.customer));
+        params.customer = encodeWithSlashes(String(params.customer));
+      }
+      if (params.roleId !== undefined && params.roleId !== null) {
+        validateSingleSegment('roleId', String(params.roleId));
+        params.roleId = encodeWithSlashes(String(params.roleId));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/admin/directory/v1/customer/{customer}/roles/{roleId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -18559,13 +19358,18 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.customer !== undefined && params.customer !== null) {
+        validateSingleSegment('customer', String(params.customer));
+        params.customer = encodeWithSlashes(String(params.customer));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/admin/directory/v1/customer/{customer}/roles'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/admin/directory/v1/customer/{customer}/roles')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -18703,13 +19507,18 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.customer !== undefined && params.customer !== null) {
+        validateSingleSegment('customer', String(params.customer));
+        params.customer = encodeWithSlashes(String(params.customer));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/admin/directory/v1/customer/{customer}/roles'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/admin/directory/v1/customer/{customer}/roles')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -18861,13 +19670,24 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.customer !== undefined && params.customer !== null) {
+        validateSingleSegment('customer', String(params.customer));
+        params.customer = encodeWithSlashes(String(params.customer));
+      }
+      if (params.roleId !== undefined && params.roleId !== null) {
+        validateSingleSegment('roleId', String(params.roleId));
+        params.roleId = encodeWithSlashes(String(params.roleId));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/admin/directory/v1/customer/{customer}/roles/{roleId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -19019,13 +19839,24 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.customer !== undefined && params.customer !== null) {
+        validateSingleSegment('customer', String(params.customer));
+        params.customer = encodeWithSlashes(String(params.customer));
+      }
+      if (params.roleId !== undefined && params.roleId !== null) {
+        validateSingleSegment('roleId', String(params.roleId));
+        params.roleId = encodeWithSlashes(String(params.roleId));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/admin/directory/v1/customer/{customer}/roles/{roleId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -19232,6 +20063,15 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.customerId !== undefined && params.customerId !== null) {
+        validateSingleSegment('customerId', String(params.customerId));
+        params.customerId = encodeWithSlashes(String(params.customerId));
+      }
+      if (params.schemaKey !== undefined && params.schemaKey !== null) {
+        validateSingleSegment('schemaKey', String(params.schemaKey));
+        params.schemaKey = encodeWithSlashes(String(params.schemaKey));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -19239,7 +20079,9 @@ export namespace admin_directory_v1 {
             url: (
               rootUrl +
               '/admin/directory/v1/customer/{customerId}/schemas/{schemaKey}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -19377,6 +20219,15 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.customerId !== undefined && params.customerId !== null) {
+        validateSingleSegment('customerId', String(params.customerId));
+        params.customerId = encodeWithSlashes(String(params.customerId));
+      }
+      if (params.schemaKey !== undefined && params.schemaKey !== null) {
+        validateSingleSegment('schemaKey', String(params.schemaKey));
+        params.schemaKey = encodeWithSlashes(String(params.schemaKey));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -19384,7 +20235,9 @@ export namespace admin_directory_v1 {
             url: (
               rootUrl +
               '/admin/directory/v1/customer/{customerId}/schemas/{schemaKey}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -19530,13 +20383,18 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.customerId !== undefined && params.customerId !== null) {
+        validateSingleSegment('customerId', String(params.customerId));
+        params.customerId = encodeWithSlashes(String(params.customerId));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/admin/directory/v1/customer/{customerId}/schemas'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/admin/directory/v1/customer/{customerId}/schemas')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -19669,13 +20527,18 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.customerId !== undefined && params.customerId !== null) {
+        validateSingleSegment('customerId', String(params.customerId));
+        params.customerId = encodeWithSlashes(String(params.customerId));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/admin/directory/v1/customer/{customerId}/schemas'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/admin/directory/v1/customer/{customerId}/schemas')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -19823,6 +20686,15 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.customerId !== undefined && params.customerId !== null) {
+        validateSingleSegment('customerId', String(params.customerId));
+        params.customerId = encodeWithSlashes(String(params.customerId));
+      }
+      if (params.schemaKey !== undefined && params.schemaKey !== null) {
+        validateSingleSegment('schemaKey', String(params.schemaKey));
+        params.schemaKey = encodeWithSlashes(String(params.schemaKey));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -19830,7 +20702,9 @@ export namespace admin_directory_v1 {
             url: (
               rootUrl +
               '/admin/directory/v1/customer/{customerId}/schemas/{schemaKey}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -19978,6 +20852,15 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.customerId !== undefined && params.customerId !== null) {
+        validateSingleSegment('customerId', String(params.customerId));
+        params.customerId = encodeWithSlashes(String(params.customerId));
+      }
+      if (params.schemaKey !== undefined && params.schemaKey !== null) {
+        validateSingleSegment('schemaKey', String(params.schemaKey));
+        params.schemaKey = encodeWithSlashes(String(params.schemaKey));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -19985,7 +20868,9 @@ export namespace admin_directory_v1 {
             url: (
               rootUrl +
               '/admin/directory/v1/customer/{customerId}/schemas/{schemaKey}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -20184,13 +21069,24 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.clientId !== undefined && params.clientId !== null) {
+        validateSingleSegment('clientId', String(params.clientId));
+        params.clientId = encodeWithSlashes(String(params.clientId));
+      }
+      if (params.userKey !== undefined && params.userKey !== null) {
+        validateSingleSegment('userKey', String(params.userKey));
+        params.userKey = encodeWithSlashes(String(params.userKey));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/admin/directory/v1/users/{userKey}/tokens/{clientId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -20327,13 +21223,24 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.clientId !== undefined && params.clientId !== null) {
+        validateSingleSegment('clientId', String(params.clientId));
+        params.clientId = encodeWithSlashes(String(params.clientId));
+      }
+      if (params.userKey !== undefined && params.userKey !== null) {
+        validateSingleSegment('userKey', String(params.userKey));
+        params.userKey = encodeWithSlashes(String(params.userKey));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/admin/directory/v1/users/{userKey}/tokens/{clientId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -20463,13 +21370,18 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.userKey !== undefined && params.userKey !== null) {
+        validateSingleSegment('userKey', String(params.userKey));
+        params.userKey = encodeWithSlashes(String(params.userKey));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/admin/directory/v1/users/{userKey}/tokens'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/admin/directory/v1/users/{userKey}/tokens')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -20626,6 +21538,11 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.userKey !== undefined && params.userKey !== null) {
+        validateSingleSegment('userKey', String(params.userKey));
+        params.userKey = encodeWithSlashes(String(params.userKey));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -20633,7 +21550,9 @@ export namespace admin_directory_v1 {
             url: (
               rootUrl +
               '/admin/directory/v1/users/{userKey}/twoStepVerification/turnOff'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -20839,10 +21758,9 @@ export namespace admin_directory_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/admin/directory/v1/users:createGuest').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/admin/directory/v1/users:createGuest')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -20964,14 +21882,18 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.userKey !== undefined && params.userKey !== null) {
+        validateSingleSegment('userKey', String(params.userKey));
+        params.userKey = encodeWithSlashes(String(params.userKey));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/admin/directory/v1/users/{userKey}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/admin/directory/v1/users/{userKey}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -21157,14 +22079,18 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.userKey !== undefined && params.userKey !== null) {
+        validateSingleSegment('userKey', String(params.userKey));
+        params.userKey = encodeWithSlashes(String(params.userKey));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/admin/directory/v1/users/{userKey}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/admin/directory/v1/users/{userKey}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -21402,10 +22328,9 @@ export namespace admin_directory_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/admin/directory/v1/users').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/admin/directory/v1/users')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -21567,10 +22492,9 @@ export namespace admin_directory_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/admin/directory/v1/users').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/admin/directory/v1/users')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -21700,13 +22624,18 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.userKey !== undefined && params.userKey !== null) {
+        validateSingleSegment('userKey', String(params.userKey));
+        params.userKey = encodeWithSlashes(String(params.userKey));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/admin/directory/v1/users/{userKey}/makeAdmin'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/admin/directory/v1/users/{userKey}/makeAdmin')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -21940,14 +22869,18 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.userKey !== undefined && params.userKey !== null) {
+        validateSingleSegment('userKey', String(params.userKey));
+        params.userKey = encodeWithSlashes(String(params.userKey));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/admin/directory/v1/users/{userKey}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/admin/directory/v1/users/{userKey}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -22069,13 +23002,18 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.userKey !== undefined && params.userKey !== null) {
+        validateSingleSegment('userKey', String(params.userKey));
+        params.userKey = encodeWithSlashes(String(params.userKey));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/admin/directory/v1/users/{userKey}/signOut'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/admin/directory/v1/users/{userKey}/signOut')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -22205,13 +23143,18 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.userKey !== undefined && params.userKey !== null) {
+        validateSingleSegment('userKey', String(params.userKey));
+        params.userKey = encodeWithSlashes(String(params.userKey));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/admin/directory/v1/users/{userKey}/undelete'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/admin/directory/v1/users/{userKey}/undelete')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -22445,14 +23388,18 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.userKey !== undefined && params.userKey !== null) {
+        validateSingleSegment('userKey', String(params.userKey));
+        params.userKey = encodeWithSlashes(String(params.userKey));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/admin/directory/v1/users/{userKey}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/admin/directory/v1/users/{userKey}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -22636,10 +23583,9 @@ export namespace admin_directory_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/admin/directory/v1/users/watch').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/admin/directory/v1/users/watch')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -22971,13 +23917,24 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.alias !== undefined && params.alias !== null) {
+        validateSingleSegment('alias', String(params.alias));
+        params.alias = encodeWithSlashes(String(params.alias));
+      }
+      if (params.userKey !== undefined && params.userKey !== null) {
+        validateSingleSegment('userKey', String(params.userKey));
+        params.userKey = encodeWithSlashes(String(params.userKey));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/admin/directory/v1/users/{userKey}/aliases/{alias}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -23125,13 +24082,18 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.userKey !== undefined && params.userKey !== null) {
+        validateSingleSegment('userKey', String(params.userKey));
+        params.userKey = encodeWithSlashes(String(params.userKey));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/admin/directory/v1/users/{userKey}/aliases'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/admin/directory/v1/users/{userKey}/aliases')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -23269,13 +24231,18 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.userKey !== undefined && params.userKey !== null) {
+        validateSingleSegment('userKey', String(params.userKey));
+        params.userKey = encodeWithSlashes(String(params.userKey));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/admin/directory/v1/users/{userKey}/aliases'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/admin/directory/v1/users/{userKey}/aliases')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -23437,13 +24404,18 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.userKey !== undefined && params.userKey !== null) {
+        validateSingleSegment('userKey', String(params.userKey));
+        params.userKey = encodeWithSlashes(String(params.userKey));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/admin/directory/v1/users/{userKey}/aliases/watch'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/admin/directory/v1/users/{userKey}/aliases/watch')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -23620,13 +24592,20 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.userKey !== undefined && params.userKey !== null) {
+        validateSingleSegment('userKey', String(params.userKey));
+        params.userKey = encodeWithSlashes(String(params.userKey));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/admin/directory/v1/users/{userKey}/photos/thumbnail'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -23764,13 +24743,20 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.userKey !== undefined && params.userKey !== null) {
+        validateSingleSegment('userKey', String(params.userKey));
+        params.userKey = encodeWithSlashes(String(params.userKey));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/admin/directory/v1/users/{userKey}/photos/thumbnail'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -23921,13 +24907,20 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.userKey !== undefined && params.userKey !== null) {
+        validateSingleSegment('userKey', String(params.userKey));
+        params.userKey = encodeWithSlashes(String(params.userKey));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/admin/directory/v1/users/{userKey}/photos/thumbnail'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -24078,13 +25071,20 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.userKey !== undefined && params.userKey !== null) {
+        validateSingleSegment('userKey', String(params.userKey));
+        params.userKey = encodeWithSlashes(String(params.userKey));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/admin/directory/v1/users/{userKey}/photos/thumbnail'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -24249,6 +25249,11 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.userKey !== undefined && params.userKey !== null) {
+        validateSingleSegment('userKey', String(params.userKey));
+        params.userKey = encodeWithSlashes(String(params.userKey));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -24256,7 +25261,9 @@ export namespace admin_directory_v1 {
             url: (
               rootUrl +
               '/admin/directory/v1/users/{userKey}/verificationCodes/generate'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -24379,6 +25386,11 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.userKey !== undefined && params.userKey !== null) {
+        validateSingleSegment('userKey', String(params.userKey));
+        params.userKey = encodeWithSlashes(String(params.userKey));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -24386,7 +25398,9 @@ export namespace admin_directory_v1 {
             url: (
               rootUrl +
               '/admin/directory/v1/users/{userKey}/verificationCodes/invalidate'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -24518,13 +25532,20 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
+      if (params.userKey !== undefined && params.userKey !== null) {
+        validateSingleSegment('userKey', String(params.userKey));
+        params.userKey = encodeWithSlashes(String(params.userKey));
+      }
+
       const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/admin/directory/v1/users/{userKey}/verificationCodes'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },

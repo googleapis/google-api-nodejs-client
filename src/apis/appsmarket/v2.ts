@@ -34,6 +34,12 @@ import {
   APIRequestContext,
 } from 'googleapis-common';
 import {Readable} from 'stream';
+import {
+  validateSingleSegment,
+  validateMultiSegment,
+  encodeWithSlashes,
+  encodeWithoutSlashes,
+} from '../../transcoding';
 
 export namespace appsmarket_v2 {
   export interface Options extends GlobalOptions {
@@ -323,6 +329,15 @@ export namespace appsmarket_v2 {
         options = {};
       }
 
+      if (params.applicationId !== undefined && params.applicationId !== null) {
+        validateSingleSegment('applicationId', String(params.applicationId));
+        params.applicationId = encodeWithSlashes(String(params.applicationId));
+      }
+      if (params.customerId !== undefined && params.customerId !== null) {
+        validateSingleSegment('customerId', String(params.customerId));
+        params.customerId = encodeWithSlashes(String(params.customerId));
+      }
+
       const rootUrl = options.rootUrl || 'https://appsmarket.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -330,7 +345,9 @@ export namespace appsmarket_v2 {
             url: (
               rootUrl +
               '/appsmarket/v2/customerLicense/{applicationId}/{customerId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -486,13 +503,24 @@ export namespace appsmarket_v2 {
         options = {};
       }
 
+      if (params.applicationId !== undefined && params.applicationId !== null) {
+        validateSingleSegment('applicationId', String(params.applicationId));
+        params.applicationId = encodeWithSlashes(String(params.applicationId));
+      }
+      if (params.userId !== undefined && params.userId !== null) {
+        validateSingleSegment('userId', String(params.userId));
+        params.userId = encodeWithSlashes(String(params.userId));
+      }
+
       const rootUrl = options.rootUrl || 'https://appsmarket.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/appsmarket/v2/userLicense/{applicationId}/{userId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },

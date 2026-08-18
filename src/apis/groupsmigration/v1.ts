@@ -34,6 +34,12 @@ import {
   APIRequestContext,
 } from 'googleapis-common';
 import {Readable} from 'stream';
+import {
+  validateSingleSegment,
+  validateMultiSegment,
+  encodeWithSlashes,
+  encodeWithoutSlashes,
+} from '../../transcoding';
 
 export namespace groupsmigration_v1 {
   export interface Options extends GlobalOptions {
@@ -260,24 +266,28 @@ export namespace groupsmigration_v1 {
         options = {};
       }
 
+      if (params.groupId !== undefined && params.groupId !== null) {
+        validateSingleSegment('groupId', String(params.groupId));
+        params.groupId = encodeWithSlashes(String(params.groupId));
+      }
+
       const rootUrl =
         options.rootUrl || 'https://groupsmigration.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/groups/v1/groups/{groupId}/archive').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/groups/v1/groups/{groupId}/archive')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
           options
         ),
         params,
-        mediaUrl: (
-          rootUrl + '/upload/groups/v1/groups/{groupId}/archive'
-        ).replace(/([^:]\/)\/+/g, '$1'),
+        mediaUrl: (rootUrl + '/upload/groups/v1/groups/{groupId}/archive')
+          .replace(/([^:]\/)\/+/g, '$1')
+          .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
         requiredParams: ['groupId'],
         pathParams: ['groupId'],
         context: this.context,

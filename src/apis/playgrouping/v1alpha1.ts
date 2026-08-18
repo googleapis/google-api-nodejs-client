@@ -34,6 +34,12 @@ import {
   APIRequestContext,
 } from 'googleapis-common';
 import {Readable} from 'stream';
+import {
+  validateSingleSegment,
+  validateMultiSegment,
+  encodeWithSlashes,
+  encodeWithoutSlashes,
+} from '../../transcoding';
 
 export namespace playgrouping_v1alpha1 {
   export interface Options extends GlobalOptions {
@@ -315,14 +321,22 @@ export namespace playgrouping_v1alpha1 {
         options = {};
       }
 
+      if (params.appPackage !== undefined && params.appPackage !== null) {
+        validateMultiSegment('appPackage', String(params.appPackage));
+        params.appPackage = encodeWithoutSlashes(String(params.appPackage));
+      }
+      if (params.token !== undefined && params.token !== null) {
+        validateMultiSegment('token', String(params.token));
+        params.token = encodeWithoutSlashes(String(params.token));
+      }
+
       const rootUrl = options.rootUrl || 'https://playgrouping.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha1/{+appPackage}/{+token}:verify').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1alpha1/{+appPackage}/{+token}:verify')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -488,13 +502,24 @@ export namespace playgrouping_v1alpha1 {
         options = {};
       }
 
+      if (params.appPackage !== undefined && params.appPackage !== null) {
+        validateMultiSegment('appPackage', String(params.appPackage));
+        params.appPackage = encodeWithoutSlashes(String(params.appPackage));
+      }
+      if (params.token !== undefined && params.token !== null) {
+        validateMultiSegment('token', String(params.token));
+        params.token = encodeWithoutSlashes(String(params.token));
+      }
+
       const rootUrl = options.rootUrl || 'https://playgrouping.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/v1alpha1/{+appPackage}/{+token}/tags:createOrUpdate'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },

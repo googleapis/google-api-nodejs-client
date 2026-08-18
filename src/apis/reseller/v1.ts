@@ -34,6 +34,12 @@ import {
   APIRequestContext,
 } from 'googleapis-common';
 import {Readable} from 'stream';
+import {
+  validateSingleSegment,
+  validateMultiSegment,
+  encodeWithSlashes,
+  encodeWithoutSlashes,
+} from '../../transcoding';
 
 export namespace reseller_v1 {
   export interface Options extends GlobalOptions {
@@ -536,14 +542,18 @@ export namespace reseller_v1 {
         options = {};
       }
 
+      if (params.customerId !== undefined && params.customerId !== null) {
+        validateSingleSegment('customerId', String(params.customerId));
+        params.customerId = encodeWithSlashes(String(params.customerId));
+      }
+
       const rootUrl = options.rootUrl || 'https://reseller.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/apps/reseller/v1/customers/{customerId}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/apps/reseller/v1/customers/{customerId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -701,10 +711,9 @@ export namespace reseller_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/apps/reseller/v1/customers').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/apps/reseller/v1/customers')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -858,14 +867,18 @@ export namespace reseller_v1 {
         options = {};
       }
 
+      if (params.customerId !== undefined && params.customerId !== null) {
+        validateSingleSegment('customerId', String(params.customerId));
+        params.customerId = encodeWithSlashes(String(params.customerId));
+      }
+
       const rootUrl = options.rootUrl || 'https://reseller.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/apps/reseller/v1/customers/{customerId}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/apps/reseller/v1/customers/{customerId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -1019,14 +1032,18 @@ export namespace reseller_v1 {
         options = {};
       }
 
+      if (params.customerId !== undefined && params.customerId !== null) {
+        validateSingleSegment('customerId', String(params.customerId));
+        params.customerId = encodeWithSlashes(String(params.customerId));
+      }
+
       const rootUrl = options.rootUrl || 'https://reseller.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/apps/reseller/v1/customers/{customerId}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/apps/reseller/v1/customers/{customerId}')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'PUT',
             apiVersion: '',
           },
@@ -1216,9 +1233,9 @@ export namespace reseller_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/apps/reseller/v1/resellernotify/getwatchdetails'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/apps/reseller/v1/resellernotify/getwatchdetails')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -1357,9 +1374,9 @@ export namespace reseller_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/apps/reseller/v1/resellernotify/register'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/apps/reseller/v1/resellernotify/register')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -1496,9 +1513,9 @@ export namespace reseller_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/apps/reseller/v1/resellernotify/unregister'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/apps/reseller/v1/resellernotify/unregister')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -1668,6 +1685,20 @@ export namespace reseller_v1 {
         options = {};
       }
 
+      if (params.customerId !== undefined && params.customerId !== null) {
+        validateSingleSegment('customerId', String(params.customerId));
+        params.customerId = encodeWithSlashes(String(params.customerId));
+      }
+      if (
+        params.subscriptionId !== undefined &&
+        params.subscriptionId !== null
+      ) {
+        validateSingleSegment('subscriptionId', String(params.subscriptionId));
+        params.subscriptionId = encodeWithSlashes(
+          String(params.subscriptionId)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://reseller.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1675,7 +1706,9 @@ export namespace reseller_v1 {
             url: (
               rootUrl +
               '/apps/reseller/v1/customers/{customerId}/subscriptions/{subscriptionId}/activate'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -1836,6 +1869,20 @@ export namespace reseller_v1 {
         options = {};
       }
 
+      if (params.customerId !== undefined && params.customerId !== null) {
+        validateSingleSegment('customerId', String(params.customerId));
+        params.customerId = encodeWithSlashes(String(params.customerId));
+      }
+      if (
+        params.subscriptionId !== undefined &&
+        params.subscriptionId !== null
+      ) {
+        validateSingleSegment('subscriptionId', String(params.subscriptionId));
+        params.subscriptionId = encodeWithSlashes(
+          String(params.subscriptionId)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://reseller.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1843,7 +1890,9 @@ export namespace reseller_v1 {
             url: (
               rootUrl +
               '/apps/reseller/v1/customers/{customerId}/subscriptions/{subscriptionId}/changePlan'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -2003,6 +2052,20 @@ export namespace reseller_v1 {
         options = {};
       }
 
+      if (params.customerId !== undefined && params.customerId !== null) {
+        validateSingleSegment('customerId', String(params.customerId));
+        params.customerId = encodeWithSlashes(String(params.customerId));
+      }
+      if (
+        params.subscriptionId !== undefined &&
+        params.subscriptionId !== null
+      ) {
+        validateSingleSegment('subscriptionId', String(params.subscriptionId));
+        params.subscriptionId = encodeWithSlashes(
+          String(params.subscriptionId)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://reseller.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2010,7 +2073,9 @@ export namespace reseller_v1 {
             url: (
               rootUrl +
               '/apps/reseller/v1/customers/{customerId}/subscriptions/{subscriptionId}/changeRenewalSettings'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -2170,6 +2235,20 @@ export namespace reseller_v1 {
         options = {};
       }
 
+      if (params.customerId !== undefined && params.customerId !== null) {
+        validateSingleSegment('customerId', String(params.customerId));
+        params.customerId = encodeWithSlashes(String(params.customerId));
+      }
+      if (
+        params.subscriptionId !== undefined &&
+        params.subscriptionId !== null
+      ) {
+        validateSingleSegment('subscriptionId', String(params.subscriptionId));
+        params.subscriptionId = encodeWithSlashes(
+          String(params.subscriptionId)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://reseller.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2177,7 +2256,9 @@ export namespace reseller_v1 {
             url: (
               rootUrl +
               '/apps/reseller/v1/customers/{customerId}/subscriptions/{subscriptionId}/changeSeats'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -2304,6 +2385,20 @@ export namespace reseller_v1 {
         options = {};
       }
 
+      if (params.customerId !== undefined && params.customerId !== null) {
+        validateSingleSegment('customerId', String(params.customerId));
+        params.customerId = encodeWithSlashes(String(params.customerId));
+      }
+      if (
+        params.subscriptionId !== undefined &&
+        params.subscriptionId !== null
+      ) {
+        validateSingleSegment('subscriptionId', String(params.subscriptionId));
+        params.subscriptionId = encodeWithSlashes(
+          String(params.subscriptionId)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://reseller.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2311,7 +2406,9 @@ export namespace reseller_v1 {
             url: (
               rootUrl +
               '/apps/reseller/v1/customers/{customerId}/subscriptions/{subscriptionId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -2463,6 +2560,20 @@ export namespace reseller_v1 {
         options = {};
       }
 
+      if (params.customerId !== undefined && params.customerId !== null) {
+        validateSingleSegment('customerId', String(params.customerId));
+        params.customerId = encodeWithSlashes(String(params.customerId));
+      }
+      if (
+        params.subscriptionId !== undefined &&
+        params.subscriptionId !== null
+      ) {
+        validateSingleSegment('subscriptionId', String(params.subscriptionId));
+        params.subscriptionId = encodeWithSlashes(
+          String(params.subscriptionId)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://reseller.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2470,7 +2581,9 @@ export namespace reseller_v1 {
             url: (
               rootUrl +
               '/apps/reseller/v1/customers/{customerId}/subscriptions/{subscriptionId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -2648,13 +2761,20 @@ export namespace reseller_v1 {
         options = {};
       }
 
+      if (params.customerId !== undefined && params.customerId !== null) {
+        validateSingleSegment('customerId', String(params.customerId));
+        params.customerId = encodeWithSlashes(String(params.customerId));
+      }
+
       const rootUrl = options.rootUrl || 'https://reseller.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl + '/apps/reseller/v1/customers/{customerId}/subscriptions'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -2801,10 +2921,9 @@ export namespace reseller_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/apps/reseller/v1/subscriptions').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/apps/reseller/v1/subscriptions')
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'GET',
             apiVersion: '',
           },
@@ -2953,6 +3072,20 @@ export namespace reseller_v1 {
         options = {};
       }
 
+      if (params.customerId !== undefined && params.customerId !== null) {
+        validateSingleSegment('customerId', String(params.customerId));
+        params.customerId = encodeWithSlashes(String(params.customerId));
+      }
+      if (
+        params.subscriptionId !== undefined &&
+        params.subscriptionId !== null
+      ) {
+        validateSingleSegment('subscriptionId', String(params.subscriptionId));
+        params.subscriptionId = encodeWithSlashes(
+          String(params.subscriptionId)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://reseller.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2960,7 +3093,9 @@ export namespace reseller_v1 {
             url: (
               rootUrl +
               '/apps/reseller/v1/customers/{customerId}/subscriptions/{subscriptionId}/startPaidService'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
@@ -3109,6 +3244,20 @@ export namespace reseller_v1 {
         options = {};
       }
 
+      if (params.customerId !== undefined && params.customerId !== null) {
+        validateSingleSegment('customerId', String(params.customerId));
+        params.customerId = encodeWithSlashes(String(params.customerId));
+      }
+      if (
+        params.subscriptionId !== undefined &&
+        params.subscriptionId !== null
+      ) {
+        validateSingleSegment('subscriptionId', String(params.subscriptionId));
+        params.subscriptionId = encodeWithSlashes(
+          String(params.subscriptionId)
+        );
+      }
+
       const rootUrl = options.rootUrl || 'https://reseller.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3116,7 +3265,9 @@ export namespace reseller_v1 {
             url: (
               rootUrl +
               '/apps/reseller/v1/customers/{customerId}/subscriptions/{subscriptionId}/suspend'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            )
+              .replace(/([^:]\/)\/+/g, '$1')
+              .replace(/\{([^+:][^}]*)\}/g, '{+$1}'),
             method: 'POST',
             apiVersion: '',
           },
