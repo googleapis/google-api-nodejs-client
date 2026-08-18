@@ -21,6 +21,11 @@
   "endpoints": [
     {
       "description": "Regional Endpoint",
+      "endpointUrl": "https://cloudkms.europe-west6.rep.googleapis.com/",
+      "location": "europe-west6"
+    },
+    {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://cloudkms.us-east7.rep.googleapis.com/",
       "location": "us-east7"
     },
@@ -3058,7 +3063,7 @@
       }
     }
   },
-  "revision": "20260803",
+  "revision": "20260806",
   "rootUrl": "https://cloudkms.googleapis.com/",
   "schemas": {
     "AddQuorumMember": {
