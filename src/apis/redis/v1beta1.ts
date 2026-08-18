@@ -3342,7 +3342,7 @@ export namespace redis_v1beta1 {
      *   const res = await redis.projects.locations.aclPolicies.delete({
      *     // Optional. Etag of the ACL policy. If this is different from the server's etag, the request will fail with an ABORTED error.
      *     etag: 'placeholder-value',
-     *     // Required. Redis ACL policy resource name using the form: `projects/{project_id\}/locations/{location_id\}/aclPolicies/{acl_policy_id\}` where `location_id` refers to a GCP region.
+     *     // Required. Redis ACL policy resource name using the form: `projects/{project_id\}/locations/{location_id\}/aclPolicies/{acl_policy_id\}` where `location_id` refers to a Google Cloud region.
      *     name: 'projects/my-project/locations/my-location/aclPolicies/my-aclPolicie',
      *     // Optional. Idempotent request UUID.
      *     requestId: 'placeholder-value',
@@ -3484,7 +3484,7 @@ export namespace redis_v1beta1 {
      *
      *   // Do the magic
      *   const res = await redis.projects.locations.aclPolicies.get({
-     *     // Required. Redis ACL policy resource name using the form: `projects/{project_id\}/locations/{location_id\}/aclPolicies/{acl_policy_id\}` where `location_id` refers to a GCP region.
+     *     // Required. Redis ACL policy resource name using the form: `projects/{project_id\}/locations/{location_id\}/aclPolicies/{acl_policy_id\}` where `location_id` refers to a Google Cloud region.
      *     name: 'projects/my-project/locations/my-location/aclPolicies/my-aclPolicie',
      *   });
      *   console.log(res.data);
@@ -3925,7 +3925,7 @@ export namespace redis_v1beta1 {
      */
     etag?: string;
     /**
-     * Required. Redis ACL policy resource name using the form: `projects/{project_id\}/locations/{location_id\}/aclPolicies/{acl_policy_id\}` where `location_id` refers to a GCP region.
+     * Required. Redis ACL policy resource name using the form: `projects/{project_id\}/locations/{location_id\}/aclPolicies/{acl_policy_id\}` where `location_id` refers to a Google Cloud region.
      */
     name?: string;
     /**
@@ -3935,7 +3935,7 @@ export namespace redis_v1beta1 {
   }
   export interface Params$Resource$Projects$Locations$Aclpolicies$Get extends StandardParameters {
     /**
-     * Required. Redis ACL policy resource name using the form: `projects/{project_id\}/locations/{location_id\}/aclPolicies/{acl_policy_id\}` where `location_id` refers to a GCP region.
+     * Required. Redis ACL policy resource name using the form: `projects/{project_id\}/locations/{location_id\}/aclPolicies/{acl_policy_id\}` where `location_id` refers to a Google Cloud region.
      */
     name?: string;
   }
@@ -4013,7 +4013,7 @@ export namespace redis_v1beta1 {
      *
      *   // Do the magic
      *   const res = await redis.projects.locations.aclPolicies.revisions.get({
-     *     // Required. Redis ACL policy revision resource name using the form: `projects/{project_id\}/locations/{location_id\}/aclPolicies/{acl_policy_id\}/revisions/{revision_id\}` where `location_id` refers to a GCP region.
+     *     // Required. Redis ACL policy revision resource name using the form: `projects/{project_id\}/locations/{location_id\}/aclPolicies/{acl_policy_id\}/revisions/{revision_id\}` where `location_id` refers to a Google Cloud region.
      *     name: 'projects/my-project/locations/my-location/aclPolicies/my-aclPolicie/revisions/my-revision',
      *   });
      *   console.log(res.data);
@@ -4278,7 +4278,7 @@ export namespace redis_v1beta1 {
 
   export interface Params$Resource$Projects$Locations$Aclpolicies$Revisions$Get extends StandardParameters {
     /**
-     * Required. Redis ACL policy revision resource name using the form: `projects/{project_id\}/locations/{location_id\}/aclPolicies/{acl_policy_id\}/revisions/{revision_id\}` where `location_id` refers to a GCP region.
+     * Required. Redis ACL policy revision resource name using the form: `projects/{project_id\}/locations/{location_id\}/aclPolicies/{acl_policy_id\}/revisions/{revision_id\}` where `location_id` refers to a Google Cloud region.
      */
     name?: string;
   }
