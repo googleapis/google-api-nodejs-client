@@ -6236,7 +6236,7 @@
       }
     }
   },
-  "revision": "20260807",
+  "revision": "20260813",
   "rootUrl": "https://contactcenterinsights.googleapis.com/",
   "schemas": {
     "GoogleCloudCesV1mainAgentTransfer": {
@@ -6435,6 +6435,11 @@
       "description": "Request for the client or the agent to execute the specified tool.",
       "id": "GoogleCloudCesV1mainToolCall",
       "properties": {
+        "agentName": {
+          "description": "Output only. Human-readable name of the agent that issued this call, e.g. \"Contract Architect\". Empty when the root agent issued it.",
+          "readOnly": true,
+          "type": "string"
+        },
         "args": {
           "additionalProperties": {
             "description": "Properties of the object.",
@@ -6452,6 +6457,11 @@
           "description": "Optional. The unique identifier of the tool call. If populated, the client should return the execution result with the matching ID in ToolResponse.",
           "type": "string"
         },
+        "parentToolCallId": {
+          "description": "Output only. The id of the tool call that caused this one, when it was issued by a sub-agent working on behalf of a parent call. Empty for top-level calls. Lets a client group a sub-agent's work under the call that started it instead of rendering every step as a sibling.",
+          "readOnly": true,
+          "type": "string"
+        },
         "tool": {
           "description": "Optional. The name of the tool to execute. Format: `projects/{project}/locations/{location}/apps/{app}/tools/{tool}`",
           "type": "string"
@@ -6467,6 +6477,11 @@
       "description": "The execution result of a specific tool from the client or the agent.",
       "id": "GoogleCloudCesV1mainToolResponse",
       "properties": {
+        "agentName": {
+          "description": "Output only. Human-readable name of the agent that issued this call, e.g. \"Contract Architect\". Empty when the root agent issued it.",
+          "readOnly": true,
+          "type": "string"
+        },
         "displayName": {
           "description": "Output only. Display name of the tool.",
           "readOnly": true,
@@ -6474,6 +6489,11 @@
         },
         "id": {
           "description": "Optional. The matching ID of the tool call the response is for.",
+          "type": "string"
+        },
+        "parentToolCallId": {
+          "description": "Output only. The id of the tool call that caused this one, when it was issued by a sub-agent working on behalf of a parent call. Empty for top-level calls. Lets a client group a sub-agent's work under the call that started it instead of rendering every step as a sibling.",
+          "readOnly": true,
           "type": "string"
         },
         "response": {
