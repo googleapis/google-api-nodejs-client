@@ -2293,7 +2293,8 @@ export namespace compute_v1 {
      * handle additional traffic or is fully loaded. For usage guidelines, see
      * Connection balancing mode.
      *
-     * Backends must use compatible balancing modes. For more information, see
+     * Backends must use compatible balancing modes. Backends of a backend
+     * service may use different balancing modes. For more information, see
      * Supported balancing modes and target capacity settings and
      * Restrictions and guidance for instance groups.
      *
@@ -2332,6 +2333,9 @@ export namespace compute_v1 {
     /**
      * This field designates whether this is a failover backend. More than one
      * failover backend can be configured for a given BackendService.
+     *
+     * This field can only be used for a regional external Passthrough Network
+     * Load Balancer or a regional internal Passthrough Network Load Balancer.
      */
     failover?: boolean | null;
     /**
@@ -2439,6 +2443,15 @@ export namespace compute_v1 {
      *    capacity, backends in this layer would be used and traffic would be
      *    assigned based on the load balancing algorithm you use. This is the
      *    default
+     *
+     *
+     *
+     * For global external Passthrough Network Load Balancers, the following
+     * restrictions apply:
+     *
+     *    - At most one backend can be marked as PREFERRED.
+     *    - PREFERRED and DEFAULT backends cannot reside
+     *    in the same Cloud region.
      */
     preference?: string | null;
     trafficDuration?: string | null;
@@ -2594,14 +2607,17 @@ export namespace compute_v1 {
     cacheKeyPolicy?: Schema$BackendBucketCdnPolicyCacheKeyPolicy;
     /**
      * Specifies the cache setting for all responses from this backend.
-     * The possible values are:USE_ORIGIN_HEADERS Requires the origin to set valid caching
+     * The possible values are:
+     * USE_ORIGIN_HEADERS Requires the origin to set valid caching
      * headers to cache content. Responses without these headers will not be
      * cached at Google's edge, and will require a full trip to the origin on
      * every request, potentially impacting performance and increasing load on
-     * the origin server.FORCE_CACHE_ALL Cache all content, ignoring any "private",
+     * the origin server.
+     * FORCE_CACHE_ALL Cache all content, ignoring any "private",
      * "no-store" or "no-cache" directives in Cache-Control response headers.
      * Warning: this may result in Cloud CDN caching private,
-     * per-user (user identifiable) content.CACHE_ALL_STATIC Automatically cache static content,
+     * per-user (user identifiable) content.
+     * CACHE_ALL_STATIC Automatically cache static content,
      * including common image formats, media (video and audio), and web assets
      * (JavaScript and CSS). Requests and responses that are marked as
      * uncacheable, as well as dynamic content (including HTML), will not be
@@ -3059,8 +3075,8 @@ export namespace compute_v1 {
      * Balancers](https://cloud.google.com/load-balancing/docs/internal/failover-overview)
      * and [external passthrough Network Load
      * Balancers](https://cloud.google.com/load-balancing/docs/network/networklb-failover-overview).
-     *
-     * failoverPolicy cannot be specified with haPolicy.
+     * failoverPolicy cannot be specified with haPolicy.failoverPolicy cannot be used by global external Passthrough
+     * Network Load Balancers.
      */
     failoverPolicy?: Schema$BackendServiceFailoverPolicy;
     /**
@@ -3101,9 +3117,9 @@ export namespace compute_v1 {
      * haPolicy requires customers to be responsible for tracking backend
      * endpoint health and electing a leader among the healthy endpoints.
      * Therefore, haPolicy cannot be specified with healthChecks.
-     *
-     * haPolicy can only be specified for External Passthrough Network Load
-     * Balancers and Internal Passthrough Network Load Balancers.
+     * haPolicy can only be specified for External Passthrough
+     * Network Load Balancers and Internal Passthrough Network Load Balancers.haPolicy cannot be used by global external Passthrough Network
+     * Load Balancers.
      */
     haPolicy?: Schema$BackendServiceHAPolicy;
     /**
@@ -3173,8 +3189,8 @@ export namespace compute_v1 {
     /**
      * Specifies the load balancer type. A backend service
      * created for one type of load balancer cannot be used with another.
-     * For more information, refer toChoosing
-     * a load balancer.
+     * For more information, refer to
+     * Backend services product and scheme table.
      */
     loadBalancingScheme?: string | null;
     /**
@@ -3221,28 +3237,40 @@ export namespace compute_v1 {
      *    If set, the Backend Service responses are expected to contain non-standard
      *    HTTP response header field Endpoint-Load-Metrics. The reported
      *    metrics to use for computing the weights are specified via thecustomMetrics field.
+     *    - WEIGHTED_MAGLEV: Per-endpoint weighted load balancing via
+     *    health check reported weights. If set, the backend service must configure
+     *    an HTTP-based Health Check, and health check replies are expected to
+     *    contain the non-standard HTTP response header fieldX-Load-Balancing-Endpoint-Weight to specify the per-endpoint
+     *    weights. If set, load balancing is weighted based on the per-endpoint
+     *    weights reported in the last processed health check replies, as long as
+     *    every instance either reported a valid weight or had UNAVAILABLE_WEIGHT.
+     *    Otherwise, load balancing remains equal-weight.
      *
-     *    This field is applicable to either:
-     *       - A regional backend service with the service protocol set to HTTP,
-     *       HTTPS, HTTP2 or H2C, and load_balancing_scheme set to
-     *       INTERNAL_MANAGED.
-     *       - A global backend service with the
-     *       load_balancing_scheme set to INTERNAL_SELF_MANAGED, INTERNAL_MANAGED, or
-     *       EXTERNAL_MANAGED.
      *
      *
-     *    If sessionAffinity is not configured—that is, if session
-     *    affinity remains at the default value of NONE—then the
-     *    default value for localityLbPolicy
-     *    is ROUND_ROBIN. If session affinity is set to a value other
-     *    than NONE,
-     *    then the default value for localityLbPolicy isMAGLEV.
+     * This field is applicable to either:
      *
-     *    Only ROUND_ROBIN and RING_HASH are supported
-     *    when the backend service is referenced by a URL map that is bound to
-     *    target gRPC proxy that has validateForProxyless field set to true.
+     *    - A regional backend service with the service protocol set to HTTP,
+     *    HTTPS, HTTP2 or H2C, and load_balancing_scheme set to
+     *    INTERNAL_MANAGED.
+     *    - A global backend service with the
+     *    load_balancing_scheme set to INTERNAL_SELF_MANAGED, INTERNAL_MANAGED, or
+     *    EXTERNAL_MANAGED.
      *
-     *    localityLbPolicy cannot be specified with haPolicy.
+     *
+     *
+     * If sessionAffinity is not configured—that is, if session
+     * affinity remains at the default value of NONE—then the
+     * default value for localityLbPolicy
+     * is ROUND_ROBIN. If session affinity is set to a value other
+     * than NONE,
+     * then the default value for localityLbPolicy isMAGLEV.
+     *
+     * Only ROUND_ROBIN and RING_HASH are supported
+     * when the backend service is referenced by a URL map that is bound to
+     * target gRPC proxy that has validateForProxyless field set to true.
+     *
+     * localityLbPolicy cannot be specified with haPolicy.
      */
     localityLbPolicy?: string | null;
     /**
@@ -3369,13 +3397,13 @@ export namespace compute_v1 {
      */
     portName?: string | null;
     /**
-     * The protocol this BackendService uses to communicate
-     * with backends.
+     * The protocol this BackendService uses to communicate with backends.
      *
-     * Possible values are HTTP, HTTPS, HTTP2, H2C, TCP, SSL, UDP or GRPC.
-     * depending on the chosen load balancer or Traffic Director configuration.
-     * Refer to the documentation for the load balancers or for Traffic Director
-     * for more information.
+     * Possible values are HTTP, HTTPS, HTTP2, H2C, TCP, SSL, UDP, GRPC, or
+     * UNSPECIFIED, depending on the chosen load balancer or Traffic Director
+     * configuration.
+     * Refer to
+     * Load balancing features for more information.
      *
      * Must be set to GRPC when the backend service is referenced by a URL map
      * that is bound to target gRPC proxy.
@@ -3527,14 +3555,17 @@ export namespace compute_v1 {
     cacheKeyPolicy?: Schema$CacheKeyPolicy;
     /**
      * Specifies the cache setting for all responses from this backend.
-     * The possible values are:USE_ORIGIN_HEADERS Requires the origin to set valid caching
+     * The possible values are:
+     * USE_ORIGIN_HEADERS Requires the origin to set valid caching
      * headers to cache content. Responses without these headers will not be
      * cached at Google's edge, and will require a full trip to the origin on
      * every request, potentially impacting performance and increasing load on
-     * the origin server.FORCE_CACHE_ALL Cache all content, ignoring any "private",
+     * the origin server.
+     * FORCE_CACHE_ALL Cache all content, ignoring any "private",
      * "no-store" or "no-cache" directives in Cache-Control response headers.
      * Warning: this may result in Cloud CDN caching private,
-     * per-user (user identifiable) content.CACHE_ALL_STATIC Automatically cache static content,
+     * per-user (user identifiable) content.
+     * CACHE_ALL_STATIC Automatically cache static content,
      * including common image formats, media (video and audio), and web assets
      * (JavaScript and CSS). Requests and responses that are marked as
      * uncacheable, as well as dynamic content (including HTML), will not be
@@ -4286,6 +4317,47 @@ export namespace compute_v1 {
      * field. Can only be specified if authenticationMode is not NONE.
      */
     authenticationConfig?: string | null;
+    /**
+     * Assigns the Managed Identity for the BackendService Workload.
+     *
+     *
+     * Use this property to configure the load balancer back-end to use
+     * certificates and roots of trust provisioned by the Managed Workload
+     * Identity system.
+     *
+     *  The `identity` property is the
+     * fully-specified SPIFFE ID to use in the SVID presented by the Load
+     * Balancer Workload.
+     *
+     *  The SPIFFE ID must be a resource starting with the
+     * `trustDomain` property value, followed by the path to the Managed
+     * Workload Identity.
+     *
+     *  Supported SPIFFE ID format:
+     *
+     *    - //<trust_domain\>/ns/<namespace\>/sa/<subject\>
+     *
+     *
+     * The Trust Domain within the Managed Identity must refer to a valid
+     * Workload Identity Pool. The TrustConfig and CertificateIssuanceConfig
+     * will be inherited from the Workload Identity Pool.
+     *
+     *  Restrictions:
+     *
+     *    - If you set the `identity` property, you cannot manually set
+     *    the following fields:
+     *        - tlsSettings.sni
+     *       - tlsSettings.subjectAltNames
+     *       - tlsSettings.authenticationConfig
+     *
+     *
+     * When defining a `identity` for a RegionBackendServices, the
+     * corresponding Workload Identity Pool must have a ca_pool
+     * configured in the same region.
+     *
+     *  The system will set up a read-onlytlsSettings.authenticationConfig for the Managed Identity.
+     */
+    identity?: string | null;
     /**
      * Server Name Indication - see RFC3546 section 3.1. If set, the load
      * balancer sends this string as the SNI hostname in the TLS connection to
@@ -8275,8 +8347,18 @@ export namespace compute_v1 {
     attachedExtensions?: Schema$ForwardingRuleAttachedExtension[];
     /**
      * Identifies the backend service to which the forwarding rule sends traffic.
-     * Required for internal and external passthrough Network Load Balancers;
-     * must be omitted for all other load balancer types.
+     *
+     * It is a required field for the following load balancers:
+     *
+     *    - Internal passthrough Network Load Balancers
+     *    - Backend service-based regional external passthrough Network Load
+     *    Balancers
+     *    - Global external passthrough Network Load Balancers
+     *
+     *
+     *
+     * It cannot be set by other load balancer types and protocol forwarding
+     * rules.
      */
     backendService?: string | null;
     /**
@@ -8376,6 +8458,8 @@ export namespace compute_v1 {
      *
      *
      *
+     * The IP address can only be set at creation. Once set, it cannot be updated.
+     *
      * The forwarding rule's target or backendService,
      * and in most cases, also the loadBalancingScheme, determine the
      * type of IP address that you can use. For detailed information, see
@@ -8384,6 +8468,10 @@ export namespace compute_v1 {
      *
      * When reading an IPAddress, the API always returns the IP
      * address number.
+     *
+     * When creating a global external Passthrough Network Load Balancer
+     * forwarding rule (a parent forwarding rule), you must use theIPAddresses field, but the Google Cloud generated child
+     * forwarding rules set the IPAddress field instead. Refer to theavailabilityGroup field for further details.
      */
     IPAddress?: string | null;
     /**
@@ -8446,8 +8534,8 @@ export namespace compute_v1 {
     /**
      * Specifies the forwarding rule type.
      *
-     * For more information about forwarding rules, refer to
-     * Forwarding rule concepts.
+     * For more information, refer to
+     * Forwarding rule product and scheme table.
      */
     loadBalancingScheme?: string | null;
     /**
@@ -8485,6 +8573,13 @@ export namespace compute_v1 {
      * For Private Service Connect forwarding rules that forward traffic to Google
      * APIs, the forwarding rule name must be a 1-20 characters string with
      * lowercase letters and numbers and must start with a letter.
+     *
+     * For global external Passthrough Network Load Balancer forwarding rules, the
+     * forwarding rule name must be 1-43 characters long. For each global external
+     * Passthrough Network Load Balancer forwarding rule (a parent forwarding
+     * rule) that you create, Google Cloud generates two output-only child
+     * forwarding rules that are named by concatenating the parent forwarding rule
+     * name with the `-ag0` and `-ag1` suffixes, respectively. Refer to theavailabilityGroup field for further details.
      */
     name?: string | null;
     /**
@@ -8538,7 +8633,8 @@ export namespace compute_v1 {
      *
      *
      * For external forwarding rules, two or more forwarding rules cannot use the
-     * same [IPAddress, IPProtocol] pair, and cannot have overlappingportRanges.
+     * same [IPAddress, IPProtocol] pair (specified inIPAddress, IPAddresses, IPProtocol
+     * fields) if they have overlapping portRanges.
      *
      * For internal forwarding rules within the same VPC network, two or more
      * forwarding rules cannot use the same [IPAddress, IPProtocol]
@@ -8566,8 +8662,8 @@ export namespace compute_v1 {
      *
      *
      * For external forwarding rules, two or more forwarding rules cannot use the
-     * same [IPAddress, IPProtocol] pair if they share at least one
-     * port number.
+     * same [IPAddress, IPProtocol] pair (specified inIPAddress, IPAddresses, IPProtocol
+     * fields) if they share at least one port number.
      *
      * For internal forwarding rules within the same VPC network, two or more
      * forwarding rules cannot use the same [IPAddress, IPProtocol]
@@ -8660,6 +8756,15 @@ export namespace compute_v1 {
      *
      *
      *      -  For Private Service Connect forwarding rules that forward traffic to managed services, the target must be a service attachment. The target is not mutable once set as a service attachment.
+     *
+     *
+     *
+     * The following load balancers cannot set the target field (they should set the backendService field instead):
+     *
+     *    - Internal passthrough Network Load Balancers
+     *    - Backend service-based regional external passthrough Network Load
+     *    Balancers
+     *    - Global external passthrough Network Load Balancers
      */
     target?: string | null;
   }
@@ -8899,6 +9004,12 @@ export namespace compute_v1 {
      */
     resourceMetadata?: Schema$ResourceMetadata;
     /**
+     * Name of the resource intended to be delivered. Name should conform to
+     * RFC1035. This will be the name of storage pool or Exapool for persistent
+     * disk FRs.
+     */
+    resourceName?: string | null;
+    /**
      * Maintenance information for this reservation
      */
     schedulingType?: string | null;
@@ -8929,6 +9040,10 @@ export namespace compute_v1 {
      * Output only. [Output only] Status of the Future Reservation
      */
     status?: Schema$FutureReservationStatus;
+    /**
+     * Storage pool details for the future reservation.
+     */
+    storagePoolProperties?: Schema$FutureReservationStoragePoolProperties;
     /**
      * Time window for this Future Reservation.
      */
@@ -9100,6 +9215,10 @@ export namespace compute_v1 {
      */
     autoCreatedReservations?: string[] | null;
     /**
+     * Output only. Exapool provisioned capacities for each SKU type.
+     */
+    exapoolProvisionedCapacityGb?: Schema$StoragePoolExapoolProvisionedCapacityGb;
+    /**
      * Output only. [Output Only] Represents the existing matching usage for the future
      * reservation.
      */
@@ -9131,6 +9250,10 @@ export namespace compute_v1 {
      */
     procurementStatus?: string | null;
     specificSkuProperties?: Schema$FutureReservationStatusSpecificSKUProperties;
+    /**
+     * Output only. Storage pool provisioned capacities for each SKU type.
+     */
+    storagePoolProvisionedCapacity?: Schema$FutureReservationStoragePoolProvisionedCapacity;
   }
   /**
    * [Output Only] Represents the existing matching usage for the future
@@ -9206,6 +9329,42 @@ export namespace compute_v1 {
      * properties.
      */
     sourceInstanceTemplateId?: string | null;
+  }
+  /**
+   * Storage pool properties for the future reservation.
+   */
+  export interface Schema$FutureReservationStoragePoolProperties {
+    /**
+     * Requested exapool provisioned capacity in GiB.
+     */
+    requestedExapoolProvisionedCapacityGb?: Schema$StoragePoolExapoolProvisionedCapacityGb;
+    /**
+     * Requested storage pool provisioned capacity.
+     */
+    requestedStoragePoolProvisionedCapacity?: Schema$FutureReservationStoragePoolProvisionedCapacity;
+    /**
+     * Type of the storage pool.
+     */
+    storagePoolType?: string | null;
+  }
+  /**
+   * Storage pool provisioned capacities for each SKU type.
+   */
+  export interface Schema$FutureReservationStoragePoolProvisionedCapacity {
+    /**
+     * Size of the storage pool in GiB.
+     */
+    poolProvisionedCapacityGb?: string | null;
+    /**
+     * Provisioned IOPS of the storage pool. Only relevant if the storage pool
+     * type is hyperdisk-balanced.
+     */
+    poolProvisionedIops?: string | null;
+    /**
+     * Provisioned throughput of the storage pool in MiB/s. Only relevant if
+     * the storage pool type is hyperdisk-balanced or hyperdisk-throughput.
+     */
+    poolProvisionedThroughput?: string | null;
   }
   export interface Schema$FutureReservationTimeWindow {
     duration?: Schema$Duration;
@@ -12662,6 +12821,7 @@ export namespace compute_v1 {
      *
      *
      * For example: zones/us-central1-f/machineTypes/custom-4-5120
+     *
      * For a full list of restrictions, read theSpecifications
      * for custom machine types.
      */
@@ -12901,6 +13061,11 @@ export namespace compute_v1 {
      * example `n2-standard-4` and not URLs or partial URLs.
      */
     machineTypes?: string[] | null;
+    /**
+     * Name of the minimum CPU platform to be used by this instance selection.
+     * e.g. 'Intel Ice Lake'.
+     */
+    minCpuPlatform?: string | null;
     /**
      * Rank when prioritizing the shape flexibilities.
      * The instance selections with rank are considered
@@ -23729,6 +23894,43 @@ export namespace compute_v1 {
     target?: string | null;
   }
   /**
+   * The spec for modifying the path using a regular expression.
+   */
+  export interface Schema$RegexRewrite {
+    /**
+     * Required. The regular expression used to match against the URL path.
+     * It uses RE2 syntax with the following constraints:
+     *
+     *
+     *      - Any single character operators
+     *      - Groups are allowed to have only submatch operator inside
+     *      - Groups are allowed only without any char repetition, e.g.
+     *      .*
+     *      - Any char repetition, e.g. .*, is
+     *      only allowed to be used in a single regex together with:
+     *
+     *
+     *             - Empty string operators
+     *             - Other repetitions
+     *             - Ranges
+     *             - Repetitions of ranges
+     *
+     *
+     *      - Ranges are only allowed to have:
+     *
+     *
+     *             - Character range
+     *             - Digits range
+     *             - Symbols listed in characters allowed for ranges
+     */
+    pathPattern?: string | null;
+    /**
+     * Required. Required when path pattern is specified. Used to rewrite matching parts of
+     * the path.
+     */
+    pathSubstitution?: string | null;
+  }
+  /**
    * Represents a Region resource.
    *
    * A region is a geographical area where a resource is located. For more
@@ -33027,7 +33229,8 @@ export namespace compute_v1 {
      * The server-defined URL for the resource. This field is applicable only when
      * the containing target pool is serving a forwarding rule as the primary
      * pool, and its failoverRatio field is properly set to a value
-     * between [0, 1].backupPool and failoverRatio together define
+     * between [0, 1].
+     * backupPool and failoverRatio together define
      * the fallback behavior of the primary target pool: if the ratio of the
      * healthy instances in the primary pool is at or belowfailoverRatio, traffic arriving at the load-balanced
      * IP will be directed to the backup pool.
@@ -34405,6 +34608,10 @@ export namespace compute_v1 {
      * Only one of path_prefix_rewrite orpath_template_rewrite may be specified.
      */
     pathTemplateRewrite?: string | null;
+    /**
+     * The regex rewrite to be applied to the URL. Only one ofpathPrefixRewrite, pathTemplateRewrite, orregexRewrite may be specified.
+     */
+    regexRewrite?: Schema$RegexRewrite;
   }
   /**
    * Subnetwork which the current user has compute.subnetworks.use permission on.
@@ -64799,6 +65006,7 @@ export namespace compute_v1 {
      *   //   "reservationMode": "my_reservationMode",
      *   //   "reservationName": "my_reservationName",
      *   //   "resourceMetadata": {},
+     *   //   "resourceName": "my_resourceName",
      *   //   "schedulingType": "my_schedulingType",
      *   //   "selfLink": "my_selfLink",
      *   //   "selfLinkWithId": "my_selfLinkWithId",
@@ -64806,6 +65014,7 @@ export namespace compute_v1 {
      *   //   "specificReservationRequired": false,
      *   //   "specificSkuProperties": {},
      *   //   "status": {},
+     *   //   "storagePoolProperties": {},
      *   //   "timeWindow": {},
      *   //   "zone": "my_zone"
      *   // }
@@ -64983,6 +65192,7 @@ export namespace compute_v1 {
      *       //   "reservationMode": "my_reservationMode",
      *       //   "reservationName": "my_reservationName",
      *       //   "resourceMetadata": {},
+     *       //   "resourceName": "my_resourceName",
      *       //   "schedulingType": "my_schedulingType",
      *       //   "selfLink": "my_selfLink",
      *       //   "selfLinkWithId": "my_selfLinkWithId",
@@ -64990,6 +65200,7 @@ export namespace compute_v1 {
      *       //   "specificReservationRequired": false,
      *       //   "specificSkuProperties": {},
      *       //   "status": {},
+     *       //   "storagePoolProperties": {},
      *       //   "timeWindow": {},
      *       //   "zone": "my_zone"
      *       // }
@@ -65450,6 +65661,7 @@ export namespace compute_v1 {
      *       //   "reservationMode": "my_reservationMode",
      *       //   "reservationName": "my_reservationName",
      *       //   "resourceMetadata": {},
+     *       //   "resourceName": "my_resourceName",
      *       //   "schedulingType": "my_schedulingType",
      *       //   "selfLink": "my_selfLink",
      *       //   "selfLinkWithId": "my_selfLinkWithId",
@@ -65457,6 +65669,7 @@ export namespace compute_v1 {
      *       //   "specificReservationRequired": false,
      *       //   "specificSkuProperties": {},
      *       //   "status": {},
+     *       //   "storagePoolProperties": {},
      *       //   "timeWindow": {},
      *       //   "zone": "my_zone"
      *       // }

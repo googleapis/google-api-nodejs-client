@@ -163,6 +163,7 @@ export namespace compute_beta {
     licenses: Resource$Licenses;
     machineImages: Resource$Machineimages;
     machineTypes: Resource$Machinetypes;
+    managedRulesets: Resource$Managedrulesets;
     networkAttachments: Resource$Networkattachments;
     networkEdgeSecurityServices: Resource$Networkedgesecurityservices;
     networkEndpointGroups: Resource$Networkendpointgroups;
@@ -325,6 +326,7 @@ export namespace compute_beta {
       this.licenses = new Resource$Licenses(this.context);
       this.machineImages = new Resource$Machineimages(this.context);
       this.machineTypes = new Resource$Machinetypes(this.context);
+      this.managedRulesets = new Resource$Managedrulesets(this.context);
       this.networkAttachments = new Resource$Networkattachments(this.context);
       this.networkEdgeSecurityServices =
         new Resource$Networkedgesecurityservices(this.context);
@@ -2396,7 +2398,8 @@ export namespace compute_beta {
      * handle additional traffic or is fully loaded. For usage guidelines, see
      * Connection balancing mode.
      *
-     * Backends must use compatible balancing modes. For more information, see
+     * Backends must use compatible balancing modes. Backends of a backend
+     * service may use different balancing modes. For more information, see
      * Supported balancing modes and target capacity settings and
      * Restrictions and guidance for instance groups.
      *
@@ -2435,6 +2438,9 @@ export namespace compute_beta {
     /**
      * This field designates whether this is a failover backend. More than one
      * failover backend can be configured for a given BackendService.
+     *
+     * This field can only be used for a regional external Passthrough Network
+     * Load Balancer or a regional internal Passthrough Network Load Balancer.
      */
     failover?: boolean | null;
     /**
@@ -2542,6 +2548,15 @@ export namespace compute_beta {
      *    capacity, backends in this layer would be used and traffic would be
      *    assigned based on the load balancing algorithm you use. This is the
      *    default
+     *
+     *
+     *
+     * For global external Passthrough Network Load Balancers, the following
+     * restrictions apply:
+     *
+     *    - At most one backend can be marked as PREFERRED.
+     *    - PREFERRED and DEFAULT backends cannot reside
+     *    in the same Cloud region.
      */
     preference?: string | null;
     /**
@@ -2707,14 +2722,17 @@ export namespace compute_beta {
     cacheKeyPolicy?: Schema$BackendBucketCdnPolicyCacheKeyPolicy;
     /**
      * Specifies the cache setting for all responses from this backend.
-     * The possible values are:USE_ORIGIN_HEADERS Requires the origin to set valid caching
+     * The possible values are:
+     * USE_ORIGIN_HEADERS Requires the origin to set valid caching
      * headers to cache content. Responses without these headers will not be
      * cached at Google's edge, and will require a full trip to the origin on
      * every request, potentially impacting performance and increasing load on
-     * the origin server.FORCE_CACHE_ALL Cache all content, ignoring any "private",
+     * the origin server.
+     * FORCE_CACHE_ALL Cache all content, ignoring any "private",
      * "no-store" or "no-cache" directives in Cache-Control response headers.
      * Warning: this may result in Cloud CDN caching private,
-     * per-user (user identifiable) content.CACHE_ALL_STATIC Automatically cache static content,
+     * per-user (user identifiable) content.
+     * CACHE_ALL_STATIC Automatically cache static content,
      * including common image formats, media (video and audio), and web assets
      * (JavaScript and CSS). Requests and responses that are marked as
      * uncacheable, as well as dynamic content (including HTML), will not be
@@ -3178,8 +3196,8 @@ export namespace compute_beta {
      * Balancers](https://cloud.google.com/load-balancing/docs/internal/failover-overview)
      * and [external passthrough Network Load
      * Balancers](https://cloud.google.com/load-balancing/docs/network/networklb-failover-overview).
-     *
-     * failoverPolicy cannot be specified with haPolicy.
+     * failoverPolicy cannot be specified with haPolicy.failoverPolicy cannot be used by global external Passthrough
+     * Network Load Balancers.
      */
     failoverPolicy?: Schema$BackendServiceFailoverPolicy;
     /**
@@ -3220,9 +3238,9 @@ export namespace compute_beta {
      * haPolicy requires customers to be responsible for tracking backend
      * endpoint health and electing a leader among the healthy endpoints.
      * Therefore, haPolicy cannot be specified with healthChecks.
-     *
-     * haPolicy can only be specified for External Passthrough Network Load
-     * Balancers and Internal Passthrough Network Load Balancers.
+     * haPolicy can only be specified for External Passthrough
+     * Network Load Balancers and Internal Passthrough Network Load Balancers.haPolicy cannot be used by global external Passthrough Network
+     * Load Balancers.
      */
     haPolicy?: Schema$BackendServiceHAPolicy;
     /**
@@ -3292,8 +3310,8 @@ export namespace compute_beta {
     /**
      * Specifies the load balancer type. A backend service
      * created for one type of load balancer cannot be used with another.
-     * For more information, refer toChoosing
-     * a load balancer.
+     * For more information, refer to
+     * Backend services product and scheme table.
      */
     loadBalancingScheme?: string | null;
     /**
@@ -3340,28 +3358,40 @@ export namespace compute_beta {
      *    If set, the Backend Service responses are expected to contain non-standard
      *    HTTP response header field Endpoint-Load-Metrics. The reported
      *    metrics to use for computing the weights are specified via thecustomMetrics field.
+     *    - WEIGHTED_MAGLEV: Per-endpoint weighted load balancing via
+     *    health check reported weights. If set, the backend service must configure
+     *    an HTTP-based Health Check, and health check replies are expected to
+     *    contain the non-standard HTTP response header fieldX-Load-Balancing-Endpoint-Weight to specify the per-endpoint
+     *    weights. If set, load balancing is weighted based on the per-endpoint
+     *    weights reported in the last processed health check replies, as long as
+     *    every instance either reported a valid weight or had UNAVAILABLE_WEIGHT.
+     *    Otherwise, load balancing remains equal-weight.
      *
-     *    This field is applicable to either:
-     *       - A regional backend service with the service protocol set to HTTP,
-     *       HTTPS, HTTP2 or H2C, and load_balancing_scheme set to
-     *       INTERNAL_MANAGED.
-     *       - A global backend service with the
-     *       load_balancing_scheme set to INTERNAL_SELF_MANAGED, INTERNAL_MANAGED, or
-     *       EXTERNAL_MANAGED.
      *
      *
-     *    If sessionAffinity is not configured—that is, if session
-     *    affinity remains at the default value of NONE—then the
-     *    default value for localityLbPolicy
-     *    is ROUND_ROBIN. If session affinity is set to a value other
-     *    than NONE,
-     *    then the default value for localityLbPolicy isMAGLEV.
+     * This field is applicable to either:
      *
-     *    Only ROUND_ROBIN and RING_HASH are supported
-     *    when the backend service is referenced by a URL map that is bound to
-     *    target gRPC proxy that has validateForProxyless field set to true.
+     *    - A regional backend service with the service protocol set to HTTP,
+     *    HTTPS, HTTP2 or H2C, and load_balancing_scheme set to
+     *    INTERNAL_MANAGED.
+     *    - A global backend service with the
+     *    load_balancing_scheme set to INTERNAL_SELF_MANAGED, INTERNAL_MANAGED, or
+     *    EXTERNAL_MANAGED.
      *
-     *    localityLbPolicy cannot be specified with haPolicy.
+     *
+     *
+     * If sessionAffinity is not configured—that is, if session
+     * affinity remains at the default value of NONE—then the
+     * default value for localityLbPolicy
+     * is ROUND_ROBIN. If session affinity is set to a value other
+     * than NONE,
+     * then the default value for localityLbPolicy isMAGLEV.
+     *
+     * Only ROUND_ROBIN and RING_HASH are supported
+     * when the backend service is referenced by a URL map that is bound to
+     * target gRPC proxy that has validateForProxyless field set to true.
+     *
+     * localityLbPolicy cannot be specified with haPolicy.
      */
     localityLbPolicy?: string | null;
     /**
@@ -3488,13 +3518,13 @@ export namespace compute_beta {
      */
     portName?: string | null;
     /**
-     * The protocol this BackendService uses to communicate
-     * with backends.
+     * The protocol this BackendService uses to communicate with backends.
      *
-     * Possible values are HTTP, HTTPS, HTTP2, H2C, TCP, SSL, UDP or GRPC.
-     * depending on the chosen load balancer or Traffic Director configuration.
-     * Refer to the documentation for the load balancers or for Traffic Director
-     * for more information.
+     * Possible values are HTTP, HTTPS, HTTP2, H2C, TCP, SSL, UDP, GRPC, or
+     * UNSPECIFIED, depending on the chosen load balancer or Traffic Director
+     * configuration.
+     * Refer to
+     * Load balancing features for more information.
      *
      * Must be set to GRPC when the backend service is referenced by a URL map
      * that is bound to target gRPC proxy.
@@ -3646,14 +3676,17 @@ export namespace compute_beta {
     cacheKeyPolicy?: Schema$CacheKeyPolicy;
     /**
      * Specifies the cache setting for all responses from this backend.
-     * The possible values are:USE_ORIGIN_HEADERS Requires the origin to set valid caching
+     * The possible values are:
+     * USE_ORIGIN_HEADERS Requires the origin to set valid caching
      * headers to cache content. Responses without these headers will not be
      * cached at Google's edge, and will require a full trip to the origin on
      * every request, potentially impacting performance and increasing load on
-     * the origin server.FORCE_CACHE_ALL Cache all content, ignoring any "private",
+     * the origin server.
+     * FORCE_CACHE_ALL Cache all content, ignoring any "private",
      * "no-store" or "no-cache" directives in Cache-Control response headers.
      * Warning: this may result in Cloud CDN caching private,
-     * per-user (user identifiable) content.CACHE_ALL_STATIC Automatically cache static content,
+     * per-user (user identifiable) content.
+     * CACHE_ALL_STATIC Automatically cache static content,
      * including common image formats, media (video and audio), and web assets
      * (JavaScript and CSS). Requests and responses that are marked as
      * uncacheable, as well as dynamic content (including HTML), will not be
@@ -5433,7 +5466,6 @@ export namespace compute_beta {
   export interface Schema$CapacityAdviceRequestInstanceFlexibilityPolicyInstanceSelectionAttachedDisk {
     /**
      * Specifies the type of the disk.
-     * This field must be set to SCRATCH.
      */
     type?: string | null;
   }
@@ -8948,16 +8980,47 @@ export namespace compute_beta {
      */
     attachedExtensions?: Schema$ForwardingRuleAttachedExtension[];
     /**
-     * [Output Only] Specifies the availability group of the forwarding rule. This
+     * Output only. [Output Only] Specifies the load balancing availability group, one of the
+     * two that collectively provide high availability.
+     *
+     * Specifies the availability group of the forwarding rule. This
      * field is for use by global external passthrough load balancers (load
-     * balancing scheme EXTERNAL_PASSTHROUGH) and is set for the child forwarding
-     * rules only.
+     * balancing scheme EXTERNAL_PASSTHROUGH) and is set for the
+     * child forwarding rules only. The possible values are:
+     *
+     *    - AVAILABILITY_GROUP0: Set for the child forwarding rule
+     *    that is programmed on the AVAILABILITY_GROUP0 load balancing
+     *    stack. The child forwarding rule has the same IP protocol, port, and
+     *    backend service settings as the parent forwarding rule, but has only one of
+     *    the two IP addresses of the parent forwarding rule, the one with the
+     *    purpose PASSTHROUGH_LOAD_BALANCER_AVAILABILITY_GROUP0.
+     *    - AVAILABILITY_GROUP1: Set for the child forwarding rule
+     *    that is programmed on the AVAILABILITY_GROUP1 load balancing
+     *    stack. The child forwarding rule has the same IP protocol, port and backend
+     *    service settings as the parent forwarding rule, but has only one of the two
+     *    IP addresses of the parent forwarding rule, the one with the purposePASSTHROUGH_LOAD_BALANCER_AVAILABILITY_GROUP1.
+     *
+     *
+     *
+     * For each global external Passthrough Network Load Balancer forwarding rule
+     * (a parent forwarding rule) that you create, Google Cloud generates two
+     * output-only child forwarding rules, one forAVAILABILITY_GROUP0 and one forAVAILABILITY_GROUP1.
      */
     availabilityGroup?: string | null;
     /**
      * Identifies the backend service to which the forwarding rule sends traffic.
-     * Required for internal and external passthrough Network Load Balancers;
-     * must be omitted for all other load balancer types.
+     *
+     * It is a required field for the following load balancers:
+     *
+     *    - Internal passthrough Network Load Balancers
+     *    - Backend service-based regional external passthrough Network Load
+     *    Balancers
+     *    - Global external passthrough Network Load Balancers
+     *
+     *
+     *
+     * It cannot be set by other load balancer types and protocol forwarding
+     * rules.
      */
     backendService?: string | null;
     /**
@@ -8970,11 +9033,14 @@ export namespace compute_beta {
      */
     baseForwardingRule?: string | null;
     /**
-     * Output only. [Output Only] Applicable only to the parent forwarding rule of global
+     * Output only. [Output Only] The resource URLs for the child forwarding rules.
+     *
+     * Applicable only to the parent forwarding rule of global
      * external passthrough load balancers. This field contains the list of child
      * forwarding rule URLs associated with the parent forwarding rule: one for
      * each availability group. AVAILABILITY_GROUP0 will be the first element, and
-     * AVAILABILITY_GROUP1 will be the second element.
+     * AVAILABILITY_GROUP1 will be the second element. Refer to theavailabilityGroup field for further details. It cannot be set
+     * by any other forwarding rules.
      */
     childForwardingRules?: string[] | null;
     /**
@@ -9065,6 +9131,8 @@ export namespace compute_beta {
      *
      *
      *
+     * The IP address can only be set at creation. Once set, it cannot be updated.
+     *
      * The forwarding rule's target or backendService,
      * and in most cases, also the loadBalancingScheme, determine the
      * type of IP address that you can use. For detailed information, see
@@ -9073,8 +9141,69 @@ export namespace compute_beta {
      *
      * When reading an IPAddress, the API always returns the IP
      * address number.
+     *
+     * When creating a global external Passthrough Network Load Balancer
+     * forwarding rule (a parent forwarding rule), you must use theIPAddresses field, but the Google Cloud generated child
+     * forwarding rules set the IPAddress field instead. Refer to theavailabilityGroup field for further details.
      */
     IPAddress?: string | null;
+    /**
+     * IP addresses for which this forwarding rule accepts traffic. All IP
+     * addresses must have the same IP version, IPv4 or IPv6. When a client sends
+     * traffic that matches one of the specified IP addresses, protocol and ports,
+     * the forwarding rule directs the traffic to the referencedbackendService. All IP addresses are served by the same set of
+     * backends, and they share the target capacities specified in the backend
+     * service fairly.
+     *
+     * Global external Passthrough Network Load Balancer requires two IP addresses
+     * for each forwarding rule to provide high availability when both IP
+     * addresses are used to serve client requests. The two IP addresses must come
+     * from global IP pools that belong to two distinct Availability
+     * Groups, represented by the purposePASSTHROUGH_LOAD_BALANCER_AVAILABILITY_GROUP0 andPASSTHROUGH_LOAD_BALANCER_AVAILABILITY_GROUP1. TheIPAddresses field specifies zero, one, or two IP addresses:
+     *
+     *    - If omitted, Google Cloud assigns two ephemeral IP addresses, one from
+     *    each Availability Group.
+     *    - If you specify one IP address that references an existing static IP
+     *    address resource from one Availability Group, Google Cloud assigns an
+     *    ephemeral IP address from the other Availability Group.
+     *    - If you specify two IP addresses that reference existing static IP
+     *    address resources, they are required to be from different Availability
+     *    Groups.
+     *
+     *
+     *
+     * For global external Passthrough Network Load Balancer, each IP address can be one of the following:
+     *
+     *    - A static or ephemeral IPv4 address from a Google-owned IP pool.
+     *    - A static IPv4 address from a global public delegated prefix.
+     *    - A static or ephemeral IPv6 /96 prefix from a Google-owned IP pool.
+     *
+     *
+     *
+     * For global external Passthrough Network Load Balancer, the two IP addresses
+     * can be of different types. One IP address can be from a BYOIP prefix while
+     * the other is from a Google-owned IP pool. One IP address can be static
+     * while the other is ephemeral. However, both IP addresses must have the same
+     * IP version, IPv4 or IPv6.
+     *
+     * The IP addresses can only be set at creation and cannot be updated.
+     *
+     * When creating a global external Passthrough Network Load Balancer
+     * forwarding rule (a parent forwarding rule), you must use theIPAddresses field, but the Google Cloud-generated child
+     * forwarding rules set the IPAddress field instead. Refer to theavailabilityGroup field for further details.
+     *
+     * Refer to the IPAddress field for the formats that can be used
+     * to specify IP addresses while creating a forwarding rule.
+     *
+     * Because Passthrough Network Load Balancers do not terminate or translate
+     * traffic, the backend stack types must be compatible with the forwarding
+     * rule IP version:
+     *
+     *    - If the forwarding rule IP version is IPv4, backends should be
+     *    configured as dual-stack or IPv4-only.
+     *    - If the forwarding rule IP version is IPv6, backends should be
+     *    configured as dual-stack or IPv6-only.
+     */
     IPAddresses?: string[] | null;
     /**
      * Resource reference of a PublicDelegatedPrefix. The PDP must
@@ -9136,8 +9265,8 @@ export namespace compute_beta {
     /**
      * Specifies the forwarding rule type.
      *
-     * For more information about forwarding rules, refer to
-     * Forwarding rule concepts.
+     * For more information, refer to
+     * Forwarding rule product and scheme table.
      */
     loadBalancingScheme?: string | null;
     /**
@@ -9175,6 +9304,13 @@ export namespace compute_beta {
      * For Private Service Connect forwarding rules that forward traffic to Google
      * APIs, the forwarding rule name must be a 1-20 characters string with
      * lowercase letters and numbers and must start with a letter.
+     *
+     * For global external Passthrough Network Load Balancer forwarding rules, the
+     * forwarding rule name must be 1-43 characters long. For each global external
+     * Passthrough Network Load Balancer forwarding rule (a parent forwarding
+     * rule) that you create, Google Cloud generates two output-only child
+     * forwarding rules that are named by concatenating the parent forwarding rule
+     * name with the `-ag0` and `-ag1` suffixes, respectively. Refer to theavailabilityGroup field for further details.
      */
     name?: string | null;
     /**
@@ -9209,7 +9345,9 @@ export namespace compute_beta {
      */
     noAutomateDnsZone?: boolean | null;
     /**
-     * Output only. [Output Only] Applicable only to the child forwarding rules of global external
+     * Output only. [Output Only] The resource URL for the parent forwarding rule.
+     *
+     * Applicable only to the child forwarding rules of global external
      * passthrough load balancers. This field contains the URL of the parent
      * forwarding rule.
      */
@@ -9234,7 +9372,8 @@ export namespace compute_beta {
      *
      *
      * For external forwarding rules, two or more forwarding rules cannot use the
-     * same [IPAddress, IPProtocol] pair, and cannot have overlappingportRanges.
+     * same [IPAddress, IPProtocol] pair (specified inIPAddress, IPAddresses, IPProtocol
+     * fields) if they have overlapping portRanges.
      *
      * For internal forwarding rules within the same VPC network, two or more
      * forwarding rules cannot use the same [IPAddress, IPProtocol]
@@ -9262,8 +9401,8 @@ export namespace compute_beta {
      *
      *
      * For external forwarding rules, two or more forwarding rules cannot use the
-     * same [IPAddress, IPProtocol] pair if they share at least one
-     * port number.
+     * same [IPAddress, IPProtocol] pair (specified inIPAddress, IPAddresses, IPProtocol
+     * fields) if they share at least one port number.
      *
      * For internal forwarding rules within the same VPC network, two or more
      * forwarding rules cannot use the same [IPAddress, IPProtocol]
@@ -9356,6 +9495,15 @@ export namespace compute_beta {
      *
      *
      *      -  For Private Service Connect forwarding rules that forward traffic to managed services, the target must be a service attachment. The target is not mutable once set as a service attachment.
+     *
+     *
+     *
+     * The following load balancers cannot set the target field (they should set the backendService field instead):
+     *
+     *    - Internal passthrough Network Load Balancers
+     *    - Backend service-based regional external passthrough Network Load
+     *    Balancers
+     *    - Global external passthrough Network Load Balancers
      */
     target?: string | null;
   }
@@ -9596,6 +9744,12 @@ export namespace compute_beta {
      */
     reservationName?: string | null;
     /**
+     * Name of the resource intended to be delivered. Name should conform to
+     * RFC1035. This will be the name of storage pool or Exapool for persistent
+     * disk FRs.
+     */
+    resourceName?: string | null;
+    /**
      * Maintenance information for this reservation
      */
     schedulingType?: string | null;
@@ -9626,6 +9780,10 @@ export namespace compute_beta {
      * Output only. [Output only] Status of the Future Reservation
      */
     status?: Schema$FutureReservationStatus;
+    /**
+     * Storage pool details for the future reservation.
+     */
+    storagePoolProperties?: Schema$FutureReservationStoragePoolProperties;
     /**
      * Time window for this Future Reservation.
      */
@@ -9797,6 +9955,10 @@ export namespace compute_beta {
      */
     autoCreatedReservations?: string[] | null;
     /**
+     * Output only. Exapool provisioned capacities for each SKU type.
+     */
+    exapoolProvisionedCapacityGb?: Schema$StoragePoolExapoolProvisionedCapacityGb;
+    /**
      * Output only. [Output Only] Represents the existing matching usage for the future
      * reservation.
      */
@@ -9828,6 +9990,10 @@ export namespace compute_beta {
      */
     procurementStatus?: string | null;
     specificSkuProperties?: Schema$FutureReservationStatusSpecificSKUProperties;
+    /**
+     * Output only. Storage pool provisioned capacities for each SKU type.
+     */
+    storagePoolProvisionedCapacity?: Schema$FutureReservationStoragePoolProvisionedCapacity;
   }
   /**
    * [Output Only] Represents the existing matching usage for the future
@@ -9903,6 +10069,42 @@ export namespace compute_beta {
      * properties.
      */
     sourceInstanceTemplateId?: string | null;
+  }
+  /**
+   * Storage pool properties for the future reservation.
+   */
+  export interface Schema$FutureReservationStoragePoolProperties {
+    /**
+     * Requested exapool provisioned capacity in GiB.
+     */
+    requestedExapoolProvisionedCapacityGb?: Schema$StoragePoolExapoolProvisionedCapacityGb;
+    /**
+     * Requested storage pool provisioned capacity.
+     */
+    requestedStoragePoolProvisionedCapacity?: Schema$FutureReservationStoragePoolProvisionedCapacity;
+    /**
+     * Type of the storage pool.
+     */
+    storagePoolType?: string | null;
+  }
+  /**
+   * Storage pool provisioned capacities for each SKU type.
+   */
+  export interface Schema$FutureReservationStoragePoolProvisionedCapacity {
+    /**
+     * Size of the storage pool in GiB.
+     */
+    poolProvisionedCapacityGb?: string | null;
+    /**
+     * Provisioned IOPS of the storage pool. Only relevant if the storage pool
+     * type is hyperdisk-balanced.
+     */
+    poolProvisionedIops?: string | null;
+    /**
+     * Provisioned throughput of the storage pool in MiB/s. Only relevant if
+     * the storage pool type is hyperdisk-balanced or hyperdisk-throughput.
+     */
+    poolProvisionedThroughput?: string | null;
   }
   export interface Schema$FutureReservationTimeWindow {
     duration?: Schema$Duration;
@@ -13502,6 +13704,7 @@ export namespace compute_beta {
      *
      *
      * For example: zones/us-central1-f/machineTypes/custom-4-5120
+     *
      * For a full list of restrictions, read theSpecifications
      * for custom machine types.
      */
@@ -13758,6 +13961,11 @@ export namespace compute_beta {
      * example `n2-standard-4` and not URLs or partial URLs.
      */
     machineTypes?: string[] | null;
+    /**
+     * Name of the minimum CPU platform to be used by this instance selection.
+     * e.g. 'Intel Ice Lake'.
+     */
+    minCpuPlatform?: string | null;
     /**
      * Rank when prioritizing the shape flexibilities.
      * The instance selections with rank are considered
@@ -20224,6 +20432,67 @@ export namespace compute_beta {
     name?: string | null;
   }
   /**
+   * Represents a ManagedRuleset resource.
+   *
+   * Managed internally by Cloud Armor CLH for Managed Rules features.
+   * Customers can only view these resources to modify their Security Policies.
+   * For more information, see
+   * https://cloud.google.com/armor/docs/.
+   */
+  export interface Schema$ManagedRuleset {
+    /**
+     * Output only. [Output Only] The change log for this managed ruleset.
+     */
+    changeLog?: string | null;
+    /**
+     * Output only. [Output Only] Creation timestamp in RFC3339 text format.
+     */
+    creationTimestamp?: string | null;
+    /**
+     * [Output Only] An optional description of this resource.
+     */
+    description?: string | null;
+    /**
+     * Output only. [Output Only] The unique identifier for the resource. This identifier is
+     * defined by the server.
+     */
+    id?: string | null;
+    /**
+     * Name of the resource. Generated internally when the resource is created.
+     * The name must be 1-63 characters long, and comply withRFC1035.
+     * Specifically, the name must be 1-63 characters long and match the regular
+     * expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first
+     * character must be a lowercase letter, and all following characters must
+     * be a dash, lowercase letter, or digit, except the last character, which
+     * cannot be a dash.
+     */
+    name?: string | null;
+    /**
+     * Output only. [Output Only] The list of managed rule IDs that are included in
+     * this managed ruleset.
+     */
+    ruleIds?: string[] | null;
+    /**
+     * Output only. [Output Only] The managed ruleset identifier that can be configured in
+     * Security Policy rules.
+     */
+    rulesetId?: string | null;
+    /**
+     * Output only. [Output Only] Server-defined URL for the resource.
+     */
+    selfLink?: string | null;
+  }
+  export interface Schema$ManagedRulesetList {
+    id?: string | null;
+    items?: Schema$ManagedRuleset[];
+    nextPageToken?: string | null;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string}>;
+      message?: string;
+    } | null;
+  }
+  /**
    * A metadata key/value entry.
    */
   export interface Schema$Metadata {
@@ -25808,7 +26077,7 @@ export namespace compute_beta {
    */
   export interface Schema$RegexRewrite {
     /**
-     * The regular expression used to match against the URL path.
+     * Required. The regular expression used to match against the URL path.
      * It uses RE2 syntax with the following constraints:
      *
      *
@@ -25835,7 +26104,7 @@ export namespace compute_beta {
      */
     pathPattern?: string | null;
     /**
-     * Required when path pattern is specified. Used to rewrite matching parts of
+     * Required. Required when path pattern is specified. Used to rewrite matching parts of
      * the path.
      */
     pathSubstitution?: string | null;
@@ -35657,7 +35926,8 @@ export namespace compute_beta {
      * The server-defined URL for the resource. This field is applicable only when
      * the containing target pool is serving a forwarding rule as the primary
      * pool, and its failoverRatio field is properly set to a value
-     * between [0, 1].backupPool and failoverRatio together define
+     * between [0, 1].
+     * backupPool and failoverRatio together define
      * the fallback behavior of the primary target pool: if the ratio of the
      * healthy instances in the primary pool is at or belowfailoverRatio, traffic arriving at the load-balanced
      * IP will be directed to the backup pool.
@@ -69333,6 +69603,7 @@ export namespace compute_beta {
      *   //   "protectionTier": "my_protectionTier",
      *   //   "reservationMode": "my_reservationMode",
      *   //   "reservationName": "my_reservationName",
+     *   //   "resourceName": "my_resourceName",
      *   //   "schedulingType": "my_schedulingType",
      *   //   "selfLink": "my_selfLink",
      *   //   "selfLinkWithId": "my_selfLinkWithId",
@@ -69340,6 +69611,7 @@ export namespace compute_beta {
      *   //   "specificReservationRequired": false,
      *   //   "specificSkuProperties": {},
      *   //   "status": {},
+     *   //   "storagePoolProperties": {},
      *   //   "timeWindow": {},
      *   //   "zone": "my_zone"
      *   // }
@@ -69518,6 +69790,7 @@ export namespace compute_beta {
      *       //   "protectionTier": "my_protectionTier",
      *       //   "reservationMode": "my_reservationMode",
      *       //   "reservationName": "my_reservationName",
+     *       //   "resourceName": "my_resourceName",
      *       //   "schedulingType": "my_schedulingType",
      *       //   "selfLink": "my_selfLink",
      *       //   "selfLinkWithId": "my_selfLinkWithId",
@@ -69525,6 +69798,7 @@ export namespace compute_beta {
      *       //   "specificReservationRequired": false,
      *       //   "specificSkuProperties": {},
      *       //   "status": {},
+     *       //   "storagePoolProperties": {},
      *       //   "timeWindow": {},
      *       //   "zone": "my_zone"
      *       // }
@@ -69986,6 +70260,7 @@ export namespace compute_beta {
      *       //   "protectionTier": "my_protectionTier",
      *       //   "reservationMode": "my_reservationMode",
      *       //   "reservationName": "my_reservationName",
+     *       //   "resourceName": "my_resourceName",
      *       //   "schedulingType": "my_schedulingType",
      *       //   "selfLink": "my_selfLink",
      *       //   "selfLinkWithId": "my_selfLinkWithId",
@@ -69993,6 +70268,7 @@ export namespace compute_beta {
      *       //   "specificReservationRequired": false,
      *       //   "specificSkuProperties": {},
      *       //   "status": {},
+     *       //   "storagePoolProperties": {},
      *       //   "timeWindow": {},
      *       //   "zone": "my_zone"
      *       // }
@@ -133581,6 +133857,512 @@ export namespace compute_beta {
      * The name of the zone for this request.
      */
     zone?: string;
+  }
+
+  export class Resource$Managedrulesets {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets the details for the specified managed ruleset name.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.managedRulesets.get({
+     *     // Name of the managed ruleset to return.
+     *     managedRuleset: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
+     *     // Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "changeLog": "my_changeLog",
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "id": "my_id",
+     *   //   "name": "my_name",
+     *   //   "ruleIds": [],
+     *   //   "rulesetId": "my_rulesetId",
+     *   //   "selfLink": "my_selfLink"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Managedrulesets$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Managedrulesets$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ManagedRuleset>>;
+    get(
+      params: Params$Resource$Managedrulesets$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Managedrulesets$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$ManagedRuleset>,
+      callback: BodyResponseCallback<Schema$ManagedRuleset>
+    ): void;
+    get(
+      params: Params$Resource$Managedrulesets$Get,
+      callback: BodyResponseCallback<Schema$ManagedRuleset>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$ManagedRuleset>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Managedrulesets$Get
+        | BodyResponseCallback<Schema$ManagedRuleset>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ManagedRuleset>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ManagedRuleset>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ManagedRuleset>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Managedrulesets$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Managedrulesets$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/beta/projects/{project}/global/managedRulesets/{managedRuleset}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'managedRuleset'],
+        pathParams: ['managedRuleset', 'project'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ManagedRuleset>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ManagedRuleset>(parameters);
+      }
+    }
+
+    /**
+     * Retrieves the list of all the managed rulesets available.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.managedRulesets.list({
+     *     // A filter expression that filters resources listed in the response. Most
+     *     // Compute resources support two types of filter expressions:
+     *     // expressions that support regular expressions and expressions that follow
+     *     // API improvement proposal AIP-160.
+     *     // These two types of filter expressions cannot be mixed in one request.
+     *     //
+     *     // If you want to use AIP-160, your expression must specify the field name, an
+     *     // operator, and the value that you want to use for filtering. The value
+     *     // must be a string, a number, or a boolean. The operator
+     *     // must be either `=`, `!=`, `\>`, `<`, `<=`, `\>=` or `:`.
+     *     //
+     *     // For example, if you are filtering Compute Engine instances, you can
+     *     // exclude instances named `example-instance` by specifying
+     *     // `name != example-instance`.
+     *     //
+     *     // The `:*` comparison can be used to test whether a key has been defined.
+     *     // For example, to find all objects with `owner` label use:
+     *     // ```
+     *     // labels.owner:*
+     *     // ```
+     *     //
+     *     // You can also filter nested fields. For example, you could specify
+     *     // `scheduling.automaticRestart = false` to include instances only
+     *     // if they are not scheduled for automatic restarts. You can use filtering
+     *     // on nested fields to filter based onresource labels.
+     *     //
+     *     // To filter on multiple expressions, provide each separate expression within
+     *     // parentheses. For example:
+     *     // ```
+     *     // (scheduling.automaticRestart = true)
+     *     // (cpuPlatform = "Intel Skylake")
+     *     // ```
+     *     // By default, each expression is an `AND` expression. However, you
+     *     // can include `AND` and `OR` expressions explicitly.
+     *     // For example:
+     *     // ```
+     *     // (cpuPlatform = "Intel Skylake") OR
+     *     // (cpuPlatform = "Intel Broadwell") AND
+     *     // (scheduling.automaticRestart = true)
+     *     // ```
+     *     //
+     *     // If you want to use a regular expression, use the `eq` (equal) or `ne`
+     *     // (not equal) operator against a single un-parenthesized expression with or
+     *     // without quotes or against multiple parenthesized expressions. Examples:
+     *     //
+     *     // `fieldname eq unquoted literal`
+     *     // `fieldname eq 'single quoted literal'`
+     *     // `fieldname eq "double quoted literal"`
+     *     // `(fieldname1 eq literal) (fieldname2 ne "literal")`
+     *     //
+     *     // The literal value is interpreted as a regular expression using GoogleRE2 library syntax.
+     *     // The literal value must match the entire field.
+     *     //
+     *     // For example, to filter for instances that do not end with name "instance",
+     *     // you would use `name ne .*instance`.
+     *     //
+     *     // You cannot combine constraints on multiple fields using regular
+     *     // expressions.
+     *     filter: 'placeholder-value',
+     *     // The maximum number of results per page that should be returned.
+     *     // If the number of available results is larger than `maxResults`,
+     *     // Compute Engine returns a `nextPageToken` that can be used to get
+     *     // the next page of results in subsequent list requests. Acceptable values are
+     *     // `0` to `500`, inclusive. (Default: `500`)
+     *     maxResults: 'placeholder-value',
+     *     // Sorts list results by a certain order. By default, results
+     *     // are returned in alphanumerical order based on the resource name.
+     *     //
+     *     // You can also sort results in descending order based on the creation
+     *     // timestamp using `orderBy="creationTimestamp desc"`. This sorts
+     *     // results based on the `creationTimestamp` field in
+     *     // reverse chronological order (newest result first). Use this to sort
+     *     // resources like operations so that the newest operation is returned first.
+     *     //
+     *     // Currently, only sorting by `name` or
+     *     // `creationTimestamp desc` is supported.
+     *     orderBy: 'placeholder-value',
+     *     // Specifies a page token to use. Set `pageToken` to the
+     *     // `nextPageToken` returned by a previous list request to get
+     *     // the next page of results.
+     *     pageToken: 'placeholder-value',
+     *     // Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // Opt-in for partial success behavior which provides partial results in case
+     *     // of failure. The default value is false.
+     *     //
+     *     // For example, when partial success behavior is enabled, aggregatedList for a
+     *     // single zone scope either returns all resources in the zone or no resources,
+     *     // with an error code.
+     *     returnPartialSuccess: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "id": "my_id",
+     *   //   "items": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "warning": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Managedrulesets$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Managedrulesets$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ManagedRulesetList>>;
+    list(
+      params: Params$Resource$Managedrulesets$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Managedrulesets$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ManagedRulesetList>,
+      callback: BodyResponseCallback<Schema$ManagedRulesetList>
+    ): void;
+    list(
+      params: Params$Resource$Managedrulesets$List,
+      callback: BodyResponseCallback<Schema$ManagedRulesetList>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ManagedRulesetList>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Managedrulesets$List
+        | BodyResponseCallback<Schema$ManagedRulesetList>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ManagedRulesetList>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ManagedRulesetList>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ManagedRulesetList>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Managedrulesets$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Managedrulesets$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/beta/projects/{project}/global/managedRulesets'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ManagedRulesetList>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ManagedRulesetList>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Managedrulesets$Get extends StandardParameters {
+    /**
+     * Name of the managed ruleset to return.
+     */
+    managedRuleset?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+  }
+  export interface Params$Resource$Managedrulesets$List extends StandardParameters {
+    /**
+     * A filter expression that filters resources listed in the response. Most
+     * Compute resources support two types of filter expressions:
+     * expressions that support regular expressions and expressions that follow
+     * API improvement proposal AIP-160.
+     * These two types of filter expressions cannot be mixed in one request.
+     *
+     * If you want to use AIP-160, your expression must specify the field name, an
+     * operator, and the value that you want to use for filtering. The value
+     * must be a string, a number, or a boolean. The operator
+     * must be either `=`, `!=`, `\>`, `<`, `<=`, `\>=` or `:`.
+     *
+     * For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named `example-instance` by specifying
+     * `name != example-instance`.
+     *
+     * The `:*` comparison can be used to test whether a key has been defined.
+     * For example, to find all objects with `owner` label use:
+     * ```
+     * labels.owner:*
+     * ```
+     *
+     * You can also filter nested fields. For example, you could specify
+     * `scheduling.automaticRestart = false` to include instances only
+     * if they are not scheduled for automatic restarts. You can use filtering
+     * on nested fields to filter based onresource labels.
+     *
+     * To filter on multiple expressions, provide each separate expression within
+     * parentheses. For example:
+     * ```
+     * (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake")
+     * ```
+     * By default, each expression is an `AND` expression. However, you
+     * can include `AND` and `OR` expressions explicitly.
+     * For example:
+     * ```
+     * (cpuPlatform = "Intel Skylake") OR
+     * (cpuPlatform = "Intel Broadwell") AND
+     * (scheduling.automaticRestart = true)
+     * ```
+     *
+     * If you want to use a regular expression, use the `eq` (equal) or `ne`
+     * (not equal) operator against a single un-parenthesized expression with or
+     * without quotes or against multiple parenthesized expressions. Examples:
+     *
+     * `fieldname eq unquoted literal`
+     * `fieldname eq 'single quoted literal'`
+     * `fieldname eq "double quoted literal"`
+     * `(fieldname1 eq literal) (fieldname2 ne "literal")`
+     *
+     * The literal value is interpreted as a regular expression using GoogleRE2 library syntax.
+     * The literal value must match the entire field.
+     *
+     * For example, to filter for instances that do not end with name "instance",
+     * you would use `name ne .*instance`.
+     *
+     * You cannot combine constraints on multiple fields using regular
+     * expressions.
+     */
+    filter?: string;
+    /**
+     * The maximum number of results per page that should be returned.
+     * If the number of available results is larger than `maxResults`,
+     * Compute Engine returns a `nextPageToken` that can be used to get
+     * the next page of results in subsequent list requests. Acceptable values are
+     * `0` to `500`, inclusive. (Default: `500`)
+     */
+    maxResults?: number;
+    /**
+     * Sorts list results by a certain order. By default, results
+     * are returned in alphanumerical order based on the resource name.
+     *
+     * You can also sort results in descending order based on the creation
+     * timestamp using `orderBy="creationTimestamp desc"`. This sorts
+     * results based on the `creationTimestamp` field in
+     * reverse chronological order (newest result first). Use this to sort
+     * resources like operations so that the newest operation is returned first.
+     *
+     * Currently, only sorting by `name` or
+     * `creationTimestamp desc` is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set `pageToken` to the
+     * `nextPageToken` returned by a previous list request to get
+     * the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Opt-in for partial success behavior which provides partial results in case
+     * of failure. The default value is false.
+     *
+     * For example, when partial success behavior is enabled, aggregatedList for a
+     * single zone scope either returns all resources in the zone or no resources,
+     * with an error code.
+     */
+    returnPartialSuccess?: boolean;
   }
 
   export class Resource$Networkattachments {
