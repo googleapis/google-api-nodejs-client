@@ -2596,7 +2596,7 @@
       }
     }
   },
-  "revision": "20260731",
+  "revision": "20260808",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
     "AppDevExperienceFeatureSpec": {
@@ -3108,6 +3108,10 @@
         "rbacrolebindingactuation": {
           "$ref": "RBACRoleBindingActuationFeatureState",
           "description": "RBAC Role Binding Actuation feature state"
+        },
+        "servicemesh": {
+          "$ref": "ServiceMeshFeatureState",
+          "description": "Service Mesh-specific state."
         },
         "state": {
           "$ref": "FeatureState",
@@ -7665,6 +7669,175 @@
       },
       "type": "object"
     },
+    "ServiceMeshFeatureCondition": {
+      "description": "Condition being reported.",
+      "id": "ServiceMeshFeatureCondition",
+      "properties": {
+        "code": {
+          "description": "Unique identifier of the condition which describes the condition recognizable to the user.",
+          "enum": [
+            "CODE_UNSPECIFIED",
+            "MESH_IAM_PERMISSION_DENIED",
+            "MESH_IAM_CROSS_PROJECT_PERMISSION_DENIED",
+            "CNI_CONFIG_UNSUPPORTED",
+            "GKE_SANDBOX_UNSUPPORTED",
+            "NODEPOOL_WORKLOAD_IDENTITY_FEDERATION_REQUIRED",
+            "CNI_INSTALLATION_FAILED",
+            "CNI_POD_UNSCHEDULABLE",
+            "CLUSTER_HAS_ZERO_NODES",
+            "CANONICAL_SERVICE_ERROR",
+            "UNSUPPORTED_MULTIPLE_CONTROL_PLANES",
+            "VPCSC_GA_SUPPORTED",
+            "DEPRECATED_SPEC_CONTROL_PLANE_MANAGEMENT",
+            "DEPRECATED_SPEC_CONTROL_PLANE_MANAGEMENT_SAFE",
+            "CONFIG_APPLY_INTERNAL_ERROR",
+            "CONFIG_VALIDATION_ERROR",
+            "CONFIG_VALIDATION_WARNING",
+            "QUOTA_EXCEEDED_BACKEND_SERVICES",
+            "QUOTA_EXCEEDED_HEALTH_CHECKS",
+            "QUOTA_EXCEEDED_HTTP_ROUTES",
+            "QUOTA_EXCEEDED_TCP_ROUTES",
+            "QUOTA_EXCEEDED_TLS_ROUTES",
+            "QUOTA_EXCEEDED_TRAFFIC_POLICIES",
+            "QUOTA_EXCEEDED_ENDPOINT_POLICIES",
+            "QUOTA_EXCEEDED_GATEWAYS",
+            "QUOTA_EXCEEDED_MESHES",
+            "QUOTA_EXCEEDED_SERVER_TLS_POLICIES",
+            "QUOTA_EXCEEDED_CLIENT_TLS_POLICIES",
+            "QUOTA_EXCEEDED_SERVICE_LB_POLICIES",
+            "QUOTA_EXCEEDED_HTTP_FILTERS",
+            "QUOTA_EXCEEDED_TCP_FILTERS",
+            "QUOTA_EXCEEDED_NETWORK_ENDPOINT_GROUPS",
+            "CONFIG_APPLY_BLOCKED",
+            "LEGACY_MC_SECRETS",
+            "WORKLOAD_IDENTITY_REQUIRED",
+            "NON_STANDARD_BINARY_USAGE",
+            "UNSUPPORTED_GATEWAY_CLASS",
+            "MANAGED_CNI_NOT_ENABLED",
+            "MISSING_CONTROL_PLANE_CONFIG",
+            "SHARED_VPC_MISSING_PERMISSIONS",
+            "REQUIRED_ORG_POLICY_DISABLED",
+            "MODERNIZATION_INCOMPATIBLE_POD_ANNOTATION",
+            "MODERNIZATION_INCOMPATIBLE_CONFIG",
+            "MODERNIZATION_INCOMPATIBLE_GATEWAY_POD_SCALE",
+            "MODERNIZATION_SCHEDULED",
+            "MODERNIZATION_IN_PROGRESS",
+            "MODERNIZATION_COMPLETED",
+            "MODERNIZATION_ABORTED",
+            "MODERNIZATION_PREPARING",
+            "MODERNIZATION_STALLED",
+            "MODERNIZATION_PREPARED",
+            "MODERNIZATION_MIGRATING_WORKLOADS",
+            "MODERNIZATION_ROLLING_BACK_CLUSTER",
+            "MODERNIZATION_WILL_BE_SCHEDULED",
+            "MODERNIZATION_MANUAL",
+            "MODERNIZATION_ELIGIBLE",
+            "MODERNIZATION_MODERNIZING",
+            "MODERNIZATION_MODERNIZED_SOAKING",
+            "MODERNIZATION_FINALIZED",
+            "MODERNIZATION_ROLLING_BACK_FLEET",
+            "MODERNIZATION_MODERNIZED",
+            "MODERNIZATION_COMPATIBLE",
+            "MODERNIZATION_INCOMPATIBLE",
+            "MODERNIZATION_INCOMPATIBLE_FLEET_SCALE",
+            "MODERNIZATION_INCOMPATIBLE_FLEET_QUOTA"
+          ],
+          "enumDescriptions": [
+            "Default Unspecified code",
+            "Mesh IAM permission denied error code",
+            "Permission denied error code for cross-project",
+            "CNI config unsupported error code",
+            "GKE sandbox unsupported error code",
+            "Nodepool workload identity federation required error code",
+            "CNI installation failed error code",
+            "CNI pod unschedulable error code",
+            "Cluster has zero node code",
+            "Failure to reconcile CanonicalServices",
+            "Multiple control planes unsupported error code",
+            "VPC-SC GA is supported for this control plane.",
+            "User is using deprecated ControlPlaneManagement and they have not yet set Management.",
+            "User is using deprecated ControlPlaneManagement and they have already set Management.",
+            "Configuration (Istio/k8s resources) failed to apply due to internal error.",
+            "Configuration failed to be applied due to being invalid.",
+            "Encountered configuration(s) with possible unintended behavior or invalid configuration. These configs may not have been applied.",
+            "BackendService quota exceeded error code.",
+            "HealthCheck quota exceeded error code.",
+            "HTTPRoute quota exceeded error code.",
+            "TCPRoute quota exceeded error code.",
+            "TLS routes quota exceeded error code.",
+            "TrafficPolicy quota exceeded error code.",
+            "EndpointPolicy quota exceeded error code.",
+            "Gateway quota exceeded error code.",
+            "Mesh quota exceeded error code.",
+            "ServerTLSPolicy quota exceeded error code.",
+            "ClientTLSPolicy quota exceeded error code.",
+            "ServiceLBPolicy quota exceeded error code.",
+            "HTTPFilter quota exceeded error code.",
+            "TCPFilter quota exceeded error code.",
+            "NetworkEndpointGroup quota exceeded error code.",
+            "Configuration failed to apply due to fleet being blocked.",
+            "Legacy istio secrets found for multicluster error code.",
+            "Workload identity required error code.",
+            "Non-standard binary usage error code.",
+            "Unsupported gateway class error code.",
+            "Managed CNI not enabled error code.",
+            "Missing control plane configuration error code.",
+            "Shared VPC missing permissions error code.",
+            "Required org policy disabled error code.",
+            "One or more Pods have unsupported annotations.",
+            "Incompatible config found in the cluster.",
+            "Gateway pods per cluster limit exceeded.",
+            "Modernization is scheduled for a cluster.",
+            "Modernization is in progress for a cluster.",
+            "Modernization is completed for a cluster.",
+            "Modernization is aborted for a cluster.",
+            "Preparing cluster so that its workloads can be migrated.",
+            "Modernization is stalled for a cluster.",
+            "Cluster has been prepared for its workloads to be migrated.",
+            "Migrating the cluster's workloads to the new implementation.",
+            "Rollback is in progress for modernization of a cluster.",
+            "Modernization will be scheduled for a fleet.",
+            "Fleet is opted out from automated modernization.",
+            "Fleet is eligible for modernization.",
+            "Modernization of one or more clusters in a fleet is in progress.",
+            "Modernization of all the fleet's clusters is complete. Soaking before finalizing the modernization.",
+            "Modernization is finalized for all clusters in a fleet. Rollback is no longer allowed.",
+            "Rollback is in progress for modernization of all clusters in a fleet.",
+            "Modernization of all clusters in the fleet is complete. Soaking before finalizing the modernization.",
+            "Fleet is compatible for modernization.",
+            "Fleet is not yet compatible for modernization.",
+            "Fleet exceeds service mesh fleet-level scalability limits.",
+            "Fleet exceeds service mesh fleet-level quota limits."
+          ],
+          "type": "string"
+        },
+        "details": {
+          "description": "A short summary about the issue.",
+          "type": "string"
+        },
+        "documentationLink": {
+          "description": "Links contains actionable information.",
+          "type": "string"
+        },
+        "severity": {
+          "description": "Severity level of the condition.",
+          "enum": [
+            "SEVERITY_UNSPECIFIED",
+            "ERROR",
+            "WARNING",
+            "INFO"
+          ],
+          "enumDescriptions": [
+            "Unspecified severity",
+            "Indicates an issue that prevents the mesh from operating correctly",
+            "Indicates a setting is likely wrong, but the mesh is still able to operate",
+            "An informational message, not requiring any action"
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ServiceMeshFeatureSpec": {
       "description": "**Service Mesh**: Spec for the fleet for the servicemesh feature",
       "id": "ServiceMeshFeatureSpec",
@@ -7696,6 +7869,21 @@
             "The infrastructure is pinned to the legacy implementation. This fleet will not be selected for Google-driven modernization. If the resource is actively modernizing, or if the modernization has completed but is not yet finalized (e.g., during the soak time), setting this strategy triggers a rollback to the legacy state. If the modernization process has already been marked as finalized, setting this strategy has no effect."
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ServiceMeshFeatureState": {
+      "description": "**Service Mesh**: State for the whole Hub, as analyzed by the Service Mesh Hub Controller.",
+      "id": "ServiceMeshFeatureState",
+      "properties": {
+        "conditions": {
+          "description": "Output only. List of conditions reported for this feature.",
+          "items": {
+            "$ref": "ServiceMeshFeatureCondition"
+          },
+          "readOnly": true,
+          "type": "array"
         }
       },
       "type": "object"
