@@ -249,6 +249,10 @@ export namespace looker_v1 {
    */
   export interface Schema$ExportMetadata {
     /**
+     * Source BigQuery dataset (formatted as `project_id:dataset_id`) for O2C Elite System Activity (ESA) direct dataset migration.
+     */
+    esaSourceDatasetId?: string | null;
+    /**
      * Encryption key that was used to encrypt the export artifacts.
      */
     exportEncryptionKey?: Schema$ExportMetadataEncryptionKey;
