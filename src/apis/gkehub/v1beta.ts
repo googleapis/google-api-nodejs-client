@@ -497,6 +497,10 @@ export namespace gkehub_v1beta {
      */
     rbacrolebindingactuation?: Schema$RBACRoleBindingActuationFeatureState;
     /**
+     * Service Mesh-specific state.
+     */
+    servicemesh?: Schema$ServiceMeshFeatureState;
+    /**
      * Output only. The "running state" of the Feature in this Fleet.
      */
     state?: Schema$FeatureState;
@@ -3387,6 +3391,27 @@ export namespace gkehub_v1beta {
     state?: string | null;
   }
   /**
+   * Condition being reported.
+   */
+  export interface Schema$ServiceMeshFeatureCondition {
+    /**
+     * Unique identifier of the condition which describes the condition recognizable to the user.
+     */
+    code?: string | null;
+    /**
+     * A short summary about the issue.
+     */
+    details?: string | null;
+    /**
+     * Links contains actionable information.
+     */
+    documentationLink?: string | null;
+    /**
+     * Severity level of the condition.
+     */
+    severity?: string | null;
+  }
+  /**
    * **Service Mesh**: Spec for the fleet for the servicemesh feature
    */
   export interface Schema$ServiceMeshFeatureSpec {
@@ -3398,6 +3423,15 @@ export namespace gkehub_v1beta {
      * Optional. Declares your intended modernization strategy for the fleet.
      */
     modernizationStrategy?: string | null;
+  }
+  /**
+   * **Service Mesh**: State for the whole Hub, as analyzed by the Service Mesh Hub Controller.
+   */
+  export interface Schema$ServiceMeshFeatureState {
+    /**
+     * Output only. List of conditions reported for this feature.
+     */
+    conditions?: Schema$ServiceMeshFeatureCondition[];
   }
   /**
    * **Service Mesh**: Spec for a single Membership for the servicemesh feature
