@@ -1807,7 +1807,7 @@
       }
     }
   },
-  "revision": "20260723",
+  "revision": "20260811",
   "rootUrl": "https://metastore.googleapis.com/",
   "schemas": {
     "AlterMetadataResourceLocationRequest": {
@@ -2169,6 +2169,38 @@
       "properties": {},
       "type": "object"
     },
+    "CatalogReport": {
+      "description": "Aggregated report at the catalog level.",
+      "id": "CatalogReport",
+      "properties": {
+        "catalog": {
+          "description": "The name of the catalog (format: projects/*/catalogs/*).",
+          "type": "string"
+        },
+        "catalogType": {
+          "description": "The type of catalog.",
+          "enum": [
+            "CATALOG_TYPE_UNSPECIFIED",
+            "HIVE",
+            "ICEBERG"
+          ],
+          "enumDescriptions": [
+            "The catalog type is unspecified.",
+            "BigLake Metastore Hive catalog.",
+            "BigLake Metastore Iceberg REST catalog."
+          ],
+          "type": "string"
+        },
+        "databaseReports": {
+          "additionalProperties": {
+            "$ref": "DatabaseReport"
+          },
+          "description": "A map of database names to their respective reports.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
     "CatalogSummary": {
       "description": "Summary of results for a specific destination catalog.",
       "id": "CatalogSummary",
@@ -2434,6 +2466,32 @@
       },
       "type": "object"
     },
+    "DatabaseReport": {
+      "description": "Aggregated report at the database level.",
+      "id": "DatabaseReport",
+      "properties": {
+        "database": {
+          "description": "The name of the database.",
+          "type": "string"
+        },
+        "executionPlan": {
+          "$ref": "ExecutionPlan",
+          "description": "The discovered intent for the database (what we found and what we planned)."
+        },
+        "executionResult": {
+          "$ref": "ExecutionResult",
+          "description": "The actual outcome of the database migration."
+        },
+        "tableReports": {
+          "additionalProperties": {
+            "$ref": "TableReport"
+          },
+          "description": "A map of table names to their respective reports.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
     "DatabaseSummary": {
       "description": "Summary of results for a specific database in a catalog.",
       "id": "DatabaseSummary",
@@ -2537,6 +2595,76 @@
           },
           "description": "Additional structured details about this error.Keys define the failure items. Value describes the exception or details of the item.",
           "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "ExecutionPlan": {
+      "description": "Represents the migration plan for a specific resource (e.g. Database, Table).",
+      "id": "ExecutionPlan",
+      "properties": {
+        "action": {
+          "description": "The action that will be taken for a resource during migration.",
+          "enum": [
+            "ACTION_UNSPECIFIED",
+            "CREATE",
+            "UPDATE",
+            "SKIP",
+            "DEPENDENCY_FAILURE",
+            "ERROR"
+          ],
+          "enumDescriptions": [
+            "The action is unspecified.",
+            "Resource missing; will be created.",
+            "Resource exists at the target, but differs from the source; will be updated.",
+            "Resource exists at the target; no changes will be made.",
+            "Resource cannot be migrated due to a dependency failure (e.g., parent resource missing).",
+            "Resource cannot be migrated due to an error during discovery."
+          ],
+          "type": "string"
+        },
+        "diffs": {
+          "additionalProperties": {
+            "$ref": "ValueDiff"
+          },
+          "description": "A map of field names to their respective value diff.",
+          "type": "object"
+        },
+        "reason": {
+          "description": "A human-readable string explaining why the action was chosen.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ExecutionResult": {
+      "description": "Represents the actual migration result for a specific resource (e.g. Database, Table).",
+      "id": "ExecutionResult",
+      "properties": {
+        "errorMessage": {
+          "description": "Description of the error if the state is FAILED.",
+          "type": "string"
+        },
+        "remediation": {
+          "description": "Remediation steps for the error if the state is FAILED.",
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The state of the migration for a resource.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "SUCCEEDED",
+            "FAILED",
+            "SKIPPED"
+          ],
+          "enumDescriptions": [
+            "The state is unspecified.",
+            "The resource was migrated successfully.",
+            "The resource failed to migrate.",
+            "The resource was skipped and will not be migrated."
+          ],
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -3366,6 +3494,26 @@
       },
       "type": "object"
     },
+    "MigrationReport": {
+      "description": "Report containing the results of a migration run. This report is generated at the specified path in the BigLakeMetastoreMigrationConfig after the backfill is complete, or when a dry run is executed.",
+      "id": "MigrationReport",
+      "properties": {
+        "catalogReports": {
+          "description": "Output only. Detailed results for each catalog involved in the migration.",
+          "items": {
+            "$ref": "CatalogReport"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "summary": {
+          "$ref": "MigrationSummary",
+          "description": "Output only. High-level summary of the migration results.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
     "MigrationSummary": {
       "description": "Summary of the migration results.",
       "id": "MigrationSummary",
@@ -3558,6 +3706,40 @@
         },
         "verb": {
           "description": "Output only. Name of the verb executed by the operation.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PartitionReport": {
+      "description": "Partition migration report for a Hive table.",
+      "id": "PartitionReport",
+      "properties": {
+        "partitionFailedCount": {
+          "description": "The number of partitions that failed to migrate at the target.",
+          "format": "int64",
+          "type": "string"
+        },
+        "partitionSuccessCount": {
+          "description": "The number of partitions successfully migrated at the target.",
+          "format": "int64",
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The state of the partition migration.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "SUCCEEDED",
+            "PARTIALLY_SUCCEEDED",
+            "FAILED"
+          ],
+          "enumDescriptions": [
+            "The state is unspecified.",
+            "All partitions migrated successfully at the target.",
+            "Some partitions migrated successfully at the target, but others failed.",
+            "All partitions failed to migrate at the target."
+          ],
           "readOnly": true,
           "type": "string"
         }
@@ -4111,6 +4293,34 @@
       },
       "type": "object"
     },
+    "TableReport": {
+      "description": "Aggregated report at the table level.",
+      "id": "TableReport",
+      "properties": {
+        "executionPlan": {
+          "$ref": "ExecutionPlan",
+          "description": "The discovered intent for the table (what we found and what we planned)."
+        },
+        "executionResult": {
+          "$ref": "ExecutionResult",
+          "description": "The actual outcome of the table migration."
+        },
+        "partitionDiscoveredCount": {
+          "description": "The total number of partitions identified at the source during discovery. This is only relevant for Hive Partitioned tables.",
+          "format": "int64",
+          "type": "string"
+        },
+        "partitionReport": {
+          "$ref": "PartitionReport",
+          "description": "Report containing the results of partition migration for this table. This is only relevant for Hive Partitioned tables."
+        },
+        "table": {
+          "description": "The name of the table.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "TableSummary": {
       "description": "Aggregated summary of results for all tables in a database.",
       "id": "TableSummary",
@@ -4199,6 +4409,21 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ValueDiff": {
+      "description": "A field-level metadata mismatch for a resource between the source and target.",
+      "id": "ValueDiff",
+      "properties": {
+        "sourceValue": {
+          "description": "The value of the field at the source.",
+          "type": "string"
+        },
+        "targetValue": {
+          "description": "The value of the field at the target.",
+          "type": "string"
         }
       },
       "type": "object"
