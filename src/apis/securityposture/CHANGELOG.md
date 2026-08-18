@@ -1,5 +1,16 @@
 # Changelog
 
+## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/securityposture-v7.0.0...securityposture-v8.0.0) (2026-08-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* **securityposture:** This release has breaking changes.
+
+### Features
+
+* **securityposture:** update the API ([8681053](https://github.com/googleapis/google-api-nodejs-client/commit/868105393dbb9148f0cc827d5895c5effa51f372))
+
 ## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/securityposture-v6.0.0...securityposture-v7.0.0) (2026-08-03)
 
 

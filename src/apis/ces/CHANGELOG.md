@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/ces-v3.1.0...ces-v3.2.0) (2026-08-18)
+
+
+### Features
+
+* **ces:** update the API ([4d674e7](https://github.com/googleapis/google-api-nodejs-client/commit/4d674e7e4efc6826072fe92f624378f9e03d0e34))
+
 ## [3.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/ces-v3.0.0...ces-v3.1.0) (2026-08-14)
 
 
