@@ -321,6 +321,7 @@ export namespace dialogflow_v2 {
   }
   export interface Schema$GoogleCloudDialogflowCxV3beta1Fulfillment {
     advancedSettings?: Schema$GoogleCloudDialogflowCxV3beta1AdvancedSettings;
+    codeBlockFunction?: string | null;
     conditionalCases?: Schema$GoogleCloudDialogflowCxV3beta1FulfillmentConditionalCases[];
     enableGenerativeFallback?: boolean | null;
     generators?: Schema$GoogleCloudDialogflowCxV3beta1FulfillmentGeneratorSettings[];
@@ -820,6 +821,7 @@ export namespace dialogflow_v2 {
   }
   export interface Schema$GoogleCloudDialogflowCxV3Fulfillment {
     advancedSettings?: Schema$GoogleCloudDialogflowCxV3AdvancedSettings;
+    codeBlockFunction?: string | null;
     conditionalCases?: Schema$GoogleCloudDialogflowCxV3FulfillmentConditionalCases[];
     enableGenerativeFallback?: boolean | null;
     generators?: Schema$GoogleCloudDialogflowCxV3FulfillmentGeneratorSettings[];
@@ -1902,6 +1904,10 @@ export namespace dialogflow_v2 {
   export interface Schema$GoogleCloudDialogflowV2beta1KnowledgeAssistDebugInfoQueryGenerationDebugInfo {
     candidatesTokenCount?: number | null;
     promptTokenCount?: number | null;
+    similarityToLastQuery?: number | null;
+    similarityToLastQueryThreshold?: number | null;
+    thinkingBudgetTokens?: number | null;
+    thinkingLevel?: string | null;
     totalTokenCount?: number | null;
   }
   export interface Schema$GoogleCloudDialogflowV2beta1KnowledgeOperationMetadata {
@@ -3017,6 +3023,10 @@ export namespace dialogflow_v2 {
   export interface Schema$GoogleCloudDialogflowV2KnowledgeAssistDebugInfoQueryGenerationDebugInfo {
     candidatesTokenCount?: number | null;
     promptTokenCount?: number | null;
+    similarityToLastQuery?: number | null;
+    similarityToLastQueryThreshold?: number | null;
+    thinkingBudgetTokens?: number | null;
+    thinkingLevel?: string | null;
     totalTokenCount?: number | null;
   }
   export interface Schema$GoogleCloudDialogflowV2KnowledgeBase {
