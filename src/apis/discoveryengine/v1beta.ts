@@ -1445,6 +1445,10 @@ export namespace discoveryengine_v1beta {
      * Final verdict of the customer policy enforcement. If only one policy blocked the processing, the verdict is BLOCK.
      */
     verdict?: string | null;
+    /**
+     * Output only. The source of the violation.
+     */
+    violationSource?: string | null;
   }
   /**
    * Customer policy enforcement result for the banned phrase policy.
@@ -3318,7 +3322,7 @@ export namespace discoveryengine_v1beta {
      */
     displayName?: string | null;
     /**
-     * Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications`
+     * Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications`
      */
     features?: {[key: string]: string} | null;
     /**
@@ -7610,6 +7614,10 @@ export namespace discoveryengine_v1beta {
      * Final verdict of the customer policy enforcement. If only one policy blocked the processing, the verdict is BLOCK.
      */
     verdict?: string | null;
+    /**
+     * Output only. The source of the violation.
+     */
+    violationSource?: string | null;
   }
   /**
    * Customer policy enforcement result for the banned phrase policy.
@@ -9844,7 +9852,7 @@ export namespace discoveryengine_v1beta {
      */
     displayName?: string | null;
     /**
-     * Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications`
+     * Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications`
      */
     features?: {[key: string]: string} | null;
     /**
@@ -12896,7 +12904,7 @@ export namespace discoveryengine_v1beta {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaSearchResponse {
     /**
-     * Controls applied as part of the Control service.
+     * Optional. Controls applied as part of the Control service.
      */
     appliedControls?: string[] | null;
     /**
@@ -13226,6 +13234,10 @@ export namespace discoveryengine_v1beta {
      * Optional. A set of ranking signals associated with the result.
      */
     rankSignals?: Schema$GoogleCloudDiscoveryengineV1betaSearchResponseSearchResultRankSignals;
+    /**
+     * Optional. A set of signals used by the relevance filter meant for use to fine-tune the relevance filter thresholds.
+     */
+    retrievalSignals?: Schema$GoogleCloudDiscoveryengineV1betaSearchResponseSearchResultRetrievalSignals;
   }
   /**
    * A set of ranking signals.
@@ -13284,6 +13296,19 @@ export namespace discoveryengine_v1beta {
      * Optional. Float value representing the ranking signal (e.g. 1.25 for BM25).
      */
     value?: number | null;
+  }
+  /**
+   * Contains a set of signals used by the relevance filter.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaSearchResponseSearchResultRetrievalSignals {
+    /**
+     * Optional. Indicates how the result was retrieved.
+     */
+    retrievalSources?: string[] | null;
+    /**
+     * Optional. Relevance score used by the filter when semantic_relevance_threshold is set.
+     */
+    semanticRelevanceScore?: number | null;
   }
   /**
    * Information about the session.
@@ -15613,7 +15638,7 @@ export namespace discoveryengine_v1beta {
      */
     displayName?: string | null;
     /**
-     * Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications`
+     * Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications`
      */
     features?: {[key: string]: string} | null;
     /**
