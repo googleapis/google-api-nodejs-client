@@ -9,7 +9,7 @@
           "description": "Search your organization's data in the Cloud Search index"
         },
         "https://www.googleapis.com/auth/discoveryengine.assist.readwrite": {
-          "description": "View your Agentspace chat history, including uploaded files and generated reports and visualizations, and interact with the Agentspace assistant on your behalf."
+          "description": "View your Agentspace chat history, including uploaded files and generated reports and visualizations, and interact with the Agentspace assistant on your behalf. Also view the artifacts you access through NotebookLM Enterprise."
         },
         "https://www.googleapis.com/auth/discoveryengine.readwrite": {
           "description": "View, edit, create, and delete all your data associated with any Discovery Engine API product, such as Agentspace, Vertex AI Search, or NotebookLM Enterprise, including both end user data and administration or configuration data."
@@ -9742,7 +9742,7 @@
       }
     }
   },
-  "revision": "20260802",
+  "revision": "20260815",
   "rootUrl": "https://discoveryengine.googleapis.com/",
   "schemas": {
     "A2aV1APIKeySecurityScheme": {
@@ -12887,6 +12887,23 @@
             "There was no policy violation.",
             "Processing was blocked by the customer policy."
           ],
+          "type": "string"
+        },
+        "violationSource": {
+          "description": "Output only. The source of the violation.",
+          "enum": [
+            "VIOLATION_SOURCE_UNSPECIFIED",
+            "SYSTEM",
+            "PROMPT",
+            "ATTACHMENT"
+          ],
+          "enumDescriptions": [
+            "Unknown value.",
+            "Violation found in the system response.",
+            "Violation found in the user prompt.",
+            "Violation found in the user attachment."
+          ],
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -16746,7 +16763,7 @@
             ],
             "type": "string"
           },
-          "description": "Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications`",
+          "description": "Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications`",
           "type": "object"
         },
         "industryVertical": {
@@ -19704,6 +19721,10 @@
           ],
           "type": "string"
         },
+        "relevanceFilterSpec": {
+          "$ref": "GoogleCloudDiscoveryengineV1SearchRequestRelevanceFilterSpec",
+          "description": "Optional. The granular relevance filtering specification. If not specified, the global `relevance_threshold` will be used for all sub-searches. If specified, this overrides the global `relevance_threshold` to use thresholds on a per sub-search basis. This feature is currently supported only for custom and site search."
+        },
         "relevanceScoreSpec": {
           "$ref": "GoogleCloudDiscoveryengineV1SearchRequestRelevanceScoreSpec",
           "description": "Optional. The specification for returning the relevance score."
@@ -20287,6 +20308,51 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1SearchRequestRelevanceFilterSpec": {
+      "description": "Relevance filtering specification.",
+      "id": "GoogleCloudDiscoveryengineV1SearchRequestRelevanceFilterSpec",
+      "properties": {
+        "keywordSearchThreshold": {
+          "$ref": "GoogleCloudDiscoveryengineV1SearchRequestRelevanceFilterSpecRelevanceThresholdSpec",
+          "description": "Optional. Relevance filtering threshold specification for keyword search."
+        },
+        "semanticSearchThreshold": {
+          "$ref": "GoogleCloudDiscoveryengineV1SearchRequestRelevanceFilterSpecRelevanceThresholdSpec",
+          "description": "Optional. Relevance filtering threshold specification for semantic search."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1SearchRequestRelevanceFilterSpecRelevanceThresholdSpec": {
+      "description": "Specification for relevance filtering on a specific sub-search.",
+      "id": "GoogleCloudDiscoveryengineV1SearchRequestRelevanceFilterSpecRelevanceThresholdSpec",
+      "properties": {
+        "relevanceThreshold": {
+          "description": "Pre-defined relevance threshold for the sub-search.",
+          "enum": [
+            "RELEVANCE_THRESHOLD_UNSPECIFIED",
+            "LOWEST",
+            "LOW",
+            "MEDIUM",
+            "HIGH"
+          ],
+          "enumDescriptions": [
+            "Default value. In this case, server behavior defaults to Google defined threshold.",
+            "Lowest relevance threshold.",
+            "Low relevance threshold.",
+            "Medium relevance threshold.",
+            "High relevance threshold."
+          ],
+          "type": "string"
+        },
+        "semanticRelevanceThreshold": {
+          "description": "Custom relevance threshold for the sub-search. The value must be in [0.0, 1.0].",
+          "format": "float",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1SearchRequestRelevanceScoreSpec": {
       "description": "The specification for returning the document relevance score.",
       "id": "GoogleCloudDiscoveryengineV1SearchRequestRelevanceScoreSpec",
@@ -20362,6 +20428,13 @@
       "description": "Response message for SearchService.Search method.",
       "id": "GoogleCloudDiscoveryengineV1SearchResponse",
       "properties": {
+        "appliedControls": {
+          "description": "Optional. Controls applied as part of the Control service.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "attributionToken": {
           "description": "A unique search token. This should be included in the UserEvent logs resulting from this search, which enables accurate attribution of search model performance. This also helps to identify a request during the customer support scenarios.",
           "type": "string"
@@ -20708,6 +20781,10 @@
         "rankSignals": {
           "$ref": "GoogleCloudDiscoveryengineV1SearchResponseSearchResultRankSignals",
           "description": "Optional. A set of ranking signals associated with the result."
+        },
+        "retrievalSignals": {
+          "$ref": "GoogleCloudDiscoveryengineV1SearchResponseSearchResultRetrievalSignals",
+          "description": "Optional. A set of signals used by the relevance filter meant for use to fine-tune the relevance filter thresholds."
         }
       },
       "type": "object"
@@ -20784,6 +20861,35 @@
         },
         "value": {
           "description": "Optional. Float value representing the ranking signal (e.g. 1.25 for BM25).",
+          "format": "float",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1SearchResponseSearchResultRetrievalSignals": {
+      "description": "Contains a set of signals used by the relevance filter.",
+      "id": "GoogleCloudDiscoveryengineV1SearchResponseSearchResultRetrievalSignals",
+      "properties": {
+        "retrievalSources": {
+          "description": "Optional. Indicates how the result was retrieved.",
+          "items": {
+            "enum": [
+              "RETRIEVAL_SOURCE_UNSPECIFIED",
+              "KEYWORD_SEARCH",
+              "SEMANTIC_SEARCH"
+            ],
+            "enumDescriptions": [
+              "Unspecified retrieval source.",
+              "Indicates the result was retrieved by keyword search.",
+              "Indicates the result was retrieved by semantic search."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "semanticRelevanceScore": {
+          "description": "Optional. Relevance score used by the filter when semantic_relevance_threshold is set.",
           "format": "float",
           "type": "number"
         }
@@ -22930,7 +23036,7 @@
             ],
             "type": "string"
           },
-          "description": "Output only. Feature config for the engine to opt in or opt out of features. Supported keys: * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications`",
+          "description": "Output only. Feature config for the engine to opt in or opt out of features. Supported keys: * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications`",
           "readOnly": true,
           "type": "object"
         },
@@ -23117,6 +23223,11 @@
           "description": "Output only. Whether the model is currently in preview. Clients should surface this via a \"Preview\" badge in the selector UI.",
           "readOnly": true,
           "type": "boolean"
+        },
+        "label": {
+          "description": "Output only. Short label shown in the compact selector bar chip (e.g. `3.x Flash`) as opposed to the full `display_name` (`Gemini 3.x Flash`). Falls back to `display_name` when the backend registry does not specify a distinct short label.",
+          "readOnly": true,
+          "type": "string"
         },
         "modelId": {
           "description": "Output only. Unique identifier of the model (e.g. `gemini-2.5-flash`, `gemini-3.1-pro-preview`). This is the same identifier that clients pass back to the assistant service to select this model. Virtual / \"pseudo\" models (e.g. `gemini-fast`) are also valid values here; they are resolved to the underlying concrete model on the backend.",
@@ -24520,6 +24631,23 @@
             "There was no policy violation.",
             "Processing was blocked by the customer policy."
           ],
+          "type": "string"
+        },
+        "violationSource": {
+          "description": "Output only. The source of the violation.",
+          "enum": [
+            "VIOLATION_SOURCE_UNSPECIFIED",
+            "SYSTEM",
+            "PROMPT",
+            "ATTACHMENT"
+          ],
+          "enumDescriptions": [
+            "Unknown value.",
+            "Violation found in the system response.",
+            "Violation found in the user prompt.",
+            "Violation found in the user attachment."
+          ],
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -27326,7 +27454,7 @@
             ],
             "type": "string"
           },
-          "description": "Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications`",
+          "description": "Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications`",
           "type": "object"
         },
         "industryVertical": {
@@ -32910,7 +33038,7 @@
             ],
             "type": "string"
           },
-          "description": "Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications`",
+          "description": "Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications`",
           "type": "object"
         },
         "industryVertical": {
