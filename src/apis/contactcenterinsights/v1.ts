@@ -268,6 +268,10 @@ export namespace contactcenterinsights_v1 {
    */
   export interface Schema$GoogleCloudCesV1mainToolCall {
     /**
+     * Output only. Human-readable name of the agent that issued this call, e.g. "Contract Architect". Empty when the root agent issued it.
+     */
+    agentName?: string | null;
+    /**
      * Optional. The input parameters and values for the tool in JSON object format.
      */
     args?: {[key: string]: any} | null;
@@ -279,6 +283,10 @@ export namespace contactcenterinsights_v1 {
      * Optional. The unique identifier of the tool call. If populated, the client should return the execution result with the matching ID in ToolResponse.
      */
     id?: string | null;
+    /**
+     * Output only. The id of the tool call that caused this one, when it was issued by a sub-agent working on behalf of a parent call. Empty for top-level calls. Lets a client group a sub-agent's work under the call that started it instead of rendering every step as a sibling.
+     */
+    parentToolCallId?: string | null;
     /**
      * Optional. The name of the tool to execute. Format: `projects/{project\}/locations/{location\}/apps/{app\}/tools/{tool\}`
      */
@@ -293,6 +301,10 @@ export namespace contactcenterinsights_v1 {
    */
   export interface Schema$GoogleCloudCesV1mainToolResponse {
     /**
+     * Output only. Human-readable name of the agent that issued this call, e.g. "Contract Architect". Empty when the root agent issued it.
+     */
+    agentName?: string | null;
+    /**
      * Output only. Display name of the tool.
      */
     displayName?: string | null;
@@ -300,6 +312,10 @@ export namespace contactcenterinsights_v1 {
      * Optional. The matching ID of the tool call the response is for.
      */
     id?: string | null;
+    /**
+     * Output only. The id of the tool call that caused this one, when it was issued by a sub-agent working on behalf of a parent call. Empty for top-level calls. Lets a client group a sub-agent's work under the call that started it instead of rendering every step as a sibling.
+     */
+    parentToolCallId?: string | null;
     /**
      * Required. The tool execution result in JSON object format. Use "output" key to specify tool response and "error" key to specify error details (if any). If "output" and "error" keys are not specified, then whole "response" is treated as tool execution result.
      */
