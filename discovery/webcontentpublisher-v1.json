@@ -423,9 +423,38 @@
           ]
         }
       }
+    },
+    "users": {
+      "methods": {
+        "generatePlatformSiteTokens": {
+          "description": "Returns user tokens mapped to their canonical domains for all publications the authenticated user is entitled to.",
+          "flatPath": "v1/users/{usersId}:generatePlatformSiteTokens",
+          "httpMethod": "POST",
+          "id": "webcontentpublisher.users.generatePlatformSiteTokens",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. The resource name of the user to generate tokens for. Format: users/{user}",
+              "location": "path",
+              "pattern": "^users/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1/{+name}:generatePlatformSiteTokens",
+          "request": {
+            "$ref": "GeneratePlatformSiteTokensRequest"
+          },
+          "response": {
+            "$ref": "GeneratePlatformSiteTokensResponse"
+          }
+        }
+      }
     }
   },
-  "revision": "20260804",
+  "revision": "20260812",
   "rootUrl": "https://webcontentpublisher.googleapis.com/",
   "schemas": {
     "CheckFreeAccessResponse": {
@@ -532,6 +561,26 @@
         "url": {
           "description": "Required. The URL of the domain property (e.g., \"https://example.com\").",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GeneratePlatformSiteTokensRequest": {
+      "description": "Request message for `GeneratePlatformSiteTokens`.",
+      "id": "GeneratePlatformSiteTokensRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "GeneratePlatformSiteTokensResponse": {
+      "description": "Response message for `GeneratePlatformSiteTokens`.",
+      "id": "GeneratePlatformSiteTokensResponse",
+      "properties": {
+        "siteTokens": {
+          "description": "List of domain-scoped secure token mappings.",
+          "items": {
+            "$ref": "SiteToken"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -740,6 +789,21 @@
         "tosAcceptance": {
           "$ref": "TosAcceptance",
           "description": "Optional. The details of the TOS acceptance."
+        }
+      },
+      "type": "object"
+    },
+    "SiteToken": {
+      "description": "Represents a domain-scoped secure token mapping.",
+      "id": "SiteToken",
+      "properties": {
+        "domain": {
+          "description": "The domain scope this token is valid for.",
+          "type": "string"
+        },
+        "token": {
+          "description": "The domain-scoped secure token value (ESUT).",
+          "type": "string"
         }
       },
       "type": "object"
