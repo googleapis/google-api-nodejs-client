@@ -277,32 +277,6 @@ export namespace assuredworkloads_v1beta1 {
     assetType?: string | null;
   }
   /**
-   * Request for acknowledging the violations in a batch
-   */
-  export interface Schema$GoogleCloudAssuredworkloadsV1beta1BatchAcknowledgeViolationsRequest {
-    /**
-     * Optional. Acknowledge type of specified violations.
-     */
-    acknowledgeType?: string | null;
-    /**
-     * Required. Business justification explaining the need for violations acknowledgement
-     */
-    comment?: string | null;
-    /**
-     * Required. The resource names of the Violations to acknowledge. Format for each name: organizations/{organization\}/locations/{location\}/workloads/{workload\}/violations/{violation\}
-     */
-    names?: string[] | null;
-  }
-  /**
-   * Response for batch violation acknowledgement
-   */
-  export interface Schema$GoogleCloudAssuredworkloadsV1beta1BatchAcknowledgeViolationsResponse {
-    /**
-     * Count of acknowledged violations.
-     */
-    acknowledgedViolationsCount?: number | null;
-  }
-  /**
    * A Common Expression Language (CEL) expression that's used to create a rule.
    */
   export interface Schema$GoogleCloudAssuredworkloadsV1beta1CELExpression {
@@ -529,9 +503,17 @@ export namespace assuredworkloads_v1beta1 {
      */
     name?: string | null;
     /**
+     * Output only. Number of active organization policy findings for this category.
+     */
+    organizationPolicyFindingCount?: string | null;
+    /**
      * Optional. The list of compliance frameworks that the finding belongs to.
      */
     relatedFrameworks?: string[] | null;
+    /**
+     * Output only. Number of active resource findings for this category.
+     */
+    resourceFindingCount?: string | null;
     /**
      * Output only. The severity of the finding.
      */
@@ -2833,11 +2815,9 @@ export namespace assuredworkloads_v1beta1 {
   export class Resource$Organizations {
     context: APIRequestContext;
     locations: Resource$Organizations$Locations;
-    violations: Resource$Organizations$Violations;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.locations = new Resource$Organizations$Locations(this.context);
-      this.violations = new Resource$Organizations$Violations(this.context);
     }
   }
 
@@ -2847,7 +2827,6 @@ export namespace assuredworkloads_v1beta1 {
     dbFrameworkComplianceReports: Resource$Organizations$Locations$Dbframeworkcompliancereports;
     dbFrameworkComplianceSummaries: Resource$Organizations$Locations$Dbframeworkcompliancesummaries;
     operations: Resource$Organizations$Locations$Operations;
-    violations: Resource$Organizations$Locations$Violations;
     workloads: Resource$Organizations$Locations$Workloads;
     constructor(context: APIRequestContext) {
       this.context = context;
@@ -2862,9 +2841,6 @@ export namespace assuredworkloads_v1beta1 {
           this.context
         );
       this.operations = new Resource$Organizations$Locations$Operations(
-        this.context
-      );
-      this.violations = new Resource$Organizations$Locations$Violations(
         this.context
       );
       this.workloads = new Resource$Organizations$Locations$Workloads(
@@ -4135,187 +4111,6 @@ export namespace assuredworkloads_v1beta1 {
      * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      */
     returnPartialSuccess?: boolean;
-  }
-
-  export class Resource$Organizations$Locations$Violations {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Acknowledges multiple existing violations. By acknowledging violations, users acknowledge the existence of compliance violations in their workload and decide to ignore them due to a valid business justification. Acknowledgement is a permanent operation and it cannot be reverted. This is a batch version of AcknowledgeViolation.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/assuredworkloads.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const assuredworkloads = google.assuredworkloads('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await assuredworkloads.organizations.locations.violations.batchAcknowledgeViolations(
-     *       {
-     *         // Optional. The parent resource shared by all violations being acknowledged. Format: organizations/{organization\}/locations/{location\}/workloads/{workload\}
-     *         parent: 'organizations/my-organization/locations/my-location',
-     *
-     *         // Request body metadata
-     *         requestBody: {
-     *           // request body parameters
-     *           // {
-     *           //   "acknowledgeType": "my_acknowledgeType",
-     *           //   "comment": "my_comment",
-     *           //   "names": []
-     *           // }
-     *         },
-     *       },
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "acknowledgedViolationsCount": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    batchAcknowledgeViolations(
-      params: Params$Resource$Organizations$Locations$Violations$Batchacknowledgeviolations,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    batchAcknowledgeViolations(
-      params?: Params$Resource$Organizations$Locations$Violations$Batchacknowledgeviolations,
-      options?: MethodOptions
-    ): Promise<
-      GaxiosResponseWithHTTP2<Schema$GoogleCloudAssuredworkloadsV1beta1BatchAcknowledgeViolationsResponse>
-    >;
-    batchAcknowledgeViolations(
-      params: Params$Resource$Organizations$Locations$Violations$Batchacknowledgeviolations,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    batchAcknowledgeViolations(
-      params: Params$Resource$Organizations$Locations$Violations$Batchacknowledgeviolations,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1BatchAcknowledgeViolationsResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1BatchAcknowledgeViolationsResponse>
-    ): void;
-    batchAcknowledgeViolations(
-      params: Params$Resource$Organizations$Locations$Violations$Batchacknowledgeviolations,
-      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1BatchAcknowledgeViolationsResponse>
-    ): void;
-    batchAcknowledgeViolations(
-      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1BatchAcknowledgeViolationsResponse>
-    ): void;
-    batchAcknowledgeViolations(
-      paramsOrCallback?:
-        | Params$Resource$Organizations$Locations$Violations$Batchacknowledgeviolations
-        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1BatchAcknowledgeViolationsResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1BatchAcknowledgeViolationsResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1BatchAcknowledgeViolationsResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudAssuredworkloadsV1beta1BatchAcknowledgeViolationsResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Organizations$Locations$Violations$Batchacknowledgeviolations;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Organizations$Locations$Violations$Batchacknowledgeviolations;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://assuredworkloads.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/v1beta1/{+parent}/violations:batchAcknowledgeViolations'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleCloudAssuredworkloadsV1beta1BatchAcknowledgeViolationsResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleCloudAssuredworkloadsV1beta1BatchAcknowledgeViolationsResponse>(
-          parameters
-        );
-      }
-    }
-  }
-
-  export interface Params$Resource$Organizations$Locations$Violations$Batchacknowledgeviolations extends StandardParameters {
-    /**
-     * Optional. The parent resource shared by all violations being acknowledged. Format: organizations/{organization\}/locations/{location\}/workloads/{workload\}
-     */
-    parent?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleCloudAssuredworkloadsV1beta1BatchAcknowledgeViolationsRequest;
   }
 
   export class Resource$Organizations$Locations$Workloads {
@@ -6428,169 +6223,6 @@ export namespace assuredworkloads_v1beta1 {
     }
 
     /**
-     * Acknowledges multiple existing violations. By acknowledging violations, users acknowledge the existence of compliance violations in their workload and decide to ignore them due to a valid business justification. Acknowledgement is a permanent operation and it cannot be reverted. This is a batch version of AcknowledgeViolation.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/assuredworkloads.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const assuredworkloads = google.assuredworkloads('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await assuredworkloads.organizations.locations.workloads.violations.batchAcknowledgeViolations(
-     *       {
-     *         // Optional. The parent resource shared by all violations being acknowledged. Format: organizations/{organization\}/locations/{location\}/workloads/{workload\}
-     *         parent:
-     *           'organizations/my-organization/locations/my-location/workloads/my-workload',
-     *
-     *         // Request body metadata
-     *         requestBody: {
-     *           // request body parameters
-     *           // {
-     *           //   "acknowledgeType": "my_acknowledgeType",
-     *           //   "comment": "my_comment",
-     *           //   "names": []
-     *           // }
-     *         },
-     *       },
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "acknowledgedViolationsCount": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    batchAcknowledgeViolations(
-      params: Params$Resource$Organizations$Locations$Workloads$Violations$Batchacknowledgeviolations,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    batchAcknowledgeViolations(
-      params?: Params$Resource$Organizations$Locations$Workloads$Violations$Batchacknowledgeviolations,
-      options?: MethodOptions
-    ): Promise<
-      GaxiosResponseWithHTTP2<Schema$GoogleCloudAssuredworkloadsV1beta1BatchAcknowledgeViolationsResponse>
-    >;
-    batchAcknowledgeViolations(
-      params: Params$Resource$Organizations$Locations$Workloads$Violations$Batchacknowledgeviolations,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    batchAcknowledgeViolations(
-      params: Params$Resource$Organizations$Locations$Workloads$Violations$Batchacknowledgeviolations,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1BatchAcknowledgeViolationsResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1BatchAcknowledgeViolationsResponse>
-    ): void;
-    batchAcknowledgeViolations(
-      params: Params$Resource$Organizations$Locations$Workloads$Violations$Batchacknowledgeviolations,
-      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1BatchAcknowledgeViolationsResponse>
-    ): void;
-    batchAcknowledgeViolations(
-      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1BatchAcknowledgeViolationsResponse>
-    ): void;
-    batchAcknowledgeViolations(
-      paramsOrCallback?:
-        | Params$Resource$Organizations$Locations$Workloads$Violations$Batchacknowledgeviolations
-        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1BatchAcknowledgeViolationsResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1BatchAcknowledgeViolationsResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1BatchAcknowledgeViolationsResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudAssuredworkloadsV1beta1BatchAcknowledgeViolationsResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Organizations$Locations$Workloads$Violations$Batchacknowledgeviolations;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Organizations$Locations$Workloads$Violations$Batchacknowledgeviolations;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://assuredworkloads.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/v1beta1/{+parent}/violations:batchAcknowledgeViolations'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleCloudAssuredworkloadsV1beta1BatchAcknowledgeViolationsResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleCloudAssuredworkloadsV1beta1BatchAcknowledgeViolationsResponse>(
-          parameters
-        );
-      }
-    }
-
-    /**
      * Retrieves Assured Workload Violation based on ID.
      * @example
      * ```js
@@ -6933,17 +6565,6 @@ export namespace assuredworkloads_v1beta1 {
      */
     requestBody?: Schema$GoogleCloudAssuredworkloadsV1beta1AcknowledgeViolationRequest;
   }
-  export interface Params$Resource$Organizations$Locations$Workloads$Violations$Batchacknowledgeviolations extends StandardParameters {
-    /**
-     * Optional. The parent resource shared by all violations being acknowledged. Format: organizations/{organization\}/locations/{location\}/workloads/{workload\}
-     */
-    parent?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleCloudAssuredworkloadsV1beta1BatchAcknowledgeViolationsRequest;
-  }
   export interface Params$Resource$Organizations$Locations$Workloads$Violations$Get extends StandardParameters {
     /**
      * Required. The resource name of the Violation to fetch (ie. Violation.name). Format: organizations/{organization\}/locations/{location\}/workloads/{workload\}/violations/{violation\}
@@ -6979,185 +6600,6 @@ export namespace assuredworkloads_v1beta1 {
      * Required. The Workload name. Format `organizations/{org_id\}/locations/{location\}/workloads/{workload\}`.
      */
     parent?: string;
-  }
-
-  export class Resource$Organizations$Violations {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Acknowledges multiple existing violations. By acknowledging violations, users acknowledge the existence of compliance violations in their workload and decide to ignore them due to a valid business justification. Acknowledgement is a permanent operation and it cannot be reverted. This is a batch version of AcknowledgeViolation.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/assuredworkloads.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const assuredworkloads = google.assuredworkloads('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await assuredworkloads.organizations.violations.batchAcknowledgeViolations({
-     *       // Optional. The parent resource shared by all violations being acknowledged. Format: organizations/{organization\}/locations/{location\}/workloads/{workload\}
-     *       parent: 'organizations/my-organization',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "acknowledgeType": "my_acknowledgeType",
-     *         //   "comment": "my_comment",
-     *         //   "names": []
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "acknowledgedViolationsCount": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    batchAcknowledgeViolations(
-      params: Params$Resource$Organizations$Violations$Batchacknowledgeviolations,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    batchAcknowledgeViolations(
-      params?: Params$Resource$Organizations$Violations$Batchacknowledgeviolations,
-      options?: MethodOptions
-    ): Promise<
-      GaxiosResponseWithHTTP2<Schema$GoogleCloudAssuredworkloadsV1beta1BatchAcknowledgeViolationsResponse>
-    >;
-    batchAcknowledgeViolations(
-      params: Params$Resource$Organizations$Violations$Batchacknowledgeviolations,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    batchAcknowledgeViolations(
-      params: Params$Resource$Organizations$Violations$Batchacknowledgeviolations,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1BatchAcknowledgeViolationsResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1BatchAcknowledgeViolationsResponse>
-    ): void;
-    batchAcknowledgeViolations(
-      params: Params$Resource$Organizations$Violations$Batchacknowledgeviolations,
-      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1BatchAcknowledgeViolationsResponse>
-    ): void;
-    batchAcknowledgeViolations(
-      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1BatchAcknowledgeViolationsResponse>
-    ): void;
-    batchAcknowledgeViolations(
-      paramsOrCallback?:
-        | Params$Resource$Organizations$Violations$Batchacknowledgeviolations
-        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1BatchAcknowledgeViolationsResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1BatchAcknowledgeViolationsResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1BatchAcknowledgeViolationsResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudAssuredworkloadsV1beta1BatchAcknowledgeViolationsResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Organizations$Violations$Batchacknowledgeviolations;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Organizations$Violations$Batchacknowledgeviolations;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://assuredworkloads.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/v1beta1/{+parent}/violations:batchAcknowledgeViolations'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleCloudAssuredworkloadsV1beta1BatchAcknowledgeViolationsResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleCloudAssuredworkloadsV1beta1BatchAcknowledgeViolationsResponse>(
-          parameters
-        );
-      }
-    }
-  }
-
-  export interface Params$Resource$Organizations$Violations$Batchacknowledgeviolations extends StandardParameters {
-    /**
-     * Optional. The parent resource shared by all violations being acknowledged. Format: organizations/{organization\}/locations/{location\}/workloads/{workload\}
-     */
-    parent?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleCloudAssuredworkloadsV1beta1BatchAcknowledgeViolationsRequest;
   }
 
   export class Resource$Projects {
