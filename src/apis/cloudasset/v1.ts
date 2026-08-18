@@ -1297,6 +1297,19 @@ export namespace cloudasset_v1 {
     title?: string | null;
   }
   /**
+   * Adds a request header to the API.
+   */
+  export interface Schema$GoogleIdentityAccesscontextmanagerV1AddRequestHeader {
+    /**
+     * HTTP header key.
+     */
+    key?: string | null;
+    /**
+     * HTTP header value.
+     */
+    value?: string | null;
+  }
+  /**
    * Identification for an API Operation.
    */
   export interface Schema$GoogleIdentityAccesscontextmanagerV1ApiOperation {
@@ -1440,6 +1453,10 @@ export namespace cloudasset_v1 {
      */
     accessLevel?: string | null;
     /**
+     * A PrivateServiceConnectEndpoint that is allowed to access data outside the perimeter. The Private Service Connect endpoint may be in any organization, not just the organization that the perimeter is defined in.
+     */
+    pscEndpoint?: Schema$GoogleIdentityAccesscontextmanagerV1PrivateServiceConnectEndpoint;
+    /**
      * A Google Cloud resource from the service perimeter that you want to allow to access data outside the perimeter. This field supports only projects. The project format is `projects/{project_number\}`. You can't use `*` in this field to allow all Google Cloud resources.
      */
     resource?: string | null;
@@ -1508,6 +1525,10 @@ export namespace cloudasset_v1 {
      */
     accessLevel?: string | null;
     /**
+     * A PrivateServiceConnectEndpoint that is allowed to access the perimeter. The Private Service Connect endpoint may be in any organization, not just the organization that the perimeter is defined in.
+     */
+    pscEndpoint?: Schema$GoogleIdentityAccesscontextmanagerV1PrivateServiceConnectEndpoint;
+    /**
      * A Google Cloud resource that is allowed to ingress the perimeter. Requests from these resources will be allowed to access perimeter data. Currently only projects and VPCs are allowed. Project format: `projects/{project_number\}` VPC network format: `//compute.googleapis.com/projects/{PROJECT_ID\}/global/networks/{NAME\}`. The project may be in any Google Cloud organization, not just the organization that the perimeter is defined in. `*` is not allowed, the case of allowing all Google Cloud resources only is not supported.
      */
     resource?: string | null;
@@ -1543,6 +1564,15 @@ export namespace cloudasset_v1 {
     permission?: string | null;
   }
   /**
+   * Modifier to apply to the API requests.
+   */
+  export interface Schema$GoogleIdentityAccesscontextmanagerV1Modifier {
+    /**
+     * Adds an additional HTTP request header.
+     */
+    addRequestHeader?: Schema$GoogleIdentityAccesscontextmanagerV1AddRequestHeader;
+  }
+  /**
    * A restriction on the OS type and version of devices making requests.
    */
   export interface Schema$GoogleIdentityAccesscontextmanagerV1OsConstraint {
@@ -1558,6 +1588,32 @@ export namespace cloudasset_v1 {
      * Only allows requests from devices with a verified Chrome OS. Verifications includes requirements that the device is enterprise-managed, conformant to domain policies, and the caller has permission to call the API targeted by the request.
      */
     requireVerifiedChromeOs?: boolean | null;
+  }
+  /**
+   * Specifies the Private Service Connect endpoint that an API call refers to.
+   */
+  export interface Schema$GoogleIdentityAccesscontextmanagerV1PrivateServiceConnectEndpoint {
+    /**
+     * The full resource name of the global forwarding rule that identifies a Private Service Connect endpoint. Forwarding rule format: `//compute.googleapis.com/projects/{PROJECT_ID\}/global/forwardingRules/{FORWARDING_RULE_ID\}`.
+     */
+    forwardingRule?: string | null;
+  }
+  /**
+   * Service patterns used to allow access.
+   */
+  export interface Schema$GoogleIdentityAccesscontextmanagerV1ServicePattern {
+    /**
+     * Modifiers to apply to the requests that match the URL pattern.
+     */
+    modifiers?: Schema$GoogleIdentityAccesscontextmanagerV1Modifier[];
+    /**
+     * URL pattern to allow. Only patterns of ".googleapis.com/x", "www.googleapis.com//x" and "*.appspot.com/x forms are supported, where should be an alphanumeric name.
+     */
+    pattern?: string | null;
+    /**
+     * Supported service to allow.
+     */
+    service?: string | null;
   }
   /**
    * `ServicePerimeter` describes a set of Google Cloud resources which can freely import and export data amongst themselves, but not export outside of the `ServicePerimeter`. If a request with a source within this `ServicePerimeter` has a target outside of the `ServicePerimeter`, the request will be blocked. Otherwise the request is allowed. There are two types of Service Perimeter - Regular and Bridge. Regular Service Perimeters cannot overlap, a single Google Cloud project or VPC network can only belong to a single regular Service Perimeter. Service Perimeter Bridges can contain only Google Cloud projects as members, a single Google Cloud project may belong to multiple Service Perimeter Bridges.
@@ -1630,6 +1686,10 @@ export namespace cloudasset_v1 {
    */
   export interface Schema$GoogleIdentityAccesscontextmanagerV1VpcAccessibleServices {
     /**
+     * Specifies which Google services are allowed to be accessed from VPC networks in the service perimeter.
+     */
+    allowedServicePatterns?: Schema$GoogleIdentityAccesscontextmanagerV1ServicePattern[];
+    /**
      * The list of APIs usable within the Service Perimeter. Must be empty unless 'enable_restriction' is True. You can specify a list of individual services, as well as include the 'RESTRICTED-SERVICES' value, which automatically includes all of the services protected by the perimeter.
      */
     allowedServices?: string[] | null;
@@ -1637,6 +1697,10 @@ export namespace cloudasset_v1 {
      * Whether to restrict API calls within the Service Perimeter to the list of APIs specified in 'allowed_services'.
      */
     enableRestriction?: boolean | null;
+    /**
+     * Defines the enforcement scopes of service patterns.
+     */
+    servicePatternsEnforcementScopes?: string[] | null;
   }
   /**
    * The originating network source in Google Cloud.
@@ -2875,7 +2939,10 @@ export namespace cloudasset_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudasset',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -3310,8 +3377,7 @@ export namespace cloudasset_v1 {
         | BodyResponseCallback<Schema$Feed>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Feed>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Feed> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Feed>>
@@ -3444,8 +3510,7 @@ export namespace cloudasset_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -3583,8 +3648,7 @@ export namespace cloudasset_v1 {
         | BodyResponseCallback<Schema$Feed>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Feed>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Feed> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Feed>>
@@ -3867,8 +3931,7 @@ export namespace cloudasset_v1 {
         | BodyResponseCallback<Schema$Feed>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Feed>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Feed> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Feed>>
@@ -3982,7 +4045,10 @@ export namespace cloudasset_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudasset',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -4052,8 +4118,7 @@ export namespace cloudasset_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4223,8 +4288,7 @@ export namespace cloudasset_v1 {
         | BodyResponseCallback<Schema$SavedQuery>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$SavedQuery>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$SavedQuery> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$SavedQuery>>
@@ -4358,8 +4422,7 @@ export namespace cloudasset_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -4499,8 +4562,7 @@ export namespace cloudasset_v1 {
         | BodyResponseCallback<Schema$SavedQuery>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$SavedQuery>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$SavedQuery> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$SavedQuery>>
@@ -4621,8 +4683,7 @@ export namespace cloudasset_v1 {
     list(
       params: Params$Resource$Savedqueries$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListSavedQueriesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListSavedQueriesResponse>,
       callback: BodyResponseCallback<Schema$ListSavedQueriesResponse>
     ): void;
     list(
@@ -4802,8 +4863,7 @@ export namespace cloudasset_v1 {
         | BodyResponseCallback<Schema$SavedQuery>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$SavedQuery>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$SavedQuery> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$SavedQuery>>
@@ -4938,7 +4998,10 @@ export namespace cloudasset_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudasset',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -5015,8 +5078,7 @@ export namespace cloudasset_v1 {
     analyzeIamPolicy(
       params: Params$Resource$V1$Analyzeiampolicy,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$AnalyzeIamPolicyResponse>,
+        MethodOptions | BodyResponseCallback<Schema$AnalyzeIamPolicyResponse>,
       callback: BodyResponseCallback<Schema$AnalyzeIamPolicyResponse>
     ): void;
     analyzeIamPolicy(
@@ -5108,7 +5170,10 @@ export namespace cloudasset_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudasset',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -5190,8 +5255,7 @@ export namespace cloudasset_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5461,8 +5525,7 @@ export namespace cloudasset_v1 {
     analyzeOrgPolicies(
       params: Params$Resource$V1$Analyzeorgpolicies,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$AnalyzeOrgPoliciesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$AnalyzeOrgPoliciesResponse>,
       callback: BodyResponseCallback<Schema$AnalyzeOrgPoliciesResponse>
     ): void;
     analyzeOrgPolicies(
@@ -6101,8 +6164,7 @@ export namespace cloudasset_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -6543,8 +6605,7 @@ export namespace cloudasset_v1 {
     searchAllResources(
       params: Params$Resource$V1$Searchallresources,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$SearchAllResourcesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$SearchAllResourcesResponse>,
       callback: BodyResponseCallback<Schema$SearchAllResourcesResponse>
     ): void;
     searchAllResources(

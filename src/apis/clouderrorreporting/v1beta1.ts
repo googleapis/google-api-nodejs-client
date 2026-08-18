@@ -476,8 +476,7 @@ export namespace clouderrorreporting_v1beta1 {
     deleteEvents(
       params: Params$Resource$Projects$Deleteevents,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$DeleteEventsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$DeleteEventsResponse>,
       callback: BodyResponseCallback<Schema$DeleteEventsResponse>
     ): void;
     deleteEvents(
@@ -795,8 +794,7 @@ export namespace clouderrorreporting_v1beta1 {
     report(
       params: Params$Resource$Projects$Events$Report,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ReportErrorEventResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ReportErrorEventResponse>,
       callback: BodyResponseCallback<Schema$ReportErrorEventResponse>
     ): void;
     report(
@@ -1011,8 +1009,7 @@ export namespace clouderrorreporting_v1beta1 {
         | BodyResponseCallback<Schema$ErrorGroup>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$ErrorGroup>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$ErrorGroup> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$ErrorGroup>>
@@ -1163,8 +1160,7 @@ export namespace clouderrorreporting_v1beta1 {
         | BodyResponseCallback<Schema$ErrorGroup>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$ErrorGroup>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$ErrorGroup> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$ErrorGroup>>
@@ -1329,8 +1325,7 @@ export namespace clouderrorreporting_v1beta1 {
     list(
       params: Params$Resource$Projects$Groupstats$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListGroupStatsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListGroupStatsResponse>,
       callback: BodyResponseCallback<Schema$ListGroupStatsResponse>
     ): void;
     list(
@@ -1533,8 +1528,7 @@ export namespace clouderrorreporting_v1beta1 {
     deleteEvents(
       params: Params$Resource$Projects$Locations$Deleteevents,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$DeleteEventsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$DeleteEventsResponse>,
       callback: BodyResponseCallback<Schema$DeleteEventsResponse>
     ): void;
     deleteEvents(
@@ -1906,8 +1900,7 @@ export namespace clouderrorreporting_v1beta1 {
         | BodyResponseCallback<Schema$ErrorGroup>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$ErrorGroup>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$ErrorGroup> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$ErrorGroup>>
@@ -2058,8 +2051,7 @@ export namespace clouderrorreporting_v1beta1 {
         | BodyResponseCallback<Schema$ErrorGroup>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$ErrorGroup>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$ErrorGroup> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$ErrorGroup>>
@@ -2224,8 +2216,7 @@ export namespace clouderrorreporting_v1beta1 {
     list(
       params: Params$Resource$Projects$Locations$Groupstats$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListGroupStatsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListGroupStatsResponse>,
       callback: BodyResponseCallback<Schema$ListGroupStatsResponse>
     ): void;
     list(

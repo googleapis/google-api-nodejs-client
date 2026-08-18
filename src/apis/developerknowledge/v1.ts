@@ -113,6 +113,7 @@ export namespace developerknowledge_v1 {
   export class Developerknowledge {
     context: APIRequestContext;
     documents: Resource$Documents;
+    v1: Resource$V1;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this.context = {
@@ -121,9 +122,71 @@ export namespace developerknowledge_v1 {
       };
 
       this.documents = new Resource$Documents(this.context);
+      this.v1 = new Resource$V1(this.context);
     }
   }
 
+  /**
+   * An answer to a query.
+   */
+  export interface Schema$Answer {
+    /**
+     * Contains the text of the answer.
+     */
+    answerText?: string | null;
+    /**
+     * Output only. Contains citations for the answer.
+     */
+    citations?: Schema$AnswerCitation[];
+    /**
+     * Output only. Contains references for the answer.
+     */
+    references?: Schema$AnswerReference[];
+  }
+  /**
+   * Citation info for a segment.
+   */
+  export interface Schema$AnswerCitation {
+    /**
+     * Output only. Indicates the end of the segment, measured in bytes (UTF-8 unicode), exclusive. If there are multi-byte characters, such as non-ASCII characters, the index measurement is longer than the string length.
+     */
+    endIndex?: number | null;
+    /**
+     * Output only. Contains citation sources for the attributed segment.
+     */
+    sources?: Schema$CitationSource[];
+    /**
+     * Output only. Indicates the start of the segment, measured in bytes (UTF-8 unicode), inclusive. If there are multi-byte characters, such as non-ASCII characters, the index measurement is longer than the string length.
+     */
+    startIndex?: number | null;
+  }
+  /**
+   * Request message for DeveloperKnowledge.AnswerQuery.
+   */
+  export interface Schema$AnswerQueryRequest {
+    /**
+     * Required. The query to answer.
+     */
+    query?: string | null;
+  }
+  /**
+   * Response message for DeveloperKnowledge.AnswerQuery.
+   */
+  export interface Schema$AnswerQueryResponse {
+    /**
+     * The answer to the query.
+     */
+    answer?: Schema$Answer;
+  }
+  /**
+   * Represents a reference to a source.
+   */
+  export interface Schema$AnswerReference {
+    /**
+     * Output only. The reference document.
+     */
+    documentReference?: Schema$DocumentReference;
+  }
   /**
    * Response message for DeveloperKnowledge.BatchGetDocuments.
    */
@@ -134,13 +197,26 @@ export namespace developerknowledge_v1 {
     documents?: Schema$Document[];
   }
   /**
-   * A Document represents a piece of content from the Developer Knowledge corpus.
+   * Citation source.
+   */
+  export interface Schema$CitationSource {
+    /**
+     * Output only. Contains the index of the Answer.AnswerReference in the `references` repeated field.
+     */
+    referenceIndex?: number | null;
+  }
+  /**
+   * A Document represents a page of documentation in the Developer Knowledge corpus, like the page at https://docs.cloud.google.com/storage/docs/creating-buckets.
    */
   export interface Schema$Document {
     /**
      * Output only. Contains the full content of the document in Markdown format.
      */
     content?: string | null;
+    /**
+     * Output only. The length of the `content` field in bytes.
+     */
+    contentLengthBytes?: number | null;
     /**
      * Output only. Specifies the data source of the document. Example data source: `firebase.google.com`
      */
@@ -192,11 +268,20 @@ export namespace developerknowledge_v1 {
     parent?: string | null;
   }
   /**
+   * Represents a reference to a document.
+   */
+  export interface Schema$DocumentReference {
+    /**
+     * Output only. Contains the document chunk. The `document_chunk.id` field is not set and will be empty.
+     */
+    documentChunk?: Schema$DocumentChunk;
+  }
+  /**
    * Response message for DeveloperKnowledge.SearchDocumentChunks.
    */
   export interface Schema$SearchDocumentChunksResponse {
     /**
-     * Optional. Provides a token that can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     * Provides a token that can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
      */
     nextPageToken?: string | null;
     /**
@@ -242,7 +327,7 @@ export namespace developerknowledge_v1 {
      *
      *   // Do the magic
      *   const res = await developerknowledge.documents.batchGet({
-     *     // Required. Specifies the names of the documents to retrieve. A maximum of 20 documents can be retrieved in a batch. The documents are returned in the same order as the `names` in the request. Format: `documents/{uri_without_scheme\}` Example: `documents/docs.cloud.google.com/storage/docs/creating-buckets` If you are changing the batch size, consider the value of `maxConcurrentGCSFetches` constant in the service implementation: http://cs///depot/google3/devrel/boq/developerknowledge/service/developerknowledge.go
+     *     // Required. Specifies the names of the documents to retrieve. A maximum of 20 documents can be retrieved in a batch. The documents are returned in the same order as the `names` in the request. Format: `documents/{uri_without_scheme\}` Example: `documents/docs.cloud.google.com/storage/docs/creating-buckets` Each name must not exceed 500 characters; values longer than 500 characters will result in an `INVALID_ARGUMENT` error.
      *     names: 'placeholder-value',
      *     // Optional. Specifies the DocumentView of the document. If unspecified, DeveloperKnowledge.BatchGetDocuments defaults to `DOCUMENT_VIEW_CONTENT`.
      *     view: 'placeholder-value',
@@ -283,8 +368,7 @@ export namespace developerknowledge_v1 {
     batchGet(
       params: Params$Resource$Documents$Batchget,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$BatchGetDocumentsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$BatchGetDocumentsResponse>,
       callback: BodyResponseCallback<Schema$BatchGetDocumentsResponse>
     ): void;
     batchGet(
@@ -386,7 +470,7 @@ export namespace developerknowledge_v1 {
      *
      *   // Do the magic
      *   const res = await developerknowledge.documents.get({
-     *     // Required. Specifies the name of the document to retrieve. Format: `documents/{uri_without_scheme\}` Example: `documents/docs.cloud.google.com/storage/docs/creating-buckets`
+     *     // Required. Specifies the name of the document to retrieve. Format: `documents/{uri_without_scheme\}` Example: `documents/docs.cloud.google.com/storage/docs/creating-buckets` The name must not exceed 500 characters; values longer than 500 characters will result in an `INVALID_ARGUMENT` error.
      *     name: 'documents/.*',
      *     // Optional. Specifies the DocumentView of the document. If unspecified, DeveloperKnowledge.GetDocument defaults to `DOCUMENT_VIEW_CONTENT`.
      *     view: 'placeholder-value',
@@ -396,6 +480,7 @@ export namespace developerknowledge_v1 {
      *   // Example response
      *   // {
      *   //   "content": "my_content",
+     *   //   "contentLengthBytes": 0,
      *   //   "dataSource": "my_dataSource",
      *   //   "description": "my_description",
      *   //   "name": "my_name",
@@ -452,8 +537,7 @@ export namespace developerknowledge_v1 {
         | BodyResponseCallback<Schema$Document>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Document>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Document> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Document>>
@@ -529,13 +613,13 @@ export namespace developerknowledge_v1 {
      *
      *   // Do the magic
      *   const res = await developerknowledge.documents.searchDocumentChunks({
-     *     // Optional. Applies a strict filter to the search results. The expression supports a subset of the syntax described at https://google.aip.dev/160. While `SearchDocumentChunks` returns DocumentChunks, the filter is applied to `DocumentChunk.document` fields. Supported fields for filtering: * `data_source` (STRING): The source of the document, e.g. `docs.cloud.google.com`. See https://developers.google.com/knowledge/reference/corpus-reference for the complete list of data sources in the corpus. * `update_time` (TIMESTAMP): The timestamp of when the document was last meaningfully updated. A meaningful update is one that changes document's markdown content or metadata. * `uri` (STRING): The document URI, e.g. `https://docs.cloud.google.com/bigquery/docs/tables`. STRING fields support `=` (equals) and `!=` (not equals) operators for **exact match** on the whole string. Partial match, prefix match, and regexp match are not supported. TIMESTAMP fields support `=`, `<`, `<=`, `\>`, and `\>=` operators. Timestamps must be in RFC-3339 format, e.g., `"2025-01-01T00:00:00Z"`. You can combine expressions using `AND`, `OR`, and `NOT` (or `-`) logical operators. `OR` has higher precedence than `AND`. Use parentheses for explicit precedence grouping. Examples: * `data_source = "docs.cloud.google.com" OR data_source = "firebase.google.com"` * `data_source != "firebase.google.com"` * `update_time < "2024-01-01T00:00:00Z"` * `update_time \>= "2025-01-22T00:00:00Z" AND (data_source = "developer.chrome.com" OR data_source = "web.dev")` * `uri = "https://docs.cloud.google.com/release-notes"` The `filter` string must not exceed 500 characters; values longer than 500 characters will result in an `INVALID_ARGUMENT` error.
+     *     // Optional. Applies a strict filter to the search results. The expression supports a subset of the syntax described at https://google.aip.dev/160. While `SearchDocumentChunks` returns DocumentChunks, the filter is applied to `DocumentChunk.document` fields. Supported fields for filtering: * `content_length_bytes` (INTEGER): The length of the `Document.content` field in bytes. * `data_source` (STRING): The source of the document, e.g. `docs.cloud.google.com`. See https://developers.google.com/knowledge/reference/corpus-reference for the complete list of data sources in the corpus. * `update_time` (TIMESTAMP): The timestamp of when the document was last meaningfully updated. A meaningful update is one that changes document's markdown content or metadata. * `uri` (STRING): The document URI, e.g. `https://docs.cloud.google.com/bigquery/docs/tables`. INTEGER fields support `=`, `<`, `<=`, `\>`, and `\>=` operators. STRING fields support `=` (equals) and `!=` (not equals) operators for **exact match** on the whole string. Partial match, prefix match, and regexp match are not supported. TIMESTAMP fields support `=`, `<`, `<=`, `\>`, and `\>=` operators. Timestamps must be in RFC-3339 format, e.g., `"2025-01-01T00:00:00Z"`. Note: Field names must be in `snake_case` (e.g., `data_source`). Values on the right-hand side of filtering expressions must be string literals enclosed in double quotes (e.g., `"docs.cloud.google.com"`). You can combine expressions using `AND`, `OR`, and `NOT` (or `-`) logical operators. `OR` has higher precedence than `AND`. Use parentheses for explicit precedence grouping. Examples: * Filter by `Document.content_length_bytes`: `content_length_bytes < 50000` * `data_source = "docs.cloud.google.com" OR data_source = "firebase.google.com"` * `data_source != "firebase.google.com"` * `update_time < "2024-01-01T00:00:00Z"` * `update_time \>= "2025-01-22T00:00:00Z" AND (data_source = "developer.chrome.com" OR data_source = "web.dev")` * `uri = "https://docs.cloud.google.com/release-notes"` The `filter` string must not exceed 500 characters; values longer than 500 characters will result in an `INVALID_ARGUMENT` error.
      *     filter: 'placeholder-value',
-     *     // Optional. Specifies the maximum number of results to return. The service may return fewer than this value. If unspecified, at most 5 results will be returned. The maximum value is 20; values above 20 will result in an INVALID_ARGUMENT error.
+     *     // Optional. Specifies the maximum number of results to return. The service may return fewer than this value. If unspecified, at most 5 results will be returned. The maximum value is 100; values above 100 will be coerced to 100.
      *     pageSize: 'placeholder-value',
      *     // Optional. Contains a page token, received from a previous `SearchDocumentChunks` call. Provide this to retrieve the subsequent page.
      *     pageToken: 'placeholder-value',
-     *     // Required. Provides the raw query string provided by the user, such as "How to create a Cloud Storage bucket?".
+     *     // Required. Provides the raw query string provided by the user, such as "How to create a Cloud Storage bucket?". The query must not exceed 500 characters; values longer than 500 characters will result in an `INVALID_ARGUMENT` error.
      *     query: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -652,7 +736,7 @@ export namespace developerknowledge_v1 {
 
   export interface Params$Resource$Documents$Batchget extends StandardParameters {
     /**
-     * Required. Specifies the names of the documents to retrieve. A maximum of 20 documents can be retrieved in a batch. The documents are returned in the same order as the `names` in the request. Format: `documents/{uri_without_scheme\}` Example: `documents/docs.cloud.google.com/storage/docs/creating-buckets` If you are changing the batch size, consider the value of `maxConcurrentGCSFetches` constant in the service implementation: http://cs///depot/google3/devrel/boq/developerknowledge/service/developerknowledge.go
+     * Required. Specifies the names of the documents to retrieve. A maximum of 20 documents can be retrieved in a batch. The documents are returned in the same order as the `names` in the request. Format: `documents/{uri_without_scheme\}` Example: `documents/docs.cloud.google.com/storage/docs/creating-buckets` Each name must not exceed 500 characters; values longer than 500 characters will result in an `INVALID_ARGUMENT` error.
      */
     names?: string[];
     /**
@@ -662,7 +746,7 @@ export namespace developerknowledge_v1 {
   }
   export interface Params$Resource$Documents$Get extends StandardParameters {
     /**
-     * Required. Specifies the name of the document to retrieve. Format: `documents/{uri_without_scheme\}` Example: `documents/docs.cloud.google.com/storage/docs/creating-buckets`
+     * Required. Specifies the name of the document to retrieve. Format: `documents/{uri_without_scheme\}` Example: `documents/docs.cloud.google.com/storage/docs/creating-buckets` The name must not exceed 500 characters; values longer than 500 characters will result in an `INVALID_ARGUMENT` error.
      */
     name?: string;
     /**
@@ -672,11 +756,11 @@ export namespace developerknowledge_v1 {
   }
   export interface Params$Resource$Documents$Searchdocumentchunks extends StandardParameters {
     /**
-     * Optional. Applies a strict filter to the search results. The expression supports a subset of the syntax described at https://google.aip.dev/160. While `SearchDocumentChunks` returns DocumentChunks, the filter is applied to `DocumentChunk.document` fields. Supported fields for filtering: * `data_source` (STRING): The source of the document, e.g. `docs.cloud.google.com`. See https://developers.google.com/knowledge/reference/corpus-reference for the complete list of data sources in the corpus. * `update_time` (TIMESTAMP): The timestamp of when the document was last meaningfully updated. A meaningful update is one that changes document's markdown content or metadata. * `uri` (STRING): The document URI, e.g. `https://docs.cloud.google.com/bigquery/docs/tables`. STRING fields support `=` (equals) and `!=` (not equals) operators for **exact match** on the whole string. Partial match, prefix match, and regexp match are not supported. TIMESTAMP fields support `=`, `<`, `<=`, `\>`, and `\>=` operators. Timestamps must be in RFC-3339 format, e.g., `"2025-01-01T00:00:00Z"`. You can combine expressions using `AND`, `OR`, and `NOT` (or `-`) logical operators. `OR` has higher precedence than `AND`. Use parentheses for explicit precedence grouping. Examples: * `data_source = "docs.cloud.google.com" OR data_source = "firebase.google.com"` * `data_source != "firebase.google.com"` * `update_time < "2024-01-01T00:00:00Z"` * `update_time \>= "2025-01-22T00:00:00Z" AND (data_source = "developer.chrome.com" OR data_source = "web.dev")` * `uri = "https://docs.cloud.google.com/release-notes"` The `filter` string must not exceed 500 characters; values longer than 500 characters will result in an `INVALID_ARGUMENT` error.
+     * Optional. Applies a strict filter to the search results. The expression supports a subset of the syntax described at https://google.aip.dev/160. While `SearchDocumentChunks` returns DocumentChunks, the filter is applied to `DocumentChunk.document` fields. Supported fields for filtering: * `content_length_bytes` (INTEGER): The length of the `Document.content` field in bytes. * `data_source` (STRING): The source of the document, e.g. `docs.cloud.google.com`. See https://developers.google.com/knowledge/reference/corpus-reference for the complete list of data sources in the corpus. * `update_time` (TIMESTAMP): The timestamp of when the document was last meaningfully updated. A meaningful update is one that changes document's markdown content or metadata. * `uri` (STRING): The document URI, e.g. `https://docs.cloud.google.com/bigquery/docs/tables`. INTEGER fields support `=`, `<`, `<=`, `\>`, and `\>=` operators. STRING fields support `=` (equals) and `!=` (not equals) operators for **exact match** on the whole string. Partial match, prefix match, and regexp match are not supported. TIMESTAMP fields support `=`, `<`, `<=`, `\>`, and `\>=` operators. Timestamps must be in RFC-3339 format, e.g., `"2025-01-01T00:00:00Z"`. Note: Field names must be in `snake_case` (e.g., `data_source`). Values on the right-hand side of filtering expressions must be string literals enclosed in double quotes (e.g., `"docs.cloud.google.com"`). You can combine expressions using `AND`, `OR`, and `NOT` (or `-`) logical operators. `OR` has higher precedence than `AND`. Use parentheses for explicit precedence grouping. Examples: * Filter by `Document.content_length_bytes`: `content_length_bytes < 50000` * `data_source = "docs.cloud.google.com" OR data_source = "firebase.google.com"` * `data_source != "firebase.google.com"` * `update_time < "2024-01-01T00:00:00Z"` * `update_time \>= "2025-01-22T00:00:00Z" AND (data_source = "developer.chrome.com" OR data_source = "web.dev")` * `uri = "https://docs.cloud.google.com/release-notes"` The `filter` string must not exceed 500 characters; values longer than 500 characters will result in an `INVALID_ARGUMENT` error.
      */
     filter?: string;
     /**
-     * Optional. Specifies the maximum number of results to return. The service may return fewer than this value. If unspecified, at most 5 results will be returned. The maximum value is 20; values above 20 will result in an INVALID_ARGUMENT error.
+     * Optional. Specifies the maximum number of results to return. The service may return fewer than this value. If unspecified, at most 5 results will be returned. The maximum value is 100; values above 100 will be coerced to 100.
      */
     pageSize?: number;
     /**
@@ -684,8 +768,163 @@ export namespace developerknowledge_v1 {
      */
     pageToken?: string;
     /**
-     * Required. Provides the raw query string provided by the user, such as "How to create a Cloud Storage bucket?".
+     * Required. Provides the raw query string provided by the user, such as "How to create a Cloud Storage bucket?". The query must not exceed 500 characters; values longer than 500 characters will result in an `INVALID_ARGUMENT` error.
      */
     query?: string;
+  }
+
+  export class Resource$V1 {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Answers a query using grounded generation.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/developerknowledge.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const developerknowledge = google.developerknowledge('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await developerknowledge.answerQuery({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "query": "my_query"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "answer": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    answerQuery(
+      params: Params$Resource$V1$Answerquery,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    answerQuery(
+      params?: Params$Resource$V1$Answerquery,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AnswerQueryResponse>>;
+    answerQuery(
+      params: Params$Resource$V1$Answerquery,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    answerQuery(
+      params: Params$Resource$V1$Answerquery,
+      options: MethodOptions | BodyResponseCallback<Schema$AnswerQueryResponse>,
+      callback: BodyResponseCallback<Schema$AnswerQueryResponse>
+    ): void;
+    answerQuery(
+      params: Params$Resource$V1$Answerquery,
+      callback: BodyResponseCallback<Schema$AnswerQueryResponse>
+    ): void;
+    answerQuery(
+      callback: BodyResponseCallback<Schema$AnswerQueryResponse>
+    ): void;
+    answerQuery(
+      paramsOrCallback?:
+        | Params$Resource$V1$Answerquery
+        | BodyResponseCallback<Schema$AnswerQueryResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AnswerQueryResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AnswerQueryResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$AnswerQueryResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback || {}) as Params$Resource$V1$Answerquery;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$V1$Answerquery;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://developerknowledge.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1:answerQuery').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AnswerQueryResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AnswerQueryResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$V1$Answerquery extends StandardParameters {
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AnswerQueryRequest;
   }
 }

@@ -280,6 +280,10 @@ export namespace dataplex_v1 {
    */
   export interface Schema$GoogleCloudDataplexV1ApproveChangeRequestRequest {
     /**
+     * Optional. The comment or reason for approving the ChangeRequest. Maximum length is 1024 characters.
+     */
+    comment?: string | null;
+    /**
      * Optional. The etag of the ChangeRequest.
      */
     etag?: string | null;
@@ -860,6 +864,10 @@ export namespace dataplex_v1 {
      */
     resource?: string | null;
     /**
+     * Output only. The comment provided by the reviewer when approving or rejecting the ChangeRequest. Maximum length is 1024 characters.
+     */
+    reviewerComment?: string | null;
+    /**
      * Output only. The current state of the ChangeRequest.
      */
     state?: string | null;
@@ -887,6 +895,32 @@ export namespace dataplex_v1 {
      * Output only. The time when the ChangeRequest was last updated.
      */
     updateTime?: string | null;
+  }
+  /**
+   * Identity of a business contact.
+   */
+  export interface Schema$GoogleCloudDataplexV1ContactIdentity {
+    /**
+     * Optional. Email ID or freeform ID of the Contact person.
+     */
+    contactId?: string | null;
+    /**
+     * Required. Name of the contact person for the Data Domain; unvalidated freeform text.
+     */
+    contactName?: string | null;
+    /**
+     * Required. Designation of the person i.e. Data Steward or Data Analyst. Example values: owner, steward, producer, admin.
+     */
+    contactRole?: string | null;
+  }
+  /**
+   * Business contacts part of business context of a Data Domain. Corresponds to the Contacts Aspect in Dataplex Universal Catalog.
+   */
+  export interface Schema$GoogleCloudDataplexV1Contacts {
+    /**
+     * Required. Identities of the business contacts.
+     */
+    identities?: Schema$GoogleCloudDataplexV1ContactIdentity[];
   }
   /**
    * Request message for CreateEntryLink.
@@ -1318,6 +1352,10 @@ export namespace dataplex_v1 {
    */
   export interface Schema$GoogleCloudDataplexV1DataDiscoverySpecStorageConfigUnstructuredDataOptions {
     /**
+     * Optional. Whether to use the global model endpoint.
+     */
+    globalEndpointEnabled?: boolean | null;
+    /**
      * Optional. Specifies whether deeper semantic inference over the objects' contents using GenAI is enabled.
      */
     semanticInferenceEnabled?: boolean | null;
@@ -1458,6 +1496,72 @@ export namespace dataplex_v1 {
      * Optional. Specifies which components of the data documentation to generate. Any component that is required to generate the specified components will also be generated. If no generation scope is specified, all available documentation components will be generated.
      */
     generationScopes?: string[] | null;
+  }
+  /**
+   * A DataDomain is a logical grouping of data resources for governance, discovery, and management at scale.
+   */
+  export interface Schema$GoogleCloudDataplexV1DataDomain {
+    /**
+     * Required. Contact info for the Data Domains.
+     */
+    contacts?: Schema$GoogleCloudDataplexV1Contacts;
+    /**
+     * Output only. The time at which the DataDomain was created.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. User-provided description of the DataDomain.
+     */
+    description?: string | null;
+    /**
+     * Required. User-friendly display name.
+     */
+    displayName?: string | null;
+    /**
+     * Optional. User-defined labels for the DataDomain.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Identifier. The relative resource name of the DataDomain, of the form: projects/{project_id_or_number\}/locations/{location_id\}/dataDomains/{data_domain_id\}
+     */
+    name?: string | null;
+    /**
+     * Optional. Immutable. The resource name of the parent DataDomain. Empty if this is a top-level DataDomain. Format: projects/{project_id_or_number\}/locations/{location\}/dataDomains/{parent_data_domain_id\} This field is immutable after creation.
+     */
+    parentDataDomain?: string | null;
+    /**
+     * Output only. Output-only policy member strings of this resource.
+     */
+    policyMember?: Schema$GoogleIamV1ResourcePolicyMember;
+    /**
+     * Output only. System-generated globally unique ID for the DataDomain.
+     */
+    uid?: string | null;
+    /**
+     * Output only. The time at which the DataDomain was last updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * DataDomainBinding represents a rule that includes a Google Cloud resource and its contents into a DataDomain.
+   */
+  export interface Schema$GoogleCloudDataplexV1DataDomainBinding {
+    /**
+     * Output only. The time at which the DataDomainBinding was created.
+     */
+    createTime?: string | null;
+    /**
+     * Identifier. The relative resource name of the DataDomainBinding. Format: projects/{project_id_or_number\}/locations/{location\}/dataDomains/{data_domain_id\}/bindings/{binding_id\}
+     */
+    name?: string | null;
+    /**
+     * Required. Immutable. The full resource name of the Google Cloud resource to be bound (i.e. included together with its contents) to the DataDomain.Format: IAM Full resource name (https://docs.cloud.google.com/iam/docs/full-resource-names) Examples: - GCP Project: //cloudresourcemanager.googleapis.com/projects/{project-id\} - BigQuery Dataset: //bigquery.googleapis.com/projects/{project-id\}/datasets/{dataset-id\} - BigQuery Table: //bigquery.googleapis.com/projects/{project-id\}/datasets/{dataset-id\}/tables/{table-id\} - Dataplex Data Product: //dataplex.googleapis.com/projects/{project-number\}/locations/{location\}/dataProducts/{data-product-id\}Authorization: the resource to be bound must first grant an IAM role with the resource-specific setIamPolicy permission to the DataDomain. Example: - resource: //bigquery.googleapis.com/projects/{project-id\}/datasets/{dataset-id\} - IAM role: with bigquery.datasets.setIamPolicy permission (e.g. roles/owner) - IAM member: principal://dataplex.googleapis.com/projects/{project-number\}/name/locations/{location\}/dataDomains/{data-domain-id\}
+     */
+    resource?: string | null;
+    /**
+     * Output only. System-generated unique ID.
+     */
+    uid?: string | null;
   }
   /**
    * A data product is a curated collection of data assets, packaged to address specific use cases. It's a way to manage and share data in a more organized, product-like manner.
@@ -2612,6 +2716,14 @@ export namespace dataplex_v1 {
      */
     uid?: string | null;
     /**
+     * Output only. The result of an unstructured data profile scan.
+     */
+    unstructuredDataProfileResult?: Schema$GoogleCloudDataplexV1UnstructuredDataProfileResult;
+    /**
+     * Optional. Settings for an unstructured data profile scan.
+     */
+    unstructuredDataProfileSpec?: Schema$GoogleCloudDataplexV1UnstructuredDataProfileSpec;
+    /**
      * Output only. The time when the scan was last updated.
      */
     updateTime?: string | null;
@@ -2890,6 +3002,14 @@ export namespace dataplex_v1 {
      * Output only. System generated globally unique ID for the DataScanJob.
      */
     uid?: string | null;
+    /**
+     * Output only. The result of an unstructured data profile scan.
+     */
+    unstructuredDataProfileResult?: Schema$GoogleCloudDataplexV1UnstructuredDataProfileResult;
+    /**
+     * Output only. Settings for an unstructured data profile scan.
+     */
+    unstructuredDataProfileSpec?: Schema$GoogleCloudDataplexV1UnstructuredDataProfileSpec;
   }
   /**
    * The data source for DataScan.
@@ -3415,6 +3535,23 @@ export namespace dataplex_v1 {
     resource?: string | null;
   }
   /**
+   * Payload associated with EntryLinkType related log events.
+   */
+  export interface Schema$GoogleCloudDataplexV1EntryLinkTypeEvent {
+    /**
+     * Name of the resource.
+     */
+    entryLinkTypeId?: string | null;
+    /**
+     * The type of the event.
+     */
+    eventType?: string | null;
+    /**
+     * The log message.
+     */
+    message?: string | null;
+  }
+  /**
    * Information related to the source system of the data resource that is represented by the entry.
    */
   export interface Schema$GoogleCloudDataplexV1EntrySource {
@@ -3741,6 +3878,175 @@ export namespace dataplex_v1 {
     entityType?: string | null;
   }
   /**
+   * Contains the strict structure for graph-profile for semantic inference scan result.
+   */
+  export interface Schema$GoogleCloudDataplexV1GraphProfile {
+    /**
+     * Output only. Edge types.
+     */
+    edgeTypes?: Schema$GoogleCloudDataplexV1GraphProfileEdgeType[];
+    /**
+     * Output only. Node types.
+     */
+    nodeTypes?: Schema$GoogleCloudDataplexV1GraphProfileNodeType[];
+  }
+  /**
+   * Represents a type of edge (relationship) in the graph.
+   */
+  export interface Schema$GoogleCloudDataplexV1GraphProfileEdgeType {
+    /**
+     * Output only. Description of the edge type.
+     */
+    description?: string | null;
+    /**
+     * Output only. Extraction hints for the edge.
+     */
+    extractionHints?: Schema$GoogleCloudDataplexV1GraphProfileEdgeTypeExtractionHints;
+    /**
+     * Output only. Fields of the edge type.
+     */
+    fields?: Schema$GoogleCloudDataplexV1GraphProfileField[];
+    /**
+     * Output only. Defines the Foreign Key constraints for the edge.
+     */
+    foreignKeys?: Schema$GoogleCloudDataplexV1GraphProfileEdgeTypeForeignKey[];
+    /**
+     * Output only. Name of the edge type.
+     */
+    name?: string | null;
+    /**
+     * Output only. Source node type.
+     */
+    sourceNodeType?: string | null;
+    /**
+     * Output only. Target node type.
+     */
+    targetNodeType?: string | null;
+  }
+  /**
+   * Extraction hints (edge-level).
+   */
+  export interface Schema$GoogleCloudDataplexV1GraphProfileEdgeTypeExtractionHints {
+    /**
+     * Output only. Expected connectivity topology and bounds of this relationship. Format: "Topology - Description" Example: "1:N - One company can have multiple financial reports."
+     */
+    cardinality?: string | null;
+  }
+  /**
+   * Represents a foreign key constraint.
+   */
+  export interface Schema$GoogleCloudDataplexV1GraphProfileEdgeTypeForeignKey {
+    /**
+     * Output only. Description of the foreign key.
+     */
+    description?: string | null;
+    /**
+     * Output only. Field Mappings. Mappings between local fields and the fields they reference in the referenced node type.
+     */
+    fieldMappings?: Schema$GoogleCloudDataplexV1GraphProfileEdgeTypeForeignKeyFieldMapping[];
+    /**
+     * Output only. Name of the foreign key constraint.
+     */
+    name?: string | null;
+    /**
+     * Output only. The node type this constraint references.
+     */
+    referencedNodeType?: string | null;
+  }
+  /**
+   * Maps a local field to a referenced field.
+   */
+  export interface Schema$GoogleCloudDataplexV1GraphProfileEdgeTypeForeignKeyFieldMapping {
+    /**
+     * Output only. Local field name forming part of the foreign key.
+     */
+    field?: string | null;
+    /**
+     * Output only. Field name in the referenced node type.
+     */
+    referencedField?: string | null;
+  }
+  /**
+   * Represents a field in a node or edge type.
+   */
+  export interface Schema$GoogleCloudDataplexV1GraphProfileField {
+    /**
+     * Output only. The data type of the field, e.g., STRING, INTEGER, DATE.
+     */
+    dataType?: string | null;
+    /**
+     * Output only. Description of the field.
+     */
+    description?: string | null;
+    /**
+     * Output only. Extraction hints for the field.
+     */
+    extractionHints?: Schema$GoogleCloudDataplexV1GraphProfileFieldExtractionHints;
+    /**
+     * Output only. Sub-fields of this field (for STRUCT types).
+     */
+    fields?: Schema$GoogleCloudDataplexV1GraphProfileField[];
+    /**
+     * Output only. The mapped metadata type.
+     */
+    metadataType?: string | null;
+    /**
+     * Output only. The mode of the field.
+     */
+    mode?: string | null;
+    /**
+     * Output only. Name of the field.
+     */
+    name?: string | null;
+  }
+  /**
+   * Extraction hints (field-level).
+   */
+  export interface Schema$GoogleCloudDataplexV1GraphProfileFieldExtractionHints {
+    /**
+     * Output only. Standardizes extracted data (e.g., to ISO 3166-1 alpha-2).
+     */
+    normalization?: string | null;
+    /**
+     * Output only. Generates value from other data instead of direct extraction (e.g., hashing).
+     */
+    synthesis?: string | null;
+  }
+  /**
+   * Represents a type of node in the graph.
+   */
+  export interface Schema$GoogleCloudDataplexV1GraphProfileNodeType {
+    /**
+     * Output only. Description of the node type.
+     */
+    description?: string | null;
+    /**
+     * Output only. Extraction hints for the node.
+     */
+    extractionHints?: Schema$GoogleCloudDataplexV1GraphProfileNodeTypeExtractionHints;
+    /**
+     * Output only. Fields of the node type.
+     */
+    fields?: Schema$GoogleCloudDataplexV1GraphProfileField[];
+    /**
+     * Output only. Name of the node type.
+     */
+    name?: string | null;
+    /**
+     * Output only. Field names forming the primary keys. The order in this array defines the key's ordinal positions for composite keys.
+     */
+    primaryKeys?: string[] | null;
+  }
+  /**
+   * Extraction hints (node-level).
+   */
+  export interface Schema$GoogleCloudDataplexV1GraphProfileNodeTypeExtractionHints {
+    /**
+     * Output only. Expected occurrence frequency of this node type within a document. Format: "Bounds - Description" Example: "0:N - A document may contain multiple people names."
+     */
+    cardinality?: string | null;
+  }
+  /**
    * An object that describes the values that you want to set for an entry and its attached aspects when you import metadata. Used when you run a metadata import job. See CreateMetadataJob.You provide a collection of import items in a metadata import file. For more information about how to create a metadata import file, see Metadata import file (https://cloud.google.com/dataplex/docs/import-metadata#metadata-import-file).
    */
   export interface Schema$GoogleCloudDataplexV1ImportItem {
@@ -4050,6 +4356,32 @@ export namespace dataplex_v1 {
     unreachableLocations?: string[] | null;
   }
   /**
+   * List DataDomainBindings response.
+   */
+  export interface Schema$GoogleCloudDataplexV1ListDataDomainBindingsResponse {
+    /**
+     * DataDomainBindings under the given parent.
+     */
+    dataDomainBindings?: Schema$GoogleCloudDataplexV1DataDomainBinding[];
+    /**
+     * Token to retrieve the next page of results.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * List DataDomains response.
+   */
+  export interface Schema$GoogleCloudDataplexV1ListDataDomainsResponse {
+    /**
+     * DataDomains under the given parent.
+     */
+    dataDomains?: Schema$GoogleCloudDataplexV1DataDomain[];
+    /**
+     * Token to retrieve the next page of results.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
    * Response message for listing data products.
    */
   export interface Schema$GoogleCloudDataplexV1ListDataProductsResponse {
@@ -4353,11 +4685,7 @@ export namespace dataplex_v1 {
    */
   export interface Schema$GoogleCloudDataplexV1LookupContextRequest {
     /**
-     * Optional. The text representing contextual information for which metadata context is being requested.
-     */
-    context?: string | null;
-    /**
-     * Optional. Allows to configure the context.Supported options: format - The format of the context (one of yaml, xml, json, default is yaml). context_budget - If provided, the output will be intelligently truncated on a best-effort basis to contain approximately the desired amount of characters. There is no guarantee to achieve the specific amount.
+     * Optional. Allows to configure the context.Supported options: format - The format of the context (one of yaml, xml, json, default is yaml). context_budget - If provided, the output will be intelligently truncated on a best-effort basis to contain approximately the desired amount of characters. There is no guarantee to achieve the specific amount. all_schema_fields - If set to true, all schema fields will be returned in the context (regardless of context_budget value). Otherwise, the list of schema fields is truncated. Default is false.
      */
     options?: {[key: string]: string} | null;
     /**
@@ -5389,6 +5717,40 @@ export namespace dataplex_v1 {
     cron?: string | null;
   }
   /**
+   * Contains the result of an unstructured data profile scan.
+   */
+  export interface Schema$GoogleCloudDataplexV1UnstructuredDataProfileResult {
+    /**
+     * Output only. The inferred description.
+     */
+    description?: string | null;
+    /**
+     * Output only. The inferred graph profile.
+     */
+    graphProfile?: Schema$GoogleCloudDataplexV1GraphProfile;
+    /**
+     * Output only. Optional message for partial failures (e.g. node type extraction failed).
+     */
+    partialFailureMessage?: string | null;
+  }
+  /**
+   * Contains the specification for an unstructured data profile scan.
+   */
+  export interface Schema$GoogleCloudDataplexV1UnstructuredDataProfileSpec {
+    /**
+     * Optional. Customized prompt for unstructured data profile. The field will be used as part of the prompt, could be some instruction, specifying skill, or specific area to focus.
+     */
+    customizedPrompt?: string | null;
+    /**
+     * Optional. Whether to use the global model.
+     */
+    globalEndpointEnabled?: boolean | null;
+    /**
+     * Optional. Whether to publish graph-profile as aspect on the catalog entry.
+     */
+    graphProfilePublishingEnabled?: boolean | null;
+  }
+  /**
    * Update Entry request.
    */
   export interface Schema$GoogleCloudDataplexV1UpdateEntryRequest {
@@ -5684,6 +6046,19 @@ export namespace dataplex_v1 {
     version?: number | null;
   }
   /**
+   * Output-only policy member strings of a Google Cloud resource's built-in identity.
+   */
+  export interface Schema$GoogleIamV1ResourcePolicyMember {
+    /**
+     * Output only. IAM policy binding member referring to a Google Cloud resource by user-assigned name (https://google.aip.dev/122). If a resource is deleted and recreated with the same name, the binding will be applicable to the new resource.Example: principal://parametermanager.googleapis.com/projects/12345/name/locations/us-central1-a/parameters/my-parameter
+     */
+    iamPolicyNamePrincipal?: string | null;
+    /**
+     * Output only. IAM policy binding member referring to a Google Cloud resource by system-assigned unique identifier (https://google.aip.dev/148#uid). If a resource is deleted and recreated with the same name, the binding will not be applicable to the new resourceExample: principal://parametermanager.googleapis.com/projects/12345/uid/locations/us-central1-a/parameters/a918fed5
+     */
+    iamPolicyUidPrincipal?: string | null;
+  }
+  /**
    * Request message for SetIamPolicy method.
    */
   export interface Schema$GoogleIamV1SetIamPolicyRequest {
@@ -5922,8 +6297,7 @@ export namespace dataplex_v1 {
     create(
       params: Params$Resource$Organizations$Locations$Encryptionconfigs$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -6073,8 +6447,7 @@ export namespace dataplex_v1 {
     delete(
       params: Params$Resource$Organizations$Locations$Encryptionconfigs$Delete,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -6702,8 +7075,7 @@ export namespace dataplex_v1 {
     patch(
       params: Params$Resource$Organizations$Locations$Encryptionconfigs$Patch,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     patch(
@@ -7294,8 +7666,7 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -7430,8 +7801,7 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -7554,8 +7924,7 @@ export namespace dataplex_v1 {
     get(
       params: Params$Resource$Organizations$Locations$Operations$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -8250,7 +8619,6 @@ export namespace dataplex_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
-     *       //   "context": "my_context",
      *       //   "options": {},
      *       //   "resources": []
      *       // }
@@ -8459,8 +8827,7 @@ export namespace dataplex_v1 {
     lookupEntry(
       params: Params$Resource$Projects$Locations$Lookupentry,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDataplexV1Entry>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleCloudDataplexV1Entry>,
       callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1Entry>
     ): void;
     lookupEntry(
@@ -8782,8 +9149,7 @@ export namespace dataplex_v1 {
     modifyEntry(
       params: Params$Resource$Projects$Locations$Modifyentry,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDataplexV1Entry>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleCloudDataplexV1Entry>,
       callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1Entry>
     ): void;
     modifyEntry(
@@ -9256,8 +9622,7 @@ export namespace dataplex_v1 {
     create(
       params: Params$Resource$Projects$Locations$Aspecttypes$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -9406,8 +9771,7 @@ export namespace dataplex_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Aspecttypes$Delete,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -10041,8 +10405,7 @@ export namespace dataplex_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Aspecttypes$Patch,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     patch(
@@ -10582,6 +10945,7 @@ export namespace dataplex_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "comment": "my_comment",
      *       //   "etag": "my_etag"
      *       // }
      *     },
@@ -10611,6 +10975,7 @@ export namespace dataplex_v1 {
      *   //   "name": "my_name",
      *   //   "rejectionComment": "my_rejectionComment",
      *   //   "resource": "my_resource",
+     *   //   "reviewerComment": "my_reviewerComment",
      *   //   "state": "my_state",
      *   //   "uid": "my_uid",
      *   //   "updateEntry": {},
@@ -10818,8 +11183,7 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -10926,6 +11290,7 @@ export namespace dataplex_v1 {
      *   //   "name": "my_name",
      *   //   "rejectionComment": "my_rejectionComment",
      *   //   "resource": "my_resource",
+     *   //   "reviewerComment": "my_reviewerComment",
      *   //   "state": "my_state",
      *   //   "uid": "my_uid",
      *   //   "updateEntry": {},
@@ -11411,6 +11776,7 @@ export namespace dataplex_v1 {
      *       //   "name": "my_name",
      *       //   "rejectionComment": "my_rejectionComment",
      *       //   "resource": "my_resource",
+     *       //   "reviewerComment": "my_reviewerComment",
      *       //   "state": "my_state",
      *       //   "uid": "my_uid",
      *       //   "updateEntry": {},
@@ -11446,6 +11812,7 @@ export namespace dataplex_v1 {
      *   //   "name": "my_name",
      *   //   "rejectionComment": "my_rejectionComment",
      *   //   "resource": "my_resource",
+     *   //   "reviewerComment": "my_reviewerComment",
      *   //   "state": "my_state",
      *   //   "uid": "my_uid",
      *   //   "updateEntry": {},
@@ -11629,6 +11996,7 @@ export namespace dataplex_v1 {
      *   //   "name": "my_name",
      *   //   "rejectionComment": "my_rejectionComment",
      *   //   "resource": "my_resource",
+     *   //   "reviewerComment": "my_reviewerComment",
      *   //   "state": "my_state",
      *   //   "uid": "my_uid",
      *   //   "updateEntry": {},
@@ -12272,8 +12640,7 @@ export namespace dataplex_v1 {
     create(
       params: Params$Resource$Projects$Locations$Dataattributebindings$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -12423,8 +12790,7 @@ export namespace dataplex_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Dataattributebindings$Delete,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -13060,8 +13426,7 @@ export namespace dataplex_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Dataattributebindings$Patch,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     patch(
@@ -13559,8 +13924,476 @@ export namespace dataplex_v1 {
 
   export class Resource$Projects$Locations$Datadomains {
     context: APIRequestContext;
+    bindings: Resource$Projects$Locations$Datadomains$Bindings;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.bindings = new Resource$Projects$Locations$Datadomains$Bindings(
+        this.context
+      );
+    }
+
+    /**
+     * Creates a DataDomain resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dataplex.read-write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.dataDomains.create({
+     *     // Required. DataDomain identifier. * Must contain only lowercase letters, numbers and hyphens. * Must start with a letter. * Must be between 1-63 characters. * Must end with a number or a letter. * Must be unique within the project and location.
+     *     dataDomainId: 'placeholder-value',
+     *     // Required. The resource name of the parent location: projects/{project_id_or_number\}/locations/{location_id\}
+     *     parent: 'projects/my-project/locations/my-location',
+     *     // Optional. Only validate the request, but do not perform mutations.
+     *     validateOnly: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "contacts": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "displayName": "my_displayName",
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "parentDataDomain": "my_parentDataDomain",
+     *       //   "policyMember": {},
+     *       //   "uid": "my_uid",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Datadomains$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Projects$Locations$Datadomains$Create,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
+    create(
+      params: Params$Resource$Projects$Locations$Datadomains$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Datadomains$Create,
+      options:
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Datadomains$Create,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datadomains$Create
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datadomains$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Datadomains$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/dataDomains').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a DataDomain resource (allowed only when there are no bindings).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dataplex.read-write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.dataDomains.delete({
+     *     // Required. The resource name of the DataDomain: projects/{project_id_or_number\}/locations/{location_id\}/dataDomains/{data_domain_id\}
+     *     name: 'projects/my-project/locations/my-location/dataDomains/my-dataDomain',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Datadomains$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Datadomains$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
+    delete(
+      params: Params$Resource$Projects$Locations$Datadomains$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Datadomains$Delete,
+      options:
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Datadomains$Delete,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datadomains$Delete
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datadomains$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Datadomains$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Retrieves a DataDomain resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dataplex.read-write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.dataDomains.get({
+     *     // Required. The resource name of the DataDomain: projects/{project_id_or_number\}/locations/{location_id\}/dataDomains/{data_domain_id\}
+     *     name: 'projects/my-project/locations/my-location/dataDomains/my-dataDomain',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "contacts": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "parentDataDomain": "my_parentDataDomain",
+     *   //   "policyMember": {},
+     *   //   "uid": "my_uid",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Datadomains$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Datadomains$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1DataDomain>>;
+    get(
+      params: Params$Resource$Projects$Locations$Datadomains$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Datadomains$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1DataDomain>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1DataDomain>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Datadomains$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1DataDomain>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1DataDomain>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datadomains$Get
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1DataDomain>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1DataDomain>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1DataDomain>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1DataDomain>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datadomains$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Datadomains$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDataplexV1DataDomain>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDataplexV1DataDomain>(
+          parameters
+        );
+      }
     }
 
     /**
@@ -13709,6 +14542,330 @@ export namespace dataplex_v1 {
         );
       } else {
         return createAPIRequest<Schema$GoogleIamV1Policy>(parameters);
+      }
+    }
+
+    /**
+     * Lists DataDomain resources in a project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dataplex.read-write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.dataDomains.list({
+     *     // Optional. Filter request. Supports filter by parent_data_domain.
+     *     filter: 'placeholder-value',
+     *     // Optional. Order by fields for the result.
+     *     orderBy: 'placeholder-value',
+     *     // Optional. Maximum number of DataDomains to return. The service may return fewer. If unspecified, at most 50 domains will be returned. The maximum value is 100; values above 100 will be coerced to 100.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. Page token received from a previous ListDataDomains call.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The resource name of the parent location: projects/{project_id_or_number\}/locations/{location_id\}
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dataDomains": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Datadomains$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Datadomains$List,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1ListDataDomainsResponse>
+    >;
+    list(
+      params: Params$Resource$Projects$Locations$Datadomains$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Datadomains$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1ListDataDomainsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1ListDataDomainsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Datadomains$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1ListDataDomainsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1ListDataDomainsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datadomains$List
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1ListDataDomainsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1ListDataDomainsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1ListDataDomainsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1ListDataDomainsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datadomains$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Datadomains$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/dataDomains').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDataplexV1ListDataDomainsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDataplexV1ListDataDomainsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates a DataDomain resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dataplex.read-write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.dataDomains.patch({
+     *     // Identifier. The relative resource name of the DataDomain, of the form: projects/{project_id_or_number\}/locations/{location_id\}/dataDomains/{data_domain_id\}
+     *     name: 'projects/my-project/locations/my-location/dataDomains/my-dataDomain',
+     *     // Optional. Mask of fields to update.
+     *     updateMask: 'placeholder-value',
+     *     // Optional. Only validate the request, but do not perform mutations.
+     *     validateOnly: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "contacts": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "displayName": "my_displayName",
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "parentDataDomain": "my_parentDataDomain",
+     *       //   "policyMember": {},
+     *       //   "uid": "my_uid",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Datadomains$Patch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Datadomains$Patch,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
+    patch(
+      params: Params$Resource$Projects$Locations$Datadomains$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Datadomains$Patch,
+      options:
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Datadomains$Patch,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datadomains$Patch
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datadomains$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Datadomains$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
       }
     }
 
@@ -14029,6 +15186,37 @@ export namespace dataplex_v1 {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Datadomains$Create extends StandardParameters {
+    /**
+     * Required. DataDomain identifier. * Must contain only lowercase letters, numbers and hyphens. * Must start with a letter. * Must be between 1-63 characters. * Must end with a number or a letter. * Must be unique within the project and location.
+     */
+    dataDomainId?: string;
+    /**
+     * Required. The resource name of the parent location: projects/{project_id_or_number\}/locations/{location_id\}
+     */
+    parent?: string;
+    /**
+     * Optional. Only validate the request, but do not perform mutations.
+     */
+    validateOnly?: boolean;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDataplexV1DataDomain;
+  }
+  export interface Params$Resource$Projects$Locations$Datadomains$Delete extends StandardParameters {
+    /**
+     * Required. The resource name of the DataDomain: projects/{project_id_or_number\}/locations/{location_id\}/dataDomains/{data_domain_id\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Datadomains$Get extends StandardParameters {
+    /**
+     * Required. The resource name of the DataDomain: projects/{project_id_or_number\}/locations/{location_id\}/dataDomains/{data_domain_id\}
+     */
+    name?: string;
+  }
   export interface Params$Resource$Projects$Locations$Datadomains$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset.The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).
@@ -14038,6 +15226,47 @@ export namespace dataplex_v1 {
      * REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Datadomains$List extends StandardParameters {
+    /**
+     * Optional. Filter request. Supports filter by parent_data_domain.
+     */
+    filter?: string;
+    /**
+     * Optional. Order by fields for the result.
+     */
+    orderBy?: string;
+    /**
+     * Optional. Maximum number of DataDomains to return. The service may return fewer. If unspecified, at most 50 domains will be returned. The maximum value is 100; values above 100 will be coerced to 100.
+     */
+    pageSize?: number;
+    /**
+     * Optional. Page token received from a previous ListDataDomains call.
+     */
+    pageToken?: string;
+    /**
+     * Required. The resource name of the parent location: projects/{project_id_or_number\}/locations/{location_id\}
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Datadomains$Patch extends StandardParameters {
+    /**
+     * Identifier. The relative resource name of the DataDomain, of the form: projects/{project_id_or_number\}/locations/{location_id\}/dataDomains/{data_domain_id\}
+     */
+    name?: string;
+    /**
+     * Optional. Mask of fields to update.
+     */
+    updateMask?: string;
+    /**
+     * Optional. Only validate the request, but do not perform mutations.
+     */
+    validateOnly?: boolean;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDataplexV1DataDomain;
   }
   export interface Params$Resource$Projects$Locations$Datadomains$Setiampolicy extends StandardParameters {
     /**
@@ -14060,6 +15289,688 @@ export namespace dataplex_v1 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleIamV1TestIamPermissionsRequest;
+  }
+
+  export class Resource$Projects$Locations$Datadomains$Bindings {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a DataDomainBinding resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dataplex.read-write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.dataDomains.bindings.create({
+     *     // Optional. DataDomainBinding identifier. * Must contain only lowercase letters, numbers and hyphens. * Must start with a letter. * Must be between 1-63 characters. * Must end with a number or a letter. * Must be unique within the parent DataDomain. If not provided, a system-generated UUID will be used.
+     *     dataDomainBindingId: 'placeholder-value',
+     *     // Required. The resource name of the parent DataDomain: projects/{project_id_or_number\}/locations/{location_id\}/dataDomains/{data_domain_id\}
+     *     parent:
+     *       'projects/my-project/locations/my-location/dataDomains/my-dataDomain',
+     *     // Optional. Only validate the request, but do not perform mutations.
+     *     validateOnly: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "name": "my_name",
+     *       //   "resource": "my_resource",
+     *       //   "uid": "my_uid"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Datadomains$Bindings$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Projects$Locations$Datadomains$Bindings$Create,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
+    create(
+      params: Params$Resource$Projects$Locations$Datadomains$Bindings$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Datadomains$Bindings$Create,
+      options:
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Datadomains$Bindings$Create,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datadomains$Bindings$Create
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datadomains$Bindings$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Datadomains$Bindings$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/bindings').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a DataDomainBinding resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dataplex.read-write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.dataDomains.bindings.delete({
+     *     // Required. The resource name of the DataDomainBinding: projects/{project_id_or_number\}/locations/{location_id\}/dataDomains/{data_domain_id\}/bindings/{binding_id\}
+     *     name: 'projects/my-project/locations/my-location/dataDomains/my-dataDomain/bindings/my-binding',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Datadomains$Bindings$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Datadomains$Bindings$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
+    delete(
+      params: Params$Resource$Projects$Locations$Datadomains$Bindings$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Datadomains$Bindings$Delete,
+      options:
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Datadomains$Bindings$Delete,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datadomains$Bindings$Delete
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datadomains$Bindings$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Datadomains$Bindings$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Retrieves a DataDomainBinding resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dataplex.read-write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.dataDomains.bindings.get({
+     *     // Required. The resource name of the DataDomainBinding: projects/{project_id_or_number\}/locations/{location_id\}/dataDomains/{data_domain_id\}/bindings/{binding_id\}
+     *     name: 'projects/my-project/locations/my-location/dataDomains/my-dataDomain/bindings/my-binding',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "name": "my_name",
+     *   //   "resource": "my_resource",
+     *   //   "uid": "my_uid"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Datadomains$Bindings$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Datadomains$Bindings$Get,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1DataDomainBinding>
+    >;
+    get(
+      params: Params$Resource$Projects$Locations$Datadomains$Bindings$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Datadomains$Bindings$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1DataDomainBinding>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1DataDomainBinding>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Datadomains$Bindings$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1DataDomainBinding>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1DataDomainBinding>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datadomains$Bindings$Get
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1DataDomainBinding>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1DataDomainBinding>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1DataDomainBinding>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1DataDomainBinding>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datadomains$Bindings$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Datadomains$Bindings$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDataplexV1DataDomainBinding>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDataplexV1DataDomainBinding>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists DataDomainBinding resources under a DataDomain.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dataplex.read-write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.dataDomains.bindings.list({
+     *     // Optional. Filter request.
+     *     filter: 'placeholder-value',
+     *     // Optional. Order by fields for the result.
+     *     orderBy: 'placeholder-value',
+     *     // Optional. Maximum number of DataDomainBindings to return. The service may return fewer. If unspecified, at most 50 bindings will be returned. The maximum value is 100; values above 100 will be coerced to 100.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. Page token received from a previous ListDataDomainBindings call.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The resource name of the parent DataDomain: projects/{project_id_or_number\}/locations/{location_id\}/dataDomains/{data_domain_id\}
+     *     parent:
+     *       'projects/my-project/locations/my-location/dataDomains/my-dataDomain',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dataDomainBindings": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Datadomains$Bindings$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Datadomains$Bindings$List,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1ListDataDomainBindingsResponse>
+    >;
+    list(
+      params: Params$Resource$Projects$Locations$Datadomains$Bindings$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Datadomains$Bindings$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1ListDataDomainBindingsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1ListDataDomainBindingsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Datadomains$Bindings$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1ListDataDomainBindingsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1ListDataDomainBindingsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datadomains$Bindings$List
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1ListDataDomainBindingsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1ListDataDomainBindingsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1ListDataDomainBindingsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1ListDataDomainBindingsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datadomains$Bindings$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Datadomains$Bindings$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/bindings').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDataplexV1ListDataDomainBindingsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDataplexV1ListDataDomainBindingsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Datadomains$Bindings$Create extends StandardParameters {
+    /**
+     * Optional. DataDomainBinding identifier. * Must contain only lowercase letters, numbers and hyphens. * Must start with a letter. * Must be between 1-63 characters. * Must end with a number or a letter. * Must be unique within the parent DataDomain. If not provided, a system-generated UUID will be used.
+     */
+    dataDomainBindingId?: string;
+    /**
+     * Required. The resource name of the parent DataDomain: projects/{project_id_or_number\}/locations/{location_id\}/dataDomains/{data_domain_id\}
+     */
+    parent?: string;
+    /**
+     * Optional. Only validate the request, but do not perform mutations.
+     */
+    validateOnly?: boolean;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDataplexV1DataDomainBinding;
+  }
+  export interface Params$Resource$Projects$Locations$Datadomains$Bindings$Delete extends StandardParameters {
+    /**
+     * Required. The resource name of the DataDomainBinding: projects/{project_id_or_number\}/locations/{location_id\}/dataDomains/{data_domain_id\}/bindings/{binding_id\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Datadomains$Bindings$Get extends StandardParameters {
+    /**
+     * Required. The resource name of the DataDomainBinding: projects/{project_id_or_number\}/locations/{location_id\}/dataDomains/{data_domain_id\}/bindings/{binding_id\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Datadomains$Bindings$List extends StandardParameters {
+    /**
+     * Optional. Filter request.
+     */
+    filter?: string;
+    /**
+     * Optional. Order by fields for the result.
+     */
+    orderBy?: string;
+    /**
+     * Optional. Maximum number of DataDomainBindings to return. The service may return fewer. If unspecified, at most 50 bindings will be returned. The maximum value is 100; values above 100 will be coerced to 100.
+     */
+    pageSize?: number;
+    /**
+     * Optional. Page token received from a previous ListDataDomainBindings call.
+     */
+    pageToken?: string;
+    /**
+     * Required. The resource name of the parent DataDomain: projects/{project_id_or_number\}/locations/{location_id\}/dataDomains/{data_domain_id\}
+     */
+    parent?: string;
   }
 
   export class Resource$Projects$Locations$Dataproducts {
@@ -14173,8 +16084,7 @@ export namespace dataplex_v1 {
     create(
       params: Params$Resource$Projects$Locations$Dataproducts$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -14325,8 +16235,7 @@ export namespace dataplex_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Dataproducts$Delete,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -14966,8 +16875,7 @@ export namespace dataplex_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Dataproducts$Patch,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     patch(
@@ -15741,8 +17649,7 @@ export namespace dataplex_v1 {
     create(
       params: Params$Resource$Projects$Locations$Dataproducts$Dataassets$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -15894,8 +17801,7 @@ export namespace dataplex_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Dataproducts$Dataassets$Delete,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -16375,8 +18281,7 @@ export namespace dataplex_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Dataproducts$Dataassets$Patch,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     patch(
@@ -16599,6 +18504,8 @@ export namespace dataplex_v1 {
      *       //   "state": "my_state",
      *       //   "type": "my_type",
      *       //   "uid": "my_uid",
+     *       //   "unstructuredDataProfileResult": {},
+     *       //   "unstructuredDataProfileSpec": {},
      *       //   "updateTime": "my_updateTime"
      *       // }
      *     },
@@ -16643,8 +18550,7 @@ export namespace dataplex_v1 {
     create(
       params: Params$Resource$Projects$Locations$Datascans$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -16793,8 +18699,7 @@ export namespace dataplex_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Datascans$Delete,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -17084,6 +18989,8 @@ export namespace dataplex_v1 {
      *   //   "state": "my_state",
      *   //   "type": "my_type",
      *   //   "uid": "my_uid",
+     *   //   "unstructuredDataProfileResult": {},
+     *   //   "unstructuredDataProfileSpec": {},
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -17561,6 +19468,8 @@ export namespace dataplex_v1 {
      *       //   "state": "my_state",
      *       //   "type": "my_type",
      *       //   "uid": "my_uid",
+     *       //   "unstructuredDataProfileResult": {},
+     *       //   "unstructuredDataProfileSpec": {},
      *       //   "updateTime": "my_updateTime"
      *       // }
      *     },
@@ -17605,8 +19514,7 @@ export namespace dataplex_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Datascans$Patch,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     patch(
@@ -18652,7 +20560,9 @@ export namespace dataplex_v1 {
      *   //   "startTime": "my_startTime",
      *   //   "state": "my_state",
      *   //   "type": "my_type",
-     *   //   "uid": "my_uid"
+     *   //   "uid": "my_uid",
+     *   //   "unstructuredDataProfileResult": {},
+     *   //   "unstructuredDataProfileSpec": {}
      *   // }
      * }
      *
@@ -19073,8 +20983,7 @@ export namespace dataplex_v1 {
     create(
       params: Params$Resource$Projects$Locations$Datataxonomies$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -19223,8 +21132,7 @@ export namespace dataplex_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Datataxonomies$Delete,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -19853,8 +21761,7 @@ export namespace dataplex_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Datataxonomies$Patch,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     patch(
@@ -20456,8 +22363,7 @@ export namespace dataplex_v1 {
     create(
       params: Params$Resource$Projects$Locations$Datataxonomies$Attributes$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -20608,8 +22514,7 @@ export namespace dataplex_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Datataxonomies$Attributes$Delete,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -21250,8 +23155,7 @@ export namespace dataplex_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Datataxonomies$Attributes$Patch,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     patch(
@@ -21860,8 +23764,7 @@ export namespace dataplex_v1 {
     create(
       params: Params$Resource$Projects$Locations$Entrygroups$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -22010,8 +23913,7 @@ export namespace dataplex_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Entrygroups$Delete,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -22639,8 +24541,7 @@ export namespace dataplex_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Entrygroups$Patch,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     patch(
@@ -23237,8 +25138,7 @@ export namespace dataplex_v1 {
     create(
       params: Params$Resource$Projects$Locations$Entrygroups$Entries$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDataplexV1Entry>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleCloudDataplexV1Entry>,
       callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1Entry>
     ): void;
     create(
@@ -23389,8 +25289,7 @@ export namespace dataplex_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Entrygroups$Entries$Delete,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDataplexV1Entry>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleCloudDataplexV1Entry>,
       callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1Entry>
     ): void;
     delete(
@@ -23546,8 +25445,7 @@ export namespace dataplex_v1 {
     get(
       params: Params$Resource$Projects$Locations$Entrygroups$Entries$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDataplexV1Entry>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleCloudDataplexV1Entry>,
       callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1Entry>
     ): void;
     get(
@@ -23879,8 +25777,7 @@ export namespace dataplex_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Entrygroups$Entries$Patch,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDataplexV1Entry>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleCloudDataplexV1Entry>,
       callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1Entry>
     ): void;
     patch(
@@ -25333,8 +27230,7 @@ export namespace dataplex_v1 {
     create(
       params: Params$Resource$Projects$Locations$Entrytypes$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -25483,8 +27379,7 @@ export namespace dataplex_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Entrytypes$Delete,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -26120,8 +28015,7 @@ export namespace dataplex_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Entrytypes$Patch,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     patch(
@@ -26726,8 +28620,7 @@ export namespace dataplex_v1 {
     create(
       params: Params$Resource$Projects$Locations$Glossaries$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -26876,8 +28769,7 @@ export namespace dataplex_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Glossaries$Delete,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -27507,8 +29399,7 @@ export namespace dataplex_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Glossaries$Patch,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     patch(
@@ -28271,8 +30162,7 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -29646,8 +31536,7 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -31367,8 +33256,7 @@ export namespace dataplex_v1 {
     create(
       params: Params$Resource$Projects$Locations$Lakes$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -31515,8 +33403,7 @@ export namespace dataplex_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Lakes$Delete,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -31669,8 +33556,7 @@ export namespace dataplex_v1 {
     get(
       params: Params$Resource$Projects$Locations$Lakes$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDataplexV1Lake>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleCloudDataplexV1Lake>,
       callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1Lake>
     ): void;
     get(
@@ -32144,8 +34030,7 @@ export namespace dataplex_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Lakes$Patch,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     patch(
@@ -32921,8 +34806,7 @@ export namespace dataplex_v1 {
     create(
       params: Params$Resource$Projects$Locations$Lakes$Tasks$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -33069,8 +34953,7 @@ export namespace dataplex_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Lakes$Tasks$Delete,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -33224,8 +35107,7 @@ export namespace dataplex_v1 {
     get(
       params: Params$Resource$Projects$Locations$Lakes$Tasks$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDataplexV1Task>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleCloudDataplexV1Task>,
       callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1Task>
     ): void;
     get(
@@ -33702,8 +35584,7 @@ export namespace dataplex_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Lakes$Tasks$Patch,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     patch(
@@ -34460,8 +36341,7 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -34593,8 +36473,7 @@ export namespace dataplex_v1 {
     get(
       params: Params$Resource$Projects$Locations$Lakes$Tasks$Jobs$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDataplexV1Job>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleCloudDataplexV1Job>,
       callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1Job>
     ): void;
     get(
@@ -34965,8 +36844,7 @@ export namespace dataplex_v1 {
     create(
       params: Params$Resource$Projects$Locations$Lakes$Zones$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -35113,8 +36991,7 @@ export namespace dataplex_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Lakes$Zones$Delete,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -35267,8 +37144,7 @@ export namespace dataplex_v1 {
     get(
       params: Params$Resource$Projects$Locations$Lakes$Zones$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDataplexV1Zone>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleCloudDataplexV1Zone>,
       callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1Zone>
     ): void;
     get(
@@ -35743,8 +37619,7 @@ export namespace dataplex_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Lakes$Zones$Patch,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     patch(
@@ -36526,8 +38401,7 @@ export namespace dataplex_v1 {
     create(
       params: Params$Resource$Projects$Locations$Lakes$Zones$Assets$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -36675,8 +38549,7 @@ export namespace dataplex_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Lakes$Zones$Assets$Delete,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -36831,8 +38704,7 @@ export namespace dataplex_v1 {
     get(
       params: Params$Resource$Projects$Locations$Lakes$Zones$Assets$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDataplexV1Asset>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleCloudDataplexV1Asset>,
       callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1Asset>
     ): void;
     get(
@@ -37315,8 +39187,7 @@ export namespace dataplex_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Lakes$Zones$Assets$Patch,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     patch(
@@ -38284,8 +40155,7 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -39176,8 +41046,7 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -39684,8 +41553,7 @@ export namespace dataplex_v1 {
     create(
       params: Params$Resource$Projects$Locations$Metadatafeeds$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -39832,8 +41700,7 @@ export namespace dataplex_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Metadatafeeds$Delete,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -40310,8 +42177,7 @@ export namespace dataplex_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Metadatafeeds$Patch,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     patch(
@@ -40553,8 +42419,7 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -40698,8 +42563,7 @@ export namespace dataplex_v1 {
     create(
       params: Params$Resource$Projects$Locations$Metadatajobs$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -41247,8 +43111,7 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -41382,8 +43245,7 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -41505,8 +43367,7 @@ export namespace dataplex_v1 {
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(

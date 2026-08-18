@@ -511,7 +511,7 @@
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "Required. Mask used to update an instance. Updatable fields: * `labels` * `gce_setup.min_cpu_platform` * `gce_setup.metadata` * `gce_setup.machine_type` * `gce_setup.accelerator_configs` * `gce_setup.accelerator_configs.type` * `gce_setup.accelerator_configs.core_count` * `gce_setup.gpu_driver_config` * `gce_setup.gpu_driver_config.enable_gpu_driver` * `gce_setup.gpu_driver_config.custom_gpu_driver_path` * `gce_setup.shielded_instance_config` * `gce_setup.shielded_instance_config.enable_secure_boot` * `gce_setup.shielded_instance_config.enable_vtpm` * `gce_setup.shielded_instance_config.enable_integrity_monitoring` * `gce_setup.reservation_affinity` * `gce_setup.reservation_affinity.consume_reservation_type` * `gce_setup.reservation_affinity.key` * `gce_setup.reservation_affinity.values` * `gce_setup.tags` * `gce_setup.container_image` * `gce_setup.container_image.repository` * `gce_setup.container_image.tag` * `gce_setup.disable_public_ip` * `disable_proxy_access`",
+                      "description": "Required. Mask used to update an instance. Updatable fields: * `labels` * `gce_setup.min_cpu_platform` * `gce_setup.metadata` * `gce_setup.machine_type` * `gce_setup.accelerator_configs` * `gce_setup.accelerator_configs.type` * `gce_setup.accelerator_configs.core_count` * `gce_setup.gpu_driver_config` * `gce_setup.gpu_driver_config.enable_gpu_driver` * `gce_setup.gpu_driver_config.custom_gpu_driver_path` * `gce_setup.shielded_instance_config` * `gce_setup.shielded_instance_config.enable_secure_boot` * `gce_setup.shielded_instance_config.enable_vtpm` * `gce_setup.shielded_instance_config.enable_integrity_monitoring` * `gce_setup.reservation_affinity` * `gce_setup.reservation_affinity.consume_reservation_type` * `gce_setup.reservation_affinity.key` * `gce_setup.reservation_affinity.values` * `gce_setup.tags` * `gce_setup.container_image` * `gce_setup.container_image.repository` * `gce_setup.container_image.tag` * `gce_setup.disable_public_ip` * `disable_proxy_access` Note: `gce_setup.disable_public_ip` and `disable_proxy_access` are one-way on update -- they can only be used to *disable* the feature (set the field to `true`). Requests that set either field back to `false` (re-enabling the external IP or proxy access) are rejected with `INVALID_ARGUMENT`.",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -971,7 +971,7 @@
       }
     }
   },
-  "revision": "20260521",
+  "revision": "20260722",
   "rootUrl": "https://notebooks.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -1031,7 +1031,7 @@
       "id": "AccessConfig",
       "properties": {
         "externalIp": {
-          "description": "An external IP address associated with this instance. Specify an unused static external IP address available to the project or leave this field undefined to use an IP from a shared ephemeral IP address pool. If you specify a static external IP address, it must live in the same region as the zone of the instance.",
+          "description": "Optional. An external IP address associated with this instance. Specify an unused static external IP address available to the project or leave this field undefined to use an IP from a shared ephemeral IP address pool. If you specify a static external IP address, it must live in the same region as the zone of the instance.",
           "type": "string"
         }
       },
@@ -1064,7 +1064,7 @@
       "id": "BootDisk",
       "properties": {
         "diskEncryption": {
-          "description": "Optional. Input only. Disk encryption method used on the boot and data disks, defaults to GMEK.",
+          "description": "Optional. Disk encryption method used on the boot and data disks, defaults to GMEK.",
           "enum": [
             "DISK_ENCRYPTION_UNSPECIFIED",
             "GMEK",
@@ -1111,7 +1111,7 @@
           "type": "string"
         },
         "kmsKey": {
-          "description": "Optional. Input only. The KMS key used to encrypt the disks, only applicable if disk_encryption is CMEK. Format: `projects/{project_id}/locations/{location}/keyRings/{key_ring_id}/cryptoKeys/{key_id}` Learn more about using your own encryption keys.",
+          "description": "Optional. The KMS key used to encrypt the disks, only applicable if disk_encryption is CMEK. Format: `projects/{project_id}/locations/{location}/keyRings/{key_ring_id}/cryptoKeys/{key_id}` Learn more about using your own encryption keys.",
           "type": "string"
         }
       },
@@ -1250,7 +1250,7 @@
       "id": "DataDisk",
       "properties": {
         "diskEncryption": {
-          "description": "Optional. Input only. Disk encryption method used on the boot and data disks, defaults to GMEK.",
+          "description": "Optional. Disk encryption method used on the boot and data disks, defaults to GMEK.",
           "enum": [
             "DISK_ENCRYPTION_UNSPECIFIED",
             "GMEK",
@@ -1269,7 +1269,7 @@
           "type": "string"
         },
         "diskType": {
-          "description": "Optional. Input only. Indicates the type of the disk.",
+          "description": "Optional. Indicates the type of the disk.",
           "enum": [
             "DISK_TYPE_UNSPECIFIED",
             "PD_STANDARD",
@@ -1297,7 +1297,7 @@
           "type": "string"
         },
         "kmsKey": {
-          "description": "Optional. Input only. The KMS key used to encrypt the disks, only applicable if disk_encryption is CMEK. Format: `projects/{project_id}/locations/{location}/keyRings/{key_ring_id}/cryptoKeys/{key_id}` Learn more about using your own encryption keys.",
+          "description": "Optional. The KMS key used to encrypt the disks, only applicable if disk_encryption is CMEK. Format: `projects/{project_id}/locations/{location}/keyRings/{key_ring_id}/cryptoKeys/{key_id}` Learn more about using your own encryption keys.",
           "type": "string"
         },
         "resourcePolicies": {
@@ -1585,6 +1585,16 @@
       "description": "ConfigImage represents an image release available to create a WbI",
       "id": "ImageRelease",
       "properties": {
+        "description": {
+          "description": "Output only. The description of the image.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "imageFamily": {
+          "description": "Output only. The image family of the image. (ex: workbench-instances or workbench-2603)",
+          "readOnly": true,
+          "type": "string"
+        },
         "imageName": {
           "description": "Output only. The name of the image of the form workbench-instances-vYYYYmmdd--",
           "readOnly": true,

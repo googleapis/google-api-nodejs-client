@@ -533,8 +533,7 @@ export namespace tasks_v1 {
         | BodyResponseCallback<Schema$TaskList>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$TaskList>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$TaskList> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$TaskList>>
@@ -684,8 +683,7 @@ export namespace tasks_v1 {
         | BodyResponseCallback<Schema$TaskList>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$TaskList>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$TaskList> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$TaskList>>
@@ -828,8 +826,7 @@ export namespace tasks_v1 {
         | BodyResponseCallback<Schema$TaskLists>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$TaskLists>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$TaskLists> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$TaskLists>>
@@ -982,8 +979,7 @@ export namespace tasks_v1 {
         | BodyResponseCallback<Schema$TaskList>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$TaskList>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$TaskList> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$TaskList>>
@@ -1136,8 +1132,7 @@ export namespace tasks_v1 {
         | BodyResponseCallback<Schema$TaskList>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$TaskList>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$TaskList> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$TaskList>>
@@ -1611,8 +1606,7 @@ export namespace tasks_v1 {
         | BodyResponseCallback<Schema$Task>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Task>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Task> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Task>>
@@ -1791,8 +1785,7 @@ export namespace tasks_v1 {
         | BodyResponseCallback<Schema$Task>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Task>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Task> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Task>>
@@ -1955,8 +1948,7 @@ export namespace tasks_v1 {
         | BodyResponseCallback<Schema$Tasks>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Tasks>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Tasks> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Tasks>>
@@ -2115,8 +2107,7 @@ export namespace tasks_v1 {
         | BodyResponseCallback<Schema$Task>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Task>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Task> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Task>>
@@ -2292,8 +2283,7 @@ export namespace tasks_v1 {
         | BodyResponseCallback<Schema$Task>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Task>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Task> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Task>>
@@ -2470,8 +2460,7 @@ export namespace tasks_v1 {
         | BodyResponseCallback<Schema$Task>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Task>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Task> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Task>>

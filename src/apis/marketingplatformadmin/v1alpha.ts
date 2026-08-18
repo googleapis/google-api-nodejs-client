@@ -736,8 +736,7 @@ export namespace marketingplatformadmin_v1alpha {
     list(
       params: Params$Resource$Organizations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListOrganizationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListOrganizationsResponse>,
       callback: BodyResponseCallback<Schema$ListOrganizationsResponse>
     ): void;
     list(
@@ -1094,8 +1093,7 @@ export namespace marketingplatformadmin_v1alpha {
     create(
       params: Params$Resource$Organizations$Analyticsaccountlinks$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$AnalyticsAccountLink>,
+        MethodOptions | BodyResponseCallback<Schema$AnalyticsAccountLink>,
       callback: BodyResponseCallback<Schema$AnalyticsAccountLink>
     ): void;
     create(
@@ -1254,8 +1252,7 @@ export namespace marketingplatformadmin_v1alpha {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>

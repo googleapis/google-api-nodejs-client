@@ -35,10 +35,7 @@ export function healthcare<
 >(
   this: GoogleConfigurable,
   versionOrOptions:
-    | 'v1'
-    | healthcare_v1.Options
-    | 'v1beta1'
-    | healthcare_v1beta1.Options
+    'v1' | healthcare_v1.Options | 'v1beta1' | healthcare_v1beta1.Options
 ) {
   return getAPI<T>('healthcare', versionOrOptions, VERSIONS, this);
 }

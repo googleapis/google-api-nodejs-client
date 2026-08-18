@@ -686,6 +686,23 @@ export namespace chromemanagement_v1 {
     storageReports?: Schema$GoogleChromeManagementV1DeviceHardwareCountReport[];
   }
   /**
+   * Response containing requested managed profile versions details and counts.
+   */
+  export interface Schema$GoogleChromeManagementV1CountChromeProfileVersionsResponse {
+    /**
+     * Token to specify the next page of the request.
+     */
+    nextPageToken?: string | null;
+    /**
+     * List of all browser versions reported for profiles and their install counts.
+     */
+    profileBrowserVersions?: Schema$GoogleChromeManagementV1BrowserVersion[];
+    /**
+     * Total number browser versions matching request.
+     */
+    totalSize?: number | null;
+  }
+  /**
    * Response containing requested browser versions details and counts.
    */
   export interface Schema$GoogleChromeManagementV1CountChromeVersionsResponse {
@@ -1288,6 +1305,10 @@ export namespace chromemanagement_v1 {
      * Output only. Permissions of the installed app.
      */
     permissions?: string[] | null;
+    /**
+     * Output only. Count of Chrome Profiles with this app installed.
+     */
+    profileCount?: string | null;
     /**
      * Output only. If available, the risk assessment data about this extension.
      */
@@ -2821,6 +2842,40 @@ export namespace chromemanagement_v1 {
     updateTime?: string | null;
   }
   /**
+   * A content transfers summary for a given breakdown dimension.
+   */
+  export interface Schema$GoogleChromeManagementVersionsV1ContentTransfersBreakdown {
+    /**
+     * The content category of the content transfers.
+     */
+    contentCategory?: string | null;
+    /**
+     * The event domain of the content transfers.
+     */
+    eventDomain?: string | null;
+    /**
+     * The summary of content transfers for the breakdown dimension.
+     */
+    summary?: Schema$GoogleChromeManagementVersionsV1ContentTransfersSummary;
+    /**
+     * The user that transferred the content.
+     */
+    user?: string | null;
+  }
+  /**
+   * Summary of content transfers for a given metric.
+   */
+  export interface Schema$GoogleChromeManagementVersionsV1ContentTransfersSummary {
+    /**
+     * The count of the content transfers metric.
+     */
+    count?: string | null;
+    /**
+     * The type of content transfers metric.
+     */
+    metric?: string | null;
+  }
+  /**
    * CrowdStrike connector config.
    */
   export interface Schema$GoogleChromeManagementVersionsV1CrowdStrikeConfig {
@@ -3099,6 +3154,50 @@ export namespace chromemanagement_v1 {
      * Required. The XDR settings for the Pub/Sub XDR config.
      */
     xdrSettings?: Schema$GoogleChromeManagementVersionsV1XdrSettings;
+  }
+  /**
+   * Response message for QueryContentTransfersBreakdowns.
+   */
+  export interface Schema$GoogleChromeManagementVersionsV1QueryContentTransfersBreakdownsResponse {
+    /**
+     * The content transfer breakdowns from the specified insight.
+     */
+    contentTransfersBreakdowns?: Schema$GoogleChromeManagementVersionsV1ContentTransfersBreakdown[];
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * Response message for QueryContentTransfers.
+   */
+  export interface Schema$GoogleChromeManagementVersionsV1QueryContentTransfersResponse {
+    /**
+     * A collection of summaries for various content transfers metrics.
+     */
+    summaries?: Schema$GoogleChromeManagementVersionsV1ContentTransfersSummary[];
+  }
+  /**
+   * Response message for QueryUrlVisitsBreakdowns.
+   */
+  export interface Schema$GoogleChromeManagementVersionsV1QueryUrlVisitsBreakdownsResponse {
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The URL visit breakdowns from the specified insight.
+     */
+    urlVisitsBreakdowns?: Schema$GoogleChromeManagementVersionsV1UrlVisitsBreakdown[];
+  }
+  /**
+   * Response message for QueryUrlVisits.
+   */
+  export interface Schema$GoogleChromeManagementVersionsV1QueryUrlVisitsResponse {
+    /**
+     * A collection of summaries for various URL visit metrics.
+     */
+    summaries?: Schema$GoogleChromeManagementVersionsV1UrlVisitsSummary[];
   }
   /**
    * Reporting data of a Chrome browser profile.
@@ -3408,6 +3507,36 @@ export namespace chromemanagement_v1 {
    * Response message for publishing an issued certificate for a certificate provisioning process.
    */
   export interface Schema$GoogleChromeManagementVersionsV1UploadCertificateResponse {}
+  /**
+   * A URL visits summary for a given breakdown dimension.
+   */
+  export interface Schema$GoogleChromeManagementVersionsV1UrlVisitsBreakdown {
+    /**
+     * The event domain of the URL visits.
+     */
+    eventDomain?: string | null;
+    /**
+     * The summary of URL visits for the breakdown dimension.
+     */
+    summary?: Schema$GoogleChromeManagementVersionsV1UrlVisitsSummary;
+    /**
+     * The user that visited the URL.
+     */
+    user?: string | null;
+  }
+  /**
+   * Summary of URL visits for a given metric.
+   */
+  export interface Schema$GoogleChromeManagementVersionsV1UrlVisitsSummary {
+    /**
+     * The count of the URL visits metric.
+     */
+    count?: string | null;
+    /**
+     * The type of URL visits metric.
+     */
+    metric?: string | null;
+  }
   /**
    * XDR settings for connector configs.
    */
@@ -5197,8 +5326,7 @@ export namespace chromemanagement_v1 {
     signData(
       params: Params$Resource$Customers$Certificateprovisioningprocesses$Signdata,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     signData(
@@ -5563,8 +5691,7 @@ export namespace chromemanagement_v1 {
     get(
       params: Params$Resource$Customers$Certificateprovisioningprocesses$Operations$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -5678,7 +5805,7 @@ export namespace chromemanagement_v1 {
      *
      *   // Do the magic
      *   const res = await chromemanagement.customers.connectorConfigs.create({
-     *     // Optional. ID to use for the connector config, which becomes the final component of the connector config's resource name. If provided, the ID must be 1-63 characters long, and contain only lowercase letters, digits, and hyphens. It must start with a letter, and end with a letter or number. If not provided, the connector config will be assigned a random UUID.
+     *     // Optional. ID to use for the connector config, which becomes the final component of the connector config's resource name. If provided, the ID must be 1-36 characters long, and contain only lowercase letters, digits, and hyphens. It must start with a letter, and end with a letter or number. If not provided, the connector config will be assigned a random UUID.
      *     connectorConfigId: 'placeholder-value',
      *     // Required. Format: customers/{customer\}
      *     parent: 'customers/my-customer',
@@ -6414,7 +6541,7 @@ export namespace chromemanagement_v1 {
 
   export interface Params$Resource$Customers$Connectorconfigs$Create extends StandardParameters {
     /**
-     * Optional. ID to use for the connector config, which becomes the final component of the connector config's resource name. If provided, the ID must be 1-63 characters long, and contain only lowercase letters, digits, and hyphens. It must start with a letter, and end with a letter or number. If not provided, the connector config will be assigned a random UUID.
+     * Optional. ID to use for the connector config, which becomes the final component of the connector config's resource name. If provided, the ID must be 1-36 characters long, and contain only lowercase letters, digits, and hyphens. It must start with a letter, and end with a letter or number. If not provided, the connector config will be assigned a random UUID.
      */
     connectorConfigId?: string;
     /**
@@ -6507,7 +6634,10 @@ export namespace chromemanagement_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/chrome.management.securityinsights',
+     *       'https://www.googleapis.com/auth/chrome.management.securityinsights.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -6659,7 +6789,9 @@ export namespace chromemanagement_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/chrome.management.securityinsights',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -6814,7 +6946,9 @@ export namespace chromemanagement_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/chrome.management.securityinsights',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -6948,6 +7082,656 @@ export namespace chromemanagement_v1 {
         );
       }
     }
+
+    /**
+     * Returns a high-level summary of content transfers for a given customer.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromemanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chromemanagement = google.chromemanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/chrome.management.securityinsights',
+     *       'https://www.googleapis.com/auth/chrome.management.securityinsights.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await chromemanagement.customers.enterprise.securityInsights.queryContentTransfers(
+     *       {
+     *         // Required. The customer ID in the format "customers/{customer_id\}".
+     *         customer: 'customers/my-customer',
+     *         // Optional. The filter to apply to the request. For syntax, see AIP-160. Data is not available for events older than 180 days, and may be unavailable or inaccurate for time ranges less than 4 hours. If `event_time` is not specified, results will be returned for the last 30 days. Supported fields for filtering: - `event_time` Supported operators: - `\>=` and `<=` for `event_time` Supported conjunctions: - `AND` Example: `event_time \>= "2024-01-01T00:00:00Z" AND event_time <= "2024-01-02T00:00:00Z"`
+     *         filter: 'placeholder-value',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "summaries": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    queryContentTransfers(
+      params: Params$Resource$Customers$Enterprise$Securityinsights$Querycontenttransfers,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    queryContentTransfers(
+      params?: Params$Resource$Customers$Enterprise$Securityinsights$Querycontenttransfers,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleChromeManagementVersionsV1QueryContentTransfersResponse>
+    >;
+    queryContentTransfers(
+      params: Params$Resource$Customers$Enterprise$Securityinsights$Querycontenttransfers,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    queryContentTransfers(
+      params: Params$Resource$Customers$Enterprise$Securityinsights$Querycontenttransfers,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1QueryContentTransfersResponse>,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1QueryContentTransfersResponse>
+    ): void;
+    queryContentTransfers(
+      params: Params$Resource$Customers$Enterprise$Securityinsights$Querycontenttransfers,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1QueryContentTransfersResponse>
+    ): void;
+    queryContentTransfers(
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1QueryContentTransfersResponse>
+    ): void;
+    queryContentTransfers(
+      paramsOrCallback?:
+        | Params$Resource$Customers$Enterprise$Securityinsights$Querycontenttransfers
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1QueryContentTransfersResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1QueryContentTransfersResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1QueryContentTransfersResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleChromeManagementVersionsV1QueryContentTransfersResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customers$Enterprise$Securityinsights$Querycontenttransfers;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Customers$Enterprise$Securityinsights$Querycontenttransfers;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://chromemanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/{+customer}/enterprise/securityInsights:queryContentTransfers'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['customer'],
+        pathParams: ['customer'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleChromeManagementVersionsV1QueryContentTransfersResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleChromeManagementVersionsV1QueryContentTransfersResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Returns summaries of content transfers for a given metric and breakdown dimension.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromemanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chromemanagement = google.chromemanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/chrome.management.securityinsights',
+     *       'https://www.googleapis.com/auth/chrome.management.securityinsights.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await chromemanagement.customers.enterprise.securityInsights.queryContentTransfersBreakdowns(
+     *       {
+     *         // Optional. The dimension to break down the content transfers by. Defaults to USER.
+     *         breakdown: 'placeholder-value',
+     *         // Required. The customer ID in the format "customers/{customer_id\}".
+     *         customer: 'customers/my-customer',
+     *         // Optional. The filter to apply to the request. For syntax, see AIP-160. Data is not available for events older than 180 days or more recent than 48 hours ago. If `event_time` is not specified, results will end 48 hours ago. Supported fields for filtering: - `user` - `event_domain` - `content_category` - `event_time` Filtering by `user` or `event_domain` requires the `breakdown` dimension to be set to the corresponding value (e.g., you must set `breakdown = USER` to filter by `user`). Supported operators: - `=` for `user`, `event_domain`, and `content_category`. - `<=` for `event_time`. Supported conjunctions: - `AND` Example: `user = "testuser" AND event_time <= "2024-01-02T00:00:00Z"`
+     *         filter: 'placeholder-value',
+     *         // Optional. The fixed time range to return the breakdowns for. Defaults to FIXED_TIME_RANGE_FOUR_WEEKS. Fixed time ranges are used to allow for precomputation and optimize response times.
+     *         fixedTimeRange: 'placeholder-value',
+     *         // Optional. The metric to return the breakdowns for. Defaults to CONTENT_TRANSFERS_METRIC_TOTAL_TRANSFERS.
+     *         metric: 'placeholder-value',
+     *         // Optional. The maximum number of breakdowns to return. The service may return fewer than this value. If unspecified, at most 50 breakdowns will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *         pageSize: 'placeholder-value',
+     *         // Optional. A page token, received from a previous `QueryContentTransfersBreakdowns` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `QueryContentTransfersBreakdowns` must match the call that provided the page token.
+     *         pageToken: 'placeholder-value',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "contentTransfersBreakdowns": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    queryContentTransfersBreakdowns(
+      params: Params$Resource$Customers$Enterprise$Securityinsights$Querycontenttransfersbreakdowns,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    queryContentTransfersBreakdowns(
+      params?: Params$Resource$Customers$Enterprise$Securityinsights$Querycontenttransfersbreakdowns,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleChromeManagementVersionsV1QueryContentTransfersBreakdownsResponse>
+    >;
+    queryContentTransfersBreakdowns(
+      params: Params$Resource$Customers$Enterprise$Securityinsights$Querycontenttransfersbreakdowns,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    queryContentTransfersBreakdowns(
+      params: Params$Resource$Customers$Enterprise$Securityinsights$Querycontenttransfersbreakdowns,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1QueryContentTransfersBreakdownsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1QueryContentTransfersBreakdownsResponse>
+    ): void;
+    queryContentTransfersBreakdowns(
+      params: Params$Resource$Customers$Enterprise$Securityinsights$Querycontenttransfersbreakdowns,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1QueryContentTransfersBreakdownsResponse>
+    ): void;
+    queryContentTransfersBreakdowns(
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1QueryContentTransfersBreakdownsResponse>
+    ): void;
+    queryContentTransfersBreakdowns(
+      paramsOrCallback?:
+        | Params$Resource$Customers$Enterprise$Securityinsights$Querycontenttransfersbreakdowns
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1QueryContentTransfersBreakdownsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1QueryContentTransfersBreakdownsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1QueryContentTransfersBreakdownsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleChromeManagementVersionsV1QueryContentTransfersBreakdownsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customers$Enterprise$Securityinsights$Querycontenttransfersbreakdowns;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Customers$Enterprise$Securityinsights$Querycontenttransfersbreakdowns;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://chromemanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/{+customer}/enterprise/securityInsights:queryContentTransfersBreakdowns'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['customer'],
+        pathParams: ['customer'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleChromeManagementVersionsV1QueryContentTransfersBreakdownsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleChromeManagementVersionsV1QueryContentTransfersBreakdownsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Returns a high-level summary of URL visits for a given customer. Requires a Chrome Enterprise Premium subscription. If the customer does not have this subscription, query results will be empty.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromemanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chromemanagement = google.chromemanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/chrome.management.securityinsights',
+     *       'https://www.googleapis.com/auth/chrome.management.securityinsights.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await chromemanagement.customers.enterprise.securityInsights.queryUrlVisits(
+     *       {
+     *         // Required. The customer ID in the format "customers/{customer_id\}".
+     *         customer: 'customers/my-customer',
+     *         // Optional. The filter to apply to the request. For syntax, see AIP-160. Data is not available for events older than 180 days, and may be unavailable or inaccurate for time ranges less than 4 hours. If `event_time` is not specified, results will be returned for the last 30 days. Supported fields for filtering: - `event_time` Supported operators: - `\>=` and `<=` for `event_time` Supported conjunctions: - `AND` Example: `event_time \>= "2024-01-01T00:00:00Z" AND event_time <= "2024-01-02T00:00:00Z"`
+     *         filter: 'placeholder-value',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "summaries": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    queryUrlVisits(
+      params: Params$Resource$Customers$Enterprise$Securityinsights$Queryurlvisits,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    queryUrlVisits(
+      params?: Params$Resource$Customers$Enterprise$Securityinsights$Queryurlvisits,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleChromeManagementVersionsV1QueryUrlVisitsResponse>
+    >;
+    queryUrlVisits(
+      params: Params$Resource$Customers$Enterprise$Securityinsights$Queryurlvisits,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    queryUrlVisits(
+      params: Params$Resource$Customers$Enterprise$Securityinsights$Queryurlvisits,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1QueryUrlVisitsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1QueryUrlVisitsResponse>
+    ): void;
+    queryUrlVisits(
+      params: Params$Resource$Customers$Enterprise$Securityinsights$Queryurlvisits,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1QueryUrlVisitsResponse>
+    ): void;
+    queryUrlVisits(
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1QueryUrlVisitsResponse>
+    ): void;
+    queryUrlVisits(
+      paramsOrCallback?:
+        | Params$Resource$Customers$Enterprise$Securityinsights$Queryurlvisits
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1QueryUrlVisitsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1QueryUrlVisitsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1QueryUrlVisitsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleChromeManagementVersionsV1QueryUrlVisitsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customers$Enterprise$Securityinsights$Queryurlvisits;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Customers$Enterprise$Securityinsights$Queryurlvisits;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://chromemanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/{+customer}/enterprise/securityInsights:queryUrlVisits'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['customer'],
+        pathParams: ['customer'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleChromeManagementVersionsV1QueryUrlVisitsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleChromeManagementVersionsV1QueryUrlVisitsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Returns summaries of URL visits for a given metric and breakdown dimension. Requires a Chrome Enterprise Premium subscription. If the customer does not have this subscription, query results will be empty.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromemanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chromemanagement = google.chromemanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/chrome.management.securityinsights',
+     *       'https://www.googleapis.com/auth/chrome.management.securityinsights.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await chromemanagement.customers.enterprise.securityInsights.queryUrlVisitsBreakdowns(
+     *       {
+     *         // Optional. The dimension to break down the URL visits by. Defaults to USER.
+     *         breakdown: 'placeholder-value',
+     *         // Required. The customer ID in the format "customers/{customer_id\}".
+     *         customer: 'customers/my-customer',
+     *         // Optional. The filter to apply to the request. For syntax, see AIP-160. Data is not available for events older than 180 days or more recent than 48 hours ago. If `event_time` is not specified, results will end 48 hours ago. Supported fields for filtering: - `user` - `event_domain` - `event_time` Filtering by `user` or `event_domain` requires the `breakdown` dimension to be set to the corresponding value (e.g., you must set `breakdown = USER` to filter by `user`). Supported operators: - `=` for `user` and `event_domain`. - `<=` for `event_time`. Supported conjunctions: - `AND` Example: `user = "testuser" AND event_time <= "2024-01-02T00:00:00Z"`
+     *         filter: 'placeholder-value',
+     *         // Optional. The fixed time range to return the breakdowns for. Defaults to FIXED_TIME_RANGE_FOUR_WEEKS. Fixed time ranges are used to allow for precomputation and optimize response times.
+     *         fixedTimeRange: 'placeholder-value',
+     *         // Optional. The metric to return the breakdowns for. Defaults to URL_VISITS_METRIC_TOTAL_SUSPICIOUS_URL_VISITS.
+     *         metric: 'placeholder-value',
+     *         // Optional. The maximum number of breakdowns to return. The service may return fewer than this value. If unspecified, at most 50 breakdowns will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *         pageSize: 'placeholder-value',
+     *         // Optional. A page token, received from a previous `QueryUrlVisitsBreakdowns` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `QueryUrlVisitsBreakdowns` must match the call that provided the page token.
+     *         pageToken: 'placeholder-value',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "urlVisitsBreakdowns": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    queryUrlVisitsBreakdowns(
+      params: Params$Resource$Customers$Enterprise$Securityinsights$Queryurlvisitsbreakdowns,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    queryUrlVisitsBreakdowns(
+      params?: Params$Resource$Customers$Enterprise$Securityinsights$Queryurlvisitsbreakdowns,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleChromeManagementVersionsV1QueryUrlVisitsBreakdownsResponse>
+    >;
+    queryUrlVisitsBreakdowns(
+      params: Params$Resource$Customers$Enterprise$Securityinsights$Queryurlvisitsbreakdowns,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    queryUrlVisitsBreakdowns(
+      params: Params$Resource$Customers$Enterprise$Securityinsights$Queryurlvisitsbreakdowns,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1QueryUrlVisitsBreakdownsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1QueryUrlVisitsBreakdownsResponse>
+    ): void;
+    queryUrlVisitsBreakdowns(
+      params: Params$Resource$Customers$Enterprise$Securityinsights$Queryurlvisitsbreakdowns,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1QueryUrlVisitsBreakdownsResponse>
+    ): void;
+    queryUrlVisitsBreakdowns(
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1QueryUrlVisitsBreakdownsResponse>
+    ): void;
+    queryUrlVisitsBreakdowns(
+      paramsOrCallback?:
+        | Params$Resource$Customers$Enterprise$Securityinsights$Queryurlvisitsbreakdowns
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1QueryUrlVisitsBreakdownsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1QueryUrlVisitsBreakdownsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1QueryUrlVisitsBreakdownsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleChromeManagementVersionsV1QueryUrlVisitsBreakdownsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customers$Enterprise$Securityinsights$Queryurlvisitsbreakdowns;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Customers$Enterprise$Securityinsights$Queryurlvisitsbreakdowns;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://chromemanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/{+customer}/enterprise/securityInsights:queryUrlVisitsBreakdowns'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['customer'],
+        pathParams: ['customer'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleChromeManagementVersionsV1QueryUrlVisitsBreakdownsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleChromeManagementVersionsV1QueryUrlVisitsBreakdownsResponse>(
+          parameters
+        );
+      }
+    }
   }
 
   export interface Params$Resource$Customers$Enterprise$Securityinsights$Checkenablementstatus extends StandardParameters {
@@ -6977,6 +7761,86 @@ export namespace chromemanagement_v1 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleChromeManagementVersionsV1EnableInsightsRequest;
+  }
+  export interface Params$Resource$Customers$Enterprise$Securityinsights$Querycontenttransfers extends StandardParameters {
+    /**
+     * Required. The customer ID in the format "customers/{customer_id\}".
+     */
+    customer?: string;
+    /**
+     * Optional. The filter to apply to the request. For syntax, see AIP-160. Data is not available for events older than 180 days, and may be unavailable or inaccurate for time ranges less than 4 hours. If `event_time` is not specified, results will be returned for the last 30 days. Supported fields for filtering: - `event_time` Supported operators: - `\>=` and `<=` for `event_time` Supported conjunctions: - `AND` Example: `event_time \>= "2024-01-01T00:00:00Z" AND event_time <= "2024-01-02T00:00:00Z"`
+     */
+    filter?: string;
+  }
+  export interface Params$Resource$Customers$Enterprise$Securityinsights$Querycontenttransfersbreakdowns extends StandardParameters {
+    /**
+     * Optional. The dimension to break down the content transfers by. Defaults to USER.
+     */
+    breakdown?: string;
+    /**
+     * Required. The customer ID in the format "customers/{customer_id\}".
+     */
+    customer?: string;
+    /**
+     * Optional. The filter to apply to the request. For syntax, see AIP-160. Data is not available for events older than 180 days or more recent than 48 hours ago. If `event_time` is not specified, results will end 48 hours ago. Supported fields for filtering: - `user` - `event_domain` - `content_category` - `event_time` Filtering by `user` or `event_domain` requires the `breakdown` dimension to be set to the corresponding value (e.g., you must set `breakdown = USER` to filter by `user`). Supported operators: - `=` for `user`, `event_domain`, and `content_category`. - `<=` for `event_time`. Supported conjunctions: - `AND` Example: `user = "testuser" AND event_time <= "2024-01-02T00:00:00Z"`
+     */
+    filter?: string;
+    /**
+     * Optional. The fixed time range to return the breakdowns for. Defaults to FIXED_TIME_RANGE_FOUR_WEEKS. Fixed time ranges are used to allow for precomputation and optimize response times.
+     */
+    fixedTimeRange?: string;
+    /**
+     * Optional. The metric to return the breakdowns for. Defaults to CONTENT_TRANSFERS_METRIC_TOTAL_TRANSFERS.
+     */
+    metric?: string;
+    /**
+     * Optional. The maximum number of breakdowns to return. The service may return fewer than this value. If unspecified, at most 50 breakdowns will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `QueryContentTransfersBreakdowns` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `QueryContentTransfersBreakdowns` must match the call that provided the page token.
+     */
+    pageToken?: string;
+  }
+  export interface Params$Resource$Customers$Enterprise$Securityinsights$Queryurlvisits extends StandardParameters {
+    /**
+     * Required. The customer ID in the format "customers/{customer_id\}".
+     */
+    customer?: string;
+    /**
+     * Optional. The filter to apply to the request. For syntax, see AIP-160. Data is not available for events older than 180 days, and may be unavailable or inaccurate for time ranges less than 4 hours. If `event_time` is not specified, results will be returned for the last 30 days. Supported fields for filtering: - `event_time` Supported operators: - `\>=` and `<=` for `event_time` Supported conjunctions: - `AND` Example: `event_time \>= "2024-01-01T00:00:00Z" AND event_time <= "2024-01-02T00:00:00Z"`
+     */
+    filter?: string;
+  }
+  export interface Params$Resource$Customers$Enterprise$Securityinsights$Queryurlvisitsbreakdowns extends StandardParameters {
+    /**
+     * Optional. The dimension to break down the URL visits by. Defaults to USER.
+     */
+    breakdown?: string;
+    /**
+     * Required. The customer ID in the format "customers/{customer_id\}".
+     */
+    customer?: string;
+    /**
+     * Optional. The filter to apply to the request. For syntax, see AIP-160. Data is not available for events older than 180 days or more recent than 48 hours ago. If `event_time` is not specified, results will end 48 hours ago. Supported fields for filtering: - `user` - `event_domain` - `event_time` Filtering by `user` or `event_domain` requires the `breakdown` dimension to be set to the corresponding value (e.g., you must set `breakdown = USER` to filter by `user`). Supported operators: - `=` for `user` and `event_domain`. - `<=` for `event_time`. Supported conjunctions: - `AND` Example: `user = "testuser" AND event_time <= "2024-01-02T00:00:00Z"`
+     */
+    filter?: string;
+    /**
+     * Optional. The fixed time range to return the breakdowns for. Defaults to FIXED_TIME_RANGE_FOUR_WEEKS. Fixed time ranges are used to allow for precomputation and optimize response times.
+     */
+    fixedTimeRange?: string;
+    /**
+     * Optional. The metric to return the breakdowns for. Defaults to URL_VISITS_METRIC_TOTAL_SUSPICIOUS_URL_VISITS.
+     */
+    metric?: string;
+    /**
+     * Optional. The maximum number of breakdowns to return. The service may return fewer than this value. If unspecified, at most 50 breakdowns will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `QueryUrlVisitsBreakdowns` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `QueryUrlVisitsBreakdowns` must match the call that provided the page token.
+     */
+    pageToken?: string;
   }
 
   export class Resource$Customers$Profiles {
@@ -8966,6 +9830,167 @@ export namespace chromemanagement_v1 {
     }
 
     /**
+     * Generate report of installed Chrome versions on managed profiles.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromemanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chromemanagement = google.chromemanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/chrome.management.reports.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await chromemanagement.customers.reports.countChromeProfileVersions({
+     *       // Required. Customer id or "my_customer" to use the customer associated to the account making the request.
+     *       customer: 'customers/my-customer',
+     *       // Optional. Query string to filter results, AND-separated fields in EBNF syntax. Note: OR operations are not supported in this filter. Supported filter fields: * last_active_date
+     *       filter: 'placeholder-value',
+     *       // The ID of the organizational unit. If omitted, all data will be returned.
+     *       orgUnitId: 'placeholder-value',
+     *       // Optional. Maximum number of results to return. Maximum and default are 100.
+     *       pageSize: 'placeholder-value',
+     *       // Optional. Token to specify the page of the request to be returned.
+     *       pageToken: 'placeholder-value',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "profileBrowserVersions": [],
+     *   //   "totalSize": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    countChromeProfileVersions(
+      params: Params$Resource$Customers$Reports$Countchromeprofileversions,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    countChromeProfileVersions(
+      params?: Params$Resource$Customers$Reports$Countchromeprofileversions,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleChromeManagementV1CountChromeProfileVersionsResponse>
+    >;
+    countChromeProfileVersions(
+      params: Params$Resource$Customers$Reports$Countchromeprofileversions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    countChromeProfileVersions(
+      params: Params$Resource$Customers$Reports$Countchromeprofileversions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1CountChromeProfileVersionsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementV1CountChromeProfileVersionsResponse>
+    ): void;
+    countChromeProfileVersions(
+      params: Params$Resource$Customers$Reports$Countchromeprofileversions,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementV1CountChromeProfileVersionsResponse>
+    ): void;
+    countChromeProfileVersions(
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementV1CountChromeProfileVersionsResponse>
+    ): void;
+    countChromeProfileVersions(
+      paramsOrCallback?:
+        | Params$Resource$Customers$Reports$Countchromeprofileversions
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1CountChromeProfileVersionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1CountChromeProfileVersionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1CountChromeProfileVersionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleChromeManagementV1CountChromeProfileVersionsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customers$Reports$Countchromeprofileversions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Customers$Reports$Countchromeprofileversions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://chromemanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+customer}/reports:countChromeProfileVersions'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['customer'],
+        pathParams: ['customer'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleChromeManagementV1CountChromeProfileVersionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleChromeManagementV1CountChromeProfileVersionsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Generate report of installed Chrome versions.
      * @example
      * ```js
@@ -10517,6 +11542,28 @@ export namespace chromemanagement_v1 {
      * Required. Mask of the fields that should be populated in the returned report.
      */
     readMask?: string;
+  }
+  export interface Params$Resource$Customers$Reports$Countchromeprofileversions extends StandardParameters {
+    /**
+     * Required. Customer id or "my_customer" to use the customer associated to the account making the request.
+     */
+    customer?: string;
+    /**
+     * Optional. Query string to filter results, AND-separated fields in EBNF syntax. Note: OR operations are not supported in this filter. Supported filter fields: * last_active_date
+     */
+    filter?: string;
+    /**
+     * The ID of the organizational unit. If omitted, all data will be returned.
+     */
+    orgUnitId?: string;
+    /**
+     * Optional. Maximum number of results to return. Maximum and default are 100.
+     */
+    pageSize?: number;
+    /**
+     * Optional. Token to specify the page of the request to be returned.
+     */
+    pageToken?: string;
   }
   export interface Params$Resource$Customers$Reports$Countchromeversions extends StandardParameters {
     /**

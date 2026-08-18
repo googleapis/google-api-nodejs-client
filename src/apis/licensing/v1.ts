@@ -289,8 +289,7 @@ export namespace licensing_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -719,8 +718,7 @@ export namespace licensing_v1 {
     listForProduct(
       params: Params$Resource$Licenseassignments$Listforproduct,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$LicenseAssignmentList>,
+        MethodOptions | BodyResponseCallback<Schema$LicenseAssignmentList>,
       callback: BodyResponseCallback<Schema$LicenseAssignmentList>
     ): void;
     listForProduct(
@@ -870,8 +868,7 @@ export namespace licensing_v1 {
     listForProductAndSku(
       params: Params$Resource$Licenseassignments$Listforproductandsku,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$LicenseAssignmentList>,
+        MethodOptions | BodyResponseCallback<Schema$LicenseAssignmentList>,
       callback: BodyResponseCallback<Schema$LicenseAssignmentList>
     ): void;
     listForProductAndSku(

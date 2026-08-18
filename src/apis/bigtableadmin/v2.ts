@@ -484,6 +484,14 @@ export namespace bigtableadmin_v2 {
      * How much space the data in the column family occupies. This is roughly how many bytes would be needed to read the contents of the entire column family (e.g. by streaming all contents out).
      */
     logicalDataBytes?: string | null;
+    /**
+     * Output only. The logical data bytes of the column family stored on HDD.
+     */
+    logicalDataHddBytes?: string | null;
+    /**
+     * Output only. The logical data bytes of the column family stored on SSD.
+     */
+    logicalDataSsdBytes?: string | null;
   }
   /**
    * Metadata type for the google.longrunning.Operation returned by CopyBackup.
@@ -729,6 +737,10 @@ export namespace bigtableadmin_v2 {
    * Request message for BigtableInstanceAdmin.CreateMaterializedView.
    */
   export interface Schema$CreateMaterializedViewRequest {
+    /**
+     * Optional. If true, ignore optional safety checks when creating the materialized view.
+     */
+    ignoreWarnings?: boolean | null;
     /**
      * Required. The materialized view to create.
      */
@@ -1327,6 +1339,10 @@ export namespace bigtableadmin_v2 {
      * Optional. The edition of the instance. See Edition for details.
      */
     edition?: string | null;
+    /**
+     * Output only. The region where Knowledge Catalog data is synced to and stored, including user-created aspects.
+     */
+    knowledgeCatalogRegion?: string | null;
     /**
      * Labels are a flexible and lightweight mechanism for organizing cloud resources into groups that reflect a customer's organizational needs and deployment strategies. They can be used to filter resources and aggregate metrics. * Label keys must be between 1 and 63 characters long and must conform to the regular expression: `\p{Ll\}\p{Lo\}{0,62\}`. * Label values must be between 0 and 63 characters long and must conform to the regular expression: `[\p{Ll\}\p{Lo\}\p{N\}_-]{0,63\}`. * No more than 64 labels can be associated with a given resource. * Keys and values must both be under 128 bytes.
      */
@@ -2487,8 +2503,7 @@ export namespace bigtableadmin_v2 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -2646,8 +2661,7 @@ export namespace bigtableadmin_v2 {
     list(
       params: Params$Resource$Operations$Projects$Operations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListOperationsResponse>,
       callback: BodyResponseCallback<Schema$ListOperationsResponse>
     ): void;
     list(
@@ -2882,8 +2896,7 @@ export namespace bigtableadmin_v2 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3025,8 +3038,7 @@ export namespace bigtableadmin_v2 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -3121,6 +3133,7 @@ export namespace bigtableadmin_v2 {
      *   //   "createTime": "my_createTime",
      *   //   "displayName": "my_displayName",
      *   //   "edition": "my_edition",
+     *   //   "knowledgeCatalogRegion": "my_knowledgeCatalogRegion",
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "satisfiesPzi": false,
@@ -3177,8 +3190,7 @@ export namespace bigtableadmin_v2 {
         | BodyResponseCallback<Schema$Instance>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Instance>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Instance> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Instance>>
@@ -3330,8 +3342,7 @@ export namespace bigtableadmin_v2 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -3462,8 +3473,7 @@ export namespace bigtableadmin_v2 {
     list(
       params: Params$Resource$Projects$Instances$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListInstancesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListInstancesResponse>,
       callback: BodyResponseCallback<Schema$ListInstancesResponse>
     ): void;
     list(
@@ -3582,6 +3592,7 @@ export namespace bigtableadmin_v2 {
      *       //   "createTime": "my_createTime",
      *       //   "displayName": "my_displayName",
      *       //   "edition": "my_edition",
+     *       //   "knowledgeCatalogRegion": "my_knowledgeCatalogRegion",
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "satisfiesPzi": false,
@@ -3652,8 +3663,7 @@ export namespace bigtableadmin_v2 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3806,8 +3816,7 @@ export namespace bigtableadmin_v2 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -3941,8 +3950,7 @@ export namespace bigtableadmin_v2 {
     testIamPermissions(
       params: Params$Resource$Projects$Instances$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -4061,6 +4069,7 @@ export namespace bigtableadmin_v2 {
      *       //   "createTime": "my_createTime",
      *       //   "displayName": "my_displayName",
      *       //   "edition": "my_edition",
+     *       //   "knowledgeCatalogRegion": "my_knowledgeCatalogRegion",
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "satisfiesPzi": false,
@@ -4078,6 +4087,7 @@ export namespace bigtableadmin_v2 {
      *   //   "createTime": "my_createTime",
      *   //   "displayName": "my_displayName",
      *   //   "edition": "my_edition",
+     *   //   "knowledgeCatalogRegion": "my_knowledgeCatalogRegion",
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "satisfiesPzi": false,
@@ -4134,8 +4144,7 @@ export namespace bigtableadmin_v2 {
         | BodyResponseCallback<Schema$Instance>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Instance>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Instance> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Instance>>
@@ -4402,8 +4411,7 @@ export namespace bigtableadmin_v2 {
         | BodyResponseCallback<Schema$AppProfile>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$AppProfile>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$AppProfile> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$AppProfile>>
@@ -4547,8 +4555,7 @@ export namespace bigtableadmin_v2 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -4697,8 +4704,7 @@ export namespace bigtableadmin_v2 {
         | BodyResponseCallback<Schema$AppProfile>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$AppProfile>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$AppProfile> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$AppProfile>>
@@ -4827,8 +4833,7 @@ export namespace bigtableadmin_v2 {
     list(
       params: Params$Resource$Projects$Instances$Appprofiles$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListAppProfilesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListAppProfilesResponse>,
       callback: BodyResponseCallback<Schema$ListAppProfilesResponse>
     ): void;
     list(
@@ -5015,8 +5020,7 @@ export namespace bigtableadmin_v2 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5266,8 +5270,7 @@ export namespace bigtableadmin_v2 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5409,8 +5412,7 @@ export namespace bigtableadmin_v2 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -5559,8 +5561,7 @@ export namespace bigtableadmin_v2 {
         | BodyResponseCallback<Schema$Cluster>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Cluster>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Cluster> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Cluster>>
@@ -5835,8 +5836,7 @@ export namespace bigtableadmin_v2 {
     list(
       params: Params$Resource$Projects$Instances$Clusters$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListClustersResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListClustersResponse>,
       callback: BodyResponseCallback<Schema$ListClustersResponse>
     ): void;
     list(
@@ -6024,8 +6024,7 @@ export namespace bigtableadmin_v2 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -6186,8 +6185,7 @@ export namespace bigtableadmin_v2 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -6214,6 +6212,167 @@ export namespace bigtableadmin_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Updates the memory layer of a cluster. To enable the memory layer, set the memory_config. To disable the memory layer, unset the memory_config.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigtableadmin = google.bigtableadmin('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigtable.admin',
+     *       'https://www.googleapis.com/auth/bigtable.admin.cluster',
+     *       'https://www.googleapis.com/auth/bigtable.admin.instance',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin.cluster',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigtableadmin.projects.instances.clusters.updateMemoryLayer(
+     *     {
+     *       // Identifier. Name of the memory layer. This is always: "projects/{project\}/instances/{instance\}/clusters/{cluster\}/memoryLayer".
+     *       name: 'projects/my-project/instances/my-instance/clusters/my-cluster/memoryLayer',
+     *       // Optional. The list of fields to update.
+     *       updateMask: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "etag": "my_etag",
+     *         //   "memoryConfig": {},
+     *         //   "name": "my_name",
+     *         //   "state": "my_state"
+     *         // }
+     *       },
+     *     },
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    updateMemoryLayer(
+      params: Params$Resource$Projects$Instances$Clusters$Updatememorylayer,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    updateMemoryLayer(
+      params?: Params$Resource$Projects$Instances$Clusters$Updatememorylayer,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    updateMemoryLayer(
+      params: Params$Resource$Projects$Instances$Clusters$Updatememorylayer,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    updateMemoryLayer(
+      params: Params$Resource$Projects$Instances$Clusters$Updatememorylayer,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    updateMemoryLayer(
+      params: Params$Resource$Projects$Instances$Clusters$Updatememorylayer,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    updateMemoryLayer(callback: BodyResponseCallback<Schema$Operation>): void;
+    updateMemoryLayer(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Clusters$Updatememorylayer
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Clusters$Updatememorylayer;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Instances$Clusters$Updatememorylayer;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://bigtableadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
             apiVersion: '',
           },
           options
@@ -6302,6 +6461,21 @@ export namespace bigtableadmin_v2 {
      * Request body metadata
      */
     requestBody?: Schema$Cluster;
+  }
+  export interface Params$Resource$Projects$Instances$Clusters$Updatememorylayer extends StandardParameters {
+    /**
+     * Identifier. Name of the memory layer. This is always: "projects/{project\}/instances/{instance\}/clusters/{cluster\}/memoryLayer".
+     */
+    name?: string;
+    /**
+     * Optional. The list of fields to update.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$MemoryLayer;
   }
 
   export class Resource$Projects$Instances$Clusters$Backups {
@@ -6418,8 +6592,7 @@ export namespace bigtableadmin_v2 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -6586,8 +6759,7 @@ export namespace bigtableadmin_v2 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -6729,8 +6901,7 @@ export namespace bigtableadmin_v2 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -6881,8 +7052,7 @@ export namespace bigtableadmin_v2 {
         | BodyResponseCallback<Schema$Backup>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Backup>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Backup> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Backup>>
@@ -7035,8 +7205,7 @@ export namespace bigtableadmin_v2 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -7363,8 +7532,7 @@ export namespace bigtableadmin_v2 {
         | BodyResponseCallback<Schema$Backup>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Backup>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Backup> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Backup>>
@@ -7519,8 +7687,7 @@ export namespace bigtableadmin_v2 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -7656,8 +7823,7 @@ export namespace bigtableadmin_v2 {
     testIamPermissions(
       params: Params$Resource$Projects$Instances$Clusters$Backups$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -7931,8 +8097,7 @@ export namespace bigtableadmin_v2 {
     list(
       params: Params$Resource$Projects$Instances$Clusters$Hottablets$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListHotTabletsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListHotTabletsResponse>,
       callback: BodyResponseCallback<Schema$ListHotTabletsResponse>
     ): void;
     list(
@@ -8117,8 +8282,7 @@ export namespace bigtableadmin_v2 {
     list(
       params: Params$Resource$Projects$Instances$Clusters$Memorylayers$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListMemoryLayersResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListMemoryLayersResponse>,
       callback: BodyResponseCallback<Schema$ListMemoryLayersResponse>
     ): void;
     list(
@@ -8322,8 +8486,7 @@ export namespace bigtableadmin_v2 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -8467,8 +8630,7 @@ export namespace bigtableadmin_v2 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -8766,8 +8928,7 @@ export namespace bigtableadmin_v2 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -8899,8 +9060,7 @@ export namespace bigtableadmin_v2 {
     list(
       params: Params$Resource$Projects$Instances$Logicalviews$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListLogicalViewsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListLogicalViewsResponse>,
       callback: BodyResponseCallback<Schema$ListLogicalViewsResponse>
     ): void;
     list(
@@ -9081,8 +9241,7 @@ export namespace bigtableadmin_v2 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -9236,8 +9395,7 @@ export namespace bigtableadmin_v2 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -9374,8 +9532,7 @@ export namespace bigtableadmin_v2 {
     testIamPermissions(
       params: Params$Resource$Projects$Instances$Logicalviews$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -9586,6 +9743,8 @@ export namespace bigtableadmin_v2 {
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.materializedViews.create({
+     *     // Optional. If true, ignore optional safety checks when creating the materialized view.
+     *     ignoreWarnings: 'placeholder-value',
      *     // Required. The ID to use for the materialized view, which will become the final component of the materialized view's resource name.
      *     materializedViewId: 'placeholder-value',
      *     // Required. The parent instance where this materialized view will be created. Format: `projects/{project\}/instances/{instance\}`.
@@ -9661,8 +9820,7 @@ export namespace bigtableadmin_v2 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -9807,8 +9965,7 @@ export namespace bigtableadmin_v2 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -10111,8 +10268,7 @@ export namespace bigtableadmin_v2 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -10434,8 +10590,7 @@ export namespace bigtableadmin_v2 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -10591,8 +10746,7 @@ export namespace bigtableadmin_v2 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -10731,8 +10885,7 @@ export namespace bigtableadmin_v2 {
     testIamPermissions(
       params: Params$Resource$Projects$Instances$Materializedviews$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -10806,6 +10959,10 @@ export namespace bigtableadmin_v2 {
   }
 
   export interface Params$Resource$Projects$Instances$Materializedviews$Create extends StandardParameters {
+    /**
+     * Optional. If true, ignore optional safety checks when creating the materialized view.
+     */
+    ignoreWarnings?: boolean;
     /**
      * Required. The ID to use for the materialized view, which will become the final component of the materialized view's resource name.
      */
@@ -11006,8 +11163,7 @@ export namespace bigtableadmin_v2 {
     checkConsistency(
       params: Params$Resource$Projects$Instances$Tables$Checkconsistency,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$CheckConsistencyResponse>,
+        MethodOptions | BodyResponseCallback<Schema$CheckConsistencyResponse>,
       callback: BodyResponseCallback<Schema$CheckConsistencyResponse>
     ): void;
     checkConsistency(
@@ -11193,8 +11349,7 @@ export namespace bigtableadmin_v2 {
         | BodyResponseCallback<Schema$Table>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Table>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Table> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Table>>
@@ -11335,8 +11490,7 @@ export namespace bigtableadmin_v2 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -11483,8 +11637,7 @@ export namespace bigtableadmin_v2 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -11802,8 +11955,7 @@ export namespace bigtableadmin_v2 {
         | BodyResponseCallback<Schema$Table>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Table>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Table> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Table>>
@@ -11954,8 +12106,7 @@ export namespace bigtableadmin_v2 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -12270,8 +12421,7 @@ export namespace bigtableadmin_v2 {
         | BodyResponseCallback<Schema$Table>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Table>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Table> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Table>>
@@ -12362,7 +12512,7 @@ export namespace bigtableadmin_v2 {
      *     ignoreWarnings: 'placeholder-value',
      *     // The unique name of the table. Values are of the form `projects/{project\}/instances/{instance\}/tables/_a-zA-Z0-9*`. Views: `NAME_ONLY`, `SCHEMA_VIEW`, `REPLICATION_VIEW`, `STATS_VIEW`, `FULL`
      *     name: 'projects/my-project/instances/my-instance/tables/my-table',
-     *     // Required. The list of fields to update. A mask specifying which fields (e.g. `change_stream_config`) in the `table` field should be updated. This mask is relative to the `table` field, not to the request message. The wildcard (*) path is currently not supported. Currently UpdateTable is only supported for the following fields: * `change_stream_config` * `change_stream_config.retention_period` * `deletion_protection` * `automated_backup_policy` * `automated_backup_policy.retention_period` * `automated_backup_policy.frequency` * `row_key_schema` If `column_families` is set in `update_mask`, it will return an UNIMPLEMENTED error.
+     *     // Required. The list of fields to update. A mask specifying which fields (e.g. `change_stream_config`) in the `table` field should be updated. This mask is relative to the `table` field, not to the request message. The wildcard (*) path is currently not supported. Currently UpdateTable is only supported for the following fields: * `change_stream_config` * `change_stream_config.retention_period` * `deletion_protection` * `automated_backup_policy` * `automated_backup_policy.retention_period` * `automated_backup_policy.frequency` * `automated_backup_policy.locations` * `row_key_schema` If `column_families` is set in `update_mask`, it will return an UNIMPLEMENTED error.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -12441,8 +12591,7 @@ export namespace bigtableadmin_v2 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -12595,8 +12744,7 @@ export namespace bigtableadmin_v2 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -12751,8 +12899,7 @@ export namespace bigtableadmin_v2 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -12885,8 +13032,7 @@ export namespace bigtableadmin_v2 {
     testIamPermissions(
       params: Params$Resource$Projects$Instances$Tables$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -13062,8 +13208,7 @@ export namespace bigtableadmin_v2 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -13223,7 +13368,7 @@ export namespace bigtableadmin_v2 {
      */
     name?: string;
     /**
-     * Required. The list of fields to update. A mask specifying which fields (e.g. `change_stream_config`) in the `table` field should be updated. This mask is relative to the `table` field, not to the request message. The wildcard (*) path is currently not supported. Currently UpdateTable is only supported for the following fields: * `change_stream_config` * `change_stream_config.retention_period` * `deletion_protection` * `automated_backup_policy` * `automated_backup_policy.retention_period` * `automated_backup_policy.frequency` * `row_key_schema` If `column_families` is set in `update_mask`, it will return an UNIMPLEMENTED error.
+     * Required. The list of fields to update. A mask specifying which fields (e.g. `change_stream_config`) in the `table` field should be updated. This mask is relative to the `table` field, not to the request message. The wildcard (*) path is currently not supported. Currently UpdateTable is only supported for the following fields: * `change_stream_config` * `change_stream_config.retention_period` * `deletion_protection` * `automated_backup_policy` * `automated_backup_policy.retention_period` * `automated_backup_policy.frequency` * `automated_backup_policy.locations` * `row_key_schema` If `column_families` is set in `update_mask`, it will return an UNIMPLEMENTED error.
      */
     updateMask?: string;
 
@@ -13395,8 +13540,7 @@ export namespace bigtableadmin_v2 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -13541,8 +13685,7 @@ export namespace bigtableadmin_v2 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -13845,8 +13988,7 @@ export namespace bigtableadmin_v2 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -14167,8 +14309,7 @@ export namespace bigtableadmin_v2 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -14323,8 +14464,7 @@ export namespace bigtableadmin_v2 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -14462,8 +14602,7 @@ export namespace bigtableadmin_v2 {
     testIamPermissions(
       params: Params$Resource$Projects$Instances$Tables$Authorizedviews$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -14759,8 +14898,7 @@ export namespace bigtableadmin_v2 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -14905,8 +15043,7 @@ export namespace bigtableadmin_v2 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -15204,8 +15341,7 @@ export namespace bigtableadmin_v2 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -15338,8 +15474,7 @@ export namespace bigtableadmin_v2 {
     list(
       params: Params$Resource$Projects$Instances$Tables$Schemabundles$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListSchemaBundlesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListSchemaBundlesResponse>,
       callback: BodyResponseCallback<Schema$ListSchemaBundlesResponse>
     ): void;
     list(
@@ -15525,8 +15660,7 @@ export namespace bigtableadmin_v2 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -15681,8 +15815,7 @@ export namespace bigtableadmin_v2 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -15820,8 +15953,7 @@ export namespace bigtableadmin_v2 {
     testIamPermissions(
       params: Params$Resource$Projects$Instances$Tables$Schemabundles$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -16089,8 +16221,7 @@ export namespace bigtableadmin_v2 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListLocationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListLocationsResponse>,
       callback: BodyResponseCallback<Schema$ListLocationsResponse>
     ): void;
     list(

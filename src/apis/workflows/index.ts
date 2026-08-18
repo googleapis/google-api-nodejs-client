@@ -35,10 +35,7 @@ export function workflows<
 >(
   this: GoogleConfigurable,
   versionOrOptions:
-    | 'v1'
-    | workflows_v1.Options
-    | 'v1beta'
-    | workflows_v1beta.Options
+    'v1' | workflows_v1.Options | 'v1beta' | workflows_v1beta.Options
 ) {
   return getAPI<T>('workflows', versionOrOptions, VERSIONS, this);
 }

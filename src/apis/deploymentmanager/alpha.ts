@@ -1558,8 +1558,7 @@ export namespace deploymentmanager_alpha {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -1902,8 +1901,7 @@ export namespace deploymentmanager_alpha {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -2037,8 +2035,7 @@ export namespace deploymentmanager_alpha {
     list(
       params: Params$Resource$Compositetypes$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$CompositeTypesListResponse>,
+        MethodOptions | BodyResponseCallback<Schema$CompositeTypesListResponse>,
       callback: BodyResponseCallback<Schema$CompositeTypesListResponse>
     ): void;
     list(
@@ -2250,8 +2247,7 @@ export namespace deploymentmanager_alpha {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -2441,8 +2437,7 @@ export namespace deploymentmanager_alpha {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -2733,8 +2728,7 @@ export namespace deploymentmanager_alpha {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -2910,8 +2904,7 @@ export namespace deploymentmanager_alpha {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3071,8 +3064,7 @@ export namespace deploymentmanager_alpha {
         | BodyResponseCallback<Schema$Deployment>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Deployment>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Deployment> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Deployment>>
@@ -3220,8 +3212,7 @@ export namespace deploymentmanager_alpha {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -3418,8 +3409,7 @@ export namespace deploymentmanager_alpha {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3553,8 +3543,7 @@ export namespace deploymentmanager_alpha {
     list(
       params: Params$Resource$Deployments$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$DeploymentsListResponse>,
+        MethodOptions | BodyResponseCallback<Schema$DeploymentsListResponse>,
       callback: BodyResponseCallback<Schema$DeploymentsListResponse>
     ): void;
     list(
@@ -3774,8 +3763,7 @@ export namespace deploymentmanager_alpha {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3932,8 +3920,7 @@ export namespace deploymentmanager_alpha {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -4113,8 +4100,7 @@ export namespace deploymentmanager_alpha {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4247,8 +4233,7 @@ export namespace deploymentmanager_alpha {
     testIamPermissions(
       params: Params$Resource$Deployments$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -4471,8 +4456,7 @@ export namespace deploymentmanager_alpha {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4859,8 +4843,7 @@ export namespace deploymentmanager_alpha {
         | BodyResponseCallback<Schema$Manifest>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Manifest>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Manifest> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Manifest>>
@@ -4995,8 +4978,7 @@ export namespace deploymentmanager_alpha {
     list(
       params: Params$Resource$Manifests$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ManifestsListResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ManifestsListResponse>,
       callback: BodyResponseCallback<Schema$ManifestsListResponse>
     ): void;
     list(
@@ -5242,8 +5224,7 @@ export namespace deploymentmanager_alpha {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5376,8 +5357,7 @@ export namespace deploymentmanager_alpha {
     list(
       params: Params$Resource$Operations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$OperationsListResponse>,
+        MethodOptions | BodyResponseCallback<Schema$OperationsListResponse>,
       callback: BodyResponseCallback<Schema$OperationsListResponse>
     ): void;
     list(
@@ -5602,8 +5582,7 @@ export namespace deploymentmanager_alpha {
         | BodyResponseCallback<Schema$Resource>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Resource>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Resource> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Resource>>
@@ -5738,8 +5717,7 @@ export namespace deploymentmanager_alpha {
     list(
       params: Params$Resource$Resources$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ResourcesListResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ResourcesListResponse>,
       callback: BodyResponseCallback<Schema$ResourcesListResponse>
     ): void;
     list(
@@ -5983,8 +5961,7 @@ export namespace deploymentmanager_alpha {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -6296,8 +6273,7 @@ export namespace deploymentmanager_alpha {
         | BodyResponseCallback<Schema$TypeInfo>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$TypeInfo>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$TypeInfo> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$TypeInfo>>
@@ -6487,8 +6463,7 @@ export namespace deploymentmanager_alpha {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -6622,8 +6597,7 @@ export namespace deploymentmanager_alpha {
     list(
       params: Params$Resource$Typeproviders$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TypeProvidersListResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TypeProvidersListResponse>,
       callback: BodyResponseCallback<Schema$TypeProvidersListResponse>
     ): void;
     list(
@@ -6998,8 +6972,7 @@ export namespace deploymentmanager_alpha {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -7191,8 +7164,7 @@ export namespace deploymentmanager_alpha {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -7500,8 +7472,7 @@ export namespace deploymentmanager_alpha {
         | BodyResponseCallback<Schema$Type>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Type>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Type> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Type>>

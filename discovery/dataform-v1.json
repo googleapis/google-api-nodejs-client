@@ -90,11 +90,6 @@
     },
     {
       "description": "Regional Endpoint",
-      "endpointUrl": "https://dataform.europe-north2.rep.googleapis.com/",
-      "location": "europe-north2"
-    },
-    {
-      "description": "Regional Endpoint",
       "endpointUrl": "https://dataform.europe-southwest1.rep.googleapis.com/",
       "location": "europe-southwest1"
     },
@@ -170,11 +165,6 @@
     },
     {
       "description": "Regional Endpoint",
-      "endpointUrl": "https://dataform.northamerica-south1.rep.googleapis.com/",
-      "location": "northamerica-south1"
-    },
-    {
-      "description": "Regional Endpoint",
       "endpointUrl": "https://dataform.southamerica-east1.rep.googleapis.com/",
       "location": "southamerica-east1"
     },
@@ -202,11 +192,6 @@
       "description": "Regional Endpoint",
       "endpointUrl": "https://dataform.us-east5.rep.googleapis.com/",
       "location": "us-east5"
-    },
-    {
-      "description": "Regional Endpoint",
-      "endpointUrl": "https://dataform.us-east7.rep.googleapis.com/",
-      "location": "us-east7"
     },
     {
       "description": "Regional Endpoint",
@@ -1497,7 +1482,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. The compilation result's name. LINT.ThenChange(//depot/google3/google/cloud/dataform/v2main/data_pipelines.proto:GetCompilationResultRequest)",
+                          "description": "Required. The compilation result's name.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/repositories/[^/]+/compilationResults/[^/]+$",
                           "required": true,
@@ -1523,7 +1508,7 @@
                       ],
                       "parameters": {
                         "filter": {
-                          "description": "Optional. Filter for the returned list. LINT.ThenChange(//depot/google3/google/cloud/dataform/v2main/data_pipelines.proto:ListCompilationResultsRequest)",
+                          "description": "Optional. Filter for the returned list.",
                           "location": "query",
                           "type": "string"
                         },
@@ -1623,7 +1608,7 @@
                           "type": "string"
                         },
                         "releaseConfigId": {
-                          "description": "Required. The ID to use for the release config, which will become the final component of the release config's resource name. LINT.ThenChange(//depot/google3/google/cloud/dataform/v2main/data_pipelines.proto:CreateReleaseConfigRequest)",
+                          "description": "Required. The ID to use for the release config, which will become the final component of the release config's resource name.",
                           "location": "query",
                           "type": "string"
                         }
@@ -1650,7 +1635,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. The release config's name. LINT.ThenChange(//depot/google3/google/cloud/dataform/v2main/data_pipelines.proto:DeleteReleaseConfigRequest)",
+                          "description": "Required. The release config's name.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/repositories/[^/]+/releaseConfigs/[^/]+$",
                           "required": true,
@@ -1676,7 +1661,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. The release config's name. LINT.ThenChange(//depot/google3/google/cloud/dataform/v2main/data_pipelines.proto:GetReleaseConfigRequest)",
+                          "description": "Required. The release config's name.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/repositories/[^/]+/releaseConfigs/[^/]+$",
                           "required": true,
@@ -1708,7 +1693,7 @@
                           "type": "integer"
                         },
                         "pageToken": {
-                          "description": "Optional. Page token received from a previous `ListReleaseConfigs` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListReleaseConfigs`, with the exception of `page_size`, must match the call that provided the page token. LINT.ThenChange(//depot/google3/google/cloud/dataform/v2main/data_pipelines.proto:ListReleaseConfigsRequest)",
+                          "description": "Optional. Page token received from a previous `ListReleaseConfigs` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListReleaseConfigs`, with the exception of `page_size`, must match the call that provided the page token.",
                           "location": "query",
                           "type": "string"
                         },
@@ -3150,7 +3135,7 @@
                       "type": "string"
                     },
                     "pageSize": {
-                      "description": "Optional. Maximum number of TeamFolders to return. The server may return fewer items than requested. If unspecified, the server will pick a default of page_size = 50.",
+                      "description": "Optional. Maximum number of `TeamFolders` to return. The server may return fewer items than requested. If unspecified, the server will pick a default of `page_size` = 50.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
@@ -3235,7 +3220,7 @@
       }
     }
   },
-  "revision": "20260515",
+  "revision": "20260802",
   "rootUrl": "https://dataform.googleapis.com/",
   "schemas": {
     "ActionErrorTable": {
@@ -3439,6 +3424,10 @@
           "description": "Optional. The default schema (BigQuery dataset ID).",
           "type": "string"
         },
+        "pipelineConfig": {
+          "$ref": "PipelineConfig",
+          "description": "Optional. The pipeline options which defines the pipeline type and path within the Git repository."
+        },
         "schemaSuffix": {
           "description": "Optional. The suffix that should be appended to all schema (BigQuery dataset ID) names.",
           "type": "string"
@@ -3603,7 +3592,7 @@
       "properties": {
         "actionTarget": {
           "$ref": "Target",
-          "description": "Output only. The identifier of the action where this error occurred, if available. LINT.ThenChange(//depot/google3/google/cloud/dataform/v2main/data_pipelines.proto:CompilationError)",
+          "description": "Output only. The identifier of the action where this error occurred, if available.",
           "readOnly": true
         },
         "message": {
@@ -3655,6 +3644,11 @@
           "description": "Output only. The version of `@dataform/core` that was used for compilation.",
           "readOnly": true,
           "type": "string"
+        },
+        "gcsRepositorySnapshotMetadata": {
+          "$ref": "GcsRepositorySnapshotMetadata",
+          "description": "Output only. Metadata about the repository snapshot used by scheduled notebooks.",
+          "readOnly": true
         },
         "gitCommitish": {
           "description": "Immutable. Git commit/tag/branch name at which the repository should be compiled. Must exist in the remote repository. Examples: - a commit SHA: `12ade345` - a tag: `tag1` - a branch name: `branch1`",
@@ -4148,6 +4142,40 @@
       },
       "type": "object"
     },
+    "GcsRepositorySnapshotDestination": {
+      "description": "Configures the destination for a repository snapshot.",
+      "id": "GcsRepositorySnapshotDestination",
+      "properties": {
+        "repositorySnapshotUri": {
+          "description": "Optional. The Google Cloud Storage destination to upload the repository snapshot to. Format: `gs://bucket-name/path/`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GcsRepositorySnapshotMetadata": {
+      "description": "Metadata about a repository snapshot stored in Google Cloud Storage.",
+      "id": "GcsRepositorySnapshotMetadata",
+      "properties": {
+        "crc32cChecksum": {
+          "description": "Output only. The crc32c checksum of the repository snapshot, big-endian base64 encoded.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "generation": {
+          "description": "Output only. The generation number of the Cloud Storage object. See https://cloud.google.com/storage/docs/metadata#generation-number.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "repositorySnapshotUri": {
+          "description": "Output only. The Google Cloud Storage URI of the repository snapshot.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GitRemoteSettings": {
       "description": "Controls Git remote configuration for a repository.",
       "id": "GitRemoteSettings",
@@ -4157,12 +4185,16 @@
           "type": "string"
         },
         "defaultBranch": {
-          "description": "Optional. The Git remote's default branch name. If not set `main` will be used.",
+          "description": "Optional. The Git remote's default branch name. If not set, `main` will be used.",
           "type": "string"
         },
         "effectiveDefaultBranch": {
           "description": "Output only. The Git remote's effective default branch name. This is the default branch name of the Git remote if it is set, otherwise it is `main`.",
           "readOnly": true,
+          "type": "string"
+        },
+        "gitRepositoryLink": {
+          "description": "Optional. Resource name for the `GitRepositoryLink` used for machine credentials. Must be in the format `projects/*/locations/*/connections/*/gitRepositoryLinks/*`",
           "type": "string"
         },
         "sshAuthenticationConfig": {
@@ -4263,7 +4295,12 @@
     "InstallNpmPackagesRequest": {
       "description": "`InstallNpmPackages` request message.",
       "id": "InstallNpmPackagesRequest",
-      "properties": {},
+      "properties": {
+        "pipelineConfig": {
+          "$ref": "PipelineConfig",
+          "description": "Optional. The pipeline options which defines the pipeline type and path within the Git repository."
+        }
+      },
       "type": "object"
     },
     "InstallNpmPackagesResponse": {
@@ -4356,7 +4393,7 @@
           "type": "string"
         },
         "unreachable": {
-          "description": "Locations which could not be reached. LINT.ThenChange(//depot/google3/google/cloud/dataform/v2main/data_pipelines.proto:ListCompilationResultsResponse)",
+          "description": "Locations which could not be reached.",
           "items": {
             "type": "string"
           },
@@ -4424,7 +4461,7 @@
           "type": "array"
         },
         "unreachable": {
-          "description": "Locations which could not be reached. LINT.ThenChange(//depot/google3/google/cloud/dataform/v2main/data_pipelines.proto:ListReleaseConfigsResponse)",
+          "description": "Locations which could not be reached.",
           "items": {
             "type": "string"
           },
@@ -4709,6 +4746,11 @@
           "readOnly": true,
           "type": "string"
         },
+        "filePath": {
+          "description": "Output only. The path to the notebook file in the repository.",
+          "readOnly": true,
+          "type": "string"
+        },
         "jobId": {
           "description": "Output only. The ID of the Gemini Enterprise Agent Platform job that executed the notebook in contents and also the ID used for the outputs created in Google Cloud Storage buckets. Only set once the job has started to run.",
           "readOnly": true,
@@ -4728,6 +4770,10 @@
         "gcsOutputBucket": {
           "description": "Optional. The Google Cloud Storage location to upload the result to. Format: `gs://bucket-name`.",
           "type": "string"
+        },
+        "gcsRepositorySnapshotDestination": {
+          "$ref": "GcsRepositorySnapshotDestination",
+          "description": "Optional. The Google Cloud Storage destination to upload the snapshot to. For empty URI it defaults to the provided gcs_output_bucket. Format: `gs://bucket-name/path/`."
         }
       },
       "type": "object"
@@ -4847,6 +4893,33 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "PipelineConfig": {
+      "description": "Defines the pipeline type and path within the Git repository.",
+      "id": "PipelineConfig",
+      "properties": {
+        "path": {
+          "description": "Required. The relative path within the Git repository where the pipeline is defined. For example, for a Dataform pipeline, it is a path to the folder where `workflow_settings.yaml` or `dataform.json` is located.",
+          "type": "string"
+        },
+        "pipelineType": {
+          "description": "Required. The type of the pipeline.",
+          "enum": [
+            "PIPELINE_TYPE_UNSPECIFIED",
+            "DATAFORM",
+            "SQL",
+            "NOTEBOOK"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "Regular Dataform pipeline.",
+            "SQL single file asset.",
+            "Notebook single file asset."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -5268,7 +5341,7 @@
           "type": "string"
         },
         "internalMetadata": {
-          "description": "Output only. All the metadata information that is used internally to serve the resource. For example: timestamps, flags, status fields, etc. The format of this field is a JSON string. LINT.ThenChange(//depot/google3/google/cloud/dataform/v2main/data_pipelines.proto:ReleaseConfig)",
+          "description": "Output only. All the metadata information that is used internally to serve the resource. For example: timestamps, flags, status fields, etc. The format of this field is a JSON string.",
           "readOnly": true,
           "type": "string"
         },
@@ -5289,7 +5362,7 @@
           "type": "string"
         },
         "timeZone": {
-          "description": "Optional. Specifies the time zone to be used when interpreting cron_schedule. Must be a time zone name from the time zone database (https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). If left unspecified, the default is UTC.",
+          "description": "Optional. Specifies the time zone to be used when interpreting cron_schedule. Must be a time zone name from the [time zone database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). If left unspecified, the default is `UTC`.",
           "type": "string"
         }
       },
@@ -5794,7 +5867,7 @@
           "type": "string"
         },
         "timeZone": {
-          "description": "Optional. Specifies the time zone to be used when interpreting cron_schedule. Must be a time zone name from the time zone database (https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). If left unspecified, the default is UTC.",
+          "description": "Optional. Specifies the time zone to be used when interpreting cron_schedule. Must be a time zone name from the [time zone database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). If left unspecified, the default is `UTC`.",
           "type": "string"
         },
         "updateTime": {
@@ -5837,6 +5910,11 @@
           "description": "Output only. The workflow invocation's name.",
           "readOnly": true,
           "type": "string"
+        },
+        "pipelineConfig": {
+          "$ref": "PipelineConfig",
+          "description": "Output only. The pipeline options which defines the pipeline type and path within the Git repository.",
+          "readOnly": true
         },
         "privateResourceMetadata": {
           "$ref": "PrivateResourceMetadata",

@@ -37,10 +37,7 @@ export function cloudbilling<
 >(
   this: GoogleConfigurable,
   versionOrOptions:
-    | 'v1'
-    | cloudbilling_v1.Options
-    | 'v1beta'
-    | cloudbilling_v1beta.Options
+    'v1' | cloudbilling_v1.Options | 'v1beta' | cloudbilling_v1beta.Options
 ) {
   return getAPI<T>('cloudbilling', versionOrOptions, VERSIONS, this);
 }

@@ -598,8 +598,7 @@ export namespace apikeys_v2 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -787,8 +786,7 @@ export namespace apikeys_v2 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -864,6 +862,8 @@ export namespace apikeys_v2 {
      *
      *   // Do the magic
      *   const res = await apikeys.projects.locations.keys.delete({
+     *     // Optional. Defines the behavior for checking existing usage when deleting a key.
+     *     checkExistingUsage: 'placeholder-value',
      *     // Optional. The etag known to the client for the expected state of the key. This is to be used for optimistic concurrency.
      *     etag: 'placeholder-value',
      *     // Required. The resource name of the API key to be deleted.
@@ -927,8 +927,7 @@ export namespace apikeys_v2 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -1074,8 +1073,7 @@ export namespace apikeys_v2 {
         | BodyResponseCallback<Schema$V2Key>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$V2Key>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$V2Key> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$V2Key>>
@@ -1193,8 +1191,7 @@ export namespace apikeys_v2 {
     getKeyString(
       params: Params$Resource$Projects$Locations$Keys$Getkeystring,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$V2GetKeyStringResponse>,
+        MethodOptions | BodyResponseCallback<Schema$V2GetKeyStringResponse>,
       callback: BodyResponseCallback<Schema$V2GetKeyStringResponse>
     ): void;
     getKeyString(
@@ -1439,6 +1436,8 @@ export namespace apikeys_v2 {
      *
      *   // Do the magic
      *   const res = await apikeys.projects.locations.keys.patch({
+     *     // Optional. Defines the behavior for checking existing usage when updating a key.
+     *     checkExistingUsage: 'placeholder-value',
      *     // Identifier. The resource name of the key. The `name` has the form: `projects//locations/global/keys/`. For example: `projects/123456867718/locations/global/keys/b7ff1f9f-8275-410a-94dd-3855ee9b5dd2` NOTE: Key is a global resource; hence the only supported value for location is `global`.
      *     name: 'projects/my-project/locations/my-location/keys/my-key',
      *     // The field mask specifies which fields to be updated as part of this request. All other fields are ignored. Mutable fields are: `display_name`, `restrictions`, and `annotations`. If an update mask is not provided, the service treats it as an implied mask equivalent to all allowed fields that are set on the wire. If the field mask has a special value "*", the service treats it equivalent to replace all allowed mutable fields.
@@ -1520,8 +1519,7 @@ export namespace apikeys_v2 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -1664,8 +1662,7 @@ export namespace apikeys_v2 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -1731,6 +1728,10 @@ export namespace apikeys_v2 {
   }
   export interface Params$Resource$Projects$Locations$Keys$Delete extends StandardParameters {
     /**
+     * Optional. Defines the behavior for checking existing usage when deleting a key.
+     */
+    checkExistingUsage?: string;
+    /**
      * Optional. The etag known to the client for the expected state of the key. This is to be used for optimistic concurrency.
      */
     etag?: string;
@@ -1770,6 +1771,10 @@ export namespace apikeys_v2 {
     showDeleted?: boolean;
   }
   export interface Params$Resource$Projects$Locations$Keys$Patch extends StandardParameters {
+    /**
+     * Optional. Defines the behavior for checking existing usage when updating a key.
+     */
+    checkExistingUsage?: string;
     /**
      * Identifier. The resource name of the key. The `name` has the form: `projects//locations/global/keys/`. For example: `projects/123456867718/locations/global/keys/b7ff1f9f-8275-410a-94dd-3855ee9b5dd2` NOTE: Key is a global resource; hence the only supported value for location is `global`.
      */

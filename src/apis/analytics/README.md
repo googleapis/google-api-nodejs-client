@@ -2,7 +2,7 @@
 
 # analytics
 
-> The Analytics API provides access to Analytics configuration and report data.
+> 
 
 ## Installation
 

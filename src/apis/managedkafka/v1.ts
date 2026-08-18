@@ -1217,8 +1217,7 @@ export namespace managedkafka_v1 {
         | BodyResponseCallback<Schema$Location>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Location>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Location> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Location>>
@@ -1342,8 +1341,7 @@ export namespace managedkafka_v1 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListLocationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListLocationsResponse>,
       callback: BodyResponseCallback<Schema$ListLocationsResponse>
     ): void;
     list(
@@ -1573,8 +1571,7 @@ export namespace managedkafka_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -1716,8 +1713,7 @@ export namespace managedkafka_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -1865,8 +1861,7 @@ export namespace managedkafka_v1 {
         | BodyResponseCallback<Schema$Cluster>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Cluster>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Cluster> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Cluster>>
@@ -1991,8 +1986,7 @@ export namespace managedkafka_v1 {
     list(
       params: Params$Resource$Projects$Locations$Clusters$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListClustersResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListClustersResponse>,
       callback: BodyResponseCallback<Schema$ListClustersResponse>
     ): void;
     list(
@@ -2177,8 +2171,7 @@ export namespace managedkafka_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -2571,8 +2564,7 @@ export namespace managedkafka_v1 {
         | BodyResponseCallback<Schema$Acl>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Acl>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Acl> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Acl>>
@@ -2703,8 +2695,7 @@ export namespace managedkafka_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -2842,8 +2833,7 @@ export namespace managedkafka_v1 {
         | BodyResponseCallback<Schema$Acl>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Acl>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Acl> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Acl>>
@@ -3135,8 +3125,7 @@ export namespace managedkafka_v1 {
         | BodyResponseCallback<Schema$Acl>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Acl>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Acl> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Acl>>
@@ -3264,8 +3253,7 @@ export namespace managedkafka_v1 {
     removeAclEntry(
       params: Params$Resource$Projects$Locations$Clusters$Acls$Removeaclentry,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$RemoveAclEntryResponse>,
+        MethodOptions | BodyResponseCallback<Schema$RemoveAclEntryResponse>,
       callback: BodyResponseCallback<Schema$RemoveAclEntryResponse>
     ): void;
     removeAclEntry(
@@ -3509,8 +3497,7 @@ export namespace managedkafka_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -3774,8 +3761,7 @@ export namespace managedkafka_v1 {
     list(
       params: Params$Resource$Projects$Locations$Clusters$Consumergroups$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListConsumerGroupsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListConsumerGroupsResponse>,
       callback: BodyResponseCallback<Schema$ListConsumerGroupsResponse>
     ): void;
     list(
@@ -4155,8 +4141,7 @@ export namespace managedkafka_v1 {
         | BodyResponseCallback<Schema$Topic>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Topic>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Topic> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Topic>>
@@ -4291,8 +4276,7 @@ export namespace managedkafka_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -4429,8 +4413,7 @@ export namespace managedkafka_v1 {
         | BodyResponseCallback<Schema$Topic>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Topic>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Topic> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Topic>>
@@ -4721,8 +4704,7 @@ export namespace managedkafka_v1 {
         | BodyResponseCallback<Schema$Topic>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Topic>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Topic> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Topic>>
@@ -4950,8 +4932,7 @@ export namespace managedkafka_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5094,8 +5075,7 @@ export namespace managedkafka_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5550,8 +5530,7 @@ export namespace managedkafka_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5786,8 +5765,7 @@ export namespace managedkafka_v1 {
         | BodyResponseCallback<Schema$Connector>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Connector>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Connector> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Connector>>
@@ -5923,8 +5901,7 @@ export namespace managedkafka_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -6062,8 +6039,7 @@ export namespace managedkafka_v1 {
         | BodyResponseCallback<Schema$Connector>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Connector>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Connector> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Connector>>
@@ -6186,8 +6162,7 @@ export namespace managedkafka_v1 {
     list(
       params: Params$Resource$Projects$Locations$Connectclusters$Connectors$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListConnectorsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListConnectorsResponse>,
       callback: BodyResponseCallback<Schema$ListConnectorsResponse>
     ): void;
     list(
@@ -6361,8 +6336,7 @@ export namespace managedkafka_v1 {
         | BodyResponseCallback<Schema$Connector>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Connector>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Connector> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Connector>>
@@ -6483,8 +6457,7 @@ export namespace managedkafka_v1 {
     pause(
       params: Params$Resource$Projects$Locations$Connectclusters$Connectors$Pause,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$PauseConnectorResponse>,
+        MethodOptions | BodyResponseCallback<Schema$PauseConnectorResponse>,
       callback: BodyResponseCallback<Schema$PauseConnectorResponse>
     ): void;
     pause(
@@ -6625,8 +6598,7 @@ export namespace managedkafka_v1 {
     restart(
       params: Params$Resource$Projects$Locations$Connectclusters$Connectors$Restart,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$RestartConnectorResponse>,
+        MethodOptions | BodyResponseCallback<Schema$RestartConnectorResponse>,
       callback: BodyResponseCallback<Schema$RestartConnectorResponse>
     ): void;
     restart(
@@ -6772,8 +6744,7 @@ export namespace managedkafka_v1 {
     resume(
       params: Params$Resource$Projects$Locations$Connectclusters$Connectors$Resume,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ResumeConnectorResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ResumeConnectorResponse>,
       callback: BodyResponseCallback<Schema$ResumeConnectorResponse>
     ): void;
     resume(
@@ -6916,8 +6887,7 @@ export namespace managedkafka_v1 {
     stop(
       params: Params$Resource$Projects$Locations$Connectclusters$Connectors$Stop,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$StopConnectorResponse>,
+        MethodOptions | BodyResponseCallback<Schema$StopConnectorResponse>,
       callback: BodyResponseCallback<Schema$StopConnectorResponse>
     ): void;
     stop(
@@ -7183,8 +7153,7 @@ export namespace managedkafka_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -7315,8 +7284,7 @@ export namespace managedkafka_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -7453,8 +7421,7 @@ export namespace managedkafka_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -7579,8 +7546,7 @@ export namespace managedkafka_v1 {
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListOperationsResponse>,
       callback: BodyResponseCallback<Schema$ListOperationsResponse>
     ): void;
     list(
@@ -7960,8 +7926,7 @@ export namespace managedkafka_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -8413,8 +8378,7 @@ export namespace managedkafka_v1 {
     checkCompatibility(
       params: Params$Resource$Projects$Locations$Schemaregistries$Compatibility$Checkcompatibility,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$CheckCompatibilityResponse>,
+        MethodOptions | BodyResponseCallback<Schema$CheckCompatibilityResponse>,
       callback: BodyResponseCallback<Schema$CheckCompatibilityResponse>
     ): void;
     checkCompatibility(
@@ -9077,8 +9041,7 @@ export namespace managedkafka_v1 {
         | BodyResponseCallback<Schema$Context>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Context>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Context> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Context>>
@@ -9216,8 +9179,7 @@ export namespace managedkafka_v1 {
         | BodyResponseCallback<Schema$HttpBody>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$HttpBody>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$HttpBody> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>
@@ -9371,8 +9333,7 @@ export namespace managedkafka_v1 {
     checkCompatibility(
       params: Params$Resource$Projects$Locations$Schemaregistries$Contexts$Compatibility$Checkcompatibility,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$CheckCompatibilityResponse>,
+        MethodOptions | BodyResponseCallback<Schema$CheckCompatibilityResponse>,
       callback: BodyResponseCallback<Schema$CheckCompatibilityResponse>
     ): void;
     checkCompatibility(
@@ -10014,8 +9975,7 @@ export namespace managedkafka_v1 {
         | BodyResponseCallback<Schema$SchemaMode>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$SchemaMode>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$SchemaMode> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$SchemaMode>>
@@ -10150,8 +10110,7 @@ export namespace managedkafka_v1 {
         | BodyResponseCallback<Schema$SchemaMode>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$SchemaMode>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$SchemaMode> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$SchemaMode>>
@@ -10296,8 +10255,7 @@ export namespace managedkafka_v1 {
         | BodyResponseCallback<Schema$SchemaMode>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$SchemaMode>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$SchemaMode> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$SchemaMode>>
@@ -10484,8 +10442,7 @@ export namespace managedkafka_v1 {
         | BodyResponseCallback<Schema$Schema>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Schema>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Schema> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Schema>>
@@ -10626,8 +10583,7 @@ export namespace managedkafka_v1 {
         | BodyResponseCallback<Schema$HttpBody>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$HttpBody>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$HttpBody> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>
@@ -10799,8 +10755,7 @@ export namespace managedkafka_v1 {
         | BodyResponseCallback<Schema$HttpBody>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$HttpBody>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$HttpBody> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>
@@ -10965,8 +10920,7 @@ export namespace managedkafka_v1 {
         | BodyResponseCallback<Schema$HttpBody>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$HttpBody>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$HttpBody> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>
@@ -11127,8 +11081,7 @@ export namespace managedkafka_v1 {
         | BodyResponseCallback<Schema$HttpBody>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$HttpBody>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$HttpBody> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>
@@ -11299,8 +11252,7 @@ export namespace managedkafka_v1 {
         | BodyResponseCallback<Schema$HttpBody>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$HttpBody>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$HttpBody> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>
@@ -11444,8 +11396,7 @@ export namespace managedkafka_v1 {
         | BodyResponseCallback<Schema$HttpBody>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$HttpBody>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$HttpBody> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>
@@ -11785,8 +11736,7 @@ export namespace managedkafka_v1 {
     create(
       params: Params$Resource$Projects$Locations$Schemaregistries$Contexts$Subjects$Versions$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$CreateVersionResponse>,
+        MethodOptions | BodyResponseCallback<Schema$CreateVersionResponse>,
       callback: BodyResponseCallback<Schema$CreateVersionResponse>
     ): void;
     create(
@@ -11950,8 +11900,7 @@ export namespace managedkafka_v1 {
         | BodyResponseCallback<Schema$HttpBody>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$HttpBody>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$HttpBody> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>
@@ -12237,8 +12186,7 @@ export namespace managedkafka_v1 {
         | BodyResponseCallback<Schema$HttpBody>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$HttpBody>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$HttpBody> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>
@@ -12380,8 +12328,7 @@ export namespace managedkafka_v1 {
         | BodyResponseCallback<Schema$HttpBody>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$HttpBody>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$HttpBody> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>
@@ -12583,8 +12530,7 @@ export namespace managedkafka_v1 {
         | BodyResponseCallback<Schema$HttpBody>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$HttpBody>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$HttpBody> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>
@@ -12736,8 +12682,7 @@ export namespace managedkafka_v1 {
         | BodyResponseCallback<Schema$SchemaMode>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$SchemaMode>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$SchemaMode> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$SchemaMode>>
@@ -12871,8 +12816,7 @@ export namespace managedkafka_v1 {
         | BodyResponseCallback<Schema$SchemaMode>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$SchemaMode>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$SchemaMode> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$SchemaMode>>
@@ -13015,8 +12959,7 @@ export namespace managedkafka_v1 {
         | BodyResponseCallback<Schema$SchemaMode>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$SchemaMode>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$SchemaMode> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$SchemaMode>>
@@ -13201,8 +13144,7 @@ export namespace managedkafka_v1 {
         | BodyResponseCallback<Schema$Schema>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Schema>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Schema> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Schema>>
@@ -13341,8 +13283,7 @@ export namespace managedkafka_v1 {
         | BodyResponseCallback<Schema$HttpBody>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$HttpBody>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$HttpBody> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>
@@ -13514,8 +13455,7 @@ export namespace managedkafka_v1 {
         | BodyResponseCallback<Schema$HttpBody>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$HttpBody>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$HttpBody> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>
@@ -13678,8 +13618,7 @@ export namespace managedkafka_v1 {
         | BodyResponseCallback<Schema$HttpBody>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$HttpBody>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$HttpBody> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>
@@ -13840,8 +13779,7 @@ export namespace managedkafka_v1 {
         | BodyResponseCallback<Schema$HttpBody>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$HttpBody>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$HttpBody> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>
@@ -14010,8 +13948,7 @@ export namespace managedkafka_v1 {
         | BodyResponseCallback<Schema$HttpBody>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$HttpBody>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$HttpBody> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>
@@ -14153,8 +14090,7 @@ export namespace managedkafka_v1 {
         | BodyResponseCallback<Schema$HttpBody>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$HttpBody>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$HttpBody> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>
@@ -14494,8 +14430,7 @@ export namespace managedkafka_v1 {
     create(
       params: Params$Resource$Projects$Locations$Schemaregistries$Subjects$Versions$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$CreateVersionResponse>,
+        MethodOptions | BodyResponseCallback<Schema$CreateVersionResponse>,
       callback: BodyResponseCallback<Schema$CreateVersionResponse>
     ): void;
     create(
@@ -14659,8 +14594,7 @@ export namespace managedkafka_v1 {
         | BodyResponseCallback<Schema$HttpBody>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$HttpBody>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$HttpBody> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>
@@ -14946,8 +14880,7 @@ export namespace managedkafka_v1 {
         | BodyResponseCallback<Schema$HttpBody>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$HttpBody>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$HttpBody> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>
@@ -15089,8 +15022,7 @@ export namespace managedkafka_v1 {
         | BodyResponseCallback<Schema$HttpBody>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$HttpBody>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$HttpBody> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>
@@ -15292,8 +15224,7 @@ export namespace managedkafka_v1 {
         | BodyResponseCallback<Schema$HttpBody>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$HttpBody>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$HttpBody> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>

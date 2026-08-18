@@ -207,7 +207,7 @@
       }
     }
   },
-  "revision": "20250611",
+  "revision": "20260719",
   "rootUrl": "https://readerrevenuesubscriptionlinking.googleapis.com/",
   "schemas": {
     "DeleteReaderResponse": {
@@ -225,7 +225,7 @@
           "type": "string"
         },
         "expireTime": {
-          "description": "Required. Expiration time of the entitlement. Entitlements that have expired over 30 days will be purged. The max expire_time is 398 days from now().",
+          "description": "Optional. Expiration time of the entitlement. If unset, the entitlement does not expire (indefinite entitlement). We need to support indefinite entitlements for platform publishers. dd: go/rrm-sl-notedotcom Entitlements that have expired over 30 days will be purged.",
           "format": "google-datetime",
           "type": "string"
         },

@@ -21,6 +21,243 @@
   "description": "Creates and manages Redis instances on the Google Cloud Platform.",
   "discoveryVersion": "v1",
   "documentationLink": "https://cloud.google.com/memorystore/docs/redis/",
+  "endpoints": [
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://redis.africa-south1.rep.googleapis.com/",
+      "location": "africa-south1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://redis.asia-east1.rep.googleapis.com/",
+      "location": "asia-east1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://redis.asia-east2.rep.googleapis.com/",
+      "location": "asia-east2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://redis.asia-northeast1.rep.googleapis.com/",
+      "location": "asia-northeast1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://redis.asia-northeast2.rep.googleapis.com/",
+      "location": "asia-northeast2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://redis.asia-northeast3.rep.googleapis.com/",
+      "location": "asia-northeast3"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://redis.asia-south1.rep.googleapis.com/",
+      "location": "asia-south1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://redis.asia-south2.rep.googleapis.com/",
+      "location": "asia-south2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://redis.asia-southeast1.rep.googleapis.com/",
+      "location": "asia-southeast1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://redis.asia-southeast2.rep.googleapis.com/",
+      "location": "asia-southeast2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://redis.asia-southeast3.rep.googleapis.com/",
+      "location": "asia-southeast3"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://redis.australia-southeast1.rep.googleapis.com/",
+      "location": "australia-southeast1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://redis.australia-southeast2.rep.googleapis.com/",
+      "location": "australia-southeast2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://redis.europe-central2.rep.googleapis.com/",
+      "location": "europe-central2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://redis.europe-north1.rep.googleapis.com/",
+      "location": "europe-north1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://redis.europe-north2.rep.googleapis.com/",
+      "location": "europe-north2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://redis.europe-southwest1.rep.googleapis.com/",
+      "location": "europe-southwest1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://redis.europe-west1.rep.googleapis.com/",
+      "location": "europe-west1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://redis.europe-west10.rep.googleapis.com/",
+      "location": "europe-west10"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://redis.europe-west12.rep.googleapis.com/",
+      "location": "europe-west12"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://redis.europe-west15.rep.googleapis.com/",
+      "location": "europe-west15"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://redis.europe-west2.rep.googleapis.com/",
+      "location": "europe-west2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://redis.europe-west3.rep.googleapis.com/",
+      "location": "europe-west3"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://redis.europe-west4.rep.googleapis.com/",
+      "location": "europe-west4"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://redis.europe-west6.rep.googleapis.com/",
+      "location": "europe-west6"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://redis.europe-west8.rep.googleapis.com/",
+      "location": "europe-west8"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://redis.europe-west9.rep.googleapis.com/",
+      "location": "europe-west9"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://redis.me-central1.rep.googleapis.com/",
+      "location": "me-central1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://redis.me-central2.rep.googleapis.com/",
+      "location": "me-central2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://redis.me-west1.rep.googleapis.com/",
+      "location": "me-west1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://redis.northamerica-northeast1.rep.googleapis.com/",
+      "location": "northamerica-northeast1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://redis.northamerica-northeast2.rep.googleapis.com/",
+      "location": "northamerica-northeast2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://redis.northamerica-south1.rep.googleapis.com/",
+      "location": "northamerica-south1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://redis.southamerica-east1.rep.googleapis.com/",
+      "location": "southamerica-east1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://redis.southamerica-west1.rep.googleapis.com/",
+      "location": "southamerica-west1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://redis.us-central1.rep.googleapis.com/",
+      "location": "us-central1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://redis.us-central2.rep.googleapis.com/",
+      "location": "us-central2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://redis.us-east1.rep.googleapis.com/",
+      "location": "us-east1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://redis.us-east4.rep.googleapis.com/",
+      "location": "us-east4"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://redis.us-east5.rep.googleapis.com/",
+      "location": "us-east5"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://redis.us-east7.rep.googleapis.com/",
+      "location": "us-east7"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://redis.us-south1.rep.googleapis.com/",
+      "location": "us-south1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://redis.us-west1.rep.googleapis.com/",
+      "location": "us-west1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://redis.us-west2.rep.googleapis.com/",
+      "location": "us-west2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://redis.us-west3.rep.googleapis.com/",
+      "location": "us-west3"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://redis.us-west4.rep.googleapis.com/",
+      "location": "us-west4"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://redis.us-west8.rep.googleapis.com/",
+      "location": "us-west8"
+    }
+  ],
   "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
@@ -220,7 +457,7 @@
             "aclPolicies": {
               "methods": {
                 "create": {
-                  "description": "Creates an ACL Policy. The creation is executed synchronously and the policy is available for use immediately after the RPC returns.",
+                  "description": "Creates an ACL policy. The creation is executed synchronously and the policy is available for use immediately after the RPC returns.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/aclPolicies",
                   "httpMethod": "POST",
                   "id": "redis.projects.locations.aclPolicies.create",
@@ -229,7 +466,7 @@
                   ],
                   "parameters": {
                     "aclPolicyId": {
-                      "description": "Required. The logical name of the ACL Policy in the customer project with the following restrictions: * Must contain only lowercase letters, numbers, and hyphens. * Must start with a letter. * Must be between 1-63 characters. * Must end with a number or a letter. * Must be unique within the customer project / location",
+                      "description": "Required. The logical name of the ACL policy in the customer project with the following restrictions: * Must contain only lowercase letters, numbers, and hyphens. * Must start with a letter. * Must be between 1-63 characters. * Must end with a number or a letter. * Must be unique within the customer project / location",
                       "location": "query",
                       "type": "string"
                     },
@@ -259,7 +496,7 @@
                   ]
                 },
                 "delete": {
-                  "description": "Deletes a specific Acl Policy. This action will delete the Acl Policy and all the rules associated with it. An ACL policy cannot be deleted if it is attached to a cluster.",
+                  "description": "Deletes a specific ACL policy. This action will delete the ACL policy and all the rules associated with it. An ACL policy cannot be deleted if it is attached to a cluster.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/aclPolicies/{aclPoliciesId}",
                   "httpMethod": "DELETE",
                   "id": "redis.projects.locations.aclPolicies.delete",
@@ -273,7 +510,7 @@
                       "type": "string"
                     },
                     "name": {
-                      "description": "Required. Redis ACL Policy resource name using the form: `projects/{project_id}/locations/{location_id}/aclPolicies/{acl_policy_id}` where `location_id` refers to a GCP region.",
+                      "description": "Required. Redis ACL policy resource name using the form: `projects/{project_id}/locations/{location_id}/aclPolicies/{acl_policy_id}` where `location_id` refers to a GCP region.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/aclPolicies/[^/]+$",
                       "required": true,
@@ -295,7 +532,7 @@
                   ]
                 },
                 "get": {
-                  "description": "Gets the details of a specific Redis Cluster ACL Policy.",
+                  "description": "Gets the details of a specific Redis Cluster ACL policy.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/aclPolicies/{aclPoliciesId}",
                   "httpMethod": "GET",
                   "id": "redis.projects.locations.aclPolicies.get",
@@ -304,7 +541,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Redis ACL Policy resource name using the form: `projects/{project_id}/locations/{location_id}/aclPolicies/{acl_policy_id}` where `location_id` refers to a GCP region.",
+                      "description": "Required. Redis ACL policy resource name using the form: `projects/{project_id}/locations/{location_id}/aclPolicies/{acl_policy_id}` where `location_id` refers to a GCP region.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/aclPolicies/[^/]+$",
                       "required": true,
@@ -321,7 +558,7 @@
                   ]
                 },
                 "list": {
-                  "description": "Lists all ACL Policies owned by a project in either the specified location (region) or all locations. The location should have the following format: * `projects/{project_id}/locations/{location_id}` If `location_id` is specified as `-` (wildcard), then all regions available to the project are queried, and the results are aggregated.",
+                  "description": "Lists all ACL policies owned by a project in either the specified location (region) or all locations. The location should have the following format: * `projects/{project_id}/locations/{location_id}` If `location_id` is specified as `-` (wildcard), then all regions available to the project are queried, and the results are aggregated.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/aclPolicies",
                   "httpMethod": "GET",
                   "id": "redis.projects.locations.aclPolicies.list",
@@ -341,7 +578,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The resource name of the cluster location using the form: `projects/{project_id}/locations/{location_id}` where `location_id` refers to a Google Cloud region.",
+                      "description": "Required. The resource name of the ACL policy location using the form: `projects/{project_id}/locations/{location_id}` where `location_id` refers to a Google Cloud region.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -358,7 +595,7 @@
                   ]
                 },
                 "patch": {
-                  "description": "Updates the ACL policy. The operation applies the updated ACL policy to all of the linked clusters. If Memorystore can apply the policy to all clusters, then the operation returns a SUCCESS status. If Memorystore can't apply the policy to all clusters, then to ensure eventual consistency, Memorystore uses reconciliation to apply the policy to the failed clusters. Completed longrunning.Operation will contain the new ACL Policy object in the response field.",
+                  "description": "Updates the ACL policy. The operation applies the updated ACL policy to all of the linked clusters. If Memorystore can apply the policy to all clusters, then the operation returns a SUCCESS status. If Memorystore can't apply the policy to all clusters, then to ensure eventual consistency, Memorystore uses reconciliation to apply the policy to the failed clusters. Completed longrunning.Operation will contain the new ACL policy object in the response field.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/aclPolicies/{aclPoliciesId}",
                   "httpMethod": "PATCH",
                   "id": "redis.projects.locations.aclPolicies.patch",
@@ -396,6 +633,75 @@
                     "https://www.googleapis.com/auth/cloud-platform",
                     "https://www.googleapis.com/auth/redis.read-write"
                   ]
+                }
+              },
+              "resources": {
+                "revisions": {
+                  "methods": {
+                    "get": {
+                      "description": "Gets details of a specific ACL policy revision.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/aclPolicies/{aclPoliciesId}/revisions/{revisionsId}",
+                      "httpMethod": "GET",
+                      "id": "redis.projects.locations.aclPolicies.revisions.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. Redis ACL policy revision resource name using the form: `projects/{project_id}/locations/{location_id}/aclPolicies/{acl_policy_id}/revisions/{revision_id}` where `location_id` refers to a GCP region.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/aclPolicies/[^/]+/revisions/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+name}",
+                      "response": {
+                        "$ref": "AclPolicyRevision"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/redis.read-write"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists all ACL policy revisions in a given ACL policy.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/aclPolicies/{aclPoliciesId}/revisions",
+                      "httpMethod": "GET",
+                      "id": "redis.projects.locations.aclPolicies.revisions.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "pageSize": {
+                          "description": "Optional. The maximum number of items to return.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Optional. The `next_page_token` value returned from a previous `ListAclPolicyRevisions` request, if any.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The name of the ACL policy to list revisions for. Format: \"projects/{project_id}/locations/{location_id}/aclPolicies/{acl_policy_id}\"",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/aclPolicies/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+parent}/revisions",
+                      "response": {
+                        "$ref": "ListAclPolicyRevisionsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/redis.read-write"
+                      ]
+                    }
+                  }
                 }
               }
             },
@@ -1604,7 +1910,7 @@
       }
     }
   },
-  "revision": "20260423",
+  "revision": "20260720",
   "rootUrl": "https://redis.googleapis.com/",
   "schemas": {
     "AOFConfig": {
@@ -1634,6 +1940,20 @@
       "description": "The ACL policy resource.",
       "id": "AclPolicy",
       "properties": {
+        "clusterAclPolicyAttachments": {
+          "description": "Output only. The ACL policy attachment status for each attached cluster.",
+          "items": {
+            "$ref": "ClusterAclPolicyAttachment"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "createTime": {
+          "description": "Output only. The timestamp that the ACL policy was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
         "etag": {
           "description": "Output only. Etag for the ACL policy.",
           "readOnly": true,
@@ -1660,16 +1980,130 @@
           ],
           "enumDescriptions": [
             "Not set.",
-            "ACL Policy has been created and is fully usable. Since ACL Policy creation is synchronous and not an LRO, there is no CREATING state.",
-            "ACL Policy is being updated.",
-            "ACL Policy is being deleted."
+            "ACL policy has been created and is fully usable. Since ACL policy creation is synchronous and not an LRO, there is no CREATING state.",
+            "ACL policy is being updated.",
+            "ACL policy is being deleted."
           ],
           "readOnly": true,
           "type": "string"
         },
+        "updateTime": {
+          "description": "Output only. The timestamp that the ACL policy was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
         "version": {
-          "description": "Output only. The version of the ACL policy. Used in drift resolution.",
+          "deprecated": true,
+          "description": "Output only. Deprecated: Used in drift resolution.",
           "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AclPolicyInfo": {
+      "description": "Details of the applied ACL policy.",
+      "id": "AclPolicyInfo",
+      "properties": {
+        "aclPolicyRevisionStatuses": {
+          "description": "Output only. A list of status for various revisions of this ACL policy on the cluster.",
+          "items": {
+            "$ref": "AclPolicyRevisionStatus"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "appliedAclPolicy": {
+          "description": "Output only. The resource name of the applied ACL policy. Format: \"projects/{project}/locations/{location}/aclPolicies/{acl_policy}\"",
+          "readOnly": true,
+          "type": "string"
+        },
+        "appliedAclPolicyRevision": {
+          "description": "Output only. The resource name of the applied ACL policy revision. Format: \"projects/{project}/locations/{location}/aclPolicies/{acl_policy}/revisions/{revision}\"",
+          "readOnly": true,
+          "type": "string"
+        },
+        "appliedAclPolicyRevisionNumber": {
+          "description": "Output only. The revision number of the applied ACL policy revision.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AclPolicyRevision": {
+      "description": "The ACL policy revision resource.",
+      "id": "AclPolicyRevision",
+      "properties": {
+        "attachedClusters": {
+          "description": "Output only. A list of clusters that are attached to this ACL policy revision.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "createTime": {
+          "description": "Output only. The timestamp that the revision was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. The name of the ACL policy revision. Format: \"projects/{project}/locations/{location}/aclPolicies/{acl_policy}/revisions/{revision}\"",
+          "type": "string"
+        },
+        "revisionNumber": {
+          "description": "Output only. The revision number of the ACL policy revision.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "snapshot": {
+          "$ref": "AclPolicy",
+          "description": "Output only. The snapshot of the ACL policy at the time of revision creation.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "AclPolicyRevisionStatus": {
+      "description": "AclPolicyRevisionStatus stores the per-revision status for an attached cluster.",
+      "id": "AclPolicyRevisionStatus",
+      "properties": {
+        "aclPolicyRevision": {
+          "description": "Output only. The resource name of the ACL policy revision this status refers to. Format: \"projects/{project}/locations/{location}/aclPolicies/{acl_policy}/revisions/{revision}\"",
+          "readOnly": true,
+          "type": "string"
+        },
+        "aclPolicyRevisionNumber": {
+          "description": "Output only. The revision number of the ACL policy revision this status refers to.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "errorMessage": {
+          "description": "Output only. Human-readable error message providing more details for FAILED states.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. AclPolicyRevision state.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "APPLYING",
+            "APPLIED",
+            "FAILED"
+          ],
+          "enumDescriptions": [
+            "Not set.",
+            "The cluster is attempting to apply this revision.",
+            "The cluster has successfully applied this revision.",
+            "The cluster failed to apply this revision."
+          ],
           "readOnly": true,
           "type": "string"
         }
@@ -1800,7 +2234,7 @@
             "AVAILABILITY_TYPE_OTHER"
           ],
           "enumDescriptions": [
-            "",
+            "Unspecified availability type.",
             "Zonal available instance.",
             "Regional available instance.",
             "Multi regional instance",
@@ -2137,7 +2571,7 @@
             "FAILED"
           ],
           "enumDescriptions": [
-            "",
+            "Unspecified status.",
             "The backup was successful.",
             "The backup was unsuccessful."
           ],
@@ -2182,9 +2616,15 @@
           "type": "string"
         },
         "aclPolicyInSync": {
-          "description": "Optional. Output only. Indicates whether the ACL rules applied to the cluster are in sync with the latest ACL policy rules. This field is only applicable if the ACL policy is set for the cluster.",
+          "deprecated": true,
+          "description": "Optional. Output only. Deprecated: Indicates whether the ACL rules applied to the cluster are in sync.",
           "readOnly": true,
           "type": "boolean"
+        },
+        "aclPolicyInfo": {
+          "$ref": "AclPolicyInfo",
+          "description": "Output only. Details of the applied ACL policy.",
+          "readOnly": true
         },
         "allowFewerZonesDeployment": {
           "deprecated": true,
@@ -2472,6 +2912,26 @@
         "zoneDistributionConfig": {
           "$ref": "ZoneDistributionConfig",
           "description": "Optional. This config will be used to determine how the customer wants us to distribute cluster resources within the region."
+        }
+      },
+      "type": "object"
+    },
+    "ClusterAclPolicyAttachment": {
+      "description": "ClusterAclPolicyAttachment stores the ACL policy status for an attached cluster for the revisions successfully applied, under application or failed.",
+      "id": "ClusterAclPolicyAttachment",
+      "properties": {
+        "aclPolicyRevisionStatuses": {
+          "description": "Output only. A list of status for various revisions of this ACL policy on the cluster.",
+          "items": {
+            "$ref": "AclPolicyRevisionStatus"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "cluster": {
+          "description": "Output only. The resource name of the attached Cluster. Format: \"projects/{project}/locations/{location}/clusters/{cluster}\"",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -2779,7 +3239,7 @@
             "DATABASE_RESOURCE_SIGNAL_DATA"
           ],
           "enumDescriptions": [
-            "",
+            "Unspecified feed type. Not expected to be used.",
             "Database resource metadata feed from control plane",
             "Database resource monitoring data",
             "Database resource security health signal data",
@@ -2791,13 +3251,16 @@
           "type": "string"
         },
         "observabilityMetricData": {
-          "$ref": "ObservabilityMetricData"
+          "$ref": "ObservabilityMetricData",
+          "description": "Observability metric data."
         },
         "recommendationSignalData": {
-          "$ref": "DatabaseResourceRecommendationSignalData"
+          "$ref": "DatabaseResourceRecommendationSignalData",
+          "description": "Database resource recommendation signal data."
         },
         "resourceHealthSignalData": {
-          "$ref": "DatabaseResourceHealthSignalData"
+          "$ref": "DatabaseResourceHealthSignalData",
+          "description": "Database resource health signal data."
         },
         "resourceId": {
           "$ref": "DatabaseResourceId",
@@ -2805,7 +3268,8 @@
           "description": "Primary key associated with the Resource. resource_id is available in individual feed level as well."
         },
         "resourceMetadata": {
-          "$ref": "DatabaseResourceMetadata"
+          "$ref": "DatabaseResourceMetadata",
+          "description": "Database resource metadata."
         },
         "skipIngestion": {
           "description": "Optional. If true, the feed won't be ingested by DB Center. This indicates that the feed is intentionally skipped. For example, BackupDR feeds are only needed for resources integrated with DB Center (e.g., CloudSQL, AlloyDB). Feeds for non-integrated resources (e.g., Compute Engine, Persistent Disk) can be skipped.",
@@ -2866,7 +3330,7 @@
             "PROVIDER_OTHER"
           ],
           "enumDescriptions": [
-            "",
+            "Unspecified provider.",
             "Google cloud platform provider",
             "Amazon web service",
             "Azure web service",
@@ -3035,7 +3499,10 @@
             "SIGNAL_TYPE_RECOMMENDED_MAINTENANCE_POLICIES",
             "SIGNAL_TYPE_EXTENDED_SUPPORT",
             "SIGNAL_TYPE_PERFORMANCE_KPI_CHANGE",
-            "SIGNAL_TYPE_VERSION_NEARING_END_OF_LIFE"
+            "SIGNAL_TYPE_VERSION_NEARING_END_OF_LIFE",
+            "SIGNAL_TYPE_HIGH_MAINTENANCE_DOWNTIME_RISK",
+            "SIGNAL_TYPE_LOW_CACHE_HIT_AND_MAINTENANCE_DOWNTIME",
+            "SIGNAL_TYPE_MISSING_ENHANCED_PROTECTION"
           ],
           "enumDeprecated": [
             false,
@@ -3137,6 +3604,9 @@
             false,
             false,
             true,
+            false,
+            false,
+            false,
             false,
             false,
             false,
@@ -3253,11 +3723,15 @@
             "Recommended maintenance policy.",
             "Resource version is in extended support.",
             "Change in performance KPIs.",
-            "Database version nearing end of life."
+            "Database version nearing end of life.",
+            "Indicates a high risk of maintenance downtime.",
+            "Indicates both a low cache hit rate and a risk of maintenance downtime.",
+            "Indicates that the resource is missing enhanced protection."
           ],
           "type": "string"
         },
         "state": {
+          "description": "Required. The state of the signal, such as if it's ACTIVE or RESOLVED.",
           "enum": [
             "STATE_UNSPECIFIED",
             "ACTIVE",
@@ -3291,7 +3765,7 @@
             "PROVIDER_OTHER"
           ],
           "enumDescriptions": [
-            "",
+            "Unspecified provider.",
             "Google cloud platform provider",
             "Amazon web service",
             "Azure web service",
@@ -3306,7 +3780,7 @@
           "type": "string"
         },
         "resourceType": {
-          "description": "Required. The type of resource this ID is identifying. Ex go/keep-sorted start alloydb.googleapis.com/Cluster, alloydb.googleapis.com/Instance, bigtableadmin.googleapis.com/Cluster, bigtableadmin.googleapis.com/Instance compute.googleapis.com/Instance firestore.googleapis.com/Database, redis.googleapis.com/Instance, redis.googleapis.com/Cluster, oracledatabase.googleapis.com/CloudExadataInfrastructure oracledatabase.googleapis.com/CloudVmCluster oracledatabase.googleapis.com/AutonomousDatabase spanner.googleapis.com/Instance, spanner.googleapis.com/Database, sqladmin.googleapis.com/Instance, go/keep-sorted end REQUIRED Please refer go/condor-common-datamodel",
+          "description": "Required. The type of resource this ID is identifying. Ex go/keep-sorted start alloydb.googleapis.com/Cluster, alloydb.googleapis.com/Instance, bigtableadmin.googleapis.com/Cluster, bigtableadmin.googleapis.com/Instance compute.googleapis.com/Instance firestore.googleapis.com/Database, memorystore.googleapis.com/Instance, redis.googleapis.com/Instance, redis.googleapis.com/Cluster, oracledatabase.googleapis.com/CloudExadataInfrastructure oracledatabase.googleapis.com/CloudVmCluster oracledatabase.googleapis.com/AutonomousDatabase spanner.googleapis.com/Instance, spanner.googleapis.com/Database, sqladmin.googleapis.com/Instance, go/keep-sorted end REQUIRED Please refer go/condor-common-datamodel",
           "type": "string"
         },
         "uniqueId": {
@@ -3317,9 +3791,17 @@
       "type": "object"
     },
     "DatabaseResourceMetadata": {
-      "description": "Common model for database resource instance metadata. Next ID: 32",
+      "description": "Common model for database resource instance metadata. Next ID: 35",
       "id": "DatabaseResourceMetadata",
       "properties": {
+        "additionalMetadata": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Field to ingest additional metadata whichd does not support proto format.",
+          "type": "object"
+        },
         "availabilityConfiguration": {
           "$ref": "AvailabilityConfiguration",
           "description": "Availability configuration for this instance"
@@ -3473,6 +3955,18 @@
           ],
           "type": "string"
         },
+        "internalAdditionalMetadata": {
+          "additionalProperties": {
+            "description": "Properties of the object. Contains field @type with type URL.",
+            "type": "any"
+          },
+          "description": "Field to ingest additional metadata which support proto format.",
+          "type": "object"
+        },
+        "ipAddress": {
+          "$ref": "IpAddress",
+          "description": "Optional. Private and public IP address of the resource."
+        },
         "isDeletionProtectionEnabled": {
           "description": "Optional. Whether deletion protection is enabled for this resource.",
           "type": "boolean"
@@ -3496,13 +3990,17 @@
               "MODE_UNSPECIFIED",
               "MODE_NATIVE",
               "MODE_MONGODB_COMPATIBLE",
-              "MODE_DATASTORE"
+              "MODE_DATASTORE",
+              "MODE_CLUSTER_ENABLED",
+              "MODE_CLUSTER_DISABLED"
             ],
             "enumDescriptions": [
               "Default mode.",
               "Native mode.",
               "MongoDB compatible mode.",
-              "Datastore mode."
+              "Datastore mode.",
+              "Memorystore/ValKey: Cluster enabled mode.",
+              "Memorystore/ValKey: Cluster disabled mode."
             ],
             "type": "string"
           },
@@ -3739,7 +4237,10 @@
             "SIGNAL_TYPE_RECOMMENDED_MAINTENANCE_POLICIES",
             "SIGNAL_TYPE_EXTENDED_SUPPORT",
             "SIGNAL_TYPE_PERFORMANCE_KPI_CHANGE",
-            "SIGNAL_TYPE_VERSION_NEARING_END_OF_LIFE"
+            "SIGNAL_TYPE_VERSION_NEARING_END_OF_LIFE",
+            "SIGNAL_TYPE_HIGH_MAINTENANCE_DOWNTIME_RISK",
+            "SIGNAL_TYPE_LOW_CACHE_HIT_AND_MAINTENANCE_DOWNTIME",
+            "SIGNAL_TYPE_MISSING_ENHANCED_PROTECTION"
           ],
           "enumDeprecated": [
             false,
@@ -3841,6 +4342,9 @@
             false,
             false,
             true,
+            false,
+            false,
+            false,
             false,
             false,
             false,
@@ -3957,7 +4461,10 @@
             "Recommended maintenance policy.",
             "Resource version is in extended support.",
             "Change in performance KPIs.",
-            "Database version nearing end of life."
+            "Database version nearing end of life.",
+            "Indicates a high risk of maintenance downtime.",
+            "Indicates both a low cache hit rate and a risk of maintenance downtime.",
+            "Indicates that the resource is missing enhanced protection."
           ],
           "type": "string"
         }
@@ -4694,13 +5201,29 @@
           "type": "boolean"
         },
         "product": {
-          "$ref": "Product"
+          "$ref": "Product",
+          "description": "The product this resource represents."
         },
         "resourceId": {
           "$ref": "DatabaseResourceId"
         },
         "resourceName": {
           "description": "Required. internal resource name for spanner this will be database name e.g.\"spanner.googleapis.com/projects/123/abc/instances/inst1/databases/db1\"",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "IpAddress": {
+      "description": "Used to send IP address information for a database resource.",
+      "id": "IpAddress",
+      "properties": {
+        "privateIp": {
+          "description": "The private IP address assigned to the resource within a Virtual Private Cloud (VPC). This IP is only reachable from within the same VPC network. Stored in standard string format (e.g., \"10.0.0.2\").",
+          "type": "string"
+        },
+        "publicIp": {
+          "description": "The public IP address assigned to the resource. This IP is reachable from the internet. Stored in standard string format (e.g., \"34.72.1.1\").",
           "type": "string"
         }
       },
@@ -4722,7 +5245,32 @@
           "type": "string"
         },
         "unreachable": {
-          "description": "Locations that could not be reached.",
+          "description": "Unordered list. Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListAclPolicyRevisionsResponse": {
+      "description": "Response for `ListAclPolicyRevisions`.",
+      "id": "ListAclPolicyRevisionsResponse",
+      "properties": {
+        "aclPolicyRevisions": {
+          "description": "A list of ACL policy revisions.",
+          "items": {
+            "$ref": "AclPolicyRevision"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Token to retrieve the next page of results, or empty if there are no more results in the list.",
+          "type": "string"
+        },
+        "unreachable": {
+          "description": "Unordered list. Locations that could not be reached.",
           "items": {
             "type": "string"
           },
@@ -5376,6 +5924,7 @@
             "ENGINE_CLOUD_SPANNER_WITH_GOOGLESQL_DIALECT",
             "ENGINE_MEMORYSTORE_FOR_REDIS",
             "ENGINE_MEMORYSTORE_FOR_REDIS_CLUSTER",
+            "ENGINE_MEMORYSTORE_FOR_VALKEY",
             "ENGINE_OTHER",
             "ENGINE_FIRESTORE_WITH_NATIVE_MODE",
             "ENGINE_FIRESTORE_WITH_DATASTORE_MODE",
@@ -5402,6 +5951,7 @@
             false,
             false,
             false,
+            false,
             false
           ],
           "enumDescriptions": [
@@ -5418,6 +5968,7 @@
             "Cloud Spanner with Google SQL dialect.",
             "Memorystore with Redis dialect.",
             "Memorystore with Redis cluster dialect.",
+            "Memorystore with Valkey.",
             "Other refers to rest of other database engine. This is to be when engine is known, but it is not present in this enum.",
             "Firestore with native mode.",
             "Firestore with datastore mode.",
@@ -5912,6 +6463,13 @@
           "description": "Optional. Current Maintenance version of the database resource. Example: \"MYSQL_8_0_41.R20250531.01_15\"",
           "type": "string"
         },
+        "nextAvailableMaintenanceVersions": {
+          "description": "Optional. List of next available maintenance versions.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "upcomingMaintenance": {
           "$ref": "UpcomingMaintenance",
           "description": "Optional. Upcoming maintenance for the database resource. This field is populated once SLM generates and publishes upcoming maintenance window."
@@ -5981,6 +6539,7 @@
           "type": "string"
         },
         "quantityBasedRetention": {
+          "description": "Quantity based retention period i.e. 7 backups",
           "format": "int32",
           "type": "integer"
         },
@@ -6005,6 +6564,7 @@
         },
         "timeBasedRetention": {
           "deprecated": true,
+          "description": "Duration based retention period i.e. 172800 seconds (2 days)",
           "format": "google-duration",
           "type": "string"
         },
@@ -6355,6 +6915,13 @@
         "zone": {
           "description": "Optional. When SINGLE ZONE distribution is selected, zone field would be used to allocate all resources in that zone. This is not applicable to MULTI_ZONE, and would be ignored for MULTI_ZONE clusters.",
           "type": "string"
+        },
+        "zones": {
+          "description": "Optional. Specify the zones of a multi-zone cluster where Redis Cluster allocates resources. This flag isn't applicable for single-zone clusters.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"

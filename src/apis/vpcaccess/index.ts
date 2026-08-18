@@ -35,10 +35,7 @@ export function vpcaccess<
 >(
   this: GoogleConfigurable,
   versionOrOptions:
-    | 'v1'
-    | vpcaccess_v1.Options
-    | 'v1beta1'
-    | vpcaccess_v1beta1.Options
+    'v1' | vpcaccess_v1.Options | 'v1beta1' | vpcaccess_v1beta1.Options
 ) {
   return getAPI<T>('vpcaccess', versionOrOptions, VERSIONS, this);
 }

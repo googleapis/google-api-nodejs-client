@@ -662,6 +662,10 @@ export namespace oracledatabase_v1 {
      */
     privateEndpointLabel?: string | null;
     /**
+     * Optional. Indicates if the Autonomous Database is a refreshable clone. This field is used in update flow to connect / disconnect a refreshable clone from its source database.
+     */
+    refreshableClone?: boolean | null;
+    /**
      * Output only. The refresh mode of the cloned Autonomous Database.
      */
     refreshableMode?: string | null;
@@ -709,6 +713,28 @@ export namespace oracledatabase_v1 {
      * Optional. Immutable. The ID of the Oracle Cloud Infrastructure vault.
      */
     vaultId?: string | null;
+  }
+  /**
+   * An Autonomous Database refreshable clone
+   */
+  export interface Schema$AutonomousDatabaseRefreshableClone {
+    /**
+     * Output only. The GCP resource name of the Autonomous Database.
+     */
+    name?: string | null;
+    /**
+     * Output only. The Google Cloud region where the refreshable clone exists.
+     */
+    region?: string | null;
+  }
+  /**
+   * Response message for getting the Autonomous Database refreshable clones.
+   */
+  export interface Schema$AutonomousDatabaseRefreshableClones {
+    /**
+     * The list of Autonomous Database refreshable clones.
+     */
+    autonomousDatabaseRefreshableClones?: Schema$AutonomousDatabaseRefreshableClone[];
   }
   /**
    * Autonomous Data Guard standby database details. https://docs.oracle.com/en-us/iaas/api/#/en/database/20160918/datatypes/AutonomousDatabaseStandbySummary
@@ -877,7 +903,7 @@ export namespace oracledatabase_v1 {
      */
     customerContacts?: Schema$CustomerContact[];
     /**
-     * Output only. The database server type of the Exadata Infrastructure.
+     * Optional. The database server type of the Exadata Infrastructure.
      */
     databaseServerType?: string | null;
     /**
@@ -892,6 +918,10 @@ export namespace oracledatabase_v1 {
      * Output only. The software version of the database servers (dom0) in the Exadata Infrastructure.
      */
     dbServerVersion?: string | null;
+    /**
+     * Output only. The Exascale configuration for the Exadata Infrastructure.
+     */
+    exascaleConfig?: Schema$ExascaleConfig;
     /**
      * Optional. Maintenance window for repair.
      */
@@ -957,7 +987,7 @@ export namespace oracledatabase_v1 {
      */
     storageCount?: number | null;
     /**
-     * Output only. The storage server type of the Exadata Infrastructure.
+     * Optional. The storage server type of the Exadata Infrastructure.
      */
     storageServerType?: string | null;
     /**
@@ -997,6 +1027,10 @@ export namespace oracledatabase_v1 {
      * Required. The name of the Exadata Infrastructure resource on which VM cluster resource is created, in the following format: projects/{project\}/locations/{region\}/cloudExadataInfrastuctures/{cloud_extradata_infrastructure\}
      */
     exadataInfrastructure?: string | null;
+    /**
+     * Optional. The name of ExascaleDbStorageVault associated with the VM Cluster. Format: projects/{project\}/locations/{location\}/exascaleDbStorageVaults/{exascale_db_storage_vault\}
+     */
+    exascaleDbStorageVault?: string | null;
     /**
      * Output only. The GCP Oracle zone where Oracle CloudVmCluster is hosted. This will be the same as the gcp_oracle_zone of the CloudExadataInfrastructure. Example: us-east4-b-r2.
      */
@@ -1155,6 +1189,10 @@ export namespace oracledatabase_v1 {
      */
     state?: string | null;
     /**
+     * Output only. The storage management type of the VM Cluster.
+     */
+    storageManagementType?: string | null;
+    /**
      * Output only. The storage allocation for the disk group, in gigabytes (GB).
      */
     storageSizeGb?: number | null;
@@ -1166,6 +1204,31 @@ export namespace oracledatabase_v1 {
      * Optional. Time zone of VM Cluster to set. Defaults to UTC if not specified.
      */
     timeZone?: Schema$TimeZone;
+    /**
+     * Optional. Specifies whether VM backups are stored on local DB server storage or Exascale storage.
+     */
+    vmBackupStorageType?: string | null;
+    /**
+     * Optional. Specifies whether VM file system storage / VM images are stored on local DB server storage or Exascale storage.
+     */
+    vmFileSystemStorageType?: string | null;
+  }
+  /**
+   * The request for `CloudExadataInfrastructure.ConfigureExascale`.
+   */
+  export interface Schema$ConfigureExascaleCloudExadataInfrastructureRequest {
+    /**
+     * Optional. An optional ID to identify the request.
+     */
+    requestId?: string | null;
+    /**
+     * Required. The total storage to be allocated to Exascale in GBs.
+     */
+    totalStorageSizeGb?: number | null;
+    /**
+     * Optional. Storage size needed for VM storage on Exascale in GBs.
+     */
+    totalVmStorageSizeGb?: number | null;
   }
   /**
    * The CustomerContact reference as defined by Oracle. https://docs.oracle.com/en-us/iaas/api/#/en/database/20160918/datatypes/CustomerContact
@@ -1671,7 +1734,7 @@ export namespace oracledatabase_v1 {
      */
     dataCollectionOptions?: Schema$DataCollectionOptionsDbSystem;
     /**
-     * Optional. The data storage size in GB that is currently available to DbSystems.
+     * Optional. The data storage size in GB that is currently available to DbSystems. The value is same as initial_data_storage_size_gb. This can be modified from OCI console.
      */
     dataStorageSizeGb?: number | null;
     /**
@@ -1707,11 +1770,11 @@ export namespace oracledatabase_v1 {
      */
     lifecycleState?: string | null;
     /**
-     * Optional. The memory size in GB.
+     * Optional. The memory size in GB. This value can not be set and is automatically calculated based on the number of ECPUs allocated to the DbSystem.
      */
     memorySizeGb?: number | null;
     /**
-     * Optional. The number of nodes in the DbSystem.
+     * Optional. The number of nodes to launch for a virtual machine DbSystem. By default this will be set to 1.
      */
     nodeCount?: number | null;
     /**
@@ -1723,7 +1786,7 @@ export namespace oracledatabase_v1 {
      */
     privateIp?: string | null;
     /**
-     * Optional. The reco/redo storage size in GB.
+     * Optional. The reco/redo storage size in GB. The value for recovery storage size is based on the available data storage size.
      */
     recoStorageSizeGb?: number | null;
     /**
@@ -1744,6 +1807,10 @@ export namespace oracledatabase_v1 {
    */
   export interface Schema$DbSystemShape {
     /**
+     * Optional. Available core count.
+     */
+    availableCoreCount?: number | null;
+    /**
      * Optional. Number of cores per node.
      */
     availableCoreCountPerNode?: number | null;
@@ -1755,6 +1822,10 @@ export namespace oracledatabase_v1 {
      * Optional. Memory per database server node in gigabytes.
      */
     availableMemoryPerNodeGb?: number | null;
+    /**
+     * Optional. Core count increment.
+     */
+    coreCountIncrement?: number | null;
     /**
      * Optional. Maximum number of database servers.
      */
@@ -1771,6 +1842,10 @@ export namespace oracledatabase_v1 {
      * Optional. Minimum node storage per database server in gigabytes.
      */
     minDbNodeStoragePerNodeGb?: number | null;
+    /**
+     * Optional. Minimum core count per node.
+     */
+    minimumCoreCount?: number | null;
     /**
      * Optional. Minimum memory per node in gigabytes.
      */
@@ -1944,6 +2019,10 @@ export namespace oracledatabase_v1 {
      */
     gcpOracleZone?: string | null;
     /**
+     * Output only. The identity connector details which will allow OCI to securely access the resources in the customer project.
+     */
+    identityConnector?: Schema$IdentityConnector;
+    /**
      * Optional. The labels or tags associated with the ExadbVmCluster.
      */
     labels?: {[key: string]: string} | null;
@@ -2055,6 +2134,27 @@ export namespace oracledatabase_v1 {
     sizeInGbsPerNode?: number | null;
   }
   /**
+   * Details of the Exascale configuration for the Exadata Infrastructure.
+   */
+  export interface Schema$ExascaleConfig {
+    /**
+     * Output only. Available storage size for Exascale in GBs.
+     */
+    availableStorageSizeGb?: number | null;
+    /**
+     * Output only. Available storage size for VM storage on Exascale in GBs.
+     */
+    availableVmStorageSizeGb?: number | null;
+    /**
+     * Output only. Total storage size needed for Exascale in GBs.
+     */
+    totalStorageSizeGb?: number | null;
+    /**
+     * Output only. Storage size needed for VM storage on Exascale in GBs.
+     */
+    totalVmStorageSizeGb?: number | null;
+  }
+  /**
    * The storage details of the ExascaleDbStorageVault.
    */
   export interface Schema$ExascaleDbStorageDetails {
@@ -2083,6 +2183,10 @@ export namespace oracledatabase_v1 {
      * Output only. The ID of the subscription entitlement associated with the ExascaleDbStorageVault.
      */
     entitlementId?: string | null;
+    /**
+     * Optional. The Exadata Infrastructure resource on which ExascaleDbStorageVault resource is created, in the following format: projects/{project\}/locations/{region\}/cloudExadataInfrastuctures/{cloud_extradata_infrastructure\}
+     */
+    exadataInfrastructure?: string | null;
     /**
      * Optional. The GCP Oracle zone where Oracle ExascaleDbStorageVault is hosted. Example: us-east4-b-r2. If not specified, the system will pick a zone based on availability.
      */
@@ -3896,7 +4000,7 @@ export namespace oracledatabase_v1 {
      */
     connectionString?: string | null;
     /**
-     * Optional. Database instance id of database in Oracle Database @ Google Cloud. If gcp_oracle_database_id is provided, connection_string must be empty.
+     * Optional. Autonomous AI Database instance id of database in Oracle Database @ Google Cloud. If gcp_oracle_database_id is provided, connection_string must be empty. Format: projects/{project\}/locations/{location\}/autonomousDatabases/{autonomous_database\}
      */
     gcpOracleDatabaseId?: string | null;
     /**
@@ -5086,6 +5190,15 @@ export namespace oracledatabase_v1 {
     uri?: string | null;
   }
   /**
+   * Request message for RefreshAutonomousDatabase method.
+   */
+  export interface Schema$RefreshAutonomousDatabaseRequest {
+    /**
+     * Required. The timestamp to which the Autonomous Database refreshable clone will be refreshed. Changes made in the primary database after this timestamp are not part of the data refresh.
+     */
+    refreshCutoffTime?: string | null;
+  }
+  /**
    * The request for `ExadbVmCluster.RemoveVirtualMachine`.
    */
   export interface Schema$RemoveVirtualMachineExadbVmClusterRequest {
@@ -5153,6 +5266,42 @@ export namespace oracledatabase_v1 {
      * Optional. The name of the primary Autonomous Database that is used to create a Peer Autonomous Database from a source.
      */
     autonomousDatabase?: string | null;
+    /**
+     * Optional. The name of the Autonomous Database Backup resource with the format: projects/{project\}/locations/{region\}/autonomousDatabaseBackups/{autonomous_database_backup\} Required when source_type is BACKUP_FROM_ID.
+     */
+    autonomousDatabaseBackup?: string | null;
+    /**
+     * Optional. The frequency in seconds a refreshable clone is refreshed after auto-refresh is enabled.
+     */
+    autoRefreshFrequencySeconds?: number | null;
+    /**
+     * Optional. The time, in seconds, the data of the automatic refreshable clone lags the primary database at the point of refresh.
+     */
+    autoRefreshPointLagSeconds?: number | null;
+    /**
+     * Optional. The date and time that auto-refreshing will begin for an Autonomous Database refreshable clone. This value controls only the start time for the first refresh operation.
+     */
+    autoRefreshStartTime?: string | null;
+    /**
+     * Optional. The timestamp specified for the point-in-time clone of the source Autonomous Database. This field is only applicable in case of BACKUP_FROM_TIMESTAMP source type and when use_latest_available_backup is false.
+     */
+    backupTime?: string | null;
+    /**
+     * Optional. The clone type of the Autonomous Database. This field is only applicable in case of cloning
+     */
+    cloneType?: string | null;
+    /**
+     * Optional. The refresh mode of the clone.
+     */
+    refreshableMode?: string | null;
+    /**
+     * Optional. The source type of the Autonomous Database.
+     */
+    sourceType?: string | null;
+    /**
+     * Optional. Clone from latest available backup timestamp. This field is only applicable in case of BACKUP_FROM_TIMESTAMP source type.
+     */
+    useLatestAvailableBackup?: boolean | null;
   }
   /**
    * The request for `AutonomousDatabase.Start`.
@@ -5494,8 +5643,7 @@ export namespace oracledatabase_v1 {
         | BodyResponseCallback<Schema$Location>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Location>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Location> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Location>>
@@ -5620,8 +5768,7 @@ export namespace oracledatabase_v1 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListLocationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListLocationsResponse>,
       callback: BodyResponseCallback<Schema$ListLocationsResponse>
     ): void;
     list(
@@ -6213,8 +6360,7 @@ export namespace oracledatabase_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -6359,8 +6505,7 @@ export namespace oracledatabase_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -6508,8 +6653,7 @@ export namespace oracledatabase_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -6871,6 +7015,158 @@ export namespace oracledatabase_v1 {
     }
 
     /**
+     * Gets the refreshable clones for a given Autonomous Database.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oracledatabase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const oracledatabase = google.oracledatabase('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await oracledatabase.projects.locations.autonomousDatabases.getRefreshableClones(
+     *       {
+     *         // Required. The Autonomous Database resource whose refreshable clones are to be listed. Format: projects/{project\}/locations/{location\}/autonomousDatabases/{autonomous_database\}
+     *         name: 'projects/my-project/locations/my-location/autonomousDatabases/my-autonomousDatabase',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "autonomousDatabaseRefreshableClones": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getRefreshableClones(
+      params: Params$Resource$Projects$Locations$Autonomousdatabases$Getrefreshableclones,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    getRefreshableClones(
+      params?: Params$Resource$Projects$Locations$Autonomousdatabases$Getrefreshableclones,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$AutonomousDatabaseRefreshableClones>
+    >;
+    getRefreshableClones(
+      params: Params$Resource$Projects$Locations$Autonomousdatabases$Getrefreshableclones,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getRefreshableClones(
+      params: Params$Resource$Projects$Locations$Autonomousdatabases$Getrefreshableclones,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AutonomousDatabaseRefreshableClones>,
+      callback: BodyResponseCallback<Schema$AutonomousDatabaseRefreshableClones>
+    ): void;
+    getRefreshableClones(
+      params: Params$Resource$Projects$Locations$Autonomousdatabases$Getrefreshableclones,
+      callback: BodyResponseCallback<Schema$AutonomousDatabaseRefreshableClones>
+    ): void;
+    getRefreshableClones(
+      callback: BodyResponseCallback<Schema$AutonomousDatabaseRefreshableClones>
+    ): void;
+    getRefreshableClones(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Autonomousdatabases$Getrefreshableclones
+        | BodyResponseCallback<Schema$AutonomousDatabaseRefreshableClones>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AutonomousDatabaseRefreshableClones>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AutonomousDatabaseRefreshableClones>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$AutonomousDatabaseRefreshableClones>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Autonomousdatabases$Getrefreshableclones;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Autonomousdatabases$Getrefreshableclones;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://oracledatabase.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:getRefreshableClones').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AutonomousDatabaseRefreshableClones>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AutonomousDatabaseRefreshableClones>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Lists the Autonomous Databases in a given project and location.
      * @example
      * ```js
@@ -7146,8 +7442,7 @@ export namespace oracledatabase_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -7175,6 +7470,157 @@ export namespace oracledatabase_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Refreshes the refreshable clone of an Autonomous Database.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oracledatabase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const oracledatabase = google.oracledatabase('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await oracledatabase.projects.locations.autonomousDatabases.refresh({
+     *       // Required. The name of the AutonomousDatabase resource. Format: projects/{project\}/location/{location\}/autonomousDatabases/{autonomous_database\}
+     *       name: 'projects/my-project/locations/my-location/autonomousDatabases/my-autonomousDatabase',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "refreshCutoffTime": "my_refreshCutoffTime"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    refresh(
+      params: Params$Resource$Projects$Locations$Autonomousdatabases$Refresh,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    refresh(
+      params?: Params$Resource$Projects$Locations$Autonomousdatabases$Refresh,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    refresh(
+      params: Params$Resource$Projects$Locations$Autonomousdatabases$Refresh,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    refresh(
+      params: Params$Resource$Projects$Locations$Autonomousdatabases$Refresh,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    refresh(
+      params: Params$Resource$Projects$Locations$Autonomousdatabases$Refresh,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    refresh(callback: BodyResponseCallback<Schema$Operation>): void;
+    refresh(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Autonomousdatabases$Refresh
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Autonomousdatabases$Refresh;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Autonomousdatabases$Refresh;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://oracledatabase.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:refresh').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
             apiVersion: '',
           },
           options
@@ -7293,8 +7739,7 @@ export namespace oracledatabase_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -7445,8 +7890,7 @@ export namespace oracledatabase_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -7596,8 +8040,7 @@ export namespace oracledatabase_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -7742,8 +8185,7 @@ export namespace oracledatabase_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -7891,8 +8333,7 @@ export namespace oracledatabase_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -8000,6 +8441,12 @@ export namespace oracledatabase_v1 {
      */
     name?: string;
   }
+  export interface Params$Resource$Projects$Locations$Autonomousdatabases$Getrefreshableclones extends StandardParameters {
+    /**
+     * Required. The Autonomous Database resource whose refreshable clones are to be listed. Format: projects/{project\}/locations/{location\}/autonomousDatabases/{autonomous_database\}
+     */
+    name?: string;
+  }
   export interface Params$Resource$Projects$Locations$Autonomousdatabases$List extends StandardParameters {
     /**
      * Optional. An expression for filtering the results of the request.
@@ -8040,6 +8487,17 @@ export namespace oracledatabase_v1 {
      * Request body metadata
      */
     requestBody?: Schema$AutonomousDatabase;
+  }
+  export interface Params$Resource$Projects$Locations$Autonomousdatabases$Refresh extends StandardParameters {
+    /**
+     * Required. The name of the AutonomousDatabase resource. Format: projects/{project\}/location/{location\}/autonomousDatabases/{autonomous_database\}
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RefreshAutonomousDatabaseRequest;
   }
   export interface Params$Resource$Projects$Locations$Autonomousdatabases$Restart extends StandardParameters {
     /**
@@ -8287,6 +8745,161 @@ export namespace oracledatabase_v1 {
     }
 
     /**
+     * Configures Exascale for a single Exadata Infrastructure.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oracledatabase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const oracledatabase = google.oracledatabase('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await oracledatabase.projects.locations.cloudExadataInfrastructures.configureExascale(
+     *       {
+     *         // Required. The name of the Cloud Exadata Infrastructure in the following format: projects/{project\}/locations/{location\}/cloudExadataInfrastructures/{cloud_exadata_infrastructure\}.
+     *         name: 'projects/my-project/locations/my-location/cloudExadataInfrastructures/my-cloudExadataInfrastructure',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "requestId": "my_requestId",
+     *           //   "totalStorageSizeGb": 0,
+     *           //   "totalVmStorageSizeGb": 0
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    configureExascale(
+      params: Params$Resource$Projects$Locations$Cloudexadatainfrastructures$Configureexascale,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    configureExascale(
+      params?: Params$Resource$Projects$Locations$Cloudexadatainfrastructures$Configureexascale,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    configureExascale(
+      params: Params$Resource$Projects$Locations$Cloudexadatainfrastructures$Configureexascale,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    configureExascale(
+      params: Params$Resource$Projects$Locations$Cloudexadatainfrastructures$Configureexascale,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    configureExascale(
+      params: Params$Resource$Projects$Locations$Cloudexadatainfrastructures$Configureexascale,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    configureExascale(callback: BodyResponseCallback<Schema$Operation>): void;
+    configureExascale(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Cloudexadatainfrastructures$Configureexascale
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Cloudexadatainfrastructures$Configureexascale;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Cloudexadatainfrastructures$Configureexascale;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://oracledatabase.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:configureExascale').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * Creates a new Exadata Infrastructure in a given project and location.
      * @example
      * ```js
@@ -8397,8 +9010,7 @@ export namespace oracledatabase_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -8544,8 +9156,7 @@ export namespace oracledatabase_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -8669,8 +9280,7 @@ export namespace oracledatabase_v1 {
     get(
       params: Params$Resource$Projects$Locations$Cloudexadatainfrastructures$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$CloudExadataInfrastructure>,
+        MethodOptions | BodyResponseCallback<Schema$CloudExadataInfrastructure>,
       callback: BodyResponseCallback<Schema$CloudExadataInfrastructure>
     ): void;
     get(
@@ -8899,6 +9509,17 @@ export namespace oracledatabase_v1 {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Cloudexadatainfrastructures$Configureexascale extends StandardParameters {
+    /**
+     * Required. The name of the Cloud Exadata Infrastructure in the following format: projects/{project\}/locations/{location\}/cloudExadataInfrastructures/{cloud_exadata_infrastructure\}.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ConfigureExascaleCloudExadataInfrastructureRequest;
+  }
   export interface Params$Resource$Projects$Locations$Cloudexadatainfrastructures$Create extends StandardParameters {
     /**
      * Required. The ID of the Exadata Infrastructure to create. This value is restricted to (^[a-z]([a-z0-9-]{0,61\}[a-z0-9])?$) and must be a maximum of 63 characters in length. The value must start with a letter and end with a letter or a number.
@@ -9046,8 +9667,7 @@ export namespace oracledatabase_v1 {
     list(
       params: Params$Resource$Projects$Locations$Cloudexadatainfrastructures$Dbservers$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListDbServersResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListDbServersResponse>,
       callback: BodyResponseCallback<Schema$ListDbServersResponse>
     ): void;
     list(
@@ -9191,6 +9811,7 @@ export namespace oracledatabase_v1 {
      *       //   "createTime": "my_createTime",
      *       //   "displayName": "my_displayName",
      *       //   "exadataInfrastructure": "my_exadataInfrastructure",
+     *       //   "exascaleDbStorageVault": "my_exascaleDbStorageVault",
      *       //   "gcpOracleZone": "my_gcpOracleZone",
      *       //   "identityConnector": {},
      *       //   "labels": {},
@@ -9260,8 +9881,7 @@ export namespace oracledatabase_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -9407,8 +10027,7 @@ export namespace oracledatabase_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -9499,6 +10118,7 @@ export namespace oracledatabase_v1 {
      *   //   "createTime": "my_createTime",
      *   //   "displayName": "my_displayName",
      *   //   "exadataInfrastructure": "my_exadataInfrastructure",
+     *   //   "exascaleDbStorageVault": "my_exascaleDbStorageVault",
      *   //   "gcpOracleZone": "my_gcpOracleZone",
      *   //   "identityConnector": {},
      *   //   "labels": {},
@@ -10274,8 +10894,7 @@ export namespace oracledatabase_v1 {
         | BodyResponseCallback<Schema$Database>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Database>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Database> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Database>>
@@ -10398,8 +11017,7 @@ export namespace oracledatabase_v1 {
     list(
       params: Params$Resource$Projects$Locations$Databases$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListDatabasesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListDatabasesResponse>,
       callback: BodyResponseCallback<Schema$ListDatabasesResponse>
     ): void;
     list(
@@ -10789,8 +11407,7 @@ export namespace oracledatabase_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -10933,8 +11550,7 @@ export namespace oracledatabase_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -11077,8 +11693,7 @@ export namespace oracledatabase_v1 {
         | BodyResponseCallback<Schema$DbSystem>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$DbSystem>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$DbSystem> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$DbSystem>>
@@ -11204,8 +11819,7 @@ export namespace oracledatabase_v1 {
     list(
       params: Params$Resource$Projects$Locations$Dbsystems$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListDbSystemsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListDbSystemsResponse>,
       callback: BodyResponseCallback<Schema$ListDbSystemsResponse>
     ): void;
     list(
@@ -11370,7 +11984,7 @@ export namespace oracledatabase_v1 {
      *
      *   // Do the magic
      *   const res = await oracledatabase.projects.locations.dbSystemShapes.list({
-     *     // Optional. An expression for filtering the results of the request. Only the gcp_oracle_zone_id field is supported in this format: `gcp_oracle_zone_id="{gcp_oracle_zone_id\}"`.
+     *     // Optional. An expression for filtering the results of the request. The `gcp_oracle_zone_id`, `shape_family`, and `database_edition` fields are supported in the following format: `gcp_oracle_zone_id="{gcp_oracle_zone_id\}" AND shape_family="{shape_family\}" AND database_edition="{database_edition\}"`.
      *     filter: 'placeholder-value',
      *     // Optional. The maximum number of items to return. If unspecified, at most 50 database system shapes will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      *     pageSize: 'placeholder-value',
@@ -11416,8 +12030,7 @@ export namespace oracledatabase_v1 {
     list(
       params: Params$Resource$Projects$Locations$Dbsystemshapes$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListDbSystemShapesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListDbSystemShapesResponse>,
       callback: BodyResponseCallback<Schema$ListDbSystemShapesResponse>
     ): void;
     list(
@@ -11491,7 +12104,7 @@ export namespace oracledatabase_v1 {
 
   export interface Params$Resource$Projects$Locations$Dbsystemshapes$List extends StandardParameters {
     /**
-     * Optional. An expression for filtering the results of the request. Only the gcp_oracle_zone_id field is supported in this format: `gcp_oracle_zone_id="{gcp_oracle_zone_id\}"`.
+     * Optional. An expression for filtering the results of the request. The `gcp_oracle_zone_id`, `shape_family`, and `database_edition` fields are supported in the following format: `gcp_oracle_zone_id="{gcp_oracle_zone_id\}" AND shape_family="{shape_family\}" AND database_edition="{database_edition\}"`.
      */
     filter?: string;
     /**
@@ -11591,8 +12204,7 @@ export namespace oracledatabase_v1 {
     list(
       params: Params$Resource$Projects$Locations$Dbversions$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListDbVersionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListDbVersionsResponse>,
       callback: BodyResponseCallback<Schema$ListDbVersionsResponse>
     ): void;
     list(
@@ -11762,8 +12374,7 @@ export namespace oracledatabase_v1 {
     list(
       params: Params$Resource$Projects$Locations$Entitlements$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListEntitlementsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListEntitlementsResponse>,
       callback: BodyResponseCallback<Schema$ListEntitlementsResponse>
     ): void;
     list(
@@ -11905,6 +12516,7 @@ export namespace oracledatabase_v1 {
      *       //   "displayName": "my_displayName",
      *       //   "entitlementId": "my_entitlementId",
      *       //   "gcpOracleZone": "my_gcpOracleZone",
+     *       //   "identityConnector": {},
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "odbNetwork": "my_odbNetwork",
@@ -11971,8 +12583,7 @@ export namespace oracledatabase_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -12116,8 +12727,7 @@ export namespace oracledatabase_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -12207,6 +12817,7 @@ export namespace oracledatabase_v1 {
      *   //   "displayName": "my_displayName",
      *   //   "entitlementId": "my_entitlementId",
      *   //   "gcpOracleZone": "my_gcpOracleZone",
+     *   //   "identityConnector": {},
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "odbNetwork": "my_odbNetwork",
@@ -12507,6 +13118,7 @@ export namespace oracledatabase_v1 {
      *       //   "displayName": "my_displayName",
      *       //   "entitlementId": "my_entitlementId",
      *       //   "gcpOracleZone": "my_gcpOracleZone",
+     *       //   "identityConnector": {},
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "odbNetwork": "my_odbNetwork",
@@ -12573,8 +13185,7 @@ export namespace oracledatabase_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -12726,8 +13337,7 @@ export namespace oracledatabase_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -13086,6 +13696,7 @@ export namespace oracledatabase_v1 {
      *         //   "createTime": "my_createTime",
      *         //   "displayName": "my_displayName",
      *         //   "entitlementId": "my_entitlementId",
+     *         //   "exadataInfrastructure": "my_exadataInfrastructure",
      *         //   "gcpOracleZone": "my_gcpOracleZone",
      *         //   "labels": {},
      *         //   "name": "my_name",
@@ -13151,8 +13762,7 @@ export namespace oracledatabase_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -13297,8 +13907,7 @@ export namespace oracledatabase_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -13387,6 +13996,7 @@ export namespace oracledatabase_v1 {
      *   //   "createTime": "my_createTime",
      *   //   "displayName": "my_displayName",
      *   //   "entitlementId": "my_entitlementId",
+     *   //   "exadataInfrastructure": "my_exadataInfrastructure",
      *   //   "gcpOracleZone": "my_gcpOracleZone",
      *   //   "labels": {},
      *   //   "name": "my_name",
@@ -13422,8 +14032,7 @@ export namespace oracledatabase_v1 {
     get(
       params: Params$Resource$Projects$Locations$Exascaledbstoragevaults$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ExascaleDbStorageVault>,
+        MethodOptions | BodyResponseCallback<Schema$ExascaleDbStorageVault>,
       callback: BodyResponseCallback<Schema$ExascaleDbStorageVault>
     ): void;
     get(
@@ -13749,7 +14358,7 @@ export namespace oracledatabase_v1 {
      *
      *   // Do the magic
      *   const res = await oracledatabase.projects.locations.giVersions.list({
-     *     // Optional. An expression for filtering the results of the request. Only the shape, gcp_oracle_zone and gi_version fields are supported in this format: `shape="{shape\}"`.
+     *     // Optional. An expression for filtering the results of the request. Only the `shape` and `gcp_oracle_zone_id` fields are supported in the following format: `shape="{shape\}" AND gcp_oracle_zone_id="{gcp_oracle_zone_id\}"`.
      *     filter: 'placeholder-value',
      *     // Optional. The maximum number of items to return. If unspecified, a maximum of 50 Oracle Grid Infrastructure (GI) versions will be returned. The maximum value is 1000; values above 1000 will be reset to 1000.
      *     pageSize: 'placeholder-value',
@@ -13795,8 +14404,7 @@ export namespace oracledatabase_v1 {
     list(
       params: Params$Resource$Projects$Locations$Giversions$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListGiVersionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListGiVersionsResponse>,
       callback: BodyResponseCallback<Schema$ListGiVersionsResponse>
     ): void;
     list(
@@ -13868,7 +14476,7 @@ export namespace oracledatabase_v1 {
 
   export interface Params$Resource$Projects$Locations$Giversions$List extends StandardParameters {
     /**
-     * Optional. An expression for filtering the results of the request. Only the shape, gcp_oracle_zone and gi_version fields are supported in this format: `shape="{shape\}"`.
+     * Optional. An expression for filtering the results of the request. Only the `shape` and `gcp_oracle_zone_id` fields are supported in the following format: `shape="{shape\}" AND gcp_oracle_zone_id="{gcp_oracle_zone_id\}"`.
      */
     filter?: string;
     /**
@@ -13923,7 +14531,7 @@ export namespace oracledatabase_v1 {
      *   // Do the magic
      *   const res =
      *     await oracledatabase.projects.locations.giVersions.minorVersions.list({
-     *       // Optional. An expression for filtering the results of the request. Only shapeFamily and gcp_oracle_zone_id are supported in this format: `shape_family="{shapeFamily\}" AND gcp_oracle_zone_id="{gcp_oracle_zone_id\}"`.
+     *       // Optional. An expression for filtering the results of the request. Only the `shape_family` and `gcp_oracle_zone_id` fields are supported in the following format: `shape_family="{shape_family\}" AND gcp_oracle_zone_id="{gcp_oracle_zone_id\}"`.
      *       filter: 'placeholder-value',
      *       // Optional. The maximum number of items to return. If unspecified, a maximum of 50 System Versions will be returned. The maximum value is 1000; values above 1000 will be reset to 1000.
      *       pageSize: 'placeholder-value',
@@ -13970,8 +14578,7 @@ export namespace oracledatabase_v1 {
     list(
       params: Params$Resource$Projects$Locations$Giversions$Minorversions$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListMinorVersionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListMinorVersionsResponse>,
       callback: BodyResponseCallback<Schema$ListMinorVersionsResponse>
     ): void;
     list(
@@ -14046,7 +14653,7 @@ export namespace oracledatabase_v1 {
 
   export interface Params$Resource$Projects$Locations$Giversions$Minorversions$List extends StandardParameters {
     /**
-     * Optional. An expression for filtering the results of the request. Only shapeFamily and gcp_oracle_zone_id are supported in this format: `shape_family="{shapeFamily\}" AND gcp_oracle_zone_id="{gcp_oracle_zone_id\}"`.
+     * Optional. An expression for filtering the results of the request. Only the `shape_family` and `gcp_oracle_zone_id` fields are supported in the following format: `shape_family="{shape_family\}" AND gcp_oracle_zone_id="{gcp_oracle_zone_id\}"`.
      */
     filter?: string;
     /**
@@ -14181,8 +14788,7 @@ export namespace oracledatabase_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -14328,8 +14934,7 @@ export namespace oracledatabase_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -15035,8 +15640,7 @@ export namespace oracledatabase_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -15181,8 +15785,7 @@ export namespace oracledatabase_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -15309,8 +15912,7 @@ export namespace oracledatabase_v1 {
     get(
       params: Params$Resource$Projects$Locations$Goldengateconnections$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoldengateConnection>,
+        MethodOptions | BodyResponseCallback<Schema$GoldengateConnection>,
       callback: BodyResponseCallback<Schema$GoldengateConnection>
     ): void;
     get(
@@ -15603,147 +16205,6 @@ export namespace oracledatabase_v1 {
     }
 
     /**
-     * Gets details of a single GoldengateConnectionType.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/oracledatabase.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const oracledatabase = google.oracledatabase('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await oracledatabase.projects.locations.goldengateConnectionTypes.get({
-     *       // Required. Name of the resource in the format: projects/{project\}/locations/{location\}/goldengateConnectionTypes/{goldengate_connection_type\}
-     *       name: 'projects/my-project/locations/my-location/goldengateConnectionTypes/my-goldengateConnectionType',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "connectionType": "my_connectionType",
-     *   //   "name": "my_name",
-     *   //   "technologyTypes": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    get(
-      params: Params$Resource$Projects$Locations$Goldengateconnectiontypes$Get,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    get(
-      params?: Params$Resource$Projects$Locations$Goldengateconnectiontypes$Get,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$GoldengateConnectionType>>;
-    get(
-      params: Params$Resource$Projects$Locations$Goldengateconnectiontypes$Get,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    get(
-      params: Params$Resource$Projects$Locations$Goldengateconnectiontypes$Get,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoldengateConnectionType>,
-      callback: BodyResponseCallback<Schema$GoldengateConnectionType>
-    ): void;
-    get(
-      params: Params$Resource$Projects$Locations$Goldengateconnectiontypes$Get,
-      callback: BodyResponseCallback<Schema$GoldengateConnectionType>
-    ): void;
-    get(callback: BodyResponseCallback<Schema$GoldengateConnectionType>): void;
-    get(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Goldengateconnectiontypes$Get
-        | BodyResponseCallback<Schema$GoldengateConnectionType>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoldengateConnectionType>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoldengateConnectionType>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoldengateConnectionType>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Goldengateconnectiontypes$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Goldengateconnectiontypes$Get;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://oracledatabase.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoldengateConnectionType>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoldengateConnectionType>(parameters);
-      }
-    }
-
-    /**
      * Lists GoldengateConnectionTypes in a given project and location.
      * @example
      * ```js
@@ -15902,12 +16363,6 @@ export namespace oracledatabase_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Goldengateconnectiontypes$Get extends StandardParameters {
-    /**
-     * Required. Name of the resource in the format: projects/{project\}/locations/{location\}/goldengateConnectionTypes/{goldengate_connection_type\}
-     */
-    name?: string;
-  }
   export interface Params$Resource$Projects$Locations$Goldengateconnectiontypes$List extends StandardParameters {
     /**
      * Optional. An expression for filtering the results of the request. The connection_type field must be specified in the format: `connection_type="ORACLE"`.
@@ -15931,161 +16386,6 @@ export namespace oracledatabase_v1 {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
-    }
-
-    /**
-     * Gets details of a single GoldengateDeploymentEnvironment.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/oracledatabase.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const oracledatabase = google.oracledatabase('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await oracledatabase.projects.locations.goldengateDeploymentEnvironments.get(
-     *       {
-     *         // Required. Name of the resource with the format: projects/{project\}/locations/{location\}/goldengateDeploymentEnvironments/{goldengate_deployment_environment\}
-     *         name: 'projects/my-project/locations/my-location/goldengateDeploymentEnvironments/my-goldengateDeploymentEnvironment',
-     *       },
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "autoScalingEnabled": false,
-     *   //   "category": "my_category",
-     *   //   "defaultCpuCoreCount": 0,
-     *   //   "displayName": "my_displayName",
-     *   //   "environmentType": "my_environmentType",
-     *   //   "maxCpuCoreCount": 0,
-     *   //   "memoryGbPerCpuCore": 0,
-     *   //   "minCpuCoreCount": 0,
-     *   //   "name": "my_name",
-     *   //   "networkBandwidthGbpsPerCpuCore": 0,
-     *   //   "storageUsageLimitGbPerCpuCore": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    get(
-      params: Params$Resource$Projects$Locations$Goldengatedeploymentenvironments$Get,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    get(
-      params?: Params$Resource$Projects$Locations$Goldengatedeploymentenvironments$Get,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$GoldengateDeploymentEnvironment>>;
-    get(
-      params: Params$Resource$Projects$Locations$Goldengatedeploymentenvironments$Get,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    get(
-      params: Params$Resource$Projects$Locations$Goldengatedeploymentenvironments$Get,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoldengateDeploymentEnvironment>,
-      callback: BodyResponseCallback<Schema$GoldengateDeploymentEnvironment>
-    ): void;
-    get(
-      params: Params$Resource$Projects$Locations$Goldengatedeploymentenvironments$Get,
-      callback: BodyResponseCallback<Schema$GoldengateDeploymentEnvironment>
-    ): void;
-    get(
-      callback: BodyResponseCallback<Schema$GoldengateDeploymentEnvironment>
-    ): void;
-    get(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Goldengatedeploymentenvironments$Get
-        | BodyResponseCallback<Schema$GoldengateDeploymentEnvironment>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoldengateDeploymentEnvironment>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoldengateDeploymentEnvironment>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoldengateDeploymentEnvironment>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Goldengatedeploymentenvironments$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Goldengatedeploymentenvironments$Get;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://oracledatabase.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoldengateDeploymentEnvironment>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoldengateDeploymentEnvironment>(
-          parameters
-        );
-      }
     }
 
     /**
@@ -16246,12 +16546,6 @@ export namespace oracledatabase_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Goldengatedeploymentenvironments$Get extends StandardParameters {
-    /**
-     * Required. Name of the resource with the format: projects/{project\}/locations/{location\}/goldengateDeploymentEnvironments/{goldengate_deployment_environment\}
-     */
-    name?: string;
-  }
   export interface Params$Resource$Projects$Locations$Goldengatedeploymentenvironments$List extends StandardParameters {
     /**
      * Optional. The maximum number of items to return. If unspecified, at most 50 deployment environments will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
@@ -16387,8 +16681,7 @@ export namespace oracledatabase_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -16533,8 +16826,7 @@ export namespace oracledatabase_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -16662,8 +16954,7 @@ export namespace oracledatabase_v1 {
     get(
       params: Params$Resource$Projects$Locations$Goldengatedeployments$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoldengateDeployment>,
+        MethodOptions | BodyResponseCallback<Schema$GoldengateDeployment>,
       callback: BodyResponseCallback<Schema$GoldengateDeployment>
     ): void;
     get(
@@ -16989,8 +17280,7 @@ export namespace oracledatabase_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -17136,8 +17426,7 @@ export namespace oracledatabase_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -17269,155 +17558,6 @@ export namespace oracledatabase_v1 {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
-    }
-
-    /**
-     * Gets details of a single GoldenGateDeploymentType.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/oracledatabase.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const oracledatabase = google.oracledatabase('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await oracledatabase.projects.locations.goldengateDeploymentTypes.get({
-     *       // Required. The name of the GoldengateDeploymentType to retrieve. Format: projects/{project\}/locations/{location\}/goldengateDeploymentTypes/{goldengate_deployment_type\}
-     *       name: 'projects/my-project/locations/my-location/goldengateDeploymentTypes/my-goldengateDeploymentType',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "category": "my_category",
-     *   //   "connectionTypes": [],
-     *   //   "defaultUsername": "my_defaultUsername",
-     *   //   "deploymentType": "my_deploymentType",
-     *   //   "displayName": "my_displayName",
-     *   //   "name": "my_name",
-     *   //   "oggVersion": "my_oggVersion",
-     *   //   "sourceTechnologies": [],
-     *   //   "supportedCapabilities": [],
-     *   //   "supportedTechnologiesUrl": "my_supportedTechnologiesUrl",
-     *   //   "targetTechnologies": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    get(
-      params: Params$Resource$Projects$Locations$Goldengatedeploymenttypes$Get,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    get(
-      params?: Params$Resource$Projects$Locations$Goldengatedeploymenttypes$Get,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$GoldengateDeploymentType>>;
-    get(
-      params: Params$Resource$Projects$Locations$Goldengatedeploymenttypes$Get,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    get(
-      params: Params$Resource$Projects$Locations$Goldengatedeploymenttypes$Get,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoldengateDeploymentType>,
-      callback: BodyResponseCallback<Schema$GoldengateDeploymentType>
-    ): void;
-    get(
-      params: Params$Resource$Projects$Locations$Goldengatedeploymenttypes$Get,
-      callback: BodyResponseCallback<Schema$GoldengateDeploymentType>
-    ): void;
-    get(callback: BodyResponseCallback<Schema$GoldengateDeploymentType>): void;
-    get(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Goldengatedeploymenttypes$Get
-        | BodyResponseCallback<Schema$GoldengateDeploymentType>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoldengateDeploymentType>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoldengateDeploymentType>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoldengateDeploymentType>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Goldengatedeploymenttypes$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Goldengatedeploymenttypes$Get;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://oracledatabase.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoldengateDeploymentType>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoldengateDeploymentType>(parameters);
-      }
     }
 
     /**
@@ -17581,12 +17721,6 @@ export namespace oracledatabase_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Goldengatedeploymenttypes$Get extends StandardParameters {
-    /**
-     * Required. The name of the GoldengateDeploymentType to retrieve. Format: projects/{project\}/locations/{location\}/goldengateDeploymentTypes/{goldengate_deployment_type\}
-     */
-    name?: string;
-  }
   export interface Params$Resource$Projects$Locations$Goldengatedeploymenttypes$List extends StandardParameters {
     /**
      * Optional. An expression for filtering the results of the request. Either the deployment_type and ogg_version fields must be specified in the format: `deployment_type="DATABASE_ORACLE"` or `ogg_version="version"`. Allowed values for deployment_type are: `DATABASE_ORACLE`, `BIGDATA`, `DATABASE_MICROSOFT_SQLSERVER`, `DATABASE_MYSQL`, `DATABASE_POSTGRESQL`, `DATABASE_DB2ZOS`, `DATABASE_DB2I`, `GGSA`, `DATA_TRANSFORMS`.
@@ -17614,149 +17748,6 @@ export namespace oracledatabase_v1 {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
-    }
-
-    /**
-     * Gets details of a single GoldengateDeploymentVersion.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/oracledatabase.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const oracledatabase = google.oracledatabase('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await oracledatabase.projects.locations.goldengateDeploymentVersions.get({
-     *       // Required. The name of the GoldengateDeploymentVersion to retrieve. Format: projects/{project\}/locations/{location\}/goldengateDeploymentVersions/{goldengate_deployment_version\}
-     *       name: 'projects/my-project/locations/my-location/goldengateDeploymentVersions/my-goldengateDeploymentVersion',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "name": "my_name",
-     *   //   "ocid": "my_ocid",
-     *   //   "properties": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    get(
-      params: Params$Resource$Projects$Locations$Goldengatedeploymentversions$Get,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    get(
-      params?: Params$Resource$Projects$Locations$Goldengatedeploymentversions$Get,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$GoldengateDeploymentVersion>>;
-    get(
-      params: Params$Resource$Projects$Locations$Goldengatedeploymentversions$Get,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    get(
-      params: Params$Resource$Projects$Locations$Goldengatedeploymentversions$Get,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoldengateDeploymentVersion>,
-      callback: BodyResponseCallback<Schema$GoldengateDeploymentVersion>
-    ): void;
-    get(
-      params: Params$Resource$Projects$Locations$Goldengatedeploymentversions$Get,
-      callback: BodyResponseCallback<Schema$GoldengateDeploymentVersion>
-    ): void;
-    get(
-      callback: BodyResponseCallback<Schema$GoldengateDeploymentVersion>
-    ): void;
-    get(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Goldengatedeploymentversions$Get
-        | BodyResponseCallback<Schema$GoldengateDeploymentVersion>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoldengateDeploymentVersion>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoldengateDeploymentVersion>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoldengateDeploymentVersion>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Goldengatedeploymentversions$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Goldengatedeploymentversions$Get;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://oracledatabase.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoldengateDeploymentVersion>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoldengateDeploymentVersion>(parameters);
-      }
     }
 
     /**
@@ -17917,12 +17908,6 @@ export namespace oracledatabase_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Goldengatedeploymentversions$Get extends StandardParameters {
-    /**
-     * Required. The name of the GoldengateDeploymentVersion to retrieve. Format: projects/{project\}/locations/{location\}/goldengateDeploymentVersions/{goldengate_deployment_version\}
-     */
-    name?: string;
-  }
   export interface Params$Resource$Projects$Locations$Goldengatedeploymentversions$List extends StandardParameters {
     /**
      * Optional. An expression for filtering the results of the request. Either the deployment_id and deployment_type fields must be specified in the format: `deployment_id="id"` or `deployment_type="DATABASE_ORACLE"`.
@@ -18062,8 +18047,7 @@ export namespace oracledatabase_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -18206,8 +18190,7 @@ export namespace oracledatabase_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -18347,8 +18330,7 @@ export namespace oracledatabase_v1 {
         | BodyResponseCallback<Schema$OdbNetwork>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$OdbNetwork>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$OdbNetwork> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$OdbNetwork>>
@@ -18474,8 +18456,7 @@ export namespace oracledatabase_v1 {
     list(
       params: Params$Resource$Projects$Locations$Odbnetworks$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListOdbNetworksResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListOdbNetworksResponse>,
       callback: BodyResponseCallback<Schema$ListOdbNetworksResponse>
     ): void;
     list(
@@ -18720,8 +18701,7 @@ export namespace oracledatabase_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -18866,8 +18846,7 @@ export namespace oracledatabase_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -19008,8 +18987,7 @@ export namespace oracledatabase_v1 {
         | BodyResponseCallback<Schema$OdbSubnet>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$OdbSubnet>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$OdbSubnet> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$OdbSubnet>>
@@ -19138,8 +19116,7 @@ export namespace oracledatabase_v1 {
     list(
       params: Params$Resource$Projects$Locations$Odbnetworks$Odbsubnets$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListOdbSubnetsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListOdbSubnetsResponse>,
       callback: BodyResponseCallback<Schema$ListOdbSubnetsResponse>
     ): void;
     list(
@@ -19366,8 +19343,7 @@ export namespace oracledatabase_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -19499,8 +19475,7 @@ export namespace oracledatabase_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -19638,8 +19613,7 @@ export namespace oracledatabase_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -19765,8 +19739,7 @@ export namespace oracledatabase_v1 {
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListOperationsResponse>,
       callback: BodyResponseCallback<Schema$ListOperationsResponse>
     ): void;
     list(

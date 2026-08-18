@@ -164,6 +164,107 @@ export namespace firebaseml_v2beta {
     apiKeyString?: string | null;
   }
   /**
+   * Configuration for audio-specific output formatting.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1AudioResponseFormat {
+    /**
+     * Optional. Bit rate in bits per second (bps). Only applicable for compressed formats (MP3, Opus).
+     */
+    bitRate?: number | null;
+    /**
+     * Optional. Delivery mode for the generated content.
+     */
+    delivery?: string | null;
+    /**
+     * Optional. The MIME type of the audio output.
+     */
+    mimeType?: string | null;
+    /**
+     * Optional. Sample rate for the generated audio in Hertz.
+     */
+    sampleRate?: number | null;
+  }
+  /**
+   * The transcription of an audio part. For multi-speaker audio, each speaker segment is a separate `Part` with its own `AudioTranscription` carrying the `speaker_label`.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1AudioTranscription {
+    /**
+     * Optional. A label identifying the speaker of this audio segment (e.g. `spk_1`, `spk_2`). Present when `diarization` is set.
+     */
+    speakerLabel?: string | null;
+    /**
+     * Required. The transcription text of this audio segment.
+     */
+    text?: string | null;
+    /**
+     * Optional. Detailed word-level transcriptions and timing details. Present when `word_timestamp` is set.
+     */
+    words?: Schema$GoogleCloudAiplatformV1beta1AudioTranscriptionWordInfo[];
+  }
+  /**
+   * Configuration for speech recognition (transcription).
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1AudioTranscriptionConfig {
+    /**
+     * Optional. Deprecated: Use `custom_vocabulary` instead. A list of phrases to bias the speech recognition model towards.
+     */
+    adaptationPhrases?: string[] | null;
+    /**
+     * Optional. A list of custom vocabulary phrases to bias the speech recognition model toward recognizing specific terms.
+     */
+    customVocabulary?: string[] | null;
+    /**
+     * Optional. Configures speaker diarization.
+     */
+    diarization?: boolean | null;
+    /**
+     * Optional. Deprecated: Use top-level `language_codes` instead. The model will detect the language automatically.
+     */
+    languageAuto?: Schema$GoogleCloudAiplatformV1beta1AudioTranscriptionConfigLanguageAuto;
+    /**
+     * Optional. BCP-47 language codes providing hints about the languages present in the audio. If omitted or empty, defaults to automatic language detection.
+     */
+    languageCodes?: string[] | null;
+    /**
+     * Optional. Deprecated: Use top-level `language_codes` instead. Specifies one or more languages in the audio.
+     */
+    languageHints?: Schema$GoogleCloudAiplatformV1beta1AudioTranscriptionConfigLanguageHints;
+    /**
+     * Optional. Configures word-level timestamp generation.
+     */
+    wordTimestamp?: boolean | null;
+  }
+  /**
+   * Deprecated: Use top-level `language_codes` instead. Indicates the language of the audio should be automatically detected.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1AudioTranscriptionConfigLanguageAuto {}
+  /**
+   * Deprecated: Use top-level `language_codes` instead. Provides hints to the model about possible languages present in the audio.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1AudioTranscriptionConfigLanguageHints {
+    /**
+     * Required. Deprecated: Use top-level `language_codes` instead. BCP-47 language codes. At least one must be specified.
+     */
+    languageCodes?: string[] | null;
+  }
+  /**
+   * Information about a single recognized word.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1AudioTranscriptionWordInfo {
+    /**
+     * Optional. End offset in time of the word relative to the start of the audio.
+     */
+    endOffset?: string | null;
+    /**
+     * Optional. Start offset in time of the word relative to the start of the audio.
+     */
+    startOffset?: string | null;
+    /**
+     * Required. Transcript of the word.
+     */
+    word?: string | null;
+  }
+  /**
    * Auth configuration to run the extension.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1AuthConfig {
@@ -362,6 +463,10 @@ export namespace firebaseml_v2beta {
    */
   export interface Schema$GoogleCloudAiplatformV1beta1CodeExecutionResult {
     /**
+     * Optional. The identifier of the `ExecutableCode` part this result is for. Only populated if the corresponding `ExecutableCode` has an id.
+     */
+    id?: string | null;
+    /**
      * Required. Outcome of the code execution.
      */
     outcome?: string | null;
@@ -463,6 +568,10 @@ export namespace firebaseml_v2beta {
      * Required. The code to be executed.
      */
     code?: string | null;
+    /**
+     * Optional. Unique identifier of the `ExecutableCode` part. The server returns the `CodeExecutionResult` with the matching `id`.
+     */
+    id?: string | null;
     /**
      * Required. Programming language of the `code`.
      */
@@ -827,6 +936,10 @@ export namespace firebaseml_v2beta {
      */
     audioTimestamp?: boolean | null;
     /**
+     * Optional. Configuration for audio transcription (speech recognition).
+     */
+    audioTranscriptionConfig?: Schema$GoogleCloudAiplatformV1beta1AudioTranscriptionConfig;
+    /**
      * Optional. The number of candidate responses to generate. A higher `candidate_count` can provide more options to choose from, but it also consumes more resources. This can be useful for generating a variety of responses and selecting the best one.
      */
     candidateCount?: number | null;
@@ -839,7 +952,7 @@ export namespace firebaseml_v2beta {
      */
     frequencyPenalty?: number | null;
     /**
-     * Optional. Config for image generation features.
+     * Optional. Config for image generation features. Deprecated: Use `response_format.image` instead.
      */
     imageConfig?: Schema$GoogleCloudAiplatformV1beta1ImageConfig;
     /**
@@ -863,7 +976,11 @@ export namespace firebaseml_v2beta {
      */
     presencePenalty?: number | null;
     /**
-     * Optional. When this field is set, response_schema must be omitted and response_mime_type must be set to `application/json`.
+     * Optional. New response format field for the model to configure output formatting and delivery.
+     */
+    responseFormat?: Schema$GoogleCloudAiplatformV1beta1ResponseFormat[];
+    /**
+     * Optional. When this field is set, response_schema must be omitted and response_mime_type must be set to `application/json`. Deprecated: Use `response_format` instead.
      */
     responseJsonSchema?: any | null;
     /**
@@ -871,7 +988,7 @@ export namespace firebaseml_v2beta {
      */
     responseLogprobs?: boolean | null;
     /**
-     * Optional. The IANA standard MIME type of the response. The model will generate output that conforms to this MIME type. Supported values include 'text/plain' (default) and 'application/json'. The model needs to be prompted to output the appropriate response type, otherwise the behavior is undefined.
+     * Optional. The IANA standard MIME type of the response. The model will generate output that conforms to this MIME type. Supported values include 'text/plain' (default) and 'application/json'. The model needs to be prompted to output the appropriate response type, otherwise the behavior is undefined. Deprecated: Use `response_format` instead.
      */
     responseMimeType?: string | null;
     /**
@@ -879,7 +996,7 @@ export namespace firebaseml_v2beta {
      */
     responseModalities?: string[] | null;
     /**
-     * Optional. Lets you to specify a schema for the model's response, ensuring that the output conforms to a particular structure. This is useful for generating structured data such as JSON. The schema is a subset of the [OpenAPI 3.0 schema object](https://spec.openapis.org/oas/v3.0.3#schema) object. When this field is set, you must also set the `response_mime_type` to `application/json`.
+     * Optional. Lets you to specify a schema for the model's response, ensuring that the output conforms to a particular structure. This is useful for generating structured data such as JSON. The schema is a subset of the [OpenAPI 3.0 schema object](https://spec.openapis.org/oas/v3.0.3#schema) object. When this field is set, you must also set the `response_mime_type` to `application/json`. Deprecated: Use `response_format` instead.
      */
     responseSchema?: Schema$GoogleCloudAiplatformV1beta1Schema;
     /**
@@ -977,10 +1094,35 @@ export namespace firebaseml_v2beta {
    */
   export interface Schema$GoogleCloudAiplatformV1beta1GoogleMaps {
     /**
-     * Optional. If true, include the widget context token in the response.
+     * Optional. Deprecated: The Google Maps contextual widget behavior in Grounding with Google Maps is being deprecated; this field is planned for removal and no longer has any effect once removed. If true, include the widget context token in the response.
      */
     enableWidget?: boolean | null;
+    /**
+     * Optional. Specifies the types of Google Maps grounding to enable. Defaults to `places` when unset.
+     */
+    groundingTypes?: Schema$GoogleCloudAiplatformV1beta1GoogleMapsGroundingTypes;
   }
+  /**
+   * Defines the types of Google Maps grounding that can be enabled and their configurations.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1GoogleMapsGroundingTypes {
+    /**
+     * Optional. Enables grounding with Google Maps Places. This is the default grounding type when no `GroundingTypes` are specified.
+     */
+    places?: Schema$GoogleCloudAiplatformV1beta1GoogleMapsPlaces;
+    /**
+     * Optional. Enables grounding with Google Maps Routing APIs (ComputeRoutes and SearchAlongRoute).
+     */
+    routing?: Schema$GoogleCloudAiplatformV1beta1GoogleMapsRouting;
+  }
+  /**
+   * Grounding with Google Maps Places data (e.g. QueryPlaces). This is the default Google Maps grounding type when no other type is specified.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1GoogleMapsPlaces {}
+  /**
+   * Grounding with Google Maps Routing APIs (ComputeRoutes and SearchAlongRoute).
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1GoogleMapsRouting {}
   /**
    * Tool to retrieve public web data for grounding, powered by Google.
    */
@@ -1151,7 +1293,7 @@ export namespace firebaseml_v2beta {
    */
   export interface Schema$GoogleCloudAiplatformV1beta1GroundingMetadata {
     /**
-     * Optional. Output only. A token that can be used to render a Google Maps widget with the contextual data. This field is populated only when the grounding source is Google Maps.
+     * Optional. Output only. Deprecated: The Google Maps contextual widget behavior in Grounding with Google Maps is being deprecated; this field is planned for removal and will no longer be populated once removed. A token that can be used to render a Google Maps widget with the contextual data. This field is populated only when the grounding source is Google Maps.
      */
     googleMapsWidgetContextToken?: string | null;
     /**
@@ -1260,6 +1402,27 @@ export namespace firebaseml_v2beta {
     mimeType?: string | null;
   }
   /**
+   * Configuration for image-specific output formatting.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1ImageResponseFormat {
+    /**
+     * Optional. The aspect ratio for the image output.
+     */
+    aspectRatio?: string | null;
+    /**
+     * Optional. Delivery mode for the generated content.
+     */
+    delivery?: string | null;
+    /**
+     * Optional. The size of the image output.
+     */
+    imageSize?: string | null;
+    /**
+     * Optional. The MIME type of the image output.
+     */
+    mimeType?: string | null;
+  }
+  /**
    * The log probabilities of the tokens generated by the model. This is useful for understanding the model's confidence in its predictions and for debugging. For example, you can use log probabilities to identify when the model is making a less confident prediction or to explore alternative responses that the model considered. A low log probability can also indicate that the model is "hallucinating" or generating factually incorrect information.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1LogprobsResult {
@@ -1337,6 +1500,10 @@ export namespace firebaseml_v2beta {
    * A datatype containing media that is part of a multi-part Content message. A `Part` consists of data which has an associated datatype. A `Part` can only contain one of the accepted types in `Part.data`. For media types that are not text, `Part` must have a fixed IANA MIME type identifying the type and subtype of the media if `inline_data` or `file_data` field is filled with raw bytes.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1Part {
+    /**
+     * Optional. Audio (input or output) transcription. This is only set when this `Part` contains audio data.
+     */
+    audioTranscription?: Schema$GoogleCloudAiplatformV1beta1AudioTranscription;
     /**
      * Optional. The result of executing the ExecutableCode.
      */
@@ -1553,6 +1720,27 @@ export namespace firebaseml_v2beta {
      * Optional. The sample of the custom voice.
      */
     voiceSampleAudio?: string | null;
+  }
+  /**
+   * Configuration for the model to configure output formatting and delivery.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1ResponseFormat {
+    /**
+     * Audio output format.
+     */
+    audio?: Schema$GoogleCloudAiplatformV1beta1AudioResponseFormat;
+    /**
+     * Image output format.
+     */
+    image?: Schema$GoogleCloudAiplatformV1beta1ImageResponseFormat;
+    /**
+     * Text output format.
+     */
+    text?: Schema$GoogleCloudAiplatformV1beta1TextResponseFormat;
+    /**
+     * Video output format.
+     */
+    video?: Schema$GoogleCloudAiplatformV1beta1VideoResponseFormat;
   }
   /**
    * Defines a retrieval tool that model can call to access external knowledge.
@@ -1819,6 +2007,19 @@ export namespace firebaseml_v2beta {
     voiceConfig?: Schema$GoogleCloudAiplatformV1beta1VoiceConfig;
   }
   /**
+   * Configuration for text-specific output formatting.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1TextResponseFormat {
+    /**
+     * Optional. The IANA standard MIME type of the response.
+     */
+    mimeType?: string | null;
+    /**
+     * Optional. The JSON schema that the output should conform to. Only applicable when mime_type is APPLICATION_JSON.
+     */
+    schema?: any | null;
+  }
+  /**
    * Tool details that the model may use to generate response. A `Tool` is a piece of code that enables the system to interact with external systems to perform an action, or set of actions, outside of knowledge and scope of the model. A Tool object should contain exactly one type of Tool (e.g FunctionDeclaration, Retrieval or GoogleSearchRetrieval).
    */
   export interface Schema$GoogleCloudAiplatformV1beta1Tool {
@@ -1875,6 +2076,10 @@ export namespace firebaseml_v2beta {
    * Tool to support computer use.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1ToolComputerUse {
+    /**
+     * Optional. Enables the prompt injection detection check on computer-use request.
+     */
+    enablePromptInjectionDetection?: boolean | null;
     /**
      * Required. The environment being operated.
      */
@@ -1960,6 +2165,14 @@ export namespace firebaseml_v2beta {
      * Optional. Custom configs for ParallelAiSearch. This field can be used to pass any parameter from the Parallel.ai Search API. See the Parallel.ai documentation for the full list of available parameters and their usage: https://docs.parallel.ai/api-reference/search-beta/search Currently only `source_policy`, `excerpts`, `max_results`, `mode`, `fetch_policy` can be set via this field. For example: { "source_policy": { "include_domains": ["google.com", "wikipedia.org"], "exclude_domains": ["example.com"] \}, "fetch_policy": { "max_age_seconds": 3600 \} \}
      */
     customConfigs?: {[key: string]: any} | null;
+    /**
+     * Optional. Deprecated: Use `enable_zero_data_retention` instead. Instructs Vertex Grounding to use Parallel's Zero Data Retention Marketplace product. If this value is "false" or omitted, the Parallel Web Search for Grounding standard subscription will be used. If this value is "true", the Parallel Web Search for Grounding - ZDR subscription will be used.
+     */
+    enableDataRetention?: boolean | null;
+    /**
+     * Optional. Instructs Vertex Grounding to use Parallel's Zero Data Retention Marketplace product. If this value is "false" or omitted, the Parallel Web Search for Grounding standard subscription will be used. If this value is "true", the Parallel Web Search for Grounding - ZDR subscription will be used.
+     */
+    enableZeroDataRetention?: boolean | null;
   }
   /**
    * Tool to support URL context.
@@ -2083,6 +2296,31 @@ export namespace firebaseml_v2beta {
      * Optional. The start offset of the video.
      */
     startOffset?: string | null;
+  }
+  /**
+   * Configuration for video-specific output formatting.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1VideoResponseFormat {
+    /**
+     * The aspect ratio for the video output.
+     */
+    aspectRatio?: string | null;
+    /**
+     * Optional. Delivery mode for the generated content.
+     */
+    delivery?: string | null;
+    /**
+     * Optional. The duration for the video output.
+     */
+    duration?: string | null;
+    /**
+     * Optional. The Google Cloud Storage URI to store the video output. Required for Vertex if delivery is URI.
+     */
+    gcsUri?: string | null;
+    /**
+     * Optional. The video output resolution. Supported values: "360p", "720p", "1080p", "4k".
+     */
+    resolution?: string | null;
   }
   /**
    * Configuration for a voice.

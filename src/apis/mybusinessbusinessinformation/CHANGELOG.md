@@ -1,5 +1,24 @@
 # Changelog
 
+## [9.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/mybusinessbusinessinformation-v9.0.0...mybusinessbusinessinformation-v9.0.1) (2026-08-14)
+
+
+### Bug Fixes
+
+* **mybusinessbusinessinformation:** update the API ([ca9e626](https://github.com/googleapis/google-api-nodejs-client/commit/ca9e6260d30ec5a3ac3bdaa70d84176190511102))
+* **mybusinessbusinessinformation:** update the API ([04d33c2](https://github.com/googleapis/google-api-nodejs-client/commit/04d33c27e8f57ff8311e387404ca5330687f0a27))
+
+## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/mybusinessbusinessinformation-v8.0.2...mybusinessbusinessinformation-v9.0.0) (2026-08-03)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3955](https://github.com/googleapis/google-api-nodejs-client/issues/3955)) ([c429a9b](https://github.com/googleapis/google-api-nodejs-client/commit/c429a9b6f8272f1a651084f83ffcf4b88124c59f))
+
 ## [8.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/mybusinessbusinessinformation-v8.0.1...mybusinessbusinessinformation-v8.0.2) (2026-05-19)
 
 

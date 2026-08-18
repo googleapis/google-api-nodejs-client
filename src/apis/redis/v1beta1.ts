@@ -129,6 +129,14 @@ export namespace redis_v1beta1 {
    */
   export interface Schema$AclPolicy {
     /**
+     * Output only. The ACL policy attachment status for each attached cluster.
+     */
+    clusterAclPolicyAttachments?: Schema$ClusterAclPolicyAttachment[];
+    /**
+     * Output only. The timestamp that the ACL policy was created.
+     */
+    createTime?: string | null;
+    /**
      * Output only. Etag for the ACL policy.
      */
     etag?: string | null;
@@ -145,9 +153,80 @@ export namespace redis_v1beta1 {
      */
     state?: string | null;
     /**
-     * Output only. The version of the ACL policy. Used in drift resolution.
+     * Output only. The timestamp that the ACL policy was last updated.
+     */
+    updateTime?: string | null;
+    /**
+     * Output only. Deprecated: Used in drift resolution.
      */
     version?: string | null;
+  }
+  /**
+   * Details of the applied ACL policy.
+   */
+  export interface Schema$AclPolicyInfo {
+    /**
+     * Output only. A list of status for various revisions of this ACL policy on the cluster.
+     */
+    aclPolicyRevisionStatuses?: Schema$AclPolicyRevisionStatus[];
+    /**
+     * Output only. The resource name of the applied ACL policy. Format: "projects/{project\}/locations/{location\}/aclPolicies/{acl_policy\}"
+     */
+    appliedAclPolicy?: string | null;
+    /**
+     * Output only. The resource name of the applied ACL policy revision. Format: "projects/{project\}/locations/{location\}/aclPolicies/{acl_policy\}/revisions/{revision\}"
+     */
+    appliedAclPolicyRevision?: string | null;
+    /**
+     * Output only. The revision number of the applied ACL policy revision.
+     */
+    appliedAclPolicyRevisionNumber?: string | null;
+  }
+  /**
+   * The ACL policy revision resource.
+   */
+  export interface Schema$AclPolicyRevision {
+    /**
+     * Output only. A list of clusters that are attached to this ACL policy revision.
+     */
+    attachedClusters?: string[] | null;
+    /**
+     * Output only. The timestamp that the revision was created.
+     */
+    createTime?: string | null;
+    /**
+     * Identifier. The name of the ACL policy revision. Format: "projects/{project\}/locations/{location\}/aclPolicies/{acl_policy\}/revisions/{revision\}"
+     */
+    name?: string | null;
+    /**
+     * Output only. The revision number of the ACL policy revision.
+     */
+    revisionNumber?: string | null;
+    /**
+     * Output only. The snapshot of the ACL policy at the time of revision creation.
+     */
+    snapshot?: Schema$AclPolicy;
+  }
+  /**
+   * AclPolicyRevisionStatus stores the per-revision status for an attached cluster.
+   */
+  export interface Schema$AclPolicyRevisionStatus {
+    /**
+     * Output only. The resource name of the ACL policy revision this status refers to. Format: "projects/{project\}/locations/{location\}/aclPolicies/{acl_policy\}/revisions/{revision\}"
+     */
+    aclPolicyRevision?: string | null;
+    /**
+     * Output only. The revision number of the ACL policy revision this status refers to.
+     */
+    aclPolicyRevisionNumber?: string | null;
+    /**
+     * Output only. Human-readable error message providing more details for FAILED states.
+     */
+    errorMessage?: string | null;
+    /**
+     * Output only. AclPolicyRevision state.
+     */
+    state?: string | null;
   }
   /**
    * A single ACL rule which defines the policy for a user.
@@ -483,7 +562,11 @@ export namespace redis_v1beta1 {
      */
     aclPolicy?: string | null;
     /**
-     * Optional. Output only. Indicates whether the ACL rules applied to the cluster are in sync with the latest ACL policy rules. This field is only applicable if the ACL policy is set for the cluster.
+     * Output only. Details of the applied ACL policy.
+     */
+    aclPolicyInfo?: Schema$AclPolicyInfo;
+    /**
+     * Optional. Output only. Deprecated: Indicates whether the ACL rules applied to the cluster are in sync.
      */
     aclPolicyInSync?: boolean | null;
     /**
@@ -658,6 +741,19 @@ export namespace redis_v1beta1 {
      * Optional. This config will be used to determine how the customer wants us to distribute cluster resources within the region.
      */
     zoneDistributionConfig?: Schema$ZoneDistributionConfig;
+  }
+  /**
+   * ClusterAclPolicyAttachment stores the ACL policy status for an attached cluster for the revisions successfully applied, under application or failed.
+   */
+  export interface Schema$ClusterAclPolicyAttachment {
+    /**
+     * Output only. A list of status for various revisions of this ACL policy on the cluster.
+     */
+    aclPolicyRevisionStatuses?: Schema$AclPolicyRevisionStatus[];
+    /**
+     * Output only. The resource name of the attached Cluster. Format: "projects/{project\}/locations/{location\}/clusters/{cluster\}"
+     */
+    cluster?: string | null;
   }
   /**
    * ClusterEndpoint consists of PSC connections that are created as a group in each VPC network for accessing the cluster. In each group, there shall be one connection for each service attachment in the cluster.
@@ -837,13 +933,25 @@ export namespace redis_v1beta1 {
      * Required. Type feed to be ingested into condor
      */
     feedType?: string | null;
+    /**
+     * Observability metric data.
+     */
     observabilityMetricData?: Schema$ObservabilityMetricData;
+    /**
+     * Database resource recommendation signal data.
+     */
     recommendationSignalData?: Schema$DatabaseResourceRecommendationSignalData;
+    /**
+     * Database resource health signal data.
+     */
     resourceHealthSignalData?: Schema$DatabaseResourceHealthSignalData;
     /**
      * Primary key associated with the Resource. resource_id is available in individual feed level as well.
      */
     resourceId?: Schema$DatabaseResourceId;
+    /**
+     * Database resource metadata.
+     */
     resourceMetadata?: Schema$DatabaseResourceMetadata;
     /**
      * Optional. If true, the feed won't be ingested by DB Center. This indicates that the feed is intentionally skipped. For example, BackupDR feeds are only needed for resources integrated with DB Center (e.g., CloudSQL, AlloyDB). Feeds for non-integrated resources (e.g., Compute Engine, Persistent Disk) can be skipped.
@@ -910,6 +1018,9 @@ export namespace redis_v1beta1 {
      * Required. Type of signal, for example, `AVAILABLE_IN_MULTIPLE_ZONES`, `LOGGING_MOST_ERRORS`, etc.
      */
     signalType?: string | null;
+    /**
+     * Required. The state of the signal, such as if it's ACTIVE or RESOLVED.
+     */
     state?: string | null;
   }
   /**
@@ -925,7 +1036,7 @@ export namespace redis_v1beta1 {
      */
     providerDescription?: string | null;
     /**
-     * Required. The type of resource this ID is identifying. Ex go/keep-sorted start alloydb.googleapis.com/Cluster, alloydb.googleapis.com/Instance, bigtableadmin.googleapis.com/Cluster, bigtableadmin.googleapis.com/Instance compute.googleapis.com/Instance firestore.googleapis.com/Database, redis.googleapis.com/Instance, redis.googleapis.com/Cluster, oracledatabase.googleapis.com/CloudExadataInfrastructure oracledatabase.googleapis.com/CloudVmCluster oracledatabase.googleapis.com/AutonomousDatabase spanner.googleapis.com/Instance, spanner.googleapis.com/Database, sqladmin.googleapis.com/Instance, go/keep-sorted end REQUIRED Please refer go/condor-common-datamodel
+     * Required. The type of resource this ID is identifying. Ex go/keep-sorted start alloydb.googleapis.com/Cluster, alloydb.googleapis.com/Instance, bigtableadmin.googleapis.com/Cluster, bigtableadmin.googleapis.com/Instance compute.googleapis.com/Instance firestore.googleapis.com/Database, memorystore.googleapis.com/Instance, redis.googleapis.com/Instance, redis.googleapis.com/Cluster, oracledatabase.googleapis.com/CloudExadataInfrastructure oracledatabase.googleapis.com/CloudVmCluster oracledatabase.googleapis.com/AutonomousDatabase spanner.googleapis.com/Instance, spanner.googleapis.com/Database, sqladmin.googleapis.com/Instance, go/keep-sorted end REQUIRED Please refer go/condor-common-datamodel
      */
     resourceType?: string | null;
     /**
@@ -934,9 +1045,13 @@ export namespace redis_v1beta1 {
     uniqueId?: string | null;
   }
   /**
-   * Common model for database resource instance metadata. Next ID: 32
+   * Common model for database resource instance metadata. Next ID: 35
    */
   export interface Schema$DatabaseResourceMetadata {
+    /**
+     * Field to ingest additional metadata whichd does not support proto format.
+     */
+    additionalMetadata?: {[key: string]: any} | null;
     /**
      * Availability configuration for this instance
      */
@@ -989,6 +1104,14 @@ export namespace redis_v1beta1 {
      * The type of the instance. Specified at creation time.
      */
     instanceType?: string | null;
+    /**
+     * Field to ingest additional metadata which support proto format.
+     */
+    internalAdditionalMetadata?: {[key: string]: any} | null;
+    /**
+     * Optional. Private and public IP address of the resource.
+     */
+    ipAddress?: Schema$IpAddress;
     /**
      * Optional. Whether deletion protection is enabled for this resource.
      */
@@ -1524,12 +1647,28 @@ export namespace redis_v1beta1 {
      * Whether deletion protection is enabled for this internal resource.
      */
     isDeletionProtectionEnabled?: boolean | null;
+    /**
+     * The product this resource represents.
+     */
     product?: Schema$Product;
     resourceId?: Schema$DatabaseResourceId;
     /**
      * Required. internal resource name for spanner this will be database name e.g."spanner.googleapis.com/projects/123/abc/instances/inst1/databases/db1"
      */
     resourceName?: string | null;
+  }
+  /**
+   * Used to send IP address information for a database resource.
+   */
+  export interface Schema$IpAddress {
+    /**
+     * The private IP address assigned to the resource within a Virtual Private Cloud (VPC). This IP is only reachable from within the same VPC network. Stored in standard string format (e.g., "10.0.0.2").
+     */
+    privateIp?: string | null;
+    /**
+     * The public IP address assigned to the resource. This IP is reachable from the internet. Stored in standard string format (e.g., "34.72.1.1").
+     */
+    publicIp?: string | null;
   }
   /**
    * Response for `ListAclPolicies`.
@@ -1544,7 +1683,24 @@ export namespace redis_v1beta1 {
      */
     nextPageToken?: string | null;
     /**
-     * Locations that could not be reached.
+     * Unordered list. Locations that could not be reached.
+     */
+    unreachable?: string[] | null;
+  }
+  /**
+   * Response for `ListAclPolicyRevisions`.
+   */
+  export interface Schema$ListAclPolicyRevisionsResponse {
+    /**
+     * A list of ACL policy revisions.
+     */
+    aclPolicyRevisions?: Schema$AclPolicyRevision[];
+    /**
+     * Token to retrieve the next page of results, or empty if there are no more results in the list.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Unordered list. Locations that could not be reached.
      */
     unreachable?: string[] | null;
   }
@@ -2201,6 +2357,10 @@ export namespace redis_v1beta1 {
      */
     maintenanceVersion?: string | null;
     /**
+     * Optional. List of next available maintenance versions.
+     */
+    nextAvailableMaintenanceVersions?: string[] | null;
+    /**
      * Optional. Upcoming maintenance for the database resource. This field is populated once SLM generates and publishes upcoming maintenance window.
      */
     upcomingMaintenance?: Schema$UpcomingMaintenance;
@@ -2227,11 +2387,17 @@ export namespace redis_v1beta1 {
      * Duration based retention period i.e. 172800 seconds (2 days)
      */
     durationBasedRetention?: string | null;
+    /**
+     * Quantity based retention period i.e. 7 backups
+     */
     quantityBasedRetention?: number | null;
     /**
      * The unit that 'retained_backups' represents.
      */
     retentionUnit?: string | null;
+    /**
+     * Duration based retention period i.e. 172800 seconds (2 days)
+     */
     timeBasedRetention?: string | null;
     /**
      * Timestamp based retention period i.e. 2024-05-01T00:00:00Z
@@ -2453,6 +2619,10 @@ export namespace redis_v1beta1 {
      * Optional. When SINGLE ZONE distribution is selected, zone field would be used to allocate all resources in that zone. This is not applicable to MULTI_ZONE, and would be ignored for MULTI_ZONE clusters.
      */
     zone?: string | null;
+    /**
+     * Optional. Specify the zones of a multi-zone cluster where Redis Cluster allocates resources. This flag isn't applicable for single-zone clusters.
+     */
+    zones?: string[] | null;
   }
 
   export class Resource$Projects {
@@ -2580,8 +2750,7 @@ export namespace redis_v1beta1 {
         | BodyResponseCallback<Schema$Location>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Location>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Location> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Location>>
@@ -2858,8 +3027,7 @@ export namespace redis_v1beta1 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListLocationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListLocationsResponse>,
       callback: BodyResponseCallback<Schema$ListLocationsResponse>
     ): void;
     list(
@@ -2965,12 +3133,16 @@ export namespace redis_v1beta1 {
 
   export class Resource$Projects$Locations$Aclpolicies {
     context: APIRequestContext;
+    revisions: Resource$Projects$Locations$Aclpolicies$Revisions;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.revisions = new Resource$Projects$Locations$Aclpolicies$Revisions(
+        this.context
+      );
     }
 
     /**
-     * Creates an ACL Policy. The creation is executed synchronously and the policy is available for use immediately after the RPC returns.
+     * Creates an ACL policy. The creation is executed synchronously and the policy is available for use immediately after the RPC returns.
      * @example
      * ```js
      * // Before running the sample:
@@ -3003,7 +3175,7 @@ export namespace redis_v1beta1 {
      *
      *   // Do the magic
      *   const res = await redis.projects.locations.aclPolicies.create({
-     *     // Required. The logical name of the ACL Policy in the customer project with the following restrictions: * Must contain only lowercase letters, numbers, and hyphens. * Must start with a letter. * Must be between 1-63 characters. * Must end with a number or a letter. * Must be unique within the customer project / location
+     *     // Required. The logical name of the ACL policy in the customer project with the following restrictions: * Must contain only lowercase letters, numbers, and hyphens. * Must start with a letter. * Must be between 1-63 characters. * Must end with a number or a letter. * Must be unique within the customer project / location
      *     aclPolicyId: 'placeholder-value',
      *     // Required. The resource name of the cluster location using the form: `projects/{project_id\}/locations/{location_id\}` where `location_id` refers to a Google Cloud region.
      *     parent: 'projects/my-project/locations/my-location',
@@ -3014,10 +3186,13 @@ export namespace redis_v1beta1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "clusterAclPolicyAttachments": [],
+     *       //   "createTime": "my_createTime",
      *       //   "etag": "my_etag",
      *       //   "name": "my_name",
      *       //   "rules": [],
      *       //   "state": "my_state",
+     *       //   "updateTime": "my_updateTime",
      *       //   "version": "my_version"
      *       // }
      *     },
@@ -3026,10 +3201,13 @@ export namespace redis_v1beta1 {
      *
      *   // Example response
      *   // {
+     *   //   "clusterAclPolicyAttachments": [],
+     *   //   "createTime": "my_createTime",
      *   //   "etag": "my_etag",
      *   //   "name": "my_name",
      *   //   "rules": [],
      *   //   "state": "my_state",
+     *   //   "updateTime": "my_updateTime",
      *   //   "version": "my_version"
      *   // }
      * }
@@ -3080,8 +3258,7 @@ export namespace redis_v1beta1 {
         | BodyResponseCallback<Schema$AclPolicy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$AclPolicy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$AclPolicy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$AclPolicy>>
@@ -3130,7 +3307,7 @@ export namespace redis_v1beta1 {
     }
 
     /**
-     * Deletes a specific Acl Policy. This action will delete the Acl Policy and all the rules associated with it. An ACL policy cannot be deleted if it is attached to a cluster.
+     * Deletes a specific ACL policy. This action will delete the ACL policy and all the rules associated with it. An ACL policy cannot be deleted if it is attached to a cluster.
      * @example
      * ```js
      * // Before running the sample:
@@ -3165,7 +3342,7 @@ export namespace redis_v1beta1 {
      *   const res = await redis.projects.locations.aclPolicies.delete({
      *     // Optional. Etag of the ACL policy. If this is different from the server's etag, the request will fail with an ABORTED error.
      *     etag: 'placeholder-value',
-     *     // Required. Redis ACL Policy resource name using the form: `projects/{project_id\}/locations/{location_id\}/aclPolicies/{acl_policy_id\}` where `location_id` refers to a GCP region.
+     *     // Required. Redis ACL policy resource name using the form: `projects/{project_id\}/locations/{location_id\}/aclPolicies/{acl_policy_id\}` where `location_id` refers to a GCP region.
      *     name: 'projects/my-project/locations/my-location/aclPolicies/my-aclPolicie',
      *     // Optional. Idempotent request UUID.
      *     requestId: 'placeholder-value',
@@ -3228,8 +3405,7 @@ export namespace redis_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3275,7 +3451,7 @@ export namespace redis_v1beta1 {
     }
 
     /**
-     * Gets the details of a specific Redis Cluster ACL Policy.
+     * Gets the details of a specific Redis Cluster ACL policy.
      * @example
      * ```js
      * // Before running the sample:
@@ -3308,17 +3484,20 @@ export namespace redis_v1beta1 {
      *
      *   // Do the magic
      *   const res = await redis.projects.locations.aclPolicies.get({
-     *     // Required. Redis ACL Policy resource name using the form: `projects/{project_id\}/locations/{location_id\}/aclPolicies/{acl_policy_id\}` where `location_id` refers to a GCP region.
+     *     // Required. Redis ACL policy resource name using the form: `projects/{project_id\}/locations/{location_id\}/aclPolicies/{acl_policy_id\}` where `location_id` refers to a GCP region.
      *     name: 'projects/my-project/locations/my-location/aclPolicies/my-aclPolicie',
      *   });
      *   console.log(res.data);
      *
      *   // Example response
      *   // {
+     *   //   "clusterAclPolicyAttachments": [],
+     *   //   "createTime": "my_createTime",
      *   //   "etag": "my_etag",
      *   //   "name": "my_name",
      *   //   "rules": [],
      *   //   "state": "my_state",
+     *   //   "updateTime": "my_updateTime",
      *   //   "version": "my_version"
      *   // }
      * }
@@ -3369,8 +3548,7 @@ export namespace redis_v1beta1 {
         | BodyResponseCallback<Schema$AclPolicy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$AclPolicy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$AclPolicy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$AclPolicy>>
@@ -3416,7 +3594,7 @@ export namespace redis_v1beta1 {
     }
 
     /**
-     * Lists all ACL Policies owned by a project in either the specified location (region) or all locations. The location should have the following format: * `projects/{project_id\}/locations/{location_id\}` If `location_id` is specified as `-` (wildcard), then all regions available to the project are queried, and the results are aggregated.
+     * Lists all ACL policies owned by a project in either the specified location (region) or all locations. The location should have the following format: * `projects/{project_id\}/locations/{location_id\}` If `location_id` is specified as `-` (wildcard), then all regions available to the project are queried, and the results are aggregated.
      * @example
      * ```js
      * // Before running the sample:
@@ -3453,7 +3631,7 @@ export namespace redis_v1beta1 {
      *     pageSize: 'placeholder-value',
      *     // Optional. The `next_page_token` value returned from a previous `ListAclPolicies` request, if any.
      *     pageToken: 'placeholder-value',
-     *     // Required. The resource name of the cluster location using the form: `projects/{project_id\}/locations/{location_id\}` where `location_id` refers to a Google Cloud region.
+     *     // Required. The resource name of the ACL policy location using the form: `projects/{project_id\}/locations/{location_id\}` where `location_id` refers to a Google Cloud region.
      *     parent: 'projects/my-project/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -3494,8 +3672,7 @@ export namespace redis_v1beta1 {
     list(
       params: Params$Resource$Projects$Locations$Aclpolicies$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListAclPoliciesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListAclPoliciesResponse>,
       callback: BodyResponseCallback<Schema$ListAclPoliciesResponse>
     ): void;
     list(
@@ -3564,7 +3741,7 @@ export namespace redis_v1beta1 {
     }
 
     /**
-     * Updates the ACL policy. The operation applies the updated ACL policy to all of the linked clusters. If Memorystore can apply the policy to all clusters, then the operation returns a SUCCESS status. If Memorystore can't apply the policy to all clusters, then to ensure eventual consistency, Memorystore uses reconciliation to apply the policy to the failed clusters. Completed longrunning.Operation will contain the new ACL Policy object in the response field.
+     * Updates the ACL policy. The operation applies the updated ACL policy to all of the linked clusters. If Memorystore can apply the policy to all clusters, then the operation returns a SUCCESS status. If Memorystore can't apply the policy to all clusters, then to ensure eventual consistency, Memorystore uses reconciliation to apply the policy to the failed clusters. Completed longrunning.Operation will contain the new ACL policy object in the response field.
      * @example
      * ```js
      * // Before running the sample:
@@ -3608,10 +3785,13 @@ export namespace redis_v1beta1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "clusterAclPolicyAttachments": [],
+     *       //   "createTime": "my_createTime",
      *       //   "etag": "my_etag",
      *       //   "name": "my_name",
      *       //   "rules": [],
      *       //   "state": "my_state",
+     *       //   "updateTime": "my_updateTime",
      *       //   "version": "my_version"
      *       // }
      *     },
@@ -3674,8 +3854,7 @@ export namespace redis_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3723,7 +3902,7 @@ export namespace redis_v1beta1 {
 
   export interface Params$Resource$Projects$Locations$Aclpolicies$Create extends StandardParameters {
     /**
-     * Required. The logical name of the ACL Policy in the customer project with the following restrictions: * Must contain only lowercase letters, numbers, and hyphens. * Must start with a letter. * Must be between 1-63 characters. * Must end with a number or a letter. * Must be unique within the customer project / location
+     * Required. The logical name of the ACL policy in the customer project with the following restrictions: * Must contain only lowercase letters, numbers, and hyphens. * Must start with a letter. * Must be between 1-63 characters. * Must end with a number or a letter. * Must be unique within the customer project / location
      */
     aclPolicyId?: string;
     /**
@@ -3746,7 +3925,7 @@ export namespace redis_v1beta1 {
      */
     etag?: string;
     /**
-     * Required. Redis ACL Policy resource name using the form: `projects/{project_id\}/locations/{location_id\}/aclPolicies/{acl_policy_id\}` where `location_id` refers to a GCP region.
+     * Required. Redis ACL policy resource name using the form: `projects/{project_id\}/locations/{location_id\}/aclPolicies/{acl_policy_id\}` where `location_id` refers to a GCP region.
      */
     name?: string;
     /**
@@ -3756,7 +3935,7 @@ export namespace redis_v1beta1 {
   }
   export interface Params$Resource$Projects$Locations$Aclpolicies$Get extends StandardParameters {
     /**
-     * Required. Redis ACL Policy resource name using the form: `projects/{project_id\}/locations/{location_id\}/aclPolicies/{acl_policy_id\}` where `location_id` refers to a GCP region.
+     * Required. Redis ACL policy resource name using the form: `projects/{project_id\}/locations/{location_id\}/aclPolicies/{acl_policy_id\}` where `location_id` refers to a GCP region.
      */
     name?: string;
   }
@@ -3770,7 +3949,7 @@ export namespace redis_v1beta1 {
      */
     pageToken?: string;
     /**
-     * Required. The resource name of the cluster location using the form: `projects/{project_id\}/locations/{location_id\}` where `location_id` refers to a Google Cloud region.
+     * Required. The resource name of the ACL policy location using the form: `projects/{project_id\}/locations/{location_id\}` where `location_id` refers to a Google Cloud region.
      */
     parent?: string;
   }
@@ -3792,6 +3971,330 @@ export namespace redis_v1beta1 {
      * Request body metadata
      */
     requestBody?: Schema$AclPolicy;
+  }
+
+  export class Resource$Projects$Locations$Aclpolicies$Revisions {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets details of a specific ACL policy revision.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/redis.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const redis = google.redis('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/redis.read-write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await redis.projects.locations.aclPolicies.revisions.get({
+     *     // Required. Redis ACL policy revision resource name using the form: `projects/{project_id\}/locations/{location_id\}/aclPolicies/{acl_policy_id\}/revisions/{revision_id\}` where `location_id` refers to a GCP region.
+     *     name: 'projects/my-project/locations/my-location/aclPolicies/my-aclPolicie/revisions/my-revision',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "attachedClusters": [],
+     *   //   "createTime": "my_createTime",
+     *   //   "name": "my_name",
+     *   //   "revisionNumber": "my_revisionNumber",
+     *   //   "snapshot": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Aclpolicies$Revisions$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Aclpolicies$Revisions$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AclPolicyRevision>>;
+    get(
+      params: Params$Resource$Projects$Locations$Aclpolicies$Revisions$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Aclpolicies$Revisions$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$AclPolicyRevision>,
+      callback: BodyResponseCallback<Schema$AclPolicyRevision>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Aclpolicies$Revisions$Get,
+      callback: BodyResponseCallback<Schema$AclPolicyRevision>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$AclPolicyRevision>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Aclpolicies$Revisions$Get
+        | BodyResponseCallback<Schema$AclPolicyRevision>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AclPolicyRevision>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AclPolicyRevision>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$AclPolicyRevision>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Aclpolicies$Revisions$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Aclpolicies$Revisions$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://redis.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AclPolicyRevision>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AclPolicyRevision>(parameters);
+      }
+    }
+
+    /**
+     * Lists all ACL policy revisions in a given ACL policy.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/redis.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const redis = google.redis('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/redis.read-write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await redis.projects.locations.aclPolicies.revisions.list({
+     *     // Optional. The maximum number of items to return.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. The `next_page_token` value returned from a previous `ListAclPolicyRevisions` request, if any.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The name of the ACL policy to list revisions for. Format: "projects/{project_id\}/locations/{location_id\}/aclPolicies/{acl_policy_id\}"
+     *     parent:
+     *       'projects/my-project/locations/my-location/aclPolicies/my-aclPolicie',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "aclPolicyRevisions": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Aclpolicies$Revisions$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Aclpolicies$Revisions$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListAclPolicyRevisionsResponse>>;
+    list(
+      params: Params$Resource$Projects$Locations$Aclpolicies$Revisions$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Aclpolicies$Revisions$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAclPolicyRevisionsResponse>,
+      callback: BodyResponseCallback<Schema$ListAclPolicyRevisionsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Aclpolicies$Revisions$List,
+      callback: BodyResponseCallback<Schema$ListAclPolicyRevisionsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListAclPolicyRevisionsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Aclpolicies$Revisions$List
+        | BodyResponseCallback<Schema$ListAclPolicyRevisionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListAclPolicyRevisionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListAclPolicyRevisionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListAclPolicyRevisionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Aclpolicies$Revisions$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Aclpolicies$Revisions$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://redis.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/revisions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListAclPolicyRevisionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListAclPolicyRevisionsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Aclpolicies$Revisions$Get extends StandardParameters {
+    /**
+     * Required. Redis ACL policy revision resource name using the form: `projects/{project_id\}/locations/{location_id\}/aclPolicies/{acl_policy_id\}/revisions/{revision_id\}` where `location_id` refers to a GCP region.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Aclpolicies$Revisions$List extends StandardParameters {
+    /**
+     * Optional. The maximum number of items to return.
+     */
+    pageSize?: number;
+    /**
+     * Optional. The `next_page_token` value returned from a previous `ListAclPolicyRevisions` request, if any.
+     */
+    pageToken?: string;
+    /**
+     * Required. The name of the ACL policy to list revisions for. Format: "projects/{project_id\}/locations/{location_id\}/aclPolicies/{acl_policy_id\}"
+     */
+    parent?: string;
   }
 
   export class Resource$Projects$Locations$Backupcollections {
@@ -4227,8 +4730,7 @@ export namespace redis_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4377,8 +4879,7 @@ export namespace redis_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4532,8 +5033,7 @@ export namespace redis_v1beta1 {
         | BodyResponseCallback<Schema$Backup>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Backup>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Backup> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Backup>>
@@ -4882,8 +5382,7 @@ export namespace redis_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5036,8 +5535,7 @@ export namespace redis_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5132,6 +5630,7 @@ export namespace redis_v1beta1 {
      *       // {
      *       //   "aclPolicy": "my_aclPolicy",
      *       //   "aclPolicyInSync": false,
+     *       //   "aclPolicyInfo": {},
      *       //   "allowFewerZonesDeployment": false,
      *       //   "asyncClusterEndpointsDeletionEnabled": false,
      *       //   "authorizationMode": "my_authorizationMode",
@@ -5236,8 +5735,7 @@ export namespace redis_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5382,8 +5880,7 @@ export namespace redis_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5471,6 +5968,7 @@ export namespace redis_v1beta1 {
      *   // {
      *   //   "aclPolicy": "my_aclPolicy",
      *   //   "aclPolicyInSync": false,
+     *   //   "aclPolicyInfo": {},
      *   //   "allowFewerZonesDeployment": false,
      *   //   "asyncClusterEndpointsDeletionEnabled": false,
      *   //   "authorizationMode": "my_authorizationMode",
@@ -5563,8 +6061,7 @@ export namespace redis_v1beta1 {
         | BodyResponseCallback<Schema$Cluster>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Cluster>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Cluster> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Cluster>>
@@ -5683,8 +6180,7 @@ export namespace redis_v1beta1 {
     getCertificateAuthority(
       params: Params$Resource$Projects$Locations$Clusters$Getcertificateauthority,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$CertificateAuthority>,
+        MethodOptions | BodyResponseCallback<Schema$CertificateAuthority>,
       callback: BodyResponseCallback<Schema$CertificateAuthority>
     ): void;
     getCertificateAuthority(
@@ -5831,8 +6327,7 @@ export namespace redis_v1beta1 {
     list(
       params: Params$Resource$Projects$Locations$Clusters$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListClustersResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListClustersResponse>,
       callback: BodyResponseCallback<Schema$ListClustersResponse>
     ): void;
     list(
@@ -5947,6 +6442,7 @@ export namespace redis_v1beta1 {
      *       // {
      *       //   "aclPolicy": "my_aclPolicy",
      *       //   "aclPolicyInSync": false,
+     *       //   "aclPolicyInfo": {},
      *       //   "allowFewerZonesDeployment": false,
      *       //   "asyncClusterEndpointsDeletionEnabled": false,
      *       //   "authorizationMode": "my_authorizationMode",
@@ -6051,8 +6547,7 @@ export namespace redis_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -6204,8 +6699,7 @@ export namespace redis_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -6478,8 +6972,7 @@ export namespace redis_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -6627,8 +7120,7 @@ export namespace redis_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -6896,8 +7388,7 @@ export namespace redis_v1beta1 {
     list(
       params: Params$Resource$Projects$Locations$Clusters$Tokenauthusers$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListTokenAuthUsersResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListTokenAuthUsersResponse>,
       callback: BodyResponseCallback<Schema$ListTokenAuthUsersResponse>
     ): void;
     list(
@@ -7125,8 +7616,7 @@ export namespace redis_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -7267,8 +7757,7 @@ export namespace redis_v1beta1 {
         | BodyResponseCallback<Schema$AuthToken>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$AuthToken>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$AuthToken> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$AuthToken>>
@@ -7399,8 +7888,7 @@ export namespace redis_v1beta1 {
     list(
       params: Params$Resource$Projects$Locations$Clusters$Tokenauthusers$Authtokens$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListAuthTokensResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListAuthTokensResponse>,
       callback: BodyResponseCallback<Schema$ListAuthTokensResponse>
     ): void;
     list(
@@ -7653,8 +8141,7 @@ export namespace redis_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -7797,8 +8284,7 @@ export namespace redis_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -7946,8 +8432,7 @@ export namespace redis_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -8098,8 +8583,7 @@ export namespace redis_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -8276,8 +8760,7 @@ export namespace redis_v1beta1 {
         | BodyResponseCallback<Schema$Instance>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Instance>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Instance> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Instance>>
@@ -8569,8 +9052,7 @@ export namespace redis_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -8698,8 +9180,7 @@ export namespace redis_v1beta1 {
     list(
       params: Params$Resource$Projects$Locations$Instances$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListInstancesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListInstancesResponse>,
       callback: BodyResponseCallback<Schema$ListInstancesResponse>
     ): void;
     list(
@@ -8909,8 +9390,7 @@ export namespace redis_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -9061,8 +9541,7 @@ export namespace redis_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -9214,8 +9693,7 @@ export namespace redis_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -9477,8 +9955,7 @@ export namespace redis_v1beta1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -9615,8 +10092,7 @@ export namespace redis_v1beta1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -9756,8 +10232,7 @@ export namespace redis_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -9885,8 +10360,7 @@ export namespace redis_v1beta1 {
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListOperationsResponse>,
       callback: BodyResponseCallback<Schema$ListOperationsResponse>
     ): void;
     list(

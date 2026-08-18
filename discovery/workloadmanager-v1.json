@@ -195,7 +195,7 @@
                   ],
                   "parameters": {
                     "deploymentId": {
-                      "description": "Required. Id of the deployment",
+                      "description": "Required. ID of the deployment.",
                       "location": "query",
                       "type": "string"
                     },
@@ -233,12 +233,12 @@
                   ],
                   "parameters": {
                     "force": {
-                      "description": "Optional. If set to true, any actuation will also be deleted. Followed the best practice from https://aip.dev/135#cascading-delete",
+                      "description": "Optional. If set to true, any actuation will also be deleted. Follows the best practice from https://aip.dev/135#cascading-delete.",
                       "location": "query",
                       "type": "boolean"
                     },
                     "name": {
-                      "description": "Required. Name of the resource",
+                      "description": "Required. Name of the resource.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/deployments/[^/]+$",
                       "required": true,
@@ -263,7 +263,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Name of the resource. The format will be 'projects/{project_id}/locations/{location_id}/deployments/{deployment_id}'",
+                      "description": "Required. Name of the resource. The format is 'projects/{project_id}/locations/{location_id}/deployments/{deployment_id}'.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/deployments/[^/]+$",
                       "required": true,
@@ -288,7 +288,7 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "Optional. Filter resource follow https://google.aip.dev/160",
+                      "description": "Optional. Filter resource following https://google.aip.dev/160.",
                       "location": "query",
                       "type": "string"
                     },
@@ -338,7 +338,7 @@
                       ],
                       "parameters": {
                         "parent": {
-                          "description": "Required. The resource name of the Actuation location using the form: 'projects/{project_id}/locations/{location}/deployments/{deployment}'",
+                          "description": "Required. The resource name of the Actuation location using the form: 'projects/{project_id}/locations/{location}/deployments/{deployment}'.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/deployments/[^/]+$",
                           "required": true,
@@ -362,7 +362,7 @@
                       ]
                     },
                     "delete": {
-                      "description": "Deletes a single Actuation",
+                      "description": "Deletes a single Actuation.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/deployments/{deploymentsId}/actuations/{actuationsId}",
                       "httpMethod": "DELETE",
                       "id": "workloadmanager.projects.locations.deployments.actuations.delete",
@@ -371,7 +371,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. The name of the book to delete. project/{project_id}/locations/{location_id}/deployments/{deployment_id}/actuations/{actuation_id}",
+                          "description": "Required. The name of the actuation to delete. projects/{project}/locations/{location}/deployments/{deployment}/actuations/{actuation}.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/deployments/[^/]+/actuations/[^/]+$",
                           "required": true,
@@ -396,7 +396,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. Name of the resource",
+                          "description": "Required. Name of the resource.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/deployments/[^/]+/actuations/[^/]+$",
                           "required": true,
@@ -421,7 +421,7 @@
                       ],
                       "parameters": {
                         "filter": {
-                          "description": "Optional. Filtering results",
+                          "description": "Optional. Filtering results.",
                           "location": "query",
                           "type": "string"
                         },
@@ -442,7 +442,7 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. The resource prefix of the Actuation using the form: 'projects/{project_id}/locations/{location}/deployments/{deployment}'",
+                          "description": "Required. The resource prefix of the Actuation using the form: 'projects/{project_id}/locations/{location}/deployments/{deployment}'.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/deployments/[^/]+$",
                           "required": true,
@@ -1248,40 +1248,40 @@
       }
     }
   },
-  "revision": "20260429",
+  "revision": "20260708",
   "rootUrl": "https://workloadmanager.googleapis.com/",
   "schemas": {
     "ActiveDirectory": {
-      "description": "Active directory details",
+      "description": "Active Directory details.",
       "id": "ActiveDirectory",
       "properties": {
         "dnsAddress": {
-          "description": "Optional. DNS IP address",
+          "description": "Optional. DNS IP address.",
           "type": "string"
         },
         "domain": {
-          "description": "Optional. human readable form of a domain such as “google.com”.",
+          "description": "Optional. Human readable form of a domain such as `example.com`.",
           "type": "string"
         },
         "domainUsername": {
-          "description": "Optional. domain username",
+          "description": "Optional. Domain username.",
           "type": "string"
         },
         "secretManagerSecret": {
-          "description": "Required. secret_manager_secret",
+          "description": "Required. Secret Manager secret.",
           "type": "string"
         },
         "type": {
-          "description": "Required. active directory type",
+          "description": "Required. Active Directory type.",
           "enum": [
             "ACTIVE_DIRECTORY_TYPE_UNSPECIFIED",
             "GCP_MANAGED",
             "SELF_MANAGED"
           ],
           "enumDescriptions": [
-            "Unspecified active directory type",
-            "GCP managed active directory type",
-            "Self managed active directory type"
+            "Unspecified Active Directory type.",
+            "GCP managed Active Directory type.",
+            "Self managed Active Directory type."
           ],
           "type": "string"
         }
@@ -1294,11 +1294,11 @@
       "properties": {
         "actuationOutput": {
           "$ref": "ActuationOutput",
-          "description": "Output only. [Output only] Actuation output",
+          "description": "Output only. Actuation output.",
           "readOnly": true
         },
         "deploymentOutput": {
-          "description": "Output only. [Output only] Deployment output",
+          "description": "Output only. Deployment output.",
           "items": {
             "$ref": "DeploymentOutput"
           },
@@ -1306,23 +1306,23 @@
           "type": "array"
         },
         "endTime": {
-          "description": "Output only. [Output only] End time stamp",
+          "description": "Output only. End time stamp.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
         },
         "name": {
-          "description": "The name of actuation resource. The format is projects/{project}/locations/{location}/deployments/{deployment}/actuations/{actuation}",
+          "description": "The name of the actuation resource. The format is projects/{project}/locations/{location}/deployments/{deployment}/actuations/{actuation}.",
           "type": "string"
         },
         "startTime": {
-          "description": "Output only. [Output only] Start time stamp",
+          "description": "Output only. Start time stamp.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
         },
         "state": {
-          "description": "Output only. [Output only] Actuation state",
+          "description": "Output only. Actuation state.",
           "enum": [
             "STATE_UNSPECIFIED",
             "INFRA_CREATING",
@@ -1333,13 +1333,13 @@
             "TIMEOUT"
           ],
           "enumDescriptions": [
-            "state unspecified",
-            "creating infrastructure in backend (terraform applying)",
-            "success",
-            "failed either in infra creating, post infra configuring or infra destroying",
-            "configure workload after infrastructure is ready (ansible running)",
-            "destroying infrastructure in backend (terraform destroying)",
-            "ansible is timeout due to losing heartbeat in post infra configuring"
+            "State unspecified.",
+            "Creating infrastructure in backend (Terraform applying).",
+            "Success.",
+            "Failed either in infra creating, post infra configuring, or infra destroying.",
+            "Configure workload after infrastructure is ready (Ansible running).",
+            "Destroying infrastructure in backend (Terraform destroying).",
+            "Ansible timed out due to losing heartbeat in post infra configuring."
           ],
           "readOnly": true,
           "type": "string"
@@ -1348,20 +1348,20 @@
       "type": "object"
     },
     "ActuationOutput": {
-      "description": "Message for output of Actuation",
+      "description": "Message for output of actuation.",
       "id": "ActuationOutput",
       "properties": {
         "actuateLogs": {
-          "description": "A link to gcs file that store build logs",
+          "description": "A link to the Cloud Storage file that stores build logs.",
           "type": "string"
         },
         "ansibleError": {
-          "description": "Output only. error message return from ansible.",
+          "description": "Output only. Error message returned from Ansible.",
           "readOnly": true,
           "type": "string"
         },
         "ansibleFailedTask": {
-          "description": "Output only. failed task name return from ansible.",
+          "description": "Output only. Failed task name returned from Ansible.",
           "items": {
             "type": "string"
           },
@@ -1369,7 +1369,7 @@
           "type": "array"
         },
         "blueprintId": {
-          "description": "reference to Blueprint Controller deployment and revision resource",
+          "description": "Reference to the Blueprint Controller deployment and revision resource.",
           "type": "string"
         },
         "cloudbuildId": {
@@ -1395,38 +1395,38 @@
           ],
           "enumDescriptions": [
             "No error code was specified.",
-            "general terraform failure",
-            "permission error in terraform",
-            "quota related error in terraform",
-            "general ansible failure",
-            "constraint related error in terraform",
-            "resource already exists error in terraform",
-            "resource not found error in terraform",
-            "permission denied error in ansible",
-            "secret related error in ansible",
-            "general terraform failure during deletion",
-            "resource in use error in terraform deletion",
-            "start up failure in ansible"
+            "General Terraform failure.",
+            "Permission error in Terraform.",
+            "Quota related error in Terraform.",
+            "General Ansible failure.",
+            "Constraint related error in Terraform.",
+            "Resource already exists error in Terraform.",
+            "Resource not found error in Terraform.",
+            "Permission denied error in Ansible.",
+            "Secret related error in Ansible.",
+            "General Terraform failure during deletion.",
+            "Resource in use error in Terraform deletion.",
+            "Startup failure in Ansible."
           ],
           "readOnly": true,
           "type": "string"
         },
         "errorLogs": {
-          "description": "A link to actuation cloud build log.",
+          "description": "A link to the actuation Cloud Build log.",
           "type": "string"
         },
         "hasUserFacingErrorMsg": {
-          "description": "Output only. whether the error message is user facing. If true, the error message will be shown in the UI.",
+          "description": "Output only. Whether the error message is user facing. If true, the error message will be shown in the UI.",
           "readOnly": true,
           "type": "boolean"
         },
         "terraformError": {
-          "description": "Output only. error message return from terraform.",
+          "description": "Output only. Error message returned from Terraform.",
           "readOnly": true,
           "type": "string"
         },
         "terraformTemplate": {
-          "description": "reference to terraform template used",
+          "description": "Reference to the Terraform template used.",
           "type": "string"
         }
       },
@@ -1748,66 +1748,66 @@
       "type": "object"
     },
     "AppDetails": {
-      "description": "Message for sap instant details",
+      "description": "Message for SAP instance details.",
       "id": "AppDetails",
       "properties": {
         "appInstanceId": {
-          "description": "Optional. instance id for app",
+          "description": "Optional. Instance ID for app.",
           "type": "string"
         },
         "appServiceAccount": {
-          "description": "Application service account - let custoemrs bring their own SA for application",
+          "description": "Application service account. Let customers bring their own service account for the application.",
           "type": "string"
         },
         "appVmNames": {
-          "description": "Optional. Customized vm names",
+          "description": "Optional. Customized VM names.",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "ascsImage": {
-          "description": "Required. image for ascs server",
+          "description": "Required. Image for the ASCS server.",
           "type": "string"
         },
         "ascsInstanceId": {
-          "description": "Optional. instance id for ascs",
+          "description": "Optional. Instance ID for ASCS.",
           "type": "string"
         },
         "ascsMachineType": {
-          "description": "Required. ascs_machine_type",
+          "description": "Required. ASCS machine type.",
           "type": "string"
         },
         "ascsServiceAccount": {
-          "description": "ASCS service account - let custoemrs bring their own SA for ASCS",
+          "description": "ASCS service account. Let customers bring their own service account for ASCS.",
           "type": "string"
         },
         "ascsVm": {
-          "description": "Optional. ASCS vm name",
+          "description": "Optional. ASCS VM name.",
           "type": "string"
         },
         "ersInstanceId": {
-          "description": "Optional. instance id for ers",
+          "description": "Optional. Instance ID for ERS.",
           "type": "string"
         },
         "ersVm": {
-          "description": "Optional. ERS vm name",
+          "description": "Optional. ERS VM name.",
           "type": "string"
         },
         "image": {
-          "description": "Required. image for app server and ascs server",
+          "description": "Required. Image for the app server and ASCS server.",
           "type": "string"
         },
         "machineType": {
-          "description": "Required. machine type",
+          "description": "Required. Machine type.",
           "type": "string"
         },
         "secretManagerSecret": {
-          "description": "Required. secret_manager_secret",
+          "description": "Required. Secret Manager secret.",
           "type": "string"
         },
         "sharedStorage": {
-          "description": "Optional. Storage location",
+          "description": "Optional. Storage location.",
           "type": "string"
         },
         "sid": {
@@ -1815,7 +1815,7 @@
           "type": "string"
         },
         "vmsMultiplier": {
-          "description": "Required. vms_multiplier",
+          "description": "Required. VMs multiplier.",
           "format": "int32",
           "type": "integer"
         }
@@ -1997,60 +1997,60 @@
       "type": "object"
     },
     "Database": {
-      "description": "Database details",
+      "description": "Database details.",
       "id": "Database",
       "properties": {
         "diskType": {
-          "description": "Required. disk_type",
+          "description": "Required. Disk type.",
           "type": "string"
         },
         "floatingIpAddress": {
-          "description": "Optional. only useful for Linux High Availability setup",
+          "description": "Optional. Only useful for Linux High Availability setup.",
           "type": "string"
         },
         "machineType": {
-          "description": "Required. machine type",
+          "description": "Required. Machine type.",
           "type": "string"
         },
         "secondarySoleTenantNode": {
-          "description": "Optional. the name of a secondary-sole-tenant node/node group",
+          "description": "Optional. The name of a secondary-sole-tenant node/node group.",
           "type": "string"
         },
         "secondarySoleTenantNodeType": {
-          "description": "Optional. the type of a secondary-sole-tenant node/node group e.g. compute.googleapis.com/node-name",
+          "description": "Optional. The type of a secondary-sole-tenant node/node group. E.g., compute.googleapis.com/node-name.",
           "type": "string"
         },
         "secretManagerSecret": {
-          "description": "Required. secret_manager_secret",
+          "description": "Required. Secret Manager secret.",
           "type": "string"
         },
         "smt": {
-          "description": "Required. whether simultaneous multithreading is enabled or not",
+          "description": "Required. Whether simultaneous multithreading is enabled or not.",
           "type": "boolean"
         },
         "soleTenantNode": {
-          "description": "Optional. the name of a primary sole-tenant node/node group",
+          "description": "Optional. The name of a primary sole-tenant node/node group.",
           "type": "string"
         },
         "soleTenantNodeType": {
-          "description": "Optional. the type of a primary sole-tenant node/node group e.g. compute.googleapis.com/node-name",
+          "description": "Optional. The type of a primary sole-tenant node/node group. E.g., compute.googleapis.com/node-name.",
           "type": "string"
         },
         "tempdbOnSsd": {
-          "description": "Required. whether to have TempDB on local SSD",
+          "description": "Required. Whether to have TempDB on local SSD.",
           "type": "boolean"
         },
         "tenancyModel": {
-          "description": "Required. SHARED or SOLE_TENANT",
+          "description": "Required. SHARED or SOLE_TENANT.",
           "enum": [
             "TENANCY_MODEL_UNSPECIFIED",
             "SHARED",
             "SOLE_TENANT"
           ],
           "enumDescriptions": [
-            "Unspecified tenancy model",
-            "Shared tenancy model",
-            "Sole Tenant tenancy model"
+            "Unspecified tenancy model.",
+            "Shared tenancy model.",
+            "Sole Tenant tenancy model."
           ],
           "type": "string"
         }
@@ -2058,39 +2058,39 @@
       "type": "object"
     },
     "DatabaseDetails": {
-      "description": "Message for sap instant details",
+      "description": "Message for SAP instance details.",
       "id": "DatabaseDetails",
       "properties": {
         "databaseServiceAccount": {
-          "description": "Database service account - let custoemrs bring their own SA for database",
+          "description": "Database service account. Let customers bring their own SA for the database.",
           "type": "string"
         },
         "diskType": {
-          "description": "Required. disk_type",
+          "description": "Required. Disk type.",
           "type": "string"
         },
         "image": {
-          "description": "Required. image for database server",
+          "description": "Required. Image for the database server.",
           "type": "string"
         },
         "instanceId": {
-          "description": "Optional. instance id",
+          "description": "Optional. Instance ID.",
           "type": "string"
         },
         "machineType": {
-          "description": "Required. machine type",
+          "description": "Required. Machine type.",
           "type": "string"
         },
         "primaryDbVm": {
-          "description": "Optional. primary db vm name",
+          "description": "Optional. Primary DB VM name.",
           "type": "string"
         },
         "secondaryDbVm": {
-          "description": "Optional. secondary db vm name",
+          "description": "Optional. Secondary DB VM name.",
           "type": "string"
         },
         "secretManagerSecret": {
-          "description": "Required. secret_manager_secret",
+          "description": "Required. Secret Manager secret.",
           "type": "string"
         },
         "sid": {
@@ -2140,30 +2140,30 @@
       "id": "Deployment",
       "properties": {
         "createTime": {
-          "description": "Output only. [Output only] Create time stamp",
+          "description": "Output only. Create time stamp.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
         },
         "description": {
-          "description": "Description of the Deployment",
+          "description": "Description of the deployment.",
           "type": "string"
         },
         "name": {
-          "description": "The name of deployment resource. The format will be 'projects/{project_id}/locations/{location_id}/deployments/{deployment_id}'",
+          "description": "The name of the deployment resource. The format is 'projects/{project_id}/locations/{location_id}/deployments/{deployment_id}'.",
           "type": "string"
         },
         "sapSystemS4Config": {
           "$ref": "SapSystemS4Config",
-          "description": "SAP system workload input"
+          "description": "SAP system workload input."
         },
         "serviceAccount": {
-          "description": "User-specified Service Account (SA) credentials to be used for cloud build Format: `projects/{projectID}/serviceAccounts/{serviceAccount}` The default Cloud Build SA will be used initially if this field is not set during deployment creation",
+          "description": "User-specified Service Account (SA) credentials to be used for Cloud Build. Format: `projects/{projectID}/serviceAccounts/{serviceAccount}` The default Cloud Build SA will be used initially if this field is not set during deployment creation.",
           "type": "string"
         },
         "sqlServerWorkload": {
           "$ref": "SqlServerWorkload",
-          "description": "MS SQL workload input"
+          "description": "MS SQL workload input."
         },
         "state": {
           "description": "Output only. Current state of the deployment.",
@@ -2194,7 +2194,7 @@
           "type": "object"
         },
         "updateTime": {
-          "description": "Output only. [Output only] Update time stamp",
+          "description": "Output only. Update time stamp.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -2204,7 +2204,7 @@
           "type": "string"
         },
         "workloadType": {
-          "description": "Optional. Workload type of the deployment",
+          "description": "Optional. Workload type of the deployment.",
           "enum": [
             "WORKLOAD_TYPE_UNSPECIFIED",
             "SAP_S4",
@@ -2212,10 +2212,10 @@
             "ORACLE"
           ],
           "enumDescriptions": [
-            "Unspecified workload type",
-            "SAP S/4HANA workload type",
-            "SQL Server workload type",
-            "Oracle workload type"
+            "Unspecified workload type.",
+            "SAP S/4HANA workload type.",
+            "SQL Server workload type.",
+            "Oracle workload type."
           ],
           "type": "string"
         }
@@ -2223,15 +2223,15 @@
       "type": "object"
     },
     "DeploymentOutput": {
-      "description": "Message for output of deployment resource",
+      "description": "Message for output of deployment resource.",
       "id": "DeploymentOutput",
       "properties": {
         "name": {
-          "description": "name of the resource",
+          "description": "Name of the resource.",
           "type": "string"
         },
         "type": {
-          "description": "type of the resource",
+          "description": "Type of the resource.",
           "type": "string"
         }
       },
@@ -2697,7 +2697,7 @@
       "id": "ListActuationsResponse",
       "properties": {
         "actuations": {
-          "description": "The list of Actuation",
+          "description": "The list of actuations.",
           "items": {
             "$ref": "Actuation"
           },
@@ -2718,11 +2718,11 @@
       "type": "object"
     },
     "ListDeploymentsResponse": {
-      "description": "Message for response to listing Deployments",
+      "description": "Message for response to listing deployments.",
       "id": "ListDeploymentsResponse",
       "properties": {
         "deployments": {
-          "description": "The list of Deployment",
+          "description": "The list of deployments.",
           "items": {
             "$ref": "Deployment"
           },
@@ -2947,30 +2947,30 @@
       "type": "object"
     },
     "LocationDetails": {
-      "description": "Message for sap instant details",
+      "description": "Message for SAP instance details.",
       "id": "LocationDetails",
       "properties": {
         "createCommsFirewall": {
-          "description": "Optional. create firewall, if true, create firewall for the deployment. This field provides an option to not always create firewall for the deployment.",
+          "description": "Optional. Create firewall. If true, creates a firewall for the deployment. This field provides an option to not always create a firewall for the deployment.",
           "type": "boolean"
         },
         "customTags": {
-          "description": "Optional. network tags",
+          "description": "Optional. Network tags.",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "deploymentDnsEnabled": {
-          "description": "Optional. when user skip DNS configuration from UI, deployment_dns_enabled=false otherwise deployment_dns_enabled=true",
+          "description": "Optional. When the user skips DNS configuration in the UI, `deployment_dns_enabled` is false; otherwise `deployment_dns_enabled` is true.",
           "type": "boolean"
         },
         "dnsZone": {
-          "description": "Optional. dns zone name",
+          "description": "Optional. DNS zone name.",
           "type": "string"
         },
         "dnsZoneNameSuffix": {
-          "description": "Optional. dns_zone_name_suffix",
+          "description": "Optional. DNS zone name suffix.",
           "type": "string"
         },
         "internetAccess": {
@@ -2987,27 +2987,27 @@
           "type": "string"
         },
         "networkProject": {
-          "description": "Optional. network project",
+          "description": "Optional. Network project.",
           "type": "string"
         },
         "regionName": {
-          "description": "Required. region_name",
+          "description": "Required. Region name.",
           "type": "string"
         },
         "subnetName": {
-          "description": "Required. subnet_name",
+          "description": "Required. Subnet name.",
           "type": "string"
         },
         "vpcName": {
-          "description": "Required. vpc_name",
+          "description": "Required. VPC name.",
           "type": "string"
         },
         "zone1Name": {
-          "description": "Required. zone1_name",
+          "description": "Required. Zone 1 name.",
           "type": "string"
         },
         "zone2Name": {
-          "description": "Optional. zone2_name",
+          "description": "Optional. Zone 2 name.",
           "type": "string"
         }
       },
@@ -3124,31 +3124,31 @@
       "type": "object"
     },
     "Pacemaker": {
-      "description": "pacemaker configuration",
+      "description": "Pacemaker configuration.",
       "id": "Pacemaker",
       "properties": {
         "bucketNameNodeCertificates": {
-          "description": "Required. bucket location for node certificates",
+          "description": "Required. Bucket location for node certificates.",
           "type": "string"
         },
         "pacemakerCluster": {
-          "description": "Required. pacemaker cluster name",
+          "description": "Required. Pacemaker cluster name.",
           "type": "string"
         },
         "pacemakerClusterSecret": {
-          "description": "Required. pacemaker cluster secret name",
+          "description": "Required. Pacemaker cluster secret name.",
           "type": "string"
         },
         "pacemakerClusterUsername": {
-          "description": "Required. pacemaker cluster username",
+          "description": "Required. Pacemaker cluster username.",
           "type": "string"
         },
         "sqlPacemakerSecret": {
-          "description": "Required. sql pacemaker secret name",
+          "description": "Required. SQL Pacemaker secret name.",
           "type": "string"
         },
         "sqlPacemakerUsername": {
-          "description": "Required. sql pacemaker username",
+          "description": "Required. SQL Pacemaker username.",
           "type": "string"
         }
       },
@@ -4015,26 +4015,26 @@
       "type": "object"
     },
     "SapSystemS4Config": {
-      "description": "Message for sap system workload",
+      "description": "Message for SAP system workload.",
       "id": "SapSystemS4Config",
       "properties": {
         "allowStoppingForUpdate": {
           "type": "boolean"
         },
         "ansibleRunnerServiceAccount": {
-          "description": "Ansible runner service account - let custoemrs bring their own SA for Ansible runner",
+          "description": "Ansible runner service account. Let customers bring their own service account for the Ansible runner.",
           "type": "string"
         },
         "app": {
           "$ref": "AppDetails",
-          "description": "instance details"
+          "description": "Instance details."
         },
         "database": {
           "$ref": "DatabaseDetails",
-          "description": "database details"
+          "description": "Database details."
         },
         "deploymentModel": {
-          "description": "Required. two model non-HA and HA supported",
+          "description": "Required. Supports non-HA and HA models.",
           "enum": [
             "DEPLOYMENT_MODEL_UNSPECIFIED",
             "DISTRIBUTED",
@@ -4048,37 +4048,37 @@
           "type": "string"
         },
         "environmentType": {
-          "description": "Required. deployment environment",
+          "description": "Required. Deployment environment.",
           "enum": [
             "ENVIRONMENT_TYPE_UNSPECIFIED",
             "NON_PRODUCTION",
             "PRODUCTION"
           ],
           "enumDescriptions": [
-            "Unspecified environment type",
-            "Non-production environment type",
-            "Production environment type"
+            "Unspecified environment type.",
+            "Non-production environment type.",
+            "Production environment type."
           ],
           "type": "string"
         },
         "gcpProjectId": {
-          "description": "the project that infrastructure deployed, current only support the same project where the deployment resource exist.",
+          "description": "The project that infrastructure is deployed in. Currently only supports the same project where the deployment resource exists.",
           "type": "string"
         },
         "location": {
           "$ref": "LocationDetails",
-          "description": "database details"
+          "description": "Database details."
         },
         "mediaBucketName": {
-          "description": "Required. media_bucket_name",
+          "description": "Required. Media bucket name.",
           "type": "string"
         },
         "sapBootDiskImage": {
-          "description": "Optional. sap_boot_disk_image",
+          "description": "Optional. SAP boot disk image.",
           "type": "string"
         },
         "scalingMethod": {
-          "description": "Required. support scale up and scale out",
+          "description": "Required. Supports scale up and scale out.",
           "enum": [
             "SCALE_METHOD_UNSPECIFIED",
             "SCALE_UP",
@@ -4086,13 +4086,13 @@
           ],
           "enumDescriptions": [
             "",
-            "Scale up: Increases the size of a physical machine by increasing the amount of RAM and CPU available for processing",
-            "Scale out: Combines multiple independent computers into one system"
+            "Scale up: Increases the size of a physical machine by increasing the amount of RAM and CPU available for processing.",
+            "Scale out: Combines multiple independent computers into one system."
           ],
           "type": "string"
         },
         "version": {
-          "description": "Required. sap hana version",
+          "description": "Required. SAP HANA version.",
           "enum": [
             "VERSION_UNSPECIFIED",
             "S4_HANA_2021",
@@ -4108,7 +4108,7 @@
           "type": "string"
         },
         "vmPrefix": {
-          "description": "vm_prefix",
+          "description": "VM prefix.",
           "type": "string"
         }
       },
@@ -4306,144 +4306,144 @@
       "type": "object"
     },
     "SqlLocationDetails": {
-      "description": "Location and networking details for configuring SQL server workload",
+      "description": "Location and networking details for configuring SQL server workload.",
       "id": "SqlLocationDetails",
       "properties": {
         "dnsZone": {
-          "description": "Optional. create a new DNS Zone when the field is empty, Only show for `Using an existing DNS` List of existing DNS Zones tf variable name: existing_dns_zone_name",
+          "description": "Optional. Create a new DNS zone when the field is empty. Only shown for `Using an existing DNS`. List of existing DNS zones. Terraform variable name: existing_dns_zone_name.",
           "type": "string"
         },
         "gcpProjectId": {
-          "description": "Required. the project that infrastructure deployed, currently only supports the same project where the deployment resource exists.",
+          "description": "Required. The project that infrastructure is deployed in. Currently only supports the same project where the deployment resource exists.",
           "type": "string"
         },
         "internetAccess": {
-          "description": "Required. Internet Access",
+          "description": "Required. Internet Access.",
           "enum": [
             "INTERNET_ACCESS_UNSPECIFIED",
             "ALLOW_EXTERNAL_IP",
             "CONFIGURE_NAT"
           ],
           "enumDescriptions": [
-            "Unspecified internet access",
-            "Allow external IP",
-            "Configure NAT"
+            "Unspecified internet access.",
+            "Allow external IP.",
+            "Configure NAT."
           ],
           "type": "string"
         },
         "network": {
-          "description": "Required. network name",
+          "description": "Required. Network name.",
           "type": "string"
         },
         "primaryZone": {
-          "description": "Required. primary zone",
+          "description": "Required. Primary zone.",
           "type": "string"
         },
         "region": {
-          "description": "Required. region name",
+          "description": "Required. Region name.",
           "type": "string"
         },
         "secondaryZone": {
-          "description": "Optional. secondary zone can't be same as primary_zone and is only for High Availability deployment mode",
+          "description": "Optional. Secondary zone cannot be the same as primary_zone and is only for High Availability deployment mode.",
           "type": "string"
         },
         "subnetwork": {
-          "description": "Required. subnetwork name",
+          "description": "Required. Subnetwork name.",
           "type": "string"
         },
         "tertiaryZone": {
-          "description": "Optional. teriary zone can't be same as primary_zone and secondary zone, and it is only for High Availability deployment mode",
+          "description": "Optional. Tertiary zone cannot be the same as primary_zone and secondary_zone, and it is only for High Availability deployment mode.",
           "type": "string"
         }
       },
       "type": "object"
     },
     "SqlServerWorkload": {
-      "description": "Message for MS SQL workload",
+      "description": "Message for MS SQL workload.",
       "id": "SqlServerWorkload",
       "properties": {
         "activeDirectory": {
           "$ref": "ActiveDirectory",
-          "description": "Required. active directory details"
+          "description": "Required. Active Directory details."
         },
         "computeEngineServiceAccount": {
-          "description": "Compute engine service account - let customers bring their own SA for Compute engine",
+          "description": "Compute Engine service account. Let customers bring their own service account for Compute Engine.",
           "type": "string"
         },
         "database": {
           "$ref": "Database",
-          "description": "Required. database details"
+          "description": "Required. Database details."
         },
         "deploymentModel": {
-          "description": "Required. HIGH_AVAILABILITY or SINGLE_INSTANCE",
+          "description": "Required. HIGH_AVAILABILITY or SINGLE_INSTANCE.",
           "enum": [
             "DEPLOYMENT_MODEL_UNSPECIFIED",
             "HIGH_AVAILABILITY",
             "SINGLE_INSTANCE"
           ],
           "enumDescriptions": [
-            "Unspecified deployment model",
-            "High Availability deployment model",
-            "Single Instance deployment model"
+            "Unspecified deployment model.",
+            "High Availability deployment model.",
+            "Single instance deployment model."
           ],
           "type": "string"
         },
         "environmentType": {
-          "description": "Required. deployment environment",
+          "description": "Required. Deployment environment.",
           "enum": [
             "ENVIRONMENT_TYPE_UNSPECIFIED",
             "NON_PRODUCTION",
             "PRODUCTION"
           ],
           "enumDescriptions": [
-            "Unspecified environment type",
-            "Non-production environment type",
-            "Production environment type"
+            "Unspecified environment type.",
+            "Non-production environment type.",
+            "Production environment type."
           ],
           "type": "string"
         },
         "fciType": {
-          "description": "Optional. SHARED_DISK or S2D",
+          "description": "Optional. SHARED_DISK or S2D.",
           "enum": [
             "FCI_TYPE_UNSPECIFIED",
             "SHARED_DISK",
             "S2D"
           ],
           "enumDescriptions": [
-            "Unspecified FCI type",
-            "SHARED DISK FCI type",
-            "S2D FCI type"
+            "Unspecified FCI type.",
+            "SHARED DISK FCI type.",
+            "S2D FCI type."
           ],
           "type": "string"
         },
         "haType": {
-          "description": "Optional. AOAG or FCI, it is only needed for High Availability deployment mode",
+          "description": "Optional. AOAG or FCI. It is only needed for the High Availability deployment mode.",
           "enum": [
             "HA_TYPE_UNSPECIFIED",
             "AOAG",
             "FCI"
           ],
           "enumDescriptions": [
-            "Unspecified HA type",
-            "AOAG HA type",
-            "FCI HA type"
+            "Unspecified HA type.",
+            "AOAG HA type.",
+            "FCI HA type."
           ],
           "type": "string"
         },
         "isSqlPayg": {
-          "description": "Required. SQL licensing type",
+          "description": "Required. SQL licensing type.",
           "type": "boolean"
         },
         "location": {
           "$ref": "SqlLocationDetails",
-          "description": "Required. location details"
+          "description": "Required. Location details."
         },
         "mediaBucket": {
-          "description": "Required. name of the media storing SQL server installation files",
+          "description": "Required. Name of the media storing SQL server installation files.",
           "type": "string"
         },
         "operatingSystemType": {
-          "description": "Required. type of the operating system the SQL server is going to run on top of",
+          "description": "Required. The type of the operating system the SQL server is going to run on top of.",
           "enum": [
             "OPERATING_SYSTEM_TYPE_UNSPECIFIED",
             "WINDOWS",
@@ -4452,38 +4452,38 @@
             "SUSE"
           ],
           "enumDescriptions": [
-            "Unspecified operating system type",
-            "Windows operating system type",
-            "Ubuntu operating system type",
-            "Red Hat Enterprise Linux operating system type",
-            "Suse operating system type"
+            "Unspecified operating system type.",
+            "Windows operating system type.",
+            "Ubuntu operating system type.",
+            "Red Hat Enterprise Linux operating system type.",
+            "SUSE operating system type."
           ],
           "type": "string"
         },
         "osImage": {
-          "description": "Required. the image of the operating system",
+          "description": "Required. The image of the operating system.",
           "type": "string"
         },
         "osImageType": {
-          "description": "Optional. OS image type, it's used to create boot disks for VM instances When either Windows licensing type or SQL licensing type is BYOL, this option is disabled and default to custom image",
+          "description": "Optional. OS image type. It's used to create boot disks for VM instances. When either Windows licensing type or SQL licensing type is BYOL, this option is disabled and defaults to a custom image.",
           "enum": [
             "OS_IMAGE_TYPE_UNSPECIFIED",
             "PUBLIC_IMAGE",
             "CUSTOM_IMAGE"
           ],
           "enumDescriptions": [
-            "Unspecified OS image type",
-            "Public image",
-            "Custom image"
+            "Unspecified OS image type.",
+            "Public image.",
+            "Custom image."
           ],
           "type": "string"
         },
         "pacemaker": {
           "$ref": "Pacemaker",
-          "description": "Optional. pacemaker configuration, only applicable for Linux HA deployments"
+          "description": "Optional. Pacemaker configuration, only applicable for Linux HA deployments."
         },
         "sqlServerEdition": {
-          "description": "Optional. SQL Server Edition type, only applicable when Operating System is Linux",
+          "description": "Optional. SQL Server Edition type, only applicable when the operating system is Linux.",
           "enum": [
             "SQL_SERVER_EDITION_TYPE_UNSPECIFIED",
             "SQL_SERVER_EDITION_TYPE_DEVELOPER",
@@ -4492,16 +4492,16 @@
             "SQL_SERVER_EDITION_TYPE_WEB"
           ],
           "enumDescriptions": [
-            "Unspecified type",
-            "Developer type",
-            "Enterprise type",
-            "Standard type",
-            "Web type"
+            "Unspecified type.",
+            "Developer type.",
+            "Enterprise type.",
+            "Standard type.",
+            "Web type."
           ],
           "type": "string"
         },
         "sqlServerVersion": {
-          "description": "Optional. 2017 or 2019 or 2022",
+          "description": "Optional. 2017, 2019, or 2022.",
           "enum": [
             "SQL_SERVER_VERSION_TYPE_UNSPECIFIED",
             "SQL_SERVER_VERSION_TYPE_2017",
@@ -4509,15 +4509,15 @@
             "SQL_SERVER_VERSION_TYPE_2022"
           ],
           "enumDescriptions": [
-            "Unspecified type",
-            "2017 type",
-            "2019 type",
-            "2022 type"
+            "Unspecified type.",
+            "2017 type.",
+            "2019 type.",
+            "2022 type."
           ],
           "type": "string"
         },
         "vmPrefix": {
-          "description": "Required. should be unique in the project",
+          "description": "Required. Should be unique in the project.",
           "type": "string"
         }
       },
@@ -4664,7 +4664,7 @@
       "type": "object"
     },
     "TerraformVariable": {
-      "description": "In order to align with Infra Manager dependency, we create the same TerraformVariable message to represent a Terraform input variable, by following Infra Manager's API documentation: https://cloud.google.com/infrastructure-manager/docs/reference/rest A Terraform input variable.",
+      "description": "In order to align with the Infra Manager dependency, we create the same TerraformVariable message to represent a Terraform input variable, by following Infra Manager's API documentation: https://cloud.google.com/infrastructure-manager/docs/reference/rest. A Terraform input variable.",
       "id": "TerraformVariable",
       "properties": {
         "inputValue": {

@@ -29,10 +29,7 @@ export function netapp(options: netapp_v1beta1.Options): netapp_v1beta1.Netapp;
 export function netapp<T = netapp_v1.Netapp | netapp_v1beta1.Netapp>(
   this: GoogleConfigurable,
   versionOrOptions:
-    | 'v1'
-    | netapp_v1.Options
-    | 'v1beta1'
-    | netapp_v1beta1.Options
+    'v1' | netapp_v1.Options | 'v1beta1' | netapp_v1beta1.Options
 ) {
   return getAPI<T>('netapp', versionOrOptions, VERSIONS, this);
 }

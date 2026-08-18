@@ -332,6 +332,10 @@ export namespace migrationcenter_v1alpha1 {
      */
     awsEksClusterDetails?: Schema$AwsEksClusterDetails;
     /**
+     * Output only. Asset information specific for AWS ElastiCache Clusters.
+     */
+    awsElasticacheClusterDetails?: Schema$AwsElastiCacheClusterDetails;
+    /**
      * Output only. Asset information specific for AWS Elastic IP Addresses.
      */
     awsElasticIpAddressDetails?: Schema$AwsElasticIpAddressDetails;
@@ -520,6 +524,10 @@ export namespace migrationcenter_v1alpha1 {
      * Asset information specific for AWS EKS clusters.
      */
     awsEksClusterDetails?: Schema$AwsEksClusterDetails;
+    /**
+     * Optional. Asset information specific for AWS ElastiCache Clusters.
+     */
+    awsElasticacheClusterDetails?: Schema$AwsElastiCacheClusterDetails;
     /**
      * Optional. Asset information specific for AWS Elastic IP Addresses.
      */
@@ -833,6 +841,10 @@ export namespace migrationcenter_v1alpha1 {
    * Asset information specific for AWS EKS clusters.
    */
   export interface Schema$AwsEksClusterDetails {}
+  /**
+   * Details of an AWS ElastiCache Cluster.
+   */
+  export interface Schema$AwsElastiCacheClusterDetails {}
   /**
    * Asset information specific for AWS Elastic IP Addresses.
    */
@@ -1255,7 +1267,7 @@ export namespace migrationcenter_v1alpha1 {
      */
     series?: string | null;
     /**
-     * Output only. Whether simultaneous multithreading is enabled (see https://cloud.google.com/compute/docs/instances/set-threads-per-core).
+     * Output only. Whether simultaneous multithreading is enabled. See https://cloud.google.com/compute/docs/instances/set-threads-per-core.
      */
     smtEnabled?: boolean | null;
     /**
@@ -5301,8 +5313,7 @@ export namespace migrationcenter_v1alpha1 {
         | BodyResponseCallback<Schema$Location>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Location>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Location> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Location>>
@@ -5439,8 +5450,7 @@ export namespace migrationcenter_v1alpha1 {
         | BodyResponseCallback<Schema$Settings>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Settings>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Settings> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Settings>>
@@ -5565,8 +5575,7 @@ export namespace migrationcenter_v1alpha1 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListLocationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListLocationsResponse>,
       callback: BodyResponseCallback<Schema$ListLocationsResponse>
     ): void;
     list(
@@ -5742,8 +5751,7 @@ export namespace migrationcenter_v1alpha1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -6100,8 +6108,7 @@ export namespace migrationcenter_v1alpha1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -6228,8 +6235,7 @@ export namespace migrationcenter_v1alpha1 {
     batchUpdate(
       params: Params$Resource$Projects$Locations$Assets$Batchupdate,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$BatchUpdateAssetsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$BatchUpdateAssetsResponse>,
       callback: BodyResponseCallback<Schema$BatchUpdateAssetsResponse>
     ): void;
     batchUpdate(
@@ -6388,8 +6394,7 @@ export namespace migrationcenter_v1alpha1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -6492,6 +6497,7 @@ export namespace migrationcenter_v1alpha1 {
      *   //   "awsEksClusterDetails": {},
      *   //   "awsElasticIpAddressDetails": {},
      *   //   "awsElasticNetworkInterfaceDetails": {},
+     *   //   "awsElasticacheClusterDetails": {},
      *   //   "awsElbLoadBalancerDetails": {},
      *   //   "awsEmrClusterDetails": {},
      *   //   "awsFirehoseDetails": {},
@@ -6571,8 +6577,7 @@ export namespace migrationcenter_v1alpha1 {
         | BodyResponseCallback<Schema$Asset>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Asset>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Asset> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Asset>>
@@ -6829,6 +6834,7 @@ export namespace migrationcenter_v1alpha1 {
      *       //   "awsEksClusterDetails": {},
      *       //   "awsElasticIpAddressDetails": {},
      *       //   "awsElasticNetworkInterfaceDetails": {},
+     *       //   "awsElasticacheClusterDetails": {},
      *       //   "awsElbLoadBalancerDetails": {},
      *       //   "awsEmrClusterDetails": {},
      *       //   "awsFirehoseDetails": {},
@@ -6883,6 +6889,7 @@ export namespace migrationcenter_v1alpha1 {
      *   //   "awsEksClusterDetails": {},
      *   //   "awsElasticIpAddressDetails": {},
      *   //   "awsElasticNetworkInterfaceDetails": {},
+     *   //   "awsElasticacheClusterDetails": {},
      *   //   "awsElbLoadBalancerDetails": {},
      *   //   "awsEmrClusterDetails": {},
      *   //   "awsFirehoseDetails": {},
@@ -6962,8 +6969,7 @@ export namespace migrationcenter_v1alpha1 {
         | BodyResponseCallback<Schema$Asset>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Asset>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Asset> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Asset>>
@@ -7089,8 +7095,7 @@ export namespace migrationcenter_v1alpha1 {
     reportAssetFrames(
       params: Params$Resource$Projects$Locations$Assets$Reportassetframes,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ReportAssetFramesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ReportAssetFramesResponse>,
       callback: BodyResponseCallback<Schema$ReportAssetFramesResponse>
     ): void;
     reportAssetFrames(
@@ -7400,8 +7405,7 @@ export namespace migrationcenter_v1alpha1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -7543,8 +7547,7 @@ export namespace migrationcenter_v1alpha1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -7985,8 +7988,7 @@ export namespace migrationcenter_v1alpha1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -8218,8 +8220,7 @@ export namespace migrationcenter_v1alpha1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -8363,8 +8364,7 @@ export namespace migrationcenter_v1alpha1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -8834,8 +8834,7 @@ export namespace migrationcenter_v1alpha1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -8984,8 +8983,7 @@ export namespace migrationcenter_v1alpha1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -9232,8 +9230,7 @@ export namespace migrationcenter_v1alpha1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -9391,8 +9388,7 @@ export namespace migrationcenter_v1alpha1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -9535,8 +9531,7 @@ export namespace migrationcenter_v1alpha1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -9675,8 +9670,7 @@ export namespace migrationcenter_v1alpha1 {
         | BodyResponseCallback<Schema$Group>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Group>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Group> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Group>>
@@ -9979,8 +9973,7 @@ export namespace migrationcenter_v1alpha1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -10128,8 +10121,7 @@ export namespace migrationcenter_v1alpha1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -10404,8 +10396,7 @@ export namespace migrationcenter_v1alpha1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -10550,8 +10541,7 @@ export namespace migrationcenter_v1alpha1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -10698,8 +10688,7 @@ export namespace migrationcenter_v1alpha1 {
         | BodyResponseCallback<Schema$ImportJob>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$ImportJob>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$ImportJob> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$ImportJob>>
@@ -10827,8 +10816,7 @@ export namespace migrationcenter_v1alpha1 {
     list(
       params: Params$Resource$Projects$Locations$Importjobs$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListImportJobsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListImportJobsResponse>,
       callback: BodyResponseCallback<Schema$ListImportJobsResponse>
     ): void;
     list(
@@ -11012,8 +11000,7 @@ export namespace migrationcenter_v1alpha1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -11159,8 +11146,7 @@ export namespace migrationcenter_v1alpha1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -11309,8 +11295,7 @@ export namespace migrationcenter_v1alpha1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -11588,8 +11573,7 @@ export namespace migrationcenter_v1alpha1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -11734,8 +11718,7 @@ export namespace migrationcenter_v1alpha1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -12236,8 +12219,7 @@ export namespace migrationcenter_v1alpha1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -12372,8 +12354,7 @@ export namespace migrationcenter_v1alpha1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -12511,8 +12492,7 @@ export namespace migrationcenter_v1alpha1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -12638,8 +12618,7 @@ export namespace migrationcenter_v1alpha1 {
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListOperationsResponse>,
       callback: BodyResponseCallback<Schema$ListOperationsResponse>
     ): void;
     list(
@@ -12872,8 +12851,7 @@ export namespace migrationcenter_v1alpha1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -13016,8 +12994,7 @@ export namespace migrationcenter_v1alpha1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -13283,8 +13260,7 @@ export namespace migrationcenter_v1alpha1 {
     list(
       params: Params$Resource$Projects$Locations$Preferencesets$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListPreferenceSetsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListPreferenceSetsResponse>,
       callback: BodyResponseCallback<Schema$ListPreferenceSetsResponse>
     ): void;
     list(
@@ -13466,8 +13442,7 @@ export namespace migrationcenter_v1alpha1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -13685,8 +13660,7 @@ export namespace migrationcenter_v1alpha1 {
         | BodyResponseCallback<Schema$Relation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Relation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Relation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Relation>>
@@ -13811,8 +13785,7 @@ export namespace migrationcenter_v1alpha1 {
     list(
       params: Params$Resource$Projects$Locations$Relations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListRelationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListRelationsResponse>,
       callback: BodyResponseCallback<Schema$ListRelationsResponse>
     ): void;
     list(
@@ -13954,7 +13927,7 @@ export namespace migrationcenter_v1alpha1 {
      *   const res = await migrationcenter.projects.locations.reportConfigs.create({
      *     // Required. Value for parent.
      *     parent: 'projects/my-project/locations/my-location',
-     *     // Required. User specified ID for the report config. It will become the last component of the report config name. The ID must be unique within the project, must conform with RFC-1034, is restricted to lower-cased letters, and has a maximum length of 63 characters. The ID must match the regular expression: [a-z]([a-z0-9-]{0,61\}[a-z0-9])?.
+     *     // Required. User specified ID for the report config. It will become the last component of the report config name. The ID must be unique within the project, must conform with RFC-1034, is restricted to lower-cased letters, and has a maximum length of 63 characters. The ID must match the regular expression: `[a-z]([a-z0-9-]{0,61\}[a-z0-9])?`.
      *     reportConfigId: 'placeholder-value',
      *     // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      *     requestId: 'placeholder-value',
@@ -14030,8 +14003,7 @@ export namespace migrationcenter_v1alpha1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -14176,8 +14148,7 @@ export namespace migrationcenter_v1alpha1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -14443,8 +14414,7 @@ export namespace migrationcenter_v1alpha1 {
     list(
       params: Params$Resource$Projects$Locations$Reportconfigs$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListReportConfigsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListReportConfigsResponse>,
       callback: BodyResponseCallback<Schema$ListReportConfigsResponse>
     ): void;
     list(
@@ -14522,7 +14492,7 @@ export namespace migrationcenter_v1alpha1 {
      */
     parent?: string;
     /**
-     * Required. User specified ID for the report config. It will become the last component of the report config name. The ID must be unique within the project, must conform with RFC-1034, is restricted to lower-cased letters, and has a maximum length of 63 characters. The ID must match the regular expression: [a-z]([a-z0-9-]{0,61\}[a-z0-9])?.
+     * Required. User specified ID for the report config. It will become the last component of the report config name. The ID must be unique within the project, must conform with RFC-1034, is restricted to lower-cased letters, and has a maximum length of 63 characters. The ID must match the regular expression: `[a-z]([a-z0-9-]{0,61\}[a-z0-9])?`.
      */
     reportConfigId?: string;
     /**
@@ -14624,7 +14594,7 @@ export namespace migrationcenter_v1alpha1 {
      *       // Required. Value for parent.
      *       parent:
      *         'projects/my-project/locations/my-location/reportConfigs/my-reportConfig',
-     *       // Required. User specified id for the report. It will become the last component of the report name. The id must be unique within the project, must conform with RFC-1034, is restricted to lower-cased letters, and has a maximum length of 63 characters. The id must match the regular expression: [a-z]([a-z0-9-]{0,61\}[a-z0-9])?.
+     *       // Required. User specified id for the report. It will become the last component of the report name. The id must be unique within the project, must conform with RFC-1034, is restricted to lower-cased letters, and has a maximum length of 63 characters. The id must match the regular expression: `[a-z]([a-z0-9-]{0,61\}[a-z0-9])?`.
      *       reportId: 'placeholder-value',
      *       // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      *       requestId: 'placeholder-value',
@@ -14702,8 +14672,7 @@ export namespace migrationcenter_v1alpha1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -14848,8 +14817,7 @@ export namespace migrationcenter_v1alpha1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -14994,8 +14962,7 @@ export namespace migrationcenter_v1alpha1 {
         | BodyResponseCallback<Schema$Report>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Report>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Report> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Report>>
@@ -15202,7 +15169,7 @@ export namespace migrationcenter_v1alpha1 {
      */
     parent?: string;
     /**
-     * Required. User specified id for the report. It will become the last component of the report name. The id must be unique within the project, must conform with RFC-1034, is restricted to lower-cased letters, and has a maximum length of 63 characters. The id must match the regular expression: [a-z]([a-z0-9-]{0,61\}[a-z0-9])?.
+     * Required. User specified id for the report. It will become the last component of the report name. The id must be unique within the project, must conform with RFC-1034, is restricted to lower-cased letters, and has a maximum length of 63 characters. The id must match the regular expression: `[a-z]([a-z0-9-]{0,61\}[a-z0-9])?`.
      */
     reportId?: string;
     /**
@@ -15378,8 +15345,7 @@ export namespace migrationcenter_v1alpha1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -15526,8 +15492,7 @@ export namespace migrationcenter_v1alpha1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -15972,8 +15937,7 @@ export namespace migrationcenter_v1alpha1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -16209,8 +16173,7 @@ export namespace migrationcenter_v1alpha1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -16353,8 +16316,7 @@ export namespace migrationcenter_v1alpha1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -16498,8 +16460,7 @@ export namespace migrationcenter_v1alpha1 {
         | BodyResponseCallback<Schema$Source>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Source>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Source> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Source>>
@@ -16807,8 +16768,7 @@ export namespace migrationcenter_v1alpha1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -17031,8 +16991,7 @@ export namespace migrationcenter_v1alpha1 {
         | BodyResponseCallback<Schema$ErrorFrame>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$ErrorFrame>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$ErrorFrame> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$ErrorFrame>>
@@ -17159,8 +17118,7 @@ export namespace migrationcenter_v1alpha1 {
     list(
       params: Params$Resource$Projects$Locations$Sources$Errorframes$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListErrorFramesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListErrorFramesResponse>,
       callback: BodyResponseCallback<Schema$ListErrorFramesResponse>
     ): void;
     list(

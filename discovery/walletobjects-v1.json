@@ -1546,6 +1546,24 @@
           "scopes": [
             "https://www.googleapis.com/auth/wallet_object.issuer"
           ]
+        },
+        "validate": {
+          "description": "Checks that the JWT or JSON string in the request represents a valid pass to be saved.",
+          "flatPath": "walletobjects/v1/jwt/validate",
+          "httpMethod": "POST",
+          "id": "walletobjects.jwt.validate",
+          "parameterOrder": [],
+          "parameters": {},
+          "path": "walletobjects/v1/jwt/validate",
+          "request": {
+            "$ref": "JwtValidateRequest"
+          },
+          "response": {
+            "$ref": "JwtValidateResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/wallet_object.issuer"
+          ]
         }
       }
     },
@@ -2713,7 +2731,7 @@
       }
     }
   },
-  "revision": "20260511",
+  "revision": "20260806",
   "rootUrl": "https://walletobjects.googleapis.com/",
   "schemas": {
     "ActivationOptions": {
@@ -6411,6 +6429,17 @@
       },
       "type": "object"
     },
+    "JsonResource": {
+      "description": "A JSON representation of a pass.",
+      "id": "JsonResource",
+      "properties": {
+        "json": {
+          "description": "Required. A JSON string representing the unencoded JWT payload for a pass of the format described at https://developers.google.com/wallet/reference/rest/v1/Jwt. This can be set to either the entire JSON representation described at this link or just the contents of the payload field holding the relevant classes and objects.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "JwtInsertResponse": {
       "id": "JwtInsertResponse",
       "properties": {
@@ -6434,6 +6463,27 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "JwtValidateRequest": {
+      "description": "Request to validate the JWT or JSON representation of a pass.",
+      "id": "JwtValidateRequest",
+      "properties": {
+        "jsonResource": {
+          "$ref": "JsonResource",
+          "description": "Optional. A JSON representation of a pass to be validated. Either this or jwt_resource should be set. Requests setting both or neither will be rejected."
+        },
+        "jwtResource": {
+          "$ref": "JwtResource",
+          "description": "Optional. A JWT representation of a pass to be validated. Either this or json_resource should be set. Requests setting both or neither will be rejected."
+        }
+      },
+      "type": "object"
+    },
+    "JwtValidateResponse": {
+      "description": "Empty if the resource in the request is valid. Returns exception if invalid.",
+      "id": "JwtValidateResponse",
+      "properties": {},
       "type": "object"
     },
     "LabelValue": {

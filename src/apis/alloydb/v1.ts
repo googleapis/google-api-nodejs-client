@@ -125,6 +125,12 @@ export namespace alloydb_v1 {
   }
 
   /**
+   * AlloyDbInternalDebugInfo contains internal debugging information for AlloyDB errors. It is explicitly kept out of the allowlist (errors.yaml) to ensure it is sanitized (stripped) by OnePlatform for all external requests. Used only to carry internal error details to across UPC/FlowLib boundary for ObservabilityInfo.
+   */
+  export interface Schema$AlloydbClhErrorsAlloyDbInternalDebugInfo {
+    originalError?: string | null;
+  }
+  /**
    * AuthorizedNetwork contains metadata for an authorized network.
    */
   export interface Schema$AuthorizedNetwork {
@@ -511,6 +517,9 @@ export namespace alloydb_v1 {
      * Required. The resource link for the VPC network in which cluster resources are created and from which they are accessible via Private IP. The network must belong to the same project as the cluster. It is specified in the form: `projects/{project\}/global/networks/{network_id\}`. This is required to create a cluster. Deprecated, use network_config.network instead.
      */
     network?: string | null;
+    /**
+     * Optional.
+     */
     networkConfig?: Schema$NetworkConfig;
     /**
      * Output only. Cross Region replication config specific to PRIMARY cluster.
@@ -620,6 +629,10 @@ export namespace alloydb_v1 {
      */
     authproxyPoolerCount?: number | null;
     /**
+     * Optional. The scaling type of the AuthProxy pooler.
+     */
+    authproxyPoolerScalingType?: string | null;
+    /**
      * Optional. Whether to enable Managed Connection Pool (MCP).
      */
     enabled?: boolean | null;
@@ -631,6 +644,10 @@ export namespace alloydb_v1 {
      * Output only. The number of running poolers per instance.
      */
     poolerCount?: number | null;
+    /**
+     * Optional. The scaling type of the regular pooler.
+     */
+    poolerScalingType?: string | null;
   }
   /**
    * ContinuousBackupConfig describes the continuous backups recovery configurations of a cluster.
@@ -1795,711 +1812,785 @@ export namespace alloydb_v1 {
     message?: string | null;
   }
   /**
-   * Configuration for availability of database instance
+   * Disable validation warnings
    */
   export interface Schema$StorageDatabasecenterPartnerapiV1mainAvailabilityConfiguration {
     /**
-     * Checks for existence of (multi-cluster) routing configuration that allows automatic failover to a different zone/region in case of an outage. Applicable to Bigtable resources.
+     * Disable validation warnings
      */
     automaticFailoverRoutingConfigured?: boolean | null;
     /**
-     * Availability type. Potential values: * `ZONAL`: The instance serves data from only one zone. Outages in that zone affect data accessibility. * `REGIONAL`: The instance can serve data from more than one zone in a region (it is highly available).
+     * Disable validation warnings
      */
     availabilityType?: string | null;
     /**
-     * Checks for resources that are configured to have redundancy, and ongoing replication across regions
+     * Disable validation warnings
      */
     crossRegionReplicaConfigured?: boolean | null;
+    /**
+     * Disable validation warnings
+     */
     externalReplicaConfigured?: boolean | null;
+    /**
+     * Disable validation warnings
+     */
     promotableReplicaConfigured?: boolean | null;
   }
   /**
-   * Configuration for automatic backups
+   * Disable validation warnings
    */
   export interface Schema$StorageDatabasecenterPartnerapiV1mainBackupConfiguration {
     /**
-     * Whether customer visible automated backups are enabled on the instance.
+     * Disable validation warnings
      */
     automatedBackupEnabled?: boolean | null;
     /**
-     * Backup retention settings.
+     * Disable validation warnings
      */
     backupRetentionSettings?: Schema$StorageDatabasecenterPartnerapiV1mainRetentionSettings;
     /**
-     * Whether point-in-time recovery is enabled. This is optional field, if the database service does not have this feature or metadata is not available in control plane, this can be omitted.
+     * Disable validation warnings
      */
     pointInTimeRecoveryEnabled?: boolean | null;
   }
   /**
-   * BackupDRConfiguration to capture the backup and disaster recovery details of database resource.
+   * Disable validation warnings
    */
   export interface Schema$StorageDatabasecenterPartnerapiV1mainBackupDRConfiguration {
     /**
-     * Indicates if the resource is managed by BackupDR.
+     * Disable validation warnings
      */
     backupdrManaged?: boolean | null;
   }
   /**
-   * BackupDRMetadata contains information about the backup and disaster recovery metadata of a database resource.
+   * Disable validation warnings
    */
   export interface Schema$StorageDatabasecenterPartnerapiV1mainBackupDRMetadata {
     /**
-     * Backup configuration for this instance.
+     * Disable validation warnings
      */
     backupConfiguration?: Schema$StorageDatabasecenterPartnerapiV1mainBackupConfiguration;
     /**
-     * BackupDR configuration for this instance.
+     * Disable validation warnings
      */
     backupdrConfiguration?: Schema$StorageDatabasecenterPartnerapiV1mainBackupDRConfiguration;
     /**
-     * Latest backup run information for this instance.
+     * Disable validation warnings
      */
     backupRun?: Schema$StorageDatabasecenterPartnerapiV1mainBackupRun;
     /**
-     * Required. Full resource name of this instance.
+     * Required. Disable validation warnings
      */
     fullResourceName?: string | null;
     /**
-     * Required. Last time backup configuration was refreshed.
+     * Required. Disable validation warnings
      */
     lastRefreshTime?: string | null;
     /**
-     * Required. Database resource id.
+     * Required. Disable validation warnings
      */
     resourceId?: Schema$StorageDatabasecenterPartnerapiV1mainDatabaseResourceId;
   }
   /**
-   * A backup run.
+   * Disable validation warnings
    */
   export interface Schema$StorageDatabasecenterPartnerapiV1mainBackupRun {
     /**
-     * The time the backup operation completed. REQUIRED
+     * Disable validation warnings
      */
     endTime?: string | null;
     /**
-     * Information about why the backup operation failed. This is only present if the run has the FAILED status. OPTIONAL
+     * Disable validation warnings
      */
     error?: Schema$StorageDatabasecenterPartnerapiV1mainOperationError;
     /**
-     * The time the backup operation started. REQUIRED
+     * Disable validation warnings
      */
     startTime?: string | null;
     /**
-     * The status of this run. REQUIRED
+     * Disable validation warnings
      */
     status?: string | null;
   }
   /**
-   * Contains compliance information about a security standard indicating unmet recommendations.
+   * Disable validation warnings
    */
   export interface Schema$StorageDatabasecenterPartnerapiV1mainCompliance {
     /**
-     * Industry-wide compliance standards or benchmarks, such as CIS, PCI, and OWASP.
+     * Disable validation warnings
      */
     standard?: string | null;
     /**
-     * Version of the standard or benchmark, for example, 1.1
+     * Disable validation warnings
      */
     version?: string | null;
   }
   /**
-   * Config based signal data. This is used to send signals to Condor which are based on the DB level configurations. These will be used to send signals for self managed databases.
+   * Disable validation warnings
    */
   export interface Schema$StorageDatabasecenterPartnerapiV1mainConfigBasedSignalData {
     /**
-     * Required. Full Resource name of the source resource.
+     * Required. Disable validation warnings
      */
     fullResourceName?: string | null;
     /**
-     * Required. Last time signal was refreshed
+     * Required. Disable validation warnings
      */
     lastRefreshTime?: string | null;
     /**
-     * Database resource id.
+     * Disable validation warnings
      */
     resourceId?: Schema$StorageDatabasecenterPartnerapiV1mainDatabaseResourceId;
     /**
-     * Signal data for boolean signals.
+     * Disable validation warnings
      */
     signalBoolValue?: boolean | null;
     /**
-     * Required. Signal type of the signal
+     * Required. Disable validation warnings
      */
     signalType?: string | null;
   }
   /**
-   * Any custom metadata associated with the resource. e.g. A spanner instance can have multiple databases with its own unique metadata. Information for these individual databases can be captured in custom metadata data
+   * Disable validation warnings
    */
   export interface Schema$StorageDatabasecenterPartnerapiV1mainCustomMetadataData {
     /**
-     * Metadata for individual internal resources in an instance. e.g. spanner instance can have multiple databases with unique configuration.
+     * Disable validation warnings
      */
     internalResourceMetadata?: Schema$StorageDatabasecenterPartnerapiV1mainInternalResourceMetadata[];
   }
   /**
-   * DatabaseResourceFeed is the top level proto to be used to ingest different database resource level events into Condor platform. Next ID: 13
+   * Disable validation warnings
    */
   export interface Schema$StorageDatabasecenterPartnerapiV1mainDatabaseResourceFeed {
     /**
-     * BackupDR metadata is used to ingest metadata from BackupDR.
+     * Disable validation warnings
      */
     backupdrMetadata?: Schema$StorageDatabasecenterPartnerapiV1mainBackupDRMetadata;
     /**
-     * Config based signal data is used to ingest signals that are generated based on the configuration of the database resource.
+     * Disable validation warnings
      */
     configBasedSignalData?: Schema$StorageDatabasecenterPartnerapiV1mainConfigBasedSignalData;
     /**
-     * Database resource signal data is used to ingest signals from database resource signal feeds.
+     * Disable validation warnings
      */
     databaseResourceSignalData?: Schema$StorageDatabasecenterPartnerapiV1mainDatabaseResourceSignalData;
     /**
-     * Required. Timestamp when feed is generated.
+     * Required. Disable validation warnings
      */
     feedTimestamp?: string | null;
     /**
-     * Required. Type feed to be ingested into condor
+     * Required. Disable validation warnings
      */
     feedType?: string | null;
+    /**
+     * Disable validation warnings
+     */
     observabilityMetricData?: Schema$StorageDatabasecenterPartnerapiV1mainObservabilityMetricData;
+    /**
+     * Disable validation warnings
+     */
     recommendationSignalData?: Schema$StorageDatabasecenterPartnerapiV1mainDatabaseResourceRecommendationSignalData;
+    /**
+     * Disable validation warnings
+     */
     resourceHealthSignalData?: Schema$StorageDatabasecenterPartnerapiV1mainDatabaseResourceHealthSignalData;
     /**
-     * Primary key associated with the Resource. resource_id is available in individual feed level as well.
+     * Disable validation warnings
      */
     resourceId?: Schema$StorageDatabasecenterPartnerapiV1mainDatabaseResourceId;
+    /**
+     * Disable validation warnings
+     */
     resourceMetadata?: Schema$StorageDatabasecenterPartnerapiV1mainDatabaseResourceMetadata;
     /**
-     * Optional. If true, the feed won't be ingested by DB Center. This indicates that the feed is intentionally skipped. For example, BackupDR feeds are only needed for resources integrated with DB Center (e.g., CloudSQL, AlloyDB). Feeds for non-integrated resources (e.g., Compute Engine, Persistent Disk) can be skipped.
+     * Optional. Disable validation warnings
      */
     skipIngestion?: boolean | null;
   }
   /**
-   * Common model for database resource health signal data.
+   * Disable validation warnings
    */
   export interface Schema$StorageDatabasecenterPartnerapiV1mainDatabaseResourceHealthSignalData {
     /**
-     * Any other additional metadata
+     * Disable validation warnings
      */
     additionalMetadata?: {[key: string]: any} | null;
     /**
-     * Industry standards associated with this signal; if this signal is an issue, that could be a violation of the associated industry standard(s). For example, AUTO_BACKUP_DISABLED signal is associated with CIS GCP 1.1, CIS GCP 1.2, CIS GCP 1.3, NIST 800-53 and ISO-27001 compliance standards. If a database resource does not have automated backup enable, it will violate these following industry standards.
+     * Disable validation warnings
      */
     compliance?: Schema$StorageDatabasecenterPartnerapiV1mainCompliance[];
     /**
-     * Description associated with signal
+     * Disable validation warnings
      */
     description?: string | null;
     /**
-     * Required. The last time at which the event described by this signal took place
+     * Required. Disable validation warnings
      */
     eventTime?: string | null;
     /**
-     * The external-uri of the signal, using which more information about this signal can be obtained. In GCP, this will take user to SCC page to get more details about signals.
+     * Disable validation warnings
      */
     externalUri?: string | null;
     /**
-     * This is used to identify the location of the resource. Example: "us-central1"
+     * Disable validation warnings
      */
     location?: string | null;
     /**
-     * Required. The name of the signal, ex: PUBLIC_SQL_INSTANCE, SQL_LOG_ERROR_VERBOSITY etc.
+     * Required. Disable validation warnings
      */
     name?: string | null;
     /**
-     * Cloud provider name. Ex: GCP/AWS/Azure/OnPrem/SelfManaged
+     * Disable validation warnings
      */
     provider?: string | null;
     /**
-     * Closest parent container of this resource. In GCP, 'container' refers to a Cloud Resource Manager project. It must be resource name of a Cloud Resource Manager project with the format of "provider//", such as "projects/123". For GCP provided resources, number should be project number.
+     * Disable validation warnings
      */
     resourceContainer?: string | null;
     /**
-     * Required. Database resource name associated with the signal. Resource name to follow CAIS resource_name format as noted here go/condor-common-datamodel
+     * Required. Disable validation warnings
      */
     resourceName?: string | null;
     /**
-     * Required. The class of the signal, such as if it's a THREAT or VULNERABILITY.
+     * Required. Disable validation warnings
      */
     signalClass?: string | null;
     /**
-     * Required. Unique identifier for the signal. This is an unique id which would be mainatined by partner to identify a signal.
+     * Required. Disable validation warnings
      */
     signalId?: string | null;
     /**
-     * The severity of the signal, such as if it's a HIGH or LOW severity.
+     * Disable validation warnings
      */
     signalSeverity?: string | null;
     /**
-     * Required. Type of signal, for example, `AVAILABLE_IN_MULTIPLE_ZONES`, `LOGGING_MOST_ERRORS`, etc.
+     * Required. Disable validation warnings
      */
     signalType?: string | null;
+    /**
+     * Required. Disable validation warnings
+     */
     state?: string | null;
   }
   /**
-   * DatabaseResourceId will serve as primary key for any resource ingestion event.
+   * Disable validation warnings
    */
   export interface Schema$StorageDatabasecenterPartnerapiV1mainDatabaseResourceId {
     /**
-     * Required. Cloud provider name. Ex: GCP/AWS/Azure/OnPrem/SelfManaged
+     * Required. Disable validation warnings
      */
     provider?: string | null;
     /**
-     * Optional. Needs to be used only when the provider is PROVIDER_OTHER.
+     * Optional. Disable validation warnings
      */
     providerDescription?: string | null;
     /**
-     * Required. The type of resource this ID is identifying. Ex go/keep-sorted start alloydb.googleapis.com/Cluster, alloydb.googleapis.com/Instance, bigtableadmin.googleapis.com/Cluster, bigtableadmin.googleapis.com/Instance compute.googleapis.com/Instance firestore.googleapis.com/Database, redis.googleapis.com/Instance, redis.googleapis.com/Cluster, oracledatabase.googleapis.com/CloudExadataInfrastructure oracledatabase.googleapis.com/CloudVmCluster oracledatabase.googleapis.com/AutonomousDatabase spanner.googleapis.com/Instance, spanner.googleapis.com/Database, sqladmin.googleapis.com/Instance, go/keep-sorted end REQUIRED Please refer go/condor-common-datamodel
+     * Required. Disable validation warnings
      */
     resourceType?: string | null;
     /**
-     * Required. A service-local token that distinguishes this resource from other resources within the same service.
+     * Required. Disable validation warnings
      */
     uniqueId?: string | null;
   }
   /**
-   * Common model for database resource instance metadata. Next ID: 32
+   * Disable validation warnings
    */
   export interface Schema$StorageDatabasecenterPartnerapiV1mainDatabaseResourceMetadata {
     /**
-     * Availability configuration for this instance
+     * Disable validation warnings
+     */
+    additionalMetadata?: {[key: string]: any} | null;
+    /**
+     * Disable validation warnings
      */
     availabilityConfiguration?: Schema$StorageDatabasecenterPartnerapiV1mainAvailabilityConfiguration;
     /**
-     * Backup configuration for this instance
+     * Disable validation warnings
      */
     backupConfiguration?: Schema$StorageDatabasecenterPartnerapiV1mainBackupConfiguration;
     /**
-     * Optional. BackupDR Configuration for the resource.
+     * Optional. Disable validation warnings
      */
     backupdrConfiguration?: Schema$StorageDatabasecenterPartnerapiV1mainBackupDRConfiguration;
     /**
-     * Latest backup run information for this instance
+     * Disable validation warnings
      */
     backupRun?: Schema$StorageDatabasecenterPartnerapiV1mainBackupRun;
     /**
-     * The creation time of the resource, i.e. the time when resource is created and recorded in partner service.
+     * Disable validation warnings
      */
     creationTime?: string | null;
     /**
-     * Current state of the instance.
+     * Disable validation warnings
      */
     currentState?: string | null;
     /**
-     * Any custom metadata associated with the resource
+     * Disable validation warnings
      */
     customMetadata?: Schema$StorageDatabasecenterPartnerapiV1mainCustomMetadataData;
     /**
-     * Optional. Edition represents whether the instance is ENTERPRISE or ENTERPRISE_PLUS. This information is core to Cloud SQL only and is used to identify the edition of the instance.
+     * Optional. Disable validation warnings
      */
     edition?: string | null;
     /**
-     * Entitlements associated with the resource
+     * Disable validation warnings
      */
     entitlements?: Schema$StorageDatabasecenterPartnerapiV1mainEntitlement[];
     /**
-     * The state that the instance is expected to be in. For example, an instance state can transition to UNHEALTHY due to wrong patch update, while the expected state will remain at the HEALTHY.
+     * Disable validation warnings
      */
     expectedState?: string | null;
     /**
-     * GCBDR configuration for the resource.
+     * Disable validation warnings
      */
     gcbdrConfiguration?: Schema$StorageDatabasecenterPartnerapiV1mainGCBDRConfiguration;
     /**
-     * Required. Unique identifier for a Database resource
+     * Required. Disable validation warnings
      */
     id?: Schema$StorageDatabasecenterPartnerapiV1mainDatabaseResourceId;
     /**
-     * The type of the instance. Specified at creation time.
+     * Disable validation warnings
      */
     instanceType?: string | null;
     /**
-     * Optional. Whether deletion protection is enabled for this resource.
+     * Disable validation warnings
+     */
+    internalAdditionalMetadata?: {[key: string]: any} | null;
+    /**
+     * Optional. Disable validation warnings
+     */
+    ipAddress?: Schema$StorageDatabasecenterPartnerapiV1mainIpAddress;
+    /**
+     * Optional. Disable validation warnings
      */
     isDeletionProtectionEnabled?: boolean | null;
     /**
-     * The resource location. REQUIRED
+     * Disable validation warnings
      */
     location?: string | null;
     /**
-     * Machine configuration for this resource.
+     * Disable validation warnings
      */
     machineConfiguration?: Schema$StorageDatabasecenterPartnerapiV1mainMachineConfiguration;
     /**
-     * Optional. Maintenance info for the resource.
+     * Optional. Disable validation warnings
      */
     maintenanceInfo?: Schema$StorageDatabasecenterPartnerapiV1mainResourceMaintenanceInfo;
     /**
-     * Optional. The modes of the database resource.
+     * Optional. Disable validation warnings
      */
     modes?: string[] | null;
     /**
-     * Identifier for this resource's immediate parent/primary resource if the current resource is a replica or derived form of another Database resource. Else it would be NULL. REQUIRED if the immediate parent exists when first time resource is getting ingested, otherwise optional.
+     * Disable validation warnings
      */
     primaryResourceId?: Schema$StorageDatabasecenterPartnerapiV1mainDatabaseResourceId;
     /**
-     * Primary resource location. REQUIRED if the immediate parent exists when first time resource is getting ingested, otherwise optional.
+     * Disable validation warnings
      */
     primaryResourceLocation?: string | null;
     /**
-     * The product this resource represents.
+     * Disable validation warnings
      */
     product?: Schema$StorageDatabasecenterProtoCommonProduct;
     /**
-     * Closest parent Cloud Resource Manager container of this resource. It must be resource name of a Cloud Resource Manager project with the format of "/", such as "projects/123". For GCP provided resources, number should be project number.
+     * Disable validation warnings
      */
     resourceContainer?: string | null;
     /**
-     * Optional. List of resource flags for the database resource.
+     * Optional. Disable validation warnings
      */
     resourceFlags?: Schema$StorageDatabasecenterPartnerapiV1mainResourceFlags[];
     /**
-     * Required. Different from DatabaseResourceId.unique_id, a resource name can be reused over time. That is, after a resource named "ABC" is deleted, the name "ABC" can be used to to create a new resource within the same source. Resource name to follow CAIS resource_name format as noted here go/condor-common-datamodel
+     * Required. Disable validation warnings
      */
     resourceName?: string | null;
     /**
-     * Optional. Suspension reason for the resource.
+     * Optional. Disable validation warnings
      */
     suspensionReason?: string | null;
     /**
-     * Optional. Tags associated with this resources.
+     * Optional. Disable validation warnings
      */
     tagsSet?: Schema$StorageDatabasecenterPartnerapiV1mainTags;
     /**
-     * The time at which the resource was updated and recorded at partner service.
+     * Disable validation warnings
      */
     updationTime?: string | null;
     /**
-     * User-provided labels associated with the resource
+     * Disable validation warnings
      */
     userLabelSet?: Schema$StorageDatabasecenterPartnerapiV1mainUserLabels;
     /**
-     * The resource zone. This is only applicable for zonal resources and will be empty for regional and multi-regional resources.
+     * Disable validation warnings
      */
     zone?: string | null;
   }
   /**
-   * Common model for database resource recommendation signal data.
+   * Disable validation warnings
    */
   export interface Schema$StorageDatabasecenterPartnerapiV1mainDatabaseResourceRecommendationSignalData {
     /**
-     * Optional. Any other additional metadata specific to recommendation
+     * Optional. Disable validation warnings
      */
     additionalMetadata?: {[key: string]: any} | null;
     /**
-     * Required. last time recommendationw as refreshed
+     * Required. Disable validation warnings
      */
     lastRefreshTime?: string | null;
     /**
-     * Required. Recommendation state
+     * Required. Disable validation warnings
      */
     recommendationState?: string | null;
     /**
-     * Required. Name of recommendation. Examples: organizations/1234/locations/us-central1/recommenders/google.cloudsql.instance.PerformanceRecommender/recommendations/9876
+     * Required. Disable validation warnings
      */
     recommender?: string | null;
     /**
-     * Required. ID of recommender. Examples: "google.cloudsql.instance.PerformanceRecommender"
+     * Required. Disable validation warnings
      */
     recommenderId?: string | null;
     /**
-     * Required. Contains an identifier for a subtype of recommendations produced for the same recommender. Subtype is a function of content and impact, meaning a new subtype might be added when significant changes to `content` or `primary_impact.category` are introduced. See the Recommenders section to see a list of subtypes for a given Recommender. Examples: For recommender = "google.cloudsql.instance.PerformanceRecommender", recommender_subtype can be "MYSQL_HIGH_NUMBER_OF_OPEN_TABLES_BEST_PRACTICE"/"POSTGRES_HIGH_TRANSACTION_ID_UTILIZATION_BEST_PRACTICE"
+     * Required. Disable validation warnings
      */
     recommenderSubtype?: string | null;
     /**
-     * Required. Database resource name associated with the signal. Resource name to follow CAIS resource_name format as noted here go/condor-common-datamodel
+     * Required. Disable validation warnings
      */
     resourceName?: string | null;
     /**
-     * Required. Type of signal, for example, `SIGNAL_TYPE_IDLE`, `SIGNAL_TYPE_HIGH_NUMBER_OF_TABLES`, etc.
+     * Required. Disable validation warnings
      */
     signalType?: string | null;
   }
   /**
-   * Database resource signal data. This is used to send signals to Condor which are based on the DB/Instance/Fleet level configurations. These will be used to send signals for all inventory types. Next ID: 10
+   * Disable validation warnings
    */
   export interface Schema$StorageDatabasecenterPartnerapiV1mainDatabaseResourceSignalData {
     /**
-     * Deprecated: Use signal_metadata_list instead.
+     * Disable validation warnings
      */
     backupRun?: Schema$StorageDatabasecenterPartnerapiV1mainBackupRun;
     /**
-     * Required. Full Resource name of the source resource.
+     * Required. Disable validation warnings
      */
     fullResourceName?: string | null;
     /**
-     * Required. Last time signal was refreshed
+     * Required. Disable validation warnings
      */
     lastRefreshTime?: string | null;
     /**
-     * Required. Resource location.
+     * Required. Disable validation warnings
      */
     location?: string | null;
     /**
-     * Database resource id.
+     * Disable validation warnings
      */
     resourceId?: Schema$StorageDatabasecenterPartnerapiV1mainDatabaseResourceId;
     /**
-     * Deprecated: Use signal_metadata_list instead.
+     * Disable validation warnings
      */
     signalBoolValue?: boolean | null;
     /**
-     * This will support array of OneOf signal metadata information for a given signal type.
+     * Disable validation warnings
      */
     signalMetadataList?: Schema$StorageDatabasecenterPartnerapiV1mainSignalMetadata[];
     /**
-     * Required. Output only. Signal state of the signal
+     * Required. Output only. Disable validation warnings
      */
     signalState?: string | null;
     /**
-     * Required. Signal type of the signal
+     * Required. Disable validation warnings
      */
     signalType?: string | null;
   }
   /**
-   * Proto representing the access that a user has to a specific feature/service. NextId: 3.
+   * Disable validation warnings
    */
   export interface Schema$StorageDatabasecenterPartnerapiV1mainEntitlement {
     /**
-     * The current state of user's accessibility to a feature/benefit.
+     * Disable validation warnings
      */
     entitlementState?: string | null;
     /**
-     * An enum that represents the type of this entitlement.
+     * Disable validation warnings
      */
     type?: string | null;
   }
   /**
-   * GCBDR Configuration for the resource.
+   * Disable validation warnings
    */
   export interface Schema$StorageDatabasecenterPartnerapiV1mainGCBDRConfiguration {
     /**
-     * Whether the resource is managed by GCBDR.
+     * Disable validation warnings
      */
     gcbdrManaged?: boolean | null;
   }
   /**
-   * Metadata for individual internal resources in an instance. e.g. spanner instance can have multiple databases with unique configuration settings. Similarly bigtable can have multiple clusters within same bigtable instance.
+   * Disable validation warnings
    */
   export interface Schema$StorageDatabasecenterPartnerapiV1mainInternalResourceMetadata {
     /**
-     * Backup configuration for this database
+     * Disable validation warnings
      */
     backupConfiguration?: Schema$StorageDatabasecenterPartnerapiV1mainBackupConfiguration;
     /**
-     * Information about the last backup attempt for this database
+     * Disable validation warnings
      */
     backupRun?: Schema$StorageDatabasecenterPartnerapiV1mainBackupRun;
     /**
-     * Whether deletion protection is enabled for this internal resource.
+     * Disable validation warnings
      */
     isDeletionProtectionEnabled?: boolean | null;
+    /**
+     * Disable validation warnings
+     */
     product?: Schema$StorageDatabasecenterProtoCommonProduct;
+    /**
+     * Disable validation warnings
+     */
     resourceId?: Schema$StorageDatabasecenterPartnerapiV1mainDatabaseResourceId;
     /**
-     * Required. internal resource name for spanner this will be database name e.g."spanner.googleapis.com/projects/123/abc/instances/inst1/databases/db1"
+     * Required. Disable validation warnings
      */
     resourceName?: string | null;
   }
   /**
-   * MachineConfiguration describes the configuration of a machine specific to Database Resource.
+   * Disable validation warnings
+   */
+  export interface Schema$StorageDatabasecenterPartnerapiV1mainIpAddress {
+    /**
+     * Disable validation warnings
+     */
+    privateIp?: string | null;
+    /**
+     * Disable validation warnings
+     */
+    publicIp?: string | null;
+  }
+  /**
+   * Disable validation warnings
    */
   export interface Schema$StorageDatabasecenterPartnerapiV1mainMachineConfiguration {
     /**
-     * Optional. Baseline slots for BigQuery Reservations. Baseline slots are in increments of 50.
+     * Optional. Disable validation warnings
      */
     baselineSlots?: string | null;
     /**
-     * The number of CPUs. Deprecated. Use vcpu_count instead. TODO(b/342344482) add proto validations again after bug fix.
+     * Disable validation warnings
      */
     cpuCount?: number | null;
     /**
-     * Optional. Max slots for BigQuery Reservations. Max slots are in increments of 50.
+     * Optional. Disable validation warnings
      */
     maxReservationSlots?: string | null;
     /**
-     * Memory size in bytes. TODO(b/342344482) add proto validations again after bug fix.
+     * Disable validation warnings
      */
     memorySizeInBytes?: string | null;
     /**
-     * Optional. Number of shards (if applicable).
+     * Optional. Disable validation warnings
      */
     shardCount?: number | null;
     /**
-     * Optional. The number of vCPUs. TODO(b/342344482) add proto validations again after bug fix.
+     * Optional. Disable validation warnings
      */
     vcpuCount?: number | null;
   }
+  /**
+   * Disable validation warnings
+   */
   export interface Schema$StorageDatabasecenterPartnerapiV1mainObservabilityMetricData {
     /**
-     * Required. Type of aggregation performed on the metric.
+     * Required. Disable validation warnings
      */
     aggregationType?: string | null;
     /**
-     * Required. Type of metric like CPU, Memory, etc.
+     * Required. Disable validation warnings
      */
     metricType?: string | null;
     /**
-     * Required. The time the metric value was observed.
+     * Required. Disable validation warnings
      */
     observationTime?: string | null;
     /**
-     * Required. Database resource name associated with the signal. Resource name to follow CAIS resource_name format as noted here go/condor-common-datamodel
+     * Required. Disable validation warnings
      */
     resourceName?: string | null;
     /**
-     * Required. Value of the metric type.
+     * Required. Disable validation warnings
      */
     value?: Schema$StorageDatabasecenterProtoCommonTypedValue;
   }
   /**
-   * An error that occurred during a backup creation operation.
+   * Disable validation warnings
    */
   export interface Schema$StorageDatabasecenterPartnerapiV1mainOperationError {
     /**
-     * Identifies the specific error that occurred. REQUIRED
+     * Disable validation warnings
      */
     code?: string | null;
+    /**
+     * Disable validation warnings
+     */
     errorType?: string | null;
     /**
-     * Additional information about the error encountered. REQUIRED
+     * Disable validation warnings
      */
     message?: string | null;
   }
   /**
-   * Message type for storing resource flags.
+   * Disable validation warnings
    */
   export interface Schema$StorageDatabasecenterPartnerapiV1mainResourceFlags {
     /**
-     * Optional. Key of the resource flag.
+     * Optional. Disable validation warnings
      */
     key?: string | null;
     /**
-     * Optional. Value of the resource flag.
+     * Optional. Disable validation warnings
      */
     value?: string | null;
   }
   /**
-   * Deny maintenance period for the database resource. It specifies the time range during which the maintenance cannot start. This is configured by the customer.
+   * Disable validation warnings
    */
   export interface Schema$StorageDatabasecenterPartnerapiV1mainResourceMaintenanceDenySchedule {
     /**
-     * Optional. Deny period end date.
+     * Optional. Disable validation warnings
      */
     endDate?: Schema$GoogleTypeDate;
     /**
-     * Optional. The start date of the deny maintenance period.
+     * Optional. Disable validation warnings
      */
     startDate?: Schema$GoogleTypeDate;
     /**
-     * Optional. Time in UTC when the deny period starts on start_date and ends on end_date.
+     * Optional. Disable validation warnings
      */
     time?: Schema$GoogleTypeTimeOfDay;
   }
   /**
-   * MaintenanceInfo to capture the maintenance details of database resource.
+   * Disable validation warnings
    */
   export interface Schema$StorageDatabasecenterPartnerapiV1mainResourceMaintenanceInfo {
     /**
-     * Optional. The date when the current maintenance version was released.
+     * Optional. Disable validation warnings
      */
     currentVersionReleaseDate?: Schema$GoogleTypeDate;
     /**
-     * Optional. List of Deny maintenance period for the database resource.
+     * Optional. Disable validation warnings
      */
     denyMaintenanceSchedules?: Schema$StorageDatabasecenterPartnerapiV1mainResourceMaintenanceDenySchedule[];
     /**
-     * Optional. Whether the instance is in stopped state. This information is temporarily being captured in maintenanceInfo, till STOPPED state is supported by DB Center.
+     * Optional. Disable validation warnings
      */
     isInstanceStopped?: boolean | null;
     /**
-     * Optional. Maintenance window for the database resource.
+     * Optional. Disable validation warnings
      */
     maintenanceSchedule?: Schema$StorageDatabasecenterPartnerapiV1mainResourceMaintenanceSchedule;
     /**
-     * Output only. Current state of maintenance on the database resource.
+     * Output only. Disable validation warnings
      */
     maintenanceState?: string | null;
     /**
-     * Optional. Current Maintenance version of the database resource. Example: "MYSQL_8_0_41.R20250531.01_15"
+     * Optional. Disable validation warnings
      */
     maintenanceVersion?: string | null;
     /**
-     * Optional. Upcoming maintenance for the database resource. This field is populated once SLM generates and publishes upcoming maintenance window.
+     * Optional. Disable validation warnings
+     */
+    nextAvailableMaintenanceVersions?: string[] | null;
+    /**
+     * Optional. Disable validation warnings
      */
     upcomingMaintenance?: Schema$StorageDatabasecenterPartnerapiV1mainUpcomingMaintenance;
   }
   /**
-   * Maintenance window for the database resource. It specifies preferred time and day of the week and phase in some cases, when the maintenance can start. This is configured by the customer.
+   * Disable validation warnings
    */
   export interface Schema$StorageDatabasecenterPartnerapiV1mainResourceMaintenanceSchedule {
     /**
-     * Optional. Preferred day of the week for maintenance, e.g. MONDAY, TUESDAY, etc.
+     * Optional. Disable validation warnings
      */
     day?: string | null;
     /**
-     * Optional. Phase of the maintenance window. This is to capture order of maintenance. For example, for Cloud SQL resources, this can be used to capture if the maintenance window is in Week1, Week2, Week5, etc. Non production resources are usually part of early phase. For more details, refer to Cloud SQL resources - https://cloud.google.com/sql/docs/mysql/maintenance
+     * Optional. Disable validation warnings
      */
     phase?: string | null;
     /**
-     * Optional. Preferred time to start the maintenance operation on the specified day.
+     * Optional. Disable validation warnings
      */
     time?: Schema$GoogleTypeTimeOfDay;
   }
+  /**
+   * Disable validation warnings
+   */
   export interface Schema$StorageDatabasecenterPartnerapiV1mainRetentionSettings {
     /**
-     * Duration based retention period i.e. 172800 seconds (2 days)
+     * Disable validation warnings
      */
     durationBasedRetention?: string | null;
+    /**
+     * Disable validation warnings
+     */
     quantityBasedRetention?: number | null;
     /**
-     * The unit that 'retained_backups' represents.
+     * Disable validation warnings
      */
     retentionUnit?: string | null;
+    /**
+     * Disable validation warnings
+     */
     timeBasedRetention?: string | null;
     /**
-     * Timestamp based retention period i.e. 2024-05-01T00:00:00Z
+     * Disable validation warnings
      */
     timestampBasedRetentionTime?: string | null;
   }
   /**
-   * SignalMetadata contains one of the signal metadata proto messages associated with a SignalType. This proto will be mapped to SignalMetadata message in storage.proto. Next ID: 3
+   * Disable validation warnings
    */
   export interface Schema$StorageDatabasecenterPartnerapiV1mainSignalMetadata {
     /**
-     * Signal data for backup runs.
+     * Disable validation warnings
      */
     backupRun?: Schema$StorageDatabasecenterPartnerapiV1mainBackupRun;
     /**
-     * Signal data for boolean signals.
+     * Disable validation warnings
      */
     signalBoolValue?: boolean | null;
   }
   /**
-   * Message type for storing tags. Tags provide a way to create annotations for resources, and in some cases conditionally allow or deny policies based on whether a resource has a specific tag.
+   * Disable validation warnings
    */
   export interface Schema$StorageDatabasecenterPartnerapiV1mainTags {
     /**
-     * The Tag key/value mappings.
+     * Disable validation warnings
      */
     tags?: {[key: string]: string} | null;
   }
   /**
-   * Upcoming maintenance for the database resource. This is generated by SLM once the upcoming maintenance schedule is published.
+   * Disable validation warnings
    */
   export interface Schema$StorageDatabasecenterPartnerapiV1mainUpcomingMaintenance {
     /**
-     * Optional. The end time of the upcoming maintenance.
+     * Optional. Disable validation warnings
      */
     endTime?: string | null;
     /**
-     * Optional. The start time of the upcoming maintenance.
+     * Optional. Disable validation warnings
      */
     startTime?: string | null;
   }
   /**
-   * Message type for storing user labels. User labels are used to tag App Engine resources, allowing users to search for resources matching a set of labels and to aggregate usage data by labels.
+   * Disable validation warnings
    */
   export interface Schema$StorageDatabasecenterPartnerapiV1mainUserLabels {
+    /**
+     * Disable validation warnings
+     */
     labels?: {[key: string]: string} | null;
   }
   /**
@@ -2552,6 +2643,10 @@ export namespace alloydb_v1 {
      * The list of allowed values, if bounded. This field will be empty if there is a unbounded number of allowed values.
      */
     allowedValues?: string[] | null;
+    /**
+     * Output only. Whether the allowed values are case agnostic.
+     */
+    caseAgnostic?: boolean | null;
   }
   /**
    * SupportedDatabaseFlag gives general information about a database flag, like type and allowed values. This is a static value that is defined on the server side, and it cannot be modified by callers. To set the Database flags on a particular Instance, a caller should modify the Instance.database_flags field.
@@ -3246,8 +3341,7 @@ export namespace alloydb_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3393,8 +3487,7 @@ export namespace alloydb_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3552,8 +3645,7 @@ export namespace alloydb_v1 {
         | BodyResponseCallback<Schema$Backup>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Backup>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Backup> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Backup>>
@@ -3878,8 +3970,7 @@ export namespace alloydb_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4185,8 +4276,7 @@ export namespace alloydb_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4377,8 +4467,7 @@ export namespace alloydb_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4527,8 +4616,7 @@ export namespace alloydb_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4676,8 +4764,7 @@ export namespace alloydb_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4849,8 +4936,7 @@ export namespace alloydb_v1 {
         | BodyResponseCallback<Schema$Cluster>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Cluster>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Cluster> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Cluster>>
@@ -4999,8 +5085,7 @@ export namespace alloydb_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5125,8 +5210,7 @@ export namespace alloydb_v1 {
     list(
       params: Params$Resource$Projects$Locations$Clusters$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListClustersResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListClustersResponse>,
       callback: BodyResponseCallback<Schema$ListClustersResponse>
     ): void;
     list(
@@ -5339,8 +5423,7 @@ export namespace alloydb_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5487,8 +5570,7 @@ export namespace alloydb_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5643,8 +5725,7 @@ export namespace alloydb_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5794,8 +5875,7 @@ export namespace alloydb_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5944,8 +6024,7 @@ export namespace alloydb_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -6096,8 +6175,7 @@ export namespace alloydb_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -6494,8 +6572,7 @@ export namespace alloydb_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -6682,8 +6759,7 @@ export namespace alloydb_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -6830,8 +6906,7 @@ export namespace alloydb_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -6978,8 +7053,7 @@ export namespace alloydb_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -7149,8 +7223,7 @@ export namespace alloydb_v1 {
         | BodyResponseCallback<Schema$Instance>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Instance>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Instance> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Instance>>
@@ -7445,8 +7518,7 @@ export namespace alloydb_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -7575,8 +7647,7 @@ export namespace alloydb_v1 {
     list(
       params: Params$Resource$Projects$Locations$Clusters$Instances$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListInstancesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListInstancesResponse>,
       callback: BodyResponseCallback<Schema$ListInstancesResponse>
     ): void;
     list(
@@ -7784,8 +7855,7 @@ export namespace alloydb_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -7933,8 +8003,7 @@ export namespace alloydb_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -8267,8 +8336,7 @@ export namespace alloydb_v1 {
         | BodyResponseCallback<Schema$User>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$User>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$User> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$User>>
@@ -8406,8 +8474,7 @@ export namespace alloydb_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -8544,8 +8611,7 @@ export namespace alloydb_v1 {
         | BodyResponseCallback<Schema$User>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$User>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$User> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$User>>
@@ -8849,8 +8915,7 @@ export namespace alloydb_v1 {
         | BodyResponseCallback<Schema$User>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$User>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$User> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$User>>
@@ -9087,8 +9152,7 @@ export namespace alloydb_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -9219,8 +9283,7 @@ export namespace alloydb_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -9357,8 +9420,7 @@ export namespace alloydb_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -9483,8 +9545,7 @@ export namespace alloydb_v1 {
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListOperationsResponse>,
       callback: BodyResponseCallback<Schema$ListOperationsResponse>
     ): void;
     list(

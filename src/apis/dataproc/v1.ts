@@ -133,7 +133,7 @@ export namespace dataproc_v1 {
      */
     acceleratorCount?: number | null;
     /**
-     * Full URL, partial URI, or short name of the accelerator type resource to expose to this instance. See Compute Engine AcceleratorTypes (https://cloud.google.com/compute/docs/reference/v1/acceleratorTypes).Examples: https://www.googleapis.com/compute/v1/projects/[project_id]/zones/[zone]/acceleratorTypes/nvidia-tesla-t4 projects/[project_id]/zones/[zone]/acceleratorTypes/nvidia-tesla-t4 nvidia-tesla-t4Auto Zone Exception: If you are using the Dataproc Auto Zone Placement (https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/auto-zone#using_auto_zone_placement) feature, you must use the short name of the accelerator type resource, for example, nvidia-tesla-t4.
+     * Full URL, partial URI, or short name of the accelerator type resource to expose to this instance. See Compute Engine AcceleratorTypes (https://cloud.google.com/compute/docs/reference/v1/acceleratorTypes).Examples: https://www.googleapis.com/compute/v1/projects/[project_id]/zones/[zone]/acceleratorTypes/nvidia-tesla-t4 projects/[project_id]/zones/[zone]/acceleratorTypes/nvidia-tesla-t4 nvidia-tesla-t4Auto Zone Exception: If you are using Auto Zone Placement (https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/auto-zone#using_auto_zone_placement), you must use the short name of the accelerator type resource, for example, nvidia-tesla-t4.
      */
     acceleratorTypeUri?: string | null;
   }
@@ -154,6 +154,24 @@ export namespace dataproc_v1 {
      * Output only. Data corresponding to a spark job.
      */
     jobData?: Schema$JobData;
+  }
+  /**
+   * Details of a native build info for a Spark Application
+   */
+  export interface Schema$AccessSessionSparkApplicationNativeBuildInfoResponse {
+    /**
+     * Native SQL Execution Data
+     */
+    executionData?: Schema$NativeBuildInfoUiData;
+  }
+  /**
+   * Details of a native query for a Spark Application
+   */
+  export interface Schema$AccessSessionSparkApplicationNativeSqlQueryResponse {
+    /**
+     * Native SQL Execution Data
+     */
+    executionData?: Schema$NativeSqlExecutionUiData;
   }
   /**
    * A summary of Spark Application
@@ -217,6 +235,24 @@ export namespace dataproc_v1 {
      * Output only. Data corresponding to a spark job.
      */
     jobData?: Schema$JobData;
+  }
+  /**
+   * Details of Native Build Info for a Spark Application
+   */
+  export interface Schema$AccessSparkApplicationNativeBuildInfoResponse {
+    /**
+     * Native Build Info Data
+     */
+    buildInfo?: Schema$NativeBuildInfoUiData;
+  }
+  /**
+   * Details of a query for a Spark Application
+   */
+  export interface Schema$AccessSparkApplicationNativeSqlQueryResponse {
+    /**
+     * Native SQL Execution Data
+     */
+    executionData?: Schema$NativeSqlExecutionUiData;
   }
   /**
    * A summary of Spark Application
@@ -384,6 +420,43 @@ export namespace dataproc_v1 {
     provisionedThroughput?: string | null;
   }
   /**
+   * Metadata describing the Attachment operation.
+   */
+  export interface Schema$AttachmentOperationMetadata {
+    /**
+     * Output only. Name of the attachment for the operation.
+     */
+    attachment?: string | null;
+    /**
+     * Output only. Attachment UUID for the operation.
+     */
+    attachmentUuid?: string | null;
+    /**
+     * Output only. The time when the operation was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. Short description of the operation.
+     */
+    description?: string | null;
+    /**
+     * Output only. The time when the operation finished.
+     */
+    doneTime?: string | null;
+    /**
+     * Output only. Labels associated with the operation.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Output only. The operation type.
+     */
+    operationType?: string | null;
+    /**
+     * Output only. Warnings encountered during operation execution.
+     */
+    warnings?: string[] | null;
+  }
+  /**
    * Authentication configuration for a workload is used to set the default identity for the workload execution. The config specifies the type of identity (service account or user) that will be used by workloads to access resources on the project(s).
    */
   export interface Schema$AuthenticationConfig {
@@ -397,7 +470,7 @@ export namespace dataproc_v1 {
    */
   export interface Schema$AutoscalingConfig {
     /**
-     * Optional. The autoscaling policy used by the cluster.Only resource names including projectid and location (region) are valid. Examples: https://www.googleapis.com/compute/v1/projects/[project_id]/locations/[dataproc_region]/autoscalingPolicies/[policy_id] projects/[project_id]/locations/[dataproc_region]/autoscalingPolicies/[policy_id]Note that the policy must be in the same project and Dataproc region.
+     * Optional. The autoscaling policy used by the cluster.Only resource names including projectid and location (region) are valid. Examples: https://www.googleapis.com/compute/v1/projects/[project_id]/locations/[dataproc_region]/autoscalingPolicies/[policy_id] projects/[project_id]/locations/[dataproc_region]/autoscalingPolicies/[policy_id]Note that the policy must be in the same project and region.
      */
     policyUri?: string | null;
   }
@@ -657,7 +730,7 @@ export namespace dataproc_v1 {
    */
   export interface Schema$CancelJobRequest {}
   /**
-   * Describes the identifying information, config, and status of a Dataproc cluster
+   * Describes the identifying information, config, and status of a cluster
    */
   export interface Schema$Cluster {
     /**
@@ -665,11 +738,11 @@ export namespace dataproc_v1 {
      */
     clusterName?: string | null;
     /**
-     * Output only. A cluster UUID (Unique Universal Identifier). Dataproc generates this value when it creates the cluster.
+     * Output only. A cluster UUID (Unique Universal Identifier). The service generates this value when it creates the cluster.
      */
     clusterUuid?: string | null;
     /**
-     * Optional. The cluster config for a cluster of Compute Engine Instances. Note that Dataproc may set default values, and values may change when clusters are updated.Exactly one of ClusterConfig or VirtualClusterConfig must be specified.
+     * Optional. The cluster config for a cluster of Compute Engine Instances. Note that the service may set default values, and values may change when clusters are updated.Exactly one of ClusterConfig or VirtualClusterConfig must be specified.
      */
     config?: Schema$ClusterConfig;
     /**
@@ -693,7 +766,7 @@ export namespace dataproc_v1 {
      */
     statusHistory?: Schema$ClusterStatus[];
     /**
-     * Optional. The virtual cluster config is used when creating a Dataproc cluster that does not directly control the underlying compute resources, for example, when creating a Dataproc-on-GKE cluster (https://cloud.google.com/dataproc/docs/guides/dpgke/dataproc-gke-overview). Dataproc may set default values, and values may change when clusters are updated. Exactly one of config or virtual_cluster_config must be specified.
+     * Optional. The virtual cluster config is used when creating a cluster that does not directly control the underlying compute resources, for example, when creating a GKE cluster (https://cloud.google.com/dataproc/docs/guides/dpgke/dataproc-gke-overview). the service may set default values, and values may change when clusters are updated. Exactly one of config or virtual_cluster_config must be specified.
      */
     virtualClusterConfig?: Schema$VirtualClusterConfig;
   }
@@ -718,15 +791,15 @@ export namespace dataproc_v1 {
      */
     clusterType?: string | null;
     /**
-     * Optional. A Cloud Storage bucket used to stage job dependencies, config files, and job driver console output. If you do not specify a staging bucket, Dataproc determines a Cloud Storage location (US, ASIA, or EU) for the cluster staging bucket according to the Compute Engine zone where the cluster is deployed, and then creates and manages this project-level, per-location bucket (see Dataproc staging and temp buckets (https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/staging-bucket)). This field requires a Cloud Storage bucket name, not a gs://... URI to a Cloud Storage bucket.
+     * Optional. A Cloud Storage bucket used to stage job dependencies, config files, and job driver console output. If you do not specify a staging bucket, the service will determine a Cloud Storage location (US, ASIA, or EU) for your cluster's staging bucket according to the Compute Engine zone where your cluster is deployed, and then create and manage this project-level, per-location bucket (see staging and temp buckets (https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/staging-bucket)). This field requires a Cloud Storage bucket name, not a gs://... URI to a Cloud Storage bucket.
      */
     configBucket?: string | null;
     /**
-     * Optional. The config for Dataproc metrics.
+     * Optional. The config for metrics.
      */
     dataprocMetricConfig?: Schema$DataprocMetricConfig;
     /**
-     * Optional. A Cloud Storage bucket used to collect checkpoint diagnostic data (https://cloud.google.com/dataproc/docs/support/diagnose-clusters#checkpoint_diagnostic_data). If you do not specify a diagnostic bucket, Cloud Dataproc will use the Dataproc temp bucket to collect the checkpoint diagnostic data. This field requires a Cloud Storage bucket name, not a gs://... URI to a Cloud Storage bucket.
+     * Optional. A Cloud Storage bucket used to collect checkpoint diagnostic data (https://cloud.google.com/dataproc/docs/support/diagnose-clusters#checkpoint_diagnostic_data). If you do not specify a diagnostic bucket, The service will use the temp bucket to collect the checkpoint diagnostic data. This field requires a Cloud Storage bucket name, not a gs://... URI to a Cloud Storage bucket.
      */
     diagnosticBucket?: string | null;
     /**
@@ -746,7 +819,7 @@ export namespace dataproc_v1 {
      */
     gceClusterConfig?: Schema$GceClusterConfig;
     /**
-     * Optional. BETA. The Kubernetes Engine config for Dataproc clusters deployed to The Kubernetes Engine config for Dataproc clusters deployed to Kubernetes. These config settings are mutually exclusive with Compute Engine-based options, such as gce_cluster_config, master_config, worker_config, secondary_worker_config, and autoscaling_config.
+     * Optional. BETA. The Kubernetes Engine config for clusters deployed to Kubernetes. These config settings are mutually exclusive with Compute Engine-based options, such as gce_cluster_config, master_config, worker_config, secondary_worker_config, and autoscaling_config.
      */
     gkeClusterConfig?: Schema$GkeClusterConfig;
     /**
@@ -778,7 +851,7 @@ export namespace dataproc_v1 {
      */
     softwareConfig?: Schema$SoftwareConfig;
     /**
-     * Optional. A Cloud Storage bucket used to store ephemeral cluster and jobs data, such as Spark and MapReduce history files. If you do not specify a temp bucket, Dataproc determines a Cloud Storage location (US, ASIA, or EU) for the cluster temp bucket according to the Compute Engine zone where the cluster is deployed, and then creates and manages this project-level, per-location bucket. The default bucket has a TTL of 90 days, but you can use any TTL (or none) if you specify a bucket (see Dataproc staging and temp buckets (https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/staging-bucket)). This field requires a Cloud Storage bucket name, not a gs://... URI to a Cloud Storage bucket.
+     * Optional. A Cloud Storage bucket used to store ephemeral cluster and jobs data, such as Spark and MapReduce history files. If you do not specify a temp bucket, the service will determine a Cloud Storage location (US, ASIA, or EU) for your cluster's temp bucket according to the Compute Engine zone where your cluster is deployed, and then create and manage this project-level, per-location bucket. The default bucket has a TTL of 90 days, but you can use any TTL (or none) if you specify a bucket (see staging and temp buckets (https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/staging-bucket)). This field requires a Cloud Storage bucket name, not a gs://... URI to a Cloud Storage bucket.
      */
     tempBucket?: string | null;
     /**
@@ -935,9 +1008,22 @@ export namespace dataproc_v1 {
     cohortSource?: string | null;
   }
   /**
-   * Confidential Instance Config for clusters using Confidential VMs (https://cloud.google.com/compute/confidential-vm/docs)
+   * Response for ComputeTuningConfig RPC.
+   */
+  export interface Schema$ComputeTuningConfigResponse {
+    /**
+     * Recommended Spark properties for the query (e.g., {"spark.sql.shuffle.partitions": "500"\}).
+     */
+    recommendedProperties?: {[key: string]: string} | null;
+  }
+  /**
+   * Confidential Instance Config for clusters using Confidential VMs (https://cloud.google.com/confidential-computing/confidential-vm/docs)
    */
   export interface Schema$ConfidentialInstanceConfig {
+    /**
+     * Optional. Defines the type of Confidential Compute technology to use.
+     */
+    confidentialInstanceType?: string | null;
     /**
      * Optional. Deprecated: Use 'confidential_instance_type' instead. Defines whether the instance should have confidential compute enabled.
      */
@@ -966,7 +1052,7 @@ export namespace dataproc_v1 {
     totalTasks?: number | null;
   }
   /**
-   * Dataproc metric config.
+   * Metric config.
    */
   export interface Schema$DataprocMetricConfig {
     /**
@@ -1314,15 +1400,15 @@ export namespace dataproc_v1 {
    */
   export interface Schema$GceClusterConfig {
     /**
-     * Optional. An optional list of Compute Engine zones where the Dataproc cluster will not be located when Auto Zone is enabled. Only one of zone_uri or auto_zone_exclude_zone_uris can be set. If both are omitted, the service will pick a zone in the cluster Compute Engine region. If auto_zone_exclude_zone_uris is set and there is more than one non-excluded zone, the service will pick one of the non-excluded zones. Otherwise, cluster creation will fail with INVALID_ARGUMENT error.A full URL, partial URI, or short name are valid. Examples: https://www.googleapis.com/compute/v1/projects/[project_id]/zones/[zone] projects/[project_id]/zones/[zone] [zone]
+     * Optional. An optional list of Compute Engine zones where the cluster will not be located when Auto Zone is enabled. Only one of zone_uri or auto_zone_exclude_zone_uris can be set. If both are omitted, the service will pick a zone in the cluster Compute Engine region. If auto_zone_exclude_zone_uris is set and there is more than one non-excluded zone, the service will pick one of the non-excluded zones. Otherwise, cluster creation will fail with INVALID_ARGUMENT error.A full URL, partial URI, or short name are valid. Examples: https://www.googleapis.com/compute/v1/projects/[project_id]/zones/[zone] projects/[project_id]/zones/[zone] [zone]
      */
     autoZoneExcludeZoneUris?: string[] | null;
     /**
-     * Optional. Confidential Instance Config for clusters using Confidential VMs (https://cloud.google.com/compute/confidential-vm/docs).
+     * Optional. Confidential Instance Config for clusters using Confidential VMs (https://cloud.google.com/confidential-computing/confidential-vm/docs).
      */
     confidentialInstanceConfig?: Schema$ConfidentialInstanceConfig;
     /**
-     * Optional. This setting applies to subnetwork-enabled networks. It is set to true by default in clusters created with image versions 2.2.x.When set to true: All cluster VMs have internal IP addresses. Google Private Access (https://cloud.google.com/vpc/docs/private-google-access) must be enabled to access Dataproc and other Google Cloud APIs. Off-cluster dependencies must be configured to be accessible without external IP addresses.When set to false: Cluster VMs are not restricted to internal IP addresses. Ephemeral external IP addresses are assigned to each cluster VM.
+     * Optional. This setting applies to subnetwork-enabled networks. It is set to true by default in clusters created with image versions 2.2.x.When set to true: All cluster VMs have internal IP addresses. Google Private Access (https://cloud.google.com/vpc/docs/private-google-access) must be enabled to access the Dataproc API and other Google Cloud APIs. Off-cluster dependencies must be configured to be accessible without external IP addresses.When set to false: Cluster VMs are not restricted to internal IP addresses. Ephemeral external IP addresses are assigned to each cluster VM.
      */
     internalIpOnly?: boolean | null;
     /**
@@ -1346,11 +1432,11 @@ export namespace dataproc_v1 {
      */
     reservationAffinity?: Schema$ReservationAffinity;
     /**
-     * Optional. Resource manager tags (https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing) to add to all instances (see Use secure tags in Dataproc (https://cloud.google.com/dataproc/docs/guides/use-secure-tags)).
+     * Optional. Resource manager tags (https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing) to add to all instances (see Use secure tags (https://cloud.google.com/dataproc/docs/guides/use-secure-tags)).
      */
     resourceManagerTags?: {[key: string]: string} | null;
     /**
-     * Optional. The Dataproc service account (https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/service-accounts#service_accounts_in_dataproc) (also see VM Data Plane identity (https://cloud.google.com/dataproc/docs/concepts/iam/dataproc-principals#vm_service_account_data_plane_identity)) used by Dataproc cluster VM instances to access Google Cloud Platform services.If not specified, the Compute Engine default service account (https://cloud.google.com/compute/docs/access/service-accounts#default_service_account) is used.
+     * Optional. The VM service account (https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/service-accounts#service_accounts_in_dataproc) (also see VM Data Plane identity (https://cloud.google.com/dataproc/docs/concepts/iam/dataproc-principals#vm_service_account_data_plane_identity)) used by cluster VM instances to access Google Cloud Platform services.If not specified, the Compute Engine default service account (https://cloud.google.com/compute/docs/access/service-accounts#default_service_account) is used.
      */
     serviceAccount?: string | null;
     /**
@@ -1370,7 +1456,7 @@ export namespace dataproc_v1 {
      */
     tags?: string[] | null;
     /**
-     * Optional. The Compute Engine zone where the Dataproc cluster will be located. If omitted, the service will pick a zone in the cluster's Compute Engine region. On a get request, zone will always be present.A full URL, partial URI, or short name are valid. Examples: https://www.googleapis.com/compute/v1/projects/[project_id]/zones/[zone] projects/[project_id]/zones/[zone] [zone]
+     * Optional. The Compute Engine zone where the cluster will be located. If omitted, the service will pick a zone in the cluster's Compute Engine region. On a get request, zone will always be present.A full URL, partial URI, or short name are valid. Examples: https://www.googleapis.com/compute/v1/projects/[project_id]/zones/[zone] projects/[project_id]/zones/[zone] [zone]
      */
     zoneUri?: string | null;
   }
@@ -1437,6 +1523,10 @@ export namespace dataproc_v1 {
      * Optional. Whether the nodes are created as legacy preemptible VM instances (https://cloud.google.com/compute/docs/instances/preemptible). Also see Spot VMs, preemptible VM instances without a maximum lifetime. Legacy and Spot preemptible nodes cannot be used in a node pool with the CONTROLLER role or in the DEFAULT node pool if the CONTROLLER role is not assigned (the DEFAULT node pool will assume the CONTROLLER role).
      */
     preemptible?: boolean | null;
+    /**
+     * Optional. Specifies the service account (https://cloud.google.com/dataproc/docs/guides/dpgke/dataproc-gke-iam) to be used by the node pools. Specify the email address of the service account or its full resource name.Format: projects/{project\}/serviceAccounts/{service_account_email\} or {service_account_email\}.
+     */
+    serviceAccount?: string | null;
     /**
      * Optional. Whether the nodes are created as Spot VM instances (https://cloud.google.com/compute/docs/instances/spot). Spot VMs are the latest update to legacy preemptible VMs. Spot VMs do not have a maximum lifetime. Legacy and Spot preemptible nodes cannot be used in a node pool with the CONTROLLER role or in the DEFAULT node pool if the CONTROLLER role is not assigned (the DEFAULT node pool will assume the CONTROLLER role).
      */
@@ -1586,6 +1676,10 @@ export namespace dataproc_v1 {
    */
   export interface Schema$IdentityConfig {
     /**
+     * Optional. Whether to enable SSH access for the cluster. The default is true for image versions prior to 3.1 and false for image versions 3.1 and later. The default behavior can be changed when creating clusters using image versions 2.3.30 and later.
+     */
+    enableSsh?: boolean | null;
+    /**
      * Required. Map of user to service account.
      */
     userServiceAccountMapping?: {[key: string]: string} | null;
@@ -1665,7 +1759,7 @@ export namespace dataproc_v1 {
      */
     diskConfig?: Schema$DiskConfig;
     /**
-     * Optional. The Compute Engine image resource used for cluster instances.The URI can represent an image or image family.Image examples: https://www.googleapis.com/compute/v1/projects/[project_id]/global/images/[image-id] projects/[project_id]/global/images/[image-id] image-idImage family examples. Dataproc will use the most recent image from the family: https://www.googleapis.com/compute/v1/projects/[project_id]/global/images/family/[custom-image-family-name] projects/[project_id]/global/images/family/[custom-image-family-name]If the URI is unspecified, it will be inferred from SoftwareConfig.image_version or the system default.
+     * Optional. The Compute Engine image resource used for cluster instances.The URI can represent an image or image family.Image examples: https://www.googleapis.com/compute/v1/projects/[project_id]/global/images/[image-id] projects/[project_id]/global/images/[image-id] image-idImage family examples. The service will use the most recent image from the family: https://www.googleapis.com/compute/v1/projects/[project_id]/global/images/family/[custom-image-family-name] projects/[project_id]/global/images/family/[custom-image-family-name]If the URI is unspecified, it will be inferred from SoftwareConfig.image_version or the system default.
      */
     imageUri?: string | null;
     /**
@@ -1673,7 +1767,7 @@ export namespace dataproc_v1 {
      */
     instanceFlexibilityPolicy?: Schema$InstanceFlexibilityPolicy;
     /**
-     * Output only. The list of instance names. Dataproc derives the names from cluster_name, num_instances, and the instance group.
+     * Output only. The list of instance names, derived from cluster_name, num_instances, and the instance group.
      */
     instanceNames?: string[] | null;
     /**
@@ -1685,7 +1779,7 @@ export namespace dataproc_v1 {
      */
     isPreemptible?: boolean | null;
     /**
-     * Optional. The Compute Engine machine type used for cluster instances.A full URL, partial URI, or short name are valid. Examples: https://www.googleapis.com/compute/v1/projects/[project_id]/zones/[zone]/machineTypes/n1-standard-2 projects/[project_id]/zones/[zone]/machineTypes/n1-standard-2 n1-standard-2Auto Zone Exception: If you are using the Dataproc Auto Zone Placement (https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/auto-zone#using_auto_zone_placement) feature, you must use the short name of the machine type resource, for example, n1-standard-2.
+     * Optional. The Compute Engine machine type used for cluster instances.A full URL, partial URI, or short name are valid. Examples: https://www.googleapis.com/compute/v1/projects/[project_id]/zones/[zone]/machineTypes/n1-standard-2 projects/[project_id]/zones/[zone]/machineTypes/n1-standard-2 n1-standard-2Auto Zone Exception: If you are using Auto Zone Placement (https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/auto-zone#using_auto_zone_placement), you must use the short name of the machine type resource, for example, n1-standard-2.
      */
     machineTypeUri?: string | null;
     /**
@@ -1693,7 +1787,7 @@ export namespace dataproc_v1 {
      */
     managedGroupConfig?: Schema$ManagedGroupConfig;
     /**
-     * Optional. Specifies the minimum cpu platform for the Instance Group. See Dataproc -\> Minimum CPU Platform (https://cloud.google.com/dataproc/docs/concepts/compute/dataproc-min-cpu).
+     * Optional. Specifies the minimum cpu platform for the Instance Group. See Minimum CPU Platform (https://cloud.google.com/dataproc/docs/concepts/compute/dataproc-min-cpu).
      */
     minCpuPlatform?: string | null;
     /**
@@ -1739,11 +1833,15 @@ export namespace dataproc_v1 {
    */
   export interface Schema$InstanceSelection {
     /**
+     * Optional. Disk configuration to apply to the instances in this instance selection. If specified on any entry in instanceSelectionList, then it must be specified on every entry in instanceSelectionList and the instanceGroupConfig must not specify any diskConfig.
+     */
+    diskConfig?: Schema$DiskConfig;
+    /**
      * Optional. Full machine-type names, e.g. "n1-standard-16".
      */
     machineTypes?: string[] | null;
     /**
-     * Optional. Preference of this instance selection. Lower number means higher preference. Dataproc will first try to create a VM based on the machine-type with priority rank and fallback to next rank based on availability. Machine types and instance selections with the same priority have the same preference.
+     * Optional. Preference of this instance selection. Lower number means higher preference. The service will first try to create a VM based on the machine-type with priority rank and fallback to next rank based on availability. Machine types and instance selections with the same priority have the same preference.
      */
     rank?: number | null;
   }
@@ -2050,7 +2148,7 @@ export namespace dataproc_v1 {
      */
     crossRealmTrustKdc?: string | null;
     /**
-     * Optional. The remote realm the Dataproc on-cluster KDC will trust, should the user enable cross realm trust.
+     * Optional. The remote realm the on-cluster KDC will trust, should the user enable cross realm trust.
      */
     crossRealmTrustRealm?: string | null;
     /**
@@ -2066,15 +2164,15 @@ export namespace dataproc_v1 {
      */
     kdcDbKeyUri?: string | null;
     /**
-     * Optional. The Cloud Storage URI of a KMS encrypted file containing the password to the user provided key. For the self-signed certificate, this password is generated by Dataproc.
+     * Optional. The Cloud Storage URI of a KMS encrypted file containing the password to the user provided key. For the self-signed certificate, this password is generated by the service.
      */
     keyPasswordUri?: string | null;
     /**
-     * Optional. The Cloud Storage URI of a KMS encrypted file containing the password to the user provided keystore. For the self-signed certificate, this password is generated by Dataproc.
+     * Optional. The Cloud Storage URI of a KMS encrypted file containing the password to the user provided keystore. For the self-signed certificate, this password is generated by the service.
      */
     keystorePasswordUri?: string | null;
     /**
-     * Optional. The Cloud Storage URI of the keystore file used for SSL encryption. If not provided, Dataproc will provide a self-signed certificate.
+     * Optional. The Cloud Storage URI of the keystore file used for SSL encryption. If not provided, the service will provide a self-signed certificate.
      */
     keystoreUri?: string | null;
     /**
@@ -2094,11 +2192,11 @@ export namespace dataproc_v1 {
      */
     tgtLifetimeHours?: number | null;
     /**
-     * Optional. The Cloud Storage URI of a KMS encrypted file containing the password to the user provided truststore. For the self-signed certificate, this password is generated by Dataproc.
+     * Optional. The Cloud Storage URI of a KMS encrypted file containing the password to the user provided truststore. For the self-signed certificate, this password is generated by the service.
      */
     truststorePasswordUri?: string | null;
     /**
-     * Optional. The Cloud Storage URI of the truststore file used for SSL encryption. If not provided, Dataproc will provide a self-signed certificate.
+     * Optional. The Cloud Storage URI of the truststore file used for SSL encryption. If not provided, the service will provide a self-signed certificate.
      */
     truststoreUri?: string | null;
   }
@@ -2339,12 +2437,12 @@ export namespace dataproc_v1 {
    */
   export interface Schema$MetastoreConfig {
     /**
-     * Required. Resource name of an existing Dataproc Metastore service.Example: projects/[project_id]/locations/[dataproc_region]/services/[service-name]
+     * Required. Resource name of an existing Metastore service.Example: projects/[project_id]/locations/[dataproc_region]/services/[service-name]
      */
     dataprocMetastoreService?: string | null;
   }
   /**
-   * A Dataproc custom metric.
+   * A custom metric.
    */
   export interface Schema$Metric {
     /**
@@ -2409,7 +2507,7 @@ export namespace dataproc_v1 {
     numNativeNodes?: number | null;
   }
   /**
-   * Dataproc Node Group. The Dataproc NodeGroup resource is not related to the Dataproc NodeGroupAffinity resource.
+   * Node Group. The NodeGroup resource is not related to the NodeGroupAffinity resource.
    */
   export interface Schema$NodeGroup {
     /**
@@ -2430,7 +2528,7 @@ export namespace dataproc_v1 {
     roles?: string[] | null;
   }
   /**
-   * Node Group Affinity for clusters using sole-tenant node groups. The Dataproc NodeGroupAffinity resource is not related to the Dataproc NodeGroup resource.
+   * Node Group Affinity for clusters using sole-tenant node groups. The NodeGroupAffinity resource is not related to the NodeGroup resource.
    */
   export interface Schema$NodeGroupAffinity {
     /**
@@ -2740,15 +2838,15 @@ export namespace dataproc_v1 {
     autotuningProperties?: {[key: string]: Schema$ValueInfo} | null;
   }
   /**
-   * Defines how Dataproc should create VMs with a mixture of provisioning models.
+   * Defines how to create VMs with a mixture of provisioning models.
    */
   export interface Schema$ProvisioningModelMix {
     /**
-     * Optional. The base capacity that will always use Standard VMs to avoid risk of more preemption than the minimum capacity you need. Dataproc will create only standard VMs until it reaches standard_capacity_base, then it will start using standard_capacity_percent_above_base to mix Spot with Standard VMs. eg. If 15 instances are requested and standard_capacity_base is 5, Dataproc will create 5 standard VMs and then start mixing spot and standard VMs for remaining 10 instances.
+     * Optional. The base capacity that will always use Standard VMs to avoid risk of more preemption than the minimum capacity you need. The service will create only standard VMs until it reaches standard_capacity_base, then it will start using standard_capacity_percent_above_base to mix Spot with Standard VMs. eg. If 15 instances are requested and standard_capacity_base is 5, the service will create 5 standard VMs and thenstart mixing spot and standard VMs for remaining 10 instances.
      */
     standardCapacityBase?: number | null;
     /**
-     * Optional. The percentage of target capacity that should use Standard VM. The remaining percentage will use Spot VMs. The percentage applies only to the capacity above standard_capacity_base. eg. If 15 instances are requested and standard_capacity_base is 5 and standard_capacity_percent_above_base is 30, Dataproc will create 5 standard VMs and then start mixing spot and standard VMs for remaining 10 instances. The mix will be 30% standard and 70% spot.
+     * Optional. The percentage of target capacity that should use Standard VM. The remaining percentage will use Spot VMs. The percentage applies only to the capacity above standard_capacity_base. eg. If 15 instances are requested and standard_capacity_base is 5 and standard_capacity_percent_above_base is 30, the service will create 5 standard VMs and then start mixing spot and standard VMs for remaining 10 instances. The mix will be 30% standard and 70% spot.
      */
     standardCapacityPercentAboveBase?: number | null;
   }
@@ -2973,11 +3071,11 @@ export namespace dataproc_v1 {
      */
     clusterUuid?: string | null;
     /**
-     * Optional. Whether the request is submitted by Dataproc super user. If true, IAM will check 'dataproc.clusters.repair' permission instead of 'dataproc.clusters.update' permission. This is to give Dataproc superuser the ability to repair clusters without granting the overly broad update permission.
+     * Optional. Whether the request is submitted by a super user. If true, IAM will check 'dataproc.clusters.repair' permission instead of 'dataproc.clusters.update' permission. This is to give Dataproc superuser the ability to repair clusters without granting the overly broad update permission.
      */
     dataprocSuperUser?: boolean | null;
     /**
-     * Optional. Timeout for graceful YARN decommissioning. Graceful decommissioning facilitates the removal of cluster nodes without interrupting jobs in progress. The timeout specifies the amount of time to wait for jobs finish before forcefully removing nodes. The default timeout is 0 for forceful decommissioning, and the maximum timeout period is 1 day. (see JSON Mapping—Duration (https://developers.google.com/protocol-buffers/docs/proto3#json)).graceful_decommission_timeout is supported in Dataproc image versions 1.2+.
+     * Optional. Timeout for graceful YARN decommissioning. Graceful decommissioning facilitates the removal of cluster nodes without interrupting jobs in progress. The timeout specifies the amount of time to wait for jobs finish before forcefully removing nodes. The default timeout is 0 for forceful decommissioning, and the maximum timeout period is 1 day. (see JSON Mapping—Duration (https://developers.google.com/protocol-buffers/docs/proto3#json)).graceful_decommission_timeout is supported in image versions 1.2+.
      */
     gracefulDecommissionTimeout?: string | null;
     /**
@@ -3168,6 +3266,19 @@ export namespace dataproc_v1 {
     sparkApplicationJobs?: Schema$JobData[];
   }
   /**
+   * List of all Native queries for a Spark Application.
+   */
+  export interface Schema$SearchSessionSparkApplicationNativeSqlQueriesResponse {
+    /**
+     * This token is included in the response if there are more results to fetch. To fetch additional results, provide this value as the page_token in a subsequent SearchSessionSparkApplicationSqlQueriesRequest.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Output only. Native SQL Execution Data
+     */
+    sparkApplicationNativeSqlQueries?: Schema$NativeSqlExecutionUiData[];
+  }
+  /**
    * List of all queries for a Spark Application.
    */
   export interface Schema$SearchSessionSparkApplicationSqlQueriesResponse {
@@ -3270,6 +3381,19 @@ export namespace dataproc_v1 {
      * Output only. Data corresponding to a spark job.
      */
     sparkApplicationJobs?: Schema$JobData[];
+  }
+  /**
+   * List of all Native SQL queries details for a Spark Application.
+   */
+  export interface Schema$SearchSparkApplicationNativeSqlQueriesResponse {
+    /**
+     * This token is included in the response if there are more results to fetch. To fetch additional results, provide this value as the page_token in a subsequent SearchSparkApplicationNativeSqlQueriesRequest.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Output only. Native SQL Execution Data
+     */
+    sparkApplicationNativeSqlQueries?: Schema$NativeSqlExecutionUiData[];
   }
   /**
    * List of all queries for a Spark Application.
@@ -3618,7 +3742,7 @@ export namespace dataproc_v1 {
    */
   export interface Schema$SoftwareConfig {
     /**
-     * Optional. The version of software inside the cluster. It must be one of the supported Dataproc Versions (https://cloud.google.com/dataproc/docs/concepts/versioning/dataproc-versions#supported-dataproc-image-versions), such as "1.2" (including a subminor version, such as "1.2.29"), or the "preview" version (https://cloud.google.com/dataproc/docs/concepts/versioning/dataproc-versions#other_versions). If unspecified, it defaults to the latest Debian version.
+     * Optional. The version of software inside the cluster. It must be one of the supported Image Versions (https://cloud.google.com/dataproc/docs/concepts/versioning/dataproc-versions#supported-dataproc-image-versions), such as "1.2" (including a subminor version, such as "1.2.29"), or the "preview" version (https://cloud.google.com/dataproc/docs/concepts/versioning/dataproc-versions#other_versions). If unspecified, it defaults to the latest Debian version.
      */
     imageVersion?: string | null;
     /**
@@ -4706,7 +4830,7 @@ export namespace dataproc_v1 {
     values?: string[] | null;
   }
   /**
-   * The Dataproc cluster config for a cluster that does not directly control the underlying compute resources, such as a Dataproc-on-GKE cluster (https://cloud.google.com/dataproc/docs/guides/dpgke/dataproc-gke-overview).
+   * The cluster config for a cluster that does not directly control the underlying compute resources, such as a GKE cluster (https://cloud.google.com/dataproc/docs/guides/dpgke/dataproc-gke-overview).
    */
   export interface Schema$VirtualClusterConfig {
     /**
@@ -4714,11 +4838,11 @@ export namespace dataproc_v1 {
      */
     auxiliaryServicesConfig?: Schema$AuxiliaryServicesConfig;
     /**
-     * Required. The configuration for running the Dataproc cluster on Kubernetes.
+     * Required. The configuration for running the cluster on Kubernetes.
      */
     kubernetesClusterConfig?: Schema$KubernetesClusterConfig;
     /**
-     * Optional. A Cloud Storage bucket used to stage job dependencies, config files, and job driver console output. If you do not specify a staging bucket, Dataproc determines a Cloud Storage location (US, ASIA, or EU) for your cluster's staging bucket according to the Compute Engine zone where your cluster is deployed, and then create and manage this project-level, per-location bucket (see Dataproc staging and temp buckets (https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/staging-bucket)). This field requires a Cloud Storage bucket name, not a gs://... URI to a Cloud Storage bucket.
+     * Optional. A Cloud Storage bucket used to stage job dependencies, config files, and job driver console output. If you do not specify a staging bucket, the service will determine a Cloud Storage location (US, ASIA, or EU) for your cluster's staging bucket according to the Compute Engine zone where your cluster is deployed, and then create and manage this project-level, per-location bucket (see staging and temp buckets (https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/staging-bucket)). This field requires a Cloud Storage bucket name, not a gs://... URI to a Cloud Storage bucket.
      */
     stagingBucket?: string | null;
   }
@@ -5229,8 +5353,7 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -5523,8 +5646,7 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -5828,8 +5950,7 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -5961,8 +6082,7 @@ export namespace dataproc_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Autoscalingpolicies$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -6387,8 +6507,7 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -6560,8 +6679,7 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -6698,8 +6816,7 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -6853,8 +6970,7 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Schema$Batch>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Batch>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Batch> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Batch>>
@@ -6934,7 +7050,7 @@ export namespace dataproc_v1 {
      *
      *   // Do the magic
      *   const res = await dataproc.projects.locations.batches.list({
-     *     // Optional. A filter for the batches to return in the response.A filter is a logical expression constraining the values of various fields in each batch resource. Filters are case sensitive, and may contain multiple clauses combined with logical operators (AND/OR). Supported fields are batch_id, batch_uuid, state, create_time, and labels.e.g. state = RUNNING and create_time < "2023-01-01T00:00:00Z" filters for batches in state RUNNING that were created before 2023-01-01. state = RUNNING and labels.environment=production filters for batches in state in a RUNNING state that have a production environment label.See https://google.aip.dev/assets/misc/ebnf-filtering.txt for a detailed description of the filter syntax and a list of supported comparisons.
+     *     // Optional. A filter for the batches to return in the response.A filter is a logical expression constraining the values of various fields in each batch resource. Filters are case sensitive, and may contain multiple clauses combined with logical operators (AND/OR). Supported fields: * batch_id * batch_uuid * state * create_time * labels * runtime_info.cohort_info.cohort e.g. state = RUNNING and create_time < "2023-01-01T00:00:00Z" filters for batches in state RUNNING that were created before 2023-01-01. state = RUNNING and labels.environment=production filters for batches in state in a RUNNING state that have a production environment label.See https://google.aip.dev/assets/misc/ebnf-filtering.txt for a detailed description of the filter syntax and a list of supported comparisons.
      *     filter: 'placeholder-value',
      *     // Optional. Field(s) on which to sort the list of batches.Currently the only supported sort orders are unspecified (empty) and create_time desc to sort by most recently created batches first.See https://google.aip.dev/132#ordering for more details.
      *     orderBy: 'placeholder-value',
@@ -7095,7 +7211,7 @@ export namespace dataproc_v1 {
   }
   export interface Params$Resource$Projects$Locations$Batches$List extends StandardParameters {
     /**
-     * Optional. A filter for the batches to return in the response.A filter is a logical expression constraining the values of various fields in each batch resource. Filters are case sensitive, and may contain multiple clauses combined with logical operators (AND/OR). Supported fields are batch_id, batch_uuid, state, create_time, and labels.e.g. state = RUNNING and create_time < "2023-01-01T00:00:00Z" filters for batches in state RUNNING that were created before 2023-01-01. state = RUNNING and labels.environment=production filters for batches in state in a RUNNING state that have a production environment label.See https://google.aip.dev/assets/misc/ebnf-filtering.txt for a detailed description of the filter syntax and a list of supported comparisons.
+     * Optional. A filter for the batches to return in the response.A filter is a logical expression constraining the values of various fields in each batch resource. Filters are case sensitive, and may contain multiple clauses combined with logical operators (AND/OR). Supported fields: * batch_id * batch_uuid * state * create_time * labels * runtime_info.cohort_info.cohort e.g. state = RUNNING and create_time < "2023-01-01T00:00:00Z" filters for batches in state RUNNING that were created before 2023-01-01. state = RUNNING and labels.environment=production filters for batches in state in a RUNNING state that have a production environment label.See https://google.aip.dev/assets/misc/ebnf-filtering.txt for a detailed description of the filter syntax and a list of supported comparisons.
      */
     filter?: string;
     /**
@@ -7579,6 +7695,322 @@ export namespace dataproc_v1 {
         );
       } else {
         return createAPIRequest<Schema$AccessSparkApplicationJobResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Obtain build data for Native Job
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataproc.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataproc = google.dataproc('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dataproc',
+     *       'https://www.googleapis.com/auth/dataproc.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await dataproc.projects.locations.batches.sparkApplications.accessNativeBuildInfo(
+     *       {
+     *         // Required. The fully qualified name of the batch to retrieve in the format "projects/PROJECT_ID/locations/DATAPROC_REGION/batches/BATCH_ID/sparkApplications/APPLICATION_ID"
+     *         name: 'projects/my-project/locations/my-location/batches/my-batche/sparkApplications/my-sparkApplication',
+     *         // Required. Parent (Batch) resource reference.
+     *         parent: 'placeholder-value',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "buildInfo": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    accessNativeBuildInfo(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessnativebuildinfo,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    accessNativeBuildInfo(
+      params?: Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessnativebuildinfo,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$AccessSparkApplicationNativeBuildInfoResponse>
+    >;
+    accessNativeBuildInfo(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessnativebuildinfo,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    accessNativeBuildInfo(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessnativebuildinfo,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AccessSparkApplicationNativeBuildInfoResponse>,
+      callback: BodyResponseCallback<Schema$AccessSparkApplicationNativeBuildInfoResponse>
+    ): void;
+    accessNativeBuildInfo(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessnativebuildinfo,
+      callback: BodyResponseCallback<Schema$AccessSparkApplicationNativeBuildInfoResponse>
+    ): void;
+    accessNativeBuildInfo(
+      callback: BodyResponseCallback<Schema$AccessSparkApplicationNativeBuildInfoResponse>
+    ): void;
+    accessNativeBuildInfo(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessnativebuildinfo
+        | BodyResponseCallback<Schema$AccessSparkApplicationNativeBuildInfoResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AccessSparkApplicationNativeBuildInfoResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AccessSparkApplicationNativeBuildInfoResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$AccessSparkApplicationNativeBuildInfoResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessnativebuildinfo;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessnativebuildinfo;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:accessNativeBuildInfo').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AccessSparkApplicationNativeBuildInfoResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AccessSparkApplicationNativeBuildInfoResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Obtain data corresponding to a particular Native SQL Query for a Spark Application.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataproc.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataproc = google.dataproc('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dataproc',
+     *       'https://www.googleapis.com/auth/dataproc.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await dataproc.projects.locations.batches.sparkApplications.accessNativeSqlQuery(
+     *       {
+     *         // Required. Execution ID
+     *         executionId: 'placeholder-value',
+     *         // Required. The fully qualified name of the batch to retrieve in the format "projects/PROJECT_ID/locations/DATAPROC_REGION/batches/BATCH_ID/sparkApplications/APPLICATION_ID"
+     *         name: 'projects/my-project/locations/my-location/batches/my-batche/sparkApplications/my-sparkApplication',
+     *         // Required. Parent (Batch) resource reference.
+     *         parent: 'placeholder-value',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "executionData": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    accessNativeSqlQuery(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessnativesqlquery,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    accessNativeSqlQuery(
+      params?: Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessnativesqlquery,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$AccessSparkApplicationNativeSqlQueryResponse>
+    >;
+    accessNativeSqlQuery(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessnativesqlquery,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    accessNativeSqlQuery(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessnativesqlquery,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AccessSparkApplicationNativeSqlQueryResponse>,
+      callback: BodyResponseCallback<Schema$AccessSparkApplicationNativeSqlQueryResponse>
+    ): void;
+    accessNativeSqlQuery(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessnativesqlquery,
+      callback: BodyResponseCallback<Schema$AccessSparkApplicationNativeSqlQueryResponse>
+    ): void;
+    accessNativeSqlQuery(
+      callback: BodyResponseCallback<Schema$AccessSparkApplicationNativeSqlQueryResponse>
+    ): void;
+    accessNativeSqlQuery(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessnativesqlquery
+        | BodyResponseCallback<Schema$AccessSparkApplicationNativeSqlQueryResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AccessSparkApplicationNativeSqlQueryResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AccessSparkApplicationNativeSqlQueryResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$AccessSparkApplicationNativeSqlQueryResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessnativesqlquery;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessnativesqlquery;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:accessNativeSqlQuery').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AccessSparkApplicationNativeSqlQueryResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AccessSparkApplicationNativeSqlQueryResponse>(
           parameters
         );
       }
@@ -8221,6 +8653,161 @@ export namespace dataproc_v1 {
         return createAPIRequest<Schema$AccessSparkApplicationStageRddOperationGraphResponse>(
           parameters
         );
+      }
+    }
+
+    /**
+     * Returns autotuning configuration for a specific query plan id and cohort id. Called by Spark during query planning.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataproc.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataproc = google.dataproc('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dataproc',
+     *       'https://www.googleapis.com/auth/dataproc.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await dataproc.projects.locations.batches.sparkApplications.computeTuningConfig(
+     *       {
+     *         // Required. Spark execution ID for the query.
+     *         executionId: 'placeholder-value',
+     *         // Required. The fully qualified name of the spark application to retrieve autotuning configuration for in the format "projects/PROJECT_ID/locations/DATAPROC_REGION/batches/BATCH_ID/sparkApplications/APPLICATION_ID"
+     *         name: 'projects/my-project/locations/my-location/batches/my-batche/sparkApplications/my-sparkApplication',
+     *         // Required. Parent (Batch) resource reference.
+     *         parent: 'placeholder-value',
+     *         // Required. Spark semantic query ID.
+     *         semanticQueryId: 'placeholder-value',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "recommendedProperties": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    computeTuningConfig(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Computetuningconfig,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    computeTuningConfig(
+      params?: Params$Resource$Projects$Locations$Batches$Sparkapplications$Computetuningconfig,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ComputeTuningConfigResponse>>;
+    computeTuningConfig(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Computetuningconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    computeTuningConfig(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Computetuningconfig,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ComputeTuningConfigResponse>,
+      callback: BodyResponseCallback<Schema$ComputeTuningConfigResponse>
+    ): void;
+    computeTuningConfig(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Computetuningconfig,
+      callback: BodyResponseCallback<Schema$ComputeTuningConfigResponse>
+    ): void;
+    computeTuningConfig(
+      callback: BodyResponseCallback<Schema$ComputeTuningConfigResponse>
+    ): void;
+    computeTuningConfig(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Batches$Sparkapplications$Computetuningconfig
+        | BodyResponseCallback<Schema$ComputeTuningConfigResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ComputeTuningConfigResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ComputeTuningConfigResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ComputeTuningConfigResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Batches$Sparkapplications$Computetuningconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Batches$Sparkapplications$Computetuningconfig;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:computeTuningConfig').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ComputeTuningConfigResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ComputeTuningConfigResponse>(parameters);
       }
     }
 
@@ -8875,6 +9462,168 @@ export namespace dataproc_v1 {
         );
       } else {
         return createAPIRequest<Schema$SearchSparkApplicationJobsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Obtain data corresponding to Native SQL Queries for a Spark Application.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataproc.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataproc = google.dataproc('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dataproc',
+     *       'https://www.googleapis.com/auth/dataproc.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await dataproc.projects.locations.batches.sparkApplications.searchNativeSqlQueries(
+     *       {
+     *         // Required. The fully qualified name of the batch to retrieve in the format "projects/PROJECT_ID/locations/DATAPROC_REGION/batches/BATCH_ID/sparkApplications/APPLICATION_ID"
+     *         name: 'projects/my-project/locations/my-location/batches/my-batche/sparkApplications/my-sparkApplication',
+     *         // Optional. Maximum number of queries to return in each response. The service may return fewer than this. The default page size is 10; the maximum page size is 100.
+     *         pageSize: 'placeholder-value',
+     *         // Optional. A page token received from a previous SearchSparkApplicationNativeSqlQueries call. Provide this token to retrieve the subsequent page.
+     *         pageToken: 'placeholder-value',
+     *         // Required. Parent (Batch) resource reference.
+     *         parent: 'placeholder-value',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "sparkApplicationNativeSqlQueries": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    searchNativeSqlQueries(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchnativesqlqueries,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    searchNativeSqlQueries(
+      params?: Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchnativesqlqueries,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$SearchSparkApplicationNativeSqlQueriesResponse>
+    >;
+    searchNativeSqlQueries(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchnativesqlqueries,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    searchNativeSqlQueries(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchnativesqlqueries,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SearchSparkApplicationNativeSqlQueriesResponse>,
+      callback: BodyResponseCallback<Schema$SearchSparkApplicationNativeSqlQueriesResponse>
+    ): void;
+    searchNativeSqlQueries(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchnativesqlqueries,
+      callback: BodyResponseCallback<Schema$SearchSparkApplicationNativeSqlQueriesResponse>
+    ): void;
+    searchNativeSqlQueries(
+      callback: BodyResponseCallback<Schema$SearchSparkApplicationNativeSqlQueriesResponse>
+    ): void;
+    searchNativeSqlQueries(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchnativesqlqueries
+        | BodyResponseCallback<Schema$SearchSparkApplicationNativeSqlQueriesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SearchSparkApplicationNativeSqlQueriesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SearchSparkApplicationNativeSqlQueriesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$SearchSparkApplicationNativeSqlQueriesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchnativesqlqueries;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchnativesqlqueries;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:searchNativeSqlQueries').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SearchSparkApplicationNativeSqlQueriesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SearchSparkApplicationNativeSqlQueriesResponse>(
           parameters
         );
       }
@@ -10371,6 +11120,30 @@ export namespace dataproc_v1 {
      */
     parent?: string;
   }
+  export interface Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessnativebuildinfo extends StandardParameters {
+    /**
+     * Required. The fully qualified name of the batch to retrieve in the format "projects/PROJECT_ID/locations/DATAPROC_REGION/batches/BATCH_ID/sparkApplications/APPLICATION_ID"
+     */
+    name?: string;
+    /**
+     * Required. Parent (Batch) resource reference.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessnativesqlquery extends StandardParameters {
+    /**
+     * Required. Execution ID
+     */
+    executionId?: string;
+    /**
+     * Required. The fully qualified name of the batch to retrieve in the format "projects/PROJECT_ID/locations/DATAPROC_REGION/batches/BATCH_ID/sparkApplications/APPLICATION_ID"
+     */
+    name?: string;
+    /**
+     * Required. Parent (Batch) resource reference.
+     */
+    parent?: string;
+  }
   export interface Params$Resource$Projects$Locations$Batches$Sparkapplications$Accesssqlplan extends StandardParameters {
     /**
      * Required. Execution ID
@@ -10442,6 +11215,24 @@ export namespace dataproc_v1 {
      * Required. Stage ID
      */
     stageId?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Batches$Sparkapplications$Computetuningconfig extends StandardParameters {
+    /**
+     * Required. Spark execution ID for the query.
+     */
+    executionId?: string;
+    /**
+     * Required. The fully qualified name of the spark application to retrieve autotuning configuration for in the format "projects/PROJECT_ID/locations/DATAPROC_REGION/batches/BATCH_ID/sparkApplications/APPLICATION_ID"
+     */
+    name?: string;
+    /**
+     * Required. Parent (Batch) resource reference.
+     */
+    parent?: string;
+    /**
+     * Required. Spark semantic query ID.
+     */
+    semanticQueryId?: string;
   }
   export interface Params$Resource$Projects$Locations$Batches$Sparkapplications$Search extends StandardParameters {
     /**
@@ -10540,6 +11331,24 @@ export namespace dataproc_v1 {
     pageSize?: number;
     /**
      * Optional. A page token received from a previous SearchSparkApplicationJobs call. Provide this token to retrieve the subsequent page.
+     */
+    pageToken?: string;
+    /**
+     * Required. Parent (Batch) resource reference.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchnativesqlqueries extends StandardParameters {
+    /**
+     * Required. The fully qualified name of the batch to retrieve in the format "projects/PROJECT_ID/locations/DATAPROC_REGION/batches/BATCH_ID/sparkApplications/APPLICATION_ID"
+     */
+    name?: string;
+    /**
+     * Optional. Maximum number of queries to return in each response. The service may return fewer than this. The default page size is 10; the maximum page size is 100.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token received from a previous SearchSparkApplicationNativeSqlQueries call. Provide this token to retrieve the subsequent page.
      */
     pageToken?: string;
     /**
@@ -10814,8 +11623,7 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -10949,8 +11757,7 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -11091,8 +11898,7 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -11221,8 +12027,7 @@ export namespace dataproc_v1 {
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListOperationsResponse>,
       callback: BodyResponseCallback<Schema$ListOperationsResponse>
     ): void;
     list(
@@ -11462,8 +12267,7 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -11608,8 +12412,7 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -11761,8 +12564,7 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Schema$Session>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Session>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Session> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Session>>
@@ -11888,8 +12690,7 @@ export namespace dataproc_v1 {
     list(
       params: Params$Resource$Projects$Locations$Sessions$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListSessionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListSessionsResponse>,
       callback: BodyResponseCallback<Schema$ListSessionsResponse>
     ): void;
     list(
@@ -12060,8 +12861,7 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -12642,6 +13442,322 @@ export namespace dataproc_v1 {
         );
       } else {
         return createAPIRequest<Schema$AccessSessionSparkApplicationJobResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Obtain data corresponding to Native Build Information for a Spark Application.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataproc.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataproc = google.dataproc('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dataproc',
+     *       'https://www.googleapis.com/auth/dataproc.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await dataproc.projects.locations.sessions.sparkApplications.accessNativeBuildInfo(
+     *       {
+     *         // Required. The fully qualified name of the session to retrieve in the format "projects/PROJECT_ID/locations/DATAPROC_REGION/sessions/SESSION_ID/sparkApplications/APPLICATION_ID"
+     *         name: 'projects/my-project/locations/my-location/sessions/my-session/sparkApplications/my-sparkApplication',
+     *         // Required. Parent (Session) resource reference.
+     *         parent: 'placeholder-value',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "executionData": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    accessNativeBuildInfo(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessnativebuildinfo,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    accessNativeBuildInfo(
+      params?: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessnativebuildinfo,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$AccessSessionSparkApplicationNativeBuildInfoResponse>
+    >;
+    accessNativeBuildInfo(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessnativebuildinfo,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    accessNativeBuildInfo(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessnativebuildinfo,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AccessSessionSparkApplicationNativeBuildInfoResponse>,
+      callback: BodyResponseCallback<Schema$AccessSessionSparkApplicationNativeBuildInfoResponse>
+    ): void;
+    accessNativeBuildInfo(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessnativebuildinfo,
+      callback: BodyResponseCallback<Schema$AccessSessionSparkApplicationNativeBuildInfoResponse>
+    ): void;
+    accessNativeBuildInfo(
+      callback: BodyResponseCallback<Schema$AccessSessionSparkApplicationNativeBuildInfoResponse>
+    ): void;
+    accessNativeBuildInfo(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessnativebuildinfo
+        | BodyResponseCallback<Schema$AccessSessionSparkApplicationNativeBuildInfoResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AccessSessionSparkApplicationNativeBuildInfoResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AccessSessionSparkApplicationNativeBuildInfoResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$AccessSessionSparkApplicationNativeBuildInfoResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessnativebuildinfo;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessnativebuildinfo;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:accessNativeBuildInfo').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AccessSessionSparkApplicationNativeBuildInfoResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AccessSessionSparkApplicationNativeBuildInfoResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Obtain data corresponding to a particular Native SQL Query for a Spark Application.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataproc.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataproc = google.dataproc('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dataproc',
+     *       'https://www.googleapis.com/auth/dataproc.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await dataproc.projects.locations.sessions.sparkApplications.accessNativeSqlQuery(
+     *       {
+     *         // Required. Execution ID
+     *         executionId: 'placeholder-value',
+     *         // Required. The fully qualified name of the session to retrieve in the format "projects/PROJECT_ID/locations/DATAPROC_REGION/sessions/SESSION_ID/sparkApplications/APPLICATION_ID"
+     *         name: 'projects/my-project/locations/my-location/sessions/my-session/sparkApplications/my-sparkApplication',
+     *         // Required. Parent (Session) resource reference.
+     *         parent: 'placeholder-value',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "executionData": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    accessNativeSqlQuery(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessnativesqlquery,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    accessNativeSqlQuery(
+      params?: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessnativesqlquery,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$AccessSessionSparkApplicationNativeSqlQueryResponse>
+    >;
+    accessNativeSqlQuery(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessnativesqlquery,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    accessNativeSqlQuery(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessnativesqlquery,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AccessSessionSparkApplicationNativeSqlQueryResponse>,
+      callback: BodyResponseCallback<Schema$AccessSessionSparkApplicationNativeSqlQueryResponse>
+    ): void;
+    accessNativeSqlQuery(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessnativesqlquery,
+      callback: BodyResponseCallback<Schema$AccessSessionSparkApplicationNativeSqlQueryResponse>
+    ): void;
+    accessNativeSqlQuery(
+      callback: BodyResponseCallback<Schema$AccessSessionSparkApplicationNativeSqlQueryResponse>
+    ): void;
+    accessNativeSqlQuery(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessnativesqlquery
+        | BodyResponseCallback<Schema$AccessSessionSparkApplicationNativeSqlQueryResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AccessSessionSparkApplicationNativeSqlQueryResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AccessSessionSparkApplicationNativeSqlQueryResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$AccessSessionSparkApplicationNativeSqlQueryResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessnativesqlquery;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessnativesqlquery;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:accessNativeSqlQuery').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AccessSessionSparkApplicationNativeSqlQueryResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AccessSessionSparkApplicationNativeSqlQueryResponse>(
           parameters
         );
       }
@@ -13946,6 +15062,168 @@ export namespace dataproc_v1 {
         );
       } else {
         return createAPIRequest<Schema$SearchSessionSparkApplicationJobsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Obtain data corresponding to Native SQL Queries for a Spark Application.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataproc.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataproc = google.dataproc('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dataproc',
+     *       'https://www.googleapis.com/auth/dataproc.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await dataproc.projects.locations.sessions.sparkApplications.searchNativeSqlQueries(
+     *       {
+     *         // Required. The fully qualified name of the session to retrieve in the format "projects/PROJECT_ID/locations/DATAPROC_REGION/sessions/SESSION_ID/sparkApplications/APPLICATION_ID"
+     *         name: 'projects/my-project/locations/my-location/sessions/my-session/sparkApplications/my-sparkApplication',
+     *         // Optional. Maximum number of queries to return in each response. The service may return fewer than this. The default page size is 10; the maximum page size is 100.
+     *         pageSize: 'placeholder-value',
+     *         // Optional. A page token received from a previous SearchSessionSparkApplicationSqlQueries call. Provide this token to retrieve the subsequent page.
+     *         pageToken: 'placeholder-value',
+     *         // Required. Parent (Session) resource reference.
+     *         parent: 'placeholder-value',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "sparkApplicationNativeSqlQueries": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    searchNativeSqlQueries(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchnativesqlqueries,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    searchNativeSqlQueries(
+      params?: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchnativesqlqueries,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$SearchSessionSparkApplicationNativeSqlQueriesResponse>
+    >;
+    searchNativeSqlQueries(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchnativesqlqueries,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    searchNativeSqlQueries(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchnativesqlqueries,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SearchSessionSparkApplicationNativeSqlQueriesResponse>,
+      callback: BodyResponseCallback<Schema$SearchSessionSparkApplicationNativeSqlQueriesResponse>
+    ): void;
+    searchNativeSqlQueries(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchnativesqlqueries,
+      callback: BodyResponseCallback<Schema$SearchSessionSparkApplicationNativeSqlQueriesResponse>
+    ): void;
+    searchNativeSqlQueries(
+      callback: BodyResponseCallback<Schema$SearchSessionSparkApplicationNativeSqlQueriesResponse>
+    ): void;
+    searchNativeSqlQueries(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchnativesqlqueries
+        | BodyResponseCallback<Schema$SearchSessionSparkApplicationNativeSqlQueriesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SearchSessionSparkApplicationNativeSqlQueriesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SearchSessionSparkApplicationNativeSqlQueriesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$SearchSessionSparkApplicationNativeSqlQueriesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchnativesqlqueries;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchnativesqlqueries;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:searchNativeSqlQueries').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SearchSessionSparkApplicationNativeSqlQueriesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SearchSessionSparkApplicationNativeSqlQueriesResponse>(
           parameters
         );
       }
@@ -15449,6 +16727,30 @@ export namespace dataproc_v1 {
      */
     parent?: string;
   }
+  export interface Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessnativebuildinfo extends StandardParameters {
+    /**
+     * Required. The fully qualified name of the session to retrieve in the format "projects/PROJECT_ID/locations/DATAPROC_REGION/sessions/SESSION_ID/sparkApplications/APPLICATION_ID"
+     */
+    name?: string;
+    /**
+     * Required. Parent (Session) resource reference.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessnativesqlquery extends StandardParameters {
+    /**
+     * Required. Execution ID
+     */
+    executionId?: string;
+    /**
+     * Required. The fully qualified name of the session to retrieve in the format "projects/PROJECT_ID/locations/DATAPROC_REGION/sessions/SESSION_ID/sparkApplications/APPLICATION_ID"
+     */
+    name?: string;
+    /**
+     * Required. Parent (Session) resource reference.
+     */
+    parent?: string;
+  }
   export interface Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accesssqlplan extends StandardParameters {
     /**
      * Required. Execution ID
@@ -15622,6 +16924,24 @@ export namespace dataproc_v1 {
     pageSize?: number;
     /**
      * Optional. A page token received from a previous SearchSessionSparkApplicationJobs call. Provide this token to retrieve the subsequent page.
+     */
+    pageToken?: string;
+    /**
+     * Required. Parent (Session) resource reference.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchnativesqlqueries extends StandardParameters {
+    /**
+     * Required. The fully qualified name of the session to retrieve in the format "projects/PROJECT_ID/locations/DATAPROC_REGION/sessions/SESSION_ID/sparkApplications/APPLICATION_ID"
+     */
+    name?: string;
+    /**
+     * Optional. Maximum number of queries to return in each response. The service may return fewer than this. The default page size is 10; the maximum page size is 100.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token received from a previous SearchSessionSparkApplicationSqlQueries call. Provide this token to retrieve the subsequent page.
      */
     pageToken?: string;
     /**
@@ -16081,8 +17401,7 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -16916,8 +18235,7 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -17215,8 +18533,7 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -17370,8 +18687,7 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -17536,8 +18852,7 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -17841,8 +19156,7 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -17974,8 +19288,7 @@ export namespace dataproc_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Workflowtemplates$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -18605,8 +19918,7 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -18897,8 +20209,7 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -19201,8 +20512,7 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -19334,8 +20644,7 @@ export namespace dataproc_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Regions$Autoscalingpolicies$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -19695,7 +21004,7 @@ export namespace dataproc_v1 {
      *     actionOnFailedPrimaryWorkers: 'placeholder-value',
      *     // Required. The ID of the Google Cloud Platform project that the cluster belongs to.
      *     projectId: 'placeholder-value',
-     *     // Required. The Dataproc region in which to handle the request.
+     *     // Required. The region in which to handle the request.
      *     region: 'placeholder-value',
      *     // Optional. A unique ID used to identify the request. If the server receives two CreateClusterRequest (https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#google.cloud.dataproc.v1.CreateClusterRequest)s with the same id, then the second request will be ignored and the first google.longrunning.Operation created and stored in the backend is returned.It is recommended to always set this value to a UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
      *     requestId: 'placeholder-value',
@@ -19774,8 +21083,7 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -19864,7 +21172,7 @@ export namespace dataproc_v1 {
      *     gracefulTerminationTimeout: 'placeholder-value',
      *     // Required. The ID of the Google Cloud Platform project that the cluster belongs to.
      *     projectId: 'placeholder-value',
-     *     // Required. The Dataproc region in which to handle the request.
+     *     // Required. The region in which to handle the request.
      *     region: 'placeholder-value',
      *     // Optional. A unique ID used to identify the request. If the server receives two DeleteClusterRequest (https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#google.cloud.dataproc.v1.DeleteClusterRequest)s with the same id, then the second request will be ignored and the first google.longrunning.Operation created and stored in the backend is returned.It is recommended to always set this value to a UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
      *     requestId: 'placeholder-value',
@@ -19927,8 +21235,7 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -20014,7 +21321,7 @@ export namespace dataproc_v1 {
      *     clusterName: 'placeholder-value',
      *     // Required. The ID of the Google Cloud Platform project that the cluster belongs to.
      *     projectId: 'placeholder-value',
-     *     // Required. The Dataproc region in which to handle the request.
+     *     // Required. The region in which to handle the request.
      *     region: 'placeholder-value',
      *
      *     // Request body metadata
@@ -20089,8 +21396,7 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -20177,7 +21483,7 @@ export namespace dataproc_v1 {
      *     clusterName: 'placeholder-value',
      *     // Required. The ID of the Google Cloud Platform project that the cluster belongs to.
      *     projectId: 'placeholder-value',
-     *     // Required. The Dataproc region in which to handle the request.
+     *     // Required. The region in which to handle the request.
      *     region: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -20242,8 +21548,7 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Schema$Cluster>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Cluster>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Cluster> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Cluster>>
@@ -20392,8 +21697,7 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -20549,8 +21853,7 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -20641,7 +21944,7 @@ export namespace dataproc_v1 {
      *     pageToken: 'placeholder-value',
      *     // Required. The ID of the Google Cloud Platform project that the cluster belongs to.
      *     projectId: 'placeholder-value',
-     *     // Required. The Dataproc region in which to handle the request.
+     *     // Required. The region in which to handle the request.
      *     region: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -20681,8 +21984,7 @@ export namespace dataproc_v1 {
     list(
       params: Params$Resource$Projects$Regions$Clusters$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListClustersResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListClustersResponse>,
       callback: BodyResponseCallback<Schema$ListClustersResponse>
     ): void;
     list(
@@ -20785,11 +22087,11 @@ export namespace dataproc_v1 {
      *   const res = await dataproc.projects.regions.clusters.patch({
      *     // Required. The cluster name.
      *     clusterName: 'placeholder-value',
-     *     // Optional. Timeout for graceful YARN decommissioning. Graceful decommissioning allows removing nodes from the cluster without interrupting jobs in progress. Timeout specifies how long to wait for jobs in progress to finish before forcefully removing nodes (and potentially interrupting jobs). Default timeout is 0 (for forceful decommission), and the maximum allowed timeout is 1 day. (see JSON representation of Duration (https://developers.google.com/protocol-buffers/docs/proto3#json)).Only supported on Dataproc image versions 1.2 and higher.
+     *     // Optional. Timeout for graceful YARN decommissioning. Graceful decommissioning allows removing nodes from the cluster without interrupting jobs in progress. Timeout specifies how long to wait for jobs in progress to finish before forcefully removing nodes (and potentially interrupting jobs). Default timeout is 0 (for forceful decommission), and the maximum allowed timeout is 1 day. (see JSON representation of Duration (https://developers.google.com/protocol-buffers/docs/proto3#json)).Supported in image versions 1.2 and higher.
      *     gracefulDecommissionTimeout: 'placeholder-value',
      *     // Required. The ID of the Google Cloud Platform project the cluster belongs to.
      *     projectId: 'placeholder-value',
-     *     // Required. The Dataproc region in which to handle the request.
+     *     // Required. The region in which to handle the request.
      *     region: 'placeholder-value',
      *     // Optional. A unique ID used to identify the request. If the server receives two UpdateClusterRequest (https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#google.cloud.dataproc.v1.UpdateClusterRequest)s with the same id, then the second request will be ignored and the first google.longrunning.Operation created and stored in the backend is returned.It is recommended to always set this value to a UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
      *     requestId: 'placeholder-value',
@@ -20870,8 +22172,7 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -20957,7 +22258,7 @@ export namespace dataproc_v1 {
      *     clusterName: 'placeholder-value',
      *     // Required. The ID of the Google Cloud Platform project the cluster belongs to.
      *     projectId: 'placeholder-value',
-     *     // Required. The Dataproc region in which to handle the request.
+     *     // Required. The region in which to handle the request.
      *     region: 'placeholder-value',
      *
      *     // Request body metadata
@@ -21032,8 +22333,7 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -21182,8 +22482,7 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -21269,7 +22568,7 @@ export namespace dataproc_v1 {
      *     clusterName: 'placeholder-value',
      *     // Required. The ID of the Google Cloud Platform project the cluster belongs to.
      *     projectId: 'placeholder-value',
-     *     // Required. The Dataproc region in which to handle the request.
+     *     // Required. The region in which to handle the request.
      *     region: 'placeholder-value',
      *
      *     // Request body metadata
@@ -21339,8 +22638,7 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -21426,7 +22724,7 @@ export namespace dataproc_v1 {
      *     clusterName: 'placeholder-value',
      *     // Required. The ID of the Google Cloud Platform project the cluster belongs to.
      *     projectId: 'placeholder-value',
-     *     // Required. The Dataproc region in which to handle the request.
+     *     // Required. The region in which to handle the request.
      *     region: 'placeholder-value',
      *
      *     // Request body metadata
@@ -21496,8 +22794,7 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -21626,8 +22923,7 @@ export namespace dataproc_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Regions$Clusters$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -21709,7 +23005,7 @@ export namespace dataproc_v1 {
      */
     projectId?: string;
     /**
-     * Required. The Dataproc region in which to handle the request.
+     * Required. The region in which to handle the request.
      */
     region?: string;
     /**
@@ -21740,7 +23036,7 @@ export namespace dataproc_v1 {
      */
     projectId?: string;
     /**
-     * Required. The Dataproc region in which to handle the request.
+     * Required. The region in which to handle the request.
      */
     region?: string;
     /**
@@ -21758,7 +23054,7 @@ export namespace dataproc_v1 {
      */
     projectId?: string;
     /**
-     * Required. The Dataproc region in which to handle the request.
+     * Required. The region in which to handle the request.
      */
     region?: string;
 
@@ -21777,7 +23073,7 @@ export namespace dataproc_v1 {
      */
     projectId?: string;
     /**
-     * Required. The Dataproc region in which to handle the request.
+     * Required. The region in which to handle the request.
      */
     region?: string;
   }
@@ -21829,7 +23125,7 @@ export namespace dataproc_v1 {
      */
     projectId?: string;
     /**
-     * Required. The Dataproc region in which to handle the request.
+     * Required. The region in which to handle the request.
      */
     region?: string;
   }
@@ -21839,7 +23135,7 @@ export namespace dataproc_v1 {
      */
     clusterName?: string;
     /**
-     * Optional. Timeout for graceful YARN decommissioning. Graceful decommissioning allows removing nodes from the cluster without interrupting jobs in progress. Timeout specifies how long to wait for jobs in progress to finish before forcefully removing nodes (and potentially interrupting jobs). Default timeout is 0 (for forceful decommission), and the maximum allowed timeout is 1 day. (see JSON representation of Duration (https://developers.google.com/protocol-buffers/docs/proto3#json)).Only supported on Dataproc image versions 1.2 and higher.
+     * Optional. Timeout for graceful YARN decommissioning. Graceful decommissioning allows removing nodes from the cluster without interrupting jobs in progress. Timeout specifies how long to wait for jobs in progress to finish before forcefully removing nodes (and potentially interrupting jobs). Default timeout is 0 (for forceful decommission), and the maximum allowed timeout is 1 day. (see JSON representation of Duration (https://developers.google.com/protocol-buffers/docs/proto3#json)).Supported in image versions 1.2 and higher.
      */
     gracefulDecommissionTimeout?: string;
     /**
@@ -21847,7 +23143,7 @@ export namespace dataproc_v1 {
      */
     projectId?: string;
     /**
-     * Required. The Dataproc region in which to handle the request.
+     * Required. The region in which to handle the request.
      */
     region?: string;
     /**
@@ -21874,7 +23170,7 @@ export namespace dataproc_v1 {
      */
     projectId?: string;
     /**
-     * Required. The Dataproc region in which to handle the request.
+     * Required. The region in which to handle the request.
      */
     region?: string;
 
@@ -21904,7 +23200,7 @@ export namespace dataproc_v1 {
      */
     projectId?: string;
     /**
-     * Required. The Dataproc region in which to handle the request.
+     * Required. The region in which to handle the request.
      */
     region?: string;
 
@@ -21923,7 +23219,7 @@ export namespace dataproc_v1 {
      */
     projectId?: string;
     /**
-     * Required. The Dataproc region in which to handle the request.
+     * Required. The region in which to handle the request.
      */
     region?: string;
 
@@ -22062,8 +23358,7 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -22207,8 +23502,7 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Schema$NodeGroup>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$NodeGroup>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$NodeGroup> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$NodeGroup>>
@@ -22358,8 +23652,7 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -22511,8 +23804,7 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -22739,8 +24031,7 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Schema$Job>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Job>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Job> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Job>>
@@ -22881,8 +24172,7 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -23046,8 +24336,7 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Schema$Job>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Job>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Job> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Job>>
@@ -23195,8 +24484,7 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -23545,8 +24833,7 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Schema$Job>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Job>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Job> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Job>>
@@ -23694,8 +24981,7 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -23866,8 +25152,7 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Schema$Job>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Job>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Job> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Job>>
@@ -24020,8 +25305,7 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -24150,8 +25434,7 @@ export namespace dataproc_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Regions$Jobs$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -24481,8 +25764,7 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -24616,8 +25898,7 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -24758,8 +26039,7 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -24905,8 +26185,7 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -25038,8 +26317,7 @@ export namespace dataproc_v1 {
     list(
       params: Params$Resource$Projects$Regions$Operations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListOperationsResponse>,
       callback: BodyResponseCallback<Schema$ListOperationsResponse>
     ): void;
     list(
@@ -25205,8 +26483,7 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -25335,8 +26612,7 @@ export namespace dataproc_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Regions$Operations$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -25748,8 +27024,7 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -26047,8 +27322,7 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -26202,8 +27476,7 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -26368,8 +27641,7 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -26672,8 +27944,7 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -26805,8 +28076,7 @@ export namespace dataproc_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Regions$Workflowtemplates$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(

@@ -226,7 +226,7 @@
           ]
         },
         "list": {
-          "description": "Returns all accounts accessible by the caller. Note that these accounts might not currently have GA properties. Soft-deleted (ie: \"trashed\") accounts are excluded by default. Returns an empty list if no relevant accounts are found.",
+          "description": "Returns all accounts accessible by the caller. Note that these accounts might not currently have GA properties. Soft-deleted (ie: \"trashed\") accounts are excluded by default. Returns an empty list if no relevant accounts are found. Note: The easiest way to retrieve a list of all properties you have access to is by using `ListAccountSummaries`.",
           "flatPath": "v1alpha/accounts",
           "httpMethod": "GET",
           "id": "analyticsadmin.accounts.list",
@@ -1126,6 +1126,40 @@
           },
           "response": {
             "$ref": "GoogleAnalyticsAdminV1alphaGoogleSignalsSettings"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/analytics.edit"
+          ]
+        },
+        "updateReportingIdentitySettings": {
+          "description": "Updates the reporting identity settings for this property.",
+          "flatPath": "v1alpha/properties/{propertiesId}/reportingIdentitySettings",
+          "httpMethod": "PATCH",
+          "id": "analyticsadmin.properties.updateReportingIdentitySettings",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Output only. Identifier. Resource name for this reporting identity settings singleton resource. Format: properties/{property_id}/reportingIdentitySettings Example: \"properties/1234/reportingIdentitySettings\"",
+              "location": "path",
+              "pattern": "^properties/[^/]+/reportingIdentitySettings$",
+              "required": true,
+              "type": "string"
+            },
+            "updateMask": {
+              "description": "Optional. The list of fields to be updated. Field names must be in snake case (for example, \"field_to_update\"). Omitted fields will not be updated. To replace the entire entity, use one path with the string \"*\" to match all fields. If omitted, the service will treat it as an implied field mask equivalent to all fields that are populated.",
+              "format": "google-fieldmask",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "v1alpha/{+name}",
+          "request": {
+            "$ref": "GoogleAnalyticsAdminV1alphaReportingIdentitySettings"
+          },
+          "response": {
+            "$ref": "GoogleAnalyticsAdminV1alphaReportingIdentitySettings"
           },
           "scopes": [
             "https://www.googleapis.com/auth/analytics.edit"
@@ -2332,7 +2366,7 @@
               ]
             },
             "create": {
-              "description": "Creates a CustomDimension.",
+              "description": "Creates a CustomDimension. Warning: It's not permissible to use this method to collect data on individual users. In particular, sending user IDs in custom dimensions violates the [Google Analytics Terms of Service](https://www.google.com/analytics/terms/).",
               "flatPath": "v1alpha/properties/{propertiesId}/customDimensions",
               "httpMethod": "POST",
               "id": "analyticsadmin.properties.customDimensions.create",
@@ -5112,7 +5146,7 @@
       }
     }
   },
-  "revision": "20260412",
+  "revision": "20260802",
   "rootUrl": "https://analyticsadmin.googleapis.com/",
   "schemas": {
     "GoogleAnalyticsAdminV1alphaAccessBetweenFilter": {
@@ -8624,6 +8658,10 @@
       "description": "A virtual resource representing metadata for a Google Analytics property.",
       "id": "GoogleAnalyticsAdminV1alphaPropertySummary",
       "properties": {
+        "canEdit": {
+          "description": "If true, then the user has a Google Analytics role that permits them to edit the property.",
+          "type": "boolean"
+        },
         "displayName": {
           "description": "Display name for the property referred to in this property summary.",
           "type": "string"

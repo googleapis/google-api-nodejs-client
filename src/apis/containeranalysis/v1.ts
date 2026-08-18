@@ -137,9 +137,13 @@ export namespace containeranalysis_v1 {
      */
     findings?: Schema$Finding[];
     /**
-     * Maximum severity found among findings.
+     * Maximum severity found among findings. Per scanner verdict details.
      */
     maxSeverity?: string | null;
+    /**
+     * Per scanner verdict.
+     */
+    perScannerVerdict?: Schema$PerScannerVerdict;
     /**
      * Name of the skill that produced this analysis.
      */
@@ -1796,24 +1800,80 @@ export namespace containeranalysis_v1 {
    * Common Vulnerability Scoring System. For details, see https://www.first.org/cvss/specification-document This is a message we will try to use for storing various versions of CVSS rather than making a separate proto for storing a specific version.
    */
   export interface Schema$CVSS {
+    /**
+     * Attack Complexity (AC). Defined in CVSS v2, v3, v4.
+     */
     attackComplexity?: string | null;
     /**
-     * Base Metrics Represents the intrinsic characteristics of a vulnerability that are constant over time and across user environments.
+     * Attack Requirements (AT). Defined in CVSS v4.
+     */
+    attackRequirements?: string | null;
+    /**
+     * Attack Vector (AV). Defined in CVSS v2, v3, v4.
      */
     attackVector?: string | null;
+    /**
+     * Authentication (Au). Defined in CVSS v2.
+     */
     authentication?: string | null;
+    /**
+     * Availability Impact (A). Defined in CVSS v2, v3.
+     */
     availabilityImpact?: string | null;
     /**
      * The base score is a function of the base metric scores.
      */
     baseScore?: number | null;
+    /**
+     * Confidentiality Impact (C). Defined in CVSS v2, v3.
+     */
     confidentialityImpact?: string | null;
     exploitabilityScore?: number | null;
+    /**
+     * Exploit Maturity (E). Defined in CVSS v4.
+     */
+    exploitMaturity?: string | null;
     impactScore?: number | null;
+    /**
+     * Integrity Impact (I). Defined in CVSS v2, v3.
+     */
     integrityImpact?: string | null;
+    /**
+     * Privileges Required (PR). Defined in CVSS v3, v4.
+     */
     privilegesRequired?: string | null;
+    /**
+     * Scope (S). Defined in CVSS v3.
+     */
     scope?: string | null;
+    /**
+     * Subsequent System Availability Impact (SA). Defined in CVSS v4.
+     */
+    subsequentSystemAvailabilityImpact?: string | null;
+    /**
+     * Subsequent System Confidentiality Impact (SC). Defined in CVSS v4.
+     */
+    subsequentSystemConfidentialityImpact?: string | null;
+    /**
+     * Subsequent System Integrity Impact (SI). Defined in CVSS v4.
+     */
+    subsequentSystemIntegrityImpact?: string | null;
+    /**
+     * User Interaction (UI). Defined in CVSS v3, v4.
+     */
     userInteraction?: string | null;
+    /**
+     * Vulnerable System Availability Impact (VA). Defined in CVSS v4.
+     */
+    vulnerableSystemAvailabilityImpact?: string | null;
+    /**
+     * Vulnerable System Confidentiality Impact (VC). Defined in CVSS v4.
+     */
+    vulnerableSystemConfidentialityImpact?: string | null;
+    /**
+     * Vulnerable System Integrity Impact (VI). Defined in CVSS v4.
+     */
+    vulnerableSystemIntegrityImpact?: string | null;
   }
   /**
    * Common Vulnerability Scoring System version 3. For details, see https://www.first.org/cvss/specification-document
@@ -2148,6 +2208,10 @@ export namespace containeranalysis_v1 {
      * Category of the finding.
      */
     category?: string | null;
+    /**
+     * Description of the finding category.
+     */
+    details?: string | null;
     /**
      * Location (path and line) where the finding was detected.
      */
@@ -2595,6 +2659,45 @@ export namespace containeranalysis_v1 {
      */
     version?: Schema$Version;
   }
+  /**
+   * Result of Malicious Content LLM scan.
+   */
+  export interface Schema$MaliciousContentLLMResult {
+    /**
+     * Tracks max severity found.
+     */
+    maxSeverity?: string | null;
+    /**
+     * Status of the scan.
+     */
+    scanStatus?: string | null;
+  }
+  /**
+   * Result of Malicious Content Static scan.
+   */
+  export interface Schema$MaliciousContentStaticResult {
+    /**
+     * Tracks max severity found.
+     */
+    maxSeverity?: string | null;
+    /**
+     * Status of the scan.
+     */
+    scanStatus?: string | null;
+  }
+  /**
+   * Result of Malware scan.
+   */
+  export interface Schema$MalwareScanResult {
+    /**
+     * Status of the scan.
+     */
+    scanStatus?: string | null;
+    /**
+     * Verdict of the scan.
+     */
+    verdict?: string | null;
+  }
   export interface Schema$Material {
     digest?: {[key: string]: string} | null;
     uri?: string | null;
@@ -2957,6 +3060,24 @@ export namespace containeranalysis_v1 {
      * Output only. The version of the package.
      */
     version?: Schema$Version;
+  }
+  export interface Schema$PerScannerVerdict {
+    /**
+     * Malicious Content LLM scan result.
+     */
+    maliciousContentLlmResult?: Schema$MaliciousContentLLMResult;
+    /**
+     * Malicious Content Static scan result.
+     */
+    maliciousContentStaticResult?: Schema$MaliciousContentStaticResult;
+    /**
+     * Malware scan result.
+     */
+    malwareScan?: Schema$MalwareScanResult;
+    /**
+     * Workspace Policy scan result.
+     */
+    workspacePolicy?: Schema$WorkspacePolicyResult;
   }
   /**
    * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** ``` { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} ``` **YAML example:** ``` bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 ``` For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
@@ -3677,6 +3798,10 @@ export namespace containeranalysis_v1 {
      */
     cvssV3?: Schema$CVSSv3;
     /**
+     * The full description of the v4 CVSS for this vulnerability.
+     */
+    cvssV4?: Schema$CVSS;
+    /**
      * CVSS version used to populate cvss_score and severity.
      */
     cvssVersion?: string | null;
@@ -3713,6 +3838,10 @@ export namespace containeranalysis_v1 {
      * The cvss v3 score for the vulnerability.
      */
     cvssv3?: Schema$CVSS;
+    /**
+     * The cvss v4 score for the vulnerability.
+     */
+    cvssV4?: Schema$CVSS;
     /**
      * Output only. CVSS version used to populate cvss_score and severity.
      */
@@ -3822,6 +3951,19 @@ export namespace containeranalysis_v1 {
      * The localized title of the update.
      */
     title?: string | null;
+  }
+  /**
+   * Result of Workspace Policy scan.
+   */
+  export interface Schema$WorkspacePolicyResult {
+    /**
+     * Status of the scan.
+     */
+    scanStatus?: string | null;
+    /**
+     * Verdict of the scan.
+     */
+    verdict?: string | null;
   }
 
   export class Resource$Projects {
@@ -3942,8 +4084,7 @@ export namespace containeranalysis_v1 {
     batchCreate(
       params: Params$Resource$Projects$Locations$Notes$Batchcreate,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$BatchCreateNotesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$BatchCreateNotesResponse>,
       callback: BodyResponseCallback<Schema$BatchCreateNotesResponse>
     ): void;
     batchCreate(
@@ -4156,8 +4297,7 @@ export namespace containeranalysis_v1 {
         | BodyResponseCallback<Schema$Note>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Note>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Note> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Note>>
@@ -4292,8 +4432,7 @@ export namespace containeranalysis_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -4449,8 +4588,7 @@ export namespace containeranalysis_v1 {
         | BodyResponseCallback<Schema$Note>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Note>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Note> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Note>>
@@ -4594,8 +4732,7 @@ export namespace containeranalysis_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -4934,8 +5071,7 @@ export namespace containeranalysis_v1 {
         | BodyResponseCallback<Schema$Note>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Note>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Note> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Note>>
@@ -5079,8 +5215,7 @@ export namespace containeranalysis_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -5208,8 +5343,7 @@ export namespace containeranalysis_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Notes$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -5867,8 +6001,7 @@ export namespace containeranalysis_v1 {
         | BodyResponseCallback<Schema$Occurrence>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Occurrence>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Occurrence> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Occurrence>>
@@ -6003,8 +6136,7 @@ export namespace containeranalysis_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -6159,8 +6291,7 @@ export namespace containeranalysis_v1 {
         | BodyResponseCallback<Schema$Occurrence>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Occurrence>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Occurrence> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Occurrence>>
@@ -6306,8 +6437,7 @@ export namespace containeranalysis_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -6467,8 +6597,7 @@ export namespace containeranalysis_v1 {
         | BodyResponseCallback<Schema$Note>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Note>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Note> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Note>>
@@ -6746,8 +6875,7 @@ export namespace containeranalysis_v1 {
     list(
       params: Params$Resource$Projects$Locations$Occurrences$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListOccurrencesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListOccurrencesResponse>,
       callback: BodyResponseCallback<Schema$ListOccurrencesResponse>
     ): void;
     list(
@@ -6956,8 +7084,7 @@ export namespace containeranalysis_v1 {
         | BodyResponseCallback<Schema$Occurrence>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Occurrence>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Occurrence> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Occurrence>>
@@ -7103,8 +7230,7 @@ export namespace containeranalysis_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -7234,8 +7360,7 @@ export namespace containeranalysis_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Occurrences$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -7684,8 +7809,7 @@ export namespace containeranalysis_v1 {
     batchCreate(
       params: Params$Resource$Projects$Notes$Batchcreate,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$BatchCreateNotesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$BatchCreateNotesResponse>,
       callback: BodyResponseCallback<Schema$BatchCreateNotesResponse>
     ): void;
     batchCreate(
@@ -7898,8 +8022,7 @@ export namespace containeranalysis_v1 {
         | BodyResponseCallback<Schema$Note>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Note>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Note> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Note>>
@@ -8034,8 +8157,7 @@ export namespace containeranalysis_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -8191,8 +8313,7 @@ export namespace containeranalysis_v1 {
         | BodyResponseCallback<Schema$Note>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Note>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Note> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Note>>
@@ -8336,8 +8457,7 @@ export namespace containeranalysis_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -8676,8 +8796,7 @@ export namespace containeranalysis_v1 {
         | BodyResponseCallback<Schema$Note>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Note>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Note> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Note>>
@@ -8821,8 +8940,7 @@ export namespace containeranalysis_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -8949,8 +9067,7 @@ export namespace containeranalysis_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Notes$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -9602,8 +9719,7 @@ export namespace containeranalysis_v1 {
         | BodyResponseCallback<Schema$Occurrence>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Occurrence>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Occurrence> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Occurrence>>
@@ -9738,8 +9854,7 @@ export namespace containeranalysis_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -9894,8 +10009,7 @@ export namespace containeranalysis_v1 {
         | BodyResponseCallback<Schema$Occurrence>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Occurrence>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Occurrence> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Occurrence>>
@@ -10039,8 +10153,7 @@ export namespace containeranalysis_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -10199,8 +10312,7 @@ export namespace containeranalysis_v1 {
         | BodyResponseCallback<Schema$Note>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Note>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Note> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Note>>
@@ -10476,8 +10588,7 @@ export namespace containeranalysis_v1 {
     list(
       params: Params$Resource$Projects$Occurrences$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListOccurrencesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListOccurrencesResponse>,
       callback: BodyResponseCallback<Schema$ListOccurrencesResponse>
     ): void;
     list(
@@ -10686,8 +10797,7 @@ export namespace containeranalysis_v1 {
         | BodyResponseCallback<Schema$Occurrence>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Occurrence>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Occurrence> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Occurrence>>
@@ -10831,8 +10941,7 @@ export namespace containeranalysis_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -10959,8 +11068,7 @@ export namespace containeranalysis_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Occurrences$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(

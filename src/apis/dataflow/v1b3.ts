@@ -209,6 +209,39 @@ export namespace dataflow_v1b3 {
     workerPool?: string | null;
   }
   /**
+   * A schedule for autoscaling.
+   */
+  export interface Schema$AutoscalingSchedule {
+    /**
+     * Optional. A crontab specification of when this schedule should trigger applying overrides. The overrides will be applied from the trigger time until the specified duration elapses.
+     */
+    crontab?: string | null;
+    /**
+     * Optional. The duration for which the parameter overrides for this schedule will be applied when triggered by the crontab.
+     */
+    duration?: string | null;
+    /**
+     * Optional. The name of the schedule.
+     */
+    name?: string | null;
+    /**
+     * Optional. The parameters to use for autoscaling when this schedule is active.
+     */
+    parameters?: Schema$Parameters;
+    /**
+     * Optional. Specifies the priority of the schedule. If two schedules overlap, the one with the higher priority will be used. The higher the value, the higher the priority of the schedule.
+     */
+    priority?: string | null;
+    /**
+     * Optional. The time zone for the schedule. The value of this field must be a time zone name from the [tz database](http://en.wikipedia.org/wiki/Tz_database). The default value is UTC.
+     */
+    timeZone?: string | null;
+    /**
+     * Output only. When the customer last updated the schedule.
+     */
+    updateTime?: string | null;
+  }
+  /**
    * Settings for WorkerPool autoscaling.
    */
   export interface Schema$AutoscalingSettings {
@@ -2212,6 +2245,27 @@ export namespace dataflow_v1b3 {
     value?: string | null;
   }
   /**
+   * The parameters to use for autoscaling when this schedule is active.
+   */
+  export interface Schema$Parameters {
+    /**
+     * Optional. The target CPU utilization for this schedule.
+     */
+    cpuUtilizationTarget?: number | null;
+    /**
+     * Optional. The target latency for this schedule.
+     */
+    latencyTarget?: string | null;
+    /**
+     * Optional. The maximum number of workers for this schedule.
+     */
+    maxWorkerCount?: number | null;
+    /**
+     * Optional. The minimum number of workers for this schedule.
+     */
+    minWorkerCount?: number | null;
+  }
+  /**
    * An instruction that does a ParDo operation. Takes one main input and zero or more side inputs, and produces zero or more outputs. Runs user code.
    */
   export interface Schema$ParDoInstruction {
@@ -2641,6 +2695,10 @@ export namespace dataflow_v1b3 {
      * The minimum number of workers to scale down to. This field is currently only supported for Streaming Engine jobs.
      */
     minNumWorkers?: number | null;
+    /**
+     * Optional. The schedule for autoscaling.
+     */
+    schedules?: Schema$AutoscalingSchedule[];
     /**
      * Target worker utilization, compared against the aggregate utilization of the worker pool by autoscaler, to determine upscaling and downscaling when absent other constraints such as backlog. For more information, see [Update an existing pipeline](https://cloud.google.com/dataflow/docs/guides/updating-a-pipeline).
      */
@@ -4459,8 +4517,7 @@ export namespace dataflow_v1b3 {
     deleteSnapshots(
       params: Params$Resource$Projects$Deletesnapshots,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$DeleteSnapshotResponse>,
+        MethodOptions | BodyResponseCallback<Schema$DeleteSnapshotResponse>,
       callback: BodyResponseCallback<Schema$DeleteSnapshotResponse>
     ): void;
     deleteSnapshots(
@@ -4612,8 +4669,7 @@ export namespace dataflow_v1b3 {
     workerMessages(
       params: Params$Resource$Projects$Workermessages,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$SendWorkerMessagesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$SendWorkerMessagesResponse>,
       callback: BodyResponseCallback<Schema$SendWorkerMessagesResponse>
     ): void;
     workerMessages(
@@ -4722,7 +4778,7 @@ export namespace dataflow_v1b3 {
     }
 
     /**
-     * List the jobs of a project across all regions. **Note:** This method doesn't support filtering the list of jobs by name.
+     * List the jobs of a project across all regions. **Note:** This method doesn't support filtering the list of jobs by name. # IAM Permissions Requires the `dataflow.jobs.list` permission on the project.
      * @example
      * ```js
      * // Before running the sample:
@@ -4875,7 +4931,7 @@ export namespace dataflow_v1b3 {
     }
 
     /**
-     * Creates a Dataflow job. To create a job, we recommend using `projects.locations.jobs.create` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.create` is not recommended, as your job will always start in `us-central1`. Do not enter confidential information when you supply string values using the API.
+     * Creates a Dataflow job. To create a job, we recommend using `projects.locations.jobs.create` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.create` is not recommended, as your job will always start in `us-central1`. Do not enter confidential information when you supply string values using the API. # IAM Permissions 1. Requires the `dataflow.jobs.create` permission on the project. 2. `resourcemanager.projects.get` (Specifically required for regional endpoints to resolve regional resource metadata)
      * @example
      * ```js
      * // Before running the sample:
@@ -5035,8 +5091,7 @@ export namespace dataflow_v1b3 {
         | BodyResponseCallback<Schema$Job>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Job>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Job> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Job>>
@@ -5085,7 +5140,7 @@ export namespace dataflow_v1b3 {
     }
 
     /**
-     * Gets the state of the specified Cloud Dataflow job. To get the state of a job, we recommend using `projects.locations.jobs.get` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.get` is not recommended, as you can only get the state of jobs that are running in `us-central1`.
+     * Gets the state of the specified Cloud Dataflow job. To get the state of a job, we recommend using `projects.locations.jobs.get` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.get` is not recommended, as you can only get the state of jobs that are running in `us-central1`. # IAM Permissions Requires the `dataflow.jobs.get` permission on the job.
      * @example
      * ```js
      * // Before running the sample:
@@ -5209,8 +5264,7 @@ export namespace dataflow_v1b3 {
         | BodyResponseCallback<Schema$Job>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Job>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Job> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Job>>
@@ -5259,7 +5313,7 @@ export namespace dataflow_v1b3 {
     }
 
     /**
-     * Request the job status. To request the status of a job, we recommend using `projects.locations.jobs.getMetrics` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.getMetrics` is not recommended, as you can only request the status of jobs that are running in `us-central1`.
+     * Request the job status. To request the status of a job, we recommend using `projects.locations.jobs.getMetrics` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.getMetrics` is not recommended, as you can only request the status of jobs that are running in `us-central1`. # IAM Permissions Requires the `dataflow.metrics.get` permission on the job.
      * @example
      * ```js
      * // Before running the sample:
@@ -5356,8 +5410,7 @@ export namespace dataflow_v1b3 {
         | BodyResponseCallback<Schema$JobMetrics>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$JobMetrics>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$JobMetrics> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$JobMetrics>>
@@ -5405,7 +5458,7 @@ export namespace dataflow_v1b3 {
     }
 
     /**
-     * List the jobs of a project. To list the jobs of a project in a region, we recommend using `projects.locations.jobs.list` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). To list the all jobs across all regions, use `projects.jobs.aggregated`. Using `projects.jobs.list` is not recommended, because you can only get the list of jobs that are running in `us-central1`. `projects.locations.jobs.list` and `projects.jobs.list` support filtering the list of jobs by name. Filtering by name isn't supported by `projects.jobs.aggregated`.
+     * List the jobs of a project. To list the jobs of a project in a region, we recommend using `projects.locations.jobs.list` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). To list the all jobs across all regions, use `projects.jobs.aggregated`. Using `projects.jobs.list` is not recommended, because you can only get the list of jobs that are running in `us-central1`. `projects.locations.jobs.list` and `projects.jobs.list` support filtering the list of jobs by name. Filtering by name isn't supported by `projects.jobs.aggregated`. # IAM Permissions Requires the `dataflow.jobs.list` permission on the project.
      * @example
      * ```js
      * // Before running the sample:
@@ -5559,7 +5612,7 @@ export namespace dataflow_v1b3 {
     }
 
     /**
-     * Snapshot the state of a streaming job.
+     * Snapshot the state of a streaming job. # IAM Permissions Requires the `dataflow.jobs.snapshot` permission on the job.
      * @example
      * ```js
      * // Before running the sample:
@@ -5671,8 +5724,7 @@ export namespace dataflow_v1b3 {
         | BodyResponseCallback<Schema$Snapshot>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Snapshot>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Snapshot> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Snapshot>>
@@ -5720,7 +5772,7 @@ export namespace dataflow_v1b3 {
     }
 
     /**
-     * Updates the state of an existing Cloud Dataflow job. To update the state of an existing job, we recommend using `projects.locations.jobs.update` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.update` is not recommended, as you can only update the state of jobs that are running in `us-central1`.
+     * Updates the state of an existing Cloud Dataflow job. To update the state of an existing job, we recommend using `projects.locations.jobs.update` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.update` is not recommended, as you can only update the state of jobs that are running in `us-central1`. # IAM Permissions 1. Requires the `dataflow.jobs.cancel` permission to cancel a job. 2. Requires the `dataflow.jobs.updateContents` permission to update runtime parameters.
      * @example
      * ```js
      * // Before running the sample:
@@ -5880,8 +5932,7 @@ export namespace dataflow_v1b3 {
         | BodyResponseCallback<Schema$Job>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Job>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Job> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Job>>
@@ -6179,8 +6230,7 @@ export namespace dataflow_v1b3 {
     getConfig(
       params: Params$Resource$Projects$Jobs$Debug$Getconfig,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GetDebugConfigResponse>,
+        MethodOptions | BodyResponseCallback<Schema$GetDebugConfigResponse>,
       callback: BodyResponseCallback<Schema$GetDebugConfigResponse>
     ): void;
     getConfig(
@@ -6335,8 +6385,7 @@ export namespace dataflow_v1b3 {
     sendCapture(
       params: Params$Resource$Projects$Jobs$Debug$Sendcapture,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$SendDebugCaptureResponse>,
+        MethodOptions | BodyResponseCallback<Schema$SendDebugCaptureResponse>,
       callback: BodyResponseCallback<Schema$SendDebugCaptureResponse>
     ): void;
     sendCapture(
@@ -6445,7 +6494,7 @@ export namespace dataflow_v1b3 {
     }
 
     /**
-     * Request the job status. To request the status of a job, we recommend using `projects.locations.jobs.messages.list` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.messages.list` is not recommended, as you can only request the status of jobs that are running in `us-central1`.
+     * Request the job status. To request the status of a job, we recommend using `projects.locations.jobs.messages.list` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.messages.list` is not recommended, as you can only request the status of jobs that are running in `us-central1`. # IAM Permissions Requires the `dataflow.messages.list` permission on the job.
      * @example
      * ```js
      * // Before running the sample:
@@ -6533,8 +6582,7 @@ export namespace dataflow_v1b3 {
     list(
       params: Params$Resource$Projects$Jobs$Messages$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListJobMessagesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListJobMessagesResponse>,
       callback: BodyResponseCallback<Schema$ListJobMessagesResponse>
     ): void;
     list(
@@ -6734,8 +6782,7 @@ export namespace dataflow_v1b3 {
     lease(
       params: Params$Resource$Projects$Jobs$Workitems$Lease,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$LeaseWorkItemResponse>,
+        MethodOptions | BodyResponseCallback<Schema$LeaseWorkItemResponse>,
       callback: BodyResponseCallback<Schema$LeaseWorkItemResponse>
     ): void;
     lease(
@@ -7097,8 +7144,7 @@ export namespace dataflow_v1b3 {
     workerMessages(
       params: Params$Resource$Projects$Locations$Workermessages,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$SendWorkerMessagesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$SendWorkerMessagesResponse>,
       callback: BodyResponseCallback<Schema$SendWorkerMessagesResponse>
     ): void;
     workerMessages(
@@ -7192,7 +7238,7 @@ export namespace dataflow_v1b3 {
     }
 
     /**
-     * Launch a job with a FlexTemplate.
+     * Launch a job with a FlexTemplate. # IAM Permissions Requires the following IAM permission(s) on the resource: - `dataflow.jobs.create` - `resourcemanager.projects.get` - `iam.serviceAccounts.actAs` - `storage.buckets.get` - `storage.buckets.create` (Required if the default staging bucket must be created)
      * @example
      * ```js
      * // Before running the sample:
@@ -7275,8 +7321,7 @@ export namespace dataflow_v1b3 {
     launch(
       params: Params$Resource$Projects$Locations$Flextemplates$Launch,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$LaunchFlexTemplateResponse>,
+        MethodOptions | BodyResponseCallback<Schema$LaunchFlexTemplateResponse>,
       callback: BodyResponseCallback<Schema$LaunchFlexTemplateResponse>
     ): void;
     launch(
@@ -7386,7 +7431,7 @@ export namespace dataflow_v1b3 {
     }
 
     /**
-     * Creates a Dataflow job. To create a job, we recommend using `projects.locations.jobs.create` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.create` is not recommended, as your job will always start in `us-central1`. Do not enter confidential information when you supply string values using the API.
+     * Creates a Dataflow job. To create a job, we recommend using `projects.locations.jobs.create` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.create` is not recommended, as your job will always start in `us-central1`. Do not enter confidential information when you supply string values using the API. # IAM Permissions 1. Requires the `dataflow.jobs.create` permission on the project. 2. `resourcemanager.projects.get` (Specifically required for regional endpoints to resolve regional resource metadata)
      * @example
      * ```js
      * // Before running the sample:
@@ -7546,8 +7591,7 @@ export namespace dataflow_v1b3 {
         | BodyResponseCallback<Schema$Job>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Job>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Job> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Job>>
@@ -7595,7 +7639,7 @@ export namespace dataflow_v1b3 {
     }
 
     /**
-     * Gets the state of the specified Cloud Dataflow job. To get the state of a job, we recommend using `projects.locations.jobs.get` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.get` is not recommended, as you can only get the state of jobs that are running in `us-central1`.
+     * Gets the state of the specified Cloud Dataflow job. To get the state of a job, we recommend using `projects.locations.jobs.get` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.get` is not recommended, as you can only get the state of jobs that are running in `us-central1`. # IAM Permissions Requires the `dataflow.jobs.get` permission on the job.
      * @example
      * ```js
      * // Before running the sample:
@@ -7719,8 +7763,7 @@ export namespace dataflow_v1b3 {
         | BodyResponseCallback<Schema$Job>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Job>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Job> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Job>>
@@ -7769,7 +7812,7 @@ export namespace dataflow_v1b3 {
     }
 
     /**
-     * Request detailed information about the execution status of the job. EXPERIMENTAL. This API is subject to change or removal without notice.
+     * Request detailed information about the execution status of the job. EXPERIMENTAL. This API is subject to change or removal without notice. # IAM Permissions Requires the `dataflow.metrics.get` permission on the job.
      * @example
      * ```js
      * // Before running the sample:
@@ -7921,7 +7964,7 @@ export namespace dataflow_v1b3 {
     }
 
     /**
-     * Request the job status. To request the status of a job, we recommend using `projects.locations.jobs.getMetrics` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.getMetrics` is not recommended, as you can only request the status of jobs that are running in `us-central1`.
+     * Request the job status. To request the status of a job, we recommend using `projects.locations.jobs.getMetrics` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.getMetrics` is not recommended, as you can only request the status of jobs that are running in `us-central1`. # IAM Permissions Requires the `dataflow.metrics.get` permission on the job.
      * @example
      * ```js
      * // Before running the sample:
@@ -8018,8 +8061,7 @@ export namespace dataflow_v1b3 {
         | BodyResponseCallback<Schema$JobMetrics>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$JobMetrics>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$JobMetrics> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$JobMetrics>>
@@ -8068,7 +8110,7 @@ export namespace dataflow_v1b3 {
     }
 
     /**
-     * List the jobs of a project. To list the jobs of a project in a region, we recommend using `projects.locations.jobs.list` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). To list the all jobs across all regions, use `projects.jobs.aggregated`. Using `projects.jobs.list` is not recommended, because you can only get the list of jobs that are running in `us-central1`. `projects.locations.jobs.list` and `projects.jobs.list` support filtering the list of jobs by name. Filtering by name isn't supported by `projects.jobs.aggregated`.
+     * List the jobs of a project. To list the jobs of a project in a region, we recommend using `projects.locations.jobs.list` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). To list the all jobs across all regions, use `projects.jobs.aggregated`. Using `projects.jobs.list` is not recommended, because you can only get the list of jobs that are running in `us-central1`. `projects.locations.jobs.list` and `projects.jobs.list` support filtering the list of jobs by name. Filtering by name isn't supported by `projects.jobs.aggregated`. # IAM Permissions Requires the `dataflow.jobs.list` permission on the project.
      * @example
      * ```js
      * // Before running the sample:
@@ -8221,7 +8263,7 @@ export namespace dataflow_v1b3 {
     }
 
     /**
-     * Snapshot the state of a streaming job.
+     * Snapshot the state of a streaming job. # IAM Permissions Requires the `dataflow.jobs.snapshot` permission on the job.
      * @example
      * ```js
      * // Before running the sample:
@@ -8335,8 +8377,7 @@ export namespace dataflow_v1b3 {
         | BodyResponseCallback<Schema$Snapshot>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Snapshot>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Snapshot> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Snapshot>>
@@ -8385,7 +8426,7 @@ export namespace dataflow_v1b3 {
     }
 
     /**
-     * Updates the state of an existing Cloud Dataflow job. To update the state of an existing job, we recommend using `projects.locations.jobs.update` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.update` is not recommended, as you can only update the state of jobs that are running in `us-central1`.
+     * Updates the state of an existing Cloud Dataflow job. To update the state of an existing job, we recommend using `projects.locations.jobs.update` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.update` is not recommended, as you can only update the state of jobs that are running in `us-central1`. # IAM Permissions 1. Requires the `dataflow.jobs.cancel` permission to cancel a job. 2. Requires the `dataflow.jobs.updateContents` permission to update runtime parameters.
      * @example
      * ```js
      * // Before running the sample:
@@ -8545,8 +8586,7 @@ export namespace dataflow_v1b3 {
         | BodyResponseCallback<Schema$Job>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Job>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Job> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Job>>
@@ -8842,8 +8882,7 @@ export namespace dataflow_v1b3 {
     getConfig(
       params: Params$Resource$Projects$Locations$Jobs$Debug$Getconfig,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GetDebugConfigResponse>,
+        MethodOptions | BodyResponseCallback<Schema$GetDebugConfigResponse>,
       callback: BodyResponseCallback<Schema$GetDebugConfigResponse>
     ): void;
     getConfig(
@@ -9162,8 +9201,7 @@ export namespace dataflow_v1b3 {
     sendCapture(
       params: Params$Resource$Projects$Locations$Jobs$Debug$Sendcapture,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$SendDebugCaptureResponse>,
+        MethodOptions | BodyResponseCallback<Schema$SendDebugCaptureResponse>,
       callback: BodyResponseCallback<Schema$SendDebugCaptureResponse>
     ): void;
     sendCapture(
@@ -9300,7 +9338,7 @@ export namespace dataflow_v1b3 {
     }
 
     /**
-     * Request the job status. To request the status of a job, we recommend using `projects.locations.jobs.messages.list` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.messages.list` is not recommended, as you can only request the status of jobs that are running in `us-central1`.
+     * Request the job status. To request the status of a job, we recommend using `projects.locations.jobs.messages.list` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.messages.list` is not recommended, as you can only request the status of jobs that are running in `us-central1`. # IAM Permissions Requires the `dataflow.messages.list` permission on the job.
      * @example
      * ```js
      * // Before running the sample:
@@ -9388,8 +9426,7 @@ export namespace dataflow_v1b3 {
     list(
       params: Params$Resource$Projects$Locations$Jobs$Messages$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListJobMessagesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListJobMessagesResponse>,
       callback: BodyResponseCallback<Schema$ListJobMessagesResponse>
     ): void;
     list(
@@ -9576,8 +9613,7 @@ export namespace dataflow_v1b3 {
     list(
       params: Params$Resource$Projects$Locations$Jobs$Snapshots$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListSnapshotsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListSnapshotsResponse>,
       callback: BodyResponseCallback<Schema$ListSnapshotsResponse>
     ): void;
     list(
@@ -9668,7 +9704,7 @@ export namespace dataflow_v1b3 {
     }
 
     /**
-     * Request detailed information about the execution status of a stage of the job. EXPERIMENTAL. This API is subject to change or removal without notice.
+     * Request detailed information about the execution status of a stage of the job. EXPERIMENTAL. This API is subject to change or removal without notice. # IAM Permissions Requires the `dataflow.metrics.get` permission on the job.
      * @example
      * ```js
      * // Before running the sample:
@@ -9757,8 +9793,7 @@ export namespace dataflow_v1b3 {
     getExecutionDetails(
       params: Params$Resource$Projects$Locations$Jobs$Stages$Getexecutiondetails,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$StageExecutionDetails>,
+        MethodOptions | BodyResponseCallback<Schema$StageExecutionDetails>,
       callback: BodyResponseCallback<Schema$StageExecutionDetails>
     ): void;
     getExecutionDetails(
@@ -9964,8 +9999,7 @@ export namespace dataflow_v1b3 {
     lease(
       params: Params$Resource$Projects$Locations$Jobs$Workitems$Lease,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$LeaseWorkItemResponse>,
+        MethodOptions | BodyResponseCallback<Schema$LeaseWorkItemResponse>,
       callback: BodyResponseCallback<Schema$LeaseWorkItemResponse>
     ): void;
     lease(
@@ -10319,8 +10353,7 @@ export namespace dataflow_v1b3 {
     delete(
       params: Params$Resource$Projects$Locations$Snapshots$Delete,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$DeleteSnapshotResponse>,
+        MethodOptions | BodyResponseCallback<Schema$DeleteSnapshotResponse>,
       callback: BodyResponseCallback<Schema$DeleteSnapshotResponse>
     ): void;
     delete(
@@ -10492,8 +10525,7 @@ export namespace dataflow_v1b3 {
         | BodyResponseCallback<Schema$Snapshot>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Snapshot>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Snapshot> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Snapshot>>
@@ -10618,8 +10650,7 @@ export namespace dataflow_v1b3 {
     list(
       params: Params$Resource$Projects$Locations$Snapshots$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListSnapshotsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListSnapshotsResponse>,
       callback: BodyResponseCallback<Schema$ListSnapshotsResponse>
     ): void;
     list(
@@ -10738,7 +10769,7 @@ export namespace dataflow_v1b3 {
     }
 
     /**
-     * Creates a Cloud Dataflow job from a template. Do not enter confidential information when you supply string values using the API. To create a job, we recommend using `projects.locations.templates.create` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.templates.create` is not recommended, because your job will always start in `us-central1`.
+     * Creates a Cloud Dataflow job from a template. Do not enter confidential information when you supply string values using the API. To create a job, we recommend using `projects.locations.templates.create` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.templates.create` is not recommended, because your job will always start in `us-central1`. # IAM Permissions Requires the following IAM permission(s) on the project: - `dataflow.jobs.create` - `resourcemanager.projects.get`
      * @example
      * ```js
      * // Before running the sample:
@@ -10870,8 +10901,7 @@ export namespace dataflow_v1b3 {
         | BodyResponseCallback<Schema$Job>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Job>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Job> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Job>>
@@ -10920,7 +10950,7 @@ export namespace dataflow_v1b3 {
     }
 
     /**
-     * Get the template associated with a template. To get the template, we recommend using `projects.locations.templates.get` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.templates.get` is not recommended, because only templates that are running in `us-central1` are retrieved.
+     * Get the template associated with a template. To get the template, we recommend using `projects.locations.templates.get` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.templates.get` is not recommended, because only templates that are running in `us-central1` are retrieved. # IAM Permissions Requires the `resourcemanager.projects.get` permission on the project.
      * @example
      * ```js
      * // Before running the sample:
@@ -11069,7 +11099,7 @@ export namespace dataflow_v1b3 {
     }
 
     /**
-     * Launches a template. To launch a template, we recommend using `projects.locations.templates.launch` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.templates.launch` is not recommended, because jobs launched from the template will always start in `us-central1`.
+     * Launches a template. To launch a template, we recommend using `projects.locations.templates.launch` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.templates.launch` is not recommended, because jobs launched from the template will always start in `us-central1`. # IAM Permissions Requires the following IAM permission(s) on the project: - `dataflow.jobs.create` - `resourcemanager.projects.get`
      * @example
      * ```js
      * // Before running the sample:
@@ -11163,8 +11193,7 @@ export namespace dataflow_v1b3 {
     launch(
       params: Params$Resource$Projects$Locations$Templates$Launch,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$LaunchTemplateResponse>,
+        MethodOptions | BodyResponseCallback<Schema$LaunchTemplateResponse>,
       callback: BodyResponseCallback<Schema$LaunchTemplateResponse>
     ): void;
     launch(
@@ -11408,8 +11437,7 @@ export namespace dataflow_v1b3 {
         | BodyResponseCallback<Schema$Snapshot>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Snapshot>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Snapshot> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Snapshot>>
@@ -11533,8 +11561,7 @@ export namespace dataflow_v1b3 {
     list(
       params: Params$Resource$Projects$Snapshots$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListSnapshotsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListSnapshotsResponse>,
       callback: BodyResponseCallback<Schema$ListSnapshotsResponse>
     ): void;
     list(
@@ -11639,7 +11666,7 @@ export namespace dataflow_v1b3 {
     }
 
     /**
-     * Creates a Cloud Dataflow job from a template. Do not enter confidential information when you supply string values using the API. To create a job, we recommend using `projects.locations.templates.create` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.templates.create` is not recommended, because your job will always start in `us-central1`.
+     * Creates a Cloud Dataflow job from a template. Do not enter confidential information when you supply string values using the API. To create a job, we recommend using `projects.locations.templates.create` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.templates.create` is not recommended, because your job will always start in `us-central1`. # IAM Permissions Requires the following IAM permission(s) on the project: - `dataflow.jobs.create` - `resourcemanager.projects.get`
      * @example
      * ```js
      * // Before running the sample:
@@ -11769,8 +11796,7 @@ export namespace dataflow_v1b3 {
         | BodyResponseCallback<Schema$Job>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Job>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Job> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Job>>
@@ -11819,7 +11845,7 @@ export namespace dataflow_v1b3 {
     }
 
     /**
-     * Get the template associated with a template. To get the template, we recommend using `projects.locations.templates.get` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.templates.get` is not recommended, because only templates that are running in `us-central1` are retrieved.
+     * Get the template associated with a template. To get the template, we recommend using `projects.locations.templates.get` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.templates.get` is not recommended, because only templates that are running in `us-central1` are retrieved. # IAM Permissions Requires the `resourcemanager.projects.get` permission on the project.
      * @example
      * ```js
      * // Before running the sample:
@@ -11968,7 +11994,7 @@ export namespace dataflow_v1b3 {
     }
 
     /**
-     * Launches a template. To launch a template, we recommend using `projects.locations.templates.launch` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.templates.launch` is not recommended, because jobs launched from the template will always start in `us-central1`.
+     * Launches a template. To launch a template, we recommend using `projects.locations.templates.launch` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.templates.launch` is not recommended, because jobs launched from the template will always start in `us-central1`. # IAM Permissions Requires the following IAM permission(s) on the project: - `dataflow.jobs.create` - `resourcemanager.projects.get`
      * @example
      * ```js
      * // Before running the sample:
@@ -12062,8 +12088,7 @@ export namespace dataflow_v1b3 {
     launch(
       params: Params$Resource$Projects$Templates$Launch,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$LaunchTemplateResponse>,
+        MethodOptions | BodyResponseCallback<Schema$LaunchTemplateResponse>,
       callback: BodyResponseCallback<Schema$LaunchTemplateResponse>
     ): void;
     launch(

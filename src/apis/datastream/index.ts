@@ -35,10 +35,7 @@ export function datastream<
 >(
   this: GoogleConfigurable,
   versionOrOptions:
-    | 'v1'
-    | datastream_v1.Options
-    | 'v1alpha1'
-    | datastream_v1alpha1.Options
+    'v1' | datastream_v1.Options | 'v1alpha1' | datastream_v1alpha1.Options
 ) {
   return getAPI<T>('datastream', versionOrOptions, VERSIONS, this);
 }

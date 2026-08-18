@@ -276,6 +276,10 @@ export namespace run_v2 {
      */
     executionReason?: string | null;
     /**
+     * Output only. A reason for the instance condition.
+     */
+    instanceReason?: string | null;
+    /**
      * Last time the condition transitioned from one status to another.
      */
     lastTransitionTime?: string | null;
@@ -356,6 +360,10 @@ export namespace run_v2 {
      * Compute Resource requirements by this container.
      */
     resources?: Schema$GoogleCloudRunV2ResourceRequirements;
+    /**
+     * Optional. Indicates that this container can act as a sandbox supervisor and launch sandboxes.
+     */
+    sandboxLauncher?: boolean | null;
     /**
      * Optional. Location of the source.
      */
@@ -829,7 +837,7 @@ export namespace run_v2 {
      */
     encryptionKeyRevocationAction?: string | null;
     /**
-     * If encryption_key_revocation_action is SHUTDOWN, the duration before shutting down all instances. The minimum increment is 1 hour.
+     * If `encryption_key_revocation_action` is `SHUTDOWN`, the duration before shutting down all instances. The minimum increment is 1 hour.
      */
     encryptionKeyShutdownDuration?: string | null;
     /**
@@ -841,7 +849,7 @@ export namespace run_v2 {
      */
     expireTime?: string | null;
     /**
-     * Output only. A number that monotonically increases every time the user modifies the desired state. Please note that unlike v1, this is an int64 value. As with most Google APIs, its JSON representation will be a `string` instead of an `integer`.
+     * Output only. A number that monotonically increases every time the user modifies the desired state. Please note that unlike v1, this is an `int64` value. As with most Google APIs, its JSON representation will be a `string` instead of an `integer`.
      */
     generation?: string | null;
     /**
@@ -853,11 +861,11 @@ export namespace run_v2 {
      */
     iapEnabled?: boolean | null;
     /**
-     * Optional. Provides the ingress settings for this Instance. On output, returns the currently observed ingress settings, or INGRESS_TRAFFIC_UNSPECIFIED if no revision is active.
+     * Optional. Provides the ingress settings for this Instance. On output, returns the currently observed ingress settings, or `INGRESS_TRAFFIC_UNSPECIFIED` if no revision is active.
      */
     ingress?: string | null;
     /**
-     * Optional. Disables IAM permission check for run.routes.invoke for callers of this Instance. For more information, visit https://cloud.google.com/run/docs/securing/managing-access#invoker_check.
+     * Optional. Disables IAM permission check for `run.routes.invoke` for callers of this Instance. For more information, visit https://cloud.google.com/run/docs/securing/managing-access#invoker_check.
      */
     invokerIamDisabled?: boolean | null;
     labels?: {[key: string]: string} | null;
@@ -866,7 +874,7 @@ export namespace run_v2 {
      */
     lastModifier?: string | null;
     /**
-     * The launch stage as defined by [Google Cloud Platform Launch Stages](https://cloud.google.com/terms/launch-stages). Cloud Run supports `ALPHA`, `BETA`, and `GA`. If no value is specified, GA is assumed. Set the launch stage to a preview stage on input to allow use of preview features in that stage. On read (or output), describes whether the resource uses preview features. For example, if ALPHA is provided as input, but only BETA and GA-level features are used, this field will be BETA on output.
+     * The launch stage as defined by [Google Cloud Platform Launch Stages](https://cloud.google.com/terms/launch-stages). Cloud Run supports `ALPHA`, `BETA`, and `GA`. If no value is specified, `GA` is assumed. Set the launch stage to a preview stage on input to allow use of preview features in that stage. On read (or output), describes whether the resource uses preview features. For example, if `ALPHA` is provided as input, but only `BETA` and `GA`-level features are used, this field will be `BETA` on output.
      */
     launchStage?: string | null;
     /**
@@ -874,7 +882,7 @@ export namespace run_v2 {
      */
     logUri?: string | null;
     /**
-     * The fully qualified name of this Instance. In CreateInstanceRequest, this field is ignored, and instead composed from CreateInstanceRequest.parent and CreateInstanceRequest.instance_id. Format: projects/{project\}/locations/{location\}/instances/{instance_id\}
+     * The fully qualified name of this Instance. In `CreateInstanceRequest`, this field is ignored, and instead composed from `CreateInstanceRequest.parent` and `CreateInstanceRequest.instance_id`.
      */
     name?: string | null;
     /**
@@ -882,13 +890,17 @@ export namespace run_v2 {
      */
     nodeSelector?: Schema$GoogleCloudRunV2NodeSelector;
     /**
-     * Output only. The generation of this Instance currently serving traffic. See comments in `reconciling` for additional information on reconciliation process in Cloud Run. Please note that unlike v1, this is an int64 value. As with most Google APIs, its JSON representation will be a `string` instead of an `integer`.
+     * Output only. The generation of this Instance currently serving traffic. See comments in `reconciling` for additional information on reconciliation process in Cloud Run. Please note that unlike v1, this is an `int64` value. As with most Google APIs, its JSON representation will be a `string` instead of an `integer`.
      */
     observedGeneration?: string | null;
     /**
-     * Output only. Returns true if the Instance is currently being acted upon by the system to bring it into the desired state. When a new Instance is created, or an existing one is updated, Cloud Run will asynchronously perform all necessary steps to bring the Instance to the desired serving state. This process is called reconciliation. While reconciliation is in process, `observed_generation` will have a transient value that might mismatch the intended state. Once reconciliation is over (and this field is false), there are two possible outcomes: reconciliation succeeded and the serving state matches the Instance, or there was an error, and reconciliation failed. This state can be found in `terminal_condition.state`.
+     * Output only. Returns `true` if the Instance is currently being acted upon by the system to bring it into the desired state. When a new Instance is created, or an existing one is updated, Cloud Run will asynchronously perform all necessary steps to bring the Instance to the desired serving state. This process is called reconciliation. While reconciliation is in process, `observed_generation` will have a transient value that might mismatch the intended state. Once reconciliation is over (and this field is `false`), there are two possible outcomes: reconciliation succeeded and the serving state matches the Instance, or there was an error, and reconciliation failed. This state can be found in `terminal_condition.state`.
      */
     reconciling?: boolean | null;
+    /**
+     * Optional. Restart policy for the Instance.
+     */
+    restartPolicy?: string | null;
     /**
      * Output only. Reserved for future use.
      */
@@ -1447,7 +1459,7 @@ export namespace run_v2 {
      */
     concurrencyUtilization?: number | null;
     /**
-     * Optional. Determines a threshold for CPU utilization before scaling begins. Accepted values are between `0.1` and `0.95` (inclusive) or `0.0` to disable CPU utilization as threshold for scaling. CPU and concurrency scaling cannot both be disabled.
+     * Optional. Determines a threshold for CPU utilization before scaling begins. Accepted values are between `0.1` and `0.90` (inclusive) or `0.0` to disable CPU utilization as threshold for scaling. CPU and concurrency scaling cannot both be disabled.
      */
     cpuUtilization?: number | null;
     /**
@@ -1724,6 +1736,10 @@ export namespace run_v2 {
      * Optional. Specifies service-level scaling settings
      */
     scaling?: Schema$GoogleCloudRunV2ServiceScaling;
+    /**
+     * Optional. Enables SSH access to the Service.
+     */
+    sshEnabled?: boolean | null;
     /**
      * Required. The template used to create revisions for this Service.
      */
@@ -2175,6 +2191,24 @@ export namespace run_v2 {
      * Displays the target URI.
      */
     uri?: string | null;
+  }
+  /**
+   * The request message for the UploadSource method.
+   */
+  export interface Schema$GoogleCloudRunV2UploadSourceRequest {
+    /**
+     * The name of Cloud Run Service upload source archive will be used for.
+     */
+    service?: string | null;
+  }
+  /**
+   * The response message for the UploadSource method.
+   */
+  export interface Schema$GoogleCloudRunV2UploadSourceResponse {
+    /**
+     * The Cloud Storage object path the source archive is uploaded to.
+     */
+    cloudStorageSource?: Schema$GoogleCloudRunV2CloudStorageSource;
   }
   /**
    * VersionToPath maps a specific version of a secret to a relative file to mount to, relative to VolumeMount's mount_path.
@@ -3824,6 +3858,7 @@ export namespace run_v2 {
     jobs: Resource$Projects$Locations$Jobs;
     operations: Resource$Projects$Locations$Operations;
     services: Resource$Projects$Locations$Services;
+    sourceUploads: Resource$Projects$Locations$Sourceuploads;
     workerPools: Resource$Projects$Locations$Workerpools;
     constructor(context: APIRequestContext) {
       this.context = context;
@@ -3834,6 +3869,9 @@ export namespace run_v2 {
         this.context
       );
       this.services = new Resource$Projects$Locations$Services(this.context);
+      this.sourceUploads = new Resource$Projects$Locations$Sourceuploads(
+        this.context
+      );
       this.workerPools = new Resource$Projects$Locations$Workerpools(
         this.context
       );
@@ -4070,8 +4108,7 @@ export namespace run_v2 {
     exportImageMetadata(
       params: Params$Resource$Projects$Locations$Exportimagemetadata,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudRunV2Metadata>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleCloudRunV2Metadata>,
       callback: BodyResponseCallback<Schema$GoogleCloudRunV2Metadata>
     ): void;
     exportImageMetadata(
@@ -4214,8 +4251,7 @@ export namespace run_v2 {
     exportMetadata(
       params: Params$Resource$Projects$Locations$Exportmetadata,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudRunV2Metadata>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleCloudRunV2Metadata>,
       callback: BodyResponseCallback<Schema$GoogleCloudRunV2Metadata>
     ): void;
     exportMetadata(
@@ -4358,8 +4394,7 @@ export namespace run_v2 {
     exportProjectMetadata(
       params: Params$Resource$Projects$Locations$Exportprojectmetadata,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudRunV2Metadata>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleCloudRunV2Metadata>,
       callback: BodyResponseCallback<Schema$GoogleCloudRunV2Metadata>
     ): void;
     exportProjectMetadata(
@@ -4690,7 +4725,7 @@ export namespace run_v2 {
      *   const res = await run.projects.locations.instances.create({
      *     // Optional. The unique identifier for the Instance. It must begin with letter, and cannot end with hyphen; must contain fewer than 50 characters. The name of the instance becomes {parent\}/instances/{instance_id\}. If not provided, the server will generate a unique `instance_id`.
      *     instanceId: 'placeholder-value',
-     *
+     *     // Required. The location and project in which this Instance should be created.
      *     parent: 'projects/my-project/locations/my-location',
      *     // Optional. Indicates that the request should be validated and default values populated, without persisting the request or creating any resources.
      *     validateOnly: 'placeholder-value',
@@ -4729,6 +4764,7 @@ export namespace run_v2 {
      *       //   "nodeSelector": {},
      *       //   "observedGeneration": "my_observedGeneration",
      *       //   "reconciling": false,
+     *       //   "restartPolicy": "my_restartPolicy",
      *       //   "satisfiesPzs": false,
      *       //   "serviceAccount": "my_serviceAccount",
      *       //   "terminalCondition": {},
@@ -4780,8 +4816,7 @@ export namespace run_v2 {
     create(
       params: Params$Resource$Projects$Locations$Instances$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -4852,7 +4887,7 @@ export namespace run_v2 {
     }
 
     /**
-     * Deletes a Instance
+     * Deletes an Instance
      * @example
      * ```js
      * // Before running the sample:
@@ -4887,7 +4922,7 @@ export namespace run_v2 {
      *   const res = await run.projects.locations.instances.delete({
      *     // Optional. A system-generated fingerprint for this version of the resource. May be used to detect modification conflict during updates.
      *     etag: 'placeholder-value',
-     *
+     *     // Required. The name of the Instance to delete.
      *     name: 'projects/my-project/locations/my-location/instances/my-instance',
      *     // Optional. Indicates that the request should be validated without actually deleting any resources.
      *     validateOnly: 'placeholder-value',
@@ -4932,8 +4967,7 @@ export namespace run_v2 {
     delete(
       params: Params$Resource$Projects$Locations$Instances$Delete,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -5001,7 +5035,7 @@ export namespace run_v2 {
     }
 
     /**
-     * Gets a Instance
+     * Gets an Instance
      * @example
      * ```js
      * // Before running the sample:
@@ -5035,6 +5069,7 @@ export namespace run_v2 {
      *
      *   // Do the magic
      *   const res = await run.projects.locations.instances.get({
+     *     // Required. The name of the Instance to retrieve.
      *     name: 'projects/my-project/locations/my-location/instances/my-instance',
      *   });
      *   console.log(res.data);
@@ -5071,6 +5106,7 @@ export namespace run_v2 {
      *   //   "nodeSelector": {},
      *   //   "observedGeneration": "my_observedGeneration",
      *   //   "reconciling": false,
+     *   //   "restartPolicy": "my_restartPolicy",
      *   //   "satisfiesPzs": false,
      *   //   "serviceAccount": "my_serviceAccount",
      *   //   "terminalCondition": {},
@@ -5110,8 +5146,7 @@ export namespace run_v2 {
     get(
       params: Params$Resource$Projects$Locations$Instances$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudRunV2Instance>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleCloudRunV2Instance>,
       callback: BodyResponseCallback<Schema$GoogleCloudRunV2Instance>
     ): void;
     get(
@@ -5364,7 +5399,7 @@ export namespace run_v2 {
      *     pageSize: 'placeholder-value',
      *     // Optional. A page token received from a previous call to ListInstances. All other parameters must match.
      *     pageToken: 'placeholder-value',
-     *     // Required. The location and project to list resources on. Format: projects/{project\}/locations/{location\}, where {project\} can be project id or number.
+     *     // Required. The location and project to list resources on.
      *     parent: 'projects/my-project/locations/my-location',
      *     // Optional. If true, returns deleted (but unexpired) resources along with active ones.
      *     showDeleted: 'placeholder-value',
@@ -5517,9 +5552,9 @@ export namespace run_v2 {
      *
      *   // Do the magic
      *   const res = await run.projects.locations.instances.patch({
-     *     // Optional. If set to true, and if the Instance does not exist, it will create a new one. The caller must have 'run.instances.create' permissions if this is set to true and the Instance does not exist.
+     *     // Optional. If set to `true`, and if the Instance does not exist, it will create a new one. The caller must have `run.instances.create` permissions if this is set to `true` and the Instance does not exist.
      *     allowMissing: 'placeholder-value',
-     *     // The fully qualified name of this Instance. In CreateInstanceRequest, this field is ignored, and instead composed from CreateInstanceRequest.parent and CreateInstanceRequest.instance_id. Format: projects/{project\}/locations/{location\}/instances/{instance_id\}
+     *     // The fully qualified name of this Instance. In `CreateInstanceRequest`, this field is ignored, and instead composed from `CreateInstanceRequest.parent` and `CreateInstanceRequest.instance_id`.
      *     name: 'projects/my-project/locations/my-location/instances/my-instance',
      *     // Optional. The list of fields to be updated.
      *     updateMask: 'placeholder-value',
@@ -5560,6 +5595,7 @@ export namespace run_v2 {
      *       //   "nodeSelector": {},
      *       //   "observedGeneration": "my_observedGeneration",
      *       //   "reconciling": false,
+     *       //   "restartPolicy": "my_restartPolicy",
      *       //   "satisfiesPzs": false,
      *       //   "serviceAccount": "my_serviceAccount",
      *       //   "terminalCondition": {},
@@ -5611,8 +5647,7 @@ export namespace run_v2 {
     patch(
       params: Params$Resource$Projects$Locations$Instances$Patch,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     patch(
@@ -5868,7 +5903,7 @@ export namespace run_v2 {
      *
      *   // Do the magic
      *   const res = await run.projects.locations.instances.start({
-     *     // Required. The name of the Instance to stop. Format: `projects/{project\}/locations/{location\}/instances/{instance\}`, where `{project\}` can be project id or number.
+     *     // Required. The name of the Instance to start.
      *     name: 'projects/my-project/locations/my-location/instances/my-instance',
      *
      *     // Request body metadata
@@ -5920,8 +5955,7 @@ export namespace run_v2 {
     start(
       params: Params$Resource$Projects$Locations$Instances$Start,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     start(
@@ -6022,7 +6056,7 @@ export namespace run_v2 {
      *
      *   // Do the magic
      *   const res = await run.projects.locations.instances.stop({
-     *     // Required. The name of the Instance to stop. Format: `projects/{project\}/locations/{location\}/instances/{instance\}`, where `{project\}` can be project id or number.
+     *     // Required. The name of the Instance to stop.
      *     name: 'projects/my-project/locations/my-location/instances/my-instance',
      *
      *     // Request body metadata
@@ -6074,8 +6108,7 @@ export namespace run_v2 {
     stop(
       params: Params$Resource$Projects$Locations$Instances$Stop,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     stop(
@@ -6309,7 +6342,7 @@ export namespace run_v2 {
      */
     instanceId?: string;
     /**
-     *
+     * Required. The location and project in which this Instance should be created.
      */
     parent?: string;
     /**
@@ -6328,7 +6361,7 @@ export namespace run_v2 {
      */
     etag?: string;
     /**
-     *
+     * Required. The name of the Instance to delete.
      */
     name?: string;
     /**
@@ -6338,7 +6371,7 @@ export namespace run_v2 {
   }
   export interface Params$Resource$Projects$Locations$Instances$Get extends StandardParameters {
     /**
-     *
+     * Required. The name of the Instance to retrieve.
      */
     name?: string;
   }
@@ -6362,7 +6395,7 @@ export namespace run_v2 {
      */
     pageToken?: string;
     /**
-     * Required. The location and project to list resources on. Format: projects/{project\}/locations/{location\}, where {project\} can be project id or number.
+     * Required. The location and project to list resources on.
      */
     parent?: string;
     /**
@@ -6372,11 +6405,11 @@ export namespace run_v2 {
   }
   export interface Params$Resource$Projects$Locations$Instances$Patch extends StandardParameters {
     /**
-     * Optional. If set to true, and if the Instance does not exist, it will create a new one. The caller must have 'run.instances.create' permissions if this is set to true and the Instance does not exist.
+     * Optional. If set to `true`, and if the Instance does not exist, it will create a new one. The caller must have `run.instances.create` permissions if this is set to `true` and the Instance does not exist.
      */
     allowMissing?: boolean;
     /**
-     * The fully qualified name of this Instance. In CreateInstanceRequest, this field is ignored, and instead composed from CreateInstanceRequest.parent and CreateInstanceRequest.instance_id. Format: projects/{project\}/locations/{location\}/instances/{instance_id\}
+     * The fully qualified name of this Instance. In `CreateInstanceRequest`, this field is ignored, and instead composed from `CreateInstanceRequest.parent` and `CreateInstanceRequest.instance_id`.
      */
     name?: string;
     /**
@@ -6406,7 +6439,7 @@ export namespace run_v2 {
   }
   export interface Params$Resource$Projects$Locations$Instances$Start extends StandardParameters {
     /**
-     * Required. The name of the Instance to stop. Format: `projects/{project\}/locations/{location\}/instances/{instance\}`, where `{project\}` can be project id or number.
+     * Required. The name of the Instance to start.
      */
     name?: string;
 
@@ -6417,7 +6450,7 @@ export namespace run_v2 {
   }
   export interface Params$Resource$Projects$Locations$Instances$Stop extends StandardParameters {
     /**
-     * Required. The name of the Instance to stop. Format: `projects/{project\}/locations/{location\}/instances/{instance\}`, where `{project\}` can be project id or number.
+     * Required. The name of the Instance to stop.
      */
     name?: string;
 
@@ -6562,8 +6595,7 @@ export namespace run_v2 {
     create(
       params: Params$Resource$Projects$Locations$Jobs$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -6711,8 +6743,7 @@ export namespace run_v2 {
     delete(
       params: Params$Resource$Projects$Locations$Jobs$Delete,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -7359,8 +7390,7 @@ export namespace run_v2 {
     patch(
       params: Params$Resource$Projects$Locations$Jobs$Patch,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     patch(
@@ -7514,8 +7544,7 @@ export namespace run_v2 {
     run(
       params: Params$Resource$Projects$Locations$Jobs$Run,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     run(
@@ -8113,8 +8142,7 @@ export namespace run_v2 {
     cancel(
       params: Params$Resource$Projects$Locations$Jobs$Executions$Cancel,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     cancel(
@@ -8263,8 +8291,7 @@ export namespace run_v2 {
     delete(
       params: Params$Resource$Projects$Locations$Jobs$Executions$Delete,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -8590,8 +8617,7 @@ export namespace run_v2 {
     get(
       params: Params$Resource$Projects$Locations$Jobs$Executions$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudRunV2Execution>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleCloudRunV2Execution>,
       callback: BodyResponseCallback<Schema$GoogleCloudRunV2Execution>
     ): void;
     get(
@@ -8987,8 +9013,7 @@ export namespace run_v2 {
     get(
       params: Params$Resource$Projects$Locations$Jobs$Executions$Tasks$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudRunV2Task>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleCloudRunV2Task>,
       callback: BodyResponseCallback<Schema$GoogleCloudRunV2Task>
     ): void;
     get(
@@ -9459,8 +9484,7 @@ export namespace run_v2 {
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -9774,8 +9798,7 @@ export namespace run_v2 {
     wait(
       params: Params$Resource$Projects$Locations$Operations$Wait,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -9973,6 +9996,7 @@ export namespace run_v2 {
      *       //   "reconciling": false,
      *       //   "satisfiesPzs": false,
      *       //   "scaling": {},
+     *       //   "sshEnabled": false,
      *       //   "template": {},
      *       //   "terminalCondition": {},
      *       //   "threatDetectionEnabled": false,
@@ -10025,8 +10049,7 @@ export namespace run_v2 {
     create(
       params: Params$Resource$Projects$Locations$Services$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -10177,8 +10200,7 @@ export namespace run_v2 {
     delete(
       params: Params$Resource$Projects$Locations$Services$Delete,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -10316,6 +10338,7 @@ export namespace run_v2 {
      *   //   "reconciling": false,
      *   //   "satisfiesPzs": false,
      *   //   "scaling": {},
+     *   //   "sshEnabled": false,
      *   //   "template": {},
      *   //   "terminalCondition": {},
      *   //   "threatDetectionEnabled": false,
@@ -10356,8 +10379,7 @@ export namespace run_v2 {
     get(
       params: Params$Resource$Projects$Locations$Services$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudRunV2Service>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleCloudRunV2Service>,
       callback: BodyResponseCallback<Schema$GoogleCloudRunV2Service>
     ): void;
     get(
@@ -10807,6 +10829,7 @@ export namespace run_v2 {
      *       //   "reconciling": false,
      *       //   "satisfiesPzs": false,
      *       //   "scaling": {},
+     *       //   "sshEnabled": false,
      *       //   "template": {},
      *       //   "terminalCondition": {},
      *       //   "threatDetectionEnabled": false,
@@ -10859,8 +10882,7 @@ export namespace run_v2 {
     patch(
       params: Params$Resource$Projects$Locations$Services$Patch,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     patch(
@@ -11446,8 +11468,7 @@ export namespace run_v2 {
     delete(
       params: Params$Resource$Projects$Locations$Services$Revisions$Delete,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -11779,8 +11800,7 @@ export namespace run_v2 {
     get(
       params: Params$Resource$Projects$Locations$Services$Revisions$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudRunV2Revision>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleCloudRunV2Revision>,
       callback: BodyResponseCallback<Schema$GoogleCloudRunV2Revision>
     ): void;
     get(
@@ -12055,6 +12075,206 @@ export namespace run_v2 {
     showDeleted?: boolean;
   }
 
+  export class Resource$Projects$Locations$Sourceuploads {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Uploads a source archive to a Google Cloud Storage bucket through Cloud Run. The uploaded source object should be used for Cloud Run resource deployments. User is responsible for managing the lifecycle of the uploaded object. If uploading through the Cloud Run API to Cloud Storage is not desired, you can use the IAM Deny Policy to deny the `run.locations.uploadSource` permission for all principals.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/run',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await run.projects.locations.sourceUploads.upload({
+     *     // Required. The project and location in which the source archive should be uploaded to, specified in the format `projects/x/locations/x`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "service": "my_service"
+     *       // }
+     *     },
+     *     media: {
+     *       mimeType: 'placeholder-value',
+     *       body: 'placeholder-value',
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "cloudStorageSource": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    upload(
+      params: Params$Resource$Projects$Locations$Sourceuploads$Upload,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    upload(
+      params?: Params$Resource$Projects$Locations$Sourceuploads$Upload,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudRunV2UploadSourceResponse>
+    >;
+    upload(
+      params: Params$Resource$Projects$Locations$Sourceuploads$Upload,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    upload(
+      params: Params$Resource$Projects$Locations$Sourceuploads$Upload,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRunV2UploadSourceResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRunV2UploadSourceResponse>
+    ): void;
+    upload(
+      params: Params$Resource$Projects$Locations$Sourceuploads$Upload,
+      callback: BodyResponseCallback<Schema$GoogleCloudRunV2UploadSourceResponse>
+    ): void;
+    upload(
+      callback: BodyResponseCallback<Schema$GoogleCloudRunV2UploadSourceResponse>
+    ): void;
+    upload(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Sourceuploads$Upload
+        | BodyResponseCallback<Schema$GoogleCloudRunV2UploadSourceResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRunV2UploadSourceResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudRunV2UploadSourceResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudRunV2UploadSourceResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Sourceuploads$Upload;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Sourceuploads$Upload;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://run.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}:uploadSource').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        mediaUrl: (rootUrl + '/upload/v2/{+parent}:uploadSource').replace(
+          /([^:]\/)\/+/g,
+          '$1'
+        ),
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudRunV2UploadSourceResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudRunV2UploadSourceResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Sourceuploads$Upload extends StandardParameters {
+    /**
+     * Required. The project and location in which the source archive should be uploaded to, specified in the format `projects/x/locations/x`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudRunV2UploadSourceRequest;
+
+    /**
+     * Media metadata
+     */
+    media?: {
+      /**
+       * Media mime-type
+       */
+      mimeType?: string;
+
+      /**
+       * Media body contents
+       */
+      body?: any;
+    };
+  }
+
   export class Resource$Projects$Locations$Workerpools {
     context: APIRequestContext;
     revisions: Resource$Projects$Locations$Workerpools$Revisions;
@@ -12183,8 +12403,7 @@ export namespace run_v2 {
     create(
       params: Params$Resource$Projects$Locations$Workerpools$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -12335,8 +12554,7 @@ export namespace run_v2 {
     delete(
       params: Params$Resource$Projects$Locations$Workerpools$Delete,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -12506,8 +12724,7 @@ export namespace run_v2 {
     get(
       params: Params$Resource$Projects$Locations$Workerpools$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudRunV2WorkerPool>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleCloudRunV2WorkerPool>,
       callback: BodyResponseCallback<Schema$GoogleCloudRunV2WorkerPool>
     ): void;
     get(
@@ -13004,8 +13221,7 @@ export namespace run_v2 {
     patch(
       params: Params$Resource$Projects$Locations$Workerpools$Patch,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     patch(
@@ -13594,8 +13810,7 @@ export namespace run_v2 {
     delete(
       params: Params$Resource$Projects$Locations$Workerpools$Revisions$Delete,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -13772,8 +13987,7 @@ export namespace run_v2 {
     get(
       params: Params$Resource$Projects$Locations$Workerpools$Revisions$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudRunV2Revision>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleCloudRunV2Revision>,
       callback: BodyResponseCallback<Schema$GoogleCloudRunV2Revision>
     ): void;
     get(

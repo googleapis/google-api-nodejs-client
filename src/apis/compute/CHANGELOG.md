@@ -1,5 +1,23 @@
 # Changelog
 
+## [39.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/compute-v39.0.0...compute-v39.1.0) (2026-08-14)
+
+
+### Features
+
+* **compute:** update the API ([52e8fac](https://github.com/googleapis/google-api-nodejs-client/commit/52e8facf931da77596ac1bb63397ce75616d96ee))
+
+## [39.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/compute-v38.0.0...compute-v39.0.0) (2026-08-03)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3955](https://github.com/googleapis/google-api-nodejs-client/issues/3955)) ([c429a9b](https://github.com/googleapis/google-api-nodejs-client/commit/c429a9b6f8272f1a651084f83ffcf4b88124c59f))
+
 ## [38.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/compute-v37.0.0...compute-v38.0.0) (2026-05-28)
 
 

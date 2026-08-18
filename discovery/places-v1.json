@@ -280,7 +280,7 @@
       }
     }
   },
-  "revision": "20260524",
+  "revision": "20260729",
   "rootUrl": "https://places.googleapis.com/",
   "schemas": {
     "GoogleGeoTypeViewport": {
@@ -1077,7 +1077,7 @@
         },
         "currentOpeningHours": {
           "$ref": "GoogleMapsPlacesV1PlaceOpeningHours",
-          "description": "The hours of operation for the next seven days (including today). The time period starts at midnight on the date of the request and ends at 11:59 pm six days later. This field includes the special_days subfield of all hours, set for dates that have exceptional hours."
+          "description": "The hours of operation for the next seven days (including today) incorporating any special opening hours. The time period starts at midnight on the date of the request and ends at 11:59 pm six days later. If the actual opening hours are outside of this range, the opening hours will be truncated. For example, if a place is open from 10pm yesterday to 6am today, the opening hours will be truncated to 12am today to 6am today. This field includes the special_days subfield of all hours, set for dates that have exceptional hours."
         },
         "currentSecondaryOpeningHours": {
           "description": "Contains an array of entries for the next seven days including information about secondary hours of a business. Secondary hours are different from a business's main hours. For example, a restaurant can specify drive through hours or delivery hours as its secondary hours. This field populates the type subfield, which draws from a predefined list of opening hours types (such as DRIVE_THROUGH, PICKUP, or TAKEOUT) based on the types of the place. This field includes the special_days subfield of all hours, set for dates that have exceptional hours.",
@@ -1101,6 +1101,13 @@
         "editorialSummary": {
           "$ref": "GoogleTypeLocalizedText",
           "description": "Contains a summary of the place. A summary is comprised of a textual overview, and also includes the language code for these if applicable. Summary text must be presented as-is and can not be modified or altered."
+        },
+        "entrances": {
+          "description": "Entrances for this destination.",
+          "items": {
+            "$ref": "GoogleMapsPlacesV1PlaceEntrance"
+          },
+          "type": "array"
         },
         "evChargeAmenitySummary": {
           "$ref": "GoogleMapsPlacesV1PlaceEvChargeAmenitySummary",
@@ -1190,6 +1197,13 @@
           "description": "A human-readable phone number for the place, in national format.",
           "type": "string"
         },
+        "navigationPoints": {
+          "description": "Navigation points for this destination.",
+          "items": {
+            "$ref": "GoogleMapsPlacesV1PlaceNavigationPoint"
+          },
+          "type": "array"
+        },
         "neighborhoodSummary": {
           "$ref": "GoogleMapsPlacesV1PlaceNeighborhoodSummary",
           "description": "A summary of points of interest near the place."
@@ -1268,7 +1282,7 @@
         },
         "regularOpeningHours": {
           "$ref": "GoogleMapsPlacesV1PlaceOpeningHours",
-          "description": "The regular hours of operation. Note that if a place is always open (24 hours), the `close` field will not be set. Clients can rely on always open (24 hours) being represented as an [`open`](https://developers.google.com/maps/documentation/places/web-service/reference/rest/v1/places#Period) period containing [`day`](https://developers.google.com/maps/documentation/places/web-service/reference/rest/v1/places#Point) with value `0`, [`hour`](https://developers.google.com/maps/documentation/places/web-service/reference/rest/v1/places#Point) with value `0`, and [`minute`](https://developers.google.com/maps/documentation/places/web-service/reference/rest/v1/places#Point) with value `0`."
+          "description": "The regular hours are the hours of operation for a place on a typical schedule. Note that if a place is always open (24 hours), the `close` field will not be set. Clients can rely on always open (24 hours) being represented as an [`open`](https://developers.google.com/maps/documentation/places/web-service/reference/rest/v1/places#Period) period containing [`day`](https://developers.google.com/maps/documentation/places/web-service/reference/rest/v1/places#Point) with value `0`, [`hour`](https://developers.google.com/maps/documentation/places/web-service/reference/rest/v1/places#Point) with value `0`, and [`minute`](https://developers.google.com/maps/documentation/places/web-service/reference/rest/v1/places#Point) with value `0`."
         },
         "regularSecondaryOpeningHours": {
           "description": "Contains an array of entries for information about regular secondary hours of a business. Secondary hours are different from a business's main hours. For example, a restaurant can specify drive through hours or delivery hours as its secondary hours. This field populates the type subfield, which draws from a predefined list of opening hours types (such as DRIVE_THROUGH, PICKUP, or TAKEOUT) based on the types of the place.",
@@ -1519,6 +1533,32 @@
       },
       "type": "object"
     },
+    "GoogleMapsPlacesV1PlaceEntrance": {
+      "description": "An entrance is a single latitude/longitude coordinate pair that defines the location of an entry and exit point for a place.",
+      "id": "GoogleMapsPlacesV1PlaceEntrance",
+      "properties": {
+        "location": {
+          "$ref": "GoogleTypeLatLng",
+          "description": "The location of the entrance."
+        },
+        "tags": {
+          "description": "A list of tags that describe the entrance.",
+          "items": {
+            "enum": [
+              "TAG_UNSPECIFIED",
+              "PREFERRED"
+            ],
+            "enumDescriptions": [
+              "Not used.",
+              "The entrance likely provides physical access to the primary place in the returned destination. A place can have multiple preferred entrances. If an entrance does not have this tag, it means the entrance is physically on the same building as the primary place, but does not necessarily provide access to the place. For example, if the primary place is a restaurant in a strip mall, the \"PREFERRED\" entrances will be the ones that likely lead into the restaurant itself, while the other returned entrances will be other entrances for the building, such as entrances into other restaurants in the strip mall. If the primary place is a building itself, the `PREFERRED` entrances will be the ones that lead into the \"main\" part of the building. For example, in a shopping center the `PREFERRED` entrances will be the ones that allow access to the main foyer area, but if an entrance only provides access to a store on the side of the building, it won't be a `PREFERRED` entrance. Note: a `PREFERRED` entrance might not provide access to the primary place, and a non-`PREFERRED` entrance might provide access to the primary place."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleMapsPlacesV1PlaceEvChargeAmenitySummary": {
       "description": "The summary of amenities near the EV charging station. This only applies to places with type `electric_vehicle_charging_station`. The `overview` field is guaranteed to be provided while the other fields are optional.",
       "id": "GoogleMapsPlacesV1PlaceEvChargeAmenitySummary",
@@ -1592,6 +1632,61 @@
         "writeAReviewUri": {
           "description": "A link to write a review for this place on Google Maps.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleMapsPlacesV1PlaceNavigationPoint": {
+      "description": "A navigation point is a location next to a road where navigation can end.",
+      "id": "GoogleMapsPlacesV1PlaceNavigationPoint",
+      "properties": {
+        "displayName": {
+          "$ref": "GoogleTypeLocalizedText",
+          "description": "The display name of this navigation point. For example, \"5th Ave\" or \"Gate B\"."
+        },
+        "location": {
+          "$ref": "GoogleTypeLatLng",
+          "description": "A point next to the road segment where navigation should end. The point is intentionally slightly offset from the road's centerline to clearly mark the side of the road where the place is located."
+        },
+        "navigationPointToken": {
+          "description": "A token that can be used to identify this navigation point.",
+          "type": "string"
+        },
+        "travelModes": {
+          "description": "Travel modes that are appropriate for this navigation point.",
+          "items": {
+            "enum": [
+              "TRAVEL_MODE_UNSPECIFIED",
+              "DRIVE",
+              "WALK"
+            ],
+            "enumDescriptions": [
+              "Not used.",
+              "Suitable for driving.",
+              "Suitable for walking."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "usages": {
+          "description": "Lists `usages` supported by this navigation point. If empty, it does not necessarily mean its usage is restricted in any way. All navigation points can be used for general navigation.",
+          "items": {
+            "enum": [
+              "USAGE_UNSPECIFIED",
+              "DROPOFF",
+              "PICKUP",
+              "PARKING"
+            ],
+            "enumDescriptions": [
+              "Not used.",
+              "Suitable for dropping off a passenger. For example, a rideshare drop off location.",
+              "Suitable for picking up a passenger. For example, a rideshare pick up location.",
+              "Suitable for parking. For example, within a parking lot."
+            ],
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"

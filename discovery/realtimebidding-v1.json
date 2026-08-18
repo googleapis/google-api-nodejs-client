@@ -1305,7 +1305,7 @@
       }
     }
   },
-  "revision": "20260427",
+  "revision": "20260716",
   "rootUrl": "https://realtimebidding.googleapis.com/",
   "schemas": {
     "ActivatePretargetingConfigRequest": {
@@ -2800,7 +2800,8 @@
       "id": "PretargetingConfig",
       "properties": {
         "allowedUserTargetingModes": {
-          "description": "Targeting modes included by this config. A bid request must allow all the specified targeting modes. An unset value allows all bid requests to be sent, regardless of which targeting modes they allow.",
+          "deprecated": true,
+          "description": "Deprecated: The value of this field no longer has any effect. Targeting modes included by this config. A bid request must allow all the specified targeting modes. An unset value allows all bid requests to be sent, regardless of which targeting modes they allow.",
           "items": {
             "enum": [
               "USER_TARGETING_MODE_UNSPECIFIED",

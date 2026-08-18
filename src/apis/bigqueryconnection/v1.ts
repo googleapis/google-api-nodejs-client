@@ -387,6 +387,12 @@ export namespace bigqueryconnection_v1 {
      * Networking configuration.
      */
     network?: Schema$ConnectorConfigurationNetwork;
+    /**
+     * Optional. A map of name-value pairs for connector-specific parameters. Extra configuration parameters, that are not standardized in configuration sections. To update a single parameter value call ConnectionService.UpdateConnection with `update_mask` set to `configuration.parameters.parameter_id`. If parameter id does not fit `[a-zA-Z0-9_]+` pattern, it should be escaped with backticks - for example ``configuration.parameters.`parameter id` ``.
+     */
+    parameters?: {
+      [key: string]: Schema$ConnectorConfigurationParameterValue;
+    } | null;
   }
   /**
    * Data Asset - a resource within instance of the system, reachable under specified endpoint. For example a database name in a SQL DB.
@@ -405,6 +411,12 @@ export namespace bigqueryconnection_v1 {
    * Client authentication.
    */
   export interface Schema$ConnectorConfigurationAuthentication {
+    /**
+     * Optional. A map of name-value pairs for authentication-specific parameters. Extra configuration parameters, that are not standardized in authentication. To update a single parameter value call ConnectionService.UpdateConnection with `update_mask` set to `configuration.authentication.parameters.parameter_id`. If parameter id does not fit `[a-zA-Z0-9_]+` pattern, it should be escaped with backticks - for example ``configuration.authentication.parameters.`parameter id` ``.
+     */
+    parameters?: {
+      [key: string]: Schema$ConnectorConfigurationParameterValue;
+    } | null;
     /**
      * Output only. Google-managed service account associated with this connection, e.g., `service-{project_number\}@gcp-sa-bigqueryconnection.iam.gserviceaccount.com`. BigQuery jobs using this connection will act as `service_account` identity while connecting to the datasource.
      */
@@ -431,6 +443,31 @@ export namespace bigqueryconnection_v1 {
      * Private Service Connect networking configuration.
      */
     privateServiceConnect?: Schema$ConnectorConfigurationPrivateServiceConnect;
+  }
+  /**
+   * Represents a value for a connector parameter.
+   */
+  export interface Schema$ConnectorConfigurationParameterValue {
+    /**
+     * A boolean parameter value.
+     */
+    boolValue?: boolean | null;
+    /**
+     * A double parameter value.
+     */
+    doubleValue?: number | null;
+    /**
+     * An int32 parameter value.
+     */
+    int32Value?: number | null;
+    /**
+     * A secret parameter value. Allowed only for Authentication parameters.
+     */
+    secretValue?: Schema$ConnectorConfigurationSecret;
+    /**
+     * A string parameter value.
+     */
+    stringValue?: string | null;
   }
   /**
    * Private Service Connect configuration.
@@ -783,8 +820,7 @@ export namespace bigqueryconnection_v1 {
         | BodyResponseCallback<Schema$Connection>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Connection>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Connection> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Connection>>
@@ -922,8 +958,7 @@ export namespace bigqueryconnection_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -1074,8 +1109,7 @@ export namespace bigqueryconnection_v1 {
         | BodyResponseCallback<Schema$Connection>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Connection>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Connection> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Connection>>
@@ -1225,8 +1259,7 @@ export namespace bigqueryconnection_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -1354,8 +1387,7 @@ export namespace bigqueryconnection_v1 {
     list(
       params: Params$Resource$Projects$Locations$Connections$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListConnectionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListConnectionsResponse>,
       callback: BodyResponseCallback<Schema$ListConnectionsResponse>
     ): void;
     list(
@@ -1553,8 +1585,7 @@ export namespace bigqueryconnection_v1 {
         | BodyResponseCallback<Schema$Connection>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Connection>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Connection> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Connection>>
@@ -1705,8 +1736,7 @@ export namespace bigqueryconnection_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -1839,8 +1869,7 @@ export namespace bigqueryconnection_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Connections$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(

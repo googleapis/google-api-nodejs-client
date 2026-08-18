@@ -440,8 +440,7 @@ export namespace gamesManagement_v1management {
     reset(
       params: Params$Resource$Achievements$Reset,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$AchievementResetResponse>,
+        MethodOptions | BodyResponseCallback<Schema$AchievementResetResponse>,
       callback: BodyResponseCallback<Schema$AchievementResetResponse>
     ): void;
     reset(
@@ -2282,8 +2281,7 @@ export namespace gamesManagement_v1management {
     reset(
       params: Params$Resource$Scores$Reset,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$PlayerScoreResetResponse>,
+        MethodOptions | BodyResponseCallback<Schema$PlayerScoreResetResponse>,
       callback: BodyResponseCallback<Schema$PlayerScoreResetResponse>
     ): void;
     reset(

@@ -1687,6 +1687,10 @@ export namespace logging_v2 {
      * The truncation granularity when grouping by a time/date field. This will be used to truncate the field to the granularity specified. This can be either a date or a time granularity found at https://cloud.google.com/bigquery/docs/reference/standard-sql/timestamp_functions#timestamp_trunc_granularity_date and https://cloud.google.com/bigquery/docs/reference/standard-sql/timestamp_functions#timestamp_trunc_granularity_time respectively.
      */
     truncationGranularity?: string | null;
+    /**
+     * Optional. A virtual field definition, used in place of field to define a field that is computed from other fields rather than being directly present in the data schema.For example, a virtual field can be defined using COALESCE to select the first non-null value from a list of fields.If virtual_field is set, field must not be set.
+     */
+    virtualField?: Schema$VirtualField;
   }
   /**
    * Defines a structured query configuration that can be used instead of writing raw SQL. This configuration represents the components of a SQL query (FROM, SELECT, WHERE, ORDER BY, LIMIT) and is typically converted into an executable query (e.g., BigQuery SQL) by the backend service to retrieve data for analysis or visualization.
@@ -2114,6 +2118,19 @@ export namespace logging_v2 {
     updateMask?: string | null;
   }
   /**
+   * A virtual field is a field that is not physically present in the underlying data schema, but is created through specific operations within the query builder model based on other fields in the schema.
+   */
+  export interface Schema$VirtualField {
+    /**
+     * The field sources that will be used to create the virtual field, based on the semantics of the virtual field type.The field sources must follow these rules, based on the virtual field type: - For VIRTUAL_FIELD_TYPE_UNSPECIFIED, this field must be empty. - For COALESCE, this field must be non-empty and include a minimum of two field sources. The underlying field sources must be actual projected fields that represent actual schema fields and that must not be transformed and aggregated in any way, except for casting. The type of all the underlying field sources must be equivalent so that picking one of them would result in the same value type.
+     */
+    underlyingFieldSources?: Schema$FieldSource[];
+    /**
+     * Required. The type of the virtual field.
+     */
+    virtualFieldType?: string | null;
+  }
+  /**
    * The parameters to WriteLogEntries.
    */
   export interface Schema$WriteLogEntriesRequest {
@@ -2405,8 +2422,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$Settings>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Settings>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Settings> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Settings>>
@@ -2721,8 +2737,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -2991,8 +3006,7 @@ export namespace logging_v2 {
     list(
       params: Params$Resource$Billingaccounts$Exclusions$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListExclusionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListExclusionsResponse>,
       callback: BodyResponseCallback<Schema$ListExclusionsResponse>
     ): void;
     list(
@@ -3390,8 +3404,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$Location>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Location>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Location> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Location>>
@@ -3520,8 +3533,7 @@ export namespace logging_v2 {
     list(
       params: Params$Resource$Billingaccounts$Locations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListLocationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListLocationsResponse>,
       callback: BodyResponseCallback<Schema$ListLocationsResponse>
     ): void;
     list(
@@ -3754,8 +3766,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$LogBucket>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$LogBucket>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$LogBucket> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$LogBucket>>
@@ -3918,8 +3929,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4057,8 +4067,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -4206,8 +4215,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$LogBucket>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$LogBucket>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$LogBucket> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$LogBucket>>
@@ -4520,8 +4528,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$LogBucket>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$LogBucket>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$LogBucket> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$LogBucket>>
@@ -4661,8 +4668,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -4826,8 +4832,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5091,8 +5096,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5236,8 +5240,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5380,8 +5383,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$Link>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Link>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Link> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Link>>
@@ -5739,8 +5741,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$LogView>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$LogView>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$LogView> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$LogView>>
@@ -5878,8 +5879,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -6022,8 +6022,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$LogView>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$LogView>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$LogView> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$LogView>>
@@ -6327,8 +6326,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$LogView>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$LogView>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$LogView> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$LogView>>
@@ -6707,8 +6705,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -6851,8 +6848,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -6982,8 +6978,7 @@ export namespace logging_v2 {
     list(
       params: Params$Resource$Billingaccounts$Locations$Operations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListOperationsResponse>,
       callback: BodyResponseCallback<Schema$ListOperationsResponse>
     ): void;
     list(
@@ -7182,8 +7177,7 @@ export namespace logging_v2 {
     list(
       params: Params$Resource$Billingaccounts$Locations$Recentqueries$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListRecentQueriesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListRecentQueriesResponse>,
       callback: BodyResponseCallback<Schema$ListRecentQueriesResponse>
     ): void;
     list(
@@ -7395,8 +7389,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$SavedQuery>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$SavedQuery>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$SavedQuery> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$SavedQuery>>
@@ -7534,8 +7527,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -7681,8 +7673,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$SavedQuery>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$SavedQuery>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$SavedQuery> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$SavedQuery>>
@@ -7811,8 +7802,7 @@ export namespace logging_v2 {
     list(
       params: Params$Resource$Billingaccounts$Locations$Savedqueries$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListSavedQueriesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListSavedQueriesResponse>,
       callback: BodyResponseCallback<Schema$ListSavedQueriesResponse>
     ): void;
     list(
@@ -7996,8 +7986,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$SavedQuery>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$SavedQuery>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$SavedQuery> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$SavedQuery>>
@@ -8200,8 +8189,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -8553,8 +8541,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$LogSink>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$LogSink>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$LogSink> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$LogSink>>
@@ -8691,8 +8678,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -8843,8 +8829,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$LogSink>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$LogSink>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$LogSink> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$LogSink>>
@@ -9169,8 +9154,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$LogSink>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$LogSink>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$LogSink> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$LogSink>>
@@ -9346,8 +9330,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$LogSink>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$LogSink>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$LogSink> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$LogSink>>
@@ -9597,8 +9580,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -9728,8 +9710,7 @@ export namespace logging_v2 {
     list(
       params: Params$Resource$Entries$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListLogEntriesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListLogEntriesResponse>,
       callback: BodyResponseCallback<Schema$ListLogEntriesResponse>
     ): void;
     list(
@@ -9876,8 +9857,7 @@ export namespace logging_v2 {
     tail(
       params: Params$Resource$Entries$Tail,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TailLogEntriesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TailLogEntriesResponse>,
       callback: BodyResponseCallback<Schema$TailLogEntriesResponse>
     ): void;
     tail(
@@ -10023,8 +10003,7 @@ export namespace logging_v2 {
     write(
       params: Params$Resource$Entries$Write,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$WriteLogEntriesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$WriteLogEntriesResponse>,
       callback: BodyResponseCallback<Schema$WriteLogEntriesResponse>
     ): void;
     write(
@@ -10367,8 +10346,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -10636,8 +10614,7 @@ export namespace logging_v2 {
     list(
       params: Params$Resource$Exclusions$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListExclusionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListExclusionsResponse>,
       callback: BodyResponseCallback<Schema$ListExclusionsResponse>
     ): void;
     list(
@@ -11172,8 +11149,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$Settings>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Settings>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Settings> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Settings>>
@@ -11334,8 +11310,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$Settings>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Settings>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Settings> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Settings>>
@@ -11665,8 +11640,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -11935,8 +11909,7 @@ export namespace logging_v2 {
     list(
       params: Params$Resource$Folders$Exclusions$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListExclusionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListExclusionsResponse>,
       callback: BodyResponseCallback<Schema$ListExclusionsResponse>
     ): void;
     list(
@@ -12332,8 +12305,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$Location>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Location>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Location> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Location>>
@@ -12462,8 +12434,7 @@ export namespace logging_v2 {
     list(
       params: Params$Resource$Folders$Locations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListLocationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListLocationsResponse>,
       callback: BodyResponseCallback<Schema$ListLocationsResponse>
     ): void;
     list(
@@ -12692,8 +12663,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$LogBucket>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$LogBucket>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$LogBucket> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$LogBucket>>
@@ -12856,8 +12826,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -12994,8 +12963,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -13143,8 +13111,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$LogBucket>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$LogBucket>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$LogBucket> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$LogBucket>>
@@ -13457,8 +13424,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$LogBucket>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$LogBucket>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$LogBucket> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$LogBucket>>
@@ -13598,8 +13564,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -13762,8 +13727,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -14025,8 +13989,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -14169,8 +14132,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -14312,8 +14274,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$Link>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Link>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Link> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Link>>
@@ -14667,8 +14628,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$LogView>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$LogView>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$LogView> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$LogView>>
@@ -14805,8 +14765,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -14948,8 +14907,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$LogView>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$LogView>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$LogView> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$LogView>>
@@ -15098,8 +15056,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -15404,8 +15361,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$LogView>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$LogView>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$LogView> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$LogView>>
@@ -15553,8 +15509,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -15687,8 +15642,7 @@ export namespace logging_v2 {
     testIamPermissions(
       params: Params$Resource$Folders$Locations$Buckets$Views$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -16139,8 +16093,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$LogScope>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$LogScope>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$LogScope> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$LogScope>>
@@ -16277,8 +16230,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -16420,8 +16372,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$LogScope>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$LogScope>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$LogScope> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$LogScope>>
@@ -16546,8 +16497,7 @@ export namespace logging_v2 {
     list(
       params: Params$Resource$Folders$Locations$Logscopes$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListLogScopesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListLogScopesResponse>,
       callback: BodyResponseCallback<Schema$ListLogScopesResponse>
     ): void;
     list(
@@ -16724,8 +16674,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$LogScope>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$LogScope>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$LogScope> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$LogScope>>
@@ -16929,8 +16878,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -17072,8 +17020,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -17203,8 +17150,7 @@ export namespace logging_v2 {
     list(
       params: Params$Resource$Folders$Locations$Operations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListOperationsResponse>,
       callback: BodyResponseCallback<Schema$ListOperationsResponse>
     ): void;
     list(
@@ -17402,8 +17348,7 @@ export namespace logging_v2 {
     list(
       params: Params$Resource$Folders$Locations$Recentqueries$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListRecentQueriesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListRecentQueriesResponse>,
       callback: BodyResponseCallback<Schema$ListRecentQueriesResponse>
     ): void;
     list(
@@ -17614,8 +17559,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$SavedQuery>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$SavedQuery>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$SavedQuery> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$SavedQuery>>
@@ -17752,8 +17696,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -17898,8 +17841,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$SavedQuery>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$SavedQuery>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$SavedQuery> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$SavedQuery>>
@@ -18027,8 +17969,7 @@ export namespace logging_v2 {
     list(
       params: Params$Resource$Folders$Locations$Savedqueries$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListSavedQueriesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListSavedQueriesResponse>,
       callback: BodyResponseCallback<Schema$ListSavedQueriesResponse>
     ): void;
     list(
@@ -18211,8 +18152,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$SavedQuery>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$SavedQuery>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$SavedQuery> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$SavedQuery>>
@@ -18414,8 +18354,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -18767,8 +18706,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$LogSink>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$LogSink>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$LogSink> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$LogSink>>
@@ -18905,8 +18843,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -19057,8 +18994,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$LogSink>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$LogSink>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$LogSink> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$LogSink>>
@@ -19383,8 +19319,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$LogSink>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$LogSink>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$LogSink> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$LogSink>>
@@ -19560,8 +19495,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$LogSink>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$LogSink>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$LogSink> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$LogSink>>
@@ -19810,8 +19744,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$Location>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Location>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Location> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Location>>
@@ -19939,8 +19872,7 @@ export namespace logging_v2 {
     list(
       params: Params$Resource$Locations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListLocationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListLocationsResponse>,
       callback: BodyResponseCallback<Schema$ListLocationsResponse>
     ): void;
     list(
@@ -20168,8 +20100,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$LogBucket>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$LogBucket>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$LogBucket> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$LogBucket>>
@@ -20332,8 +20263,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -20470,8 +20400,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -20619,8 +20548,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$LogBucket>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$LogBucket>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$LogBucket> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$LogBucket>>
@@ -20933,8 +20861,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$LogBucket>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$LogBucket>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$LogBucket> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$LogBucket>>
@@ -21074,8 +21001,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -21238,8 +21164,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -21501,8 +21426,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -21645,8 +21569,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -21788,8 +21711,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$Link>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Link>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Link> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Link>>
@@ -22139,8 +22061,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$LogView>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$LogView>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$LogView> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$LogView>>
@@ -22277,8 +22198,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -22420,8 +22340,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$LogView>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$LogView>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$LogView> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$LogView>>
@@ -22570,8 +22489,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -22875,8 +22793,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$LogView>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$LogView>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$LogView> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$LogView>>
@@ -23024,8 +22941,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -23157,8 +23073,7 @@ export namespace logging_v2 {
     testIamPermissions(
       params: Params$Resource$Locations$Buckets$Views$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -23421,8 +23336,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -23564,8 +23478,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -23695,8 +23608,7 @@ export namespace logging_v2 {
     list(
       params: Params$Resource$Locations$Operations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListOperationsResponse>,
       callback: BodyResponseCallback<Schema$ListOperationsResponse>
     ): void;
     list(
@@ -23900,8 +23812,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -24547,8 +24458,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$Settings>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Settings>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Settings> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Settings>>
@@ -24867,8 +24777,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$Settings>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Settings>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Settings> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Settings>>
@@ -25213,8 +25122,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -25483,8 +25391,7 @@ export namespace logging_v2 {
     list(
       params: Params$Resource$Organizations$Exclusions$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListExclusionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListExclusionsResponse>,
       callback: BodyResponseCallback<Schema$ListExclusionsResponse>
     ): void;
     list(
@@ -25884,8 +25791,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$Location>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Location>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Location> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Location>>
@@ -26014,8 +25920,7 @@ export namespace logging_v2 {
     list(
       params: Params$Resource$Organizations$Locations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListLocationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListLocationsResponse>,
       callback: BodyResponseCallback<Schema$ListLocationsResponse>
     ): void;
     list(
@@ -26248,8 +26153,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$LogBucket>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$LogBucket>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$LogBucket> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$LogBucket>>
@@ -26412,8 +26316,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -26551,8 +26454,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -26700,8 +26602,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$LogBucket>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$LogBucket>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$LogBucket> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$LogBucket>>
@@ -27014,8 +26915,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$LogBucket>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$LogBucket>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$LogBucket> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$LogBucket>>
@@ -27155,8 +27055,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -27319,8 +27218,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -27584,8 +27482,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -27729,8 +27626,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -27873,8 +27769,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$Link>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Link>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Link> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Link>>
@@ -28232,8 +28127,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$LogView>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$LogView>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$LogView> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$LogView>>
@@ -28371,8 +28265,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -28515,8 +28408,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$LogView>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$LogView>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$LogView> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$LogView>>
@@ -28666,8 +28558,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -28974,8 +28865,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$LogView>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$LogView>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$LogView> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$LogView>>
@@ -29124,8 +29014,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -29259,8 +29148,7 @@ export namespace logging_v2 {
     testIamPermissions(
       params: Params$Resource$Organizations$Locations$Buckets$Views$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -29711,8 +29599,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$LogScope>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$LogScope>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$LogScope> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$LogScope>>
@@ -29849,8 +29736,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -29992,8 +29878,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$LogScope>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$LogScope>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$LogScope> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$LogScope>>
@@ -30118,8 +30003,7 @@ export namespace logging_v2 {
     list(
       params: Params$Resource$Organizations$Locations$Logscopes$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListLogScopesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListLogScopesResponse>,
       callback: BodyResponseCallback<Schema$ListLogScopesResponse>
     ): void;
     list(
@@ -30296,8 +30180,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$LogScope>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$LogScope>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$LogScope> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$LogScope>>
@@ -30501,8 +30384,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -30645,8 +30527,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -30776,8 +30657,7 @@ export namespace logging_v2 {
     list(
       params: Params$Resource$Organizations$Locations$Operations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListOperationsResponse>,
       callback: BodyResponseCallback<Schema$ListOperationsResponse>
     ): void;
     list(
@@ -30975,8 +30855,7 @@ export namespace logging_v2 {
     list(
       params: Params$Resource$Organizations$Locations$Recentqueries$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListRecentQueriesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListRecentQueriesResponse>,
       callback: BodyResponseCallback<Schema$ListRecentQueriesResponse>
     ): void;
     list(
@@ -31188,8 +31067,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$SavedQuery>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$SavedQuery>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$SavedQuery> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$SavedQuery>>
@@ -31327,8 +31205,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -31474,8 +31351,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$SavedQuery>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$SavedQuery>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$SavedQuery> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$SavedQuery>>
@@ -31603,8 +31479,7 @@ export namespace logging_v2 {
     list(
       params: Params$Resource$Organizations$Locations$Savedqueries$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListSavedQueriesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListSavedQueriesResponse>,
       callback: BodyResponseCallback<Schema$ListSavedQueriesResponse>
     ): void;
     list(
@@ -31788,8 +31663,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$SavedQuery>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$SavedQuery>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$SavedQuery> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$SavedQuery>>
@@ -31992,8 +31866,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -32345,8 +32218,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$LogSink>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$LogSink>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$LogSink> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$LogSink>>
@@ -32483,8 +32355,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -32635,8 +32506,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$LogSink>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$LogSink>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$LogSink> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$LogSink>>
@@ -32961,8 +32831,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$LogSink>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$LogSink>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$LogSink> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$LogSink>>
@@ -33138,8 +33007,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$LogSink>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$LogSink>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$LogSink> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$LogSink>>
@@ -33541,8 +33409,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$Settings>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Settings>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Settings> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Settings>>
@@ -33857,8 +33724,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -34127,8 +33993,7 @@ export namespace logging_v2 {
     list(
       params: Params$Resource$Projects$Exclusions$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListExclusionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListExclusionsResponse>,
       callback: BodyResponseCallback<Schema$ListExclusionsResponse>
     ): void;
     list(
@@ -34526,8 +34391,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$Location>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Location>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Location> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Location>>
@@ -34656,8 +34520,7 @@ export namespace logging_v2 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListLocationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListLocationsResponse>,
       callback: BodyResponseCallback<Schema$ListLocationsResponse>
     ): void;
     list(
@@ -34886,8 +34749,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$LogBucket>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$LogBucket>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$LogBucket> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$LogBucket>>
@@ -35050,8 +34912,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -35188,8 +35049,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -35337,8 +35197,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$LogBucket>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$LogBucket>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$LogBucket> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$LogBucket>>
@@ -35651,8 +35510,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$LogBucket>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$LogBucket>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$LogBucket> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$LogBucket>>
@@ -35792,8 +35650,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -35956,8 +35813,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -36219,8 +36075,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -36363,8 +36218,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -36506,8 +36360,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$Link>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Link>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Link> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Link>>
@@ -36861,8 +36714,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$LogView>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$LogView>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$LogView> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$LogView>>
@@ -36999,8 +36851,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -37142,8 +36993,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$LogView>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$LogView>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$LogView> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$LogView>>
@@ -37292,8 +37142,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -37598,8 +37447,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$LogView>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$LogView>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$LogView> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$LogView>>
@@ -37747,8 +37595,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -37883,8 +37730,7 @@ export namespace logging_v2 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Buckets$Views$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -38335,8 +38181,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$LogScope>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$LogScope>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$LogScope> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$LogScope>>
@@ -38473,8 +38318,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -38616,8 +38460,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$LogScope>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$LogScope>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$LogScope> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$LogScope>>
@@ -38742,8 +38585,7 @@ export namespace logging_v2 {
     list(
       params: Params$Resource$Projects$Locations$Logscopes$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListLogScopesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListLogScopesResponse>,
       callback: BodyResponseCallback<Schema$ListLogScopesResponse>
     ): void;
     list(
@@ -38920,8 +38762,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$LogScope>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$LogScope>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$LogScope> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$LogScope>>
@@ -39125,8 +38966,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -39268,8 +39108,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -39399,8 +39238,7 @@ export namespace logging_v2 {
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListOperationsResponse>,
       callback: BodyResponseCallback<Schema$ListOperationsResponse>
     ): void;
     list(
@@ -39598,8 +39436,7 @@ export namespace logging_v2 {
     list(
       params: Params$Resource$Projects$Locations$Recentqueries$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListRecentQueriesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListRecentQueriesResponse>,
       callback: BodyResponseCallback<Schema$ListRecentQueriesResponse>
     ): void;
     list(
@@ -39810,8 +39647,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$SavedQuery>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$SavedQuery>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$SavedQuery> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$SavedQuery>>
@@ -39948,8 +39784,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -40094,8 +39929,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$SavedQuery>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$SavedQuery>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$SavedQuery> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$SavedQuery>>
@@ -40223,8 +40057,7 @@ export namespace logging_v2 {
     list(
       params: Params$Resource$Projects$Locations$Savedqueries$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListSavedQueriesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListSavedQueriesResponse>,
       callback: BodyResponseCallback<Schema$ListSavedQueriesResponse>
     ): void;
     list(
@@ -40407,8 +40240,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$SavedQuery>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$SavedQuery>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$SavedQuery> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$SavedQuery>>
@@ -40610,8 +40442,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -40958,8 +40789,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$LogMetric>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$LogMetric>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$LogMetric> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$LogMetric>>
@@ -41097,8 +40927,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -41248,8 +41077,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$LogMetric>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$LogMetric>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$LogMetric> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$LogMetric>>
@@ -41374,8 +41202,7 @@ export namespace logging_v2 {
     list(
       params: Params$Resource$Projects$Metrics$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListLogMetricsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListLogMetricsResponse>,
       callback: BodyResponseCallback<Schema$ListLogMetricsResponse>
     ): void;
     list(
@@ -41567,8 +41394,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$LogMetric>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$LogMetric>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$LogMetric> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$LogMetric>>
@@ -41798,8 +41624,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$LogSink>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$LogSink>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$LogSink> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$LogSink>>
@@ -41936,8 +41761,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -42088,8 +41912,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$LogSink>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$LogSink>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$LogSink> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$LogSink>>
@@ -42414,8 +42237,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$LogSink>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$LogSink>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$LogSink> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$LogSink>>
@@ -42591,8 +42413,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$LogSink>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$LogSink>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$LogSink> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$LogSink>>
@@ -42869,8 +42690,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$LogSink>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$LogSink>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$LogSink> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$LogSink>>
@@ -43006,8 +42826,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -43157,8 +42976,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$LogSink>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$LogSink>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$LogSink> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$LogSink>>
@@ -43481,8 +43299,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$LogSink>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$LogSink>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$LogSink> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$LogSink>>
@@ -43850,8 +43667,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$Settings>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Settings>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Settings> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Settings>>
@@ -44169,8 +43985,7 @@ export namespace logging_v2 {
         | BodyResponseCallback<Schema$Settings>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Settings>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Settings> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Settings>>

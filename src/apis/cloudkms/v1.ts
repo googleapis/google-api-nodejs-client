@@ -281,7 +281,7 @@ export namespace cloudkms_v1 {
      */
     keyProjectResolutionMode?: string | null;
     /**
-     * Identifier. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER\}/autokeyConfig` or `projects/{PROJECT_NUMBER\}/autokeyConfig`.
+     * Identifier. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER\}/autokeyConfig`, `projects/{PROJECT_NUMBER\}/autokeyConfig`, or `projects/{PROJECT_ID\}/autokeyConfig`.
      */
     name?: string | null;
     /**
@@ -497,6 +497,10 @@ export namespace cloudkms_v1 {
      */
     generationFailureReason?: string | null;
     /**
+     * Output only. Field indicating that the key wrapping key is trusted. This field is only valid for key purpose AES_256_WRAPPING, and protection level HSM_SINGLE_TENANT.
+     */
+    hsmTrusted?: boolean | null;
+    /**
      * Output only. The root cause of the most recent import failure. Only present if state is IMPORT_FAILED.
      */
     importFailureReason?: string | null;
@@ -524,6 +528,10 @@ export namespace cloudkms_v1 {
      * The current state of the CryptoKeyVersion.
      */
     state?: string | null;
+    /**
+     * Immutable. Field indicating that the key may be wrapped by a trusted key. This field can be set for all key purposes except ENCRYPT_DECRYPT, and is only valid for keys with protection level HSM_SINGLE_TENANT. This field can only be set at creation or import time via CreateCryptoKeyVersion, or ImportCryptoKeyVersion.
+     */
+    trustedWrappingEnabled?: boolean | null;
   }
   /**
    * A CryptoKeyVersionTemplate specifies the properties to use when creating a new CryptoKeyVersion, either manually with CreateCryptoKeyVersion or automatically as a result of auto-rotation.
@@ -756,6 +764,19 @@ export namespace cloudkms_v1 {
    */
   export interface Schema$ExecuteSingleTenantHsmInstanceProposalRequest {}
   /**
+   * Response message for KeyManagementService.ExportTrustedKeyWrappedCryptoKeyVersion.
+   */
+  export interface Schema$ExportTrustedKeyWrappedCryptoKeyVersionResponse {
+    /**
+     * The wrapped key material.
+     */
+    wrappedKey?: string | null;
+    /**
+     * Integrity verification field. A CRC32C checksum of the returned ExportTrustedKeyWrappedCryptoKeyVersionResponse.wrapped_key. An integrity check of ExportTrustedKeyWrappedCryptoKeyVersionResponse.wrapped_key can be performed by computing the CRC32C checksum of ExportTrustedKeyWrappedCryptoKeyVersionResponse.wrapped_key and comparing your results to this field. Discard the response in case of non-matching checksum values, and perform a limited number of retries. A persistent mismatch may indicate an issue in your computation of the CRC32C checksum. Note: This field is defined as int64 for reasons of compatibility across different languages. However, it is a non-negative integer, which will never exceed 2^32-1, and can be safely downconverted to uint32 in languages that support this type.
+     */
+    wrappedKeyCrc32c?: string | null;
+  }
+  /**
    * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: "Summary size limit" description: "Determines if a summary is less than 100 chars" expression: "document.summary.size() < 100" Example (Equality): title: "Requestor is owner" description: "Determines if requestor is the document owner" expression: "document.owner == request.auth.claims.email" Example (Logic): title: "Public documents" description: "Determine whether the document should be publicly visible" expression: "document.type != 'private' && document.type != 'internal'" Example (Data Manipulation): title: "Notification string" description: "Create a notification string with a timestamp." expression: "'New message received at ' + string(document.create_time)" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
    */
   export interface Schema$Expr {
@@ -781,11 +802,15 @@ export namespace cloudkms_v1 {
    */
   export interface Schema$ExternalProtectionLevelOptions {
     /**
-     * The path to the external key material on the EKM when using EkmConnection e.g., "v0/my/key". Set this field instead of external_key_uri when using an EkmConnection.
+     * Optional. The resource name of the backend environment where the key material of CryptoKeyVersions is associated with. Setting this field overrides the CryptoKeyBackend. This field may be set when CryptoKeyVersions is set to EXTERNAL_VPC. Format: `projects/x/locations/x/ekmConnections/x`.
+     */
+    ekmConnectionBackendOverride?: string | null;
+    /**
+     * Optional. The path to the external key material on the EKM when using EkmConnection e.g., "v0/my/key". Set this field instead of external_key_uri when using an EkmConnection.
      */
     ekmConnectionKeyPath?: string | null;
     /**
-     * The URI for an external resource that this CryptoKeyVersion represents.
+     * Optional. The URI for an external resource that this CryptoKeyVersion represents.
      */
     externalKeyUri?: string | null;
   }
@@ -835,6 +860,10 @@ export namespace cloudkms_v1 {
      * Optional. This field has the same meaning as wrapped_key. Prefer to use that field in new work. Either that field or this field (but not both) must be specified.
      */
     rsaAesWrappedKey?: string | null;
+    /**
+     * Optional. Whether trusted wrapping will be enabled on the imported [CryptoKeyVersion]. This field is only supported for keys with CryptoKeyVersionTemplate.protection_level HSM_SINGLE_TENANT. This field is supported for all CryptoKeyPurposes besides ENCRYPT_DECRYPT.
+     */
+    trustedWrappingEnabled?: boolean | null;
     /**
      * Optional. The wrapped key material to import. Before wrapping, key material must be formatted. If importing symmetric key material, the expected key material format is plain bytes. If importing asymmetric key material, the expected key material format is PKCS#8-encoded DER (the PrivateKeyInfo structure from RFC 5208). When wrapping with import methods (RSA_OAEP_3072_SHA1_AES_256 or RSA_OAEP_4096_SHA1_AES_256 or RSA_OAEP_3072_SHA256_AES_256 or RSA_OAEP_4096_SHA256_AES_256), this field must contain the concatenation of: 1. An ephemeral AES-256 wrapping key wrapped with the public_key using RSAES-OAEP with SHA-1/SHA-256, MGF1 with SHA-1/SHA-256, and an empty label. 2. The formatted key to be imported, wrapped with the ephemeral AES-256 key using AES-KWP (RFC 5649). This format is the same as the format produced by PKCS#11 mechanism CKM_RSA_AES_KEY_WRAP. When wrapping with import methods (RSA_OAEP_3072_SHA256 or RSA_OAEP_4096_SHA256), this field must contain the formatted key to be imported, wrapped with the public_key using RSAES-OAEP with SHA-256, MGF1 with SHA-256, and an empty label.
      */
@@ -892,6 +921,27 @@ export namespace cloudkms_v1 {
      * Output only. The current state of the ImportJob, indicating if it can be used.
      */
     state?: string | null;
+  }
+  /**
+   * Request message for KeyManagementService.ImportTrustedKeyWrappedCryptoKeyVersion.
+   */
+  export interface Schema$ImportTrustedKeyWrappedCryptoKeyVersionRequest {
+    /**
+     * Required. Required - The algorithm of the key being imported. This does not need to match the version_template of the CryptoKey this version imports into.
+     */
+    algorithm?: string | null;
+    /**
+     * Optional. The optional name of an existing CryptoKeyVersion to target for an import operation. If this field is not present, a new CryptoKeyVersion containing the supplied key material is created. If this field is present, the supplied key material is imported into the existing CryptoKeyVersion. To import into an existing CryptoKeyVersion, the CryptoKeyVersion must be a child of ImportTrustedKeyWrappedCryptoKeyVersionRequest.parent, have been previously created via ImportTrustedKeyWrappedCryptoKeyVersion, and be in DESTROYED or IMPORT_FAILED state. The key material and algorithm must match the previous CryptoKeyVersion exactly if the CryptoKeyVersion has ever contained key material
+     */
+    cryptoKeyVersion?: string | null;
+    /**
+     * Required. Required - the CKV of the trusted key used to import. This can be the name of a CryptoKeyVersion or a CryptoKey.
+     */
+    importingKey?: string | null;
+    /**
+     * Required. The target key pre-wrapped on premises.
+     */
+    wrappedKey?: string | null;
   }
   /**
    * Represents the configuration of a protection level for a project's Key Access Justifications enrollment.
@@ -1653,9 +1703,17 @@ export namespace cloudkms_v1 {
    */
   export interface Schema$ShowEffectiveAutokeyConfigResponse {
     /**
-     * Name of the key project configured in the resource project's folder ancestry.
+     * Name of the key project configured in the ancestry of the project or folder.
      */
     keyProject?: string | null;
+    /**
+     * The KeyProjectResolutionMode for the AutokeyConfig.
+     */
+    keyProjectResolutionMode?: string | null;
+    /**
+     * Source of the effective AutokeyConfig.
+     */
+    source?: Schema$Source;
   }
   /**
    * Represents a response message for KeyAccessJustificationsConfig.ShowEffectiveKeyAccessJustificationsEnrollmentConfig
@@ -1700,7 +1758,7 @@ export namespace cloudkms_v1 {
      */
     disableTime?: string | null;
     /**
-     * Optional. Immutable. Indicates whether key portability is enabled for the SingleTenantHsmInstance. This can only be set at creation time. Key portability features are disabled by default and not yet available in GA.
+     * Optional. Immutable. Indicates whether key portability is enabled for the SingleTenantHsmInstance. This can only be set at creation time. Key portability features are disabled by default.
      */
     keyPortabilityEnabled?: boolean | null;
     /**
@@ -1792,6 +1850,19 @@ export namespace cloudkms_v1 {
      * Input only. The TTL for the SingleTenantHsmInstanceProposal. Proposals will expire after this duration.
      */
     ttl?: string | null;
+    /**
+     * Promotes a key with the AES_WRAPPING purpose to a trusted wrapping key. The key must be in the ACTIVE state to perform this operation.
+     */
+    upgradeKeyTrust?: Schema$UpgradeKeyTrust;
+  }
+  /**
+   * Source of the effective AutokeyConfig.
+   */
+  export interface Schema$Source {
+    /**
+     * Contains the resource name of the AutokeyConfig that is effective, for example, `folders/{FOLDER_NUMBER\}` or `projects/{PROJECT_NUMBER\}` or `organizations/{ORGANIZATION_NUMBER\}`.
+     */
+    name?: string | null;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
@@ -1836,6 +1907,19 @@ export namespace cloudkms_v1 {
      * Required. The id of the child CryptoKeyVersion to use as primary.
      */
     cryptoKeyVersionId?: string | null;
+  }
+  /**
+   * Promotes a key with the AES_WRAPPING purpose to a trusted wrapping key. The key must be in the ACTIVE state to perform this operation.
+   */
+  export interface Schema$UpgradeKeyTrust {
+    /**
+     * Required. The name of the CryptoKeyVersion to promote.
+     */
+    name?: string | null;
+    /**
+     * Required. The public key associated with the 2FA key that will sign the login nonce for this operation.
+     */
+    twoFactorPublicKeyPem?: string | null;
   }
   /**
    * Response message for EkmService.VerifyConnectivity.
@@ -1895,7 +1979,7 @@ export namespace cloudkms_v1 {
      *
      *   // Do the magic
      *   const res = await cloudkms.folders.getAutokeyConfig({
-     *     // Required. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER\}/autokeyConfig` or `projects/{PROJECT_NUMBER\}/autokeyConfig`.
+     *     // Required. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER\}/autokeyConfig`, `projects/{PROJECT_NUMBER\}/autokeyConfig`, or `projects/{PROJECT_ID\}/autokeyConfig`.
      *     name: 'folders/my-folder/autokeyConfig',
      *   });
      *   console.log(res.data);
@@ -2154,6 +2238,158 @@ export namespace cloudkms_v1 {
     }
 
     /**
+     * Returns the effective Cloud KMS Autokey configuration for a given project or folder.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudkms.folders.showEffectiveAutokeyConfig({
+     *     // Required. Name of the resource project or folder to show the effective Cloud KMS Autokey configuration for. This may be helpful for interrogating the effect of nested folder configurations on a given resource project. Format: * projects/{project\} * folders/{folder\}
+     *     parent: 'folders/my-folder',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "keyProject": "my_keyProject",
+     *   //   "keyProjectResolutionMode": "my_keyProjectResolutionMode",
+     *   //   "source": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    showEffectiveAutokeyConfig(
+      params: Params$Resource$Folders$Showeffectiveautokeyconfig,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    showEffectiveAutokeyConfig(
+      params?: Params$Resource$Folders$Showeffectiveautokeyconfig,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ShowEffectiveAutokeyConfigResponse>
+    >;
+    showEffectiveAutokeyConfig(
+      params: Params$Resource$Folders$Showeffectiveautokeyconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    showEffectiveAutokeyConfig(
+      params: Params$Resource$Folders$Showeffectiveautokeyconfig,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ShowEffectiveAutokeyConfigResponse>,
+      callback: BodyResponseCallback<Schema$ShowEffectiveAutokeyConfigResponse>
+    ): void;
+    showEffectiveAutokeyConfig(
+      params: Params$Resource$Folders$Showeffectiveautokeyconfig,
+      callback: BodyResponseCallback<Schema$ShowEffectiveAutokeyConfigResponse>
+    ): void;
+    showEffectiveAutokeyConfig(
+      callback: BodyResponseCallback<Schema$ShowEffectiveAutokeyConfigResponse>
+    ): void;
+    showEffectiveAutokeyConfig(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Showeffectiveautokeyconfig
+        | BodyResponseCallback<Schema$ShowEffectiveAutokeyConfigResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ShowEffectiveAutokeyConfigResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ShowEffectiveAutokeyConfigResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ShowEffectiveAutokeyConfigResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Showeffectiveautokeyconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Showeffectiveautokeyconfig;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}:showEffectiveAutokeyConfig').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ShowEffectiveAutokeyConfigResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ShowEffectiveAutokeyConfigResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Updates the AutokeyConfig for a folder or a project. The caller must have both `cloudkms.autokeyConfigs.update` permission on the parent folder and `cloudkms.cryptoKeys.setIamPolicy` permission on the provided key project. A KeyHandle creation in the folder's descendant projects will use this configuration to determine where to create the resulting CryptoKey.
      * @example
      * ```js
@@ -2187,7 +2423,7 @@ export namespace cloudkms_v1 {
      *
      *   // Do the magic
      *   const res = await cloudkms.folders.updateAutokeyConfig({
-     *     // Identifier. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER\}/autokeyConfig` or `projects/{PROJECT_NUMBER\}/autokeyConfig`.
+     *     // Identifier. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER\}/autokeyConfig`, `projects/{PROJECT_NUMBER\}/autokeyConfig`, or `projects/{PROJECT_ID\}/autokeyConfig`.
      *     name: 'folders/my-folder/autokeyConfig',
      *     // Required. Masks which fields of the AutokeyConfig to update, e.g. `keyProject`.
      *     updateMask: 'placeholder-value',
@@ -2474,7 +2710,7 @@ export namespace cloudkms_v1 {
 
   export interface Params$Resource$Folders$Getautokeyconfig extends StandardParameters {
     /**
-     * Required. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER\}/autokeyConfig` or `projects/{PROJECT_NUMBER\}/autokeyConfig`.
+     * Required. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER\}/autokeyConfig`, `projects/{PROJECT_NUMBER\}/autokeyConfig`, or `projects/{PROJECT_ID\}/autokeyConfig`.
      */
     name?: string;
   }
@@ -2484,9 +2720,15 @@ export namespace cloudkms_v1 {
      */
     name?: string;
   }
+  export interface Params$Resource$Folders$Showeffectiveautokeyconfig extends StandardParameters {
+    /**
+     * Required. Name of the resource project or folder to show the effective Cloud KMS Autokey configuration for. This may be helpful for interrogating the effect of nested folder configurations on a given resource project. Format: * projects/{project\} * folders/{folder\}
+     */
+    parent?: string;
+  }
   export interface Params$Resource$Folders$Updateautokeyconfig extends StandardParameters {
     /**
-     * Identifier. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER\}/autokeyConfig` or `projects/{PROJECT_NUMBER\}/autokeyConfig`.
+     * Identifier. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER\}/autokeyConfig`, `projects/{PROJECT_NUMBER\}/autokeyConfig`, or `projects/{PROJECT_ID\}/autokeyConfig`.
      */
     name?: string;
     /**
@@ -2896,7 +3138,7 @@ export namespace cloudkms_v1 {
      *
      *   // Do the magic
      *   const res = await cloudkms.projects.getAutokeyConfig({
-     *     // Required. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER\}/autokeyConfig` or `projects/{PROJECT_NUMBER\}/autokeyConfig`.
+     *     // Required. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER\}/autokeyConfig`, `projects/{PROJECT_NUMBER\}/autokeyConfig`, or `projects/{PROJECT_ID\}/autokeyConfig`.
      *     name: 'projects/my-project/autokeyConfig',
      *   });
      *   console.log(res.data);
@@ -3155,7 +3397,7 @@ export namespace cloudkms_v1 {
     }
 
     /**
-     * Returns the effective Cloud KMS Autokey configuration for a given project.
+     * Returns the effective Cloud KMS Autokey configuration for a given project or folder.
      * @example
      * ```js
      * // Before running the sample:
@@ -3188,14 +3430,16 @@ export namespace cloudkms_v1 {
      *
      *   // Do the magic
      *   const res = await cloudkms.projects.showEffectiveAutokeyConfig({
-     *     // Required. Name of the resource project to the show effective Cloud KMS Autokey configuration for. This may be helpful for interrogating the effect of nested folder configurations on a given resource project.
+     *     // Required. Name of the resource project or folder to show the effective Cloud KMS Autokey configuration for. This may be helpful for interrogating the effect of nested folder configurations on a given resource project. Format: * projects/{project\} * folders/{folder\}
      *     parent: 'projects/my-project',
      *   });
      *   console.log(res.data);
      *
      *   // Example response
      *   // {
-     *   //   "keyProject": "my_keyProject"
+     *   //   "keyProject": "my_keyProject",
+     *   //   "keyProjectResolutionMode": "my_keyProjectResolutionMode",
+     *   //   "source": {}
      *   // }
      * }
      *
@@ -3646,7 +3890,7 @@ export namespace cloudkms_v1 {
      *
      *   // Do the magic
      *   const res = await cloudkms.projects.updateAutokeyConfig({
-     *     // Identifier. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER\}/autokeyConfig` or `projects/{PROJECT_NUMBER\}/autokeyConfig`.
+     *     // Identifier. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER\}/autokeyConfig`, `projects/{PROJECT_NUMBER\}/autokeyConfig`, or `projects/{PROJECT_ID\}/autokeyConfig`.
      *     name: 'projects/my-project/autokeyConfig',
      *     // Required. Masks which fields of the AutokeyConfig to update, e.g. `keyProject`.
      *     updateMask: 'placeholder-value',
@@ -3933,7 +4177,7 @@ export namespace cloudkms_v1 {
 
   export interface Params$Resource$Projects$Getautokeyconfig extends StandardParameters {
     /**
-     * Required. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER\}/autokeyConfig` or `projects/{PROJECT_NUMBER\}/autokeyConfig`.
+     * Required. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER\}/autokeyConfig`, `projects/{PROJECT_NUMBER\}/autokeyConfig`, or `projects/{PROJECT_ID\}/autokeyConfig`.
      */
     name?: string;
   }
@@ -3945,7 +4189,7 @@ export namespace cloudkms_v1 {
   }
   export interface Params$Resource$Projects$Showeffectiveautokeyconfig extends StandardParameters {
     /**
-     * Required. Name of the resource project to the show effective Cloud KMS Autokey configuration for. This may be helpful for interrogating the effect of nested folder configurations on a given resource project.
+     * Required. Name of the resource project or folder to show the effective Cloud KMS Autokey configuration for. This may be helpful for interrogating the effect of nested folder configurations on a given resource project. Format: * projects/{project\} * folders/{folder\}
      */
     parent?: string;
   }
@@ -3963,7 +4207,7 @@ export namespace cloudkms_v1 {
   }
   export interface Params$Resource$Projects$Updateautokeyconfig extends StandardParameters {
     /**
-     * Identifier. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER\}/autokeyConfig` or `projects/{PROJECT_NUMBER\}/autokeyConfig`.
+     * Identifier. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER\}/autokeyConfig`, `projects/{PROJECT_NUMBER\}/autokeyConfig`, or `projects/{PROJECT_ID\}/autokeyConfig`.
      */
     name?: string;
     /**
@@ -4270,8 +4514,7 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Schema$Location>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Location>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Location> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Location>>
@@ -4408,8 +4651,7 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Schema$EkmConfig>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$EkmConfig>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$EkmConfig> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$EkmConfig>>
@@ -4536,8 +4778,7 @@ export namespace cloudkms_v1 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListLocationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListLocationsResponse>,
       callback: BodyResponseCallback<Schema$ListLocationsResponse>
     ): void;
     list(
@@ -4708,8 +4949,7 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Schema$EkmConfig>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$EkmConfig>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$EkmConfig> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$EkmConfig>>
@@ -4918,8 +5158,7 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -5071,8 +5310,7 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -5202,8 +5440,7 @@ export namespace cloudkms_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Ekmconfig$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -5713,8 +5950,7 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -5846,8 +6082,7 @@ export namespace cloudkms_v1 {
     list(
       params: Params$Resource$Projects$Locations$Ekmconnections$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListEkmConnectionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListEkmConnectionsResponse>,
       callback: BodyResponseCallback<Schema$ListEkmConnectionsResponse>
     ): void;
     list(
@@ -6178,8 +6413,7 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -6311,8 +6545,7 @@ export namespace cloudkms_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Ekmconnections$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -6455,8 +6688,7 @@ export namespace cloudkms_v1 {
     verifyConnectivity(
       params: Params$Resource$Projects$Locations$Ekmconnections$Verifyconnectivity,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$VerifyConnectivityResponse>,
+        MethodOptions | BodyResponseCallback<Schema$VerifyConnectivityResponse>,
       callback: BodyResponseCallback<Schema$VerifyConnectivityResponse>
     ): void;
     verifyConnectivity(
@@ -6738,8 +6970,7 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -6880,8 +7111,7 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Schema$KeyHandle>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$KeyHandle>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$KeyHandle> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$KeyHandle>>
@@ -7006,8 +7236,7 @@ export namespace cloudkms_v1 {
     list(
       params: Params$Resource$Projects$Locations$Keyhandles$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListKeyHandlesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListKeyHandlesResponse>,
       callback: BodyResponseCallback<Schema$ListKeyHandlesResponse>
     ): void;
     list(
@@ -7233,8 +7462,7 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Schema$KeyRing>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$KeyRing>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$KeyRing> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$KeyRing>>
@@ -7374,8 +7602,7 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Schema$KeyRing>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$KeyRing>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$KeyRing> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$KeyRing>>
@@ -7516,8 +7743,7 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -7648,8 +7874,7 @@ export namespace cloudkms_v1 {
     list(
       params: Params$Resource$Projects$Locations$Keyrings$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListKeyRingsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListKeyRingsResponse>,
       callback: BodyResponseCallback<Schema$ListKeyRingsResponse>
     ): void;
     list(
@@ -7820,8 +8045,7 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -7950,8 +8174,7 @@ export namespace cloudkms_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Keyrings$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -8150,6 +8373,8 @@ export namespace cloudkms_v1 {
      *     parent: 'projects/my-project/locations/my-location/keyRings/my-keyRing',
      *     // If set to true, the request will create a CryptoKey without any CryptoKeyVersions. You must manually call CreateCryptoKeyVersion or ImportCryptoKeyVersion before you can use this CryptoKey.
      *     skipInitialVersionCreation: 'placeholder-value',
+     *     // Optional. Whether trusted wrapping will be enabled on the first CryptoKeyVersions created for this CryptoKey. This field is only supported for keys with CryptoKeyVersionTemplate.protection_level HSM_SINGLE_TENANT. This field is supported for all CryptoKeyPurposes except ENCRYPT_DECRYPT.
+     *     trustedWrappingEnabled: 'placeholder-value',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -8235,8 +8460,7 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Schema$CryptoKey>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$CryptoKey>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$CryptoKey> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$CryptoKey>>
@@ -8535,8 +8759,7 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -8841,8 +9064,7 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Schema$CryptoKey>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$CryptoKey>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$CryptoKey> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$CryptoKey>>
@@ -8986,8 +9208,7 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -9121,8 +9342,7 @@ export namespace cloudkms_v1 {
     list(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListCryptoKeysResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListCryptoKeysResponse>,
       callback: BodyResponseCallback<Schema$ListCryptoKeysResponse>
     ): void;
     list(
@@ -9314,8 +9534,7 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Schema$CryptoKey>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$CryptoKey>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$CryptoKey> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$CryptoKey>>
@@ -9466,8 +9685,7 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -9599,8 +9817,7 @@ export namespace cloudkms_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -9784,8 +10001,7 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Schema$CryptoKey>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$CryptoKey>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$CryptoKey> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$CryptoKey>>
@@ -9848,6 +10064,10 @@ export namespace cloudkms_v1 {
      * If set to true, the request will create a CryptoKey without any CryptoKeyVersions. You must manually call CreateCryptoKeyVersion or ImportCryptoKeyVersion before you can use this CryptoKey.
      */
     skipInitialVersionCreation?: boolean;
+    /**
+     * Optional. Whether trusted wrapping will be enabled on the first CryptoKeyVersions created for this CryptoKey. This field is only supported for keys with CryptoKeyVersionTemplate.protection_level HSM_SINGLE_TENANT. This field is supported for all CryptoKeyPurposes except ENCRYPT_DECRYPT.
+     */
+    trustedWrappingEnabled?: boolean;
 
     /**
      * Request body metadata
@@ -10067,8 +10287,7 @@ export namespace cloudkms_v1 {
     asymmetricDecrypt(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Asymmetricdecrypt,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$AsymmetricDecryptResponse>,
+        MethodOptions | BodyResponseCallback<Schema$AsymmetricDecryptResponse>,
       callback: BodyResponseCallback<Schema$AsymmetricDecryptResponse>
     ): void;
     asymmetricDecrypt(
@@ -10231,8 +10450,7 @@ export namespace cloudkms_v1 {
     asymmetricSign(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Asymmetricsign,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$AsymmetricSignResponse>,
+        MethodOptions | BodyResponseCallback<Schema$AsymmetricSignResponse>,
       callback: BodyResponseCallback<Schema$AsymmetricSignResponse>
     ): void;
     asymmetricSign(
@@ -10356,13 +10574,15 @@ export namespace cloudkms_v1 {
      *           //   "externalProtectionLevelOptions": {},
      *           //   "generateTime": "my_generateTime",
      *           //   "generationFailureReason": "my_generationFailureReason",
+     *           //   "hsmTrusted": false,
      *           //   "importFailureReason": "my_importFailureReason",
      *           //   "importJob": "my_importJob",
      *           //   "importTime": "my_importTime",
      *           //   "name": "my_name",
      *           //   "protectionLevel": "my_protectionLevel",
      *           //   "reimportEligible": false,
-     *           //   "state": "my_state"
+     *           //   "state": "my_state",
+     *           //   "trustedWrappingEnabled": false
      *           // }
      *         },
      *       },
@@ -10380,13 +10600,15 @@ export namespace cloudkms_v1 {
      *   //   "externalProtectionLevelOptions": {},
      *   //   "generateTime": "my_generateTime",
      *   //   "generationFailureReason": "my_generationFailureReason",
+     *   //   "hsmTrusted": false,
      *   //   "importFailureReason": "my_importFailureReason",
      *   //   "importJob": "my_importJob",
      *   //   "importTime": "my_importTime",
      *   //   "name": "my_name",
      *   //   "protectionLevel": "my_protectionLevel",
      *   //   "reimportEligible": false,
-     *   //   "state": "my_state"
+     *   //   "state": "my_state",
+     *   //   "trustedWrappingEnabled": false
      *   // }
      * }
      *
@@ -10743,8 +10965,7 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -10849,13 +11070,15 @@ export namespace cloudkms_v1 {
      *   //   "externalProtectionLevelOptions": {},
      *   //   "generateTime": "my_generateTime",
      *   //   "generationFailureReason": "my_generationFailureReason",
+     *   //   "hsmTrusted": false,
      *   //   "importFailureReason": "my_importFailureReason",
      *   //   "importJob": "my_importJob",
      *   //   "importTime": "my_importTime",
      *   //   "name": "my_name",
      *   //   "protectionLevel": "my_protectionLevel",
      *   //   "reimportEligible": false,
-     *   //   "state": "my_state"
+     *   //   "state": "my_state",
+     *   //   "trustedWrappingEnabled": false
      *   // }
      * }
      *
@@ -10956,6 +11179,162 @@ export namespace cloudkms_v1 {
     }
 
     /**
+     * Exports a CryptoKeyVersion with a trusted key. The CryptoKeyVersion must have trusted_wrapping_enabled set to true. The CryptoKeyVersion of the [wrapping_key] must have the AES_WRAPPING purpose. The [wrapping_key] must have the AES_256_KWP algorithm.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.exportTrustedKeyWrappedCryptoKeyVersion(
+     *       {
+     *         // Required. The name of the CryptoKeyVersion to export. The CryptoKeyVersion must have trusted_wrapping_enabled set to true.
+     *         name: 'projects/my-project/locations/my-location/keyRings/my-keyRing/cryptoKeys/my-cryptoKey/cryptoKeyVersions/my-cryptoKeyVersion',
+     *         // Required. The name of the CryptoKeyVersion to use as a wrapping key. The CryptoKeyVersion must have hsm_trusted set to true.
+     *         wrappingKey: 'placeholder-value',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "wrappedKey": "my_wrappedKey",
+     *   //   "wrappedKeyCrc32c": "my_wrappedKeyCrc32c"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    exportTrustedKeyWrappedCryptoKeyVersion(
+      params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Exporttrustedkeywrappedcryptokeyversion,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    exportTrustedKeyWrappedCryptoKeyVersion(
+      params?: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Exporttrustedkeywrappedcryptokeyversion,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ExportTrustedKeyWrappedCryptoKeyVersionResponse>
+    >;
+    exportTrustedKeyWrappedCryptoKeyVersion(
+      params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Exporttrustedkeywrappedcryptokeyversion,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    exportTrustedKeyWrappedCryptoKeyVersion(
+      params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Exporttrustedkeywrappedcryptokeyversion,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ExportTrustedKeyWrappedCryptoKeyVersionResponse>,
+      callback: BodyResponseCallback<Schema$ExportTrustedKeyWrappedCryptoKeyVersionResponse>
+    ): void;
+    exportTrustedKeyWrappedCryptoKeyVersion(
+      params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Exporttrustedkeywrappedcryptokeyversion,
+      callback: BodyResponseCallback<Schema$ExportTrustedKeyWrappedCryptoKeyVersionResponse>
+    ): void;
+    exportTrustedKeyWrappedCryptoKeyVersion(
+      callback: BodyResponseCallback<Schema$ExportTrustedKeyWrappedCryptoKeyVersionResponse>
+    ): void;
+    exportTrustedKeyWrappedCryptoKeyVersion(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Exporttrustedkeywrappedcryptokeyversion
+        | BodyResponseCallback<Schema$ExportTrustedKeyWrappedCryptoKeyVersionResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ExportTrustedKeyWrappedCryptoKeyVersionResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ExportTrustedKeyWrappedCryptoKeyVersionResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ExportTrustedKeyWrappedCryptoKeyVersionResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Exporttrustedkeywrappedcryptokeyversion;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Exporttrustedkeywrappedcryptokeyversion;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+name}:exportTrustedKeyWrappedCryptoKeyVersion'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ExportTrustedKeyWrappedCryptoKeyVersionResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ExportTrustedKeyWrappedCryptoKeyVersionResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Returns metadata for a given CryptoKeyVersion.
      * @example
      * ```js
@@ -11008,13 +11387,15 @@ export namespace cloudkms_v1 {
      *   //   "externalProtectionLevelOptions": {},
      *   //   "generateTime": "my_generateTime",
      *   //   "generationFailureReason": "my_generationFailureReason",
+     *   //   "hsmTrusted": false,
      *   //   "importFailureReason": "my_importFailureReason",
      *   //   "importJob": "my_importJob",
      *   //   "importTime": "my_importTime",
      *   //   "name": "my_name",
      *   //   "protectionLevel": "my_protectionLevel",
      *   //   "reimportEligible": false,
-     *   //   "state": "my_state"
+     *   //   "state": "my_state",
+     *   //   "trustedWrappingEnabled": false
      *   // }
      * }
      *
@@ -11213,8 +11594,7 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Schema$PublicKey>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$PublicKey>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$PublicKey> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$PublicKey>>
@@ -11311,6 +11691,7 @@ export namespace cloudkms_v1 {
      *           //   "cryptoKeyVersion": "my_cryptoKeyVersion",
      *           //   "importJob": "my_importJob",
      *           //   "rsaAesWrappedKey": "my_rsaAesWrappedKey",
+     *           //   "trustedWrappingEnabled": false,
      *           //   "wrappedKey": "my_wrappedKey"
      *           // }
      *         },
@@ -11329,13 +11710,15 @@ export namespace cloudkms_v1 {
      *   //   "externalProtectionLevelOptions": {},
      *   //   "generateTime": "my_generateTime",
      *   //   "generationFailureReason": "my_generationFailureReason",
+     *   //   "hsmTrusted": false,
      *   //   "importFailureReason": "my_importFailureReason",
      *   //   "importJob": "my_importJob",
      *   //   "importTime": "my_importTime",
      *   //   "name": "my_name",
      *   //   "protectionLevel": "my_protectionLevel",
      *   //   "reimportEligible": false,
-     *   //   "state": "my_state"
+     *   //   "state": "my_state",
+     *   //   "trustedWrappingEnabled": false
      *   // }
      * }
      *
@@ -11415,6 +11798,181 @@ export namespace cloudkms_v1 {
               /([^:]\/)\/+/g,
               '$1'
             ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CryptoKeyVersion>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$CryptoKeyVersion>(parameters);
+      }
+    }
+
+    /**
+     * Import wrapped key material into a CryptoKeyVersion with a trusted key. All requests must specify a CryptoKey. If a CryptoKeyVersion is additionally specified in the request, key material will be reimported into that version. Otherwise, a new version will be created, and will be assigned the next sequential id within the CryptoKey. The CryptoKeyVersion will have trusted_wrapping_enabled set to true.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.importTrustedKeyWrappedCryptoKeyVersion(
+     *       {
+     *         // Required. The name of the CryptoKey to be imported into.
+     *         parent:
+     *           'projects/my-project/locations/my-location/keyRings/my-keyRing/cryptoKeys/my-cryptoKey',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "algorithm": "my_algorithm",
+     *           //   "cryptoKeyVersion": "my_cryptoKeyVersion",
+     *           //   "importingKey": "my_importingKey",
+     *           //   "wrappedKey": "my_wrappedKey"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "algorithm": "my_algorithm",
+     *   //   "attestation": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "destroyEventTime": "my_destroyEventTime",
+     *   //   "destroyTime": "my_destroyTime",
+     *   //   "externalDestructionFailureReason": "my_externalDestructionFailureReason",
+     *   //   "externalProtectionLevelOptions": {},
+     *   //   "generateTime": "my_generateTime",
+     *   //   "generationFailureReason": "my_generationFailureReason",
+     *   //   "hsmTrusted": false,
+     *   //   "importFailureReason": "my_importFailureReason",
+     *   //   "importJob": "my_importJob",
+     *   //   "importTime": "my_importTime",
+     *   //   "name": "my_name",
+     *   //   "protectionLevel": "my_protectionLevel",
+     *   //   "reimportEligible": false,
+     *   //   "state": "my_state",
+     *   //   "trustedWrappingEnabled": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    importTrustedKeyWrappedCryptoKeyVersion(
+      params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Importtrustedkeywrappedcryptokeyversion,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    importTrustedKeyWrappedCryptoKeyVersion(
+      params?: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Importtrustedkeywrappedcryptokeyversion,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CryptoKeyVersion>>;
+    importTrustedKeyWrappedCryptoKeyVersion(
+      params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Importtrustedkeywrappedcryptokeyversion,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    importTrustedKeyWrappedCryptoKeyVersion(
+      params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Importtrustedkeywrappedcryptokeyversion,
+      options: MethodOptions | BodyResponseCallback<Schema$CryptoKeyVersion>,
+      callback: BodyResponseCallback<Schema$CryptoKeyVersion>
+    ): void;
+    importTrustedKeyWrappedCryptoKeyVersion(
+      params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Importtrustedkeywrappedcryptokeyversion,
+      callback: BodyResponseCallback<Schema$CryptoKeyVersion>
+    ): void;
+    importTrustedKeyWrappedCryptoKeyVersion(
+      callback: BodyResponseCallback<Schema$CryptoKeyVersion>
+    ): void;
+    importTrustedKeyWrappedCryptoKeyVersion(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Importtrustedkeywrappedcryptokeyversion
+        | BodyResponseCallback<Schema$CryptoKeyVersion>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CryptoKeyVersion>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CryptoKeyVersion>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$CryptoKeyVersion>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Importtrustedkeywrappedcryptokeyversion;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Importtrustedkeywrappedcryptokeyversion;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/{+parent}/cryptoKeyVersions:importTrustedKeyWrappedCryptoKeyVersion'
+            ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
             apiVersion: '',
           },
@@ -11969,13 +12527,15 @@ export namespace cloudkms_v1 {
      *           //   "externalProtectionLevelOptions": {},
      *           //   "generateTime": "my_generateTime",
      *           //   "generationFailureReason": "my_generationFailureReason",
+     *           //   "hsmTrusted": false,
      *           //   "importFailureReason": "my_importFailureReason",
      *           //   "importJob": "my_importJob",
      *           //   "importTime": "my_importTime",
      *           //   "name": "my_name",
      *           //   "protectionLevel": "my_protectionLevel",
      *           //   "reimportEligible": false,
-     *           //   "state": "my_state"
+     *           //   "state": "my_state",
+     *           //   "trustedWrappingEnabled": false
      *           // }
      *         },
      *       },
@@ -11993,13 +12553,15 @@ export namespace cloudkms_v1 {
      *   //   "externalProtectionLevelOptions": {},
      *   //   "generateTime": "my_generateTime",
      *   //   "generationFailureReason": "my_generationFailureReason",
+     *   //   "hsmTrusted": false,
      *   //   "importFailureReason": "my_importFailureReason",
      *   //   "importJob": "my_importJob",
      *   //   "importTime": "my_importTime",
      *   //   "name": "my_name",
      *   //   "protectionLevel": "my_protectionLevel",
      *   //   "reimportEligible": false,
-     *   //   "state": "my_state"
+     *   //   "state": "my_state",
+     *   //   "trustedWrappingEnabled": false
      *   // }
      * }
      *
@@ -12484,13 +13046,15 @@ export namespace cloudkms_v1 {
      *   //   "externalProtectionLevelOptions": {},
      *   //   "generateTime": "my_generateTime",
      *   //   "generationFailureReason": "my_generationFailureReason",
+     *   //   "hsmTrusted": false,
      *   //   "importFailureReason": "my_importFailureReason",
      *   //   "importJob": "my_importJob",
      *   //   "importTime": "my_importTime",
      *   //   "name": "my_name",
      *   //   "protectionLevel": "my_protectionLevel",
      *   //   "reimportEligible": false,
-     *   //   "state": "my_state"
+     *   //   "state": "my_state",
+     *   //   "trustedWrappingEnabled": false
      *   // }
      * }
      *
@@ -12652,6 +13216,16 @@ export namespace cloudkms_v1 {
      */
     requestBody?: Schema$DestroyCryptoKeyVersionRequest;
   }
+  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Exporttrustedkeywrappedcryptokeyversion extends StandardParameters {
+    /**
+     * Required. The name of the CryptoKeyVersion to export. The CryptoKeyVersion must have trusted_wrapping_enabled set to true.
+     */
+    name?: string;
+    /**
+     * Required. The name of the CryptoKeyVersion to use as a wrapping key. The CryptoKeyVersion must have hsm_trusted set to true.
+     */
+    wrappingKey?: string;
+  }
   export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Get extends StandardParameters {
     /**
      * Required. The name of the CryptoKeyVersion to get.
@@ -12678,6 +13252,17 @@ export namespace cloudkms_v1 {
      * Request body metadata
      */
     requestBody?: Schema$ImportCryptoKeyVersionRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Importtrustedkeywrappedcryptokeyversion extends StandardParameters {
+    /**
+     * Required. The name of the CryptoKey to be imported into.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ImportTrustedKeyWrappedCryptoKeyVersionRequest;
   }
   export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$List extends StandardParameters {
     /**
@@ -12905,8 +13490,7 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Schema$ImportJob>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$ImportJob>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$ImportJob> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$ImportJob>>
@@ -13059,8 +13643,7 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Schema$ImportJob>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$ImportJob>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$ImportJob> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$ImportJob>>
@@ -13204,8 +13787,7 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -13337,8 +13919,7 @@ export namespace cloudkms_v1 {
     list(
       params: Params$Resource$Projects$Locations$Keyrings$Importjobs$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListImportJobsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListImportJobsResponse>,
       callback: BodyResponseCallback<Schema$ListImportJobsResponse>
     ): void;
     list(
@@ -13512,8 +14093,7 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -13645,8 +14225,7 @@ export namespace cloudkms_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Keyrings$Importjobs$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -13899,8 +14478,7 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -14398,8 +14976,7 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -14528,8 +15105,7 @@ export namespace cloudkms_v1 {
     get(
       params: Params$Resource$Projects$Locations$Singletenanthsminstances$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$SingleTenantHsmInstance>,
+        MethodOptions | BodyResponseCallback<Schema$SingleTenantHsmInstance>,
       callback: BodyResponseCallback<Schema$SingleTenantHsmInstance>
     ): void;
     get(
@@ -15036,7 +15612,8 @@ export namespace cloudkms_v1 {
      *           //   "removeQuorumMember": {},
      *           //   "requiredActionQuorumParameters": {},
      *           //   "state": "my_state",
-     *           //   "ttl": "my_ttl"
+     *           //   "ttl": "my_ttl",
+     *           //   "upgradeKeyTrust": {}
      *           // }
      *         },
      *       },
@@ -15099,8 +15676,7 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -15241,8 +15817,7 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -15392,8 +15967,7 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -15500,7 +16074,8 @@ export namespace cloudkms_v1 {
      *   //   "removeQuorumMember": {},
      *   //   "requiredActionQuorumParameters": {},
      *   //   "state": "my_state",
-     *   //   "ttl": "my_ttl"
+     *   //   "ttl": "my_ttl",
+     *   //   "upgradeKeyTrust": {}
      *   // }
      * }
      *

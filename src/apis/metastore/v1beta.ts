@@ -232,6 +232,23 @@ export namespace metastore_v1beta {
     name?: string | null;
   }
   /**
+   * Backfill status for the migration execution.
+   */
+  export interface Schema$BackfillStatus {
+    /**
+     * Output only. Summary of the migration results. This is populated after the backfill or dry run is finished.
+     */
+    migrationSummary?: Schema$MigrationSummary;
+    /**
+     * Output only. The Cloud Storage path where the backfill or dry run report is written. Format: "gs://path-to-report".
+     */
+    reportPath?: string | null;
+    /**
+     * Output only. The current state of the backfill (or dry run).
+     */
+    state?: string | null;
+  }
+  /**
    * The details of a backup resource.
    */
   export interface Schema$Backup {
@@ -263,6 +280,39 @@ export namespace metastore_v1beta {
      * Output only. The current state of the backup.
      */
     state?: string | null;
+  }
+  /**
+   * Defines the configuration required to migrate metadata from a Dataproc Metastore service to BigLake Metastore.
+   */
+  export interface Schema$BigLakeMetastoreMigrationConfig {
+    /**
+     * Output only.
+     */
+    backfillStatus?: Schema$BackfillStatus;
+    /**
+     * Optional. The policy to handle conflicts when migrating resources, defaults to SKIP if not specified.
+     */
+    conflictPolicy?: string | null;
+    /**
+     * Optional. If true, performs discovery of requested resources and analysis against the target catalog to come up with a plan for each resource (e.g. Create, Update, Skip, etc.). No metadata is actually migrated.
+     */
+    dryRun?: boolean | null;
+    /**
+     * Optional. At least one of hive_config or iceberg_config must be provided, otherwise, a validation error will be thrown. If only one is provided, the service only migrates tables of that specific type. If both are provided, both Hive and Iceberg tables will be migrated.Configuration for migrating Hive tables to a BigLake Hive catalog.
+     */
+    hiveConfig?: Schema$HiveConfig;
+    /**
+     * Optional. Configuration for migrating Iceberg tables to a BigLake Iceberg REST catalog.
+     */
+    icebergConfig?: Schema$IcebergConfig;
+    /**
+     * Required. Defines the behavior of the migration execution.
+     */
+    mode?: string | null;
+    /**
+     * Optional. The Cloud Storage path where the backfill / dry run report should be written. If not provided, the report will be generated in the service's artifacts bucket. Format: "gs://path/to/folder"
+     */
+    reportPath?: string | null;
   }
   /**
    * Associates members, or principals, with a role.
@@ -298,6 +348,23 @@ export namespace metastore_v1beta {
    * The request message for Operations.CancelOperation.
    */
   export interface Schema$CancelOperationRequest {}
+  /**
+   * Summary of results for a specific destination catalog.
+   */
+  export interface Schema$CatalogSummary {
+    /**
+     * Output only. The catalog resource name (format: projects/x/catalogs/x).
+     */
+    catalog?: string | null;
+    /**
+     * Output only. The type of the catalog.
+     */
+    catalogType?: string | null;
+    /**
+     * Output only. Summary of results for each database in the catalog.
+     */
+    databaseSummaries?: Schema$DatabaseSummary[];
+  }
   /**
    * Configuration information to start the Change Data Capture (CDC) streams from customer database to backend database of Dataproc Metastore.
    */
@@ -463,6 +530,27 @@ export namespace metastore_v1beta {
     type?: string | null;
   }
   /**
+   * Summary of results for a specific database in a catalog.
+   */
+  export interface Schema$DatabaseSummary {
+    /**
+     * Output only. The name of the database.
+     */
+    database?: string | null;
+    /**
+     * Output only. The migration plan action for the database.
+     */
+    planAction?: string | null;
+    /**
+     * Output only. The migration result status for the database. This is only set if the migration is not a dry run.
+     */
+    resultStatus?: string | null;
+    /**
+     * Output only. Aggregated summary of results for all tables in the database.
+     */
+    tableSummary?: Schema$TableSummary;
+  }
+  /**
    * Specifies how metastore metadata should be integrated with the Data Catalog service.
    */
   export interface Schema$DataCatalogConfig {
@@ -594,6 +682,19 @@ export namespace metastore_v1beta {
     version?: string | null;
   }
   /**
+   * Configuration for migrating Hive metadata.
+   */
+  export interface Schema$HiveConfig {
+    /**
+     * Required. The target catalog for migrated databases and tables. Format: "projects/{project_id_or_number\}/catalogs/{catalog_id\}"
+     */
+    catalog?: string | null;
+    /**
+     * Required. The list of databases to migrate to the Hive catalog. Use "*" to migrate all databases. Note: If Iceberg tables exist in these databases, they will only be migrated if iceberg_config is also specified.
+     */
+    databases?: string[] | null;
+  }
+  /**
    * Specifies configuration information specific to running Hive metastore software as the metastore service.
    */
   export interface Schema$HiveMetastoreConfig {
@@ -630,6 +731,19 @@ export namespace metastore_v1beta {
      * The semantic version of the Hive Metastore software.
      */
     version?: string | null;
+  }
+  /**
+   * Configuration for migrating Iceberg metadata.
+   */
+  export interface Schema$IcebergConfig {
+    /**
+     * Required. The target catalog for migrated Iceberg metadata. Format: "projects/{project_id_or_number\}/catalogs/{catalog_id\}"
+     */
+    catalog?: string | null;
+    /**
+     * Required. The list of namespaces to migrate to the Iceberg REST catalog. Use "*" to migrate all namespaces. Note: If Hive tables exist in these namespaces, they will only be migrated if hive_config is also specified.
+     */
+    namespaces?: string[] | null;
   }
   /**
    * Configuration information for a Kerberos principal.
@@ -954,6 +1068,10 @@ export namespace metastore_v1beta {
    */
   export interface Schema$MigrationExecution {
     /**
+     * Configuration information specific to migrating from Dataproc Metastore to BigLake Metastore.
+     */
+    biglakeMetastoreMigrationConfig?: Schema$BigLakeMetastoreMigrationConfig;
+    /**
      * Deprecated: Migrations to Dataproc Metastore are no longer supported. Use BigLake Metastore migration instead. Configuration information specific to migrating from self-managed hive metastore on Google Cloud using Cloud SQL as the backend database to Dataproc Metastore.
      */
     cloudSqlMigrationConfig?: Schema$CloudSQLMigrationConfig;
@@ -981,6 +1099,27 @@ export namespace metastore_v1beta {
      * Output only. Additional information about the current state of the migration execution.
      */
     stateMessage?: string | null;
+  }
+  /**
+   * Summary of the migration results.
+   */
+  export interface Schema$MigrationSummary {
+    /**
+     * Output only. Summary of results for each catalog involved in the migration.
+     */
+    catalogSummaries?: Schema$CatalogSummary[];
+    /**
+     * Output only. The UTC time when this report was finalized.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. Whether the migration was a dry run.
+     */
+    dryRun?: boolean | null;
+    /**
+     * Output only. The Dataproc Metastore service name (format: projects/x/locations/x/services/x) on which the migration was executed.
+     */
+    service?: string | null;
   }
   /**
    * Request message for DataprocMetastore.MoveTableToDatabase.
@@ -1461,6 +1600,31 @@ export namespace metastore_v1beta {
     space?: string | null;
   }
   /**
+   * Aggregated summary of results for all tables in a database.
+   */
+  export interface Schema$TableSummary {
+    /**
+     * Output only. Partition migration summary across all Hive tables in the database.The total number of partitions discovered at the source.
+     */
+    partitionDiscoveredCount?: string | null;
+    /**
+     * Output only. The total number of partitions that failed to migrate at the target.
+     */
+    partitionFailedCount?: string | null;
+    /**
+     * Output only. The total number of partitions successfully migrated at the target.
+     */
+    partitionSuccessCount?: string | null;
+    /**
+     * Output only. Number of tables with a specific migration plan action. The key is the action name (e.g. CREATE, UPDATE, SKIP, etc.).
+     */
+    planCounts?: {[key: string]: string} | null;
+    /**
+     * Output only. Number of tables with a specific migration result status. The key is the status name (e.g. SUCCEEDED, FAILED, SKIPPED, etc.). This is only set if the migration is not a dry run.
+     */
+    resultCounts?: {[key: string]: string} | null;
+  }
+  /**
    * Telemetry Configuration for the Dataproc Metastore service.
    */
   export interface Schema$TelemetryConfig {
@@ -1605,8 +1769,7 @@ export namespace metastore_v1beta {
         | BodyResponseCallback<Schema$Location>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Location>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Location> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Location>>
@@ -1730,8 +1893,7 @@ export namespace metastore_v1beta {
     list(
       params: Params$Resource$Projects$Locations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListLocationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListLocationsResponse>,
       callback: BodyResponseCallback<Schema$ListLocationsResponse>
     ): void;
     list(
@@ -1949,8 +2111,7 @@ export namespace metastore_v1beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -2092,8 +2253,7 @@ export namespace metastore_v1beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -2236,8 +2396,7 @@ export namespace metastore_v1beta {
         | BodyResponseCallback<Schema$Federation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Federation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Federation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Federation>>
@@ -2376,8 +2535,7 @@ export namespace metastore_v1beta {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -2506,8 +2664,7 @@ export namespace metastore_v1beta {
     list(
       params: Params$Resource$Projects$Locations$Federations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListFederationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListFederationsResponse>,
       callback: BodyResponseCallback<Schema$ListFederationsResponse>
     ): void;
     list(
@@ -2689,8 +2846,7 @@ export namespace metastore_v1beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -2836,8 +2992,7 @@ export namespace metastore_v1beta {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -2967,8 +3122,7 @@ export namespace metastore_v1beta {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Federations$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -3247,8 +3401,7 @@ export namespace metastore_v1beta {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -3382,8 +3535,7 @@ export namespace metastore_v1beta {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -3520,8 +3672,7 @@ export namespace metastore_v1beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3646,8 +3797,7 @@ export namespace metastore_v1beta {
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListOperationsResponse>,
       callback: BodyResponseCallback<Schema$ListOperationsResponse>
     ): void;
     list(
@@ -3885,8 +4035,7 @@ export namespace metastore_v1beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4039,8 +4188,7 @@ export namespace metastore_v1beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4187,8 +4335,7 @@ export namespace metastore_v1beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4335,8 +4482,7 @@ export namespace metastore_v1beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4514,8 +4660,7 @@ export namespace metastore_v1beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4657,8 +4802,7 @@ export namespace metastore_v1beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4805,8 +4949,7 @@ export namespace metastore_v1beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4968,8 +5111,7 @@ export namespace metastore_v1beta {
         | BodyResponseCallback<Schema$Service>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Service>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Service> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Service>>
@@ -5107,8 +5249,7 @@ export namespace metastore_v1beta {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -5236,8 +5377,7 @@ export namespace metastore_v1beta {
     list(
       params: Params$Resource$Projects$Locations$Services$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListServicesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListServicesResponse>,
       callback: BodyResponseCallback<Schema$ListServicesResponse>
     ): void;
     list(
@@ -5407,8 +5547,7 @@ export namespace metastore_v1beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5586,8 +5725,7 @@ export namespace metastore_v1beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5732,8 +5870,7 @@ export namespace metastore_v1beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5861,8 +5998,7 @@ export namespace metastore_v1beta {
     removeIamPolicy(
       params: Params$Resource$Projects$Locations$Services$Removeiampolicy,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$RemoveIamPolicyResponse>,
+        MethodOptions | BodyResponseCallback<Schema$RemoveIamPolicyResponse>,
       callback: BodyResponseCallback<Schema$RemoveIamPolicyResponse>
     ): void;
     removeIamPolicy(
@@ -6036,8 +6172,7 @@ export namespace metastore_v1beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -6185,8 +6320,7 @@ export namespace metastore_v1beta {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -6335,8 +6469,7 @@ export namespace metastore_v1beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -6463,8 +6596,7 @@ export namespace metastore_v1beta {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Services$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -6871,8 +7003,7 @@ export namespace metastore_v1beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -7015,8 +7146,7 @@ export namespace metastore_v1beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -7156,8 +7286,7 @@ export namespace metastore_v1beta {
         | BodyResponseCallback<Schema$Backup>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Backup>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Backup> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Backup>>
@@ -7296,8 +7425,7 @@ export namespace metastore_v1beta {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -7594,8 +7722,7 @@ export namespace metastore_v1beta {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -7724,8 +7851,7 @@ export namespace metastore_v1beta {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Services$Backups$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -7992,8 +8118,7 @@ export namespace metastore_v1beta {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -8144,8 +8269,7 @@ export namespace metastore_v1beta {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -8274,8 +8398,7 @@ export namespace metastore_v1beta {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Services$Databases$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -8481,8 +8604,7 @@ export namespace metastore_v1beta {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -8633,8 +8755,7 @@ export namespace metastore_v1beta {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -8765,8 +8886,7 @@ export namespace metastore_v1beta {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Services$Databases$Tables$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -8988,8 +9108,7 @@ export namespace metastore_v1beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -9443,8 +9562,7 @@ export namespace metastore_v1beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -9659,8 +9777,7 @@ export namespace metastore_v1beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -9745,6 +9862,7 @@ export namespace metastore_v1beta {
      *
      *   // Example response
      *   // {
+     *   //   "biglakeMetastoreMigrationConfig": {},
      *   //   "cloudSqlMigrationConfig": {},
      *   //   "createTime": "my_createTime",
      *   //   "endTime": "my_endTime",

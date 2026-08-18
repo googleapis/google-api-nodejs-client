@@ -37,10 +37,7 @@ export function chromewebstore<
 >(
   this: GoogleConfigurable,
   versionOrOptions:
-    | 'v1.1'
-    | chromewebstore_v1_1.Options
-    | 'v2'
-    | chromewebstore_v2.Options
+    'v1.1' | chromewebstore_v1_1.Options | 'v2' | chromewebstore_v2.Options
 ) {
   return getAPI<T>('chromewebstore', versionOrOptions, VERSIONS, this);
 }

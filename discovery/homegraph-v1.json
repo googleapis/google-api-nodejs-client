@@ -216,7 +216,7 @@
       }
     }
   },
-  "revision": "20260523",
+  "revision": "20260731",
   "rootUrl": "https://homegraph.googleapis.com/",
   "schemas": {
     "AgentDeviceId": {
@@ -241,6 +241,63 @@
         "deviceId": {
           "description": "Unique third-party device ID.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CameraEventStreamTrait": {
+      "description": "This cluster defines the camera event stream used by GHP for their Cloud-to-Cloud eventing flow",
+      "id": "CameraEventStreamTrait",
+      "properties": {},
+      "type": "object"
+    },
+    "CommonEventDataStruct": {
+      "description": "Common camera event data.",
+      "id": "CommonEventDataStruct",
+      "properties": {
+        "mediaUrls": {
+          "$ref": "MediaUrlsStruct",
+          "description": "Contains media urls for the event"
+        },
+        "sessionId": {
+          "description": "Camera event session id. Used for identifying a unique event session",
+          "type": "string"
+        },
+        "trackId": {
+          "description": "Id of the track this object belongs to",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Component": {
+      "description": "Component of a provider device.",
+      "id": "Component",
+      "properties": {
+        "childComponents": {
+          "description": "Optional. Child components.",
+          "items": {
+            "$ref": "Component"
+          },
+          "type": "array"
+        },
+        "deviceTypes": {
+          "description": "Required. List of Device types associated with this component. Supported device types are defined in cs//depot/google3/home/homeservicelayer/uddm/types/uddm_device_types.proto and the type string is the enum name, for example: ON_OFF_LIGHT => \"ON_OFF_LIGHT\".",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "id": {
+          "description": "Required. ID of the component from the device provider.",
+          "type": "string"
+        },
+        "traitData": {
+          "description": "Required. List of trait data associated with the component.",
+          "items": {
+            "$ref": "TraitData"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -332,6 +389,33 @@
       },
       "type": "object"
     },
+    "DeviceBlameStruct": {
+      "description": "Contains metadata about the cause of presence state change attributed to a device.",
+      "id": "DeviceBlameStruct",
+      "properties": {
+        "blameType": {
+          "description": "Required. Specifies the device blame type.",
+          "enum": [
+            "DEVICE_BLAME_TYPE_ENUM_UNSPECIFIED",
+            "LOCK",
+            "UNLOCK",
+            "MOTION_DETECTION",
+            "TOUCH_INTERACTION",
+            "VOICE_INTERACTION"
+          ],
+          "enumDescriptions": [
+            "Indicates an unspecified device blame type.",
+            "Indicates lock interaction.",
+            "Indicates unlock interaction.",
+            "Indicates motion detection.",
+            "Indicates touch interaction.",
+            "Indicates voice interaction."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "DeviceInfo": {
       "description": "Device information.",
       "id": "DeviceInfo",
@@ -401,6 +485,127 @@
       "properties": {},
       "type": "object"
     },
+    "EveUtilityTrait": {
+      "id": "EveUtilityTrait",
+      "properties": {
+        "acceptedCommandList": {
+          "description": "Required. Output only. Accepted command list for this trait",
+          "items": {
+            "enum": [
+              "COMMANDS_UNSPECIFIED"
+            ],
+            "enumDeprecated": [
+              true
+            ],
+            "enumDescriptions": [
+              "Deprecated: This enum exists only to conform to AIP guidelines and should never be used."
+            ],
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "accumulatedControlPoint": {
+          "format": "int64",
+          "type": "string"
+        },
+        "airPressure": {
+          "format": "double",
+          "readOnly": true,
+          "type": "number"
+        },
+        "altitude": {
+          "format": "double",
+          "type": "number"
+        },
+        "childLock": {
+          "type": "boolean"
+        },
+        "current": {
+          "format": "double",
+          "readOnly": true,
+          "type": "number"
+        },
+        "getConfig": {
+          "format": "byte",
+          "readOnly": true,
+          "type": "string"
+        },
+        "holdPosition": {
+          "type": "boolean"
+        },
+        "lastEventTime": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "loggingControlPoint": {
+          "format": "byte",
+          "type": "string"
+        },
+        "loggingData": {
+          "format": "byte",
+          "readOnly": true,
+          "type": "string"
+        },
+        "loggingMetadata": {
+          "format": "byte",
+          "readOnly": true,
+          "type": "string"
+        },
+        "loggingTime": {
+          "format": "byte",
+          "type": "string"
+        },
+        "motionSensitivity": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "obstructionDetected": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "openCount": {
+          "format": "int64",
+          "type": "string"
+        },
+        "rloc16": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "setConfig": {
+          "format": "byte",
+          "type": "string"
+        },
+        "statusFault": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "voltage": {
+          "format": "double",
+          "readOnly": true,
+          "type": "number"
+        },
+        "watt": {
+          "format": "double",
+          "readOnly": true,
+          "type": "number"
+        },
+        "wattAccumulated": {
+          "format": "double",
+          "readOnly": true,
+          "type": "number"
+        },
+        "weatherTrend": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "EventData": {
       "description": "Contains the details for a single event.",
       "id": "EventData",
@@ -461,6 +666,17 @@
       },
       "type": "object"
     },
+    "HomeTraitPayload": {
+      "description": "Container for UDDM trait data associated with a device.",
+      "id": "HomeTraitPayload",
+      "properties": {
+        "rootComponent": {
+          "$ref": "Component",
+          "description": "The root component of the device as reported by the provider."
+        }
+      },
+      "type": "object"
+    },
     "HomeTraitUpdates": {
       "description": "Contains the set of updates for a device.",
       "id": "HomeTraitUpdates",
@@ -479,12 +695,98 @@
       },
       "type": "object"
     },
+    "MediaUrlsStruct": {
+      "id": "MediaUrlsStruct",
+      "properties": {
+        "dashManifestUrl": {
+          "description": "URL for a dash manifest for playback",
+          "type": "string"
+        },
+        "hlsMasterPlaylistUrl": {
+          "description": "URL for a hls master playlist for playback",
+          "type": "string"
+        },
+        "previewUrl": {
+          "description": "URL for animated preview clip representing the event session",
+          "type": "string"
+        },
+        "thumbnailUrl": {
+          "description": "URL for thumbnail image representing the event session",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MotionEvent": {
+      "description": "Represents a newly detected motion event.",
+      "id": "MotionEvent",
+      "properties": {
+        "commonEventData": {
+          "$ref": "CommonEventDataStruct"
+        },
+        "zones": {
+          "description": "Zones where events are detected in.",
+          "items": {
+            "$ref": "ZoneStruct"
+          },
+          "type": "array"
+        },
+        "zonesIsEmpty": {
+          "description": "If set, zones is an empty list.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "PartnerPresenceSignalTrait": {
+      "description": "Provides attributes and events related to partner presence signals. See PartnerPresenceSignal trait:",
+      "id": "PartnerPresenceSignalTrait",
+      "properties": {},
+      "type": "object"
+    },
+    "PersonEvent": {
+      "description": "Represents a newly detected person event.",
+      "id": "PersonEvent",
+      "properties": {
+        "commonEventData": {
+          "$ref": "CommonEventDataStruct"
+        },
+        "zones": {
+          "description": "Zones where events are detected in.",
+          "items": {
+            "$ref": "ZoneStruct"
+          },
+          "type": "array"
+        },
+        "zonesIsEmpty": {
+          "description": "If set, zones is an empty list.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "QueryRequest": {
       "description": "Request type for the [`Query`](#google.home.graph.v1.HomeGraphApiService.Query) call.",
       "id": "QueryRequest",
       "properties": {
         "agentUserId": {
           "description": "Required. Third-party user ID.",
+          "type": "string"
+        },
+        "deviceView": {
+          "description": "Optional. Specifies the type of device data to be returned in the response. This allows callers to request traditional Smart Home traits, Unified Device Data Model (UDDM) traits, or both. If unspecified, defaults to SMART_HOME_TRAIT_ONLY.",
+          "enum": [
+            "DEVICE_VIEW_UNSPECIFIED",
+            "SMART_HOME_TRAIT_ONLY",
+            "HOME_TRAIT_ONLY",
+            "HOME_TRAIT_AND_SMART_HOME_TRAIT"
+          ],
+          "enumDescriptions": [
+            "Default value. Equivalent to SMART_HOME_TRAIT_ONLY.",
+            "Return only standard Smart Home traits in the `devices` map.",
+            "Return only Unified Device Data Model (UDDM) traits in the `home_trait_payload` map.",
+            "Return both standard Smart Home traits and UDDM traits."
+          ],
           "type": "string"
         },
         "includeDeviceMetadata": {
@@ -566,6 +868,13 @@
           },
           "description": "States of the devices. Map of third-party device ID to struct of device states.",
           "type": "object"
+        },
+        "homeTraitPayload": {
+          "additionalProperties": {
+            "$ref": "HomeTraitPayload"
+          },
+          "description": "Map of device IDs to their Unified Device Data Model (UDDM) trait payloads. This field is populated when `device_view` is set to HOME_TRAIT_ONLY or HOME_TRAIT_AND_SMART_HOME_TRAIT.",
+          "type": "object"
         }
       },
       "type": "object"
@@ -608,7 +917,7 @@
       "type": "object"
     },
     "ReportStateAndNotificationRequest": {
-      "description": "Request type for the [`ReportStateAndNotification`](#google.home.graph.v1.HomeGraphApiService.ReportStateAndNotification) call. It may include states, notifications, or both. States and notifications are defined per `device_id` (for example, \"123\" and \"456\" in the following example). Example: ```json { \"requestId\": \"ff36a3cc-ec34-11e6-b1a0-64510650abcf\", \"agentUserId\": \"1234\", \"payload\": { \"devices\": { \"states\": { \"123\": { \"on\": true }, \"456\": { \"on\": true, \"brightness\": 10 }, }, } } } ```",
+      "description": "Request type for the [`ReportStateAndNotification`](#google.home.graph.v1.HomeGraphApiService.ReportStateAndNotification) call. It may include states, notifications, home_traits, home_events, or any combination thereof. Smart Home Device Traits (SHDT) `states` and `notifications` are defined per `device_id` (for example, \"123\" and \"456\" in the following example). Google Home Traits `home_traits` and `home_events` are lists of updates or events, each associated with a `device_id` (for example, \"789\" in the following example). Example: ```json { \"requestId\": \"ff36a3cc-ec34-11e6-b1a0-64510650abcf\", \"agentUserId\": \"1234\", \"payload\": { \"devices\": { \"states\": { \"123\": { \"on\": true }, \"456\": { \"on\": true, \"brightness\": 10 }, }, \"homeTraits\": [ { \"deviceId\": \"789\", \"components\": [ { \"componentId\": \"main\", \"traitData\": [ { \"trait\": { \"@type\": \"type.googleapis.com/home.graph.v1.OnOffTrait\", \"onOff\": true } } ] } ] } ], \"homeEvents\": [ { \"deviceId\": \"789\", \"events\": [ { \"componentId\": \"main\", \"events\": [ { \"eventId\": \"event-123\", \"eventTime\": \"2026-01-01T00:00:00Z\", \"event\": { \"@type\": \"type.googleapis.com/home.graph.v1.DoorbellPressTrait.DoorbellPressedEvent\" } } ] } ] } ] } } } ```",
       "id": "ReportStateAndNotificationRequest",
       "properties": {
         "agentUserId": {
@@ -639,6 +948,13 @@
       "description": "Response type for the [`ReportStateAndNotification`](#google.home.graph.v1.HomeGraphApiService.ReportStateAndNotification) call.",
       "id": "ReportStateAndNotificationResponse",
       "properties": {
+        "deviceResults": {
+          "additionalProperties": {
+            "$ref": "Result"
+          },
+          "description": "Map from agent device ID to the result of reporting state and notifications. This is only populated for UDDM updates for now.",
+          "type": "object"
+        },
         "requestId": {
           "description": "Request ID copied from ReportStateAndNotificationRequest.",
           "type": "string"
@@ -667,6 +983,18 @@
       "properties": {},
       "type": "object"
     },
+    "Result": {
+      "description": "Result of reporting state and notifications for a single device.",
+      "id": "Result",
+      "properties": {
+        "homeTraitCommitTime": {
+          "description": "The trait commit timestamp of the state update in Home Graph.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "StateAndNotificationPayload": {
       "description": "Payload containing the state and notification information for devices.",
       "id": "StateAndNotificationPayload",
@@ -674,6 +1002,46 @@
         "devices": {
           "$ref": "ReportStateAndNotificationDevice",
           "description": "The devices for updating state and sending notifications."
+        }
+      },
+      "type": "object"
+    },
+    "StructurePresenceStateChangeEvent": {
+      "description": "Sent when the structure presence state changes.",
+      "id": "StructurePresenceStateChangeEvent",
+      "properties": {
+        "presenceState": {
+          "description": "Required. Specifies the presence state.",
+          "enum": [
+            "STRUCTURE_PRESENCE_STATE_ENUM_UNSPECIFIED",
+            "HOME",
+            "AWAY"
+          ],
+          "enumDescriptions": [
+            "Indicates an unknown presence state.",
+            "Indicates home presence state.",
+            "Indicates away presence state."
+          ],
+          "type": "string"
+        },
+        "reason": {
+          "$ref": "StructurePresenceStateChangeReasonStruct",
+          "description": "Optional. Specifies the presence state change reason."
+        }
+      },
+      "type": "object"
+    },
+    "StructurePresenceStateChangeReasonStruct": {
+      "description": "Contains the metadata about the cause of the structure presence state change.",
+      "id": "StructurePresenceStateChangeReasonStruct",
+      "properties": {
+        "deviceBlame": {
+          "$ref": "DeviceBlameStruct",
+          "description": "Optional. Contains metadata about the cause of presence state change attributed to a device."
+        },
+        "userBlame": {
+          "$ref": "UserBlameStruct",
+          "description": "Optional. Contains metadata about the cause of presence state change attributed to a user."
         }
       },
       "type": "object"
@@ -726,10 +1094,54 @@
       },
       "type": "object"
     },
+    "ThermostatFanControlTrait": {
+      "description": "This cluster provides fan control capabilities for thermostats.",
+      "id": "ThermostatFanControlTrait",
+      "properties": {
+        "timerDuration": {
+          "format": "int64",
+          "type": "string"
+        },
+        "timerEnd": {
+          "format": "int64",
+          "type": "string"
+        },
+        "timerSpeed": {
+          "enum": [
+            "FAN_SPEED_SETTING_ENUM_UNSPECIFIED",
+            "FAN_SPEED_SETTING_OFF",
+            "FAN_SPEED_SETTING_STAGE1",
+            "FAN_SPEED_SETTING_STAGE2",
+            "FAN_SPEED_SETTING_STAGE3",
+            "FAN_SPEED_SETTING_AUTO"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "TraitData": {
       "description": "Contains the trait payload for a single trait.",
       "id": "TraitData",
       "properties": {
+        "commitTime": {
+          "description": "Other metadata for the trait. The time the client update was committed in the server.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "providerVersionTime": {
+          "description": "Optional in write requests (e.g. ReportStateAndNotification). If set, represents the provider version timestamp of the existing trait in the database. The server will perform optimistic locking validation if this field is present and the experiment is enabled. It will not be persisted to the database.",
+          "format": "google-datetime",
+          "type": "string"
+        },
         "trait": {
           "additionalProperties": {
             "description": "Properties of the object. Contains field @type with type URL.",
@@ -737,6 +1149,46 @@
           },
           "description": "The Provider Home API trait payload.",
           "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "UserBlameStruct": {
+      "description": "Contains metadata about the cause of presence state change attributed to a user.",
+      "id": "UserBlameStruct",
+      "properties": {
+        "blameType": {
+          "description": "Required. Specifies the user blame type.",
+          "enum": [
+            "USER_BLAME_TYPE_ENUM_UNSPECIFIED",
+            "PHONE_LOCATION",
+            "MANUAL_CHANGE"
+          ],
+          "enumDescriptions": [
+            "Indicates an unspecified user blame type.",
+            "Indicates phone location.",
+            "Indicates manual change."
+          ],
+          "type": "string"
+        },
+        "userEmail": {
+          "description": "Required. Specifies the email of the user.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ZoneStruct": {
+      "id": "ZoneStruct",
+      "properties": {
+        "label": {
+          "description": "Name of the zone.",
+          "type": "string"
+        },
+        "zoneId": {
+          "description": "Id of the zone",
+          "format": "int64",
+          "type": "string"
         }
       },
       "type": "object"

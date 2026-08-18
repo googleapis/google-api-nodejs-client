@@ -202,11 +202,11 @@ export namespace saasservicemgmt_v1beta1 {
     version?: string | null;
   }
   /**
-   * ComponentRef represents a reference to a component resource. Next ID: 4
+   * ComponentRef represents a reference to a component resource.
    */
   export interface Schema$ComponentRef {
     /**
-     * Name of the component in composite.Components
+     * Optional. Name of the component in composite.Components
      */
     component?: string | null;
     /**
@@ -219,7 +219,7 @@ export namespace saasservicemgmt_v1beta1 {
     revision?: string | null;
   }
   /**
-   * CompositeRef represents a reference to a composite resource. Next ID: 4
+   * CompositeRef represents a reference to a composite resource.
    */
   export interface Schema$CompositeRef {
     /**
@@ -234,6 +234,15 @@ export namespace saasservicemgmt_v1beta1 {
      * Output only. Reference to on-going AppTemplate import and replication operation (i.e. the operation_id for the long-running operation). This field is opaque for external usage.
      */
     syncOperation?: string | null;
+  }
+  /**
+   * A representation of a decimal value, such as 2.5. Clients may convert values into language-native decimal formats, such as Java's [BigDecimal](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/math/BigDecimal.html) or Python's [decimal.Decimal](https://docs.python.org/3/library/decimal.html).
+   */
+  export interface Schema$Decimal {
+    /**
+     * The decimal value, as a string. The string representation consists of an optional sign, `+` (`U+002B`) or `-` (`U+002D`), followed by a sequence of zero or more decimal digits ("the integer"), optionally followed by a fraction, optionally followed by an exponent. An empty string **should** be interpreted as `0`. The fraction consists of a decimal point followed by zero or more decimal digits. The string must contain at least one digit in either the integer or the fraction. The number formed by the sign, the integer and the fraction is referred to as the significand. The exponent consists of the character `e` (`U+0065`) or `E` (`U+0045`) followed by one or more decimal digits. Services **should** normalize decimal values before storing them by: - Removing an explicitly-provided `+` sign (`+2.5` -\> `2.5`). - Replacing a zero-length integer value with `0` (`.5` -\> `0.5`). - Coercing the exponent character to upper-case, with explicit sign (`2.5e8` -\> `2.5E+8`). - Removing an explicitly-provided zero exponent (`2.5E0` -\> `2.5`). Services **may** perform additional normalization based on its own needs and the internal decimal implementation selected, such as shifting the decimal point and exponent value together (example: `2.5E-1` <-\> `0.25`). Additionally, services **may** preserve trailing zeroes in the fraction to indicate increased precision, but are not required to do so. Note that only the `.` character is supported to divide the integer and the fraction; `,` **should not** be supported regardless of locale. Additionally, thousand separators **should not** be supported. If a service does support them, values **must** be normalized. The ENBF grammar is: DecimalString = '' | [Sign] Significand [Exponent]; Sign = '+' | '-'; Significand = Digits '.' | [Digits] '.' Digits; Exponent = ('e' | 'E') [Sign] Digits; Digits = { '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' \}; Services **should** clearly document the range of supported values, the maximum supported precision (total number of digits), and, if applicable, the scale (number of digits after the decimal point), as well as how it behaves when receiving out-of-bounds values. Services **may** choose to accept values passed as input even when the value has a higher precision or scale than the service supports, and **should** round the value to fit the supported scale. Alternatively, the service **may** error with `400 Bad Request` (`INVALID_ARGUMENT` in gRPC) if precision would be lost. Services **should** error with `400 Bad Request` (`INVALID_ARGUMENT` in gRPC) if the service receives a value outside of the supported range.
+     */
+    value?: string | null;
   }
   /**
    * Dependency represent a single dependency with another unit kind by alias.
@@ -307,17 +316,9 @@ export namespace saasservicemgmt_v1beta1 {
      */
     attributes?: string[] | null;
     /**
-     * Optional. The ID of an allocation to use as the default.
-     */
-    defaultAllocation?: string | null;
-    /**
      * Optional. Deprecated: Use `base_target` instead. Default variant or allocation of the flag.
      */
     defaultTarget?: string | null;
-    /**
-     * Optional. The name of a variant to use as the default.
-     */
-    defaultVariant?: string | null;
     /**
      * Optional. Evaluation rules define the logic for evaluating the flag against a given context. The rules are evaluated sequentially in their specified order.
      */
@@ -474,7 +475,7 @@ export namespace saasservicemgmt_v1beta1 {
      */
     flagRevisions?: string[] | null;
     /**
-     * Optional. Immutable. Specifies the release consists of a list of flag revisions.
+     * Optional. Immutable. Specifies the release consisting of a list of flag revisions.
      */
     flagRevisionsRelease?: Schema$FlagRevisionList;
     /**
@@ -482,7 +483,7 @@ export namespace saasservicemgmt_v1beta1 {
      */
     flagSets?: string[] | null;
     /**
-     * Optional. Immutable. Specifies the release consists of a list of flag sets.
+     * Optional. Immutable. Specifies the release consisting of a list of flag sets.
      */
     flagSetsRelease?: Schema$FlagSetList;
     /**
@@ -786,6 +787,23 @@ export namespace saasservicemgmt_v1beta1 {
     unreachable?: string[] | null;
   }
   /**
+   * The response structure for the ListSaasReleases method.
+   */
+  export interface Schema$ListSaasReleasesResponse {
+    /**
+     * If present, the next page token can be provided to a subsequent ListSaasReleases call to list the next page. If empty, there are no more pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The resulting saas releases.
+     */
+    saasReleases?: Schema$SaasRelease[];
+    /**
+     * Locations that could not be reached.
+     */
+    unreachable?: string[] | null;
+  }
+  /**
    * The response structure for the ListSaas method.
    */
   export interface Schema$ListSaasResponse {
@@ -814,6 +832,40 @@ export namespace saasservicemgmt_v1beta1 {
      * The resulting tenants.
      */
     tenants?: Schema$Tenant[];
+    /**
+     * Locations that could not be reached.
+     */
+    unreachable?: string[] | null;
+  }
+  /**
+   * The response structure for the ListUnitGroupOperations method.
+   */
+  export interface Schema$ListUnitGroupOperationsResponse {
+    /**
+     * If present, the next page token can be provided to a subsequent ListUnitGroupOperations call to list the next page. If empty, there are no more pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The resulting unit group operations.
+     */
+    unitGroupOperations?: Schema$UnitGroupOperation[];
+    /**
+     * Locations that could not be reached.
+     */
+    unreachable?: string[] | null;
+  }
+  /**
+   * The response structure for the ListUnitGroups method.
+   */
+  export interface Schema$ListUnitGroupsResponse {
+    /**
+     * If present, the next page token can be provided to a subsequent ListUnitGroups call to list the next page. If empty, there are no more pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The resulting unit groups.
+     */
+    unitGroups?: Schema$UnitGroup[];
     /**
      * Locations that could not be reached.
      */
@@ -1082,7 +1134,7 @@ export namespace saasservicemgmt_v1beta1 {
     runParams?: Schema$RunRolloutActionParams;
   }
   /**
-   * An object that describes various settings of Rollout execution. Includes built-in policies across GCP and GDC, and customizable policies.
+   * An object that describes various settings of Rollout execution. Includes built-in and customizable policies.
    */
   export interface Schema$RolloutKind {
     /**
@@ -1125,6 +1177,10 @@ export namespace saasservicemgmt_v1beta1 {
      * Required. Immutable. UnitKind that this rollout kind corresponds to. Rollouts stemming from this rollout kind will target the units of this unit kind. In other words, this defines the population of target units to be upgraded by rollouts.
      */
     unitKind?: string | null;
+    /**
+     * Optional. Settings for controlling the pacing of rollouts i.e. the number of units to be rolled out in parallel in a region.
+     */
+    unitUpdatePacing?: Schema$UnitUpdatePacing;
     /**
      * Output only. The timestamp when the resource was last updated. Any change to the resource made by users must refresh this value. Changes to a resource made by the service should refresh this value.
      */
@@ -1201,7 +1257,7 @@ export namespace saasservicemgmt_v1beta1 {
      */
     name?: string | null;
     /**
-     * Output only. State of the Saas. It is always in ACTIVE state if the application_template is empty.
+     * Output only. State of the Saas. It is always in STATE_ACTIVE state if the application_template is empty.
      */
     state?: string | null;
     /**
@@ -1237,6 +1293,39 @@ export namespace saasservicemgmt_v1beta1 {
      * Required. Type of the condition.
      */
     type?: string | null;
+  }
+  /**
+   * SaasRelease is a collection of Releases that are assigned to a UnitGroup. It allows provisioning and updates of UnitGroup, which contains multiple Units of different UnitKinds.
+   */
+  export interface Schema$SaasRelease {
+    /**
+     * Optional. Annotations is an unstructured key-value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: https://kubernetes.io/docs/user-guide/annotations
+     */
+    annotations?: {[key: string]: string} | null;
+    /**
+     * Output only. The timestamp when the resource was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. An opaque value that uniquely identifies a version or generation of a resource. It can be used to confirm that the client and server agree on the ordering of a resource being written.
+     */
+    etag?: string | null;
+    /**
+     * Optional. The labels on the resource, which can be used for categorization. similar to Kubernetes resource labels.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Identifier. The resource name (full URI of the resource) following the standard naming scheme: "projects/{project\}/locations/{location\}/saasReleases/{saasRelease\}"
+     */
+    name?: string | null;
+    /**
+     * Output only. The unique identifier of the resource. UID is unique in the time and space for this resource within the scope of the service. It is typically generated by the server on successful creation of a resource and must not be changed. UID is used to uniquely identify resources with resource name reuses. This should be a UUID4.
+     */
+    uid?: string | null;
+    /**
+     * Output only. The timestamp when the resource was last updated. Any change to the resource made by users must refresh this value. Changes to a resource made by the service should refresh this value.
+     */
+    updateTime?: string | null;
   }
   /**
    * A time specification to schedule the maintenance.
@@ -1440,6 +1529,10 @@ export namespace saasservicemgmt_v1beta1 {
      */
     uid?: string | null;
     /**
+     * Optional. Output only. Reference to the UnitGroup this unit belongs to.
+     */
+    unitGroup?: string | null;
+    /**
      * Optional. Reference to the UnitKind this Unit belongs to. Immutable once set.
      */
     unitKind?: string | null;
@@ -1487,6 +1580,72 @@ export namespace saasservicemgmt_v1beta1 {
     unit?: string | null;
   }
   /**
+   * UnitGroup represents a set of Units to be used by a Tenant. In pooling scenarios, the UnitGroup may be created and provisioned before the Tenant is created.
+   */
+  export interface Schema$UnitGroup {
+    /**
+     * Optional. Annotations is an unstructured key-value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: https://kubernetes.io/docs/user-guide/annotations
+     */
+    annotations?: {[key: string]: string} | null;
+    /**
+     * Output only. The timestamp when the resource was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. An opaque value that uniquely identifies a version or generation of a resource. It can be used to confirm that the client and server agree on the ordering of a resource being written.
+     */
+    etag?: string | null;
+    /**
+     * Optional. The labels on the resource, which can be used for categorization. similar to Kubernetes resource labels.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Identifier. The resource name (full URI of the resource) following the standard naming scheme: "projects/{project\}/locations/{location\}/unitGroups/{unitGroup\}"
+     */
+    name?: string | null;
+    /**
+     * Output only. The unique identifier of the resource. UID is unique in the time and space for this resource within the scope of the service. It is typically generated by the server on successful creation of a resource and must not be changed. UID is used to uniquely identify resources with resource name reuses. This should be a UUID4.
+     */
+    uid?: string | null;
+    /**
+     * Output only. The timestamp when the resource was last updated. Any change to the resource made by users must refresh this value. Changes to a resource made by the service should refresh this value.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * UnitGroupOperation represents an operation on a UnitGroup.
+   */
+  export interface Schema$UnitGroupOperation {
+    /**
+     * Optional. Annotations is an unstructured key-value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: https://kubernetes.io/docs/user-guide/annotations
+     */
+    annotations?: {[key: string]: string} | null;
+    /**
+     * Output only. The timestamp when the resource was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. An opaque value that uniquely identifies a version or generation of a resource. It can be used to confirm that the client and server agree on the ordering of a resource being written.
+     */
+    etag?: string | null;
+    /**
+     * Optional. The labels on the resource, which can be used for categorization. similar to Kubernetes resource labels.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Identifier. The resource name (full URI of the resource) following the standard naming scheme: "projects/{project\}/locations/{location\}/unitGroupOperations/{unitGroupOperation\}"
+     */
+    name?: string | null;
+    /**
+     * Output only. The unique identifier of the resource. UID is unique in the time and space for this resource within the scope of the service. It is typically generated by the server on successful creation of a resource and must not be changed. UID is used to uniquely identify resources with resource name reuses. This should be a UUID4.
+     */
+    uid?: string | null;
+    /**
+     * Output only. The timestamp when the resource was last updated. Any change to the resource made by users must refresh this value. Changes to a resource made by the service should refresh this value.
+     */
+    updateTime?: string | null;
+  }
+  /**
    * Definition of a Unit. Units belonging to the same UnitKind are managed together; for example they follow the same release model (blueprints, versions etc.) and are typically rolled out together.
    */
   export interface Schema$UnitKind {
@@ -1495,13 +1654,17 @@ export namespace saasservicemgmt_v1beta1 {
      */
     annotations?: {[key: string]: string} | null;
     /**
-     * Output only. Reference to component and revision in a composite ApplicationTemplate.
+     * Optional. Reference to component and revision in a composite ApplicationTemplate.
      */
     applicationTemplateComponent?: Schema$ComponentRef;
     /**
      * AppParams contains the parameters for creating an AppHub Application.
      */
     appParams?: Schema$AppParams;
+    /**
+     * Optional. Output only. BoundaryType describes the type of boundary the Unit Kind represents.
+     */
+    boundaryType?: string | null;
     /**
      * Output only. The timestamp when the resource was created.
      */
@@ -1523,7 +1686,7 @@ export namespace saasservicemgmt_v1beta1 {
      */
     etag?: string | null;
     /**
-     * Optional. List of inputVariables for this release that will either be retrieved from a dependency’s outputVariables, or will be passed on to a dependency’s inputVariables. Maximum 100.
+     * Optional. List of inputVariables for this release that will either be retrieved from a dependency's outputVariables, or will be passed on to a dependency's inputVariables. Maximum 100.
      */
     inputVariableMappings?: Schema$VariableMapping[];
     /**
@@ -1575,6 +1738,9 @@ export namespace saasservicemgmt_v1beta1 {
      * Output only. The timestamp when the resource was marked for deletion (deletion is an asynchronous operation).
      */
     deleteTime?: string | null;
+    /**
+     * Optional. Deprovision operation.
+     */
     deprovision?: Schema$Deprovision;
     /**
      * Optional. Output only. The engine state for on-going deployment engine operation(s). This field is opaque for external usage.
@@ -1588,6 +1754,9 @@ export namespace saasservicemgmt_v1beta1 {
      * Output only. An opaque value that uniquely identifies a version or generation of a resource. It can be used to confirm that the client and server agree on the ordering of a resource being written.
      */
     etag?: string | null;
+    /**
+     * Optional. Flag update operation.
+     */
     flagUpdate?: Schema$FlagUpdate;
     /**
      * Optional. The labels on the resource, which can be used for categorization. similar to Kubernetes resource labels.
@@ -1601,6 +1770,9 @@ export namespace saasservicemgmt_v1beta1 {
      * Optional. Reference to parent resource: UnitOperation. If an operation needs to create other operations as part of its workflow, each of the child operations should have this field set to the parent. This can be used for tracing. (Optional)
      */
     parentUnitOperation?: string | null;
+    /**
+     * Optional. Provision operation.
+     */
     provision?: Schema$Provision;
     /**
      * Optional. Specifies which rollout created this Unit Operation. This cannot be modified and is used for filtering purposes only. If a dependent unit and unit operation are created as part of another unit operation, they will use the same rolloutId.
@@ -1626,6 +1798,9 @@ export namespace saasservicemgmt_v1beta1 {
      * Output only. The timestamp when the resource was last updated. Any change to the resource made by users must refresh this value. Changes to a resource made by the service should refresh this value.
      */
     updateTime?: string | null;
+    /**
+     * Optional. Upgrade operation.
+     */
     upgrade?: Schema$Upgrade;
   }
   /**
@@ -1652,6 +1827,19 @@ export namespace saasservicemgmt_v1beta1 {
      * Required. Type of the condition.
      */
     type?: string | null;
+  }
+  /**
+   * UnitUpdatePacing defines the policy for the maximum number of unit operations that can run for a rollout in parallel in a single region.
+   */
+  export interface Schema$UnitUpdatePacing {
+    /**
+     * Optional. An absolute cap on concurrent units operations. If both percent and count are provided, the system uses the MINIMUM (most restrictive).
+     */
+    maxConcurrentOperationsCount?: number | null;
+    /**
+     * Optional. The maximum percentage of total units in the scope that can be in-flight. Example: 10.5 for 10.5%. If both percent and count are provided, the system uses the MINIMUM (most restrictive).
+     */
+    maxConcurrentOperationsPercent?: Schema$Decimal;
   }
   /**
    * UnitVariable describes a parameter for a Unit.
@@ -1745,7 +1933,10 @@ export namespace saasservicemgmt_v1beta1 {
     rolloutKinds: Resource$Projects$Locations$Rolloutkinds;
     rollouts: Resource$Projects$Locations$Rollouts;
     saas: Resource$Projects$Locations$Saas;
+    saasReleases: Resource$Projects$Locations$Saasreleases;
     tenants: Resource$Projects$Locations$Tenants;
+    unitGroupOperations: Resource$Projects$Locations$Unitgroupoperations;
+    unitGroups: Resource$Projects$Locations$Unitgroups;
     unitKinds: Resource$Projects$Locations$Unitkinds;
     unitOperations: Resource$Projects$Locations$Unitoperations;
     units: Resource$Projects$Locations$Units;
@@ -1767,7 +1958,15 @@ export namespace saasservicemgmt_v1beta1 {
       );
       this.rollouts = new Resource$Projects$Locations$Rollouts(this.context);
       this.saas = new Resource$Projects$Locations$Saas(this.context);
+      this.saasReleases = new Resource$Projects$Locations$Saasreleases(
+        this.context
+      );
       this.tenants = new Resource$Projects$Locations$Tenants(this.context);
+      this.unitGroupOperations =
+        new Resource$Projects$Locations$Unitgroupoperations(this.context);
+      this.unitGroups = new Resource$Projects$Locations$Unitgroups(
+        this.context
+      );
       this.unitKinds = new Resource$Projects$Locations$Unitkinds(this.context);
       this.unitOperations = new Resource$Projects$Locations$Unitoperations(
         this.context
@@ -1997,8 +2196,7 @@ export namespace saasservicemgmt_v1beta1 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListLocationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListLocationsResponse>,
       callback: BodyResponseCallback<Schema$ListLocationsResponse>
     ): void;
     list(
@@ -2125,7 +2323,10 @@ export namespace saasservicemgmt_v1beta1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -2295,7 +2496,10 @@ export namespace saasservicemgmt_v1beta1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -2365,8 +2569,7 @@ export namespace saasservicemgmt_v1beta1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -2434,7 +2637,11 @@ export namespace saasservicemgmt_v1beta1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -2578,7 +2785,11 @@ export namespace saasservicemgmt_v1beta1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -2636,8 +2847,7 @@ export namespace saasservicemgmt_v1beta1 {
     list(
       params: Params$Resource$Projects$Locations$Flagattributes$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListFlagAttributesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListFlagAttributesResponse>,
       callback: BodyResponseCallback<Schema$ListFlagAttributesResponse>
     ): void;
     list(
@@ -2730,7 +2940,10 @@ export namespace saasservicemgmt_v1beta1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -2997,7 +3210,10 @@ export namespace saasservicemgmt_v1beta1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -3179,7 +3395,10 @@ export namespace saasservicemgmt_v1beta1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -3249,8 +3468,7 @@ export namespace saasservicemgmt_v1beta1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -3318,7 +3536,11 @@ export namespace saasservicemgmt_v1beta1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -3468,7 +3690,11 @@ export namespace saasservicemgmt_v1beta1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -3526,8 +3752,7 @@ export namespace saasservicemgmt_v1beta1 {
     list(
       params: Params$Resource$Projects$Locations$Flagreleases$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListFlagReleasesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListFlagReleasesResponse>,
       callback: BodyResponseCallback<Schema$ListFlagReleasesResponse>
     ): void;
     list(
@@ -3618,7 +3843,10 @@ export namespace saasservicemgmt_v1beta1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -3897,7 +4125,10 @@ export namespace saasservicemgmt_v1beta1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -4067,7 +4298,10 @@ export namespace saasservicemgmt_v1beta1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -4137,8 +4371,7 @@ export namespace saasservicemgmt_v1beta1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -4206,7 +4439,11 @@ export namespace saasservicemgmt_v1beta1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -4350,7 +4587,11 @@ export namespace saasservicemgmt_v1beta1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -4408,8 +4649,7 @@ export namespace saasservicemgmt_v1beta1 {
     list(
       params: Params$Resource$Projects$Locations$Flagrevisions$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListFlagRevisionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListFlagRevisionsResponse>,
       callback: BodyResponseCallback<Schema$ListFlagRevisionsResponse>
     ): void;
     list(
@@ -4502,7 +4742,10 @@ export namespace saasservicemgmt_v1beta1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -4769,7 +5012,10 @@ export namespace saasservicemgmt_v1beta1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -4879,8 +5125,7 @@ export namespace saasservicemgmt_v1beta1 {
         | BodyResponseCallback<Schema$Flag>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Flag>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Flag> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Flag>>
@@ -4951,7 +5196,10 @@ export namespace saasservicemgmt_v1beta1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -5021,8 +5269,7 @@ export namespace saasservicemgmt_v1beta1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -5090,7 +5337,11 @@ export namespace saasservicemgmt_v1beta1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -5171,8 +5422,7 @@ export namespace saasservicemgmt_v1beta1 {
         | BodyResponseCallback<Schema$Flag>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Flag>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Flag> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Flag>>
@@ -5240,7 +5490,11 @@ export namespace saasservicemgmt_v1beta1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -5388,7 +5642,10 @@ export namespace saasservicemgmt_v1beta1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -5498,8 +5755,7 @@ export namespace saasservicemgmt_v1beta1 {
         | BodyResponseCallback<Schema$Flag>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Flag>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Flag> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Flag>>
@@ -5667,7 +5923,10 @@ export namespace saasservicemgmt_v1beta1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -5773,8 +6032,7 @@ export namespace saasservicemgmt_v1beta1 {
         | BodyResponseCallback<Schema$Release>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Release>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Release> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Release>>
@@ -5845,7 +6103,10 @@ export namespace saasservicemgmt_v1beta1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -5915,8 +6176,7 @@ export namespace saasservicemgmt_v1beta1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -5984,7 +6244,11 @@ export namespace saasservicemgmt_v1beta1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -6063,8 +6327,7 @@ export namespace saasservicemgmt_v1beta1 {
         | BodyResponseCallback<Schema$Release>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Release>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Release> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Release>>
@@ -6132,7 +6395,11 @@ export namespace saasservicemgmt_v1beta1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -6190,8 +6457,7 @@ export namespace saasservicemgmt_v1beta1 {
     list(
       params: Params$Resource$Projects$Locations$Releases$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListReleasesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListReleasesResponse>,
       callback: BodyResponseCallback<Schema$ListReleasesResponse>
     ): void;
     list(
@@ -6282,7 +6548,10 @@ export namespace saasservicemgmt_v1beta1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -6388,8 +6657,7 @@ export namespace saasservicemgmt_v1beta1 {
         | BodyResponseCallback<Schema$Release>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Release>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Release> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Release>>
@@ -6557,7 +6825,10 @@ export namespace saasservicemgmt_v1beta1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -6589,6 +6860,7 @@ export namespace saasservicemgmt_v1beta1 {
      *       //   "uid": "my_uid",
      *       //   "unitFilter": "my_unitFilter",
      *       //   "unitKind": "my_unitKind",
+     *       //   "unitUpdatePacing": {},
      *       //   "updateTime": "my_updateTime",
      *       //   "updateUnitKindStrategy": "my_updateUnitKindStrategy"
      *       // }
@@ -6608,6 +6880,7 @@ export namespace saasservicemgmt_v1beta1 {
      *   //   "uid": "my_uid",
      *   //   "unitFilter": "my_unitFilter",
      *   //   "unitKind": "my_unitKind",
+     *   //   "unitUpdatePacing": {},
      *   //   "updateTime": "my_updateTime",
      *   //   "updateUnitKindStrategy": "my_updateUnitKindStrategy"
      *   // }
@@ -6731,7 +7004,10 @@ export namespace saasservicemgmt_v1beta1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -6801,8 +7077,7 @@ export namespace saasservicemgmt_v1beta1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -6870,7 +7145,11 @@ export namespace saasservicemgmt_v1beta1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -6896,6 +7175,7 @@ export namespace saasservicemgmt_v1beta1 {
      *   //   "uid": "my_uid",
      *   //   "unitFilter": "my_unitFilter",
      *   //   "unitKind": "my_unitKind",
+     *   //   "unitUpdatePacing": {},
      *   //   "updateTime": "my_updateTime",
      *   //   "updateUnitKindStrategy": "my_updateUnitKindStrategy"
      *   // }
@@ -7016,7 +7296,11 @@ export namespace saasservicemgmt_v1beta1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -7074,8 +7358,7 @@ export namespace saasservicemgmt_v1beta1 {
     list(
       params: Params$Resource$Projects$Locations$Rolloutkinds$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListRolloutKindsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListRolloutKindsResponse>,
       callback: BodyResponseCallback<Schema$ListRolloutKindsResponse>
     ): void;
     list(
@@ -7166,7 +7449,10 @@ export namespace saasservicemgmt_v1beta1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -7198,6 +7484,7 @@ export namespace saasservicemgmt_v1beta1 {
      *       //   "uid": "my_uid",
      *       //   "unitFilter": "my_unitFilter",
      *       //   "unitKind": "my_unitKind",
+     *       //   "unitUpdatePacing": {},
      *       //   "updateTime": "my_updateTime",
      *       //   "updateUnitKindStrategy": "my_updateUnitKindStrategy"
      *       // }
@@ -7217,6 +7504,7 @@ export namespace saasservicemgmt_v1beta1 {
      *   //   "uid": "my_uid",
      *   //   "unitFilter": "my_unitFilter",
      *   //   "unitKind": "my_unitKind",
+     *   //   "unitUpdatePacing": {},
      *   //   "updateTime": "my_updateTime",
      *   //   "updateUnitKindStrategy": "my_updateUnitKindStrategy"
      *   // }
@@ -7437,7 +7725,10 @@ export namespace saasservicemgmt_v1beta1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -7561,8 +7852,7 @@ export namespace saasservicemgmt_v1beta1 {
         | BodyResponseCallback<Schema$Rollout>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Rollout>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Rollout> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Rollout>>
@@ -7633,7 +7923,10 @@ export namespace saasservicemgmt_v1beta1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -7703,8 +7996,7 @@ export namespace saasservicemgmt_v1beta1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -7772,7 +8064,11 @@ export namespace saasservicemgmt_v1beta1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -7860,8 +8156,7 @@ export namespace saasservicemgmt_v1beta1 {
         | BodyResponseCallback<Schema$Rollout>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Rollout>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Rollout> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Rollout>>
@@ -7929,7 +8224,11 @@ export namespace saasservicemgmt_v1beta1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -7987,8 +8286,7 @@ export namespace saasservicemgmt_v1beta1 {
     list(
       params: Params$Resource$Projects$Locations$Rollouts$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListRolloutsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListRolloutsResponse>,
       callback: BodyResponseCallback<Schema$ListRolloutsResponse>
     ): void;
     list(
@@ -8079,7 +8377,10 @@ export namespace saasservicemgmt_v1beta1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -8203,8 +8504,7 @@ export namespace saasservicemgmt_v1beta1 {
         | BodyResponseCallback<Schema$Rollout>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Rollout>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Rollout> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Rollout>>
@@ -8372,7 +8672,10 @@ export namespace saasservicemgmt_v1beta1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -8476,8 +8779,7 @@ export namespace saasservicemgmt_v1beta1 {
         | BodyResponseCallback<Schema$Saas>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Saas>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Saas> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Saas>>
@@ -8548,7 +8850,10 @@ export namespace saasservicemgmt_v1beta1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -8618,8 +8923,7 @@ export namespace saasservicemgmt_v1beta1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -8687,7 +8991,11 @@ export namespace saasservicemgmt_v1beta1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -8765,8 +9073,7 @@ export namespace saasservicemgmt_v1beta1 {
         | BodyResponseCallback<Schema$Saas>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Saas>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Saas> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Saas>>
@@ -8834,7 +9141,11 @@ export namespace saasservicemgmt_v1beta1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -8982,7 +9293,10 @@ export namespace saasservicemgmt_v1beta1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -9086,8 +9400,7 @@ export namespace saasservicemgmt_v1beta1 {
         | BodyResponseCallback<Schema$Saas>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Saas>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Saas> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Saas>>
@@ -9227,6 +9540,874 @@ export namespace saasservicemgmt_v1beta1 {
     requestBody?: Schema$Saas;
   }
 
+  export class Resource$Projects$Locations$Saasreleases {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Create a new saas release.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/saasservicemgmt.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const saasservicemgmt = google.saasservicemgmt('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await saasservicemgmt.projects.locations.saasReleases.create({
+     *     // Required. The parent of the saas release.
+     *     parent: 'projects/my-project/locations/my-location',
+     *     // An optional request ID to identify requests.
+     *     requestId: 'placeholder-value',
+     *     // Required. The ID value for the new saas release.
+     *     saasReleaseId: 'placeholder-value',
+     *     // If "validate_only" is set to true, the service will try to validate that this request would succeed, but will not actually make changes.
+     *     validateOnly: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "annotations": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "etag": "my_etag",
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "uid": "my_uid",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "annotations": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "etag": "my_etag",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "uid": "my_uid",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Saasreleases$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Projects$Locations$Saasreleases$Create,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SaasRelease>>;
+    create(
+      params: Params$Resource$Projects$Locations$Saasreleases$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Saasreleases$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$SaasRelease>,
+      callback: BodyResponseCallback<Schema$SaasRelease>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Saasreleases$Create,
+      callback: BodyResponseCallback<Schema$SaasRelease>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$SaasRelease>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Saasreleases$Create
+        | BodyResponseCallback<Schema$SaasRelease>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SaasRelease>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SaasRelease>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SaasRelease>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Saasreleases$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Saasreleases$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://saasservicemgmt.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/saasReleases').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SaasRelease>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SaasRelease>(parameters);
+      }
+    }
+
+    /**
+     * Delete a single saas release.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/saasservicemgmt.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const saasservicemgmt = google.saasservicemgmt('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await saasservicemgmt.projects.locations.saasReleases.delete({
+     *     // The etag known to the client for the expected state of the saas release.
+     *     etag: 'placeholder-value',
+     *     // Required. The resource name of the resource within a service.
+     *     name: 'projects/my-project/locations/my-location/saasReleases/my-saasRelease',
+     *     // An optional request ID to identify requests.
+     *     requestId: 'placeholder-value',
+     *     // If "validate_only" is set to true, the service will try to validate that this request would succeed, but will not actually make changes.
+     *     validateOnly: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Saasreleases$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Saasreleases$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
+    delete(
+      params: Params$Resource$Projects$Locations$Saasreleases$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Saasreleases$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Saasreleases$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Saasreleases$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Saasreleases$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Saasreleases$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://saasservicemgmt.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Retrieve a single saas release.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/saasservicemgmt.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const saasservicemgmt = google.saasservicemgmt('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await saasservicemgmt.projects.locations.saasReleases.get({
+     *     // Required. The resource name of the resource within a service.
+     *     name: 'projects/my-project/locations/my-location/saasReleases/my-saasRelease',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "annotations": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "etag": "my_etag",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "uid": "my_uid",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Saasreleases$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Saasreleases$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SaasRelease>>;
+    get(
+      params: Params$Resource$Projects$Locations$Saasreleases$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Saasreleases$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$SaasRelease>,
+      callback: BodyResponseCallback<Schema$SaasRelease>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Saasreleases$Get,
+      callback: BodyResponseCallback<Schema$SaasRelease>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$SaasRelease>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Saasreleases$Get
+        | BodyResponseCallback<Schema$SaasRelease>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SaasRelease>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SaasRelease>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SaasRelease>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Saasreleases$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Saasreleases$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://saasservicemgmt.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SaasRelease>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SaasRelease>(parameters);
+      }
+    }
+
+    /**
+     * Retrieve a collection of saas releases.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/saasservicemgmt.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const saasservicemgmt = google.saasservicemgmt('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await saasservicemgmt.projects.locations.saasReleases.list({
+     *     // Filter the list as specified in https://google.aip.dev/160.
+     *     filter: 'placeholder-value',
+     *     // Order results as specified in https://google.aip.dev/132.
+     *     orderBy: 'placeholder-value',
+     *     // The maximum number of saas releases to send per page.
+     *     pageSize: 'placeholder-value',
+     *     // The page token: If the next_page_token from a previous response is provided, this request will send the subsequent page.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent of the saas releases.
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "saasReleases": [],
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Saasreleases$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Saasreleases$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListSaasReleasesResponse>>;
+    list(
+      params: Params$Resource$Projects$Locations$Saasreleases$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Saasreleases$List,
+      options:
+        MethodOptions | BodyResponseCallback<Schema$ListSaasReleasesResponse>,
+      callback: BodyResponseCallback<Schema$ListSaasReleasesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Saasreleases$List,
+      callback: BodyResponseCallback<Schema$ListSaasReleasesResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListSaasReleasesResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Saasreleases$List
+        | BodyResponseCallback<Schema$ListSaasReleasesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListSaasReleasesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListSaasReleasesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListSaasReleasesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Saasreleases$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Saasreleases$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://saasservicemgmt.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/saasReleases').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListSaasReleasesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListSaasReleasesResponse>(parameters);
+      }
+    }
+
+    /**
+     * Update a single saas release.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/saasservicemgmt.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const saasservicemgmt = google.saasservicemgmt('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await saasservicemgmt.projects.locations.saasReleases.patch({
+     *     // Identifier. The resource name (full URI of the resource) following the standard naming scheme: "projects/{project\}/locations/{location\}/saasReleases/{saasRelease\}"
+     *     name: 'projects/my-project/locations/my-location/saasReleases/my-saasRelease',
+     *     // An optional request ID to identify requests.
+     *     requestId: 'placeholder-value',
+     *     // Field mask is used to specify the fields to be overwritten.
+     *     updateMask: 'placeholder-value',
+     *     // If "validate_only" is set to true, the service will try to validate that this request would succeed, but will not actually make changes.
+     *     validateOnly: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "annotations": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "etag": "my_etag",
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "uid": "my_uid",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "annotations": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "etag": "my_etag",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "uid": "my_uid",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Saasreleases$Patch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Saasreleases$Patch,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SaasRelease>>;
+    patch(
+      params: Params$Resource$Projects$Locations$Saasreleases$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Saasreleases$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$SaasRelease>,
+      callback: BodyResponseCallback<Schema$SaasRelease>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Saasreleases$Patch,
+      callback: BodyResponseCallback<Schema$SaasRelease>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$SaasRelease>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Saasreleases$Patch
+        | BodyResponseCallback<Schema$SaasRelease>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SaasRelease>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SaasRelease>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SaasRelease>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Saasreleases$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Saasreleases$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://saasservicemgmt.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SaasRelease>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SaasRelease>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Saasreleases$Create extends StandardParameters {
+    /**
+     * Required. The parent of the saas release.
+     */
+    parent?: string;
+    /**
+     * An optional request ID to identify requests.
+     */
+    requestId?: string;
+    /**
+     * Required. The ID value for the new saas release.
+     */
+    saasReleaseId?: string;
+    /**
+     * If "validate_only" is set to true, the service will try to validate that this request would succeed, but will not actually make changes.
+     */
+    validateOnly?: boolean;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SaasRelease;
+  }
+  export interface Params$Resource$Projects$Locations$Saasreleases$Delete extends StandardParameters {
+    /**
+     * The etag known to the client for the expected state of the saas release.
+     */
+    etag?: string;
+    /**
+     * Required. The resource name of the resource within a service.
+     */
+    name?: string;
+    /**
+     * An optional request ID to identify requests.
+     */
+    requestId?: string;
+    /**
+     * If "validate_only" is set to true, the service will try to validate that this request would succeed, but will not actually make changes.
+     */
+    validateOnly?: boolean;
+  }
+  export interface Params$Resource$Projects$Locations$Saasreleases$Get extends StandardParameters {
+    /**
+     * Required. The resource name of the resource within a service.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Saasreleases$List extends StandardParameters {
+    /**
+     * Filter the list as specified in https://google.aip.dev/160.
+     */
+    filter?: string;
+    /**
+     * Order results as specified in https://google.aip.dev/132.
+     */
+    orderBy?: string;
+    /**
+     * The maximum number of saas releases to send per page.
+     */
+    pageSize?: number;
+    /**
+     * The page token: If the next_page_token from a previous response is provided, this request will send the subsequent page.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent of the saas releases.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Saasreleases$Patch extends StandardParameters {
+    /**
+     * Identifier. The resource name (full URI of the resource) following the standard naming scheme: "projects/{project\}/locations/{location\}/saasReleases/{saasRelease\}"
+     */
+    name?: string;
+    /**
+     * An optional request ID to identify requests.
+     */
+    requestId?: string;
+    /**
+     * Field mask is used to specify the fields to be overwritten.
+     */
+    updateMask?: string;
+    /**
+     * If "validate_only" is set to true, the service will try to validate that this request would succeed, but will not actually make changes.
+     */
+    validateOnly?: boolean;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SaasRelease;
+  }
+
   export class Resource$Projects$Locations$Tenants {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -9255,7 +10436,10 @@ export namespace saasservicemgmt_v1beta1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -9351,8 +10535,7 @@ export namespace saasservicemgmt_v1beta1 {
         | BodyResponseCallback<Schema$Tenant>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Tenant>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Tenant> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Tenant>>
@@ -9423,7 +10606,10 @@ export namespace saasservicemgmt_v1beta1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -9493,8 +10679,7 @@ export namespace saasservicemgmt_v1beta1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -9562,7 +10747,11 @@ export namespace saasservicemgmt_v1beta1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -9636,8 +10825,7 @@ export namespace saasservicemgmt_v1beta1 {
         | BodyResponseCallback<Schema$Tenant>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Tenant>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Tenant> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Tenant>>
@@ -9705,7 +10893,11 @@ export namespace saasservicemgmt_v1beta1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -9853,7 +11045,10 @@ export namespace saasservicemgmt_v1beta1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -9949,8 +11144,7 @@ export namespace saasservicemgmt_v1beta1 {
         | BodyResponseCallback<Schema$Tenant>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Tenant>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Tenant> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Tenant>>
@@ -10090,6 +11284,1754 @@ export namespace saasservicemgmt_v1beta1 {
     requestBody?: Schema$Tenant;
   }
 
+  export class Resource$Projects$Locations$Unitgroupoperations {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Create a new unit group operation.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/saasservicemgmt.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const saasservicemgmt = google.saasservicemgmt('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await saasservicemgmt.projects.locations.unitGroupOperations.create({
+     *       // Required. The parent of the unit group operation.
+     *       parent: 'projects/my-project/locations/my-location',
+     *       // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *       requestId: 'placeholder-value',
+     *       // Required. The ID value for the new unit group operation.
+     *       unitGroupOperationId: 'placeholder-value',
+     *       // Optional. If "validate_only" is set to true, the service will try to validate that this request would succeed, but will not actually make changes.
+     *       validateOnly: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "annotations": {},
+     *         //   "createTime": "my_createTime",
+     *         //   "etag": "my_etag",
+     *         //   "labels": {},
+     *         //   "name": "my_name",
+     *         //   "uid": "my_uid",
+     *         //   "updateTime": "my_updateTime"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "annotations": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "etag": "my_etag",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "uid": "my_uid",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Unitgroupoperations$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Projects$Locations$Unitgroupoperations$Create,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$UnitGroupOperation>>;
+    create(
+      params: Params$Resource$Projects$Locations$Unitgroupoperations$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Unitgroupoperations$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$UnitGroupOperation>,
+      callback: BodyResponseCallback<Schema$UnitGroupOperation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Unitgroupoperations$Create,
+      callback: BodyResponseCallback<Schema$UnitGroupOperation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$UnitGroupOperation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Unitgroupoperations$Create
+        | BodyResponseCallback<Schema$UnitGroupOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$UnitGroupOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$UnitGroupOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$UnitGroupOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Unitgroupoperations$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Unitgroupoperations$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://saasservicemgmt.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/unitGroupOperations').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$UnitGroupOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$UnitGroupOperation>(parameters);
+      }
+    }
+
+    /**
+     * Delete a single unit group operation.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/saasservicemgmt.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const saasservicemgmt = google.saasservicemgmt('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await saasservicemgmt.projects.locations.unitGroupOperations.delete({
+     *       // Optional. The etag known to the client for the expected state of the unit group operation. This is used with state-changing methods to prevent accidental overwrites when multiple user agents might be acting in parallel on the same resource. An etag wildcard provide optimistic concurrency based on the expected existence of the unit group operation. The Any wildcard (`*`) requires that the resource must already exists, and the Not Any wildcard (`!*`) requires that it must not.
+     *       etag: 'placeholder-value',
+     *       // Required. The resource name of the resource within a service.
+     *       name: 'projects/my-project/locations/my-location/unitGroupOperations/my-unitGroupOperation',
+     *       // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *       requestId: 'placeholder-value',
+     *       // Optional. If "validate_only" is set to true, the service will try to validate that this request would succeed, but will not actually make changes.
+     *       validateOnly: 'placeholder-value',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Unitgroupoperations$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Unitgroupoperations$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
+    delete(
+      params: Params$Resource$Projects$Locations$Unitgroupoperations$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Unitgroupoperations$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Unitgroupoperations$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Unitgroupoperations$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Unitgroupoperations$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Unitgroupoperations$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://saasservicemgmt.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Retrieve a single unit group operation.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/saasservicemgmt.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const saasservicemgmt = google.saasservicemgmt('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await saasservicemgmt.projects.locations.unitGroupOperations.get({
+     *     // Required. The resource name of the resource within a service.
+     *     name: 'projects/my-project/locations/my-location/unitGroupOperations/my-unitGroupOperation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "annotations": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "etag": "my_etag",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "uid": "my_uid",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Unitgroupoperations$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Unitgroupoperations$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$UnitGroupOperation>>;
+    get(
+      params: Params$Resource$Projects$Locations$Unitgroupoperations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Unitgroupoperations$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$UnitGroupOperation>,
+      callback: BodyResponseCallback<Schema$UnitGroupOperation>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Unitgroupoperations$Get,
+      callback: BodyResponseCallback<Schema$UnitGroupOperation>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$UnitGroupOperation>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Unitgroupoperations$Get
+        | BodyResponseCallback<Schema$UnitGroupOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$UnitGroupOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$UnitGroupOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$UnitGroupOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Unitgroupoperations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Unitgroupoperations$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://saasservicemgmt.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$UnitGroupOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$UnitGroupOperation>(parameters);
+      }
+    }
+
+    /**
+     * Retrieve a collection of unit group operations.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/saasservicemgmt.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const saasservicemgmt = google.saasservicemgmt('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await saasservicemgmt.projects.locations.unitGroupOperations.list(
+     *     {
+     *       // Filter the list as specified in https://google.aip.dev/160.
+     *       filter: 'placeholder-value',
+     *       // Order results as specified in https://google.aip.dev/132.
+     *       orderBy: 'placeholder-value',
+     *       // The maximum number of unit group operations to send per page.
+     *       pageSize: 'placeholder-value',
+     *       // The page token: If the next_page_token from a previous response is provided, this request will send the subsequent page.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The parent of the unit group operation.
+     *       parent: 'projects/my-project/locations/my-location',
+     *     },
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unitGroupOperations": [],
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Unitgroupoperations$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Unitgroupoperations$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListUnitGroupOperationsResponse>>;
+    list(
+      params: Params$Resource$Projects$Locations$Unitgroupoperations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Unitgroupoperations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListUnitGroupOperationsResponse>,
+      callback: BodyResponseCallback<Schema$ListUnitGroupOperationsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Unitgroupoperations$List,
+      callback: BodyResponseCallback<Schema$ListUnitGroupOperationsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListUnitGroupOperationsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Unitgroupoperations$List
+        | BodyResponseCallback<Schema$ListUnitGroupOperationsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListUnitGroupOperationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListUnitGroupOperationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListUnitGroupOperationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Unitgroupoperations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Unitgroupoperations$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://saasservicemgmt.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/unitGroupOperations').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListUnitGroupOperationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListUnitGroupOperationsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Update a single unit group operation.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/saasservicemgmt.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const saasservicemgmt = google.saasservicemgmt('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await saasservicemgmt.projects.locations.unitGroupOperations.patch({
+     *       // Identifier. The resource name (full URI of the resource) following the standard naming scheme: "projects/{project\}/locations/{location\}/unitGroupOperations/{unitGroupOperation\}"
+     *       name: 'projects/my-project/locations/my-location/unitGroupOperations/my-unitGroupOperation',
+     *       // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *       requestId: 'placeholder-value',
+     *       // Optional. Field mask is used to specify the fields to be overwritten in the UnitGroupOperation resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields in the UnitGroupOperation will be overwritten.
+     *       updateMask: 'placeholder-value',
+     *       // Optional. If "validate_only" is set to true, the service will try to validate that this request would succeed, but will not actually make changes.
+     *       validateOnly: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "annotations": {},
+     *         //   "createTime": "my_createTime",
+     *         //   "etag": "my_etag",
+     *         //   "labels": {},
+     *         //   "name": "my_name",
+     *         //   "uid": "my_uid",
+     *         //   "updateTime": "my_updateTime"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "annotations": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "etag": "my_etag",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "uid": "my_uid",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Unitgroupoperations$Patch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Unitgroupoperations$Patch,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$UnitGroupOperation>>;
+    patch(
+      params: Params$Resource$Projects$Locations$Unitgroupoperations$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Unitgroupoperations$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$UnitGroupOperation>,
+      callback: BodyResponseCallback<Schema$UnitGroupOperation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Unitgroupoperations$Patch,
+      callback: BodyResponseCallback<Schema$UnitGroupOperation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$UnitGroupOperation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Unitgroupoperations$Patch
+        | BodyResponseCallback<Schema$UnitGroupOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$UnitGroupOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$UnitGroupOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$UnitGroupOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Unitgroupoperations$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Unitgroupoperations$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://saasservicemgmt.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$UnitGroupOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$UnitGroupOperation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Unitgroupoperations$Create extends StandardParameters {
+    /**
+     * Required. The parent of the unit group operation.
+     */
+    parent?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Required. The ID value for the new unit group operation.
+     */
+    unitGroupOperationId?: string;
+    /**
+     * Optional. If "validate_only" is set to true, the service will try to validate that this request would succeed, but will not actually make changes.
+     */
+    validateOnly?: boolean;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$UnitGroupOperation;
+  }
+  export interface Params$Resource$Projects$Locations$Unitgroupoperations$Delete extends StandardParameters {
+    /**
+     * Optional. The etag known to the client for the expected state of the unit group operation. This is used with state-changing methods to prevent accidental overwrites when multiple user agents might be acting in parallel on the same resource. An etag wildcard provide optimistic concurrency based on the expected existence of the unit group operation. The Any wildcard (`*`) requires that the resource must already exists, and the Not Any wildcard (`!*`) requires that it must not.
+     */
+    etag?: string;
+    /**
+     * Required. The resource name of the resource within a service.
+     */
+    name?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Optional. If "validate_only" is set to true, the service will try to validate that this request would succeed, but will not actually make changes.
+     */
+    validateOnly?: boolean;
+  }
+  export interface Params$Resource$Projects$Locations$Unitgroupoperations$Get extends StandardParameters {
+    /**
+     * Required. The resource name of the resource within a service.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Unitgroupoperations$List extends StandardParameters {
+    /**
+     * Filter the list as specified in https://google.aip.dev/160.
+     */
+    filter?: string;
+    /**
+     * Order results as specified in https://google.aip.dev/132.
+     */
+    orderBy?: string;
+    /**
+     * The maximum number of unit group operations to send per page.
+     */
+    pageSize?: number;
+    /**
+     * The page token: If the next_page_token from a previous response is provided, this request will send the subsequent page.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent of the unit group operation.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Unitgroupoperations$Patch extends StandardParameters {
+    /**
+     * Identifier. The resource name (full URI of the resource) following the standard naming scheme: "projects/{project\}/locations/{location\}/unitGroupOperations/{unitGroupOperation\}"
+     */
+    name?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Optional. Field mask is used to specify the fields to be overwritten in the UnitGroupOperation resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields in the UnitGroupOperation will be overwritten.
+     */
+    updateMask?: string;
+    /**
+     * Optional. If "validate_only" is set to true, the service will try to validate that this request would succeed, but will not actually make changes.
+     */
+    validateOnly?: boolean;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$UnitGroupOperation;
+  }
+
+  export class Resource$Projects$Locations$Unitgroups {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Create a new unit group.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/saasservicemgmt.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const saasservicemgmt = google.saasservicemgmt('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await saasservicemgmt.projects.locations.unitGroups.create({
+     *     // Required. The parent of the unit group.
+     *     parent: 'projects/my-project/locations/my-location',
+     *     // An optional request ID to identify requests.
+     *     requestId: 'placeholder-value',
+     *     // Required. The ID value for the new unit group.
+     *     unitGroupId: 'placeholder-value',
+     *     // If "validate_only" is set to true, the service will try to validate that this request would succeed, but will not actually make changes.
+     *     validateOnly: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "annotations": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "etag": "my_etag",
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "uid": "my_uid",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "annotations": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "etag": "my_etag",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "uid": "my_uid",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Unitgroups$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Projects$Locations$Unitgroups$Create,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$UnitGroup>>;
+    create(
+      params: Params$Resource$Projects$Locations$Unitgroups$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Unitgroups$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$UnitGroup>,
+      callback: BodyResponseCallback<Schema$UnitGroup>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Unitgroups$Create,
+      callback: BodyResponseCallback<Schema$UnitGroup>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$UnitGroup>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Unitgroups$Create
+        | BodyResponseCallback<Schema$UnitGroup>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$UnitGroup>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$UnitGroup> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$UnitGroup>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Unitgroups$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Unitgroups$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://saasservicemgmt.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/unitGroups').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$UnitGroup>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$UnitGroup>(parameters);
+      }
+    }
+
+    /**
+     * Delete a single unit group.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/saasservicemgmt.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const saasservicemgmt = google.saasservicemgmt('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await saasservicemgmt.projects.locations.unitGroups.delete({
+     *     // The etag known to the client for the expected state of the unit group.
+     *     etag: 'placeholder-value',
+     *     // Required. The resource name of the resource within a service.
+     *     name: 'projects/my-project/locations/my-location/unitGroups/my-unitGroup',
+     *     // An optional request ID to identify requests.
+     *     requestId: 'placeholder-value',
+     *     // If "validate_only" is set to true, the service will try to validate that this request would succeed, but will not actually make changes.
+     *     validateOnly: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Unitgroups$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Unitgroups$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
+    delete(
+      params: Params$Resource$Projects$Locations$Unitgroups$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Unitgroups$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Unitgroups$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Unitgroups$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Unitgroups$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Unitgroups$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://saasservicemgmt.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Retrieve a single unit group.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/saasservicemgmt.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const saasservicemgmt = google.saasservicemgmt('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await saasservicemgmt.projects.locations.unitGroups.get({
+     *     // Required. The resource name of the resource within a service.
+     *     name: 'projects/my-project/locations/my-location/unitGroups/my-unitGroup',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "annotations": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "etag": "my_etag",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "uid": "my_uid",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Unitgroups$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Unitgroups$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$UnitGroup>>;
+    get(
+      params: Params$Resource$Projects$Locations$Unitgroups$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Unitgroups$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$UnitGroup>,
+      callback: BodyResponseCallback<Schema$UnitGroup>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Unitgroups$Get,
+      callback: BodyResponseCallback<Schema$UnitGroup>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$UnitGroup>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Unitgroups$Get
+        | BodyResponseCallback<Schema$UnitGroup>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$UnitGroup>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$UnitGroup> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$UnitGroup>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Unitgroups$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Unitgroups$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://saasservicemgmt.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$UnitGroup>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$UnitGroup>(parameters);
+      }
+    }
+
+    /**
+     * Retrieve a collection of unit groups.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/saasservicemgmt.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const saasservicemgmt = google.saasservicemgmt('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await saasservicemgmt.projects.locations.unitGroups.list({
+     *     // Filter the list as specified in https://google.aip.dev/160.
+     *     filter: 'placeholder-value',
+     *     // Order results as specified in https://google.aip.dev/132.
+     *     orderBy: 'placeholder-value',
+     *     // The maximum number of unit groups to send per page.
+     *     pageSize: 'placeholder-value',
+     *     // The page token: If the next_page_token from a previous response is provided, this request will send the subsequent page.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent of the unit group.
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unitGroups": [],
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Unitgroups$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Unitgroups$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListUnitGroupsResponse>>;
+    list(
+      params: Params$Resource$Projects$Locations$Unitgroups$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Unitgroups$List,
+      options:
+        MethodOptions | BodyResponseCallback<Schema$ListUnitGroupsResponse>,
+      callback: BodyResponseCallback<Schema$ListUnitGroupsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Unitgroups$List,
+      callback: BodyResponseCallback<Schema$ListUnitGroupsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListUnitGroupsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Unitgroups$List
+        | BodyResponseCallback<Schema$ListUnitGroupsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListUnitGroupsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListUnitGroupsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListUnitGroupsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Unitgroups$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Unitgroups$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://saasservicemgmt.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/unitGroups').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListUnitGroupsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListUnitGroupsResponse>(parameters);
+      }
+    }
+
+    /**
+     * Update a single unit group.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/saasservicemgmt.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const saasservicemgmt = google.saasservicemgmt('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await saasservicemgmt.projects.locations.unitGroups.patch({
+     *     // Identifier. The resource name (full URI of the resource) following the standard naming scheme: "projects/{project\}/locations/{location\}/unitGroups/{unitGroup\}"
+     *     name: 'projects/my-project/locations/my-location/unitGroups/my-unitGroup',
+     *     // An optional request ID to identify requests.
+     *     requestId: 'placeholder-value',
+     *     // Field mask is used to specify the fields to be overwritten.
+     *     updateMask: 'placeholder-value',
+     *     // If "validate_only" is set to true, the service will try to validate that this request would succeed, but will not actually make changes.
+     *     validateOnly: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "annotations": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "etag": "my_etag",
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "uid": "my_uid",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "annotations": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "etag": "my_etag",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "uid": "my_uid",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Unitgroups$Patch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Unitgroups$Patch,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$UnitGroup>>;
+    patch(
+      params: Params$Resource$Projects$Locations$Unitgroups$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Unitgroups$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$UnitGroup>,
+      callback: BodyResponseCallback<Schema$UnitGroup>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Unitgroups$Patch,
+      callback: BodyResponseCallback<Schema$UnitGroup>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$UnitGroup>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Unitgroups$Patch
+        | BodyResponseCallback<Schema$UnitGroup>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$UnitGroup>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$UnitGroup> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$UnitGroup>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Unitgroups$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Unitgroups$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://saasservicemgmt.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$UnitGroup>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$UnitGroup>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Unitgroups$Create extends StandardParameters {
+    /**
+     * Required. The parent of the unit group.
+     */
+    parent?: string;
+    /**
+     * An optional request ID to identify requests.
+     */
+    requestId?: string;
+    /**
+     * Required. The ID value for the new unit group.
+     */
+    unitGroupId?: string;
+    /**
+     * If "validate_only" is set to true, the service will try to validate that this request would succeed, but will not actually make changes.
+     */
+    validateOnly?: boolean;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$UnitGroup;
+  }
+  export interface Params$Resource$Projects$Locations$Unitgroups$Delete extends StandardParameters {
+    /**
+     * The etag known to the client for the expected state of the unit group.
+     */
+    etag?: string;
+    /**
+     * Required. The resource name of the resource within a service.
+     */
+    name?: string;
+    /**
+     * An optional request ID to identify requests.
+     */
+    requestId?: string;
+    /**
+     * If "validate_only" is set to true, the service will try to validate that this request would succeed, but will not actually make changes.
+     */
+    validateOnly?: boolean;
+  }
+  export interface Params$Resource$Projects$Locations$Unitgroups$Get extends StandardParameters {
+    /**
+     * Required. The resource name of the resource within a service.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Unitgroups$List extends StandardParameters {
+    /**
+     * Filter the list as specified in https://google.aip.dev/160.
+     */
+    filter?: string;
+    /**
+     * Order results as specified in https://google.aip.dev/132.
+     */
+    orderBy?: string;
+    /**
+     * The maximum number of unit groups to send per page.
+     */
+    pageSize?: number;
+    /**
+     * The page token: If the next_page_token from a previous response is provided, this request will send the subsequent page.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent of the unit group.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Unitgroups$Patch extends StandardParameters {
+    /**
+     * Identifier. The resource name (full URI of the resource) following the standard naming scheme: "projects/{project\}/locations/{location\}/unitGroups/{unitGroup\}"
+     */
+    name?: string;
+    /**
+     * An optional request ID to identify requests.
+     */
+    requestId?: string;
+    /**
+     * Field mask is used to specify the fields to be overwritten.
+     */
+    updateMask?: string;
+    /**
+     * If "validate_only" is set to true, the service will try to validate that this request would succeed, but will not actually make changes.
+     */
+    validateOnly?: boolean;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$UnitGroup;
+  }
+
   export class Resource$Projects$Locations$Unitkinds {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -10118,7 +13060,10 @@ export namespace saasservicemgmt_v1beta1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -10143,6 +13088,7 @@ export namespace saasservicemgmt_v1beta1 {
      *       //   "annotations": {},
      *       //   "appParams": {},
      *       //   "applicationTemplateComponent": {},
+     *       //   "boundaryType": "my_boundaryType",
      *       //   "createTime": "my_createTime",
      *       //   "defaultFlagRevisions": [],
      *       //   "defaultRelease": "my_defaultRelease",
@@ -10165,6 +13111,7 @@ export namespace saasservicemgmt_v1beta1 {
      *   //   "annotations": {},
      *   //   "appParams": {},
      *   //   "applicationTemplateComponent": {},
+     *   //   "boundaryType": "my_boundaryType",
      *   //   "createTime": "my_createTime",
      *   //   "defaultFlagRevisions": [],
      *   //   "defaultRelease": "my_defaultRelease",
@@ -10226,8 +13173,7 @@ export namespace saasservicemgmt_v1beta1 {
         | BodyResponseCallback<Schema$UnitKind>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$UnitKind>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$UnitKind> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$UnitKind>>
@@ -10298,7 +13244,10 @@ export namespace saasservicemgmt_v1beta1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -10368,8 +13317,7 @@ export namespace saasservicemgmt_v1beta1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -10437,7 +13385,11 @@ export namespace saasservicemgmt_v1beta1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -10456,6 +13408,7 @@ export namespace saasservicemgmt_v1beta1 {
      *   //   "annotations": {},
      *   //   "appParams": {},
      *   //   "applicationTemplateComponent": {},
+     *   //   "boundaryType": "my_boundaryType",
      *   //   "createTime": "my_createTime",
      *   //   "defaultFlagRevisions": [],
      *   //   "defaultRelease": "my_defaultRelease",
@@ -10517,8 +13470,7 @@ export namespace saasservicemgmt_v1beta1 {
         | BodyResponseCallback<Schema$UnitKind>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$UnitKind>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$UnitKind> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$UnitKind>>
@@ -10586,7 +13538,11 @@ export namespace saasservicemgmt_v1beta1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -10644,8 +13600,7 @@ export namespace saasservicemgmt_v1beta1 {
     list(
       params: Params$Resource$Projects$Locations$Unitkinds$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListUnitKindsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListUnitKindsResponse>,
       callback: BodyResponseCallback<Schema$ListUnitKindsResponse>
     ): void;
     list(
@@ -10736,7 +13691,10 @@ export namespace saasservicemgmt_v1beta1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -10761,6 +13719,7 @@ export namespace saasservicemgmt_v1beta1 {
      *       //   "annotations": {},
      *       //   "appParams": {},
      *       //   "applicationTemplateComponent": {},
+     *       //   "boundaryType": "my_boundaryType",
      *       //   "createTime": "my_createTime",
      *       //   "defaultFlagRevisions": [],
      *       //   "defaultRelease": "my_defaultRelease",
@@ -10783,6 +13742,7 @@ export namespace saasservicemgmt_v1beta1 {
      *   //   "annotations": {},
      *   //   "appParams": {},
      *   //   "applicationTemplateComponent": {},
+     *   //   "boundaryType": "my_boundaryType",
      *   //   "createTime": "my_createTime",
      *   //   "defaultFlagRevisions": [],
      *   //   "defaultRelease": "my_defaultRelease",
@@ -10844,8 +13804,7 @@ export namespace saasservicemgmt_v1beta1 {
         | BodyResponseCallback<Schema$UnitKind>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$UnitKind>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$UnitKind> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$UnitKind>>
@@ -11013,7 +13972,10 @@ export namespace saasservicemgmt_v1beta1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -11205,7 +14167,10 @@ export namespace saasservicemgmt_v1beta1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -11275,8 +14240,7 @@ export namespace saasservicemgmt_v1beta1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -11344,7 +14308,11 @@ export namespace saasservicemgmt_v1beta1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -11499,7 +14467,11 @@ export namespace saasservicemgmt_v1beta1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -11557,8 +14529,7 @@ export namespace saasservicemgmt_v1beta1 {
     list(
       params: Params$Resource$Projects$Locations$Unitoperations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListUnitOperationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListUnitOperationsResponse>,
       callback: BodyResponseCallback<Schema$ListUnitOperationsResponse>
     ): void;
     list(
@@ -11651,7 +14622,10 @@ export namespace saasservicemgmt_v1beta1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -11940,7 +14914,10 @@ export namespace saasservicemgmt_v1beta1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -11988,6 +14965,7 @@ export namespace saasservicemgmt_v1beta1 {
      *       //   "systemManagedState": "my_systemManagedState",
      *       //   "tenant": "my_tenant",
      *       //   "uid": "my_uid",
+     *       //   "unitGroup": "my_unitGroup",
      *       //   "unitKind": "my_unitKind",
      *       //   "updateTime": "my_updateTime"
      *       // }
@@ -12023,6 +15001,7 @@ export namespace saasservicemgmt_v1beta1 {
      *   //   "systemManagedState": "my_systemManagedState",
      *   //   "tenant": "my_tenant",
      *   //   "uid": "my_uid",
+     *   //   "unitGroup": "my_unitGroup",
      *   //   "unitKind": "my_unitKind",
      *   //   "updateTime": "my_updateTime"
      *   // }
@@ -12074,8 +15053,7 @@ export namespace saasservicemgmt_v1beta1 {
         | BodyResponseCallback<Schema$Unit>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Unit>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Unit> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Unit>>
@@ -12146,7 +15124,10 @@ export namespace saasservicemgmt_v1beta1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -12216,8 +15197,7 @@ export namespace saasservicemgmt_v1beta1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -12285,7 +15265,11 @@ export namespace saasservicemgmt_v1beta1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -12327,6 +15311,7 @@ export namespace saasservicemgmt_v1beta1 {
      *   //   "systemManagedState": "my_systemManagedState",
      *   //   "tenant": "my_tenant",
      *   //   "uid": "my_uid",
+     *   //   "unitGroup": "my_unitGroup",
      *   //   "unitKind": "my_unitKind",
      *   //   "updateTime": "my_updateTime"
      *   // }
@@ -12378,8 +15363,7 @@ export namespace saasservicemgmt_v1beta1 {
         | BodyResponseCallback<Schema$Unit>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Unit>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Unit> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Unit>>
@@ -12447,7 +15431,11 @@ export namespace saasservicemgmt_v1beta1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -12595,7 +15583,10 @@ export namespace saasservicemgmt_v1beta1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -12643,6 +15634,7 @@ export namespace saasservicemgmt_v1beta1 {
      *       //   "systemManagedState": "my_systemManagedState",
      *       //   "tenant": "my_tenant",
      *       //   "uid": "my_uid",
+     *       //   "unitGroup": "my_unitGroup",
      *       //   "unitKind": "my_unitKind",
      *       //   "updateTime": "my_updateTime"
      *       // }
@@ -12678,6 +15670,7 @@ export namespace saasservicemgmt_v1beta1 {
      *   //   "systemManagedState": "my_systemManagedState",
      *   //   "tenant": "my_tenant",
      *   //   "uid": "my_uid",
+     *   //   "unitGroup": "my_unitGroup",
      *   //   "unitKind": "my_unitKind",
      *   //   "updateTime": "my_updateTime"
      *   // }
@@ -12729,8 +15722,7 @@ export namespace saasservicemgmt_v1beta1 {
         | BodyResponseCallback<Schema$Unit>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Unit>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Unit> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Unit>>

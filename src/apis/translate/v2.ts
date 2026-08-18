@@ -330,8 +330,7 @@ export namespace translate_v2 {
     detect(
       params: Params$Resource$Detections$Detect,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$DetectionsListResponse>,
+        MethodOptions | BodyResponseCallback<Schema$DetectionsListResponse>,
       callback: BodyResponseCallback<Schema$DetectionsListResponse>
     ): void;
     detect(
@@ -473,8 +472,7 @@ export namespace translate_v2 {
     list(
       params: Params$Resource$Detections$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$DetectionsListResponse>,
+        MethodOptions | BodyResponseCallback<Schema$DetectionsListResponse>,
       callback: BodyResponseCallback<Schema$DetectionsListResponse>
     ): void;
     list(
@@ -638,8 +636,7 @@ export namespace translate_v2 {
     list(
       params: Params$Resource$Languages$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$LanguagesListResponse>,
+        MethodOptions | BodyResponseCallback<Schema$LanguagesListResponse>,
       callback: BodyResponseCallback<Schema$LanguagesListResponse>
     ): void;
     list(
@@ -815,8 +812,7 @@ export namespace translate_v2 {
     list(
       params: Params$Resource$Translations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TranslationsListResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TranslationsListResponse>,
       callback: BodyResponseCallback<Schema$TranslationsListResponse>
     ): void;
     list(
@@ -966,8 +962,7 @@ export namespace translate_v2 {
     translate(
       params: Params$Resource$Translations$Translate,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TranslationsListResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TranslationsListResponse>,
       callback: BodyResponseCallback<Schema$TranslationsListResponse>
     ): void;
     translate(

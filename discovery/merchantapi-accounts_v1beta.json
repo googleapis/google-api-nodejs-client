@@ -2366,7 +2366,7 @@
               ],
               "enumDescriptions": [
                 "Default value. This value is unused.",
-                "Terms of service for the Merchant Center application."
+                "Terms of Service for the Merchant Center application."
               ],
               "location": "query",
               "type": "string"
@@ -2388,7 +2388,7 @@
       }
     }
   },
-  "revision": "20260512",
+  "revision": "20260807",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "About": {
@@ -4766,11 +4766,13 @@
           "description": "The resource that changed, in this case it will always be `Product`.",
           "enum": [
             "RESOURCE_UNSPECIFIED",
-            "PRODUCT"
+            "PRODUCT",
+            "ACCOUNT_SERVICE"
           ],
           "enumDescriptions": [
             "Unspecified resource",
-            "Resource type : product"
+            "Resource type : product",
+            "Account service"
           ],
           "type": "string"
         }
@@ -4784,7 +4786,7 @@
       "type": "object"
     },
     "Program": {
-      "description": "Defines participation in a given program for the specified account. Programs provide a mechanism for adding functionality to a Merchant Center accounts. A typical example of this is the [Free product listings](https://support.google.com/merchants/answer/13889434) program, which enables products from a business's store to be shown across Google for free. The following list is the available set of program resource IDs accessible through the API: * `checkout` * `free-listings` * `product-ratings` * `shopping-ads` * `youtube-affiliate` * `youtube-shopping-checkout`",
+      "description": "Defines participation in a given program for the specified account. Programs provide a mechanism for adding functionality to a Merchant Center accounts. A typical example of this is the [Free product listings](https://support.google.com/merchants/answer/13889434) program, which enables products from a business's store to be shown across Google for free. The following list is the available set of program resource IDs accessible through the API: * `checkout` * `free-listings` * `product-ratings` * `shopping-ads` * `ucp-integration` (limited access) * `youtube-affiliate` * `youtube-shopping-checkout`",
       "id": "Program",
       "properties": {
         "activeRegionCodes": {
@@ -5345,7 +5347,7 @@
           ],
           "enumDescriptions": [
             "Default value. This value is unused.",
-            "Terms of service for the Merchant Center application."
+            "Terms of Service for the Merchant Center application."
           ],
           "type": "string"
         },
@@ -5388,7 +5390,7 @@
           ],
           "enumDescriptions": [
             "Default value. This value is unused.",
-            "Terms of service for the Merchant Center application."
+            "Terms of Service for the Merchant Center application."
           ],
           "type": "string"
         }

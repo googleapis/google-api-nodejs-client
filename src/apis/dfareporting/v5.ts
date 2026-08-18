@@ -163,6 +163,7 @@ export namespace dfareporting_v5 {
     regions: Resource$Regions;
     remarketingLists: Resource$Remarketinglists;
     remarketingListShares: Resource$Remarketinglistshares;
+    reportData: Resource$Reportdata;
     reports: Resource$Reports;
     sites: Resource$Sites;
     sizes: Resource$Sizes;
@@ -255,6 +256,7 @@ export namespace dfareporting_v5 {
       this.remarketingListShares = new Resource$Remarketinglistshares(
         this.context
       );
+      this.reportData = new Resource$Reportdata(this.context);
       this.reports = new Resource$Reports(this.context);
       this.sites = new Resource$Sites(this.context);
       this.sizes = new Resource$Sizes(this.context);
@@ -1583,6 +1585,19 @@ export namespace dfareporting_v5 {
     overrideInheritedSuffix?: boolean | null;
   }
   /**
+   * A column header in the report.
+   */
+  export interface Schema$ColumnHeader {
+    /**
+     * Output only. The column name.
+     */
+    name?: string | null;
+    /**
+     * Output only. The column type.
+     */
+    type?: string | null;
+  }
+  /**
    * Companion Click-through override.
    */
   export interface Schema$CompanionClickThroughOverride {
@@ -2247,6 +2262,10 @@ export namespace dfareporting_v5 {
      * Subaccount ID of this creative. This field, if left unset, will be auto-generated for both insert and update operations. Applicable to all creative types.
      */
     subaccountId?: string | null;
+    /**
+     * Optional. Whether to add a label to the creative as created or edited using AI when served in regions with local AI labeling regulations. [Learn more about labeling requirements in AI regulations.](https://support.google.com/campaignmanager/answer/17232030)
+     */
+    syntheticContentAttestationStatus?: string | null;
     /**
      * Third-party URL used to record backup image impressions. Applicable to the following creative types: all RICH_MEDIA.
      */
@@ -6093,6 +6112,69 @@ export namespace dfareporting_v5 {
     pivotedActivityMetrics?: Schema$Metric[];
   }
   /**
+   * The request body containing ad-hoc query parameters.
+   */
+  export interface Schema$ReportDataQueryRequest {
+    /**
+     * Optional. The requested date range covering the report duration.
+     */
+    dateRange?: Schema$DateRange;
+    /**
+     * Optional. The list of dimension values on which report lines are filtered. Utilizes the existing legacy filter message `DimensionValue`.
+     */
+    dimensionFilters?: Schema$DimensionValue[];
+    /**
+     * Optional. The list of dimension names to group by.
+     */
+    dimensionNames?: string[] | null;
+    /**
+     * Optional. Maximum number of result rows to return per page. The default value is 100. The maximum allowed value is 1000. Values above 1000 will be coerced (clamped) down to 1000. Negative values will be rejected.
+     */
+    maxResults?: number | null;
+    /**
+     * Required. The list of metric names to include.
+     */
+    metricNames?: string[] | null;
+    /**
+     * Optional. Continuation token for paginating results.
+     */
+    pageToken?: string | null;
+    /**
+     * Optional. Sort options across either requested dimensions or metrics.
+     */
+    sortBys?: Schema$SortBy[];
+  }
+  /**
+   * Represents a response to report data request.
+   */
+  export interface Schema$ReportDataResponse {
+    /**
+     * Output only. Ordered descriptors of the requested column fields.
+     */
+    columnHeaders?: Schema$ColumnHeader[];
+    /**
+     * Output only. Token to retrieve the next page of rows, or empty if end of results.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Output only. The resulting set of matching data rows.
+     */
+    rows?: Schema$ReportDataRow[];
+    /**
+     * Output only. Singular aggregate total row for the entire query matching the criteria. Column headers apply in the exact same order as data rows. In the total_row: - All dimension columns contain an empty string (""), as aggregation does not apply. - Non-summable metric columns (e.g. Reach metrics) contain an empty string (""), as grand total aggregation cannot be mathematically/logically computed for them.
+     */
+    totalRow?: Schema$ReportDataRow;
+  }
+  /**
+   * A row of report data.
+   */
+  export interface Schema$ReportDataRow {
+    /**
+     * Output only. A single sequential list of all cell values matching column_headers indices exactly. - Metric cells that are suppressed due to Minimum Reporting Standard (MRS) privacy protection constraints return "-".
+     */
+    values?: string[] | null;
+  }
+  /**
    * Represents the list of reports.
    */
   export interface Schema$ReportList {
@@ -6467,6 +6549,19 @@ export namespace dfareporting_v5 {
      * Whether the user can skip creatives served to this placement.
      */
     skippable?: boolean | null;
+  }
+  /**
+   * Specifies the sort configuration for a specific field in the report.
+   */
+  export interface Schema$SortBy {
+    /**
+     * Required. The dimension or metric field name to sort on.
+     */
+    name?: string | null;
+    /**
+     * Optional. The sort order of this column.
+     */
+    sortOrder?: string | null;
   }
   /**
    * Represents a sorted dimension.
@@ -7471,8 +7566,7 @@ export namespace dfareporting_v5 {
     get(
       params: Params$Resource$Accountactiveadsummaries$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$AccountActiveAdSummary>,
+        MethodOptions | BodyResponseCallback<Schema$AccountActiveAdSummary>,
       callback: BodyResponseCallback<Schema$AccountActiveAdSummary>
     ): void;
     get(
@@ -7632,8 +7726,7 @@ export namespace dfareporting_v5 {
     get(
       params: Params$Resource$Accountpermissiongroups$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$AccountPermissionGroup>,
+        MethodOptions | BodyResponseCallback<Schema$AccountPermissionGroup>,
       callback: BodyResponseCallback<Schema$AccountPermissionGroup>
     ): void;
     get(
@@ -8293,8 +8386,7 @@ export namespace dfareporting_v5 {
         | BodyResponseCallback<Schema$Account>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Account>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Account> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Account>>
@@ -8427,8 +8519,7 @@ export namespace dfareporting_v5 {
     list(
       params: Params$Resource$Accounts$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$AccountsListResponse>,
+        MethodOptions | BodyResponseCallback<Schema$AccountsListResponse>,
       callback: BodyResponseCallback<Schema$AccountsListResponse>
     ): void;
     list(
@@ -8628,8 +8719,7 @@ export namespace dfareporting_v5 {
         | BodyResponseCallback<Schema$Account>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Account>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Account> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Account>>
@@ -8807,8 +8897,7 @@ export namespace dfareporting_v5 {
         | BodyResponseCallback<Schema$Account>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Account>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Account> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Account>>
@@ -10002,8 +10091,7 @@ export namespace dfareporting_v5 {
         | BodyResponseCallback<Schema$Ad>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Ad>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Ad> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Ad>>
@@ -10223,8 +10311,7 @@ export namespace dfareporting_v5 {
         | BodyResponseCallback<Schema$Ad>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Ad>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Ad> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Ad>>
@@ -10629,8 +10716,7 @@ export namespace dfareporting_v5 {
         | BodyResponseCallback<Schema$Ad>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Ad>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Ad> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Ad>>
@@ -10850,8 +10936,7 @@ export namespace dfareporting_v5 {
         | BodyResponseCallback<Schema$Ad>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Ad>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Ad> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Ad>>
@@ -13208,8 +13293,7 @@ export namespace dfareporting_v5 {
         | BodyResponseCallback<Schema$Advertiser>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Advertiser>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Advertiser> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Advertiser>>
@@ -13384,8 +13468,7 @@ export namespace dfareporting_v5 {
         | BodyResponseCallback<Schema$Advertiser>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Advertiser>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Advertiser> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Advertiser>>
@@ -13528,8 +13611,7 @@ export namespace dfareporting_v5 {
     list(
       params: Params$Resource$Advertisers$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$AdvertisersListResponse>,
+        MethodOptions | BodyResponseCallback<Schema$AdvertisersListResponse>,
       callback: BodyResponseCallback<Schema$AdvertisersListResponse>
     ): void;
     list(
@@ -13725,8 +13807,7 @@ export namespace dfareporting_v5 {
         | BodyResponseCallback<Schema$Advertiser>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Advertiser>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Advertiser> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Advertiser>>
@@ -13901,8 +13982,7 @@ export namespace dfareporting_v5 {
         | BodyResponseCallback<Schema$Advertiser>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Advertiser>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Advertiser> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Advertiser>>
@@ -15024,8 +15104,7 @@ export namespace dfareporting_v5 {
     list(
       params: Params$Resource$Billingrates$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$BillingRatesListResponse>,
+        MethodOptions | BodyResponseCallback<Schema$BillingRatesListResponse>,
       callback: BodyResponseCallback<Schema$BillingRatesListResponse>
     ): void;
     list(
@@ -15182,8 +15261,7 @@ export namespace dfareporting_v5 {
     list(
       params: Params$Resource$Browsers$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$BrowsersListResponse>,
+        MethodOptions | BodyResponseCallback<Schema$BrowsersListResponse>,
       callback: BodyResponseCallback<Schema$BrowsersListResponse>
     ): void;
     list(
@@ -15735,8 +15813,7 @@ export namespace dfareporting_v5 {
         | BodyResponseCallback<Schema$Campaign>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Campaign>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Campaign> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Campaign>>
@@ -15933,8 +16010,7 @@ export namespace dfareporting_v5 {
         | BodyResponseCallback<Schema$Campaign>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Campaign>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Campaign> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Campaign>>
@@ -16078,8 +16154,7 @@ export namespace dfareporting_v5 {
     list(
       params: Params$Resource$Campaigns$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$CampaignsListResponse>,
+        MethodOptions | BodyResponseCallback<Schema$CampaignsListResponse>,
       callback: BodyResponseCallback<Schema$CampaignsListResponse>
     ): void;
     list(
@@ -16297,8 +16372,7 @@ export namespace dfareporting_v5 {
         | BodyResponseCallback<Schema$Campaign>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Campaign>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Campaign> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Campaign>>
@@ -16494,8 +16568,7 @@ export namespace dfareporting_v5 {
         | BodyResponseCallback<Schema$Campaign>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Campaign>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Campaign> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Campaign>>
@@ -16757,8 +16830,7 @@ export namespace dfareporting_v5 {
         | BodyResponseCallback<Schema$ChangeLog>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$ChangeLog>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$ChangeLog> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$ChangeLog>>
@@ -16897,8 +16969,7 @@ export namespace dfareporting_v5 {
     list(
       params: Params$Resource$Changelogs$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ChangeLogsListResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ChangeLogsListResponse>,
       callback: BodyResponseCallback<Schema$ChangeLogsListResponse>
     ): void;
     list(
@@ -18925,8 +18996,7 @@ export namespace dfareporting_v5 {
         | BodyResponseCallback<Schema$Country>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Country>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Country> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Country>>
@@ -19044,8 +19114,7 @@ export namespace dfareporting_v5 {
     list(
       params: Params$Resource$Countries$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$CountriesListResponse>,
+        MethodOptions | BodyResponseCallback<Schema$CountriesListResponse>,
       callback: BodyResponseCallback<Schema$CountriesListResponse>
     ): void;
     list(
@@ -19239,8 +19308,7 @@ export namespace dfareporting_v5 {
     insert(
       params: Params$Resource$Creativeassets$Insert,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$CreativeAssetMetadata>,
+        MethodOptions | BodyResponseCallback<Schema$CreativeAssetMetadata>,
       callback: BodyResponseCallback<Schema$CreativeAssetMetadata>
     ): void;
     insert(
@@ -19870,8 +19938,7 @@ export namespace dfareporting_v5 {
     list(
       params: Params$Resource$Creativefields$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$CreativeFieldsListResponse>,
+        MethodOptions | BodyResponseCallback<Schema$CreativeFieldsListResponse>,
       callback: BodyResponseCallback<Schema$CreativeFieldsListResponse>
     ): void;
     list(
@@ -21759,8 +21826,7 @@ export namespace dfareporting_v5 {
     list(
       params: Params$Resource$Creativegroups$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$CreativeGroupsListResponse>,
+        MethodOptions | BodyResponseCallback<Schema$CreativeGroupsListResponse>,
       callback: BodyResponseCallback<Schema$CreativeGroupsListResponse>
     ): void;
     list(
@@ -22338,6 +22404,7 @@ export namespace dfareporting_v5 {
      *   //   "studioCreativeId": "my_studioCreativeId",
      *   //   "studioTraffickedCreativeId": "my_studioTraffickedCreativeId",
      *   //   "subaccountId": "my_subaccountId",
+     *   //   "syntheticContentAttestationStatus": "my_syntheticContentAttestationStatus",
      *   //   "thirdPartyBackupImageImpressionsUrl": "my_thirdPartyBackupImageImpressionsUrl",
      *   //   "thirdPartyRichMediaImpressionsUrl": "my_thirdPartyRichMediaImpressionsUrl",
      *   //   "thirdPartyUrls": [],
@@ -22395,8 +22462,7 @@ export namespace dfareporting_v5 {
         | BodyResponseCallback<Schema$Creative>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Creative>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Creative> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Creative>>
@@ -22536,6 +22602,7 @@ export namespace dfareporting_v5 {
      *       //   "studioCreativeId": "my_studioCreativeId",
      *       //   "studioTraffickedCreativeId": "my_studioTraffickedCreativeId",
      *       //   "subaccountId": "my_subaccountId",
+     *       //   "syntheticContentAttestationStatus": "my_syntheticContentAttestationStatus",
      *       //   "thirdPartyBackupImageImpressionsUrl": "my_thirdPartyBackupImageImpressionsUrl",
      *       //   "thirdPartyRichMediaImpressionsUrl": "my_thirdPartyRichMediaImpressionsUrl",
      *       //   "thirdPartyUrls": [],
@@ -22606,6 +22673,7 @@ export namespace dfareporting_v5 {
      *   //   "studioCreativeId": "my_studioCreativeId",
      *   //   "studioTraffickedCreativeId": "my_studioTraffickedCreativeId",
      *   //   "subaccountId": "my_subaccountId",
+     *   //   "syntheticContentAttestationStatus": "my_syntheticContentAttestationStatus",
      *   //   "thirdPartyBackupImageImpressionsUrl": "my_thirdPartyBackupImageImpressionsUrl",
      *   //   "thirdPartyRichMediaImpressionsUrl": "my_thirdPartyRichMediaImpressionsUrl",
      *   //   "thirdPartyUrls": [],
@@ -22663,8 +22731,7 @@ export namespace dfareporting_v5 {
         | BodyResponseCallback<Schema$Creative>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Creative>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Creative> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Creative>>
@@ -22814,8 +22881,7 @@ export namespace dfareporting_v5 {
     list(
       params: Params$Resource$Creatives$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$CreativesListResponse>,
+        MethodOptions | BodyResponseCallback<Schema$CreativesListResponse>,
       callback: BodyResponseCallback<Schema$CreativesListResponse>
     ): void;
     list(
@@ -22976,6 +23042,7 @@ export namespace dfareporting_v5 {
      *       //   "studioCreativeId": "my_studioCreativeId",
      *       //   "studioTraffickedCreativeId": "my_studioTraffickedCreativeId",
      *       //   "subaccountId": "my_subaccountId",
+     *       //   "syntheticContentAttestationStatus": "my_syntheticContentAttestationStatus",
      *       //   "thirdPartyBackupImageImpressionsUrl": "my_thirdPartyBackupImageImpressionsUrl",
      *       //   "thirdPartyRichMediaImpressionsUrl": "my_thirdPartyRichMediaImpressionsUrl",
      *       //   "thirdPartyUrls": [],
@@ -23046,6 +23113,7 @@ export namespace dfareporting_v5 {
      *   //   "studioCreativeId": "my_studioCreativeId",
      *   //   "studioTraffickedCreativeId": "my_studioTraffickedCreativeId",
      *   //   "subaccountId": "my_subaccountId",
+     *   //   "syntheticContentAttestationStatus": "my_syntheticContentAttestationStatus",
      *   //   "thirdPartyBackupImageImpressionsUrl": "my_thirdPartyBackupImageImpressionsUrl",
      *   //   "thirdPartyRichMediaImpressionsUrl": "my_thirdPartyRichMediaImpressionsUrl",
      *   //   "thirdPartyUrls": [],
@@ -23103,8 +23171,7 @@ export namespace dfareporting_v5 {
         | BodyResponseCallback<Schema$Creative>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Creative>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Creative> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Creative>>
@@ -23243,6 +23310,7 @@ export namespace dfareporting_v5 {
      *       //   "studioCreativeId": "my_studioCreativeId",
      *       //   "studioTraffickedCreativeId": "my_studioTraffickedCreativeId",
      *       //   "subaccountId": "my_subaccountId",
+     *       //   "syntheticContentAttestationStatus": "my_syntheticContentAttestationStatus",
      *       //   "thirdPartyBackupImageImpressionsUrl": "my_thirdPartyBackupImageImpressionsUrl",
      *       //   "thirdPartyRichMediaImpressionsUrl": "my_thirdPartyRichMediaImpressionsUrl",
      *       //   "thirdPartyUrls": [],
@@ -23313,6 +23381,7 @@ export namespace dfareporting_v5 {
      *   //   "studioCreativeId": "my_studioCreativeId",
      *   //   "studioTraffickedCreativeId": "my_studioTraffickedCreativeId",
      *   //   "subaccountId": "my_subaccountId",
+     *   //   "syntheticContentAttestationStatus": "my_syntheticContentAttestationStatus",
      *   //   "thirdPartyBackupImageImpressionsUrl": "my_thirdPartyBackupImageImpressionsUrl",
      *   //   "thirdPartyRichMediaImpressionsUrl": "my_thirdPartyRichMediaImpressionsUrl",
      *   //   "thirdPartyUrls": [],
@@ -23370,8 +23439,7 @@ export namespace dfareporting_v5 {
         | BodyResponseCallback<Schema$Creative>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Creative>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Creative> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Creative>>
@@ -24127,8 +24195,7 @@ export namespace dfareporting_v5 {
     list(
       params: Params$Resource$Directorysites$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$DirectorySitesListResponse>,
+        MethodOptions | BodyResponseCallback<Schema$DirectorySitesListResponse>,
       callback: BodyResponseCallback<Schema$DirectorySitesListResponse>
     ): void;
     list(
@@ -26442,8 +26509,7 @@ export namespace dfareporting_v5 {
         | BodyResponseCallback<Schema$EventTag>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$EventTag>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$EventTag> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$EventTag>>
@@ -26620,8 +26686,7 @@ export namespace dfareporting_v5 {
         | BodyResponseCallback<Schema$EventTag>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$EventTag>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$EventTag> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$EventTag>>
@@ -26758,8 +26823,7 @@ export namespace dfareporting_v5 {
     list(
       params: Params$Resource$Eventtags$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$EventTagsListResponse>,
+        MethodOptions | BodyResponseCallback<Schema$EventTagsListResponse>,
       callback: BodyResponseCallback<Schema$EventTagsListResponse>
     ): void;
     list(
@@ -26957,8 +27021,7 @@ export namespace dfareporting_v5 {
         | BodyResponseCallback<Schema$EventTag>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$EventTag>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$EventTag> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$EventTag>>
@@ -27134,8 +27197,7 @@ export namespace dfareporting_v5 {
         | BodyResponseCallback<Schema$EventTag>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$EventTag>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$EventTag> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$EventTag>>
@@ -27391,8 +27453,7 @@ export namespace dfareporting_v5 {
         | BodyResponseCallback<Schema$File>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$File>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$File> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$File>>
@@ -27539,8 +27600,7 @@ export namespace dfareporting_v5 {
         | BodyResponseCallback<Schema$FileList>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$FileList>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$FileList> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$FileList>>
@@ -29083,8 +29143,7 @@ export namespace dfareporting_v5 {
     get(
       params: Params$Resource$Floodlightactivitygroups$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$FloodlightActivityGroup>,
+        MethodOptions | BodyResponseCallback<Schema$FloodlightActivityGroup>,
       callback: BodyResponseCallback<Schema$FloodlightActivityGroup>
     ): void;
     get(
@@ -29252,8 +29311,7 @@ export namespace dfareporting_v5 {
     insert(
       params: Params$Resource$Floodlightactivitygroups$Insert,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$FloodlightActivityGroup>,
+        MethodOptions | BodyResponseCallback<Schema$FloodlightActivityGroup>,
       callback: BodyResponseCallback<Schema$FloodlightActivityGroup>
     ): void;
     insert(
@@ -29592,8 +29650,7 @@ export namespace dfareporting_v5 {
     patch(
       params: Params$Resource$Floodlightactivitygroups$Patch,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$FloodlightActivityGroup>,
+        MethodOptions | BodyResponseCallback<Schema$FloodlightActivityGroup>,
       callback: BodyResponseCallback<Schema$FloodlightActivityGroup>
     ): void;
     patch(
@@ -29761,8 +29818,7 @@ export namespace dfareporting_v5 {
     update(
       params: Params$Resource$Floodlightactivitygroups$Update,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$FloodlightActivityGroup>,
+        MethodOptions | BodyResponseCallback<Schema$FloodlightActivityGroup>,
       callback: BodyResponseCallback<Schema$FloodlightActivityGroup>
     ): void;
     update(
@@ -30018,8 +30074,7 @@ export namespace dfareporting_v5 {
     get(
       params: Params$Resource$Floodlightconfigurations$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$FloodlightConfiguration>,
+        MethodOptions | BodyResponseCallback<Schema$FloodlightConfiguration>,
       callback: BodyResponseCallback<Schema$FloodlightConfiguration>
     ): void;
     get(
@@ -30351,8 +30406,7 @@ export namespace dfareporting_v5 {
     patch(
       params: Params$Resource$Floodlightconfigurations$Patch,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$FloodlightConfiguration>,
+        MethodOptions | BodyResponseCallback<Schema$FloodlightConfiguration>,
       callback: BodyResponseCallback<Schema$FloodlightConfiguration>
     ): void;
     patch(
@@ -30532,8 +30586,7 @@ export namespace dfareporting_v5 {
     update(
       params: Params$Resource$Floodlightconfigurations$Update,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$FloodlightConfiguration>,
+        MethodOptions | BodyResponseCallback<Schema$FloodlightConfiguration>,
       callback: BodyResponseCallback<Schema$FloodlightConfiguration>
     ): void;
     update(
@@ -30728,8 +30781,7 @@ export namespace dfareporting_v5 {
     list(
       params: Params$Resource$Languages$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$LanguagesListResponse>,
+        MethodOptions | BodyResponseCallback<Schema$LanguagesListResponse>,
       callback: BodyResponseCallback<Schema$LanguagesListResponse>
     ): void;
     list(
@@ -31053,8 +31105,7 @@ export namespace dfareporting_v5 {
         | BodyResponseCallback<Schema$MobileApp>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$MobileApp>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$MobileApp> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$MobileApp>>
@@ -31183,8 +31234,7 @@ export namespace dfareporting_v5 {
     list(
       params: Params$Resource$Mobileapps$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$MobileAppsListResponse>,
+        MethodOptions | BodyResponseCallback<Schema$MobileAppsListResponse>,
       callback: BodyResponseCallback<Schema$MobileAppsListResponse>
     ): void;
     list(
@@ -31508,8 +31558,7 @@ export namespace dfareporting_v5 {
     list(
       params: Params$Resource$Mobilecarriers$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$MobileCarriersListResponse>,
+        MethodOptions | BodyResponseCallback<Schema$MobileCarriersListResponse>,
       callback: BodyResponseCallback<Schema$MobileCarriersListResponse>
     ): void;
     list(
@@ -31991,8 +32040,7 @@ export namespace dfareporting_v5 {
     get(
       params: Params$Resource$Operatingsystemversions$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$OperatingSystemVersion>,
+        MethodOptions | BodyResponseCallback<Schema$OperatingSystemVersion>,
       callback: BodyResponseCallback<Schema$OperatingSystemVersion>
     ): void;
     get(
@@ -33594,8 +33642,7 @@ export namespace dfareporting_v5 {
         | BodyResponseCallback<Schema$Placement>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Placement>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Placement> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Placement>>
@@ -33832,8 +33879,7 @@ export namespace dfareporting_v5 {
         | BodyResponseCallback<Schema$Placement>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Placement>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Placement> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Placement>>
@@ -33996,8 +34042,7 @@ export namespace dfareporting_v5 {
     list(
       params: Params$Resource$Placements$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$PlacementsListResponse>,
+        MethodOptions | BodyResponseCallback<Schema$PlacementsListResponse>,
       callback: BodyResponseCallback<Schema$PlacementsListResponse>
     ): void;
     list(
@@ -34255,8 +34300,7 @@ export namespace dfareporting_v5 {
         | BodyResponseCallback<Schema$Placement>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Placement>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Placement> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Placement>>
@@ -34492,8 +34536,7 @@ export namespace dfareporting_v5 {
         | BodyResponseCallback<Schema$Placement>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Placement>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Placement> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Placement>>
@@ -35912,8 +35955,7 @@ export namespace dfareporting_v5 {
     list(
       params: Params$Resource$Platformtypes$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$PlatformTypesListResponse>,
+        MethodOptions | BodyResponseCallback<Schema$PlatformTypesListResponse>,
       callback: BodyResponseCallback<Schema$PlatformTypesListResponse>
     ): void;
     list(
@@ -36101,8 +36143,7 @@ export namespace dfareporting_v5 {
         | BodyResponseCallback<Schema$PostalCode>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$PostalCode>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$PostalCode> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$PostalCode>>
@@ -36220,8 +36261,7 @@ export namespace dfareporting_v5 {
     list(
       params: Params$Resource$Postalcodes$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$PostalCodesListResponse>,
+        MethodOptions | BodyResponseCallback<Schema$PostalCodesListResponse>,
       callback: BodyResponseCallback<Schema$PostalCodesListResponse>
     ): void;
     list(
@@ -37450,8 +37490,7 @@ export namespace dfareporting_v5 {
     get(
       params: Params$Resource$Remarketinglistshares$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$RemarketingListShare>,
+        MethodOptions | BodyResponseCallback<Schema$RemarketingListShare>,
       callback: BodyResponseCallback<Schema$RemarketingListShare>
     ): void;
     get(
@@ -37605,8 +37644,7 @@ export namespace dfareporting_v5 {
     patch(
       params: Params$Resource$Remarketinglistshares$Patch,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$RemarketingListShare>,
+        MethodOptions | BodyResponseCallback<Schema$RemarketingListShare>,
       callback: BodyResponseCallback<Schema$RemarketingListShare>
     ): void;
     patch(
@@ -37758,8 +37796,7 @@ export namespace dfareporting_v5 {
     update(
       params: Params$Resource$Remarketinglistshares$Update,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$RemarketingListShare>,
+        MethodOptions | BodyResponseCallback<Schema$RemarketingListShare>,
       callback: BodyResponseCallback<Schema$RemarketingListShare>
     ): void;
     update(
@@ -37863,6 +37900,178 @@ export namespace dfareporting_v5 {
      * Request body metadata
      */
     requestBody?: Schema$RemarketingListShare;
+  }
+
+  export class Resource$Reportdata {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Executes an ad-hoc query and returns structured JSON payload data.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v5');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfareporting'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.reportData.query({
+     *     // Required. The Campaign Manager 360 user profile ID.
+     *     profileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "dateRange": {},
+     *       //   "dimensionFilters": [],
+     *       //   "dimensionNames": [],
+     *       //   "maxResults": 0,
+     *       //   "metricNames": [],
+     *       //   "pageToken": "my_pageToken",
+     *       //   "sortBys": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "columnHeaders": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "rows": [],
+     *   //   "totalRow": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    query(
+      params: Params$Resource$Reportdata$Query,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    query(
+      params?: Params$Resource$Reportdata$Query,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ReportDataResponse>>;
+    query(
+      params: Params$Resource$Reportdata$Query,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    query(
+      params: Params$Resource$Reportdata$Query,
+      options: MethodOptions | BodyResponseCallback<Schema$ReportDataResponse>,
+      callback: BodyResponseCallback<Schema$ReportDataResponse>
+    ): void;
+    query(
+      params: Params$Resource$Reportdata$Query,
+      callback: BodyResponseCallback<Schema$ReportDataResponse>
+    ): void;
+    query(callback: BodyResponseCallback<Schema$ReportDataResponse>): void;
+    query(
+      paramsOrCallback?:
+        | Params$Resource$Reportdata$Query
+        | BodyResponseCallback<Schema$ReportDataResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ReportDataResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ReportDataResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ReportDataResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Reportdata$Query;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Reportdata$Query;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v5/userprofiles/{profileId}/reportdata/query'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['profileId'],
+        pathParams: ['profileId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ReportDataResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ReportDataResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Reportdata$Query extends StandardParameters {
+    /**
+     * Required. The Campaign Manager 360 user profile ID.
+     */
+    profileId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ReportDataQueryRequest;
   }
 
   export class Resource$Reports {
@@ -38115,8 +38324,7 @@ export namespace dfareporting_v5 {
         | BodyResponseCallback<Schema$Report>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Report>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Report> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Report>>
@@ -38293,8 +38501,7 @@ export namespace dfareporting_v5 {
         | BodyResponseCallback<Schema$Report>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Report>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Report> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Report>>
@@ -38441,8 +38648,7 @@ export namespace dfareporting_v5 {
         | BodyResponseCallback<Schema$ReportList>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$ReportList>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$ReportList> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$ReportList>>
@@ -38589,8 +38795,7 @@ export namespace dfareporting_v5 {
         | BodyResponseCallback<Schema$File>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$File>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$File> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$File>>
@@ -38769,8 +38974,7 @@ export namespace dfareporting_v5 {
         | BodyResponseCallback<Schema$Report>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Report>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Report> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Report>>
@@ -39199,8 +39403,7 @@ export namespace dfareporting_v5 {
         | BodyResponseCallback<Schema$File>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$File>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$File> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$File>>
@@ -39349,8 +39552,7 @@ export namespace dfareporting_v5 {
         | BodyResponseCallback<Schema$FileList>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$FileList>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$FileList> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$FileList>>
@@ -39549,8 +39751,7 @@ export namespace dfareporting_v5 {
         | BodyResponseCallback<Schema$Site>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Site>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Site> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Site>>
@@ -39718,8 +39919,7 @@ export namespace dfareporting_v5 {
         | BodyResponseCallback<Schema$Site>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Site>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Site> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Site>>
@@ -40056,8 +40256,7 @@ export namespace dfareporting_v5 {
         | BodyResponseCallback<Schema$Site>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Site>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Site> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Site>>
@@ -40225,8 +40424,7 @@ export namespace dfareporting_v5 {
         | BodyResponseCallback<Schema$Site>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Site>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Site> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Site>>
@@ -40487,8 +40685,7 @@ export namespace dfareporting_v5 {
         | BodyResponseCallback<Schema$Size>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Size>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Size> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Size>>
@@ -40638,8 +40835,7 @@ export namespace dfareporting_v5 {
         | BodyResponseCallback<Schema$Size>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Size>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Size> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Size>>
@@ -41630,8 +41826,7 @@ export namespace dfareporting_v5 {
         | BodyResponseCallback<Schema$Subaccount>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Subaccount>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Subaccount> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Subaccount>>
@@ -41782,8 +41977,7 @@ export namespace dfareporting_v5 {
         | BodyResponseCallback<Schema$Subaccount>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Subaccount>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Subaccount> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Subaccount>>
@@ -41914,8 +42108,7 @@ export namespace dfareporting_v5 {
     list(
       params: Params$Resource$Subaccounts$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$SubaccountsListResponse>,
+        MethodOptions | BodyResponseCallback<Schema$SubaccountsListResponse>,
       callback: BodyResponseCallback<Schema$SubaccountsListResponse>
     ): void;
     list(
@@ -42087,8 +42280,7 @@ export namespace dfareporting_v5 {
         | BodyResponseCallback<Schema$Subaccount>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Subaccount>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Subaccount> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Subaccount>>
@@ -42239,8 +42431,7 @@ export namespace dfareporting_v5 {
         | BodyResponseCallback<Schema$Subaccount>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Subaccount>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Subaccount> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Subaccount>>
@@ -42455,8 +42646,7 @@ export namespace dfareporting_v5 {
     get(
       params: Params$Resource$Targetableremarketinglists$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TargetableRemarketingList>,
+        MethodOptions | BodyResponseCallback<Schema$TargetableRemarketingList>,
       callback: BodyResponseCallback<Schema$TargetableRemarketingList>
     ): void;
     get(
@@ -44388,8 +44578,7 @@ export namespace dfareporting_v5 {
     get(
       params: Params$Resource$Userrolepermissiongroups$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$UserRolePermissionGroup>,
+        MethodOptions | BodyResponseCallback<Schema$UserRolePermissionGroup>,
       callback: BodyResponseCallback<Schema$UserRolePermissionGroup>
     ): void;
     get(
@@ -45174,8 +45363,7 @@ export namespace dfareporting_v5 {
         | BodyResponseCallback<Schema$UserRole>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$UserRole>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$UserRole> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$UserRole>>
@@ -45332,8 +45520,7 @@ export namespace dfareporting_v5 {
         | BodyResponseCallback<Schema$UserRole>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$UserRole>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$UserRole> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$UserRole>>
@@ -45467,8 +45654,7 @@ export namespace dfareporting_v5 {
     list(
       params: Params$Resource$Userroles$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$UserRolesListResponse>,
+        MethodOptions | BodyResponseCallback<Schema$UserRolesListResponse>,
       callback: BodyResponseCallback<Schema$UserRolesListResponse>
     ): void;
     list(
@@ -45646,8 +45832,7 @@ export namespace dfareporting_v5 {
         | BodyResponseCallback<Schema$UserRole>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$UserRole>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$UserRole> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$UserRole>>
@@ -45803,8 +45988,7 @@ export namespace dfareporting_v5 {
         | BodyResponseCallback<Schema$UserRole>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$UserRole>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$UserRole> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$UserRole>>
@@ -46166,8 +46350,7 @@ export namespace dfareporting_v5 {
     list(
       params: Params$Resource$Videoformats$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$VideoFormatsListResponse>,
+        MethodOptions | BodyResponseCallback<Schema$VideoFormatsListResponse>,
       callback: BodyResponseCallback<Schema$VideoFormatsListResponse>
     ): void;
     list(

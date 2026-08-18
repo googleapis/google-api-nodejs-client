@@ -4052,8 +4052,7 @@ export namespace docs_v1 {
         | BodyResponseCallback<Schema$Document>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Document>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Document> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Document>>
@@ -4211,8 +4210,7 @@ export namespace docs_v1 {
         | BodyResponseCallback<Schema$Document>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Document>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Document> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Document>>

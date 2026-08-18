@@ -726,6 +726,283 @@ export namespace discoveryengine_v1beta {
     notificationParams?: {[key: string]: string} | null;
   }
   /**
+   * Evaluation insights for a program.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaAlphaEvolveEvaluationInsights {
+    /**
+     * Optional. List of evaluation insights.
+     */
+    insights?: Schema$GoogleCloudDiscoveryengineV1alphaAlphaEvolveEvaluationInsightsAlphaEvolveEvaluationInsight[];
+  }
+  /**
+   * A single evaluation insight.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaAlphaEvolveEvaluationInsightsAlphaEvolveEvaluationInsight {
+    /**
+     * Optional. Label of the insight.
+     */
+    label?: string | null;
+    /**
+     * Optional. Text of the insight.
+     */
+    text?: string | null;
+  }
+  /**
+   * Contains the evaluation scores for the target metrics to optimize.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaAlphaEvolveEvaluationScores {
+    /**
+     * Required. List of evaluation scores.
+     */
+    scores?: Schema$GoogleCloudDiscoveryengineV1alphaAlphaEvolveEvaluationScoresAlphaEvolveEvaluationScore[];
+  }
+  /**
+   * Score for a single metric.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaAlphaEvolveEvaluationScoresAlphaEvolveEvaluationScore {
+    /**
+     * Required. Name of the metric.
+     */
+    metric?: string | null;
+    /**
+     * Required. Score of a program for this metric.
+     */
+    score?: number | null;
+  }
+  /**
+   * An experiment is a single run of the AlphaEvolve agent, an evolutionary coding agent powered by LLM for algorithm discovery and optimization.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaAlphaEvolveExperiment {
+    /**
+     * Required. Experiment configuration.
+     */
+    config?: Schema$GoogleCloudDiscoveryengineV1alphaAlphaEvolveExperimentConfig;
+    /**
+     * Output only. Time when the experiment was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. Specifies the name of the seed program used to start the experiment.
+     */
+    initialAlphaEvolveProgram?: string | null;
+    /**
+     * Identifier. The full resource name of the experiment. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/sessions/{session\}/alphaEvolveExperiments/{alpha_evolve_experiment\}`
+     */
+    name?: string | null;
+    /**
+     * Output only. The state of the experiment.
+     */
+    state?: string | null;
+    /**
+     * Output only. Experiment stats.
+     */
+    stats?: Schema$GoogleCloudDiscoveryengineV1alphaAlphaEvolveExperimentStats;
+  }
+  /**
+   * Configuration of an experiment.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaAlphaEvolveExperimentConfig {
+    /**
+     * Optional. Evolution settings for the experiment.
+     */
+    evolutionSettings?: Schema$GoogleCloudDiscoveryengineV1alphaAlphaEvolveExperimentConfigEvolutionSettings;
+    /**
+     * Optional. Generation settings for the experiment, controlling how new program candidates are generated, including things LLM parameters and user-provided context and prompts.
+     */
+    generationSettings?: Schema$GoogleCloudDiscoveryengineV1alphaAlphaEvolveExperimentConfigGenerationSettings;
+    /**
+     * Required. Description of the problem to be solved by the experiment.
+     */
+    problemDescription?: string | null;
+    /**
+     * Required. Primary programming language of the code being optimized.
+     */
+    programLanguage?: string | null;
+    /**
+     * Required. Run settings for the experiment, controlling the overall behavior of the experiment run.
+     */
+    runSettings?: Schema$GoogleCloudDiscoveryengineV1alphaAlphaEvolveExperimentConfigRunSettings;
+    /**
+     * Required. Title of the experiment.
+     */
+    title?: string | null;
+  }
+  /**
+   * Evolution settings for the experiment.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaAlphaEvolveExperimentConfigEvolutionSettings {
+    /**
+     * Optional. Parent sampling configuration.
+     */
+    parentSamplingConfig?: Schema$GoogleCloudDiscoveryengineV1alphaAlphaEvolveExperimentConfigEvolutionSettingsParentSamplingConfig;
+  }
+  /**
+   * Configuration for parent sampling.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaAlphaEvolveExperimentConfigEvolutionSettingsParentSamplingConfig {
+    /**
+     * Optional. Pareto sampling configuration.
+     */
+    paretoSamplingConfig?: Schema$GoogleCloudDiscoveryengineV1alphaAlphaEvolveExperimentConfigEvolutionSettingsParentSamplingConfigParetoSamplingConfig;
+  }
+  /**
+   * Configuration for Pareto sampling.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaAlphaEvolveExperimentConfigEvolutionSettingsParentSamplingConfigParetoSamplingConfig {
+    /**
+     * Optional. Probability [0.0, 1.0] of sampling parent programs from the Pareto frontier instead of normal fitness-based sampling during candidate generation. Useful when optimizing multiple metrics simultaneously. Default 0.0 (disabled). Only effective when evaluation returns multiple metrics in scores_to_optimize.
+     */
+    paretoSamplingProbability?: number | null;
+  }
+  /**
+   * Generation settings for the experiment.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaAlphaEvolveExperimentConfigGenerationSettings {
+    /**
+     * Optional. Additional user-provided context to be used during generation.
+     */
+    context?: string | null;
+    /**
+     * Optional. When true, the LLM prompt includes the full program text (both mutable EVOLVE-BLOCK regions and immutable boilerplate). When false (default), only the mutable EVOLVE-BLOCK regions are shown, saving context window.
+     */
+    includeFullProgramInPrompt?: boolean | null;
+    /**
+     * Optional. Per-model configuration. See `ModelConfig` for details. If left unset, the server selects a default model.
+     */
+    models?: Schema$GoogleCloudDiscoveryengineV1alphaAlphaEvolveExperimentConfigGenerationSettingsModelConfig[];
+  }
+  /**
+   * Per-model configuration. Mutually exclusive with `model_mixture` and `model`: when `models` is set, both `model_mixture` and `model` must be left unset. The same allowed-model list and at-most-2-models rule as for `model_mixture` apply. In addition, each entry may specify a per-model `temperature` for LLM sampling. Unlike `model_mixture`, weights here are *relative*: only their ratios matter (the server normalizes them), so callers may use any positive numbers without having to ensure they sum to 1.0.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaAlphaEvolveExperimentConfigGenerationSettingsModelConfig {
+    /**
+     * Required. Model name (e.g. `gemini-2.5-flash`, `gemini-3.1-pro-preview`). See `model_mixture` for the list of allowed models.
+     */
+    name?: string | null;
+    /**
+     * Optional. Relative weight for this model in the mixture. Must be a finite, strictly positive value. Weights across all entries are normalized server-side, so they need not sum to 1.0. Defaults to 1.0 when unset, which is convenient when configuring a single model or an even mixture. Some Pro-tier models are capped at most 50% of the total weight; requests violating that cap are rejected with INVALID_ARGUMENT.
+     */
+    weight?: number | null;
+  }
+  /**
+   * Run settings for the experiment.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaAlphaEvolveExperimentConfigRunSettings {
+    /**
+     * Required. Maximum number of programs that can be generated in parallel. Must be positive.
+     */
+    concurrency?: number | null;
+    /**
+     * Optional. Maximum duration of the experiment. If unset, defaults to 24 hours.
+     */
+    maxDuration?: string | null;
+    /**
+     * Required. Maximum number of programs to generate during the experiment run. The initial program counts towards this limit. Must be greater than 1.
+     */
+    maxPrograms?: number | null;
+  }
+  /**
+   * Stats about the experiment.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaAlphaEvolveExperimentStats {
+    /**
+     * Output only. Number of candidates generated.
+     */
+    candidatesCount?: number | null;
+    /**
+     * Output only. Number of candidates evaluated.
+     */
+    evaluatedCandidatesCount?: number | null;
+    /**
+     * Output only. Number of billed input tokens consumed by the experiment.
+     */
+    inputTokenCount?: string | null;
+    /**
+     * Output only. Number of billed output tokens consumed by the experiment.
+     */
+    outputTokenCount?: string | null;
+  }
+  /**
+   * Represents a single program to be used within the context of an AlphaEvolve experiment.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaAlphaEvolveProgram {
+    /**
+     * Optional. Content of the program.
+     */
+    content?: Schema$GoogleCloudDiscoveryengineV1alphaAlphaEvolveProgramContent;
+    /**
+     * Output only. Time when the program was created.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. Evaluation results for the program.
+     */
+    evaluation?: Schema$GoogleCloudDiscoveryengineV1alphaAlphaEvolveProgramEvaluation;
+    /**
+     * Optional. Lock token for the program.
+     */
+    lockToken?: string | null;
+    /**
+     * Identifier. Unique identifier for the program. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/sessions/{session\}/alphaEvolveExperiments/{alpha_evolve_experiment\}/alphaEvolvePrograms/{alpha_evolve_program\}`
+     */
+    name?: string | null;
+    /**
+     * Output only. Optionally specifies which parent programs this program was evolved from. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/sessions/{session\}/alphaEvolveExperiments/{alpha_evolve_experiment\}/alphaEvolvePrograms/{alpha_evolve_program\}`
+     */
+    parentPrograms?: string[] | null;
+    /**
+     * Output only. State of the program.
+     */
+    state?: string | null;
+  }
+  /**
+   * A self-contained message containing the content of a program. Can represent a collection of files.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaAlphaEvolveProgramContent {
+    /**
+     * Optional. Description of the program.
+     */
+    description?: string | null;
+    /**
+     * Required. A list of source files that make up the overall program.
+     */
+    files?: Schema$GoogleCloudDiscoveryengineV1alphaAlphaEvolveSourceFile[];
+  }
+  /**
+   * Evaluation results for a program candidate.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaAlphaEvolveProgramEvaluation {
+    /**
+     * Optional. Represents various insights about the candidate, which are not directly used as optimization target, but that can be used to improve subsequent generations, and as such can be used to construct the evolution prompt.
+     */
+    insights?: Schema$GoogleCloudDiscoveryengineV1alphaAlphaEvolveEvaluationInsights;
+    /**
+     * Optional. Contains the evaluation scores for the target metrics to optimize.
+     */
+    scores?: Schema$GoogleCloudDiscoveryengineV1alphaAlphaEvolveEvaluationScores;
+  }
+  /**
+   * A single source file with its path, content and metadata.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaAlphaEvolveSourceFile {
+    /**
+     * Required. The raw content of the file. This is a string and not bytes, because it should be ultimately processed by the LLM as text.
+     */
+    content?: string | null;
+    /**
+     * Optional. Additional description of the file.
+     */
+    description?: string | null;
+    /**
+     * Required. The relative path of the file, including the filename. e.g., "src/main.py", "utils/helpers.js", "README.md"
+     */
+    path?: string | null;
+    /**
+     * Optional. The programming language of the file.
+     */
+    programLanguage?: string | null;
+  }
+  /**
    * Defines an answer.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaAnswer {
@@ -1433,6 +1710,23 @@ export namespace discoveryengine_v1beta {
      * Required. The supported connector modes for the associated BAP connection.
      */
     supportedConnectorModes?: string[] | null;
+    /**
+     * Optional. Custom toolspec overrides for this connection. For Enterprise BAP connectors that support admin-curated tool definitions, this holds the (simplified) per-tool overrides. On Get, populated by the server by merging persisted overrides with live runtime tool definitions and trimming the result for UI consumption. On Update, the supplied value replaces the persisted overrides after server-side validation and merging: the `base_version` field MUST match the server's current base toolspec version (otherwise the request is rejected with a user-facing error directing the admin to re-download the latest tools first).
+     */
+    toolspecOverride?: Schema$GoogleCloudDiscoveryengineV1alphaBAPConfigToolspecOverride;
+  }
+  /**
+   * Customer-facing view of the admin-curated toolspec for a BAP connection. Holds the (simplified) per-tool definitions surfaced to and editable by the admin in the Discovery Engine UI. Mirrors the shape of the backend `google.cloud.connectorexecution.v1.ToolspecOverride` message, but is intentionally kept as a separate public type so the Discovery Engine API surface can evolve independently of the fed-API surface (AIP-215). Handlers convert between the two via helpers in //cloud/ml/discoveryengine/external_service/v1main/data_connector_service/lib:bap_custom_tool_util.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaBAPConfigToolspecOverride {
+    /**
+     * Required. Base toolspec version against which `tools` were authored. On Update, MUST match the server's current stable toolspec version for the connection; mismatch is rejected with a user-facing error directing the admin to re-download the latest tools first.
+     */
+    baseVersion?: string | null;
+    /**
+     * Required. Tool definitions (one Struct per tool) that the admin has customised on top of the base toolspec returned by the fed API. REQUIRED because it is the only user-editable field in the modify API; the request must carry at least one tool.
+     */
+    tools?: Array<{[key: string]: any}> | null;
   }
   /**
    * Metadata related to the progress of the SiteSearchEngineService.BatchCreateTargetSites operation. This will be returned by the google.longrunning.Operation.metadata field.
@@ -2062,7 +2356,7 @@ export namespace discoveryengine_v1beta {
      */
     dataProtectionPolicy?: Schema$GoogleCloudDiscoveryengineV1alphaDataProtectionPolicy;
     /**
-     * Required. The identifier for the data source. This is a partial list of supported connectors. Please refer to the [documentation](https://docs.cloud.google.com/gemini/enterprise/docs/connectors/introduction-to-connectors-and-data-stores) for the full list of connectors. Supported first-party connectors include: * `gcs` * `bigquery` * `gcp_fhir` * `google_mail` * `google_drive` * `google_calendar` * `google_chat` Supported third-party connectors include: Generally available (GA) connectors: * `onedrive` * `outlook` * `confluence` * `jira` * `servicenow` * `sharepoint` Preview connectors: * `asana` * `azure_active_directory` * `box` * `canva` * `confluence_server` * `custom_connector` * `docusign` * `dropbox` * `dynamics365` * `github` * `gitlab` * `hubspot` * `jira_server` * `linear` * `native_cloud_identity` * `notion` * `okta` * `pagerduty` * `peoplesoft` * `salesforce` * `shopify` * `slack` * `snowflake` * `teams` * `trello` * `workday` * `zendesk`
+     * Required. The identifier for the data source. For the full, up-to-date list of supported connectors and their values, see [Connect a third-party data source](https://docs.cloud.google.com/gemini/enterprise/docs/connectors/connect-third-party-data-source#sources-by-launch-stage).
      */
     dataSource?: string | null;
     /**
@@ -2130,6 +2424,10 @@ export namespace discoveryengine_v1beta {
      */
     latestPauseTime?: string | null;
     /**
+     * Optional. User-facing metadata for the connector. Populated from the connector's generated metadata / registry `ConnectorSource`.
+     */
+    metadata?: Schema$GoogleCloudDiscoveryengineV1alphaDataConnectorConnectorMetadata;
+    /**
      * Identifier. The full resource name of the Data Connector. Format: `projects/x/locations/x/collections/x/dataConnector`.
      */
     name?: string | null;
@@ -2137,6 +2435,10 @@ export namespace discoveryengine_v1beta {
      * Defines the scheduled time for the next data synchronization. This field requires hour , minute, and time_zone from the [IANA Time Zone Database](https://www.iana.org/time-zones). This is utilized when the data connector has a refresh interval greater than 1 day. When the hours or minutes are not specified, we will assume a sync time of 0:00. The user must provide a time zone to avoid ambiguity.
      */
     nextSyncTime?: Schema$GoogleTypeDateTime;
+    /**
+     * Output only. The static IP addresses used by this connector for OAuth APIs (e.g. end user authentication). These are surfaced separately from `static_ip_addresses` so that customers can apply granular firewall settings for OAuth endpoints. Only populated for connectors that have static IP enabled and are used for actions and/or federated search.
+     */
+    oauthStaticIpAddresses?: string[] | null;
     /**
      * Required data connector parameters in structured json format.
      */
@@ -2178,6 +2480,10 @@ export namespace discoveryengine_v1beta {
      */
     syncMode?: string | null;
     /**
+     * Optional. Immutable. User-facing, version-independent label for this connector. May be shared by multiple connectors under the same (project, location, collection, data_source); tag-based lookup returns the one with the greatest create_time. Optional at Create time. Agent Designer resolves connectors via (data_source, tag) when set, falling back to the legacy resource-name lookup when unset, so connectors created before the tag-write launch continue to work without a backfill.
+     */
+    tag?: string | null;
+    /**
      * Output only. Timestamp the DataConnector was last updated.
      */
     updateTime?: string | null;
@@ -2185,6 +2491,31 @@ export namespace discoveryengine_v1beta {
      * Output only. Whether the connector is created with VPC-SC enabled.
      */
     vpcscEnabled?: boolean | null;
+  }
+  /**
+   * User-facing metadata for the connector, shown on the connector detail page (title, description, short_description, author, note).
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaDataConnectorConnectorMetadata {
+    /**
+     * Optional. The party that authored the connector, e.g. "Google" or a third-party provider name. Lets end users see who authored a connector (future: third-party-authored connectors).
+     */
+    author?: string | null;
+    /**
+     * Optional. Human-readable description of the connector, shown on the connector detail page. One connector has a single description.
+     */
+    description?: string | null;
+    /**
+     * Optional. Free-form, multi-line note about the connector's capabilities or a custom note that can be set for the connector.
+     */
+    note?: string | null;
+    /**
+     * Optional. Short, subtitle-length description of the connector (e.g. shown beneath the connector name in list and detail views).
+     */
+    shortDescription?: string | null;
+    /**
+     * Optional. Display title of the connector.
+     */
+    title?: string | null;
   }
   /**
    * Any params and credentials used specifically for EUA connectors.
@@ -2365,6 +2696,10 @@ export namespace discoveryengine_v1beta {
      * Optional. Configuration for `HEALTHCARE_FHIR` vertical.
      */
     healthcareFhirConfig?: Schema$GoogleCloudDiscoveryengineV1alphaHealthcareFhirConfig;
+    /**
+     * Output only. Provides the icon URI of the data store's connector source, if this is a connector-backed data store. Empty for data stores without an associated connector source. In DataStoreService.ListDataStores and DataStoreService.GetDataStore, this is only populated when DataStoreView.DATA_STORE_VIEW_FULL is requested via ListDataStoresRequest.view or GetDataStoreRequest.view respectively.
+     */
+    iconUri?: string | null;
     /**
      * Immutable. The fully qualified resource name of the associated IdentityMappingStore. This field can only be set for acl_enabled DataStores with `THIRD_PARTY` or `GSUITE` IdP. Format: `projects/{project\}/locations/{location\}/identityMappingStores/{identity_mapping_store\}`.
      */
@@ -2714,6 +3049,10 @@ export namespace discoveryengine_v1beta {
      * The number of end users under the user store that were successfully deleted.
      */
     successCount?: string | null;
+    /**
+     * Operation last update time. If the operation is done, this is also the finish time.
+     */
+    updateTime?: string | null;
   }
   /**
    * Defines target endpoints used to connect to third-party sources.
@@ -2935,6 +3274,10 @@ export namespace discoveryengine_v1beta {
      */
     appType?: string | null;
     /**
+     * Output only. The Agent registry containing the agents, MCP servers and tools associated with this engine. Derived server-side from the linked Agent Gateway's registry.
+     */
+    associatedAgentRegistry?: string | null;
+    /**
      * Configurations for the Chat Engine. Only applicable if solution_type is SOLUTION_TYPE_CHAT.
      */
     chatEngineConfig?: Schema$GoogleCloudDiscoveryengineV1alphaEngineChatEngineConfig;
@@ -2975,7 +3318,7 @@ export namespace discoveryengine_v1beta {
      */
     displayName?: string | null;
     /**
-     * Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `disable-mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `disable-canvas-workspace` * `disable-skills` * `enable-end-user-sharing-with-groups`
+     * Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications`
      */
     features?: {[key: string]: string} | null;
     /**
@@ -3232,7 +3575,7 @@ export namespace discoveryengine_v1beta {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaEngineSearchEngineConfig {
     /**
-     * Optional. The required subscription tier of this engine. They cannot be modified after engine creation. If the required subscription tier is search, user with higher license tier like assist can still access the standalone app associated with this engine.
+     * Optional. The required subscription tier of this engine. If the required subscription tier is search, user with higher license tier like assist can still access the standalone app associated with this engine. Web grounding feature is only available on the app if it is set as SubscriptionTier.SUBSCRIPTION_TIER_SEARCH_AND_ASSISTANT.
      */
     requiredSubscriptionTier?: string | null;
     /**
@@ -3769,6 +4112,10 @@ export namespace discoveryengine_v1beta {
      */
     geminiBundle?: boolean | null;
     /**
+     * Optional. Timestamp of the most recent user-initiated update (seat count change or subscription term change). Unlike `update_time`, this field is only stamped when a customer explicitly updates the license (e.g. via the UI), and is not touched by system-driven writes (subscription pipeline, BALC propagation, etc.).
+     */
+    lastUserUpdateTime?: string | null;
+    /**
      * Required. Number of licenses purchased.
      */
     licenseCount?: string | null;
@@ -3946,6 +4293,10 @@ export namespace discoveryengine_v1beta {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaProjectConfigurableBillingStatus {
     /**
+     * Output only. Per-model Agent Search TPM subscription status.
+     */
+    agentSearchTokenSubscriptionStatuses?: Schema$GoogleCloudDiscoveryengineV1alphaProjectConfigurableBillingStatusAgentSearchTokenSubscriptionStatus[];
+    /**
      * Optional. The currently effective Indexing Core threshold. This is the threshold against which Indexing Core usage is compared for overage calculations.
      */
     effectiveIndexingCoreThreshold?: string | null;
@@ -3971,6 +4322,35 @@ export namespace discoveryengine_v1beta {
     terminateTime?: string | null;
     /**
      * Output only. The type of update performed in this operation. This field is populated in the response of UpdateProject.
+     */
+    updateType?: string | null;
+  }
+  /**
+   * Per-model Agent Search TPM subscription status. One entry per active `core_subscription.agent_search_token_subscriptions[*]` entry in the customer-provided config; populated by UpdateProject and GetProject. The lifecycle scalars on this message (`start_time`, `terminate_time`, `update_type`, `tpm_threshold_next_update_time`) are per (project, model_version) — siblings of the whole-relationship `start_time` / `terminate_time` / `update_type` on the enclosing ConfigurableBillingStatus, but scoped to this specific Agent Search TPM subscription instead of to the overall customer-configurable- pricing relationship. This per-instance granularity is intentional: the underlying SubV3 storage is per-(project, model_version), so each model has its own activation, termination, and deferred-update clock; surfacing that on the response gives customers the granularity they need to manage per-model commitments independently. QPM / IndexingCore differ — their storage is one row per (project, location), so their lifecycle is represented only by the whole- relationship scalars on ConfigurableBillingStatus.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaProjectConfigurableBillingStatusAgentSearchTokenSubscriptionStatus {
+    /**
+     * Output only. The currently effective TPM threshold. Reflects scale-up immediately and scale-down at the next billing cycle, matching `effective_search_qpm_threshold` semantics.
+     */
+    effectiveTpmThreshold?: string | null;
+    /**
+     * Output only. The Gemini model version this status corresponds to. Matches CoreSubscription.AgentSearchTokenSubscription.model_version (a stable Gemini model version from the Gemini Enterprise Agent Platform model-versions registry; see https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/model-versions#gemini-models).
+     */
+    modelVersion?: string | null;
+    /**
+     * Output only. When this (project, model_version) Agent Search TPM subscription was first activated. Set once on first activation of this model version and never moved by subsequent threshold updates; on termination + re-activation a new value is recorded. Does NOT move the whole-relationship `start_time` on the enclosing ConfigurableBillingStatus, which continues to represent the first activation of the overall customer-configurable-pricing relationship.
+     */
+    startTime?: string | null;
+    /**
+     * Output only. If set, the scheduled effective time at which this (project, model_version) Agent Search TPM subscription will terminate. Populated when the customer removes this entry from `core_subscription.agent_search_token_subscriptions[*]`. Does NOT move the whole-relationship `terminate_time` on the enclosing ConfigurableBillingStatus, which is populated only when the entire customer-configurable-pricing relationship is being torn down.
+     */
+    terminateTime?: string | null;
+    /**
+     * Output only. The earliest next update time for the TPM subscription threshold for this (project, model_version). Populated only after a successful update.
+     */
+    tpmThresholdNextUpdateTime?: string | null;
+    /**
+     * Output only. The type of the most recent update to this (project, model_version) subscription, as performed by the most recent UpdateProject call. `UPDATE_TYPE_UNSPECIFIED` indicates this model_version was not touched by the most recent UpdateProject (its `effective_tpm_threshold` reflects an earlier update). The whole-relationship `update_type` on the enclosing ConfigurableBillingStatus continues to summarize the direction of the most recent update across all surfaces in the project (QPM, IndexingCore, and Agent Search TPM together).
      */
     updateType?: string | null;
   }
@@ -4078,7 +4458,7 @@ export namespace discoveryengine_v1beta {
     updateTime?: string | null;
   }
   /**
-   * Response message for CompletionService.PurgeCompletionSuggestions method.
+   * Response message for CompletionService.PurgeCompletionSuggestions method. If the long running operation is successfully done, then this message is returned by the google.longrunning.Operations.response field.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaPurgeCompletionSuggestionsResponse {
     /**
@@ -4514,6 +4894,19 @@ export namespace discoveryengine_v1beta {
      * Required. Names of the Group resources to use as a basis for the list of patients for the new patient filter, in format `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/fhirStores/{fhir_store_id\}/fhir/Group/{group_id\}`. if the caller does not have permission to access the FHIR store, regardless of whether it exists, PERMISSION_DENIED error is returned. If the discovery engine service account does not have permission to access the FHIR store, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the group is not found at the location, a RESOURCE_NOT_FOUND error will be returned. The filter group must be a FHIR resource name of type Group, and the new filter will be constructed from the direct members of the group which are Patient resources.
      */
     filterGroups?: string[] | null;
+  }
+  /**
+   * Metadata for AlphaEvolveService.ResumeExperiment long running operation.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaResumeExperimentMetadata {
+    /**
+     * Output only. The time the operation was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. The time the operation was last updated.
+     */
+    updateTime?: string | null;
   }
   /**
    * Safety rating corresponding to the generated content.
@@ -5423,6 +5816,28 @@ export namespace discoveryengine_v1beta {
     verifyTime?: string | null;
   }
   /**
+   * Metadata for AlphaEvolveService.StartExperiment long running operation.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaStartExperimentMetadata {
+    /**
+     * Output only. The time the operation was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. The time the operation was last updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Request message for AlphaEvolveService.StartExperiment.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaStartExperimentRequest {
+    /**
+     * Required. Experiment to start. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/sessions/{session\}/alphaEvolveExperiments/{alpha_evolve_experiment\}`
+     */
+    name?: string | null;
+  }
+  /**
    * A target site for the SiteSearchEngine.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaTargetSite {
@@ -5640,11 +6055,11 @@ export namespace discoveryengine_v1beta {
     userId?: string | null;
   }
   /**
-   * Precise location info with multiple representation options. Currently only latitude and longitude point is supported.
+   * Precise location info with multiple representation options.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaUserInfoPreciseLocation {
     /**
-     * Optional. Location represented by a natural language address. Will later be geocoded and converted to either a point or a polygon.
+     * Location represented by a natural language address. Will later be geocoded and converted to either a point or a polygon.
      */
     address?: string | null;
     /**
@@ -5910,6 +6325,23 @@ export namespace discoveryengine_v1beta {
      * Required. The supported connector modes for the associated BAP connection.
      */
     supportedConnectorModes?: string[] | null;
+    /**
+     * Optional. Custom toolspec overrides for this connection. For Enterprise BAP connectors that support admin-curated tool definitions, this holds the (simplified) per-tool overrides. On Get, populated by the server by merging persisted overrides with live runtime tool definitions and trimming the result for UI consumption. On Update, the supplied value replaces the persisted overrides after server-side validation and merging: the `base_version` field MUST match the server's current base toolspec version (otherwise the request is rejected with a user-facing error directing the admin to re-download the latest tools first).
+     */
+    toolspecOverride?: Schema$GoogleCloudDiscoveryengineV1BAPConfigToolspecOverride;
+  }
+  /**
+   * Customer-facing view of the admin-curated toolspec for a BAP connection. Holds the (simplified) per-tool definitions surfaced to and editable by the admin in the Discovery Engine UI. Mirrors the shape of the backend `google.cloud.connectorexecution.v1.ToolspecOverride` message, but is intentionally kept as a separate public type so the Discovery Engine API surface can evolve independently of the fed-API surface (AIP-215). Handlers convert between the two via helpers in //cloud/ml/discoveryengine/external_service/v1main/data_connector_service/lib:bap_custom_tool_util.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1BAPConfigToolspecOverride {
+    /**
+     * Required. Base toolspec version against which `tools` were authored. On Update, MUST match the server's current stable toolspec version for the connection; mismatch is rejected with a user-facing error directing the admin to re-download the latest tools first.
+     */
+    baseVersion?: string | null;
+    /**
+     * Required. Tool definitions (one Struct per tool) that the admin has customised on top of the base toolspec returned by the fed API. REQUIRED because it is the only user-editable field in the modify API; the request must carry at least one tool.
+     */
+    tools?: Array<{[key: string]: any}> | null;
   }
   /**
    * Metadata related to the progress of the SiteSearchEngineService.BatchCreateTargetSites operation. This will be returned by the google.longrunning.Operation.metadata field.
@@ -7690,7 +8122,7 @@ export namespace discoveryengine_v1beta {
      */
     deleteUnassignedUserLicenses?: boolean | null;
     /**
-     * The inline source for the input content for document embeddings.
+     * The inline source for the input content for license assignment.
      */
     inlineSource?: Schema$GoogleCloudDiscoveryengineV1betaBatchUpdateUserLicensesRequestInlineSource;
   }
@@ -9368,6 +9800,10 @@ export namespace discoveryengine_v1beta {
      */
     appType?: string | null;
     /**
+     * Output only. The Agent registry containing the agents, MCP servers and tools associated with this engine. Derived server-side from the linked Agent Gateway's registry.
+     */
+    associatedAgentRegistry?: string | null;
+    /**
      * Configurations for the Chat Engine. Only applicable if solution_type is SOLUTION_TYPE_CHAT.
      */
     chatEngineConfig?: Schema$GoogleCloudDiscoveryengineV1betaEngineChatEngineConfig;
@@ -9408,7 +9844,7 @@ export namespace discoveryengine_v1beta {
      */
     displayName?: string | null;
     /**
-     * Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `disable-mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `disable-canvas-workspace` * `disable-skills` * `enable-end-user-sharing-with-groups`
+     * Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications`
      */
     features?: {[key: string]: string} | null;
     /**
@@ -9632,7 +10068,7 @@ export namespace discoveryengine_v1beta {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaEngineSearchEngineConfig {
     /**
-     * Optional. The required subscription tier of this engine. They cannot be modified after engine creation. If the required subscription tier is search, user with higher license tier like assist can still access the standalone app associated with this engine.
+     * Optional. The required subscription tier of this engine. If the required subscription tier is search, user with higher license tier like assist can still access the standalone app associated with this engine. Web grounding feature is only available on the app if it is set as SubscriptionTier.SUBSCRIPTION_TIER_SEARCH_AND_ASSISTANT.
      */
     requiredSubscriptionTier?: string | null;
     /**
@@ -9735,6 +10171,68 @@ export namespace discoveryengine_v1beta {
      * The URI of the source.
      */
     uri?: string | null;
+  }
+  /**
+   * Information about the user feedback. This information will be used for logging and metrics purpose.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaFeedback {
+    /**
+     * Optional. The additional user comment of the feedback if user gives a thumb down.
+     */
+    comment?: string | null;
+    /**
+     * Optional. The version of the component that this report is being sent from.
+     */
+    componentVersion?: string | null;
+    /**
+     * The related conversation information when user gives feedback.
+     */
+    conversationInfo?: Schema$GoogleCloudDiscoveryengineV1betaFeedbackConversationInfo;
+    /**
+     * Optional. Whether the customer accepted data use terms.
+     */
+    dataTermsAccepted?: boolean | null;
+    /**
+     * Optional. The UI component the user feedback comes from, which could be GOOGLE_CONSOLE, GOOGLE_WIDGET, GOOGLE_WEBAPP.
+     */
+    feedbackSource?: string | null;
+    /**
+     * Required. Indicate whether the user gives a positive or negative feedback. If the user gives a negative feedback, there might be more feedback details.
+     */
+    feedbackType?: string | null;
+    /**
+     * The version of the LLM model that was used to generate the response.
+     */
+    llmModelVersion?: string | null;
+    /**
+     * Optional. The reason if user gives a thumb down.
+     */
+    reasons?: string[] | null;
+  }
+  /**
+   * The conversation information such as the question index and session name.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaFeedbackConversationInfo {
+    /**
+     * Optional. The token which could be used to fetch the answer log.
+     */
+    answerQueryToken?: string | null;
+    /**
+     * Optional. The token which could be used to fetch the assistant log.
+     */
+    assistToken?: string | null;
+    /**
+     * Required. The user's search query.
+     */
+    query?: Schema$GoogleCloudDiscoveryengineV1betaQuery;
+    /**
+     * The index of the user input within the conversation messages.
+     */
+    questionIndex?: number | null;
+    /**
+     * Name of the newly generated or continued session.
+     */
+    session?: string | null;
   }
   /**
    * Response message for SiteSearchEngineService.FetchDomainVerificationStatus method.
@@ -10408,6 +10906,10 @@ export namespace discoveryengine_v1beta {
      */
     geminiBundle?: boolean | null;
     /**
+     * Optional. Timestamp of the most recent user-initiated update (seat count change or subscription term change). Unlike `update_time`, this field is only stamped when a customer explicitly updates the license (e.g. via the UI), and is not touched by system-driven writes (subscription pipeline, BALC propagation, etc.).
+     */
+    lastUserUpdateTime?: string | null;
+    /**
      * Required. Number of licenses purchased.
      */
     licenseCount?: string | null;
@@ -10904,6 +11406,10 @@ export namespace discoveryengine_v1beta {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaProjectConfigurableBillingStatus {
     /**
+     * Output only. Per-model Agent Search TPM subscription status.
+     */
+    agentSearchTokenSubscriptionStatuses?: Schema$GoogleCloudDiscoveryengineV1betaProjectConfigurableBillingStatusAgentSearchTokenSubscriptionStatus[];
+    /**
      * Optional. The currently effective Indexing Core threshold. This is the threshold against which Indexing Core usage is compared for overage calculations.
      */
     effectiveIndexingCoreThreshold?: string | null;
@@ -10929,6 +11435,35 @@ export namespace discoveryengine_v1beta {
     terminateTime?: string | null;
     /**
      * Output only. The type of update performed in this operation. This field is populated in the response of UpdateProject.
+     */
+    updateType?: string | null;
+  }
+  /**
+   * Per-model Agent Search TPM subscription status. One entry per active `core_subscription.agent_search_token_subscriptions[*]` entry in the customer-provided config; populated by UpdateProject and GetProject. The lifecycle scalars on this message (`start_time`, `terminate_time`, `update_type`, `tpm_threshold_next_update_time`) are per (project, model_version) — siblings of the whole-relationship `start_time` / `terminate_time` / `update_type` on the enclosing ConfigurableBillingStatus, but scoped to this specific Agent Search TPM subscription instead of to the overall customer-configurable- pricing relationship. This per-instance granularity is intentional: the underlying SubV3 storage is per-(project, model_version), so each model has its own activation, termination, and deferred-update clock; surfacing that on the response gives customers the granularity they need to manage per-model commitments independently. QPM / IndexingCore differ — their storage is one row per (project, location), so their lifecycle is represented only by the whole- relationship scalars on ConfigurableBillingStatus.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaProjectConfigurableBillingStatusAgentSearchTokenSubscriptionStatus {
+    /**
+     * Output only. The currently effective TPM threshold. Reflects scale-up immediately and scale-down at the next billing cycle, matching `effective_search_qpm_threshold` semantics.
+     */
+    effectiveTpmThreshold?: string | null;
+    /**
+     * Output only. The Gemini model version this status corresponds to. Matches CoreSubscription.AgentSearchTokenSubscription.model_version (a stable Gemini model version from the Gemini Enterprise Agent Platform model-versions registry; see https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/model-versions#gemini-models).
+     */
+    modelVersion?: string | null;
+    /**
+     * Output only. When this (project, model_version) Agent Search TPM subscription was first activated. Set once on first activation of this model version and never moved by subsequent threshold updates; on termination + re-activation a new value is recorded. Does NOT move the whole-relationship `start_time` on the enclosing ConfigurableBillingStatus, which continues to represent the first activation of the overall customer-configurable-pricing relationship.
+     */
+    startTime?: string | null;
+    /**
+     * Output only. If set, the scheduled effective time at which this (project, model_version) Agent Search TPM subscription will terminate. Populated when the customer removes this entry from `core_subscription.agent_search_token_subscriptions[*]`. Does NOT move the whole-relationship `terminate_time` on the enclosing ConfigurableBillingStatus, which is populated only when the entire customer-configurable-pricing relationship is being torn down.
+     */
+    terminateTime?: string | null;
+    /**
+     * Output only. The earliest next update time for the TPM subscription threshold for this (project, model_version). Populated only after a successful update.
+     */
+    tpmThresholdNextUpdateTime?: string | null;
+    /**
+     * Output only. The type of the most recent update to this (project, model_version) subscription, as performed by the most recent UpdateProject call. `UPDATE_TYPE_UNSPECIFIED` indicates this model_version was not touched by the most recent UpdateProject (its `effective_tpm_threshold` reflects an earlier update). The whole-relationship `update_type` on the enclosing ConfigurableBillingStatus continues to summarize the direction of the most recent update across all surfaces in the project (QPM, IndexingCore, and Agent Search TPM together).
      */
     updateType?: string | null;
   }
@@ -13331,6 +13866,10 @@ export namespace discoveryengine_v1beta {
      */
     assistToken?: string | null;
     /**
+     * Per-connector authentication errors encountered during the request. Present when one or more connectors failed authentication but the request proceeded with the remaining connectors.
+     */
+    connectorAuthErrors?: Schema$GoogleCloudDiscoveryengineV1betaStreamAssistResponseConnectorAuthError[];
+    /**
      * The tool names of the tools that were invoked.
      */
     invocationTools?: string[] | null;
@@ -13342,6 +13881,19 @@ export namespace discoveryengine_v1beta {
      * Session information. Only included in the final StreamAssistResponse of the response stream.
      */
     sessionInfo?: Schema$GoogleCloudDiscoveryengineV1betaStreamAssistResponseSessionInfo;
+  }
+  /**
+   * Describes an authentication error for a specific data connector.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaStreamAssistResponseConnectorAuthError {
+    /**
+     * Resource name of the data connector that failed authentication.
+     */
+    dataConnector?: string | null;
+    /**
+     * Human-readable error message describing the auth failure.
+     */
+    errorMessage?: string | null;
   }
   /**
    * Represents a skill used during the assist call.
@@ -13657,6 +14209,10 @@ export namespace discoveryengine_v1beta {
      */
     eventType?: string | null;
     /**
+     * Optional. This field is optional except for the `add-feedback` event types.
+     */
+    feedback?: Schema$GoogleCloudDiscoveryengineV1betaFeedback;
+    /**
      * Optional. The filter syntax consists of an expression language for constructing a predicate from one or more fields of the documents being filtered. One example is for `search` events, the associated SearchRequest may contain a filter expression in SearchRequest.filter conforming to https://google.aip.dev/160#filtering. Similarly, for `view-item-list` events that are generated from a RecommendRequest, this field may be populated directly from RecommendRequest.filter conforming to https://google.aip.dev/160#filtering. The value must be a UTF-8 encoded string with a length limit of 1,000 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.
      */
     filter?: string | null;
@@ -13727,11 +14283,11 @@ export namespace discoveryengine_v1beta {
     userId?: string | null;
   }
   /**
-   * Precise location info with multiple representation options. Currently only latitude and longitude point is supported.
+   * Precise location info with multiple representation options.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaUserInfoPreciseLocation {
     /**
-     * Optional. Location represented by a natural language address. Will later be geocoded and converted to either a point or a polygon.
+     * Location represented by a natural language address. Will later be geocoded and converted to either a point or a polygon.
      */
     address?: string | null;
     /**
@@ -14198,7 +14754,7 @@ export namespace discoveryengine_v1beta {
      */
     createTime?: string | null;
     /**
-     * Required. The identifier for the data source. This is a partial list of supported connectors. Please refer to the [documentation](https://docs.cloud.google.com/gemini/enterprise/docs/connectors/introduction-to-connectors-and-data-stores) for the full list of connectors. Supported first-party connectors include: * `gcs` * `bigquery` * `gcp_fhir` * `google_mail` * `google_drive` * `google_calendar` * `google_chat` Supported third-party connectors include: Generally available (GA) connectors: * `onedrive` * `outlook` * `confluence` * `jira` * `servicenow` * `sharepoint` Preview connectors: * `asana` * `azure_active_directory` * `box` * `canva` * `confluence_server` * `custom_connector` * `docusign` * `dropbox` * `dynamics365` * `github` * `gitlab` * `hubspot` * `jira_server` * `linear` * `native_cloud_identity` * `notion` * `okta` * `pagerduty` * `peoplesoft` * `salesforce` * `shopify` * `slack` * `snowflake` * `teams` * `trello` * `workday` * `zendesk`
+     * Required. The identifier for the data source. For the full, up-to-date list of supported connectors and their values, see [Connect a third-party data source](https://docs.cloud.google.com/gemini/enterprise/docs/connectors/connect-third-party-data-source#sources-by-launch-stage).
      */
     dataSource?: string | null;
     /**
@@ -14266,6 +14822,10 @@ export namespace discoveryengine_v1beta {
      */
     latestPauseTime?: string | null;
     /**
+     * Optional. User-facing metadata for the connector. Populated from the connector's generated metadata / registry `ConnectorSource`.
+     */
+    metadata?: Schema$GoogleCloudDiscoveryengineV1DataConnectorConnectorMetadata;
+    /**
      * Identifier. The full resource name of the Data Connector. Format: `projects/x/locations/x/collections/x/dataConnector`.
      */
     name?: string | null;
@@ -14273,6 +14833,10 @@ export namespace discoveryengine_v1beta {
      * Defines the scheduled time for the next data synchronization. This field requires hour , minute, and time_zone from the [IANA Time Zone Database](https://www.iana.org/time-zones). This is utilized when the data connector has a refresh interval greater than 1 day. When the hours or minutes are not specified, we will assume a sync time of 0:00. The user must provide a time zone to avoid ambiguity.
      */
     nextSyncTime?: Schema$GoogleTypeDateTime;
+    /**
+     * Output only. The static IP addresses used by this connector for OAuth APIs (e.g. end user authentication). These are surfaced separately from `static_ip_addresses` so that customers can apply granular firewall settings for OAuth endpoints. Only populated for connectors that have static IP enabled and are used for actions and/or federated search.
+     */
+    oauthStaticIpAddresses?: string[] | null;
     /**
      * Required data connector parameters in structured json format.
      */
@@ -14314,6 +14878,10 @@ export namespace discoveryengine_v1beta {
      */
     syncMode?: string | null;
     /**
+     * Optional. Immutable. User-facing, version-independent label for this connector. May be shared by multiple connectors under the same (project, location, collection, data_source); tag-based lookup returns the one with the greatest create_time. Optional at Create time. Agent Designer resolves connectors via (data_source, tag) when set, falling back to the legacy resource-name lookup when unset, so connectors created before the tag-write launch continue to work without a backfill.
+     */
+    tag?: string | null;
+    /**
      * Output only. Timestamp the DataConnector was last updated.
      */
     updateTime?: string | null;
@@ -14321,6 +14889,31 @@ export namespace discoveryengine_v1beta {
      * Output only. Whether the connector is created with VPC-SC enabled.
      */
     vpcscEnabled?: boolean | null;
+  }
+  /**
+   * User-facing metadata for the connector, shown on the connector detail page (title, description, short_description, author, note).
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1DataConnectorConnectorMetadata {
+    /**
+     * Optional. The party that authored the connector, e.g. "Google" or a third-party provider name. Lets end users see who authored a connector (future: third-party-authored connectors).
+     */
+    author?: string | null;
+    /**
+     * Optional. Human-readable description of the connector, shown on the connector detail page. One connector has a single description.
+     */
+    description?: string | null;
+    /**
+     * Optional. Free-form, multi-line note about the connector's capabilities or a custom note that can be set for the connector.
+     */
+    note?: string | null;
+    /**
+     * Optional. Short, subtitle-length description of the connector (e.g. shown beneath the connector name in list and detail views).
+     */
+    shortDescription?: string | null;
+    /**
+     * Optional. Display title of the connector.
+     */
+    title?: string | null;
   }
   /**
    * Any params and credentials used specifically for EUA connectors.
@@ -14976,6 +15569,10 @@ export namespace discoveryengine_v1beta {
      */
     appType?: string | null;
     /**
+     * Output only. The Agent registry containing the agents, MCP servers and tools associated with this engine. Derived server-side from the linked Agent Gateway's registry.
+     */
+    associatedAgentRegistry?: string | null;
+    /**
      * Configurations for the Chat Engine. Only applicable if solution_type is SOLUTION_TYPE_CHAT.
      */
     chatEngineConfig?: Schema$GoogleCloudDiscoveryengineV1EngineChatEngineConfig;
@@ -15016,7 +15613,7 @@ export namespace discoveryengine_v1beta {
      */
     displayName?: string | null;
     /**
-     * Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `disable-mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `disable-canvas-workspace` * `disable-skills` * `enable-end-user-sharing-with-groups`
+     * Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications`
      */
     features?: {[key: string]: string} | null;
     /**
@@ -15240,7 +15837,7 @@ export namespace discoveryengine_v1beta {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1EngineSearchEngineConfig {
     /**
-     * Optional. The required subscription tier of this engine. They cannot be modified after engine creation. If the required subscription tier is search, user with higher license tier like assist can still access the standalone app associated with this engine.
+     * Optional. The required subscription tier of this engine. If the required subscription tier is search, user with higher license tier like assist can still access the standalone app associated with this engine. Web grounding feature is only available on the app if it is set as SubscriptionTier.SUBSCRIPTION_TIER_SEARCH_AND_ASSISTANT.
      */
     requiredSubscriptionTier?: string | null;
     /**
@@ -15512,6 +16109,10 @@ export namespace discoveryengine_v1beta {
      */
     geminiBundle?: boolean | null;
     /**
+     * Optional. Timestamp of the most recent user-initiated update (seat count change or subscription term change). Unlike `update_time`, this field is only stamped when a customer explicitly updates the license (e.g. via the UI), and is not touched by system-driven writes (subscription pipeline, BALC propagation, etc.).
+     */
+    lastUserUpdateTime?: string | null;
+    /**
      * Required. Number of licenses purchased.
      */
     licenseCount?: string | null;
@@ -15594,6 +16195,10 @@ export namespace discoveryengine_v1beta {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1ProjectConfigurableBillingStatus {
     /**
+     * Output only. Per-model Agent Search TPM subscription status.
+     */
+    agentSearchTokenSubscriptionStatuses?: Schema$GoogleCloudDiscoveryengineV1ProjectConfigurableBillingStatusAgentSearchTokenSubscriptionStatus[];
+    /**
      * Optional. The currently effective Indexing Core threshold. This is the threshold against which Indexing Core usage is compared for overage calculations.
      */
     effectiveIndexingCoreThreshold?: string | null;
@@ -15619,6 +16224,35 @@ export namespace discoveryengine_v1beta {
     terminateTime?: string | null;
     /**
      * Output only. The type of update performed in this operation. This field is populated in the response of UpdateProject.
+     */
+    updateType?: string | null;
+  }
+  /**
+   * Per-model Agent Search TPM subscription status. One entry per active `core_subscription.agent_search_token_subscriptions[*]` entry in the customer-provided config; populated by UpdateProject and GetProject. The lifecycle scalars on this message (`start_time`, `terminate_time`, `update_type`, `tpm_threshold_next_update_time`) are per (project, model_version) — siblings of the whole-relationship `start_time` / `terminate_time` / `update_type` on the enclosing ConfigurableBillingStatus, but scoped to this specific Agent Search TPM subscription instead of to the overall customer-configurable- pricing relationship. This per-instance granularity is intentional: the underlying SubV3 storage is per-(project, model_version), so each model has its own activation, termination, and deferred-update clock; surfacing that on the response gives customers the granularity they need to manage per-model commitments independently. QPM / IndexingCore differ — their storage is one row per (project, location), so their lifecycle is represented only by the whole- relationship scalars on ConfigurableBillingStatus.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1ProjectConfigurableBillingStatusAgentSearchTokenSubscriptionStatus {
+    /**
+     * Output only. The currently effective TPM threshold. Reflects scale-up immediately and scale-down at the next billing cycle, matching `effective_search_qpm_threshold` semantics.
+     */
+    effectiveTpmThreshold?: string | null;
+    /**
+     * Output only. The Gemini model version this status corresponds to. Matches CoreSubscription.AgentSearchTokenSubscription.model_version (a stable Gemini model version from the Gemini Enterprise Agent Platform model-versions registry; see https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/model-versions#gemini-models).
+     */
+    modelVersion?: string | null;
+    /**
+     * Output only. When this (project, model_version) Agent Search TPM subscription was first activated. Set once on first activation of this model version and never moved by subsequent threshold updates; on termination + re-activation a new value is recorded. Does NOT move the whole-relationship `start_time` on the enclosing ConfigurableBillingStatus, which continues to represent the first activation of the overall customer-configurable-pricing relationship.
+     */
+    startTime?: string | null;
+    /**
+     * Output only. If set, the scheduled effective time at which this (project, model_version) Agent Search TPM subscription will terminate. Populated when the customer removes this entry from `core_subscription.agent_search_token_subscriptions[*]`. Does NOT move the whole-relationship `terminate_time` on the enclosing ConfigurableBillingStatus, which is populated only when the entire customer-configurable-pricing relationship is being torn down.
+     */
+    terminateTime?: string | null;
+    /**
+     * Output only. The earliest next update time for the TPM subscription threshold for this (project, model_version). Populated only after a successful update.
+     */
+    tpmThresholdNextUpdateTime?: string | null;
+    /**
+     * Output only. The type of the most recent update to this (project, model_version) subscription, as performed by the most recent UpdateProject call. `UPDATE_TYPE_UNSPECIFIED` indicates this model_version was not touched by the most recent UpdateProject (its `effective_tpm_threshold` reflects an earlier update). The whole-relationship `update_type` on the enclosing ConfigurableBillingStatus continues to summarize the direction of the most recent update across all surfaces in the project (QPM, IndexingCore, and Agent Search TPM together).
      */
     updateType?: string | null;
   }
@@ -15726,7 +16360,7 @@ export namespace discoveryengine_v1beta {
     updateTime?: string | null;
   }
   /**
-   * Response message for CompletionService.PurgeCompletionSuggestions method.
+   * Response message for CompletionService.PurgeCompletionSuggestions method. If the long running operation is successfully done, then this message is returned by the google.longrunning.Operations.response field.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1PurgeCompletionSuggestionsResponse {
     /**
@@ -17166,8 +17800,7 @@ export namespace discoveryengine_v1beta {
     provision(
       params: Params$Resource$Projects$Provision,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     provision(
@@ -17776,6 +18409,165 @@ export namespace discoveryengine_v1beta {
     }
 
     /**
+     * Provisions the project resource. During the process, related systems will get prepared and initialized. Caller must read the [Terms for data use](https://cloud.google.com/retail/data-use-terms), and optionally specify in request to provide consent to that service terms.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.serving.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await discoveryengine.projects.locations.provision({
+     *     // Required. Full resource name of a Project, such as `projects/{project_id_or_number\}`.
+     *     name: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "acceptDataUseTerms": false,
+     *       //   "dataUseTermsVersion": "my_dataUseTermsVersion",
+     *       //   "saasParams": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    provision(
+      params: Params$Resource$Projects$Locations$Provision,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    provision(
+      params?: Params$Resource$Projects$Locations$Provision,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
+    provision(
+      params: Params$Resource$Projects$Locations$Provision,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    provision(
+      params: Params$Resource$Projects$Locations$Provision,
+      options:
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    provision(
+      params: Params$Resource$Projects$Locations$Provision,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    provision(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    provision(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Provision
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Provision;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Provision;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+name}:provision').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
      * Removes the dedicated crawl rate for a craw_rate_scope. If the dedicated crawl rate was set, this will disable vertex AI's crawl bot from using the dedicated crawl rate for crawling. If the dedicated crawl rate was not set, this is a no-op.
      * @example
      * ```js
@@ -17863,8 +18655,7 @@ export namespace discoveryengine_v1beta {
     removeDedicatedCrawlRate(
       params: Params$Resource$Projects$Locations$Removededicatedcrawlrate,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     removeDedicatedCrawlRate(
@@ -18024,8 +18815,7 @@ export namespace discoveryengine_v1beta {
     setDedicatedCrawlRate(
       params: Params$Resource$Projects$Locations$Setdedicatedcrawlrate,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     setDedicatedCrawlRate(
@@ -18349,8 +19139,7 @@ export namespace discoveryengine_v1beta {
     updateCmekConfig(
       params: Params$Resource$Projects$Locations$Updatecmekconfig,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     updateCmekConfig(
@@ -18441,6 +19230,17 @@ export namespace discoveryengine_v1beta {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1betaObtainCrawlRateRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Provision extends StandardParameters {
+    /**
+     * Required. Full resource name of a Project, such as `projects/{project_id_or_number\}`.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDiscoveryengineV1betaProvisionProjectRequest;
   }
   export interface Params$Resource$Projects$Locations$Removededicatedcrawlrate extends StandardParameters {
     /**
@@ -18575,8 +19375,7 @@ export namespace discoveryengine_v1beta {
     delete(
       params: Params$Resource$Projects$Locations$Cmekconfigs$Delete,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -19047,8 +19846,7 @@ export namespace discoveryengine_v1beta {
     patch(
       params: Params$Resource$Projects$Locations$Cmekconfigs$Patch,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     patch(
@@ -19272,8 +20070,7 @@ export namespace discoveryengine_v1beta {
     get(
       params: Params$Resource$Projects$Locations$Collections$Dataconnector$Operations$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -19902,8 +20699,7 @@ export namespace discoveryengine_v1beta {
     create(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -20054,8 +20850,7 @@ export namespace discoveryengine_v1beta {
     delete(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Delete,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -20913,8 +21708,7 @@ export namespace discoveryengine_v1beta {
     trainCustomModel(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Traincustommodel,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     trainCustomModel(
@@ -21896,8 +22690,7 @@ export namespace discoveryengine_v1beta {
     import(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Branches$Documents$Import,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     import(
@@ -22410,8 +23203,7 @@ export namespace discoveryengine_v1beta {
     purge(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Branches$Documents$Purge,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     purge(
@@ -22804,8 +23596,7 @@ export namespace discoveryengine_v1beta {
     get(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Branches$Operations$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -23378,8 +24169,7 @@ export namespace discoveryengine_v1beta {
     import(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Completionsuggestions$Import,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     import(
@@ -23539,8 +24329,7 @@ export namespace discoveryengine_v1beta {
     purge(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Completionsuggestions$Purge,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     purge(
@@ -25877,8 +26666,7 @@ export namespace discoveryengine_v1beta {
     get(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Models$Operations$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -26230,8 +27018,7 @@ export namespace discoveryengine_v1beta {
     get(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Operations$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -26601,8 +27388,7 @@ export namespace discoveryengine_v1beta {
     create(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Schemas$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -26755,8 +27541,7 @@ export namespace discoveryengine_v1beta {
     delete(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Schemas$Delete,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -27235,8 +28020,7 @@ export namespace discoveryengine_v1beta {
     patch(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Schemas$Patch,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     patch(
@@ -27450,8 +28234,7 @@ export namespace discoveryengine_v1beta {
     get(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Schemas$Operations$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -30916,8 +31699,7 @@ export namespace discoveryengine_v1beta {
     batchVerifyTargetSites(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Batchverifytargetsites,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     batchVerifyTargetSites(
@@ -31077,8 +31859,7 @@ export namespace discoveryengine_v1beta {
     disableAdvancedSiteSearch(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Disableadvancedsitesearch,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     disableAdvancedSiteSearch(
@@ -31237,8 +32018,7 @@ export namespace discoveryengine_v1beta {
     enableAdvancedSiteSearch(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Enableadvancedsitesearch,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     enableAdvancedSiteSearch(
@@ -31563,8 +32343,7 @@ export namespace discoveryengine_v1beta {
     recrawlUris(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Recrawluris,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     recrawlUris(
@@ -31783,8 +32562,7 @@ export namespace discoveryengine_v1beta {
     get(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Operations$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -32147,8 +32925,7 @@ export namespace discoveryengine_v1beta {
     create(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Sitemaps$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -32301,8 +33078,7 @@ export namespace discoveryengine_v1beta {
     delete(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Sitemaps$Delete,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -32660,8 +33436,7 @@ export namespace discoveryengine_v1beta {
     batchCreate(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Targetsites$Batchcreate,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     batchCreate(
@@ -32831,8 +33606,7 @@ export namespace discoveryengine_v1beta {
     create(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Targetsites$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -32985,8 +33759,7 @@ export namespace discoveryengine_v1beta {
     delete(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Targetsites$Delete,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -33478,8 +34251,7 @@ export namespace discoveryengine_v1beta {
     patch(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Targetsites$Patch,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     patch(
@@ -33696,8 +34468,7 @@ export namespace discoveryengine_v1beta {
     get(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Targetsites$Operations$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -34060,8 +34831,7 @@ export namespace discoveryengine_v1beta {
     import(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Suggestiondenylistentries$Import,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     import(
@@ -34221,8 +34991,7 @@ export namespace discoveryengine_v1beta {
     purge(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Suggestiondenylistentries$Purge,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     purge(
@@ -34573,8 +35342,7 @@ export namespace discoveryengine_v1beta {
     import(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Userevents$Import,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     import(
@@ -34738,8 +35506,7 @@ export namespace discoveryengine_v1beta {
     purge(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Userevents$Purge,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     purge(
@@ -34870,6 +35637,7 @@ export namespace discoveryengine_v1beta {
      *           //   "entity": "my_entity",
      *           //   "eventTime": "my_eventTime",
      *           //   "eventType": "my_eventType",
+     *           //   "feedback": {},
      *           //   "filter": "my_filter",
      *           //   "mediaInfo": {},
      *           //   "pageInfo": {},
@@ -34901,6 +35669,7 @@ export namespace discoveryengine_v1beta {
      *   //   "entity": "my_entity",
      *   //   "eventTime": "my_eventTime",
      *   //   "eventType": "my_eventType",
+     *   //   "feedback": {},
      *   //   "filter": "my_filter",
      *   //   "mediaInfo": {},
      *   //   "pageInfo": {},
@@ -35169,6 +35938,7 @@ export namespace discoveryengine_v1beta {
      *         // {
      *         //   "agentGatewaySetting": {},
      *         //   "appType": "my_appType",
+     *         //   "associatedAgentRegistry": "my_associatedAgentRegistry",
      *         //   "chatEngineConfig": {},
      *         //   "chatEngineMetadata": {},
      *         //   "cmekConfig": {},
@@ -35234,8 +36004,7 @@ export namespace discoveryengine_v1beta {
     create(
       params: Params$Resource$Projects$Locations$Collections$Engines$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -35386,8 +36155,7 @@ export namespace discoveryengine_v1beta {
     delete(
       params: Params$Resource$Projects$Locations$Collections$Engines$Delete,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -35500,6 +36268,7 @@ export namespace discoveryengine_v1beta {
      *   // {
      *   //   "agentGatewaySetting": {},
      *   //   "appType": "my_appType",
+     *   //   "associatedAgentRegistry": "my_associatedAgentRegistry",
      *   //   "chatEngineConfig": {},
      *   //   "chatEngineMetadata": {},
      *   //   "cmekConfig": {},
@@ -35990,6 +36759,7 @@ export namespace discoveryengine_v1beta {
      *         // {
      *         //   "agentGatewaySetting": {},
      *         //   "appType": "my_appType",
+     *         //   "associatedAgentRegistry": "my_associatedAgentRegistry",
      *         //   "chatEngineConfig": {},
      *         //   "chatEngineMetadata": {},
      *         //   "cmekConfig": {},
@@ -36021,6 +36791,7 @@ export namespace discoveryengine_v1beta {
      *   // {
      *   //   "agentGatewaySetting": {},
      *   //   "appType": "my_appType",
+     *   //   "associatedAgentRegistry": "my_associatedAgentRegistry",
      *   //   "chatEngineConfig": {},
      *   //   "chatEngineMetadata": {},
      *   //   "cmekConfig": {},
@@ -36201,6 +36972,7 @@ export namespace discoveryengine_v1beta {
      *   // {
      *   //   "agentGatewaySetting": {},
      *   //   "appType": "my_appType",
+     *   //   "associatedAgentRegistry": "my_associatedAgentRegistry",
      *   //   "chatEngineConfig": {},
      *   //   "chatEngineMetadata": {},
      *   //   "cmekConfig": {},
@@ -36384,6 +37156,7 @@ export namespace discoveryengine_v1beta {
      *   // {
      *   //   "agentGatewaySetting": {},
      *   //   "appType": "my_appType",
+     *   //   "associatedAgentRegistry": "my_associatedAgentRegistry",
      *   //   "chatEngineConfig": {},
      *   //   "chatEngineMetadata": {},
      *   //   "cmekConfig": {},
@@ -36759,8 +37532,7 @@ export namespace discoveryengine_v1beta {
     tune(
       params: Params$Resource$Projects$Locations$Collections$Engines$Tune,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     tune(
@@ -37855,6 +38627,7 @@ export namespace discoveryengine_v1beta {
      *   // {
      *   //   "answer": {},
      *   //   "assistToken": "my_assistToken",
+     *   //   "connectorAuthErrors": [],
      *   //   "invocationTools": [],
      *   //   "invokedSkills": [],
      *   //   "sessionInfo": {}
@@ -38136,8 +38909,7 @@ export namespace discoveryengine_v1beta {
     get(
       params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Operations$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -40644,8 +41416,7 @@ export namespace discoveryengine_v1beta {
     get(
       params: Params$Resource$Projects$Locations$Collections$Engines$Operations$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -44082,8 +44853,7 @@ export namespace discoveryengine_v1beta {
     get(
       params: Params$Resource$Projects$Locations$Collections$Operations$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -44691,8 +45461,7 @@ export namespace discoveryengine_v1beta {
     create(
       params: Params$Resource$Projects$Locations$Datastores$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -44841,8 +45610,7 @@ export namespace discoveryengine_v1beta {
     delete(
       params: Params$Resource$Projects$Locations$Datastores$Delete,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -46494,8 +47262,7 @@ export namespace discoveryengine_v1beta {
     import(
       params: Params$Resource$Projects$Locations$Datastores$Branches$Documents$Import,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     import(
@@ -47008,8 +47775,7 @@ export namespace discoveryengine_v1beta {
     purge(
       params: Params$Resource$Projects$Locations$Datastores$Branches$Documents$Purge,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     purge(
@@ -47402,8 +48168,7 @@ export namespace discoveryengine_v1beta {
     get(
       params: Params$Resource$Projects$Locations$Datastores$Branches$Operations$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -47976,8 +48741,7 @@ export namespace discoveryengine_v1beta {
     import(
       params: Params$Resource$Projects$Locations$Datastores$Completionsuggestions$Import,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     import(
@@ -48137,8 +48901,7 @@ export namespace discoveryengine_v1beta {
     purge(
       params: Params$Resource$Projects$Locations$Datastores$Completionsuggestions$Purge,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     purge(
@@ -50280,8 +51043,7 @@ export namespace discoveryengine_v1beta {
     get(
       params: Params$Resource$Projects$Locations$Datastores$Models$Operations$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -50629,8 +51391,7 @@ export namespace discoveryengine_v1beta {
     get(
       params: Params$Resource$Projects$Locations$Datastores$Operations$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -50991,8 +51752,7 @@ export namespace discoveryengine_v1beta {
     create(
       params: Params$Resource$Projects$Locations$Datastores$Schemas$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -51143,8 +51903,7 @@ export namespace discoveryengine_v1beta {
     delete(
       params: Params$Resource$Projects$Locations$Datastores$Schemas$Delete,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -51615,8 +52374,7 @@ export namespace discoveryengine_v1beta {
     patch(
       params: Params$Resource$Projects$Locations$Datastores$Schemas$Patch,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     patch(
@@ -54912,8 +55670,7 @@ export namespace discoveryengine_v1beta {
     disableAdvancedSiteSearch(
       params: Params$Resource$Projects$Locations$Datastores$Sitesearchengine$Disableadvancedsitesearch,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     disableAdvancedSiteSearch(
@@ -55072,8 +55829,7 @@ export namespace discoveryengine_v1beta {
     enableAdvancedSiteSearch(
       params: Params$Resource$Projects$Locations$Datastores$Sitesearchengine$Enableadvancedsitesearch,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     enableAdvancedSiteSearch(
@@ -55235,8 +55991,7 @@ export namespace discoveryengine_v1beta {
     recrawlUris(
       params: Params$Resource$Projects$Locations$Datastores$Sitesearchengine$Recrawluris,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     recrawlUris(
@@ -55441,8 +56196,7 @@ export namespace discoveryengine_v1beta {
     create(
       params: Params$Resource$Projects$Locations$Datastores$Sitesearchengine$Sitemaps$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -55595,8 +56349,7 @@ export namespace discoveryengine_v1beta {
     delete(
       params: Params$Resource$Projects$Locations$Datastores$Sitesearchengine$Sitemaps$Delete,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -55949,8 +56702,7 @@ export namespace discoveryengine_v1beta {
     batchCreate(
       params: Params$Resource$Projects$Locations$Datastores$Sitesearchengine$Targetsites$Batchcreate,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     batchCreate(
@@ -56120,8 +56872,7 @@ export namespace discoveryengine_v1beta {
     create(
       params: Params$Resource$Projects$Locations$Datastores$Sitesearchengine$Targetsites$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -56274,8 +57025,7 @@ export namespace discoveryengine_v1beta {
     delete(
       params: Params$Resource$Projects$Locations$Datastores$Sitesearchengine$Targetsites$Delete,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -56767,8 +57517,7 @@ export namespace discoveryengine_v1beta {
     patch(
       params: Params$Resource$Projects$Locations$Datastores$Sitesearchengine$Targetsites$Patch,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     patch(
@@ -56996,8 +57745,7 @@ export namespace discoveryengine_v1beta {
     import(
       params: Params$Resource$Projects$Locations$Datastores$Suggestiondenylistentries$Import,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     import(
@@ -57156,8 +57904,7 @@ export namespace discoveryengine_v1beta {
     purge(
       params: Params$Resource$Projects$Locations$Datastores$Suggestiondenylistentries$Purge,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     purge(
@@ -57504,8 +58251,7 @@ export namespace discoveryengine_v1beta {
     import(
       params: Params$Resource$Projects$Locations$Datastores$Userevents$Import,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     import(
@@ -57667,8 +58413,7 @@ export namespace discoveryengine_v1beta {
     purge(
       params: Params$Resource$Projects$Locations$Datastores$Userevents$Purge,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     purge(
@@ -57798,6 +58543,7 @@ export namespace discoveryengine_v1beta {
      *         //   "entity": "my_entity",
      *         //   "eventTime": "my_eventTime",
      *         //   "eventType": "my_eventType",
+     *         //   "feedback": {},
      *         //   "filter": "my_filter",
      *         //   "mediaInfo": {},
      *         //   "pageInfo": {},
@@ -57828,6 +58574,7 @@ export namespace discoveryengine_v1beta {
      *   //   "entity": "my_entity",
      *   //   "eventTime": "my_eventTime",
      *   //   "eventType": "my_eventType",
+     *   //   "feedback": {},
      *   //   "filter": "my_filter",
      *   //   "mediaInfo": {},
      *   //   "pageInfo": {},
@@ -58111,8 +58858,7 @@ export namespace discoveryengine_v1beta {
     create(
       params: Params$Resource$Projects$Locations$Evaluations$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -58787,8 +59533,7 @@ export namespace discoveryengine_v1beta {
     get(
       params: Params$Resource$Projects$Locations$Evaluations$Operations$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -59314,8 +60059,7 @@ export namespace discoveryengine_v1beta {
     delete(
       params: Params$Resource$Projects$Locations$Identitymappingstores$Delete,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -59627,8 +60371,7 @@ export namespace discoveryengine_v1beta {
     importIdentityMappings(
       params: Params$Resource$Projects$Locations$Identitymappingstores$Importidentitymappings,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     importIdentityMappings(
@@ -60111,8 +60854,7 @@ export namespace discoveryengine_v1beta {
     purgeIdentityMappings(
       params: Params$Resource$Projects$Locations$Identitymappingstores$Purgeidentitymappings,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     purgeIdentityMappings(
@@ -60357,8 +61099,7 @@ export namespace discoveryengine_v1beta {
     get(
       params: Params$Resource$Projects$Locations$Identitymappingstores$Operations$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -60679,6 +61420,7 @@ export namespace discoveryengine_v1beta {
      *       //   "endDate": {},
      *       //   "freeTrial": false,
      *       //   "geminiBundle": false,
+     *       //   "lastUserUpdateTime": "my_lastUserUpdateTime",
      *       //   "licenseCount": "my_licenseCount",
      *       //   "name": "my_name",
      *       //   "startDate": {},
@@ -60698,6 +61440,7 @@ export namespace discoveryengine_v1beta {
      *   //   "endDate": {},
      *   //   "freeTrial": false,
      *   //   "geminiBundle": false,
+     *   //   "lastUserUpdateTime": "my_lastUserUpdateTime",
      *   //   "licenseCount": "my_licenseCount",
      *   //   "name": "my_name",
      *   //   "startDate": {},
@@ -60861,6 +61604,7 @@ export namespace discoveryengine_v1beta {
      *   //   "endDate": {},
      *   //   "freeTrial": false,
      *   //   "geminiBundle": false,
+     *   //   "lastUserUpdateTime": "my_lastUserUpdateTime",
      *   //   "licenseCount": "my_licenseCount",
      *   //   "name": "my_name",
      *   //   "startDate": {},
@@ -61182,6 +61926,7 @@ export namespace discoveryengine_v1beta {
      *       //   "endDate": {},
      *       //   "freeTrial": false,
      *       //   "geminiBundle": false,
+     *       //   "lastUserUpdateTime": "my_lastUserUpdateTime",
      *       //   "licenseCount": "my_licenseCount",
      *       //   "name": "my_name",
      *       //   "startDate": {},
@@ -61201,6 +61946,7 @@ export namespace discoveryengine_v1beta {
      *   //   "endDate": {},
      *   //   "freeTrial": false,
      *   //   "geminiBundle": false,
+     *   //   "lastUserUpdateTime": "my_lastUserUpdateTime",
      *   //   "licenseCount": "my_licenseCount",
      *   //   "name": "my_name",
      *   //   "startDate": {},
@@ -61453,8 +62199,7 @@ export namespace discoveryengine_v1beta {
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -61809,8 +62554,7 @@ export namespace discoveryengine_v1beta {
     get(
       params: Params$Resource$Projects$Locations$Podcasts$Operations$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -63012,8 +63756,7 @@ export namespace discoveryengine_v1beta {
     get(
       params: Params$Resource$Projects$Locations$Samplequerysets$Operations$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -63654,8 +64397,7 @@ export namespace discoveryengine_v1beta {
     import(
       params: Params$Resource$Projects$Locations$Samplequerysets$Samplequeries$Import,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     import(
@@ -64372,8 +65114,7 @@ export namespace discoveryengine_v1beta {
     import(
       params: Params$Resource$Projects$Locations$Userevents$Import,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     import(
@@ -64500,6 +65241,7 @@ export namespace discoveryengine_v1beta {
      *       //   "entity": "my_entity",
      *       //   "eventTime": "my_eventTime",
      *       //   "eventType": "my_eventType",
+     *       //   "feedback": {},
      *       //   "filter": "my_filter",
      *       //   "mediaInfo": {},
      *       //   "pageInfo": {},
@@ -64530,6 +65272,7 @@ export namespace discoveryengine_v1beta {
      *   //   "entity": "my_entity",
      *   //   "eventTime": "my_eventTime",
      *   //   "eventType": "my_eventType",
+     *   //   "feedback": {},
      *   //   "filter": "my_filter",
      *   //   "mediaInfo": {},
      *   //   "pageInfo": {},
@@ -64802,8 +65545,7 @@ export namespace discoveryengine_v1beta {
     batchUpdateUserLicenses(
       params: Params$Resource$Projects$Locations$Userstores$Batchupdateuserlicenses,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     batchUpdateUserLicenses(
@@ -65444,7 +66186,7 @@ export namespace discoveryengine_v1beta {
      *       filter: 'placeholder-value',
      *       // Optional. The order in which the UserLicenses are listed. The value must be a comma-separated list of fields. Default sorting order is ascending. To specify descending order for a field, append a " desc" suffix. Redundant space characters in the syntax are insignificant. Supported fields (only `user_principal` is supported for now): * `user_principal` If not set, the default ordering is by `user_principal`. Examples: * `user_principal` to order by `user_principal` in ascending order. * `user_principal desc` to order by `user_principal` in descending order.
      *       orderBy: 'placeholder-value',
-     *       // Optional. Requested page size. Server may return fewer items than requested. If unspecified, defaults to 10. The maximum value is 50; values above 50 will be coerced to 50. If this field is negative, an INVALID_ARGUMENT error is returned.
+     *       // Optional. Requested page size. Server may return fewer items than requested. If unspecified, defaults to 100. The maximum value is 1000; values above 1000 will be coerced to 1000. If this field is negative, an INVALID_ARGUMENT error is returned.
      *       pageSize: 'placeholder-value',
      *       // Optional. A page token, received from a previous `ListUserLicenses` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListUserLicenses` must match the call that provided the page token.
      *       pageToken: 'placeholder-value',
@@ -65579,7 +66321,7 @@ export namespace discoveryengine_v1beta {
      */
     orderBy?: string;
     /**
-     * Optional. Requested page size. Server may return fewer items than requested. If unspecified, defaults to 10. The maximum value is 50; values above 50 will be coerced to 50. If this field is negative, an INVALID_ARGUMENT error is returned.
+     * Optional. Requested page size. Server may return fewer items than requested. If unspecified, defaults to 100. The maximum value is 1000; values above 1000 will be coerced to 1000. If this field is negative, an INVALID_ARGUMENT error is returned.
      */
     pageSize?: number;
     /**
@@ -65676,8 +66418,7 @@ export namespace discoveryengine_v1beta {
     get(
       params: Params$Resource$Projects$Operations$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(

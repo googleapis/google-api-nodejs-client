@@ -1,5 +1,23 @@
 # Changelog
 
+## [33.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/run-v33.0.0...run-v33.1.0) (2026-08-14)
+
+
+### Features
+
+* **run:** update the API ([e698aea](https://github.com/googleapis/google-api-nodejs-client/commit/e698aea96facf8e6d04987121f58bfcffe9a323a))
+
+## [33.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/run-v32.0.0...run-v33.0.0) (2026-08-03)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3955](https://github.com/googleapis/google-api-nodejs-client/issues/3955)) ([c429a9b](https://github.com/googleapis/google-api-nodejs-client/commit/c429a9b6f8272f1a651084f83ffcf4b88124c59f))
+
 ## [32.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/run-v31.3.0...run-v32.0.0) (2026-05-28)
 
 

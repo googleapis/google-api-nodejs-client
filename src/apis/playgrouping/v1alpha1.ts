@@ -446,8 +446,7 @@ export namespace playgrouping_v1alpha1 {
     createOrUpdate(
       params: Params$Resource$Apps$Tokens$Tags$Createorupdate,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$CreateOrUpdateTagsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$CreateOrUpdateTagsResponse>,
       callback: BodyResponseCallback<Schema$CreateOrUpdateTagsResponse>
     ): void;
     createOrUpdate(

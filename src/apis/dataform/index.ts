@@ -31,10 +31,7 @@ export function dataform(
 export function dataform<T = dataform_v1.Dataform | dataform_v1beta1.Dataform>(
   this: GoogleConfigurable,
   versionOrOptions:
-    | 'v1'
-    | dataform_v1.Options
-    | 'v1beta1'
-    | dataform_v1beta1.Options
+    'v1' | dataform_v1.Options | 'v1beta1' | dataform_v1beta1.Options
 ) {
   return getAPI<T>('dataform', versionOrOptions, VERSIONS, this);
 }

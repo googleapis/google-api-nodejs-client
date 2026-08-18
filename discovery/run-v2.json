@@ -79,6 +79,11 @@
     },
     {
       "description": "Locational Endpoint",
+      "endpointUrl": "https://asia-southeast4-run.googleapis.com/",
+      "location": "asia-southeast4"
+    },
+    {
+      "description": "Locational Endpoint",
       "endpointUrl": "https://australia-southeast1-run.googleapis.com/",
       "location": "australia-southeast1"
     },
@@ -311,6 +316,11 @@
       "description": "Regional Endpoint",
       "endpointUrl": "https://run.asia-southeast3.rep.googleapis.com/",
       "location": "asia-southeast3"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://run.asia-southeast4.rep.googleapis.com/",
+      "location": "asia-southeast4"
     },
     {
       "description": "Regional Endpoint",
@@ -746,6 +756,7 @@
                       "type": "string"
                     },
                     "parent": {
+                      "description": "Required. The location and project in which this Instance should be created.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -770,7 +781,7 @@
                   ]
                 },
                 "delete": {
-                  "description": "Deletes a Instance",
+                  "description": "Deletes an Instance",
                   "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}",
                   "httpMethod": "DELETE",
                   "id": "run.projects.locations.instances.delete",
@@ -784,6 +795,7 @@
                       "type": "string"
                     },
                     "name": {
+                      "description": "Required. The name of the Instance to delete.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/instances/[^/]+$",
                       "required": true,
@@ -805,7 +817,7 @@
                   ]
                 },
                 "get": {
-                  "description": "Gets a Instance",
+                  "description": "Gets an Instance",
                   "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}",
                   "httpMethod": "GET",
                   "id": "run.projects.locations.instances.get",
@@ -814,6 +826,7 @@
                   ],
                   "parameters": {
                     "name": {
+                      "description": "Required. The name of the Instance to retrieve.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/instances/[^/]+$",
                       "required": true,
@@ -884,7 +897,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The location and project to list resources on. Format: projects/{project}/locations/{location}, where {project} can be project id or number.",
+                      "description": "Required. The location and project to list resources on.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -916,12 +929,12 @@
                   ],
                   "parameters": {
                     "allowMissing": {
-                      "description": "Optional. If set to true, and if the Instance does not exist, it will create a new one. The caller must have 'run.instances.create' permissions if this is set to true and the Instance does not exist.",
+                      "description": "Optional. If set to `true`, and if the Instance does not exist, it will create a new one. The caller must have `run.instances.create` permissions if this is set to `true` and the Instance does not exist.",
                       "location": "query",
                       "type": "boolean"
                     },
                     "name": {
-                      "description": "The fully qualified name of this Instance. In CreateInstanceRequest, this field is ignored, and instead composed from CreateInstanceRequest.parent and CreateInstanceRequest.instance_id. Format: projects/{project}/locations/{location}/instances/{instance_id}",
+                      "description": "The fully qualified name of this Instance. In `CreateInstanceRequest`, this field is ignored, and instead composed from `CreateInstanceRequest.parent` and `CreateInstanceRequest.instance_id`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/instances/[^/]+$",
                       "required": true,
@@ -990,7 +1003,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The name of the Instance to stop. Format: `projects/{project}/locations/{location}/instances/{instance}`, where `{project}` can be project id or number.",
+                      "description": "Required. The name of the Instance to start.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/instances/[^/]+$",
                       "required": true,
@@ -1019,7 +1032,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The name of the Instance to stop. Format: `projects/{project}/locations/{location}/instances/{instance}`, where `{project}` can be project id or number.",
+                      "description": "Required. The name of the Instance to stop.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/instances/[^/]+$",
                       "required": true,
@@ -2202,6 +2215,56 @@
                 }
               }
             },
+            "sourceUploads": {
+              "methods": {
+                "upload": {
+                  "description": "Uploads a source archive to a Google Cloud Storage bucket through Cloud Run. The uploaded source object should be used for Cloud Run resource deployments. User is responsible for managing the lifecycle of the uploaded object. If uploading through the Cloud Run API to Cloud Storage is not desired, you can use the IAM Deny Policy to deny the `run.locations.uploadSource` permission for all principals.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}:uploadSource",
+                  "httpMethod": "POST",
+                  "id": "run.projects.locations.sourceUploads.upload",
+                  "mediaUpload": {
+                    "accept": [
+                      "*/*"
+                    ],
+                    "maxSize": "262144000",
+                    "protocols": {
+                      "resumable": {
+                        "multipart": true,
+                        "path": "/resumable/upload/v2/{+parent}:uploadSource"
+                      },
+                      "simple": {
+                        "multipart": true,
+                        "path": "/upload/v2/{+parent}:uploadSource"
+                      }
+                    }
+                  },
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The project and location in which the source archive should be uploaded to, specified in the format `projects/*/locations/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+parent}:uploadSource",
+                  "request": {
+                    "$ref": "GoogleCloudRunV2UploadSourceRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudRunV2UploadSourceResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/run"
+                  ],
+                  "supportsMediaUpload": true
+                }
+              }
+            },
             "workerPools": {
               "methods": {
                 "create": {
@@ -2610,7 +2673,7 @@
       }
     }
   },
-  "revision": "20260522",
+  "revision": "20260807",
   "rootUrl": "https://run.googleapis.com/",
   "schemas": {
     "GoogleCloudRunV2BinaryAuthorization": {
@@ -2811,6 +2874,25 @@
           "readOnly": true,
           "type": "string"
         },
+        "instanceReason": {
+          "description": "Output only. A reason for the instance condition.",
+          "enum": [
+            "INSTANCE_REASON_UNSPECIFIED",
+            "INSTANCE_DELETED",
+            "INSTANCE_STOPPED",
+            "INSTANCE_STOPPING",
+            "INSTANCE_NON_ZERO_EXIT_CODE"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "Instance deleted.",
+            "Instance stopped.",
+            "Instance stopping.",
+            "Instance exited with a non-zero exit code."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
         "lastTransitionTime": {
           "description": "Last time the condition transitioned from one status to another.",
           "format": "google-datetime",
@@ -3004,6 +3086,10 @@
         "resources": {
           "$ref": "GoogleCloudRunV2ResourceRequirements",
           "description": "Compute Resource requirements by this container."
+        },
+        "sandboxLauncher": {
+          "description": "Optional. Indicates that this container can act as a sandbox supervisor and launch sandboxes.",
+          "type": "boolean"
         },
         "sourceCode": {
           "$ref": "GoogleCloudRunV2SourceCode",
@@ -3705,7 +3791,7 @@
           "type": "string"
         },
         "encryptionKeyShutdownDuration": {
-          "description": "If encryption_key_revocation_action is SHUTDOWN, the duration before shutting down all instances. The minimum increment is 1 hour.",
+          "description": "If `encryption_key_revocation_action` is `SHUTDOWN`, the duration before shutting down all instances. The minimum increment is 1 hour.",
           "format": "google-duration",
           "type": "string"
         },
@@ -3720,7 +3806,7 @@
           "type": "string"
         },
         "generation": {
-          "description": "Output only. A number that monotonically increases every time the user modifies the desired state. Please note that unlike v1, this is an int64 value. As with most Google APIs, its JSON representation will be a `string` instead of an `integer`.",
+          "description": "Output only. A number that monotonically increases every time the user modifies the desired state. Please note that unlike v1, this is an `int64` value. As with most Google APIs, its JSON representation will be a `string` instead of an `integer`.",
           "format": "int64",
           "readOnly": true,
           "type": "string"
@@ -3734,7 +3820,7 @@
           "type": "boolean"
         },
         "ingress": {
-          "description": "Optional. Provides the ingress settings for this Instance. On output, returns the currently observed ingress settings, or INGRESS_TRAFFIC_UNSPECIFIED if no revision is active.",
+          "description": "Optional. Provides the ingress settings for this Instance. On output, returns the currently observed ingress settings, or `INGRESS_TRAFFIC_UNSPECIFIED` if no revision is active.",
           "enum": [
             "INGRESS_TRAFFIC_UNSPECIFIED",
             "INGRESS_TRAFFIC_ALL",
@@ -3752,7 +3838,7 @@
           "type": "string"
         },
         "invokerIamDisabled": {
-          "description": "Optional. Disables IAM permission check for run.routes.invoke for callers of this Instance. For more information, visit https://cloud.google.com/run/docs/securing/managing-access#invoker_check.",
+          "description": "Optional. Disables IAM permission check for `run.routes.invoke` for callers of this Instance. For more information, visit https://cloud.google.com/run/docs/securing/managing-access#invoker_check.",
           "type": "boolean"
         },
         "labels": {
@@ -3767,7 +3853,7 @@
           "type": "string"
         },
         "launchStage": {
-          "description": "The launch stage as defined by [Google Cloud Platform Launch Stages](https://cloud.google.com/terms/launch-stages). Cloud Run supports `ALPHA`, `BETA`, and `GA`. If no value is specified, GA is assumed. Set the launch stage to a preview stage on input to allow use of preview features in that stage. On read (or output), describes whether the resource uses preview features. For example, if ALPHA is provided as input, but only BETA and GA-level features are used, this field will be BETA on output.",
+          "description": "The launch stage as defined by [Google Cloud Platform Launch Stages](https://cloud.google.com/terms/launch-stages). Cloud Run supports `ALPHA`, `BETA`, and `GA`. If no value is specified, `GA` is assumed. Set the launch stage to a preview stage on input to allow use of preview features in that stage. On read (or output), describes whether the resource uses preview features. For example, if `ALPHA` is provided as input, but only `BETA` and `GA`-level features are used, this field will be `BETA` on output.",
           "enum": [
             "LAUNCH_STAGE_UNSPECIFIED",
             "UNIMPLEMENTED",
@@ -3796,7 +3882,7 @@
           "type": "string"
         },
         "name": {
-          "description": "The fully qualified name of this Instance. In CreateInstanceRequest, this field is ignored, and instead composed from CreateInstanceRequest.parent and CreateInstanceRequest.instance_id. Format: projects/{project}/locations/{location}/instances/{instance_id}",
+          "description": "The fully qualified name of this Instance. In `CreateInstanceRequest`, this field is ignored, and instead composed from `CreateInstanceRequest.parent` and `CreateInstanceRequest.instance_id`.",
           "type": "string"
         },
         "nodeSelector": {
@@ -3804,15 +3890,31 @@
           "description": "Optional. The node selector for the instance."
         },
         "observedGeneration": {
-          "description": "Output only. The generation of this Instance currently serving traffic. See comments in `reconciling` for additional information on reconciliation process in Cloud Run. Please note that unlike v1, this is an int64 value. As with most Google APIs, its JSON representation will be a `string` instead of an `integer`.",
+          "description": "Output only. The generation of this Instance currently serving traffic. See comments in `reconciling` for additional information on reconciliation process in Cloud Run. Please note that unlike v1, this is an `int64` value. As with most Google APIs, its JSON representation will be a `string` instead of an `integer`.",
           "format": "int64",
           "readOnly": true,
           "type": "string"
         },
         "reconciling": {
-          "description": "Output only. Returns true if the Instance is currently being acted upon by the system to bring it into the desired state. When a new Instance is created, or an existing one is updated, Cloud Run will asynchronously perform all necessary steps to bring the Instance to the desired serving state. This process is called reconciliation. While reconciliation is in process, `observed_generation` will have a transient value that might mismatch the intended state. Once reconciliation is over (and this field is false), there are two possible outcomes: reconciliation succeeded and the serving state matches the Instance, or there was an error, and reconciliation failed. This state can be found in `terminal_condition.state`.",
+          "description": "Output only. Returns `true` if the Instance is currently being acted upon by the system to bring it into the desired state. When a new Instance is created, or an existing one is updated, Cloud Run will asynchronously perform all necessary steps to bring the Instance to the desired serving state. This process is called reconciliation. While reconciliation is in process, `observed_generation` will have a transient value that might mismatch the intended state. Once reconciliation is over (and this field is `false`), there are two possible outcomes: reconciliation succeeded and the serving state matches the Instance, or there was an error, and reconciliation failed. This state can be found in `terminal_condition.state`.",
           "readOnly": true,
           "type": "boolean"
+        },
+        "restartPolicy": {
+          "description": "Optional. Restart policy for the Instance.",
+          "enum": [
+            "RESTART_POLICY_UNSPECIFIED",
+            "ALWAYS",
+            "ON_FAILURE",
+            "NEVER"
+          ],
+          "enumDescriptions": [
+            "Unspecified restart policy.",
+            "Always restart the instance.",
+            "Restart if the instance terminates with non-zero exit code.",
+            "Never restart the instance."
+          ],
+          "type": "string"
         },
         "satisfiesPzs": {
           "description": "Output only. Reserved for future use.",
@@ -4628,7 +4730,7 @@
           "type": "number"
         },
         "cpuUtilization": {
-          "description": "Optional. Determines a threshold for CPU utilization before scaling begins. Accepted values are between `0.1` and `0.95` (inclusive) or `0.0` to disable CPU utilization as threshold for scaling. CPU and concurrency scaling cannot both be disabled.",
+          "description": "Optional. Determines a threshold for CPU utilization before scaling begins. Accepted values are between `0.1` and `0.90` (inclusive) or `0.0` to disable CPU utilization as threshold for scaling. CPU and concurrency scaling cannot both be disabled.",
           "format": "float",
           "type": "number"
         },
@@ -5022,6 +5124,10 @@
         "scaling": {
           "$ref": "GoogleCloudRunV2ServiceScaling",
           "description": "Optional. Specifies service-level scaling settings"
+        },
+        "sshEnabled": {
+          "description": "Optional. Enables SSH access to the Service.",
+          "type": "boolean"
         },
         "template": {
           "$ref": "GoogleCloudRunV2RevisionTemplate",
@@ -5668,6 +5774,28 @@
         "uri": {
           "description": "Displays the target URI.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRunV2UploadSourceRequest": {
+      "description": "The request message for the UploadSource method.",
+      "id": "GoogleCloudRunV2UploadSourceRequest",
+      "properties": {
+        "service": {
+          "description": "The name of Cloud Run Service upload source archive will be used for.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRunV2UploadSourceResponse": {
+      "description": "The response message for the UploadSource method.",
+      "id": "GoogleCloudRunV2UploadSourceResponse",
+      "properties": {
+        "cloudStorageSource": {
+          "$ref": "GoogleCloudRunV2CloudStorageSource",
+          "description": "The Cloud Storage object path the source archive is uploaded to."
         }
       },
       "type": "object"
@@ -6538,12 +6666,14 @@
             "N1_HIGHCPU_32",
             "E2_HIGHCPU_8",
             "E2_HIGHCPU_32",
-            "E2_MEDIUM"
+            "E2_MEDIUM",
+            "E2_STANDARD_2"
           ],
           "enumDeprecated": [
             false,
             true,
             true,
+            false,
             false,
             false,
             false
@@ -6554,7 +6684,8 @@
             "Highcpu machine with 32 CPUs.",
             "Highcpu e2 machine with 8 CPUs.",
             "Highcpu e2 machine with 32 CPUs.",
-            "E2 machine with 1 CPU."
+            "E2 machine with 1 CPU.",
+            "E2 machine with 2 CPUs."
           ],
           "type": "string"
         },

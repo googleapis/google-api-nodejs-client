@@ -242,6 +242,96 @@
       "version": "v1"
     },
     {
+      "description": "",
+      "discoveryRestUrl": "https://agentidentity.googleapis.com/$discovery/rest?version=v1alpha",
+      "documentationLink": "https://cloud.google.com/iam/docs/",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "id": "agentidentity:v1alpha",
+      "kind": "discovery#directoryItem",
+      "name": "agentidentity",
+      "preferred": false,
+      "title": "Agent Identity API",
+      "version": "v1alpha"
+    },
+    {
+      "description": "",
+      "discoveryRestUrl": "https://agentidentity.googleapis.com/$discovery/rest?version=v1beta",
+      "documentationLink": "https://cloud.google.com/iam/docs/",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "id": "agentidentity:v1beta",
+      "kind": "discovery#directoryItem",
+      "name": "agentidentity",
+      "preferred": false,
+      "title": "Agent Identity API",
+      "version": "v1beta"
+    },
+    {
+      "description": "",
+      "discoveryRestUrl": "https://agentidentity.googleapis.com/$discovery/rest?version=v1",
+      "documentationLink": "https://cloud.google.com/iam/docs/",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "id": "agentidentity:v1",
+      "kind": "discovery#directoryItem",
+      "name": "agentidentity",
+      "preferred": true,
+      "title": "Agent Identity API",
+      "version": "v1"
+    },
+    {
+      "description": "agentidentitycredentials.googleapis.com API.",
+      "discoveryRestUrl": "https://agentidentitycredentials.googleapis.com/$discovery/rest?version=v1alpha",
+      "documentationLink": "https://cloud.google.com/iam/docs/",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "id": "agentidentitycredentials:v1alpha",
+      "kind": "discovery#directoryItem",
+      "name": "agentidentitycredentials",
+      "preferred": false,
+      "title": "Agent Identity Credentials API",
+      "version": "v1alpha"
+    },
+    {
+      "description": "agentidentitycredentials.googleapis.com API.",
+      "discoveryRestUrl": "https://agentidentitycredentials.googleapis.com/$discovery/rest?version=v1beta",
+      "documentationLink": "https://cloud.google.com/iam/docs/",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "id": "agentidentitycredentials:v1beta",
+      "kind": "discovery#directoryItem",
+      "name": "agentidentitycredentials",
+      "preferred": false,
+      "title": "Agent Identity Credentials API",
+      "version": "v1beta"
+    },
+    {
+      "description": "agentidentitycredentials.googleapis.com API.",
+      "discoveryRestUrl": "https://agentidentitycredentials.googleapis.com/$discovery/rest?version=v1",
+      "documentationLink": "https://cloud.google.com/iam/docs/",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "id": "agentidentitycredentials:v1",
+      "kind": "discovery#directoryItem",
+      "name": "agentidentitycredentials",
+      "preferred": true,
+      "title": "Agent Identity Credentials API",
+      "version": "v1"
+    },
+    {
       "description": "Agent Registry is a centralized, unified catalog that lets you store, discover, and govern Model Context Protocol (MCP) servers, tools, and AI agents within Google Cloud.",
       "discoveryRestUrl": "https://agentregistry.googleapis.com/$discovery/rest?version=v1alpha",
       "documentationLink": "https://docs.cloud.google.com/agent-registry/overview",
@@ -252,9 +342,24 @@
       "id": "agentregistry:v1alpha",
       "kind": "discovery#directoryItem",
       "name": "agentregistry",
-      "preferred": true,
+      "preferred": false,
       "title": "Agent Registry API",
       "version": "v1alpha"
+    },
+    {
+      "description": "Agent Registry is a centralized, unified catalog that lets you store, discover, and govern Model Context Protocol (MCP) servers, tools, and AI agents within Google Cloud.",
+      "discoveryRestUrl": "https://agentregistry.googleapis.com/$discovery/rest?version=v1",
+      "documentationLink": "https://docs.cloud.google.com/agent-registry/overview",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "id": "agentregistry:v1",
+      "kind": "discovery#directoryItem",
+      "name": "agentregistry",
+      "preferred": true,
+      "title": "Agent Registry API",
+      "version": "v1"
     },
     {
       "description": "Build, scale, govern, and optimize sophisticated agents and models.",
@@ -362,21 +467,6 @@
       "version": "v1"
     },
     {
-      "description": "The Analytics API provides access to Analytics configuration and report data.",
-      "discoveryRestUrl": "https://analytics.googleapis.com/$discovery/rest?version=v3",
-      "documentationLink": "http://code.google.com/apis/analytics/docs/mgmt/home.html",
-      "icons": {
-        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
-        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
-      },
-      "id": "analytics:v3",
-      "kind": "discovery#directoryItem",
-      "name": "analytics",
-      "preferred": true,
-      "title": "Google Analytics API",
-      "version": "v3"
-    },
-    {
       "description": "Manage properties in Google Analytics. Warning: Creating multiple Customer Applications, Accounts, or Projects to simulate or act as a single Customer Application, Account, or Project (respectively) or to circumvent Service-specific usage limits or quotas is a direct violation of Google Cloud Platform Terms of Service as well as Google APIs Terms of Service. These actions can result in immediate termination of your GCP project(s) without any warning.",
       "discoveryRestUrl": "https://analyticsadmin.googleapis.com/$discovery/rest?version=v1alpha",
       "documentationLink": "http://code.google.com/apis/analytics/docs/mgmt/home.html",
@@ -449,6 +539,21 @@
       "name": "analyticshub",
       "preferred": true,
       "title": "Analytics Hub API",
+      "version": "v1"
+    },
+    {
+      "description": "Android Developer ID Status API.",
+      "discoveryRestUrl": "https://androiddeveloperidstatus.googleapis.com/$discovery/rest?version=v1",
+      "documentationLink": "https://developer.android.com/developer-verification/guides/check-registration-status",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "id": "androiddeveloperidstatus:v1",
+      "kind": "discovery#directoryItem",
+      "name": "androiddeveloperidstatus",
+      "preferred": true,
+      "title": "Android Developer ID Status API",
       "version": "v1"
     },
     {
@@ -931,9 +1036,9 @@
       "version": "v1"
     },
     {
-      "description": "The BigLake API provides access to BigLake Metastore, a serverless, fully managed, and highly available metastore for open-source data that can be used for querying Apache Iceberg tables in BigQuery.",
+      "description": "The Lakehouse API (formerly BigLake API) provides access to a serverless, fully managed, and highly available metastore that provides a single source of truth for your data lakehouse. It lets multiple engines—including Apache Spark, Google Managed Spark, Apache Flink, Trino and BigQuery—share tables and metadata for key open formats (Apache Iceberg, Apache Hive), and query the same copy of data. Plus, through the Lakehouse runtime catalog federation seamlessly unite your lakehouse ecosystem, letting Iceberg compatible engines on Google Cloud (BigQuery, Google Managed Spark) discover and analyze enterprise data across Snowflake, Databricks, and AWS Glue.",
       "discoveryRestUrl": "https://biglake.googleapis.com/$discovery/rest?version=v1",
-      "documentationLink": "https://cloud.google.com/bigquery/",
+      "documentationLink": "https://cloud.google.com/products/lakehouse",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
@@ -942,7 +1047,7 @@
       "kind": "discovery#directoryItem",
       "name": "biglake",
       "preferred": true,
-      "title": "BigLake API",
+      "title": "Lakehouse API",
       "version": "v1"
     },
     {
@@ -1756,6 +1861,21 @@
       "version": "v1alpha"
     },
     {
+      "description": "Cloud Product Registry API provides capabilities to access all first Google Cloud products.",
+      "discoveryRestUrl": "https://cloudproductregistry.googleapis.com/$discovery/rest?version=v1",
+      "documentationLink": "https://docs.cloud.google.com/product-registry",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "id": "cloudproductregistry:v1",
+      "kind": "discovery#directoryItem",
+      "name": "cloudproductregistry",
+      "preferred": true,
+      "title": "Cloud Product Registry API",
+      "version": "v1"
+    },
+    {
       "description": "Manages continuous profiling information.",
       "discoveryRestUrl": "https://cloudprofiler.googleapis.com/$discovery/rest?version=v2",
       "documentationLink": "https://cloud.google.com/profiler/",
@@ -2314,6 +2434,21 @@
       "version": "v1"
     },
     {
+      "description": "Database Center offers a comprehensive, organization-wide platform for monitoring database fleet health across various products. It simplifies management and reduces risk by automatically aggregating and summarizing key health signals, removing the need for custom dashboards. The platform provides a unified view through its dashboard and API, enabling teams focused on reliability, compliance, security, cost, and administration to quickly identify and address relevant issues within their database fleets.",
+      "discoveryRestUrl": "https://databasecenter.googleapis.com/$discovery/rest?version=v1beta",
+      "documentationLink": "https://docs.cloud.google.com/database-center/docs/overview",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "id": "databasecenter:v1beta",
+      "kind": "discovery#directoryItem",
+      "name": "databasecenter",
+      "preferred": true,
+      "title": "Database Center API",
+      "version": "v1beta"
+    },
+    {
       "description": "A fully managed and highly scalable data discovery and metadata management service.",
       "discoveryRestUrl": "https://datacatalog.googleapis.com/$discovery/rest?version=v1beta1",
       "documentationLink": "https://cloud.google.com/data-catalog/docs/",
@@ -2747,21 +2882,6 @@
       "preferred": false,
       "title": "Campaign Manager 360 API",
       "version": "v3.5"
-    },
-    {
-      "description": "Build applications to efficiently manage large or complex trafficking, reporting, and attribution workflows for Campaign Manager 360.",
-      "discoveryRestUrl": "https://dfareporting.googleapis.com/$discovery/rest?version=v4",
-      "documentationLink": "https://developers.google.com/doubleclick-advertisers/",
-      "icons": {
-        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
-        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
-      },
-      "id": "dfareporting:v4",
-      "kind": "discovery#directoryItem",
-      "name": "dfareporting",
-      "preferred": false,
-      "title": "Campaign Manager 360 API",
-      "version": "v4"
     },
     {
       "description": "Build applications to efficiently manage large or complex trafficking, reporting, and attribution workflows for Campaign Manager 360.",
@@ -3411,6 +3531,21 @@
       "version": "v1"
     },
     {
+      "description": "This service provides an API for mobile app developers to request deletion of user's crash reports.",
+      "discoveryRestUrl": "https://firebasecrashlytics.googleapis.com/$discovery/rest?version=v1alpha",
+      "documentationLink": "https://firebase.google.com/docs/crashlytics",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "id": "firebasecrashlytics:v1alpha",
+      "kind": "discovery#directoryItem",
+      "name": "firebasecrashlytics",
+      "preferred": true,
+      "title": "Firebase Crashlytics API",
+      "version": "v1alpha"
+    },
+    {
       "description": "The Firebase Realtime Database API enables programmatic provisioning and management of Realtime Database instances.",
       "discoveryRestUrl": "https://firebasedatabase.googleapis.com/$discovery/rest?version=v1beta",
       "documentationLink": "https://firebase.google.com/docs/reference/rest/database/database-management/rest/",
@@ -3437,7 +3572,7 @@
       "kind": "discovery#directoryItem",
       "name": "firebasedataconnect",
       "preferred": false,
-      "title": "Firebase Data Connect API",
+      "title": "Firebase SQL Connect API",
       "version": "v1beta"
     },
     {
@@ -3452,7 +3587,7 @@
       "kind": "discovery#directoryItem",
       "name": "firebasedataconnect",
       "preferred": true,
-      "title": "Firebase Data Connect API",
+      "title": "Firebase SQL Connect API",
       "version": "v1"
     },
     {
@@ -3648,6 +3783,36 @@
       "name": "forms",
       "preferred": true,
       "title": "Google Forms API",
+      "version": "v1"
+    },
+    {
+      "description": "A managed, cloud-native solution to move data in and out of Google Cloud by using SSH File Transfer Protocol (SFTP).",
+      "discoveryRestUrl": "https://ftp.googleapis.com/$discovery/rest?version=v1alpha",
+      "documentationLink": "https://docs.cloud.google.com/cloud-ftp",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "id": "ftp:v1alpha",
+      "kind": "discovery#directoryItem",
+      "name": "ftp",
+      "preferred": false,
+      "title": "Cloud FTP API",
+      "version": "v1alpha"
+    },
+    {
+      "description": "A managed, cloud-native solution to move data in and out of Google Cloud by using SSH File Transfer Protocol (SFTP).",
+      "discoveryRestUrl": "https://ftp.googleapis.com/$discovery/rest?version=v1",
+      "documentationLink": "https://docs.cloud.google.com/cloud-ftp",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "id": "ftp:v1",
+      "kind": "discovery#directoryItem",
+      "name": "ftp",
+      "preferred": true,
+      "title": "Cloud FTP API",
       "version": "v1"
     },
     {
@@ -3981,7 +4146,7 @@
       "version": "v1"
     },
     {
-      "description": "The Cluster Director API allows you to deploy, manage, and monitor clusters that run AI, ML, or HPC workloads.",
+      "description": "The Cluster Director API lets you deploy, manage, and monitor clusters that run artificial intelligence (AI), machine learning (ML), or high performance computing (HPC) workloads.",
       "discoveryRestUrl": "https://hypercomputecluster.googleapis.com/$discovery/rest?version=v1",
       "documentationLink": "https://docs.cloud.google.com/cluster-director/docs",
       "icons": {
@@ -4699,6 +4864,21 @@
       "preferred": false,
       "title": "Merchant API",
       "version": "lfp_v1beta"
+    },
+    {
+      "description": "Programmatically manage your Merchant Center Accounts.",
+      "discoveryRestUrl": "https://merchantapi.googleapis.com/$discovery/rest?version=loyaltycustomers_v1",
+      "documentationLink": "https://developers.google.com/merchant/api",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "id": "merchantapi:loyaltycustomers_v1",
+      "kind": "discovery#directoryItem",
+      "name": "merchantapi",
+      "preferred": false,
+      "title": "Merchant API",
+      "version": "loyaltycustomers_v1"
     },
     {
       "description": "Programmatically manage your Merchant Center Accounts.",

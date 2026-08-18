@@ -41,10 +41,7 @@ export function bigquerydatapolicy<
 >(
   this: GoogleConfigurable,
   versionOrOptions:
-    | 'v1'
-    | bigquerydatapolicy_v1.Options
-    | 'v2'
-    | bigquerydatapolicy_v2.Options
+    'v1' | bigquerydatapolicy_v1.Options | 'v2' | bigquerydatapolicy_v2.Options
 ) {
   return getAPI<T>('bigquerydatapolicy', versionOrOptions, VERSIONS, this);
 }

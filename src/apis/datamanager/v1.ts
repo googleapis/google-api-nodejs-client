@@ -113,6 +113,7 @@ export namespace datamanager_v1 {
   export class Datamanager {
     context: APIRequestContext;
     accountTypes: Resource$Accounttypes;
+    adEvents: Resource$Adevents;
     audienceMembers: Resource$Audiencemembers;
     events: Resource$Events;
     requestStatus: Resource$Requeststatus;
@@ -124,6 +125,7 @@ export namespace datamanager_v1 {
       };
 
       this.accountTypes = new Resource$Accounttypes(this.context);
+      this.adEvents = new Resource$Adevents(this.context);
       this.audienceMembers = new Resource$Audiencemembers(this.context);
       this.events = new Resource$Events(this.context);
       this.requestStatus = new Resource$Requeststatus(this.context);
@@ -134,6 +136,18 @@ export namespace datamanager_v1 {
    * Address information for the user.
    */
   export interface Schema$AddressInfo {
+    /**
+     * Optional. The street and number of the user's address. Used only for Google Analytics. This field is hashed and possibly encrypted. Normalize the value before hashing: - Remove symbol characters - Convert to lowercase - Remove leading and trailing whitespace
+     */
+    addressLine?: string | null;
+    /**
+     * Optional. The administrative area (state/province) of the user's address. Used only for Google Analytics. The value should be normalized as such: - Remove symbol characters - Convert to lowercase - Remove leading and trailing whitespace
+     */
+    administrativeArea?: string | null;
+    /**
+     * Optional. The city of the user's address. Used only for Google Analytics. The value should be normalized as such: - Remove symbol characters - Convert to lowercase - Remove leading and trailing whitespace
+     */
+    city?: string | null;
     /**
      * Required. Family (last) name of the user, all lowercase, with no punctuation, no leading or trailing whitespace, and hashed as SHA-256.
      */
@@ -152,9 +166,154 @@ export namespace datamanager_v1 {
     regionCode?: string | null;
   }
   /**
+   * An ad event.
+   */
+  export interface Schema$AdEvent {
+    /**
+     * Enum value for ad format.
+     */
+    adFormat?: string | null;
+    /**
+     * String value for ad format.
+     */
+    adFormatString?: string | null;
+    /**
+     * Optional. The ID of the associated ad group.
+     */
+    adGroupId?: string | null;
+    /**
+     * Optional. The height of the ad in pixels.
+     */
+    adHeight?: number | null;
+    /**
+     * Optional. The ID of the associated ad within the group.
+     */
+    adId?: string | null;
+    /**
+     * Enum value for ad placement.
+     */
+    adPlacement?: string | null;
+    /**
+     * String value for ad placement.
+     */
+    adPlacementString?: string | null;
+    /**
+     * Enum value for ad type.
+     */
+    adType?: string | null;
+    /**
+     * String value for ad type.
+     */
+    adTypeString?: string | null;
+    /**
+     * Required. The ID of the advertiser for the ad event. This must match the ID sent in the linking flow.
+     */
+    advertiserId?: string | null;
+    /**
+     * Optional. The width of the ad in pixels.
+     */
+    adWidth?: number | null;
+    /**
+     * Optional. The partner-assumed attribution status for this ad event. This acts only as a signal for how the partner assumed attribution played out, and does not force an end result in final reports.
+     */
+    attributionHint?: string | null;
+    /**
+     * Required. The ID of the associated campaign.
+     */
+    campaignId?: string | null;
+    /**
+     * Required. The name of the associated campaign.
+     */
+    campaignName?: string | null;
+    /**
+     * Required. Information gathered about the device being used when the ad event happened.
+     */
+    deviceInfo?: Schema$DeviceInfo;
+    /**
+     * Optional. An ID created and managed by the caller that uniquely identifies this event. Required if you want to deduplicate ad events that are included in multiple requests. Otherwise, this field is optional.
+     */
+    eventId?: string | null;
+    /**
+     * Enum value for event subtype.
+     */
+    eventSubtype?: string | null;
+    /**
+     * String value for event subtype.
+     */
+    eventSubtypeString?: string | null;
+    /**
+     * Required. The type of the event.
+     */
+    eventType?: string | null;
+    /**
+     * Optional. Represents if the row is allowed to be used for measurement purposes, as governed by applicable privacy laws within regional jurisdiction.
+     */
+    measurementAllowed?: boolean | null;
+    /**
+     * Required. The medium of the ad, akin to the Google Analytics medium.
+     */
+    medium?: string | null;
+    /**
+     * Optional. The device ID of the device that the ad was served to.
+     */
+    mobileDeviceId?: string | null;
+    /**
+     * Enum value for platform.
+     */
+    platform?: string | null;
+    /**
+     * String value for platform.
+     */
+    platformString?: string | null;
+    /**
+     * Enum value for platform type.
+     */
+    platformType?: string | null;
+    /**
+     * String value for platform type.
+     */
+    platformTypeString?: string | null;
+    /**
+     * Optional. The ISO 3166-2 country plus subdivision.
+     */
+    regionCode?: string | null;
+    /**
+     * Required. The platform source of the ad, akin to the Google Analytics source.
+     */
+    source?: string | null;
+    /**
+     * Enum value for targeting type.
+     */
+    targetingType?: string | null;
+    /**
+     * String value for targeting type.
+     */
+    targetingTypeString?: string | null;
+    /**
+     * Required. The time the event occurred.
+     */
+    timestamp?: string | null;
+    /**
+     * Optional. Multiple pieces of user-provided data, representing the user the event is associated with. It is possible to provide multiple instances of the same type of data (e.g. email address). The more data provided, the more likely a match will be found.
+     */
+    userData?: Schema$UserData;
+    /**
+     * Required. Details of the viewability of the ad served.
+     */
+    viewabilityInfo?: Schema$ViewabilityInfo;
+  }
+  /**
    * Identifiers and other information used to match the conversion event with other online activity (such as ad clicks).
    */
   export interface Schema$AdIdentifiers {
+    /**
+     * Optional. The display click ID associated with this event.
+     */
+    dclid?: string | null;
+    /**
+     * Optional. Any number of encrypted user IDs.
+     */
+    encryptedUserIds?: Schema$EncryptedUserId[];
     /**
      * Optional. The click identifier for clicks associated with app events and originating from iOS devices starting with iOS14.
      */
@@ -164,9 +323,17 @@ export namespace datamanager_v1 {
      */
     gclid?: string | null;
     /**
+     * Optional. The impression ID associated with this event.
+     */
+    impressionId?: string | null;
+    /**
      * Optional. Information gathered about the device being used (if any) at the time of landing onto the advertiser’s site after interacting with the ad.
      */
     landingPageDeviceInfo?: Schema$DeviceInfo;
+    /**
+     * Optional. The match ID field used to join this event with a previous event.
+     */
+    matchId?: string | null;
     /**
      * Optional. The mobile identifier for advertisers. This would be IDFA on iOS, AdID on Android, or other platforms’ identifiers for advertisers.
      */
@@ -185,6 +352,10 @@ export namespace datamanager_v1 {
    */
   export interface Schema$AudienceMember {
     /**
+     * Group of multiple identifier types.
+     */
+    compositeData?: Schema$CompositeData;
+    /**
      * Optional. The consent setting for the user.
      */
     consent?: Schema$Consent;
@@ -193,6 +364,10 @@ export namespace datamanager_v1 {
      */
     destinationReferences?: string[] | null;
     /**
+     * Encrypted Google User IDs.
+     */
+    googleUserIdData?: Schema$GoogleUserIdData;
+    /**
      * Data identifying the user's mobile devices.
      */
     mobileData?: Schema$MobileData;
@@ -200,6 +375,10 @@ export namespace datamanager_v1 {
      * [Publisher Advertiser Identity Reconciliation (PAIR) IDs](//support.google.com/admanager/answer/15067908). This feature is only available to data partners.
      */
     pairData?: Schema$PairData;
+    /**
+     * Partner-provided identifiers.
+     */
+    partnerProvidedIdData?: Schema$PartnerProvidedIdData;
     /**
      * Data related to publisher provided identifiers. This feature is only available to data partners.
      */
@@ -277,6 +456,19 @@ export namespace datamanager_v1 {
     transactionDiscount?: number | null;
   }
   /**
+   * Composite data holding identifiers and associated data for a user. At least one of `user_data` or `ip_data` is required.
+   */
+  export interface Schema$CompositeData {
+    /**
+     * Optional. IP address data representing customer interaction used to build the audience.
+     */
+    ipData?: Schema$IpData[];
+    /**
+     * Optional. User-provided data that identifies the user.
+     */
+    userData?: Schema$UserData;
+  }
+  /**
    * [Digital Markets Act (DMA)](//digital-markets-act.ec.europa.eu/index_en) consent settings for the user.
    */
   export interface Schema$Consent {
@@ -303,6 +495,15 @@ export namespace datamanager_v1 {
     matchRatePercentage?: number | null;
   }
   /**
+   * Information about the coordinator key.
+   */
+  export interface Schema$CoordinatorKeyInfo {
+    /**
+     * Required. The ID of the chosen coordinator key.
+     */
+    keyId?: string | null;
+  }
+  /**
    * Custom variable for ads conversions.
    */
   export interface Schema$CustomVariable {
@@ -318,6 +519,19 @@ export namespace datamanager_v1 {
      * Optional. The name of the custom variable to set. If the variable is not found for the given destination, it will be ignored.
      */
     variable?: string | null;
+  }
+  /**
+   * The count for a specific data type.
+   */
+  export interface Schema$DataTypeCount {
+    /**
+     * The count for this data type.
+     */
+    count?: string | null;
+    /**
+     * The type of data.
+     */
+    type?: string | null;
   }
   /**
    * The Google product you're sending data to. For example, a Google Ads account.
@@ -365,7 +579,7 @@ export namespace datamanager_v1 {
      */
     category?: string | null;
     /**
-     * Optional. The IP address of the device for the given context. **Note:** Google Ads does not support IP address matching for end users in the European Economic Area (EEA), United Kingdom (UK), or Switzerland (CH). Add logic to conditionally exclude sharing IP addresses from users from these regions and ensure that you provide users with clear and comprehensive information about the data you collect on your sites, apps, and other properties and get consent where required by law or any applicable Google policies. See the [About offline conversion imports](https://support.google.com/google-ads/answer/2998031) page for more details.
+     * Optional. The IP address of the device for the given context. Required when used in an AdEvent.
      */
     ipAddress?: string | null;
     /**
@@ -402,6 +616,27 @@ export namespace datamanager_v1 {
    */
   export interface Schema$Empty {}
   /**
+   * A user identifier issued to be used for attribution. All fields are required if this is used.
+   */
+  export interface Schema$EncryptedUserId {
+    /**
+     * Required. The alphanumeric encrypted id.
+     */
+    encryptedId?: string | null;
+    /**
+     * Required. The encryption entity ID. This should match the encryption configuration for ad serving or Data Transfer.
+     */
+    entityId?: string | null;
+    /**
+     * Required. The encryption entity type. This should match the encryption configuration for ad serving or Data Transfer.
+     */
+    entityType?: string | null;
+    /**
+     * Required. Describes whether the encrypted cookie was received from ad serving (the %m macro) or from Data Transfer.
+     */
+    source?: string | null;
+  }
+  /**
    * Encryption information for the data being ingested.
    */
   export interface Schema$EncryptionInfo {
@@ -409,6 +644,10 @@ export namespace datamanager_v1 {
      * Amazon Web Services wrapped key information.
      */
     awsWrappedKeyInfo?: Schema$AwsWrappedKeyInfo;
+    /**
+     * Key information for the chosen coordinator key. This is not supported for the IngestEvents, IngestAudienceMembers, and RemoveAudienceMembers methods.
+     */
+    coordinatorKeyInfo?: Schema$CoordinatorKeyInfo;
     /**
      * Google Cloud Platform wrapped key information.
      */
@@ -464,6 +703,10 @@ export namespace datamanager_v1 {
      * Optional. Information about whether the associated user has provided different types of consent.
      */
     consent?: Schema$Consent;
+    /**
+     * Optional. The conversion quantity associated with the event, for counting-based conversions.
+     */
+    conversionCount?: number | null;
     /**
      * Optional. The conversion value associated with the event, for value-based conversions.
      */
@@ -585,6 +828,23 @@ export namespace datamanager_v1 {
     value?: string | null;
   }
   /**
+   * Detailed row-level warning with field paths.
+   */
+  export interface Schema$FieldWarning {
+    /**
+     * The detailed warning message describing the issue.
+     */
+    description?: string | null;
+    /**
+     * The field path that triggered the warning. Uses the same format as google.rpc.BadRequest.FieldViolation.field.
+     */
+    field?: string | null;
+    /**
+     * The warning reason.
+     */
+    reason?: string | null;
+  }
+  /**
    * Information about the Google Cloud Platform wrapped key.
    */
   export interface Schema$GcpWrappedKeyInfo {
@@ -605,6 +865,36 @@ export namespace datamanager_v1 {
      */
     wipProvider?: string | null;
   }
+  /**
+   * Google user id data holding encrypted google user IDs. At least one google user ID is required.
+   */
+  export interface Schema$GoogleUserIdData {
+    /**
+     * Required. The list of encrypted google user IDs.
+     */
+    googleUserIds?: string[] | null;
+  }
+  /**
+   * Request to upload ad events.
+   */
+  export interface Schema$IngestAdEventsRequest {
+    /**
+     * Required. Required (at least 1). A list of ad events.
+     */
+    adEvents?: Schema$AdEvent[];
+    /**
+     * Required. Information about encryption keys which are used to encrypt the data.
+     */
+    encryptionInfo?: Schema$EncryptionInfo;
+    /**
+     * Optional. If true, the request is validated, but not executed.
+     */
+    validateOnly?: boolean | null;
+  }
+  /**
+   * Response from an ad event ingestion operation.
+   */
+  export interface Schema$IngestAdEventsResponse {}
   /**
    * Request to upload audience members to the provided destinations. Returns an IngestAudienceMembersResponse.
    */
@@ -643,6 +933,10 @@ export namespace datamanager_v1 {
    */
   export interface Schema$IngestAudienceMembersResponse {
     /**
+     * Detailed row-level warnings with field paths.
+     */
+    fieldWarnings?: Schema$FieldWarning[];
+    /**
      * The auto-generated ID of the request.
      */
     requestId?: string | null;
@@ -652,6 +946,14 @@ export namespace datamanager_v1 {
    */
   export interface Schema$IngestAudienceMembersStatus {
     /**
+     * The status of the composite data ingestion to the destination.
+     */
+    compositeDataIngestionStatus?: Schema$IngestCompositeDataStatus;
+    /**
+     * The status of the google user id data ingestion to the destination.
+     */
+    googleUserIdDataIngestionStatus?: Schema$IngestGoogleUserIdDataStatus;
+    /**
      * The status of the mobile data ingestion to the destination.
      */
     mobileDataIngestionStatus?: Schema$IngestMobileDataStatus;
@@ -659,6 +961,10 @@ export namespace datamanager_v1 {
      * The status of the pair data ingestion to the destination.
      */
     pairDataIngestionStatus?: Schema$IngestPairDataStatus;
+    /**
+     * The status of the partner provided id data ingestion to the destination.
+     */
+    partnerProvidedIdDataIngestionStatus?: Schema$IngestPartnerProvidedIdDataStatus;
     /**
      * The status of the ppid data ingestion to the destination.
      */
@@ -671,6 +977,23 @@ export namespace datamanager_v1 {
      * The status of the user id data ingestion to the destination.
      */
     userIdDataIngestionStatus?: Schema$IngestUserIdDataStatus;
+  }
+  /**
+   * The status of the composite data ingestion to the destination containing stats related to the ingestion.
+   */
+  export interface Schema$IngestCompositeDataStatus {
+    /**
+     * The total count of data types sent in the upload request for the destination, broken down by data type. Includes all data types in the request, regardless of whether they were successfully ingested or not.
+     */
+    dataTypeCounts?: Schema$DataTypeCount[];
+    /**
+     * The total count of audience members sent in the upload request for the destination. Includes all audience members in the request, regardless of whether they were successfully ingested or not.
+     */
+    recordCount?: string | null;
+    /**
+     * The match rate range of the upload.
+     */
+    uploadMatchRateRange?: string | null;
   }
   /**
    * Represents a user list that is populated by user provided data.
@@ -739,6 +1062,10 @@ export namespace datamanager_v1 {
    */
   export interface Schema$IngestEventsResponse {
     /**
+     * Detailed row-level warnings with field paths.
+     */
+    fieldWarnings?: Schema$FieldWarning[];
+    /**
      * The auto-generated ID of the request.
      */
     requestId?: string | null;
@@ -749,6 +1076,19 @@ export namespace datamanager_v1 {
   export interface Schema$IngestEventsStatus {
     /**
      * The total count of events sent in the upload request. Includes all events in the request, regardless of whether they were successfully ingested or not.
+     */
+    recordCount?: string | null;
+  }
+  /**
+   * The status of the google user id data ingestion to the destination containing stats related to the ingestion.
+   */
+  export interface Schema$IngestGoogleUserIdDataStatus {
+    /**
+     * The total count of google user ids sent in the upload request for the destination. Includes all google user ids in the request, regardless of whether they were successfully ingested or not.
+     */
+    googleUserIdCount?: string | null;
+    /**
+     * The total count of audience members sent in the upload request for the destination. Includes all audience members in the request, regardless of whether they were successfully ingested or not.
      */
     recordCount?: string | null;
   }
@@ -773,6 +1113,19 @@ export namespace datamanager_v1 {
      * The total count of pair ids sent in the upload request for the destination. Includes all pair ids in the request, regardless of whether they were successfully ingested or not.
      */
     pairIdCount?: string | null;
+    /**
+     * The total count of audience members sent in the upload request for the destination. Includes all audience members in the request, regardless of whether they were successfully ingested or not.
+     */
+    recordCount?: string | null;
+  }
+  /**
+   * The status of the partner provided id data ingestion to the destination containing stats related to the ingestion.
+   */
+  export interface Schema$IngestPartnerProvidedIdDataStatus {
+    /**
+     * The total count of partner provided ids sent in the upload request for the destination. Includes all partner provided ids in the request, regardless of whether they were successfully ingested or not.
+     */
+    partnerProvidedIdCount?: string | null;
     /**
      * The total count of audience members sent in the upload request for the destination. Includes all audience members in the request, regardless of whether they were successfully ingested or not.
      */
@@ -820,6 +1173,23 @@ export namespace datamanager_v1 {
      * The total count of user ids sent in the upload request for the destination. Includes all user ids in the request, regardless of whether they were successfully ingested or not.
      */
     userIdCount?: string | null;
+  }
+  /**
+   * IP address information for a user. We recommend including observe_start_time and observe_end_time to help improve Customer Match match rates.
+   */
+  export interface Schema$IpData {
+    /**
+     * Required. IP address captured at the time of customer interaction. Accepts standard string formats for both IPv4 and IPv6.
+     */
+    ipAddress?: string | null;
+    /**
+     * Optional. Last recorded interaction time from this IP address in a session.
+     */
+    observeEndTime?: string | null;
+    /**
+     * Optional. First recorded interaction time from this IP address in a session.
+     */
+    observeStartTime?: string | null;
   }
   /**
    * Represents an item in the cart associated with the event.
@@ -996,7 +1366,7 @@ export namespace datamanager_v1 {
    */
   export interface Schema$MobileData {
     /**
-     * Required. The list of mobile device IDs (advertising ID/IDFA). At most 10 `mobileIds` can be provided in a single AudienceMember.
+     * Required. The list of mobile device IDs (Android advertising ID, iOS IDFA for Customer Match user lists and Android advertising ID, iOS IDFA, Xbox or Microsoft ID, Amazon Fire TV ID, Roku ID, Generic Device ID for basic user lists). At most 10 `mobileIds` can be provided in a single AudienceMember.
      */
     mobileIds?: string[] | null;
   }
@@ -1065,9 +1435,30 @@ export namespace datamanager_v1 {
     partnerAudienceSource?: string | null;
   }
   /**
+   * Represents a customer account in the partner's system.
+   */
+  export interface Schema$PartnerCustomerAccount {
+    /**
+     * Required. The identifier of the customer account in the partner's ID space.
+     */
+    accountId?: string | null;
+    /**
+     * Optional. The name of the account.
+     */
+    accountName?: string | null;
+    /**
+     * Optional. The type of the account. Can be used to distinguish between advertiser accounts and business level accounts, for example.
+     */
+    accountType?: string | null;
+  }
+  /**
    * A partner link between an owning account and a partner account.
    */
   export interface Schema$PartnerLink {
+    /**
+     * Optional. Immutable. The set of features supported for the partner link. If not specified, the system behavior defaults to FEATURE_SET_AUDIENCE_AND_EVENT_MANAGEMENT.
+     */
+    featureSet?: string | null;
     /**
      * Identifier. The name of the partner link. Format: accountTypes/{account_type\}/accounts/{account\}/partnerLinks/{partner_link\}
      */
@@ -1081,9 +1472,35 @@ export namespace datamanager_v1 {
      */
     partnerAccount?: Schema$ProductAccount;
     /**
+     * Optional. The customer account in the partner system. This is required for partner links with the FEATURE_SET_AD_EVENT_MANAGEMENT feature set.
+     */
+    partnerCustomerAccount?: Schema$PartnerCustomerAccount;
+    /**
      * Output only. The partner link ID.
      */
     partnerLinkId?: string | null;
+    /**
+     * Optional. Metadata associated with the partner link. This is optional and only accepted for partner links with the FEATURE_SET_AD_EVENT_MANAGEMENT.
+     */
+    partnerLinkMetadata?: Schema$PartnerLinkMetadata;
+  }
+  /**
+   * Represents metadata associated with a partner link.
+   */
+  export interface Schema$PartnerLinkMetadata {
+    /**
+     * Optional. The list of implicit accounts.
+     */
+    implicitAccounts?: Schema$PartnerCustomerAccount[];
+  }
+  /**
+   * Partner-provided data holding the partner-provided identifiers. At least one partner-provided identifier is required.
+   */
+  export interface Schema$PartnerProvidedIdData {
+    /**
+     * Required. The list of partner-provided identifiers.
+     */
+    partnerProvidedIds?: string[] | null;
   }
   /**
    * Publisher provided identifiers data holding the ppids. At least one ppid is required. This feature is only available to data partners.
@@ -1103,7 +1520,7 @@ export namespace datamanager_v1 {
      */
     accountId?: string | null;
     /**
-     * Optional. The type of the account. For example, `GOOGLE_ADS`. Either `account_type` or the deprecated `product` is required. If both are set, the values must match.
+     * Required. The type of the account. For example, `GOOGLE_ADS`. Either `account_type` or the deprecated `product` is required. If both are set, the values must match.
      */
     accountType?: string | null;
     /**
@@ -1124,6 +1541,36 @@ export namespace datamanager_v1 {
      */
     syncStatus?: string | null;
   }
+  /**
+   * Request to remove all users from an audience in the provided destinations. Returns a RemoveAllAudienceMembersResponse.
+   */
+  export interface Schema$RemoveAllAudienceMembersRequest {
+    /**
+     * Required. The list of destinations to remove the users from.
+     */
+    destinations?: Schema$Destination[];
+    /**
+     * Optional. The remove as of time. If set, only audience members last added before this time will be removed. If not set, it defaults to current time. The remove as of time must not be in the future.
+     */
+    removeAsOfTime?: string | null;
+    /**
+     * Optional. For testing purposes. If `true`, the request is validated but not executed. Only errors are returned, not results.
+     */
+    validateOnly?: boolean | null;
+  }
+  /**
+   * Response from the RemoveAllAudienceMembersRequest.
+   */
+  export interface Schema$RemoveAllAudienceMembersResponse {
+    /**
+     * The auto-generated ID of the request.
+     */
+    requestId?: string | null;
+  }
+  /**
+   * The status of the remove all audience members request.
+   */
+  export interface Schema$RemoveAllAudienceMembersStatus {}
   /**
    * Request to remove users from an audience in the provided destinations. Returns a RemoveAudienceMembersResponse.
    */
@@ -1163,6 +1610,14 @@ export namespace datamanager_v1 {
    */
   export interface Schema$RemoveAudienceMembersStatus {
     /**
+     * The status of the composite data removal from the destination.
+     */
+    compositeDataRemovalStatus?: Schema$RemoveCompositeDataStatus;
+    /**
+     * The status of the google user id data removal from the destination.
+     */
+    googleUserIdDataRemovalStatus?: Schema$RemoveGoogleUserIdDataStatus;
+    /**
      * The status of the mobile data removal from the destination.
      */
     mobileDataRemovalStatus?: Schema$RemoveMobileDataStatus;
@@ -1170,6 +1625,10 @@ export namespace datamanager_v1 {
      * The status of the pair data removal from the destination.
      */
     pairDataRemovalStatus?: Schema$RemovePairDataStatus;
+    /**
+     * The status of the partner provided id data removal from the destination.
+     */
+    partnerProvidedIdDataRemovalStatus?: Schema$RemovePartnerProvidedIdDataStatus;
     /**
      * The status of the ppid data removal from the destination.
      */
@@ -1182,6 +1641,32 @@ export namespace datamanager_v1 {
      * The status of the user id data removal from the destination.
      */
     userIdDataRemovalStatus?: Schema$RemoveUserIdDataStatus;
+  }
+  /**
+   * The status of the composite data removal from the destination.
+   */
+  export interface Schema$RemoveCompositeDataStatus {
+    /**
+     * The total count of data types sent in the removal request, broken down by data type. Includes all data types in the request, regardless of whether they were successfully removed or not.
+     */
+    dataTypeCounts?: Schema$DataTypeCount[];
+    /**
+     * The total count of audience members sent in the removal request. Includes all audience members in the request, regardless of whether they were successfully removed or not.
+     */
+    recordCount?: string | null;
+  }
+  /**
+   * The status of the google user id data removal from the destination.
+   */
+  export interface Schema$RemoveGoogleUserIdDataStatus {
+    /**
+     * The total count of google user ids sent in the removal request. Includes all google user ids in the request, regardless of whether they were successfully removed or not.
+     */
+    googleUserIdCount?: string | null;
+    /**
+     * The total count of audience members sent in the removal request. Includes all audience members in the request, regardless of whether they were successfully removed or not.
+     */
+    recordCount?: string | null;
   }
   /**
    * The status of the mobile data removal from the destination.
@@ -1204,6 +1689,19 @@ export namespace datamanager_v1 {
      * The total count of pair ids sent in the removal request. Includes all pair ids in the request, regardless of whether they were successfully removed or not.
      */
     pairIdCount?: string | null;
+    /**
+     * The total count of audience members sent in the removal request. Includes all audience members in the request, regardless of whether they were successfully removed or not.
+     */
+    recordCount?: string | null;
+  }
+  /**
+   * The status of the partner provided id data removal from the destination.
+   */
+  export interface Schema$RemovePartnerProvidedIdDataStatus {
+    /**
+     * The total count of partner provided ids sent in the removal request. Includes all partner provided ids in the request, regardless of whether they were successfully removed or not.
+     */
+    partnerProvidedIdCount?: string | null;
     /**
      * The total count of audience members sent in the removal request. Includes all audience members in the request, regardless of whether they were successfully removed or not.
      */
@@ -1272,6 +1770,10 @@ export namespace datamanager_v1 {
      * The status of the ingest events request.
      */
     eventsIngestionStatus?: Schema$IngestEventsStatus;
+    /**
+     * The status of the remove all audience members request.
+     */
+    removeAllAudienceMembersStatus?: Schema$RemoveAllAudienceMembersStatus;
     /**
      * The request status of the destination.
      */
@@ -1718,6 +2220,43 @@ export namespace datamanager_v1 {
     value?: string | null;
   }
   /**
+   * Details of the viewability of the ad served.
+   */
+  export interface Schema$ViewabilityInfo {
+    /**
+     * Optional. The duration of the ad media.
+     */
+    mediaDuration?: string | null;
+    /**
+     * Optional. The amount of the media that was played as discrete quartiles.
+     */
+    mediaQuartile?: string | null;
+    /**
+     * Optional. Whether the ad media was skippable or not.
+     */
+    mediaSkippable?: boolean | null;
+    /**
+     * Optional. The numerical percent (0-100) of the volume of the media playback.
+     */
+    mediaVolumePercent?: number | null;
+    /**
+     * Optional. The duration of playback of the ad media, regardless of whether it was viewable or not.
+     */
+    playbackDuration?: string | null;
+    /**
+     * Optional. The amount of time the ad was viewable for.
+     */
+    viewableDuration?: string | null;
+    /**
+     * Optional. The numerical percent (0-100) of the pixels that were viewable.
+     */
+    viewablePercent?: number | null;
+    /**
+     * Required. The type of the event.
+     */
+    viewType?: string | null;
+  }
+  /**
    * The warning count for a given warning reason.
    */
   export interface Schema$WarningCount {
@@ -1857,8 +2396,7 @@ export namespace datamanager_v1 {
     retrieve(
       params: Params$Resource$Accounttypes$Accounts$Insights$Retrieve,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$RetrieveInsightsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$RetrieveInsightsResponse>,
       callback: BodyResponseCallback<Schema$RetrieveInsightsResponse>
     ): void;
     retrieve(
@@ -1988,10 +2526,13 @@ export namespace datamanager_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "featureSet": "my_featureSet",
      *       //   "name": "my_name",
      *       //   "owningAccount": {},
      *       //   "partnerAccount": {},
-     *       //   "partnerLinkId": "my_partnerLinkId"
+     *       //   "partnerCustomerAccount": {},
+     *       //   "partnerLinkId": "my_partnerLinkId",
+     *       //   "partnerLinkMetadata": {}
      *       // }
      *     },
      *   });
@@ -1999,10 +2540,13 @@ export namespace datamanager_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "featureSet": "my_featureSet",
      *   //   "name": "my_name",
      *   //   "owningAccount": {},
      *   //   "partnerAccount": {},
-     *   //   "partnerLinkId": "my_partnerLinkId"
+     *   //   "partnerCustomerAccount": {},
+     *   //   "partnerLinkId": "my_partnerLinkId",
+     *   //   "partnerLinkMetadata": {}
      *   // }
      * }
      *
@@ -2191,8 +2735,7 @@ export namespace datamanager_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -2272,9 +2815,9 @@ export namespace datamanager_v1 {
      *
      *   // Do the magic
      *   const res = await datamanager.accountTypes.accounts.partnerLinks.search({
-     *     // Optional. A [filter string](https://google.aip.dev/160). All fields need to be on the left hand side of each condition (for example: `partner_link_id = 123456789`). Fields must be specified using either all [camel case](https://en.wikipedia.org/wiki/Camel_case) or all [snake case](https://en.wikipedia.org/wiki/Snake_case). Don't use a combination of camel case and snake case. Supported operations: - `AND` - `=` - `!=` Supported fields: - `partner_link_id` - `owning_account.account_type` - `owning_account.account_id` - `partner_account.account_type` - `partner_account.account_id` Example: `owning_account.account_type = "GOOGLE_ADS" AND partner_account.account_id = 987654321`
+     *     // Optional. A [filter string](https://google.aip.dev/160). All fields need to be on the left hand side of each condition (for example: `partner_link_id = 123456789`). Fields must be specified using either all [camel case](https://en.wikipedia.org/wiki/Camel_case) or all [snake case](https://en.wikipedia.org/wiki/Snake_case). Don't use a combination of camel case and snake case. Supported operations: - `AND` - `=` - `!=` Supported fields: - `partner_link_id` - `owning_account.account_type` - `owning_account.account_id` - `partner_account.account_type` - `partner_account.account_id` - `feature_set` For partner links with the FEATURE_SET_AD_EVENT_MANAGEMENT feature set, the following fields are also supported: - `partner_customer_account.account_id` Example: `owning_account.account_type = "GOOGLE_ADS" AND partner_account.account_id = 987654321`
      *     filter: 'placeholder-value',
-     *     // The maximum number of partner links to return. The service may return fewer than this value. If unspecified, at most 10 partner links will be returned. The maximum value is 100; values above 100 will be coerced to 100.
+     *     // The maximum number of partner links to return. The service may return fewer than this value. If unspecified, at most 50 partner links will be returned. The maximum value is 100; values above 100 will be coerced to 100.
      *     pageSize: 'placeholder-value',
      *     // A page token, received from a previous `SearchPartnerLinks` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `SearchPartnerLinks` must match the call that provided the page token.
      *     pageToken: 'placeholder-value',
@@ -2318,8 +2861,7 @@ export namespace datamanager_v1 {
     search(
       params: Params$Resource$Accounttypes$Accounts$Partnerlinks$Search,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$SearchPartnerLinksResponse>,
+        MethodOptions | BodyResponseCallback<Schema$SearchPartnerLinksResponse>,
       callback: BodyResponseCallback<Schema$SearchPartnerLinksResponse>
     ): void;
     search(
@@ -2410,11 +2952,11 @@ export namespace datamanager_v1 {
   }
   export interface Params$Resource$Accounttypes$Accounts$Partnerlinks$Search extends StandardParameters {
     /**
-     * Optional. A [filter string](https://google.aip.dev/160). All fields need to be on the left hand side of each condition (for example: `partner_link_id = 123456789`). Fields must be specified using either all [camel case](https://en.wikipedia.org/wiki/Camel_case) or all [snake case](https://en.wikipedia.org/wiki/Snake_case). Don't use a combination of camel case and snake case. Supported operations: - `AND` - `=` - `!=` Supported fields: - `partner_link_id` - `owning_account.account_type` - `owning_account.account_id` - `partner_account.account_type` - `partner_account.account_id` Example: `owning_account.account_type = "GOOGLE_ADS" AND partner_account.account_id = 987654321`
+     * Optional. A [filter string](https://google.aip.dev/160). All fields need to be on the left hand side of each condition (for example: `partner_link_id = 123456789`). Fields must be specified using either all [camel case](https://en.wikipedia.org/wiki/Camel_case) or all [snake case](https://en.wikipedia.org/wiki/Snake_case). Don't use a combination of camel case and snake case. Supported operations: - `AND` - `=` - `!=` Supported fields: - `partner_link_id` - `owning_account.account_type` - `owning_account.account_id` - `partner_account.account_type` - `partner_account.account_id` - `feature_set` For partner links with the FEATURE_SET_AD_EVENT_MANAGEMENT feature set, the following fields are also supported: - `partner_customer_account.account_id` Example: `owning_account.account_type = "GOOGLE_ADS" AND partner_account.account_id = 987654321`
      */
     filter?: string;
     /**
-     * The maximum number of partner links to return. The service may return fewer than this value. If unspecified, at most 10 partner links will be returned. The maximum value is 100; values above 100 will be coerced to 100.
+     * The maximum number of partner links to return. The service may return fewer than this value. If unspecified, at most 50 partner links will be returned. The maximum value is 100; values above 100 will be coerced to 100.
      */
     pageSize?: number;
     /**
@@ -2530,8 +3072,7 @@ export namespace datamanager_v1 {
     create(
       params: Params$Resource$Accounttypes$Accounts$Userlistdirectlicenses$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$UserListDirectLicense>,
+        MethodOptions | BodyResponseCallback<Schema$UserListDirectLicense>,
       callback: BodyResponseCallback<Schema$UserListDirectLicense>
     ): void;
     create(
@@ -2680,8 +3221,7 @@ export namespace datamanager_v1 {
     get(
       params: Params$Resource$Accounttypes$Accounts$Userlistdirectlicenses$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$UserListDirectLicense>,
+        MethodOptions | BodyResponseCallback<Schema$UserListDirectLicense>,
       callback: BodyResponseCallback<Schema$UserListDirectLicense>
     ): void;
     get(
@@ -2779,7 +3319,7 @@ export namespace datamanager_v1 {
      *   // Do the magic
      *   const res =
      *     await datamanager.accountTypes.accounts.userListDirectLicenses.list({
-     *       // Optional. A [filter string](https://google.aip.dev/160) to apply to the list request. All fields need to be on the left hand side of each condition (for example: `user_list_id = 123`). Fields must be specified using either all [camel case](https://en.wikipedia.org/wiki/Camel_case) or all [snake case](https://en.wikipedia.org/wiki/Snake_case). Don't use a combination of camel case and snake case. **Supported Operations:** - `AND` - `=` - `!=` - `\>` - `\>=` - `<` - `<=` **Unsupported Fields:** - `name` (use get method instead) - `historical_pricings` and all its subfields - `pricing.start_time` - `pricing.end_time`
+     *       // Optional. A [filter string](https://google.aip.dev/160) to apply to the list request. All fields need to be on the left hand side of each condition (for example: `user_list_id = 123`). Fields must be specified using either all [camel case](https://en.wikipedia.org/wiki/Camel_case) or all [snake case](https://en.wikipedia.org/wiki/Snake_case). Don't use a combination of camel case and snake case. **Supported Operations:** - `AND` - `=` - `!=` - `\>` - `\>=` - `<` - `<=` **Supported Functions:** - `IN(field, value1, value2, ...)`: returns true if the field matches any of the values. Example: `IN(user_list_id, 123, 456)` **Unsupported Fields:** - `name` (use get method instead) - `historical_pricings` and all its subfields - `pricing.start_time` - `pricing.end_time`
      *       filter: 'placeholder-value',
      *       // Optional. The maximum number of licenses to return per page. The service may return fewer than this value. If unspecified, at most 50 licenses will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      *       pageSize: 'placeholder-value',
@@ -3002,8 +3542,7 @@ export namespace datamanager_v1 {
     patch(
       params: Params$Resource$Accounttypes$Accounts$Userlistdirectlicenses$Patch,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$UserListDirectLicense>,
+        MethodOptions | BodyResponseCallback<Schema$UserListDirectLicense>,
       callback: BodyResponseCallback<Schema$UserListDirectLicense>
     ): void;
     patch(
@@ -3089,7 +3628,7 @@ export namespace datamanager_v1 {
   }
   export interface Params$Resource$Accounttypes$Accounts$Userlistdirectlicenses$List extends StandardParameters {
     /**
-     * Optional. A [filter string](https://google.aip.dev/160) to apply to the list request. All fields need to be on the left hand side of each condition (for example: `user_list_id = 123`). Fields must be specified using either all [camel case](https://en.wikipedia.org/wiki/Camel_case) or all [snake case](https://en.wikipedia.org/wiki/Snake_case). Don't use a combination of camel case and snake case. **Supported Operations:** - `AND` - `=` - `!=` - `\>` - `\>=` - `<` - `<=` **Unsupported Fields:** - `name` (use get method instead) - `historical_pricings` and all its subfields - `pricing.start_time` - `pricing.end_time`
+     * Optional. A [filter string](https://google.aip.dev/160) to apply to the list request. All fields need to be on the left hand side of each condition (for example: `user_list_id = 123`). Fields must be specified using either all [camel case](https://en.wikipedia.org/wiki/Camel_case) or all [snake case](https://en.wikipedia.org/wiki/Snake_case). Don't use a combination of camel case and snake case. **Supported Operations:** - `AND` - `=` - `!=` - `\>` - `\>=` - `<` - `<=` **Supported Functions:** - `IN(field, value1, value2, ...)`: returns true if the field matches any of the values. Example: `IN(user_list_id, 123, 456)` **Unsupported Fields:** - `name` (use get method instead) - `historical_pricings` and all its subfields - `pricing.start_time` - `pricing.end_time`
      */
     filter?: string;
     /**
@@ -3225,8 +3764,7 @@ export namespace datamanager_v1 {
     create(
       params: Params$Resource$Accounttypes$Accounts$Userlistgloballicenses$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$UserListGlobalLicense>,
+        MethodOptions | BodyResponseCallback<Schema$UserListGlobalLicense>,
       callback: BodyResponseCallback<Schema$UserListGlobalLicense>
     ): void;
     create(
@@ -3373,8 +3911,7 @@ export namespace datamanager_v1 {
     get(
       params: Params$Resource$Accounttypes$Accounts$Userlistgloballicenses$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$UserListGlobalLicense>,
+        MethodOptions | BodyResponseCallback<Schema$UserListGlobalLicense>,
       callback: BodyResponseCallback<Schema$UserListGlobalLicense>
     ): void;
     get(
@@ -3472,7 +4009,7 @@ export namespace datamanager_v1 {
      *   // Do the magic
      *   const res =
      *     await datamanager.accountTypes.accounts.userListGlobalLicenses.list({
-     *       // Optional. A [filter string](https://google.aip.dev/160) to apply to the list request. All fields need to be on the left hand side of each condition (for example: `user_list_id = 123`). Fields must be specified using either all [camel case](https://en.wikipedia.org/wiki/Camel_case) or all [snake case](https://en.wikipedia.org/wiki/Snake_case). Don't use a combination of camel case and snake case. **Supported Operations:** - `AND` - `=` - `!=` - `\>` - `\>=` - `<` - `<=` **Unsupported Fields:** - `name` (use get method instead) - `historical_pricings` and all its subfields - `pricing.start_time` - `pricing.end_time`
+     *       // Optional. A [filter string](https://google.aip.dev/160) to apply to the list request. All fields need to be on the left hand side of each condition (for example: `user_list_id = 123`). Fields must be specified using either all [camel case](https://en.wikipedia.org/wiki/Camel_case) or all [snake case](https://en.wikipedia.org/wiki/Snake_case). Don't use a combination of camel case and snake case. **Supported Operations:** - `AND` - `=` - `!=` - `\>` - `\>=` - `<` - `<=` **Supported Functions:** - `IN(field, value1, value2, ...)`: returns true if the field matches any of the values. Example: `IN(user_list_id, 123, 456)` **Unsupported Fields:** - `name` (use get method instead) - `historical_pricings` and all its subfields - `pricing.start_time` - `pricing.end_time`
      *       filter: 'placeholder-value',
      *       // Optional. The maximum number of licenses to return. The service may return fewer than this value. If unspecified, at most 50 licenses will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      *       pageSize: 'placeholder-value',
@@ -3691,8 +4228,7 @@ export namespace datamanager_v1 {
     patch(
       params: Params$Resource$Accounttypes$Accounts$Userlistgloballicenses$Patch,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$UserListGlobalLicense>,
+        MethodOptions | BodyResponseCallback<Schema$UserListGlobalLicense>,
       callback: BodyResponseCallback<Schema$UserListGlobalLicense>
     ): void;
     patch(
@@ -3778,7 +4314,7 @@ export namespace datamanager_v1 {
   }
   export interface Params$Resource$Accounttypes$Accounts$Userlistgloballicenses$List extends StandardParameters {
     /**
-     * Optional. A [filter string](https://google.aip.dev/160) to apply to the list request. All fields need to be on the left hand side of each condition (for example: `user_list_id = 123`). Fields must be specified using either all [camel case](https://en.wikipedia.org/wiki/Camel_case) or all [snake case](https://en.wikipedia.org/wiki/Snake_case). Don't use a combination of camel case and snake case. **Supported Operations:** - `AND` - `=` - `!=` - `\>` - `\>=` - `<` - `<=` **Unsupported Fields:** - `name` (use get method instead) - `historical_pricings` and all its subfields - `pricing.start_time` - `pricing.end_time`
+     * Optional. A [filter string](https://google.aip.dev/160) to apply to the list request. All fields need to be on the left hand side of each condition (for example: `user_list_id = 123`). Fields must be specified using either all [camel case](https://en.wikipedia.org/wiki/Camel_case) or all [snake case](https://en.wikipedia.org/wiki/Snake_case). Don't use a combination of camel case and snake case. **Supported Operations:** - `AND` - `=` - `!=` - `\>` - `\>=` - `<` - `<=` **Supported Functions:** - `IN(field, value1, value2, ...)`: returns true if the field matches any of the values. Example: `IN(user_list_id, 123, 456)` **Unsupported Fields:** - `name` (use get method instead) - `historical_pricings` and all its subfields - `pricing.start_time` - `pricing.end_time`
      */
     filter?: string;
     /**
@@ -3849,7 +4385,7 @@ export namespace datamanager_v1 {
      *   const res =
      *     await datamanager.accountTypes.accounts.userListGlobalLicenses.userListGlobalLicenseCustomerInfos.list(
      *       {
-     *         // Optional. A [filter string](https://google.aip.dev/160) to apply to the list request. All fields need to be on the left hand side of each condition (for example: `user_list_id = 123`). Fields must be specified using either all [camel case](https://en.wikipedia.org/wiki/Camel_case) or all [snake case](https://en.wikipedia.org/wiki/Snake_case). Don't use a combination of camel case and snake case. **Supported Operations:** - `AND` - `=` - `!=` - `\>` - `\>=` - `<` - `<=` **Unsupported Fields:** - `name` (use get method instead) - `historical_pricings` and all its subfields - `pricing.start_time` - `pricing.end_time`
+     *         // Optional. A [filter string](https://google.aip.dev/160) to apply to the list request. All fields need to be on the left hand side of each condition (for example: `user_list_id = 123`). Fields must be specified using either all [camel case](https://en.wikipedia.org/wiki/Camel_case) or all [snake case](https://en.wikipedia.org/wiki/Snake_case). Don't use a combination of camel case and snake case. **Supported Operations:** - `AND` - `=` - `!=` - `\>` - `\>=` - `<` - `<=` **Supported Functions:** - `IN(field, value1, value2, ...)`: returns true if the field matches any of the values. Example: `IN(user_list_id, 123, 456)` **Unsupported Fields:** - `name` (use get method instead) - `historical_pricings` and all its subfields - `pricing.start_time` - `pricing.end_time`
      *         filter: 'placeholder-value',
      *         // Optional. The maximum number of licenses to return. The service may return fewer than this value. If unspecified, at most 50 licenses will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      *         pageSize: 'placeholder-value',
@@ -3977,7 +4513,7 @@ export namespace datamanager_v1 {
 
   export interface Params$Resource$Accounttypes$Accounts$Userlistgloballicenses$Userlistgloballicensecustomerinfos$List extends StandardParameters {
     /**
-     * Optional. A [filter string](https://google.aip.dev/160) to apply to the list request. All fields need to be on the left hand side of each condition (for example: `user_list_id = 123`). Fields must be specified using either all [camel case](https://en.wikipedia.org/wiki/Camel_case) or all [snake case](https://en.wikipedia.org/wiki/Snake_case). Don't use a combination of camel case and snake case. **Supported Operations:** - `AND` - `=` - `!=` - `\>` - `\>=` - `<` - `<=` **Unsupported Fields:** - `name` (use get method instead) - `historical_pricings` and all its subfields - `pricing.start_time` - `pricing.end_time`
+     * Optional. A [filter string](https://google.aip.dev/160) to apply to the list request. All fields need to be on the left hand side of each condition (for example: `user_list_id = 123`). Fields must be specified using either all [camel case](https://en.wikipedia.org/wiki/Camel_case) or all [snake case](https://en.wikipedia.org/wiki/Snake_case). Don't use a combination of camel case and snake case. **Supported Operations:** - `AND` - `=` - `!=` - `\>` - `\>=` - `<` - `<=` **Supported Functions:** - `IN(field, value1, value2, ...)`: returns true if the field matches any of the values. Example: `IN(user_list_id, 123, 456)` **Unsupported Fields:** - `name` (use get method instead) - `historical_pricings` and all its subfields - `pricing.start_time` - `pricing.end_time`
      */
     filter?: string;
     /**
@@ -4124,8 +4660,7 @@ export namespace datamanager_v1 {
         | BodyResponseCallback<Schema$UserList>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$UserList>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$UserList> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$UserList>>
@@ -4261,8 +4796,7 @@ export namespace datamanager_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -4408,8 +4942,7 @@ export namespace datamanager_v1 {
         | BodyResponseCallback<Schema$UserList>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$UserList>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$UserList> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$UserList>>
@@ -4485,7 +5018,7 @@ export namespace datamanager_v1 {
      *
      *   // Do the magic
      *   const res = await datamanager.accountTypes.accounts.userLists.list({
-     *     // Optional. A [filter string](https://google.aip.dev/160). All fields need to be on the left hand side of each condition (for example: `display_name = "list 1"`). Fields must be specified using either all [camel case](https://en.wikipedia.org/wiki/Camel_case) or all [snake case](https://en.wikipedia.org/wiki/Snake_case). Don't use a combination of camel case and snake case. Supported operations: - `AND` - `=` - `!=` - `\>` - `\>=` - `<` - `<=` - `:` (has) Supported fields: - `id` - `display_name` - `description` - `membership_status` - `integration_code` - `access_reason` - `ingested_user_list_info.upload_key_types`
+     *     // Optional. A [filter string](https://google.aip.dev/160). All fields need to be on the left hand side of each condition (for example: `display_name = "list 1"`). Fields must be specified using either all [camel case](https://en.wikipedia.org/wiki/Camel_case) or all [snake case](https://en.wikipedia.org/wiki/Snake_case). Don't use a combination of camel case and snake case. Supported operations: - `AND` - `=` - `!=` - `\>` - `\>=` - `<` - `<=` - `:` (has) **Supported Functions:** - `IN(field, value1, value2, ...)`: returns true if the field matches any of the values. Example: `IN(display_name, "name1", "name2")` Supported fields: - `id` - `display_name` - `description` - `membership_status` - `integration_code` - `access_reason` - `ingested_user_list_info.upload_key_types`
      *     filter: 'placeholder-value',
      *     // Optional. The maximum number of user lists to return. The service may return fewer than this value. If unspecified, at most 50 user lists will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      *     pageSize: 'placeholder-value',
@@ -4531,8 +5064,7 @@ export namespace datamanager_v1 {
     list(
       params: Params$Resource$Accounttypes$Accounts$Userlists$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListUserListsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListUserListsResponse>,
       callback: BodyResponseCallback<Schema$ListUserListsResponse>
     ): void;
     list(
@@ -4726,8 +5258,7 @@ export namespace datamanager_v1 {
         | BodyResponseCallback<Schema$UserList>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$UserList>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$UserList> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$UserList>>
@@ -4806,7 +5337,7 @@ export namespace datamanager_v1 {
   }
   export interface Params$Resource$Accounttypes$Accounts$Userlists$List extends StandardParameters {
     /**
-     * Optional. A [filter string](https://google.aip.dev/160). All fields need to be on the left hand side of each condition (for example: `display_name = "list 1"`). Fields must be specified using either all [camel case](https://en.wikipedia.org/wiki/Camel_case) or all [snake case](https://en.wikipedia.org/wiki/Snake_case). Don't use a combination of camel case and snake case. Supported operations: - `AND` - `=` - `!=` - `\>` - `\>=` - `<` - `<=` - `:` (has) Supported fields: - `id` - `display_name` - `description` - `membership_status` - `integration_code` - `access_reason` - `ingested_user_list_info.upload_key_types`
+     * Optional. A [filter string](https://google.aip.dev/160). All fields need to be on the left hand side of each condition (for example: `display_name = "list 1"`). Fields must be specified using either all [camel case](https://en.wikipedia.org/wiki/Camel_case) or all [snake case](https://en.wikipedia.org/wiki/Snake_case). Don't use a combination of camel case and snake case. Supported operations: - `AND` - `=` - `!=` - `\>` - `\>=` - `<` - `<=` - `:` (has) **Supported Functions:** - `IN(field, value1, value2, ...)`: returns true if the field matches any of the values. Example: `IN(display_name, "name1", "name2")` Supported fields: - `id` - `display_name` - `description` - `membership_status` - `integration_code` - `access_reason` - `ingested_user_list_info.upload_key_types`
      */
     filter?: string;
     /**
@@ -4840,6 +5371,162 @@ export namespace datamanager_v1 {
      * Request body metadata
      */
     requestBody?: Schema$UserList;
+  }
+
+  export class Resource$Adevents {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Uploads a list of AdEvent resources to Google Analytics. This feature is only available to accounts on an allowlist.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/datamanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const datamanager = google.datamanager('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/datamanager'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await datamanager.adEvents.ingest({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "adEvents": [],
+     *       //   "encryptionInfo": {},
+     *       //   "validateOnly": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    ingest(
+      params: Params$Resource$Adevents$Ingest,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    ingest(
+      params?: Params$Resource$Adevents$Ingest,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$IngestAdEventsResponse>>;
+    ingest(
+      params: Params$Resource$Adevents$Ingest,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    ingest(
+      params: Params$Resource$Adevents$Ingest,
+      options:
+        MethodOptions | BodyResponseCallback<Schema$IngestAdEventsResponse>,
+      callback: BodyResponseCallback<Schema$IngestAdEventsResponse>
+    ): void;
+    ingest(
+      params: Params$Resource$Adevents$Ingest,
+      callback: BodyResponseCallback<Schema$IngestAdEventsResponse>
+    ): void;
+    ingest(callback: BodyResponseCallback<Schema$IngestAdEventsResponse>): void;
+    ingest(
+      paramsOrCallback?:
+        | Params$Resource$Adevents$Ingest
+        | BodyResponseCallback<Schema$IngestAdEventsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$IngestAdEventsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$IngestAdEventsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$IngestAdEventsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Adevents$Ingest;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Adevents$Ingest;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://datamanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/adEvents:ingest').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$IngestAdEventsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$IngestAdEventsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Adevents$Ingest extends StandardParameters {
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$IngestAdEventsRequest;
   }
 
   export class Resource$Audiencemembers {
@@ -4897,6 +5584,7 @@ export namespace datamanager_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "fieldWarnings": [],
      *   //   "requestId": "my_requestId"
      *   // }
      * }
@@ -5153,6 +5841,160 @@ export namespace datamanager_v1 {
         );
       }
     }
+
+    /**
+     * Removes all audience members from the provided destinations.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/datamanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const datamanager = google.datamanager('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/datamanager'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await datamanager.audienceMembers.removeAll({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "destinations": [],
+     *       //   "removeAsOfTime": "my_removeAsOfTime",
+     *       //   "validateOnly": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "requestId": "my_requestId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    removeAll(
+      params: Params$Resource$Audiencemembers$Removeall,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    removeAll(
+      params?: Params$Resource$Audiencemembers$Removeall,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$RemoveAllAudienceMembersResponse>
+    >;
+    removeAll(
+      params: Params$Resource$Audiencemembers$Removeall,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    removeAll(
+      params: Params$Resource$Audiencemembers$Removeall,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RemoveAllAudienceMembersResponse>,
+      callback: BodyResponseCallback<Schema$RemoveAllAudienceMembersResponse>
+    ): void;
+    removeAll(
+      params: Params$Resource$Audiencemembers$Removeall,
+      callback: BodyResponseCallback<Schema$RemoveAllAudienceMembersResponse>
+    ): void;
+    removeAll(
+      callback: BodyResponseCallback<Schema$RemoveAllAudienceMembersResponse>
+    ): void;
+    removeAll(
+      paramsOrCallback?:
+        | Params$Resource$Audiencemembers$Removeall
+        | BodyResponseCallback<Schema$RemoveAllAudienceMembersResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RemoveAllAudienceMembersResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RemoveAllAudienceMembersResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$RemoveAllAudienceMembersResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Audiencemembers$Removeall;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Audiencemembers$Removeall;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://datamanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/audienceMembers:removeAll').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$RemoveAllAudienceMembersResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$RemoveAllAudienceMembersResponse>(
+          parameters
+        );
+      }
+    }
   }
 
   export interface Params$Resource$Audiencemembers$Ingest extends StandardParameters {
@@ -5166,6 +6008,12 @@ export namespace datamanager_v1 {
      * Request body metadata
      */
     requestBody?: Schema$RemoveAudienceMembersRequest;
+  }
+  export interface Params$Resource$Audiencemembers$Removeall extends StandardParameters {
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RemoveAllAudienceMembersRequest;
   }
 
   export class Resource$Events {
@@ -5222,6 +6070,7 @@ export namespace datamanager_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "fieldWarnings": [],
      *   //   "requestId": "my_requestId"
      *   // }
      * }
@@ -5254,8 +6103,7 @@ export namespace datamanager_v1 {
     ingest(
       params: Params$Resource$Events$Ingest,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$IngestEventsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$IngestEventsResponse>,
       callback: BodyResponseCallback<Schema$IngestEventsResponse>
     ): void;
     ingest(

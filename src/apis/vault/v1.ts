@@ -307,6 +307,10 @@ export namespace vault_v1 {
      */
     driveQuery?: Schema$HeldDriveQuery;
     /**
+     * Service-specific options for Gemini holds. If set, **CorpusType** must be **GEMINI**.
+     */
+    geminiQuery?: Schema$HeldGeminiQuery;
+    /**
      * Service-specific options for Groups holds. If set, **CorpusType** must be **GROUPS**.
      */
     groupsQuery?: Schema$HeldGroupsQuery;
@@ -649,6 +653,10 @@ export namespace vault_v1 {
      */
     includeTeamDriveFiles?: boolean | null;
   }
+  /**
+   * Options for Gemini holds.
+   */
+  export interface Schema$HeldGeminiQuery {}
   /**
    * Query options for group holds.
    */
@@ -1599,8 +1607,7 @@ export namespace vault_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -1750,8 +1757,7 @@ export namespace vault_v1 {
         | BodyResponseCallback<Schema$Matter>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Matter>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Matter> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Matter>>
@@ -1888,8 +1894,7 @@ export namespace vault_v1 {
         | BodyResponseCallback<Schema$Matter>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Matter>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Matter> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Matter>>
@@ -2034,8 +2039,7 @@ export namespace vault_v1 {
         | BodyResponseCallback<Schema$Matter>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Matter>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Matter> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Matter>>
@@ -2319,8 +2323,7 @@ export namespace vault_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -2444,8 +2447,7 @@ export namespace vault_v1 {
     reopen(
       params: Params$Resource$Matters$Reopen,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ReopenMatterResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ReopenMatterResponse>,
       callback: BodyResponseCallback<Schema$ReopenMatterResponse>
     ): void;
     reopen(
@@ -2611,8 +2613,7 @@ export namespace vault_v1 {
         | BodyResponseCallback<Schema$Matter>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Matter>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Matter> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Matter>>
@@ -2765,8 +2766,7 @@ export namespace vault_v1 {
         | BodyResponseCallback<Schema$Matter>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Matter>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Matter> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Matter>>
@@ -3054,8 +3054,7 @@ export namespace vault_v1 {
         | BodyResponseCallback<Schema$Export>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Export>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Export> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Export>>
@@ -3191,8 +3190,7 @@ export namespace vault_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -3342,8 +3340,7 @@ export namespace vault_v1 {
         | BodyResponseCallback<Schema$Export>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Export>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Export> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Export>>
@@ -3671,8 +3668,7 @@ export namespace vault_v1 {
     addHeldAccounts(
       params: Params$Resource$Matters$Holds$Addheldaccounts,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$AddHeldAccountsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$AddHeldAccountsResponse>,
       callback: BodyResponseCallback<Schema$AddHeldAccountsResponse>
     ): void;
     addHeldAccounts(
@@ -3849,8 +3845,7 @@ export namespace vault_v1 {
         | BodyResponseCallback<Schema$Hold>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Hold>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Hold> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Hold>>
@@ -3986,8 +3981,7 @@ export namespace vault_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -4136,8 +4130,7 @@ export namespace vault_v1 {
         | BodyResponseCallback<Schema$Hold>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Hold>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Hold> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Hold>>
@@ -4412,8 +4405,7 @@ export namespace vault_v1 {
     removeHeldAccounts(
       params: Params$Resource$Matters$Holds$Removeheldaccounts,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$RemoveHeldAccountsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$RemoveHeldAccountsResponse>,
       callback: BodyResponseCallback<Schema$RemoveHeldAccountsResponse>
     ): void;
     removeHeldAccounts(
@@ -4593,8 +4585,7 @@ export namespace vault_v1 {
         | BodyResponseCallback<Schema$Hold>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Hold>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Hold> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Hold>>
@@ -4992,8 +4983,7 @@ export namespace vault_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -5116,8 +5106,7 @@ export namespace vault_v1 {
     list(
       params: Params$Resource$Matters$Holds$Accounts$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListHeldAccountsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListHeldAccountsResponse>,
       callback: BodyResponseCallback<Schema$ListHeldAccountsResponse>
     ): void;
     list(
@@ -5335,8 +5324,7 @@ export namespace vault_v1 {
         | BodyResponseCallback<Schema$SavedQuery>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$SavedQuery>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$SavedQuery> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$SavedQuery>>
@@ -5472,8 +5460,7 @@ export namespace vault_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -5617,8 +5604,7 @@ export namespace vault_v1 {
         | BodyResponseCallback<Schema$SavedQuery>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$SavedQuery>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$SavedQuery> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$SavedQuery>>
@@ -5743,8 +5729,7 @@ export namespace vault_v1 {
     list(
       params: Params$Resource$Matters$Savedqueries$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListSavedQueriesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListSavedQueriesResponse>,
       callback: BodyResponseCallback<Schema$ListSavedQueriesResponse>
     ): void;
     list(
@@ -5957,8 +5942,7 @@ export namespace vault_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -6089,8 +6073,7 @@ export namespace vault_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -6230,8 +6213,7 @@ export namespace vault_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -6358,8 +6340,7 @@ export namespace vault_v1 {
     list(
       params: Params$Resource$Operations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListOperationsResponse>,
       callback: BodyResponseCallback<Schema$ListOperationsResponse>
     ): void;
     list(

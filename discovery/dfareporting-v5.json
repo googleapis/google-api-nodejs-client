@@ -7987,6 +7987,38 @@
         }
       }
     },
+    "reportData": {
+      "methods": {
+        "query": {
+          "description": "Executes an ad-hoc query and returns structured JSON payload data.",
+          "flatPath": "userprofiles/{profileId}/reportdata/query",
+          "httpMethod": "POST",
+          "id": "dfareporting.reportData.query",
+          "parameterOrder": [
+            "profileId"
+          ],
+          "parameters": {
+            "profileId": {
+              "description": "Required. The Campaign Manager 360 user profile ID.",
+              "format": "int64",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "userprofiles/{profileId}/reportdata/query",
+          "request": {
+            "$ref": "ReportDataQueryRequest"
+          },
+          "response": {
+            "$ref": "ReportDataResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/dfareporting"
+          ]
+        }
+      }
+    },
     "reports": {
       "methods": {
         "delete": {
@@ -9485,7 +9517,7 @@
               ],
               "enumDescriptions": [
                 "",
-                "",
+                "Allows populating multiple tvCampaignId filters and tvCampaignEndDate filter on the report.",
                 "",
                 "",
                 "",
@@ -9561,7 +9593,7 @@
               ],
               "enumDescriptions": [
                 "",
-                "",
+                "Allows populating multiple tvCampaignId filters and tvCampaignEndDate filter on the report.",
                 "",
                 "",
                 "",
@@ -10091,7 +10123,7 @@
       }
     }
   },
-  "revision": "20260511",
+  "revision": "20260721",
   "rootUrl": "https://dfareporting.googleapis.com/",
   "schemas": {
     "Account": {
@@ -11911,6 +11943,33 @@
       },
       "type": "object"
     },
+    "ColumnHeader": {
+      "description": "A column header in the report.",
+      "id": "ColumnHeader",
+      "properties": {
+        "name": {
+          "description": "Output only. The column name.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "type": {
+          "description": "Output only. The column type.",
+          "enum": [
+            "COLUMN_TYPE_UNSPECIFIED",
+            "DIMENSION",
+            "METRIC"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "Dimension.",
+            "Metric."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "CompanionClickThroughOverride": {
       "description": "Companion Click-through override.",
       "id": "CompanionClickThroughOverride",
@@ -12495,7 +12554,7 @@
             ],
             "enumDescriptions": [
               "",
-              "",
+              "Allows populating multiple tvCampaignId filters and tvCampaignEndDate filter on the report.",
               "",
               "",
               "",
@@ -12978,6 +13037,20 @@
         "subaccountId": {
           "description": "Subaccount ID of this creative. This field, if left unset, will be auto-generated for both insert and update operations. Applicable to all creative types.",
           "format": "int64",
+          "type": "string"
+        },
+        "syntheticContentAttestationStatus": {
+          "description": "Optional. Whether to add a label to the creative as created or edited using AI when served in regions with local AI labeling regulations. [Learn more about labeling requirements in AI regulations.](https://support.google.com/campaignmanager/answer/17232030)",
+          "enum": [
+            "SYNTHETIC_CONTENT_ATTESTATION_STATUS_UNSPECIFIED",
+            "IS_SYNTHETIC",
+            "NOT_SYNTHETIC"
+          ],
+          "enumDescriptions": [
+            "No attestation has been provided.",
+            "Attested as created or edited using AI.",
+            "Attested as not created or edited using AI."
+          ],
           "type": "string"
         },
         "thirdPartyBackupImageImpressionsUrl": {
@@ -16494,27 +16567,18 @@
             "CONVERSION_CATEGORY_SIGNUP",
             "CONVERSION_CATEGORY_PAGE_VIEW",
             "CONVERSION_CATEGORY_DOWNLOAD",
-            "CONVERSION_CATEGORY_BOOM_EVENT",
             "CONVERSION_CATEGORY_ADD_TO_CART",
             "CONVERSION_CATEGORY_BEGIN_CHECKOUT",
             "CONVERSION_CATEGORY_SUBSCRIBE_PAID",
-            "CONVERSION_CATEGORY_SUBSCRIBE_FREE",
-            "CONVERSION_CATEGORY_PHONE_CALL_LEAD",
-            "CONVERSION_CATEGORY_IMPORTED_LEAD",
             "CONVERSION_CATEGORY_SUBMIT_LEAD_FORM",
             "CONVERSION_CATEGORY_BOOK_APPOINTMENT",
             "CONVERSION_CATEGORY_REQUEST_QUOTE",
             "CONVERSION_CATEGORY_GET_DIRECTIONS",
             "CONVERSION_CATEGORY_OUTBOUND_CLICK",
             "CONVERSION_CATEGORY_CONTACT",
-            "CONVERSION_CATEGORY_VIEW_KEY_PAGE",
-            "CONVERSION_CATEGORY_ENGAGEMENT",
-            "CONVERSION_CATEGORY_STORE_VISIT",
-            "CONVERSION_CATEGORY_STORE_SALE",
             "CONVERSION_CATEGORY_QUALIFIED_LEAD",
             "CONVERSION_CATEGORY_CONVERTED_LEAD",
-            "CONVERSION_CATEGORY_IN_APP_AD_REVENUE",
-            "CONVERSION_CATEGORY_MESSAGE_LEAD"
+            "CONVERSION_CATEGORY_IN_APP_AD_REVENUE"
           ],
           "enumDescriptions": [
             "Unspecified category (called \"Other\" externally).",
@@ -16522,27 +16586,18 @@
             "Signup user action.",
             "User visiting a page.",
             "Software download action (as for an app). A conversion type that is created as a download type may not have its category changed.",
-            "Boom event (for user list creation). This is an internal-only category.",
             ". The addition of items to a shopping cart or bag on an advertiser site.",
             "When someone enters the checkout flow on an advertiser site.",
             "The start of a paid subscription for a product or service.",
-            "The start of a free subscription for a product or service.",
-            "A call to indicate interesting in an advertiser's offering. Note: this is different from support calls.",
-            "A lead conversion imported from an external source into Google Ads.",
             "A submission of a form on an advertiser site indicating business interest.",
             "A booking of an appointment with an advertiser's business.",
             "A quote or price estimate request.",
             "A search for an advertiser's business location.",
             "A click to an advertiser's partner site, e.g. a referral.",
             "A call, SMS, email, chat or other type of contact to an advertiser.",
-            "Key page views (ex: product page, article).",
-            "A website engagement event",
-            "A visit to a physical store location.",
-            "A sale occurring in a physical store.",
             "A lead conversion imported from an external source into Google Ads, that has been further qualified by the advertiser.",
             "A lead conversion imported from an external source into Google Ads, that has further completed a desired stage as defined by the lead gen advertiser.",
-            "Conversion event that provides the revenue value of impressions that were shown in-app to users.",
-            "Message exchanges which indicate an interest in an advertiser's offering."
+            "Conversion event that provides the revenue value of impressions that were shown in-app to users."
           ],
           "type": "string"
         },
@@ -20121,6 +20176,102 @@
       },
       "type": "object"
     },
+    "ReportDataQueryRequest": {
+      "description": "The request body containing ad-hoc query parameters.",
+      "id": "ReportDataQueryRequest",
+      "properties": {
+        "dateRange": {
+          "$ref": "DateRange",
+          "description": "Optional. The requested date range covering the report duration."
+        },
+        "dimensionFilters": {
+          "description": "Optional. The list of dimension values on which report lines are filtered. Utilizes the existing legacy filter message `DimensionValue`.",
+          "items": {
+            "$ref": "DimensionValue"
+          },
+          "type": "array"
+        },
+        "dimensionNames": {
+          "description": "Optional. The list of dimension names to group by.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "maxResults": {
+          "description": "Optional. Maximum number of result rows to return per page. The default value is 100. The maximum allowed value is 1000. Values above 1000 will be coerced (clamped) down to 1000. Negative values will be rejected.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "metricNames": {
+          "description": "Required. The list of metric names to include.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "pageToken": {
+          "description": "Optional. Continuation token for paginating results.",
+          "type": "string"
+        },
+        "sortBys": {
+          "description": "Optional. Sort options across either requested dimensions or metrics.",
+          "items": {
+            "$ref": "SortBy"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ReportDataResponse": {
+      "description": "Represents a response to report data request.",
+      "id": "ReportDataResponse",
+      "properties": {
+        "columnHeaders": {
+          "description": "Output only. Ordered descriptors of the requested column fields.",
+          "items": {
+            "$ref": "ColumnHeader"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Output only. Token to retrieve the next page of rows, or empty if end of results.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "rows": {
+          "description": "Output only. The resulting set of matching data rows.",
+          "items": {
+            "$ref": "ReportDataRow"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "totalRow": {
+          "$ref": "ReportDataRow",
+          "description": "Output only. Singular aggregate total row for the entire query matching the criteria. Column headers apply in the exact same order as data rows. In the total_row: - All dimension columns contain an empty string (\"\"), as aggregation does not apply. - Non-summable metric columns (e.g. Reach metrics) contain an empty string (\"\"), as grand total aggregation cannot be mathematically/logically computed for them.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "ReportDataRow": {
+      "description": "A row of report data.",
+      "id": "ReportDataRow",
+      "properties": {
+        "values": {
+          "description": "Output only. A single sequential list of all cell values matching column_headers indices exactly. - Metric cells that are suppressed due to Minimum Reporting Standard (MRS) privacy protection constraints return \"-\".",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ReportList": {
       "description": "Represents the list of reports.",
       "id": "ReportList",
@@ -20597,6 +20748,29 @@
         "skippable": {
           "description": "Whether the user can skip creatives served to this placement.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "SortBy": {
+      "description": "Specifies the sort configuration for a specific field in the report.",
+      "id": "SortBy",
+      "properties": {
+        "name": {
+          "description": "Required. The dimension or metric field name to sort on.",
+          "type": "string"
+        },
+        "sortOrder": {
+          "description": "Optional. The sort order of this column.",
+          "enum": [
+            "ASCENDING",
+            "DESCENDING"
+          ],
+          "enumDescriptions": [
+            "Ascending order.",
+            "Descending order."
+          ],
+          "type": "string"
         }
       },
       "type": "object"

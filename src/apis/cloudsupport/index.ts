@@ -37,10 +37,7 @@ export function cloudsupport<
 >(
   this: GoogleConfigurable,
   versionOrOptions:
-    | 'v2'
-    | cloudsupport_v2.Options
-    | 'v2beta'
-    | cloudsupport_v2beta.Options
+    'v2' | cloudsupport_v2.Options | 'v2beta' | cloudsupport_v2beta.Options
 ) {
   return getAPI<T>('cloudsupport', versionOrOptions, VERSIONS, this);
 }

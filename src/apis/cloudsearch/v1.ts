@@ -2987,6 +2987,10 @@ export namespace cloudsearch_v1 {
      */
     clientDisplayLanguageCode?: string | null;
     /**
+     * Optional. Specifies the country/region where the query originated, as a lowercase ISO 3166-1 alpha-2 region code (using 'uk' instead of 'gb' for the United Kingdom).
+     */
+    countryCode?: string | null;
+    /**
      * Debug options of the request
      */
     debugOptions?: Schema$DebugOptions;
@@ -3253,7 +3257,7 @@ export namespace cloudsearch_v1 {
     quality?: number | null;
   }
   /**
-   * The search API request. NEXT ID: 25
+   * The search API request. NEXT ID: 26
    */
   export interface Schema$SearchRequest {
     /**
@@ -3291,7 +3295,7 @@ export namespace cloudsearch_v1 {
     start?: number | null;
   }
   /**
-   * The search API response. NEXT ID: 19
+   * The search API response. NEXT ID: 20
    */
   export interface Schema$SearchResponse {
     /**
@@ -3340,7 +3344,7 @@ export namespace cloudsearch_v1 {
     structuredResults?: Schema$StructuredResult[];
   }
   /**
-   * Results containing indexed information for a document. Next ID: 16
+   * Results containing indexed information for a document. Next ID: 17
    */
   export interface Schema$SearchResult {
     /**
@@ -4818,8 +4822,7 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4962,8 +4965,7 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Schema$Schema>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Schema>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Schema> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Schema>>
@@ -5117,8 +5119,7 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5308,8 +5309,7 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5462,8 +5462,7 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5615,8 +5614,7 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Schema$Item>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Item>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Item> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Item>>
@@ -5771,8 +5769,7 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -6233,8 +6230,7 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Schema$Item>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Item>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Item> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Item>>
@@ -6387,8 +6383,7 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -6824,8 +6819,7 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Schema$Media>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Media>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Media> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Media>>
@@ -7011,8 +7005,7 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -7157,8 +7150,7 @@ export namespace cloudsearch_v1 {
     list(
       params: Params$Resource$Operations$Lro$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListOperationsResponse>,
       callback: BodyResponseCallback<Schema$ListOperationsResponse>
     ): void;
     list(
@@ -7332,8 +7324,7 @@ export namespace cloudsearch_v1 {
     removeActivity(
       params: Params$Resource$Query$Removeactivity,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$RemoveActivityResponse>,
+        MethodOptions | BodyResponseCallback<Schema$RemoveActivityResponse>,
       callback: BodyResponseCallback<Schema$RemoveActivityResponse>
     ): void;
     removeActivity(
@@ -7769,6 +7760,8 @@ export namespace cloudsearch_v1 {
      *     pageToken: 'placeholder-value',
      *     // The BCP-47 language code, such as "pt" or "en". It represents the user's preferred Display Language.
      *     'requestOptions.clientDisplayLanguageCode': 'placeholder-value',
+     *     // Optional. Specifies the country/region where the query originated, as a lowercase ISO 3166-1 alpha-2 region code (using 'uk' instead of 'gb' for the United Kingdom).
+     *     'requestOptions.countryCode': 'placeholder-value',
      *     // If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      *     'requestOptions.debugOptions.enableDebugging': 'placeholder-value',
      *     // The BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier. For translations. Set this field using the language set in browser or for the page. In the event that the user's language preference is known, set this field to the known user language. When specified, the documents in search results are biased towards the specified language. The Suggest API uses this field as a hint to make better third-party autocomplete predictions.
@@ -7815,8 +7808,7 @@ export namespace cloudsearch_v1 {
     list(
       params: Params$Resource$Query$Sources$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListQuerySourcesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListQuerySourcesResponse>,
       callback: BodyResponseCallback<Schema$ListQuerySourcesResponse>
     ): void;
     list(
@@ -7891,6 +7883,10 @@ export namespace cloudsearch_v1 {
      * The BCP-47 language code, such as "pt" or "en". It represents the user's preferred Display Language.
      */
     'requestOptions.clientDisplayLanguageCode'?: string;
+    /**
+     * Optional. Specifies the country/region where the query originated, as a lowercase ISO 3166-1 alpha-2 region code (using 'uk' instead of 'gb' for the United Kingdom).
+     */
+    'requestOptions.countryCode'?: string;
     /**
      * If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      */
@@ -8165,8 +8161,7 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -8343,8 +8338,7 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -8490,8 +8484,7 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -8641,8 +8634,7 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Schema$DataSource>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$DataSource>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$DataSource> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$DataSource>>
@@ -8769,8 +8761,7 @@ export namespace cloudsearch_v1 {
     list(
       params: Params$Resource$Settings$Datasources$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListDataSourceResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListDataSourceResponse>,
       callback: BodyResponseCallback<Schema$ListDataSourceResponse>
     ): void;
     list(
@@ -8954,8 +8945,7 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -9109,8 +9099,7 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -9347,8 +9336,7 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -9494,8 +9482,7 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -9964,8 +9951,7 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -10117,8 +10103,7 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -10282,8 +10267,7 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -12285,8 +12269,7 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>

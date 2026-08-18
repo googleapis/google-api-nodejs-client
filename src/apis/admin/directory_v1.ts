@@ -1241,6 +1241,19 @@ export namespace admin_directory_v1 {
    */
   export interface Schema$Empty {}
   /**
+   * External identifier used to link and identify this group across external directory systems.
+   */
+  export interface Schema$ExternalId {
+    /**
+     * The unique identifier string assigned by the external provider.
+     */
+    id?: string | null;
+    /**
+     * The system or identity provider managing this ID.
+     */
+    namespace?: string | null;
+  }
+  /**
    * Info about failures
    */
   export interface Schema$FailureInfo {
@@ -1351,6 +1364,10 @@ export namespace admin_directory_v1 {
      * ETag of the resource.
      */
     etag?: string | null;
+    /**
+     * Optional. The list of external IDs for the group, such as an immutable identifier from an external identity provider or directory sync client. Each entry contains a namespace and an ID value.
+     */
+    externalIds?: Schema$ExternalId[];
     /**
      * Read-only. The unique ID of a group. A group `id` can be used as a group request URI's `groupKey`.
      */
@@ -2243,6 +2260,10 @@ export namespace admin_directory_v1 {
      */
     aliases?: string[] | null;
     /**
+     * Output only. User's account archival time. (Read-only)
+     */
+    archivalTime?: string | null;
+    /**
      * Indicates if user is archived.
      */
     archived?: boolean | null;
@@ -2407,6 +2428,10 @@ export namespace admin_directory_v1 {
      * Output only. Has the reason a user account is suspended either by the administrator or by Google at the time of suspension. The property is returned only if the `suspended` property is `true`.
      */
     suspensionReason?: string | null;
+    /**
+     * Output only. User's account suspension time. (Read-only)
+     */
+    suspensionTime?: string | null;
     /**
      * Output only. ETag of the user's photo (Read-only)
      */
@@ -3206,8 +3231,7 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<Schema$Asp>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Asp>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Asp> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Asp>>
@@ -3343,8 +3367,7 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<Schema$Asps>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Asps>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Asps> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Asps>>
@@ -5685,8 +5708,7 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<Schema$Customer>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Customer>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Customer> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Customer>>
@@ -5844,8 +5866,7 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<Schema$Customer>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Customer>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Customer> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Customer>>
@@ -6003,8 +6024,7 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<Schema$Customer>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Customer>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Customer> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Customer>>
@@ -6515,8 +6535,7 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<Schema$Printer>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Printer>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Printer> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Printer>>
@@ -6649,8 +6668,7 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -6798,8 +6816,7 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<Schema$Printer>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Printer>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Printer> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Printer>>
@@ -6931,8 +6948,7 @@ export namespace admin_directory_v1 {
     list(
       params: Params$Resource$Customers$Chrome$Printers$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListPrintersResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListPrintersResponse>,
       callback: BodyResponseCallback<Schema$ListPrintersResponse>
     ): void;
     list(
@@ -7079,8 +7095,7 @@ export namespace admin_directory_v1 {
     listPrinterModels(
       params: Params$Resource$Customers$Chrome$Printers$Listprintermodels,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListPrinterModelsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListPrinterModelsResponse>,
       callback: BodyResponseCallback<Schema$ListPrinterModelsResponse>
     ): void;
     listPrinterModels(
@@ -7269,8 +7284,7 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<Schema$Printer>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Printer>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Printer> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Printer>>
@@ -7986,8 +8000,7 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -8265,8 +8278,7 @@ export namespace admin_directory_v1 {
     list(
       params: Params$Resource$Customers$Chrome$Printservers$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListPrintServersResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListPrintServersResponse>,
       callback: BodyResponseCallback<Schema$ListPrintServersResponse>
     ): void;
     list(
@@ -9441,8 +9453,7 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<Schema$Domains>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Domains>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Domains> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Domains>>
@@ -9597,8 +9608,7 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<Schema$Domains>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Domains>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Domains> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Domains>>
@@ -9737,8 +9747,7 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<Schema$Domains2>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Domains2>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Domains2> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Domains2>>
@@ -10007,6 +10016,7 @@ export namespace admin_directory_v1 {
      *   //   "directMembersCount": "my_directMembersCount",
      *   //   "email": "my_email",
      *   //   "etag": "my_etag",
+     *   //   "externalIds": [],
      *   //   "id": "my_id",
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
@@ -10060,8 +10070,7 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<Schema$Group>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Group>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Group> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Group>>
@@ -10149,6 +10158,7 @@ export namespace admin_directory_v1 {
      *       //   "directMembersCount": "my_directMembersCount",
      *       //   "email": "my_email",
      *       //   "etag": "my_etag",
+     *       //   "externalIds": [],
      *       //   "id": "my_id",
      *       //   "kind": "my_kind",
      *       //   "name": "my_name",
@@ -10166,6 +10176,7 @@ export namespace admin_directory_v1 {
      *   //   "directMembersCount": "my_directMembersCount",
      *   //   "email": "my_email",
      *   //   "etag": "my_etag",
+     *   //   "externalIds": [],
      *   //   "id": "my_id",
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
@@ -10219,8 +10230,7 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<Schema$Group>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Group>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Group> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Group>>
@@ -10375,8 +10385,7 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<Schema$Groups>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Groups>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Groups> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Groups>>
@@ -10467,6 +10476,7 @@ export namespace admin_directory_v1 {
      *       //   "directMembersCount": "my_directMembersCount",
      *       //   "email": "my_email",
      *       //   "etag": "my_etag",
+     *       //   "externalIds": [],
      *       //   "id": "my_id",
      *       //   "kind": "my_kind",
      *       //   "name": "my_name",
@@ -10484,6 +10494,7 @@ export namespace admin_directory_v1 {
      *   //   "directMembersCount": "my_directMembersCount",
      *   //   "email": "my_email",
      *   //   "etag": "my_etag",
+     *   //   "externalIds": [],
      *   //   "id": "my_id",
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
@@ -10537,8 +10548,7 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<Schema$Group>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Group>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Group> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Group>>
@@ -10629,6 +10639,7 @@ export namespace admin_directory_v1 {
      *       //   "directMembersCount": "my_directMembersCount",
      *       //   "email": "my_email",
      *       //   "etag": "my_etag",
+     *       //   "externalIds": [],
      *       //   "id": "my_id",
      *       //   "kind": "my_kind",
      *       //   "name": "my_name",
@@ -10646,6 +10657,7 @@ export namespace admin_directory_v1 {
      *   //   "directMembersCount": "my_directMembersCount",
      *   //   "email": "my_email",
      *   //   "etag": "my_etag",
+     *   //   "externalIds": [],
      *   //   "id": "my_id",
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
@@ -10699,8 +10711,7 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<Schema$Group>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Group>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Group> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Group>>
@@ -11064,8 +11075,7 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<Schema$Alias>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Alias>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Alias> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Alias>>
@@ -11205,8 +11215,7 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<Schema$Aliases>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Aliases>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Aliases> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Aliases>>
@@ -11524,8 +11533,7 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<Schema$Member>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Member>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Member> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Member>>
@@ -11829,8 +11837,7 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<Schema$Member>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Member>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Member> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Member>>
@@ -11980,8 +11987,7 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<Schema$Members>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Members>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Members> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Members>>
@@ -12142,8 +12148,7 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<Schema$Member>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Member>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Member> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Member>>
@@ -12305,8 +12310,7 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<Schema$Member>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Member>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Member> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Member>>
@@ -13378,8 +13382,7 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<Schema$OrgUnit>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$OrgUnit>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$OrgUnit> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$OrgUnit>>
@@ -13538,8 +13541,7 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<Schema$OrgUnit>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$OrgUnit>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$OrgUnit> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$OrgUnit>>
@@ -13682,8 +13684,7 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<Schema$OrgUnits>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$OrgUnits>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$OrgUnits> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$OrgUnits>>
@@ -13843,8 +13844,7 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<Schema$OrgUnit>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$OrgUnit>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$OrgUnit> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$OrgUnit>>
@@ -14005,8 +14005,7 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<Schema$OrgUnit>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$OrgUnit>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$OrgUnit> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$OrgUnit>>
@@ -14229,8 +14228,7 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<Schema$Privileges>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Privileges>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Privileges> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Privileges>>
@@ -14538,8 +14536,7 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<Schema$Building>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Building>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Building> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Building>>
@@ -14701,8 +14698,7 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<Schema$Building>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Building>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Building> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Building>>
@@ -14848,8 +14844,7 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<Schema$Buildings>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Buildings>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Buildings> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Buildings>>
@@ -15013,8 +15008,7 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<Schema$Building>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Building>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Building> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Building>>
@@ -15178,8 +15172,7 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<Schema$Building>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Building>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Building> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Building>>
@@ -16612,8 +16605,7 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<Schema$Feature>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Feature>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Feature> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Feature>>
@@ -16763,8 +16755,7 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<Schema$Feature>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Feature>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Feature> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Feature>>
@@ -16910,8 +16901,7 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<Schema$Features>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Features>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Features> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Features>>
@@ -17063,8 +17053,7 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<Schema$Feature>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Feature>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Feature> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Feature>>
@@ -17358,8 +17347,7 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<Schema$Feature>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Feature>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Feature> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Feature>>
@@ -18396,8 +18384,7 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<Schema$Role>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Role>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Role> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Role>>
@@ -18553,8 +18540,7 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<Schema$Role>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Role>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Role> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Role>>
@@ -18698,8 +18684,7 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<Schema$Roles>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Roles>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Roles> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Roles>>
@@ -18857,8 +18842,7 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<Schema$Role>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Role>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Role> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Role>>
@@ -19016,8 +19000,7 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<Schema$Role>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Role>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Role> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Role>>
@@ -19375,8 +19358,7 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<Schema$Schema>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Schema>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Schema> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Schema>>
@@ -19529,8 +19511,7 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<Schema$Schema>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Schema>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Schema> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Schema>>
@@ -19669,8 +19650,7 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<Schema$Schemas>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Schemas>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Schemas> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Schemas>>
@@ -19824,8 +19804,7 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<Schema$Schema>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Schema>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Schema> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Schema>>
@@ -19980,8 +19959,7 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<Schema$Schema>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Schema>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Schema> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Schema>>
@@ -20330,8 +20308,7 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<Schema$Token>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Token>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Token> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Token>>
@@ -20467,8 +20444,7 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<Schema$Tokens>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Tokens>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Tokens> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Tokens>>
@@ -20743,6 +20719,7 @@ export namespace admin_directory_v1 {
      *   //   "addresses": {},
      *   //   "agreedToTerms": false,
      *   //   "aliases": [],
+     *   //   "archivalTime": "my_archivalTime",
      *   //   "archived": false,
      *   //   "changePasswordAtNextLogin": false,
      *   //   "creationTime": "my_creationTime",
@@ -20785,6 +20762,7 @@ export namespace admin_directory_v1 {
      *   //   "sshPublicKeys": {},
      *   //   "suspended": false,
      *   //   "suspensionReason": "my_suspensionReason",
+     *   //   "suspensionTime": "my_suspensionTime",
      *   //   "thumbnailPhotoEtag": "my_thumbnailPhotoEtag",
      *   //   "thumbnailPhotoUrl": "my_thumbnailPhotoUrl",
      *   //   "websites": {}
@@ -20837,8 +20815,7 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<Schema$User>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$User>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$User> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$User>>
@@ -21065,6 +21042,7 @@ export namespace admin_directory_v1 {
      *   //   "addresses": {},
      *   //   "agreedToTerms": false,
      *   //   "aliases": [],
+     *   //   "archivalTime": "my_archivalTime",
      *   //   "archived": false,
      *   //   "changePasswordAtNextLogin": false,
      *   //   "creationTime": "my_creationTime",
@@ -21107,6 +21085,7 @@ export namespace admin_directory_v1 {
      *   //   "sshPublicKeys": {},
      *   //   "suspended": false,
      *   //   "suspensionReason": "my_suspensionReason",
+     *   //   "suspensionTime": "my_suspensionTime",
      *   //   "thumbnailPhotoEtag": "my_thumbnailPhotoEtag",
      *   //   "thumbnailPhotoUrl": "my_thumbnailPhotoUrl",
      *   //   "websites": {}
@@ -21159,8 +21138,7 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<Schema$User>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$User>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$User> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$User>>
@@ -21248,6 +21226,7 @@ export namespace admin_directory_v1 {
      *       //   "addresses": {},
      *       //   "agreedToTerms": false,
      *       //   "aliases": [],
+     *       //   "archivalTime": "my_archivalTime",
      *       //   "archived": false,
      *       //   "changePasswordAtNextLogin": false,
      *       //   "creationTime": "my_creationTime",
@@ -21290,6 +21269,7 @@ export namespace admin_directory_v1 {
      *       //   "sshPublicKeys": {},
      *       //   "suspended": false,
      *       //   "suspensionReason": "my_suspensionReason",
+     *       //   "suspensionTime": "my_suspensionTime",
      *       //   "thumbnailPhotoEtag": "my_thumbnailPhotoEtag",
      *       //   "thumbnailPhotoUrl": "my_thumbnailPhotoUrl",
      *       //   "websites": {}
@@ -21303,6 +21283,7 @@ export namespace admin_directory_v1 {
      *   //   "addresses": {},
      *   //   "agreedToTerms": false,
      *   //   "aliases": [],
+     *   //   "archivalTime": "my_archivalTime",
      *   //   "archived": false,
      *   //   "changePasswordAtNextLogin": false,
      *   //   "creationTime": "my_creationTime",
@@ -21345,6 +21326,7 @@ export namespace admin_directory_v1 {
      *   //   "sshPublicKeys": {},
      *   //   "suspended": false,
      *   //   "suspensionReason": "my_suspensionReason",
+     *   //   "suspensionTime": "my_suspensionTime",
      *   //   "thumbnailPhotoEtag": "my_thumbnailPhotoEtag",
      *   //   "thumbnailPhotoUrl": "my_thumbnailPhotoUrl",
      *   //   "websites": {}
@@ -21397,8 +21379,7 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<Schema$User>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$User>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$User> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$User>>
@@ -21563,8 +21544,7 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<Schema$Users>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Users>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Users> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Users>>
@@ -21788,6 +21768,7 @@ export namespace admin_directory_v1 {
      *       //   "addresses": {},
      *       //   "agreedToTerms": false,
      *       //   "aliases": [],
+     *       //   "archivalTime": "my_archivalTime",
      *       //   "archived": false,
      *       //   "changePasswordAtNextLogin": false,
      *       //   "creationTime": "my_creationTime",
@@ -21830,6 +21811,7 @@ export namespace admin_directory_v1 {
      *       //   "sshPublicKeys": {},
      *       //   "suspended": false,
      *       //   "suspensionReason": "my_suspensionReason",
+     *       //   "suspensionTime": "my_suspensionTime",
      *       //   "thumbnailPhotoEtag": "my_thumbnailPhotoEtag",
      *       //   "thumbnailPhotoUrl": "my_thumbnailPhotoUrl",
      *       //   "websites": {}
@@ -21843,6 +21825,7 @@ export namespace admin_directory_v1 {
      *   //   "addresses": {},
      *   //   "agreedToTerms": false,
      *   //   "aliases": [],
+     *   //   "archivalTime": "my_archivalTime",
      *   //   "archived": false,
      *   //   "changePasswordAtNextLogin": false,
      *   //   "creationTime": "my_creationTime",
@@ -21885,6 +21868,7 @@ export namespace admin_directory_v1 {
      *   //   "sshPublicKeys": {},
      *   //   "suspended": false,
      *   //   "suspensionReason": "my_suspensionReason",
+     *   //   "suspensionTime": "my_suspensionTime",
      *   //   "thumbnailPhotoEtag": "my_thumbnailPhotoEtag",
      *   //   "thumbnailPhotoUrl": "my_thumbnailPhotoUrl",
      *   //   "websites": {}
@@ -21937,8 +21921,7 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<Schema$User>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$User>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$User> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$User>>
@@ -22290,6 +22273,7 @@ export namespace admin_directory_v1 {
      *       //   "addresses": {},
      *       //   "agreedToTerms": false,
      *       //   "aliases": [],
+     *       //   "archivalTime": "my_archivalTime",
      *       //   "archived": false,
      *       //   "changePasswordAtNextLogin": false,
      *       //   "creationTime": "my_creationTime",
@@ -22332,6 +22316,7 @@ export namespace admin_directory_v1 {
      *       //   "sshPublicKeys": {},
      *       //   "suspended": false,
      *       //   "suspensionReason": "my_suspensionReason",
+     *       //   "suspensionTime": "my_suspensionTime",
      *       //   "thumbnailPhotoEtag": "my_thumbnailPhotoEtag",
      *       //   "thumbnailPhotoUrl": "my_thumbnailPhotoUrl",
      *       //   "websites": {}
@@ -22345,6 +22330,7 @@ export namespace admin_directory_v1 {
      *   //   "addresses": {},
      *   //   "agreedToTerms": false,
      *   //   "aliases": [],
+     *   //   "archivalTime": "my_archivalTime",
      *   //   "archived": false,
      *   //   "changePasswordAtNextLogin": false,
      *   //   "creationTime": "my_creationTime",
@@ -22387,6 +22373,7 @@ export namespace admin_directory_v1 {
      *   //   "sshPublicKeys": {},
      *   //   "suspended": false,
      *   //   "suspensionReason": "my_suspensionReason",
+     *   //   "suspensionTime": "my_suspensionTime",
      *   //   "thumbnailPhotoEtag": "my_thumbnailPhotoEtag",
      *   //   "thumbnailPhotoUrl": "my_thumbnailPhotoUrl",
      *   //   "websites": {}
@@ -22439,8 +22426,7 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<Schema$User>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$User>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$User> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$User>>
@@ -22627,8 +22613,7 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<Schema$Channel>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Channel>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Channel> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Channel>>
@@ -23120,8 +23105,7 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<Schema$Alias>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Alias>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Alias> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Alias>>
@@ -23265,8 +23249,7 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<Schema$Aliases>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Aliases>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Aliases> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Aliases>>
@@ -23434,8 +23417,7 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<Schema$Channel>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Channel>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Channel> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Channel>>
@@ -23763,8 +23745,7 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<Schema$UserPhoto>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$UserPhoto>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$UserPhoto> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$UserPhoto>>
@@ -23920,8 +23901,7 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<Schema$UserPhoto>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$UserPhoto>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$UserPhoto> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$UserPhoto>>
@@ -24078,8 +24058,7 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<Schema$UserPhoto>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$UserPhoto>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$UserPhoto> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$UserPhoto>>

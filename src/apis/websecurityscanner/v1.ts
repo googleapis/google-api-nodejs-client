@@ -786,8 +786,7 @@ export namespace websecurityscanner_v1 {
         | BodyResponseCallback<Schema$ScanConfig>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$ScanConfig>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$ScanConfig> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$ScanConfig>>
@@ -922,8 +921,7 @@ export namespace websecurityscanner_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -1071,8 +1069,7 @@ export namespace websecurityscanner_v1 {
         | BodyResponseCallback<Schema$ScanConfig>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$ScanConfig>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$ScanConfig> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$ScanConfig>>
@@ -1193,8 +1190,7 @@ export namespace websecurityscanner_v1 {
     list(
       params: Params$Resource$Projects$Scanconfigs$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListScanConfigsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListScanConfigsResponse>,
       callback: BodyResponseCallback<Schema$ListScanConfigsResponse>
     ): void;
     list(
@@ -1389,8 +1385,7 @@ export namespace websecurityscanner_v1 {
         | BodyResponseCallback<Schema$ScanConfig>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$ScanConfig>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$ScanConfig> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$ScanConfig>>
@@ -1540,8 +1535,7 @@ export namespace websecurityscanner_v1 {
         | BodyResponseCallback<Schema$ScanRun>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$ScanRun>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$ScanRun> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$ScanRun>>
@@ -1769,8 +1763,7 @@ export namespace websecurityscanner_v1 {
         | BodyResponseCallback<Schema$ScanRun>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$ScanRun>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$ScanRun> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$ScanRun>>
@@ -1891,8 +1884,7 @@ export namespace websecurityscanner_v1 {
     list(
       params: Params$Resource$Projects$Scanconfigs$Scanruns$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListScanRunsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListScanRunsResponse>,
       callback: BodyResponseCallback<Schema$ListScanRunsResponse>
     ): void;
     list(
@@ -2065,8 +2057,7 @@ export namespace websecurityscanner_v1 {
         | BodyResponseCallback<Schema$ScanRun>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$ScanRun>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$ScanRun> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$ScanRun>>
@@ -2228,8 +2219,7 @@ export namespace websecurityscanner_v1 {
     list(
       params: Params$Resource$Projects$Scanconfigs$Scanruns$Crawledurls$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListCrawledUrlsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListCrawledUrlsResponse>,
       callback: BodyResponseCallback<Schema$ListCrawledUrlsResponse>
     ): void;
     list(
@@ -2427,8 +2417,7 @@ export namespace websecurityscanner_v1 {
         | BodyResponseCallback<Schema$Finding>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Finding>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Finding> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Finding>>
@@ -2554,8 +2543,7 @@ export namespace websecurityscanner_v1 {
     list(
       params: Params$Resource$Projects$Scanconfigs$Scanruns$Findings$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListFindingsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListFindingsResponse>,
       callback: BodyResponseCallback<Schema$ListFindingsResponse>
     ): void;
     list(

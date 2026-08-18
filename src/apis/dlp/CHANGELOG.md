@@ -1,5 +1,25 @@
 # Changelog
 
+## [21.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/dlp-v21.0.0...dlp-v21.0.1) (2026-08-14)
+
+
+### Bug Fixes
+
+* **dlp:** update the API ([aa382b0](https://github.com/googleapis/google-api-nodejs-client/commit/aa382b0bf3688e0e4c1a032ecf220d191b531519))
+
+## [21.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/dlp-v20.0.0...dlp-v21.0.0) (2026-08-03)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3955](https://github.com/googleapis/google-api-nodejs-client/issues/3955)) ([c429a9b](https://github.com/googleapis/google-api-nodejs-client/commit/c429a9b6f8272f1a651084f83ffcf4b88124c59f))
+* run the generator ([#3959](https://github.com/googleapis/google-api-nodejs-client/issues/3959)) ([ac15310](https://github.com/googleapis/google-api-nodejs-client/commit/ac153108d76743e8caaa0e4c013bb802d3f5121f))
+
 ## [20.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/dlp-v19.4.0...dlp-v20.0.0) (2026-05-28)
 
 

@@ -516,6 +516,50 @@
                 "https://www.googleapis.com/auth/display-video"
               ]
             },
+            "patch": {
+              "description": "Updates an ad asset. Returns the updated ad asset if successful. Supports updating assets of AdAssetType `AD_ASSET_TYPE_YOUTUBE_VIDEO` and `AD_ASSET_TYPE_IMAGE`. Only the AdAsset.synthetic_content_attestation_status field is mutable.",
+              "flatPath": "v4/advertisers/{advertisersId}/adAssets/{adAssetsId}",
+              "httpMethod": "PATCH",
+              "id": "displayvideo.advertisers.adAssets.patch",
+              "parameterOrder": [
+                "advertiserId",
+                "adAssetId"
+              ],
+              "parameters": {
+                "adAssetId": {
+                  "description": "Output only. The ID of the ad asset. Referred to as the asset ID when assigned to an ad.",
+                  "format": "int64",
+                  "location": "path",
+                  "pattern": "^[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "advertiserId": {
+                  "description": "Required. The ID of the advertiser this ad asset belongs to.",
+                  "format": "int64",
+                  "location": "path",
+                  "pattern": "^[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "Required. The list of fields to update. Only AdAsset.synthetic_content_attestation_status is mutable.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v4/advertisers/{+advertiserId}/adAssets/{+adAssetId}",
+              "request": {
+                "$ref": "AdAsset"
+              },
+              "response": {
+                "$ref": "AdAsset"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/display-video"
+              ]
+            },
             "upload": {
               "description": "Uploads and creates an ad asset. Returns the ID of the newly-created ad asset if successful. Only supports the uploading of assets with the AdAssetType `AD_ASSET_TYPE_IMAGE`.",
               "flatPath": "v4/advertisers/{advertisersId}/adAssets:uploadAdAsset",
@@ -562,7 +606,7 @@
         "adGroupAds": {
           "methods": {
             "create": {
-              "description": "Creates an ad group ad. This method is only supported for Demand Gen ads. Retrieval and management of Demand Gen resources is currently in beta. This method is only available to allowlisted users.",
+              "description": "Creates an ad group ad. This method is only supported for Demand Gen ads.",
               "flatPath": "v4/advertisers/{advertisersId}/adGroupAds",
               "httpMethod": "POST",
               "id": "displayvideo.advertisers.adGroupAds.create",
@@ -591,7 +635,7 @@
               ]
             },
             "delete": {
-              "description": "Deletes an ad group ad. This method is only supported for Demand Gen ads. Retrieval and management of Demand Gen resources is currently in beta. This method is only available to allowlisted users.",
+              "description": "Deletes an ad group ad. This method is only supported for Demand Gen ads.",
               "flatPath": "v4/advertisers/{advertisersId}/adGroupAds/{adGroupAdsId}",
               "httpMethod": "DELETE",
               "id": "displayvideo.advertisers.adGroupAds.delete",
@@ -708,7 +752,7 @@
               ]
             },
             "patch": {
-              "description": "Updates an ad group ad. This method is only supported for Demand Gen ads. Retrieval and management of Demand Gen resources is currently in beta. This method is only available to allowlisted users.",
+              "description": "Updates an ad group ad. This method is only supported for Demand Gen ads.",
               "flatPath": "v4/advertisers/{advertisersId}/adGroupAds/{adGroupAdsId}",
               "httpMethod": "PATCH",
               "id": "displayvideo.advertisers.adGroupAds.patch",
@@ -756,7 +800,7 @@
         "adGroups": {
           "methods": {
             "bulkEditAssignedTargetingOptions": {
-              "description": "Bulk edits targeting options for multiple ad groups. The same set of delete and create requests will be applied to all specified ad groups. Specifically, the operation will delete the assigned targeting options provided in BulkEditAdGroupAssignedTargetingOptionsRequest.delete_requests from each ad group, and then create the assigned targeting options provided in BulkEditAdGroupAssignedTargetingOptionsRequest.create_requests. This method is only supported for Demand Gen ad groups. Retrieval and management of Demand Gen resources is currently in beta. This method is only available to allowlisted users.",
+              "description": "Bulk edits targeting options for multiple ad groups. The same set of delete and create requests will be applied to all specified ad groups. Specifically, the operation will delete the assigned targeting options provided in BulkEditAdGroupAssignedTargetingOptionsRequest.delete_requests from each ad group, and then create the assigned targeting options provided in BulkEditAdGroupAssignedTargetingOptionsRequest.create_requests. This method is only supported for Demand Gen ad groups.",
               "flatPath": "v4/advertisers/{advertisersId}/adGroups:bulkEditAssignedTargetingOptions",
               "httpMethod": "POST",
               "id": "displayvideo.advertisers.adGroups.bulkEditAssignedTargetingOptions",
@@ -839,7 +883,7 @@
               ]
             },
             "create": {
-              "description": "Creates a new ad group. Returns the newly created ad group if successful. This method is only supported for Demand Gen ad groups. Retrieval and management of Demand Gen resources is currently in beta. This method is only available to allowlisted users.",
+              "description": "Creates a new ad group. Returns the newly created ad group if successful. This method is only supported for Demand Gen ad groups.",
               "flatPath": "v4/advertisers/{advertisersId}/adGroups",
               "httpMethod": "POST",
               "id": "displayvideo.advertisers.adGroups.create",
@@ -868,7 +912,7 @@
               ]
             },
             "delete": {
-              "description": "Deletes a AdGroup. Returns error code `NOT_FOUND` if the ad group does not exist. This method is only supported for Demand Gen ad groups. Retrieval and management of Demand Gen resources is currently in beta. This method is only available to allowlisted users.",
+              "description": "Deletes a AdGroup. Returns error code `NOT_FOUND` if the ad group does not exist. This method is only supported for Demand Gen ad groups.",
               "flatPath": "v4/advertisers/{advertisersId}/adGroups/{adGroupsId}",
               "httpMethod": "DELETE",
               "id": "displayvideo.advertisers.adGroups.delete",
@@ -985,7 +1029,7 @@
               ]
             },
             "patch": {
-              "description": "Updates an existing ad group. Returns the updated ad group if successful. This method is only supported for Demand Gen ad groups. Retrieval and management of Demand Gen resources is currently in beta. This method is only available to allowlisted users.",
+              "description": "Updates an existing ad group. Returns the updated ad group if successful. This method is only supported for Demand Gen ad groups.",
               "flatPath": "v4/advertisers/{advertisersId}/adGroups/{adGroupsId}",
               "httpMethod": "PATCH",
               "id": "displayvideo.advertisers.adGroups.patch",
@@ -1035,7 +1079,7 @@
                 "assignedTargetingOptions": {
                   "methods": {
                     "create": {
-                      "description": "Assigns a targeting option to an ad group. Returns the assigned targeting option if successful. This method is only supported for Demand Gen ad groups. Retrieval and management of Demand Gen resources is currently in beta. This method is only available to allowlisted users.",
+                      "description": "Assigns a targeting option to an ad group. Returns the assigned targeting option if successful. This method is only supported for Demand Gen ad groups.",
                       "flatPath": "v4/advertisers/{advertisersId}/adGroups/{adGroupsId}/targetingTypes/{targetingTypesId}/assignedTargetingOptions",
                       "httpMethod": "POST",
                       "id": "displayvideo.advertisers.adGroups.targetingTypes.assignedTargetingOptions.create",
@@ -1113,7 +1157,8 @@
                             "TARGETING_TYPE_YOUTUBE_VIDEO",
                             "TARGETING_TYPE_YOUTUBE_CHANNEL",
                             "TARGETING_TYPE_SESSION_POSITION",
-                            "TARGETING_TYPE_CONTENT_THEME_EXCLUSION"
+                            "TARGETING_TYPE_CONTENT_THEME_EXCLUSION",
+                            "TARGETING_TYPE_YOUTUBE_CHANNEL_PACK"
                           ],
                           "enumDescriptions": [
                             "Default value when type is not specified or is unknown in this version.",
@@ -1165,7 +1210,8 @@
                             "Target ads to a specific YouTube video. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
                             "Target ads to a specific YouTube channel. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
                             "Target ads to a serve it in a certain position of a session. Only supported for Ad Group resources under YouTube Programmatic Reservation line items. Targeting of this type cannot be created or updated using the API.",
-                            "Filter website content by content themes (for example, religion). Only supported for Advertiser resources. Targeting of this type cannot be created or updated using the API. This targeting is only inherited by child YouTube and Demand Gen line item resources."
+                            "Filter website content by content themes (for example, religion). Only supported for Advertiser resources. Targeting of this type cannot be created or updated using the API. This targeting is only inherited by child YouTube and Demand Gen line item resources.",
+                            "Target ads to a specific YouTube channel pack."
                           ],
                           "location": "path",
                           "pattern": "^[^/]+$",
@@ -1185,7 +1231,7 @@
                       ]
                     },
                     "delete": {
-                      "description": "Deletes an assigned targeting option from an ad group. This method is only supported for Demand Gen ad groups with the AdGroupFormat `AD_GROUP_FORMAT_DEMAND_GEN`. Retrieval and management of Demand Gen resources is currently in beta. This method is only available to allowlisted users.",
+                      "description": "Deletes an assigned targeting option from an ad group. This method is only supported for Demand Gen ad groups with the AdGroupFormat `AD_GROUP_FORMAT_DEMAND_GEN`.",
                       "flatPath": "v4/advertisers/{advertisersId}/adGroups/{adGroupsId}/targetingTypes/{targetingTypesId}/assignedTargetingOptions/{assignedTargetingOptionsId}",
                       "httpMethod": "DELETE",
                       "id": "displayvideo.advertisers.adGroups.targetingTypes.assignedTargetingOptions.delete",
@@ -1271,7 +1317,8 @@
                             "TARGETING_TYPE_YOUTUBE_VIDEO",
                             "TARGETING_TYPE_YOUTUBE_CHANNEL",
                             "TARGETING_TYPE_SESSION_POSITION",
-                            "TARGETING_TYPE_CONTENT_THEME_EXCLUSION"
+                            "TARGETING_TYPE_CONTENT_THEME_EXCLUSION",
+                            "TARGETING_TYPE_YOUTUBE_CHANNEL_PACK"
                           ],
                           "enumDescriptions": [
                             "Default value when type is not specified or is unknown in this version.",
@@ -1323,7 +1370,8 @@
                             "Target ads to a specific YouTube video. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
                             "Target ads to a specific YouTube channel. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
                             "Target ads to a serve it in a certain position of a session. Only supported for Ad Group resources under YouTube Programmatic Reservation line items. Targeting of this type cannot be created or updated using the API.",
-                            "Filter website content by content themes (for example, religion). Only supported for Advertiser resources. Targeting of this type cannot be created or updated using the API. This targeting is only inherited by child YouTube and Demand Gen line item resources."
+                            "Filter website content by content themes (for example, religion). Only supported for Advertiser resources. Targeting of this type cannot be created or updated using the API. This targeting is only inherited by child YouTube and Demand Gen line item resources.",
+                            "Target ads to a specific YouTube channel pack."
                           ],
                           "location": "path",
                           "pattern": "^[^/]+$",
@@ -1426,7 +1474,8 @@
                             "TARGETING_TYPE_YOUTUBE_VIDEO",
                             "TARGETING_TYPE_YOUTUBE_CHANNEL",
                             "TARGETING_TYPE_SESSION_POSITION",
-                            "TARGETING_TYPE_CONTENT_THEME_EXCLUSION"
+                            "TARGETING_TYPE_CONTENT_THEME_EXCLUSION",
+                            "TARGETING_TYPE_YOUTUBE_CHANNEL_PACK"
                           ],
                           "enumDescriptions": [
                             "Default value when type is not specified or is unknown in this version.",
@@ -1478,7 +1527,8 @@
                             "Target ads to a specific YouTube video. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
                             "Target ads to a specific YouTube channel. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
                             "Target ads to a serve it in a certain position of a session. Only supported for Ad Group resources under YouTube Programmatic Reservation line items. Targeting of this type cannot be created or updated using the API.",
-                            "Filter website content by content themes (for example, religion). Only supported for Advertiser resources. Targeting of this type cannot be created or updated using the API. This targeting is only inherited by child YouTube and Demand Gen line item resources."
+                            "Filter website content by content themes (for example, religion). Only supported for Advertiser resources. Targeting of this type cannot be created or updated using the API. This targeting is only inherited by child YouTube and Demand Gen line item resources.",
+                            "Target ads to a specific YouTube channel pack."
                           ],
                           "location": "path",
                           "pattern": "^[^/]+$",
@@ -1594,7 +1644,8 @@
                             "TARGETING_TYPE_YOUTUBE_VIDEO",
                             "TARGETING_TYPE_YOUTUBE_CHANNEL",
                             "TARGETING_TYPE_SESSION_POSITION",
-                            "TARGETING_TYPE_CONTENT_THEME_EXCLUSION"
+                            "TARGETING_TYPE_CONTENT_THEME_EXCLUSION",
+                            "TARGETING_TYPE_YOUTUBE_CHANNEL_PACK"
                           ],
                           "enumDescriptions": [
                             "Default value when type is not specified or is unknown in this version.",
@@ -1646,7 +1697,8 @@
                             "Target ads to a specific YouTube video. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
                             "Target ads to a specific YouTube channel. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
                             "Target ads to a serve it in a certain position of a session. Only supported for Ad Group resources under YouTube Programmatic Reservation line items. Targeting of this type cannot be created or updated using the API.",
-                            "Filter website content by content themes (for example, religion). Only supported for Advertiser resources. Targeting of this type cannot be created or updated using the API. This targeting is only inherited by child YouTube and Demand Gen line item resources."
+                            "Filter website content by content themes (for example, religion). Only supported for Advertiser resources. Targeting of this type cannot be created or updated using the API. This targeting is only inherited by child YouTube and Demand Gen line item resources.",
+                            "Target ads to a specific YouTube channel pack."
                           ],
                           "location": "path",
                           "pattern": "^[^/]+$",
@@ -3455,7 +3507,8 @@
                             "TARGETING_TYPE_YOUTUBE_VIDEO",
                             "TARGETING_TYPE_YOUTUBE_CHANNEL",
                             "TARGETING_TYPE_SESSION_POSITION",
-                            "TARGETING_TYPE_CONTENT_THEME_EXCLUSION"
+                            "TARGETING_TYPE_CONTENT_THEME_EXCLUSION",
+                            "TARGETING_TYPE_YOUTUBE_CHANNEL_PACK"
                           ],
                           "enumDescriptions": [
                             "Default value when type is not specified or is unknown in this version.",
@@ -3507,7 +3560,8 @@
                             "Target ads to a specific YouTube video. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
                             "Target ads to a specific YouTube channel. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
                             "Target ads to a serve it in a certain position of a session. Only supported for Ad Group resources under YouTube Programmatic Reservation line items. Targeting of this type cannot be created or updated using the API.",
-                            "Filter website content by content themes (for example, religion). Only supported for Advertiser resources. Targeting of this type cannot be created or updated using the API. This targeting is only inherited by child YouTube and Demand Gen line item resources."
+                            "Filter website content by content themes (for example, religion). Only supported for Advertiser resources. Targeting of this type cannot be created or updated using the API. This targeting is only inherited by child YouTube and Demand Gen line item resources.",
+                            "Target ads to a specific YouTube channel pack."
                           ],
                           "location": "path",
                           "pattern": "^[^/]+$",
@@ -3613,7 +3667,8 @@
                             "TARGETING_TYPE_YOUTUBE_VIDEO",
                             "TARGETING_TYPE_YOUTUBE_CHANNEL",
                             "TARGETING_TYPE_SESSION_POSITION",
-                            "TARGETING_TYPE_CONTENT_THEME_EXCLUSION"
+                            "TARGETING_TYPE_CONTENT_THEME_EXCLUSION",
+                            "TARGETING_TYPE_YOUTUBE_CHANNEL_PACK"
                           ],
                           "enumDescriptions": [
                             "Default value when type is not specified or is unknown in this version.",
@@ -3665,7 +3720,8 @@
                             "Target ads to a specific YouTube video. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
                             "Target ads to a specific YouTube channel. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
                             "Target ads to a serve it in a certain position of a session. Only supported for Ad Group resources under YouTube Programmatic Reservation line items. Targeting of this type cannot be created or updated using the API.",
-                            "Filter website content by content themes (for example, religion). Only supported for Advertiser resources. Targeting of this type cannot be created or updated using the API. This targeting is only inherited by child YouTube and Demand Gen line item resources."
+                            "Filter website content by content themes (for example, religion). Only supported for Advertiser resources. Targeting of this type cannot be created or updated using the API. This targeting is only inherited by child YouTube and Demand Gen line item resources.",
+                            "Target ads to a specific YouTube channel pack."
                           ],
                           "location": "path",
                           "pattern": "^[^/]+$",
@@ -3768,7 +3824,8 @@
                             "TARGETING_TYPE_YOUTUBE_VIDEO",
                             "TARGETING_TYPE_YOUTUBE_CHANNEL",
                             "TARGETING_TYPE_SESSION_POSITION",
-                            "TARGETING_TYPE_CONTENT_THEME_EXCLUSION"
+                            "TARGETING_TYPE_CONTENT_THEME_EXCLUSION",
+                            "TARGETING_TYPE_YOUTUBE_CHANNEL_PACK"
                           ],
                           "enumDescriptions": [
                             "Default value when type is not specified or is unknown in this version.",
@@ -3820,7 +3877,8 @@
                             "Target ads to a specific YouTube video. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
                             "Target ads to a specific YouTube channel. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
                             "Target ads to a serve it in a certain position of a session. Only supported for Ad Group resources under YouTube Programmatic Reservation line items. Targeting of this type cannot be created or updated using the API.",
-                            "Filter website content by content themes (for example, religion). Only supported for Advertiser resources. Targeting of this type cannot be created or updated using the API. This targeting is only inherited by child YouTube and Demand Gen line item resources."
+                            "Filter website content by content themes (for example, religion). Only supported for Advertiser resources. Targeting of this type cannot be created or updated using the API. This targeting is only inherited by child YouTube and Demand Gen line item resources.",
+                            "Target ads to a specific YouTube channel pack."
                           ],
                           "location": "path",
                           "pattern": "^[^/]+$",
@@ -3936,7 +3994,8 @@
                             "TARGETING_TYPE_YOUTUBE_VIDEO",
                             "TARGETING_TYPE_YOUTUBE_CHANNEL",
                             "TARGETING_TYPE_SESSION_POSITION",
-                            "TARGETING_TYPE_CONTENT_THEME_EXCLUSION"
+                            "TARGETING_TYPE_CONTENT_THEME_EXCLUSION",
+                            "TARGETING_TYPE_YOUTUBE_CHANNEL_PACK"
                           ],
                           "enumDescriptions": [
                             "Default value when type is not specified or is unknown in this version.",
@@ -3988,7 +4047,8 @@
                             "Target ads to a specific YouTube video. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
                             "Target ads to a specific YouTube channel. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
                             "Target ads to a serve it in a certain position of a session. Only supported for Ad Group resources under YouTube Programmatic Reservation line items. Targeting of this type cannot be created or updated using the API.",
-                            "Filter website content by content themes (for example, religion). Only supported for Advertiser resources. Targeting of this type cannot be created or updated using the API. This targeting is only inherited by child YouTube and Demand Gen line item resources."
+                            "Filter website content by content themes (for example, religion). Only supported for Advertiser resources. Targeting of this type cannot be created or updated using the API. This targeting is only inherited by child YouTube and Demand Gen line item resources.",
+                            "Target ads to a specific YouTube channel pack."
                           ],
                           "location": "path",
                           "pattern": "^[^/]+$",
@@ -4960,6 +5020,179 @@
             }
           }
         },
+        "reachForecast": {
+          "methods": {
+            "generateReachForecast": {
+              "description": "Generates a reach forecast for a given advertiser and targeting configuration. API support for generating reach forecasts and retrieving related metadata is in beta. This method is only available to allowlisted users.",
+              "flatPath": "v4/advertisers/{advertisersId}/reachForecast:generateReachForecast",
+              "httpMethod": "POST",
+              "id": "displayvideo.advertisers.reachForecast.generateReachForecast",
+              "parameterOrder": [
+                "advertiserId"
+              ],
+              "parameters": {
+                "advertiserId": {
+                  "description": "Required. The ID of the advertiser that will run the planned campaign.",
+                  "format": "int64",
+                  "location": "path",
+                  "pattern": "^[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v4/advertisers/{+advertiserId}/reachForecast:generateReachForecast",
+              "request": {
+                "$ref": "GenerateReachForecastRequest"
+              },
+              "response": {
+                "$ref": "GenerateReachForecastResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/display-video"
+              ]
+            },
+            "retrievePlannableLocations": {
+              "description": "Retrieves the list of countries where reach forecasting is supported. API support for generating reach forecasts and retrieving related metadata is in beta. This method is only available to allowlisted users.",
+              "flatPath": "v4/advertisers/{advertisersId}/reachForecast:retrievePlannableLocations",
+              "httpMethod": "GET",
+              "id": "displayvideo.advertisers.reachForecast.retrievePlannableLocations",
+              "parameterOrder": [
+                "advertiserId"
+              ],
+              "parameters": {
+                "advertiserId": {
+                  "description": "Required. The ID of the advertiser to list plannable locations for.",
+                  "format": "int64",
+                  "location": "path",
+                  "pattern": "^[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v4/advertisers/{+advertiserId}/reachForecast:retrievePlannableLocations",
+              "response": {
+                "$ref": "RetrievePlannableLocationsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/display-video"
+              ]
+            },
+            "retrievePlannableProducts": {
+              "description": "Retrieves the list of products that can be planned for a location. API support for generating reach forecasts and retrieving related metadata is in beta. This method is only available to allowlisted users.",
+              "flatPath": "v4/advertisers/{advertisersId}/reachForecast:retrievePlannableProducts",
+              "httpMethod": "GET",
+              "id": "displayvideo.advertisers.reachForecast.retrievePlannableProducts",
+              "parameterOrder": [
+                "advertiserId"
+              ],
+              "parameters": {
+                "advertiserId": {
+                  "description": "Required. The ID of the advertiser to list plannable products for.",
+                  "format": "int64",
+                  "location": "path",
+                  "pattern": "^[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "plannableLocationId": {
+                  "description": "Required. The ID of the plannable location.",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v4/advertisers/{+advertiserId}/reachForecast:retrievePlannableProducts",
+              "response": {
+                "$ref": "RetrievePlannableProductsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/display-video"
+              ]
+            },
+            "retrievePlannableUserInterests": {
+              "description": "Retrieves Google Audiences (User Interests) available for forecasting. API support for generating reach forecasts and retrieving related metadata is in beta. This method is only available to allowlisted users.",
+              "flatPath": "v4/advertisers/{advertisersId}/reachForecast:retrievePlannableUserInterests",
+              "httpMethod": "GET",
+              "id": "displayvideo.advertisers.reachForecast.retrievePlannableUserInterests",
+              "parameterOrder": [
+                "advertiserId"
+              ],
+              "parameters": {
+                "advertiserId": {
+                  "description": "Required. The ID of the advertiser to list plannable user interests for.",
+                  "format": "int64",
+                  "location": "path",
+                  "pattern": "^[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "productCategory": {
+                  "description": "Required. The product category to retrieve plannable user interests for.",
+                  "enum": [
+                    "PLANNABLE_PRODUCT_CATEGORY_UNSPECIFIED",
+                    "YOUTUBE",
+                    "OPEN_AUCTION"
+                  ],
+                  "enumDescriptions": [
+                    "Not specified.",
+                    "YouTube.",
+                    "Open Auction."
+                  ],
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v4/advertisers/{+advertiserId}/reachForecast:retrievePlannableUserInterests",
+              "response": {
+                "$ref": "RetrievePlannableUserInterestsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/display-video"
+              ]
+            },
+            "retrievePlannableUserLists": {
+              "description": "Retrieves first and third party user lists available for forecasting. API support for generating reach forecasts and retrieving related metadata is in beta. This method is only available to allowlisted users.",
+              "flatPath": "v4/advertisers/{advertisersId}/reachForecast:retrievePlannableUserLists",
+              "httpMethod": "GET",
+              "id": "displayvideo.advertisers.reachForecast.retrievePlannableUserLists",
+              "parameterOrder": [
+                "advertiserId"
+              ],
+              "parameters": {
+                "advertiserId": {
+                  "description": "Required. The ID of the advertiser to retrieve plannable user lists for.",
+                  "format": "int64",
+                  "location": "path",
+                  "pattern": "^[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "filter": {
+                  "description": "Optional. Allows filtering by plannable user list properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. * A restriction has the form of `{field} {operator} {value}`. * The `displayName` field must use the `HAS (:)` operator. * All other fields must use the `EQUALS (=)` operator. Supported fields: * `plannableStatus` * `displayName` * `userListType` * `name` Examples: * All plannable user lists: `plannableStatus=\"PLANNABLE\"` * Plannable user lists with display name containing \"Shopping\": `plannableStatus=\"PLANNABLE\" AND displayName:\"Shopping\"` * First party user lists: `userListType=\"FIRST_PARTY\"` The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "pageSize": {
+                  "description": "Optional. Requested page size. Must be between `1` and `5000`. If unspecified will default to `5000`.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "Optional. A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `RetrievePlannableUserLists` method. If not specified, the first page of results will be returned.",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v4/advertisers/{+advertiserId}/reachForecast:retrievePlannableUserLists",
+              "response": {
+                "$ref": "RetrievePlannableUserListsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/display-video"
+              ]
+            }
+          }
+        },
         "targetingTypes": {
           "resources": {
             "assignedTargetingOptions": {
@@ -5034,7 +5267,8 @@
                         "TARGETING_TYPE_YOUTUBE_VIDEO",
                         "TARGETING_TYPE_YOUTUBE_CHANNEL",
                         "TARGETING_TYPE_SESSION_POSITION",
-                        "TARGETING_TYPE_CONTENT_THEME_EXCLUSION"
+                        "TARGETING_TYPE_CONTENT_THEME_EXCLUSION",
+                        "TARGETING_TYPE_YOUTUBE_CHANNEL_PACK"
                       ],
                       "enumDescriptions": [
                         "Default value when type is not specified or is unknown in this version.",
@@ -5086,7 +5320,8 @@
                         "Target ads to a specific YouTube video. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
                         "Target ads to a specific YouTube channel. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
                         "Target ads to a serve it in a certain position of a session. Only supported for Ad Group resources under YouTube Programmatic Reservation line items. Targeting of this type cannot be created or updated using the API.",
-                        "Filter website content by content themes (for example, religion). Only supported for Advertiser resources. Targeting of this type cannot be created or updated using the API. This targeting is only inherited by child YouTube and Demand Gen line item resources."
+                        "Filter website content by content themes (for example, religion). Only supported for Advertiser resources. Targeting of this type cannot be created or updated using the API. This targeting is only inherited by child YouTube and Demand Gen line item resources.",
+                        "Target ads to a specific YouTube channel pack."
                       ],
                       "location": "path",
                       "pattern": "^[^/]+$",
@@ -5183,7 +5418,8 @@
                         "TARGETING_TYPE_YOUTUBE_VIDEO",
                         "TARGETING_TYPE_YOUTUBE_CHANNEL",
                         "TARGETING_TYPE_SESSION_POSITION",
-                        "TARGETING_TYPE_CONTENT_THEME_EXCLUSION"
+                        "TARGETING_TYPE_CONTENT_THEME_EXCLUSION",
+                        "TARGETING_TYPE_YOUTUBE_CHANNEL_PACK"
                       ],
                       "enumDescriptions": [
                         "Default value when type is not specified or is unknown in this version.",
@@ -5235,7 +5471,8 @@
                         "Target ads to a specific YouTube video. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
                         "Target ads to a specific YouTube channel. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
                         "Target ads to a serve it in a certain position of a session. Only supported for Ad Group resources under YouTube Programmatic Reservation line items. Targeting of this type cannot be created or updated using the API.",
-                        "Filter website content by content themes (for example, religion). Only supported for Advertiser resources. Targeting of this type cannot be created or updated using the API. This targeting is only inherited by child YouTube and Demand Gen line item resources."
+                        "Filter website content by content themes (for example, religion). Only supported for Advertiser resources. Targeting of this type cannot be created or updated using the API. This targeting is only inherited by child YouTube and Demand Gen line item resources.",
+                        "Target ads to a specific YouTube channel pack."
                       ],
                       "location": "path",
                       "pattern": "^[^/]+$",
@@ -5329,7 +5566,8 @@
                         "TARGETING_TYPE_YOUTUBE_VIDEO",
                         "TARGETING_TYPE_YOUTUBE_CHANNEL",
                         "TARGETING_TYPE_SESSION_POSITION",
-                        "TARGETING_TYPE_CONTENT_THEME_EXCLUSION"
+                        "TARGETING_TYPE_CONTENT_THEME_EXCLUSION",
+                        "TARGETING_TYPE_YOUTUBE_CHANNEL_PACK"
                       ],
                       "enumDescriptions": [
                         "Default value when type is not specified or is unknown in this version.",
@@ -5381,7 +5619,8 @@
                         "Target ads to a specific YouTube video. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
                         "Target ads to a specific YouTube channel. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
                         "Target ads to a serve it in a certain position of a session. Only supported for Ad Group resources under YouTube Programmatic Reservation line items. Targeting of this type cannot be created or updated using the API.",
-                        "Filter website content by content themes (for example, religion). Only supported for Advertiser resources. Targeting of this type cannot be created or updated using the API. This targeting is only inherited by child YouTube and Demand Gen line item resources."
+                        "Filter website content by content themes (for example, religion). Only supported for Advertiser resources. Targeting of this type cannot be created or updated using the API. This targeting is only inherited by child YouTube and Demand Gen line item resources.",
+                        "Target ads to a specific YouTube channel pack."
                       ],
                       "location": "path",
                       "pattern": "^[^/]+$",
@@ -5488,7 +5727,8 @@
                         "TARGETING_TYPE_YOUTUBE_VIDEO",
                         "TARGETING_TYPE_YOUTUBE_CHANNEL",
                         "TARGETING_TYPE_SESSION_POSITION",
-                        "TARGETING_TYPE_CONTENT_THEME_EXCLUSION"
+                        "TARGETING_TYPE_CONTENT_THEME_EXCLUSION",
+                        "TARGETING_TYPE_YOUTUBE_CHANNEL_PACK"
                       ],
                       "enumDescriptions": [
                         "Default value when type is not specified or is unknown in this version.",
@@ -5540,7 +5780,8 @@
                         "Target ads to a specific YouTube video. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
                         "Target ads to a specific YouTube channel. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
                         "Target ads to a serve it in a certain position of a session. Only supported for Ad Group resources under YouTube Programmatic Reservation line items. Targeting of this type cannot be created or updated using the API.",
-                        "Filter website content by content themes (for example, religion). Only supported for Advertiser resources. Targeting of this type cannot be created or updated using the API. This targeting is only inherited by child YouTube and Demand Gen line item resources."
+                        "Filter website content by content themes (for example, religion). Only supported for Advertiser resources. Targeting of this type cannot be created or updated using the API. This targeting is only inherited by child YouTube and Demand Gen line item resources.",
+                        "Target ads to a specific YouTube channel pack."
                       ],
                       "location": "path",
                       "pattern": "^[^/]+$",
@@ -8132,7 +8373,8 @@
                         "TARGETING_TYPE_YOUTUBE_VIDEO",
                         "TARGETING_TYPE_YOUTUBE_CHANNEL",
                         "TARGETING_TYPE_SESSION_POSITION",
-                        "TARGETING_TYPE_CONTENT_THEME_EXCLUSION"
+                        "TARGETING_TYPE_CONTENT_THEME_EXCLUSION",
+                        "TARGETING_TYPE_YOUTUBE_CHANNEL_PACK"
                       ],
                       "enumDescriptions": [
                         "Default value when type is not specified or is unknown in this version.",
@@ -8184,7 +8426,8 @@
                         "Target ads to a specific YouTube video. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
                         "Target ads to a specific YouTube channel. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
                         "Target ads to a serve it in a certain position of a session. Only supported for Ad Group resources under YouTube Programmatic Reservation line items. Targeting of this type cannot be created or updated using the API.",
-                        "Filter website content by content themes (for example, religion). Only supported for Advertiser resources. Targeting of this type cannot be created or updated using the API. This targeting is only inherited by child YouTube and Demand Gen line item resources."
+                        "Filter website content by content themes (for example, religion). Only supported for Advertiser resources. Targeting of this type cannot be created or updated using the API. This targeting is only inherited by child YouTube and Demand Gen line item resources.",
+                        "Target ads to a specific YouTube channel pack."
                       ],
                       "location": "path",
                       "pattern": "^[^/]+$",
@@ -8281,7 +8524,8 @@
                         "TARGETING_TYPE_YOUTUBE_VIDEO",
                         "TARGETING_TYPE_YOUTUBE_CHANNEL",
                         "TARGETING_TYPE_SESSION_POSITION",
-                        "TARGETING_TYPE_CONTENT_THEME_EXCLUSION"
+                        "TARGETING_TYPE_CONTENT_THEME_EXCLUSION",
+                        "TARGETING_TYPE_YOUTUBE_CHANNEL_PACK"
                       ],
                       "enumDescriptions": [
                         "Default value when type is not specified or is unknown in this version.",
@@ -8333,7 +8577,8 @@
                         "Target ads to a specific YouTube video. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
                         "Target ads to a specific YouTube channel. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
                         "Target ads to a serve it in a certain position of a session. Only supported for Ad Group resources under YouTube Programmatic Reservation line items. Targeting of this type cannot be created or updated using the API.",
-                        "Filter website content by content themes (for example, religion). Only supported for Advertiser resources. Targeting of this type cannot be created or updated using the API. This targeting is only inherited by child YouTube and Demand Gen line item resources."
+                        "Filter website content by content themes (for example, religion). Only supported for Advertiser resources. Targeting of this type cannot be created or updated using the API. This targeting is only inherited by child YouTube and Demand Gen line item resources.",
+                        "Target ads to a specific YouTube channel pack."
                       ],
                       "location": "path",
                       "pattern": "^[^/]+$",
@@ -8427,7 +8672,8 @@
                         "TARGETING_TYPE_YOUTUBE_VIDEO",
                         "TARGETING_TYPE_YOUTUBE_CHANNEL",
                         "TARGETING_TYPE_SESSION_POSITION",
-                        "TARGETING_TYPE_CONTENT_THEME_EXCLUSION"
+                        "TARGETING_TYPE_CONTENT_THEME_EXCLUSION",
+                        "TARGETING_TYPE_YOUTUBE_CHANNEL_PACK"
                       ],
                       "enumDescriptions": [
                         "Default value when type is not specified or is unknown in this version.",
@@ -8479,7 +8725,8 @@
                         "Target ads to a specific YouTube video. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
                         "Target ads to a specific YouTube channel. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
                         "Target ads to a serve it in a certain position of a session. Only supported for Ad Group resources under YouTube Programmatic Reservation line items. Targeting of this type cannot be created or updated using the API.",
-                        "Filter website content by content themes (for example, religion). Only supported for Advertiser resources. Targeting of this type cannot be created or updated using the API. This targeting is only inherited by child YouTube and Demand Gen line item resources."
+                        "Filter website content by content themes (for example, religion). Only supported for Advertiser resources. Targeting of this type cannot be created or updated using the API. This targeting is only inherited by child YouTube and Demand Gen line item resources.",
+                        "Target ads to a specific YouTube channel pack."
                       ],
                       "location": "path",
                       "pattern": "^[^/]+$",
@@ -8586,7 +8833,8 @@
                         "TARGETING_TYPE_YOUTUBE_VIDEO",
                         "TARGETING_TYPE_YOUTUBE_CHANNEL",
                         "TARGETING_TYPE_SESSION_POSITION",
-                        "TARGETING_TYPE_CONTENT_THEME_EXCLUSION"
+                        "TARGETING_TYPE_CONTENT_THEME_EXCLUSION",
+                        "TARGETING_TYPE_YOUTUBE_CHANNEL_PACK"
                       ],
                       "enumDescriptions": [
                         "Default value when type is not specified or is unknown in this version.",
@@ -8638,7 +8886,8 @@
                         "Target ads to a specific YouTube video. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
                         "Target ads to a specific YouTube channel. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
                         "Target ads to a serve it in a certain position of a session. Only supported for Ad Group resources under YouTube Programmatic Reservation line items. Targeting of this type cannot be created or updated using the API.",
-                        "Filter website content by content themes (for example, religion). Only supported for Advertiser resources. Targeting of this type cannot be created or updated using the API. This targeting is only inherited by child YouTube and Demand Gen line item resources."
+                        "Filter website content by content themes (for example, religion). Only supported for Advertiser resources. Targeting of this type cannot be created or updated using the API. This targeting is only inherited by child YouTube and Demand Gen line item resources.",
+                        "Target ads to a specific YouTube channel pack."
                       ],
                       "location": "path",
                       "pattern": "^[^/]+$",
@@ -8827,7 +9076,8 @@
                     "TARGETING_TYPE_YOUTUBE_VIDEO",
                     "TARGETING_TYPE_YOUTUBE_CHANNEL",
                     "TARGETING_TYPE_SESSION_POSITION",
-                    "TARGETING_TYPE_CONTENT_THEME_EXCLUSION"
+                    "TARGETING_TYPE_CONTENT_THEME_EXCLUSION",
+                    "TARGETING_TYPE_YOUTUBE_CHANNEL_PACK"
                   ],
                   "enumDescriptions": [
                     "Default value when type is not specified or is unknown in this version.",
@@ -8879,7 +9129,8 @@
                     "Target ads to a specific YouTube video. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
                     "Target ads to a specific YouTube channel. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
                     "Target ads to a serve it in a certain position of a session. Only supported for Ad Group resources under YouTube Programmatic Reservation line items. Targeting of this type cannot be created or updated using the API.",
-                    "Filter website content by content themes (for example, religion). Only supported for Advertiser resources. Targeting of this type cannot be created or updated using the API. This targeting is only inherited by child YouTube and Demand Gen line item resources."
+                    "Filter website content by content themes (for example, religion). Only supported for Advertiser resources. Targeting of this type cannot be created or updated using the API. This targeting is only inherited by child YouTube and Demand Gen line item resources.",
+                    "Target ads to a specific YouTube channel pack."
                   ],
                   "location": "path",
                   "pattern": "^[^/]+$",
@@ -8983,7 +9234,8 @@
                     "TARGETING_TYPE_YOUTUBE_VIDEO",
                     "TARGETING_TYPE_YOUTUBE_CHANNEL",
                     "TARGETING_TYPE_SESSION_POSITION",
-                    "TARGETING_TYPE_CONTENT_THEME_EXCLUSION"
+                    "TARGETING_TYPE_CONTENT_THEME_EXCLUSION",
+                    "TARGETING_TYPE_YOUTUBE_CHANNEL_PACK"
                   ],
                   "enumDescriptions": [
                     "Default value when type is not specified or is unknown in this version.",
@@ -9035,7 +9287,8 @@
                     "Target ads to a specific YouTube video. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
                     "Target ads to a specific YouTube channel. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
                     "Target ads to a serve it in a certain position of a session. Only supported for Ad Group resources under YouTube Programmatic Reservation line items. Targeting of this type cannot be created or updated using the API.",
-                    "Filter website content by content themes (for example, religion). Only supported for Advertiser resources. Targeting of this type cannot be created or updated using the API. This targeting is only inherited by child YouTube and Demand Gen line item resources."
+                    "Filter website content by content themes (for example, religion). Only supported for Advertiser resources. Targeting of this type cannot be created or updated using the API. This targeting is only inherited by child YouTube and Demand Gen line item resources.",
+                    "Target ads to a specific YouTube channel pack."
                   ],
                   "location": "path",
                   "pattern": "^[^/]+$",
@@ -9112,7 +9365,8 @@
                     "TARGETING_TYPE_YOUTUBE_VIDEO",
                     "TARGETING_TYPE_YOUTUBE_CHANNEL",
                     "TARGETING_TYPE_SESSION_POSITION",
-                    "TARGETING_TYPE_CONTENT_THEME_EXCLUSION"
+                    "TARGETING_TYPE_CONTENT_THEME_EXCLUSION",
+                    "TARGETING_TYPE_YOUTUBE_CHANNEL_PACK"
                   ],
                   "enumDescriptions": [
                     "Default value when type is not specified or is unknown in this version.",
@@ -9164,7 +9418,8 @@
                     "Target ads to a specific YouTube video. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
                     "Target ads to a specific YouTube channel. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
                     "Target ads to a serve it in a certain position of a session. Only supported for Ad Group resources under YouTube Programmatic Reservation line items. Targeting of this type cannot be created or updated using the API.",
-                    "Filter website content by content themes (for example, religion). Only supported for Advertiser resources. Targeting of this type cannot be created or updated using the API. This targeting is only inherited by child YouTube and Demand Gen line item resources."
+                    "Filter website content by content themes (for example, religion). Only supported for Advertiser resources. Targeting of this type cannot be created or updated using the API. This targeting is only inherited by child YouTube and Demand Gen line item resources.",
+                    "Target ads to a specific YouTube channel pack."
                   ],
                   "location": "path",
                   "pattern": "^[^/]+$",
@@ -9363,7 +9618,7 @@
       }
     }
   },
-  "revision": "20260505",
+  "revision": "20260811",
   "rootUrl": "https://displayvideo.googleapis.com/",
   "schemas": {
     "ActiveViewVideoViewabilityMetricConfig": {
@@ -9530,6 +9785,20 @@
           "description": "Identifier. The resource name of the ad asset.",
           "type": "string"
         },
+        "syntheticContentAttestationStatus": {
+          "description": "Optional. Whether to add a label to the asset as created or edited using AI when served in regions with local AI labeling regulations.",
+          "enum": [
+            "SYNTHETIC_CONTENT_ATTESTATION_STATUS_UNSPECIFIED",
+            "NOT_SYNTHETIC",
+            "IS_SYNTHETIC"
+          ],
+          "enumDescriptions": [
+            "No attestation has been provided.",
+            "Attested as not created or edited using AI.",
+            "Attested as created or edited using AI."
+          ],
+          "type": "string"
+        },
         "youtubeVideoAsset": {
           "$ref": "YoutubeVideoAsset",
           "description": "Youtube video asset data."
@@ -9565,7 +9834,7 @@
             "Responsive ads.",
             "[Effective reach ad groups] (https://support.google.com/displayvideo/answer/9173684), including in-stream and bumper ads.",
             "Masthead Ad that is surfaced on the top slot on the YouTube homepage.",
-            "Demand Gen ads. Retrieval and management of Demand Gen resources is currently in beta. This enum value is only available to allowlisted users."
+            "Demand Gen ads."
           ],
           "type": "string"
         },
@@ -9680,23 +9949,23 @@
         },
         "dcmTrackingInfo": {
           "$ref": "DcmTrackingInfo",
-          "description": "Optional. The DCM tracking ad info. Only valid for Demand Gen ads. To remove the DCM tracking ad info, please leave this field empty. Retrieval and management of Demand Gen resources is currently in beta. This field is only available to allowlisted users."
+          "description": "Optional. The DCM tracking ad info. Only valid for Demand Gen ads. To remove the DCM tracking ad info, please leave this field empty."
         },
         "demandGenCarouselAd": {
           "$ref": "DemandGenCarouselAd",
-          "description": "Details of a [Demand Gen carousel ad](//support.google.com/displayvideo/answer/15598924?&sjid=11207068802760924844-NC#CarouselAd). Retrieval and management of Demand Gen resources is currently in beta. This field is only available to allowlisted users."
+          "description": "Details of a [Demand Gen carousel ad](//support.google.com/displayvideo/answer/15598924?&sjid=11207068802760924844-NC#CarouselAd)."
         },
         "demandGenImageAd": {
           "$ref": "DemandGenImageAd",
-          "description": "Details of a [Demand Gen image ad](//support.google.com/displayvideo/answer/15598924?&sjid=11207068802760924844-NC#ImageAd). Retrieval and management of Demand Gen resources is currently in beta. This field is only available to allowlisted users."
+          "description": "Details of a [Demand Gen image ad](//support.google.com/displayvideo/answer/15598924?&sjid=11207068802760924844-NC#ImageAd)."
         },
         "demandGenProductAd": {
           "$ref": "DemandGenProductAd",
-          "description": "Details of a [Demand Gen product ad](//support.google.com/displayvideo/answer/15598924?&sjid=11207068802760924844-NC#Product-onlyAd). Retrieval and management of Demand Gen resources is currently in beta. This field is only available to allowlisted users."
+          "description": "Details of a [Demand Gen product ad](//support.google.com/displayvideo/answer/15598924?&sjid=11207068802760924844-NC#Product-onlyAd)."
         },
         "demandGenVideoAd": {
           "$ref": "DemandGenVideoAd",
-          "description": "Details of a [Demand Gen video ad](//support.google.com/displayvideo/answer/15598924?&sjid=11207068802760924844-NC#VideoAd). Retrieval and management of Demand Gen resources is currently in beta. This field is only available to allowlisted users."
+          "description": "Details of a [Demand Gen video ad](//support.google.com/displayvideo/answer/15598924?&sjid=11207068802760924844-NC#VideoAd)."
         },
         "displayName": {
           "description": "Required. The display name of the ad. Must be UTF-8 encoded with a maximum size of 255 bytes.",
@@ -10696,6 +10965,185 @@
       },
       "type": "object"
     },
+    "AdvancedProductTargeting": {
+      "description": "Product-specific targeting overrides.",
+      "id": "AdvancedProductTargeting",
+      "properties": {
+        "ageRange": {
+          "description": "Optional. The age range to target.",
+          "enum": [
+            "PLANNABLE_AGE_RANGE_UNSPECIFIED",
+            "PLANNABLE_AGE_RANGE_18_24",
+            "PLANNABLE_AGE_RANGE_18_34",
+            "PLANNABLE_AGE_RANGE_18_44",
+            "PLANNABLE_AGE_RANGE_18_49",
+            "PLANNABLE_AGE_RANGE_18_54",
+            "PLANNABLE_AGE_RANGE_18_64",
+            "PLANNABLE_AGE_RANGE_18_65_UP",
+            "PLANNABLE_AGE_RANGE_21_34",
+            "PLANNABLE_AGE_RANGE_21_44",
+            "PLANNABLE_AGE_RANGE_21_49",
+            "PLANNABLE_AGE_RANGE_21_54",
+            "PLANNABLE_AGE_RANGE_21_64",
+            "PLANNABLE_AGE_RANGE_21_65_UP",
+            "PLANNABLE_AGE_RANGE_25_34",
+            "PLANNABLE_AGE_RANGE_25_44",
+            "PLANNABLE_AGE_RANGE_25_49",
+            "PLANNABLE_AGE_RANGE_25_54",
+            "PLANNABLE_AGE_RANGE_25_64",
+            "PLANNABLE_AGE_RANGE_25_65_UP",
+            "PLANNABLE_AGE_RANGE_35_44",
+            "PLANNABLE_AGE_RANGE_35_49",
+            "PLANNABLE_AGE_RANGE_35_54",
+            "PLANNABLE_AGE_RANGE_35_64",
+            "PLANNABLE_AGE_RANGE_35_65_UP",
+            "PLANNABLE_AGE_RANGE_45_54",
+            "PLANNABLE_AGE_RANGE_45_64",
+            "PLANNABLE_AGE_RANGE_45_65_UP",
+            "PLANNABLE_AGE_RANGE_50_65_UP",
+            "PLANNABLE_AGE_RANGE_55_64",
+            "PLANNABLE_AGE_RANGE_55_65_UP",
+            "PLANNABLE_AGE_RANGE_65_UP"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "18 to 24 years old.",
+            "18 to 34 years old.",
+            "18 to 44 years old.",
+            "18 to 49 years old.",
+            "18 to 54 years old.",
+            "18 to 64 years old.",
+            "18 to 65+ years old.",
+            "21 to 34 years old.",
+            "21 to 44 years old.",
+            "21 to 49 years old.",
+            "21 to 54 years old.",
+            "21 to 64 years old.",
+            "21 to 65+ years old.",
+            "25 to 34 years old.",
+            "25 to 44 years old.",
+            "25 to 49 years old.",
+            "25 to 54 years old.",
+            "25 to 64 years old.",
+            "25 to 65+ years old.",
+            "35 to 44 years old.",
+            "35 to 49 years old.",
+            "35 to 54 years old.",
+            "35 to 64 years old.",
+            "35 to 65+ years old.",
+            "45 to 54 years old.",
+            "45 to 64 years old.",
+            "45 to 65+ years old.",
+            "50 to 65+ years old.",
+            "55 to 64 years old.",
+            "55 to 65+ years old.",
+            "65+ years old."
+          ],
+          "type": "string"
+        },
+        "dateRange": {
+          "$ref": "DateRange",
+          "description": "Optional. The date range to target."
+        },
+        "devices": {
+          "description": "Optional. The devices to target.",
+          "items": {
+            "enum": [
+              "DEVICE_TYPE_UNSPECIFIED",
+              "DEVICE_TYPE_COMPUTER",
+              "DEVICE_TYPE_CONNECTED_TV",
+              "DEVICE_TYPE_SMART_PHONE",
+              "DEVICE_TYPE_TABLET",
+              "DEVICE_TYPE_CONNECTED_DEVICE"
+            ],
+            "enumDescriptions": [
+              "Default value when device type is not specified in this version. This enum is a placeholder for default value and does not represent a real device type option.",
+              "Computer.",
+              "Connected TV.",
+              "Smart phone.",
+              "Tablet.",
+              "Connected device."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "frequencyCap": {
+          "$ref": "FrequencyCap",
+          "description": "Optional. The frequency cap for the specific product."
+        },
+        "genders": {
+          "description": "Optional. The gender options to target.",
+          "items": {
+            "enum": [
+              "GENDER_UNSPECIFIED",
+              "GENDER_MALE",
+              "GENDER_FEMALE",
+              "GENDER_UNKNOWN"
+            ],
+            "enumDescriptions": [
+              "Default value when gender is not specified in this version. This enum is a place holder for default value and does not represent a real gender option.",
+              "The audience gender is male.",
+              "The audience gender is female.",
+              "The audience gender is unknown."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "network": {
+          "description": "Optional. The network to target.",
+          "enum": [
+            "PLANNABLE_NETWORK_UNSPECIFIED",
+            "PLANNABLE_NETWORK_YOUTUBE",
+            "PLANNABLE_NETWORK_GOOGLE_VIDEO_PARTNERS",
+            "PLANNABLE_NETWORK_YOUTUBE_AND_GOOGLE_VIDEO_PARTNERS"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "YouTube.",
+            "Google Video Partners.",
+            "YouTube and Google Video Partners."
+          ],
+          "type": "string"
+        },
+        "plannableLocationIds": {
+          "description": "Optional. Plannable location IDs to target.",
+          "items": {
+            "format": "int64",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "surfaceTargetingSettings": {
+          "$ref": "SurfaceTargetingSettings",
+          "description": "Optional. Plannable surfaces to target."
+        },
+        "targetFrequency": {
+          "$ref": "TargetFrequency",
+          "description": "Optional. The average number of times the ads will show to the same person over a certain period of time."
+        },
+        "userInterestIds": {
+          "description": "Optional. The user interest IDs to target. Plannable user interests can be retrieved using the `RetrievePlannableUserInterests` method.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "userListIds": {
+          "description": "Optional. The user list IDs to target. Plannable user lists can be retrieved using the `RetrievePlannableUserInterests` method.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "youtubeSelectSettings": {
+          "$ref": "YouTubeSelectSettings",
+          "description": "Optional. YouTube Select settings."
+        }
+      },
+      "type": "object"
+    },
     "Advertiser": {
       "description": "A single advertiser in Display & Video 360 (DV360).",
       "id": "Advertiser",
@@ -10735,6 +11183,15 @@
         "dataAccessConfig": {
           "$ref": "AdvertiserDataAccessConfig",
           "description": "Settings that control how advertiser data may be accessed."
+        },
+        "defaultBusinessName": {
+          "description": "Optional. The default business name for the advertiser. This is the value used by YouTube and Demand Gen ads under this advertiser if a business name is not provided.",
+          "type": "string"
+        },
+        "defaultLogoAssetId": {
+          "description": "Optional. The asset ID of the default logo image for the advertiser. This is the asset ID that will be used by YouTube and Demand ads under this advertiser if a logo asset is not provided. You must use advertisers.adAssets.upload to upload this asset using the API.",
+          "format": "int64",
+          "type": "string"
         },
         "displayName": {
           "description": "Required. The display name of the advertiser. Must be UTF-8 encoded with a maximum size of 240 bytes.",
@@ -11219,7 +11676,8 @@
             "EXCHANGE_SPOTIFY",
             "EXCHANGE_TUBI",
             "EXCHANGE_SNAP",
-            "EXCHANGE_CADENT"
+            "EXCHANGE_CADENT",
+            "EXCHANGE_EXTE"
           ],
           "enumDescriptions": [
             "Exchange is not specified or is unknown in this version.",
@@ -11310,7 +11768,8 @@
             "Spotify.",
             "Tubi.",
             "Snap.",
-            "Cadent."
+            "Cadent.",
+            "Exte."
           ],
           "type": "string"
         },
@@ -11490,7 +11949,8 @@
             "VIDEO_COMPLETED",
             "TIME_ON_SCREEN",
             "VIDEO_PLAYER_SIZE",
-            "COMPLETED_IN_VIEW_AUDIBLE"
+            "COMPLETED_IN_VIEW_AUDIBLE",
+            "AUDIO_COMPLETED"
           ],
           "enumDescriptions": [
             "Unknown signal.",
@@ -11499,7 +11959,8 @@
             "Whether the video was completed. Value is stored in the boolValue field of the comparison value.",
             "The time the ad was on screen in seconds. Value is stored in the int64Value field of the comparison value.",
             "The size of the video player displaying the ad. Value is stored in the videoPlayerSizeValue field of the comparison value.",
-            "Whether the ad was completed in view and audible. Value is stored in the boolValue field of the comparison value."
+            "Whether the ad was completed in view and audible. Value is stored in the boolValue field of the comparison value.",
+            "Whether the audio ad was completed. Value is stored in the boolValue field of the comparison value."
           ],
           "type": "string"
         },
@@ -11606,7 +12067,8 @@
             "VIDEO_COMPLETED",
             "TIME_ON_SCREEN",
             "VIDEO_PLAYER_SIZE",
-            "COMPLETED_IN_VIEW_AUDIBLE"
+            "COMPLETED_IN_VIEW_AUDIBLE",
+            "AUDIO_COMPLETED"
           ],
           "enumDescriptions": [
             "Unknown signal.",
@@ -11615,7 +12077,8 @@
             "Whether the video was completed. Value is stored in the boolValue field of the comparison value.",
             "The time the ad was on screen in seconds. Value is stored in the int64Value field of the comparison value.",
             "The size of the video player displaying the ad. Value is stored in the videoPlayerSizeValue field of the comparison value.",
-            "Whether the ad was completed in view and audible. Value is stored in the boolValue field of the comparison value."
+            "Whether the ad was completed in view and audible. Value is stored in the boolValue field of the comparison value.",
+            "Whether the audio ad was completed. Value is stored in the boolValue field of the comparison value."
           ],
           "type": "string"
         },
@@ -12098,7 +12561,8 @@
             "TARGETING_TYPE_YOUTUBE_VIDEO",
             "TARGETING_TYPE_YOUTUBE_CHANNEL",
             "TARGETING_TYPE_SESSION_POSITION",
-            "TARGETING_TYPE_CONTENT_THEME_EXCLUSION"
+            "TARGETING_TYPE_CONTENT_THEME_EXCLUSION",
+            "TARGETING_TYPE_YOUTUBE_CHANNEL_PACK"
           ],
           "enumDescriptions": [
             "Default value when type is not specified or is unknown in this version.",
@@ -12150,7 +12614,8 @@
             "Target ads to a specific YouTube video. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
             "Target ads to a specific YouTube channel. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
             "Target ads to a serve it in a certain position of a session. Only supported for Ad Group resources under YouTube Programmatic Reservation line items. Targeting of this type cannot be created or updated using the API.",
-            "Filter website content by content themes (for example, religion). Only supported for Advertiser resources. Targeting of this type cannot be created or updated using the API. This targeting is only inherited by child YouTube and Demand Gen line item resources."
+            "Filter website content by content themes (for example, religion). Only supported for Advertiser resources. Targeting of this type cannot be created or updated using the API. This targeting is only inherited by child YouTube and Demand Gen line item resources.",
+            "Target ads to a specific YouTube channel pack."
           ],
           "readOnly": true,
           "type": "string"
@@ -12178,6 +12643,10 @@
         "youtubeChannelDetails": {
           "$ref": "YoutubeChannelAssignedTargetingOptionDetails",
           "description": "YouTube channel details. This field will be populated when the targeting_type is `TARGETING_TYPE_YOUTUBE_CHANNEL`."
+        },
+        "youtubeChannelPackDetails": {
+          "$ref": "YoutubeChannelPackAssignedTargetingOptionDetails",
+          "description": "YouTube channel pack details. This field will be populated when the targeting_type is `TARGETING_TYPE_YOUTUBE_CHANNEL_PACK`."
         },
         "youtubeVideoDetails": {
           "$ref": "YoutubeVideoAssignedTargetingOptionDetails",
@@ -12308,14 +12777,22 @@
             "AUDIO_CONTENT_TYPE_UNKNOWN",
             "AUDIO_CONTENT_TYPE_MUSIC",
             "AUDIO_CONTENT_TYPE_BROADCAST",
-            "AUDIO_CONTENT_TYPE_PODCAST"
+            "AUDIO_CONTENT_TYPE_PODCAST",
+            "AUDIO_CONTENT_TYPE_CATCH_UP_RADIO",
+            "AUDIO_CONTENT_TYPE_WEB_RADIO",
+            "AUDIO_CONTENT_TYPE_VIDEO_GAME",
+            "AUDIO_CONTENT_TYPE_TEXT_TO_SPEECH"
           ],
           "enumDescriptions": [
             "Audio content type is not specified in this version. This enum is a place holder for a default value and does not represent a real content stream type.",
             "The audio content type is unknown.",
             "The audio content type is music.",
             "The audio content type is broadcast.",
-            "The audio content type is podcast."
+            "The audio content type is podcast.",
+            "The audio content type is catch-up radio.",
+            "The audio content type is web radio.",
+            "The audio content type is video game.",
+            "The audio content type is text-to-speech."
           ],
           "type": "string"
         }
@@ -12333,14 +12810,22 @@
             "AUDIO_CONTENT_TYPE_UNKNOWN",
             "AUDIO_CONTENT_TYPE_MUSIC",
             "AUDIO_CONTENT_TYPE_BROADCAST",
-            "AUDIO_CONTENT_TYPE_PODCAST"
+            "AUDIO_CONTENT_TYPE_PODCAST",
+            "AUDIO_CONTENT_TYPE_CATCH_UP_RADIO",
+            "AUDIO_CONTENT_TYPE_WEB_RADIO",
+            "AUDIO_CONTENT_TYPE_VIDEO_GAME",
+            "AUDIO_CONTENT_TYPE_TEXT_TO_SPEECH"
           ],
           "enumDescriptions": [
             "Audio content type is not specified in this version. This enum is a place holder for a default value and does not represent a real content stream type.",
             "The audio content type is unknown.",
             "The audio content type is music.",
             "The audio content type is broadcast.",
-            "The audio content type is podcast."
+            "The audio content type is podcast.",
+            "The audio content type is catch-up radio.",
+            "The audio content type is web radio.",
+            "The audio content type is video game.",
+            "The audio content type is text-to-speech."
           ],
           "readOnly": true,
           "type": "string"
@@ -13192,7 +13677,28 @@
             "GEO_REGION_TYPE_COMMUNE",
             "GEO_REGION_TYPE_COLLOQUIAL_AREA",
             "GEO_REGION_TYPE_POST_TOWN",
-            "GEO_REGION_TYPE_WARD"
+            "GEO_REGION_TYPE_WARD",
+            "GEO_REGION_TYPE_TOWN",
+            "GEO_REGION_TYPE_VILLAGE",
+            "GEO_REGION_TYPE_CITY_DISTRICT",
+            "GEO_REGION_TYPE_SUBURB",
+            "GEO_REGION_TYPE_HAMLET",
+            "GEO_REGION_TYPE_MUNICIPAL_DISTRICT",
+            "GEO_REGION_TYPE_COMMUNITY",
+            "GEO_REGION_TYPE_TOWNSHIP",
+            "GEO_REGION_TYPE_URBAN_DISTRICT",
+            "GEO_REGION_TYPE_RESIDENTIAL_AREA",
+            "GEO_REGION_TYPE_INDEPENDENT_CITY",
+            "GEO_REGION_TYPE_SECTOR",
+            "GEO_REGION_TYPE_AREA",
+            "GEO_REGION_TYPE_ESTATE",
+            "GEO_REGION_TYPE_PARISH",
+            "GEO_REGION_TYPE_SETTLEMENT",
+            "GEO_REGION_TYPE_ZONE",
+            "GEO_REGION_TYPE_COLONY",
+            "GEO_REGION_TYPE_INDUSTRIAL_AREA",
+            "GEO_REGION_TYPE_PROVINCIAL_CITY",
+            "GEO_REGION_TYPE_RURAL_DISTRICT"
           ],
           "enumDescriptions": [
             "The geographic region type is unknown.",
@@ -13234,7 +13740,28 @@
             "The geographic region is a commune.",
             "The geographic region is a colloquial area.",
             "The geographic region is a post town.",
-            "The geographic region is a ward."
+            "The geographic region is a ward.",
+            "The geographic region is a town.",
+            "The geographic region is a village.",
+            "The geographic region is a city district.",
+            "The geographic region is a suburb.",
+            "The geographic region is a hamlet.",
+            "The geographic region is a municipal district.",
+            "The geographic region is a community.",
+            "The geographic region is a township.",
+            "The geographic region is an urban district.",
+            "The geographic region is a residential area.",
+            "The geographic region is an independent city.",
+            "The geographic region is a sector.",
+            "The geographic region is an area.",
+            "The geographic region is an estate.",
+            "The geographic region is a parish.",
+            "The geographic region is a settlement.",
+            "The geographic region is a zone.",
+            "The geographic region is a colony.",
+            "The geographic region is an industrial area.",
+            "The geographic region is a provincial city.",
+            "The geographic region is a rural district."
           ],
           "readOnly": true,
           "type": "string"
@@ -13376,6 +13903,22 @@
         "prismaConfig": {
           "$ref": "PrismaConfig",
           "description": "Additional metadata for use by the Mediaocean Prisma tool. Required for Mediaocean budgets. Only applicable to prisma_enabled advertisers."
+        }
+      },
+      "type": "object"
+    },
+    "CampaignDuration": {
+      "description": "The duration of the reach plan.",
+      "id": "CampaignDuration",
+      "properties": {
+        "dateRange": {
+          "$ref": "DateRange",
+          "description": "Required. The date range the plan covers."
+        },
+        "durationDays": {
+          "description": "Required. The number of days the plan covers.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -13791,33 +14334,33 @@
       "id": "ContactInfo",
       "properties": {
         "countryCode": {
-          "description": "Country code of the member. Must also be set with the following fields: * hashed_first_name * hashed_last_name * zip_codes",
+          "description": "Optional. Country code of the member. Must also be set with the following fields: * hashed_first_name * hashed_last_name * zip_codes",
           "type": "string"
         },
         "hashedEmails": {
-          "description": "A list of SHA256 hashed email of the member. Before hashing, remove all whitespace and make sure the string is all lowercase.",
+          "description": "Optional. A list of SHA256 hashed email of the member. Before hashing, remove all whitespace and make sure the string is all lowercase.",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "hashedFirstName": {
-          "description": "SHA256 hashed first name of the member. Before hashing, remove all whitespace and make sure the string is all lowercase. Must also be set with the following fields: * country_code * hashed_last_name * zip_codes",
+          "description": "Optional. SHA256 hashed first name of the member. Before hashing, remove all whitespace and make sure the string is all lowercase. Must also be set with the following fields: * country_code * hashed_last_name * zip_codes",
           "type": "string"
         },
         "hashedLastName": {
-          "description": "SHA256 hashed last name of the member. Before hashing, remove all whitespace and make sure the string is all lowercase. Must also be set with the following fields: * country_code * hashed_first_name * zip_codes",
+          "description": "Optional. SHA256 hashed last name of the member. Before hashing, remove all whitespace and make sure the string is all lowercase. Must also be set with the following fields: * country_code * hashed_first_name * zip_codes",
           "type": "string"
         },
         "hashedPhoneNumbers": {
-          "description": "A list of SHA256 hashed phone numbers of the member. Before hashing, all phone numbers must be formatted using the [E.164 format](//en.wikipedia.org/wiki/E.164) and include the country calling code.",
+          "description": "Optional. A list of SHA256 hashed phone numbers of the member. Before hashing, all phone numbers must be formatted using the [E.164 format](https://en.wikipedia.org/wiki/E.164) and include the country calling code.",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "zipCodes": {
-          "description": "A list of zip codes of the member. Must also be set with the following fields: * country_code * hashed_first_name * hashed_last_name",
+          "description": "Optional. A list of zip codes of the member. Must also be set with the following fields: * country_code * hashed_first_name * hashed_last_name",
           "items": {
             "type": "string"
           },
@@ -13835,7 +14378,7 @@
           "description": "Input only. The consent setting for the users in contact_infos. Leaving this field unset indicates that consent is not specified. If ad_user_data or ad_personalization fields are set to `CONSENT_STATUS_DENIED`, the request will return an error."
         },
         "contactInfos": {
-          "description": "A list of ContactInfo objects defining Customer Match audience members. The size of members after splitting the contact_infos mustn't be greater than 500,000.",
+          "description": "Optional. A list of ContactInfo objects defining Customer Match audience members. The size of members after splitting the contact_infos mustn't be greater than 500,000.",
           "items": {
             "$ref": "ContactInfo"
           },
@@ -14253,7 +14796,7 @@
           "type": "string"
         },
         "primaryAttributionModelId": {
-          "description": "Optional. The attribution model to use for conversion measurement. This attribution model will determine how conversions are counted. The Primary model can be set by you for a floodlight config or group. More details [here](https://support.google.com/displayvideo/answer/7409983). Only applicable to Demand Gen line items. Retrieval and management of Demand Gen resources is currently in beta. This field is only available to allowlisted users.",
+          "description": "Optional. The attribution model to use for conversion measurement. This attribution model will determine how conversions are counted. The Primary model can be set by you for a floodlight config or group. More details [here](https://support.google.com/displayvideo/answer/7409983). Only applicable to Demand Gen line items.",
           "format": "int64",
           "type": "string"
         }
@@ -14371,7 +14914,8 @@
             "TARGETING_TYPE_YOUTUBE_VIDEO",
             "TARGETING_TYPE_YOUTUBE_CHANNEL",
             "TARGETING_TYPE_SESSION_POSITION",
-            "TARGETING_TYPE_CONTENT_THEME_EXCLUSION"
+            "TARGETING_TYPE_CONTENT_THEME_EXCLUSION",
+            "TARGETING_TYPE_YOUTUBE_CHANNEL_PACK"
           ],
           "enumDescriptions": [
             "Default value when type is not specified or is unknown in this version.",
@@ -14423,7 +14967,8 @@
             "Target ads to a specific YouTube video. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
             "Target ads to a specific YouTube channel. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
             "Target ads to a serve it in a certain position of a session. Only supported for Ad Group resources under YouTube Programmatic Reservation line items. Targeting of this type cannot be created or updated using the API.",
-            "Filter website content by content themes (for example, religion). Only supported for Advertiser resources. Targeting of this type cannot be created or updated using the API. This targeting is only inherited by child YouTube and Demand Gen line item resources."
+            "Filter website content by content themes (for example, religion). Only supported for Advertiser resources. Targeting of this type cannot be created or updated using the API. This targeting is only inherited by child YouTube and Demand Gen line item resources.",
+            "Target ads to a specific YouTube channel pack."
           ],
           "type": "string"
         }
@@ -14477,7 +15022,9 @@
             "SDF_VERSION_8_1",
             "SDF_VERSION_9",
             "SDF_VERSION_9_1",
-            "SDF_VERSION_9_2"
+            "SDF_VERSION_9_2",
+            "SDF_VERSION_10",
+            "SDF_VERSION_10_1"
           ],
           "enumDeprecated": [
             false,
@@ -14496,6 +15043,8 @@
             true,
             true,
             true,
+            false,
+            false,
             false,
             false,
             false
@@ -14519,7 +15068,9 @@
             "SDF version 8.1.",
             "SDF version 9. Read the [v9 migration guide](/display-video/api/structured-data-file/v9-migration-guide) before migrating to this version.",
             "SDF version 9.1.",
-            "SDF version 9.2."
+            "SDF version 9.2.",
+            "SDF version 10.",
+            "SDF version 10.1."
           ],
           "type": "string"
         }
@@ -14830,6 +15381,20 @@
         "skippable": {
           "description": "Optional. Whether the user can choose to skip a video creative. This field is only supported for the following creative_type: * `CREATIVE_TYPE_VIDEO`",
           "type": "boolean"
+        },
+        "syntheticContentAttestationStatus": {
+          "description": "Optional. Whether to add a label to the creative as created or edited using AI when served in regions with local AI labeling regulations.",
+          "enum": [
+            "SYNTHETIC_CONTENT_ATTESTATION_STATUS_UNSPECIFIED",
+            "NOT_SYNTHETIC",
+            "IS_SYNTHETIC"
+          ],
+          "enumDescriptions": [
+            "No attestation has been provided.",
+            "Attested as not created or edited using AI.",
+            "Attested as created or edited using AI."
+          ],
+          "type": "string"
         },
         "thirdPartyTag": {
           "description": "Optional. The original third-party tag used for the creative. Required and only valid for third-party tag creatives. Third-party tag creatives are creatives with following hosting_source: * `HOSTING_SOURCE_THIRD_PARTY` combined with following creative_type: * `CREATIVE_TYPE_STANDARD` * `CREATIVE_TYPE_EXPANDABLE`",
@@ -15561,7 +16126,8 @@
             "TARGETING_TYPE_YOUTUBE_VIDEO",
             "TARGETING_TYPE_YOUTUBE_CHANNEL",
             "TARGETING_TYPE_SESSION_POSITION",
-            "TARGETING_TYPE_CONTENT_THEME_EXCLUSION"
+            "TARGETING_TYPE_CONTENT_THEME_EXCLUSION",
+            "TARGETING_TYPE_YOUTUBE_CHANNEL_PACK"
           ],
           "enumDescriptions": [
             "Default value when type is not specified or is unknown in this version.",
@@ -15613,7 +16179,8 @@
             "Target ads to a specific YouTube video. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
             "Target ads to a specific YouTube channel. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
             "Target ads to a serve it in a certain position of a session. Only supported for Ad Group resources under YouTube Programmatic Reservation line items. Targeting of this type cannot be created or updated using the API.",
-            "Filter website content by content themes (for example, religion). Only supported for Advertiser resources. Targeting of this type cannot be created or updated using the API. This targeting is only inherited by child YouTube and Demand Gen line item resources."
+            "Filter website content by content themes (for example, religion). Only supported for Advertiser resources. Targeting of this type cannot be created or updated using the API. This targeting is only inherited by child YouTube and Demand Gen line item resources.",
+            "Target ads to a specific YouTube channel pack."
           ],
           "type": "string"
         }
@@ -15680,7 +16247,7 @@
       "id": "DemandGenCarouselAd",
       "properties": {
         "businessName": {
-          "description": "Required. The business name shown on the ad.",
+          "description": "Optional. The business name shown on the ad. This setting is required unless a default value is set at the advertiser level. If left unset, the default value will be applied.",
           "type": "string"
         },
         "cards": {
@@ -15715,7 +16282,7 @@
         },
         "logo": {
           "$ref": "ImageAsset",
-          "description": "Required. The logo image used by this ad."
+          "description": "Optional. The logo image used by this ad. This setting is required unless a default value is set at the advertiser level. If left unset, the default value will be applied."
         },
         "trackingUrl": {
           "description": "Output only. The URL address loaded in the background for tracking purposes.",
@@ -15734,7 +16301,7 @@
       "id": "DemandGenImageAd",
       "properties": {
         "businessName": {
-          "description": "Required. The business name shown on the ad.",
+          "description": "Optional. The business name shown on the ad. This setting is required unless a default value is set at the advertiser level. If left unset, the default value will be applied.",
           "type": "string"
         },
         "callToAction": {
@@ -15775,7 +16342,7 @@
           "type": "array"
         },
         "logoImages": {
-          "description": "The list of logo images shown on the ad.",
+          "description": "The list of logo images shown on the ad. This setting is required unless a default value is set at the advertiser level. If left unset, the default value will be applied.",
           "items": {
             "$ref": "ImageAsset"
           },
@@ -15819,7 +16386,7 @@
       "id": "DemandGenProductAd",
       "properties": {
         "businessName": {
-          "description": "Required. The business name shown on the ad.",
+          "description": "Optional. The business name shown on the ad. This setting is required unless a default value is set at the advertiser level. If left unset, the default value will be applied.",
           "type": "string"
         },
         "callToAction": {
@@ -15901,7 +16468,7 @@
         },
         "logo": {
           "$ref": "ImageAsset",
-          "description": "Required. The logo image used by this ad."
+          "description": "Optional. The logo image used by this ad. This setting is required unless a default value is set at the advertiser level. If left unset, the default value will be applied."
         },
         "trackingUrl": {
           "description": "Output only. The URL address loaded in the background for tracking purposes.",
@@ -15940,7 +16507,7 @@
       "id": "DemandGenVideoAd",
       "properties": {
         "businessName": {
-          "description": "Required. The business name shown on the ad.",
+          "description": "Optional. The business name shown on the ad. This setting is required unless a default value is set at the advertiser level. If left unset, the default value will be applied.",
           "type": "string"
         },
         "callToAction": {
@@ -16036,7 +16603,7 @@
         },
         "logo": {
           "$ref": "ImageAsset",
-          "description": "Required. The logo image used by this ad."
+          "description": "Optional. The logo image used by this ad. This setting is required unless a default value is set at the advertiser level. If left unset, the default value will be applied."
         },
         "longHeadlines": {
           "description": "Required. The list of long headlines shown on the ad.",
@@ -16628,7 +17195,7 @@
       "type": "object"
     },
     "EditCustomerMatchMembersRequest": {
-      "description": "Request message for FirstAndThirdPartyAudienceService.EditCustomerMatchMembers.",
+      "description": "Request message for FirstPartyAndPartnerAudienceService.EditCustomerMatchMembers.",
       "id": "EditCustomerMatchMembersRequest",
       "properties": {
         "addedContactInfoList": {
@@ -16656,7 +17223,7 @@
       "type": "object"
     },
     "EditCustomerMatchMembersResponse": {
-      "description": "The response of FirstAndThirdPartyAudienceService.EditCustomerMatchMembers.",
+      "description": "The response of FirstPartyAndPartnerAudienceService.EditCustomerMatchMembers.",
       "id": "EditCustomerMatchMembersResponse",
       "properties": {
         "firstPartyAndPartnerAudienceId": {
@@ -16908,7 +17475,8 @@
             "EXCHANGE_SPOTIFY",
             "EXCHANGE_TUBI",
             "EXCHANGE_SNAP",
-            "EXCHANGE_CADENT"
+            "EXCHANGE_CADENT",
+            "EXCHANGE_EXTE"
           ],
           "enumDescriptions": [
             "Exchange is not specified or is unknown in this version.",
@@ -16999,7 +17567,8 @@
             "Spotify.",
             "Tubi.",
             "Snap.",
-            "Cadent."
+            "Cadent.",
+            "Exte."
           ],
           "type": "string"
         }
@@ -17115,7 +17684,8 @@
             "EXCHANGE_SPOTIFY",
             "EXCHANGE_TUBI",
             "EXCHANGE_SNAP",
-            "EXCHANGE_CADENT"
+            "EXCHANGE_CADENT",
+            "EXCHANGE_EXTE"
           ],
           "enumDescriptions": [
             "Exchange is not specified or is unknown in this version.",
@@ -17206,7 +17776,8 @@
             "Spotify.",
             "Tubi.",
             "Snap.",
-            "Cadent."
+            "Cadent.",
+            "Exte."
           ],
           "type": "string"
         },
@@ -17323,7 +17894,8 @@
             "EXCHANGE_SPOTIFY",
             "EXCHANGE_TUBI",
             "EXCHANGE_SNAP",
-            "EXCHANGE_CADENT"
+            "EXCHANGE_CADENT",
+            "EXCHANGE_EXTE"
           ],
           "enumDescriptions": [
             "Exchange is not specified or is unknown in this version.",
@@ -17414,7 +17986,8 @@
             "Spotify.",
             "Tubi.",
             "Snap.",
-            "Cadent."
+            "Cadent.",
+            "Exte."
           ],
           "type": "string"
         },
@@ -17532,7 +18105,8 @@
             "EXCHANGE_SPOTIFY",
             "EXCHANGE_TUBI",
             "EXCHANGE_SNAP",
-            "EXCHANGE_CADENT"
+            "EXCHANGE_CADENT",
+            "EXCHANGE_EXTE"
           ],
           "enumDescriptions": [
             "Exchange is not specified or is unknown in this version.",
@@ -17623,7 +18197,8 @@
             "Spotify.",
             "Tubi.",
             "Snap.",
-            "Cadent."
+            "Cadent.",
+            "Exte."
           ],
           "readOnly": true,
           "type": "string"
@@ -17736,8 +18311,8 @@
             "Audience was generated through matching customers to known contact information.",
             "Audience was generated through matching customers to known Mobile device IDs.",
             "Audience was generated through matching customers to known User IDs.",
-            "Audience was created based on campaign activity.",
-            "Audience was created based on excluding the number of impressions they were served.",
+            "Deprecated: Audience was created based on campaign activity.",
+            "Deprecated: Audience was created based on excluding the number of impressions they were served.",
             "Audience was created based on custom variables attached to pixel.",
             "Audience was created based on past interactions with videos, YouTube ads, or YouTube channel.",
             "Audience has been licensed for use from a third party.",
@@ -18159,6 +18734,52 @@
       },
       "type": "object"
     },
+    "GenerateReachForecastRequest": {
+      "description": "Request message for ReachForecastService.GenerateReachForecast.",
+      "id": "GenerateReachForecastRequest",
+      "properties": {
+        "campaignDuration": {
+          "$ref": "CampaignDuration",
+          "description": "Required. The duration of the planned campaign."
+        },
+        "currencyCode": {
+          "description": "Required. The currency code for the plan in ISO 4217 format.",
+          "type": "string"
+        },
+        "minEffectiveFrequency": {
+          "description": "Optional. The minimum effective frequency for the reported reach metrics. This is the smallest number of times a customer must be exposed to the ad for it to be considered effective. This setting only impacts reporting. Must be between 1 and 10, inclusive. If not specified, a default of 1 is applied.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "plannedProducts": {
+          "description": "Required. The list of line items to include in the forecast.",
+          "items": {
+            "$ref": "PlannedProduct"
+          },
+          "type": "array"
+        },
+        "targeting": {
+          "$ref": "Targeting",
+          "description": "Required. The targeting parameters of the planned campaign."
+        }
+      },
+      "type": "object"
+    },
+    "GenerateReachForecastResponse": {
+      "description": "Response message for ReachForecastService.GenerateReachForecast.",
+      "id": "GenerateReachForecastResponse",
+      "properties": {
+        "onTargetAudienceMetrics": {
+          "$ref": "OnTargetAudienceMetrics",
+          "description": "The estimated audience sizes for the targeted geography."
+        },
+        "reachCurve": {
+          "$ref": "ReachCurve",
+          "description": "The generated forecast curve."
+        }
+      },
+      "type": "object"
+    },
     "GeoRegionAssignedTargetingOptionDetails": {
       "description": "Details for assigned geographic region targeting option. This will be populated in the details field of an AssignedTargetingOption when targeting_type is `TARGETING_TYPE_GEO_REGION`.",
       "id": "GeoRegionAssignedTargetingOptionDetails",
@@ -18210,7 +18831,28 @@
             "GEO_REGION_TYPE_COMMUNE",
             "GEO_REGION_TYPE_COLLOQUIAL_AREA",
             "GEO_REGION_TYPE_POST_TOWN",
-            "GEO_REGION_TYPE_WARD"
+            "GEO_REGION_TYPE_WARD",
+            "GEO_REGION_TYPE_TOWN",
+            "GEO_REGION_TYPE_VILLAGE",
+            "GEO_REGION_TYPE_CITY_DISTRICT",
+            "GEO_REGION_TYPE_SUBURB",
+            "GEO_REGION_TYPE_HAMLET",
+            "GEO_REGION_TYPE_MUNICIPAL_DISTRICT",
+            "GEO_REGION_TYPE_COMMUNITY",
+            "GEO_REGION_TYPE_TOWNSHIP",
+            "GEO_REGION_TYPE_URBAN_DISTRICT",
+            "GEO_REGION_TYPE_RESIDENTIAL_AREA",
+            "GEO_REGION_TYPE_INDEPENDENT_CITY",
+            "GEO_REGION_TYPE_SECTOR",
+            "GEO_REGION_TYPE_AREA",
+            "GEO_REGION_TYPE_ESTATE",
+            "GEO_REGION_TYPE_PARISH",
+            "GEO_REGION_TYPE_SETTLEMENT",
+            "GEO_REGION_TYPE_ZONE",
+            "GEO_REGION_TYPE_COLONY",
+            "GEO_REGION_TYPE_INDUSTRIAL_AREA",
+            "GEO_REGION_TYPE_PROVINCIAL_CITY",
+            "GEO_REGION_TYPE_RURAL_DISTRICT"
           ],
           "enumDescriptions": [
             "The geographic region type is unknown.",
@@ -18252,7 +18894,28 @@
             "The geographic region is a commune.",
             "The geographic region is a colloquial area.",
             "The geographic region is a post town.",
-            "The geographic region is a ward."
+            "The geographic region is a ward.",
+            "The geographic region is a town.",
+            "The geographic region is a village.",
+            "The geographic region is a city district.",
+            "The geographic region is a suburb.",
+            "The geographic region is a hamlet.",
+            "The geographic region is a municipal district.",
+            "The geographic region is a community.",
+            "The geographic region is a township.",
+            "The geographic region is an urban district.",
+            "The geographic region is a residential area.",
+            "The geographic region is an independent city.",
+            "The geographic region is a sector.",
+            "The geographic region is an area.",
+            "The geographic region is an estate.",
+            "The geographic region is a parish.",
+            "The geographic region is a settlement.",
+            "The geographic region is a zone.",
+            "The geographic region is a colony.",
+            "The geographic region is an industrial area.",
+            "The geographic region is a provincial city.",
+            "The geographic region is a rural district."
           ],
           "readOnly": true,
           "type": "string"
@@ -18330,7 +18993,28 @@
             "GEO_REGION_TYPE_COMMUNE",
             "GEO_REGION_TYPE_COLLOQUIAL_AREA",
             "GEO_REGION_TYPE_POST_TOWN",
-            "GEO_REGION_TYPE_WARD"
+            "GEO_REGION_TYPE_WARD",
+            "GEO_REGION_TYPE_TOWN",
+            "GEO_REGION_TYPE_VILLAGE",
+            "GEO_REGION_TYPE_CITY_DISTRICT",
+            "GEO_REGION_TYPE_SUBURB",
+            "GEO_REGION_TYPE_HAMLET",
+            "GEO_REGION_TYPE_MUNICIPAL_DISTRICT",
+            "GEO_REGION_TYPE_COMMUNITY",
+            "GEO_REGION_TYPE_TOWNSHIP",
+            "GEO_REGION_TYPE_URBAN_DISTRICT",
+            "GEO_REGION_TYPE_RESIDENTIAL_AREA",
+            "GEO_REGION_TYPE_INDEPENDENT_CITY",
+            "GEO_REGION_TYPE_SECTOR",
+            "GEO_REGION_TYPE_AREA",
+            "GEO_REGION_TYPE_ESTATE",
+            "GEO_REGION_TYPE_PARISH",
+            "GEO_REGION_TYPE_SETTLEMENT",
+            "GEO_REGION_TYPE_ZONE",
+            "GEO_REGION_TYPE_COLONY",
+            "GEO_REGION_TYPE_INDUSTRIAL_AREA",
+            "GEO_REGION_TYPE_PROVINCIAL_CITY",
+            "GEO_REGION_TYPE_RURAL_DISTRICT"
           ],
           "enumDescriptions": [
             "The geographic region type is unknown.",
@@ -18372,7 +19056,28 @@
             "The geographic region is a commune.",
             "The geographic region is a colloquial area.",
             "The geographic region is a post town.",
-            "The geographic region is a ward."
+            "The geographic region is a ward.",
+            "The geographic region is a town.",
+            "The geographic region is a village.",
+            "The geographic region is a city district.",
+            "The geographic region is a suburb.",
+            "The geographic region is a hamlet.",
+            "The geographic region is a municipal district.",
+            "The geographic region is a community.",
+            "The geographic region is a township.",
+            "The geographic region is an urban district.",
+            "The geographic region is a residential area.",
+            "The geographic region is an independent city.",
+            "The geographic region is a sector.",
+            "The geographic region is an area.",
+            "The geographic region is an estate.",
+            "The geographic region is a parish.",
+            "The geographic region is a settlement.",
+            "The geographic region is a zone.",
+            "The geographic region is a colony.",
+            "The geographic region is an industrial area.",
+            "The geographic region is a provincial city.",
+            "The geographic region is a rural district."
           ],
           "readOnly": true,
           "type": "string"
@@ -18582,7 +19287,8 @@
             "EXCHANGE_SPOTIFY",
             "EXCHANGE_TUBI",
             "EXCHANGE_SNAP",
-            "EXCHANGE_CADENT"
+            "EXCHANGE_CADENT",
+            "EXCHANGE_EXTE"
           ],
           "enumDescriptions": [
             "Exchange is not specified or is unknown in this version.",
@@ -18673,7 +19379,8 @@
             "Spotify.",
             "Tubi.",
             "Snap.",
-            "Cadent."
+            "Cadent.",
+            "Exte."
           ],
           "type": "string"
         },
@@ -19539,7 +20246,8 @@
             "EXCHANGE_SPOTIFY",
             "EXCHANGE_TUBI",
             "EXCHANGE_SNAP",
-            "EXCHANGE_CADENT"
+            "EXCHANGE_CADENT",
+            "EXCHANGE_EXTE"
           ],
           "enumDescriptions": [
             "Exchange is not specified or is unknown in this version.",
@@ -19630,7 +20338,8 @@
             "Spotify.",
             "Tubi.",
             "Snap.",
-            "Cadent."
+            "Cadent.",
+            "Exte."
           ],
           "type": "string"
         },
@@ -20226,7 +20935,7 @@
         },
         "demandGenSettings": {
           "$ref": "DemandGenSettings",
-          "description": "Optional. Settings specific to Demand Gen line items. Only applicable to Demand Gen line items. Retrieval and management of Demand Gen resources is currently in beta. This field is only available to allowlisted users."
+          "description": "Optional. Settings specific to Demand Gen line items. Only applicable to Demand Gen line items."
         },
         "displayName": {
           "description": "Required. The display name of the line item. Must be UTF-8 encoded with a maximum size of 240 bytes.",
@@ -20329,7 +21038,7 @@
             "YouTube video ads that aim to get more views with a variety of ad formats. Line items of this type and their targeting cannot be created or updated using the API.",
             "Display ads served on digital-out-of-home inventory. Line items of this type and their targeting cannot be created or updated using the API.",
             "Video ads served on digital-out-of-home inventory. Line items of this type and their targeting cannot be created or updated using the API.",
-            "Demand Gen ads. Retrieval and management of Demand Gen resources is currently in beta. This enum value is only available to allowlisted users."
+            "Demand Gen ads."
           ],
           "type": "string"
         },
@@ -21366,7 +22075,7 @@
           "description": "Input only. The consent setting for the users in mobile_device_ids. Leaving this field unset indicates that consent is not specified. If ad_user_data or ad_personalization fields are set to `CONSENT_STATUS_DENIED`, the request will return an error."
         },
         "mobileDeviceIds": {
-          "description": "A list of mobile device IDs defining Customer Match audience members. The size of mobile_device_ids mustn't be greater than 500,000.",
+          "description": "Optional. A list of mobile device IDs defining Customer Match audience members. The size of mobile_device_ids mustn't be greater than 500,000.",
           "items": {
             "type": "string"
           },
@@ -21687,6 +22396,23 @@
             "The ad is located below the fold."
           ],
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "OnTargetAudienceMetrics": {
+      "description": "Estimated audience sizes for a targeted geography.",
+      "id": "OnTargetAudienceMetrics",
+      "properties": {
+        "censusAudienceSize": {
+          "description": "Size of the audience based on the census data of the targeted geography.",
+          "format": "int64",
+          "type": "string"
+        },
+        "youtubeAudienceSize": {
+          "description": "Estimated size of the YouTube audience.",
+          "format": "int64",
           "type": "string"
         }
       },
@@ -22293,6 +23019,563 @@
       },
       "type": "object"
     },
+    "PlannableLocation": {
+      "description": "A plannable location used for forecasting.",
+      "id": "PlannableLocation",
+      "properties": {
+        "displayName": {
+          "description": "Output only. The display name of the location, for example \"Algeria\".",
+          "readOnly": true,
+          "type": "string"
+        },
+        "geoRegionType": {
+          "description": "Output only. The type of location.",
+          "enum": [
+            "GEO_REGION_TYPE_UNKNOWN",
+            "GEO_REGION_TYPE_OTHER",
+            "GEO_REGION_TYPE_COUNTRY",
+            "GEO_REGION_TYPE_REGION",
+            "GEO_REGION_TYPE_TERRITORY",
+            "GEO_REGION_TYPE_PROVINCE",
+            "GEO_REGION_TYPE_STATE",
+            "GEO_REGION_TYPE_PREFECTURE",
+            "GEO_REGION_TYPE_GOVERNORATE",
+            "GEO_REGION_TYPE_CANTON",
+            "GEO_REGION_TYPE_UNION_TERRITORY",
+            "GEO_REGION_TYPE_AUTONOMOUS_COMMUNITY",
+            "GEO_REGION_TYPE_DMA_REGION",
+            "GEO_REGION_TYPE_METRO",
+            "GEO_REGION_TYPE_CONGRESSIONAL_DISTRICT",
+            "GEO_REGION_TYPE_COUNTY",
+            "GEO_REGION_TYPE_MUNICIPALITY",
+            "GEO_REGION_TYPE_CITY",
+            "GEO_REGION_TYPE_POSTAL_CODE",
+            "GEO_REGION_TYPE_DEPARTMENT",
+            "GEO_REGION_TYPE_AIRPORT",
+            "GEO_REGION_TYPE_TV_REGION",
+            "GEO_REGION_TYPE_OKRUG",
+            "GEO_REGION_TYPE_BOROUGH",
+            "GEO_REGION_TYPE_CITY_REGION",
+            "GEO_REGION_TYPE_ARRONDISSEMENT",
+            "GEO_REGION_TYPE_NEIGHBORHOOD",
+            "GEO_REGION_TYPE_UNIVERSITY",
+            "GEO_REGION_TYPE_DISTRICT",
+            "GEO_REGION_TYPE_NATIONAL_PARK",
+            "GEO_REGION_TYPE_BARRIO",
+            "GEO_REGION_TYPE_SUB_WARD",
+            "GEO_REGION_TYPE_MUNICIPALITY_DISTRICT",
+            "GEO_REGION_TYPE_SUB_DISTRICT",
+            "GEO_REGION_TYPE_QUARTER",
+            "GEO_REGION_TYPE_DIVISION",
+            "GEO_REGION_TYPE_COMMUNE",
+            "GEO_REGION_TYPE_COLLOQUIAL_AREA",
+            "GEO_REGION_TYPE_POST_TOWN",
+            "GEO_REGION_TYPE_WARD",
+            "GEO_REGION_TYPE_TOWN",
+            "GEO_REGION_TYPE_VILLAGE",
+            "GEO_REGION_TYPE_CITY_DISTRICT",
+            "GEO_REGION_TYPE_SUBURB",
+            "GEO_REGION_TYPE_HAMLET",
+            "GEO_REGION_TYPE_MUNICIPAL_DISTRICT",
+            "GEO_REGION_TYPE_COMMUNITY",
+            "GEO_REGION_TYPE_TOWNSHIP",
+            "GEO_REGION_TYPE_URBAN_DISTRICT",
+            "GEO_REGION_TYPE_RESIDENTIAL_AREA",
+            "GEO_REGION_TYPE_INDEPENDENT_CITY",
+            "GEO_REGION_TYPE_SECTOR",
+            "GEO_REGION_TYPE_AREA",
+            "GEO_REGION_TYPE_ESTATE",
+            "GEO_REGION_TYPE_PARISH",
+            "GEO_REGION_TYPE_SETTLEMENT",
+            "GEO_REGION_TYPE_ZONE",
+            "GEO_REGION_TYPE_COLONY",
+            "GEO_REGION_TYPE_INDUSTRIAL_AREA",
+            "GEO_REGION_TYPE_PROVINCIAL_CITY",
+            "GEO_REGION_TYPE_RURAL_DISTRICT"
+          ],
+          "enumDescriptions": [
+            "The geographic region type is unknown.",
+            "The geographic region type is other.",
+            "The geographic region is a country.",
+            "The geographic region type is region.",
+            "The geographic region is a territory.",
+            "The geographic region is a province.",
+            "The geographic region is a state.",
+            "The geographic region is a prefecture.",
+            "The geographic region is a governorate.",
+            "The geographic region is a canton.",
+            "The geographic region is a union territory.",
+            "The geographic region is an autonomous community.",
+            "The geographic region is a designated market area (DMA) region.",
+            "The geographic region type is metro.",
+            "The geographic region is a congressional district.",
+            "The geographic region is a county.",
+            "The geographic region is a municipality.",
+            "The geographic region is a city.",
+            "The geographic region targeting type is postal code.",
+            "The geographic region targeting type is department.",
+            "The geographic region is an airport.",
+            "The geographic region is a TV region.",
+            "The geographic region is an okrug.",
+            "The geographic region is a borough.",
+            "The geographic region is a city region.",
+            "The geographic region is an arrondissement.",
+            "The geographic region is a neighborhood.",
+            "The geographic region is a university.",
+            "The geographic region is a district.",
+            "The geographic region is a national park.",
+            "The geographic region is a barrio.",
+            "The geographic region is a sub ward.",
+            "The geographic region is a municipality district.",
+            "The geographic region is a sub district.",
+            "The geographic region is a quarter.",
+            "The geographic region is a division.",
+            "The geographic region is a commune.",
+            "The geographic region is a colloquial area.",
+            "The geographic region is a post town.",
+            "The geographic region is a ward.",
+            "The geographic region is a town.",
+            "The geographic region is a village.",
+            "The geographic region is a city district.",
+            "The geographic region is a suburb.",
+            "The geographic region is a hamlet.",
+            "The geographic region is a municipal district.",
+            "The geographic region is a community.",
+            "The geographic region is a township.",
+            "The geographic region is an urban district.",
+            "The geographic region is a residential area.",
+            "The geographic region is an independent city.",
+            "The geographic region is a sector.",
+            "The geographic region is an area.",
+            "The geographic region is an estate.",
+            "The geographic region is a parish.",
+            "The geographic region is a settlement.",
+            "The geographic region is a zone.",
+            "The geographic region is a colony.",
+            "The geographic region is an industrial area.",
+            "The geographic region is a provincial city.",
+            "The geographic region is a rural district."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. The resource name of the plannable location.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "parentPlannableLocationId": {
+          "description": "Output only. The parent plannable location ID, for example the country ID for subgeos.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "plannableLocationId": {
+          "description": "Output only. The plannable location ID.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "regionCode": {
+          "description": "Output only. The region code of the location, for example \"DZ\" for Algeria.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PlannableProductCoreAttributes": {
+      "description": "Core attributes for a plannable product.",
+      "id": "PlannableProductCoreAttributes",
+      "properties": {
+        "buyingMethod": {
+          "description": "Output only. The buying method.",
+          "enum": [
+            "PLANNABLE_BUYING_METHOD_UNSPECIFIED",
+            "PLANNABLE_BUYING_METHOD_AUCTION",
+            "PLANNABLE_BUYING_METHOD_RESERVATION"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "Auction.",
+            "Reservation."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "costModel": {
+          "description": "Output only. The cost model.",
+          "enum": [
+            "PLANNABLE_COST_MODEL_UNSPECIFIED",
+            "PLANNABLE_COST_MODEL_CPM",
+            "PLANNABLE_COST_MODEL_CPV",
+            "PLANNABLE_COST_MODEL_CPC",
+            "PLANNABLE_COST_MODEL_CPA"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "CPM.",
+            "CPV.",
+            "CPC.",
+            "CPA."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "productCategory": {
+          "description": "Output only. The product category.",
+          "enum": [
+            "PLANNABLE_PRODUCT_CATEGORY_UNSPECIFIED",
+            "YOUTUBE",
+            "OPEN_AUCTION"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "YouTube.",
+            "Open Auction."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PlannableTargeting": {
+      "description": "Targeting capabilities for a given product.",
+      "id": "PlannableTargeting",
+      "properties": {
+        "ageRanges": {
+          "description": "Output only. Allowed plannable age ranges for the product. Actual targeting is computed by mapping this age range onto standard Google age targeting.",
+          "items": {
+            "enum": [
+              "PLANNABLE_AGE_RANGE_UNSPECIFIED",
+              "PLANNABLE_AGE_RANGE_18_24",
+              "PLANNABLE_AGE_RANGE_18_34",
+              "PLANNABLE_AGE_RANGE_18_44",
+              "PLANNABLE_AGE_RANGE_18_49",
+              "PLANNABLE_AGE_RANGE_18_54",
+              "PLANNABLE_AGE_RANGE_18_64",
+              "PLANNABLE_AGE_RANGE_18_65_UP",
+              "PLANNABLE_AGE_RANGE_21_34",
+              "PLANNABLE_AGE_RANGE_21_44",
+              "PLANNABLE_AGE_RANGE_21_49",
+              "PLANNABLE_AGE_RANGE_21_54",
+              "PLANNABLE_AGE_RANGE_21_64",
+              "PLANNABLE_AGE_RANGE_21_65_UP",
+              "PLANNABLE_AGE_RANGE_25_34",
+              "PLANNABLE_AGE_RANGE_25_44",
+              "PLANNABLE_AGE_RANGE_25_49",
+              "PLANNABLE_AGE_RANGE_25_54",
+              "PLANNABLE_AGE_RANGE_25_64",
+              "PLANNABLE_AGE_RANGE_25_65_UP",
+              "PLANNABLE_AGE_RANGE_35_44",
+              "PLANNABLE_AGE_RANGE_35_49",
+              "PLANNABLE_AGE_RANGE_35_54",
+              "PLANNABLE_AGE_RANGE_35_64",
+              "PLANNABLE_AGE_RANGE_35_65_UP",
+              "PLANNABLE_AGE_RANGE_45_54",
+              "PLANNABLE_AGE_RANGE_45_64",
+              "PLANNABLE_AGE_RANGE_45_65_UP",
+              "PLANNABLE_AGE_RANGE_50_65_UP",
+              "PLANNABLE_AGE_RANGE_55_64",
+              "PLANNABLE_AGE_RANGE_55_65_UP",
+              "PLANNABLE_AGE_RANGE_65_UP"
+            ],
+            "enumDescriptions": [
+              "Not specified.",
+              "18 to 24 years old.",
+              "18 to 34 years old.",
+              "18 to 44 years old.",
+              "18 to 49 years old.",
+              "18 to 54 years old.",
+              "18 to 64 years old.",
+              "18 to 65+ years old.",
+              "21 to 34 years old.",
+              "21 to 44 years old.",
+              "21 to 49 years old.",
+              "21 to 54 years old.",
+              "21 to 64 years old.",
+              "21 to 65+ years old.",
+              "25 to 34 years old.",
+              "25 to 44 years old.",
+              "25 to 49 years old.",
+              "25 to 54 years old.",
+              "25 to 64 years old.",
+              "25 to 65+ years old.",
+              "35 to 44 years old.",
+              "35 to 49 years old.",
+              "35 to 54 years old.",
+              "35 to 64 years old.",
+              "35 to 65+ years old.",
+              "45 to 54 years old.",
+              "45 to 64 years old.",
+              "45 to 65+ years old.",
+              "50 to 65+ years old.",
+              "55 to 64 years old.",
+              "55 to 65+ years old.",
+              "65+ years old."
+            ],
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "defaultYoutubeSelectLineup": {
+          "$ref": "YouTubeSelectLineUp",
+          "description": "Output only. The default YouTube Select Lineup for this product, if applicable.",
+          "readOnly": true
+        },
+        "devices": {
+          "description": "Output only. Targetable devices for the ad product.",
+          "items": {
+            "enum": [
+              "DEVICE_TYPE_UNSPECIFIED",
+              "DEVICE_TYPE_COMPUTER",
+              "DEVICE_TYPE_CONNECTED_TV",
+              "DEVICE_TYPE_SMART_PHONE",
+              "DEVICE_TYPE_TABLET",
+              "DEVICE_TYPE_CONNECTED_DEVICE"
+            ],
+            "enumDescriptions": [
+              "Default value when device type is not specified in this version. This enum is a placeholder for default value and does not represent a real device type option.",
+              "Computer.",
+              "Connected TV.",
+              "Smart phone.",
+              "Tablet.",
+              "Connected device."
+            ],
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "genders": {
+          "description": "Output only. Targetable genders for the ad product.",
+          "items": {
+            "enum": [
+              "GENDER_UNSPECIFIED",
+              "GENDER_MALE",
+              "GENDER_FEMALE",
+              "GENDER_UNKNOWN"
+            ],
+            "enumDescriptions": [
+              "Default value when gender is not specified in this version. This enum is a place holder for default value and does not represent a real gender option.",
+              "The audience gender is male.",
+              "The audience gender is female.",
+              "The audience gender is unknown."
+            ],
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "networks": {
+          "description": "Output only. Targetable networks for the ad product.",
+          "items": {
+            "enum": [
+              "PLANNABLE_NETWORK_UNSPECIFIED",
+              "PLANNABLE_NETWORK_YOUTUBE",
+              "PLANNABLE_NETWORK_GOOGLE_VIDEO_PARTNERS",
+              "PLANNABLE_NETWORK_YOUTUBE_AND_GOOGLE_VIDEO_PARTNERS"
+            ],
+            "enumDescriptions": [
+              "Not specified.",
+              "YouTube.",
+              "Google Video Partners.",
+              "YouTube and Google Video Partners."
+            ],
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "surfaceTargetingCombinations": {
+          "$ref": "SurfaceTargetingCombinations",
+          "description": "Output only. Targetable surface combinations for the ad product.",
+          "readOnly": true
+        },
+        "youtubeSelectLineups": {
+          "description": "Output only. Targetable YouTube Select Lineups for the ad product.",
+          "items": {
+            "$ref": "YouTubeSelectLineUp"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "PlannableUserInterest": {
+      "description": "A plannable user interest used for targeting.",
+      "id": "PlannableUserInterest",
+      "properties": {
+        "userInterest": {
+          "$ref": "UserInterest",
+          "description": "Output only. The identifier for the user interest. The product_category specified in the request dictates the field populated in the object. * user_interest_category is populated for \"Youtube\". * user_interest_user_list is populated for \"Open Auction\".",
+          "readOnly": true
+        },
+        "userInterestDisplayName": {
+          "description": "Output only. The display name of the interest, for example \"Outdoor Enthusiasts\".",
+          "readOnly": true,
+          "type": "string"
+        },
+        "userInterestPath": {
+          "description": "Output only. The category path of the interest.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "userInterestType": {
+          "description": "Output only. The type of audience, e.g., \"AFFINITY\", \"IN_MARKET\".",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PlannableUserList": {
+      "description": "A plannable user list used for reach forecasting.",
+      "id": "PlannableUserList",
+      "properties": {
+        "displayName": {
+          "description": "Output only. The display name of the user list.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. The resource name identifying the user list. Format: `advertisers/{advertiser_id}/userLists/{user_list_id}`",
+          "readOnly": true,
+          "type": "string"
+        },
+        "plannableStatus": {
+          "description": "Output only. The plannability status of the user list.",
+          "enum": [
+            "PLANNABLE_STATUS_UNSPECIFIED",
+            "PLANNABLE",
+            "UNPLANNABLE"
+          ],
+          "enumDescriptions": [
+            "Unspecified plannability status.",
+            "The user list is plannable.",
+            "The user list is unplannable."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "userListType": {
+          "description": "Output only. The type of the user list.",
+          "enum": [
+            "USER_LIST_TYPE_UNSPECIFIED",
+            "FIRST_PARTY",
+            "THIRD_PARTY"
+          ],
+          "enumDescriptions": [
+            "Unspecified user list type.",
+            "A first-party user list.",
+            "A third-party user list."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PlannedProduct": {
+      "description": "Configuration for a specific product in the plan.",
+      "id": "PlannedProduct",
+      "properties": {
+        "advancedProductTargeting": {
+          "$ref": "AdvancedProductTargeting",
+          "description": "Optional. Optional line item level targeting overrides."
+        },
+        "budgetMicros": {
+          "description": "Required. The budget for this product in micros.",
+          "format": "int64",
+          "type": "string"
+        },
+        "plannableProductCode": {
+          "description": "Required. The code for the product, e.g. \"VIDEO_REACH_CAMPAIGN\".",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PlannedProductForecast": {
+      "description": "Performance metrics for a forecast point.",
+      "id": "PlannedProductForecast",
+      "properties": {
+        "onTargetCoviewImpressions": {
+          "description": "Number of on-target impressions including co-viewers.",
+          "format": "int64",
+          "type": "string"
+        },
+        "onTargetCoviewReach": {
+          "description": "Number of unique people reached that match the on-target definition including co-viewers.",
+          "format": "int64",
+          "type": "string"
+        },
+        "onTargetImpressions": {
+          "description": "Number of on-target impressions.",
+          "format": "int64",
+          "type": "string"
+        },
+        "onTargetReach": {
+          "description": "Number of unique people reached that match the on-target definition.",
+          "format": "int64",
+          "type": "string"
+        },
+        "totalCoviewImpressions": {
+          "description": "Total number of impressions including co-viewers.",
+          "format": "int64",
+          "type": "string"
+        },
+        "totalCoviewReach": {
+          "description": "Total number of unique people reached including co-viewers.",
+          "format": "int64",
+          "type": "string"
+        },
+        "totalImpressions": {
+          "description": "Total number of impressions.",
+          "format": "int64",
+          "type": "string"
+        },
+        "totalReach": {
+          "description": "Total number of unique people reached.",
+          "format": "int64",
+          "type": "string"
+        },
+        "trueviewViews": {
+          "description": "Number of TrueView views.",
+          "format": "int64",
+          "type": "string"
+        },
+        "viewableImpressions": {
+          "description": "Number of viewable impressions.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PlannedProductReachForecast": {
+      "description": "Performance forecast for a specific product.",
+      "id": "PlannedProductReachForecast",
+      "properties": {
+        "costMicros": {
+          "description": "The cost in micros for this product.",
+          "format": "int64",
+          "type": "string"
+        },
+        "plannableProductCode": {
+          "description": "The code for the product.",
+          "type": "string"
+        },
+        "plannedProductForecast": {
+          "$ref": "PlannedProductForecast",
+          "description": "Performance metrics for the product."
+        }
+      },
+      "type": "object"
+    },
     "PoiAssignedTargetingOptionDetails": {
       "description": "Details for assigned POI targeting option. This will be populated in the details field of an AssignedTargetingOption when targeting_type is `TARGETING_TYPE_POI`.",
       "id": "PoiAssignedTargetingOptionDetails",
@@ -22480,6 +23763,38 @@
       },
       "type": "object"
     },
+    "ProductMetadata": {
+      "description": "Metadata for a plannable product.",
+      "id": "ProductMetadata",
+      "properties": {
+        "displayName": {
+          "description": "Output only. The name associated with the ad product. For example: \"Video View Campaign\".",
+          "readOnly": true,
+          "type": "string"
+        },
+        "plannableProductCode": {
+          "description": "Output only. The plannable product code (e.g. \"YOUTUBE_REACH_MIX\").",
+          "readOnly": true,
+          "type": "string"
+        },
+        "plannableProductCoreAttributes": {
+          "$ref": "PlannableProductCoreAttributes",
+          "description": "Output only. Core attributes for this product.",
+          "readOnly": true
+        },
+        "plannableProductDescription": {
+          "description": "Output only. The plain-text description of the ad product.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "plannableTargeting": {
+          "$ref": "PlannableTargeting",
+          "description": "Output only. The targeting capabilities available for this product.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
     "ProximityLocationListAssignedTargetingOptionDetails": {
       "description": "Targeting details for proximity location list. This will be populated in the details field of an AssignedTargetingOption when targeting_type is `TARGETING_TYPE_PROXIMITY_LOCATION_LIST`.",
       "id": "ProximityLocationListAssignedTargetingOptionDetails",
@@ -22548,6 +23863,43 @@
           "description": "Required for guaranteed inventory sources. The number of impressions guaranteed by the seller.",
           "format": "int64",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ReachCurve": {
+      "description": "The generated reach curve.",
+      "id": "ReachCurve",
+      "properties": {
+        "reachForecasts": {
+          "description": "Points along the curve, ordered by cost.",
+          "items": {
+            "$ref": "ReachForecast"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ReachForecast": {
+      "description": "A single point in the reach curve.",
+      "id": "ReachForecast",
+      "properties": {
+        "costMicros": {
+          "description": "Total cost for this point in micros.",
+          "format": "int64",
+          "type": "string"
+        },
+        "forecast": {
+          "$ref": "PlannedProductForecast",
+          "description": "Aggregate forecast for the entire plan."
+        },
+        "plannedProductReachForecasts": {
+          "description": "Breakdown for individual products at this cost point.",
+          "items": {
+            "$ref": "PlannedProductReachForecast"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -22647,6 +23999,70 @@
           "items": {
             "$ref": "Site"
           },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "RetrievePlannableLocationsResponse": {
+      "description": "Response for RetrievePlannableLocations",
+      "id": "RetrievePlannableLocationsResponse",
+      "properties": {
+        "plannableLocations": {
+          "description": "Output only. The list of plannable locations.",
+          "items": {
+            "$ref": "PlannableLocation"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "RetrievePlannableProductsResponse": {
+      "description": "Response for RetrievePlannableProducts",
+      "id": "RetrievePlannableProductsResponse",
+      "properties": {
+        "productMetadata": {
+          "description": "Output only. The list of product metadata showing targeting possibilities.",
+          "items": {
+            "$ref": "ProductMetadata"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "RetrievePlannableUserInterestsResponse": {
+      "description": "Response for RetrievePlannableUserInterests.",
+      "id": "RetrievePlannableUserInterestsResponse",
+      "properties": {
+        "plannableUserInterests": {
+          "description": "The list of plannable user interests (Google Audiences).",
+          "items": {
+            "$ref": "PlannableUserInterest"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "RetrievePlannableUserListsResponse": {
+      "description": "Response for RetrievePlannableUserLists.",
+      "id": "RetrievePlannableUserListsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "Output only. A token to retrieve the next page of results.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "plannableUserLists": {
+          "description": "Output only. The list of plannable user lists.",
+          "items": {
+            "$ref": "PlannableUserList"
+          },
+          "readOnly": true,
           "type": "array"
         }
       },
@@ -22782,7 +24198,9 @@
             "SDF_VERSION_8_1",
             "SDF_VERSION_9",
             "SDF_VERSION_9_1",
-            "SDF_VERSION_9_2"
+            "SDF_VERSION_9_2",
+            "SDF_VERSION_10",
+            "SDF_VERSION_10_1"
           ],
           "enumDeprecated": [
             false,
@@ -22801,6 +24219,8 @@
             true,
             true,
             true,
+            false,
+            false,
             false,
             false,
             false
@@ -22824,7 +24244,9 @@
             "SDF version 8.1.",
             "SDF version 9. Read the [v9 migration guide](/display-video/api/structured-data-file/v9-migration-guide) before migrating to this version.",
             "SDF version 9.1.",
-            "SDF version 9.2."
+            "SDF version 9.2.",
+            "SDF version 10.",
+            "SDF version 10.1."
           ],
           "type": "string"
         }
@@ -22877,7 +24299,9 @@
             "SDF_VERSION_8_1",
             "SDF_VERSION_9",
             "SDF_VERSION_9_1",
-            "SDF_VERSION_9_2"
+            "SDF_VERSION_9_2",
+            "SDF_VERSION_10",
+            "SDF_VERSION_10_1"
           ],
           "enumDeprecated": [
             false,
@@ -22896,6 +24320,8 @@
             true,
             true,
             true,
+            false,
+            false,
             false,
             false,
             false
@@ -22919,7 +24345,9 @@
             "SDF version 8.1.",
             "SDF version 9. Read the [v9 migration guide](/display-video/api/structured-data-file/v9-migration-guide) before migrating to this version.",
             "SDF version 9.1.",
-            "SDF version 9.2."
+            "SDF version 9.2.",
+            "SDF version 10.",
+            "SDF version 10.1."
           ],
           "type": "string"
         }
@@ -23204,6 +24632,162 @@
       },
       "type": "object"
     },
+    "SurfaceTargetingCombination": {
+      "description": "A valid combination of surfaces.",
+      "id": "SurfaceTargetingCombination",
+      "properties": {
+        "choices": {
+          "description": "Output only. The combination of surfaces.",
+          "items": {
+            "enum": [
+              "PLANNABLE_SURFACE_UNSPECIFIED",
+              "PLANNABLE_SURFACE_IN_FEED",
+              "PLANNABLE_SURFACE_IN_STREAM_BUMPER",
+              "PLANNABLE_SURFACE_IN_STREAM_NON_SKIPPABLE",
+              "PLANNABLE_SURFACE_IN_STREAM_SKIPPABLE",
+              "PLANNABLE_SURFACE_SHORTS",
+              "PLANNABLE_SURFACE_DISCOVER_FEED",
+              "PLANNABLE_SURFACE_GMAIL",
+              "PLANNABLE_SURFACE_GOOGLE_DISPLAY_NETWORK",
+              "PLANNABLE_SURFACE_IN_STREAM_NON_SKIPPABLE_THIRTY_SECONDS"
+            ],
+            "enumDescriptions": [
+              "Not specified.",
+              "In-feed.",
+              "In-stream bumper.",
+              "In-stream non-skippable.",
+              "In-stream skippable.",
+              "Shorts.",
+              "Discover feed.",
+              "Gmail.",
+              "Google Display Network.",
+              "In-stream non-skippable (30 seconds)."
+            ],
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "SurfaceTargetingCombinations": {
+      "description": "Surface targeting rules.",
+      "id": "SurfaceTargetingCombinations",
+      "properties": {
+        "availableSurfaceTypes": {
+          "description": "Output only. The surface types available.",
+          "items": {
+            "enum": [
+              "PLANNABLE_SURFACE_UNSPECIFIED",
+              "PLANNABLE_SURFACE_IN_FEED",
+              "PLANNABLE_SURFACE_IN_STREAM_BUMPER",
+              "PLANNABLE_SURFACE_IN_STREAM_NON_SKIPPABLE",
+              "PLANNABLE_SURFACE_IN_STREAM_SKIPPABLE",
+              "PLANNABLE_SURFACE_SHORTS",
+              "PLANNABLE_SURFACE_DISCOVER_FEED",
+              "PLANNABLE_SURFACE_GMAIL",
+              "PLANNABLE_SURFACE_GOOGLE_DISPLAY_NETWORK",
+              "PLANNABLE_SURFACE_IN_STREAM_NON_SKIPPABLE_THIRTY_SECONDS"
+            ],
+            "enumDescriptions": [
+              "Not specified.",
+              "In-feed.",
+              "In-stream bumper.",
+              "In-stream non-skippable.",
+              "In-stream skippable.",
+              "Shorts.",
+              "Discover feed.",
+              "Gmail.",
+              "Google Display Network.",
+              "In-stream non-skippable (30 seconds)."
+            ],
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "defaultSurfaceTypes": {
+          "description": "Output only. The default surface types for this product.",
+          "items": {
+            "enum": [
+              "PLANNABLE_SURFACE_UNSPECIFIED",
+              "PLANNABLE_SURFACE_IN_FEED",
+              "PLANNABLE_SURFACE_IN_STREAM_BUMPER",
+              "PLANNABLE_SURFACE_IN_STREAM_NON_SKIPPABLE",
+              "PLANNABLE_SURFACE_IN_STREAM_SKIPPABLE",
+              "PLANNABLE_SURFACE_SHORTS",
+              "PLANNABLE_SURFACE_DISCOVER_FEED",
+              "PLANNABLE_SURFACE_GMAIL",
+              "PLANNABLE_SURFACE_GOOGLE_DISPLAY_NETWORK",
+              "PLANNABLE_SURFACE_IN_STREAM_NON_SKIPPABLE_THIRTY_SECONDS"
+            ],
+            "enumDescriptions": [
+              "Not specified.",
+              "In-feed.",
+              "In-stream bumper.",
+              "In-stream non-skippable.",
+              "In-stream skippable.",
+              "Shorts.",
+              "Discover feed.",
+              "Gmail.",
+              "Google Display Network.",
+              "In-stream non-skippable (30 seconds)."
+            ],
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "validSurfaceCombinations": {
+          "description": "Output only. Valid combinations of surfaces that can be selected together.",
+          "items": {
+            "$ref": "SurfaceTargetingCombination"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "SurfaceTargetingSettings": {
+      "description": "Surface targeting selection.",
+      "id": "SurfaceTargetingSettings",
+      "properties": {
+        "surfaces": {
+          "description": "Optional. The surfaces to target.",
+          "items": {
+            "enum": [
+              "PLANNABLE_SURFACE_UNSPECIFIED",
+              "PLANNABLE_SURFACE_IN_FEED",
+              "PLANNABLE_SURFACE_IN_STREAM_BUMPER",
+              "PLANNABLE_SURFACE_IN_STREAM_NON_SKIPPABLE",
+              "PLANNABLE_SURFACE_IN_STREAM_SKIPPABLE",
+              "PLANNABLE_SURFACE_SHORTS",
+              "PLANNABLE_SURFACE_DISCOVER_FEED",
+              "PLANNABLE_SURFACE_GMAIL",
+              "PLANNABLE_SURFACE_GOOGLE_DISPLAY_NETWORK",
+              "PLANNABLE_SURFACE_IN_STREAM_NON_SKIPPABLE_THIRTY_SECONDS"
+            ],
+            "enumDescriptions": [
+              "Not specified.",
+              "In-feed.",
+              "In-stream bumper.",
+              "In-stream non-skippable.",
+              "In-stream skippable.",
+              "Shorts.",
+              "Discover feed.",
+              "Gmail.",
+              "Google Display Network.",
+              "In-stream non-skippable (30 seconds)."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "TargetFrequency": {
       "description": "Setting that controls the average number of times the ads will show to the same person over a certain period of time.",
       "id": "TargetFrequency",
@@ -23252,6 +24836,135 @@
       },
       "type": "object"
     },
+    "Targeting": {
+      "description": "Targeting settings for a planned campaign.",
+      "id": "Targeting",
+      "properties": {
+        "ageRange": {
+          "description": "Optional. The age range to target.",
+          "enum": [
+            "PLANNABLE_AGE_RANGE_UNSPECIFIED",
+            "PLANNABLE_AGE_RANGE_18_24",
+            "PLANNABLE_AGE_RANGE_18_34",
+            "PLANNABLE_AGE_RANGE_18_44",
+            "PLANNABLE_AGE_RANGE_18_49",
+            "PLANNABLE_AGE_RANGE_18_54",
+            "PLANNABLE_AGE_RANGE_18_64",
+            "PLANNABLE_AGE_RANGE_18_65_UP",
+            "PLANNABLE_AGE_RANGE_21_34",
+            "PLANNABLE_AGE_RANGE_21_44",
+            "PLANNABLE_AGE_RANGE_21_49",
+            "PLANNABLE_AGE_RANGE_21_54",
+            "PLANNABLE_AGE_RANGE_21_64",
+            "PLANNABLE_AGE_RANGE_21_65_UP",
+            "PLANNABLE_AGE_RANGE_25_34",
+            "PLANNABLE_AGE_RANGE_25_44",
+            "PLANNABLE_AGE_RANGE_25_49",
+            "PLANNABLE_AGE_RANGE_25_54",
+            "PLANNABLE_AGE_RANGE_25_64",
+            "PLANNABLE_AGE_RANGE_25_65_UP",
+            "PLANNABLE_AGE_RANGE_35_44",
+            "PLANNABLE_AGE_RANGE_35_49",
+            "PLANNABLE_AGE_RANGE_35_54",
+            "PLANNABLE_AGE_RANGE_35_64",
+            "PLANNABLE_AGE_RANGE_35_65_UP",
+            "PLANNABLE_AGE_RANGE_45_54",
+            "PLANNABLE_AGE_RANGE_45_64",
+            "PLANNABLE_AGE_RANGE_45_65_UP",
+            "PLANNABLE_AGE_RANGE_50_65_UP",
+            "PLANNABLE_AGE_RANGE_55_64",
+            "PLANNABLE_AGE_RANGE_55_65_UP",
+            "PLANNABLE_AGE_RANGE_65_UP"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "18 to 24 years old.",
+            "18 to 34 years old.",
+            "18 to 44 years old.",
+            "18 to 49 years old.",
+            "18 to 54 years old.",
+            "18 to 64 years old.",
+            "18 to 65+ years old.",
+            "21 to 34 years old.",
+            "21 to 44 years old.",
+            "21 to 49 years old.",
+            "21 to 54 years old.",
+            "21 to 64 years old.",
+            "21 to 65+ years old.",
+            "25 to 34 years old.",
+            "25 to 44 years old.",
+            "25 to 49 years old.",
+            "25 to 54 years old.",
+            "25 to 64 years old.",
+            "25 to 65+ years old.",
+            "35 to 44 years old.",
+            "35 to 49 years old.",
+            "35 to 54 years old.",
+            "35 to 64 years old.",
+            "35 to 65+ years old.",
+            "45 to 54 years old.",
+            "45 to 64 years old.",
+            "45 to 65+ years old.",
+            "50 to 65+ years old.",
+            "55 to 64 years old.",
+            "55 to 65+ years old.",
+            "65+ years old."
+          ],
+          "type": "string"
+        },
+        "devices": {
+          "description": "Optional. The devices to target.",
+          "items": {
+            "enum": [
+              "DEVICE_TYPE_UNSPECIFIED",
+              "DEVICE_TYPE_COMPUTER",
+              "DEVICE_TYPE_CONNECTED_TV",
+              "DEVICE_TYPE_SMART_PHONE",
+              "DEVICE_TYPE_TABLET",
+              "DEVICE_TYPE_CONNECTED_DEVICE"
+            ],
+            "enumDescriptions": [
+              "Default value when device type is not specified in this version. This enum is a placeholder for default value and does not represent a real device type option.",
+              "Computer.",
+              "Connected TV.",
+              "Smart phone.",
+              "Tablet.",
+              "Connected device."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "genders": {
+          "description": "Optional. The gender options to target.",
+          "items": {
+            "enum": [
+              "GENDER_UNSPECIFIED",
+              "GENDER_MALE",
+              "GENDER_FEMALE",
+              "GENDER_UNKNOWN"
+            ],
+            "enumDescriptions": [
+              "Default value when gender is not specified in this version. This enum is a place holder for default value and does not represent a real gender option.",
+              "The audience gender is male.",
+              "The audience gender is female.",
+              "The audience gender is unknown."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "plannableLocationIds": {
+          "description": "Required. IDs of plannable locations to target. Plannable locations can be retrieved using the `RetrievePlannableLocations` method.",
+          "items": {
+            "format": "int64",
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "TargetingExpansionConfig": {
       "description": "Settings that control the [optimized targeting](//support.google.com/displayvideo/answer/12060859) settings of the line item.",
       "id": "TargetingExpansionConfig",
@@ -23285,7 +24998,7 @@
           "type": "boolean"
         },
         "excludeDemographicExpansion": {
-          "description": "Optional. Whether to exclude demographic expansion for Optimized Targeting. This field can only be set for Demand Gen ad groups. Retrieval and management of Demand Gen resources is currently in beta. This field is only available to allowlisted users.",
+          "description": "Optional. Whether to exclude demographic expansion for Optimized Targeting. This field can only be set for Demand Gen ad groups.",
           "type": "boolean"
         }
       },
@@ -23481,7 +25194,8 @@
             "TARGETING_TYPE_YOUTUBE_VIDEO",
             "TARGETING_TYPE_YOUTUBE_CHANNEL",
             "TARGETING_TYPE_SESSION_POSITION",
-            "TARGETING_TYPE_CONTENT_THEME_EXCLUSION"
+            "TARGETING_TYPE_CONTENT_THEME_EXCLUSION",
+            "TARGETING_TYPE_YOUTUBE_CHANNEL_PACK"
           ],
           "enumDescriptions": [
             "Default value when type is not specified or is unknown in this version.",
@@ -23533,7 +25247,8 @@
             "Target ads to a specific YouTube video. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
             "Target ads to a specific YouTube channel. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
             "Target ads to a serve it in a certain position of a session. Only supported for Ad Group resources under YouTube Programmatic Reservation line items. Targeting of this type cannot be created or updated using the API.",
-            "Filter website content by content themes (for example, religion). Only supported for Advertiser resources. Targeting of this type cannot be created or updated using the API. This targeting is only inherited by child YouTube and Demand Gen line item resources."
+            "Filter website content by content themes (for example, religion). Only supported for Advertiser resources. Targeting of this type cannot be created or updated using the API. This targeting is only inherited by child YouTube and Demand Gen line item resources.",
+            "Target ads to a specific YouTube channel pack."
           ],
           "readOnly": true,
           "type": "string"
@@ -23558,7 +25273,7 @@
       "id": "ThirdPartyMeasurementConfigs",
       "properties": {
         "brandLiftVendorConfigs": {
-          "description": "Optional. The third-party vendors measuring brand lift. The following third-party vendors are applicable: * `THIRD_PARTY_VENDOR_DYNATA` * `THIRD_PARTY_VENDOR_KANTAR` * `THIRD_PARTY_VENDOR_INTAGE` * `THIRD_PARTY_VENDOR_NIELSEN` * `THIRD_PARTY_VENDOR_MACROMILL`",
+          "description": "Optional. The third-party vendors measuring brand lift. The following third-party vendors are applicable: * `THIRD_PARTY_VENDOR_DYNATA` * `THIRD_PARTY_VENDOR_KANTAR` * `THIRD_PARTY_VENDOR_INTAGE` * `THIRD_PARTY_VENDOR_MACROMILL`",
           "items": {
             "$ref": "ThirdPartyVendorConfig"
           },
@@ -23884,6 +25599,20 @@
         "filename": {
           "description": "Required. The filename of the ad asset, including the file extension. The filename must be UTF-8 encoded with a maximum size of 240 bytes.",
           "type": "string"
+        },
+        "syntheticContentAttestationStatus": {
+          "description": "Optional. Whether to add a label to the asset as created or edited using AI when served in regions with local AI labeling regulations.",
+          "enum": [
+            "SYNTHETIC_CONTENT_ATTESTATION_STATUS_UNSPECIFIED",
+            "NOT_SYNTHETIC",
+            "IS_SYNTHETIC"
+          ],
+          "enumDescriptions": [
+            "No attestation has been provided.",
+            "Attested as not created or edited using AI.",
+            "Attested as created or edited using AI."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -23947,6 +25676,23 @@
         "userId": {
           "description": "Output only. The unique ID of the user. Assigned by the system.",
           "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "UserInterest": {
+      "description": "The identifier for a user interest.",
+      "id": "UserInterest",
+      "properties": {
+        "userInterestCategory": {
+          "description": "Output only. The resource name of the interest category. Populated when `product_category` is \"Youtube\". Format: customers/{customer_id}/userInterests/{user_interest_id}",
+          "readOnly": true,
+          "type": "string"
+        },
+        "userInterestUserList": {
+          "description": "Output only. The resource name of the user list. Populated when `product_category` is \"Open Auction\". Format: customers/{customer_id}/userLists/{user_list_id}",
           "readOnly": true,
           "type": "string"
         }
@@ -24331,6 +26077,36 @@
       },
       "type": "object"
     },
+    "YouTubeSelectLineUp": {
+      "description": "A Plannable YouTube Select Lineup for product targeting.",
+      "id": "YouTubeSelectLineUp",
+      "properties": {
+        "displayName": {
+          "description": "Output only. The display name of the YouTube Select Lineup.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "lineupId": {
+          "description": "Output only. The ID of the YouTube Select Lineup.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "YouTubeSelectSettings": {
+      "description": "Settings for YouTube Select Lineups.",
+      "id": "YouTubeSelectSettings",
+      "properties": {
+        "lineupId": {
+          "description": "Optional. The ID of the YouTube Select Lineup.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "YoutubeAndPartnersBiddingStrategy": {
       "description": "Settings that control the bid strategy for YouTube and Partners resources.",
       "id": "YoutubeAndPartnersBiddingStrategy",
@@ -24687,6 +26463,22 @@
         },
         "negative": {
           "description": "Indicates if this option is being negatively targeted.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "YoutubeChannelPackAssignedTargetingOptionDetails": {
+      "description": "Details for YouTube channel pack assigned targeting option. This will be populated in the youtube_channel_pack_details field when targeting_type is `TARGETING_TYPE_YOUTUBE_CHANNEL_PACK`.",
+      "id": "YoutubeChannelPackAssignedTargetingOptionDetails",
+      "properties": {
+        "channelPackId": {
+          "description": "Required. The ID of the YouTube channel pack.",
+          "format": "int64",
+          "type": "string"
+        },
+        "negative": {
+          "description": "Optional. Indicates if this option is being negatively targeted.",
           "type": "boolean"
         }
       },

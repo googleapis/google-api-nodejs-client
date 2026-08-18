@@ -758,7 +758,7 @@
       }
     }
   },
-  "revision": "20260223",
+  "revision": "20260610",
   "rootUrl": "https://admob.googleapis.com/",
   "schemas": {
     "AdSource": {
@@ -796,7 +796,7 @@
           "type": "array"
         },
         "adUnitId": {
-          "description": "The externally visible ID of the ad unit which can be used to integrate with the AdMob SDK. This is a read only property. Example: ca-app-pub-9876543210987654/0123456789",
+          "description": "The externally visible ID of the ad unit which can be used to integrate with AdMob. This is a read only property. Example: ca-app-pub-9876543210987654/0123456789",
           "type": "string"
         },
         "appId": {
@@ -958,7 +958,7 @@
           "type": "string"
         },
         "appId": {
-          "description": "The externally visible ID of the app which can be used to integrate with the AdMob SDK. This is a read only property. Example: ca-app-pub-9876543210987654~0123456789",
+          "description": "The externally visible ID of the app which can be used to integrate with AdMob. This is a read only property. Example: ca-app-pub-9876543210987654~0123456789",
           "type": "string"
         },
         "linkedAppInfo": {

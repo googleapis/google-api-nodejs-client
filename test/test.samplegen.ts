@@ -26,4 +26,24 @@ describe(__filename, () => {
     assert.strictEqual(methods.length, 1);
     assert.ok(methods[0].fragment);
   });
+
+  it('should handle missing schema refs gracefully', async () => {
+    const customSchema = {
+      ...schema,
+      methods: {
+        testMethod: {
+          id: 'testMethod',
+          path: 'test',
+          httpMethod: 'POST',
+          request: {$ref: 'NonExistentSchema'},
+          response: {$ref: 'AnotherMissingSchema'},
+        },
+      },
+    };
+
+    await addFragments(customSchema);
+
+    const methods = getAllMethods(customSchema);
+    assert.ok(methods.find(m => m.id === 'testMethod')?.fragment);
+  });
 });

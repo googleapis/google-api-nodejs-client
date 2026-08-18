@@ -2944,6 +2944,10 @@ export namespace dialogflow_v3beta1 {
     suggestedQuery?: Schema$GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerSuggestedQuery;
     suggestedQueryAnswer?: Schema$GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerKnowledgeAnswer;
   }
+  export interface Schema$GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerAdditionalSuggestedQueryResult {
+    answerRecord?: string | null;
+    suggestedQuery?: Schema$GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerSuggestedQuery;
+  }
   export interface Schema$GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerKnowledgeAnswer {
     answerText?: string | null;
     eventSource?: Schema$GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerKnowledgeAnswerEventSource;
@@ -2969,6 +2973,11 @@ export namespace dialogflow_v3beta1 {
   }
   export interface Schema$GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerSuggestedQuery {
     queryText?: string | null;
+    searchContexts?: Schema$GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerSuggestedQuerySearchContext[];
+  }
+  export interface Schema$GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerSuggestedQuerySearchContext {
+    key?: string | null;
+    value?: string | null;
   }
   export interface Schema$GoogleCloudDialogflowV2beta1KnowledgeAssistDebugInfo {
     cesDebugInfo?: {[key: string]: any} | null;
@@ -3152,6 +3161,7 @@ export namespace dialogflow_v3beta1 {
     suggestSmartRepliesResponse?: Schema$GoogleCloudDialogflowV2beta1SuggestSmartRepliesResponse;
   }
   export interface Schema$GoogleCloudDialogflowV2beta1SuggestKnowledgeAssistResponse {
+    additionalSuggestedQueryResults?: Schema$GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerAdditionalSuggestedQueryResult[];
     contextSize?: number | null;
     knowledgeAssistAnswer?: Schema$GoogleCloudDialogflowV2beta1KnowledgeAssistAnswer;
     latestMessage?: string | null;
@@ -3562,6 +3572,10 @@ export namespace dialogflow_v3beta1 {
     suggestedQuery?: Schema$GoogleCloudDialogflowV2KnowledgeAssistAnswerSuggestedQuery;
     suggestedQueryAnswer?: Schema$GoogleCloudDialogflowV2KnowledgeAssistAnswerKnowledgeAnswer;
   }
+  export interface Schema$GoogleCloudDialogflowV2KnowledgeAssistAnswerAdditionalSuggestedQueryResult {
+    answerRecord?: string | null;
+    suggestedQuery?: Schema$GoogleCloudDialogflowV2KnowledgeAssistAnswerSuggestedQuery;
+  }
   export interface Schema$GoogleCloudDialogflowV2KnowledgeAssistAnswerKnowledgeAnswer {
     answerText?: string | null;
     eventSource?: Schema$GoogleCloudDialogflowV2KnowledgeAssistAnswerKnowledgeAnswerEventSource;
@@ -3587,6 +3601,11 @@ export namespace dialogflow_v3beta1 {
   }
   export interface Schema$GoogleCloudDialogflowV2KnowledgeAssistAnswerSuggestedQuery {
     queryText?: string | null;
+    searchContexts?: Schema$GoogleCloudDialogflowV2KnowledgeAssistAnswerSuggestedQuerySearchContext[];
+  }
+  export interface Schema$GoogleCloudDialogflowV2KnowledgeAssistAnswerSuggestedQuerySearchContext {
+    key?: string | null;
+    value?: string | null;
   }
   export interface Schema$GoogleCloudDialogflowV2KnowledgeAssistDebugInfo {
     cesDebugInfo?: {[key: string]: any} | null;
@@ -3735,6 +3754,7 @@ export namespace dialogflow_v3beta1 {
     suggestSmartRepliesResponse?: Schema$GoogleCloudDialogflowV2SuggestSmartRepliesResponse;
   }
   export interface Schema$GoogleCloudDialogflowV2SuggestKnowledgeAssistResponse {
+    additionalSuggestedQueryResults?: Schema$GoogleCloudDialogflowV2KnowledgeAssistAnswerAdditionalSuggestedQueryResult[];
     contextSize?: number | null;
     knowledgeAssistAnswer?: Schema$GoogleCloudDialogflowV2KnowledgeAssistAnswer;
     latestMessage?: string | null;
@@ -4685,8 +4705,7 @@ export namespace dialogflow_v3beta1 {
     export(
       params: Params$Resource$Projects$Locations$Agents$Export,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     export(
@@ -5669,8 +5688,7 @@ export namespace dialogflow_v3beta1 {
     restore(
       params: Params$Resource$Projects$Locations$Agents$Restore,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     restore(
@@ -7413,8 +7431,7 @@ export namespace dialogflow_v3beta1 {
     export(
       params: Params$Resource$Projects$Locations$Agents$Entitytypes$Export,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     export(
@@ -7726,8 +7743,7 @@ export namespace dialogflow_v3beta1 {
     import(
       params: Params$Resource$Projects$Locations$Agents$Entitytypes$Import,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     import(
@@ -8337,8 +8353,7 @@ export namespace dialogflow_v3beta1 {
     create(
       params: Params$Resource$Projects$Locations$Agents$Environments$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -8628,8 +8643,7 @@ export namespace dialogflow_v3beta1 {
     deployFlow(
       params: Params$Resource$Projects$Locations$Agents$Environments$Deployflow,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     deployFlow(
@@ -9253,8 +9267,7 @@ export namespace dialogflow_v3beta1 {
     patch(
       params: Params$Resource$Projects$Locations$Agents$Environments$Patch,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     patch(
@@ -9405,8 +9418,7 @@ export namespace dialogflow_v3beta1 {
     runContinuousTest(
       params: Params$Resource$Projects$Locations$Agents$Environments$Runcontinuoustest,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     runContinuousTest(
@@ -13312,8 +13324,7 @@ export namespace dialogflow_v3beta1 {
     export(
       params: Params$Resource$Projects$Locations$Agents$Flows$Export,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     export(
@@ -13779,8 +13790,7 @@ export namespace dialogflow_v3beta1 {
     import(
       params: Params$Resource$Projects$Locations$Agents$Flows$Import,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     import(
@@ -14267,8 +14277,7 @@ export namespace dialogflow_v3beta1 {
     train(
       params: Params$Resource$Projects$Locations$Agents$Flows$Train,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     train(
@@ -16627,8 +16636,7 @@ export namespace dialogflow_v3beta1 {
     create(
       params: Params$Resource$Projects$Locations$Agents$Flows$Versions$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -17222,8 +17230,7 @@ export namespace dialogflow_v3beta1 {
     load(
       params: Params$Resource$Projects$Locations$Agents$Flows$Versions$Load,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     load(
@@ -18796,8 +18803,7 @@ export namespace dialogflow_v3beta1 {
     export(
       params: Params$Resource$Projects$Locations$Agents$Intents$Export,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     export(
@@ -19107,8 +19113,7 @@ export namespace dialogflow_v3beta1 {
     import(
       params: Params$Resource$Projects$Locations$Agents$Intents$Import,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     import(
@@ -20027,8 +20032,7 @@ export namespace dialogflow_v3beta1 {
     export(
       params: Params$Resource$Projects$Locations$Agents$Playbooks$Export,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     export(
@@ -20346,8 +20350,7 @@ export namespace dialogflow_v3beta1 {
     import(
       params: Params$Resource$Projects$Locations$Agents$Playbooks$Import,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     import(
@@ -24492,8 +24495,7 @@ export namespace dialogflow_v3beta1 {
     batchRun(
       params: Params$Resource$Projects$Locations$Agents$Testcases$Batchrun,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     batchRun(
@@ -24974,8 +24976,7 @@ export namespace dialogflow_v3beta1 {
     export(
       params: Params$Resource$Projects$Locations$Agents$Testcases$Export,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     export(
@@ -25282,8 +25283,7 @@ export namespace dialogflow_v3beta1 {
     import(
       params: Params$Resource$Projects$Locations$Agents$Testcases$Import,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     import(
@@ -25762,8 +25762,7 @@ export namespace dialogflow_v3beta1 {
     run(
       params: Params$Resource$Projects$Locations$Agents$Testcases$Run,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     run(
@@ -26694,8 +26693,7 @@ export namespace dialogflow_v3beta1 {
     export(
       params: Params$Resource$Projects$Locations$Agents$Tools$Export,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     export(
@@ -30039,8 +30037,7 @@ export namespace dialogflow_v3beta1 {
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -31373,8 +31370,7 @@ export namespace dialogflow_v3beta1 {
     get(
       params: Params$Resource$Projects$Operations$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(

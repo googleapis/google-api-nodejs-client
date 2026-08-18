@@ -1623,8 +1623,7 @@ export namespace analyticsdata_v1beta {
     batchRunReports(
       params: Params$Resource$Properties$Batchrunreports,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$BatchRunReportsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$BatchRunReportsResponse>,
       callback: BodyResponseCallback<Schema$BatchRunReportsResponse>
     ): void;
     batchRunReports(
@@ -1781,8 +1780,7 @@ export namespace analyticsdata_v1beta {
     checkCompatibility(
       params: Params$Resource$Properties$Checkcompatibility,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$CheckCompatibilityResponse>,
+        MethodOptions | BodyResponseCallback<Schema$CheckCompatibilityResponse>,
       callback: BodyResponseCallback<Schema$CheckCompatibilityResponse>
     ): void;
     checkCompatibility(
@@ -1947,8 +1945,7 @@ export namespace analyticsdata_v1beta {
         | BodyResponseCallback<Schema$Metadata>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Metadata>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Metadata> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Metadata>>
@@ -2093,8 +2090,7 @@ export namespace analyticsdata_v1beta {
     runPivotReport(
       params: Params$Resource$Properties$Runpivotreport,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$RunPivotReportResponse>,
+        MethodOptions | BodyResponseCallback<Schema$RunPivotReportResponse>,
       callback: BodyResponseCallback<Schema$RunPivotReportResponse>
     ): void;
     runPivotReport(
@@ -2262,8 +2258,7 @@ export namespace analyticsdata_v1beta {
     runRealtimeReport(
       params: Params$Resource$Properties$Runrealtimereport,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$RunRealtimeReportResponse>,
+        MethodOptions | BodyResponseCallback<Schema$RunRealtimeReportResponse>,
       callback: BodyResponseCallback<Schema$RunRealtimeReportResponse>
     ): void;
     runRealtimeReport(
@@ -2698,8 +2693,7 @@ export namespace analyticsdata_v1beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>

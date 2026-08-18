@@ -1333,8 +1333,7 @@ export namespace androiddeviceprovisioning_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -1986,8 +1985,7 @@ export namespace androiddeviceprovisioning_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -2129,8 +2127,7 @@ export namespace androiddeviceprovisioning_v1 {
         | BodyResponseCallback<Schema$Device>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Device>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Device> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Device>>
@@ -2207,7 +2204,7 @@ export namespace androiddeviceprovisioning_v1 {
      *
      *   // Do the magic
      *   const res = await androiddeviceprovisioning.customers.devices.list({
-     *     // Required. The maximum number of devices to show in a page of results. Must be between 1 and 100 inclusive.
+     *     // Optional. The maximum number of devices to show in a page of results. If unset or `0`, defaults to `5000`. If a value greater than `10000` is specified, it will be coerced to `10000`.
      *     pageSize: 'placeholder-value',
      *     // A token specifying which result page to return.
      *     pageToken: 'placeholder-value',
@@ -2418,8 +2415,7 @@ export namespace androiddeviceprovisioning_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -2561,8 +2557,7 @@ export namespace androiddeviceprovisioning_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -2631,7 +2626,7 @@ export namespace androiddeviceprovisioning_v1 {
   }
   export interface Params$Resource$Customers$Devices$List extends StandardParameters {
     /**
-     * Required. The maximum number of devices to show in a page of results. Must be between 1 and 100 inclusive.
+     * Optional. The maximum number of devices to show in a page of results. If unset or `0`, defaults to `5000`. If a value greater than `10000` is specified, it will be coerced to `10000`.
      */
     pageSize?: string;
     /**
@@ -2742,8 +2737,7 @@ export namespace androiddeviceprovisioning_v1 {
     list(
       params: Params$Resource$Customers$Dpcs$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$CustomerListDpcsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$CustomerListDpcsResponse>,
       callback: BodyResponseCallback<Schema$CustomerListDpcsResponse>
     ): void;
     list(
@@ -2915,8 +2909,7 @@ export namespace androiddeviceprovisioning_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3092,8 +3085,7 @@ export namespace androiddeviceprovisioning_v1 {
         | BodyResponseCallback<Schema$Company>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Company>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Company> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Company>>
@@ -3218,8 +3210,7 @@ export namespace androiddeviceprovisioning_v1 {
     list(
       params: Params$Resource$Partners$Customers$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListCustomersResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListCustomersResponse>,
       callback: BodyResponseCallback<Schema$ListCustomersResponse>
     ): void;
     list(
@@ -3575,8 +3566,7 @@ export namespace androiddeviceprovisioning_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3869,8 +3859,7 @@ export namespace androiddeviceprovisioning_v1 {
     findByOwner(
       params: Params$Resource$Partners$Devices$Findbyowner,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$FindDevicesByOwnerResponse>,
+        MethodOptions | BodyResponseCallback<Schema$FindDevicesByOwnerResponse>,
       callback: BodyResponseCallback<Schema$FindDevicesByOwnerResponse>
     ): void;
     findByOwner(
@@ -4033,8 +4022,7 @@ export namespace androiddeviceprovisioning_v1 {
         | BodyResponseCallback<Schema$Device>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Device>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Device> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Device>>
@@ -4477,8 +4465,7 @@ export namespace androiddeviceprovisioning_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -4626,8 +4613,7 @@ export namespace androiddeviceprovisioning_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4776,8 +4762,7 @@ export namespace androiddeviceprovisioning_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>

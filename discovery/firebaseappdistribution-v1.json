@@ -273,12 +273,12 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "Optional. The expression to filter releases listed in the response. To learn more about filtering, refer to [Google's AIP-160 standard](http://aip.dev/160). Supported fields: - `releaseNotes.text` supports `=` (can contain a wildcard character (`*`) at the beginning or end of the string) - `createTime` supports `<`, `<=`, `>` and `>=`, and expects an RFC-3339 formatted string Examples: - `createTime <= \"2021-09-08T00:00:00+04:00\"` - `releaseNotes.text=\"fixes\" AND createTime >= \"2021-09-08T00:00:00.0Z\"` - `releaseNotes.text=\"*v1.0.0-rc*\"`",
+                      "description": "Optional. The expression to filter releases listed in the response. To learn more about filtering, refer to the [AIP-160 standard](http://aip.dev/160). Supported fields: - Time fields supporting `<`, `<=`, `>` and `>=`; expecting an RFC-3339 formatted string: - `create_time` (or `createTime`) - `update_time` (or `updateTime`) - `expire_time` (or `expireTime`) - Text fields supporting `=`. The compared text can contain a wildcard character (`*`) at the beginning and/or end of the string which also enables case-insensitive matching: - `release_notes.text` (or `releaseNotes.text`) - `display_version` (or `displayVersion`) - `build_version` (or `buildVersion`). Examples: - `createTime <= \"2021-09-08T00:00:00+04:00\"` - `expire_time > \"2021-09-08T00:00:00+04:00\"` - `releaseNotes.text=\"fixes\" AND createTime >= \"2021-09-08T00:00:00.0Z\"` - `releaseNotes.text=\"*v1.0.0-rc*\"` - `(display_version = \"v1.0.0-rc2\" AND `build_version = \"123\") OR release_notes = \"*v1.0.0-rc2 (123)*\"`",
                       "location": "query",
                       "type": "string"
                     },
                     "orderBy": {
-                      "description": "Optional. The fields used to order releases. Supported fields: - `createTime` To specify descending order for a field, append a \"desc\" suffix, for example, `createTime desc`. If this parameter is not set, releases are ordered by `createTime` in descending order.",
+                      "description": "Optional. The fields used to order releases. Supported fields: - `create_time` (or `createTime`) - `update_time` (or `updateTime`) - `expire_time` (or `expireTime`) To specify descending order for a field, append a \"desc\" suffix, for example, `createTime desc`. If this parameter is not set, releases are ordered by `createTime` in descending order.",
                       "location": "query",
                       "type": "string"
                     },
@@ -946,7 +946,7 @@
       }
     }
   },
-  "revision": "20260518",
+  "revision": "20260803",
   "rootUrl": "https://firebaseappdistribution.googleapis.com/",
   "schemas": {
     "GdataBlobstore2Info": {
@@ -1419,7 +1419,8 @@
             "PLAY_IAS_TERMS_NOT_ACCEPTED",
             "ADHOC_SHARING_KEY_NOT_GENERATED",
             "ADHOC_SHARING_KEY_NOT_REGISTERED",
-            "PLAY_ANDROID_DEVELOPER_CONSOLE_ACCOUNT_NOT_FOUND"
+            "PLAY_ANDROID_DEVELOPER_CONSOLE_ACCOUNT_NOT_FOUND",
+            "PLAY_ANDROID_DEVELOPER_CONSOLE_PACKAGE_NOT_FOUND"
           ],
           "enumDescriptions": [
             "AAB integration state unspecified.",
@@ -1431,7 +1432,8 @@
             "Play in-app sharing terms not accepted.",
             "The ad-hoc sharing key has not been generated for this app.",
             "The ad-hoc sharing key is not yet registered in Android Developer Verification for this app.",
-            "The linked Play developer account was not found or is not fully set up in Android Developer Console."
+            "The linked Play developer account was not found or is not fully set up in Android Developer Console.",
+            "The package was not found in the Android Developer Console."
           ],
           "type": "string"
         },
@@ -1695,6 +1697,11 @@
             "$ref": "GoogleFirebaseAppdistroV1Release"
           },
           "type": "array"
+        },
+        "totalSize": {
+          "description": "The total number of releases.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -1721,8 +1728,48 @@
       "description": "A release of a Firebase app.",
       "id": "GoogleFirebaseAppdistroV1Release",
       "properties": {
+        "acceptedInvitationCount": {
+          "description": "Output only. Number of testers with accepted invitations.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "androidPackageRegistrationState": {
+          "description": "Output only. Registration state of the Android package (BinaryType.APK).",
+          "enum": [
+            "ANDROID_PACKAGE_REGISTRATION_STATE_UNSPECIFIED",
+            "REGISTERED",
+            "NOT_REGISTERED",
+            "REGISTERED_WITH_ANOTHER_CERTIFICATE_FINGERPRINT"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "Package is registered with the release binary's certificate fingerprint.",
+            "Package is not registered with any public certificate.",
+            "Package is registered with another public certificate fingerprint."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
         "binaryDownloadUri": {
           "description": "Output only. A signed link (which expires in one hour) to directly download the app binary (IPA/APK/AAB) file.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "binaryType": {
+          "description": "Output only. Type of binary.",
+          "enum": [
+            "BINARY_TYPE_UNSPECIFIED",
+            "IPA",
+            "APK",
+            "AAB"
+          ],
+          "enumDescriptions": [
+            "unspecified binary type",
+            "iOS App Store package",
+            "Android Application package",
+            "Android App Bundle"
+          ],
           "readOnly": true,
           "type": "string"
         },
@@ -1748,18 +1795,57 @@
           "readOnly": true,
           "type": "string"
         },
+        "feedbackCount": {
+          "description": "Output only. Number of feedback reports left by testers.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
         "firebaseConsoleUri": {
           "description": "Output only. A link to the Firebase console displaying a single release.",
           "readOnly": true,
           "type": "string"
         },
+        "installationCount": {
+          "description": "Output only. Number of testers who have downloaded this release.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
         "name": {
           "description": "The name of the release resource. Format: `projects/{project_number}/apps/{app}/releases/{release}`",
           "type": "string"
         },
+        "openInvitationCount": {
+          "description": "Output only. Number of testers who were invited (incl. expired invitations), but did not (yet) accept the invitation.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
         "releaseNotes": {
           "$ref": "GoogleFirebaseAppdistroV1ReleaseNotes",
-          "description": "Notes of the release."
+          "description": "Notes about the release."
+        },
+        "testState": {
+          "description": "Output only. The overall state of tests run on this release",
+          "enum": [
+            "TEST_STATE_UNSPECIFIED",
+            "NO_TESTS_REQUESTED",
+            "IN_PROGRESS",
+            "PASSED",
+            "FAILED",
+            "INCONCLUSIVE"
+          ],
+          "enumDescriptions": [
+            "No test state specified",
+            "No tests have been requested for this release",
+            "One or more device executions are in progress",
+            "All device executions passed during the most recent test",
+            "Some device executions failed during the most recent test",
+            "Some device executions were inconclusive, but none failed, during the most recent test"
+          ],
+          "readOnly": true,
+          "type": "string"
         },
         "testingUri": {
           "description": "Output only. A link to the release in the tester web clip or Android app that lets testers (which were granted access to the app) view release notes and install the app onto their devices.",

@@ -35,10 +35,7 @@ export function servicecontrol<
 >(
   this: GoogleConfigurable,
   versionOrOptions:
-    | 'v1'
-    | servicecontrol_v1.Options
-    | 'v2'
-    | servicecontrol_v2.Options
+    'v1' | servicecontrol_v1.Options | 'v2' | servicecontrol_v2.Options
 ) {
   return getAPI<T>('servicecontrol', versionOrOptions, VERSIONS, this);
 }

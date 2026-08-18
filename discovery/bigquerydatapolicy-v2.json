@@ -429,7 +429,7 @@
       }
     }
   },
-  "revision": "20260415",
+  "revision": "20260722",
   "rootUrl": "https://bigquerydatapolicy.googleapis.com/",
   "schemas": {
     "AddGranteesRequest": {
@@ -532,7 +532,7 @@
       "type": "object"
     },
     "DataGovernanceTag": {
-      "description": "Data Governance tag This is a namespaced name specifying the key and the value. For example: `project-id/pii/sensitive`.",
+      "description": "This is a namespaced name specifying the key and the value. For example: `project-id/pii/sensitive`.",
       "id": "DataGovernanceTag",
       "properties": {
         "key": {

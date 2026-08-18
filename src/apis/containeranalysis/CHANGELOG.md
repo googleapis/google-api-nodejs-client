@@ -1,5 +1,23 @@
 # Changelog
 
+## [19.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/containeranalysis-v19.0.0...containeranalysis-v19.1.0) (2026-08-14)
+
+
+### Features
+
+* **containeranalysis:** update the API ([3908d1e](https://github.com/googleapis/google-api-nodejs-client/commit/3908d1e56d02f4ea7190cf23ef0fdc95e72ca596))
+
+## [19.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/containeranalysis-v18.0.0...containeranalysis-v19.0.0) (2026-08-03)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3955](https://github.com/googleapis/google-api-nodejs-client/issues/3955)) ([c429a9b](https://github.com/googleapis/google-api-nodejs-client/commit/c429a9b6f8272f1a651084f83ffcf4b88124c59f))
+
 ## [18.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/containeranalysis-v17.3.0...containeranalysis-v18.0.0) (2026-05-19)
 
 

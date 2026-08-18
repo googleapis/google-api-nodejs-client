@@ -133,9 +133,13 @@ export namespace ondemandscanning_v1 {
      */
     findings?: Schema$Finding[];
     /**
-     * Maximum severity found among findings.
+     * Maximum severity found among findings. Per scanner verdict details.
      */
     maxSeverity?: string | null;
+    /**
+     * Per scanner verdict.
+     */
+    perScannerVerdict?: Schema$PerScannerVerdict;
     /**
      * Name of the skill that produced this analysis.
      */
@@ -525,6 +529,10 @@ export namespace ondemandscanning_v1 {
      */
     confidentialityImpact?: string | null;
     exploitabilityScore?: number | null;
+    /**
+     * Exploit Maturity (E). Defined in CVSS v4.
+     */
+    exploitMaturity?: string | null;
     impactScore?: number | null;
     /**
      * Integrity Impact (I). Defined in CVSS v2, v3.
@@ -717,6 +725,10 @@ export namespace ondemandscanning_v1 {
      * Category of the finding.
      */
     category?: string | null;
+    /**
+     * Description of the finding category.
+     */
+    details?: string | null;
     /**
      * Location (path and line) where the finding was detected.
      */
@@ -951,6 +963,20 @@ export namespace ondemandscanning_v1 {
      */
     layerInfo?: Schema$Layer[];
   }
+  /**
+   * Indicates where an extracted package originates from.
+   */
+  export interface Schema$IngestionSource {
+    /**
+     * The attachment URI that this package was extracted from.
+     */
+    attachmentUri?: string | null;
+    /**
+     * The resource URL of the resource that was scanned to find this package.
+     */
+    resourceUrl?: string | null;
+    source?: string | null;
+  }
   export interface Schema$InTotoProvenance {
     /**
      * required
@@ -1121,6 +1147,45 @@ export namespace ondemandscanning_v1 {
     kind?: string | null;
     name?: string | null;
     url?: string | null;
+  }
+  /**
+   * Result of Malicious Content LLM scan.
+   */
+  export interface Schema$MaliciousContentLLMResult {
+    /**
+     * Tracks max severity found.
+     */
+    maxSeverity?: string | null;
+    /**
+     * Status of the scan.
+     */
+    scanStatus?: string | null;
+  }
+  /**
+   * Result of Malicious Content Static scan.
+   */
+  export interface Schema$MaliciousContentStaticResult {
+    /**
+     * Tracks max severity found.
+     */
+    maxSeverity?: string | null;
+    /**
+     * Status of the scan.
+     */
+    scanStatus?: string | null;
+  }
+  /**
+   * Result of Malware scan.
+   */
+  export interface Schema$MalwareScanResult {
+    /**
+     * Status of the scan.
+     */
+    scanStatus?: string | null;
+    /**
+     * Verdict of the scan.
+     */
+    verdict?: string | null;
   }
   export interface Schema$Material {
     digest?: {[key: string]: string} | null;
@@ -1315,6 +1380,10 @@ export namespace ondemandscanning_v1 {
      * HashDigest stores the SHA512 hash digest of the jar file if the package is of type Maven. This field will be unset for non Maven packages.
      */
     hashDigest?: string | null;
+    /**
+     * The list of sources that were scanned to find this package. This can be a Docker image, an SBOM attachment, or both, for example.
+     */
+    ingestionSources?: Schema$IngestionSource[];
     layerDetails?: Schema$LayerDetails;
     /**
      * The list of licenses found that are related to a given package. Note that licenses may also be stored on the BinarySourceInfo. If there is no BinarySourceInfo (because there's no concept of source vs binary), then it will be stored here, while if there are BinarySourceInfos, it will be stored there, as one source can have multiple binaries with different licenses.
@@ -1439,6 +1508,24 @@ export namespace ondemandscanning_v1 {
     licenses?: string[] | null;
     name?: string | null;
     version?: string | null;
+  }
+  export interface Schema$PerScannerVerdict {
+    /**
+     * Malicious Content LLM scan result.
+     */
+    maliciousContentLlmResult?: Schema$MaliciousContentLLMResult;
+    /**
+     * Malicious Content Static scan result.
+     */
+    maliciousContentStaticResult?: Schema$MaliciousContentStaticResult;
+    /**
+     * Malware scan result.
+     */
+    malwareScan?: Schema$MalwareScanResult;
+    /**
+     * Workspace Policy scan result.
+     */
+    workspacePolicy?: Schema$WorkspacePolicyResult;
   }
   /**
    * Selects a repo using a Google Cloud Platform project ID (e.g., winged-cargo-31) and a repo name within that project.
@@ -1972,6 +2059,10 @@ export namespace ondemandscanning_v1 {
      */
     cvssv3?: Schema$CVSS;
     /**
+     * The cvss v4 score for the vulnerability.
+     */
+    cvssV4?: Schema$CVSS;
+    /**
      * Output only. CVSS version used to populate cvss_score and severity.
      */
     cvssVersion?: string | null;
@@ -2049,6 +2140,19 @@ export namespace ondemandscanning_v1 {
      * The localized title of the update.
      */
     title?: string | null;
+  }
+  /**
+   * Result of Workspace Policy scan.
+   */
+  export interface Schema$WorkspacePolicyResult {
+    /**
+     * Status of the scan.
+     */
+    scanStatus?: string | null;
+    /**
+     * Verdict of the scan.
+     */
+    verdict?: string | null;
   }
 
   export class Resource$Projects {
@@ -2165,8 +2269,7 @@ export namespace ondemandscanning_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -2298,8 +2401,7 @@ export namespace ondemandscanning_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -2437,8 +2539,7 @@ export namespace ondemandscanning_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -2564,8 +2665,7 @@ export namespace ondemandscanning_v1 {
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListOperationsResponse>,
       callback: BodyResponseCallback<Schema$ListOperationsResponse>
     ): void;
     list(
@@ -2728,8 +2828,7 @@ export namespace ondemandscanning_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -2938,8 +3037,7 @@ export namespace ondemandscanning_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>

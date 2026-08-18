@@ -839,8 +839,7 @@ export namespace adsense_v2 {
         | BodyResponseCallback<Schema$Account>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Account>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Account> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Account>>
@@ -958,8 +957,7 @@ export namespace adsense_v2 {
     getAdBlockingRecoveryTag(
       params: Params$Resource$Accounts$Getadblockingrecoverytag,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$AdBlockingRecoveryTag>,
+        MethodOptions | BodyResponseCallback<Schema$AdBlockingRecoveryTag>,
       callback: BodyResponseCallback<Schema$AdBlockingRecoveryTag>
     ): void;
     getAdBlockingRecoveryTag(
@@ -1105,8 +1103,7 @@ export namespace adsense_v2 {
     list(
       params: Params$Resource$Accounts$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListAccountsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListAccountsResponse>,
       callback: BodyResponseCallback<Schema$ListAccountsResponse>
     ): void;
     list(
@@ -1248,8 +1245,7 @@ export namespace adsense_v2 {
     listChildAccounts(
       params: Params$Resource$Accounts$Listchildaccounts,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListChildAccountsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListChildAccountsResponse>,
       callback: BodyResponseCallback<Schema$ListChildAccountsResponse>
     ): void;
     listChildAccounts(
@@ -1467,8 +1463,7 @@ export namespace adsense_v2 {
         | BodyResponseCallback<Schema$AdClient>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$AdClient>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$AdClient> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$AdClient>>
@@ -1730,8 +1725,7 @@ export namespace adsense_v2 {
     list(
       params: Params$Resource$Accounts$Adclients$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListAdClientsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListAdClientsResponse>,
       callback: BodyResponseCallback<Schema$ListAdClientsResponse>
     ): void;
     list(
@@ -1937,8 +1931,7 @@ export namespace adsense_v2 {
         | BodyResponseCallback<Schema$AdUnit>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$AdUnit>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$AdUnit> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$AdUnit>>
@@ -2081,8 +2074,7 @@ export namespace adsense_v2 {
         | BodyResponseCallback<Schema$AdUnit>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$AdUnit>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$AdUnit> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$AdUnit>>
@@ -2673,8 +2665,7 @@ export namespace adsense_v2 {
         | BodyResponseCallback<Schema$AdUnit>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$AdUnit>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$AdUnit> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$AdUnit>>
@@ -3030,8 +3021,7 @@ export namespace adsense_v2 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -3294,8 +3284,7 @@ export namespace adsense_v2 {
     list(
       params: Params$Resource$Accounts$Adclients$Customchannels$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListCustomChannelsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListCustomChannelsResponse>,
       callback: BodyResponseCallback<Schema$ListCustomChannelsResponse>
     ): void;
     list(
@@ -3446,8 +3435,7 @@ export namespace adsense_v2 {
     listLinkedAdUnits(
       params: Params$Resource$Accounts$Adclients$Customchannels$Listlinkedadunits,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListLinkedAdUnitsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListLinkedAdUnitsResponse>,
       callback: BodyResponseCallback<Schema$ListLinkedAdUnitsResponse>
     ): void;
     listLinkedAdUnits(
@@ -3835,8 +3823,7 @@ export namespace adsense_v2 {
         | BodyResponseCallback<Schema$UrlChannel>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$UrlChannel>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$UrlChannel> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$UrlChannel>>
@@ -3959,8 +3946,7 @@ export namespace adsense_v2 {
     list(
       params: Params$Resource$Accounts$Adclients$Urlchannels$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListUrlChannelsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListUrlChannelsResponse>,
       callback: BodyResponseCallback<Schema$ListUrlChannelsResponse>
     ): void;
     list(
@@ -4289,8 +4275,7 @@ export namespace adsense_v2 {
     list(
       params: Params$Resource$Accounts$Payments$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListPaymentsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListPaymentsResponse>,
       callback: BodyResponseCallback<Schema$ListPaymentsResponse>
     ): void;
     list(
@@ -4598,8 +4583,7 @@ export namespace adsense_v2 {
     list(
       params: Params$Resource$Accounts$Policyissues$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListPolicyIssuesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListPolicyIssuesResponse>,
       callback: BodyResponseCallback<Schema$ListPolicyIssuesResponse>
     ): void;
     list(
@@ -4997,8 +4981,7 @@ export namespace adsense_v2 {
         | BodyResponseCallback<Schema$HttpBody>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$HttpBody>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$HttpBody> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>
@@ -5610,8 +5593,7 @@ export namespace adsense_v2 {
         | BodyResponseCallback<Schema$HttpBody>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$HttpBody>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$HttpBody> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>
@@ -5737,8 +5719,7 @@ export namespace adsense_v2 {
     list(
       params: Params$Resource$Accounts$Reports$Saved$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListSavedReportsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListSavedReportsResponse>,
       callback: BodyResponseCallback<Schema$ListSavedReportsResponse>
     ): void;
     list(
@@ -6015,8 +5996,7 @@ export namespace adsense_v2 {
         | BodyResponseCallback<Schema$Site>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Site>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Site> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Site>>

@@ -654,8 +654,7 @@ export namespace merchantapi_promotions_v1 {
         | BodyResponseCallback<Schema$Promotion>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Promotion>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Promotion> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Promotion>>
@@ -809,8 +808,7 @@ export namespace merchantapi_promotions_v1 {
         | BodyResponseCallback<Schema$Promotion>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Promotion>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Promotion> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Promotion>>
@@ -932,8 +930,7 @@ export namespace merchantapi_promotions_v1 {
     list(
       params: Params$Resource$Accounts$Promotions$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListPromotionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListPromotionsResponse>,
       callback: BodyResponseCallback<Schema$ListPromotionsResponse>
     ): void;
     list(

@@ -1338,8 +1338,7 @@ export namespace merchantapi_products_v1beta {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -1874,8 +1873,7 @@ export namespace merchantapi_products_v1beta {
         | BodyResponseCallback<Schema$Product>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Product>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Product> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Product>>
@@ -1998,8 +1996,7 @@ export namespace merchantapi_products_v1beta {
     list(
       params: Params$Resource$Accounts$Products$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListProductsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListProductsResponse>,
       callback: BodyResponseCallback<Schema$ListProductsResponse>
     ): void;
     list(

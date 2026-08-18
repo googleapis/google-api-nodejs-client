@@ -139,10 +139,12 @@ export namespace compute_beta {
     globalPublicDelegatedPrefixes: Resource$Globalpublicdelegatedprefixes;
     globalVmExtensionPolicies: Resource$Globalvmextensionpolicies;
     healthChecks: Resource$Healthchecks;
+    hosts: Resource$Hosts;
     httpHealthChecks: Resource$Httphealthchecks;
     httpsHealthChecks: Resource$Httpshealthchecks;
     imageFamilyViews: Resource$Imagefamilyviews;
     images: Resource$Images;
+    imageViews: Resource$Imageviews;
     instanceGroupManagerResizeRequests: Resource$Instancegroupmanagerresizerequests;
     instanceGroupManagers: Resource$Instancegroupmanagers;
     instanceGroups: Resource$Instancegroups;
@@ -170,10 +172,13 @@ export namespace compute_beta {
     nodeGroups: Resource$Nodegroups;
     nodeTemplates: Resource$Nodetemplates;
     nodeTypes: Resource$Nodetypes;
+    organizationRolloutPlans: Resource$Organizationrolloutplans;
+    organizationRollouts: Resource$Organizationrollouts;
     organizationSecurityPolicies: Resource$Organizationsecuritypolicies;
     packetMirrorings: Resource$Packetmirrorings;
     previewFeatures: Resource$Previewfeatures;
     projects: Resource$Projects;
+    projectViews: Resource$Projectviews;
     publicAdvertisedPrefixes: Resource$Publicadvertisedprefixes;
     publicDelegatedPrefixes: Resource$Publicdelegatedprefixes;
     regionAutoscalers: Resource$Regionautoscalers;
@@ -213,6 +218,7 @@ export namespace compute_beta {
     regionTargetTcpProxies: Resource$Regiontargettcpproxies;
     regionUrlMaps: Resource$Regionurlmaps;
     regionZones: Resource$Regionzones;
+    reliabilityRisks: Resource$Reliabilityrisks;
     reservationBlocks: Resource$Reservationblocks;
     reservations: Resource$Reservations;
     reservationSlots: Resource$Reservationslots;
@@ -284,10 +290,12 @@ export namespace compute_beta {
         this.context
       );
       this.healthChecks = new Resource$Healthchecks(this.context);
+      this.hosts = new Resource$Hosts(this.context);
       this.httpHealthChecks = new Resource$Httphealthchecks(this.context);
       this.httpsHealthChecks = new Resource$Httpshealthchecks(this.context);
       this.imageFamilyViews = new Resource$Imagefamilyviews(this.context);
       this.images = new Resource$Images(this.context);
+      this.imageViews = new Resource$Imageviews(this.context);
       this.instanceGroupManagerResizeRequests =
         new Resource$Instancegroupmanagerresizerequests(this.context);
       this.instanceGroupManagers = new Resource$Instancegroupmanagers(
@@ -331,11 +339,18 @@ export namespace compute_beta {
       this.nodeGroups = new Resource$Nodegroups(this.context);
       this.nodeTemplates = new Resource$Nodetemplates(this.context);
       this.nodeTypes = new Resource$Nodetypes(this.context);
+      this.organizationRolloutPlans = new Resource$Organizationrolloutplans(
+        this.context
+      );
+      this.organizationRollouts = new Resource$Organizationrollouts(
+        this.context
+      );
       this.organizationSecurityPolicies =
         new Resource$Organizationsecuritypolicies(this.context);
       this.packetMirrorings = new Resource$Packetmirrorings(this.context);
       this.previewFeatures = new Resource$Previewfeatures(this.context);
       this.projects = new Resource$Projects(this.context);
+      this.projectViews = new Resource$Projectviews(this.context);
       this.publicAdvertisedPrefixes = new Resource$Publicadvertisedprefixes(
         this.context
       );
@@ -415,6 +430,7 @@ export namespace compute_beta {
       );
       this.regionUrlMaps = new Resource$Regionurlmaps(this.context);
       this.regionZones = new Resource$Regionzones(this.context);
+      this.reliabilityRisks = new Resource$Reliabilityrisks(this.context);
       this.reservationBlocks = new Resource$Reservationblocks(this.context);
       this.reservations = new Resource$Reservations(this.context);
       this.reservationSlots = new Resource$Reservationslots(this.context);
@@ -765,21 +781,36 @@ export namespace compute_beta {
      */
     id?: string | null;
     /**
-     * Reference to the source of external IPv4 addresses,
-     * like a PublicDelegatedPrefix (PDP) for BYOIP.
-     * The PDP must support enhanced IPv4 allocations.
+     * Reference to the source of IP addresses.
      *
-     * Use one of the following formats to specify a PDP when reserving an
-     * external IPv4 address using BYOIP.
+     * It supports the following cases:
      *
      *    -
-     *    Full resource URL, as inhttps://www.googleapis.com/compute/v1/projects/projectId/regions/region/publicDelegatedPrefixes/pdp-name
+     *      Case 1: PublicDelegatedPrefix (PDP) for BYOIP external
+     *      addresses. If an IPv4 PDP is used, the PDP must support enhanced IPv4
+     *      allocations. If an IPv6 PDP is used, the PDP must be in
+     *      EXTERNAL_IPV6_FORWARDING_RULE_CREATION mode.
      *    -
-     *    Partial URL, as in
+     *      Case 2: Internal Range for global internal addresses.
      *
      *
-     *           - projects/projectId/regions/region/publicDelegatedPrefixes/pdp-name
-     *           - regions/region/publicDelegatedPrefixes/pdp-name
+     *
+     * Use one of the following formats to specify the resource:
+     *
+     * For a Public Delegated Prefix:
+     *
+     *    -
+     *    Full resource URL:https://www.googleapis.com/compute/v1/projects/projectId/regions/region/publicDelegatedPrefixes/pdp
+     *    - Partial URL:
+     *       - projects/projectId/regions/region/publicDelegatedPrefixes/pdp-name
+     *       - regions/region/publicDelegatedPrefixes/pdp-name
+     *
+     *
+     *
+     * For an Internal Range:
+     *
+     *    - Full URL:https://networkconnectivity.googleapis.com/v1/projects/project/locations/global/internalRanges/internal-range
+     *    - Partial URL:projects/project/locations/global/internalRanges/internal-range
      */
     ipCollection?: string | null;
     /**
@@ -868,6 +899,12 @@ export namespace compute_beta {
      *      - `PRIVATE_SERVICE_CONNECT` for a private network address that is
      *      used to configure Private Service Connect. Only global internal addresses
      *      can use this purpose.
+     *      - `PASSTHROUGH_LOAD_BALANCER_AVAILABILITY_GROUP0` for addresses
+     *      that can only be assigned to global external Passthrough Network Load
+     *      Balancer forwarding rules, as an Availability Group 0 address.
+     *      - `PASSTHROUGH_LOAD_BALANCER_AVAILABILITY_GROUP1` for addresses that
+     *      can only be assigned to global external Passthrough Network Load Balancer
+     *      forwarding rules, as an Availability Group 1 address.
      */
     purpose?: string | null;
     /**
@@ -1441,6 +1478,52 @@ export namespace compute_beta {
      * is 500 GB.
      */
     diskSizeGb?: string | null;
+    /**
+     * Specifies the disk type used for the boot disk or an additional data
+     * disk. For valid disk type values, see
+     * Supported types for Hyperdisk volumes and
+     * Persistent Disk type variables.
+     *
+     * When creating a single instance, you must provide either the full or
+     * partial URL of the disk type. For example, the following values are
+     * valid:
+     *
+     *
+     *      - https://www.googleapis.com/compute/v1/projects/project/zones/zone/diskTypes/diskType
+     *      - projects/project/zones/zone/diskTypes/diskType
+     *      - zones/zone/diskTypes/diskType
+     *
+     *
+     *
+     * When creating an instance template, instance flexibility policy, or when
+     * creating or updating an all-instances configuration, you specify the
+     * disk type without a URL, for example, hyperdisk-balanced.
+     *
+     * If you omit this field for a disk, the default disk type depends on
+     * the instance's machine series, as follows.
+     *
+     *
+     *     - For first- and second-generation machine series like N1, N2, T2, and
+     *     M1, the
+     *        default disk type is Standard Persistent Disk
+     *        (pd-standard).
+     *     - For C3, C3D, and M3 the default is Balanced Persistent Disk
+     *     (pd-balanced).
+     *    - For other third-generation machine
+     *     series like A3, H3, Z3, all
+     *         fourth-generation types like C4, N4, M4, and newer machine series,
+     *         the default is Hyperdisk Balanced
+     *         (hyperdisk-balanced).
+     *
+     *
+     *
+     * The disk type you specify must be compatible with the instance's machine
+     * series. For a list of machine series that support Persistent Disk, see Machine
+     * series support for Persistent Disk.
+     *
+     * For a list of machine series that support Hyperdisk, seeMachine
+     * series support for Hyperdisk.
+     */
     diskType?: string | null;
     /**
      * Whether this disk is using confidential compute mode.
@@ -3450,7 +3533,11 @@ export namespace compute_beta {
      * URL to networkservices.ServiceLbPolicy resource.
      *
      * Can only be set if load balancing scheme is EXTERNAL_MANAGED,
-     * INTERNAL_MANAGED or INTERNAL_SELF_MANAGED and the scope is global.
+     * INTERNAL_MANAGED or INTERNAL_SELF_MANAGED for a global backend service, and
+     * EXTERNAL_MANAGED or INTERNAL_MANAGED for a regional backend service. For a
+     * global backend service, the service lb policy must be global. For a
+     * regional backend service, the service lb policy must be regional and in the
+     * same region.
      */
     serviceLbPolicy?: string | null;
     /**
@@ -4218,6 +4305,14 @@ export namespace compute_beta {
      */
     enable?: boolean | null;
     /**
+     * The list of request headers that will be logged to Stackdriver.
+     */
+    loggingHttpRequestHeaders?: Schema$BackendServiceLogConfigLoggingHttpHeader[];
+    /**
+     * The list of response headers that will be logged to Stackdriver.
+     */
+    loggingHttpResponseHeaders?: Schema$BackendServiceLogConfigLoggingHttpHeader[];
+    /**
      * This field can only be specified if logging is enabled for this backend
      * service and "logConfig.optionalMode" was set to CUSTOM. Contains a list
      * of optional fields you want to include in the logs. For example:
@@ -4240,6 +4335,15 @@ export namespace compute_beta {
      * default value is 1.0.
      */
     sampleRate?: number | null;
+  }
+  /**
+   * Determines which HTTP headers will be logged to Stackdriver.
+   */
+  export interface Schema$BackendServiceLogConfigLoggingHttpHeader {
+    /**
+     * The name of the header to be logged.
+     */
+    headerName?: string | null;
   }
   export interface Schema$BackendServiceNetworkPassThroughLbTrafficPolicy {
     /**
@@ -5482,17 +5586,51 @@ export namespace compute_beta {
    * Contains the capacity history.
    */
   export interface Schema$CapacityHistoryResponse {
+    /**
+     * Output only. The location (region or zone) for which the capacity history is returned.
+     * It is returned as a URL - For example,https://www.googleapis.com/compute/v1/projects/project/zones/zone.
+     */
     location?: string | null;
+    /**
+     * The machine type for which the capacity history is returned.
+     */
     machineType?: string | null;
+    /**
+     * The preemption history for the requested machine type and location.
+     */
     preemptionHistory?: Schema$CapacityHistoryResponsePreemptionRecord[];
+    /**
+     * The price history for the requested machine type and location.
+     */
     priceHistory?: Schema$CapacityHistoryResponsePriceRecord[];
   }
+  /**
+   * A record of Spot VM preemption history.
+   */
   export interface Schema$CapacityHistoryResponsePreemptionRecord {
+    /**
+     * The time interval for this preemption record.
+     */
     interval?: Schema$Interval;
+    /**
+     * The preemption rate during the interval, representing the fraction of
+     * Spot VMs that were preempted. Range: 0.0 to 1.0. Preemption rate is
+     * calculated as (total preempted Spots) / (total Spots that stopped
+     * running).
+     */
     preemptionRate?: number | null;
   }
+  /**
+   * A record of price history.
+   */
   export interface Schema$CapacityHistoryResponsePriceRecord {
+    /**
+     * The time interval for this price record.
+     */
     interval?: Schema$Interval;
+    /**
+     * The Spot VM list price during the interval.
+     */
     listPrice?: Schema$Money;
   }
   /**
@@ -5631,6 +5769,12 @@ export namespace compute_beta {
      * as part of resource payload.
      */
     params?: Schema$CommitmentParams;
+    /**
+     * Optional. Used when category is PERSISTENT_DISK.
+     * Each entry in the list represents a commitment to a specific Persistent
+     * Disk product type and dimension.
+     */
+    persistentDiskResources?: Schema$PersistentDiskResourceCommitment[];
     /**
      * The minimum time duration that you commit to purchasing resources.
      * The plan that you choose determines the preset term length of the
@@ -6256,6 +6400,7 @@ export namespace compute_beta {
      */
     kmsKeyServiceAccount?: string | null;
     /**
+     * [DEPRECATED] CSEK is no longer supported. Use CMEK instead.
      * Specifies a 256-bit customer-supplied
      * encryption key, encoded in RFC
      * 4648 base64 to either encrypt or decrypt this resource. You can
@@ -6267,6 +6412,7 @@ export namespace compute_beta {
      */
     rawKey?: string | null;
     /**
+     * [DEPRECATED] CSEK is no longer supported. Use CMEK instead.
      * Specifies an RFC 4648 base64 encoded, RSA-wrapped 2048-bit
      * customer-supplied encryption key to either encrypt or decrypt this
      * resource. You can provide either the rawKey or thersaEncryptedKey.
@@ -6292,6 +6438,7 @@ export namespace compute_beta {
      */
     rsaEncryptedKey?: string | null;
     /**
+     * [DEPRECATED] CSEK is no longer supported. Use CMEK instead.
      * [Output only] TheRFC
      * 4648 base64 encoded SHA-256 hash of the customer-supplied
      * encryption key that protects this resource.
@@ -6428,6 +6575,79 @@ export namespace compute_beta {
     /**
      * Year of the date. Must be from 1 to 9999, or 0 to specify a date without
      * a year.
+     */
+    year?: number | null;
+  }
+  /**
+   * Represents civil time (or occasionally physical time).
+   *
+   * This type can represent a civil time in one of a few possible ways:
+   *
+   *  * When utc_offset is set and time_zone is unset: a civil time on a calendar
+   *    day with a particular offset from UTC.
+   *  * When time_zone is set and utc_offset is unset: a civil time on a calendar
+   *    day in a particular time zone.
+   *  * When neither time_zone nor utc_offset is set: a civil time on a calendar
+   *    day in local time.
+   *
+   * The date is relative to the Proleptic Gregorian Calendar.
+   *
+   * If year, month, or day are 0, the DateTime is considered not to have a
+   * specific year, month, or day respectively.
+   *
+   * This type may also be used to represent a physical time if all the date and
+   * time fields are set and either case of the `time_offset` oneof is set.
+   * Consider using `Timestamp` message for physical time instead. If your use
+   * case also would like to store the user's timezone, that can be done in
+   * another field.
+   *
+   * This type is more flexible than some applications may want. Make sure to
+   * document and validate your application's limitations.
+   */
+  export interface Schema$DateTime {
+    /**
+     * Optional. Day of month. Must be from 1 to 31 and valid for the year and
+     * month, or 0 if specifying a datetime without a day.
+     */
+    day?: number | null;
+    /**
+     * Optional. Hours of day in 24 hour format. Should be from 0 to 23, defaults
+     * to 0 (midnight). An API may choose to allow the value "24:00:00" for
+     * scenarios like business closing time.
+     */
+    hours?: number | null;
+    /**
+     * Optional. Minutes of hour of day. Must be from 0 to 59, defaults to 0.
+     */
+    minutes?: number | null;
+    /**
+     * Optional. Month of year. Must be from 1 to 12, or 0 if specifying a
+     * datetime without a month.
+     */
+    month?: number | null;
+    /**
+     * Optional. Fractions of seconds in nanoseconds. Must be from 0 to
+     * 999,999,999, defaults to 0.
+     */
+    nanos?: number | null;
+    /**
+     * Optional. Seconds of minutes of the time. Must normally be from 0 to 59,
+     * defaults to 0. An API may allow the value 60 if it allows leap-seconds.
+     */
+    seconds?: number | null;
+    /**
+     * Time zone.
+     */
+    timeZone?: Schema$TimeZone;
+    /**
+     * UTC offset. Must be whole seconds, between -18 hours and +18 hours.
+     * For example, a UTC offset of -4:00 would be represented as
+     * { seconds: -14400 \}.
+     */
+    utcOffset?: string | null;
+    /**
+     * Optional. Year of date. Must be from 1 to 9999, or 0 if specifying a
+     * datetime without a year.
      */
     year?: number | null;
   }
@@ -8360,7 +8580,9 @@ export namespace compute_beta {
     /**
      * The Action to perform when the client connection triggers the rule.
      * Valid actions for firewall rules are: "allow", "deny",
-     * "apply_security_profile_group" and "goto_next".
+     * "apply_security_profile_group" and "goto_next" (
+     * "apply_security_profile_group" can be specified only for global
+     * network firewall policies or hierarchical firewall policies).
      * Valid actions for packet mirroring rules are: "mirror", "do_not_mirror"
      * and "goto_next".
      */
@@ -8414,11 +8636,12 @@ export namespace compute_beta {
      */
     ruleTupleCount?: number | null;
     /**
-     * A fully-qualified URL of a SecurityProfile resource instance.
+     * A fully-qualified URL of a SecurityProfileGroup resource instance.
      * Example:
      * https://networksecurity.googleapis.com/v1/projects/{project\}/locations/{location\}/securityProfileGroups/my-security-profile-group
      * Must be specified if action is one of 'apply_security_profile_group' or
-     * 'mirror'. Cannot be specified for other actions.
+     * 'mirror'. Cannot be specified for other actions. Can be specified only
+     * for global network firewall policies or hierarchical firewall policies.
      */
     securityProfileGroup?: string | null;
     /**
@@ -10702,7 +10925,7 @@ export namespace compute_beta {
      * on what other health check fields are supported and what other resources
      * can use this health check:
      *
-     *    - SSL, HTTP2, and GRPC protocols are not supported.
+     *    - SSL, HTTP2, GRPC, and GRPC_WITH_TLS protocols are not supported.
      *    - The TCP request field is not supported.
      *    - The proxyHeader field for HTTP, HTTPS, and TCP is not
      *    supported.
@@ -10720,8 +10943,9 @@ export namespace compute_beta {
      */
     timeoutSec?: number | null;
     /**
-     * Specifies the type of the healthCheck, either TCP,SSL, HTTP, HTTPS,HTTP2 or GRPC. Exactly one of the
-     * protocol-specific health check fields must be specified, which must matchtype field.
+     * Specifies the type of the healthCheck, either TCP,SSL, HTTP, HTTPS,HTTP2, GRPC or GRPC_WITH_TLS.
+     * Exactly one of the protocol-specific health check fields must be specified,
+     * which must match type field.
      */
     type?: string | null;
     /**
@@ -11378,6 +11602,77 @@ export namespace compute_beta {
     url?: string | null;
   }
   /**
+   * Represents a host resource.
+   */
+  export interface Schema$Host {
+    /**
+     * Output only. All aliases for this resource.
+     * e.g.
+     * projects/123/zones/us-centra1-a/reservation/r1/reservationBlock/b1/hosts/h1
+     */
+    aliasLinks?: string[] | null;
+    /**
+     * Output only. The creation timestamp, formatted asRFC3339 text.
+     */
+    creationTimestamp?: string | null;
+    /**
+     * An optional description of this resource.
+     */
+    description?: string | null;
+    /**
+     * Output only. The unique identifier for this resource. This identifier is
+     * defined by the server.
+     */
+    id?: string | null;
+    /**
+     * Output only. The type of resource. Alwayscompute#host for hosts.
+     */
+    kind?: string | null;
+    /**
+     * Output only. The name of the host.
+     */
+    name?: string | null;
+    /**
+     * Output only. The self link of the host.
+     */
+    selfLink?: string | null;
+    /**
+     * Output only. The self link with id of the host.
+     */
+    selfLinkWithId?: string | null;
+    /**
+     * Output only. The state of the host.
+     */
+    state?: string | null;
+    /**
+     * Output only. The status of the host
+     */
+    status?: Schema$HostStatus;
+    /**
+     * Output only. The zone in which the host resides.
+     */
+    zone?: string | null;
+  }
+  export interface Schema$HostPhysicalTopology {
+    /**
+     * The unique identifier of the capacity block within the cluster.
+     */
+    block?: string | null;
+    /**
+     * The cluster name of the reservation sub-block.
+     */
+    cluster?: string | null;
+    /**
+     * The unique identifier of the capacity host within the capacity sub-block.
+     */
+    host?: string | null;
+    /**
+     * The unique identifier of the capacity sub-block within the capacity
+     * block.
+     */
+    subBlock?: string | null;
+  }
+  /**
    * UrlMaps
    * A host-matching rule for a URL. If matched, will use the namedPathMatcher to select the BackendService.
    */
@@ -11404,6 +11699,63 @@ export namespace compute_beta {
      * of the URL if the hostRule matches the URL's host portion.
      */
     pathMatcher?: string | null;
+  }
+  export interface Schema$HostsGetVersionRequest {
+    /**
+     * The SBOM selection to return. Duplicate values in the list will be ignored.
+     */
+    sbomSelections?: string[] | null;
+  }
+  export interface Schema$HostsListResponse {
+    etag?: string | null;
+    /**
+     * The unique identifier for the resource; defined by the server.
+     */
+    id?: string | null;
+    /**
+     * A list of host resources.
+     */
+    items?: Schema$Host[];
+    /**
+     * The type of resource. Always compute#host for a list of hosts.
+     */
+    kind?: string | null;
+    /**
+     * This token allows you to get the next page of results for
+     * list requests. If the number of results is larger thanmaxResults, use the nextPageToken as a value for
+     * the query parameter pageToken in the next list request.
+     * Subsequent list requests will have their own nextPageToken to
+     * continue paging through the results.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The server-defined URL for this resource.
+     */
+    selfLink?: string | null;
+    /**
+     * Unreachable resources.
+     * end_interface: MixerListResponseWithEtagBuilder
+     */
+    unreachables?: string[] | null;
+    /**
+     * An informational warning message.
+     */
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string}>;
+      message?: string;
+    } | null;
+  }
+  export interface Schema$HostStatus {
+    /**
+     * Output only. The physical topology of the reservation sub-block, if
+     * present
+     */
+    physicalTopology?: Schema$HostPhysicalTopology;
+    /**
+     * Output only. The URIs of the instances currently running on this host.
+     */
+    runningInstances?: string[] | null;
   }
   export interface Schema$HTTP2HealthCheck {
     /**
@@ -12074,6 +12426,13 @@ export namespace compute_beta {
      * balancing: Routing and traffic management features.
      */
     faultInjectionPolicy?: Schema$HttpFaultInjection;
+    /**
+     * Image optimization policy for this URL Map's route. Available only for
+     * Global EXTERNAL_MANAGED load balancer schemes.
+     * Either Cloud CDN must be enabled on the backend service or backend bucket
+     * serving the route, or cache policy must be configured on the same route
+     */
+    imageOptimizationPolicy?: Schema$ImageOptimizationPolicy;
     /**
      * Specifies the maximum duration (timeout) for streams on the selected route.
      * Unlike the timeout field where the timeout duration starts
@@ -12935,6 +13294,20 @@ export namespace compute_beta {
     } | null;
   }
   /**
+   * The configuration for Cloud CDN's image optimization feature. This feature
+   * dynamically processes and delivers images from the network edge.
+   * Image Optimization is only available for Global External Application Load
+   * Balancers.
+   * Either Cloud CDN must be enabled on the backend service or backend bucket
+   * serving the route, or cache policy must be configured on the same route.
+   */
+  export interface Schema$ImageOptimizationPolicy {
+    /**
+     * Specifies whether to interpret query parameters for image optimization.
+     */
+    queryParameterInterpretation?: string | null;
+  }
+  /**
    * Additional image params.
    */
   export interface Schema$ImageParams {
@@ -12948,6 +13321,12 @@ export namespace compute_beta {
      * PATCH) when empty.
      */
     resourceManagerTags?: {[key: string]: string} | null;
+  }
+  /**
+   * Represents a read-only view of a global Image resource.
+   */
+  export interface Schema$ImageView {
+    image?: Schema$Image;
   }
   /**
    * Initial State for shielded instance,
@@ -13097,6 +13476,11 @@ export namespace compute_beta {
      * Output only. [Output Only] Last suspended timestamp inRFC3339 text format.
      */
     lastSuspendedTimestamp?: string | null;
+    /**
+     * Specifies which method should be used for encrypting the
+     * Local SSDs attached to the VM.
+     */
+    localSsdEncryptionMode?: string | null;
     /**
      * Full or partial URL of the machine type resource to use for this instance,
      * in the format:zones/zone/machineTypes/machine-type. This is provided by the client
@@ -13843,6 +14227,11 @@ export namespace compute_beta {
     restarting?: number | null;
     /**
      * Output only. The number of instances in the managed instance group that
+     * are scheduled to be restarted or are currently being restarted.
+     */
+    restartingInPlace?: number | null;
+    /**
+     * Output only. The number of instances in the managed instance group that
      * are scheduled to be resumed or are currently being resumed.
      */
     resuming?: number | null;
@@ -13993,11 +14382,15 @@ export namespace compute_beta {
   }
   export interface Schema$InstanceGroupManagerInstanceLifecyclePolicy {
     /**
-     * The action that a MIG performs on a failed VM. If the value of the onFailedHealthCheck field
-     * is `DEFAULT_ACTION`, then the same action also applies to the VMs on which your application
-     * fails a health check. Valid values are - REPAIR (default): MIG automatically repairs a failed
-     * VM by recreating it. For more information, seeAbout repairing
-     * VMs in a MIG. - DO_NOTHING: MIG does not repair a failed VM.
+     * The action that a MIG performs on a failed VM. If the value of the
+     * onFailedHealthCheck field is `DEFAULT_ACTION`, then the same action also
+     * applies to the VMs on which your application fails a health check.
+     * Valid values are
+     *
+     *    - REPAIR (default): MIG automatically repairs a failed VM
+     *    by recreating it. For more information, see About
+     *    repairing VMs in a MIG.
+     *    - DO_NOTHING: MIG does not repair a failed VM.
      */
     defaultActionOnFailure?: string | null;
     /**
@@ -14296,11 +14689,15 @@ export namespace compute_beta {
    */
   export interface Schema$InstanceGroupManagersApplyUpdatesRequest {
     /**
-     * Flag to update all instances instead of specified list of “instances”.
+     * Flag to update all instances instead of specified list of "instances".
      * If the flag is set to true then the instances may not be specified
      * in the request.
      */
     allInstances?: boolean | null;
+    /**
+     * Actions that are allowed to update instances within MIG.
+     */
+    allowedActions?: string[] | null;
     /**
      * The list of URLs of one or more instances for which you want to apply
      * updates. Each URL can be a full URL or a partial URL, such aszones/[ZONE]/instances/[INSTANCE_NAME].
@@ -14484,12 +14881,13 @@ export namespace compute_beta {
   }
   export interface Schema$InstanceGroupManagersListErrorsResponse {
     /**
-     * Output only. [Output Only] The list of errors of the managed instance group.
+     * Output only. The list of errors of the managed instance group.
      */
     items?: Schema$InstanceManagedByIgmError[];
     /**
-     * Output only. [Output Only] This token allows you to get the next page of results for
-     * list requests. If the number of results is larger thanmaxResults, use the nextPageToken as a value for
+     * Output only. This token allows you to get the next page of results for list requests.
+     * If the number of results is larger than maxResults
+     * , then use the nextPageToken as a value for
      * the query parameter pageToken in the next list request.
      * Subsequent list requests will have their own nextPageToken to
      * continue paging through the results.
@@ -14952,6 +15350,10 @@ export namespace compute_beta {
   }
   export interface Schema$InstanceGroupManagerUpdatePolicy {
     /**
+     * Actions that are allowed to update instances within MIG.
+     */
+    allowedActions?: string[] | null;
+    /**
      * The
      * instance redistribution policy for regional managed instance groups.
      * Valid values are:
@@ -15238,34 +15640,33 @@ export namespace compute_beta {
   }
   export interface Schema$InstanceManagedByIgmError {
     /**
-     * Output only. [Output Only] Contents of the error.
+     * Output only. Contents of the error.
      */
     error?: Schema$InstanceManagedByIgmErrorManagedInstanceError;
     /**
-     * Output only. [Output Only] Details of the instance action that triggered this error.
+     * Output only. Details of the instance action that triggered this error.
      * May be null, if the error was not caused by an action on an instance.
      * This field is optional.
      */
     instanceActionDetails?: Schema$InstanceManagedByIgmErrorInstanceActionDetails;
     /**
-     * Output only. [Output Only] The time that this error occurred.
-     * This value is in RFC3339 text format.
+     * Output only. The time that this error occurred. This value is in RFC3339 text format.
      */
     timestamp?: string | null;
   }
   export interface Schema$InstanceManagedByIgmErrorInstanceActionDetails {
     /**
-     * Output only. [Output Only] Action that managed instance group was executing on
-     * the instance when the error occurred. Possible values:
+     * Output only. Action that managed instance group was executing on the instance when the
+     * error occurred. Possible values:
      */
     action?: string | null;
     /**
-     * Output only. [Output Only] The URL of the instance.
-     * The URL can be set even if the instance has not yet been created.
+     * Output only. The URL of the instance. The URL can be set even if the instance has not
+     * yet been created.
      */
     instance?: string | null;
     /**
-     * Output only. [Output Only] Version this instance was created from, or was being
+     * Output only. Version this instance was created from, or was being
      * created from, but the creation failed. Corresponds to one of the versions
      * that were set on the Instance Group Manager resource at the time this
      * instance was being created.
@@ -15274,11 +15675,11 @@ export namespace compute_beta {
   }
   export interface Schema$InstanceManagedByIgmErrorManagedInstanceError {
     /**
-     * Output only. [Output Only] Error code.
+     * Output only. Error code.
      */
     code?: string | null;
     /**
-     * Output only. [Output Only] Error message.
+     * Output only. Error message.
      */
     message?: string | null;
   }
@@ -15373,6 +15774,11 @@ export namespace compute_beta {
      * Labels to apply to instances that are created from these properties.
      */
     labels?: {[key: string]: string} | null;
+    /**
+     * Specifies which method should be used for encrypting the
+     * Local SSDs attached to the VM.
+     */
+    localSsdEncryptionMode?: string | null;
     /**
      * The machine type to use for instances that are created from these
      * properties.
@@ -16357,7 +16763,7 @@ export namespace compute_beta {
      */
     description?: string | null;
     /**
-     * Output only. [Output Only] URL of the InterconnectLocation object that represents where
+     * Output only. URL of the InterconnectLocation object that represents where
      * this connection is to be provisioned. By default it will be the same as the
      * location field.
      */
@@ -19705,12 +20111,11 @@ export namespace compute_beta {
      */
     propertiesFromFlexibilityPolicy?: Schema$ManagedInstancePropertiesFromFlexibilityPolicy;
     /**
-     * Output only. [Output Only] Information about the termination timestamp of the instance,
-     * if applicable.
+     * Output only. Information about the termination timestamp of the instance, if applicable.
      */
     scheduling?: Schema$ManagedInstanceScheduling;
     /**
-     * Output only. [Output Only] Specifies the graceful shutdown details if the instance is in
+     * Output only. Specifies the graceful shutdown details if the instance is in
      * `PENDING_STOP` state or there is a programmed stop scheduled.
      */
     shutdownDetails?: Schema$ManagedInstanceShutdownDetails;
@@ -19783,25 +20188,27 @@ export namespace compute_beta {
   }
   export interface Schema$ManagedInstanceScheduling {
     /**
-     * Output only. [Output Only] The timestamp at which the underlying instance will be
+     * Output only. The timestamp at which the underlying instance will be
      * triggered for graceful shutdown if it is configured. This is in RFC3339 text format.
      */
     gracefulShutdownTimestamp?: string | null;
     /**
-     * Output only. [Output Only] The timestamp at which the managed instance will be
-     * terminated. This is in RFC3339 text format.
+     * Output only. The timestamp at which the managed instance will be terminated. This is
+     * in RFC3339 text
+     * format.
      */
     terminationTimestamp?: string | null;
   }
   export interface Schema$ManagedInstanceShutdownDetails {
     /**
-     * Output only. [Output Only] The duration for graceful shutdown. Only applicable when
-     * the instance is in `PENDING_STOP` state.
+     * Output only. The duration for graceful shutdown. Only applicable when the instance is
+     * in `PENDING_STOP` state.
      */
     maxDuration?: Schema$Duration;
     /**
-     * Output only. [Output Only] Past timestamp indicating the beginning of `PENDING_STOP`
-     * state of instance in RFC3339 text format.
+     * Output only. Past timestamp indicating the beginning of `PENDING_STOP` state of
+     * instance in RFC3339
+     * text format.
      */
     requestTimestamp?: string | null;
   }
@@ -20421,13 +20828,15 @@ export namespace compute_beta {
      */
     network?: string | null;
     /**
-     * Projects that are allowed to connect to this network attachment.
-     * The project can be specified using its id or number.
+     * Projects or service class ids that are allowed to connect to this network
+     * attachment. The project can be specified using its id or number. Service
+     * class id can be specified as "serviceclasses/{service_class_id\}".
      */
     producerAcceptLists?: string[] | null;
     /**
-     * Projects that are not allowed to connect to this network attachment.
-     * The project can be specified using its id or number.
+     * Projects or service class ids that are not allowed to connect to this
+     * network attachment. The project can be specified using its id or number.
+     * Service class id can be specified as "serviceclasses/{service_class_id\}".
      */
     producerRejectLists?: string[] | null;
     /**
@@ -23560,6 +23969,42 @@ export namespace compute_beta {
       message?: string;
     } | null;
   }
+  export interface Schema$OrganizationRolloutsListResponse {
+    etag?: string | null;
+    /**
+     * [Output Only] Unique identifier for the resource; defined by the server.
+     */
+    id?: string | null;
+    /**
+     * A list of Rollout resources.
+     */
+    items?: Schema$Rollout[];
+    /**
+     * [Output Only] This token allows you to get the next page of results for
+     * list requests. If the number of results is larger thanmaxResults, use the nextPageToken as a value for
+     * the query parameter pageToken in the next list request.
+     * Subsequent list requests will have their own nextPageToken to
+     * continue paging through the results.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Output only. [Output Only] Server-defined URL for this resource.
+     */
+    selfLink?: string | null;
+    /**
+     * Output only. [Output Only] Unreachable resources.
+     * end_interface: MixerListResponseWithEtagBuilder
+     */
+    unreachables?: string[] | null;
+    /**
+     * [Output Only] Informational warning message.
+     */
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string}>;
+      message?: string;
+    } | null;
+  }
   export interface Schema$OrganizationSecurityPoliciesListAssociationsResponse {
     /**
      * A list of associations.
@@ -24245,6 +24690,51 @@ export namespace compute_beta {
     status?: string | null;
   }
   /**
+   * The periodic partial maintenance schedule includes 52 weeks worth of
+   * maintenance windows.
+   * LINT.IfChange(PeriodicPartialMaintenanceSchedule)
+   */
+  export interface Schema$PeriodicPartialMaintenanceSchedule {
+    /**
+     * The maintenance type in which the zone is during the given window.
+     */
+    subType?: string | null;
+    /**
+     * The target resource that the maintenance window is for.
+     * For example, "projects/my-project/zones/us-central1-a".
+     */
+    targetResource?: string | null;
+    type?: string | null;
+    /**
+     * The end civil timestamp of the window (not inclusive).
+     * This contains a time zone.
+     */
+    windowEndTime?: Schema$DateTime;
+    /**
+     * The start civil timestamp of the window.
+     * This contains a time zone.
+     */
+    windowStartTime?: Schema$DateTime;
+  }
+  /**
+   * Commitment for a particular persistent disk resource.
+   */
+  export interface Schema$PersistentDiskResourceCommitment {
+    /**
+     * Required. The amount of the resource to commit to, in GiB.
+     */
+    amount?: string | null;
+    /**
+     * The specific dimension of the product for this amount.
+     */
+    dimensionType?: string | null;
+    /**
+     * The PD product being committed to. All entries in a
+     * Commitment.persistent_disk_resources list must have the same product_type.
+     */
+    productType?: string | null;
+  }
+  /**
    * An Identity and Access Management (IAM) policy, which specifies access
    * controls for Google Cloud resources.
    *
@@ -24744,6 +25234,23 @@ export namespace compute_beta {
     managedProtectionTier?: string | null;
   }
   /**
+   * Represents a ProjectView resource.
+   *
+   * A ProjectView resource contains read-only project data which is available
+   * globally.
+   */
+  export interface Schema$ProjectView {
+    /**
+     * The project data.
+     * The returned Project data does not contain regional or zonal quota
+     * usage data. Global quota limits are present. For accurate, real-time quota
+     * usage numbers, query the global
+     * [projects.get](https://cloud.google.com/compute/docs/reference/rest/v1/projects/get)
+     * endpoint.
+     */
+    project?: Schema$Project;
+  }
+  /**
    * A public advertised prefix represents an aggregated IP prefix or netblock
    * which customers bring to cloud. The IP prefix is a single unit of route
    * advertisement and is announced globally to the internet.
@@ -24806,6 +25313,12 @@ export namespace compute_beta {
      * cannot be a dash.
      */
     name?: string | null;
+    /**
+     * Network tier to be used for this prefix. All child delegated prefixes will
+     * inherit this field. If this field is not specified, it defaults to the
+     * network tier of the project that the PublicAdvertisedPrefix belongs to.
+     */
+    networkTier?: string | null;
     /**
      * Specifies how child public delegated prefix will be scoped. It could
      * be one of following values:
@@ -24992,6 +25505,12 @@ export namespace compute_beta {
      * cannot be a dash.
      */
     name?: string | null;
+    /**
+     * Network tier of the public delegated prefix. If populated, it must match
+     * the network tier of the parent public advertised prefix. If not populated,
+     * it defaults to the network tier of the parent public advertised prefix.
+     */
+    networkTier?: string | null;
     /**
      * The URL of parent prefix. Either PublicAdvertisedPrefix or
      * PublicDelegatedPrefix.
@@ -25283,6 +25802,43 @@ export namespace compute_beta {
      * URL of the resource to which this reference points.
      */
     target?: string | null;
+  }
+  /**
+   * The spec for modifying the path using a regular expression.
+   */
+  export interface Schema$RegexRewrite {
+    /**
+     * The regular expression used to match against the URL path.
+     * It uses RE2 syntax with the following constraints:
+     *
+     *
+     *      - Any single character operators
+     *      - Groups are allowed to have only submatch operator inside
+     *      - Groups are allowed only without any char repetition, e.g.
+     *      .*
+     *      - Any char repetition, e.g. .*, is
+     *      only allowed to be used in a single regex together with:
+     *
+     *
+     *             - Empty string operators
+     *             - Other repetitions
+     *             - Ranges
+     *             - Repetitions of ranges
+     *
+     *
+     *      - Ranges are only allowed to have:
+     *
+     *
+     *             - Character range
+     *             - Digits range
+     *             - Symbols listed in characters allowed for ranges
+     */
+    pathPattern?: string | null;
+    /**
+     * Required when path pattern is specified. Used to rewrite matching parts of
+     * the path.
+     */
+    pathSubstitution?: string | null;
   }
   /**
    * Represents a Region resource.
@@ -25661,11 +26217,15 @@ export namespace compute_beta {
    */
   export interface Schema$RegionInstanceGroupManagersApplyUpdatesRequest {
     /**
-     * Flag to update all instances instead of specified list of “instances”.
+     * Flag to update all instances instead of specified list of "instances".
      * If the flag is set to true then the instances may not be specified
      * in the request.
      */
     allInstances?: boolean | null;
+    /**
+     * Actions that are allowed to update instances within MIG.
+     */
+    allowedActions?: string[] | null;
     /**
      * The list of URLs of one or more instances for which you want to apply
      * updates. Each URL can be a full URL or a partial URL, such aszones/[ZONE]/instances/[INSTANCE_NAME].
@@ -26106,6 +26666,94 @@ export namespace compute_beta {
      * Content of the UrlMap to be validated.
      */
     resource?: Schema$UrlMap;
+  }
+  /**
+   * Represents a ReliabilityRisk resource.
+   */
+  export interface Schema$ReliabilityRisk {
+    /**
+     * Output only. [Output Only] Creation timestamp in RFC3339
+     * text format.
+     */
+    creationTimestamp?: string | null;
+    /**
+     * An optional textual description of the resource; provided when the
+     * resource is created.
+     */
+    description?: string | null;
+    /**
+     * [Output Only] Details of the reliability risk resource
+     */
+    details?: Schema$RiskDetails;
+    /**
+     * [Output Only] The unique identifier for the resource. This identifier is
+     * defined by the server.
+     */
+    id?: string | null;
+    /**
+     * Output only. [Output Only] Type of resource. Always compute#reliabilityRisk
+     * for reliability risks.
+     */
+    kind?: string | null;
+    /**
+     * Name of the resource. The name must be 1-63 characters long and
+     * comply with RFC1035.
+     */
+    name?: string | null;
+    /**
+     * The recommendation to mitigate the risk.
+     */
+    recommendation?: Schema$RiskRecommendation;
+    /**
+     * Output only. [Output Only] Server-defined URL for the resource.
+     */
+    selfLink?: string | null;
+    /**
+     * Output only. [Output Only] Server-defined URL for this resource with the resource id.
+     */
+    selfLinkWithId?: string | null;
+  }
+  /**
+   * Response message for the List method of ReliabilityRisksService.
+   */
+  export interface Schema$ReliabilityRisksListResponse {
+    /**
+     * [Output Only] An ETag of the resource.
+     */
+    etag?: string | null;
+    /**
+     * [Output Only] Unique identifier for the resource; defined by the server.
+     */
+    id?: string | null;
+    /**
+     * A list of ReliabilityRisk resources.
+     */
+    items?: Schema$ReliabilityRisk[];
+    /**
+     * [Output Only] This token allows you to get the next page of results for
+     * list requests. If the number of results is larger thanmaxResults, use the nextPageToken as a value for
+     * the query parameter pageToken in the next list request.
+     * Subsequent list requests will have their own nextPageToken to
+     * continue paging through the results.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Output only. [Output Only] Server-defined URL for this resource.
+     */
+    selfLink?: string | null;
+    /**
+     * Output only. [Output Only] Unreachable resources.
+     * end_interface: MixerListResponseWithEtagBuilder
+     */
+    unreachables?: string[] | null;
+    /**
+     * [Output Only] Informational warning message.
+     */
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string}>;
+      message?: string;
+    } | null;
   }
   /**
    * A policy that specifies how requests intended for the route's backends
@@ -27508,6 +28156,10 @@ export namespace compute_beta {
    */
   export interface Schema$ResourceStatusPhysicalHostTopology {
     /**
+     * Output only. [Output Only] Additional location information of the running instance.
+     */
+    additionalAttributes?: Schema$ResourceStatusPhysicalHostTopologyAdditionalAttributes;
+    /**
      * [Output Only] The ID of the block in which the running instance is
      * located. Instances within the same block experience low network latency.
      */
@@ -27531,6 +28183,25 @@ export namespace compute_beta {
     subblock?: string | null;
   }
   /**
+   * Additional location information of the running instance.
+   */
+  export interface Schema$ResourceStatusPhysicalHostTopologyAdditionalAttributes {
+    /**
+     * Output only. The IDs of the accelerator topologies the instance belongs to. For
+     * example
+     * The key will be topologies like "4x4", "2x2x2" and the value will be
+     * the location ID of the topologies.
+     */
+    acceleratorTopologyIds?: {[key: string]: string} | null;
+    /**
+     * Output only. Key-value store for arbitrary network topology identifiers
+     * defined by the underlying infrastructure.
+     * The key will be the topology label and the value will be the location
+     * ID for the topology.
+     */
+    networkTopologyIds?: {[key: string]: string} | null;
+  }
+  /**
    * Reservation consumption information that the instance is consuming from.
    */
   export interface Schema$ResourceStatusReservationConsumptionInfo {
@@ -27539,6 +28210,16 @@ export namespace compute_beta {
      * instance is consuming from.
      */
     consumedReservation?: string | null;
+    /**
+     * Output only. [Output Only] The full resource name of the reservation block that this
+     * instance is consuming from.
+     */
+    consumedReservationBlock?: string | null;
+    /**
+     * Output only. [Output Only] The full resource name of the reservation sub-block that
+     * this instance is consuming from.
+     */
+    consumedReservationSubBlock?: string | null;
   }
   export interface Schema$ResourceStatusScheduling {
     /**
@@ -27547,6 +28228,11 @@ export namespace compute_beta {
      * specified in the spread placement policy attached to the instance.
      */
     availabilityDomain?: number | null;
+    /**
+     * Output only. Specifies the timestamp, when the instance will start graceful shutdown
+     * process, in RFC3339 text format.
+     */
+    gracefulShutdownTimestamp?: string | null;
     /**
      * Time in future when the instance will be terminated inRFC3339 text format.
      */
@@ -27574,6 +28260,66 @@ export namespace compute_beta {
      * Target instance state.
      */
     targetState?: string | null;
+  }
+  /**
+   * Detailed insights and metrics about a detected reliability risk.
+   */
+  export interface Schema$RiskDetails {
+    /**
+     * The duration of the risk since it was detected.
+     */
+    duration?: string | null;
+    /**
+     * Insight details for global DNS risk.
+     */
+    globalDnsInsight?: Schema$RiskDetailsGlobalDnsInsight;
+    /**
+     * The last time the risk was updated.
+     */
+    lastUpdateTimestamp?: string | null;
+    /**
+     * The severity of the risk.
+     */
+    severity?: string | null;
+    /**
+     * The type of risk.
+     */
+    type?: string | null;
+  }
+  /**
+   * Detailed insights for a global DNS reliability risk.
+   */
+  export interface Schema$RiskDetailsGlobalDnsInsight {
+    /**
+     * Indicates whether the project's default DNS setting is global DNS.
+     */
+    projectDefaultIsGlobalDns?: boolean | null;
+    /**
+     * The observation window for the query counts.
+     */
+    queryObservationWindow?: string | null;
+    /**
+     * The number of queries that are risky. This is always less than or
+     * equal to total_query_count.
+     */
+    riskyQueryCount?: string | null;
+    /**
+     * The total number of queries in the observation window.
+     */
+    totalQueryCount?: string | null;
+  }
+  /**
+   * Recommendation for mitigating a reliability risk, including a reference URL.
+   */
+  export interface Schema$RiskRecommendation {
+    /**
+     * Mitigation guide for the risk.
+     */
+    content?: string | null;
+    /**
+     * URL referencing a more detailed mitigation guide.
+     */
+    referenceUrl?: string | null;
   }
   /**
    * Rollout resource.
@@ -27631,6 +28377,14 @@ export namespace compute_beta {
      * the last character, which cannot be a dash.
      */
     name?: string | null;
+    /**
+     * Output only. The timestamp at which the Rollout was paused.
+     */
+    pauseTime?: string | null;
+    /**
+     * Output only. The timestamp at which the Rollout was resumed.
+     */
+    resumeTime?: string | null;
     /**
      * Required. The resource being rolled out.
      */
@@ -28264,12 +29018,12 @@ export namespace compute_beta {
      * [Output Only] The type of the AS Path, which can be one of the following
      * values:
      * - 'AS_SET': unordered set of autonomous systems that the route
-     * in has traversed
+     * in has traversed  
      * - 'AS_SEQUENCE': ordered set of autonomous
-     * systems that the route has traversed
+     * systems that the route has traversed  
      * - 'AS_CONFED_SEQUENCE':
      * ordered set of Member Autonomous Systems in the local confederation that
-     * the route has traversed
+     * the route has traversed  
      * - 'AS_CONFED_SET': unordered set of
      * Member Autonomous Systems in the local confederation that the route has
      * traversed
@@ -28960,6 +29714,13 @@ export namespace compute_beta {
      */
     drainNatIps?: string[] | null;
     /**
+     * Output only. Effective timeout (in seconds) for TCP connections that are in TIME_WAIT
+     * state. This value is equal to tcp_time_wait_timeout_sec.
+     * If tcp_time_wait_timeout_sec isn't set, the effective timeout is 30s or
+     * 120s. The field is output only.
+     */
+    effectiveTcpTimeWaitTimeoutSec?: number | null;
+    /**
      * Enable Dynamic Port Allocation.
      *
      *
@@ -29443,6 +30204,10 @@ export namespace compute_beta {
     advertisedRoutes?: Schema$Route[];
     bfdStatus?: Schema$BfdStatus;
     /**
+     * Output only. [Output Only] Indicates whether the BGP peer is in a depreferenced state.
+     */
+    depreferenced?: boolean | null;
+    /**
      * Output only. Enable IPv4 traffic over BGP Peer.
      * It is enabled by default if the peerIpAddress is version 4.
      */
@@ -29834,10 +30599,9 @@ export namespace compute_beta {
      */
     preemptible?: boolean | null;
     /**
-     * Specifies the Metadata Service preemption notice duration before the  GCE ACPI G2 Soft
-     *  Off signal is triggered for Spot
-     *  VMs only. If not specified, there will be no wait before the G2 Soft
-     *  Off signal is triggered.
+     * Specifies the Metadata Service preemption notice duration before the GCE ACPI G2
+     * Soft Off signal is triggered for Spot VMs only. If not specified,
+     * there will be no wait before the G2 Soft Off signal is triggered.
      */
     preemptionNoticeDuration?: Schema$Duration;
     /**
@@ -30812,10 +31576,13 @@ export namespace compute_beta {
      *    which is resolved based on "userIpRequestHeaders" configured with the
      *    security policy. If there is no "userIpRequestHeaders" configuration or
      *    an IP address cannot be resolved from it, the key type defaults toIP.
+     *    - ASN: The autonomous system number of the originating
+     *    client. If not available, the key type defaults toALL.
+     *    - TLS_JA4_FINGERPRINT: JA4 TLS/SSL fingerprint if the
+     *    client connects using HTTPS, HTTP/2 or HTTP/3. If not available, the
+     *    key type defaults to ALL.
      *
-     * - TLS_JA4_FINGERPRINT: JA4 TLS/SSL fingerprint if the
-     * client connects using HTTPS, HTTP/2 or HTTP/3. If not available, the
-     * key type defaults to ALL.
+     *
      * For "fairshare" action, this value is limited to ALL i.e. a single rate
      * limit threshold is enforced for all the requests matching the rule.
      */
@@ -30905,10 +31672,11 @@ export namespace compute_beta {
      *    which is resolved based on "userIpRequestHeaders" configured with the
      *    security policy. If there is no "userIpRequestHeaders" configuration
      *    or an IP address cannot be resolved from it, the key type defaults toIP.
-     *
-     * - TLS_JA4_FINGERPRINT: JA4 TLS/SSL fingerprint if the
-     * client connects using HTTPS, HTTP/2 or HTTP/3. If not available, the
-     * key type defaults to ALL.
+     *    - ASN: The autonomous system number of the originating
+     *    client. If not available, the key type defaults toALL.
+     *    - TLS_JA4_FINGERPRINT: JA4 TLS/SSL fingerprint if the
+     *    client connects using HTTPS, HTTP/2 or HTTP/3. If not available, the
+     *    key type defaults to ALL.
      */
     enforceOnKeyType?: string | null;
   }
@@ -31163,6 +31931,11 @@ export namespace compute_beta {
      * cannot be a dash.
      */
     name?: string | null;
+    /**
+     * The number of NAT IP addresses to be allocated per connected endpoint.
+     * If not specified, the default value is 1.
+     */
+    natIpsPerEndpoint?: number | null;
     /**
      * An array of URLs where each entry is the URL of a subnet provided
      * by the service producer to use for NAT in this service attachment.
@@ -31434,6 +32207,13 @@ export namespace compute_beta {
    */
   export interface Schema$ShareSettings {
     /**
+     * A map of folder id and folder config to specify consumer projects for this
+     * shared-reservation. This is only valid when share_type's value is
+     * DIRECT_PROJECTS_UNDER_SPECIFIC_FOLDERS.
+     * Folder id should be a string of number, and without "folders/" prefix.
+     */
+    folderMap?: {[key: string]: Schema$ShareSettingsFolderConfig} | null;
+    /**
      * A map of project id and project config. This is only valid when
      * share_type's value is SPECIFIC_PROJECTS.
      */
@@ -31448,6 +32228,17 @@ export namespace compute_beta {
      * Type of sharing for this shared-reservation
      */
     shareType?: string | null;
+  }
+  /**
+   * Config for each folder in the share settings.
+   */
+  export interface Schema$ShareSettingsFolderConfig {
+    /**
+     * The folder ID, should be same as the key of this folder config in the
+     * parent map.
+     * Folder id should be a string of number, and without "folders/" prefix.
+     */
+    folderId?: string | null;
   }
   /**
    * Config for each project in the share settings.
@@ -31851,11 +32642,13 @@ export namespace compute_beta {
      */
     storageBytes?: string | null;
     /**
-     * Output only. [Output Only] An indicator whether storageBytes is in a
+     * Output only. [Deprecated] Instead, check the storageBytes field. After
+     * snapshot creation, the storageBytesStatus field is alwaysUP_TO_DATE.
+     * [Output Only] An indicator whether storageBytes is in a
      * stable state or it is being adjusted as a result of shared storage
-     * reallocation. This status can either be UPDATING, meaning
-     * the size of the snapshot is being updated, or UP_TO_DATE,
-     * meaning the size of the snapshot is up-to-date.
+     * reallocation. This status can either be unset, meaning the snapshot is
+     * being created, or UP_TO_DATE, meaning the size of the snapshot
+     * is up-to-date.
      */
     storageBytesStatus?: string | null;
     /**
@@ -32749,10 +33542,6 @@ export namespace compute_beta {
     }> | null;
   }
   export interface Schema$SslPolicyReference {
-    /**
-     * URL of the SSL policy resource. Set this to empty string to clear any
-     * existing SSL policy associated with the target proxy resource.
-     */
     sslPolicy?: string | null;
   }
   export interface Schema$StatefulPolicy {
@@ -32852,7 +33641,7 @@ export namespace compute_beta {
      */
     description?: string | null;
     /**
-     * Output only. [Output Only] Provisioned capacities for each SKU for this Exapool in GiB
+     * Provisioned capacities for each SKU for this Exapool in GiB
      */
     exapoolProvisionedCapacityGb?: Schema$StoragePoolExapoolProvisionedCapacityGb;
     /**
@@ -32929,6 +33718,10 @@ export namespace compute_beta {
      * Output only. [Output Only] Server-defined URL for this resource's resource id.
      */
     selfLinkWithId?: string | null;
+    /**
+     * Share settings for the storage pool.
+     */
+    shareSettings?: Schema$StoragePoolShareSettings;
     /**
      * Output only. [Output Only] The status of storage pool creation.
      *
@@ -33232,6 +34025,27 @@ export namespace compute_beta {
      * pool's throughput capacity.
      */
     totalProvisionedDiskThroughput?: string | null;
+  }
+  /**
+   * Share settings for the storage pool.
+   */
+  export interface Schema$StoragePoolShareSettings {
+    /**
+     * A map of project id and project config.
+     */
+    projectMap?: {
+      [key: string]: Schema$StoragePoolShareSettingsProjectConfig;
+    } | null;
+  }
+  /**
+   * Config for each project in the share settings.
+   */
+  export interface Schema$StoragePoolShareSettingsProjectConfig {
+    /**
+     * The project ID, should be same as the key of this project config in the
+     * parent map.
+     */
+    projectId?: string | null;
   }
   export interface Schema$StoragePoolsScopedList {
     /**
@@ -33547,6 +34361,13 @@ export namespace compute_beta {
      *    IPv6 range from Google IP Pool directly.
      */
     ipv6GceEndpoint?: string | null;
+    /**
+     * Specifies the network tier for EXTERNAL IPv6. Can only be set when
+     * ipv6_access_type is EXTERNAL. Defaults to project defaultNetworkTier if not
+     * specified during the creation of the subnetwork. This field is IMMUTABLE
+     * once set with EXTERNAL IPv6.
+     */
+    ipv6NetworkTier?: string | null;
     /**
      * Output only. [Output Only] Type of the resource. Always compute#subnetwork
      * for Subnetwork resources.
@@ -35707,6 +36528,20 @@ export namespace compute_beta {
      */
     permissions?: string[] | null;
   }
+  /**
+   * Represents a time zone from the
+   * [IANA Time Zone Database](https://www.iana.org/time-zones).
+   */
+  export interface Schema$TimeZone {
+    /**
+     * IANA Time Zone Database time zone. For example "America/New_York".
+     */
+    id?: string | null;
+    /**
+     * Optional. IANA Time Zone Database version number. For example "2019a".
+     */
+    version?: string | null;
+  }
   export interface Schema$Uint128 {
     high?: string | null;
     low?: string | null;
@@ -36230,6 +37065,10 @@ export namespace compute_beta {
      * Only one of path_prefix_rewrite orpath_template_rewrite may be specified.
      */
     pathTemplateRewrite?: string | null;
+    /**
+     * The regex rewrite to be applied to the URL. Only one ofpathPrefixRewrite, pathTemplateRewrite, orregexRewrite may be specified.
+     */
+    regexRewrite?: Schema$RegexRewrite;
   }
   /**
    * Subnetwork which the current user has compute.subnetworks.use permission on.
@@ -37840,6 +38679,7 @@ export namespace compute_beta {
      * [Output Only] Full URL reference to the region which hosts the zone.
      */
     region?: string | null;
+    resourceStatus?: Schema$ZoneResourceStatus;
     /**
      * [Output Only] Server-defined URL for the resource.
      */
@@ -37889,6 +38729,12 @@ export namespace compute_beta {
       data?: Array<{key?: string; value?: string}>;
       message?: string;
     } | null;
+  }
+  export interface Schema$ZoneResourceStatus {
+    /**
+     * Output only. [Output Only] The upcoming maintenance schedule.
+     */
+    upcomingMaintenances?: Schema$PeriodicPartialMaintenanceSchedule[];
   }
   export interface Schema$ZoneSetLabelsRequest {
     /**
@@ -39028,8 +39874,7 @@ export namespace compute_beta {
     aggregatedList(
       params: Params$Resource$Addresses$Aggregatedlist,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$AddressAggregatedList>,
+        MethodOptions | BodyResponseCallback<Schema$AddressAggregatedList>,
       callback: BodyResponseCallback<Schema$AddressAggregatedList>
     ): void;
     aggregatedList(
@@ -39234,8 +40079,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -39399,8 +40243,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Address>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Address>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Address> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Address>>
@@ -39610,8 +40453,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -40040,8 +40882,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -40234,8 +41075,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -40370,8 +41210,7 @@ export namespace compute_beta {
     testIamPermissions(
       params: Params$Resource$Addresses$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -40927,8 +41766,7 @@ export namespace compute_beta {
     calendarMode(
       params: Params$Resource$Advice$Calendarmode,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$CalendarModeAdviceResponse>,
+        MethodOptions | BodyResponseCallback<Schema$CalendarModeAdviceResponse>,
       callback: BodyResponseCallback<Schema$CalendarModeAdviceResponse>
     ): void;
     calendarMode(
@@ -41087,8 +41925,7 @@ export namespace compute_beta {
     capacity(
       params: Params$Resource$Advice$Capacity,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$CapacityAdviceResponse>,
+        MethodOptions | BodyResponseCallback<Schema$CapacityAdviceResponse>,
       callback: BodyResponseCallback<Schema$CapacityAdviceResponse>
     ): void;
     capacity(
@@ -41246,8 +42083,7 @@ export namespace compute_beta {
     capacityHistory(
       params: Params$Resource$Advice$Capacityhistory,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$CapacityHistoryResponse>,
+        MethodOptions | BodyResponseCallback<Schema$CapacityHistoryResponse>,
       callback: BodyResponseCallback<Schema$CapacityHistoryResponse>
     ): void;
     capacityHistory(
@@ -41553,8 +42389,7 @@ export namespace compute_beta {
     aggregatedList(
       params: Params$Resource$Autoscalers$Aggregatedlist,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$AutoscalerAggregatedList>,
+        MethodOptions | BodyResponseCallback<Schema$AutoscalerAggregatedList>,
       callback: BodyResponseCallback<Schema$AutoscalerAggregatedList>
     ): void;
     aggregatedList(
@@ -41760,8 +42595,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -41919,8 +42753,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Autoscaler>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Autoscaler>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Autoscaler> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Autoscaler>>
@@ -42123,8 +42956,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -42569,8 +43401,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -42705,8 +43536,7 @@ export namespace compute_beta {
     testIamPermissions(
       params: Params$Resource$Autoscalers$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -42934,8 +43764,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -43527,8 +44356,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -43964,8 +44792,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -44151,8 +44978,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -44460,8 +45286,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -44665,8 +45490,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -45116,8 +45940,7 @@ export namespace compute_beta {
     listUsable(
       params: Params$Resource$Backendbuckets$Listusable,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$BackendBucketListUsable>,
+        MethodOptions | BodyResponseCallback<Schema$BackendBucketListUsable>,
       callback: BodyResponseCallback<Schema$BackendBucketListUsable>
     ): void;
     listUsable(
@@ -45347,8 +46170,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -45541,8 +46363,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -45698,8 +46519,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -45832,8 +46652,7 @@ export namespace compute_beta {
     testIamPermissions(
       params: Params$Resource$Backendbuckets$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -46061,8 +46880,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -46854,8 +47672,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -47294,8 +48111,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -47481,8 +48297,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -47975,8 +48790,7 @@ export namespace compute_beta {
     getHealth(
       params: Params$Resource$Backendservices$Gethealth,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$BackendServiceGroupHealth>,
+        MethodOptions | BodyResponseCallback<Schema$BackendServiceGroupHealth>,
       callback: BodyResponseCallback<Schema$BackendServiceGroupHealth>
     ): void;
     getHealth(
@@ -48147,8 +48961,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -48390,8 +49203,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -48676,7 +49488,10 @@ export namespace compute_beta {
     }
 
     /**
-     * Retrieves a list of all usable backend services in the specified project.
+     * Retrieves a list of all usable backend services for Application Load
+     * Balancers and Proxy Network Load Balancers in the specified project.
+     * Backend services for external and internal passthrough Network Load
+     * Balancers are not included in the response.
      * @example
      * ```js
      * // Before running the sample:
@@ -48843,8 +49658,7 @@ export namespace compute_beta {
     listUsable(
       params: Params$Resource$Backendservices$Listusable,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$BackendServiceListUsable>,
+        MethodOptions | BodyResponseCallback<Schema$BackendServiceListUsable>,
       callback: BodyResponseCallback<Schema$BackendServiceListUsable>
     ): void;
     listUsable(
@@ -49112,8 +49926,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -49306,8 +50119,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -49463,8 +50275,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -49657,8 +50468,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -49791,8 +50601,7 @@ export namespace compute_beta {
     testIamPermissions(
       params: Params$Resource$Backendservices$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -50058,8 +50867,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -50898,8 +51706,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -51245,8 +52052,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -51464,8 +52270,7 @@ export namespace compute_beta {
     list(
       params: Params$Resource$Crosssitenetworks$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$CrossSiteNetworkList>,
+        MethodOptions | BodyResponseCallback<Schema$CrossSiteNetworkList>,
       callback: BodyResponseCallback<Schema$CrossSiteNetworkList>
     ): void;
     list(
@@ -51688,8 +52493,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -52104,8 +52908,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -52548,8 +53351,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -52741,8 +53543,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -52980,8 +53781,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -53169,8 +53969,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -53372,8 +54171,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Disk>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Disk>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Disk> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Disk>>
@@ -53523,8 +54321,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -53778,8 +54575,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -54014,8 +54810,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$DiskList>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$DiskList>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$DiskList> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$DiskList>>
@@ -54207,8 +55002,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -54401,8 +55195,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -54559,8 +55352,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -54754,8 +55546,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -54949,8 +55740,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -55137,8 +55927,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -55332,8 +56121,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -55468,8 +56256,7 @@ export namespace compute_beta {
     testIamPermissions(
       params: Params$Resource$Disks$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -55747,8 +56534,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -55940,8 +56726,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -57067,8 +57852,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -57352,8 +58136,7 @@ export namespace compute_beta {
     aggregatedList(
       params: Params$Resource$Disktypes$Aggregatedlist,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$DiskTypeAggregatedList>,
+        MethodOptions | BodyResponseCallback<Schema$DiskTypeAggregatedList>,
       callback: BodyResponseCallback<Schema$DiskTypeAggregatedList>
     ): void;
     aggregatedList(
@@ -57529,8 +58312,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$DiskType>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$DiskType>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$DiskType> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$DiskType>>
@@ -58197,8 +58979,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -58552,8 +59333,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -58771,8 +59551,7 @@ export namespace compute_beta {
     list(
       params: Params$Resource$Externalvpngateways$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ExternalVpnGatewayList>,
+        MethodOptions | BodyResponseCallback<Schema$ExternalVpnGatewayList>,
       callback: BodyResponseCallback<Schema$ExternalVpnGatewayList>
     ): void;
     list(
@@ -58971,8 +59750,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -59105,8 +59883,7 @@ export namespace compute_beta {
     testIamPermissions(
       params: Params$Resource$Externalvpngateways$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -59529,8 +60306,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -59735,8 +60511,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -59939,8 +60714,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -60121,8 +60895,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -60301,8 +61074,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -60589,8 +61361,7 @@ export namespace compute_beta {
     getAssociation(
       params: Params$Resource$Firewallpolicies$Getassociation,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$FirewallPolicyAssociation>,
+        MethodOptions | BodyResponseCallback<Schema$FirewallPolicyAssociation>,
       callback: BodyResponseCallback<Schema$FirewallPolicyAssociation>
     ): void;
     getAssociation(
@@ -60758,8 +61529,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -61286,8 +62056,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -61861,8 +62630,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -62066,8 +62834,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -62274,8 +63041,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -62481,8 +63247,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -62663,8 +63428,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -62847,8 +63611,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -63030,8 +63793,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -63184,8 +63946,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -63315,8 +64076,7 @@ export namespace compute_beta {
     testIamPermissions(
       params: Params$Resource$Firewallpolicies$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -64074,8 +64834,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -64237,8 +64996,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Firewall>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Firewall>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Firewall> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Firewall>>
@@ -64446,8 +65204,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -64892,8 +65649,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -65025,8 +65781,7 @@ export namespace compute_beta {
     testIamPermissions(
       params: Params$Resource$Firewalls$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -65261,8 +66016,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -65953,8 +66707,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -66377,8 +67130,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -66854,8 +67606,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -67050,8 +67801,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -67244,8 +67994,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -67380,8 +68129,7 @@ export namespace compute_beta {
     testIamPermissions(
       params: Params$Resource$Forwardingrules$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -68286,8 +69034,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -68471,8 +69218,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -68864,8 +69610,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -69333,8 +70078,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -69895,8 +70639,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -70059,8 +70802,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Address>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Address>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Address> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Address>>
@@ -70269,8 +71011,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -70694,8 +71435,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -70873,8 +71613,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -71007,8 +71746,7 @@ export namespace compute_beta {
     testIamPermissions(
       params: Params$Resource$Globaladdresses$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -71448,8 +72186,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -71869,8 +72606,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -72342,8 +73078,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -72522,8 +73257,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -72714,8 +73448,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -72848,8 +73581,7 @@ export namespace compute_beta {
     testIamPermissions(
       params: Params$Resource$Globalforwardingrules$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -73335,8 +74067,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -73521,8 +74252,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -73715,8 +74445,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -73862,8 +74591,7 @@ export namespace compute_beta {
     get(
       params: Params$Resource$Globalnetworkendpointgroups$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$NetworkEndpointGroup>,
+        MethodOptions | BodyResponseCallback<Schema$NetworkEndpointGroup>,
       callback: BodyResponseCallback<Schema$NetworkEndpointGroup>
     ): void;
     get(
@@ -74106,8 +74834,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -74324,8 +75051,7 @@ export namespace compute_beta {
     list(
       params: Params$Resource$Globalnetworkendpointgroups$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$NetworkEndpointGroupList>,
+        MethodOptions | BodyResponseCallback<Schema$NetworkEndpointGroupList>,
       callback: BodyResponseCallback<Schema$NetworkEndpointGroupList>
     ): void;
     list(
@@ -75173,8 +75899,7 @@ export namespace compute_beta {
     aggregatedList(
       params: Params$Resource$Globaloperations$Aggregatedlist,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$OperationAggregatedList>,
+        MethodOptions | BodyResponseCallback<Schema$OperationAggregatedList>,
       callback: BodyResponseCallback<Schema$OperationAggregatedList>
     ): void;
     aggregatedList(
@@ -75502,8 +76227,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -75923,8 +76647,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -76493,8 +77216,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -77043,8 +77765,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -77150,6 +77871,7 @@ export namespace compute_beta {
      *   //   "kind": "my_kind",
      *   //   "mode": "my_mode",
      *   //   "name": "my_name",
+     *   //   "networkTier": "my_networkTier",
      *   //   "parentPrefix": "my_parentPrefix",
      *   //   "publicDelegatedSubPrefixs": [],
      *   //   "purpose": "my_purpose",
@@ -77187,8 +77909,7 @@ export namespace compute_beta {
     get(
       params: Params$Resource$Globalpublicdelegatedprefixes$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$PublicDelegatedPrefix>,
+        MethodOptions | BodyResponseCallback<Schema$PublicDelegatedPrefix>,
       callback: BodyResponseCallback<Schema$PublicDelegatedPrefix>
     ): void;
     get(
@@ -77326,6 +78047,7 @@ export namespace compute_beta {
      *       //   "kind": "my_kind",
      *       //   "mode": "my_mode",
      *       //   "name": "my_name",
+     *       //   "networkTier": "my_networkTier",
      *       //   "parentPrefix": "my_parentPrefix",
      *       //   "publicDelegatedSubPrefixs": [],
      *       //   "purpose": "my_purpose",
@@ -77415,8 +78137,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -77632,8 +78353,7 @@ export namespace compute_beta {
     list(
       params: Params$Resource$Globalpublicdelegatedprefixes$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$PublicDelegatedPrefixList>,
+        MethodOptions | BodyResponseCallback<Schema$PublicDelegatedPrefixList>,
       callback: BodyResponseCallback<Schema$PublicDelegatedPrefixList>
     ): void;
     list(
@@ -77777,6 +78497,7 @@ export namespace compute_beta {
      *       //   "kind": "my_kind",
      *       //   "mode": "my_mode",
      *       //   "name": "my_name",
+     *       //   "networkTier": "my_networkTier",
      *       //   "parentPrefix": "my_parentPrefix",
      *       //   "publicDelegatedSubPrefixs": [],
      *       //   "purpose": "my_purpose",
@@ -77866,8 +78587,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -78533,8 +79253,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -78672,8 +79391,7 @@ export namespace compute_beta {
     get(
       params: Params$Resource$Globalvmextensionpolicies$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GlobalVmExtensionPolicy>,
+        MethodOptions | BodyResponseCallback<Schema$GlobalVmExtensionPolicy>,
       callback: BodyResponseCallback<Schema$GlobalVmExtensionPolicy>
     ): void;
     get(
@@ -78893,8 +79611,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -79337,8 +80054,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -79900,8 +80616,7 @@ export namespace compute_beta {
     aggregatedList(
       params: Params$Resource$Healthchecks$Aggregatedlist,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$HealthChecksAggregatedList>,
+        MethodOptions | BodyResponseCallback<Schema$HealthChecksAggregatedList>,
       callback: BodyResponseCallback<Schema$HealthChecksAggregatedList>
     ): void;
     aggregatedList(
@@ -80105,8 +80820,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -80478,8 +81192,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -80926,8 +81639,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -81060,8 +81772,7 @@ export namespace compute_beta {
     testIamPermissions(
       params: Params$Resource$Healthchecks$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -81294,8 +82005,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -81708,6 +82418,773 @@ export namespace compute_beta {
     requestBody?: Schema$HealthCheck;
   }
 
+  export class Resource$Hosts {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Retrieves information about the specified host.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.hosts.get({
+     *     // The parent resource association for the Host. This field specifies the
+     *     // hierarchical context (e.g., reservation, block, sub-block) when
+     *     // accessing the host. For example, reservations/reservation_name,
+     *     // reservations/reservation_name/reservationBlocks/reservation_block_name or
+     *     // reservations/reservation_name/reservationBlocks/reservation_block_name/reservationSubBlocks/reservation_sub_block_name.
+     *     association: 'placeholder-value',
+     *     // The name of the host, formatted as RFC1035 or a resource ID
+     *     // number.
+     *     host: 'placeholder-value',
+     *     // The project ID for this request.
+     *     project: 'placeholder-value',
+     *     // The name of the zone for this request, formatted as RFC1035.
+     *     zone: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "aliasLinks": [],
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "selfLinkWithId": "my_selfLinkWithId",
+     *   //   "state": "my_state",
+     *   //   "status": {},
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Hosts$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Hosts$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Host>>;
+    get(
+      params: Params$Resource$Hosts$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Hosts$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Host>,
+      callback: BodyResponseCallback<Schema$Host>
+    ): void;
+    get(
+      params: Params$Resource$Hosts$Get,
+      callback: BodyResponseCallback<Schema$Host>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Host>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Hosts$Get
+        | BodyResponseCallback<Schema$Host>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Host>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Host> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Host>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Hosts$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Hosts$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/beta/projects/{project}/zones/{zone}/{association}/hosts/{host}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'zone', 'association', 'host'],
+        pathParams: ['association', 'host', 'project', 'zone'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Host>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Host>(parameters);
+      }
+    }
+
+    /**
+     * Allows customers to get SBOM versions of a host.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.hosts.getVersion({
+     *     // The parent resource association for the Host. This field specifies the
+     *     // hierarchical context (e.g., reservation, block, sub-block) when
+     *     // accessing the host.
+     *     association: 'placeholder-value',
+     *     // The name of the host, formatted as RFC1035 or a resource ID
+     *     // number.
+     *     host: 'placeholder-value',
+     *     // Project ID for this request.
+     *     project: 'placeholder-value',
+     *     // An optional request ID to identify requests. Specify a unique request ID so
+     *     // that if you must retry your request, the server will know to ignore the
+     *     // request if it has already been completed.
+     *     requestId: 'placeholder-value',
+     *     // Name of the zone for this request. Zone name should conform to RFC1035.
+     *     zone: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "sbomSelections": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientOperationId": "my_clientOperationId",
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
+     *   //   "httpErrorMessage": "my_httpErrorMessage",
+     *   //   "httpErrorStatusCode": 0,
+     *   //   "id": "my_id",
+     *   //   "insertTime": "my_insertTime",
+     *   //   "instancesBulkInsertOperationMetadata": {},
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationGroupId": "my_operationGroupId",
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": 0,
+     *   //   "region": "my_region",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "setCommonInstanceMetadataOperationMetadata": {},
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "user": "my_user",
+     *   //   "warnings": [],
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getVersion(
+      params: Params$Resource$Hosts$Getversion,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    getVersion(
+      params?: Params$Resource$Hosts$Getversion,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    getVersion(
+      params: Params$Resource$Hosts$Getversion,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getVersion(
+      params: Params$Resource$Hosts$Getversion,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    getVersion(
+      params: Params$Resource$Hosts$Getversion,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    getVersion(callback: BodyResponseCallback<Schema$Operation>): void;
+    getVersion(
+      paramsOrCallback?:
+        | Params$Resource$Hosts$Getversion
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Hosts$Getversion;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Hosts$Getversion;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/beta/projects/{project}/zones/{zone}/{association}/hosts/{host}/getVersion'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'zone', 'association', 'host'],
+        pathParams: ['association', 'host', 'project', 'zone'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Retrieves a list of hosts.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.hosts.list({
+     *     // The parent resource association for the Host. This field specifies the
+     *     // hierarchical context (e.g., reservation, block, sub-block) when
+     *     // accessing the host. For example, reservations/reservation_name,
+     *     // reservations/reservation_name/reservationBlocks/reservation_block_name or
+     *     // reservations/reservation_name/reservationBlocks/reservation_block_name/reservationSubBlocks/reservation_sub_block_name.
+     *     association: 'placeholder-value',
+     *     // A filter expression that filters resources listed in the response. Most
+     *     // Compute resources support two types of filter expressions:
+     *     // expressions that support regular expressions and expressions that follow
+     *     // API improvement proposal AIP-160.
+     *     // These two types of filter expressions cannot be mixed in one request.
+     *     //
+     *     // If you want to use AIP-160, your expression must specify the field name, an
+     *     // operator, and the value that you want to use for filtering. The value
+     *     // must be a string, a number, or a boolean. The operator
+     *     // must be either `=`, `!=`, `\>`, `<`, `<=`, `\>=` or `:`.
+     *     //
+     *     // For example, if you are filtering Compute Engine instances, you can
+     *     // exclude instances named `example-instance` by specifying
+     *     // `name != example-instance`.
+     *     //
+     *     // The `:*` comparison can be used to test whether a key has been defined.
+     *     // For example, to find all objects with `owner` label use:
+     *     // ```
+     *     // labels.owner:*
+     *     // ```
+     *     //
+     *     // You can also filter nested fields. For example, you could specify
+     *     // `scheduling.automaticRestart = false` to include instances only
+     *     // if they are not scheduled for automatic restarts. You can use filtering
+     *     // on nested fields to filter based onresource labels.
+     *     //
+     *     // To filter on multiple expressions, provide each separate expression within
+     *     // parentheses. For example:
+     *     // ```
+     *     // (scheduling.automaticRestart = true)
+     *     // (cpuPlatform = "Intel Skylake")
+     *     // ```
+     *     // By default, each expression is an `AND` expression. However, you
+     *     // can include `AND` and `OR` expressions explicitly.
+     *     // For example:
+     *     // ```
+     *     // (cpuPlatform = "Intel Skylake") OR
+     *     // (cpuPlatform = "Intel Broadwell") AND
+     *     // (scheduling.automaticRestart = true)
+     *     // ```
+     *     //
+     *     // If you want to use a regular expression, use the `eq` (equal) or `ne`
+     *     // (not equal) operator against a single un-parenthesized expression with or
+     *     // without quotes or against multiple parenthesized expressions. Examples:
+     *     //
+     *     // `fieldname eq unquoted literal`
+     *     // `fieldname eq 'single quoted literal'`
+     *     // `fieldname eq "double quoted literal"`
+     *     // `(fieldname1 eq literal) (fieldname2 ne "literal")`
+     *     //
+     *     // The literal value is interpreted as a regular expression using GoogleRE2 library syntax.
+     *     // The literal value must match the entire field.
+     *     //
+     *     // For example, to filter for instances that do not end with name "instance",
+     *     // you would use `name ne .*instance`.
+     *     //
+     *     // You cannot combine constraints on multiple fields using regular
+     *     // expressions.
+     *     filter: 'placeholder-value',
+     *     // The maximum number of results per page that should be returned.
+     *     // If the number of available results is larger than `maxResults`,
+     *     // Compute Engine returns a `nextPageToken` that can be used to get
+     *     // the next page of results in subsequent list requests. Acceptable values are
+     *     // `0` to `500`, inclusive. (Default: `500`)
+     *     maxResults: 'placeholder-value',
+     *     // Sorts list results by a certain order. By default, results
+     *     // are returned in alphanumerical order based on the resource name.
+     *     //
+     *     // You can also sort results in descending order based on the creation
+     *     // timestamp using `orderBy="creationTimestamp desc"`. This sorts
+     *     // results based on the `creationTimestamp` field in
+     *     // reverse chronological order (newest result first). Use this to sort
+     *     // resources like operations so that the newest operation is returned first.
+     *     //
+     *     // Currently, only sorting by `name` or
+     *     // `creationTimestamp desc` is supported.
+     *     orderBy: 'placeholder-value',
+     *     // Specifies a page token to use. Set `pageToken` to the
+     *     // `nextPageToken` returned by a previous list request to get
+     *     // the next page of results.
+     *     pageToken: 'placeholder-value',
+     *     // The project ID for this request.
+     *     project: 'placeholder-value',
+     *     // Opt-in for partial success behavior which provides partial results in case
+     *     // of failure. The default value is false.
+     *     //
+     *     // For example, when partial success behavior is enabled, aggregatedList for a
+     *     // single zone scope either returns all resources in the zone or no resources,
+     *     // with an error code.
+     *     returnPartialSuccess: 'placeholder-value',
+     *     // The name of the zone for this request, formatted as RFC1035.
+     *     zone: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "unreachables": [],
+     *   //   "warning": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Hosts$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Hosts$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$HostsListResponse>>;
+    list(
+      params: Params$Resource$Hosts$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Hosts$List,
+      options: MethodOptions | BodyResponseCallback<Schema$HostsListResponse>,
+      callback: BodyResponseCallback<Schema$HostsListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Hosts$List,
+      callback: BodyResponseCallback<Schema$HostsListResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$HostsListResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Hosts$List
+        | BodyResponseCallback<Schema$HostsListResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$HostsListResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$HostsListResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$HostsListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Hosts$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Hosts$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/beta/projects/{project}/zones/{zone}/{association}/hosts'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'zone', 'association'],
+        pathParams: ['association', 'project', 'zone'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$HostsListResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$HostsListResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Hosts$Get extends StandardParameters {
+    /**
+     * The parent resource association for the Host. This field specifies the
+     * hierarchical context (e.g., reservation, block, sub-block) when
+     * accessing the host. For example, reservations/reservation_name,
+     * reservations/reservation_name/reservationBlocks/reservation_block_name or
+     * reservations/reservation_name/reservationBlocks/reservation_block_name/reservationSubBlocks/reservation_sub_block_name.
+     */
+    association?: string;
+    /**
+     * The name of the host, formatted as RFC1035 or a resource ID
+     * number.
+     */
+    host?: string;
+    /**
+     * The project ID for this request.
+     */
+    project?: string;
+    /**
+     * The name of the zone for this request, formatted as RFC1035.
+     */
+    zone?: string;
+  }
+  export interface Params$Resource$Hosts$Getversion extends StandardParameters {
+    /**
+     * The parent resource association for the Host. This field specifies the
+     * hierarchical context (e.g., reservation, block, sub-block) when
+     * accessing the host.
+     */
+    association?: string;
+    /**
+     * The name of the host, formatted as RFC1035 or a resource ID
+     * number.
+     */
+    host?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID so
+     * that if you must retry your request, the server will know to ignore the
+     * request if it has already been completed.
+     */
+    requestId?: string;
+    /**
+     * Name of the zone for this request. Zone name should conform to RFC1035.
+     */
+    zone?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$HostsGetVersionRequest;
+  }
+  export interface Params$Resource$Hosts$List extends StandardParameters {
+    /**
+     * The parent resource association for the Host. This field specifies the
+     * hierarchical context (e.g., reservation, block, sub-block) when
+     * accessing the host. For example, reservations/reservation_name,
+     * reservations/reservation_name/reservationBlocks/reservation_block_name or
+     * reservations/reservation_name/reservationBlocks/reservation_block_name/reservationSubBlocks/reservation_sub_block_name.
+     */
+    association?: string;
+    /**
+     * A filter expression that filters resources listed in the response. Most
+     * Compute resources support two types of filter expressions:
+     * expressions that support regular expressions and expressions that follow
+     * API improvement proposal AIP-160.
+     * These two types of filter expressions cannot be mixed in one request.
+     *
+     * If you want to use AIP-160, your expression must specify the field name, an
+     * operator, and the value that you want to use for filtering. The value
+     * must be a string, a number, or a boolean. The operator
+     * must be either `=`, `!=`, `\>`, `<`, `<=`, `\>=` or `:`.
+     *
+     * For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named `example-instance` by specifying
+     * `name != example-instance`.
+     *
+     * The `:*` comparison can be used to test whether a key has been defined.
+     * For example, to find all objects with `owner` label use:
+     * ```
+     * labels.owner:*
+     * ```
+     *
+     * You can also filter nested fields. For example, you could specify
+     * `scheduling.automaticRestart = false` to include instances only
+     * if they are not scheduled for automatic restarts. You can use filtering
+     * on nested fields to filter based onresource labels.
+     *
+     * To filter on multiple expressions, provide each separate expression within
+     * parentheses. For example:
+     * ```
+     * (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake")
+     * ```
+     * By default, each expression is an `AND` expression. However, you
+     * can include `AND` and `OR` expressions explicitly.
+     * For example:
+     * ```
+     * (cpuPlatform = "Intel Skylake") OR
+     * (cpuPlatform = "Intel Broadwell") AND
+     * (scheduling.automaticRestart = true)
+     * ```
+     *
+     * If you want to use a regular expression, use the `eq` (equal) or `ne`
+     * (not equal) operator against a single un-parenthesized expression with or
+     * without quotes or against multiple parenthesized expressions. Examples:
+     *
+     * `fieldname eq unquoted literal`
+     * `fieldname eq 'single quoted literal'`
+     * `fieldname eq "double quoted literal"`
+     * `(fieldname1 eq literal) (fieldname2 ne "literal")`
+     *
+     * The literal value is interpreted as a regular expression using GoogleRE2 library syntax.
+     * The literal value must match the entire field.
+     *
+     * For example, to filter for instances that do not end with name "instance",
+     * you would use `name ne .*instance`.
+     *
+     * You cannot combine constraints on multiple fields using regular
+     * expressions.
+     */
+    filter?: string;
+    /**
+     * The maximum number of results per page that should be returned.
+     * If the number of available results is larger than `maxResults`,
+     * Compute Engine returns a `nextPageToken` that can be used to get
+     * the next page of results in subsequent list requests. Acceptable values are
+     * `0` to `500`, inclusive. (Default: `500`)
+     */
+    maxResults?: number;
+    /**
+     * Sorts list results by a certain order. By default, results
+     * are returned in alphanumerical order based on the resource name.
+     *
+     * You can also sort results in descending order based on the creation
+     * timestamp using `orderBy="creationTimestamp desc"`. This sorts
+     * results based on the `creationTimestamp` field in
+     * reverse chronological order (newest result first). Use this to sort
+     * resources like operations so that the newest operation is returned first.
+     *
+     * Currently, only sorting by `name` or
+     * `creationTimestamp desc` is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set `pageToken` to the
+     * `nextPageToken` returned by a previous list request to get
+     * the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * The project ID for this request.
+     */
+    project?: string;
+    /**
+     * Opt-in for partial success behavior which provides partial results in case
+     * of failure. The default value is false.
+     *
+     * For example, when partial success behavior is enabled, aggregatedList for a
+     * single zone scope either returns all resources in the zone or no resources,
+     * with an error code.
+     */
+    returnPartialSuccess?: boolean;
+    /**
+     * The name of the zone for this request, formatted as RFC1035.
+     */
+    zone?: string;
+  }
+
   export class Resource$Httphealthchecks {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -81848,8 +83325,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -82206,8 +83682,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -82648,8 +84123,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -82782,8 +84256,7 @@ export namespace compute_beta {
     testIamPermissions(
       params: Params$Resource$Httphealthchecks$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -83008,8 +84481,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -83443,8 +84915,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -83801,8 +85272,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -84019,8 +85489,7 @@ export namespace compute_beta {
     list(
       params: Params$Resource$Httpshealthchecks$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$HttpsHealthCheckList>,
+        MethodOptions | BodyResponseCallback<Schema$HttpsHealthCheckList>,
       callback: BodyResponseCallback<Schema$HttpsHealthCheckList>
     ): void;
     list(
@@ -84245,8 +85714,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -84379,8 +85847,7 @@ export namespace compute_beta {
     testIamPermissions(
       params: Params$Resource$Httpshealthchecks$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -84605,8 +86072,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -85209,8 +86675,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -85405,8 +86870,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -85584,8 +87048,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Image>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Image>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Image> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Image>>
@@ -85765,8 +87228,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Image>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Image>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Image> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Image>>
@@ -85915,8 +87377,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -86143,8 +87604,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -86384,8 +87844,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$ImageList>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$ImageList>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$ImageList> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$ImageList>>
@@ -86611,8 +88070,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -86766,8 +88224,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -86945,8 +88402,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -87078,8 +88534,7 @@ export namespace compute_beta {
     testIamPermissions(
       params: Params$Resource$Images$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -87458,6 +88913,173 @@ export namespace compute_beta {
     requestBody?: Schema$TestPermissionsRequest;
   }
 
+  export class Resource$Imageviews {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Returns the specified global ImageView resource, with a regional
+     * context.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.imageViews.get({
+     *     // Required. Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // Required. Name of the region for this request.
+     *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *     // Name of the image resource to return.
+     *     resourceId: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "image": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Imageviews$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Imageviews$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ImageView>>;
+    get(
+      params: Params$Resource$Imageviews$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Imageviews$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$ImageView>,
+      callback: BodyResponseCallback<Schema$ImageView>
+    ): void;
+    get(
+      params: Params$Resource$Imageviews$Get,
+      callback: BodyResponseCallback<Schema$ImageView>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$ImageView>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Imageviews$Get
+        | BodyResponseCallback<Schema$ImageView>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ImageView>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$ImageView> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ImageView>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Imageviews$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Imageviews$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/beta/projects/{project}/regions/{region}/imageViews/{resourceId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region', 'resourceId'],
+        pathParams: ['project', 'region', 'resourceId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ImageView>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ImageView>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Imageviews$Get extends StandardParameters {
+    /**
+     * Required. Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Required. Name of the region for this request.
+     */
+    region?: string;
+    /**
+     * Name of the image resource to return.
+     */
+    resourceId?: string;
+  }
+
   export class Resource$Instancegroupmanagerresizerequests {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -87608,8 +89230,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -87811,8 +89432,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -88219,8 +89839,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -88934,8 +90553,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -89292,6 +90910,7 @@ export namespace compute_beta {
      *       // request body parameters
      *       // {
      *       //   "allInstances": false,
+     *       //   "allowedActions": [],
      *       //   "instances": [],
      *       //   "minimalAction": "my_minimalAction",
      *       //   "mostDisruptiveAllowedAction": "my_mostDisruptiveAllowedAction"
@@ -89380,8 +90999,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -89580,8 +91198,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -89779,8 +91396,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -89971,8 +91587,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -90183,8 +91798,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -90369,8 +91983,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -90535,8 +92148,7 @@ export namespace compute_beta {
     get(
       params: Params$Resource$Instancegroupmanagers$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$InstanceGroupManager>,
+        MethodOptions | BodyResponseCallback<Schema$InstanceGroupManager>,
       callback: BodyResponseCallback<Schema$InstanceGroupManager>
     ): void;
     get(
@@ -90955,8 +92567,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -91176,8 +92787,7 @@ export namespace compute_beta {
     list(
       params: Params$Resource$Instancegroupmanagers$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$InstanceGroupManagerList>,
+        MethodOptions | BodyResponseCallback<Schema$InstanceGroupManagerList>,
       callback: BodyResponseCallback<Schema$InstanceGroupManagerList>
     ): void;
     list(
@@ -92197,8 +93807,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -92397,8 +94006,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -92607,8 +94215,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -92819,8 +94426,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -93029,8 +94635,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -93238,8 +94843,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -93436,8 +95040,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -93633,8 +95236,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -93834,8 +95436,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -94043,8 +95644,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -94265,8 +95865,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -94484,8 +96083,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -94620,8 +96218,7 @@ export namespace compute_beta {
     testIamPermissions(
       params: Params$Resource$Instancegroupmanagers$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -94883,8 +96480,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -95083,8 +96679,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -96693,8 +98288,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -97136,8 +98730,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -97505,8 +99098,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -98205,8 +99797,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -98400,8 +99991,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -98536,8 +100126,7 @@ export namespace compute_beta {
     testIamPermissions(
       params: Params$Resource$Instancegroups$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -99323,8 +100912,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -99539,8 +101127,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -99734,8 +101321,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -99970,8 +101556,7 @@ export namespace compute_beta {
     aggregatedList(
       params: Params$Resource$Instances$Aggregatedlist,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$InstanceAggregatedList>,
+        MethodOptions | BodyResponseCallback<Schema$InstanceAggregatedList>,
       callback: BodyResponseCallback<Schema$InstanceAggregatedList>
     ): void;
     aggregatedList(
@@ -100209,8 +101794,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -100409,8 +101993,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -100597,8 +102180,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -100785,8 +102367,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -100985,8 +102566,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -101173,8 +102753,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -101293,6 +102872,7 @@ export namespace compute_beta {
      *   //   "lastStartTimestamp": "my_lastStartTimestamp",
      *   //   "lastStopTimestamp": "my_lastStopTimestamp",
      *   //   "lastSuspendedTimestamp": "my_lastSuspendedTimestamp",
+     *   //   "localSsdEncryptionMode": "my_localSsdEncryptionMode",
      *   //   "machineType": "my_machineType",
      *   //   "metadata": {},
      *   //   "minCpuPlatform": "my_minCpuPlatform",
@@ -101372,8 +102952,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Instance>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Instance>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Instance> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Instance>>
@@ -101840,8 +103419,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -102138,8 +103716,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Screenshot>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Screenshot>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Screenshot> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Screenshot>>
@@ -102442,8 +104019,7 @@ export namespace compute_beta {
     getShieldedInstanceIdentity(
       params: Params$Resource$Instances$Getshieldedinstanceidentity,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ShieldedInstanceIdentity>,
+        MethodOptions | BodyResponseCallback<Schema$ShieldedInstanceIdentity>,
       callback: BodyResponseCallback<Schema$ShieldedInstanceIdentity>
     ): void;
     getShieldedInstanceIdentity(
@@ -102764,6 +104340,7 @@ export namespace compute_beta {
      *       //   "lastStartTimestamp": "my_lastStartTimestamp",
      *       //   "lastStopTimestamp": "my_lastStopTimestamp",
      *       //   "lastSuspendedTimestamp": "my_lastSuspendedTimestamp",
+     *       //   "localSsdEncryptionMode": "my_localSsdEncryptionMode",
      *       //   "machineType": "my_machineType",
      *       //   "metadata": {},
      *       //   "minCpuPlatform": "my_minCpuPlatform",
@@ -102877,8 +104454,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -103341,8 +104917,7 @@ export namespace compute_beta {
     listReferrers(
       params: Params$Resource$Instances$Listreferrers,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$InstanceListReferrers>,
+        MethodOptions | BodyResponseCallback<Schema$InstanceListReferrers>,
       callback: BodyResponseCallback<Schema$InstanceListReferrers>
     ): void;
     listReferrers(
@@ -103559,8 +105134,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -103744,8 +105318,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -103939,8 +105512,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -104133,8 +105705,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -104320,8 +105891,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -104514,8 +106084,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -104840,8 +106409,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -105030,8 +106598,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -105195,8 +106762,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -105390,8 +106956,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -105584,8 +107149,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -105778,8 +107342,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -105974,8 +107537,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -106170,8 +107732,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -106364,8 +107925,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -106579,8 +108139,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -106776,8 +108335,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -106972,8 +108530,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -107170,8 +108727,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -107369,8 +108925,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -107564,8 +109119,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -107755,8 +109309,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -107942,8 +109495,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -108138,8 +109690,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -108334,8 +109885,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -108529,8 +110079,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -108665,8 +110214,7 @@ export namespace compute_beta {
     testIamPermissions(
       params: Params$Resource$Instances$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -108835,6 +110383,7 @@ export namespace compute_beta {
      *       //   "lastStartTimestamp": "my_lastStartTimestamp",
      *       //   "lastStopTimestamp": "my_lastStopTimestamp",
      *       //   "lastSuspendedTimestamp": "my_lastSuspendedTimestamp",
+     *       //   "localSsdEncryptionMode": "my_localSsdEncryptionMode",
      *       //   "machineType": "my_machineType",
      *       //   "metadata": {},
      *       //   "minCpuPlatform": "my_minCpuPlatform",
@@ -108948,8 +110497,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -109154,8 +110702,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -109350,8 +110897,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -109574,8 +111120,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -109774,8 +111319,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -109974,8 +111518,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -112382,8 +113925,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -112876,8 +114418,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -113181,8 +114722,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -113383,8 +114923,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -113603,8 +115142,7 @@ export namespace compute_beta {
     list(
       params: Params$Resource$Instancetemplates$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$InstanceTemplateList>,
+        MethodOptions | BodyResponseCallback<Schema$InstanceTemplateList>,
       callback: BodyResponseCallback<Schema$InstanceTemplateList>
     ): void;
     list(
@@ -113780,8 +115318,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -113914,8 +115451,7 @@ export namespace compute_beta {
     testIamPermissions(
       params: Params$Resource$Instancetemplates$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -114467,8 +116003,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -114606,8 +116141,7 @@ export namespace compute_beta {
     get(
       params: Params$Resource$Instantsnapshotgroups$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$InstantSnapshotGroup>,
+        MethodOptions | BodyResponseCallback<Schema$InstantSnapshotGroup>,
       callback: BodyResponseCallback<Schema$InstantSnapshotGroup>
     ): void;
     get(
@@ -114778,8 +116312,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -114982,8 +116515,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -115204,8 +116736,7 @@ export namespace compute_beta {
     list(
       params: Params$Resource$Instantsnapshotgroups$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListInstantSnapshotGroups>,
+        MethodOptions | BodyResponseCallback<Schema$ListInstantSnapshotGroups>,
       callback: BodyResponseCallback<Schema$ListInstantSnapshotGroups>
     ): void;
     list(
@@ -115385,8 +116916,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -115521,8 +117051,7 @@ export namespace compute_beta {
     testIamPermissions(
       params: Params$Resource$Instantsnapshotgroups$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -116242,8 +117771,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -116561,8 +118089,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -116773,8 +118300,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -117170,8 +118696,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -117366,8 +118891,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -117502,8 +119026,7 @@ export namespace compute_beta {
     testIamPermissions(
       params: Params$Resource$Instantsnapshots$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -118110,8 +119633,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -118421,8 +119943,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -118782,8 +120303,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -119238,8 +120758,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -119395,8 +120914,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -119530,8 +121048,7 @@ export namespace compute_beta {
     testIamPermissions(
       params: Params$Resource$Interconnectattachmentgroups$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -120266,8 +121783,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -120441,8 +121957,7 @@ export namespace compute_beta {
     get(
       params: Params$Resource$Interconnectattachments$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$InterconnectAttachment>,
+        MethodOptions | BodyResponseCallback<Schema$InterconnectAttachment>,
       callback: BodyResponseCallback<Schema$InterconnectAttachment>
     ): void;
     get(
@@ -120701,8 +122216,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -120921,8 +122435,7 @@ export namespace compute_beta {
     list(
       params: Params$Resource$Interconnectattachments$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$InterconnectAttachmentList>,
+        MethodOptions | BodyResponseCallback<Schema$InterconnectAttachmentList>,
       callback: BodyResponseCallback<Schema$InterconnectAttachmentList>
     ): void;
     list(
@@ -121186,8 +122699,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -121382,8 +122894,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -121518,8 +123029,7 @@ export namespace compute_beta {
     testIamPermissions(
       params: Params$Resource$Interconnectattachments$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -122122,8 +123632,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -122306,8 +123815,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -122610,8 +124118,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -122967,8 +124474,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -123417,8 +124923,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -123574,8 +125079,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -123708,8 +125212,7 @@ export namespace compute_beta {
     testIamPermissions(
       params: Params$Resource$Interconnectgroups$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -124158,8 +125661,7 @@ export namespace compute_beta {
     get(
       params: Params$Resource$Interconnectlocations$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$InterconnectLocation>,
+        MethodOptions | BodyResponseCallback<Schema$InterconnectLocation>,
       callback: BodyResponseCallback<Schema$InterconnectLocation>
     ): void;
     get(
@@ -124396,8 +125898,7 @@ export namespace compute_beta {
     list(
       params: Params$Resource$Interconnectlocations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$InterconnectLocationList>,
+        MethodOptions | BodyResponseCallback<Schema$InterconnectLocationList>,
       callback: BodyResponseCallback<Schema$InterconnectLocationList>
     ): void;
     list(
@@ -124686,8 +126187,7 @@ export namespace compute_beta {
     get(
       params: Params$Resource$Interconnectremotelocations$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$InterconnectRemoteLocation>,
+        MethodOptions | BodyResponseCallback<Schema$InterconnectRemoteLocation>,
       callback: BodyResponseCallback<Schema$InterconnectRemoteLocation>
     ): void;
     get(
@@ -125255,8 +126755,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -125981,8 +127480,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -126444,8 +127942,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -126624,8 +128121,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -126758,8 +128254,7 @@ export namespace compute_beta {
     testIamPermissions(
       params: Params$Resource$Interconnects$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -127354,8 +128849,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -127514,8 +129008,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -127651,8 +129144,7 @@ export namespace compute_beta {
     testIamPermissions(
       params: Params$Resource$Licensecodes$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -127921,8 +129413,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -128088,8 +129579,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$License>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$License>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$License> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$License>>
@@ -128240,8 +129730,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -128456,8 +129945,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -128678,8 +130166,7 @@ export namespace compute_beta {
     list(
       params: Params$Resource$Licenses$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$LicensesListResponse>,
+        MethodOptions | BodyResponseCallback<Schema$LicensesListResponse>,
       callback: BodyResponseCallback<Schema$LicensesListResponse>
     ): void;
     list(
@@ -128856,8 +130343,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -128993,8 +130479,7 @@ export namespace compute_beta {
     testIamPermissions(
       params: Params$Resource$Licenses$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -129232,8 +130717,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -129669,8 +131153,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -129983,8 +131466,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -130198,8 +131680,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -130589,8 +132070,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -130768,8 +132248,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -130902,8 +132381,7 @@ export namespace compute_beta {
     testIamPermissions(
       params: Params$Resource$Machineimages$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -131394,8 +132872,7 @@ export namespace compute_beta {
     aggregatedList(
       params: Params$Resource$Machinetypes$Aggregatedlist,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$MachineTypeAggregatedList>,
+        MethodOptions | BodyResponseCallback<Schema$MachineTypeAggregatedList>,
       callback: BodyResponseCallback<Schema$MachineTypeAggregatedList>
     ): void;
     aggregatedList(
@@ -132505,8 +133982,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -132817,8 +134293,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -133024,8 +134499,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -133243,8 +134717,7 @@ export namespace compute_beta {
     list(
       params: Params$Resource$Networkattachments$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$NetworkAttachmentList>,
+        MethodOptions | BodyResponseCallback<Schema$NetworkAttachmentList>,
       callback: BodyResponseCallback<Schema$NetworkAttachmentList>
     ): void;
     list(
@@ -133474,8 +134947,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -133633,8 +135105,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -133769,8 +135240,7 @@ export namespace compute_beta {
     testIamPermissions(
       params: Params$Resource$Networkattachments$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -134644,8 +136114,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -134782,8 +136251,7 @@ export namespace compute_beta {
     get(
       params: Params$Resource$Networkedgesecurityservices$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$NetworkEdgeSecurityService>,
+        MethodOptions | BodyResponseCallback<Schema$NetworkEdgeSecurityService>,
       callback: BodyResponseCallback<Schema$NetworkEdgeSecurityService>
     ): void;
     get(
@@ -135007,8 +136475,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -135214,8 +136681,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -135920,8 +137386,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -136111,8 +137576,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -136309,8 +137773,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -136459,8 +137922,7 @@ export namespace compute_beta {
     get(
       params: Params$Resource$Networkendpointgroups$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$NetworkEndpointGroup>,
+        MethodOptions | BodyResponseCallback<Schema$NetworkEndpointGroup>,
       callback: BodyResponseCallback<Schema$NetworkEndpointGroup>
     ): void;
     get(
@@ -136707,8 +138169,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -136928,8 +138389,7 @@ export namespace compute_beta {
     list(
       params: Params$Resource$Networkendpointgroups$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$NetworkEndpointGroupList>,
+        MethodOptions | BodyResponseCallback<Schema$NetworkEndpointGroupList>,
       callback: BodyResponseCallback<Schema$NetworkEndpointGroupList>
     ): void;
     list(
@@ -137344,8 +138804,7 @@ export namespace compute_beta {
     testIamPermissions(
       params: Params$Resource$Networkendpointgroups$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -138094,8 +139553,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -138309,8 +139767,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -138523,8 +139980,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -138970,8 +140426,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -139153,8 +140608,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -139447,8 +140901,7 @@ export namespace compute_beta {
     getAssociation(
       params: Params$Resource$Networkfirewallpolicies$Getassociation,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$FirewallPolicyAssociation>,
+        MethodOptions | BodyResponseCallback<Schema$FirewallPolicyAssociation>,
       callback: BodyResponseCallback<Schema$FirewallPolicyAssociation>
     ): void;
     getAssociation(
@@ -139619,8 +141072,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -140153,8 +141605,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -140595,8 +142046,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -140806,8 +142256,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -141016,8 +142465,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -141201,8 +142649,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -141389,8 +142836,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -141575,8 +143021,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -141732,8 +143177,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -141866,8 +143310,7 @@ export namespace compute_beta {
     testIamPermissions(
       params: Params$Resource$Networkfirewallpolicies$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -143320,8 +144763,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -143515,8 +144957,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -143698,8 +145139,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -143860,8 +145300,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Network>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Network>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Network> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Network>>
@@ -144224,8 +145663,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -144681,8 +146119,7 @@ export namespace compute_beta {
     listPeeringRoutes(
       params: Params$Resource$Networks$Listpeeringroutes,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ExchangedPeeringRoutesList>,
+        MethodOptions | BodyResponseCallback<Schema$ExchangedPeeringRoutesList>,
       callback: BodyResponseCallback<Schema$ExchangedPeeringRoutesList>
     ): void;
     listPeeringRoutes(
@@ -144914,8 +146351,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -145104,8 +146540,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -145298,8 +146733,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -145481,8 +146915,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -145615,8 +147048,7 @@ export namespace compute_beta {
     testIamPermissions(
       params: Params$Resource$Networks$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -145830,8 +147262,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -146556,8 +147987,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -146789,8 +148219,7 @@ export namespace compute_beta {
     aggregatedList(
       params: Params$Resource$Nodegroups$Aggregatedlist,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$NodeGroupAggregatedList>,
+        MethodOptions | BodyResponseCallback<Schema$NodeGroupAggregatedList>,
       callback: BodyResponseCallback<Schema$NodeGroupAggregatedList>
     ): void;
     aggregatedList(
@@ -146995,8 +148424,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -147188,8 +148616,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -147353,8 +148780,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$NodeGroup>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$NodeGroup>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$NodeGroup> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$NodeGroup>>
@@ -147504,8 +148930,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -147714,8 +149139,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -148399,8 +149823,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -148592,8 +150015,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -148751,8 +150173,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -148944,8 +150365,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -149140,8 +150560,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -149276,8 +150695,7 @@ export namespace compute_beta {
     testIamPermissions(
       params: Params$Resource$Nodegroups$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -150223,8 +151641,7 @@ export namespace compute_beta {
     aggregatedList(
       params: Params$Resource$Nodetemplates$Aggregatedlist,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$NodeTemplateAggregatedList>,
+        MethodOptions | BodyResponseCallback<Schema$NodeTemplateAggregatedList>,
       callback: BodyResponseCallback<Schema$NodeTemplateAggregatedList>
     ): void;
     aggregatedList(
@@ -150430,8 +151847,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -150743,8 +152159,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -150950,8 +152365,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -151347,8 +152761,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -151483,8 +152896,7 @@ export namespace compute_beta {
     testIamPermissions(
       params: Params$Resource$Nodetemplates$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -152103,8 +153515,7 @@ export namespace compute_beta {
     aggregatedList(
       params: Params$Resource$Nodetypes$Aggregatedlist,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$NodeTypeAggregatedList>,
+        MethodOptions | BodyResponseCallback<Schema$NodeTypeAggregatedList>,
       callback: BodyResponseCallback<Schema$NodeTypeAggregatedList>
     ): void;
     aggregatedList(
@@ -152282,8 +153693,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$NodeType>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$NodeType>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$NodeType> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$NodeType>>
@@ -152810,6 +154220,2539 @@ export namespace compute_beta {
     zone?: string;
   }
 
+  export class Resource$Organizationrolloutplans {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Deletes an OrganizationRolloutPlan.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.organizationRolloutPlans.delete({
+     *     // Organization ID for this request.
+     *     organization: 'organizations/[0-9]{0,20}',
+     *     // An optional request ID to identify requests. Specify a unique request ID so
+     *     // that if you must retry your request, the server will know to ignore the
+     *     // request if it has already been completed.
+     *     //
+     *     // For example, consider a situation where you make an initial request and
+     *     // the request times out. If you make the request again with the same
+     *     // request ID, the server can check if original operation with the same
+     *     // request ID was received, and if so, will ignore the second request. This
+     *     // prevents clients from accidentally creating duplicate commitments.
+     *     //
+     *     // The request ID must be
+     *     // a valid UUID with the exception that zero UUID is not supported
+     *     // (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *     // Name of the OrganizationRolloutPlan resource to delete.
+     *     rolloutPlan: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientOperationId": "my_clientOperationId",
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
+     *   //   "httpErrorMessage": "my_httpErrorMessage",
+     *   //   "httpErrorStatusCode": 0,
+     *   //   "id": "my_id",
+     *   //   "insertTime": "my_insertTime",
+     *   //   "instancesBulkInsertOperationMetadata": {},
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationGroupId": "my_operationGroupId",
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": 0,
+     *   //   "region": "my_region",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "setCommonInstanceMetadataOperationMetadata": {},
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "user": "my_user",
+     *   //   "warnings": [],
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Organizationrolloutplans$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Organizationrolloutplans$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    delete(
+      params: Params$Resource$Organizationrolloutplans$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Organizationrolloutplans$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Organizationrolloutplans$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Organizationrolloutplans$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizationrolloutplans$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizationrolloutplans$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/beta/{+organization}/global/rolloutPlans/{rolloutPlan}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['organization', 'rolloutPlan'],
+        pathParams: ['organization', 'rolloutPlan'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Gets details of a single organization-scoped RolloutPlan.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.organizationRolloutPlans.get({
+     *     // Organization ID for this request.
+     *     organization: 'organizations/[0-9]{0,20}',
+     *     // Name of the persistent rollout plan to return.
+     *     rolloutPlan: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "locationScope": "my_locationScope",
+     *   //   "name": "my_name",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "selfLinkWithId": "my_selfLinkWithId",
+     *   //   "waves": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Organizationrolloutplans$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Organizationrolloutplans$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$RolloutPlan>>;
+    get(
+      params: Params$Resource$Organizationrolloutplans$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Organizationrolloutplans$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$RolloutPlan>,
+      callback: BodyResponseCallback<Schema$RolloutPlan>
+    ): void;
+    get(
+      params: Params$Resource$Organizationrolloutplans$Get,
+      callback: BodyResponseCallback<Schema$RolloutPlan>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$RolloutPlan>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Organizationrolloutplans$Get
+        | BodyResponseCallback<Schema$RolloutPlan>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RolloutPlan>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RolloutPlan>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$RolloutPlan>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizationrolloutplans$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizationrolloutplans$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/beta/{+organization}/global/rolloutPlans/{rolloutPlan}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['organization', 'rolloutPlan'],
+        pathParams: ['organization', 'rolloutPlan'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$RolloutPlan>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$RolloutPlan>(parameters);
+      }
+    }
+
+    /**
+     * Creates a new RolloutPlan in a given organization and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.organizationRolloutPlans.insert({
+     *     // Organization ID for this request.
+     *     organization: 'organizations/[0-9]{0,20}',
+     *     // An optional request ID to identify requests. Specify a unique request ID so
+     *     // that if you must retry your request, the server will know to ignore the
+     *     // request if it has already been completed.
+     *     //
+     *     // For example, consider a situation where you make an initial request and
+     *     // the request times out. If you make the request again with the same
+     *     // request ID, the server can check if original operation with the same
+     *     // request ID was received, and if so, will ignore the second request. This
+     *     // prevents clients from accidentally creating duplicate commitments.
+     *     //
+     *     // The request ID must be
+     *     // a valid UUID with the exception that zero UUID is not supported
+     *     // (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "creationTimestamp": "my_creationTimestamp",
+     *       //   "description": "my_description",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "locationScope": "my_locationScope",
+     *       //   "name": "my_name",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "selfLinkWithId": "my_selfLinkWithId",
+     *       //   "waves": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientOperationId": "my_clientOperationId",
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
+     *   //   "httpErrorMessage": "my_httpErrorMessage",
+     *   //   "httpErrorStatusCode": 0,
+     *   //   "id": "my_id",
+     *   //   "insertTime": "my_insertTime",
+     *   //   "instancesBulkInsertOperationMetadata": {},
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationGroupId": "my_operationGroupId",
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": 0,
+     *   //   "region": "my_region",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "setCommonInstanceMetadataOperationMetadata": {},
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "user": "my_user",
+     *   //   "warnings": [],
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    insert(
+      params: Params$Resource$Organizationrolloutplans$Insert,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    insert(
+      params?: Params$Resource$Organizationrolloutplans$Insert,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    insert(
+      params: Params$Resource$Organizationrolloutplans$Insert,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    insert(
+      params: Params$Resource$Organizationrolloutplans$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    insert(
+      params: Params$Resource$Organizationrolloutplans$Insert,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    insert(callback: BodyResponseCallback<Schema$Operation>): void;
+    insert(
+      paramsOrCallback?:
+        | Params$Resource$Organizationrolloutplans$Insert
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizationrolloutplans$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizationrolloutplans$Insert;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/compute/beta/{+organization}/global/rolloutPlans'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['organization'],
+        pathParams: ['organization'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Lists OrganizationRolloutPlans in a given organization and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.organizationRolloutPlans.list({
+     *     // A filter expression that filters resources listed in the response. Most
+     *     // Compute resources support two types of filter expressions:
+     *     // expressions that support regular expressions and expressions that follow
+     *     // API improvement proposal AIP-160.
+     *     // These two types of filter expressions cannot be mixed in one request.
+     *     //
+     *     // If you want to use AIP-160, your expression must specify the field name, an
+     *     // operator, and the value that you want to use for filtering. The value
+     *     // must be a string, a number, or a boolean. The operator
+     *     // must be either `=`, `!=`, `\>`, `<`, `<=`, `\>=` or `:`.
+     *     //
+     *     // For example, if you are filtering Compute Engine instances, you can
+     *     // exclude instances named `example-instance` by specifying
+     *     // `name != example-instance`.
+     *     //
+     *     // The `:*` comparison can be used to test whether a key has been defined.
+     *     // For example, to find all objects with `owner` label use:
+     *     // ```
+     *     // labels.owner:*
+     *     // ```
+     *     //
+     *     // You can also filter nested fields. For example, you could specify
+     *     // `scheduling.automaticRestart = false` to include instances only
+     *     // if they are not scheduled for automatic restarts. You can use filtering
+     *     // on nested fields to filter based onresource labels.
+     *     //
+     *     // To filter on multiple expressions, provide each separate expression within
+     *     // parentheses. For example:
+     *     // ```
+     *     // (scheduling.automaticRestart = true)
+     *     // (cpuPlatform = "Intel Skylake")
+     *     // ```
+     *     // By default, each expression is an `AND` expression. However, you
+     *     // can include `AND` and `OR` expressions explicitly.
+     *     // For example:
+     *     // ```
+     *     // (cpuPlatform = "Intel Skylake") OR
+     *     // (cpuPlatform = "Intel Broadwell") AND
+     *     // (scheduling.automaticRestart = true)
+     *     // ```
+     *     //
+     *     // If you want to use a regular expression, use the `eq` (equal) or `ne`
+     *     // (not equal) operator against a single un-parenthesized expression with or
+     *     // without quotes or against multiple parenthesized expressions. Examples:
+     *     //
+     *     // `fieldname eq unquoted literal`
+     *     // `fieldname eq 'single quoted literal'`
+     *     // `fieldname eq "double quoted literal"`
+     *     // `(fieldname1 eq literal) (fieldname2 ne "literal")`
+     *     //
+     *     // The literal value is interpreted as a regular expression using GoogleRE2 library syntax.
+     *     // The literal value must match the entire field.
+     *     //
+     *     // For example, to filter for instances that do not end with name "instance",
+     *     // you would use `name ne .*instance`.
+     *     //
+     *     // You cannot combine constraints on multiple fields using regular
+     *     // expressions.
+     *     filter: 'placeholder-value',
+     *     // The maximum number of results per page that should be returned.
+     *     // If the number of available results is larger than `maxResults`,
+     *     // Compute Engine returns a `nextPageToken` that can be used to get
+     *     // the next page of results in subsequent list requests. Acceptable values are
+     *     // `0` to `500`, inclusive. (Default: `500`)
+     *     maxResults: 'placeholder-value',
+     *     // Sorts list results by a certain order. By default, results
+     *     // are returned in alphanumerical order based on the resource name.
+     *     //
+     *     // You can also sort results in descending order based on the creation
+     *     // timestamp using `orderBy="creationTimestamp desc"`. This sorts
+     *     // results based on the `creationTimestamp` field in
+     *     // reverse chronological order (newest result first). Use this to sort
+     *     // resources like operations so that the newest operation is returned first.
+     *     //
+     *     // Currently, only sorting by `name` or
+     *     // `creationTimestamp desc` is supported.
+     *     orderBy: 'placeholder-value',
+     *     // Organization ID for this request.
+     *     organization: 'organizations/[0-9]{0,20}',
+     *     // Specifies a page token to use. Set `pageToken` to the
+     *     // `nextPageToken` returned by a previous list request to get
+     *     // the next page of results.
+     *     pageToken: 'placeholder-value',
+     *     // Opt-in for partial success behavior which provides partial results in case
+     *     // of failure. The default value is false.
+     *     //
+     *     // For example, when partial success behavior is enabled, aggregatedList for a
+     *     // single zone scope either returns all resources in the zone or no resources,
+     *     // with an error code.
+     *     returnPartialSuccess: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "items": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "unreachables": [],
+     *   //   "warning": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Organizationrolloutplans$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Organizationrolloutplans$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$RolloutPlansListResponse>>;
+    list(
+      params: Params$Resource$Organizationrolloutplans$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Organizationrolloutplans$List,
+      options:
+        MethodOptions | BodyResponseCallback<Schema$RolloutPlansListResponse>,
+      callback: BodyResponseCallback<Schema$RolloutPlansListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Organizationrolloutplans$List,
+      callback: BodyResponseCallback<Schema$RolloutPlansListResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$RolloutPlansListResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Organizationrolloutplans$List
+        | BodyResponseCallback<Schema$RolloutPlansListResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RolloutPlansListResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RolloutPlansListResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$RolloutPlansListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizationrolloutplans$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizationrolloutplans$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/compute/beta/{+organization}/global/rolloutPlans'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['organization'],
+        pathParams: ['organization'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$RolloutPlansListResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$RolloutPlansListResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Organizationrolloutplans$Delete extends StandardParameters {
+    /**
+     * Organization ID for this request.
+     */
+    organization?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID so
+     * that if you must retry your request, the server will know to ignore the
+     * request if it has already been completed.
+     *
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same
+     * request ID, the server can check if original operation with the same
+     * request ID was received, and if so, will ignore the second request. This
+     * prevents clients from accidentally creating duplicate commitments.
+     *
+     * The request ID must be
+     * a valid UUID with the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Name of the OrganizationRolloutPlan resource to delete.
+     */
+    rolloutPlan?: string;
+  }
+  export interface Params$Resource$Organizationrolloutplans$Get extends StandardParameters {
+    /**
+     * Organization ID for this request.
+     */
+    organization?: string;
+    /**
+     * Name of the persistent rollout plan to return.
+     */
+    rolloutPlan?: string;
+  }
+  export interface Params$Resource$Organizationrolloutplans$Insert extends StandardParameters {
+    /**
+     * Organization ID for this request.
+     */
+    organization?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID so
+     * that if you must retry your request, the server will know to ignore the
+     * request if it has already been completed.
+     *
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same
+     * request ID, the server can check if original operation with the same
+     * request ID was received, and if so, will ignore the second request. This
+     * prevents clients from accidentally creating duplicate commitments.
+     *
+     * The request ID must be
+     * a valid UUID with the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RolloutPlan;
+  }
+  export interface Params$Resource$Organizationrolloutplans$List extends StandardParameters {
+    /**
+     * A filter expression that filters resources listed in the response. Most
+     * Compute resources support two types of filter expressions:
+     * expressions that support regular expressions and expressions that follow
+     * API improvement proposal AIP-160.
+     * These two types of filter expressions cannot be mixed in one request.
+     *
+     * If you want to use AIP-160, your expression must specify the field name, an
+     * operator, and the value that you want to use for filtering. The value
+     * must be a string, a number, or a boolean. The operator
+     * must be either `=`, `!=`, `\>`, `<`, `<=`, `\>=` or `:`.
+     *
+     * For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named `example-instance` by specifying
+     * `name != example-instance`.
+     *
+     * The `:*` comparison can be used to test whether a key has been defined.
+     * For example, to find all objects with `owner` label use:
+     * ```
+     * labels.owner:*
+     * ```
+     *
+     * You can also filter nested fields. For example, you could specify
+     * `scheduling.automaticRestart = false` to include instances only
+     * if they are not scheduled for automatic restarts. You can use filtering
+     * on nested fields to filter based onresource labels.
+     *
+     * To filter on multiple expressions, provide each separate expression within
+     * parentheses. For example:
+     * ```
+     * (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake")
+     * ```
+     * By default, each expression is an `AND` expression. However, you
+     * can include `AND` and `OR` expressions explicitly.
+     * For example:
+     * ```
+     * (cpuPlatform = "Intel Skylake") OR
+     * (cpuPlatform = "Intel Broadwell") AND
+     * (scheduling.automaticRestart = true)
+     * ```
+     *
+     * If you want to use a regular expression, use the `eq` (equal) or `ne`
+     * (not equal) operator against a single un-parenthesized expression with or
+     * without quotes or against multiple parenthesized expressions. Examples:
+     *
+     * `fieldname eq unquoted literal`
+     * `fieldname eq 'single quoted literal'`
+     * `fieldname eq "double quoted literal"`
+     * `(fieldname1 eq literal) (fieldname2 ne "literal")`
+     *
+     * The literal value is interpreted as a regular expression using GoogleRE2 library syntax.
+     * The literal value must match the entire field.
+     *
+     * For example, to filter for instances that do not end with name "instance",
+     * you would use `name ne .*instance`.
+     *
+     * You cannot combine constraints on multiple fields using regular
+     * expressions.
+     */
+    filter?: string;
+    /**
+     * The maximum number of results per page that should be returned.
+     * If the number of available results is larger than `maxResults`,
+     * Compute Engine returns a `nextPageToken` that can be used to get
+     * the next page of results in subsequent list requests. Acceptable values are
+     * `0` to `500`, inclusive. (Default: `500`)
+     */
+    maxResults?: number;
+    /**
+     * Sorts list results by a certain order. By default, results
+     * are returned in alphanumerical order based on the resource name.
+     *
+     * You can also sort results in descending order based on the creation
+     * timestamp using `orderBy="creationTimestamp desc"`. This sorts
+     * results based on the `creationTimestamp` field in
+     * reverse chronological order (newest result first). Use this to sort
+     * resources like operations so that the newest operation is returned first.
+     *
+     * Currently, only sorting by `name` or
+     * `creationTimestamp desc` is supported.
+     */
+    orderBy?: string;
+    /**
+     * Organization ID for this request.
+     */
+    organization?: string;
+    /**
+     * Specifies a page token to use. Set `pageToken` to the
+     * `nextPageToken` returned by a previous list request to get
+     * the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Opt-in for partial success behavior which provides partial results in case
+     * of failure. The default value is false.
+     *
+     * For example, when partial success behavior is enabled, aggregatedList for a
+     * single zone scope either returns all resources in the zone or no resources,
+     * with an error code.
+     */
+    returnPartialSuccess?: boolean;
+  }
+
+  export class Resource$Organizationrollouts {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Advances a Rollout to the next wave, or completes it if no waves remain.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.organizationRollouts.advance({
+     *     // Required. Wave number of the current wave.
+     *     currentWaveNumber: 'placeholder-value',
+     *     // Required. Organization ID for this request.
+     *     organization: 'organizations/[0-9]{1,19}',
+     *     // An optional request ID to identify requests. Specify a unique request ID so
+     *     // that if you must retry your request, the server will know to ignore the
+     *     // request if it has already been completed.
+     *     //
+     *     // For example, consider a situation where you make an initial request and
+     *     // the request times out. If you make the request again with the same
+     *     // request ID, the server can check if original operation with the same
+     *     // request ID was received, and if so, will ignore the second request. This
+     *     // prevents clients from accidentally creating duplicate commitments.
+     *     //
+     *     // The request ID must be
+     *     // a valid UUID with the exception that zero UUID is not supported
+     *     // (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *     // Required. Name of the Rollout resource to advance.
+     *     rollout: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientOperationId": "my_clientOperationId",
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
+     *   //   "httpErrorMessage": "my_httpErrorMessage",
+     *   //   "httpErrorStatusCode": 0,
+     *   //   "id": "my_id",
+     *   //   "insertTime": "my_insertTime",
+     *   //   "instancesBulkInsertOperationMetadata": {},
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationGroupId": "my_operationGroupId",
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": 0,
+     *   //   "region": "my_region",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "setCommonInstanceMetadataOperationMetadata": {},
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "user": "my_user",
+     *   //   "warnings": [],
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    advance(
+      params: Params$Resource$Organizationrollouts$Advance,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    advance(
+      params?: Params$Resource$Organizationrollouts$Advance,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    advance(
+      params: Params$Resource$Organizationrollouts$Advance,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    advance(
+      params: Params$Resource$Organizationrollouts$Advance,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    advance(
+      params: Params$Resource$Organizationrollouts$Advance,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    advance(callback: BodyResponseCallback<Schema$Operation>): void;
+    advance(
+      paramsOrCallback?:
+        | Params$Resource$Organizationrollouts$Advance
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizationrollouts$Advance;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizationrollouts$Advance;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/beta/{+organization}/global/rollouts/{rollout}/advance'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['organization', 'rollout'],
+        pathParams: ['organization', 'rollout'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Cancels a Rollout.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.organizationRollouts.cancel({
+     *     // Required. Organization ID for this request.
+     *     organization: 'organizations/[0-9]{1,19}',
+     *     // An optional request ID to identify requests. Specify a unique request ID so
+     *     // that if you must retry your request, the server will know to ignore the
+     *     // request if it has already been completed.
+     *     //
+     *     // For example, consider a situation where you make an initial request and
+     *     // the request times out. If you make the request again with the same
+     *     // request ID, the server can check if original operation with the same
+     *     // request ID was received, and if so, will ignore the second request. This
+     *     // prevents clients from accidentally creating duplicate commitments.
+     *     //
+     *     // The request ID must be
+     *     // a valid UUID with the exception that zero UUID is not supported
+     *     // (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *     // Optional. If true, then the ongoing rollout must be rolled back. Else, just cancel
+     *     // the rollout without taking any further actions. Note that products must
+     *     // support at least one of these options, however, it does not need to support
+     *     // both.
+     *     rollback: 'placeholder-value',
+     *     // Name of the Rollout resource to cancel.
+     *     rollout: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientOperationId": "my_clientOperationId",
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
+     *   //   "httpErrorMessage": "my_httpErrorMessage",
+     *   //   "httpErrorStatusCode": 0,
+     *   //   "id": "my_id",
+     *   //   "insertTime": "my_insertTime",
+     *   //   "instancesBulkInsertOperationMetadata": {},
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationGroupId": "my_operationGroupId",
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": 0,
+     *   //   "region": "my_region",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "setCommonInstanceMetadataOperationMetadata": {},
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "user": "my_user",
+     *   //   "warnings": [],
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    cancel(
+      params: Params$Resource$Organizationrollouts$Cancel,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    cancel(
+      params?: Params$Resource$Organizationrollouts$Cancel,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    cancel(
+      params: Params$Resource$Organizationrollouts$Cancel,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    cancel(
+      params: Params$Resource$Organizationrollouts$Cancel,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    cancel(
+      params: Params$Resource$Organizationrollouts$Cancel,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    cancel(callback: BodyResponseCallback<Schema$Operation>): void;
+    cancel(
+      paramsOrCallback?:
+        | Params$Resource$Organizationrollouts$Cancel
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizationrollouts$Cancel;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizationrollouts$Cancel;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/beta/{+organization}/global/rollouts/{rollout}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['organization', 'rollout'],
+        pathParams: ['organization', 'rollout'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a Rollout.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.organizationRollouts.delete({
+     *     // Required. Organization ID for this request.
+     *     organization: 'organizations/[0-9]{1,19}',
+     *     // An optional request ID to identify requests. Specify a unique request ID so
+     *     // that if you must retry your request, the server will know to ignore the
+     *     // request if it has already been completed.
+     *     //
+     *     // For example, consider a situation where you make an initial request and
+     *     // the request times out. If you make the request again with the same
+     *     // request ID, the server can check if original operation with the same
+     *     // request ID was received, and if so, will ignore the second request. This
+     *     // prevents clients from accidentally creating duplicate commitments.
+     *     //
+     *     // The request ID must be
+     *     // a valid UUID with the exception that zero UUID is not supported
+     *     // (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *     // Name of the Rollout resource to delete.
+     *     rollout: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientOperationId": "my_clientOperationId",
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
+     *   //   "httpErrorMessage": "my_httpErrorMessage",
+     *   //   "httpErrorStatusCode": 0,
+     *   //   "id": "my_id",
+     *   //   "insertTime": "my_insertTime",
+     *   //   "instancesBulkInsertOperationMetadata": {},
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationGroupId": "my_operationGroupId",
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": 0,
+     *   //   "region": "my_region",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "setCommonInstanceMetadataOperationMetadata": {},
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "user": "my_user",
+     *   //   "warnings": [],
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Organizationrollouts$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Organizationrollouts$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    delete(
+      params: Params$Resource$Organizationrollouts$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Organizationrollouts$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Organizationrollouts$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Organizationrollouts$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizationrollouts$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizationrollouts$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/beta/{+organization}/global/rollouts/{rollout}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['organization', 'rollout'],
+        pathParams: ['organization', 'rollout'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Gets details of a single organization-scoped Rollout.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.organizationRollouts.get({
+     *     // Organization ID for this request.
+     *     organization: 'organizations/[0-9]{0,20}',
+     *     // Name of the persistent rollout to return.
+     *     rollout: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "cancellationTime": "my_cancellationTime",
+     *   //   "completionTime": "my_completionTime",
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "currentWaveNumber": "my_currentWaveNumber",
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "pauseTime": "my_pauseTime",
+     *   //   "resumeTime": "my_resumeTime",
+     *   //   "rolloutEntity": {},
+     *   //   "rolloutPlan": "my_rolloutPlan",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "selfLinkWithId": "my_selfLinkWithId",
+     *   //   "state": "my_state",
+     *   //   "waveDetails": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Organizationrollouts$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Organizationrollouts$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Rollout>>;
+    get(
+      params: Params$Resource$Organizationrollouts$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Organizationrollouts$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Rollout>,
+      callback: BodyResponseCallback<Schema$Rollout>
+    ): void;
+    get(
+      params: Params$Resource$Organizationrollouts$Get,
+      callback: BodyResponseCallback<Schema$Rollout>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Rollout>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Organizationrollouts$Get
+        | BodyResponseCallback<Schema$Rollout>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Rollout>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Rollout> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Rollout>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizationrollouts$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizationrollouts$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/beta/{+organization}/global/rollouts/{rollout}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['organization', 'rollout'],
+        pathParams: ['organization', 'rollout'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Rollout>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Rollout>(parameters);
+      }
+    }
+
+    /**
+     * Lists Rollouts in a given organization and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.organizationRollouts.list({
+     *     // A filter expression that filters resources listed in the response. Most
+     *     // Compute resources support two types of filter expressions:
+     *     // expressions that support regular expressions and expressions that follow
+     *     // API improvement proposal AIP-160.
+     *     // These two types of filter expressions cannot be mixed in one request.
+     *     //
+     *     // If you want to use AIP-160, your expression must specify the field name, an
+     *     // operator, and the value that you want to use for filtering. The value
+     *     // must be a string, a number, or a boolean. The operator
+     *     // must be either `=`, `!=`, `\>`, `<`, `<=`, `\>=` or `:`.
+     *     //
+     *     // For example, if you are filtering Compute Engine instances, you can
+     *     // exclude instances named `example-instance` by specifying
+     *     // `name != example-instance`.
+     *     //
+     *     // The `:*` comparison can be used to test whether a key has been defined.
+     *     // For example, to find all objects with `owner` label use:
+     *     // ```
+     *     // labels.owner:*
+     *     // ```
+     *     //
+     *     // You can also filter nested fields. For example, you could specify
+     *     // `scheduling.automaticRestart = false` to include instances only
+     *     // if they are not scheduled for automatic restarts. You can use filtering
+     *     // on nested fields to filter based onresource labels.
+     *     //
+     *     // To filter on multiple expressions, provide each separate expression within
+     *     // parentheses. For example:
+     *     // ```
+     *     // (scheduling.automaticRestart = true)
+     *     // (cpuPlatform = "Intel Skylake")
+     *     // ```
+     *     // By default, each expression is an `AND` expression. However, you
+     *     // can include `AND` and `OR` expressions explicitly.
+     *     // For example:
+     *     // ```
+     *     // (cpuPlatform = "Intel Skylake") OR
+     *     // (cpuPlatform = "Intel Broadwell") AND
+     *     // (scheduling.automaticRestart = true)
+     *     // ```
+     *     //
+     *     // If you want to use a regular expression, use the `eq` (equal) or `ne`
+     *     // (not equal) operator against a single un-parenthesized expression with or
+     *     // without quotes or against multiple parenthesized expressions. Examples:
+     *     //
+     *     // `fieldname eq unquoted literal`
+     *     // `fieldname eq 'single quoted literal'`
+     *     // `fieldname eq "double quoted literal"`
+     *     // `(fieldname1 eq literal) (fieldname2 ne "literal")`
+     *     //
+     *     // The literal value is interpreted as a regular expression using GoogleRE2 library syntax.
+     *     // The literal value must match the entire field.
+     *     //
+     *     // For example, to filter for instances that do not end with name "instance",
+     *     // you would use `name ne .*instance`.
+     *     //
+     *     // You cannot combine constraints on multiple fields using regular
+     *     // expressions.
+     *     filter: 'placeholder-value',
+     *     // The maximum number of results per page that should be returned.
+     *     // If the number of available results is larger than `maxResults`,
+     *     // Compute Engine returns a `nextPageToken` that can be used to get
+     *     // the next page of results in subsequent list requests. Acceptable values are
+     *     // `0` to `500`, inclusive. (Default: `500`)
+     *     maxResults: 'placeholder-value',
+     *     // Sorts list results by a certain order. By default, results
+     *     // are returned in alphanumerical order based on the resource name.
+     *     //
+     *     // You can also sort results in descending order based on the creation
+     *     // timestamp using `orderBy="creationTimestamp desc"`. This sorts
+     *     // results based on the `creationTimestamp` field in
+     *     // reverse chronological order (newest result first). Use this to sort
+     *     // resources like operations so that the newest operation is returned first.
+     *     //
+     *     // Currently, only sorting by `name` or
+     *     // `creationTimestamp desc` is supported.
+     *     orderBy: 'placeholder-value',
+     *     // Required. Organization ID for this request.
+     *     organization: 'organizations/[0-9]{1,19}',
+     *     // Specifies a page token to use. Set `pageToken` to the
+     *     // `nextPageToken` returned by a previous list request to get
+     *     // the next page of results.
+     *     pageToken: 'placeholder-value',
+     *     // Opt-in for partial success behavior which provides partial results in case
+     *     // of failure. The default value is false.
+     *     //
+     *     // For example, when partial success behavior is enabled, aggregatedList for a
+     *     // single zone scope either returns all resources in the zone or no resources,
+     *     // with an error code.
+     *     returnPartialSuccess: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "items": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "unreachables": [],
+     *   //   "warning": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Organizationrollouts$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Organizationrollouts$List,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$OrganizationRolloutsListResponse>
+    >;
+    list(
+      params: Params$Resource$Organizationrollouts$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Organizationrollouts$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$OrganizationRolloutsListResponse>,
+      callback: BodyResponseCallback<Schema$OrganizationRolloutsListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Organizationrollouts$List,
+      callback: BodyResponseCallback<Schema$OrganizationRolloutsListResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$OrganizationRolloutsListResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Organizationrollouts$List
+        | BodyResponseCallback<Schema$OrganizationRolloutsListResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$OrganizationRolloutsListResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$OrganizationRolloutsListResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$OrganizationRolloutsListResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizationrollouts$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizationrollouts$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/compute/beta/{+organization}/global/rollouts'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['organization'],
+        pathParams: ['organization'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$OrganizationRolloutsListResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$OrganizationRolloutsListResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Pauses a Rollout.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.organizationRollouts.pause({
+     *     // The etag of the Rollout.
+     *     // If this is provided, the request will only succeed if the etag matches
+     *     // the current etag of the Rollout.
+     *     etag: 'placeholder-value',
+     *     // Required. Organization ID for this request.
+     *     organization: 'organizations/[0-9]{1,19}',
+     *     // An optional request ID to identify requests. Specify a unique request ID so
+     *     // that if you must retry your request, the server will know to ignore the
+     *     // request if it has already been completed.
+     *     //
+     *     // For example, consider a situation where you make an initial request and
+     *     // the request times out. If you make the request again with the same
+     *     // request ID, the server can check if original operation with the same
+     *     // request ID was received, and if so, will ignore the second request. This
+     *     // prevents clients from accidentally creating duplicate commitments.
+     *     //
+     *     // The request ID must be
+     *     // a valid UUID with the exception that zero UUID is not supported
+     *     // (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *     // Required. Name of the Rollout resource to pause.
+     *     rollout: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientOperationId": "my_clientOperationId",
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
+     *   //   "httpErrorMessage": "my_httpErrorMessage",
+     *   //   "httpErrorStatusCode": 0,
+     *   //   "id": "my_id",
+     *   //   "insertTime": "my_insertTime",
+     *   //   "instancesBulkInsertOperationMetadata": {},
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationGroupId": "my_operationGroupId",
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": 0,
+     *   //   "region": "my_region",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "setCommonInstanceMetadataOperationMetadata": {},
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "user": "my_user",
+     *   //   "warnings": [],
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    pause(
+      params: Params$Resource$Organizationrollouts$Pause,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    pause(
+      params?: Params$Resource$Organizationrollouts$Pause,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    pause(
+      params: Params$Resource$Organizationrollouts$Pause,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    pause(
+      params: Params$Resource$Organizationrollouts$Pause,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    pause(
+      params: Params$Resource$Organizationrollouts$Pause,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    pause(callback: BodyResponseCallback<Schema$Operation>): void;
+    pause(
+      paramsOrCallback?:
+        | Params$Resource$Organizationrollouts$Pause
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizationrollouts$Pause;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizationrollouts$Pause;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/beta/{+organization}/global/rollouts/{rollout}/pause'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['organization', 'rollout'],
+        pathParams: ['organization', 'rollout'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Resumes a Rollout.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.organizationRollouts.resume({
+     *     // The etag of the Rollout.
+     *     // If this is provided, the request will only succeed if the etag matches
+     *     // the current etag of the Rollout.
+     *     etag: 'placeholder-value',
+     *     // Required. Organization ID for this request.
+     *     organization: 'organizations/[0-9]{1,19}',
+     *     // An optional request ID to identify requests. Specify a unique request ID so
+     *     // that if you must retry your request, the server will know to ignore the
+     *     // request if it has already been completed.
+     *     //
+     *     // For example, consider a situation where you make an initial request and
+     *     // the request times out. If you make the request again with the same
+     *     // request ID, the server can check if original operation with the same
+     *     // request ID was received, and if so, will ignore the second request. This
+     *     // prevents clients from accidentally creating duplicate commitments.
+     *     //
+     *     // The request ID must be
+     *     // a valid UUID with the exception that zero UUID is not supported
+     *     // (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *     // Required. Name of the Rollout resource to resume.
+     *     rollout: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientOperationId": "my_clientOperationId",
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
+     *   //   "httpErrorMessage": "my_httpErrorMessage",
+     *   //   "httpErrorStatusCode": 0,
+     *   //   "id": "my_id",
+     *   //   "insertTime": "my_insertTime",
+     *   //   "instancesBulkInsertOperationMetadata": {},
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationGroupId": "my_operationGroupId",
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": 0,
+     *   //   "region": "my_region",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "setCommonInstanceMetadataOperationMetadata": {},
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "user": "my_user",
+     *   //   "warnings": [],
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    resume(
+      params: Params$Resource$Organizationrollouts$Resume,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    resume(
+      params?: Params$Resource$Organizationrollouts$Resume,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    resume(
+      params: Params$Resource$Organizationrollouts$Resume,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    resume(
+      params: Params$Resource$Organizationrollouts$Resume,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    resume(
+      params: Params$Resource$Organizationrollouts$Resume,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    resume(callback: BodyResponseCallback<Schema$Operation>): void;
+    resume(
+      paramsOrCallback?:
+        | Params$Resource$Organizationrollouts$Resume
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizationrollouts$Resume;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizationrollouts$Resume;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/beta/{+organization}/global/rollouts/{rollout}/resume'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['organization', 'rollout'],
+        pathParams: ['organization', 'rollout'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Organizationrollouts$Advance extends StandardParameters {
+    /**
+     * Required. Wave number of the current wave.
+     */
+    currentWaveNumber?: string;
+    /**
+     * Required. Organization ID for this request.
+     */
+    organization?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID so
+     * that if you must retry your request, the server will know to ignore the
+     * request if it has already been completed.
+     *
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same
+     * request ID, the server can check if original operation with the same
+     * request ID was received, and if so, will ignore the second request. This
+     * prevents clients from accidentally creating duplicate commitments.
+     *
+     * The request ID must be
+     * a valid UUID with the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Required. Name of the Rollout resource to advance.
+     */
+    rollout?: string;
+  }
+  export interface Params$Resource$Organizationrollouts$Cancel extends StandardParameters {
+    /**
+     * Required. Organization ID for this request.
+     */
+    organization?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID so
+     * that if you must retry your request, the server will know to ignore the
+     * request if it has already been completed.
+     *
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same
+     * request ID, the server can check if original operation with the same
+     * request ID was received, and if so, will ignore the second request. This
+     * prevents clients from accidentally creating duplicate commitments.
+     *
+     * The request ID must be
+     * a valid UUID with the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Optional. If true, then the ongoing rollout must be rolled back. Else, just cancel
+     * the rollout without taking any further actions. Note that products must
+     * support at least one of these options, however, it does not need to support
+     * both.
+     */
+    rollback?: boolean;
+    /**
+     * Name of the Rollout resource to cancel.
+     */
+    rollout?: string;
+  }
+  export interface Params$Resource$Organizationrollouts$Delete extends StandardParameters {
+    /**
+     * Required. Organization ID for this request.
+     */
+    organization?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID so
+     * that if you must retry your request, the server will know to ignore the
+     * request if it has already been completed.
+     *
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same
+     * request ID, the server can check if original operation with the same
+     * request ID was received, and if so, will ignore the second request. This
+     * prevents clients from accidentally creating duplicate commitments.
+     *
+     * The request ID must be
+     * a valid UUID with the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Name of the Rollout resource to delete.
+     */
+    rollout?: string;
+  }
+  export interface Params$Resource$Organizationrollouts$Get extends StandardParameters {
+    /**
+     * Organization ID for this request.
+     */
+    organization?: string;
+    /**
+     * Name of the persistent rollout to return.
+     */
+    rollout?: string;
+  }
+  export interface Params$Resource$Organizationrollouts$List extends StandardParameters {
+    /**
+     * A filter expression that filters resources listed in the response. Most
+     * Compute resources support two types of filter expressions:
+     * expressions that support regular expressions and expressions that follow
+     * API improvement proposal AIP-160.
+     * These two types of filter expressions cannot be mixed in one request.
+     *
+     * If you want to use AIP-160, your expression must specify the field name, an
+     * operator, and the value that you want to use for filtering. The value
+     * must be a string, a number, or a boolean. The operator
+     * must be either `=`, `!=`, `\>`, `<`, `<=`, `\>=` or `:`.
+     *
+     * For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named `example-instance` by specifying
+     * `name != example-instance`.
+     *
+     * The `:*` comparison can be used to test whether a key has been defined.
+     * For example, to find all objects with `owner` label use:
+     * ```
+     * labels.owner:*
+     * ```
+     *
+     * You can also filter nested fields. For example, you could specify
+     * `scheduling.automaticRestart = false` to include instances only
+     * if they are not scheduled for automatic restarts. You can use filtering
+     * on nested fields to filter based onresource labels.
+     *
+     * To filter on multiple expressions, provide each separate expression within
+     * parentheses. For example:
+     * ```
+     * (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake")
+     * ```
+     * By default, each expression is an `AND` expression. However, you
+     * can include `AND` and `OR` expressions explicitly.
+     * For example:
+     * ```
+     * (cpuPlatform = "Intel Skylake") OR
+     * (cpuPlatform = "Intel Broadwell") AND
+     * (scheduling.automaticRestart = true)
+     * ```
+     *
+     * If you want to use a regular expression, use the `eq` (equal) or `ne`
+     * (not equal) operator against a single un-parenthesized expression with or
+     * without quotes or against multiple parenthesized expressions. Examples:
+     *
+     * `fieldname eq unquoted literal`
+     * `fieldname eq 'single quoted literal'`
+     * `fieldname eq "double quoted literal"`
+     * `(fieldname1 eq literal) (fieldname2 ne "literal")`
+     *
+     * The literal value is interpreted as a regular expression using GoogleRE2 library syntax.
+     * The literal value must match the entire field.
+     *
+     * For example, to filter for instances that do not end with name "instance",
+     * you would use `name ne .*instance`.
+     *
+     * You cannot combine constraints on multiple fields using regular
+     * expressions.
+     */
+    filter?: string;
+    /**
+     * The maximum number of results per page that should be returned.
+     * If the number of available results is larger than `maxResults`,
+     * Compute Engine returns a `nextPageToken` that can be used to get
+     * the next page of results in subsequent list requests. Acceptable values are
+     * `0` to `500`, inclusive. (Default: `500`)
+     */
+    maxResults?: number;
+    /**
+     * Sorts list results by a certain order. By default, results
+     * are returned in alphanumerical order based on the resource name.
+     *
+     * You can also sort results in descending order based on the creation
+     * timestamp using `orderBy="creationTimestamp desc"`. This sorts
+     * results based on the `creationTimestamp` field in
+     * reverse chronological order (newest result first). Use this to sort
+     * resources like operations so that the newest operation is returned first.
+     *
+     * Currently, only sorting by `name` or
+     * `creationTimestamp desc` is supported.
+     */
+    orderBy?: string;
+    /**
+     * Required. Organization ID for this request.
+     */
+    organization?: string;
+    /**
+     * Specifies a page token to use. Set `pageToken` to the
+     * `nextPageToken` returned by a previous list request to get
+     * the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Opt-in for partial success behavior which provides partial results in case
+     * of failure. The default value is false.
+     *
+     * For example, when partial success behavior is enabled, aggregatedList for a
+     * single zone scope either returns all resources in the zone or no resources,
+     * with an error code.
+     */
+    returnPartialSuccess?: boolean;
+  }
+  export interface Params$Resource$Organizationrollouts$Pause extends StandardParameters {
+    /**
+     * The etag of the Rollout.
+     * If this is provided, the request will only succeed if the etag matches
+     * the current etag of the Rollout.
+     */
+    etag?: string;
+    /**
+     * Required. Organization ID for this request.
+     */
+    organization?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID so
+     * that if you must retry your request, the server will know to ignore the
+     * request if it has already been completed.
+     *
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same
+     * request ID, the server can check if original operation with the same
+     * request ID was received, and if so, will ignore the second request. This
+     * prevents clients from accidentally creating duplicate commitments.
+     *
+     * The request ID must be
+     * a valid UUID with the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Required. Name of the Rollout resource to pause.
+     */
+    rollout?: string;
+  }
+  export interface Params$Resource$Organizationrollouts$Resume extends StandardParameters {
+    /**
+     * The etag of the Rollout.
+     * If this is provided, the request will only succeed if the etag matches
+     * the current etag of the Rollout.
+     */
+    etag?: string;
+    /**
+     * Required. Organization ID for this request.
+     */
+    organization?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID so
+     * that if you must retry your request, the server will know to ignore the
+     * request if it has already been completed.
+     *
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same
+     * request ID, the server can check if original operation with the same
+     * request ID was received, and if so, will ignore the second request. This
+     * prevents clients from accidentally creating duplicate commitments.
+     *
+     * The request ID must be
+     * a valid UUID with the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Required. Name of the Rollout resource to resume.
+     */
+    rollout?: string;
+  }
+
   export class Resource$Organizationsecuritypolicies {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -152974,8 +156917,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -153183,8 +157125,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -153370,8 +157311,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -153554,8 +157494,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -153857,8 +157796,7 @@ export namespace compute_beta {
     getAssociation(
       params: Params$Resource$Organizationsecuritypolicies$Getassociation,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$SecurityPolicyAssociation>,
+        MethodOptions | BodyResponseCallback<Schema$SecurityPolicyAssociation>,
       callback: BodyResponseCallback<Schema$SecurityPolicyAssociation>
     ): void;
     getAssociation(
@@ -154260,8 +158198,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -155083,8 +159020,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -155299,8 +159235,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -155512,8 +159447,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -155699,8 +159633,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -155887,8 +159820,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -156858,8 +160790,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -157220,8 +161151,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -157666,8 +161596,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -157802,8 +161731,7 @@ export namespace compute_beta {
     testIamPermissions(
       params: Params$Resource$Packetmirrorings$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -158776,8 +162704,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -159110,8 +163037,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -159299,8 +163225,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -159479,8 +163404,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -159669,8 +163593,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -159833,8 +163756,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Project>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Project>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Project> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Project>>
@@ -159989,8 +163911,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Project>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Project>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Project> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Project>>
@@ -160202,8 +164123,7 @@ export namespace compute_beta {
     getXpnResources(
       params: Params$Resource$Projects$Getxpnresources,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ProjectsGetXpnResources>,
+        MethodOptions | BodyResponseCallback<Schema$ProjectsGetXpnResources>,
       callback: BodyResponseCallback<Schema$ProjectsGetXpnResources>
     ): void;
     getXpnResources(
@@ -160667,8 +164587,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -160862,8 +164781,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -161053,8 +164971,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -161246,8 +165163,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -161439,8 +165355,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -161632,8 +165547,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -161829,8 +165743,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -162391,6 +166304,174 @@ export namespace compute_beta {
     requestBody?: Schema$UsageExportLocation;
   }
 
+  export class Resource$Projectviews {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Returns the specified global ProjectViews resource, with a regional
+     * context.
+     * This regional API endpoint reads resource metadata from regional
+     * read-only replicas. Because changes are copied to these regional replicas
+     * asynchronously, for real-time resource reads or any write operations
+     * (creating, updating, or deleting resources), use the global
+     * [projects.get](https://cloud.google.com/compute/docs/reference/rest/v1/projects/get)
+     * endpoint.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.projectViews.get({
+     *     // Required. Project ID for this request. This is part of the URL path.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // Required. Name of the region for this request. This is part of the URL path.
+     *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "project": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projectviews$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projectviews$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ProjectView>>;
+    get(
+      params: Params$Resource$Projectviews$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projectviews$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$ProjectView>,
+      callback: BodyResponseCallback<Schema$ProjectView>
+    ): void;
+    get(
+      params: Params$Resource$Projectviews$Get,
+      callback: BodyResponseCallback<Schema$ProjectView>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$ProjectView>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projectviews$Get
+        | BodyResponseCallback<Schema$ProjectView>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ProjectView>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ProjectView>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ProjectView>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Projectviews$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projectviews$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/beta/projects/{project}/regions/{region}/projectViews'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region'],
+        pathParams: ['project', 'region'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ProjectView>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ProjectView>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projectviews$Get extends StandardParameters {
+    /**
+     * Required. Project ID for this request. This is part of the URL path.
+     */
+    project?: string;
+    /**
+     * Required. Name of the region for this request. This is part of the URL path.
+     */
+    region?: string;
+  }
+
   export class Resource$Publicadvertisedprefixes {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -162531,8 +166612,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -162715,8 +166795,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -162820,6 +166899,7 @@ export namespace compute_beta {
      *   //   "ipv6AccessType": "my_ipv6AccessType",
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
+     *   //   "networkTier": "my_networkTier",
      *   //   "pdpScope": "my_pdpScope",
      *   //   "publicDelegatedPrefixs": [],
      *   //   "selfLink": "my_selfLink",
@@ -162856,8 +166936,7 @@ export namespace compute_beta {
     get(
       params: Params$Resource$Publicadvertisedprefixes$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$PublicAdvertisedPrefix>,
+        MethodOptions | BodyResponseCallback<Schema$PublicAdvertisedPrefix>,
       callback: BodyResponseCallback<Schema$PublicAdvertisedPrefix>
     ): void;
     get(
@@ -162992,6 +167071,7 @@ export namespace compute_beta {
      *       //   "ipv6AccessType": "my_ipv6AccessType",
      *       //   "kind": "my_kind",
      *       //   "name": "my_name",
+     *       //   "networkTier": "my_networkTier",
      *       //   "pdpScope": "my_pdpScope",
      *       //   "publicDelegatedPrefixs": [],
      *       //   "selfLink": "my_selfLink",
@@ -163080,8 +167160,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -163297,8 +167376,7 @@ export namespace compute_beta {
     list(
       params: Params$Resource$Publicadvertisedprefixes$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$PublicAdvertisedPrefixList>,
+        MethodOptions | BodyResponseCallback<Schema$PublicAdvertisedPrefixList>,
       callback: BodyResponseCallback<Schema$PublicAdvertisedPrefixList>
     ): void;
     list(
@@ -163440,6 +167518,7 @@ export namespace compute_beta {
      *       //   "ipv6AccessType": "my_ipv6AccessType",
      *       //   "kind": "my_kind",
      *       //   "name": "my_name",
+     *       //   "networkTier": "my_networkTier",
      *       //   "pdpScope": "my_pdpScope",
      *       //   "publicDelegatedPrefixs": [],
      *       //   "selfLink": "my_selfLink",
@@ -163528,8 +167607,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -163711,8 +167789,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -164416,8 +168493,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -164601,8 +168677,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -164710,6 +168785,7 @@ export namespace compute_beta {
      *   //   "kind": "my_kind",
      *   //   "mode": "my_mode",
      *   //   "name": "my_name",
+     *   //   "networkTier": "my_networkTier",
      *   //   "parentPrefix": "my_parentPrefix",
      *   //   "publicDelegatedSubPrefixs": [],
      *   //   "purpose": "my_purpose",
@@ -164747,8 +168823,7 @@ export namespace compute_beta {
     get(
       params: Params$Resource$Publicdelegatedprefixes$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$PublicDelegatedPrefix>,
+        MethodOptions | BodyResponseCallback<Schema$PublicDelegatedPrefix>,
       callback: BodyResponseCallback<Schema$PublicDelegatedPrefix>
     ): void;
     get(
@@ -164888,6 +168963,7 @@ export namespace compute_beta {
      *       //   "kind": "my_kind",
      *       //   "mode": "my_mode",
      *       //   "name": "my_name",
+     *       //   "networkTier": "my_networkTier",
      *       //   "parentPrefix": "my_parentPrefix",
      *       //   "publicDelegatedSubPrefixs": [],
      *       //   "purpose": "my_purpose",
@@ -164977,8 +169053,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -165196,8 +169271,7 @@ export namespace compute_beta {
     list(
       params: Params$Resource$Publicdelegatedprefixes$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$PublicDelegatedPrefixList>,
+        MethodOptions | BodyResponseCallback<Schema$PublicDelegatedPrefixList>,
       callback: BodyResponseCallback<Schema$PublicDelegatedPrefixList>
     ): void;
     list(
@@ -165343,6 +169417,7 @@ export namespace compute_beta {
      *       //   "kind": "my_kind",
      *       //   "mode": "my_mode",
      *       //   "name": "my_name",
+     *       //   "networkTier": "my_networkTier",
      *       //   "parentPrefix": "my_parentPrefix",
      *       //   "publicDelegatedSubPrefixs": [],
      *       //   "purpose": "my_purpose",
@@ -165432,8 +169507,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -165618,8 +169692,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -166210,8 +170283,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -166369,8 +170441,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Autoscaler>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Autoscaler>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Autoscaler> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Autoscaler>>
@@ -166574,8 +170645,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -166794,8 +170864,7 @@ export namespace compute_beta {
     list(
       params: Params$Resource$Regionautoscalers$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$RegionAutoscalerList>,
+        MethodOptions | BodyResponseCallback<Schema$RegionAutoscalerList>,
       callback: BodyResponseCallback<Schema$RegionAutoscalerList>
     ): void;
     list(
@@ -167023,8 +171092,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -167159,8 +171227,7 @@ export namespace compute_beta {
     testIamPermissions(
       params: Params$Resource$Regionautoscalers$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -167388,8 +171455,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -167858,8 +171924,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -168171,8 +172236,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -168378,8 +172442,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -168837,8 +172900,7 @@ export namespace compute_beta {
     listUsable(
       params: Params$Resource$Regionbackendbuckets$Listusable,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$BackendBucketListUsable>,
+        MethodOptions | BodyResponseCallback<Schema$BackendBucketListUsable>,
       callback: BodyResponseCallback<Schema$BackendBucketListUsable>
     ): void;
     listUsable(
@@ -169071,8 +173133,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -169230,8 +173291,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -169366,8 +173426,7 @@ export namespace compute_beta {
     testIamPermissions(
       params: Params$Resource$Regionbackendbuckets$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -169972,8 +174031,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -170309,8 +174367,7 @@ export namespace compute_beta {
     getHealth(
       params: Params$Resource$Regionbackendservices$Gethealth,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$BackendServiceGroupHealth>,
+        MethodOptions | BodyResponseCallback<Schema$BackendServiceGroupHealth>,
       callback: BodyResponseCallback<Schema$BackendServiceGroupHealth>
     ): void;
     getHealth(
@@ -170483,8 +174540,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -170728,8 +174784,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -171016,8 +175071,10 @@ export namespace compute_beta {
     }
 
     /**
-     * Retrieves a list of all usable backend services in the specified project in
-     * the given region.
+     * Retrieves a list of all usable backend services for Application Load
+     * Balancers and Proxy Network Load Balancers in the specified project in the
+     * given region. Backend services for external and internal passthrough
+     * Network Load Balancers are not included in the response.
      * @example
      * ```js
      * // Before running the sample:
@@ -171187,8 +175244,7 @@ export namespace compute_beta {
     listUsable(
       params: Params$Resource$Regionbackendservices$Listusable,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$BackendServiceListUsable>,
+        MethodOptions | BodyResponseCallback<Schema$BackendServiceListUsable>,
       callback: BodyResponseCallback<Schema$BackendServiceListUsable>
     ): void;
     listUsable(
@@ -171458,8 +175514,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -171617,8 +175672,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -171813,8 +175867,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -171949,8 +176002,7 @@ export namespace compute_beta {
     testIamPermissions(
       params: Params$Resource$Regionbackendservices$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -172219,8 +176271,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -172932,8 +176983,7 @@ export namespace compute_beta {
     aggregatedList(
       params: Params$Resource$Regioncommitments$Aggregatedlist,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$CommitmentAggregatedList>,
+        MethodOptions | BodyResponseCallback<Schema$CommitmentAggregatedList>,
       callback: BodyResponseCallback<Schema$CommitmentAggregatedList>
     ): void;
     aggregatedList(
@@ -173063,6 +177113,7 @@ export namespace compute_beta {
      *   //   "mergeSourceCommitments": [],
      *   //   "name": "my_name",
      *   //   "params": {},
+     *   //   "persistentDiskResources": [],
      *   //   "plan": "my_plan",
      *   //   "region": "my_region",
      *   //   "reservations": [],
@@ -173123,8 +177174,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Commitment>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Commitment>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Commitment> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Commitment>>
@@ -173244,6 +177294,7 @@ export namespace compute_beta {
      *       //   "mergeSourceCommitments": [],
      *       //   "name": "my_name",
      *       //   "params": {},
+     *       //   "persistentDiskResources": [],
      *       //   "plan": "my_plan",
      *       //   "region": "my_region",
      *       //   "reservations": [],
@@ -173338,8 +177389,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -173712,8 +177762,7 @@ export namespace compute_beta {
     testIamPermissions(
       params: Params$Resource$Regioncommitments$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -173862,6 +177911,7 @@ export namespace compute_beta {
      *       //   "mergeSourceCommitments": [],
      *       //   "name": "my_name",
      *       //   "params": {},
+     *       //   "persistentDiskResources": [],
      *       //   "plan": "my_plan",
      *       //   "region": "my_region",
      *       //   "reservations": [],
@@ -173956,8 +178006,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -174150,8 +178199,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -174974,8 +179022,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -175112,8 +179159,7 @@ export namespace compute_beta {
     get(
       params: Params$Resource$Regioncompositehealthchecks$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$CompositeHealthCheck>,
+        MethodOptions | BodyResponseCallback<Schema$CompositeHealthCheck>,
       callback: BodyResponseCallback<Schema$CompositeHealthCheck>
     ): void;
     get(
@@ -175263,8 +179309,7 @@ export namespace compute_beta {
     getHealth(
       params: Params$Resource$Regioncompositehealthchecks$Gethealth,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$CompositeHealthCheckHealth>,
+        MethodOptions | BodyResponseCallback<Schema$CompositeHealthCheckHealth>,
       callback: BodyResponseCallback<Schema$CompositeHealthCheckHealth>
     ): void;
     getHealth(
@@ -175487,8 +179532,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -175706,8 +179750,7 @@ export namespace compute_beta {
     list(
       params: Params$Resource$Regioncompositehealthchecks$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$CompositeHealthCheckList>,
+        MethodOptions | BodyResponseCallback<Schema$CompositeHealthCheckList>,
       callback: BodyResponseCallback<Schema$CompositeHealthCheckList>
     ): void;
     list(
@@ -175933,8 +179976,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -176069,8 +180111,7 @@ export namespace compute_beta {
     testIamPermissions(
       params: Params$Resource$Regioncompositehealthchecks$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -176666,8 +180707,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -176859,8 +180899,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -177095,8 +181134,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -177284,8 +181322,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -177488,8 +181525,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Disk>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Disk>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Disk> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Disk>>
@@ -177639,8 +181675,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -177891,8 +181926,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -178129,8 +182163,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$DiskList>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$DiskList>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$DiskList> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$DiskList>>
@@ -178323,8 +182356,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -178516,8 +182548,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -178675,8 +182706,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -178869,8 +182899,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -179065,8 +183094,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -179253,8 +183281,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -179448,8 +183475,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -179584,8 +183610,7 @@ export namespace compute_beta {
     testIamPermissions(
       params: Params$Resource$Regiondisks$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -179862,8 +183887,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -180056,8 +184080,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -181025,8 +185048,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -181234,8 +185256,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$DiskType>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$DiskType>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$DiskType> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$DiskType>>
@@ -182049,8 +186070,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -182189,8 +186209,7 @@ export namespace compute_beta {
     get(
       params: Params$Resource$Regionhealthaggregationpolicies$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$HealthAggregationPolicy>,
+        MethodOptions | BodyResponseCallback<Schema$HealthAggregationPolicy>,
       callback: BodyResponseCallback<Schema$HealthAggregationPolicy>
     ): void;
     get(
@@ -182412,8 +186431,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -182861,8 +186879,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -182997,8 +187014,7 @@ export namespace compute_beta {
     testIamPermissions(
       params: Params$Resource$Regionhealthaggregationpolicies$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -183570,8 +187586,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -183948,8 +187963,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -184402,8 +188416,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -184538,8 +188551,7 @@ export namespace compute_beta {
     testIamPermissions(
       params: Params$Resource$Regionhealthchecks$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -184774,8 +188786,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -185501,8 +189512,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -185864,8 +189874,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -186084,8 +190093,7 @@ export namespace compute_beta {
     list(
       params: Params$Resource$Regionhealthcheckservices$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$HealthCheckServicesList>,
+        MethodOptions | BodyResponseCallback<Schema$HealthCheckServicesList>,
       callback: BodyResponseCallback<Schema$HealthCheckServicesList>
     ): void;
     list(
@@ -186313,8 +190321,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -186449,8 +190456,7 @@ export namespace compute_beta {
     testIamPermissions(
       params: Params$Resource$Regionhealthcheckservices$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -187072,8 +191078,7 @@ export namespace compute_beta {
     aggregatedList(
       params: Params$Resource$Regionhealthsources$Aggregatedlist,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$HealthSourceAggregatedList>,
+        MethodOptions | BodyResponseCallback<Schema$HealthSourceAggregatedList>,
       callback: BodyResponseCallback<Schema$HealthSourceAggregatedList>
     ): void;
     aggregatedList(
@@ -187279,8 +191284,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -187788,8 +191792,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -188233,8 +192236,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -188369,8 +192371,7 @@ export namespace compute_beta {
     testIamPermissions(
       params: Params$Resource$Regionhealthsources$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -188963,8 +192964,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -189166,8 +193166,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -189573,8 +193572,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -190288,8 +194286,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -190490,8 +194487,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -190588,6 +194584,7 @@ export namespace compute_beta {
      *         // request body parameters
      *         // {
      *         //   "allInstances": false,
+     *         //   "allowedActions": [],
      *         //   "instances": [],
      *         //   "minimalAction": "my_minimalAction",
      *         //   "mostDisruptiveAllowedAction": "my_mostDisruptiveAllowedAction"
@@ -190677,8 +194674,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -190878,8 +194874,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -191068,8 +195063,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -191279,8 +195273,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -191463,8 +195456,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -191628,8 +195620,7 @@ export namespace compute_beta {
     get(
       params: Params$Resource$Regioninstancegroupmanagers$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$InstanceGroupManager>,
+        MethodOptions | BodyResponseCallback<Schema$InstanceGroupManager>,
       callback: BodyResponseCallback<Schema$InstanceGroupManager>
     ): void;
     get(
@@ -191883,8 +195874,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -193119,8 +197109,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -193319,8 +197308,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -193528,8 +197516,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -193729,8 +197716,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -193940,8 +197926,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -194149,8 +198134,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -194347,8 +198331,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -194542,8 +198525,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -194738,8 +198720,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -194947,8 +198928,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -195169,8 +199149,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -195388,8 +199367,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -195525,8 +199503,7 @@ export namespace compute_beta {
     testIamPermissions(
       params: Params$Resource$Regioninstancegroupmanagers$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -195788,8 +199765,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -195987,8 +199963,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -197611,8 +201586,7 @@ export namespace compute_beta {
     list(
       params: Params$Resource$Regioninstancegroups$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$RegionInstanceGroupList>,
+        MethodOptions | BodyResponseCallback<Schema$RegionInstanceGroupList>,
       callback: BodyResponseCallback<Schema$RegionInstanceGroupList>
     ): void;
     list(
@@ -198087,8 +202061,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -198223,8 +202196,7 @@ export namespace compute_beta {
     testIamPermissions(
       params: Params$Resource$Regioninstancegroups$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -198746,8 +202718,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -198971,8 +202942,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -199329,8 +203299,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -199551,8 +203520,7 @@ export namespace compute_beta {
     list(
       params: Params$Resource$Regioninstancetemplates$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$InstanceTemplateList>,
+        MethodOptions | BodyResponseCallback<Schema$InstanceTemplateList>,
       callback: BodyResponseCallback<Schema$InstanceTemplateList>
     ): void;
     list(
@@ -199955,8 +203923,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -200095,8 +204062,7 @@ export namespace compute_beta {
     get(
       params: Params$Resource$Regioninstantsnapshotgroups$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$InstantSnapshotGroup>,
+        MethodOptions | BodyResponseCallback<Schema$InstantSnapshotGroup>,
       callback: BodyResponseCallback<Schema$InstantSnapshotGroup>
     ): void;
     get(
@@ -200267,8 +204233,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -200471,8 +204436,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -200693,8 +204657,7 @@ export namespace compute_beta {
     list(
       params: Params$Resource$Regioninstantsnapshotgroups$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListInstantSnapshotGroups>,
+        MethodOptions | BodyResponseCallback<Schema$ListInstantSnapshotGroups>,
       callback: BodyResponseCallback<Schema$ListInstantSnapshotGroups>
     ): void;
     list(
@@ -200874,8 +204837,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -201010,8 +204972,7 @@ export namespace compute_beta {
     testIamPermissions(
       params: Params$Resource$Regioninstantsnapshotgroups$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -201476,8 +205437,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -201795,8 +205755,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -202007,8 +205966,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -202404,8 +206362,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -202600,8 +206557,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -202736,8 +206692,7 @@ export namespace compute_beta {
     testIamPermissions(
       params: Params$Resource$Regioninstantsnapshots$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -203762,8 +207717,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -203916,8 +207870,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$MultiMig>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$MultiMig>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$MultiMig> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$MultiMig>>
@@ -204115,8 +208068,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -204741,8 +208693,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -204930,8 +208881,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -205129,8 +209079,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -205279,8 +209228,7 @@ export namespace compute_beta {
     get(
       params: Params$Resource$Regionnetworkendpointgroups$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$NetworkEndpointGroup>,
+        MethodOptions | BodyResponseCallback<Schema$NetworkEndpointGroup>,
       callback: BodyResponseCallback<Schema$NetworkEndpointGroup>
     ): void;
     get(
@@ -205527,8 +209475,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -205748,8 +209695,7 @@ export namespace compute_beta {
     list(
       params: Params$Resource$Regionnetworkendpointgroups$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$NetworkEndpointGroupList>,
+        MethodOptions | BodyResponseCallback<Schema$NetworkEndpointGroupList>,
       callback: BodyResponseCallback<Schema$NetworkEndpointGroupList>
     ): void;
     list(
@@ -206614,8 +210560,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -206830,8 +210775,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -207017,8 +210961,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -207202,8 +211145,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -207500,8 +211442,7 @@ export namespace compute_beta {
     getAssociation(
       params: Params$Resource$Regionnetworkfirewallpolicies$Getassociation,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$FirewallPolicyAssociation>,
+        MethodOptions | BodyResponseCallback<Schema$FirewallPolicyAssociation>,
       callback: BodyResponseCallback<Schema$FirewallPolicyAssociation>
     ): void;
     getAssociation(
@@ -207835,8 +211776,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -208208,8 +212148,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -208655,8 +212594,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -208853,8 +212791,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -209065,8 +213002,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -209252,8 +213188,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -209440,8 +213375,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -209599,8 +213533,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -209736,8 +213669,7 @@ export namespace compute_beta {
     testIamPermissions(
       params: Params$Resource$Regionnetworkfirewallpolicies$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -210553,8 +214485,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -210757,8 +214688,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -211197,8 +215127,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -211484,8 +215413,7 @@ export namespace compute_beta {
     getAssociation(
       params: Params$Resource$Regionnetworkpolicies$Getassociation,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$NetworkPolicyAssociation>,
+        MethodOptions | BodyResponseCallback<Schema$NetworkPolicyAssociation>,
       callback: BodyResponseCallback<Schema$NetworkPolicyAssociation>
     ): void;
     getAssociation(
@@ -211876,8 +215804,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -212317,8 +216244,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -212525,8 +216451,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -212713,8 +216638,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -212903,8 +216827,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -213907,8 +217830,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -214042,8 +217964,7 @@ export namespace compute_beta {
     get(
       params: Params$Resource$Regionnotificationendpoints$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$NotificationEndpoint>,
+        MethodOptions | BodyResponseCallback<Schema$NotificationEndpoint>,
       callback: BodyResponseCallback<Schema$NotificationEndpoint>
     ): void;
     get(
@@ -214261,8 +218182,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -214480,8 +218400,7 @@ export namespace compute_beta {
     list(
       params: Params$Resource$Regionnotificationendpoints$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$NotificationEndpointList>,
+        MethodOptions | BodyResponseCallback<Schema$NotificationEndpointList>,
       callback: BodyResponseCallback<Schema$NotificationEndpointList>
     ): void;
     list(
@@ -214636,8 +218555,7 @@ export namespace compute_beta {
     testIamPermissions(
       params: Params$Resource$Regionnotificationendpoints$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -215300,8 +219218,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -215726,8 +219643,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -216059,8 +219975,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Region>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Region>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Region> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Region>>
@@ -216310,8 +220225,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$RegionList>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$RegionList>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$RegionList> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$RegionList>>
@@ -216628,8 +220542,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -216813,8 +220726,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -217361,8 +221273,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -217819,8 +221730,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -218021,8 +221931,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -218194,8 +222103,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -218390,8 +222298,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -218941,8 +222848,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -219127,8 +223033,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Snapshot>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Snapshot>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Snapshot> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Snapshot>>
@@ -219279,8 +223184,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -219511,8 +223415,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -219908,8 +223811,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -220104,8 +224006,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -220240,8 +224141,7 @@ export namespace compute_beta {
     testIamPermissions(
       params: Params$Resource$Regionsnapshots$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -220456,8 +224356,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -221112,8 +225011,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -221350,8 +225248,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -221716,8 +225613,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -222090,8 +225986,7 @@ export namespace compute_beta {
     testIamPermissions(
       params: Params$Resource$Regionsslcertificates$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -222510,8 +226405,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -222670,8 +226564,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$SslPolicy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$SslPolicy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$SslPolicy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$SslPolicy>>
@@ -222875,8 +226768,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -223563,8 +227455,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -223699,8 +227590,7 @@ export namespace compute_beta {
     testIamPermissions(
       params: Params$Resource$Regionsslpolicies$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -224262,8 +228152,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -224622,8 +228511,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -225053,8 +228941,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -225189,8 +229076,7 @@ export namespace compute_beta {
     testIamPermissions(
       params: Params$Resource$Regiontargethttpproxies$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -225642,8 +229528,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -226020,8 +229905,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -226240,8 +230124,7 @@ export namespace compute_beta {
     list(
       params: Params$Resource$Regiontargethttpsproxies$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TargetHttpsProxyList>,
+        MethodOptions | BodyResponseCallback<Schema$TargetHttpsProxyList>,
       callback: BodyResponseCallback<Schema$TargetHttpsProxyList>
     ): void;
     list(
@@ -226476,8 +230359,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -226670,8 +230552,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -226864,8 +230745,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -227000,8 +230880,7 @@ export namespace compute_beta {
     testIamPermissions(
       params: Params$Resource$Regiontargethttpsproxies$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -227524,8 +231403,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -227882,8 +231760,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -228256,8 +232133,7 @@ export namespace compute_beta {
     testIamPermissions(
       params: Params$Resource$Regiontargettcpproxies$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -228663,8 +232539,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -228825,8 +232700,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$UrlMap>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$UrlMap>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$UrlMap> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$UrlMap>>
@@ -229022,8 +232896,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -229210,8 +233083,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -229448,8 +233320,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$UrlMapList>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$UrlMapList>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$UrlMapList> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$UrlMapList>>
@@ -229649,8 +233520,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -229785,8 +233655,7 @@ export namespace compute_beta {
     testIamPermissions(
       params: Params$Resource$Regionurlmaps$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -230006,8 +233875,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -230143,8 +234011,7 @@ export namespace compute_beta {
     validate(
       params: Params$Resource$Regionurlmaps$Validate,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$UrlMapsValidateResponse>,
+        MethodOptions | BodyResponseCallback<Schema$UrlMapsValidateResponse>,
       callback: BodyResponseCallback<Schema$UrlMapsValidateResponse>
     ): void;
     validate(
@@ -230682,8 +234549,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$ZoneList>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$ZoneList>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$ZoneList> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$ZoneList>>
@@ -230829,6 +234695,522 @@ export namespace compute_beta {
      * Region for this request.
      */
     region?: string;
+    /**
+     * Opt-in for partial success behavior which provides partial results in case
+     * of failure. The default value is false.
+     *
+     * For example, when partial success behavior is enabled, aggregatedList for a
+     * single zone scope either returns all resources in the zone or no resources,
+     * with an error code.
+     */
+    returnPartialSuccess?: boolean;
+  }
+
+  export class Resource$Reliabilityrisks {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Returns the specified ReliabilityRisk resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.reliabilityRisks.get({
+     *     // Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // Name of the ReliabilityRisk resource to return.
+     *     reliabilityRisk: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "details": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "recommendation": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "selfLinkWithId": "my_selfLinkWithId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Reliabilityrisks$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Reliabilityrisks$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ReliabilityRisk>>;
+    get(
+      params: Params$Resource$Reliabilityrisks$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Reliabilityrisks$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$ReliabilityRisk>,
+      callback: BodyResponseCallback<Schema$ReliabilityRisk>
+    ): void;
+    get(
+      params: Params$Resource$Reliabilityrisks$Get,
+      callback: BodyResponseCallback<Schema$ReliabilityRisk>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$ReliabilityRisk>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Reliabilityrisks$Get
+        | BodyResponseCallback<Schema$ReliabilityRisk>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ReliabilityRisk>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ReliabilityRisk>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ReliabilityRisk>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Reliabilityrisks$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Reliabilityrisks$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/beta/projects/{project}/global/reliabilityRisks/{reliabilityRisk}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'reliabilityRisk'],
+        pathParams: ['project', 'reliabilityRisk'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ReliabilityRisk>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ReliabilityRisk>(parameters);
+      }
+    }
+
+    /**
+     * Retrieves the list of reliabilityRisks available in the specified project.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.reliabilityRisks.list({
+     *     // A filter expression that filters resources listed in the response. Most
+     *     // Compute resources support two types of filter expressions:
+     *     // expressions that support regular expressions and expressions that follow
+     *     // API improvement proposal AIP-160.
+     *     // These two types of filter expressions cannot be mixed in one request.
+     *     //
+     *     // If you want to use AIP-160, your expression must specify the field name, an
+     *     // operator, and the value that you want to use for filtering. The value
+     *     // must be a string, a number, or a boolean. The operator
+     *     // must be either `=`, `!=`, `\>`, `<`, `<=`, `\>=` or `:`.
+     *     //
+     *     // For example, if you are filtering Compute Engine instances, you can
+     *     // exclude instances named `example-instance` by specifying
+     *     // `name != example-instance`.
+     *     //
+     *     // The `:*` comparison can be used to test whether a key has been defined.
+     *     // For example, to find all objects with `owner` label use:
+     *     // ```
+     *     // labels.owner:*
+     *     // ```
+     *     //
+     *     // You can also filter nested fields. For example, you could specify
+     *     // `scheduling.automaticRestart = false` to include instances only
+     *     // if they are not scheduled for automatic restarts. You can use filtering
+     *     // on nested fields to filter based onresource labels.
+     *     //
+     *     // To filter on multiple expressions, provide each separate expression within
+     *     // parentheses. For example:
+     *     // ```
+     *     // (scheduling.automaticRestart = true)
+     *     // (cpuPlatform = "Intel Skylake")
+     *     // ```
+     *     // By default, each expression is an `AND` expression. However, you
+     *     // can include `AND` and `OR` expressions explicitly.
+     *     // For example:
+     *     // ```
+     *     // (cpuPlatform = "Intel Skylake") OR
+     *     // (cpuPlatform = "Intel Broadwell") AND
+     *     // (scheduling.automaticRestart = true)
+     *     // ```
+     *     //
+     *     // If you want to use a regular expression, use the `eq` (equal) or `ne`
+     *     // (not equal) operator against a single un-parenthesized expression with or
+     *     // without quotes or against multiple parenthesized expressions. Examples:
+     *     //
+     *     // `fieldname eq unquoted literal`
+     *     // `fieldname eq 'single quoted literal'`
+     *     // `fieldname eq "double quoted literal"`
+     *     // `(fieldname1 eq literal) (fieldname2 ne "literal")`
+     *     //
+     *     // The literal value is interpreted as a regular expression using GoogleRE2 library syntax.
+     *     // The literal value must match the entire field.
+     *     //
+     *     // For example, to filter for instances that do not end with name "instance",
+     *     // you would use `name ne .*instance`.
+     *     //
+     *     // You cannot combine constraints on multiple fields using regular
+     *     // expressions.
+     *     filter: 'placeholder-value',
+     *     // The maximum number of results per page that should be returned.
+     *     // If the number of available results is larger than `maxResults`,
+     *     // Compute Engine returns a `nextPageToken` that can be used to get
+     *     // the next page of results in subsequent list requests. Acceptable values are
+     *     // `0` to `500`, inclusive. (Default: `500`)
+     *     maxResults: 'placeholder-value',
+     *     // Sorts list results by a certain order. By default, results
+     *     // are returned in alphanumerical order based on the resource name.
+     *     //
+     *     // You can also sort results in descending order based on the creation
+     *     // timestamp using `orderBy="creationTimestamp desc"`. This sorts
+     *     // results based on the `creationTimestamp` field in
+     *     // reverse chronological order (newest result first). Use this to sort
+     *     // resources like operations so that the newest operation is returned first.
+     *     //
+     *     // Currently, only sorting by `name` or
+     *     // `creationTimestamp desc` is supported.
+     *     orderBy: 'placeholder-value',
+     *     // Specifies a page token to use. Set `pageToken` to the
+     *     // `nextPageToken` returned by a previous list request to get
+     *     // the next page of results.
+     *     pageToken: 'placeholder-value',
+     *     // Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // Opt-in for partial success behavior which provides partial results in case
+     *     // of failure. The default value is false.
+     *     //
+     *     // For example, when partial success behavior is enabled, aggregatedList for a
+     *     // single zone scope either returns all resources in the zone or no resources,
+     *     // with an error code.
+     *     returnPartialSuccess: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "items": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "unreachables": [],
+     *   //   "warning": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Reliabilityrisks$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Reliabilityrisks$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ReliabilityRisksListResponse>>;
+    list(
+      params: Params$Resource$Reliabilityrisks$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Reliabilityrisks$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ReliabilityRisksListResponse>,
+      callback: BodyResponseCallback<Schema$ReliabilityRisksListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Reliabilityrisks$List,
+      callback: BodyResponseCallback<Schema$ReliabilityRisksListResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ReliabilityRisksListResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Reliabilityrisks$List
+        | BodyResponseCallback<Schema$ReliabilityRisksListResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ReliabilityRisksListResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ReliabilityRisksListResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ReliabilityRisksListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Reliabilityrisks$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Reliabilityrisks$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/beta/projects/{project}/global/reliabilityRisks'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ReliabilityRisksListResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ReliabilityRisksListResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Reliabilityrisks$Get extends StandardParameters {
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the ReliabilityRisk resource to return.
+     */
+    reliabilityRisk?: string;
+  }
+  export interface Params$Resource$Reliabilityrisks$List extends StandardParameters {
+    /**
+     * A filter expression that filters resources listed in the response. Most
+     * Compute resources support two types of filter expressions:
+     * expressions that support regular expressions and expressions that follow
+     * API improvement proposal AIP-160.
+     * These two types of filter expressions cannot be mixed in one request.
+     *
+     * If you want to use AIP-160, your expression must specify the field name, an
+     * operator, and the value that you want to use for filtering. The value
+     * must be a string, a number, or a boolean. The operator
+     * must be either `=`, `!=`, `\>`, `<`, `<=`, `\>=` or `:`.
+     *
+     * For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named `example-instance` by specifying
+     * `name != example-instance`.
+     *
+     * The `:*` comparison can be used to test whether a key has been defined.
+     * For example, to find all objects with `owner` label use:
+     * ```
+     * labels.owner:*
+     * ```
+     *
+     * You can also filter nested fields. For example, you could specify
+     * `scheduling.automaticRestart = false` to include instances only
+     * if they are not scheduled for automatic restarts. You can use filtering
+     * on nested fields to filter based onresource labels.
+     *
+     * To filter on multiple expressions, provide each separate expression within
+     * parentheses. For example:
+     * ```
+     * (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake")
+     * ```
+     * By default, each expression is an `AND` expression. However, you
+     * can include `AND` and `OR` expressions explicitly.
+     * For example:
+     * ```
+     * (cpuPlatform = "Intel Skylake") OR
+     * (cpuPlatform = "Intel Broadwell") AND
+     * (scheduling.automaticRestart = true)
+     * ```
+     *
+     * If you want to use a regular expression, use the `eq` (equal) or `ne`
+     * (not equal) operator against a single un-parenthesized expression with or
+     * without quotes or against multiple parenthesized expressions. Examples:
+     *
+     * `fieldname eq unquoted literal`
+     * `fieldname eq 'single quoted literal'`
+     * `fieldname eq "double quoted literal"`
+     * `(fieldname1 eq literal) (fieldname2 ne "literal")`
+     *
+     * The literal value is interpreted as a regular expression using GoogleRE2 library syntax.
+     * The literal value must match the entire field.
+     *
+     * For example, to filter for instances that do not end with name "instance",
+     * you would use `name ne .*instance`.
+     *
+     * You cannot combine constraints on multiple fields using regular
+     * expressions.
+     */
+    filter?: string;
+    /**
+     * The maximum number of results per page that should be returned.
+     * If the number of available results is larger than `maxResults`,
+     * Compute Engine returns a `nextPageToken` that can be used to get
+     * the next page of results in subsequent list requests. Acceptable values are
+     * `0` to `500`, inclusive. (Default: `500`)
+     */
+    maxResults?: number;
+    /**
+     * Sorts list results by a certain order. By default, results
+     * are returned in alphanumerical order based on the resource name.
+     *
+     * You can also sort results in descending order based on the creation
+     * timestamp using `orderBy="creationTimestamp desc"`. This sorts
+     * results based on the `creationTimestamp` field in
+     * reverse chronological order (newest result first). Use this to sort
+     * resources like operations so that the newest operation is returned first.
+     *
+     * Currently, only sorting by `name` or
+     * `creationTimestamp desc` is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set `pageToken` to the
+     * `nextPageToken` returned by a previous list request to get
+     * the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
     /**
      * Opt-in for partial success behavior which provides partial results in case
      * of failure. The default value is false.
@@ -231108,8 +235490,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -231549,8 +235930,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -231710,8 +236090,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -231848,8 +236227,7 @@ export namespace compute_beta {
     testIamPermissions(
       params: Params$Resource$Reservationblocks$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -232356,8 +236734,7 @@ export namespace compute_beta {
     aggregatedList(
       params: Params$Resource$Reservations$Aggregatedlist,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ReservationAggregatedList>,
+        MethodOptions | BodyResponseCallback<Schema$ReservationAggregatedList>,
       callback: BodyResponseCallback<Schema$ReservationAggregatedList>
     ): void;
     aggregatedList(
@@ -232563,8 +236940,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -232888,8 +237264,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -233108,8 +237483,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -233539,8 +237913,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -233734,8 +238107,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -233893,8 +238265,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -234029,8 +238400,7 @@ export namespace compute_beta {
     testIamPermissions(
       params: Params$Resource$Reservations$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -234275,8 +238645,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -235106,8 +239475,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -235545,8 +239913,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -236071,8 +240438,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -236268,8 +240634,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -236712,8 +241077,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -236916,8 +241280,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -237082,8 +241445,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -237220,8 +241582,7 @@ export namespace compute_beta {
     testIamPermissions(
       params: Params$Resource$Reservationsubblocks$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -238015,8 +242376,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -238326,8 +242686,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -238530,8 +242889,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -238977,8 +243335,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -239136,8 +243493,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -239272,8 +243628,7 @@ export namespace compute_beta {
     testIamPermissions(
       params: Params$Resource$Resourcepolicies$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -239882,8 +244237,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -240230,8 +244584,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -240447,8 +244800,7 @@ export namespace compute_beta {
     list(
       params: Params$Resource$Rolloutplans$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$RolloutPlansListResponse>,
+        MethodOptions | BodyResponseCallback<Schema$RolloutPlansListResponse>,
       callback: BodyResponseCallback<Schema$RolloutPlansListResponse>
     ): void;
     list(
@@ -240826,8 +245178,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -241013,8 +245364,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -241195,8 +245545,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -241297,6 +245646,8 @@ export namespace compute_beta {
      *   //   "id": "my_id",
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
+     *   //   "pauseTime": "my_pauseTime",
+     *   //   "resumeTime": "my_resumeTime",
      *   //   "rolloutEntity": {},
      *   //   "rolloutPlan": "my_rolloutPlan",
      *   //   "selfLink": "my_selfLink",
@@ -241352,8 +245703,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Rollout>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Rollout>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Rollout> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Rollout>>
@@ -241569,8 +245919,7 @@ export namespace compute_beta {
     list(
       params: Params$Resource$Rollouts$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$RolloutsListResponse>,
+        MethodOptions | BodyResponseCallback<Schema$RolloutsListResponse>,
       callback: BodyResponseCallback<Schema$RolloutsListResponse>
     ): void;
     list(
@@ -241774,8 +246123,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -241960,8 +246308,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -242466,8 +246813,7 @@ export namespace compute_beta {
     aggregatedList(
       params: Params$Resource$Routers$Aggregatedlist,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$RouterAggregatedList>,
+        MethodOptions | BodyResponseCallback<Schema$RouterAggregatedList>,
       callback: BodyResponseCallback<Schema$RouterAggregatedList>
     ): void;
     aggregatedList(
@@ -242672,8 +247018,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -242858,8 +247203,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -243045,8 +247389,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -243206,8 +247549,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Router>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Router>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Router> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Router>>
@@ -243337,8 +247679,7 @@ export namespace compute_beta {
     getNamedSet(
       params: Params$Resource$Routers$Getnamedset,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$RoutersGetNamedSetResponse>,
+        MethodOptions | BodyResponseCallback<Schema$RoutersGetNamedSetResponse>,
       callback: BodyResponseCallback<Schema$RoutersGetNamedSetResponse>
     ): void;
     getNamedSet(
@@ -243738,8 +248079,7 @@ export namespace compute_beta {
     getNatMappingInfo(
       params: Params$Resource$Routers$Getnatmappinginfo,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$VmEndpointNatMappingsList>,
+        MethodOptions | BodyResponseCallback<Schema$VmEndpointNatMappingsList>,
       callback: BodyResponseCallback<Schema$VmEndpointNatMappingsList>
     ): void;
     getNatMappingInfo(
@@ -244044,8 +248384,7 @@ export namespace compute_beta {
     getRouterStatus(
       params: Params$Resource$Routers$Getrouterstatus,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$RouterStatusResponse>,
+        MethodOptions | BodyResponseCallback<Schema$RouterStatusResponse>,
       callback: BodyResponseCallback<Schema$RouterStatusResponse>
     ): void;
     getRouterStatus(
@@ -244273,8 +248612,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -244509,8 +248847,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$RouterList>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$RouterList>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$RouterList> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$RouterList>>
@@ -244745,8 +249082,7 @@ export namespace compute_beta {
     listBgpRoutes(
       params: Params$Resource$Routers$Listbgproutes,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$RoutersListBgpRoutes>,
+        MethodOptions | BodyResponseCallback<Schema$RoutersListBgpRoutes>,
       callback: BodyResponseCallback<Schema$RoutersListBgpRoutes>
     ): void;
     listBgpRoutes(
@@ -244992,8 +249328,7 @@ export namespace compute_beta {
     listNamedSets(
       params: Params$Resource$Routers$Listnamedsets,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$RoutersListNamedSets>,
+        MethodOptions | BodyResponseCallback<Schema$RoutersListNamedSets>,
       callback: BodyResponseCallback<Schema$RoutersListNamedSets>
     ): void;
     listNamedSets(
@@ -245239,8 +249574,7 @@ export namespace compute_beta {
     listRoutePolicies(
       params: Params$Resource$Routers$Listroutepolicies,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$RoutersListRoutePolicies>,
+        MethodOptions | BodyResponseCallback<Schema$RoutersListRoutePolicies>,
       callback: BodyResponseCallback<Schema$RoutersListRoutePolicies>
     ): void;
     listRoutePolicies(
@@ -245472,8 +249806,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -245668,8 +250001,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -245865,8 +250197,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -246017,8 +250348,7 @@ export namespace compute_beta {
     preview(
       params: Params$Resource$Routers$Preview,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$RoutersPreviewResponse>,
+        MethodOptions | BodyResponseCallback<Schema$RoutersPreviewResponse>,
       callback: BodyResponseCallback<Schema$RoutersPreviewResponse>
     ): void;
     preview(
@@ -246174,8 +250504,7 @@ export namespace compute_beta {
     testIamPermissions(
       params: Params$Resource$Routers$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -246407,8 +250736,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -246603,8 +250931,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -246800,8 +251127,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -248163,8 +252489,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -248331,8 +252656,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Route>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Route>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Route> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Route>>
@@ -248545,8 +252869,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -248778,8 +253101,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$RouteList>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$RouteList>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$RouteList> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$RouteList>>
@@ -248910,8 +253232,7 @@ export namespace compute_beta {
     testIamPermissions(
       params: Params$Resource$Routes$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -249317,8 +253638,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -249758,8 +254078,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -250300,8 +254619,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -250995,8 +255313,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -251195,8 +255512,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -251366,8 +255682,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -251546,8 +255861,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -251680,8 +255994,7 @@ export namespace compute_beta {
     testIamPermissions(
       params: Params$Resource$Securitypolicies$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -252685,8 +256998,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -252796,6 +257108,7 @@ export namespace compute_beta {
      *   //   "kind": "my_kind",
      *   //   "metadata": {},
      *   //   "name": "my_name",
+     *   //   "natIpsPerEndpoint": 0,
      *   //   "natSubnets": [],
      *   //   "producerForwardingRule": "my_producerForwardingRule",
      *   //   "propagatedConnectionLimit": 0,
@@ -253006,8 +257319,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -253127,6 +257439,7 @@ export namespace compute_beta {
      *       //   "kind": "my_kind",
      *       //   "metadata": {},
      *       //   "name": "my_name",
+     *       //   "natIpsPerEndpoint": 0,
      *       //   "natSubnets": [],
      *       //   "producerForwardingRule": "my_producerForwardingRule",
      *       //   "propagatedConnectionLimit": 0,
@@ -253219,8 +257532,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -253438,8 +257750,7 @@ export namespace compute_beta {
     list(
       params: Params$Resource$Serviceattachments$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ServiceAttachmentList>,
+        MethodOptions | BodyResponseCallback<Schema$ServiceAttachmentList>,
       callback: BodyResponseCallback<Schema$ServiceAttachmentList>
     ): void;
     list(
@@ -253584,6 +257895,7 @@ export namespace compute_beta {
      *       //   "kind": "my_kind",
      *       //   "metadata": {},
      *       //   "name": "my_name",
+     *       //   "natIpsPerEndpoint": 0,
      *       //   "natSubnets": [],
      *       //   "producerForwardingRule": "my_producerForwardingRule",
      *       //   "propagatedConnectionLimit": 0,
@@ -253676,8 +257988,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -253835,8 +258146,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -253971,8 +258281,7 @@ export namespace compute_beta {
     testIamPermissions(
       params: Params$Resource$Serviceattachments$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -254582,8 +258891,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -254886,8 +259194,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -255086,8 +259393,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -255479,8 +259785,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -255613,8 +259918,7 @@ export namespace compute_beta {
     testIamPermissions(
       params: Params$Resource$Snapshotgroups$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -256088,8 +260392,7 @@ export namespace compute_beta {
     aggregatedList(
       params: Params$Resource$Snapshots$Aggregatedlist,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$SnapshotAggregatedList>,
+        MethodOptions | BodyResponseCallback<Schema$SnapshotAggregatedList>,
       callback: BodyResponseCallback<Schema$SnapshotAggregatedList>
     ): void;
     aggregatedList(
@@ -256299,8 +260602,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -256482,8 +260784,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Snapshot>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Snapshot>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Snapshot> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Snapshot>>
@@ -256631,8 +260932,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -256864,8 +261164,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -257253,8 +261552,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -257432,8 +261730,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -257566,8 +261863,7 @@ export namespace compute_beta {
     testIamPermissions(
       params: Params$Resource$Snapshots$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -257780,8 +262076,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -258499,8 +262794,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -258984,8 +263278,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -259344,8 +263637,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -259714,8 +264006,7 @@ export namespace compute_beta {
     testIamPermissions(
       params: Params$Resource$Sslcertificates$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -260279,8 +264570,7 @@ export namespace compute_beta {
     aggregatedList(
       params: Params$Resource$Sslpolicies$Aggregatedlist,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$SslPoliciesAggregatedList>,
+        MethodOptions | BodyResponseCallback<Schema$SslPoliciesAggregatedList>,
       callback: BodyResponseCallback<Schema$SslPoliciesAggregatedList>
     ): void;
     aggregatedList(
@@ -260487,8 +264777,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -260645,8 +264934,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$SslPolicy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$SslPolicy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$SslPolicy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$SslPolicy>>
@@ -260846,8 +265134,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -261525,8 +265812,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -261659,8 +265945,7 @@ export namespace compute_beta {
     testIamPermissions(
       params: Params$Resource$Sslpolicies$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -262361,8 +266646,7 @@ export namespace compute_beta {
     aggregatedList(
       params: Params$Resource$Storagepools$Aggregatedlist,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$StoragePoolAggregatedList>,
+        MethodOptions | BodyResponseCallback<Schema$StoragePoolAggregatedList>,
       callback: BodyResponseCallback<Schema$StoragePoolAggregatedList>
     ): void;
     aggregatedList(
@@ -262572,8 +266856,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -262686,6 +266969,7 @@ export namespace compute_beta {
      *   //   "resourceStatus": {},
      *   //   "selfLink": "my_selfLink",
      *   //   "selfLinkWithId": "my_selfLinkWithId",
+     *   //   "shareSettings": {},
      *   //   "state": "my_state",
      *   //   "status": {},
      *   //   "storagePoolType": "my_storagePoolType",
@@ -262890,8 +267174,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -263015,6 +267298,7 @@ export namespace compute_beta {
      *       //   "resourceStatus": {},
      *       //   "selfLink": "my_selfLink",
      *       //   "selfLinkWithId": "my_selfLinkWithId",
+     *       //   "shareSettings": {},
      *       //   "state": "my_state",
      *       //   "status": {},
      *       //   "storagePoolType": "my_storagePoolType",
@@ -263102,8 +267386,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -263565,8 +267848,7 @@ export namespace compute_beta {
     listDisks(
       params: Params$Resource$Storagepools$Listdisks,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$StoragePoolListDisks>,
+        MethodOptions | BodyResponseCallback<Schema$StoragePoolListDisks>,
       callback: BodyResponseCallback<Schema$StoragePoolListDisks>
     ): void;
     listDisks(
@@ -263746,8 +268028,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -263882,8 +268163,7 @@ export namespace compute_beta {
     testIamPermissions(
       params: Params$Resource$Storagepools$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -264036,6 +268316,7 @@ export namespace compute_beta {
      *       //   "resourceStatus": {},
      *       //   "selfLink": "my_selfLink",
      *       //   "selfLinkWithId": "my_selfLinkWithId",
+     *       //   "shareSettings": {},
      *       //   "state": "my_state",
      *       //   "status": {},
      *       //   "storagePoolType": "my_storagePoolType",
@@ -264123,8 +268404,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -265782,8 +270062,7 @@ export namespace compute_beta {
     aggregatedList(
       params: Params$Resource$Subnetworks$Aggregatedlist,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$SubnetworkAggregatedList>,
+        MethodOptions | BodyResponseCallback<Schema$SubnetworkAggregatedList>,
       callback: BodyResponseCallback<Schema$SubnetworkAggregatedList>
     ): void;
     aggregatedList(
@@ -265989,8 +270268,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -266182,8 +270460,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -266298,6 +270575,7 @@ export namespace compute_beta {
      *   //   "ipv6AccessType": "my_ipv6AccessType",
      *   //   "ipv6CidrRange": "my_ipv6CidrRange",
      *   //   "ipv6GceEndpoint": "my_ipv6GceEndpoint",
+     *   //   "ipv6NetworkTier": "my_ipv6NetworkTier",
      *   //   "kind": "my_kind",
      *   //   "logConfig": {},
      *   //   "name": "my_name",
@@ -266366,8 +270644,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Subnetwork>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Subnetwork>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Subnetwork> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Subnetwork>>
@@ -266517,8 +270794,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -266639,6 +270915,7 @@ export namespace compute_beta {
      *       //   "ipv6AccessType": "my_ipv6AccessType",
      *       //   "ipv6CidrRange": "my_ipv6CidrRange",
      *       //   "ipv6GceEndpoint": "my_ipv6GceEndpoint",
+     *       //   "ipv6NetworkTier": "my_ipv6NetworkTier",
      *       //   "kind": "my_kind",
      *       //   "logConfig": {},
      *       //   "name": "my_name",
@@ -266741,8 +271018,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -267368,6 +271644,7 @@ export namespace compute_beta {
      *       //   "ipv6AccessType": "my_ipv6AccessType",
      *       //   "ipv6CidrRange": "my_ipv6CidrRange",
      *       //   "ipv6GceEndpoint": "my_ipv6GceEndpoint",
+     *       //   "ipv6NetworkTier": "my_ipv6NetworkTier",
      *       //   "kind": "my_kind",
      *       //   "logConfig": {},
      *       //   "name": "my_name",
@@ -267470,8 +271747,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -267629,8 +271905,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -267825,8 +272100,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -267961,8 +272235,7 @@ export namespace compute_beta {
     testIamPermissions(
       params: Params$Resource$Subnetworks$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -268783,8 +273056,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -269135,8 +273407,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -269573,8 +273844,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -269707,8 +273977,7 @@ export namespace compute_beta {
     testIamPermissions(
       params: Params$Resource$Targetgrpcproxies$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -270390,8 +274659,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -270746,8 +275014,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -271187,8 +275454,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -271378,8 +275644,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -271512,8 +275777,7 @@ export namespace compute_beta {
     testIamPermissions(
       params: Params$Resource$Targethttpproxies$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -272345,8 +276609,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -272719,8 +276982,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -272937,8 +277199,7 @@ export namespace compute_beta {
     list(
       params: Params$Resource$Targethttpsproxies$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TargetHttpsProxyList>,
+        MethodOptions | BodyResponseCallback<Schema$TargetHttpsProxyList>,
       callback: BodyResponseCallback<Schema$TargetHttpsProxyList>
     ): void;
     list(
@@ -273171,8 +277432,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -273363,8 +277623,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -273555,8 +277814,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -273747,8 +278005,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -273942,8 +278199,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -274134,8 +278390,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -274268,8 +278523,7 @@ export namespace compute_beta {
     testIamPermissions(
       params: Params$Resource$Targethttpsproxies$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -275231,8 +279485,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -275589,8 +279842,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -276023,8 +280275,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -276159,8 +280410,7 @@ export namespace compute_beta {
     testIamPermissions(
       params: Params$Resource$Targetinstances$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -276739,8 +280989,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -276932,8 +281181,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -277164,8 +281412,7 @@ export namespace compute_beta {
     aggregatedList(
       params: Params$Resource$Targetpools$Aggregatedlist,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TargetPoolAggregatedList>,
+        MethodOptions | BodyResponseCallback<Schema$TargetPoolAggregatedList>,
       callback: BodyResponseCallback<Schema$TargetPoolAggregatedList>
     ): void;
     aggregatedList(
@@ -277371,8 +281618,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -277529,8 +281775,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$TargetPool>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$TargetPool>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$TargetPool> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$TargetPool>>
@@ -277666,8 +281911,7 @@ export namespace compute_beta {
     getHealth(
       params: Params$Resource$Targetpools$Gethealth,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TargetPoolInstanceHealth>,
+        MethodOptions | BodyResponseCallback<Schema$TargetPoolInstanceHealth>,
       callback: BodyResponseCallback<Schema$TargetPoolInstanceHealth>
     ): void;
     getHealth(
@@ -277892,8 +282136,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -278322,8 +282565,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -278515,8 +282757,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -278710,8 +282951,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -278906,8 +283146,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -279042,8 +283281,7 @@ export namespace compute_beta {
     testIamPermissions(
       params: Params$Resource$Targetpools$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -279810,8 +284048,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -280164,8 +284401,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -280592,8 +284828,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -280784,8 +285019,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -280975,8 +285209,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -281167,8 +285400,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -281362,8 +285594,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -281496,8 +285727,7 @@ export namespace compute_beta {
     testIamPermissions(
       params: Params$Resource$Targetsslproxies$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -282307,8 +286537,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -282661,8 +286890,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -283089,8 +287317,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -283280,8 +287507,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -283414,8 +287640,7 @@ export namespace compute_beta {
     testIamPermissions(
       params: Params$Resource$Targettcpproxies$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -284249,8 +288474,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -284613,8 +288837,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -284833,8 +289056,7 @@ export namespace compute_beta {
     list(
       params: Params$Resource$Targetvpngateways$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TargetVpnGatewayList>,
+        MethodOptions | BodyResponseCallback<Schema$TargetVpnGatewayList>,
       callback: BodyResponseCallback<Schema$TargetVpnGatewayList>
     ): void;
     list(
@@ -285048,8 +289270,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -285184,8 +289405,7 @@ export namespace compute_beta {
     testIamPermissions(
       params: Params$Resource$Targetvpngateways$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -285803,8 +290023,7 @@ export namespace compute_beta {
     aggregatedList(
       params: Params$Resource$Urlmaps$Aggregatedlist,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$UrlMapsAggregatedList>,
+        MethodOptions | BodyResponseCallback<Schema$UrlMapsAggregatedList>,
       callback: BodyResponseCallback<Schema$UrlMapsAggregatedList>
     ): void;
     aggregatedList(
@@ -286007,8 +290226,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -286166,8 +290384,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$UrlMap>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$UrlMap>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$UrlMap> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$UrlMap>>
@@ -286371,8 +290588,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -286566,8 +290782,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -286802,8 +291017,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$UrlMapList>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$UrlMapList>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$UrlMapList> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$UrlMapList>>
@@ -287010,8 +291224,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -287143,8 +291356,7 @@ export namespace compute_beta {
     testIamPermissions(
       params: Params$Resource$Urlmaps$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -287373,8 +291585,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -287508,8 +291719,7 @@ export namespace compute_beta {
     validate(
       params: Params$Resource$Urlmaps$Validate,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$UrlMapsValidateResponse>,
+        MethodOptions | BodyResponseCallback<Schema$UrlMapsValidateResponse>,
       callback: BodyResponseCallback<Schema$UrlMapsValidateResponse>
     ): void;
     validate(
@@ -288178,8 +292388,7 @@ export namespace compute_beta {
     aggregatedList(
       params: Params$Resource$Vpngateways$Aggregatedlist,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$VpnGatewayAggregatedList>,
+        MethodOptions | BodyResponseCallback<Schema$VpnGatewayAggregatedList>,
       callback: BodyResponseCallback<Schema$VpnGatewayAggregatedList>
     ): void;
     aggregatedList(
@@ -288385,8 +292594,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -288544,8 +292752,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$VpnGateway>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$VpnGateway>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$VpnGateway> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$VpnGateway>>
@@ -288900,8 +293107,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -289332,8 +293538,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -289468,8 +293673,7 @@ export namespace compute_beta {
     testIamPermissions(
       params: Params$Resource$Vpngateways$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -290100,8 +294304,7 @@ export namespace compute_beta {
     aggregatedList(
       params: Params$Resource$Vpntunnels$Aggregatedlist,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$VpnTunnelAggregatedList>,
+        MethodOptions | BodyResponseCallback<Schema$VpnTunnelAggregatedList>,
       callback: BodyResponseCallback<Schema$VpnTunnelAggregatedList>
     ): void;
     aggregatedList(
@@ -290306,8 +294509,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -290478,8 +294680,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$VpnTunnel>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$VpnTunnel>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$VpnTunnel> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$VpnTunnel>>
@@ -290695,8 +294896,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -291127,8 +295327,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -291263,8 +295462,7 @@ export namespace compute_beta {
     testIamPermissions(
       params: Params$Resource$Vpntunnels$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -291834,8 +296032,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -291991,8 +296188,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$WireGroup>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$WireGroup>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$WireGroup> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$WireGroup>>
@@ -292196,8 +296392,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -292645,8 +296840,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -293197,8 +297391,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -293622,8 +297815,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -293885,6 +298077,7 @@ export namespace compute_beta {
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
      *   //   "region": "my_region",
+     *   //   "resourceStatus": {},
      *   //   "selfLink": "my_selfLink",
      *   //   "status": "my_status",
      *   //   "supportsPzs": false
@@ -293937,8 +298130,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Zone>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Zone>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Zone> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Zone>>
@@ -294170,8 +298362,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$ZoneList>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$ZoneList>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$ZoneList> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$ZoneList>>
@@ -294476,8 +298667,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -294839,8 +299029,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -295060,8 +299249,7 @@ export namespace compute_beta {
     list(
       params: Params$Resource$Zonevmextensionpolicies$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$VmExtensionPolicyList>,
+        MethodOptions | BodyResponseCallback<Schema$VmExtensionPolicyList>,
       callback: BodyResponseCallback<Schema$VmExtensionPolicyList>
     ): void;
     list(
@@ -295286,8 +299474,7 @@ export namespace compute_beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>

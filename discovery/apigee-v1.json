@@ -11964,7 +11964,7 @@
       }
     }
   },
-  "revision": "20260511",
+  "revision": "20260626",
   "rootUrl": "https://apigee.googleapis.com/",
   "schemas": {
     "EdgeConfigstoreBundleBadBundle": {
@@ -12595,6 +12595,10 @@
         "operationGroup": {
           "$ref": "GoogleCloudApigeeV1OperationGroup",
           "description": "Configuration used to group Apigee proxies or remote services with resources, method types, and quotas. The resource refers to the resource URI (excluding the base path). With this grouping, the API product creator is able to fine-tune and give precise control over which REST methods have access to specific resources and how many calls can be made (using the `quota` setting). **Note:** The `api_resources` setting cannot be specified for both the API product and operation group; otherwise the call will fail."
+        },
+        "payloadOperationGroup": {
+          "$ref": "GoogleCloudApigeeV1PayloadOperationGroup",
+          "description": "Optional. Configuration used to group Apigee proxies with payload-based operations and quotas. Unlike `operation_group`, which matches on the URL path, this grouping matches on operation identifiers extracted from the request payload (for example, JSON-RPC method and tool names). This enables fine-grained authorization and quota enforcement for protocols such as MCP where multiple operations share a single endpoint. **Note:** The `proxies` and `api_resources` settings cannot be specified for both the API product and payload operation group; otherwise the call will fail."
         },
         "proxies": {
           "description": "Comma-separated list of API proxy names to which this API product is bound. By specifying API proxies, you can associate resources in the API product with specific API proxies, preventing developers from accessing those resources through other API proxies. Apigee rejects requests to API proxies that are not listed. **Note:** The API proxy names must already exist in the specified environment as they will be validated upon creation.",
@@ -18065,6 +18069,60 @@
       },
       "type": "object"
     },
+    "GoogleCloudApigeeV1PayloadOperation": {
+      "description": "Represents a single operation identifier extracted from the request payload.",
+      "id": "GoogleCloudApigeeV1PayloadOperation",
+      "properties": {
+        "operation": {
+          "description": "Required. The operation name extracted from the request payload at runtime by the ParsePayload policy. For example, for MCP protocol requests, this could be `\"tools/list\"` or `\"tools/call/get_weather\"`. Wildcards are not supported.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1PayloadOperationConfig": {
+      "description": "Binds the payload operations in an API proxy with the associated quota enforcement.",
+      "id": "GoogleCloudApigeeV1PayloadOperationConfig",
+      "properties": {
+        "apiSource": {
+          "description": "Required. Name of the API proxy with which the payload operations and quota are associated.",
+          "type": "string"
+        },
+        "attributes": {
+          "description": "Optional. Custom attributes associated with the operation.",
+          "items": {
+            "$ref": "GoogleCloudApigeeV1Attribute"
+          },
+          "type": "array"
+        },
+        "operations": {
+          "description": "Required. List of payload operations for the API proxy to which quota will be applied.",
+          "items": {
+            "$ref": "GoogleCloudApigeeV1PayloadOperation"
+          },
+          "type": "array"
+        },
+        "quota": {
+          "$ref": "GoogleCloudApigeeV1Quota",
+          "description": "Optional. Quota parameters to be enforced for the operations and API source combination. If none are specified, quota enforcement will not be done unless a quota is defined at the API product level."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1PayloadOperationGroup": {
+      "description": "List of payload operation configuration details associated with Apigee API proxies. Payload operations enable governance of protocols where operations are embedded in the request body (such as JSON-RPC) rather than defined by the URL path.",
+      "id": "GoogleCloudApigeeV1PayloadOperationGroup",
+      "properties": {
+        "operationConfigs": {
+          "description": "Required. List of payload operation configurations for Apigee API proxies that are associated with this API product.",
+          "items": {
+            "$ref": "GoogleCloudApigeeV1PayloadOperationConfig"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudApigeeV1PodStatus": {
       "id": "GoogleCloudApigeeV1PodStatus",
       "properties": {
@@ -19130,7 +19188,7 @@
       "type": "object"
     },
     "GoogleCloudApigeeV1RuntimeTraceConfig": {
-      "description": "NEXT ID: 10 RuntimeTraceConfig defines the configurations for distributed trace in an environment.",
+      "description": "NEXT ID: 11 RuntimeTraceConfig defines the configurations for distributed trace in an environment.",
       "id": "GoogleCloudApigeeV1RuntimeTraceConfig",
       "properties": {
         "endpoint": {
@@ -19184,6 +19242,20 @@
           "$ref": "GoogleCloudApigeeV1RuntimeTraceSamplingConfig",
           "description": "Trace configuration for all API proxies in an environment."
         },
+        "spanSemantics": {
+          "description": "Optional. The span semantics to use. Configuration Requirements (if `span_semantics` is `OTEL`): - `trace_protocol` must be `OTLP`.",
+          "enum": [
+            "SPAN_SEMANTICS_UNSPECIFIED",
+            "LEGACY",
+            "OTEL"
+          ],
+          "enumDescriptions": [
+            "Semantics unspecified. Defaults to LEGACY.",
+            "Uses Apigee legacy span and attribute names.",
+            "Uses OpenTelemetry semantic-convention-aligned span and attribute names."
+          ],
+          "type": "string"
+        },
         "traceProtocol": {
           "description": "Optional. The trace protocol to use.",
           "enum": [
@@ -19202,7 +19274,7 @@
       "type": "object"
     },
     "GoogleCloudApigeeV1RuntimeTraceConfigOverride": {
-      "description": "NEXT ID: 9 Trace configuration override for a specific API proxy in an environment.",
+      "description": "NEXT ID: 10 Trace configuration override for a specific API proxy in an environment.",
       "id": "GoogleCloudApigeeV1RuntimeTraceConfigOverride",
       "properties": {
         "apiProxy": {
@@ -19230,6 +19302,20 @@
         "samplingConfig": {
           "$ref": "GoogleCloudApigeeV1RuntimeTraceSamplingConfig",
           "description": "Trace configuration override for a specific API proxy in an environment."
+        },
+        "spanSemantics": {
+          "description": "Optional. The span semantics to use. Configuration Requirements (if `span_semantics` is `OTEL`): - `trace_protocol` must be `OTLP`.",
+          "enum": [
+            "SPAN_SEMANTICS_UNSPECIFIED",
+            "LEGACY",
+            "OTEL"
+          ],
+          "enumDescriptions": [
+            "Semantics unspecified. Defaults to LEGACY.",
+            "Uses Apigee legacy span and attribute names.",
+            "Uses OpenTelemetry semantic-convention-aligned span and attribute names."
+          ],
+          "type": "string"
         },
         "traceProtocol": {
           "description": "Optional. The trace protocol to use.",
@@ -21243,6 +21329,34 @@
         "samplingConfig": {
           "$ref": "GoogleCloudApigeeV1TraceSamplingConfig",
           "description": "Distributed trace configuration for all API proxies in an environment. You can also override the configuration for a specific API proxy using the distributed trace configuration overrides API."
+        },
+        "spanSemantics": {
+          "description": "Optional. The span semantics to use. Configuration Requirements (if span_semantics is OTEL): - trace_protocol must be OTLP.",
+          "enum": [
+            "SPAN_SEMANTICS_UNSPECIFIED",
+            "LEGACY",
+            "OTEL"
+          ],
+          "enumDescriptions": [
+            "Semantics unspecified. Defaults to LEGACY.",
+            "Uses Apigee legacy span and attribute names.",
+            "Uses OpenTelemetry semantic-convention-aligned span and attribute names."
+          ],
+          "type": "string"
+        },
+        "traceProtocol": {
+          "description": "Optional. The trace protocol to use. Configuration Requirements (if trace_protocol is OTLP): - Allowed Exporters: CLOUD_TRACE or OPEN_TELEMETRY_COLLECTOR. - If Exporter is OPEN_TELEMETRY_COLLECTOR: - endpoint refers to a valid OTLP collector URL. - If Exporter is CLOUD_TRACE: - endpoint refers to a valid project ID.",
+          "enum": [
+            "TRACE_PROTOCOL_UNSPECIFIED",
+            "OPEN_CENSUS",
+            "OTLP"
+          ],
+          "enumDescriptions": [
+            "Protocol unspecified. Defaults to OPEN_CENSUS.",
+            "Uses OpenCensus protocol.",
+            "Uses OpenTelemetry Protocol (OTLP)."
+          ],
+          "type": "string"
         }
       },
       "type": "object"

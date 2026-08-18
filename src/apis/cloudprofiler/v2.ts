@@ -327,8 +327,7 @@ export namespace cloudprofiler_v2 {
         | BodyResponseCallback<Schema$Profile>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Profile>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Profile> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Profile>>
@@ -489,8 +488,7 @@ export namespace cloudprofiler_v2 {
         | BodyResponseCallback<Schema$Profile>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Profile>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Profile> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Profile>>
@@ -619,8 +617,7 @@ export namespace cloudprofiler_v2 {
     list(
       params: Params$Resource$Projects$Profiles$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListProfilesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListProfilesResponse>,
       callback: BodyResponseCallback<Schema$ListProfilesResponse>
     ): void;
     list(
@@ -803,8 +800,7 @@ export namespace cloudprofiler_v2 {
         | BodyResponseCallback<Schema$Profile>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Profile>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Profile> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Profile>>

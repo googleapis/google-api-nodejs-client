@@ -992,9 +992,21 @@ export namespace firebaseappdistribution_v1alpha {
    */
   export interface Schema$GoogleFirebaseAppdistroV1Release {
     /**
+     * Output only. Number of testers with accepted invitations.
+     */
+    acceptedInvitationCount?: number | null;
+    /**
+     * Output only. Registration state of the Android package (BinaryType.APK).
+     */
+    androidPackageRegistrationState?: string | null;
+    /**
      * Output only. A signed link (which expires in one hour) to directly download the app binary (IPA/APK/AAB) file.
      */
     binaryDownloadUri?: string | null;
+    /**
+     * Output only. Type of binary.
+     */
+    binaryType?: string | null;
     /**
      * Output only. Build version of the release. For an Android release, the build version is the `versionCode`. For an iOS release, the build version is the `CFBundleVersion`.
      */
@@ -1012,21 +1024,37 @@ export namespace firebaseappdistribution_v1alpha {
      */
     expireTime?: string | null;
     /**
+     * Output only. Number of feedback reports left by testers.
+     */
+    feedbackCount?: number | null;
+    /**
      * Output only. A link to the Firebase console displaying a single release.
      */
     firebaseConsoleUri?: string | null;
+    /**
+     * Output only. Number of testers who have downloaded this release.
+     */
+    installationCount?: number | null;
     /**
      * The name of the release resource. Format: `projects/{project_number\}/apps/{app\}/releases/{release\}`
      */
     name?: string | null;
     /**
-     * Notes of the release.
+     * Output only. Number of testers who were invited (incl. expired invitations), but did not (yet) accept the invitation.
+     */
+    openInvitationCount?: number | null;
+    /**
+     * Notes about the release.
      */
     releaseNotes?: Schema$GoogleFirebaseAppdistroV1ReleaseNotes;
     /**
      * Output only. A link to the release in the tester web clip or Android app that lets testers (which were granted access to the app) view release notes and install the app onto their devices.
      */
     testingUri?: string | null;
+    /**
+     * Output only. The overall state of tests run on this release
+     */
+    testState?: string | null;
     /**
      * Output only. The time the release was last updated.
      */

@@ -829,6 +829,10 @@ export namespace firebase_v1beta1 {
      */
     realtimeDatabaseUrl?: string | null;
     /**
+     * Optional. Recaptcha Enterprise site key associated with the Firebase App.
+     */
+    recaptchaSiteKey?: string | null;
+    /**
      * **DEPRECATED.** _Instead, find the name of the default Cloud Storage for Firebase bucket using the [list endpoint](https://firebase.google.com/docs/reference/rest/storage/rest/v1beta/projects.buckets/list) within the Cloud Storage for Firebase REST API. If the default bucket for the Project has not yet been provisioned, the return might not contain a default bucket. Note that the config that's generated for the Firebase console or the Firebase CLI uses the Cloud Storage for Firebase endpoint to populate this value for that config._ The name of the default Cloud Storage for Firebase bucket.
      */
     storageBucket?: string | null;
@@ -1110,8 +1114,7 @@ export namespace firebase_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -1286,8 +1289,7 @@ export namespace firebase_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -1439,8 +1441,7 @@ export namespace firebase_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -2325,8 +2326,7 @@ export namespace firebase_v1beta1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -2458,8 +2458,7 @@ export namespace firebase_v1beta1 {
     searchApps(
       params: Params$Resource$Projects$Searchapps,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$SearchFirebaseAppsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$SearchFirebaseAppsResponse>,
       callback: BodyResponseCallback<Schema$SearchFirebaseAppsResponse>
     ): void;
     searchApps(
@@ -2754,8 +2753,7 @@ export namespace firebase_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -2906,8 +2904,7 @@ export namespace firebase_v1beta1 {
         | BodyResponseCallback<Schema$AndroidApp>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$AndroidApp>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$AndroidApp> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$AndroidApp>>
@@ -3174,8 +3171,7 @@ export namespace firebase_v1beta1 {
     list(
       params: Params$Resource$Projects$Androidapps$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListAndroidAppsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListAndroidAppsResponse>,
       callback: BodyResponseCallback<Schema$ListAndroidAppsResponse>
     ): void;
     list(
@@ -3364,8 +3360,7 @@ export namespace firebase_v1beta1 {
         | BodyResponseCallback<Schema$AndroidApp>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$AndroidApp>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$AndroidApp> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$AndroidApp>>
@@ -3516,8 +3511,7 @@ export namespace firebase_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3669,8 +3663,7 @@ export namespace firebase_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4045,8 +4038,7 @@ export namespace firebase_v1beta1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -4546,8 +4538,7 @@ export namespace firebase_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4726,8 +4717,7 @@ export namespace firebase_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4878,8 +4868,7 @@ export namespace firebase_v1beta1 {
         | BodyResponseCallback<Schema$IosApp>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$IosApp>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$IosApp> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$IosApp>>
@@ -5334,8 +5323,7 @@ export namespace firebase_v1beta1 {
         | BodyResponseCallback<Schema$IosApp>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$IosApp>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$IosApp> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$IosApp>>
@@ -5486,8 +5474,7 @@ export namespace firebase_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5639,8 +5626,7 @@ export namespace firebase_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5886,8 +5872,7 @@ export namespace firebase_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -6037,8 +6022,7 @@ export namespace firebase_v1beta1 {
         | BodyResponseCallback<Schema$WebApp>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$WebApp>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$WebApp> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$WebApp>>
@@ -6136,6 +6120,7 @@ export namespace firebase_v1beta1 {
      *   //   "projectId": "my_projectId",
      *   //   "projectNumber": "my_projectNumber",
      *   //   "realtimeDatabaseUrl": "my_realtimeDatabaseUrl",
+     *   //   "recaptchaSiteKey": "my_recaptchaSiteKey",
      *   //   "storageBucket": "my_storageBucket",
      *   //   "version": "my_version"
      *   // }
@@ -6501,8 +6486,7 @@ export namespace firebase_v1beta1 {
         | BodyResponseCallback<Schema$WebApp>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$WebApp>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$WebApp> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$WebApp>>
@@ -6653,8 +6637,7 @@ export namespace firebase_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -6806,8 +6789,7 @@ export namespace firebase_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>

@@ -794,8 +794,7 @@ export namespace firebaserules_v1 {
         | BodyResponseCallback<Schema$Release>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Release>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Release> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Release>>
@@ -933,8 +932,7 @@ export namespace firebaserules_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -1075,8 +1073,7 @@ export namespace firebaserules_v1 {
         | BodyResponseCallback<Schema$Release>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Release>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Release> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Release>>
@@ -1358,8 +1355,7 @@ export namespace firebaserules_v1 {
     list(
       params: Params$Resource$Projects$Releases$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListReleasesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListReleasesResponse>,
       callback: BodyResponseCallback<Schema$ListReleasesResponse>
     ): void;
     list(
@@ -1531,8 +1527,7 @@ export namespace firebaserules_v1 {
         | BodyResponseCallback<Schema$Release>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Release>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Release> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Release>>
@@ -1755,8 +1750,7 @@ export namespace firebaserules_v1 {
         | BodyResponseCallback<Schema$Ruleset>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Ruleset>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Ruleset> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Ruleset>>
@@ -1894,8 +1888,7 @@ export namespace firebaserules_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -2037,8 +2030,7 @@ export namespace firebaserules_v1 {
         | BodyResponseCallback<Schema$Ruleset>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Ruleset>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Ruleset> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Ruleset>>
@@ -2165,8 +2157,7 @@ export namespace firebaserules_v1 {
     list(
       params: Params$Resource$Projects$Rulesets$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListRulesetsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListRulesetsResponse>,
       callback: BodyResponseCallback<Schema$ListRulesetsResponse>
     ): void;
     list(

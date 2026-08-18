@@ -351,6 +351,32 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "getExtendedAgentCard": {
+                  "description": "Gets the extended agent card for the authenticated agent.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/apps/{appsId}/extendedAgentCard",
+                  "httpMethod": "GET",
+                  "id": "ces.projects.locations.apps.getExtendedAgentCard",
+                  "parameterOrder": [
+                    "tenant"
+                  ],
+                  "parameters": {
+                    "tenant": {
+                      "description": "Optional. Opaque routing identifier. Must match the `tenant` value from the selected `AgentInterface` in the Agent Card when that field is set.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/apps/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+tenant}/extendedAgentCard",
+                  "response": {
+                    "$ref": "LfA2aV1AgentCard"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/ces",
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "importApp": {
                   "description": "Imports the specified app.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/apps:importApp",
@@ -864,6 +890,21 @@
                           ],
                           "location": "query",
                           "type": "string"
+                        },
+                        "view": {
+                          "description": "Optional. The view specifying which fields in the response should be populated.",
+                          "enum": [
+                            "CONVERSATION_VIEW_UNSPECIFIED",
+                            "CONVERSATION_VIEW_BASIC",
+                            "CONVERSATION_VIEW_FULL"
+                          ],
+                          "enumDescriptions": [
+                            "Not specified, defaults to CONVERSATION_VIEW_BASIC.",
+                            "The basic view. Returns everything except resolved instructions.",
+                            "The full view. Includes resolved instructions dynamically per turn."
+                          ],
+                          "location": "query",
+                          "type": "string"
                         }
                       },
                       "path": "v1/{+name}",
@@ -1051,6 +1092,32 @@
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
+                    "getExtendedAgentCard": {
+                      "description": "Gets the extended agent card for the authenticated agent.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/apps/{appsId}/deployments/{deploymentsId}/extendedAgentCard",
+                      "httpMethod": "GET",
+                      "id": "ces.projects.locations.apps.deployments.getExtendedAgentCard",
+                      "parameterOrder": [
+                        "tenant"
+                      ],
+                      "parameters": {
+                        "tenant": {
+                          "description": "Optional. Opaque routing identifier. Must match the `tenant` value from the selected `AgentInterface` in the Agent Card when that field is set.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/apps/[^/]+/deployments/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+tenant}/extendedAgentCard",
+                      "response": {
+                        "$ref": "LfA2aV1AgentCard"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/ces",
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "list": {
                       "description": "Lists deployments in the given app.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/apps/{appsId}/deployments",
@@ -1127,6 +1194,41 @@
                         "https://www.googleapis.com/auth/ces",
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
+                    }
+                  },
+                  "resources": {
+                    "message": {
+                      "methods": {
+                        "send": {
+                          "description": "Sends a message to an agent.",
+                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/apps/{appsId}/deployments/{deploymentsId}/message:send",
+                          "httpMethod": "POST",
+                          "id": "ces.projects.locations.apps.deployments.message.send",
+                          "parameterOrder": [
+                            "tenant"
+                          ],
+                          "parameters": {
+                            "tenant": {
+                              "description": "Optional. Opaque routing identifier. Must match the `tenant` value from the selected `AgentInterface` in the Agent Card when that field is set.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/apps/[^/]+/deployments/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+tenant}/message:send",
+                          "request": {
+                            "$ref": "LfA2aV1SendMessageRequest"
+                          },
+                          "response": {
+                            "$ref": "LfA2aV1SendMessageResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/ces",
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        }
+                      }
                     }
                   }
                 },
@@ -1501,7 +1603,7 @@
                       ],
                       "parameters": {
                         "tenant": {
-                          "description": "Optional. Tenant ID, provided as a path parameter.",
+                          "description": "Optional. Opaque routing identifier. Must match the `tenant` value from the selected `AgentInterface` in the Agent Card when that field is set.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/apps/[^/]+$",
                           "required": true,
@@ -2099,6 +2201,32 @@
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
+                    "getExtendedAgentCard": {
+                      "description": "Gets the extended agent card for the authenticated agent.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/apps/{appsId}/versions/{versionsId}/extendedAgentCard",
+                      "httpMethod": "GET",
+                      "id": "ces.projects.locations.apps.versions.getExtendedAgentCard",
+                      "parameterOrder": [
+                        "tenant"
+                      ],
+                      "parameters": {
+                        "tenant": {
+                          "description": "Optional. Opaque routing identifier. Must match the `tenant` value from the selected `AgentInterface` in the Agent Card when that field is set.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/apps/[^/]+/versions/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+tenant}/extendedAgentCard",
+                      "response": {
+                        "$ref": "LfA2aV1AgentCard"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/ces",
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "list": {
                       "description": "Lists all app versions in the given app.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/apps/{appsId}/versions",
@@ -2174,6 +2302,41 @@
                         "https://www.googleapis.com/auth/ces",
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
+                    }
+                  },
+                  "resources": {
+                    "message": {
+                      "methods": {
+                        "send": {
+                          "description": "Sends a message to an agent.",
+                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/apps/{appsId}/versions/{versionsId}/message:send",
+                          "httpMethod": "POST",
+                          "id": "ces.projects.locations.apps.versions.message.send",
+                          "parameterOrder": [
+                            "tenant"
+                          ],
+                          "parameters": {
+                            "tenant": {
+                              "description": "Optional. Opaque routing identifier. Must match the `tenant` value from the selected `AgentInterface` in the Agent Card when that field is set.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/apps/[^/]+/versions/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+tenant}/message:send",
+                          "request": {
+                            "$ref": "LfA2aV1SendMessageRequest"
+                          },
+                          "response": {
+                            "$ref": "LfA2aV1SendMessageResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/ces",
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        }
+                      }
                     }
                   }
                 }
@@ -2316,7 +2479,7 @@
       }
     }
   },
-  "revision": "20260513",
+  "revision": "20260806",
   "rootUrl": "https://ces.googleapis.com/",
   "schemas": {
     "Action": {
@@ -2702,11 +2865,6 @@
         },
         "name": {
           "description": "Required. The name of the agent tool.",
-          "type": "string"
-        },
-        "rootAgent": {
-          "deprecated": true,
-          "description": "Optional. Deprecated: Use `agent` instead. The resource name of the root agent that is the entry point of the tool. Format: `projects/{project}/locations/{location}/agents/{agent}`",
           "type": "string"
         }
       },
@@ -3131,7 +3289,7 @@
         },
         "disableBargeIn": {
           "deprecated": true,
-          "description": "Optional. Disables user barge-in while the agent is speaking. If true, user input during agent response playback will be ignored. Deprecated: `disable_barge_in` is deprecated in favor of `disable_barge_in_control` in ChannelProfile.",
+          "description": "Optional. Deprecated: `disable_barge_in` is deprecated in favor of `disable_barge_in_control` in ChannelProfile. Disables user barge-in while the agent is speaking. If true, user input during agent response playback will be ignored.",
           "type": "boolean"
         }
       },
@@ -3322,8 +3480,11 @@
             "TWILIO",
             "GOOGLE_TELEPHONY_PLATFORM",
             "CONTACT_CENTER_AS_A_SERVICE",
+            "CONTACT_CENTER_AS_A_SERVICE_CHAT",
             "FIVE9",
-            "CONTACT_CENTER_INTEGRATION"
+            "CONTACT_CENTER_INTEGRATION",
+            "WHATSAPP",
+            "INSTAGRAM"
           ],
           "enumDescriptions": [
             "Unknown channel type.",
@@ -3332,8 +3493,11 @@
             "Twilio channel.",
             "Google Telephony Platform channel.",
             "Contact Center as a Service (CCaaS) channel.",
+            "Contact Center as a Service (CCaaS Chat) channel.",
             "Five9 channel.",
-            "Third party contact center integration channel."
+            "Third party contact center integration channel.",
+            "WhatsApp channel.",
+            "Instagram channel."
           ],
           "type": "string"
         },
@@ -3344,6 +3508,10 @@
         "disableDtmf": {
           "description": "Optional. Whether to disable DTMF (dual-tone multi-frequency).",
           "type": "boolean"
+        },
+        "instagramConfig": {
+          "$ref": "ChannelProfileInstagramConfig",
+          "description": "Optional. Configuration specific to Instagram deployments."
         },
         "noiseSuppressionLevel": {
           "description": "Optional. The noise suppression level of the channel profile. Available values are \"low\", \"moderate\", \"high\", \"very_high\".",
@@ -3360,6 +3528,36 @@
         "webWidgetConfig": {
           "$ref": "ChannelProfileWebWidgetConfig",
           "description": "Optional. The configuration for the web widget."
+        },
+        "whatsappConfig": {
+          "$ref": "ChannelProfileWhatsAppConfig",
+          "description": "Optional. Configuration specific to WhatsApp deployments."
+        }
+      },
+      "type": "object"
+    },
+    "ChannelProfileInstagramConfig": {
+      "description": "Configuration specific to Instagram deployments.",
+      "id": "ChannelProfileInstagramConfig",
+      "properties": {
+        "description": {
+          "description": "Output only. The description of the Meta business page or profile.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Output only. The fetched Meta business page name.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "instagramAccountId": {
+          "description": "Required. The Instagram Account ID.",
+          "type": "string"
+        },
+        "thumbnailUrl": {
+          "description": "Output only. The fetched Meta business profile thumbnail URL.",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -3458,6 +3656,40 @@
       },
       "type": "object"
     },
+    "ChannelProfileWhatsAppConfig": {
+      "description": "Configuration specific to WhatsApp deployments.",
+      "id": "ChannelProfileWhatsAppConfig",
+      "properties": {
+        "description": {
+          "description": "Output only. The description of the Meta business page or profile.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Output only. The fetched Meta business page name.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "phoneNumber": {
+          "description": "Optional. The phone number in E.164 format.",
+          "type": "string"
+        },
+        "phoneNumberId": {
+          "description": "Required. The Meta phone number ID.",
+          "type": "string"
+        },
+        "thumbnailUrl": {
+          "description": "Output only. The fetched Meta business profile thumbnail URL.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "wabaId": {
+          "description": "Required. The WhatsApp Business Account ID.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Chunk": {
       "description": "A chunk of content within a message.",
       "id": "Chunk",
@@ -3535,6 +3767,10 @@
       "description": "Piece of cited information.",
       "id": "CitationsCitedChunk",
       "properties": {
+        "requiresAttribution": {
+          "description": "Whether this citation requires attribution to be shown to the end users.",
+          "type": "boolean"
+        },
         "text": {
           "description": "Text used for citation.",
           "type": "string"
@@ -3818,9 +4054,26 @@
           },
           "type": "array"
         },
+        "resolvedDeveloperInstruction": {
+          "description": "Output only. The full dynamically resolved developer instruction generated from templates. This field is only populated on-demand when requested during history retrieval. It is not persisted.",
+          "readOnly": true,
+          "type": "string"
+        },
         "rootSpan": {
           "$ref": "Span",
           "description": "Optional. The root span of the action processing."
+        },
+        "templateAttributes": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Optional. Variables or configurations referenced by the template engine during dynamic prompt generation. This allows reconstructing the exact prompt sent to the model for this turn.",
+          "type": "object"
+        },
+        "userIntendedText": {
+          "description": "Optional. The intended ground-truth text from the Simulated Caller (Polysynth). Only populated when word error rate metrics are enabled.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -4192,6 +4445,10 @@
           "$ref": "DataStoreToolRewriterConfig",
           "description": "Optional. The rewriter config."
         },
+        "snippetsConfig": {
+          "$ref": "DataStoreToolSnippetsConfig",
+          "description": "Optional. The snippets configuration."
+        },
         "summarizationConfig": {
           "$ref": "DataStoreToolSummarizationConfig",
           "description": "Optional. The summarization config."
@@ -4214,6 +4471,17 @@
         "prompt": {
           "description": "Optional. The prompt definition. If not set, default prompt will be used.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DataStoreToolSnippetsConfig": {
+      "description": "Snippets configuration.",
+      "id": "DataStoreToolSnippetsConfig",
+      "properties": {
+        "enableSnippets": {
+          "description": "Optional. Whether snippets are enabled.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -4268,6 +4536,30 @@
           "$ref": "ExperimentConfig",
           "description": "Optional. Experiment configuration for the deployment."
         },
+        "instagramCredentials": {
+          "$ref": "InstagramCredentials",
+          "description": "Optional. Input only. Ephemeral Instagram credentials required when configuring a Instagram channel profile."
+        },
+        "modality": {
+          "description": "Optional. The modality of the deployment. Note: Deployment-level modality override is gated behind an allowlist. Contact the CXAS team to enable this field.",
+          "enum": [
+            "MODALITY_UNSPECIFIED",
+            "MODALITY_TEXT",
+            "MODALITY_VOICE",
+            "MODALITY_VIDEO"
+          ],
+          "enumDescriptions": [
+            "Unknown modality.",
+            "Text modality.",
+            "Voice modality.",
+            "Video modality."
+          ],
+          "type": "string"
+        },
+        "modelSettings": {
+          "$ref": "ModelSettings",
+          "description": "Optional. Model settings for the deployment. Overrides model settings configured at the app/agent levels. Note: Deployment-level model settings override is gated behind an allowlist. Contact the CXAS team to enable this field."
+        },
         "name": {
           "description": "Identifier. The resource name of the deployment. Format: `projects/{project}/locations/{location}/apps/{app}/deployments/{deployment}`",
           "type": "string"
@@ -4277,6 +4569,10 @@
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
+        },
+        "whatsappCredentials": {
+          "$ref": "WhatsAppCredentials",
+          "description": "Optional. Input only. Ephemeral WhatsApp credentials required when configuring a WhatsApp channel profile."
         }
       },
       "type": "object"
@@ -4682,6 +4978,14 @@
       "description": "Response message for ToolService.ExecuteTool.",
       "id": "ExecuteToolResponse",
       "properties": {
+        "citations": {
+          "$ref": "Citations",
+          "description": "Citations that provide the source information for the tool's execution."
+        },
+        "googleSearchSuggestions": {
+          "$ref": "GoogleSearchSuggestions",
+          "description": "The suggestions returned from Google Search as a result of invoking the Google Search Tool during the tool execution."
+        },
         "response": {
           "additionalProperties": {
             "description": "Properties of the object.",
@@ -4735,10 +5039,10 @@
           ],
           "enumDescriptions": [
             "Unspecified state.",
-            "Pending state. Experiment is pending and not valid.",
+            "Deprecated: This state is no longer used.",
             "Running state. Experiment is running and valid.",
-            "Done state. Experiment is done and no longer valid.",
-            "Expired state. Experiment is expired and no longer valid."
+            "Deprecated: This state is no longer used.",
+            "Deprecated: This state is no longer used."
           ],
           "type": "string"
         },
@@ -5305,6 +5609,10 @@
             "Overwrite existing data with imported data. If an app with the same `app_id` already exists, its content will be overwritten with the imported app. - Existing resources (Agents, Tools, Examples, Guardrails, Toolsets) in the app will be deleted. - Imported resources will be created as new resources."
           ],
           "type": "string"
+        },
+        "validateOnly": {
+          "description": "Optional. Flag for dry-running the import process. If set to true, the import process will only perform validations and will not make any changes to the existing app or create a new one.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -5359,6 +5667,21 @@
       },
       "type": "object"
     },
+    "InstagramCredentials": {
+      "description": "Ephemeral Meta credentials for Instagram native integration.",
+      "id": "InstagramCredentials",
+      "properties": {
+        "authCode": {
+          "description": "Required. The Meta auth code provided by the embedded signup flow.",
+          "type": "string"
+        },
+        "conversationProfileId": {
+          "description": "Optional. The Conversation Profile ID to use for the deployment.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "LanguageSettings": {
       "description": "Language settings of the app.",
       "id": "LanguageSettings",
@@ -5378,6 +5701,277 @@
         },
         "supportedLanguageCodes": {
           "description": "Optional. List of languages codes supported by the app, in addition to the `default_language_code`.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "LfA2aV1APIKeySecurityScheme": {
+      "description": "Defines a security scheme using an API key.",
+      "id": "LfA2aV1APIKeySecurityScheme",
+      "properties": {
+        "description": {
+          "description": "An optional description for the security scheme.",
+          "type": "string"
+        },
+        "location": {
+          "description": "Required. The location of the API key. Valid values are \"query\", \"header\", or \"cookie\".",
+          "type": "string"
+        },
+        "name": {
+          "description": "Required. The name of the header, query, or cookie parameter to be used.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "LfA2aV1AgentCapabilities": {
+      "description": "Defines optional capabilities supported by an agent.",
+      "id": "LfA2aV1AgentCapabilities",
+      "properties": {
+        "extendedAgentCard": {
+          "description": "Indicates if the agent supports providing an extended agent card when authenticated.",
+          "type": "boolean"
+        },
+        "extensions": {
+          "description": "A list of protocol extensions supported by the agent.",
+          "items": {
+            "$ref": "LfA2aV1AgentExtension"
+          },
+          "type": "array"
+        },
+        "pushNotifications": {
+          "description": "Indicates if the agent supports sending push notifications for asynchronous task updates.",
+          "type": "boolean"
+        },
+        "streaming": {
+          "description": "Indicates if the agent supports streaming responses.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "LfA2aV1AgentCard": {
+      "description": "A self-describing manifest for an agent. It provides essential metadata including the agent's identity, capabilities, skills, supported communication methods, and security requirements. Next ID: 20",
+      "id": "LfA2aV1AgentCard",
+      "properties": {
+        "capabilities": {
+          "$ref": "LfA2aV1AgentCapabilities",
+          "description": "Required. A2A Capability set supported by the agent."
+        },
+        "defaultInputModes": {
+          "description": "Required. protolint:enable REPEATED_FIELD_NAMES_PLURALIZED The set of interaction modes that the agent supports across all skills. This can be overridden per skill. Defined as media types.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "defaultOutputModes": {
+          "description": "Required. The media types supported as outputs from this agent.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "description": {
+          "description": "Required. A human-readable description of the agent, assisting users and other agents in understanding its purpose. Example: \"Agent that helps users with recipes and cooking.\"",
+          "type": "string"
+        },
+        "documentationUrl": {
+          "description": "A URL providing additional documentation about the agent.",
+          "type": "string"
+        },
+        "iconUrl": {
+          "description": "Optional. A URL to an icon for the agent.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Required. A human readable name for the agent. Example: \"Recipe Agent\"",
+          "type": "string"
+        },
+        "provider": {
+          "$ref": "LfA2aV1AgentProvider",
+          "description": "The service provider of the agent."
+        },
+        "securityRequirements": {
+          "description": "Security requirements for contacting the agent.",
+          "items": {
+            "$ref": "LfA2aV1SecurityRequirement"
+          },
+          "type": "array"
+        },
+        "securitySchemes": {
+          "additionalProperties": {
+            "$ref": "LfA2aV1SecurityScheme"
+          },
+          "description": "The security scheme details used for authenticating with this agent.",
+          "type": "object"
+        },
+        "signatures": {
+          "description": "JSON Web Signatures computed for this `AgentCard`.",
+          "items": {
+            "$ref": "LfA2aV1AgentCardSignature"
+          },
+          "type": "array"
+        },
+        "skills": {
+          "description": "Required. Skills represent the abilities of an agent. It is largely a descriptive concept but represents a more focused set of behaviors that the agent is likely to succeed at.",
+          "items": {
+            "$ref": "LfA2aV1AgentSkill"
+          },
+          "type": "array"
+        },
+        "supportedInterfaces": {
+          "description": "Required. Ordered list of supported interfaces. The first entry is preferred.",
+          "items": {
+            "$ref": "LfA2aV1AgentInterface"
+          },
+          "type": "array"
+        },
+        "version": {
+          "description": "Required. The version of the agent. Example: \"1.0.0\"",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "LfA2aV1AgentCardSignature": {
+      "description": "AgentCardSignature represents a JWS signature of an AgentCard. This follows the JSON format of an RFC 7515 JSON Web Signature (JWS).",
+      "id": "LfA2aV1AgentCardSignature",
+      "properties": {
+        "header": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "The unprotected JWS header values.",
+          "type": "object"
+        },
+        "protected": {
+          "description": "Required. Required. The protected JWS header for the signature. This is always a base64url-encoded JSON object.",
+          "type": "string"
+        },
+        "signature": {
+          "description": "Required. The computed signature, base64url-encoded.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "LfA2aV1AgentExtension": {
+      "description": "A declaration of a protocol extension supported by an Agent.",
+      "id": "LfA2aV1AgentExtension",
+      "properties": {
+        "description": {
+          "description": "A human-readable description of how this agent uses the extension.",
+          "type": "string"
+        },
+        "params": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Optional. Extension-specific configuration parameters.",
+          "type": "object"
+        },
+        "required": {
+          "description": "If true, the client must understand and comply with the extension's requirements.",
+          "type": "boolean"
+        },
+        "uri": {
+          "description": "The unique URI identifying the extension.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "LfA2aV1AgentInterface": {
+      "description": "Declares a combination of a target URL, transport and protocol version for interacting with the agent. This allows agents to expose the same functionality over multiple protocol binding mechanisms.",
+      "id": "LfA2aV1AgentInterface",
+      "properties": {
+        "protocolBinding": {
+          "description": "Required. The protocol binding supported at this URL. This is an open form string, to be easily extended for other protocol bindings. The core ones officially supported are `JSONRPC`, `GRPC` and `HTTP+JSON`.",
+          "type": "string"
+        },
+        "protocolVersion": {
+          "description": "Required. The version of the A2A protocol this interface exposes. Use the latest supported minor version per major version. Examples: \"0.3\", \"1.0\"",
+          "type": "string"
+        },
+        "tenant": {
+          "description": "Optional. An opaque string used for routing requests to a specific agent or tenant when multiple agents are served behind a single A2A endpoint. When set, clients MUST include this value in the `tenant` field of all request messages sent to this interface. The server is responsible for interpreting the value and routing requests accordingly; the protocol does not define its format or semantics.",
+          "type": "string"
+        },
+        "url": {
+          "description": "Required. The URL where this interface is available. Must be a valid absolute HTTPS URL in production. Example: \"https://api.example.com/a2a/v1\", \"https://grpc.example.com/a2a\"",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "LfA2aV1AgentProvider": {
+      "description": "Represents the service provider of an agent.",
+      "id": "LfA2aV1AgentProvider",
+      "properties": {
+        "organization": {
+          "description": "Required. The name of the agent provider's organization. Example: \"Google\"",
+          "type": "string"
+        },
+        "url": {
+          "description": "Required. A URL for the agent provider's website or relevant documentation. Example: \"https://ai.google.dev\"",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "LfA2aV1AgentSkill": {
+      "description": "Represents a distinct capability or function that an agent can perform.",
+      "id": "LfA2aV1AgentSkill",
+      "properties": {
+        "description": {
+          "description": "Required. A detailed description of the skill.",
+          "type": "string"
+        },
+        "examples": {
+          "description": "Example prompts or scenarios that this skill can handle.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "id": {
+          "description": "Required. A unique identifier for the agent's skill.",
+          "type": "string"
+        },
+        "inputModes": {
+          "description": "The set of supported input media types for this skill, overriding the agent's defaults.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "name": {
+          "description": "Required. A human-readable name for the skill.",
+          "type": "string"
+        },
+        "outputModes": {
+          "description": "The set of supported output media types for this skill, overriding the agent's defaults.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "securityRequirements": {
+          "description": "Security schemes necessary for this skill.",
+          "items": {
+            "$ref": "LfA2aV1SecurityRequirement"
+          },
+          "type": "array"
+        },
+        "tags": {
+          "description": "Required. A set of keywords describing the skill's capabilities.",
           "items": {
             "type": "string"
           },
@@ -5438,6 +6032,125 @@
         "scheme": {
           "description": "Required. HTTP Authentication Scheme from the [IANA registry](https://www.iana.org/assignments/http-authschemes/). Examples: `Bearer`, `Basic`, `Digest`. Scheme names are case-insensitive per [RFC 9110 Section 11.1](https://www.rfc-editor.org/rfc/rfc9110#section-11.1).",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "LfA2aV1AuthorizationCodeOAuthFlow": {
+      "description": "Defines configuration details for the OAuth 2.0 Authorization Code flow.",
+      "id": "LfA2aV1AuthorizationCodeOAuthFlow",
+      "properties": {
+        "authorizationUrl": {
+          "description": "Required. The authorization URL to be used for this flow.",
+          "type": "string"
+        },
+        "pkceRequired": {
+          "description": "Indicates if PKCE (RFC 7636) is required for this flow. PKCE should always be used for public clients and is recommended for all clients.",
+          "type": "boolean"
+        },
+        "refreshUrl": {
+          "description": "The URL to be used for obtaining refresh tokens.",
+          "type": "string"
+        },
+        "scopes": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Required. The available scopes for the OAuth2 security scheme.",
+          "type": "object"
+        },
+        "tokenUrl": {
+          "description": "Required. The token URL to be used for this flow.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "LfA2aV1ClientCredentialsOAuthFlow": {
+      "description": "Defines configuration details for the OAuth 2.0 Client Credentials flow.",
+      "id": "LfA2aV1ClientCredentialsOAuthFlow",
+      "properties": {
+        "refreshUrl": {
+          "description": "The URL to be used for obtaining refresh tokens.",
+          "type": "string"
+        },
+        "scopes": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Required. The available scopes for the OAuth2 security scheme.",
+          "type": "object"
+        },
+        "tokenUrl": {
+          "description": "Required. The token URL to be used for this flow.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "LfA2aV1DeviceCodeOAuthFlow": {
+      "description": "Defines configuration details for the OAuth 2.0 Device Code flow (RFC 8628). This flow is designed for input-constrained devices such as IoT devices, and CLI tools where the user authenticates on a separate device.",
+      "id": "LfA2aV1DeviceCodeOAuthFlow",
+      "properties": {
+        "deviceAuthorizationUrl": {
+          "description": "Required. The device authorization endpoint URL.",
+          "type": "string"
+        },
+        "refreshUrl": {
+          "description": "The URL to be used for obtaining refresh tokens.",
+          "type": "string"
+        },
+        "scopes": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Required. The available scopes for the OAuth2 security scheme.",
+          "type": "object"
+        },
+        "tokenUrl": {
+          "description": "Required. The token URL to be used for this flow.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "LfA2aV1HTTPAuthSecurityScheme": {
+      "description": "Defines a security scheme using HTTP authentication.",
+      "id": "LfA2aV1HTTPAuthSecurityScheme",
+      "properties": {
+        "bearerFormat": {
+          "description": "A hint to the client to identify how the bearer token is formatted (e.g., \"JWT\"). Primarily for documentation purposes.",
+          "type": "string"
+        },
+        "description": {
+          "description": "An optional description for the security scheme.",
+          "type": "string"
+        },
+        "scheme": {
+          "description": "Required. The name of the HTTP Authentication scheme to be used in the Authorization header, as defined in RFC7235 (e.g., \"Bearer\"). This value should be registered in the IANA Authentication Scheme registry.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "LfA2aV1ImplicitOAuthFlow": {
+      "description": "Deprecated: Use Authorization Code + PKCE instead.",
+      "id": "LfA2aV1ImplicitOAuthFlow",
+      "properties": {
+        "authorizationUrl": {
+          "description": "The authorization URL to be used for this flow. This MUST be in the form of a URL. The OAuth2 standard requires the use of TLS",
+          "type": "string"
+        },
+        "refreshUrl": {
+          "description": "The URL to be used for obtaining refresh tokens. This MUST be in the form of a URL. The OAuth2 standard requires the use of TLS.",
+          "type": "string"
+        },
+        "scopes": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "The available scopes for the OAuth2 security scheme. A map between the scope name and a short description for it. The map MAY be empty.",
+          "type": "object"
         }
       },
       "type": "object"
@@ -5504,6 +6217,80 @@
       },
       "type": "object"
     },
+    "LfA2aV1MutualTlsSecurityScheme": {
+      "description": "Defines a security scheme using mTLS authentication.",
+      "id": "LfA2aV1MutualTlsSecurityScheme",
+      "properties": {
+        "description": {
+          "description": "An optional description for the security scheme.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "LfA2aV1OAuth2SecurityScheme": {
+      "description": "Defines a security scheme using OAuth 2.0.",
+      "id": "LfA2aV1OAuth2SecurityScheme",
+      "properties": {
+        "description": {
+          "description": "An optional description for the security scheme.",
+          "type": "string"
+        },
+        "flows": {
+          "$ref": "LfA2aV1OAuthFlows",
+          "description": "Required. An object containing configuration information for the supported OAuth 2.0 flows."
+        },
+        "oauth2MetadataUrl": {
+          "description": "URL to the OAuth2 authorization server metadata [RFC 8414](https://datatracker.ietf.org/doc/html/rfc8414). TLS is required.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "LfA2aV1OAuthFlows": {
+      "description": "Defines the configuration for the supported OAuth 2.0 flows.",
+      "id": "LfA2aV1OAuthFlows",
+      "properties": {
+        "authorizationCode": {
+          "$ref": "LfA2aV1AuthorizationCodeOAuthFlow",
+          "description": "Configuration for the OAuth Authorization Code flow."
+        },
+        "clientCredentials": {
+          "$ref": "LfA2aV1ClientCredentialsOAuthFlow",
+          "description": "Configuration for the OAuth Client Credentials flow."
+        },
+        "deviceCode": {
+          "$ref": "LfA2aV1DeviceCodeOAuthFlow",
+          "description": "Configuration for the OAuth Device Code flow."
+        },
+        "implicit": {
+          "$ref": "LfA2aV1ImplicitOAuthFlow",
+          "deprecated": true,
+          "description": "Deprecated: Use Authorization Code + PKCE instead."
+        },
+        "password": {
+          "$ref": "LfA2aV1PasswordOAuthFlow",
+          "deprecated": true,
+          "description": "Deprecated: Use Authorization Code + PKCE or Device Code."
+        }
+      },
+      "type": "object"
+    },
+    "LfA2aV1OpenIdConnectSecurityScheme": {
+      "description": "Defines a security scheme using OpenID Connect.",
+      "id": "LfA2aV1OpenIdConnectSecurityScheme",
+      "properties": {
+        "description": {
+          "description": "An optional description for the security scheme.",
+          "type": "string"
+        },
+        "openIdConnectUrl": {
+          "description": "Required. The [OpenID Connect Discovery URL](https://openid.net/specs/openid-connect-discovery-1_0.html) for the OIDC provider's metadata.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "LfA2aV1Part": {
       "description": "`Part` represents a container for a section of communication content. Parts can be purely textual, some sort of file (image, video, etc) or a structured data blob (i.e. JSON).",
       "id": "LfA2aV1Part",
@@ -5540,6 +6327,69 @@
         "url": {
           "description": "A `url` pointing to the file's content.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "LfA2aV1PasswordOAuthFlow": {
+      "description": "Deprecated: Use Authorization Code + PKCE or Device Code.",
+      "id": "LfA2aV1PasswordOAuthFlow",
+      "properties": {
+        "refreshUrl": {
+          "description": "The URL to be used for obtaining refresh tokens. This MUST be in the form of a URL. The OAuth2 standard requires the use of TLS.",
+          "type": "string"
+        },
+        "scopes": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "The available scopes for the OAuth2 security scheme. A map between the scope name and a short description for it. The map MAY be empty.",
+          "type": "object"
+        },
+        "tokenUrl": {
+          "description": "The token URL to be used for this flow. This MUST be in the form of a URL. The OAuth2 standard requires the use of TLS.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "LfA2aV1SecurityRequirement": {
+      "description": "Defines the security requirements for an agent.",
+      "id": "LfA2aV1SecurityRequirement",
+      "properties": {
+        "schemes": {
+          "additionalProperties": {
+            "$ref": "LfA2aV1StringList"
+          },
+          "description": "A map of security schemes to the required scopes.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "LfA2aV1SecurityScheme": {
+      "description": "Defines a security scheme that can be used to secure an agent's endpoints. This is a discriminated union type based on the OpenAPI 3.2 Security Scheme Object. See: https://spec.openapis.org/oas/v3.2.0.html#security-scheme-object",
+      "id": "LfA2aV1SecurityScheme",
+      "properties": {
+        "apiKeySecurityScheme": {
+          "$ref": "LfA2aV1APIKeySecurityScheme",
+          "description": "API key-based authentication."
+        },
+        "httpAuthSecurityScheme": {
+          "$ref": "LfA2aV1HTTPAuthSecurityScheme",
+          "description": "HTTP authentication (Basic, Bearer, etc.)."
+        },
+        "mtlsSecurityScheme": {
+          "$ref": "LfA2aV1MutualTlsSecurityScheme",
+          "description": "Mutual TLS authentication."
+        },
+        "oauth2SecurityScheme": {
+          "$ref": "LfA2aV1OAuth2SecurityScheme",
+          "description": "OAuth 2.0 authentication."
+        },
+        "openIdConnectSecurityScheme": {
+          "$ref": "LfA2aV1OpenIdConnectSecurityScheme",
+          "description": "OpenID Connect authentication."
         }
       },
       "type": "object"
@@ -5609,6 +6459,20 @@
       },
       "type": "object"
     },
+    "LfA2aV1StringList": {
+      "description": "protolint:disable REPEATED_FIELD_NAMES_PLURALIZED A list of strings.",
+      "id": "LfA2aV1StringList",
+      "properties": {
+        "list": {
+          "description": "The individual string values.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "LfA2aV1Task": {
       "description": "`Task` is the core unit of action for A2A. It has a current status and when results are created for the task they are stored in the artifact. If there are multiple turns for a task, these are stored in history.",
       "id": "LfA2aV1Task",
@@ -5667,7 +6531,7 @@
           "type": "string"
         },
         "tenant": {
-          "description": "Optional. Tenant ID.",
+          "description": "Optional. Opaque routing identifier. Must match the `tenant` value from the selected `AgentInterface` in the Agent Card when that field is set.",
           "type": "string"
         },
         "token": {
@@ -6022,6 +6886,10 @@
         "unredactedAudioRecordingConfig": {
           "$ref": "AudioRecordingConfig",
           "description": "Optional. Configures an additional recording of unredacted audio. This can be used to maintain a raw audio copy when audio redaction is enabled, typically for auditing or monitoring purposes."
+        },
+        "unredactedBigqueryExportSettings": {
+          "$ref": "BigQueryExportSettings",
+          "description": "Optional. Configures the BigQuery export behaviors for the app. The unredacted conversation data will be exported to BigQuery tables if it is enabled."
         }
       },
       "type": "object"
@@ -6877,6 +7745,10 @@
           "description": "Optional. The entry agent to handle the session. If not specified, the session will be handled by the root agent of the app. Format: `projects/{project}/locations/{location}/apps/{app}/agents/{agent}`",
           "type": "string"
         },
+        "excludeDiagnosticInfo": {
+          "description": "Optional. Whether to exclude diagnostic info from the session output.",
+          "type": "boolean"
+        },
         "historicalContexts": {
           "description": "Optional. The historical context of the session, including user inputs, agent responses, and other messages. Typically, CES agent would manage session automatically so client doesn't need to explicitly populate this field. However, client can optionally override the historical contexts to force the session start from certain state.",
           "items": {
@@ -6997,6 +7869,17 @@
         "citations": {
           "$ref": "Citations",
           "description": "Citations that provide the source information for the agent's generated text."
+        },
+        "context": {
+          "description": "Context messages for external supervision guardrails.",
+          "items": {
+            "additionalProperties": {
+              "description": "Properties of the object. Contains field @type with type URL.",
+              "type": "any"
+            },
+            "type": "object"
+          },
+          "type": "array"
         },
         "diagnosticInfo": {
           "$ref": "SessionOutputDiagnosticInfo",
@@ -7134,6 +8017,19 @@
       "description": "Configuration for how the agent response should be synthesized.",
       "id": "SynthesizeSpeechConfig",
       "properties": {
+        "consentAudioGcsUri": {
+          "deprecated": true,
+          "description": "Optional. Deprecated: Use `custom_voice_samples` in AudioProcessingConfig instead. The Cloud Storage URI to the consent audio for voice cloning.",
+          "type": "string"
+        },
+        "instruction": {
+          "description": "Optional. The instruction used to synthesize speech when using a generative model.",
+          "type": "string"
+        },
+        "model": {
+          "description": "Optional. The model used to synthesize audio. Currently supported values: - \"gemini-3.1-flash-tts-preview\" If empty, Chirp3-HD is used.",
+          "type": "string"
+        },
         "speakingRate": {
           "description": "Optional. The speaking rate/speed in the range [0.25, 2.0]. 1.0 is the normal native speed supported by the specific voice. 2.0 is twice as fast, and 0.5 is half as fast. Values outside of the range [0.25, 2.0] will return an error.",
           "format": "double",
@@ -7141,6 +8037,11 @@
         },
         "voice": {
           "description": "Optional. The name of the voice. If not set, the service will choose a voice based on the other parameters such as language_code. For the list of available voices, please refer to [Supported voices and languages](https://cloud.google.com/text-to-speech/docs/voices) from Cloud Text-to-Speech.",
+          "type": "string"
+        },
+        "voiceSampleGcsUri": {
+          "deprecated": true,
+          "description": "Optional. Deprecated: Use `custom_voice_samples` in AudioProcessingConfig instead. The Cloud Storage URI to the audio sample for voice cloning. The audio sample should be a mono-channel, 24kHz WAV file. Note: Please make sure the CES service agent `service-@gcp-sa-ces.iam.gserviceaccount.com` has `storage.objects.get` permission to the Cloud Storage object.",
           "type": "string"
         }
       },
@@ -7470,6 +8371,11 @@
           "$ref": "OpenApiToolset",
           "description": "Optional. A toolset that contains a list of tools that are defined by an OpenAPI schema."
         },
+        "timeout": {
+          "description": "Optional. The timeout for the toolset execution. If not set, the default timeout is 30 seconds for `SYNCHRONOUS` toolsets and 60 seconds for `ASYNCHRONOUS` toolsets.",
+          "format": "google-duration",
+          "type": "string"
+        },
         "toolFakeConfig": {
           "$ref": "ToolFakeConfig",
           "description": "Optional. Configuration for tools behavior in fake mode."
@@ -7651,6 +8557,37 @@
         },
         "uri": {
           "description": "The URI to the Google Search results page for the query.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "WhatsAppCredentials": {
+      "description": "Ephemeral Meta credentials for WhatsApp native integration.",
+      "id": "WhatsAppCredentials",
+      "properties": {
+        "authCode": {
+          "description": "Required. The Meta auth code provided by the embedded signup flow.",
+          "type": "string"
+        },
+        "businessAccountId": {
+          "description": "Required. The Business Account ID to use for the phone number.",
+          "type": "string"
+        },
+        "conversationProfileId": {
+          "description": "Optional. The Conversation Profile ID to use for the deployment.",
+          "type": "string"
+        },
+        "phoneNumber": {
+          "description": "Required. The phone number to register with WhatsApp.",
+          "type": "string"
+        },
+        "pin": {
+          "description": "Required. The 6-digit PIN created by the user for two-step verification.",
+          "type": "string"
+        },
+        "wabaId": {
+          "description": "Required. The WhatsApp Business Account ID.",
           "type": "string"
         }
       },

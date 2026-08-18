@@ -36,8 +36,7 @@ export function dataportability(
 ): dataportability_v1beta.Dataportability;
 export function dataportability<
   T =
-    | dataportability_v1.Dataportability
-    | dataportability_v1beta.Dataportability,
+    dataportability_v1.Dataportability | dataportability_v1beta.Dataportability,
 >(
   this: GoogleConfigurable,
   versionOrOptions:

@@ -20,21 +20,6 @@
       "description": "Regional Endpoint",
       "endpointUrl": "https://threatintelligence.us-central1.rep.googleapis.com/",
       "location": "us-central1"
-    },
-    {
-      "description": "Regional Endpoint",
-      "endpointUrl": "https://threatintelligence.us-east5.rep.googleapis.com/",
-      "location": "us-east5"
-    },
-    {
-      "description": "Regional Endpoint",
-      "endpointUrl": "https://threatintelligence.us-west2.rep.googleapis.com/",
-      "location": "us-west2"
-    },
-    {
-      "description": "Regional Endpoint",
-      "endpointUrl": "https://threatintelligence.us.rep.googleapis.com/",
-      "location": "us"
     }
   ],
   "fullyEncodeReservedExpansion": true,
@@ -323,6 +308,31 @@
               "path": "v1beta/{+name}",
               "response": {
                 "$ref": "Alert"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "getPassword": {
+              "description": "Get the decrypted password of an alert.",
+              "flatPath": "v1beta/projects/{projectsId}/alerts/{alertsId}:getPassword",
+              "httpMethod": "GET",
+              "id": "threatintelligence.projects.alerts.getPassword",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Name of the alert to get password for. Format: projects/{project}/alerts/{alert}",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/alerts/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta/{+name}:getPassword",
+              "response": {
+                "$ref": "GetPasswordResponse"
               },
               "scopes": [
                 "https://www.googleapis.com/auth/cloud-platform"
@@ -832,7 +842,7 @@
       }
     }
   },
-  "revision": "20260513",
+  "revision": "20260809",
   "rootUrl": "https://threatintelligence.googleapis.com/",
   "schemas": {
     "Alert": {
@@ -975,6 +985,10 @@
         "insiderThreat": {
           "$ref": "InsiderThreatAlertDetail",
           "description": "Insider Threat alert detail type."
+        },
+        "targetTechnology": {
+          "$ref": "TargetTechnologyAlertDetail",
+          "description": "Technology Watchlist alert detail type."
         }
       },
       "type": "object"
@@ -1071,6 +1085,41 @@
       },
       "type": "object"
     },
+    "Association": {
+      "description": "Represents an association with a vulnerability.",
+      "id": "Association",
+      "properties": {
+        "id": {
+          "description": "Required. The ID of the association.",
+          "type": "string"
+        },
+        "type": {
+          "description": "Required. The type of the association.",
+          "enum": [
+            "THREAT_INTEL_OBJECT_TYPE_UNSPECIFIED",
+            "THREAT_INTEL_OBJECT_TYPE_THREAT_ACTOR",
+            "THREAT_INTEL_OBJECT_TYPE_MALWARE",
+            "THREAT_INTEL_OBJECT_TYPE_REPORT",
+            "THREAT_INTEL_OBJECT_TYPE_CAMPAIGN",
+            "THREAT_INTEL_OBJECT_TYPE_IOC_COLLECTION",
+            "THREAT_INTEL_OBJECT_TYPE_SOFTWARE_AND_TOOLKITS",
+            "THREAT_INTEL_OBJECT_TYPE_VULNERABILITY"
+          ],
+          "enumDescriptions": [
+            "Unspecified object type.",
+            "Threat actor object type.",
+            "Malware object type.",
+            "Report object type.",
+            "Campaign object type.",
+            "IoC Collection object type.",
+            "Software and toolkits object type.",
+            "Vulnerability object type."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Audit": {
       "description": "Tracks basic CRUD facts.",
       "id": "Audit",
@@ -1122,6 +1171,10 @@
           "readOnly": true,
           "type": "string"
         },
+        "etag": {
+          "description": "If included when updating a configuration, this should be set to the current etag of the configuration. If the etags do not match, the update will be rejected and an ABORTED error will be returned.",
+          "type": "string"
+        },
         "name": {
           "description": "Identifier. Server generated name for the configuration. format is projects/{project}/configurations/{configuration}",
           "type": "string"
@@ -1157,6 +1210,10 @@
       "description": "Wrapper class that contains the union struct for all the various configuration detail specific classes.",
       "id": "ConfigurationDetail",
       "properties": {
+        "customThreatScenario": {
+          "$ref": "CustomThreatScenarioConfig",
+          "description": "Custom Threat Scenario detail config."
+        },
         "customerProfile": {
           "$ref": "CustomerProfileConfig",
           "description": "Customer Profile detail config."
@@ -1165,6 +1222,10 @@
           "description": "Output only. Name of the detail type. Will be set by the server during creation to the name of the field that is set in the detail union.",
           "readOnly": true,
           "type": "string"
+        },
+        "technologyWatchlist": {
+          "$ref": "TechnologyWatchListConfig",
+          "description": "Technology Watchlist detail config."
         }
       },
       "type": "object"
@@ -1186,6 +1247,17 @@
         "snapshot": {
           "$ref": "Configuration",
           "description": "The snapshot of the configuration"
+        }
+      },
+      "type": "object"
+    },
+    "CustomThreatScenarioConfig": {
+      "description": "CustomThreatScenarioConfig represents a user-defined threat scenario configuration.",
+      "id": "CustomThreatScenarioConfig",
+      "properties": {
+        "documentCondition": {
+          "description": "Required. The condition driving the scenario, stored as a stringified JSON. This is used to query/filter documents.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -1776,6 +1848,10 @@
         "insiderThreat": {
           "$ref": "InsiderThreatFindingDetail",
           "description": "Insider Threat finding detail type."
+        },
+        "targetTechnology": {
+          "$ref": "TargetTechnologyFindingDetail",
+          "description": "Technology Watchlist finding detail type."
         }
       },
       "type": "object"
@@ -1790,6 +1866,17 @@
         },
         "domain": {
           "description": "Required. The domain of the organization to generate the profile for.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GetPasswordResponse": {
+      "description": "Response message for GetPassword.",
+      "id": "GetPasswordResponse",
+      "properties": {
+        "password": {
+          "description": "The decrypted cleartext password for the compromised credential.",
           "type": "string"
         }
       },
@@ -2110,6 +2197,93 @@
       },
       "type": "object"
     },
+    "ProductFix": {
+      "description": "Contains details about a product fix.",
+      "id": "ProductFix",
+      "properties": {
+        "displayName": {
+          "description": "Required. The name of the fix. Ex: \"Magento\".",
+          "type": "string"
+        },
+        "publishTime": {
+          "description": "Optional. The published time of the fix.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "sourceId": {
+          "description": "Required. The source ID of the fix. Ex: \"APPSEC-1420\".",
+          "type": "string"
+        },
+        "uri": {
+          "description": "Optional. The URI of the fix.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PublicExploit": {
+      "description": "Contains details about a public exploit.",
+      "id": "PublicExploit",
+      "properties": {
+        "exploitGrade": {
+          "description": "Optional. The grade of the exploit. Ex: \"non-weaponized\".",
+          "enum": [
+            "EXPLOIT_GRADE_UNSPECIFIED",
+            "UNEVALUATED",
+            "PROOF_OF_CONCEPT",
+            "NON_WEAPONIZED",
+            "WEAPONIZED",
+            "SCANNER",
+            "FAKE"
+          ],
+          "enumDescriptions": [
+            "Unspecified exploit grade.",
+            "Unevaluated exploit grade.",
+            "Proof-of-concept exploit grade.",
+            "Non-weaponized exploit grade.",
+            "Weaponized exploit grade.",
+            "Scanner exploit grade.",
+            "Fake exploit grade."
+          ],
+          "type": "string"
+        },
+        "exploitName": {
+          "description": "Required. The name of the exploit. Ex: \"Magentounauth.php.txt\".",
+          "type": "string"
+        },
+        "exploitReliability": {
+          "description": "Optional. The reliability of the exploit. Ex: \"Unreviewed\".",
+          "enum": [
+            "EXPLOIT_RELIABILITY_UNSPECIFIED",
+            "UNREVIEWED",
+            "REVIEWED",
+            "TESTED"
+          ],
+          "enumDescriptions": [
+            "Unspecified exploit reliability.",
+            "Confirmed exploit reliability.",
+            "Uncorroborated exploit reliability.",
+            "Unconfirmed exploit reliability."
+          ],
+          "type": "string"
+        },
+        "releaseTime": {
+          "description": "Optional. The release time of the exploit.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "sizeBytes": {
+          "description": "Optional. The size of the exploit.",
+          "format": "int64",
+          "type": "string"
+        },
+        "uri": {
+          "description": "Optional. The URI of the exploit.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "RelevanceAnalysis": {
       "description": "Structured relevance analysis for a threat.",
       "id": "RelevanceAnalysis",
@@ -2249,6 +2423,126 @@
       },
       "type": "object"
     },
+    "TargetTechnologyAlertDetail": {
+      "description": "Contains details for a technology watchlist alert.",
+      "id": "TargetTechnologyAlertDetail",
+      "properties": {
+        "vulnerabilityMatch": {
+          "$ref": "VulnerabilityMatch",
+          "description": "Optional. The vulnerability match details."
+        }
+      },
+      "type": "object"
+    },
+    "TargetTechnologyFindingDetail": {
+      "description": "Contains details for a technology watchlist finding.",
+      "id": "TargetTechnologyFindingDetail",
+      "properties": {
+        "vulnerabilityMatch": {
+          "$ref": "VulnerabilityMatch",
+          "description": "Optional. The vulnerability match details."
+        }
+      },
+      "type": "object"
+    },
+    "TechnologyWatchListAlertThreshold": {
+      "description": "TechnologyWatchListAlertThreshold contains the thresholds for alerting.",
+      "id": "TechnologyWatchListAlertThreshold",
+      "properties": {
+        "cvssScoreMinimum": {
+          "description": "Optional. The minimum CVSS score for the alert. Evaluates to CVSS v3 when available with a fallback to v2 and v4. Ex: 7.0. Valid range is [0.0, 10.0].",
+          "format": "float",
+          "type": "number"
+        },
+        "epssScoreMinimum": {
+          "description": "Optional. The minimum epss score for the alert. Ex: 0.8. Valid range is [0.0, 1.0].",
+          "format": "float",
+          "type": "number"
+        },
+        "exploitationStates": {
+          "description": "Optional. The exploitation states of the alert.",
+          "items": {
+            "enum": [
+              "EXPLOITATION_STATE_UNSPECIFIED",
+              "EXPLOITATION_STATE_NO_KNOWN",
+              "EXPLOITATION_STATE_REPORTED",
+              "EXPLOITATION_STATE_SUSPECTED",
+              "EXPLOITATION_STATE_CONFIRMED",
+              "EXPLOITATION_STATE_WIDESPREAD"
+            ],
+            "enumDescriptions": [
+              "Unspecified exploitation state.",
+              "No known exploitation.",
+              "Exploitation has been reported.",
+              "Exploitation is suspected.",
+              "Exploitation is confirmed.",
+              "Widespread exploitation."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "priorityMinimum": {
+          "description": "Optional. The minimum priority for the alert.",
+          "enum": [
+            "PRIORITY_UNSPECIFIED",
+            "P0",
+            "P1",
+            "P2",
+            "P3",
+            "P4"
+          ],
+          "enumDescriptions": [
+            "Unspecified priority.",
+            "Priority level 0.",
+            "Priority level 1.",
+            "Priority level 2.",
+            "Priority level 3.",
+            "Priority level 4."
+          ],
+          "type": "string"
+        },
+        "riskRatingMinimum": {
+          "description": "Optional. The minimum risk rating for the alert.",
+          "enum": [
+            "RISK_RATING_UNSPECIFIED",
+            "LOW",
+            "MEDIUM",
+            "HIGH",
+            "CRITICAL",
+            "UNRATED"
+          ],
+          "enumDescriptions": [
+            "Unspecified risk rating. This is the default value when the risk rating is not set.",
+            "Low risk rating.",
+            "Medium risk rating.",
+            "High risk rating.",
+            "Critical risk rating.",
+            "The vulnerability has been assessed, but a specific risk rating could not be determined or assigned."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TechnologyWatchListConfig": {
+      "description": "TechnologyWatchListConfig is the configuration for the technology watchlist.",
+      "id": "TechnologyWatchListConfig",
+      "properties": {
+        "alertThreshold": {
+          "$ref": "TechnologyWatchListAlertThreshold",
+          "description": "Optional. Alert thresholds to effectively reduce noise."
+        },
+        "technologies": {
+          "description": "Optional. List of vendor, technology or cpe fingerprint. example: Microsoft office 360 Apache Server 3.5 cpe:2.3:a:microsoft:outlook:*:*:*:*:*:*:*:*",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "UpsertConfigurationResponse": {
       "description": "Response message for UpsertConfiguration.",
       "id": "UpsertConfigurationResponse",
@@ -2257,6 +2551,224 @@
           "description": "Output only. Created configuration ID with server assigned id.",
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "VulnerabilityMatch": {
+      "description": "Contains details about a vulnerability match.",
+      "id": "VulnerabilityMatch",
+      "properties": {
+        "associations": {
+          "description": "Optional. Associated threat actors, malware, etc. This is embedded as a snapshot because the details of the association at the time of the vulnerability match are important for context and reporting.",
+          "items": {
+            "$ref": "Association"
+          },
+          "type": "array"
+        },
+        "collectionId": {
+          "description": "Required. The collection ID of the vulnerability. Ex: \"vulnerability--cve-2025-9876\".",
+          "type": "string"
+        },
+        "cveId": {
+          "description": "Required. The CVE ID of the vulnerability. Ex: \"CVE-2025-9876\". See https://www.cve.org/ for more information.",
+          "type": "string"
+        },
+        "cvss3Score": {
+          "description": "Required. The CVSS score of the vulnerability. Evaluates to CVSS v3 when available with a fallback to v2 and v4. Example: 6.4.",
+          "format": "float",
+          "type": "number"
+        },
+        "description": {
+          "description": "Required. A description of the vulnerability.",
+          "type": "string"
+        },
+        "disclosureTime": {
+          "description": "Optional. The disclosure time of the vulnerability.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "epssScore": {
+          "description": "Optional. The EPSS score, representing the probability of exploitation. Example: 0.87.",
+          "format": "float",
+          "type": "number"
+        },
+        "exploitationConsequences": {
+          "description": "Optional. List of exploitation consequences for the vulnerability.",
+          "items": {
+            "enum": [
+              "EXPLOITATION_CONSEQUENCE_UNSPECIFIED",
+              "CODE_EXECUTION",
+              "COMMAND_EXECUTION",
+              "DATA_LOSS",
+              "DATA_MANIPULATION",
+              "DENIAL_OF_SERVICE",
+              "INFORMATION_DISCLOSURE",
+              "UNAUTHORIZED_ACCESS",
+              "PRIVILEGE_ESCALATION",
+              "SANDBOX_ESCAPE",
+              "SECURITY_BYPASS",
+              "CONTAINER_ESCAPE",
+              "SPOOFING"
+            ],
+            "enumDescriptions": [
+              "Unspecified exploitation consequence.",
+              "Code execution consequence.",
+              "Command execution consequence.",
+              "Data loss consequence.",
+              "Data manipulation consequence.",
+              "Denial-of-Service consequence.",
+              "Information disclosure consequence.",
+              "Unauthorized access consequence.",
+              "Privilege escalation consequence.",
+              "Sandbox escape consequence.",
+              "Security bypass consequence.",
+              "Container escape consequence.",
+              "Spoofing consequence."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "exploitationState": {
+          "description": "Required. The exploitation state of the vulnerability.",
+          "enum": [
+            "EXPLOITATION_STATE_UNSPECIFIED",
+            "EXPLOITATION_STATE_NO_KNOWN",
+            "EXPLOITATION_STATE_REPORTED",
+            "EXPLOITATION_STATE_SUSPECTED",
+            "EXPLOITATION_STATE_CONFIRMED",
+            "EXPLOITATION_STATE_WIDESPREAD"
+          ],
+          "enumDescriptions": [
+            "Unspecified exploitation state.",
+            "No known exploitation.",
+            "Exploitation has been reported.",
+            "Exploitation is suspected.",
+            "Exploitation is confirmed.",
+            "Widespread exploitation."
+          ],
+          "type": "string"
+        },
+        "exploitationVectors": {
+          "description": "Optional. List of exploitation vectors for the vulnerability.",
+          "items": {
+            "enum": [
+              "EXPLOITATION_VECTOR_UNSPECIFIED",
+              "ADMINISTRATIVE_INTERFACE",
+              "BLUETOOTH_ACCESS",
+              "BROWSER",
+              "COMPROMISED_COMMUNICATION_CHANNEL",
+              "EMAIL",
+              "EXPOSED_WEB_APPLICATION",
+              "LOCAL_NETWORK_ACCESS",
+              "MALICIOUS_APPLICATION",
+              "MALICIOUS_FILE",
+              "MALICIOUS_SERVER",
+              "OPEN_PORT",
+              "PHYSICAL_ACCESS",
+              "SHORT_RANGE_RADIO",
+              "UNSPECIFIED_LOCAL_VECTOR",
+              "UNSPECIFIED_REMOTE_VECTOR",
+              "VPN_ACCESS",
+              "WIFI_ACCESS"
+            ],
+            "enumDescriptions": [
+              "Unspecified exploitation vector.",
+              "Administrative interface vector.",
+              "Bluetooth access vector.",
+              "Browser vector.",
+              "Compromised communication channel vector.",
+              "Email vector.",
+              "Exposed web application vector.",
+              "Local network access vector.",
+              "Malicious application vector.",
+              "Malicious file vector.",
+              "Malicious server vector.",
+              "Open port vector.",
+              "Physical access vector.",
+              "Short range radio vector.",
+              "Unspecified local vector.",
+              "Unspecified remote vector.",
+              "VPN access vector.",
+              "WiFi access vector."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "matchedTechnologies": {
+          "description": "Optional. The specific technologies from the configured watchlist that triggered the match. Ex: \"Apache Struts\".",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "priority": {
+          "description": "Optional. The priority level of the vulnerability data. Ex: \"P1\".",
+          "enum": [
+            "PRIORITY_UNSPECIFIED",
+            "P0",
+            "P1",
+            "P2",
+            "P3",
+            "P4"
+          ],
+          "enumDescriptions": [
+            "Unspecified priority.",
+            "Priority level 0.",
+            "Priority level 1.",
+            "Priority level 2.",
+            "Priority level 3.",
+            "Priority level 4."
+          ],
+          "type": "string"
+        },
+        "productFixes": {
+          "description": "Optional. List of product fixes for the vulnerability.",
+          "items": {
+            "$ref": "ProductFix"
+          },
+          "type": "array"
+        },
+        "publicExploits": {
+          "description": "Optional. List of public exploits.",
+          "items": {
+            "$ref": "PublicExploit"
+          },
+          "type": "array"
+        },
+        "publiclyAvailableExploit": {
+          "description": "Output only. Whether a publicly available exploit exists.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "riskRating": {
+          "description": "Required. The risk rating of the vulnerability.",
+          "enum": [
+            "RISK_RATING_UNSPECIFIED",
+            "LOW",
+            "MEDIUM",
+            "HIGH",
+            "CRITICAL",
+            "UNRATED"
+          ],
+          "enumDescriptions": [
+            "Unspecified risk rating. This is the default value when the risk rating is not set.",
+            "Low risk rating.",
+            "Medium risk rating.",
+            "High risk rating.",
+            "Critical risk rating.",
+            "The vulnerability has been assessed, but a specific risk rating could not be determined or assigned."
+          ],
+          "type": "string"
+        },
+        "technologies": {
+          "description": "Required. All technologies affected by the vulnerability. Ex: \"Apache Struts\".",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"

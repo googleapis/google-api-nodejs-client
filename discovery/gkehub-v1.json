@@ -1552,6 +1552,408 @@
                 }
               }
             },
+            "rolloutSequences": {
+              "methods": {
+                "create": {
+                  "description": "Creates a new rollout sequence resource.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/rolloutSequences",
+                  "httpMethod": "POST",
+                  "id": "gkehub.projects.locations.rolloutSequences.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The parent resource where this rollout sequence will be created. projects/{project}/locations/{location}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "rolloutSequenceId": {
+                      "description": "Required. User provided identifier that is used as part of the resource name; must conform to RFC-1034 and additionally restrict to lower-cased letters. This comes out roughly to: /^a-z+[a-z0-9]$/",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/rolloutSequences",
+                  "request": {
+                    "$ref": "RolloutSequence"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Removes a RolloutSequence.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/rolloutSequences/{rolloutSequencesId}",
+                  "httpMethod": "DELETE",
+                  "id": "gkehub.projects.locations.rolloutSequences.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the rollout sequence to delete. projects/{project}/locations/{location}/rolloutSequences/{rollout_sequence}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/rolloutSequences/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Retrieve a single rollout sequence.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/rolloutSequences/{rolloutSequencesId}",
+                  "httpMethod": "GET",
+                  "id": "gkehub.projects.locations.rolloutSequences.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the rollout sequence to retrieve. projects/{project}/locations/{location}/rolloutSequences/{rollout_sequence}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/rolloutSequences/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "RolloutSequence"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Retrieves the list of all rollout sequences.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/rolloutSequences",
+                  "httpMethod": "GET",
+                  "id": "gkehub.projects.locations.rolloutSequences.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. Lists Rollout Sequences that match the filter expression, following the syntax outlined in https://google.aip.dev/160.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. The maximum number of rollout sequences to return. The service may return fewer than this value. If unspecified, at most 50 rollout sequences will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A page token, received from a previous `ListRolloutSequences` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListRolloutSequences` must match the call that provided the page token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent, which owns this collection of rollout sequences. Format: projects/{project}/locations/{location}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/rolloutSequences",
+                  "response": {
+                    "$ref": "ListRolloutSequencesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates a rollout sequence.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/rolloutSequences/{rolloutSequencesId}",
+                  "httpMethod": "PATCH",
+                  "id": "gkehub.projects.locations.rolloutSequences.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Identifier. Name of the rollout sequence in the format of: projects/{PROJECT_ID}/locations/global/rolloutSequences/{NAME}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/rolloutSequences/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. The list of fields to update.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "RolloutSequence"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "upgrade": {
+                  "description": "Upgrades a rollout sequence.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/rolloutSequences/{rolloutSequencesId}:upgrade",
+                  "httpMethod": "POST",
+                  "id": "gkehub.projects.locations.rolloutSequences.upgrade",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the rollout sequence. Format: projects/{project}/locations/{location}/rolloutSequences/{rollout_sequence}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/rolloutSequences/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:upgrade",
+                  "request": {
+                    "$ref": "UpgradeRolloutSequenceRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
+            "rollouts": {
+              "methods": {
+                "cancel": {
+                  "description": "Cancels a Rollout. The rollout will not be started on new clusters, however the rollout running on the cluster will be allowed to finish.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/rollouts/{rolloutsId}:cancel",
+                  "httpMethod": "POST",
+                  "id": "gkehub.projects.locations.rollouts.cancel",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the rollout to cancel. projects/{project}/locations/{location}/rollouts/{rollout}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/rollouts/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:cancel",
+                  "request": {
+                    "$ref": "CancelRolloutRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Removes a Rollout.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/rollouts/{rolloutsId}",
+                  "httpMethod": "DELETE",
+                  "id": "gkehub.projects.locations.rollouts.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the rollout to delete. projects/{project}/locations/{location}/rollouts/{rollout}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/rollouts/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "forceCompleteStage": {
+                  "description": "Force-completes a rollout stage. Only the active stage of an active rollout can be force-completed.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/rollouts/{rolloutsId}:forceCompleteStage",
+                  "httpMethod": "POST",
+                  "id": "gkehub.projects.locations.rollouts.forceCompleteStage",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the rollout. Format: projects/{project}/locations/{location}/rollouts/{rollout}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/rollouts/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:forceCompleteStage",
+                  "request": {
+                    "$ref": "ForceCompleteRolloutStageRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Retrieves a single rollout.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/rollouts/{rolloutsId}",
+                  "httpMethod": "GET",
+                  "id": "gkehub.projects.locations.rollouts.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the rollout to retrieve. projects/{project}/locations/{location}/rollouts/{rollout}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/rollouts/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Rollout"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Retrieves the list of all rollouts.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/rollouts",
+                  "httpMethod": "GET",
+                  "id": "gkehub.projects.locations.rollouts.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. Lists Rollouts that match the filter expression, following the syntax outlined in https://google.aip.dev/160.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "The maximum number of rollout to return. The service may return fewer than this value. If unspecified, at most 50 rollouts will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "A page token, received from a previous `ListRollouts` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListRollouts` must match the call that provided the page token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent, which owns this collection of rollout. Format: projects/{project}/locations/{location}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/rollouts",
+                  "response": {
+                    "$ref": "ListRolloutsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "pause": {
+                  "description": "Pauses a running Rollout. The rollout will not be started on new clusters, however the rollout running on the cluster will be allowed to finish.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/rollouts/{rolloutsId}:pause",
+                  "httpMethod": "POST",
+                  "id": "gkehub.projects.locations.rollouts.pause",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the rollout to pause. projects/{project}/locations/{location}/rollouts/{rollout}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/rollouts/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:pause",
+                  "request": {
+                    "$ref": "PauseRolloutRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "resume": {
+                  "description": "Resume a paused Rollout. The rollout will be resumed and allowed to be started on clusters.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/rollouts/{rolloutsId}:resume",
+                  "httpMethod": "POST",
+                  "id": "gkehub.projects.locations.rollouts.resume",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the rollout to resume. projects/{project}/locations/{location}/rollouts/{rollout}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/rollouts/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:resume",
+                  "request": {
+                    "$ref": "ResumeRolloutRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
             "scopes": {
               "methods": {
                 "create": {
@@ -2194,7 +2596,7 @@
       }
     }
   },
-  "revision": "20260511",
+  "revision": "20260731",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
     "AppDevExperienceFeatureSpec": {
@@ -2309,6 +2711,25 @@
       },
       "type": "object"
     },
+    "AutoUpgradeConfig": {
+      "description": "Configuration for automatic upgrades.",
+      "id": "AutoUpgradeConfig",
+      "properties": {
+        "enforcedRollouts": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Output only. Mandatory Safety Policies (Always active) which cannot be disabled. The key is the policy ID (e.g., \"ENFORCED_CONTROL_PLANE_PATCH\") and the value is a human-readable description.",
+          "readOnly": true,
+          "type": "object"
+        },
+        "rolloutCreationScope": {
+          "$ref": "RolloutCreationScope",
+          "description": "Optional. Specifies the scope of automation for the creation of rollouts. Represents the types of rollouts (version upgrades) the sequence should initiate automatically. If this field is `unset`, it defaults to all types. If this field is `set` but the internal `upgrade_types` list is `empty`, most automatic rollouts are disabled for this sequence. Exceptions are rollouts enforcing our security policies (e.g. such as end-of-support and outdated control plane patch enforcements). These policy enforcements cannot be disabled."
+        }
+      },
+      "type": "object"
+    },
     "BinaryAuthorizationConfig": {
       "description": "BinaryAuthorizationConfig defines the fleet level configuration of binary authorization feature.",
       "id": "BinaryAuthorizationConfig",
@@ -2363,6 +2784,23 @@
       "description": "The request message for Operations.CancelOperation.",
       "id": "CancelOperationRequest",
       "properties": {},
+      "type": "object"
+    },
+    "CancelRolloutRequest": {
+      "description": "Request message for cancelling a rollout.",
+      "id": "CancelRolloutRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "ClusterSelector": {
+      "description": "Selector for clusters.",
+      "id": "ClusterSelector",
+      "properties": {
+        "labelSelector": {
+          "description": "Required. A valid CEL (Common Expression Language) expression which evaluates `resource.labels`.",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "ClusterUpgradeFleetSpec": {
@@ -2631,6 +3069,10 @@
         "fleetobservability": {
           "$ref": "FleetObservabilityFeatureSpec",
           "description": "FleetObservability feature spec."
+        },
+        "mesh": {
+          "$ref": "ServiceMeshFeatureSpec",
+          "description": "Servicemesh feature spec."
         },
         "multiclusteringress": {
           "$ref": "MultiClusterIngressFeatureSpec",
@@ -3431,7 +3873,7 @@
         },
         "management": {
           "deprecated": true,
-          "description": "Optional. Deprecated: From version 1.21.0, automatic Feature management is unavailable, and Config Sync only supports manual upgrades.",
+          "description": "Optional. Deprecated: Automatic Feature management is in Preview and is unavailable in version 1.21.0 and later, after which Config Sync only supports manual upgrades. If set to manual upgrades, clear this field instead, which is behaviorally equivalent but helps prevent compatibility issues with newer fields.",
           "enum": [
             "MANAGEMENT_UNSPECIFIED",
             "MANAGEMENT_AUTOMATIC",
@@ -4235,6 +4677,18 @@
       },
       "type": "object"
     },
+    "ForceCompleteRolloutStageRequest": {
+      "description": "Request message for force-completing a rollout stage.",
+      "id": "ForceCompleteRolloutStageRequest",
+      "properties": {
+        "stageNumber": {
+          "description": "Required. The stage number to force-complete.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "GenerateConnectManifestResponse": {
       "description": "GenerateConnectManifestResponse contains manifest information for installing/upgrading a Connect agent.",
       "id": "GenerateConnectManifestResponse",
@@ -4965,6 +5419,42 @@
       },
       "type": "object"
     },
+    "ListRolloutSequencesResponse": {
+      "description": "Response message for listing rollout sequences.",
+      "id": "ListRolloutSequencesResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "rolloutSequences": {
+          "description": "The rollout sequences from the specified parent resource.",
+          "items": {
+            "$ref": "RolloutSequence"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListRolloutsResponse": {
+      "description": "Response message for listing rollouts.",
+      "id": "ListRolloutsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "rollouts": {
+          "description": "The rollouts from the specified parent resource.",
+          "items": {
+            "$ref": "Rollout"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ListScopeNamespacesResponse": {
       "description": "List of fleet namespaces.",
       "id": "ListScopeNamespacesResponse",
@@ -5628,6 +6118,64 @@
       },
       "type": "object"
     },
+    "OperationalState": {
+      "description": "Operational state of the Rollout Sequence.",
+      "id": "OperationalState",
+      "properties": {
+        "reasons": {
+          "description": "Output only. Reasons for the Rollout Sequence state.",
+          "items": {
+            "enum": [
+              "REASON_UNSPECIFIED",
+              "FLEET_FEATURE_DELETED_ERROR",
+              "FLEET_DELETED_ERROR",
+              "EMPTY_STAGE_WARNING",
+              "MIXED_RELEASE_CHANNELS_WARNING",
+              "INTERNAL_ERROR",
+              "NO_CLUSTERS_IN_SEQUENCE"
+            ],
+            "enumDescriptions": [
+              "Default unspecified value.",
+              "A fleet feature is deleted.",
+              "A fleet is deleted.",
+              "A stage is empty.",
+              "Mixed release channels in the sequence.",
+              "Internal error, for example when host project is soft-deleted.",
+              "Sequence has no clusters."
+            ],
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "state": {
+          "description": "Output only. State of the Rollout Sequence.",
+          "enum": [
+            "STATE_CODE_UNSPECIFIED",
+            "ACTIVE",
+            "WARNING",
+            "ERROR",
+            "INITIALIZING"
+          ],
+          "enumDescriptions": [
+            "The default value. This value is used if the state is omitted.",
+            "The Rollout Sequence is active.",
+            "The Rollout Sequence has warnings. It is still functioning but performance may be degraded.",
+            "The Rollout Sequence has errors and is not functioning.",
+            "The Rollout Sequence is being initialized."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "stateChangeTime": {
+          "description": "Output only. The timestamp at which the operational state was last changed. Used to track how long it has been in the current state.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Origin": {
       "description": "Origin defines where this MembershipFeatureSpec originated from.",
       "id": "Origin",
@@ -5649,6 +6197,12 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "PauseRolloutRequest": {
+      "description": "Request message for pausing a rollout.",
+      "id": "PauseRolloutRequest",
+      "properties": {},
       "type": "object"
     },
     "Policy": {
@@ -6200,6 +6754,22 @@
       },
       "type": "object"
     },
+    "ResumeRolloutRequest": {
+      "description": "Request message for resuming a rollout.",
+      "id": "ResumeRolloutRequest",
+      "properties": {
+        "scheduleOffset": {
+          "description": "Optional. The duration to offset the Rollout schedule by.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "validateOnly": {
+          "description": "Optional. If set, resume rollout will be executed in dry-run mode.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "Role": {
       "description": "Role is the type for Kubernetes roles",
       "id": "Role",
@@ -6224,6 +6794,458 @@
             "VIEW can only read resources",
             "ANTHOS_SUPPORT gives Google Support read-only access to a number of cluster resources."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Rollout": {
+      "description": "Rollout contains the Rollout metadata and configuration. Next ID: 31",
+      "id": "Rollout",
+      "properties": {
+        "completeTime": {
+          "description": "Output only. The timestamp at which the Rollout was completed.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. The timestamp at which the Rollout was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "deleteTime": {
+          "description": "Output only. The timestamp at the Rollout was deleted.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Optional. Human readable display name of the Rollout.",
+          "type": "string"
+        },
+        "etag": {
+          "description": "Output only. etag of the Rollout Ex. abc1234",
+          "readOnly": true,
+          "type": "string"
+        },
+        "intent": {
+          "description": "Output only. The intent of the rollout.",
+          "enum": [
+            "ROLLOUT_INTENT_UNSPECIFIED",
+            "REGULAR_UPGRADE",
+            "CONTROL_PLANE_PATCH_ENFORCEMENT",
+            "END_OF_SUPPORT_ENFORCEMENT"
+          ],
+          "enumDescriptions": [
+            "The default value.",
+            "A standard rollout for the whole sequence.",
+            "A mandatory upgrade for clusters that haven't been patched within the allowed window.",
+            "A mandatory upgrade for clusters that have reached its end of support."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Labels for this Rollout.",
+          "type": "object"
+        },
+        "membershipStates": {
+          "additionalProperties": {
+            "$ref": "RolloutMembershipState"
+          },
+          "description": "Output only. States of upgrading control plane or node pool targets of a single cluster (GKE Hub membership) that's part of this Rollout. The key is the membership name of the cluster. The value is the state of the cluster.",
+          "readOnly": true,
+          "type": "object"
+        },
+        "name": {
+          "description": "Identifier. The full, unique resource name of this Rollout in the format of `projects/{project}/locations/global/rollouts/{rollout}`.",
+          "type": "string"
+        },
+        "rolloutSequence": {
+          "description": "Optional. Immutable. The full, unique resource name of the rollout sequence that initiatied this Rollout. In the format of `projects/{project}/locations/global/rolloutSequences/{rollout_sequence}`.",
+          "type": "string"
+        },
+        "stages": {
+          "description": "Output only. The stages of the Rollout.",
+          "items": {
+            "$ref": "RolloutStage"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "state": {
+          "description": "Output only. State specifies various states of the Rollout.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "RUNNING",
+            "PAUSED",
+            "CANCELLED",
+            "COMPLETED"
+          ],
+          "enumDescriptions": [
+            "Unspecified state.",
+            "The Rollout is running.",
+            "The Rollout is paused.",
+            "The Rollout is in a failure terminal state.",
+            "The Rollout is in a terminal state."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "stateReason": {
+          "description": "Output only. A human-readable description explaining the reason for the current state.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "stateReasonType": {
+          "description": "Output only. StateReasonType specifies the reason type of the Rollout state.",
+          "enum": [
+            "STATE_REASON_TYPE_UNSPECIFIED",
+            "PAUSED_BY_USER",
+            "PAUSED_BY_SYSTEM_CONFIG",
+            "PAUSED_WAITING_FOR_NEXT_STAGE",
+            "CANCELLED_BY_USER",
+            "CANCELLED_PAUSED_TOO_LONG",
+            "CANCELLED_SUPERSEDED",
+            "CANCELLED_INCOMPATIBLE_ROLLOUT_SEQUENCE",
+            "CANCELLED_SUPERSEDED_BY_USER_ROLLOUT"
+          ],
+          "enumDescriptions": [
+            "Unspecified state reason.",
+            "Paused by the user.",
+            "Paused by system config (ex. GKE freeze).",
+            "Paused waiting for the next stage to start.",
+            "Cancelled by the user.",
+            "Cancelled by the system because it was paused too long.",
+            "Cancelled by the system because the version is too old.",
+            "Cancelled by the system because the rollout sequence is incompatible, for example it has different number of stages, fleet projects or label selectors than the rollout.",
+            "Cancelled because of a new user-triggered rollout."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "trigger": {
+          "description": "Output only. The trigger of the rollout.",
+          "enum": [
+            "ROLLOUT_TRIGGER_UNSPECIFIED",
+            "USER",
+            "GKE"
+          ],
+          "enumDescriptions": [
+            "The default value.",
+            "A user-initiated rollout.",
+            "A Google-triggered rollout."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "uid": {
+          "description": "Output only. Google-generated UUID for this resource. This is unique across all Rollout resources. If a Rollout resource is deleted and another resource with the same name is created, it gets a different uid.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The timestamp at which the Rollout was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "versionUpgrade": {
+          "$ref": "VersionUpgrade",
+          "description": "Optional. Config for version upgrade of clusters."
+        }
+      },
+      "type": "object"
+    },
+    "RolloutCreationScope": {
+      "description": "The scope for automatic rollout creation.",
+      "id": "RolloutCreationScope",
+      "properties": {
+        "upgradeTypes": {
+          "description": "Optional. The list of enabled upgrade types.",
+          "items": {
+            "enum": [
+              "UPGRADE_TYPE_UNSPECIFIED",
+              "CONTROL_PLANE_MINOR",
+              "CONTROL_PLANE_PATCH",
+              "NODE_MINOR",
+              "NODE_PATCH"
+            ],
+            "enumDescriptions": [
+              "Default value. Should not be used.",
+              "Control plane minor version upgrades (e.g. 1.33 to 1.34).",
+              "Control plane patch version upgrades (e.g. 1.33.1 to 1.33.2).",
+              "Node minor version upgrades (e.g. 1.33 to 1.34 or 1.33 to 1.35).",
+              "Node patch version upgrades (e.g. 1.33.1 to 1.33.2)."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "RolloutMembershipState": {
+      "description": "Metadata about single cluster (GKE Hub membership) that's part of this Rollout.",
+      "id": "RolloutMembershipState",
+      "properties": {
+        "lastUpdateTime": {
+          "description": "Optional. Output only. The time this status and any related Rollout-specific details for the membership were updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "stageAssignment": {
+          "description": "Output only. The stage assignment of this cluster in this rollout.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "targets": {
+          "description": "Output only. The targets of the rollout - clusters or node pools that are being upgraded. All targets belongs to the same cluster, identified by the membership name (key of membership_states map).",
+          "items": {
+            "$ref": "RolloutTarget"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "RolloutSequence": {
+      "description": "RolloutSequence defines the desired order of upgrades. Next ID: 20",
+      "id": "RolloutSequence",
+      "properties": {
+        "autoUpgradeConfig": {
+          "$ref": "AutoUpgradeConfig",
+          "description": "Optional. Configuration for automatic upgrades. If this message is `unset`, the system applies default behavior."
+        },
+        "computedReleaseChannel": {
+          "description": "Output only. The computed release channel used for the Rollout Sequence.",
+          "enum": [
+            "GKE_RELEASE_CHANNEL_UNSPECIFIED",
+            "RAPID",
+            "REGULAR",
+            "STABLE",
+            "EXTENDED",
+            "NO_CHANNEL"
+          ],
+          "enumDescriptions": [
+            "Default if no value is specified. Should not be used.",
+            "Release channel `RAPID` of GKE.",
+            "Release channel `REGULAR` of GKE.",
+            "Release channel `STABLE` of GKE.",
+            "Release channel `EXTENDED` of GKE.",
+            "Release channel `NO_CHANNEL` of GKE. Formerly known as `STATIC`."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. The timestamp at which the Rollout Sequence was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "deleteTime": {
+          "description": "Output only. The timestamp at the Rollout Sequence was deleted.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Optional. Human readable display name of the Rollout Sequence.",
+          "type": "string"
+        },
+        "effectiveAutoUpgradeConfig": {
+          "$ref": "AutoUpgradeConfig",
+          "description": "Output only. The resolved auto-upgrade options which are in effect.",
+          "readOnly": true
+        },
+        "etag": {
+          "description": "Output only. etag of the Rollout Sequence Ex. abc1234",
+          "readOnly": true,
+          "type": "string"
+        },
+        "ignoredClustersSelector": {
+          "$ref": "ClusterSelector",
+          "description": "Optional. Selector for clusters to exclude from the Rollout Sequence."
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Labels for this Rollout Sequence.",
+          "type": "object"
+        },
+        "lastQualifiedControlPlaneVersion": {
+          "description": "Output only. The last qualified control plane version.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "lastQualifiedNodeVersion": {
+          "description": "Output only. The last qualified node version.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. Name of the rollout sequence in the format of: projects/{PROJECT_ID}/locations/global/rolloutSequences/{NAME}",
+          "type": "string"
+        },
+        "operationalState": {
+          "$ref": "OperationalState",
+          "description": "Output only. Operational state of the Rollout Sequence.",
+          "readOnly": true
+        },
+        "stages": {
+          "description": "Required. Ordered list of stages that constitutes this Rollout.",
+          "items": {
+            "$ref": "Stage"
+          },
+          "type": "array"
+        },
+        "targetControlPlaneVersion": {
+          "description": "Output only. The target control plane version of the Rollout Sequence.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "targetNodeVersion": {
+          "description": "Output only. The target node version of the Rollout Sequence.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "uid": {
+          "description": "Output only. Google-generated UUID for this resource. This is unique across all Rollout Sequence resources. If a Rollout Sequence resource is deleted and another resource with the same name is created, it gets a different uid.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The timestamp at which the Rollout Sequence was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RolloutStage": {
+      "description": "Stage represents a single stage in the Rollout.",
+      "id": "RolloutStage",
+      "properties": {
+        "clusterSelector": {
+          "$ref": "ClusterSelector",
+          "description": "Output only. The selector from the sequence that was used to create this stage. Example CEL expression: resource.labels.canary == 'true'",
+          "readOnly": true
+        },
+        "endTime": {
+          "description": "Optional. Output only. The time at which the stage ended.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "fleetProjects": {
+          "description": "Output only. The fleet projects from the sequence that was used to create this stage. Expected format: projects/{project_number}",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "soakDuration": {
+          "description": "Optional. Duration to soak after this stage before starting the next stage.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "stageNumber": {
+          "description": "Output only. The stage number to which this status applies.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "startTime": {
+          "description": "Optional. Output only. The time at which the stage started.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The state of the stage.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "PENDING",
+            "RUNNING",
+            "SOAKING",
+            "COMPLETED",
+            "PAUSED"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "The stage is waiting for previous stages to complete.",
+            "The stage targets are being upgraded.",
+            "The stage is waiting for a predetermined time before next stage.",
+            "The stage is completed.",
+            "The stage is paused."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RolloutTarget": {
+      "description": "Metadata about the status of targets (clusters or node pools) involved in the Rollout.",
+      "id": "RolloutTarget",
+      "properties": {
+        "cluster": {
+          "description": "Optional. Output only. The resource link of the Cluster resource upgraded in this Rollout. It is formatted as: `//{api_service}/projects/{project_number}/locations/{location}/clusters/{cluster_name}`. .",
+          "readOnly": true,
+          "type": "string"
+        },
+        "nodePool": {
+          "description": "Optional. Output only. The resource link of the NodePool resource upgraded in this Rollout. It is formatted as: `//{api_service}/projects/{project_number}/locations/{location}/clusters/{cluster_name}/nodePools/{node_pool_name}`.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "operation": {
+          "description": "Optional. Output only. The operation resource name performing the mutation.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "reason": {
+          "description": "Optional. Output only. A human-readable description of the current status.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The high-level, machine-readable status of this Rollout for the target.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "PENDING",
+            "RUNNING",
+            "FAILED",
+            "SUCCEEDED",
+            "PAUSED",
+            "REMOVED",
+            "INELIGIBLE",
+            "SKIPPED"
+          ],
+          "enumDescriptions": [
+            "Unspecified state.",
+            "The Rollout is pending for the target.",
+            "The Rollout is running for the target.",
+            "The Rollout failed for the target.",
+            "The Rollout succeeded for the target.",
+            "The Rollout is paused for the target.",
+            "The target was removed from the Rollout.",
+            "The target is ineligible for the Rollout.",
+            "The target is skipped for the Rollout."
+          ],
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -6422,6 +7444,12 @@
             "NON_STANDARD_BINARY_USAGE",
             "UNSUPPORTED_GATEWAY_CLASS",
             "MANAGED_CNI_NOT_ENABLED",
+            "MISSING_CONTROL_PLANE_CONFIG",
+            "SHARED_VPC_MISSING_PERMISSIONS",
+            "REQUIRED_ORG_POLICY_DISABLED",
+            "MODERNIZATION_INCOMPATIBLE_POD_ANNOTATION",
+            "MODERNIZATION_INCOMPATIBLE_CONFIG",
+            "MODERNIZATION_INCOMPATIBLE_GATEWAY_POD_SCALE",
             "MODERNIZATION_SCHEDULED",
             "MODERNIZATION_IN_PROGRESS",
             "MODERNIZATION_COMPLETED",
@@ -6437,7 +7465,12 @@
             "MODERNIZATION_MODERNIZING",
             "MODERNIZATION_MODERNIZED_SOAKING",
             "MODERNIZATION_FINALIZED",
-            "MODERNIZATION_ROLLING_BACK_FLEET"
+            "MODERNIZATION_ROLLING_BACK_FLEET",
+            "MODERNIZATION_MODERNIZED",
+            "MODERNIZATION_COMPATIBLE",
+            "MODERNIZATION_INCOMPATIBLE",
+            "MODERNIZATION_INCOMPATIBLE_FLEET_SCALE",
+            "MODERNIZATION_INCOMPATIBLE_FLEET_QUOTA"
           ],
           "enumDescriptions": [
             "Default Unspecified code",
@@ -6478,6 +7511,12 @@
             "Non-standard binary usage error code",
             "Unsupported gateway class error code",
             "Managed CNI not enabled error code",
+            "Missing control plane configuration error code",
+            "Shared VPC missing permissions error code",
+            "Required org policy disabled error code",
+            "One or more Pods have unsupported annotations.",
+            "Incompatible config found in the cluster.",
+            "Gateway pods per cluster limit exceeded.",
             "Modernization is scheduled for a cluster.",
             "Modernization is in progress for a cluster.",
             "Modernization is completed for a cluster.",
@@ -6493,7 +7532,12 @@
             "Modernization of one or more clusters in a fleet is in progress.",
             "Modernization of all the fleet's clusters is complete. Soaking before finalizing the modernization.",
             "Modernization is finalized for all clusters in a fleet. Rollback is no longer allowed.",
-            "Rollback is in progress for modernization of all clusters in a fleet."
+            "Rollback is in progress for modernization of all clusters in a fleet.",
+            "Modernization of all the fleet's clusters is complete. Soaking before finalizing the modernization.",
+            "Fleet is compatible for modernization.",
+            "Fleet is not yet compatible for modernization.",
+            "Fleet exceeds service mesh fleet-level scalability limits.",
+            "Fleet exceeds service mesh fleet-level quota limits."
           ],
           "type": "string"
         },
@@ -6621,6 +7665,41 @@
       },
       "type": "object"
     },
+    "ServiceMeshFeatureSpec": {
+      "description": "**Service Mesh**: Spec for the fleet for the servicemesh feature",
+      "id": "ServiceMeshFeatureSpec",
+      "properties": {
+        "modernizationCompatibility": {
+          "description": "Optional. Specifies modernization compatibility for the fleet.",
+          "enum": [
+            "MODERNIZATION_COMPATIBILITY_UNSPECIFIED",
+            "VALIDATION_ENABLED",
+            "VALIDATION_DISABLED"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "Google should report modernization eligibility gaps.",
+            "Google should not report modernization eligibility gaps."
+          ],
+          "type": "string"
+        },
+        "modernizationStrategy": {
+          "description": "Optional. Declares your intended modernization strategy for the fleet.",
+          "enum": [
+            "MODERNIZATION_STRATEGY_UNSPECIFIED",
+            "AUTOMATIC",
+            "DEFERRED"
+          ],
+          "enumDescriptions": [
+            "Default unspecified.",
+            "The infrastructure is automatically modernized. Setting this strategy initiates the modernization process. The system schedules the modernization subject to configured maintenance windows and maintenance exclusions.",
+            "The infrastructure is pinned to the legacy implementation. This fleet will not be selected for Google-driven modernization. If the resource is actively modernizing, or if the modernization has completed but is not yet finalized (e.g., during the soak time), setting this strategy triggers a rollback to the legacy state. If the modernization process has already been marked as finalized, setting this strategy has no effect."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ServiceMeshMembershipSpec": {
       "description": "**Service Mesh**: Spec for a single Membership for the servicemesh feature",
       "id": "ServiceMeshMembershipSpec",
@@ -6729,6 +7808,29 @@
       },
       "type": "object"
     },
+    "Stage": {
+      "description": "Rollout stage.",
+      "id": "Stage",
+      "properties": {
+        "clusterSelector": {
+          "$ref": "ClusterSelector",
+          "description": "Optional. Filter members of fleets (above) to a subset of clusters. If not specified, all clusters in the fleets are selected."
+        },
+        "fleetProjects": {
+          "description": "Required. List of Fleet projects to select the clusters from. Expected format: projects/{project}",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "soakDuration": {
+          "description": "Optional. Soak time after upgrading all the clusters in the stage.",
+          "format": "google-duration",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Status": {
       "description": "Status specifies state for the subcomponent.",
       "id": "Status",
@@ -6794,6 +7896,60 @@
         },
         "kind": {
           "description": "Kind of the resource (e.g. Deployment).",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "UpgradeRolloutSequenceRequest": {
+      "description": "Request message for upgrading a rollout sequence.",
+      "id": "UpgradeRolloutSequenceRequest",
+      "properties": {
+        "force": {
+          "description": "Optional. If set to true, any rollout already running on the first stage of the sequence will be cancelled to allow for the creation of the new rollout.",
+          "type": "boolean"
+        },
+        "upgradeType": {
+          "description": "Required. The type of upgrade.",
+          "enum": [
+            "UPGRADE_TYPE_UNSPECIFIED",
+            "CONTROL_PLANE",
+            "NODE"
+          ],
+          "enumDescriptions": [
+            "Default unspecified value.",
+            "Upgrade the control plane.",
+            "Upgrade the nodes."
+          ],
+          "type": "string"
+        },
+        "version": {
+          "description": "Required. GKE version to upgrade to. A valid GKE version available on the release channel used by the sequence. Patch versions from less conservative channels are allowed if their minor version is already available in the sequence's channel. This is similar to single-cluster upgrade rules, see https://cloud.google.com/kubernetes-engine/docs/how-to/upgrading-a-cluster#supported-versions Example: With the following versions available on the RAPID and REGULAR channels: * REGULAR: 1.35.3-gke.123000 * RAPID: 1.36.4-gke.321000, 1.35.6-gke.045000 Valid versions are 1.35.3-gke.123, 1.35.6-gke.045000 Aliases like `latest` are supported. For more information on valid upgrade versions and specifying cluster versions, see: https://cloud.google.com/kubernetes-engine/versioning#specifying_cluster_version",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "VersionUpgrade": {
+      "description": "Config for version upgrade of clusters.",
+      "id": "VersionUpgrade",
+      "properties": {
+        "desiredVersion": {
+          "description": "Optional. Desired version of the component.",
+          "type": "string"
+        },
+        "type": {
+          "description": "Optional. Type of version upgrade specifies which component should be upgraded.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "TYPE_CONTROL_PLANE",
+            "TYPE_NODE_POOL"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "Control plane upgrade.",
+            "Node pool upgrade."
+          ],
           "type": "string"
         }
       },

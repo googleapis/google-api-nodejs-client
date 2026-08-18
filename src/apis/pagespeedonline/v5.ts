@@ -175,6 +175,10 @@ export namespace pagespeedonline_v5 {
      */
     accessibility?: Schema$LighthouseCategoryV5;
     /**
+     * The agentic browsing category, containing all agentic browsing related audits.
+     */
+    'agentic-browsing'?: Schema$LighthouseCategoryV5;
+    /**
      * The best practices category, containing all best practices related audits.
      */
     'best-practices'?: Schema$LighthouseCategoryV5;
@@ -353,6 +357,10 @@ export namespace pagespeedonline_v5 {
      * An array of references to all the audit members of this category.
      */
     auditRefs?: Schema$AuditRefs[];
+    /**
+     * Optional. How the category score should be displayed (e.g. as a fraction).
+     */
+    categoryScoreDisplayMode?: string | null;
     /**
      * A more detailed description of the category and its importance.
      */

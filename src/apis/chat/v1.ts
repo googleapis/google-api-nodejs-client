@@ -140,9 +140,35 @@ export namespace chat_v1 {
     buttonList?: Schema$GoogleAppsCardV1ButtonList;
   }
   /**
+   * An access permission setting.
+   */
+  export interface Schema$AccessPermissionSetting {
+    /**
+     * Optional. Unordered list. Allowed principals for this permission.
+     */
+    principals?: Schema$Principal[];
+  }
+  /**
+   * Access permission settings for a space.
+   */
+  export interface Schema$AccessPermissionSettings {
+    /**
+     * Optional. Access permission setting for discovering the space.
+     */
+    discoverSpaceSetting?: Schema$AccessPermissionSetting;
+    /**
+     * Optional. Access permission setting for joining the space.
+     */
+    joinSpaceSetting?: Schema$AccessPermissionSetting;
+  }
+  /**
    * Represents the [access setting](https://support.google.com/chat/answer/11971020) of the space.
    */
   export interface Schema$AccessSettings {
+    /**
+     * Optional. Access permission settings for the space. To set the target audience when creating a space, specify the `accessSettings.audience` field in your request.
+     */
+    accessPermissionSettings?: Schema$AccessPermissionSettings;
     /**
      * Output only. Indicates the access state of the space.
      */
@@ -303,6 +329,36 @@ export namespace chat_v1 {
      * Optional. The resource name of the attachment data. This field is used with the media API to download the attachment data.
      */
     resourceName?: string | null;
+  }
+  /**
+   * A target audience in Google Chat. A target audience represents a group of users within a Google Workspace organization, defined by an administrator. Target audiences are used to configure access and visibility settings for resources, such as making a space discoverable to a specific group of users. For more details, see [Target audiences](https://support.google.com/a/answer/9934697) and [Make a space discoverable to a target audience](https://developers.google.com/workspace/chat/space-target-audience).
+   */
+  export interface Schema$Audience {
+    /**
+     * The resource name of the [target audience](https://support.google.com/a/answer/9934697) who can discover or join the space. For details, see [Make a space discoverable to a target audience](https://developers.google.com/workspace/chat/space-target-audience). Format: `audiences/{audience\}` To use the default target audience for the Google Workspace organization, set to `audiences/default`.
+     */
+    name?: string | null;
+  }
+  /**
+   * Represents a user's current availability information in Google Chat, including their state (for example, Active, Away, Do Not Disturb) and any custom status.
+   */
+  export interface Schema$Availability {
+    /**
+     * Optional. The user's custom status.
+     */
+    customStatus?: Schema$CustomStatus;
+    /**
+     * Output only. Metadata if the user state is set to DO_NOT_DISTURB.
+     */
+    doNotDisturbMetadata?: Schema$DoNotDisturbMetadata;
+    /**
+     * Identifier. Resource name of the user's availability. Format: `users/{user\}/availability` `{user\}` is the id for the Person in the People API or Admin SDK directory API. For example, `users/123456789`. The user's email address or `me` can also be used as an alias to refer to the caller. For example, `users/user@example.com` or `users/me`.
+     */
+    name?: string | null;
+    /**
+     * Output only. The user's current availability state.
+     */
+    state?: string | null;
   }
   /**
    * A button. Can be a text button or an image button.
@@ -553,6 +609,27 @@ export namespace chat_v1 {
     filename?: string | null;
   }
   /**
+   * Represents a user's custom status in Google Chat. This includes a short text message with an optional emoji that a user sets to give more context about their availability.
+   */
+  export interface Schema$CustomStatus {
+    /**
+     * Required. The emoji of the custom status. Only Unicode emojis are supported; custom emojis are not supported.
+     */
+    emoji?: Schema$Emoji;
+    /**
+     * The timestamp when the custom status expires.
+     */
+    expireTime?: string | null;
+    /**
+     * Required. The text of the custom status. This will be a string with maximum length of 64.
+     */
+    text?: string | null;
+    /**
+     * Input only. The time-to-live duration after which the custom status expires.
+     */
+    ttl?: string | null;
+  }
+  /**
    * Date input values.
    */
   export interface Schema$DateInput {
@@ -669,6 +746,15 @@ export namespace chat_v1 {
      * Input only. [Dialog](https://developers.google.com/workspace/chat/dialogs) for the request.
      */
     dialog?: Schema$Dialog;
+  }
+  /**
+   * Metadata associated with the `DO_NOT_DISTURB` availability state, specifying when the state is set to expire.
+   */
+  export interface Schema$DoNotDisturbMetadata {
+    /**
+     * Output only. Timestamp until which the user should be marked as DO_NOT_DISTURB. This can be maximum of 1 year in the future.
+     */
+    expirationTime?: string | null;
   }
   /**
    * A reference to the data of a drive attachment.
@@ -2092,6 +2178,36 @@ export namespace chat_v1 {
     spaces?: Schema$Space[];
   }
   /**
+   * Request message for the `MarkAsActive` method.
+   */
+  export interface Schema$MarkAsActiveRequest {
+    /**
+     * The absolute timestamp when the ACTIVE state expires.
+     */
+    expireTime?: string | null;
+    /**
+     * The duration from the current time until the ACTIVE state expires. Using a short TTL can effectively reset the user's state to be based on activity after this brief duration.
+     */
+    ttl?: string | null;
+  }
+  /**
+   * Request message for the `MarkAsAway` method.
+   */
+  export interface Schema$MarkAsAwayRequest {}
+  /**
+   * Request message for the `MarkAsDoNotDisturb` method.
+   */
+  export interface Schema$MarkAsDoNotDisturbRequest {
+    /**
+     * The absolute timestamp when the DND state expires.
+     */
+    expireTime?: string | null;
+    /**
+     * The duration from the current time until the DND state expires.
+     */
+    ttl?: string | null;
+  }
+  /**
    * A matched URL in a Chat message. Chat apps can preview matched URLs. For more information, see [Preview links](https://developers.google.com/chat/how-tos/preview-links).
    */
   export interface Schema$MatchedUrl {
@@ -2130,6 +2246,10 @@ export namespace chat_v1 {
    * Represents a membership relation in Google Chat, such as whether a user or Chat app is invited to, part of, or absent from a space.
    */
   export interface Schema$Membership {
+    /**
+     * Output only. A user's relationship to the Workspace organization that owns the space. In spaces owned by consumer accounts, the affiliation of all members is `EXTERNAL`.
+     */
+    affiliation?: string | null;
     /**
      * Optional. Immutable. The creation time of the membership, such as when a member joined or was invited to join a space. This field is output only, except when used to import historical memberships in import mode spaces.
      */
@@ -2294,6 +2414,10 @@ export namespace chat_v1 {
      * Output only. The time at which the message was last edited by a user. If the message has never been edited, this field is empty.
      */
     lastUpdateTime?: string | null;
+    /**
+     * Optional. Specifies how the server interprets the message `text` field content.
+     */
+    markupSyntax?: string | null;
     /**
      * Output only. A URL in the Chat message `text` field that matches a link preview pattern. For more information, see [Preview links](https://developers.google.com/workspace/chat/preview-links).
      */
@@ -2510,7 +2634,16 @@ export namespace chat_v1 {
     section?: Schema$GoogleChatV1Section;
   }
   /**
-   * Information about a message that another message quotes. When you create a message, you can quote messages within the same thread, or quote a root message to create a new root message. However, you can't quote a message reply from a different thread. When you update a message, you can't add or replace the `quotedMessageMetadata` field, but you can remove it. For example usage, see [Quote another message](https://developers.google.com/workspace/chat/create-messages#quote-a-message).
+   * A principal representing an entity granted access.
+   */
+  export interface Schema$Principal {
+    /**
+     * An audience.
+     */
+    audience?: Schema$Audience;
+  }
+  /**
+   * Information about a message that another message quotes. When you update a message, you can't add or replace the `quotedMessageMetadata` field, but you can remove it. For example usage, see [Quote another message](https://developers.google.com/workspace/chat/create-messages#quote-a-message).
    */
   export interface Schema$QuotedMessageMetadata {
     /**
@@ -2642,6 +2775,74 @@ export namespace chat_v1 {
     uri?: string | null;
   }
   /**
+   * A single result item from a message search.
+   */
+  export interface Schema$SearchMessageResult {
+    /**
+     * The matched message.
+     */
+    message?: Schema$Message;
+    /**
+     * Indicates if the matched message is read by the calling user. Only returned if the request view is `SEARCH_MESSAGES_VIEW_FULL` and the calling credentials include one of the following [authorization scopes](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes): - `https://www.googleapis.com/auth/chat.users.readstate.readonly` - `https://www.googleapis.com/auth/chat.users.readstate`
+     */
+    read?: boolean | null;
+    /**
+     * The mute setting of the calling user for the space where the message is posted. The caller app can use this information to decide how to process the message depending on whether the space is muted for the user or not. Only returned if the request view is `SEARCH_MESSAGES_VIEW_FULL` and the calling credentials include the following [authorization scope](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes): - `https://www.googleapis.com/auth/chat.users.spacesettings`
+     */
+    spaceMuteSetting?: string | null;
+  }
+  /**
+   * Request message for searching messages.
+   */
+  export interface Schema$SearchMessagesRequest {
+    /**
+     * Required. A search query. The query can specify one or more search keywords, which are used to filter the results, You can also filter the results using the following message fields: - `create_time`: Accepts a timestamp in [RFC-3339](https://www.rfc-editor.org/rfc/rfc3339) format and the supported comparison operators are: `<` and `\>=`. - `sender.name`: The resource name of the sender (`users/{user\}`). Only supports `=`. You can use the e-mail as an alias for `{user\}`. For example, `users/example@gmail.com`, where `example@gmail.com` is the e-mail of the Google Chat user. - `space.name`: The resource name of the space where the message is posted. (`spaces/{space\}`). Only supports `=`. If this filter is not set, the search is performed across all direct messages and spaces the user has access to as a space member. - `space.display_name`: Supports the operator `:` (has) and filters spaces based on a partial match of their display name. Results are limited to the top five space matches. For example, `space.display_name:Project` searches for messages in the top five spaces that contain the word "Project" in their display names. - `attachment`: Supports the operator `:*` (has any) to check for the presence of attachments. If `attachment:*` is specified, only messages that have at least one attachment are returned. - `annotations.user_mentions.user.name`: The resource name of the mentioned user (`users/{user\}`). Only supports `:` (has). For example: `annotations.user_mentions.user.name:"users/1234567890"` returns only messages that contain a mention to the specified user. Alternatively, the alias `me` can be used to filter for messages that mention the caller user, for example: `annotations.user_mentions.user.name:users/me`. You can also use the e-mail as an alias for `{user\}`, for example, `users/example@gmail.com`. For advanced filtering, the following functions are also available: - `has_link()`: Returns only messages that have at least one hyperlink in the message text. - `is_unread()`: Filters out messages that have been read by the calling user. Using the `space.display_name` filter requires that the calling credentials include one of the following [authorization scopes](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes): - `https://www.googleapis.com/auth/chat.spaces.readonly` - `https://www.googleapis.com/auth/chat.spaces` Using the `is_unread()` filter requires that the calling credentials include one of the following [authorization scopes](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes): - `https://www.googleapis.com/auth/chat.users.readstate.readonly` - `https://www.googleapis.com/auth/chat.users.readstate` Across different fields, only `AND` operators are supported. A valid example is `sender.name = "users/1234567890" AND is_unread()`. The word `AND` is optional and is implied if omitted. For example, `sender.name = "users/1234567890" is_unread()` is valid and is equivalent to the previous example. An invalid example is `sender.name = "users/1234567890" OR is_unread()` because `OR` is not supported between different fields. Among the same field: - `create_time` supports only `AND`, and can only be used to represent an interval, such as `create_time \>= "2022-01-01T00:00:00+00:00" AND create_time < "2023-01-01T00:00:00+00:00"`. - `sender.name` supports only the `OR` operator, for example: `sender.name = "users/1234567890" OR sender.name = "users/0987654321"`. - `space.name` supports only the `OR` operator, for example: `space.name = "spaces/ABCDEFGH" OR space.name = "spaces/QWERTYUI"`. - `space.display_name` supports the operators `AND` and `OR`, but not a mix of both. For example: `space.display_name:Project AND space.display_name:Tasks` returns messages that are in spaces with display names containing both `Project` and `Tasks`, whereas `space.display_name:Project OR space.display_name:Tasks` returns messages that are in spaces with display names containing either `Project` or `Tasks` or both. - `annotations.user_mentions.user.name` supports the operators `AND` and `OR`, but not a mix of both. For example: `annotations.user_mentions.user.name:"users/1234567890" AND annotations.user_mentions.user.name:"users/0987654321"` returns only messages that mentions both users, whereas `annotations.user_mentions.user.name:"users/1234567890" OR annotations.user_mentions.user.name:"users/0987654321"` returns messages that mention either user or both. Parentheses are required to disambiguate operator precedence when combining `AND` and `OR` operators in the same query. For example: `(sender.name="users/me" OR sender.name="users/123456") AND is_unread()`. Otherwise, parentheses are optional. The following example queries are valid: ``` "Pending reports" AND create_time \>= "2023-01-01T00:00:00Z" sender.name = "users/example@gmail.com" annotations.user_mentions.user.name:"users/0987654321" attachment:* AND space.name = "spaces/ABCDEFGH" tasks AND is_unread() AND sender.name = "users/1234567890" "things to do" "urgent" (sender.name = "users/1234567890") AND (create_time < "2023-05-01T00:00:00Z") tasks AND space.name = "spaces/ABCDEFGH" AND has_link() "project one" is_unread() space.display_name:Project tasks ``` The maximum query length is 1,000 characters. Invalid queries are rejected by the server with an `INVALID_ARGUMENT` error.
+     */
+    filter?: string | null;
+    /**
+     * Optional. Specifies the desired output syntax for the Chat message `formatted_text` field.
+     */
+    markupSyntax?: string | null;
+    /**
+     * Optional. How the results list is ordered. Supported attributes to order by are: - `create_time`: Sorts the results by the time of the message creation. Default value. - `relevance`: Sorts the results by relevance. [Developer Preview](https://developers.google.com/workspace/preview). The default ordering is `create_time desc`. Only a single order per query (`create_time` or `relevance`) is supported. Only descending order (`desc`) is supported, and it must be specified after the order attribute.
+     */
+    orderBy?: string | null;
+    /**
+     * Optional. The maximum number of results to return. The service may return fewer than this value. If unspecified, at most 25 are returned. The maximum value is 100. If you use a value more than 100, it's automatically changed to 100.
+     */
+    pageSize?: number | null;
+    /**
+     * Optional. A token, received from the previous search messages call. Provide this parameter to retrieve the subsequent page. When paginating, all other parameters provided should match the call that provided the page token. Passing different values to the other parameters might lead to unexpected results.
+     */
+    pageToken?: string | null;
+    /**
+     * Optional. Specifies what kind of search results view to return. The default is `SEARCH_MESSAGES_VIEW_BASIC`.
+     */
+    view?: string | null;
+  }
+  /**
+   * Response message for searching messages.
+   */
+  export interface Schema$SearchMessagesResponse {
+    /**
+     * A token that can be used to retrieve the next page. If this field is empty, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The list of search results that matched the query.
+     */
+    results?: Schema$SearchMessageResult[];
+  }
+  /**
+   * A single result item from a space search.
+   */
+  export interface Schema$SearchSpaceResult {
+    /**
+     * Output only. The matched space.
+     */
+    space?: Schema$Space;
+  }
+  /**
    * Response with a list of spaces corresponding to the search spaces request.
    */
   export interface Schema$SearchSpacesResponse {
@@ -2650,7 +2851,11 @@ export namespace chat_v1 {
      */
     nextPageToken?: string | null;
     /**
-     * A page of the requested spaces.
+     * Output only. The list of search results that matched the query.
+     */
+    results?: Schema$SearchSpaceResult[];
+    /**
+     * Deprecated: Please use the new `results` field instead. A page of the requested spaces. This field will be populated only when `useAdminAccess` is set to `true` and deprecated in favor of the new `results` field.
      */
     spaces?: Schema$Space[];
     /**
@@ -3432,8 +3637,7 @@ export namespace chat_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -3696,8 +3900,7 @@ export namespace chat_v1 {
     list(
       params: Params$Resource$Customemojis$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListCustomEmojisResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListCustomEmojisResponse>,
       callback: BodyResponseCallback<Schema$ListCustomEmojisResponse>
     ): void;
     list(
@@ -3894,8 +4097,7 @@ export namespace chat_v1 {
         | BodyResponseCallback<Schema$Media>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Media>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Media> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Media>>
@@ -4028,8 +4230,7 @@ export namespace chat_v1 {
     upload(
       params: Params$Resource$Media$Upload,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$UploadAttachmentResponse>,
+        MethodOptions | BodyResponseCallback<Schema$UploadAttachmentResponse>,
       callback: BodyResponseCallback<Schema$UploadAttachmentResponse>
     ): void;
     upload(
@@ -4437,8 +4638,7 @@ export namespace chat_v1 {
         | BodyResponseCallback<Schema$Space>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Space>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Space> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Space>>
@@ -4575,8 +4775,7 @@ export namespace chat_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -4732,8 +4931,7 @@ export namespace chat_v1 {
         | BodyResponseCallback<Schema$Space>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Space>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Space> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Space>>
@@ -4861,8 +5059,7 @@ export namespace chat_v1 {
     findGroupChats(
       params: Params$Resource$Spaces$Findgroupchats,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$FindGroupChatsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$FindGroupChatsResponse>,
       callback: BodyResponseCallback<Schema$FindGroupChatsResponse>
     ): void;
     findGroupChats(
@@ -5049,8 +5246,7 @@ export namespace chat_v1 {
         | BodyResponseCallback<Schema$Space>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Space>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Space> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Space>>
@@ -5274,7 +5470,7 @@ export namespace chat_v1 {
      *   const res = await chat.spaces.patch({
      *     // Identifier. Resource name of the space. Format: `spaces/{space\}` Where `{space\}` represents the system-assigned ID for the space. You can obtain the space ID by calling the [`spaces.list()`](https://developers.google.com/workspace/chat/api/reference/rest/v1/spaces/list) method or from the space URL. For example, if the space URL is `https://mail.google.com/mail/u/0/#chat/space/AAAAAAAAA`, the space ID is `AAAAAAAAA`.
      *     name: 'spaces/my-space',
-     *     // Required. The updated field paths, comma separated if there are multiple. You can update the following fields for a space: `space_details`: Updates the space's description and guidelines. You must pass both description and guidelines in the update request as `SpaceDetails`. If you only want to update one of the fields, pass the existing value for the other field. `display_name`: Only supports updating the display name for spaces where `spaceType` field is `SPACE`. If you receive the error message `ALREADY_EXISTS`, try a different value. An existing space within the Google Workspace organization might already use this display name. `space_type`: Only supports changing a `GROUP_CHAT` space type to `SPACE`. Include `display_name` together with `space_type` in the update mask and ensure that the specified space has a non-empty display name and the `SPACE` space type. Including the `space_type` mask and the `SPACE` type in the specified space when updating the display name is optional if the existing space already has the `SPACE` type. Trying to update the space type in other ways results in an invalid argument error. `space_type` is not supported with `useAdminAccess`. `space_history_state`: Updates [space history settings](https://support.google.com/chat/answer/7664687) by turning history on or off for the space. Only supported if history settings are enabled for the Google Workspace organization. To update the space history state, you must omit all other field masks in your request. `space_history_state` is not supported with `useAdminAccess`. `access_settings.audience`: Updates the [access setting](https://support.google.com/chat/answer/11971020) of who can discover the space, join the space, and preview the messages in named space where `spaceType` field is `SPACE`. If the existing space has a target audience, you can remove the audience and restrict space access by omitting a value for this field mask. To update access settings for a space, the authenticating user must be a space manager and omit all other field masks in your request. You can't update this field if the space is in [import mode](https://developers.google.com/workspace/chat/import-data-overview). To learn more, see [Make a space discoverable to specific users](https://developers.google.com/workspace/chat/space-target-audience). `access_settings.audience` is not supported with `useAdminAccess`. `permission_settings`: Supports changing the [permission settings](https://support.google.com/chat/answer/13340792) of a space. When updating permission settings, you can only specify `permissionSettings` field masks; you cannot update other field masks at the same time. The supported field masks include: - `permission_settings.manageMembersAndGroups` - `permission_settings.modifySpaceDetails` - `permission_settings.toggleHistory` - `permission_settings.useAtMentionAll` - `permission_settings.manageApps` - `permission_settings.manageWebhooks` - `permission_settings.replyMessages`
+     *     // Required. The updated field paths, comma separated if there are multiple. You can update the following fields for a space: `space_details`: Updates the space's description and guidelines. You must pass both description and guidelines in the update request as `SpaceDetails`. If you only want to update one of the fields, pass the existing value for the other field. `display_name`: Only supports updating the display name for spaces where `spaceType` field is `SPACE`. If you receive the error message `ALREADY_EXISTS`, try a different value. An existing space within the Google Workspace organization might already use this display name. `space_type`: Only supports changing a `GROUP_CHAT` space type to `SPACE`. Include `display_name` together with `space_type` in the update mask and ensure that the specified space has a non-empty display name and the `SPACE` space type. Including the `space_type` mask and the `SPACE` type in the specified space when updating the display name is optional if the existing space already has the `SPACE` type. Trying to update the space type in other ways results in an invalid argument error. `space_type` is not supported with `useAdminAccess`. `space_history_state`: Updates [space history settings](https://support.google.com/chat/answer/7664687) by turning history on or off for the space. Only supported if history settings are enabled for the Google Workspace organization. To update the space history state, you must omit all other field masks in your request. `space_history_state` is not supported with `useAdminAccess`. `access_settings.audience`: Updates the [access setting](https://support.google.com/chat/answer/11971020) of who can discover the space, join the space, and preview the messages in named space where `spaceType` field is `SPACE`. If the existing space has a target audience, you can remove the audience and restrict space access by omitting a value for this field mask. To update access settings for a space, the authenticating user must be a space manager and omit all other field masks in your request. You can't update this field if the space is in [import mode](https://developers.google.com/workspace/chat/import-data-overview). To learn more, see [Make a space discoverable to specific users](https://developers.google.com/workspace/chat/space-target-audience). `access_settings.audience` is not supported with `useAdminAccess`. `access_settings.access_permission_settings`: Updates the [access permission settings](https://support.google.com/chat/answer/11971020) of who can discover and join the space where `spaceType` field is `SPACE`. Principals allowed to join the space must also be allowed to discover it. To update access permission settings for a space, the authenticating user must be a space manager or assistant manager and omit all other field masks in the request. You can't update this field if the space is in [import mode](https://developers.google.com/workspace/chat/import-data-overview). To learn more, see [Make a space discoverable to specific users](https://developers.google.com/workspace/chat/space-target-audience). `access_settings.access_permission_settings` is not supported with `useAdminAccess`. The supported field masks include: - `access_settings.access_permission_settings.discoverSpaceSetting` - `access_settings.access_permission_settings.joinSpaceSetting` `permission_settings`: Supports changing the [permission settings](https://support.google.com/chat/answer/13340792) of a space. When updating permission settings, you can only specify `permissionSettings` field masks; you cannot update other field masks at the same time. The supported field masks include: - `permission_settings.manageMembersAndGroups` - `permission_settings.modifySpaceDetails` - `permission_settings.toggleHistory` - `permission_settings.useAtMentionAll` - `permission_settings.manageApps` - `permission_settings.manageWebhooks` - `permission_settings.replyMessages`
      *     updateMask: 'placeholder-value',
      *     // Optional. When `true`, the method runs using the user's Google Workspace administrator privileges. The calling user must be a Google Workspace administrator with the [manage chat and spaces conversations privilege](https://support.google.com/a/answer/13369245). Requires the `chat.admin.spaces` [OAuth 2.0 scope](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes). Some `FieldMask` values are not supported using admin access. For details, see the description of `update_mask`.
      *     useAdminAccess: 'placeholder-value',
@@ -5381,8 +5577,7 @@ export namespace chat_v1 {
         | BodyResponseCallback<Schema$Space>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Space>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Space> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Space>>
@@ -5427,7 +5622,7 @@ export namespace chat_v1 {
     }
 
     /**
-     * Returns a list of spaces in a Google Workspace organization based on an administrator's search. In the request, set `use_admin_access` to `true`. For an example, see [Search for and manage spaces](https://developers.google.com/workspace/chat/search-manage-admin). Requires [user authentication with administrator privileges](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user#admin-privileges) and one of the following [authorization scopes](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes): - `https://www.googleapis.com/auth/chat.admin.spaces.readonly` - `https://www.googleapis.com/auth/chat.admin.spaces`
+     * Returns a list of spaces in a Google Workspace organization. For an example, see [Search for and manage spaces](https://developers.google.com/workspace/chat/search-manage-admin). When `use_admin_access` is set to `false`, the results are limited to spaces where the calling user is a joined member. To search with administrator privileges, set `use_admin_access` to `true`. Supports the following types of [authentication](https://developers.google.com/workspace/chat/authenticate-authorize): - [User authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user) with one of the following authorization scopes: - `https://www.googleapis.com/auth/chat.spaces.readonly` - `https://www.googleapis.com/auth/chat.spaces` - [User authentication with administrator privileges](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user#admin-privileges) and one of the following [authorization scopes](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes): - `https://www.googleapis.com/auth/chat.admin.spaces.readonly` - `https://www.googleapis.com/auth/chat.admin.spaces`
      * @example
      * ```js
      * // Before running the sample:
@@ -5462,15 +5657,15 @@ export namespace chat_v1 {
      *
      *   // Do the magic
      *   const res = await chat.spaces.search({
-     *     // Optional. How the list of spaces is ordered. Supported attributes to order by are: - `membership_count.joined_direct_human_user_count` — Denotes the count of human users that have directly joined a space. - `last_active_time` — Denotes the time when last eligible item is added to any topic of this space. - `create_time` — Denotes the time of the space creation. Valid ordering operation values are: - `ASC` for ascending. Default value. - `DESC` for descending. The supported syntax are: - `membership_count.joined_direct_human_user_count DESC` - `membership_count.joined_direct_human_user_count ASC` - `last_active_time DESC` - `last_active_time ASC` - `create_time DESC` - `create_time ASC`
+     *     // Optional. How the list of spaces is ordered. Supported attributes to order by are: - `membership_count.joined_direct_human_user_count` — Denotes the count of human users that have directly joined a space. - `last_active_time` — Denotes the time when last eligible item is added to any topic of this space. - `create_time` — Denotes the time of the space creation. When `useAdminAccess` is `false`, only `create_time` and `relevance` are supported for ordering. Only `DESC` is supported for these fields in non-admin searches. Valid ordering operation values are: - `ASC` for ascending. Default value. - `DESC` for descending. The supported syntax are when `useAdminAccess` is set to `true`: - `membership_count.joined_direct_human_user_count DESC` - `membership_count.joined_direct_human_user_count ASC` - `last_active_time DESC` - `last_active_time ASC` - `create_time DESC` - `create_time ASC` When `useAdminAccess` is set to `false`: - `create_time DESC` - `relevance DESC` [Developer Preview](https://developers.google.com/workspace/preview).
      *     orderBy: 'placeholder-value',
      *     // The maximum number of spaces to return. The service may return fewer than this value. If unspecified, at most 100 spaces are returned. The maximum value is 1000. If you use a value more than 1000, it's automatically changed to 1000.
      *     pageSize: 'placeholder-value',
      *     // A token, received from the previous search spaces call. Provide this parameter to retrieve the subsequent page. When paginating, all other parameters provided should match the call that provided the page token. Passing different values to the other parameters might lead to unexpected results.
      *     pageToken: 'placeholder-value',
-     *     // Required. A search query. You can search by using the following parameters : - `create_time` - `customer` - `display_name` - `external_user_allowed` - `last_active_time` - `space_history_state` - `space_type` `create_time` and `last_active_time` accept a timestamp in [RFC-3339](https://www.rfc-editor.org/rfc/rfc3339) format and the supported comparison operators are: `=`, `<`, `\>`, `<=`, `\>=`. `customer` is required and is used to indicate which customer to fetch spaces from. `customers/my_customer` is the only supported value. `display_name` only accepts the `HAS` (`:`) operator. The text to match is first tokenized into tokens and each token is prefix-matched case-insensitively and independently as a substring anywhere in the space's `display_name`. For example, `Fun Eve` matches `Fun event` or `The evening was fun`, but not `notFun event` or `even`. `external_user_allowed` accepts either `true` or `false`. `space_history_state` only accepts values from the [`historyState`] (https://developers.google.com/workspace/chat/api/reference/rest/v1/spaces#Space.HistoryState) field of a `space` resource. `space_type` is required and the only valid value is `SPACE`. Across different fields, only `AND` operators are supported. A valid example is `space_type = "SPACE" AND display_name:"Hello"` and an invalid example is `space_type = "SPACE" OR display_name:"Hello"`. Among the same field, `space_type` doesn't support `AND` or `OR` operators. `display_name`, 'space_history_state', and 'external_user_allowed' only support `OR` operators. `last_active_time` and `create_time` support both `AND` and `OR` operators. `AND` can only be used to represent an interval, such as `last_active_time < "2022-01-01T00:00:00+00:00" AND last_active_time \> "2023-01-01T00:00:00+00:00"`. The following example queries are valid: ``` customer = "customers/my_customer" AND space_type = "SPACE" customer = "customers/my_customer" AND space_type = "SPACE" AND display_name:"Hello World" customer = "customers/my_customer" AND space_type = "SPACE" AND (last_active_time < "2020-01-01T00:00:00+00:00" OR last_active_time \> "2022-01-01T00:00:00+00:00") customer = "customers/my_customer" AND space_type = "SPACE" AND (display_name:"Hello World" OR display_name:"Fun event") AND (last_active_time \> "2020-01-01T00:00:00+00:00" AND last_active_time < "2022-01-01T00:00:00+00:00") customer = "customers/my_customer" AND space_type = "SPACE" AND (create_time \> "2019-01-01T00:00:00+00:00" AND create_time < "2020-01-01T00:00:00+00:00") AND (external_user_allowed = "true") AND (space_history_state = "HISTORY_ON" OR space_history_state = "HISTORY_OFF") ```
+     *     // Required. A search query. You can search by using the following parameters when `useAdminAccess` is set to `true`: - `create_time` - `customer` - `display_name` - `external_user_allowed` - `last_active_time` - `space_history_state` - `space_type` When `useAdminAccess` is set to `false`: - `display_name` - `external_user_allowed` - `space_type` `create_time` and `last_active_time` accept a timestamp in [RFC-3339](https://www.rfc-editor.org/rfc/rfc3339) format and the supported comparison operators are: `=`, `<`, `\>`, `<=`, `\>=`. `customer` is required when `useAdminAccess` is set to `true`, and is used to indicate which customer to fetch spaces from. `customers/my_customer` is the only supported value. `display_name` only accepts the `HAS` (`:`) operator. The text to match is first tokenized into tokens and each token is prefix-matched case-insensitively and independently as a substring anywhere in the space's `display_name`. For example, `Fun Eve` matches `Fun event` or `The evening was fun`, but not `notFun event` or `even`. When `useAdminAccess` is set to `false`, `display_name` is required to retrieve meaningful results. Otherwise, the default behavior is to return an empty response. `external_user_allowed` accepts either `true` or `false`. `space_history_state` only accepts values from the [`historyState`] (https://developers.google.com/workspace/chat/api/reference/rest/v1/spaces#Space.HistoryState) field of a `space` resource. `space_type` is required and the only valid value is `SPACE`. Across different fields, only `AND` operators are supported. A valid example is `space_type = "SPACE" AND display_name:"Hello"` and an invalid example is `space_type = "SPACE" OR display_name:"Hello"`. Among the same field, `space_type` doesn't support `AND` or `OR` operators. `display_name`, 'space_history_state', and 'external_user_allowed' only support `OR` operators. `last_active_time` and `create_time` support both `AND` and `OR` operators. `AND` can only be used to represent an interval, such as `last_active_time < "2022-01-01T00:00:00+00:00" AND last_active_time \> "2023-01-01T00:00:00+00:00"`. The following example queries are valid when `useAdminAccess` is set to `true`: ``` customer = "customers/my_customer" AND space_type = "SPACE" customer = "customers/my_customer" AND space_type = "SPACE" AND display_name:"Hello World" customer = "customers/my_customer" AND space_type = "SPACE" AND (last_active_time < "2020-01-01T00:00:00+00:00" OR last_active_time \> "2022-01-01T00:00:00+00:00") customer = "customers/my_customer" AND space_type = "SPACE" AND (display_name:"Hello World" OR display_name:"Fun event") AND (last_active_time \> "2020-01-01T00:00:00+00:00" AND last_active_time < "2022-01-01T00:00:00+00:00") customer = "customers/my_customer" AND space_type = "SPACE" AND (create_time \> "2019-01-01T00:00:00+00:00" AND create_time < "2020-01-01T00:00:00+00:00") AND (external_user_allowed = "true") AND (space_history_state = "HISTORY_ON" OR space_history_state = "HISTORY_OFF") ``` The following example queries are valid when `useAdminAccess` is set to `false`: ``` display_name:"Hello World" AND space_type = "SPACE" (display_name:"Hello" OR display_name:"Fun") AND space_type = "SPACE" (external_user_allowed = "true" AND space_type = "SPACE") // Returns an empty response. (external_user_allowed = "true" AND display_name:"Hello" AND space_type = "SPACE") ```
      *     query: 'placeholder-value',
-     *     // When `true`, the method runs using the user's Google Workspace administrator privileges. The calling user must be a Google Workspace administrator with the [manage chat and spaces conversations privilege](https://support.google.com/a/answer/13369245). Requires either the `chat.admin.spaces.readonly` or `chat.admin.spaces` [OAuth 2.0 scope](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes). This method currently only supports admin access, thus only `true` is accepted for this field.
+     *     // When `true`, the method runs using the user's Google Workspace administrator privileges. The calling user must be a Google Workspace administrator with the [manage chat and spaces conversations privilege](https://support.google.com/a/answer/13369245). Requires either the `chat.admin.spaces.readonly` or `chat.admin.spaces` [OAuth 2.0 scope](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes).
      *     useAdminAccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -5478,6 +5673,7 @@ export namespace chat_v1 {
      *   // Example response
      *   // {
      *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "results": [],
      *   //   "spaces": [],
      *   //   "totalSize": 0
      *   // }
@@ -5511,8 +5707,7 @@ export namespace chat_v1 {
     search(
       params: Params$Resource$Spaces$Search,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$SearchSpacesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$SearchSpacesResponse>,
       callback: BodyResponseCallback<Schema$SearchSpacesResponse>
     ): void;
     search(
@@ -5694,8 +5889,7 @@ export namespace chat_v1 {
         | BodyResponseCallback<Schema$Space>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Space>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Space> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Space>>
@@ -5826,7 +6020,7 @@ export namespace chat_v1 {
      */
     name?: string;
     /**
-     * Required. The updated field paths, comma separated if there are multiple. You can update the following fields for a space: `space_details`: Updates the space's description and guidelines. You must pass both description and guidelines in the update request as `SpaceDetails`. If you only want to update one of the fields, pass the existing value for the other field. `display_name`: Only supports updating the display name for spaces where `spaceType` field is `SPACE`. If you receive the error message `ALREADY_EXISTS`, try a different value. An existing space within the Google Workspace organization might already use this display name. `space_type`: Only supports changing a `GROUP_CHAT` space type to `SPACE`. Include `display_name` together with `space_type` in the update mask and ensure that the specified space has a non-empty display name and the `SPACE` space type. Including the `space_type` mask and the `SPACE` type in the specified space when updating the display name is optional if the existing space already has the `SPACE` type. Trying to update the space type in other ways results in an invalid argument error. `space_type` is not supported with `useAdminAccess`. `space_history_state`: Updates [space history settings](https://support.google.com/chat/answer/7664687) by turning history on or off for the space. Only supported if history settings are enabled for the Google Workspace organization. To update the space history state, you must omit all other field masks in your request. `space_history_state` is not supported with `useAdminAccess`. `access_settings.audience`: Updates the [access setting](https://support.google.com/chat/answer/11971020) of who can discover the space, join the space, and preview the messages in named space where `spaceType` field is `SPACE`. If the existing space has a target audience, you can remove the audience and restrict space access by omitting a value for this field mask. To update access settings for a space, the authenticating user must be a space manager and omit all other field masks in your request. You can't update this field if the space is in [import mode](https://developers.google.com/workspace/chat/import-data-overview). To learn more, see [Make a space discoverable to specific users](https://developers.google.com/workspace/chat/space-target-audience). `access_settings.audience` is not supported with `useAdminAccess`. `permission_settings`: Supports changing the [permission settings](https://support.google.com/chat/answer/13340792) of a space. When updating permission settings, you can only specify `permissionSettings` field masks; you cannot update other field masks at the same time. The supported field masks include: - `permission_settings.manageMembersAndGroups` - `permission_settings.modifySpaceDetails` - `permission_settings.toggleHistory` - `permission_settings.useAtMentionAll` - `permission_settings.manageApps` - `permission_settings.manageWebhooks` - `permission_settings.replyMessages`
+     * Required. The updated field paths, comma separated if there are multiple. You can update the following fields for a space: `space_details`: Updates the space's description and guidelines. You must pass both description and guidelines in the update request as `SpaceDetails`. If you only want to update one of the fields, pass the existing value for the other field. `display_name`: Only supports updating the display name for spaces where `spaceType` field is `SPACE`. If you receive the error message `ALREADY_EXISTS`, try a different value. An existing space within the Google Workspace organization might already use this display name. `space_type`: Only supports changing a `GROUP_CHAT` space type to `SPACE`. Include `display_name` together with `space_type` in the update mask and ensure that the specified space has a non-empty display name and the `SPACE` space type. Including the `space_type` mask and the `SPACE` type in the specified space when updating the display name is optional if the existing space already has the `SPACE` type. Trying to update the space type in other ways results in an invalid argument error. `space_type` is not supported with `useAdminAccess`. `space_history_state`: Updates [space history settings](https://support.google.com/chat/answer/7664687) by turning history on or off for the space. Only supported if history settings are enabled for the Google Workspace organization. To update the space history state, you must omit all other field masks in your request. `space_history_state` is not supported with `useAdminAccess`. `access_settings.audience`: Updates the [access setting](https://support.google.com/chat/answer/11971020) of who can discover the space, join the space, and preview the messages in named space where `spaceType` field is `SPACE`. If the existing space has a target audience, you can remove the audience and restrict space access by omitting a value for this field mask. To update access settings for a space, the authenticating user must be a space manager and omit all other field masks in your request. You can't update this field if the space is in [import mode](https://developers.google.com/workspace/chat/import-data-overview). To learn more, see [Make a space discoverable to specific users](https://developers.google.com/workspace/chat/space-target-audience). `access_settings.audience` is not supported with `useAdminAccess`. `access_settings.access_permission_settings`: Updates the [access permission settings](https://support.google.com/chat/answer/11971020) of who can discover and join the space where `spaceType` field is `SPACE`. Principals allowed to join the space must also be allowed to discover it. To update access permission settings for a space, the authenticating user must be a space manager or assistant manager and omit all other field masks in the request. You can't update this field if the space is in [import mode](https://developers.google.com/workspace/chat/import-data-overview). To learn more, see [Make a space discoverable to specific users](https://developers.google.com/workspace/chat/space-target-audience). `access_settings.access_permission_settings` is not supported with `useAdminAccess`. The supported field masks include: - `access_settings.access_permission_settings.discoverSpaceSetting` - `access_settings.access_permission_settings.joinSpaceSetting` `permission_settings`: Supports changing the [permission settings](https://support.google.com/chat/answer/13340792) of a space. When updating permission settings, you can only specify `permissionSettings` field masks; you cannot update other field masks at the same time. The supported field masks include: - `permission_settings.manageMembersAndGroups` - `permission_settings.modifySpaceDetails` - `permission_settings.toggleHistory` - `permission_settings.useAtMentionAll` - `permission_settings.manageApps` - `permission_settings.manageWebhooks` - `permission_settings.replyMessages`
      */
     updateMask?: string;
     /**
@@ -5841,7 +6035,7 @@ export namespace chat_v1 {
   }
   export interface Params$Resource$Spaces$Search extends StandardParameters {
     /**
-     * Optional. How the list of spaces is ordered. Supported attributes to order by are: - `membership_count.joined_direct_human_user_count` — Denotes the count of human users that have directly joined a space. - `last_active_time` — Denotes the time when last eligible item is added to any topic of this space. - `create_time` — Denotes the time of the space creation. Valid ordering operation values are: - `ASC` for ascending. Default value. - `DESC` for descending. The supported syntax are: - `membership_count.joined_direct_human_user_count DESC` - `membership_count.joined_direct_human_user_count ASC` - `last_active_time DESC` - `last_active_time ASC` - `create_time DESC` - `create_time ASC`
+     * Optional. How the list of spaces is ordered. Supported attributes to order by are: - `membership_count.joined_direct_human_user_count` — Denotes the count of human users that have directly joined a space. - `last_active_time` — Denotes the time when last eligible item is added to any topic of this space. - `create_time` — Denotes the time of the space creation. When `useAdminAccess` is `false`, only `create_time` and `relevance` are supported for ordering. Only `DESC` is supported for these fields in non-admin searches. Valid ordering operation values are: - `ASC` for ascending. Default value. - `DESC` for descending. The supported syntax are when `useAdminAccess` is set to `true`: - `membership_count.joined_direct_human_user_count DESC` - `membership_count.joined_direct_human_user_count ASC` - `last_active_time DESC` - `last_active_time ASC` - `create_time DESC` - `create_time ASC` When `useAdminAccess` is set to `false`: - `create_time DESC` - `relevance DESC` [Developer Preview](https://developers.google.com/workspace/preview).
      */
     orderBy?: string;
     /**
@@ -5853,11 +6047,11 @@ export namespace chat_v1 {
      */
     pageToken?: string;
     /**
-     * Required. A search query. You can search by using the following parameters : - `create_time` - `customer` - `display_name` - `external_user_allowed` - `last_active_time` - `space_history_state` - `space_type` `create_time` and `last_active_time` accept a timestamp in [RFC-3339](https://www.rfc-editor.org/rfc/rfc3339) format and the supported comparison operators are: `=`, `<`, `\>`, `<=`, `\>=`. `customer` is required and is used to indicate which customer to fetch spaces from. `customers/my_customer` is the only supported value. `display_name` only accepts the `HAS` (`:`) operator. The text to match is first tokenized into tokens and each token is prefix-matched case-insensitively and independently as a substring anywhere in the space's `display_name`. For example, `Fun Eve` matches `Fun event` or `The evening was fun`, but not `notFun event` or `even`. `external_user_allowed` accepts either `true` or `false`. `space_history_state` only accepts values from the [`historyState`] (https://developers.google.com/workspace/chat/api/reference/rest/v1/spaces#Space.HistoryState) field of a `space` resource. `space_type` is required and the only valid value is `SPACE`. Across different fields, only `AND` operators are supported. A valid example is `space_type = "SPACE" AND display_name:"Hello"` and an invalid example is `space_type = "SPACE" OR display_name:"Hello"`. Among the same field, `space_type` doesn't support `AND` or `OR` operators. `display_name`, 'space_history_state', and 'external_user_allowed' only support `OR` operators. `last_active_time` and `create_time` support both `AND` and `OR` operators. `AND` can only be used to represent an interval, such as `last_active_time < "2022-01-01T00:00:00+00:00" AND last_active_time \> "2023-01-01T00:00:00+00:00"`. The following example queries are valid: ``` customer = "customers/my_customer" AND space_type = "SPACE" customer = "customers/my_customer" AND space_type = "SPACE" AND display_name:"Hello World" customer = "customers/my_customer" AND space_type = "SPACE" AND (last_active_time < "2020-01-01T00:00:00+00:00" OR last_active_time \> "2022-01-01T00:00:00+00:00") customer = "customers/my_customer" AND space_type = "SPACE" AND (display_name:"Hello World" OR display_name:"Fun event") AND (last_active_time \> "2020-01-01T00:00:00+00:00" AND last_active_time < "2022-01-01T00:00:00+00:00") customer = "customers/my_customer" AND space_type = "SPACE" AND (create_time \> "2019-01-01T00:00:00+00:00" AND create_time < "2020-01-01T00:00:00+00:00") AND (external_user_allowed = "true") AND (space_history_state = "HISTORY_ON" OR space_history_state = "HISTORY_OFF") ```
+     * Required. A search query. You can search by using the following parameters when `useAdminAccess` is set to `true`: - `create_time` - `customer` - `display_name` - `external_user_allowed` - `last_active_time` - `space_history_state` - `space_type` When `useAdminAccess` is set to `false`: - `display_name` - `external_user_allowed` - `space_type` `create_time` and `last_active_time` accept a timestamp in [RFC-3339](https://www.rfc-editor.org/rfc/rfc3339) format and the supported comparison operators are: `=`, `<`, `\>`, `<=`, `\>=`. `customer` is required when `useAdminAccess` is set to `true`, and is used to indicate which customer to fetch spaces from. `customers/my_customer` is the only supported value. `display_name` only accepts the `HAS` (`:`) operator. The text to match is first tokenized into tokens and each token is prefix-matched case-insensitively and independently as a substring anywhere in the space's `display_name`. For example, `Fun Eve` matches `Fun event` or `The evening was fun`, but not `notFun event` or `even`. When `useAdminAccess` is set to `false`, `display_name` is required to retrieve meaningful results. Otherwise, the default behavior is to return an empty response. `external_user_allowed` accepts either `true` or `false`. `space_history_state` only accepts values from the [`historyState`] (https://developers.google.com/workspace/chat/api/reference/rest/v1/spaces#Space.HistoryState) field of a `space` resource. `space_type` is required and the only valid value is `SPACE`. Across different fields, only `AND` operators are supported. A valid example is `space_type = "SPACE" AND display_name:"Hello"` and an invalid example is `space_type = "SPACE" OR display_name:"Hello"`. Among the same field, `space_type` doesn't support `AND` or `OR` operators. `display_name`, 'space_history_state', and 'external_user_allowed' only support `OR` operators. `last_active_time` and `create_time` support both `AND` and `OR` operators. `AND` can only be used to represent an interval, such as `last_active_time < "2022-01-01T00:00:00+00:00" AND last_active_time \> "2023-01-01T00:00:00+00:00"`. The following example queries are valid when `useAdminAccess` is set to `true`: ``` customer = "customers/my_customer" AND space_type = "SPACE" customer = "customers/my_customer" AND space_type = "SPACE" AND display_name:"Hello World" customer = "customers/my_customer" AND space_type = "SPACE" AND (last_active_time < "2020-01-01T00:00:00+00:00" OR last_active_time \> "2022-01-01T00:00:00+00:00") customer = "customers/my_customer" AND space_type = "SPACE" AND (display_name:"Hello World" OR display_name:"Fun event") AND (last_active_time \> "2020-01-01T00:00:00+00:00" AND last_active_time < "2022-01-01T00:00:00+00:00") customer = "customers/my_customer" AND space_type = "SPACE" AND (create_time \> "2019-01-01T00:00:00+00:00" AND create_time < "2020-01-01T00:00:00+00:00") AND (external_user_allowed = "true") AND (space_history_state = "HISTORY_ON" OR space_history_state = "HISTORY_OFF") ``` The following example queries are valid when `useAdminAccess` is set to `false`: ``` display_name:"Hello World" AND space_type = "SPACE" (display_name:"Hello" OR display_name:"Fun") AND space_type = "SPACE" (external_user_allowed = "true" AND space_type = "SPACE") // Returns an empty response. (external_user_allowed = "true" AND display_name:"Hello" AND space_type = "SPACE") ```
      */
     query?: string;
     /**
-     * When `true`, the method runs using the user's Google Workspace administrator privileges. The calling user must be a Google Workspace administrator with the [manage chat and spaces conversations privilege](https://support.google.com/a/answer/13369245). Requires either the `chat.admin.spaces.readonly` or `chat.admin.spaces` [OAuth 2.0 scope](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes). This method currently only supports admin access, thus only `true` is accepted for this field.
+     * When `true`, the method runs using the user's Google Workspace administrator privileges. The calling user must be a Google Workspace administrator with the [manage chat and spaces conversations privilege](https://support.google.com/a/answer/13369245). Requires either the `chat.admin.spaces.readonly` or `chat.admin.spaces` [OAuth 2.0 scope](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes).
      */
     useAdminAccess?: boolean;
   }
@@ -5920,6 +6114,7 @@ export namespace chat_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "affiliation": "my_affiliation",
      *       //   "createTime": "my_createTime",
      *       //   "deleteTime": "my_deleteTime",
      *       //   "groupMember": {},
@@ -5934,6 +6129,7 @@ export namespace chat_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "affiliation": "my_affiliation",
      *   //   "createTime": "my_createTime",
      *   //   "deleteTime": "my_deleteTime",
      *   //   "groupMember": {},
@@ -5990,8 +6186,7 @@ export namespace chat_v1 {
         | BodyResponseCallback<Schema$Membership>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Membership>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Membership> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Membership>>
@@ -6085,6 +6280,7 @@ export namespace chat_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "affiliation": "my_affiliation",
      *   //   "createTime": "my_createTime",
      *   //   "deleteTime": "my_deleteTime",
      *   //   "groupMember": {},
@@ -6141,8 +6337,7 @@ export namespace chat_v1 {
         | BodyResponseCallback<Schema$Membership>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Membership>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Membership> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Membership>>
@@ -6234,6 +6429,7 @@ export namespace chat_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "affiliation": "my_affiliation",
      *   //   "createTime": "my_createTime",
      *   //   "deleteTime": "my_deleteTime",
      *   //   "groupMember": {},
@@ -6290,8 +6486,7 @@ export namespace chat_v1 {
         | BodyResponseCallback<Schema$Membership>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Membership>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Membership> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Membership>>
@@ -6427,8 +6622,7 @@ export namespace chat_v1 {
     list(
       params: Params$Resource$Spaces$Members$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListMembershipsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListMembershipsResponse>,
       callback: BodyResponseCallback<Schema$ListMembershipsResponse>
     ): void;
     list(
@@ -6543,6 +6737,7 @@ export namespace chat_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "affiliation": "my_affiliation",
      *       //   "createTime": "my_createTime",
      *       //   "deleteTime": "my_deleteTime",
      *       //   "groupMember": {},
@@ -6557,6 +6752,7 @@ export namespace chat_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "affiliation": "my_affiliation",
      *   //   "createTime": "my_createTime",
      *   //   "deleteTime": "my_deleteTime",
      *   //   "groupMember": {},
@@ -6613,8 +6809,7 @@ export namespace chat_v1 {
         | BodyResponseCallback<Schema$Membership>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Membership>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Membership> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Membership>>
@@ -6824,6 +7019,7 @@ export namespace chat_v1 {
      *       //   "fallbackText": "my_fallbackText",
      *       //   "formattedText": "my_formattedText",
      *       //   "lastUpdateTime": "my_lastUpdateTime",
+     *       //   "markupSyntax": "my_markupSyntax",
      *       //   "matchedUrl": {},
      *       //   "name": "my_name",
      *       //   "privateMessageViewer": {},
@@ -6858,6 +7054,7 @@ export namespace chat_v1 {
      *   //   "fallbackText": "my_fallbackText",
      *   //   "formattedText": "my_formattedText",
      *   //   "lastUpdateTime": "my_lastUpdateTime",
+     *   //   "markupSyntax": "my_markupSyntax",
      *   //   "matchedUrl": {},
      *   //   "name": "my_name",
      *   //   "privateMessageViewer": {},
@@ -6918,8 +7115,7 @@ export namespace chat_v1 {
         | BodyResponseCallback<Schema$Message>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Message>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Message> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Message>>
@@ -7059,8 +7255,7 @@ export namespace chat_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -7141,6 +7336,8 @@ export namespace chat_v1 {
      *
      *   // Do the magic
      *   const res = await chat.spaces.messages.get({
+     *     // Optional. Specifies the desired output syntax for the Chat message `formatted_text` field.
+     *     markupSyntax: 'placeholder-value',
      *     // Required. Resource name of the message. Format: `spaces/{space\}/messages/{message\}` If you've set a custom ID for your message, you can use the value from the `clientAssignedMessageId` field for `{message\}`. For details, see [Name a message] (https://developers.google.com/workspace/chat/create-messages#name_a_created_message).
      *     name: 'spaces/my-space/messages/my-message',
      *   });
@@ -7164,6 +7361,7 @@ export namespace chat_v1 {
      *   //   "fallbackText": "my_fallbackText",
      *   //   "formattedText": "my_formattedText",
      *   //   "lastUpdateTime": "my_lastUpdateTime",
+     *   //   "markupSyntax": "my_markupSyntax",
      *   //   "matchedUrl": {},
      *   //   "name": "my_name",
      *   //   "privateMessageViewer": {},
@@ -7224,8 +7422,7 @@ export namespace chat_v1 {
         | BodyResponseCallback<Schema$Message>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Message>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Message> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Message>>
@@ -7308,6 +7505,8 @@ export namespace chat_v1 {
      *   const res = await chat.spaces.messages.list({
      *     // Optional. A query filter. You can filter messages by date (`create_time`) and thread (`thread.name`). To filter messages by the date they were created, specify the `create_time` with a timestamp in [RFC-3339](https://www.rfc-editor.org/rfc/rfc3339) format and double quotation marks. For example, `"2023-04-21T11:30:00-04:00"`. You can use the greater than operator `\>` to list messages that were created after a timestamp, or the less than operator `<` to list messages that were created before a timestamp. To filter messages within a time interval, use the `AND` operator between two timestamps. To filter by thread, specify the `thread.name`, formatted as `spaces/{space\}/threads/{thread\}`. You can only specify one `thread.name` per query. To filter by both thread and date, use the `AND` operator in your query. For example, the following queries are valid: ``` create_time \> "2012-04-21T11:30:00-04:00" create_time \> "2012-04-21T11:30:00-04:00" AND thread.name = spaces/AAAAAAAAAAA/threads/123 create_time \> "2012-04-21T11:30:00+00:00" AND create_time < "2013-01-01T00:00:00+00:00" AND thread.name = spaces/AAAAAAAAAAA/threads/123 thread.name = spaces/AAAAAAAAAAA/threads/123 ``` Invalid queries are rejected by the server with an `INVALID_ARGUMENT` error.
      *     filter: 'placeholder-value',
+     *     // Optional. Specifies the desired output syntax for the Chat message `formatted_text` field.
+     *     markupSyntax: 'placeholder-value',
      *     // Optional. How the list of messages is ordered. Specify a value to order by an ordering operation. Valid ordering operation values are as follows: - `ASC` for ascending. - `DESC` for descending. The default ordering is `create_time ASC`.
      *     orderBy: 'placeholder-value',
      *     // Optional. The maximum number of messages returned. The service might return fewer messages than this value. If unspecified, at most 25 are returned. The maximum value is 1000. If you use a value more than 1000, it's automatically changed to 1000. Negative values return an `INVALID_ARGUMENT` error.
@@ -7356,8 +7555,7 @@ export namespace chat_v1 {
     list(
       params: Params$Resource$Spaces$Messages$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListMessagesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListMessagesResponse>,
       callback: BodyResponseCallback<Schema$ListMessagesResponse>
     ): void;
     list(
@@ -7487,6 +7685,7 @@ export namespace chat_v1 {
      *       //   "fallbackText": "my_fallbackText",
      *       //   "formattedText": "my_formattedText",
      *       //   "lastUpdateTime": "my_lastUpdateTime",
+     *       //   "markupSyntax": "my_markupSyntax",
      *       //   "matchedUrl": {},
      *       //   "name": "my_name",
      *       //   "privateMessageViewer": {},
@@ -7521,6 +7720,7 @@ export namespace chat_v1 {
      *   //   "fallbackText": "my_fallbackText",
      *   //   "formattedText": "my_formattedText",
      *   //   "lastUpdateTime": "my_lastUpdateTime",
+     *   //   "markupSyntax": "my_markupSyntax",
      *   //   "matchedUrl": {},
      *   //   "name": "my_name",
      *   //   "privateMessageViewer": {},
@@ -7581,8 +7781,7 @@ export namespace chat_v1 {
         | BodyResponseCallback<Schema$Message>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Message>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Message> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Message>>
@@ -7624,6 +7823,161 @@ export namespace chat_v1 {
         );
       } else {
         return createAPIRequest<Schema$Message>(parameters);
+      }
+    }
+
+    /**
+     * Searches for messages in Google Chat that the calling user has access to. Returns a list of messages matching the search criteria. To search across all spaces the user has access to, set `parent` to `spaces/-`. Using any other value for `parent` results in an `INVALID_ARGUMENT` error. The returned messages have their `name` field populated with the full resource name, which includes the specific `space` in which the message resides. This API doesn't return all message types. The types of messages listed below aren't included in the response. Use ListMessages to list all messages. - Private Messages that are visible to the authenticated user. - Messages posted by Chat apps in spaces or group chats. - Messages in a Chat app DM. - Messages from blocked users. - Messages in spaces that the caller has muted. Requires [user authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user) with one of the following [authorization scopes](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes): - `https://www.googleapis.com/auth/chat.messages.readonly` - `https://www.googleapis.com/auth/chat.messages`
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chat.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chat = google.chat('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/chat.messages',
+     *       'https://www.googleapis.com/auth/chat.messages.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chat.spaces.messages.search({
+     *     // Required. The resource name of the space to search within. To search across all spaces the user has access to, set this field to `spaces/-`. Using any other value for `parent` results in an `INVALID_ARGUMENT` error. To limit the search to one or more spaces, use `space.name` or `space.display_name` in the `filter`.
+     *     parent: 'spaces/my-space',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "filter": "my_filter",
+     *       //   "markupSyntax": "my_markupSyntax",
+     *       //   "orderBy": "my_orderBy",
+     *       //   "pageSize": 0,
+     *       //   "pageToken": "my_pageToken",
+     *       //   "view": "my_view"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "results": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    search(
+      params: Params$Resource$Spaces$Messages$Search,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    search(
+      params?: Params$Resource$Spaces$Messages$Search,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SearchMessagesResponse>>;
+    search(
+      params: Params$Resource$Spaces$Messages$Search,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    search(
+      params: Params$Resource$Spaces$Messages$Search,
+      options:
+        MethodOptions | BodyResponseCallback<Schema$SearchMessagesResponse>,
+      callback: BodyResponseCallback<Schema$SearchMessagesResponse>
+    ): void;
+    search(
+      params: Params$Resource$Spaces$Messages$Search,
+      callback: BodyResponseCallback<Schema$SearchMessagesResponse>
+    ): void;
+    search(callback: BodyResponseCallback<Schema$SearchMessagesResponse>): void;
+    search(
+      paramsOrCallback?:
+        | Params$Resource$Spaces$Messages$Search
+        | BodyResponseCallback<Schema$SearchMessagesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SearchMessagesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SearchMessagesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SearchMessagesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Spaces$Messages$Search;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Spaces$Messages$Search;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://chat.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/messages:search').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SearchMessagesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SearchMessagesResponse>(parameters);
       }
     }
 
@@ -7689,6 +8043,7 @@ export namespace chat_v1 {
      *       //   "fallbackText": "my_fallbackText",
      *       //   "formattedText": "my_formattedText",
      *       //   "lastUpdateTime": "my_lastUpdateTime",
+     *       //   "markupSyntax": "my_markupSyntax",
      *       //   "matchedUrl": {},
      *       //   "name": "my_name",
      *       //   "privateMessageViewer": {},
@@ -7723,6 +8078,7 @@ export namespace chat_v1 {
      *   //   "fallbackText": "my_fallbackText",
      *   //   "formattedText": "my_formattedText",
      *   //   "lastUpdateTime": "my_lastUpdateTime",
+     *   //   "markupSyntax": "my_markupSyntax",
      *   //   "matchedUrl": {},
      *   //   "name": "my_name",
      *   //   "privateMessageViewer": {},
@@ -7783,8 +8139,7 @@ export namespace chat_v1 {
         | BodyResponseCallback<Schema$Message>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Message>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Message> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Message>>
@@ -7873,6 +8228,10 @@ export namespace chat_v1 {
   }
   export interface Params$Resource$Spaces$Messages$Get extends StandardParameters {
     /**
+     * Optional. Specifies the desired output syntax for the Chat message `formatted_text` field.
+     */
+    markupSyntax?: string;
+    /**
      * Required. Resource name of the message. Format: `spaces/{space\}/messages/{message\}` If you've set a custom ID for your message, you can use the value from the `clientAssignedMessageId` field for `{message\}`. For details, see [Name a message] (https://developers.google.com/workspace/chat/create-messages#name_a_created_message).
      */
     name?: string;
@@ -7882,6 +8241,10 @@ export namespace chat_v1 {
      * Optional. A query filter. You can filter messages by date (`create_time`) and thread (`thread.name`). To filter messages by the date they were created, specify the `create_time` with a timestamp in [RFC-3339](https://www.rfc-editor.org/rfc/rfc3339) format and double quotation marks. For example, `"2023-04-21T11:30:00-04:00"`. You can use the greater than operator `\>` to list messages that were created after a timestamp, or the less than operator `<` to list messages that were created before a timestamp. To filter messages within a time interval, use the `AND` operator between two timestamps. To filter by thread, specify the `thread.name`, formatted as `spaces/{space\}/threads/{thread\}`. You can only specify one `thread.name` per query. To filter by both thread and date, use the `AND` operator in your query. For example, the following queries are valid: ``` create_time \> "2012-04-21T11:30:00-04:00" create_time \> "2012-04-21T11:30:00-04:00" AND thread.name = spaces/AAAAAAAAAAA/threads/123 create_time \> "2012-04-21T11:30:00+00:00" AND create_time < "2013-01-01T00:00:00+00:00" AND thread.name = spaces/AAAAAAAAAAA/threads/123 thread.name = spaces/AAAAAAAAAAA/threads/123 ``` Invalid queries are rejected by the server with an `INVALID_ARGUMENT` error.
      */
     filter?: string;
+    /**
+     * Optional. Specifies the desired output syntax for the Chat message `formatted_text` field.
+     */
+    markupSyntax?: string;
     /**
      * Optional. How the list of messages is ordered. Specify a value to order by an ordering operation. Valid ordering operation values are as follows: - `ASC` for ascending. - `DESC` for descending. The default ordering is `create_time ASC`.
      */
@@ -7921,6 +8284,17 @@ export namespace chat_v1 {
      * Request body metadata
      */
     requestBody?: Schema$Message;
+  }
+  export interface Params$Resource$Spaces$Messages$Search extends StandardParameters {
+    /**
+     * Required. The resource name of the space to search within. To search across all spaces the user has access to, set this field to `spaces/-`. Using any other value for `parent` results in an `INVALID_ARGUMENT` error. To limit the search to one or more spaces, use `space.name` or `space.display_name` in the `filter`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SearchMessagesRequest;
   }
   export interface Params$Resource$Spaces$Messages$Update extends StandardParameters {
     /**
@@ -8043,8 +8417,7 @@ export namespace chat_v1 {
         | BodyResponseCallback<Schema$Attachment>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Attachment>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Attachment> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Attachment>>
@@ -8208,8 +8581,7 @@ export namespace chat_v1 {
         | BodyResponseCallback<Schema$Reaction>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Reaction>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Reaction> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Reaction>>
@@ -8347,8 +8719,7 @@ export namespace chat_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -8475,8 +8846,7 @@ export namespace chat_v1 {
     list(
       params: Params$Resource$Spaces$Messages$Reactions$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListReactionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListReactionsResponse>,
       callback: BodyResponseCallback<Schema$ListReactionsResponse>
     ): void;
     list(
@@ -8610,6 +8980,9 @@ export namespace chat_v1 {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
+     *       'https://www.googleapis.com/auth/chat.app.all.memberships.readonly',
+     *       'https://www.googleapis.com/auth/chat.app.all.messages.readonly',
+     *       'https://www.googleapis.com/auth/chat.app.all.spaces.readonly',
      *       'https://www.googleapis.com/auth/chat.app.memberships',
      *       'https://www.googleapis.com/auth/chat.app.memberships.readonly',
      *       'https://www.googleapis.com/auth/chat.app.messages.readonly',
@@ -8709,8 +9082,7 @@ export namespace chat_v1 {
         | BodyResponseCallback<Schema$SpaceEvent>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$SpaceEvent>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$SpaceEvent> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$SpaceEvent>>
@@ -8778,6 +9150,9 @@ export namespace chat_v1 {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
+     *       'https://www.googleapis.com/auth/chat.app.all.memberships.readonly',
+     *       'https://www.googleapis.com/auth/chat.app.all.messages.readonly',
+     *       'https://www.googleapis.com/auth/chat.app.all.spaces.readonly',
      *       'https://www.googleapis.com/auth/chat.app.memberships',
      *       'https://www.googleapis.com/auth/chat.app.memberships.readonly',
      *       'https://www.googleapis.com/auth/chat.app.messages.readonly',
@@ -8846,8 +9221,7 @@ export namespace chat_v1 {
     list(
       params: Params$Resource$Spaces$Spaceevents$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListSpaceEventsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListSpaceEventsResponse>,
       callback: BodyResponseCallback<Schema$ListSpaceEventsResponse>
     ): void;
     list(
@@ -8943,13 +9317,813 @@ export namespace chat_v1 {
 
   export class Resource$Users {
     context: APIRequestContext;
+    availability: Resource$Users$Availability;
     sections: Resource$Users$Sections;
     spaces: Resource$Users$Spaces;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.availability = new Resource$Users$Availability(this.context);
       this.sections = new Resource$Users$Sections(this.context);
       this.spaces = new Resource$Users$Spaces(this.context);
     }
+  }
+
+  export class Resource$Users$Availability {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Returns availability information for a human user in Google Chat. For example, this can be used to check if a user is online or away, or to retrieve their custom status message. This method only retrieves the authenticated user's availability. Requires [user authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user) with one of the following [authorization scopes](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes): - `https://www.googleapis.com/auth/chat.users.availability.readonly` - `https://www.googleapis.com/auth/chat.users.availability`
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chat.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chat = google.chat('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/chat.users.availability',
+     *       'https://www.googleapis.com/auth/chat.users.availability.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chat.users.availability.get({
+     *     // Required. The resource name of the availability to retrieve. Format: users/{user\}/availability `{user\}` is the id for the Person in the People API or Admin SDK directory API. For example, `users/123456789`. The user's email address or `me` can also be used as an alias to refer to the caller. For example, `users/user@example.com` or `users/me`.
+     *     name: 'users/my-user/availability',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "customStatus": {},
+     *   //   "doNotDisturbMetadata": {},
+     *   //   "name": "my_name",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Users$Availability$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Users$Availability$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Availability>>;
+    get(
+      params: Params$Resource$Users$Availability$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Users$Availability$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Availability>,
+      callback: BodyResponseCallback<Schema$Availability>
+    ): void;
+    get(
+      params: Params$Resource$Users$Availability$Get,
+      callback: BodyResponseCallback<Schema$Availability>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Availability>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Users$Availability$Get
+        | BodyResponseCallback<Schema$Availability>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Availability>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Availability>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Availability>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Availability$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Users$Availability$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://chat.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Availability>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Availability>(parameters);
+      }
+    }
+
+    /**
+     * Marks user as `ACTIVE` in Google Chat. Sets the user's availability state to `ACTIVE`. The `ACTIVE` state lasts until the specified expiration, at which point the user's state becomes `AWAY`. Note that if the user is actively using Chat, the `ACTIVE` state duration may extend beyond the provided expiration. This method only updates the authenticated user's availability. Requires [user authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user) with [authorization scope](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes): - `https://www.googleapis.com/auth/chat.users.availability`
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chat.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chat = google.chat('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/chat.users.availability'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chat.users.availability.markAsActive({
+     *     // Required. The resource name of the availability to mark as active. Format: users/{user\}/availability `{user\}` is the id for the Person in the People API or Admin SDK directory API. For example, `users/123456789`. The user's email address or `me` can also be used as an alias to refer to the caller. For example, `users/user@example.com` or `users/me`.
+     *     name: 'users/my-user/availability',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "expireTime": "my_expireTime",
+     *       //   "ttl": "my_ttl"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "customStatus": {},
+     *   //   "doNotDisturbMetadata": {},
+     *   //   "name": "my_name",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    markAsActive(
+      params: Params$Resource$Users$Availability$Markasactive,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    markAsActive(
+      params?: Params$Resource$Users$Availability$Markasactive,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Availability>>;
+    markAsActive(
+      params: Params$Resource$Users$Availability$Markasactive,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    markAsActive(
+      params: Params$Resource$Users$Availability$Markasactive,
+      options: MethodOptions | BodyResponseCallback<Schema$Availability>,
+      callback: BodyResponseCallback<Schema$Availability>
+    ): void;
+    markAsActive(
+      params: Params$Resource$Users$Availability$Markasactive,
+      callback: BodyResponseCallback<Schema$Availability>
+    ): void;
+    markAsActive(callback: BodyResponseCallback<Schema$Availability>): void;
+    markAsActive(
+      paramsOrCallback?:
+        | Params$Resource$Users$Availability$Markasactive
+        | BodyResponseCallback<Schema$Availability>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Availability>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Availability>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Availability>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Availability$Markasactive;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Users$Availability$Markasactive;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://chat.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:markAsActive').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Availability>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Availability>(parameters);
+      }
+    }
+
+    /**
+     * Marks user as `AWAY` in Google Chat. Sets the user's state to away and is not affected by the user's activity. This method only updates the authenticated user's availability. Requires [user authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user) with [authorization scope](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes): - `https://www.googleapis.com/auth/chat.users.availability`
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chat.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chat = google.chat('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/chat.users.availability'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chat.users.availability.markAsAway({
+     *     // Required. The resource name of the availability to mark as away. Format: users/{user\}/availability `{user\}` is the id for the Person in the People API or Admin SDK directory API. For example, `users/123456789`. The user's email address or `me` can also be used as an alias to refer to the caller. For example, `users/user@example.com` or `users/me`.
+     *     name: 'users/my-user/availability',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "customStatus": {},
+     *   //   "doNotDisturbMetadata": {},
+     *   //   "name": "my_name",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    markAsAway(
+      params: Params$Resource$Users$Availability$Markasaway,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    markAsAway(
+      params?: Params$Resource$Users$Availability$Markasaway,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Availability>>;
+    markAsAway(
+      params: Params$Resource$Users$Availability$Markasaway,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    markAsAway(
+      params: Params$Resource$Users$Availability$Markasaway,
+      options: MethodOptions | BodyResponseCallback<Schema$Availability>,
+      callback: BodyResponseCallback<Schema$Availability>
+    ): void;
+    markAsAway(
+      params: Params$Resource$Users$Availability$Markasaway,
+      callback: BodyResponseCallback<Schema$Availability>
+    ): void;
+    markAsAway(callback: BodyResponseCallback<Schema$Availability>): void;
+    markAsAway(
+      paramsOrCallback?:
+        | Params$Resource$Users$Availability$Markasaway
+        | BodyResponseCallback<Schema$Availability>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Availability>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Availability>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Availability>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Availability$Markasaway;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Users$Availability$Markasaway;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://chat.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:markAsAway').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Availability>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Availability>(parameters);
+      }
+    }
+
+    /**
+     * Marks user as `DO_NOT_DISTURB` in Google Chat. Sets a user's availability state to `DO_NOT_DISTURB` until a specified expiration time. When in `DO_NOT_DISTURB`, users typically won't receive notifications. This method only updates the authenticated user's availability. Requires [user authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user) with [authorization scope](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes): - `https://www.googleapis.com/auth/chat.users.availability`
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chat.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chat = google.chat('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/chat.users.availability'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chat.users.availability.markAsDoNotDisturb({
+     *     // Required. The resource name of the availability to mark as Do Not Disturb. Format: users/{user\}/availability `{user\}` is the id for the Person in the People API or Admin SDK directory API. For example, `users/123456789`. The user's email address or `me` can also be used as an alias to refer to the caller. For example, `users/user@example.com` or `users/me`.
+     *     name: 'users/my-user/availability',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "expireTime": "my_expireTime",
+     *       //   "ttl": "my_ttl"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "customStatus": {},
+     *   //   "doNotDisturbMetadata": {},
+     *   //   "name": "my_name",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    markAsDoNotDisturb(
+      params: Params$Resource$Users$Availability$Markasdonotdisturb,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    markAsDoNotDisturb(
+      params?: Params$Resource$Users$Availability$Markasdonotdisturb,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Availability>>;
+    markAsDoNotDisturb(
+      params: Params$Resource$Users$Availability$Markasdonotdisturb,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    markAsDoNotDisturb(
+      params: Params$Resource$Users$Availability$Markasdonotdisturb,
+      options: MethodOptions | BodyResponseCallback<Schema$Availability>,
+      callback: BodyResponseCallback<Schema$Availability>
+    ): void;
+    markAsDoNotDisturb(
+      params: Params$Resource$Users$Availability$Markasdonotdisturb,
+      callback: BodyResponseCallback<Schema$Availability>
+    ): void;
+    markAsDoNotDisturb(
+      callback: BodyResponseCallback<Schema$Availability>
+    ): void;
+    markAsDoNotDisturb(
+      paramsOrCallback?:
+        | Params$Resource$Users$Availability$Markasdonotdisturb
+        | BodyResponseCallback<Schema$Availability>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Availability>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Availability>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Availability>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Availability$Markasdonotdisturb;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Users$Availability$Markasdonotdisturb;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://chat.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:markAsDoNotDisturb').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Availability>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Availability>(parameters);
+      }
+    }
+
+    /**
+     * Updates availability information for a human user. Only the `custom_status` field can be updated through this method. This method only updates the authenticated user's availability. Requires [user authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user) with one of the following [authorization scopes](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes): - `https://www.googleapis.com/auth/chat.users.availability`
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chat.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chat = google.chat('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/chat.users.availability'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chat.users.availability.patch({
+     *     // Identifier. Resource name of the user's availability. Format: `users/{user\}/availability` `{user\}` is the id for the Person in the People API or Admin SDK directory API. For example, `users/123456789`. The user's email address or `me` can also be used as an alias to refer to the caller. For example, `users/user@example.com` or `users/me`.
+     *     name: 'users/my-user/availability',
+     *     // Required. The list of fields to update. The only field that can be updated is `custom_status`.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "customStatus": {},
+     *       //   "doNotDisturbMetadata": {},
+     *       //   "name": "my_name",
+     *       //   "state": "my_state"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "customStatus": {},
+     *   //   "doNotDisturbMetadata": {},
+     *   //   "name": "my_name",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Users$Availability$Patch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patch(
+      params?: Params$Resource$Users$Availability$Patch,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Availability>>;
+    patch(
+      params: Params$Resource$Users$Availability$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Users$Availability$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Availability>,
+      callback: BodyResponseCallback<Schema$Availability>
+    ): void;
+    patch(
+      params: Params$Resource$Users$Availability$Patch,
+      callback: BodyResponseCallback<Schema$Availability>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Availability>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Users$Availability$Patch
+        | BodyResponseCallback<Schema$Availability>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Availability>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Availability>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Availability>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Availability$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Users$Availability$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://chat.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Availability>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Availability>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Users$Availability$Get extends StandardParameters {
+    /**
+     * Required. The resource name of the availability to retrieve. Format: users/{user\}/availability `{user\}` is the id for the Person in the People API or Admin SDK directory API. For example, `users/123456789`. The user's email address or `me` can also be used as an alias to refer to the caller. For example, `users/user@example.com` or `users/me`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Users$Availability$Markasactive extends StandardParameters {
+    /**
+     * Required. The resource name of the availability to mark as active. Format: users/{user\}/availability `{user\}` is the id for the Person in the People API or Admin SDK directory API. For example, `users/123456789`. The user's email address or `me` can also be used as an alias to refer to the caller. For example, `users/user@example.com` or `users/me`.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$MarkAsActiveRequest;
+  }
+  export interface Params$Resource$Users$Availability$Markasaway extends StandardParameters {
+    /**
+     * Required. The resource name of the availability to mark as away. Format: users/{user\}/availability `{user\}` is the id for the Person in the People API or Admin SDK directory API. For example, `users/123456789`. The user's email address or `me` can also be used as an alias to refer to the caller. For example, `users/user@example.com` or `users/me`.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$MarkAsAwayRequest;
+  }
+  export interface Params$Resource$Users$Availability$Markasdonotdisturb extends StandardParameters {
+    /**
+     * Required. The resource name of the availability to mark as Do Not Disturb. Format: users/{user\}/availability `{user\}` is the id for the Person in the People API or Admin SDK directory API. For example, `users/123456789`. The user's email address or `me` can also be used as an alias to refer to the caller. For example, `users/user@example.com` or `users/me`.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$MarkAsDoNotDisturbRequest;
+  }
+  export interface Params$Resource$Users$Availability$Patch extends StandardParameters {
+    /**
+     * Identifier. Resource name of the user's availability. Format: `users/{user\}/availability` `{user\}` is the id for the Person in the People API or Admin SDK directory API. For example, `users/123456789`. The user's email address or `me` can also be used as an alias to refer to the caller. For example, `users/user@example.com` or `users/me`.
+     */
+    name?: string;
+    /**
+     * Required. The list of fields to update. The only field that can be updated is `custom_status`.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Availability;
   }
 
   export class Resource$Users$Sections {
@@ -9197,8 +10371,7 @@ export namespace chat_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -9321,8 +10494,7 @@ export namespace chat_v1 {
     list(
       params: Params$Resource$Users$Sections$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListSectionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListSectionsResponse>,
       callback: BodyResponseCallback<Schema$ListSectionsResponse>
     ): void;
     list(
@@ -9619,8 +10791,7 @@ export namespace chat_v1 {
     position(
       params: Params$Resource$Users$Sections$Position,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$PositionSectionResponse>,
+        MethodOptions | BodyResponseCallback<Schema$PositionSectionResponse>,
       callback: BodyResponseCallback<Schema$PositionSectionResponse>
     ): void;
     position(
@@ -9835,8 +11006,7 @@ export namespace chat_v1 {
     list(
       params: Params$Resource$Users$Sections$Items$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListSectionItemsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListSectionItemsResponse>,
       callback: BodyResponseCallback<Schema$ListSectionItemsResponse>
     ): void;
     list(
@@ -9982,8 +11152,7 @@ export namespace chat_v1 {
     move(
       params: Params$Resource$Users$Sections$Items$Move,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$MoveSectionItemResponse>,
+        MethodOptions | BodyResponseCallback<Schema$MoveSectionItemResponse>,
       callback: BodyResponseCallback<Schema$MoveSectionItemResponse>
     ): void;
     move(
@@ -10479,8 +11648,7 @@ export namespace chat_v1 {
     get(
       params: Params$Resource$Users$Spaces$Spacenotificationsetting$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$SpaceNotificationSetting>,
+        MethodOptions | BodyResponseCallback<Schema$SpaceNotificationSetting>,
       callback: BodyResponseCallback<Schema$SpaceNotificationSetting>
     ): void;
     get(
@@ -10630,8 +11798,7 @@ export namespace chat_v1 {
     patch(
       params: Params$Resource$Users$Spaces$Spacenotificationsetting$Patch,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$SpaceNotificationSetting>,
+        MethodOptions | BodyResponseCallback<Schema$SpaceNotificationSetting>,
       callback: BodyResponseCallback<Schema$SpaceNotificationSetting>
     ): void;
     patch(

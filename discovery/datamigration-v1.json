@@ -355,6 +355,11 @@
                 "name"
               ],
               "parameters": {
+                "fetchReservedPublicIps": {
+                  "description": "Optional. Indicates whether to fetch the reserved public IP addresses allocated for private connections in this location. If false or not set, fetches the shared external static IP addresses instead.",
+                  "location": "query",
+                  "type": "boolean"
+                },
                 "name": {
                   "description": "Required. The resource name for the location for which static IPs should be returned. Must be in the format `projects/*/locations/*`.",
                   "location": "path",
@@ -2587,7 +2592,7 @@
       }
     }
   },
-  "revision": "20260511",
+  "revision": "20260802",
   "rootUrl": "https://datamigration.googleapis.com/",
   "schemas": {
     "AlloyDbConnectionProfile": {
@@ -4338,7 +4343,7 @@
           "type": "object"
         },
         "reason": {
-          "description": "The reason of the error. This is a constant value that identifies the proximate cause of the error. Error reasons are unique within a particular domain of errors. This should be at most 63 characters and match a regular expression of `A-Z+[A-Z0-9]`, which represents UPPER_SNAKE_CASE.",
+          "description": "The reason for the error. This is a constant value that identifies the proximate cause of the error. Error reasons are unique within a particular domain of errors. This should be at most 63 characters and match a regular expression of `A-Z+[A-Z0-9]`, which represents UPPER_SNAKE_CASE.",
           "type": "string"
         }
       },
@@ -4402,7 +4407,7 @@
           "description": "Provides a localized error message for field-level errors that is safe to return to the API consumer."
         },
         "reason": {
-          "description": "The reason of the field-level error. This is a constant value that identifies the proximate cause of the field-level error. It should uniquely identify the type of the FieldViolation within the scope of the google.rpc.ErrorInfo.domain. This should be at most 63 characters and match a regular expression of `A-Z+[A-Z0-9]`, which represents UPPER_SNAKE_CASE.",
+          "description": "The reason for the field-level error. This is a constant value that identifies the proximate cause of the field-level error. It should uniquely identify the type of the FieldViolation within the scope of the google.rpc.ErrorInfo.domain. This should be at most 63 characters and match a regular expression of `A-Z+[A-Z0-9]`, which represents UPPER_SNAKE_CASE.",
           "type": "string"
         }
       },
@@ -5145,7 +5150,8 @@
         },
         "setTablePrimaryKey": {
           "$ref": "SetTablePrimaryKey",
-          "description": "Optional. Rule to specify the primary key for a table"
+          "deprecated": true,
+          "description": "Optional. Deprecated: This rule is no longer supported."
         },
         "singleColumnChange": {
           "$ref": "SingleColumnChange",
@@ -5317,6 +5323,10 @@
           },
           "description": "The resource labels for migration job to use to annotate any related underlying resources such as Compute Engine VMs. An object containing a list of \"key\": \"value\" pairs. Example: `{ \"name\": \"wrench\", \"mass\": \"1.3kg\", \"count\": \"3\" }`.",
           "type": "object"
+        },
+        "mysqlHomogeneousConfig": {
+          "$ref": "MySqlHomogeneousConfig",
+          "description": "Optional. Configuration for MySQL homogeneous migration."
         },
         "name": {
           "description": "The name (URI) of this migration job resource, in the form of: projects/{project}/locations/{location}/migrationJobs/{migrationJob}.",
@@ -5518,7 +5528,9 @@
             "READY_FOR_PROMOTE",
             "PROMOTE_IN_PROGRESS",
             "PROMOTED",
-            "DIFF_BACKUP"
+            "DIFF_BACKUP",
+            "CREATING_BACKUP",
+            "RESTORING_BACKUP"
           ],
           "enumDescriptions": [
             "The phase of the migration job is unknown.",
@@ -5527,7 +5539,9 @@
             "The migration job object is ready to be promoted.",
             "The migration job object is in running the promote phase.",
             "The migration job is promoted.",
-            "The migration job object is in the differential backup phase."
+            "The migration job object is in the differential backup phase.",
+            "The migration job object is creating a fully managed backup of the source.",
+            "The migration job object is restoring a fully managed backup to the destination."
           ],
           "readOnly": true,
           "type": "string"
@@ -5783,6 +5797,17 @@
         "username": {
           "description": "Required. The username that Database Migration Service will use to connect to the database. The value is encrypted when stored in Database Migration Service.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MySqlHomogeneousConfig": {
+      "description": "Configuration for MySQL to MySQL migrations.",
+      "id": "MySqlHomogeneousConfig",
+      "properties": {
+        "isPrimaryDestination": {
+          "description": "Optional. Whether the destination for the migration job is a primary instance.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -6323,6 +6348,10 @@
           "$ref": "PscInterfaceConfig",
           "description": "PSC Interface configuration."
         },
+        "reservedPublicIpConfig": {
+          "$ref": "ReservedPublicIpConfig",
+          "description": "Reserved Public IP configuration."
+        },
         "satisfiesPzi": {
           "description": "Output only. Reserved for future use.",
           "readOnly": true,
@@ -6482,6 +6511,26 @@
         "servingData": {
           "description": "Any data that was used to serve this request. For example, an encrypted stack trace that can be sent back to the service provider for debugging.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ReservedPublicIpConfig": {
+      "description": "Reserved Public IP configuration.",
+      "id": "ReservedPublicIpConfig",
+      "properties": {
+        "egressPublicIps": {
+          "description": "Output only. The reserved public IPs.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "natIpsCount": {
+          "description": "Optional. Number of static public IP addresses to reserve.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -6729,7 +6778,8 @@
       "type": "object"
     },
     "SetTablePrimaryKey": {
-      "description": "Options to configure rule type SetTablePrimaryKey. The rule is used to specify the columns and name to configure/alter the primary key of a table. The rule filter field can refer to one entity. The rule scope can be one of: Table.",
+      "deprecated": true,
+      "description": "Deprecated: Options to configure rule type SetTablePrimaryKey. The rule is used to specify the columns and name to configure/alter the primary key of a table. The rule filter field can refer to one entity. The rule scope can be one of: Table.",
       "id": "SetTablePrimaryKey",
       "properties": {
         "primaryKey": {

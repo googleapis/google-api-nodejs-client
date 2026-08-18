@@ -432,6 +432,10 @@ export namespace drive_v3 {
      */
     dueTime?: string | null;
     /**
+     * Output only. The behavior of the approval when the file content changes.
+     */
+    fileContentChangeBehavior?: string | null;
+    /**
      * The user that requested the approval.
      */
     initiator?: Schema$User;
@@ -925,6 +929,7 @@ export namespace drive_v3 {
      */
     capabilities?: {
       canAcceptOwnership?: boolean;
+      canAccessViaGenAi?: boolean;
       canAddChildren?: boolean;
       canAddFolderFromAnotherDrive?: boolean;
       canAddMyDriveParent?: boolean;
@@ -1837,6 +1842,10 @@ export namespace drive_v3 {
      */
     dueTime?: string | null;
     /**
+     * Optional. The behavior of the approval when the file content changes.
+     */
+    fileContentChangeBehavior?: string | null;
+    /**
      * Optional. Whether to lock the file when starting the approval.
      */
     lockFile?: boolean | null;
@@ -2118,8 +2127,7 @@ export namespace drive_v3 {
         | BodyResponseCallback<Schema$About>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$About>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$About> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$About>>
@@ -2723,6 +2731,7 @@ export namespace drive_v3 {
      *   //   "completeTime": "my_completeTime",
      *   //   "createTime": "my_createTime",
      *   //   "dueTime": "my_dueTime",
+     *   //   "fileContentChangeBehavior": "my_fileContentChangeBehavior",
      *   //   "initiator": {},
      *   //   "kind": "my_kind",
      *   //   "modifyTime": "my_modifyTime",
@@ -2778,8 +2787,7 @@ export namespace drive_v3 {
         | BodyResponseCallback<Schema$Approval>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Approval>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Approval> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Approval>>
@@ -2883,6 +2891,7 @@ export namespace drive_v3 {
      *   //   "completeTime": "my_completeTime",
      *   //   "createTime": "my_createTime",
      *   //   "dueTime": "my_dueTime",
+     *   //   "fileContentChangeBehavior": "my_fileContentChangeBehavior",
      *   //   "initiator": {},
      *   //   "kind": "my_kind",
      *   //   "modifyTime": "my_modifyTime",
@@ -2938,8 +2947,7 @@ export namespace drive_v3 {
         | BodyResponseCallback<Schema$Approval>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Approval>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Approval> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Approval>>
@@ -3041,6 +3049,7 @@ export namespace drive_v3 {
      *   //   "completeTime": "my_completeTime",
      *   //   "createTime": "my_createTime",
      *   //   "dueTime": "my_dueTime",
+     *   //   "fileContentChangeBehavior": "my_fileContentChangeBehavior",
      *   //   "initiator": {},
      *   //   "kind": "my_kind",
      *   //   "modifyTime": "my_modifyTime",
@@ -3096,8 +3105,7 @@ export namespace drive_v3 {
         | BodyResponseCallback<Schema$Approval>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Approval>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Approval> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Approval>>
@@ -3201,6 +3209,7 @@ export namespace drive_v3 {
      *   //   "completeTime": "my_completeTime",
      *   //   "createTime": "my_createTime",
      *   //   "dueTime": "my_dueTime",
+     *   //   "fileContentChangeBehavior": "my_fileContentChangeBehavior",
      *   //   "initiator": {},
      *   //   "kind": "my_kind",
      *   //   "modifyTime": "my_modifyTime",
@@ -3256,8 +3265,7 @@ export namespace drive_v3 {
         | BodyResponseCallback<Schema$Approval>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Approval>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Approval> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Approval>>
@@ -3356,6 +3364,7 @@ export namespace drive_v3 {
      *   //   "completeTime": "my_completeTime",
      *   //   "createTime": "my_createTime",
      *   //   "dueTime": "my_dueTime",
+     *   //   "fileContentChangeBehavior": "my_fileContentChangeBehavior",
      *   //   "initiator": {},
      *   //   "kind": "my_kind",
      *   //   "modifyTime": "my_modifyTime",
@@ -3411,8 +3420,7 @@ export namespace drive_v3 {
         | BodyResponseCallback<Schema$Approval>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Approval>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Approval> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Approval>>
@@ -3665,6 +3673,7 @@ export namespace drive_v3 {
      *   //   "completeTime": "my_completeTime",
      *   //   "createTime": "my_createTime",
      *   //   "dueTime": "my_dueTime",
+     *   //   "fileContentChangeBehavior": "my_fileContentChangeBehavior",
      *   //   "initiator": {},
      *   //   "kind": "my_kind",
      *   //   "modifyTime": "my_modifyTime",
@@ -3720,8 +3729,7 @@ export namespace drive_v3 {
         | BodyResponseCallback<Schema$Approval>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Approval>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Approval> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Approval>>
@@ -3812,6 +3820,7 @@ export namespace drive_v3 {
      *       // request body parameters
      *       // {
      *       //   "dueTime": "my_dueTime",
+     *       //   "fileContentChangeBehavior": "my_fileContentChangeBehavior",
      *       //   "lockFile": false,
      *       //   "message": "my_message",
      *       //   "reviewerEmails": []
@@ -3826,6 +3835,7 @@ export namespace drive_v3 {
      *   //   "completeTime": "my_completeTime",
      *   //   "createTime": "my_createTime",
      *   //   "dueTime": "my_dueTime",
+     *   //   "fileContentChangeBehavior": "my_fileContentChangeBehavior",
      *   //   "initiator": {},
      *   //   "kind": "my_kind",
      *   //   "modifyTime": "my_modifyTime",
@@ -3881,8 +3891,7 @@ export namespace drive_v3 {
         | BodyResponseCallback<Schema$Approval>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Approval>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Approval> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Approval>>
@@ -4166,8 +4175,7 @@ export namespace drive_v3 {
         | BodyResponseCallback<Schema$App>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$App>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$App> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$App>>
@@ -4309,8 +4317,7 @@ export namespace drive_v3 {
         | BodyResponseCallback<Schema$AppList>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$AppList>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$AppList> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$AppList>>
@@ -4591,7 +4598,7 @@ export namespace drive_v3 {
      *     includeRemoved: 'placeholder-value',
      *     // Deprecated: Use `includeItemsFromAllDrives` instead.
      *     includeTeamDriveItems: 'placeholder-value',
-     *     // The maximum number of changes to return per page.
+     *     // The maximum number of changes to return. The service may return fewer than this value. If unspecified, at most 100 changes will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      *     pageSize: 'placeholder-value',
      *     // The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response or to the response from the getStartPageToken method.
      *     pageToken: 'placeholder-value',
@@ -4663,8 +4670,7 @@ export namespace drive_v3 {
         | BodyResponseCallback<Schema$ChangeList>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$ChangeList>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$ChangeList> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$ChangeList>>
@@ -4762,7 +4768,7 @@ export namespace drive_v3 {
      *     includeRemoved: 'placeholder-value',
      *     // Deprecated: Use `includeItemsFromAllDrives` instead.
      *     includeTeamDriveItems: 'placeholder-value',
-     *     // The maximum number of changes to return per page.
+     *     // The maximum number of changes to return. The service may return fewer than this value. If unspecified, at most 100 changes will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      *     pageSize: 'placeholder-value',
      *     // The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response or to the response from the getStartPageToken method.
      *     pageToken: 'placeholder-value',
@@ -4857,8 +4863,7 @@ export namespace drive_v3 {
         | BodyResponseCallback<Schema$Channel>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Channel>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Channel> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Channel>>
@@ -4954,7 +4959,7 @@ export namespace drive_v3 {
      */
     includeTeamDriveItems?: boolean;
     /**
-     * The maximum number of changes to return per page.
+     * The maximum number of changes to return. The service may return fewer than this value. If unspecified, at most 100 changes will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
     pageSize?: number;
     /**
@@ -5012,7 +5017,7 @@ export namespace drive_v3 {
      */
     includeTeamDriveItems?: boolean;
     /**
-     * The maximum number of changes to return per page.
+     * The maximum number of changes to return. The service may return fewer than this value. If unspecified, at most 100 changes will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
     pageSize?: number;
     /**
@@ -5343,8 +5348,7 @@ export namespace drive_v3 {
         | BodyResponseCallback<Schema$Comment>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Comment>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Comment> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Comment>>
@@ -5634,8 +5638,7 @@ export namespace drive_v3 {
         | BodyResponseCallback<Schema$Comment>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Comment>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Comment> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Comment>>
@@ -5721,7 +5724,7 @@ export namespace drive_v3 {
      *     fileId: 'placeholder-value',
      *     // Whether to include deleted comments. Deleted comments will not include their original content.
      *     includeDeleted: 'placeholder-value',
-     *     // The maximum number of comments to return per page.
+     *     // The maximum number of comments to return. The service may return fewer than this value. If unspecified, at most 20 comments will be returned. The maximum value is 100; values above 100 will be coerced to 100.
      *     pageSize: 'placeholder-value',
      *     // The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response.
      *     pageToken: 'placeholder-value',
@@ -5959,8 +5962,7 @@ export namespace drive_v3 {
         | BodyResponseCallback<Schema$Comment>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Comment>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Comment> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Comment>>
@@ -6052,7 +6054,7 @@ export namespace drive_v3 {
      */
     includeDeleted?: boolean;
     /**
-     * The maximum number of comments to return per page.
+     * The maximum number of comments to return. The service may return fewer than this value. If unspecified, at most 20 comments will be returned. The maximum value is 100; values above 100 will be coerced to 100.
      */
     pageSize?: number;
     /**
@@ -6204,8 +6206,7 @@ export namespace drive_v3 {
         | BodyResponseCallback<Schema$Drive>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Drive>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Drive> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Drive>>
@@ -6486,8 +6487,7 @@ export namespace drive_v3 {
         | BodyResponseCallback<Schema$Drive>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Drive>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Drive> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Drive>>
@@ -6633,8 +6633,7 @@ export namespace drive_v3 {
         | BodyResponseCallback<Schema$Drive>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Drive>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Drive> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Drive>>
@@ -6715,7 +6714,7 @@ export namespace drive_v3 {
      *
      *   // Do the magic
      *   const res = await drive.drives.list({
-     *     // Maximum number of shared drives to return per page.
+     *     // The maximum number of shared drives to return. The service may return fewer than this value. If unspecified, at most 10 shared drives will be returned. The maximum value is 100; values above 100 will be coerced to 100.
      *     pageSize: 'placeholder-value',
      *     // Page token for shared drives.
      *     pageToken: 'placeholder-value',
@@ -6780,8 +6779,7 @@ export namespace drive_v3 {
         | BodyResponseCallback<Schema$DriveList>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$DriveList>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$DriveList> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$DriveList>>
@@ -6924,8 +6922,7 @@ export namespace drive_v3 {
         | BodyResponseCallback<Schema$Drive>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Drive>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Drive> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Drive>>
@@ -7092,8 +7089,7 @@ export namespace drive_v3 {
         | BodyResponseCallback<Schema$Drive>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Drive>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Drive> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Drive>>
@@ -7184,7 +7180,7 @@ export namespace drive_v3 {
   }
   export interface Params$Resource$Drives$List extends StandardParameters {
     /**
-     * Maximum number of shared drives to return per page.
+     * The maximum number of shared drives to return. The service may return fewer than this value. If unspecified, at most 10 shared drives will be returned. The maximum value is 100; values above 100 will be coerced to 100.
      */
     pageSize?: number;
     /**
@@ -7473,8 +7469,7 @@ export namespace drive_v3 {
         | BodyResponseCallback<Schema$File>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$File>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$File> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$File>>
@@ -7769,8 +7764,7 @@ export namespace drive_v3 {
         | BodyResponseCallback<Schema$File>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$File>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$File> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$File>>
@@ -8057,8 +8051,7 @@ export namespace drive_v3 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -8448,8 +8441,7 @@ export namespace drive_v3 {
     generateCseToken(
       params: Params$Resource$Files$Generatecsetoken,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GenerateCseTokenResponse>,
+        MethodOptions | BodyResponseCallback<Schema$GenerateCseTokenResponse>,
       callback: BodyResponseCallback<Schema$GenerateCseTokenResponse>
     ): void;
     generateCseToken(
@@ -8837,8 +8829,7 @@ export namespace drive_v3 {
         | BodyResponseCallback<Schema$File>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$File>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$File> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$File>>
@@ -8941,7 +8932,7 @@ export namespace drive_v3 {
      *     includeTeamDriveItems: 'placeholder-value',
      *     // A comma-separated list of sort keys. Valid keys are: * `createdTime`: When the file was created. Avoid using this key for queries on large item collections as it might result in timeouts or other issues. For time-related sorting on large item collections, use `modifiedTime desc` instead. * `folder`: The folder ID. This field is sorted using alphabetical ordering. * `modifiedByMeTime`: The last time the file was modified by the user. * `modifiedTime`: The last time the file was modified by anyone. * `name`: The name of the file. This field is sorted using alphabetical ordering, so 1, 12, 2, 22. * `name_natural`: The name of the file. This field is sorted using natural sort ordering, so 1, 2, 12, 22. * `quotaBytesUsed`: The number of storage quota bytes used by the file. * `recency`: The most recent timestamp from the file's date-time fields. * `sharedWithMeTime`: When the file was shared with the user, if applicable. * `starred`: Whether the user has starred the file. * `viewedByMeTime`: The last time the file was viewed by the user. Each key sorts ascending by default, but can be reversed with the `desc` modifier. Example usage: `?orderBy=folder,modifiedTime desc,name`.
      *     orderBy: 'placeholder-value',
-     *     // The maximum number of files to return per page. Pages may be partial or empty even before reaching the end of the file list. If unspecified, at most 100 files are returned for shared drives, and the entire list of files for non-shared drives. The maximum value is 100; values above 100 are changed to 100.
+     *     // The maximum number of files to return. The service may return fewer than this value. If unspecified, at most 100 files will be returned for shared drives, and the entire list of files for non-shared drives. The maximum value is 1000; values above 1000 will be coerced to 1000.
      *     pageSize: 'placeholder-value',
      *     // The token for continuing a previous list request on the next page. This should be set to the value of `nextPageToken` from the previous response.
      *     pageToken: 'placeholder-value',
@@ -9013,8 +9004,7 @@ export namespace drive_v3 {
         | BodyResponseCallback<Schema$FileList>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$FileList>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$FileList> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$FileList>>
@@ -9159,8 +9149,7 @@ export namespace drive_v3 {
         | BodyResponseCallback<Schema$LabelList>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$LabelList>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$LabelList> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$LabelList>>
@@ -9291,8 +9280,7 @@ export namespace drive_v3 {
     modifyLabels(
       params: Params$Resource$Files$Modifylabels,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ModifyLabelsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ModifyLabelsResponse>,
       callback: BodyResponseCallback<Schema$ModifyLabelsResponse>
     ): void;
     modifyLabels(
@@ -9616,8 +9604,7 @@ export namespace drive_v3 {
         | BodyResponseCallback<Schema$File>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$File>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$File> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$File>>
@@ -9801,8 +9788,7 @@ export namespace drive_v3 {
         | BodyResponseCallback<Schema$Channel>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Channel>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Channel> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Channel>>
@@ -10087,7 +10073,7 @@ export namespace drive_v3 {
      */
     orderBy?: string;
     /**
-     * The maximum number of files to return per page. Pages may be partial or empty even before reaching the end of the file list. If unspecified, at most 100 files are returned for shared drives, and the entire list of files for non-shared drives. The maximum value is 100; values above 100 are changed to 100.
+     * The maximum number of files to return. The service may return fewer than this value. If unspecified, at most 100 files will be returned for shared drives, and the entire list of files for non-shared drives. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
     pageSize?: number;
     /**
@@ -10341,8 +10327,7 @@ export namespace drive_v3 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -10550,8 +10535,7 @@ export namespace drive_v3 {
         | BodyResponseCallback<Schema$Permission>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Permission>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Permission> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Permission>>
@@ -10860,8 +10844,7 @@ export namespace drive_v3 {
         | BodyResponseCallback<Schema$Permission>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Permission>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Permission> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Permission>>
@@ -10950,7 +10933,7 @@ export namespace drive_v3 {
      *     fileId: 'placeholder-value',
      *     // Specifies which additional view's permissions to include in the response. Only `published` is supported.
      *     includePermissionsForView: 'placeholder-value',
-     *     // The maximum number of permissions to return per page. When not set for files in a shared drive, at most 100 results will be returned. When not set for files that are not in a shared drive, the entire list will be returned.
+     *     // The maximum number of permissions to return. The service may return fewer than this value. If unspecified, at most 100 permissions will be returned for shared drives, and the entire list of permissions for non-shared drives. The maximum value is 100; values above 100 will be coerced to 100.
      *     pageSize: 'placeholder-value',
      *     // The token for continuing a previous list request on the next page. This should be set to the value of `nextPageToken` from the previous response.
      *     pageToken: 'placeholder-value',
@@ -11208,8 +11191,7 @@ export namespace drive_v3 {
         | BodyResponseCallback<Schema$Permission>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Permission>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Permission> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Permission>>
@@ -11362,7 +11344,7 @@ export namespace drive_v3 {
      */
     includePermissionsForView?: string;
     /**
-     * The maximum number of permissions to return per page. When not set for files in a shared drive, at most 100 results will be returned. When not set for files that are not in a shared drive, the entire list will be returned.
+     * The maximum number of permissions to return. The service may return fewer than this value. If unspecified, at most 100 permissions will be returned for shared drives, and the entire list of permissions for non-shared drives. The maximum value is 100; values above 100 will be coerced to 100.
      */
     pageSize?: number;
     /**
@@ -11549,8 +11531,7 @@ export namespace drive_v3 {
         | BodyResponseCallback<Schema$Reply>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Reply>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Reply> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Reply>>
@@ -11841,8 +11822,7 @@ export namespace drive_v3 {
         | BodyResponseCallback<Schema$Reply>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Reply>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Reply> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Reply>>
@@ -11931,7 +11911,7 @@ export namespace drive_v3 {
      *     fileId: 'placeholder-value',
      *     // Whether to include deleted replies. Deleted replies don't include their original content.
      *     includeDeleted: 'placeholder-value',
-     *     // The maximum number of replies to return per page.
+     *     // The maximum number of replies to return. The service may return fewer than this value. If unspecified, at most 20 replies will be returned. The maximum value is 100; values above 100 will be coerced to 100.
      *     pageSize: 'placeholder-value',
      *     // The token for continuing a previous list request on the next page. This should be set to the value of `nextPageToken` from the previous response.
      *     pageToken: 'placeholder-value',
@@ -11992,8 +11972,7 @@ export namespace drive_v3 {
         | BodyResponseCallback<Schema$ReplyList>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$ReplyList>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$ReplyList> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$ReplyList>>
@@ -12162,8 +12141,7 @@ export namespace drive_v3 {
         | BodyResponseCallback<Schema$Reply>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Reply>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Reply> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Reply>>
@@ -12272,7 +12250,7 @@ export namespace drive_v3 {
      */
     includeDeleted?: boolean;
     /**
-     * The maximum number of replies to return per page.
+     * The maximum number of replies to return. The service may return fewer than this value. If unspecified, at most 20 replies will be returned. The maximum value is 100; values above 100 will be coerced to 100.
      */
     pageSize?: number;
     /**
@@ -12554,8 +12532,7 @@ export namespace drive_v3 {
         | BodyResponseCallback<Schema$Revision>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Revision>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Revision> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Revision>>
@@ -12643,7 +12620,7 @@ export namespace drive_v3 {
      *   const res = await drive.revisions.list({
      *     // The ID of the file.
      *     fileId: 'placeholder-value',
-     *     // The maximum number of revisions to return per page.
+     *     // The maximum number of revisions to return. The service may return fewer than this value. If unspecified, at most 200 revisions will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      *     pageSize: 'placeholder-value',
      *     // The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response.
      *     pageToken: 'placeholder-value',
@@ -12880,8 +12857,7 @@ export namespace drive_v3 {
         | BodyResponseCallback<Schema$Revision>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Revision>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Revision> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Revision>>
@@ -12958,7 +12934,7 @@ export namespace drive_v3 {
      */
     fileId?: string;
     /**
-     * The maximum number of revisions to return per page.
+     * The maximum number of revisions to return. The service may return fewer than this value. If unspecified, at most 200 revisions will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
     pageSize?: number;
     /**
@@ -13104,8 +13080,7 @@ export namespace drive_v3 {
         | BodyResponseCallback<Schema$TeamDrive>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$TeamDrive>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$TeamDrive> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$TeamDrive>>
@@ -13386,8 +13361,7 @@ export namespace drive_v3 {
         | BodyResponseCallback<Schema$TeamDrive>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$TeamDrive>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$TeamDrive> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$TeamDrive>>
@@ -13699,8 +13673,7 @@ export namespace drive_v3 {
         | BodyResponseCallback<Schema$TeamDrive>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$TeamDrive>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$TeamDrive> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$TeamDrive>>

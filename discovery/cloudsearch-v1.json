@@ -1020,6 +1020,11 @@
                   "location": "query",
                   "type": "string"
                 },
+                "requestOptions.countryCode": {
+                  "description": "Optional. Specifies the country/region where the query originated, as a lowercase ISO 3166-1 alpha-2 region code (using 'uk' instead of 'gb' for the United Kingdom).",
+                  "location": "query",
+                  "type": "string"
+                },
                 "requestOptions.debugOptions.enableDebugging": {
                   "description": "If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.",
                   "location": "query",
@@ -2106,7 +2111,7 @@
       }
     }
   },
-  "revision": "20260429",
+  "revision": "20260729",
   "rootUrl": "https://cloudsearch.googleapis.com/",
   "schemas": {
     "Action": {
@@ -6894,6 +6899,10 @@
           "description": "The BCP-47 language code, such as \"pt\" or \"en\". It represents the user's preferred Display Language.",
           "type": "string"
         },
+        "countryCode": {
+          "description": "Optional. Specifies the country/region where the query originated, as a lowercase ISO 3166-1 alpha-2 region code (using 'uk' instead of 'gb' for the United Kingdom).",
+          "type": "string"
+        },
         "debugOptions": {
           "$ref": "DebugOptions",
           "description": "Debug options of the request"
@@ -7282,7 +7291,7 @@
       "type": "object"
     },
     "SearchRequest": {
-      "description": "The search API request. NEXT ID: 25",
+      "description": "The search API request. NEXT ID: 26",
       "id": "SearchRequest",
       "properties": {
         "contextAttributes": {
@@ -7335,7 +7344,7 @@
       "type": "object"
     },
     "SearchResponse": {
-      "description": "The search API response. NEXT ID: 19",
+      "description": "The search API response. NEXT ID: 20",
       "id": "SearchResponse",
       "properties": {
         "debugInfo": {
@@ -7400,7 +7409,7 @@
       "type": "object"
     },
     "SearchResult": {
-      "description": "Results containing indexed information for a document. Next ID: 16",
+      "description": "Results containing indexed information for a document. Next ID: 17",
       "id": "SearchResult",
       "properties": {
         "clusteredResults": {

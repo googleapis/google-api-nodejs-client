@@ -4,6 +4,9 @@
       "scopes": {
         "https://www.googleapis.com/auth/cloud-platform": {
           "description": "See, edit, configure, and delete your Google Cloud data and see the email address for your Google Account."
+        },
+        "https://www.googleapis.com/auth/cloudasset": {
+          "description": "See, edit, configure, and delete your Google Cloud Asset data and see the email address for your Google Account"
         }
       }
     }
@@ -161,7 +164,8 @@
                 "$ref": "Operation"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/cloudasset"
               ]
             }
           }
@@ -282,7 +286,8 @@
                 "$ref": "Operation"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/cloudasset"
               ]
             }
           }
@@ -403,7 +408,8 @@
                 "$ref": "Operation"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/cloudasset"
               ]
             }
           }
@@ -411,7 +417,7 @@
       }
     }
   },
-  "revision": "20260427",
+  "revision": "20260801",
   "rootUrl": "https://cloudasset.googleapis.com/",
   "schemas": {
     "AnalyzeIamPolicyLongrunningMetadata": {
@@ -950,6 +956,21 @@
       },
       "type": "object"
     },
+    "GoogleIdentityAccesscontextmanagerV1AddRequestHeader": {
+      "description": "Adds a request header to the API.",
+      "id": "GoogleIdentityAccesscontextmanagerV1AddRequestHeader",
+      "properties": {
+        "key": {
+          "description": "HTTP header key.",
+          "type": "string"
+        },
+        "value": {
+          "description": "HTTP header value.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleIdentityAccesscontextmanagerV1ApiOperation": {
       "description": "Identification for an API Operation.",
       "id": "GoogleIdentityAccesscontextmanagerV1ApiOperation",
@@ -1197,6 +1218,10 @@
           "description": "An AccessLevel resource name that allows protected resources inside the ServicePerimeters to access outside the ServicePerimeter boundaries. AccessLevels listed must be in the same policy as this ServicePerimeter. Referencing a nonexistent AccessLevel will cause an error. If an AccessLevel name is not specified, only resources within the perimeter can be accessed through Google Cloud calls with request origins within the perimeter. Example: `accessPolicies/MY_POLICY/accessLevels/MY_LEVEL`. If a single `*` is specified for `access_level`, then all EgressSources will be allowed.",
           "type": "string"
         },
+        "pscEndpoint": {
+          "$ref": "GoogleIdentityAccesscontextmanagerV1PrivateServiceConnectEndpoint",
+          "description": "A PrivateServiceConnectEndpoint that is allowed to access data outside the perimeter. The Private Service Connect endpoint may be in any organization, not just the organization that the perimeter is defined in."
+        },
         "resource": {
           "description": "A Google Cloud resource from the service perimeter that you want to allow to access data outside the perimeter. This field supports only projects. The project format is `projects/{project_number}`. You can't use `*` in this field to allow all Google Cloud resources.",
           "type": "string"
@@ -1303,6 +1328,10 @@
           "description": "An AccessLevel resource name that allow resources within the ServicePerimeters to be accessed from the internet. AccessLevels listed must be in the same policy as this ServicePerimeter. Referencing a nonexistent AccessLevel will cause an error. If no AccessLevel names are listed, resources within the perimeter can only be accessed via Google Cloud calls with request origins within the perimeter. Example: `accessPolicies/MY_POLICY/accessLevels/MY_LEVEL`. If a single `*` is specified for `access_level`, then all IngressSources will be allowed.",
           "type": "string"
         },
+        "pscEndpoint": {
+          "$ref": "GoogleIdentityAccesscontextmanagerV1PrivateServiceConnectEndpoint",
+          "description": "A PrivateServiceConnectEndpoint that is allowed to access the perimeter. The Private Service Connect endpoint may be in any organization, not just the organization that the perimeter is defined in."
+        },
         "resource": {
           "description": "A Google Cloud resource that is allowed to ingress the perimeter. Requests from these resources will be allowed to access perimeter data. Currently only projects and VPCs are allowed. Project format: `projects/{project_number}` VPC network format: `//compute.googleapis.com/projects/{PROJECT_ID}/global/networks/{NAME}`. The project may be in any Google Cloud organization, not just the organization that the perimeter is defined in. `*` is not allowed, the case of allowing all Google Cloud resources only is not supported.",
           "type": "string"
@@ -1353,6 +1382,17 @@
       },
       "type": "object"
     },
+    "GoogleIdentityAccesscontextmanagerV1Modifier": {
+      "description": "Modifier to apply to the API requests.",
+      "id": "GoogleIdentityAccesscontextmanagerV1Modifier",
+      "properties": {
+        "addRequestHeader": {
+          "$ref": "GoogleIdentityAccesscontextmanagerV1AddRequestHeader",
+          "description": "Adds an additional HTTP request header."
+        }
+      },
+      "type": "object"
+    },
     "GoogleIdentityAccesscontextmanagerV1OsConstraint": {
       "description": "A restriction on the OS type and version of devices making requests.",
       "id": "GoogleIdentityAccesscontextmanagerV1OsConstraint",
@@ -1386,6 +1426,39 @@
         "requireVerifiedChromeOs": {
           "description": "Only allows requests from devices with a verified Chrome OS. Verifications includes requirements that the device is enterprise-managed, conformant to domain policies, and the caller has permission to call the API targeted by the request.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleIdentityAccesscontextmanagerV1PrivateServiceConnectEndpoint": {
+      "description": "Specifies the Private Service Connect endpoint that an API call refers to.",
+      "id": "GoogleIdentityAccesscontextmanagerV1PrivateServiceConnectEndpoint",
+      "properties": {
+        "forwardingRule": {
+          "description": "The full resource name of the global forwarding rule that identifies a Private Service Connect endpoint. Forwarding rule format: `//compute.googleapis.com/projects/{PROJECT_ID}/global/forwardingRules/{FORWARDING_RULE_ID}`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleIdentityAccesscontextmanagerV1ServicePattern": {
+      "description": "Service patterns used to allow access.",
+      "id": "GoogleIdentityAccesscontextmanagerV1ServicePattern",
+      "properties": {
+        "modifiers": {
+          "description": "Modifiers to apply to the requests that match the URL pattern.",
+          "items": {
+            "$ref": "GoogleIdentityAccesscontextmanagerV1Modifier"
+          },
+          "type": "array"
+        },
+        "pattern": {
+          "description": "URL pattern to allow. Only patterns of \".googleapis.com/*\", \"www.googleapis.com//*\" and \"*.appspot.com/* forms are supported, where should be an alphanumeric name.",
+          "type": "string"
+        },
+        "service": {
+          "description": "Supported service to allow.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -1487,6 +1560,13 @@
       "description": "Specifies how APIs are allowed to communicate within the Service Perimeter.",
       "id": "GoogleIdentityAccesscontextmanagerV1VpcAccessibleServices",
       "properties": {
+        "allowedServicePatterns": {
+          "description": "Specifies which Google services are allowed to be accessed from VPC networks in the service perimeter.",
+          "items": {
+            "$ref": "GoogleIdentityAccesscontextmanagerV1ServicePattern"
+          },
+          "type": "array"
+        },
         "allowedServices": {
           "description": "The list of APIs usable within the Service Perimeter. Must be empty unless 'enable_restriction' is True. You can specify a list of individual services, as well as include the 'RESTRICTED-SERVICES' value, which automatically includes all of the services protected by the perimeter.",
           "items": {
@@ -1497,6 +1577,21 @@
         "enableRestriction": {
           "description": "Whether to restrict API calls within the Service Perimeter to the list of APIs specified in 'allowed_services'.",
           "type": "boolean"
+        },
+        "servicePatternsEnforcementScopes": {
+          "description": "Defines the enforcement scopes of service patterns.",
+          "items": {
+            "enum": [
+              "SERVICE_PATTERNS_ENFORCEMENT_SCOPE_UNSPECIFIED",
+              "GOOGLE_APIS_VIA_PRIVATE_PATH"
+            ],
+            "enumDescriptions": [
+              "Default value. This cannot be used.",
+              "Enables VPC Accessible Services enforcement for all APIs (including unsupported APIs) for Private Google Access configured with Private VIP and Private Service Connect Endpoint for Global Google APIs that uses 'all-apis' bundle."
+            ],
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"

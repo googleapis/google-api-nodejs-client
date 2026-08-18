@@ -301,7 +301,7 @@ export namespace iamcredentials_v1 {
      *   // Do the magic
      *   const res = await iamcredentials.locations.workforcePools.getAllowedLocations(
      *     {
-     *       // Required. Resource name of workforce pool. Format: `locations/global/workforcePools/{pool_id\}`
+     *       // Required. Resource name of workforce pool.
      *       name: 'locations/my-location/workforcePools/my-workforcePool',
      *     },
      *   );
@@ -420,7 +420,7 @@ export namespace iamcredentials_v1 {
 
   export interface Params$Resource$Locations$Workforcepools$Getallowedlocations extends StandardParameters {
     /**
-     * Required. Resource name of workforce pool. Format: `locations/global/workforcePools/{pool_id\}`
+     * Required. Resource name of workforce pool.
      */
     name?: string;
   }
@@ -487,7 +487,7 @@ export namespace iamcredentials_v1 {
      *   const res =
      *     await iamcredentials.projects.locations.workloadIdentityPools.getAllowedLocations(
      *       {
-     *         // Required. Resource name of workload identity pool. Format: `projects/{project_number\}/locations/global/workloadIdentityPools/{pool_id\}`
+     *         // Required. Resource name of workload identity pool.
      *         name: 'projects/my-project/locations/my-location/workloadIdentityPools/my-workloadIdentityPool',
      *       },
      *     );
@@ -610,7 +610,7 @@ export namespace iamcredentials_v1 {
 
   export interface Params$Resource$Projects$Locations$Workloadidentitypools$Getallowedlocations extends StandardParameters {
     /**
-     * Required. Resource name of workload identity pool. Format: `projects/{project_number\}/locations/global/workloadIdentityPools/{pool_id\}`
+     * Required. Resource name of workload identity pool.
      */
     name?: string;
   }
@@ -858,8 +858,7 @@ export namespace iamcredentials_v1 {
     generateIdToken(
       params: Params$Resource$Projects$Serviceaccounts$Generateidtoken,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GenerateIdTokenResponse>,
+        MethodOptions | BodyResponseCallback<Schema$GenerateIdTokenResponse>,
       callback: BodyResponseCallback<Schema$GenerateIdTokenResponse>
     ): void;
     generateIdToken(

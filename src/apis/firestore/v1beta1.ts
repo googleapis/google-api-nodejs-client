@@ -474,6 +474,10 @@ export namespace firestore_v1beta1 {
    */
   export interface Schema$ExecutePipelineRequest {
     /**
+     * Optional. Automatically commits the transaction after the pipeline has been executed. Only permitted in combination with `transaction` or `new_transaction`.
+     */
+    autoCommitTransaction?: boolean | null;
+    /**
      * Execute the pipeline in a new transaction. The identifier of the newly created transaction will be returned in the first response on the stream. This defaults to a read-only transaction.
      */
     newTransaction?: Schema$TransactionOptions;
@@ -1849,8 +1853,7 @@ export namespace firestore_v1beta1 {
     exportDocuments(
       params: Params$Resource$Projects$Databases$Exportdocuments,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     exportDocuments(
@@ -2006,8 +2009,7 @@ export namespace firestore_v1beta1 {
     importDocuments(
       params: Params$Resource$Projects$Databases$Importdocuments,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     importDocuments(
@@ -2195,8 +2197,7 @@ export namespace firestore_v1beta1 {
     batchGet(
       params: Params$Resource$Projects$Databases$Documents$Batchget,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$BatchGetDocumentsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$BatchGetDocumentsResponse>,
       callback: BodyResponseCallback<Schema$BatchGetDocumentsResponse>
     ): void;
     batchGet(
@@ -2496,8 +2497,7 @@ export namespace firestore_v1beta1 {
     beginTransaction(
       params: Params$Resource$Projects$Databases$Documents$Begintransaction,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$BeginTransactionResponse>,
+        MethodOptions | BodyResponseCallback<Schema$BeginTransactionResponse>,
       callback: BodyResponseCallback<Schema$BeginTransactionResponse>
     ): void;
     beginTransaction(
@@ -2828,8 +2828,7 @@ export namespace firestore_v1beta1 {
         | BodyResponseCallback<Schema$Document>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Document>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Document> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Document>>
@@ -2971,8 +2970,7 @@ export namespace firestore_v1beta1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -3058,6 +3056,7 @@ export namespace firestore_v1beta1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "autoCommitTransaction": false,
      *       //   "newTransaction": {},
      *       //   "readTime": "my_readTime",
      *       //   "structuredPipeline": {},
@@ -3104,8 +3103,7 @@ export namespace firestore_v1beta1 {
     executePipeline(
       params: Params$Resource$Projects$Databases$Documents$Executepipeline,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ExecutePipelineResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ExecutePipelineResponse>,
       callback: BodyResponseCallback<Schema$ExecutePipelineResponse>
     ): void;
     executePipeline(
@@ -3275,8 +3273,7 @@ export namespace firestore_v1beta1 {
         | BodyResponseCallback<Schema$Document>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Document>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Document> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Document>>
@@ -3370,6 +3367,8 @@ export namespace firestore_v1beta1 {
      *       'projects/my-project/databases/my-database/documents/my-document/.*',
      *     // Perform the read at the provided time. This must be a microsecond precision timestamp within the past one hour, or if Point-in-Time Recovery is enabled, can additionally be a whole minute timestamp within the past 7 days.
      *     readTime: 'placeholder-value',
+     *     // Optional. If the list should recursively include all documents nested under the parent at any level. If the request specifies a `collection_id`, then the list will include all nested documents in the collection under the parent. This is optional, and when not provided, Firestore will only list documents nested immediately under the parent. Requests with `recursive` may not specify `show_missing`.
+     *     recursive: 'placeholder-value',
      *     // If the list should show missing documents. A document is missing if it does not exist, but there are sub-documents nested underneath it. When true, such missing documents will be returned with a key but will not have fields, `create_time`, or `update_time` set. Requests with `show_missing` may not specify `where` or `order_by`.
      *     showMissing: 'placeholder-value',
      *     // Perform the read as part of an already active transaction.
@@ -3412,8 +3411,7 @@ export namespace firestore_v1beta1 {
     list(
       params: Params$Resource$Projects$Databases$Documents$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListDocumentsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListDocumentsResponse>,
       callback: BodyResponseCallback<Schema$ListDocumentsResponse>
     ): void;
     list(
@@ -3566,8 +3564,7 @@ export namespace firestore_v1beta1 {
     listCollectionIds(
       params: Params$Resource$Projects$Databases$Documents$Listcollectionids,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListCollectionIdsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListCollectionIdsResponse>,
       callback: BodyResponseCallback<Schema$ListCollectionIdsResponse>
     ): void;
     listCollectionIds(
@@ -3686,6 +3683,8 @@ export namespace firestore_v1beta1 {
      *     parent: 'projects/my-project/databases/my-database/documents',
      *     // Perform the read at the provided time. This must be a microsecond precision timestamp within the past one hour, or if Point-in-Time Recovery is enabled, can additionally be a whole minute timestamp within the past 7 days.
      *     readTime: 'placeholder-value',
+     *     // Optional. If the list should recursively include all documents nested under the parent at any level. If the request specifies a `collection_id`, then the list will include all nested documents in the collection under the parent. This is optional, and when not provided, Firestore will only list documents nested immediately under the parent. Requests with `recursive` may not specify `show_missing`.
+     *     recursive: 'placeholder-value',
      *     // If the list should show missing documents. A document is missing if it does not exist, but there are sub-documents nested underneath it. When true, such missing documents will be returned with a key but will not have fields, `create_time`, or `update_time` set. Requests with `show_missing` may not specify `where` or `order_by`.
      *     showMissing: 'placeholder-value',
      *     // Perform the read as part of an already active transaction.
@@ -3728,8 +3727,7 @@ export namespace firestore_v1beta1 {
     listDocuments(
       params: Params$Resource$Projects$Databases$Documents$Listdocuments,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListDocumentsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListDocumentsResponse>,
       callback: BodyResponseCallback<Schema$ListDocumentsResponse>
     ): void;
     listDocuments(
@@ -4041,8 +4039,7 @@ export namespace firestore_v1beta1 {
     partitionQuery(
       params: Params$Resource$Projects$Databases$Documents$Partitionquery,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$PartitionQueryResponse>,
+        MethodOptions | BodyResponseCallback<Schema$PartitionQueryResponse>,
       callback: BodyResponseCallback<Schema$PartitionQueryResponse>
     ): void;
     partitionQuery(
@@ -4226,8 +4223,7 @@ export namespace firestore_v1beta1 {
         | BodyResponseCallback<Schema$Document>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Document>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Document> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Document>>
@@ -4369,8 +4365,7 @@ export namespace firestore_v1beta1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -5032,6 +5027,10 @@ export namespace firestore_v1beta1 {
      */
     readTime?: string;
     /**
+     * Optional. If the list should recursively include all documents nested under the parent at any level. If the request specifies a `collection_id`, then the list will include all nested documents in the collection under the parent. This is optional, and when not provided, Firestore will only list documents nested immediately under the parent. Requests with `recursive` may not specify `show_missing`.
+     */
+    recursive?: boolean;
+    /**
      * If the list should show missing documents. A document is missing if it does not exist, but there are sub-documents nested underneath it. When true, such missing documents will be returned with a key but will not have fields, `create_time`, or `update_time` set. Requests with `show_missing` may not specify `where` or `order_by`.
      */
     showMissing?: boolean;
@@ -5080,6 +5079,10 @@ export namespace firestore_v1beta1 {
      * Perform the read at the provided time. This must be a microsecond precision timestamp within the past one hour, or if Point-in-Time Recovery is enabled, can additionally be a whole minute timestamp within the past 7 days.
      */
     readTime?: string;
+    /**
+     * Optional. If the list should recursively include all documents nested under the parent at any level. If the request specifies a `collection_id`, then the list will include all nested documents in the collection under the parent. This is optional, and when not provided, Firestore will only list documents nested immediately under the parent. Requests with `recursive` may not specify `show_missing`.
+     */
+    recursive?: boolean;
     /**
      * If the list should show missing documents. A document is missing if it does not exist, but there are sub-documents nested underneath it. When true, such missing documents will be returned with a key but will not have fields, `create_time`, or `update_time` set. Requests with `show_missing` may not specify `where` or `order_by`.
      */
@@ -5277,8 +5280,7 @@ export namespace firestore_v1beta1 {
     create(
       params: Params$Resource$Projects$Databases$Indexes$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -5437,8 +5439,7 @@ export namespace firestore_v1beta1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>

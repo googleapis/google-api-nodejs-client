@@ -370,8 +370,7 @@ export namespace gmailpostmastertools_v1 {
         | BodyResponseCallback<Schema$Domain>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Domain>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Domain> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Domain>>
@@ -811,8 +810,7 @@ export namespace gmailpostmastertools_v1 {
     list(
       params: Params$Resource$Domains$Trafficstats$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListTrafficStatsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListTrafficStatsResponse>,
       callback: BodyResponseCallback<Schema$ListTrafficStatsResponse>
     ): void;
     list(

@@ -2,6 +2,9 @@
   "auth": {
     "oauth2": {
       "scopes": {
+        "https://www.googleapis.com/auth/subscribewithgoogle.publications.entitlements.manage": {
+          "description": "Private Service: https://www.googleapis.com/auth/subscribewithgoogle.publications.entitlements.manage"
+        },
         "https://www.googleapis.com/auth/subscribewithgoogle.publications.entitlements.readonly": {
           "description": "See and review your subscription information"
         }
@@ -105,6 +108,282 @@
   },
   "protocol": "rest",
   "resources": {
+    "organizations": {
+      "resources": {
+        "publications": {
+          "methods": {
+            "create": {
+              "description": "Creates a publication.",
+              "flatPath": "v1/organizations/{organizationsId}/publications",
+              "httpMethod": "POST",
+              "id": "webcontentpublisher.organizations.publications.create",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. The parent resource where this publication will be created. Format: `organizations/{organization}`.",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "publicationId": {
+                  "description": "Optional. The unique identifier of the publication to create. If not specified, the server will generate a random publication ID.",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/publications",
+              "request": {
+                "$ref": "Publication"
+              },
+              "response": {
+                "$ref": "Publication"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/subscribewithgoogle.publications.entitlements.manage"
+              ]
+            },
+            "get": {
+              "description": "Gets a publication.",
+              "flatPath": "v1/organizations/{organizationsId}/publications/{publicationsId}",
+              "httpMethod": "GET",
+              "id": "webcontentpublisher.organizations.publications.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The resource name of the publication to retrieve. Format: `organizations/{organization}/publications/{publication}`.",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+/publications/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "response": {
+                "$ref": "Publication"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/subscribewithgoogle.publications.entitlements.manage",
+                "https://www.googleapis.com/auth/subscribewithgoogle.publications.entitlements.readonly"
+              ]
+            },
+            "list": {
+              "description": "Lists publications.",
+              "flatPath": "v1/organizations/{organizationsId}/publications",
+              "httpMethod": "GET",
+              "id": "webcontentpublisher.organizations.publications.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "filter": {
+                  "description": "Optional. A filter expression to filter the publications returned.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "pageSize": {
+                  "description": "Optional. The maximum number of publications to return. The service may return fewer than this value. If unspecified, at most 50 publications will be returned.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "Optional. A page token, received from a previous `ListPublications` call, to retrieve the next page.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. The parent organization whose publications to list. Format: `organizations/{organization}`.",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/publications",
+              "response": {
+                "$ref": "ListPublicationsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/subscribewithgoogle.publications.entitlements.manage",
+                "https://www.googleapis.com/auth/subscribewithgoogle.publications.entitlements.readonly"
+              ]
+            },
+            "patch": {
+              "description": "Updates a publication.",
+              "flatPath": "v1/organizations/{organizationsId}/publications/{publicationsId}",
+              "httpMethod": "PATCH",
+              "id": "webcontentpublisher.organizations.publications.patch",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Identifier. The resource name of the publication. Format: organizations/{organization}/publications/{publication}",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+/publications/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "Optional. The list of fields to update.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "request": {
+                "$ref": "Publication"
+              },
+              "response": {
+                "$ref": "Publication"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/subscribewithgoogle.publications.entitlements.manage"
+              ]
+            }
+          },
+          "resources": {
+            "ctas": {
+              "methods": {
+                "create": {
+                  "description": "Creates a CTA.",
+                  "flatPath": "v1/organizations/{organizationsId}/publications/{publicationsId}/ctas",
+                  "httpMethod": "POST",
+                  "id": "webcontentpublisher.organizations.publications.ctas.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "ctaId": {
+                      "description": "Optional. The unique identifier of the CTA to create. If not specified, the server will generate a random CTA ID.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent publication resource where this CTA will be created. Format: `organizations/{organization}/publications/{publication}`.",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/publications/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/ctas",
+                  "request": {
+                    "$ref": "Cta"
+                  },
+                  "response": {
+                    "$ref": "Cta"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/subscribewithgoogle.publications.entitlements.manage"
+                  ]
+                },
+                "get": {
+                  "description": "Gets a CTA.",
+                  "flatPath": "v1/organizations/{organizationsId}/publications/{publicationsId}/ctas/{ctasId}",
+                  "httpMethod": "GET",
+                  "id": "webcontentpublisher.organizations.publications.ctas.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The resource name of the CTA to retrieve. Format: `organizations/{organization}/publications/{publication}/ctas/{cta}`.",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/publications/[^/]+/ctas/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Cta"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/subscribewithgoogle.publications.entitlements.manage",
+                    "https://www.googleapis.com/auth/subscribewithgoogle.publications.entitlements.readonly"
+                  ]
+                },
+                "list": {
+                  "description": "Lists CTAs.",
+                  "flatPath": "v1/organizations/{organizationsId}/publications/{publicationsId}/ctas",
+                  "httpMethod": "GET",
+                  "id": "webcontentpublisher.organizations.publications.ctas.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "Optional. The maximum number of CTAs to return. The service may return fewer than this value. If unspecified, at most 50 CTAs will be returned.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A page token, received from a previous `ListCtas` call, to retrieve the next page.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent publication resource whose CTAs to list. Format: `organizations/{organization}/publications/{publication}`.",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/publications/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/ctas",
+                  "response": {
+                    "$ref": "ListCtasResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/subscribewithgoogle.publications.entitlements.manage",
+                    "https://www.googleapis.com/auth/subscribewithgoogle.publications.entitlements.readonly"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates a CTA.",
+                  "flatPath": "v1/organizations/{organizationsId}/publications/{publicationsId}/ctas/{ctasId}",
+                  "httpMethod": "PATCH",
+                  "id": "webcontentpublisher.organizations.publications.ctas.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Identifier. The resource name of the Cta. Format: organizations/{organization}/publications/{publication}/ctas/{cta}",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/publications/[^/]+/ctas/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. The list of fields to update.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "Cta"
+                  },
+                  "response": {
+                    "$ref": "Cta"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "publications": {
       "methods": {
         "checkFreeAccess": {
@@ -139,13 +418,14 @@
             "$ref": "CheckFreeAccessResponse"
           },
           "scopes": [
+            "https://www.googleapis.com/auth/subscribewithgoogle.publications.entitlements.manage",
             "https://www.googleapis.com/auth/subscribewithgoogle.publications.entitlements.readonly"
           ]
         }
       }
     }
   },
-  "revision": "20260526",
+  "revision": "20260804",
   "rootUrl": "https://webcontentpublisher.googleapis.com/",
   "schemas": {
     "CheckFreeAccessResponse": {
@@ -153,7 +433,351 @@
       "id": "CheckFreeAccessResponse",
       "properties": {
         "isAllowed": {
-          "description": "True if free access should be allowed, false otherwise.",
+          "description": "Output only. True if free access should be allowed, false otherwise.",
+          "readOnly": true,
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "ContentPolicyStatus": {
+      "description": "The content policy status of the publication, indicating any violations.",
+      "id": "ContentPolicyStatus",
+      "properties": {
+        "policyInfoUrl": {
+          "description": "Output only. URL pointing to more details about the policy violation or status.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The current policy state.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "OK",
+            "VIOLATION_GRACE_PERIOD",
+            "VIOLATION_ACTIVE",
+            "ORGANIZATION_VIOLATION_GRACE_PERIOD",
+            "ORGANIZATION_VIOLATION_ACTIVE",
+            "ORGANIZATION_VIOLATION_ACTIVE_IMMEDIATE"
+          ],
+          "enumDescriptions": [
+            "State is unspecified.",
+            "Content policy is in a good state; no violations.",
+            "The publication has a content policy violation but is within a grace period.",
+            "The publication has an active content policy violation.",
+            "The organization has a content policy violation but is within a grace period.",
+            "The organization has an active content policy violation.",
+            "The organization has an active content policy violation requiring immediate action."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Cta": {
+      "description": "Represents a Call-To-Action (CTA) configuration for a publication.",
+      "id": "Cta",
+      "properties": {
+        "displayName": {
+          "description": "Required. The user-visible display name of the CTA.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. The resource name of the Cta. Format: organizations/{organization}/publications/{publication}/ctas/{cta}",
+          "type": "string"
+        },
+        "newsletterConfig": {
+          "$ref": "NewsletterConfig",
+          "description": "Optional. Configuration specific to newsletter signup CTAs. Only populated if type is `NEWSLETTER_SIGNUP`."
+        },
+        "state": {
+          "description": "Output only. The current state of this CTA.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "DRAFT",
+            "ACTIVE"
+          ],
+          "enumDescriptions": [
+            "Unspecified CTA state.",
+            "The CTA is a draft and not yet visible to users.",
+            "The CTA is active and visible to users."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "type": {
+          "description": "Required. The type of this CTA.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "NEWSLETTER_SIGNUP"
+          ],
+          "enumDescriptions": [
+            "Unspecified CTA type.",
+            "CTA for newsletter subscription signup."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DomainProperty": {
+      "description": "Represents a domain property associated with a publication, typically used to verify ownership and scope access.",
+      "id": "DomainProperty",
+      "properties": {
+        "ownershipVerified": {
+          "description": "Optional. Whether the domain ownership has been verified (e.g., via Google Search Console).",
+          "type": "boolean"
+        },
+        "url": {
+          "description": "Required. The URL of the domain property (e.g., \"https://example.com\").",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListCtasResponse": {
+      "description": "Response message for `ListCtas`.",
+      "id": "ListCtasResponse",
+      "properties": {
+        "ctas": {
+          "description": "Output only. The list of CTAs.",
+          "items": {
+            "$ref": "Cta"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Output only. A token to retrieve the next page of results, or empty if there are no more results.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListPublicationsResponse": {
+      "description": "Response message for `ListPublications`.",
+      "id": "ListPublicationsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "Output only. A token to retrieve the next page of results, or empty if there are no more results.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "publications": {
+          "description": "Output only. The list of publications.",
+          "items": {
+            "$ref": "Publication"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "NewsletterConfig": {
+      "description": "Configuration for newsletter signup calls-to-action (CTAs).",
+      "id": "NewsletterConfig",
+      "properties": {
+        "customConsentText": {
+          "description": "Optional. Custom consent or disclosure text shown to the user.",
+          "type": "string"
+        },
+        "customMessage": {
+          "description": "Optional. A custom message displayed to the user in the signup prompt.",
+          "type": "string"
+        },
+        "nameRequired": {
+          "description": "Optional. Whether the user is required to provide their name to sign up.",
+          "type": "boolean"
+        },
+        "optInRequired": {
+          "description": "Optional. Whether checking the opt-in checkbox is required.",
+          "type": "boolean"
+        },
+        "title": {
+          "description": "Required. The title of the newsletter signup prompt.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Publication": {
+      "description": "Represents a publisher's publication in Reader Revenue Manager.",
+      "id": "Publication",
+      "properties": {
+        "additionalDomains": {
+          "description": "Optional. Additional domain properties verified for the publication.",
+          "items": {
+            "$ref": "DomainProperty"
+          },
+          "type": "array"
+        },
+        "contentPolicyStatus": {
+          "$ref": "ContentPolicyStatus",
+          "description": "Output only. The content policy compliance status of the publication.",
+          "readOnly": true
+        },
+        "displayName": {
+          "description": "Required. The user-visible display name of the publication.",
+          "type": "string"
+        },
+        "languageCode": {
+          "description": "Required. The primary language of the publication (BCP-47 code, e.g., \"en-US\").",
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. The resource name of the publication. Format: organizations/{organization}/publications/{publication}",
+          "type": "string"
+        },
+        "onboardingState": {
+          "description": "Output only. The current onboarding state.",
+          "enum": [
+            "ONBOARDING_STATE_UNSPECIFIED",
+            "ACTION_REQUIRED",
+            "PENDING_VERIFICATION",
+            "COMPLETE"
+          ],
+          "enumDescriptions": [
+            "Unspecified onboarding state.",
+            "Action is required from the publisher to proceed with onboarding.",
+            "Publication is pending an external verification step. No immediate action is required.",
+            "Onboarding is successfully completed."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "organizationId": {
+          "description": "Output only. The unique identifier of the organization that owns this publication.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "paymentOption": {
+          "description": "Output only. The configured payment option.",
+          "enum": [
+            "PAYMENT_OPTION_UNSPECIFIED",
+            "NONE",
+            "SUBSCRIPTIONS",
+            "CONTRIBUTIONS"
+          ],
+          "enumDescriptions": [
+            "Unspecified payment option.",
+            "No payment option configured.",
+            "Publication supports paid subscriptions.",
+            "Publication supports voluntary contributions."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "primaryDomain": {
+          "$ref": "DomainProperty",
+          "description": "Required. The primary domain property associated with the publication."
+        },
+        "products": {
+          "description": "Output only. The list of active products/features enabled for this publication.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "publicationId": {
+          "description": "Output only. The unique identifier of the publication.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "publicationPrivacyPolicyUrl": {
+          "description": "Optional. The URL to the publisher's Privacy Policy.",
+          "type": "string"
+        },
+        "publicationTosUrl": {
+          "description": "Optional. The URL to the publisher's own Terms of Service.",
+          "type": "string"
+        },
+        "publicationType": {
+          "description": "Optional. The publication entity type (for-profit vs non-profit). Defaults to FOR_PROFIT if omitted.",
+          "enum": [
+            "PUBLICATION_TYPE_UNSPECIFIED",
+            "FOR_PROFIT",
+            "NON_PROFIT"
+          ],
+          "enumDescriptions": [
+            "Unspecified publication type.",
+            "For-profit entity.",
+            "Non-profit entity."
+          ],
+          "type": "string"
+        },
+        "regionCode": {
+          "description": "Required. The ISO 3166-1 alpha-2 region code where the publication is registered (e.g., \"US\").",
+          "type": "string"
+        },
+        "rrmProduct": {
+          "$ref": "RrmProduct",
+          "description": "Optional. Reader Revenue Manager product settings and status."
+        },
+        "slProduct": {
+          "$ref": "SlProduct",
+          "description": "Optional. Subscription Linking product configurations."
+        }
+      },
+      "type": "object"
+    },
+    "RrmProduct": {
+      "description": "Configuration and status of the Reader Revenue Manager (RRM) product for a publication.",
+      "id": "RrmProduct",
+      "properties": {
+        "enabled": {
+          "description": "Optional. Whether the RRM product is enabled for the publication.",
+          "type": "boolean"
+        },
+        "productTosUrl": {
+          "description": "Output only. The URL to the product-specific Terms of Service.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "tosAcceptance": {
+          "$ref": "TosAcceptance",
+          "description": "Optional. The details of the TOS acceptance."
+        }
+      },
+      "type": "object"
+    },
+    "SlProduct": {
+      "description": "Subscription Linking (SL) product settings and status.",
+      "id": "SlProduct",
+      "properties": {
+        "enabled": {
+          "description": "Optional. Whether the Subscription Linking product is enabled.",
+          "type": "boolean"
+        },
+        "gcpProjectNumber": {
+          "description": "Optional. The Google Cloud Project number associated with the publication.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TosAcceptance": {
+      "description": "Details about the acceptance of the Terms of Service (TOS).",
+      "id": "TosAcceptance",
+      "properties": {
+        "emailOptIn": {
+          "description": "Optional. Whether the user opted in to receive product updates and email communications.",
+          "type": "boolean"
+        },
+        "signer": {
+          "description": "Optional. The name of the person who accepted the TOS.",
+          "type": "string"
+        },
+        "signerTitle": {
+          "description": "Optional. The job title or role of the signer.",
+          "type": "string"
+        },
+        "userAccepted": {
+          "description": "Required. Whether the user has accepted the Terms of Service.",
           "type": "boolean"
         }
       },

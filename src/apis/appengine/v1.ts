@@ -1690,6 +1690,10 @@ export namespace appengine_v1 {
      */
     appEngineApis?: boolean | null;
     /**
+     * List of specific App Engine Bundled Services that are enabled for this Version.
+     */
+    appEngineBundledServices?: string[] | null;
+    /**
      * Automatic scaling is based on request rate, response latencies, and other application metrics. Instances are dynamically created and destroyed as needed in order to handle traffic.
      */
     automaticScaling?: Schema$AutomaticScaling;
@@ -2031,8 +2035,7 @@ export namespace appengine_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -2308,8 +2311,7 @@ export namespace appengine_v1 {
     listRuntimes(
       params: Params$Resource$Apps$Listruntimes,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListRuntimesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListRuntimesResponse>,
       callback: BodyResponseCallback<Schema$ListRuntimesResponse>
     ): void;
     listRuntimes(
@@ -2497,8 +2499,7 @@ export namespace appengine_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -2640,8 +2641,7 @@ export namespace appengine_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -2842,8 +2842,7 @@ export namespace appengine_v1 {
     create(
       params: Params$Resource$Apps$Authorizedcertificates$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$AuthorizedCertificate>,
+        MethodOptions | BodyResponseCallback<Schema$AuthorizedCertificate>,
       callback: BodyResponseCallback<Schema$AuthorizedCertificate>
     ): void;
     create(
@@ -2999,8 +2998,7 @@ export namespace appengine_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -3134,8 +3132,7 @@ export namespace appengine_v1 {
     get(
       params: Params$Resource$Apps$Authorizedcertificates$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$AuthorizedCertificate>,
+        MethodOptions | BodyResponseCallback<Schema$AuthorizedCertificate>,
       callback: BodyResponseCallback<Schema$AuthorizedCertificate>
     ): void;
     get(
@@ -3459,8 +3456,7 @@ export namespace appengine_v1 {
     patch(
       params: Params$Resource$Apps$Authorizedcertificates$Patch,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$AuthorizedCertificate>,
+        MethodOptions | BodyResponseCallback<Schema$AuthorizedCertificate>,
       callback: BodyResponseCallback<Schema$AuthorizedCertificate>
     ): void;
     patch(
@@ -3887,8 +3883,7 @@ export namespace appengine_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4030,8 +4025,7 @@ export namespace appengine_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4302,8 +4296,7 @@ export namespace appengine_v1 {
     list(
       params: Params$Resource$Apps$Domainmappings$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListDomainMappingsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListDomainMappingsResponse>,
       callback: BodyResponseCallback<Schema$ListDomainMappingsResponse>
     ): void;
     list(
@@ -4480,8 +4473,7 @@ export namespace appengine_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5002,8 +4994,7 @@ export namespace appengine_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -5278,8 +5269,7 @@ export namespace appengine_v1 {
     list(
       params: Params$Resource$Apps$Firewall$Ingressrules$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListIngressRulesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListIngressRulesResponse>,
       callback: BodyResponseCallback<Schema$ListIngressRulesResponse>
     ): void;
     list(
@@ -5687,8 +5677,7 @@ export namespace appengine_v1 {
         | BodyResponseCallback<Schema$Location>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Location>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Location> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Location>>
@@ -5818,8 +5807,7 @@ export namespace appengine_v1 {
     list(
       params: Params$Resource$Apps$Locations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListLocationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListLocationsResponse>,
       callback: BodyResponseCallback<Schema$ListLocationsResponse>
     ): void;
     list(
@@ -6025,8 +6013,7 @@ export namespace appengine_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -6157,8 +6144,7 @@ export namespace appengine_v1 {
     list(
       params: Params$Resource$Apps$Operations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListOperationsResponse>,
       callback: BodyResponseCallback<Schema$ListOperationsResponse>
     ): void;
     list(
@@ -6362,8 +6348,7 @@ export namespace appengine_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -6510,8 +6495,7 @@ export namespace appengine_v1 {
         | BodyResponseCallback<Schema$Service>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Service>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Service> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Service>>
@@ -6638,8 +6622,7 @@ export namespace appengine_v1 {
     list(
       params: Params$Resource$Apps$Services$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListServicesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListServicesResponse>,
       callback: BodyResponseCallback<Schema$ListServicesResponse>
     ): void;
     list(
@@ -6818,8 +6801,7 @@ export namespace appengine_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -6978,6 +6960,7 @@ export namespace appengine_v1 {
      *       // {
      *       //   "apiConfig": {},
      *       //   "appEngineApis": false,
+     *       //   "appEngineBundledServices": [],
      *       //   "automaticScaling": {},
      *       //   "basicScaling": {},
      *       //   "betaSettings": {},
@@ -7079,8 +7062,7 @@ export namespace appengine_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -7223,8 +7205,7 @@ export namespace appengine_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -7376,8 +7357,7 @@ export namespace appengine_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -7475,6 +7455,7 @@ export namespace appengine_v1 {
      *   // {
      *   //   "apiConfig": {},
      *   //   "appEngineApis": false,
+     *   //   "appEngineBundledServices": [],
      *   //   "automaticScaling": {},
      *   //   "basicScaling": {},
      *   //   "betaSettings": {},
@@ -7564,8 +7545,7 @@ export namespace appengine_v1 {
         | BodyResponseCallback<Schema$Version>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Version>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Version> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Version>>
@@ -7696,8 +7676,7 @@ export namespace appengine_v1 {
     list(
       params: Params$Resource$Apps$Services$Versions$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListVersionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListVersionsResponse>,
       callback: BodyResponseCallback<Schema$ListVersionsResponse>
     ): void;
     list(
@@ -7810,6 +7789,7 @@ export namespace appengine_v1 {
      *       // {
      *       //   "apiConfig": {},
      *       //   "appEngineApis": false,
+     *       //   "appEngineBundledServices": [],
      *       //   "automaticScaling": {},
      *       //   "basicScaling": {},
      *       //   "betaSettings": {},
@@ -7911,8 +7891,7 @@ export namespace appengine_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -8185,8 +8164,7 @@ export namespace appengine_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -8332,8 +8310,7 @@ export namespace appengine_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -8495,8 +8472,7 @@ export namespace appengine_v1 {
         | BodyResponseCallback<Schema$Instance>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Instance>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Instance> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Instance>>
@@ -8627,8 +8603,7 @@ export namespace appengine_v1 {
     list(
       params: Params$Resource$Apps$Services$Versions$Instances$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListInstancesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListInstancesResponse>,
       callback: BodyResponseCallback<Schema$ListInstancesResponse>
     ): void;
     list(
@@ -8946,8 +8921,7 @@ export namespace appengine_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -9127,8 +9101,7 @@ export namespace appengine_v1 {
     create(
       params: Params$Resource$Projects$Locations$Applications$Authorizedcertificates$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$AuthorizedCertificate>,
+        MethodOptions | BodyResponseCallback<Schema$AuthorizedCertificate>,
       callback: BodyResponseCallback<Schema$AuthorizedCertificate>
     ): void;
     create(
@@ -9292,8 +9265,7 @@ export namespace appengine_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -9443,8 +9415,7 @@ export namespace appengine_v1 {
     get(
       params: Params$Resource$Projects$Locations$Applications$Authorizedcertificates$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$AuthorizedCertificate>,
+        MethodOptions | BodyResponseCallback<Schema$AuthorizedCertificate>,
       callback: BodyResponseCallback<Schema$AuthorizedCertificate>
     ): void;
     get(
@@ -9794,8 +9765,7 @@ export namespace appengine_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Applications$Authorizedcertificates$Patch,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$AuthorizedCertificate>,
+        MethodOptions | BodyResponseCallback<Schema$AuthorizedCertificate>,
       callback: BodyResponseCallback<Schema$AuthorizedCertificate>
     ): void;
     patch(
@@ -10292,8 +10262,7 @@ export namespace appengine_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -10441,8 +10410,7 @@ export namespace appengine_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -10747,8 +10715,7 @@ export namespace appengine_v1 {
     list(
       params: Params$Resource$Projects$Locations$Applications$Domainmappings$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListDomainMappingsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListDomainMappingsResponse>,
       callback: BodyResponseCallback<Schema$ListDomainMappingsResponse>
     ): void;
     list(
@@ -10931,8 +10898,7 @@ export namespace appengine_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -11210,8 +11176,7 @@ export namespace appengine_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -11385,8 +11350,7 @@ export namespace appengine_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -11608,8 +11572,7 @@ export namespace appengine_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -11781,8 +11744,7 @@ export namespace appengine_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -11894,6 +11856,7 @@ export namespace appengine_v1 {
      *         // {
      *         //   "apiConfig": {},
      *         //   "appEngineApis": false,
+     *         //   "appEngineBundledServices": [],
      *         //   "automaticScaling": {},
      *         //   "basicScaling": {},
      *         //   "betaSettings": {},
@@ -11995,8 +11958,7 @@ export namespace appengine_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -12258,8 +12220,7 @@ export namespace appengine_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -12427,8 +12388,7 @@ export namespace appengine_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>

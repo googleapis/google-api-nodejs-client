@@ -1578,6 +1578,11 @@
                       "location": "query",
                       "type": "string"
                     },
+                    "recursive": {
+                      "description": "Optional. If the list should recursively include all documents nested under the parent at any level. If the request specifies a `collection_id`, then the list will include all nested documents in the collection under the parent. This is optional, and when not provided, Firestore will only list documents nested immediately under the parent. Requests with `recursive` may not specify `show_missing`.",
+                      "location": "query",
+                      "type": "boolean"
+                    },
                     "showMissing": {
                       "description": "If the list should show missing documents. A document is missing if it does not exist, but there are sub-documents nested underneath it. When true, such missing documents will be returned with a key but will not have fields, `create_time`, or `update_time` set. Requests with `show_missing` may not specify `where` or `order_by`.",
                       "location": "query",
@@ -1678,6 +1683,11 @@
                       "format": "google-datetime",
                       "location": "query",
                       "type": "string"
+                    },
+                    "recursive": {
+                      "description": "Optional. If the list should recursively include all documents nested under the parent at any level. If the request specifies a `collection_id`, then the list will include all nested documents in the collection under the parent. This is optional, and when not provided, Firestore will only list documents nested immediately under the parent. Requests with `recursive` may not specify `show_missing`.",
+                      "location": "query",
+                      "type": "boolean"
                     },
                     "showMissing": {
                       "description": "If the list should show missing documents. A document is missing if it does not exist, but there are sub-documents nested underneath it. When true, such missing documents will be returned with a key but will not have fields, `create_time`, or `update_time` set. Requests with `show_missing` may not specify `where` or `order_by`.",
@@ -2435,7 +2445,7 @@
       }
     }
   },
-  "revision": "20260507",
+  "revision": "20260706",
   "rootUrl": "https://firestore.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -2925,6 +2935,10 @@
       "description": "The request for Firestore.ExecutePipeline.",
       "id": "ExecutePipelineRequest",
       "properties": {
+        "autoCommitTransaction": {
+          "description": "Optional. Automatically commits the transaction after the pipeline has been executed. Only permitted in combination with `transaction` or `new_transaction`.",
+          "type": "boolean"
+        },
         "newTransaction": {
           "$ref": "TransactionOptions",
           "description": "Execute the pipeline in a new transaction. The identifier of the newly created transaction will be returned in the first response on the stream. This defaults to a read-only transaction."
@@ -4185,7 +4199,7 @@
         },
         "searchIndexOptions": {
           "$ref": "GoogleFirestoreAdminV1SearchIndexOptions",
-          "description": "Optional. Options for search indexes that are at the index definition level."
+          "description": "Optional. Options for search indexes that are at the index definition level. This field is only currently supported for indexes with MONGODB_COMPATIBLE_API ApiScope."
         },
         "shardCount": {
           "description": "Optional. The number of shards for the index.",
@@ -4632,7 +4646,7 @@
       "id": "GoogleFirestoreAdminV1SearchGeoSpec",
       "properties": {
         "geoJsonIndexingDisabled": {
-          "description": "Optional. Disables geoJSON indexing for the field. By default, geoJSON points are indexed. Firestore GeoPoints are indexed regardless of this value.",
+          "description": "Optional. Disables geoJSON indexing for the field. By default, geoJSON points are indexed.",
           "type": "boolean"
         }
       },
@@ -4647,7 +4661,7 @@
           "type": "string"
         },
         "textLanguageOverrideFieldPath": {
-          "description": "Optional. The field in the document that specifies which language to use for that specific document. If unspecified, the language is taken from the \"language\" field if it exists or from `text_language` if it does not.",
+          "description": "Optional. The field in the document that specifies which language to use for that specific document. For indexes with MONGODB_COMPATIBLE_API ApiScope: if unspecified, the language is taken from the \"language\" field if it exists or from `text_language` if it does not.",
           "type": "string"
         }
       },
@@ -4665,7 +4679,7 @@
           ],
           "enumDescriptions": [
             "The index type is unspecified. Not a valid option.",
-            "Field values are tokenized."
+            "Field values are tokenized. This is the only way currently supported for MONGODB_COMPATIBLE_API."
           ],
           "type": "string"
         },
@@ -4677,7 +4691,7 @@
           ],
           "enumDescriptions": [
             "The match type is unspecified. Not a valid option.",
-            "Match on any indexed field."
+            "Match on any indexed field. This is the only way currently supported for MONGODB_COMPATIBLE_API."
           ],
           "type": "string"
         }

@@ -1127,7 +1127,7 @@ export namespace datamigration_v1 {
      */
     metadata?: {[key: string]: string} | null;
     /**
-     * The reason of the error. This is a constant value that identifies the proximate cause of the error. Error reasons are unique within a particular domain of errors. This should be at most 63 characters and match a regular expression of `A-Z+[A-Z0-9]`, which represents UPPER_SNAKE_CASE.
+     * The reason for the error. This is a constant value that identifies the proximate cause of the error. Error reasons are unique within a particular domain of errors. This should be at most 63 characters and match a regular expression of `A-Z+[A-Z0-9]`, which represents UPPER_SNAKE_CASE.
      */
     reason?: string | null;
   }
@@ -1182,7 +1182,7 @@ export namespace datamigration_v1 {
      */
     localizedMessage?: Schema$LocalizedMessage;
     /**
-     * The reason of the field-level error. This is a constant value that identifies the proximate cause of the field-level error. It should uniquely identify the type of the FieldViolation within the scope of the google.rpc.ErrorInfo.domain. This should be at most 63 characters and match a regular expression of `A-Z+[A-Z0-9]`, which represents UPPER_SNAKE_CASE.
+     * The reason for the field-level error. This is a constant value that identifies the proximate cause of the field-level error. It should uniquely identify the type of the FieldViolation within the scope of the google.rpc.ErrorInfo.domain. This should be at most 63 characters and match a regular expression of `A-Z+[A-Z0-9]`, which represents UPPER_SNAKE_CASE.
      */
     reason?: string | null;
   }
@@ -1694,7 +1694,7 @@ export namespace datamigration_v1 {
      */
     ruleScope?: string | null;
     /**
-     * Optional. Rule to specify the primary key for a table
+     * Optional. Deprecated: This rule is no longer supported.
      */
     setTablePrimaryKey?: Schema$SetTablePrimaryKey;
     /**
@@ -1820,6 +1820,10 @@ export namespace datamigration_v1 {
      * The resource labels for migration job to use to annotate any related underlying resources such as Compute Engine VMs. An object containing a list of "key": "value" pairs. Example: `{ "name": "wrench", "mass": "1.3kg", "count": "3" \}`.
      */
     labels?: {[key: string]: string} | null;
+    /**
+     * Optional. Configuration for MySQL homogeneous migration.
+     */
+    mysqlHomogeneousConfig?: Schema$MySqlHomogeneousConfig;
     /**
      * The name (URI) of this migration job resource, in the form of: projects/{project\}/locations/{location\}/migrationJobs/{migrationJob\}.
      */
@@ -2054,6 +2058,15 @@ export namespace datamigration_v1 {
      * Required. The username that Database Migration Service will use to connect to the database. The value is encrypted when stored in Database Migration Service.
      */
     username?: string | null;
+  }
+  /**
+   * Configuration for MySQL to MySQL migrations.
+   */
+  export interface Schema$MySqlHomogeneousConfig {
+    /**
+     * Optional. Whether the destination for the migration job is a primary instance.
+     */
+    isPrimaryDestination?: boolean | null;
   }
   /**
    * This resource represents a long-running operation that is the result of a network API call.
@@ -2477,6 +2490,10 @@ export namespace datamigration_v1 {
      */
     pscInterfaceConfig?: Schema$PscInterfaceConfig;
     /**
+     * Reserved Public IP configuration.
+     */
+    reservedPublicIpConfig?: Schema$ReservedPublicIpConfig;
+    /**
      * Output only. Reserved for future use.
      */
     satisfiesPzi?: boolean | null;
@@ -2591,6 +2608,19 @@ export namespace datamigration_v1 {
      * Any data that was used to serve this request. For example, an encrypted stack trace that can be sent back to the service provider for debugging.
      */
     servingData?: string | null;
+  }
+  /**
+   * Reserved Public IP configuration.
+   */
+  export interface Schema$ReservedPublicIpConfig {
+    /**
+     * Output only. The reserved public IPs.
+     */
+    egressPublicIps?: string[] | null;
+    /**
+     * Optional. Number of static public IP addresses to reserve.
+     */
+    natIpsCount?: number | null;
   }
   /**
    * Describes the resource that is being accessed.
@@ -2786,7 +2816,7 @@ export namespace datamigration_v1 {
     updateMask?: string | null;
   }
   /**
-   * Options to configure rule type SetTablePrimaryKey. The rule is used to specify the columns and name to configure/alter the primary key of a table. The rule filter field can refer to one entity. The rule scope can be one of: Table.
+   * Deprecated: Options to configure rule type SetTablePrimaryKey. The rule is used to specify the columns and name to configure/alter the primary key of a table. The rule filter field can refer to one entity. The rule scope can be one of: Table.
    */
   export interface Schema$SetTablePrimaryKey {
     /**
@@ -3635,6 +3665,8 @@ export namespace datamigration_v1 {
      *
      *   // Do the magic
      *   const res = await datamigration.projects.locations.fetchStaticIps({
+     *     // Optional. Indicates whether to fetch the reserved public IP addresses allocated for private connections in this location. If false or not set, fetches the shared external static IP addresses instead.
+     *     fetchReservedPublicIps: 'placeholder-value',
      *     // Required. The resource name for the location for which static IPs should be returned. Must be in the format `projects/x/locations/x`.
      *     name: 'projects/my-project/locations/my-location',
      *     // Optional. Maximum number of IPs to return.
@@ -3679,8 +3711,7 @@ export namespace datamigration_v1 {
     fetchStaticIps(
       params: Params$Resource$Projects$Locations$Fetchstaticips,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$FetchStaticIpsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$FetchStaticIpsResponse>,
       callback: BodyResponseCallback<Schema$FetchStaticIpsResponse>
     ): void;
     fetchStaticIps(
@@ -3843,8 +3874,7 @@ export namespace datamigration_v1 {
         | BodyResponseCallback<Schema$Location>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Location>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Location> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Location>>
@@ -3969,8 +3999,7 @@ export namespace datamigration_v1 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListLocationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListLocationsResponse>,
       callback: BodyResponseCallback<Schema$ListLocationsResponse>
     ): void;
     list(
@@ -4041,6 +4070,10 @@ export namespace datamigration_v1 {
   }
 
   export interface Params$Resource$Projects$Locations$Fetchstaticips extends StandardParameters {
+    /**
+     * Optional. Indicates whether to fetch the reserved public IP addresses allocated for private connections in this location. If false or not set, fetches the shared external static IP addresses instead.
+     */
+    fetchReservedPublicIps?: boolean;
     /**
      * Required. The resource name for the location for which static IPs should be returned. Must be in the format `projects/x/locations/x`.
      */
@@ -4213,8 +4246,7 @@ export namespace datamigration_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4360,8 +4392,7 @@ export namespace datamigration_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4655,8 +4686,7 @@ export namespace datamigration_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -4985,8 +5015,7 @@ export namespace datamigration_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5135,8 +5164,7 @@ export namespace datamigration_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -5268,8 +5296,7 @@ export namespace datamigration_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Connectionprofiles$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -5587,8 +5614,7 @@ export namespace datamigration_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5736,8 +5762,7 @@ export namespace datamigration_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5887,8 +5912,7 @@ export namespace datamigration_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -6054,8 +6078,7 @@ export namespace datamigration_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -6202,8 +6225,7 @@ export namespace datamigration_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -6814,8 +6836,7 @@ export namespace datamigration_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -7139,8 +7160,7 @@ export namespace datamigration_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -7286,8 +7306,7 @@ export namespace datamigration_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -7593,8 +7612,7 @@ export namespace datamigration_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -7743,8 +7761,7 @@ export namespace datamigration_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -7876,8 +7893,7 @@ export namespace datamigration_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Conversionworkspaces$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -8464,8 +8480,7 @@ export namespace datamigration_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -8775,8 +8790,7 @@ export namespace datamigration_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -8905,8 +8919,7 @@ export namespace datamigration_v1 {
     list(
       params: Params$Resource$Projects$Locations$Conversionworkspaces$Mappingrules$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListMappingRulesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListMappingRulesResponse>,
       callback: BodyResponseCallback<Schema$ListMappingRulesResponse>
     ): void;
     list(
@@ -9104,6 +9117,7 @@ export namespace datamigration_v1 {
      *       //   "error": {},
      *       //   "filter": "my_filter",
      *       //   "labels": {},
+     *       //   "mysqlHomogeneousConfig": {},
      *       //   "name": "my_name",
      *       //   "objectsConfig": {},
      *       //   "oracleToPostgresConfig": {},
@@ -9186,8 +9200,7 @@ export namespace datamigration_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -9332,8 +9345,7 @@ export namespace datamigration_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -9478,8 +9490,7 @@ export namespace datamigration_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -9622,8 +9633,7 @@ export namespace datamigration_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -9774,8 +9784,7 @@ export namespace datamigration_v1 {
         | BodyResponseCallback<Schema$SshScript>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$SshScript>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$SshScript> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$SshScript>>
@@ -10032,6 +10041,7 @@ export namespace datamigration_v1 {
      *   //   "error": {},
      *   //   "filter": "my_filter",
      *   //   "labels": {},
+     *   //   "mysqlHomogeneousConfig": {},
      *   //   "name": "my_name",
      *   //   "objectsConfig": {},
      *   //   "oracleToPostgresConfig": {},
@@ -10245,8 +10255,7 @@ export namespace datamigration_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -10376,8 +10385,7 @@ export namespace datamigration_v1 {
     list(
       params: Params$Resource$Projects$Locations$Migrationjobs$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListMigrationJobsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListMigrationJobsResponse>,
       callback: BodyResponseCallback<Schema$ListMigrationJobsResponse>
     ): void;
     list(
@@ -10504,6 +10512,7 @@ export namespace datamigration_v1 {
      *       //   "error": {},
      *       //   "filter": "my_filter",
      *       //   "labels": {},
+     *       //   "mysqlHomogeneousConfig": {},
      *       //   "name": "my_name",
      *       //   "objectsConfig": {},
      *       //   "oracleToPostgresConfig": {},
@@ -10586,8 +10595,7 @@ export namespace datamigration_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -10733,8 +10741,7 @@ export namespace datamigration_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -10885,8 +10892,7 @@ export namespace datamigration_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -11035,8 +11041,7 @@ export namespace datamigration_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -11185,8 +11190,7 @@ export namespace datamigration_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -11336,8 +11340,7 @@ export namespace datamigration_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -11481,8 +11484,7 @@ export namespace datamigration_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -11608,8 +11610,7 @@ export namespace datamigration_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Migrationjobs$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -11782,8 +11783,7 @@ export namespace datamigration_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -12292,8 +12292,7 @@ export namespace datamigration_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -12754,8 +12753,7 @@ export namespace datamigration_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -12887,8 +12885,7 @@ export namespace datamigration_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Migrationjobs$Objects$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -13123,8 +13120,7 @@ export namespace datamigration_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -13256,8 +13252,7 @@ export namespace datamigration_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -13395,8 +13390,7 @@ export namespace datamigration_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -13522,8 +13516,7 @@ export namespace datamigration_v1 {
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListOperationsResponse>,
       callback: BodyResponseCallback<Schema$ListOperationsResponse>
     ): void;
     list(
@@ -13697,6 +13690,7 @@ export namespace datamigration_v1 {
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "pscInterfaceConfig": {},
+     *       //   "reservedPublicIpConfig": {},
      *       //   "satisfiesPzi": false,
      *       //   "satisfiesPzs": false,
      *       //   "state": "my_state",
@@ -13763,8 +13757,7 @@ export namespace datamigration_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -13908,8 +13901,7 @@ export namespace datamigration_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -14000,6 +13992,7 @@ export namespace datamigration_v1 {
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "pscInterfaceConfig": {},
+     *   //   "reservedPublicIpConfig": {},
      *   //   "satisfiesPzi": false,
      *   //   "satisfiesPzs": false,
      *   //   "state": "my_state",
@@ -14197,8 +14190,7 @@ export namespace datamigration_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -14505,8 +14497,7 @@ export namespace datamigration_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -14638,8 +14629,7 @@ export namespace datamigration_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Privateconnections$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(

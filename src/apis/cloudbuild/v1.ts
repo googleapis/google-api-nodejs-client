@@ -278,7 +278,7 @@ export namespace cloudbuild_v1 {
     createTime?: string | null;
   }
   /**
-   * RPC request object accepted by BatchCreateGitLabConnectedRepositories RPC method.
+   * Deprecated: CloudBuild GitLab V1 integration is deprecated. RPC request object accepted by BatchCreateGitLabConnectedRepositories RPC method.
    */
   export interface Schema$BatchCreateGitLabConnectedRepositoriesRequest {
     /**
@@ -287,7 +287,7 @@ export namespace cloudbuild_v1 {
     requests?: Schema$CreateGitLabConnectedRepositoryRequest[];
   }
   /**
-   * Response of BatchCreateGitLabConnectedRepositories RPC method.
+   * Deprecated: CloudBuild GitLab V1 integration is deprecated. Response of BatchCreateGitLabConnectedRepositories RPC method.
    */
   export interface Schema$BatchCreateGitLabConnectedRepositoriesResponse {
     /**
@@ -296,7 +296,7 @@ export namespace cloudbuild_v1 {
     gitlabConnectedRepositories?: Schema$GitLabConnectedRepository[];
   }
   /**
-   * Metadata for `BatchCreateGitLabConnectedRepositories` operation.
+   * Deprecated: CloudBuild GitLab V1 integration is deprecated. Metadata for `BatchCreateGitLabConnectedRepositories` operation.
    */
   export interface Schema$BatchCreateGitLabConnectedRepositoriesResponseMetadata {
     /**
@@ -333,7 +333,7 @@ export namespace cloudbuild_v1 {
      */
     hostUri?: string | null;
     /**
-     * The resource name for the config.
+     * Identifier. The resource name for the config.
      */
     name?: string | null;
     /**
@@ -841,7 +841,7 @@ export namespace cloudbuild_v1 {
      */
     github?: Schema$GitHubEventsConfig;
     /**
-     * GitLabEnterpriseEventsConfig describes the configuration of a trigger that creates a build whenever a GitLab Enterprise event is received.
+     * Deprecated: CloudBuild GitLab V1 integration is deprecated. GitLabEnterpriseEventsConfig describes the configuration of a trigger that creates a build whenever a GitLab Enterprise event is received.
      */
     gitlabEnterpriseEventsConfig?: Schema$GitLabEventsConfig;
     /**
@@ -1012,7 +1012,7 @@ export namespace cloudbuild_v1 {
     githubEnterpriseConfig?: string | null;
   }
   /**
-   * Metadata for `CreateGitLabConfig` operation.
+   * Deprecated: CloudBuild GitLab V1 integration is deprecated. Metadata for `CreateGitLabConfig` operation.
    */
   export interface Schema$CreateGitLabConfigOperationMetadata {
     /**
@@ -1029,7 +1029,7 @@ export namespace cloudbuild_v1 {
     gitlabConfig?: string | null;
   }
   /**
-   * Request to connect a repository from a connected GitLab host.
+   * Deprecated: CloudBuild GitLab V1 integration is deprecated. Request to connect a repository from a connected GitLab host.
    */
   export interface Schema$CreateGitLabConnectedRepositoryRequest {
     /**
@@ -1106,7 +1106,7 @@ export namespace cloudbuild_v1 {
     githubEnterpriseConfig?: string | null;
   }
   /**
-   * Metadata for `DeleteGitLabConfig` operation.
+   * Deprecated: CloudBuild GitLab V1 integration is deprecated. Metadata for `DeleteGitLabConfig` operation.
    */
   export interface Schema$DeleteGitLabConfigOperationMetadata {
     /**
@@ -1309,7 +1309,7 @@ export namespace cloudbuild_v1 {
      */
     hostUrl?: string | null;
     /**
-     * The full resource name for the GitHubEnterpriseConfig For example: "projects/{$project_id\}/locations/{$location_id\}/githubEnterpriseConfigs/{$config_id\}"
+     * Identifier. The full resource name for the GitHubEnterpriseConfig For example: "projects/{$project_id\}/locations/{$location_id\}/githubEnterpriseConfigs/{$config_id\}"
      */
     name?: string | null;
     /**
@@ -1396,7 +1396,7 @@ export namespace cloudbuild_v1 {
     push?: Schema$PushFilter;
   }
   /**
-   * GitLabConfig represents the configuration for a GitLab integration.
+   * Deprecated: CloudBuild GitLab V1 integration is deprecated. GitLabConfig represents the configuration for a GitLab integration.
    */
   export interface Schema$GitLabConfig {
     /**
@@ -1412,7 +1412,7 @@ export namespace cloudbuild_v1 {
      */
     enterpriseConfig?: Schema$GitLabEnterpriseConfig;
     /**
-     * The resource name for the config.
+     * Identifier. The resource name for the config.
      */
     name?: string | null;
     /**
@@ -1429,7 +1429,7 @@ export namespace cloudbuild_v1 {
     webhookKey?: string | null;
   }
   /**
-   * GitLabConnectedRepository represents a GitLab connected repository request response.
+   * Deprecated: CloudBuild GitLab V1 integration is deprecated. GitLabConnectedRepository represents a GitLab connected repository request response.
    */
   export interface Schema$GitLabConnectedRepository {
     /**
@@ -1446,7 +1446,7 @@ export namespace cloudbuild_v1 {
     status?: Schema$Status;
   }
   /**
-   * GitLabEnterpriseConfig represents the configuration for a GitLabEnterprise integration.
+   * Deprecated: CloudBuild GitLab V1 integration is deprecated. GitLabEnterpriseConfig represents the configuration for a GitLabEnterprise integration.
    */
   export interface Schema$GitLabEnterpriseConfig {
     /**
@@ -1463,7 +1463,7 @@ export namespace cloudbuild_v1 {
     sslCa?: string | null;
   }
   /**
-   * GitLabEventsConfig describes the configuration of a trigger that creates a build whenever a GitLab event is received.
+   * Deprecated: CloudBuild GitLab V1 integration is deprecated. GitLabEventsConfig describes the configuration of a trigger that creates a build whenever a GitLab event is received.
    */
   export interface Schema$GitLabEventsConfig {
     /**
@@ -1488,7 +1488,7 @@ export namespace cloudbuild_v1 {
     push?: Schema$PushFilter;
   }
   /**
-   * Proto Representing a GitLabRepository
+   * Deprecated: CloudBuild GitLab V1 integration is deprecated. Proto Representing a GitLabRepository
    */
   export interface Schema$GitLabRepository {
     /**
@@ -1526,7 +1526,7 @@ export namespace cloudbuild_v1 {
     webhookId?: number | null;
   }
   /**
-   * GitLabSecrets represents the secrets in Secret Manager for a GitLab integration.
+   * Deprecated: CloudBuild GitLab V1 integration is deprecated. GitLabSecrets represents the secrets in Secret Manager for a GitLab integration.
    */
   export interface Schema$GitLabSecrets {
     /**
@@ -1773,7 +1773,7 @@ export namespace cloudbuild_v1 {
     configs?: Schema$GitHubEnterpriseConfig[];
   }
   /**
-   * RPC response object returned by ListGitLabConfigs RPC method.
+   * Deprecated: CloudBuild GitLab V1 integration is deprecated. RPC response object returned by ListGitLabConfigs RPC method.
    */
   export interface Schema$ListGitLabConfigsResponse {
     /**
@@ -1786,7 +1786,7 @@ export namespace cloudbuild_v1 {
     nextPageToken?: string | null;
   }
   /**
-   * RPC response object returned by the ListGitLabRepositories RPC method.
+   * Deprecated: CloudBuild GitLab V1 integration is deprecated. RPC response object returned by the ListGitLabRepositories RPC method.
    */
   export interface Schema$ListGitLabRepositoriesResponse {
     /**
@@ -2087,7 +2087,7 @@ export namespace cloudbuild_v1 {
     connectedRepository?: Schema$BitbucketServerRepositoryId;
   }
   /**
-   * RPC request object accepted by RemoveGitLabConnectedRepository RPC method.
+   * Deprecated: CloudBuild GitLab V1 integration is deprecated. RPC request object accepted by RemoveGitLabConnectedRepository RPC method.
    */
   export interface Schema$RemoveGitLabConnectedRepositoryRequest {
     /**
@@ -2280,7 +2280,7 @@ export namespace cloudbuild_v1 {
     secretManager?: Schema$SecretManagerSecret[];
   }
   /**
-   * ServiceDirectoryConfig represents Service Directory configuration for a SCM host connection.
+   * Deprecated: CloudBuild GitLab V1 integration is deprecated. ServiceDirectoryConfig represents Service Directory configuration for a SCM host connection.
    */
   export interface Schema$ServiceDirectoryConfig {
     /**
@@ -2466,7 +2466,7 @@ export namespace cloudbuild_v1 {
     githubEnterpriseConfig?: string | null;
   }
   /**
-   * Metadata for `UpdateGitLabConfig` operation.
+   * Deprecated: CloudBuild GitLab V1 integration is deprecated. Metadata for `UpdateGitLabConfig` operation.
    */
   export interface Schema$UpdateGitLabConfigOperationMetadata {
     /**
@@ -2812,8 +2812,7 @@ export namespace cloudbuild_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -2978,8 +2977,7 @@ export namespace cloudbuild_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -3142,8 +3140,7 @@ export namespace cloudbuild_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -3280,8 +3277,7 @@ export namespace cloudbuild_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3466,8 +3462,7 @@ export namespace cloudbuild_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3516,7 +3511,7 @@ export namespace cloudbuild_v1 {
     }
 
     /**
-     * Cancels a build in progress.
+     * Cancels a build in progress. Note: This method only applies to global (non-regional) builds when using the legacy resource path `projects/{project_id\}/builds/{id\}:cancel`. To cancel regional builds, use the regional resource path: `projects/{project_id\}/locations/{location\}/builds/{id\}:cancel`.
      * @example
      * ```js
      * // Before running the sample:
@@ -3645,8 +3640,7 @@ export namespace cloudbuild_v1 {
         | BodyResponseCallback<Schema$Build>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Build>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Build> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Build>>
@@ -3694,7 +3688,7 @@ export namespace cloudbuild_v1 {
     }
 
     /**
-     * Starts a build with the specified configuration. This method returns a long-running `Operation`, which includes the build ID. Pass the build ID to `GetBuild` to determine the build status (such as `SUCCESS` or `FAILURE`).
+     * Starts a build with the specified configuration. This method returns a long-running `Operation`, which includes the build ID. Pass the build ID to `GetBuild` to determine the build status (such as `SUCCESS` or `FAILURE`). Note: This method only creates global (non-regional) builds when using the legacy resource path `projects/{project_id\}/builds`. To create regional builds, use the regional resource path: `projects/{project_id\}/locations/{location\}/builds`.
      * @example
      * ```js
      * // Before running the sample:
@@ -3825,8 +3819,7 @@ export namespace cloudbuild_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3875,7 +3868,7 @@ export namespace cloudbuild_v1 {
     }
 
     /**
-     * Returns information about a previously requested build. The `Build` that is returned includes its status (such as `SUCCESS`, `FAILURE`, or `WORKING`), and timing information.
+     * Returns information about a previously requested build. The `Build` that is returned includes its status (such as `SUCCESS`, `FAILURE`, or `WORKING`), and timing information. Note: This method only applies to global (non-regional) builds when using the legacy resource path `projects/{project_id\}/builds/{id\}`. To fetch regional builds, use the regional resource path: `projects/{project_id\}/locations/{location\}/builds/{id\}`.
      * @example
      * ```js
      * // Before running the sample:
@@ -3996,8 +3989,7 @@ export namespace cloudbuild_v1 {
         | BodyResponseCallback<Schema$Build>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Build>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Build> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Build>>
@@ -4046,7 +4038,7 @@ export namespace cloudbuild_v1 {
     }
 
     /**
-     * Lists previously requested builds. Previously requested builds may still be in-progress, or may have finished successfully or unsuccessfully.
+     * Lists previously requested builds. Previously requested builds may still be in-progress, or may have finished successfully or unsuccessfully. Note: This method only lists global (non-regional) builds when using the legacy resource path `projects/{project_id\}/builds`. To list regional builds, use the regional resource path: `projects/{project_id\}/locations/{location\}/builds`.
      * @example
      * ```js
      * // Before running the sample:
@@ -4192,7 +4184,7 @@ export namespace cloudbuild_v1 {
     }
 
     /**
-     * Creates a new build based on the specified build. This method creates a new build using the original build request, which may or may not result in an identical build. For triggered builds: * Triggered builds resolve to a precise revision; therefore a retry of a triggered build will result in a build that uses the same revision. For non-triggered builds that specify `RepoSource`: * If the original build built from the tip of a branch, the retried build will build from the tip of that branch, which may not be the same revision as the original build. * If the original build specified a commit sha or revision ID, the retried build will use the identical source. For builds that specify `StorageSource`: * If the original build pulled source from Cloud Storage without specifying the generation of the object, the new build will use the current object, which may be different from the original build source. * If the original build pulled source from Cloud Storage and specified the generation of the object, the new build will attempt to use the same object, which may or may not be available depending on the bucket's lifecycle management settings.
+     * Creates a new build based on the specified build. Note: This method only applies to global (non-regional) builds when using the legacy resource path `projects/{project_id\}/builds/{id\}:retry`. To retry regional builds, use the regional resource path: `projects/{project_id\}/locations/{location\}/builds/{id\}:retry`. This method creates a new build using the original build request, which may or may not result in an identical build. For triggered builds: * Triggered builds resolve to a precise revision; therefore a retry of a triggered build will result in a build that uses the same revision. For non-triggered builds that specify `RepoSource`: * If the original build built from the tip of a branch, the retried build will build from the tip of that branch, which may not be the same revision as the original build. * If the original build specified a commit sha or revision ID, the retried build will use the identical source. For builds that specify `StorageSource`: * If the original build pulled source from Cloud Storage without specifying the generation of the object, the new build will use the current object, which may be different from the original build source. * If the original build pulled source from Cloud Storage and specified the generation of the object, the new build will attempt to use the same object, which may or may not be available depending on the bucket's lifecycle management settings.
      * @example
      * ```js
      * // Before running the sample:
@@ -4295,8 +4287,7 @@ export namespace cloudbuild_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4555,8 +4546,7 @@ export namespace cloudbuild_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4700,8 +4690,7 @@ export namespace cloudbuild_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4828,8 +4817,7 @@ export namespace cloudbuild_v1 {
     get(
       params: Params$Resource$Projects$Githubenterpriseconfigs$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GitHubEnterpriseConfig>,
+        MethodOptions | BodyResponseCallback<Schema$GitHubEnterpriseConfig>,
       callback: BodyResponseCallback<Schema$GitHubEnterpriseConfig>
     ): void;
     get(
@@ -5074,7 +5062,7 @@ export namespace cloudbuild_v1 {
      *
      *   // Do the magic
      *   const res = await cloudbuild.projects.githubEnterpriseConfigs.patch({
-     *     // The full resource name for the GitHubEnterpriseConfig For example: "projects/{$project_id\}/locations/{$location_id\}/githubEnterpriseConfigs/{$config_id\}"
+     *     // Identifier. The full resource name for the GitHubEnterpriseConfig For example: "projects/{$project_id\}/locations/{$location_id\}/githubEnterpriseConfigs/{$config_id\}"
      *     name: 'projects/my-project/githubEnterpriseConfigs/my-githubEnterpriseConfig',
      *     // Update mask for the resource. If this is set, the server will only update the fields specified in the field mask. Otherwise, a full update of the mutable resource fields will be performed.
      *     updateMask: 'placeholder-value',
@@ -5153,8 +5141,7 @@ export namespace cloudbuild_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5259,7 +5246,7 @@ export namespace cloudbuild_v1 {
   }
   export interface Params$Resource$Projects$Githubenterpriseconfigs$Patch extends StandardParameters {
     /**
-     * The full resource name for the GitHubEnterpriseConfig For example: "projects/{$project_id\}/locations/{$location_id\}/githubEnterpriseConfigs/{$config_id\}"
+     * Identifier. The full resource name for the GitHubEnterpriseConfig For example: "projects/{$project_id\}/locations/{$location_id\}/githubEnterpriseConfigs/{$config_id\}"
      */
     name?: string;
     /**
@@ -5372,8 +5359,7 @@ export namespace cloudbuild_v1 {
     getDefaultServiceAccount(
       params: Params$Resource$Projects$Locations$Getdefaultserviceaccount,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$DefaultServiceAccount>,
+        MethodOptions | BodyResponseCallback<Schema$DefaultServiceAccount>,
       callback: BodyResponseCallback<Schema$DefaultServiceAccount>
     ): void;
     getDefaultServiceAccount(
@@ -5578,8 +5564,7 @@ export namespace cloudbuild_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5722,8 +5707,7 @@ export namespace cloudbuild_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5849,8 +5833,7 @@ export namespace cloudbuild_v1 {
     get(
       params: Params$Resource$Projects$Locations$Bitbucketserverconfigs$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$BitbucketServerConfig>,
+        MethodOptions | BodyResponseCallback<Schema$BitbucketServerConfig>,
       callback: BodyResponseCallback<Schema$BitbucketServerConfig>
     ): void;
     get(
@@ -6100,7 +6083,7 @@ export namespace cloudbuild_v1 {
      *
      *   // Do the magic
      *   const res = await cloudbuild.projects.locations.bitbucketServerConfigs.patch({
-     *     // The resource name for the config.
+     *     // Identifier. The resource name for the config.
      *     name: 'projects/my-project/locations/my-location/bitbucketServerConfigs/my-bitbucketServerConfig',
      *     // Update mask for the resource. If this is set, the server will only update the fields specified in the field mask. Otherwise, a full update of the mutable resource fields will be performed.
      *     updateMask: 'placeholder-value',
@@ -6181,8 +6164,7 @@ export namespace cloudbuild_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -6328,8 +6310,7 @@ export namespace cloudbuild_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -6421,7 +6402,7 @@ export namespace cloudbuild_v1 {
   }
   export interface Params$Resource$Projects$Locations$Bitbucketserverconfigs$Patch extends StandardParameters {
     /**
-     * The resource name for the config.
+     * Identifier. The resource name for the config.
      */
     name?: string;
     /**
@@ -6556,8 +6537,7 @@ export namespace cloudbuild_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -6901,8 +6881,7 @@ export namespace cloudbuild_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -6951,7 +6930,7 @@ export namespace cloudbuild_v1 {
     }
 
     /**
-     * Cancels a build in progress.
+     * Cancels a build in progress. Note: This method only applies to global (non-regional) builds when using the legacy resource path `projects/{project_id\}/builds/{id\}:cancel`. To cancel regional builds, use the regional resource path: `projects/{project_id\}/locations/{location\}/builds/{id\}:cancel`.
      * @example
      * ```js
      * // Before running the sample:
@@ -7078,8 +7057,7 @@ export namespace cloudbuild_v1 {
         | BodyResponseCallback<Schema$Build>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Build>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Build> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Build>>
@@ -7125,7 +7103,7 @@ export namespace cloudbuild_v1 {
     }
 
     /**
-     * Starts a build with the specified configuration. This method returns a long-running `Operation`, which includes the build ID. Pass the build ID to `GetBuild` to determine the build status (such as `SUCCESS` or `FAILURE`).
+     * Starts a build with the specified configuration. This method returns a long-running `Operation`, which includes the build ID. Pass the build ID to `GetBuild` to determine the build status (such as `SUCCESS` or `FAILURE`). Note: This method only creates global (non-regional) builds when using the legacy resource path `projects/{project_id\}/builds`. To create regional builds, use the regional resource path: `projects/{project_id\}/locations/{location\}/builds`.
      * @example
      * ```js
      * // Before running the sample:
@@ -7256,8 +7234,7 @@ export namespace cloudbuild_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -7306,7 +7283,7 @@ export namespace cloudbuild_v1 {
     }
 
     /**
-     * Returns information about a previously requested build. The `Build` that is returned includes its status (such as `SUCCESS`, `FAILURE`, or `WORKING`), and timing information.
+     * Returns information about a previously requested build. The `Build` that is returned includes its status (such as `SUCCESS`, `FAILURE`, or `WORKING`), and timing information. Note: This method only applies to global (non-regional) builds when using the legacy resource path `projects/{project_id\}/builds/{id\}`. To fetch regional builds, use the regional resource path: `projects/{project_id\}/locations/{location\}/builds/{id\}`.
      * @example
      * ```js
      * // Before running the sample:
@@ -7427,8 +7404,7 @@ export namespace cloudbuild_v1 {
         | BodyResponseCallback<Schema$Build>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Build>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Build> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Build>>
@@ -7474,7 +7450,7 @@ export namespace cloudbuild_v1 {
     }
 
     /**
-     * Lists previously requested builds. Previously requested builds may still be in-progress, or may have finished successfully or unsuccessfully.
+     * Lists previously requested builds. Previously requested builds may still be in-progress, or may have finished successfully or unsuccessfully. Note: This method only lists global (non-regional) builds when using the legacy resource path `projects/{project_id\}/builds`. To list regional builds, use the regional resource path: `projects/{project_id\}/locations/{location\}/builds`.
      * @example
      * ```js
      * // Before running the sample:
@@ -7620,7 +7596,7 @@ export namespace cloudbuild_v1 {
     }
 
     /**
-     * Creates a new build based on the specified build. This method creates a new build using the original build request, which may or may not result in an identical build. For triggered builds: * Triggered builds resolve to a precise revision; therefore a retry of a triggered build will result in a build that uses the same revision. For non-triggered builds that specify `RepoSource`: * If the original build built from the tip of a branch, the retried build will build from the tip of that branch, which may not be the same revision as the original build. * If the original build specified a commit sha or revision ID, the retried build will use the identical source. For builds that specify `StorageSource`: * If the original build pulled source from Cloud Storage without specifying the generation of the object, the new build will use the current object, which may be different from the original build source. * If the original build pulled source from Cloud Storage and specified the generation of the object, the new build will attempt to use the same object, which may or may not be available depending on the bucket's lifecycle management settings.
+     * Creates a new build based on the specified build. Note: This method only applies to global (non-regional) builds when using the legacy resource path `projects/{project_id\}/builds/{id\}:retry`. To retry regional builds, use the regional resource path: `projects/{project_id\}/locations/{location\}/builds/{id\}:retry`. This method creates a new build using the original build request, which may or may not result in an identical build. For triggered builds: * Triggered builds resolve to a precise revision; therefore a retry of a triggered build will result in a build that uses the same revision. For non-triggered builds that specify `RepoSource`: * If the original build built from the tip of a branch, the retried build will build from the tip of that branch, which may not be the same revision as the original build. * If the original build specified a commit sha or revision ID, the retried build will use the identical source. For builds that specify `StorageSource`: * If the original build pulled source from Cloud Storage without specifying the generation of the object, the new build will use the current object, which may be different from the original build source. * If the original build pulled source from Cloud Storage and specified the generation of the object, the new build will attempt to use the same object, which may or may not be available depending on the bucket's lifecycle management settings.
      * @example
      * ```js
      * // Before running the sample:
@@ -7721,8 +7697,7 @@ export namespace cloudbuild_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -7972,8 +7947,7 @@ export namespace cloudbuild_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -8119,8 +8093,7 @@ export namespace cloudbuild_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -8248,8 +8221,7 @@ export namespace cloudbuild_v1 {
     get(
       params: Params$Resource$Projects$Locations$Githubenterpriseconfigs$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GitHubEnterpriseConfig>,
+        MethodOptions | BodyResponseCallback<Schema$GitHubEnterpriseConfig>,
       callback: BodyResponseCallback<Schema$GitHubEnterpriseConfig>
     ): void;
     get(
@@ -8497,7 +8469,7 @@ export namespace cloudbuild_v1 {
      *   // Do the magic
      *   const res = await cloudbuild.projects.locations.githubEnterpriseConfigs.patch(
      *     {
-     *       // The full resource name for the GitHubEnterpriseConfig For example: "projects/{$project_id\}/locations/{$location_id\}/githubEnterpriseConfigs/{$config_id\}"
+     *       // Identifier. The full resource name for the GitHubEnterpriseConfig For example: "projects/{$project_id\}/locations/{$location_id\}/githubEnterpriseConfigs/{$config_id\}"
      *       name: 'projects/my-project/locations/my-location/githubEnterpriseConfigs/my-githubEnterpriseConfig',
      *       // Update mask for the resource. If this is set, the server will only update the fields specified in the field mask. Otherwise, a full update of the mutable resource fields will be performed.
      *       updateMask: 'placeholder-value',
@@ -8577,8 +8549,7 @@ export namespace cloudbuild_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -8684,7 +8655,7 @@ export namespace cloudbuild_v1 {
   }
   export interface Params$Resource$Projects$Locations$Githubenterpriseconfigs$Patch extends StandardParameters {
     /**
-     * The full resource name for the GitHubEnterpriseConfig For example: "projects/{$project_id\}/locations/{$location_id\}/githubEnterpriseConfigs/{$config_id\}"
+     * Identifier. The full resource name for the GitHubEnterpriseConfig For example: "projects/{$project_id\}/locations/{$location_id\}/githubEnterpriseConfigs/{$config_id\}"
      */
     name?: string;
     /**
@@ -8714,7 +8685,7 @@ export namespace cloudbuild_v1 {
     }
 
     /**
-     * Creates a new `GitLabConfig`. This API is experimental
+     * Deprecated: CloudBuild GitLab V1 integration is deprecated. Creates a new `GitLabConfig`. This API is experimental
      * @example
      * ```js
      * // Before running the sample:
@@ -8821,8 +8792,7 @@ export namespace cloudbuild_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -8871,7 +8841,7 @@ export namespace cloudbuild_v1 {
     }
 
     /**
-     * Delete a `GitLabConfig`. This API is experimental
+     * Deprecated: CloudBuild GitLab V1 integration is deprecated. Delete a `GitLabConfig`. This API is experimental
      * @example
      * ```js
      * // Before running the sample:
@@ -8962,8 +8932,7 @@ export namespace cloudbuild_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -9009,7 +8978,7 @@ export namespace cloudbuild_v1 {
     }
 
     /**
-     * Retrieves a `GitLabConfig`. This API is experimental
+     * Deprecated: CloudBuild GitLab V1 integration is deprecated. Retrieves a `GitLabConfig`. This API is experimental
      * @example
      * ```js
      * // Before running the sample:
@@ -9149,7 +9118,7 @@ export namespace cloudbuild_v1 {
     }
 
     /**
-     * List all `GitLabConfigs` for a given project. This API is experimental
+     * Deprecated: CloudBuild GitLab V1 integration is deprecated. List all `GitLabConfigs` for a given project. This API is experimental
      * @example
      * ```js
      * // Before running the sample:
@@ -9223,8 +9192,7 @@ export namespace cloudbuild_v1 {
     list(
       params: Params$Resource$Projects$Locations$Gitlabconfigs$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListGitLabConfigsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListGitLabConfigsResponse>,
       callback: BodyResponseCallback<Schema$ListGitLabConfigsResponse>
     ): void;
     list(
@@ -9295,7 +9263,7 @@ export namespace cloudbuild_v1 {
     }
 
     /**
-     * Updates an existing `GitLabConfig`. This API is experimental
+     * Deprecated: CloudBuild GitLab V1 integration is deprecated. Updates an existing `GitLabConfig`. This API is experimental
      * @example
      * ```js
      * // Before running the sample:
@@ -9325,7 +9293,7 @@ export namespace cloudbuild_v1 {
      *
      *   // Do the magic
      *   const res = await cloudbuild.projects.locations.gitLabConfigs.patch({
-     *     // The resource name for the config.
+     *     // Identifier. The resource name for the config.
      *     name: 'projects/my-project/locations/my-location/gitLabConfigs/my-gitLabConfig',
      *     // Update mask for the resource. If this is set, the server will only update the fields specified in the field mask. Otherwise, a full update of the mutable resource fields will be performed.
      *     updateMask: 'placeholder-value',
@@ -9402,8 +9370,7 @@ export namespace cloudbuild_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -9449,7 +9416,7 @@ export namespace cloudbuild_v1 {
     }
 
     /**
-     * Remove a GitLab repository from a given GitLabConfig's connected repositories. This API is experimental.
+     * Deprecated: CloudBuild GitLab V1 integration is deprecated. Remove a GitLab repository from a given GitLabConfig's connected repositories. This API is experimental.
      * @example
      * ```js
      * // Before running the sample:
@@ -9548,8 +9515,7 @@ export namespace cloudbuild_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -9641,7 +9607,7 @@ export namespace cloudbuild_v1 {
   }
   export interface Params$Resource$Projects$Locations$Gitlabconfigs$Patch extends StandardParameters {
     /**
-     * The resource name for the config.
+     * Identifier. The resource name for the config.
      */
     name?: string;
     /**
@@ -9673,7 +9639,7 @@ export namespace cloudbuild_v1 {
     }
 
     /**
-     * Batch connecting GitLab repositories to Cloud Build. This API is experimental.
+     * Deprecated: CloudBuild GitLab V1 integration is deprecated. Batch connecting GitLab repositories to Cloud Build. This API is experimental.
      * @example
      * ```js
      * // Before running the sample:
@@ -9776,8 +9742,7 @@ export namespace cloudbuild_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -9845,7 +9810,7 @@ export namespace cloudbuild_v1 {
     }
 
     /**
-     * List all repositories for a given `GitLabConfig`. This API is experimental
+     * Deprecated: CloudBuild GitLab V1 integration is deprecated. List all repositories for a given `GitLabConfig`. This API is experimental
      * @example
      * ```js
      * // Before running the sample:
@@ -10108,8 +10073,7 @@ export namespace cloudbuild_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -10246,8 +10210,7 @@ export namespace cloudbuild_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -10608,8 +10571,7 @@ export namespace cloudbuild_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -10896,8 +10858,7 @@ export namespace cloudbuild_v1 {
     list(
       params: Params$Resource$Projects$Locations$Triggers$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListBuildTriggersResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListBuildTriggersResponse>,
       callback: BodyResponseCallback<Schema$ListBuildTriggersResponse>
     ): void;
     list(
@@ -11275,8 +11236,7 @@ export namespace cloudbuild_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -11717,8 +11677,7 @@ export namespace cloudbuild_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -11864,8 +11823,7 @@ export namespace cloudbuild_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -12007,8 +11965,7 @@ export namespace cloudbuild_v1 {
         | BodyResponseCallback<Schema$WorkerPool>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$WorkerPool>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$WorkerPool> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$WorkerPool>>
@@ -12128,8 +12085,7 @@ export namespace cloudbuild_v1 {
     list(
       params: Params$Resource$Projects$Locations$Workerpools$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListWorkerPoolsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListWorkerPoolsResponse>,
       callback: BodyResponseCallback<Schema$ListWorkerPoolsResponse>
     ): void;
     list(
@@ -12310,8 +12266,7 @@ export namespace cloudbuild_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -12731,8 +12686,7 @@ export namespace cloudbuild_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -13023,8 +12977,7 @@ export namespace cloudbuild_v1 {
     list(
       params: Params$Resource$Projects$Triggers$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListBuildTriggersResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListBuildTriggersResponse>,
       callback: BodyResponseCallback<Schema$ListBuildTriggersResponse>
     ): void;
     list(
@@ -13407,8 +13360,7 @@ export namespace cloudbuild_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -13837,8 +13789,7 @@ export namespace cloudbuild_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>

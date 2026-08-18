@@ -868,7 +868,7 @@
       }
     }
   },
-  "revision": "20260518",
+  "revision": "20260803",
   "rootUrl": "https://firebaseappdistribution.googleapis.com/",
   "schemas": {
     "AndroidxCrawlerOutputPoint": {
@@ -913,8 +913,48 @@
       "description": "A release of a Firebase app.",
       "id": "GoogleFirebaseAppdistroV1Release",
       "properties": {
+        "acceptedInvitationCount": {
+          "description": "Output only. Number of testers with accepted invitations.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "androidPackageRegistrationState": {
+          "description": "Output only. Registration state of the Android package (BinaryType.APK).",
+          "enum": [
+            "ANDROID_PACKAGE_REGISTRATION_STATE_UNSPECIFIED",
+            "REGISTERED",
+            "NOT_REGISTERED",
+            "REGISTERED_WITH_ANOTHER_CERTIFICATE_FINGERPRINT"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "Package is registered with the release binary's certificate fingerprint.",
+            "Package is not registered with any public certificate.",
+            "Package is registered with another public certificate fingerprint."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
         "binaryDownloadUri": {
           "description": "Output only. A signed link (which expires in one hour) to directly download the app binary (IPA/APK/AAB) file.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "binaryType": {
+          "description": "Output only. Type of binary.",
+          "enum": [
+            "BINARY_TYPE_UNSPECIFIED",
+            "IPA",
+            "APK",
+            "AAB"
+          ],
+          "enumDescriptions": [
+            "unspecified binary type",
+            "iOS App Store package",
+            "Android Application package",
+            "Android App Bundle"
+          ],
           "readOnly": true,
           "type": "string"
         },
@@ -940,18 +980,57 @@
           "readOnly": true,
           "type": "string"
         },
+        "feedbackCount": {
+          "description": "Output only. Number of feedback reports left by testers.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
         "firebaseConsoleUri": {
           "description": "Output only. A link to the Firebase console displaying a single release.",
           "readOnly": true,
           "type": "string"
         },
+        "installationCount": {
+          "description": "Output only. Number of testers who have downloaded this release.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
         "name": {
           "description": "The name of the release resource. Format: `projects/{project_number}/apps/{app}/releases/{release}`",
           "type": "string"
         },
+        "openInvitationCount": {
+          "description": "Output only. Number of testers who were invited (incl. expired invitations), but did not (yet) accept the invitation.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
         "releaseNotes": {
           "$ref": "GoogleFirebaseAppdistroV1ReleaseNotes",
-          "description": "Notes of the release."
+          "description": "Notes about the release."
+        },
+        "testState": {
+          "description": "Output only. The overall state of tests run on this release",
+          "enum": [
+            "TEST_STATE_UNSPECIFIED",
+            "NO_TESTS_REQUESTED",
+            "IN_PROGRESS",
+            "PASSED",
+            "FAILED",
+            "INCONCLUSIVE"
+          ],
+          "enumDescriptions": [
+            "No test state specified",
+            "No tests have been requested for this release",
+            "One or more device executions are in progress",
+            "All device executions passed during the most recent test",
+            "Some device executions failed during the most recent test",
+            "Some device executions were inconclusive, but none failed, during the most recent test"
+          ],
+          "readOnly": true,
+          "type": "string"
         },
         "testingUri": {
           "description": "Output only. A link to the release in the tester web clip or Android app that lets testers (which were granted access to the app) view release notes and install the app onto their devices.",
@@ -1712,7 +1791,8 @@
             "AAB_UPLOAD_ERROR",
             "APP_NOT_FOUND",
             "AAB_ADHOC_SHARING_KEY_NOT_REGISTERED",
-            "AAB_ANDROID_DEVELOPER_CONSOLE_ACCOUNT_NOT_FOUND"
+            "AAB_ANDROID_DEVELOPER_CONSOLE_ACCOUNT_NOT_FOUND",
+            "AAB_ANDROID_DEVELOPER_CONSOLE_PACKAGE_NOT_FOUND"
           ],
           "enumDescriptions": [
             "",
@@ -1739,7 +1819,8 @@
             "",
             "Happens if the Firebase app no longer exists by the time of extraction",
             "",
-            "A corresponding Android Developer Console account for this app's Play Console account was not found."
+            "A corresponding Android Developer Console account for this app's Play Console account was not found.",
+            "The package was not found in the Android Developer Console."
           ],
           "type": "string"
         },

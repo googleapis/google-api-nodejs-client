@@ -1862,8 +1862,7 @@ export namespace cloudbuild_v2 {
         | BodyResponseCallback<Schema$Location>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Location>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Location> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Location>>
@@ -1987,8 +1986,7 @@ export namespace cloudbuild_v2 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListLocationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListLocationsResponse>,
       callback: BodyResponseCallback<Schema$ListLocationsResponse>
     ): void;
     list(
@@ -2209,8 +2207,7 @@ export namespace cloudbuild_v2 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -2354,8 +2351,7 @@ export namespace cloudbuild_v2 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -2654,8 +2650,7 @@ export namespace cloudbuild_v2 {
         | BodyResponseCallback<Schema$Connection>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Connection>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Connection> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Connection>>
@@ -2794,8 +2789,7 @@ export namespace cloudbuild_v2 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -2922,8 +2916,7 @@ export namespace cloudbuild_v2 {
     list(
       params: Params$Resource$Projects$Locations$Connections$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListConnectionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListConnectionsResponse>,
       callback: BodyResponseCallback<Schema$ListConnectionsResponse>
     ): void;
     list(
@@ -3109,8 +3102,7 @@ export namespace cloudbuild_v2 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3253,8 +3245,7 @@ export namespace cloudbuild_v2 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -3404,8 +3395,7 @@ export namespace cloudbuild_v2 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -3534,8 +3524,7 @@ export namespace cloudbuild_v2 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Connections$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -3832,8 +3821,7 @@ export namespace cloudbuild_v2 {
     accessReadToken(
       params: Params$Resource$Projects$Locations$Connections$Repositories$Accessreadtoken,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$FetchReadTokenResponse>,
+        MethodOptions | BodyResponseCallback<Schema$FetchReadTokenResponse>,
       callback: BodyResponseCallback<Schema$FetchReadTokenResponse>
     ): void;
     accessReadToken(
@@ -4159,8 +4147,7 @@ export namespace cloudbuild_v2 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4319,8 +4306,7 @@ export namespace cloudbuild_v2 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4466,8 +4452,7 @@ export namespace cloudbuild_v2 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4592,8 +4577,7 @@ export namespace cloudbuild_v2 {
     fetchGitRefs(
       params: Params$Resource$Projects$Locations$Connections$Repositories$Fetchgitrefs,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$FetchGitRefsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$FetchGitRefsResponse>,
       callback: BodyResponseCallback<Schema$FetchGitRefsResponse>
     ): void;
     fetchGitRefs(
@@ -4758,8 +4742,7 @@ export namespace cloudbuild_v2 {
         | BodyResponseCallback<Schema$Repository>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Repository>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Repository> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Repository>>
@@ -4888,8 +4871,7 @@ export namespace cloudbuild_v2 {
     list(
       params: Params$Resource$Projects$Locations$Connections$Repositories$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListRepositoriesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListRepositoriesResponse>,
       callback: BodyResponseCallback<Schema$ListRepositoriesResponse>
     ): void;
     list(
@@ -5166,8 +5148,7 @@ export namespace cloudbuild_v2 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -5304,8 +5285,7 @@ export namespace cloudbuild_v2 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>

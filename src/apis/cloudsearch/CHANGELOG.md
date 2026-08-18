@@ -1,5 +1,23 @@
 # Changelog
 
+## [22.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudsearch-v22.0.0...cloudsearch-v22.1.0) (2026-08-14)
+
+
+### Features
+
+* **cloudsearch:** update the API ([295849d](https://github.com/googleapis/google-api-nodejs-client/commit/295849d9a3c273ea196a373776649535f649eb49))
+
+## [22.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudsearch-v21.0.0...cloudsearch-v22.0.0) (2026-08-03)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3955](https://github.com/googleapis/google-api-nodejs-client/issues/3955)) ([c429a9b](https://github.com/googleapis/google-api-nodejs-client/commit/c429a9b6f8272f1a651084f83ffcf4b88124c59f))
+
 ## [21.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudsearch-v20.0.0...cloudsearch-v21.0.0) (2026-05-19)
 
 

@@ -137,7 +137,7 @@ export namespace admob_v1 {
      */
     adTypes?: string[] | null;
     /**
-     * The externally visible ID of the ad unit which can be used to integrate with the AdMob SDK. This is a read only property. Example: ca-app-pub-9876543210987654/0123456789
+     * The externally visible ID of the ad unit which can be used to integrate with AdMob. This is a read only property. Example: ca-app-pub-9876543210987654/0123456789
      */
     adUnitId?: string | null;
     /**
@@ -162,7 +162,7 @@ export namespace admob_v1 {
      */
     appApprovalState?: string | null;
     /**
-     * The externally visible ID of the app which can be used to integrate with the AdMob SDK. This is a read only property. Example: ca-app-pub-9876543210987654~0123456789
+     * The externally visible ID of the app which can be used to integrate with AdMob. This is a read only property. Example: ca-app-pub-9876543210987654~0123456789
      */
     appId?: string | null;
     /**

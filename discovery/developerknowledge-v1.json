@@ -115,7 +115,7 @@
           "parameterOrder": [],
           "parameters": {
             "names": {
-              "description": "Required. Specifies the names of the documents to retrieve. A maximum of 20 documents can be retrieved in a batch. The documents are returned in the same order as the `names` in the request. Format: `documents/{uri_without_scheme}` Example: `documents/docs.cloud.google.com/storage/docs/creating-buckets` If you are changing the batch size, consider the value of `maxConcurrentGCSFetches` constant in the service implementation: http://cs///depot/google3/devrel/boq/developerknowledge/service/developerknowledge.go",
+              "description": "Required. Specifies the names of the documents to retrieve. A maximum of 20 documents can be retrieved in a batch. The documents are returned in the same order as the `names` in the request. Format: `documents/{uri_without_scheme}` Example: `documents/docs.cloud.google.com/storage/docs/creating-buckets` Each name must not exceed 500 characters; values longer than 500 characters will result in an `INVALID_ARGUMENT` error. ",
               "location": "query",
               "repeated": true,
               "type": "string"
@@ -130,7 +130,7 @@
               ],
               "enumDescriptions": [
                 "The default / unset value. See each API method for its default value if DocumentView is not specified.",
-                "Includes only the basic metadata fields: - `name` - `uri` - `data_source` - `title` - `description` - `update_time` - `view` This is the default of view for DeveloperKnowledge.SearchDocumentChunks.",
+                "Includes only the basic metadata fields: - `name` - `uri` - `data_source` - `title` - `description` - `update_time` - `view` - `content_length_bytes` This is the default of view for DeveloperKnowledge.SearchDocumentChunks.",
                 "Includes all Document fields.",
                 "Includes the `DOCUMENT_VIEW_BASIC` fields and the `content` field. This is the default of view for DeveloperKnowledge.GetDocument and DeveloperKnowledge.BatchGetDocuments."
               ],
@@ -156,7 +156,7 @@
           ],
           "parameters": {
             "name": {
-              "description": "Required. Specifies the name of the document to retrieve. Format: `documents/{uri_without_scheme}` Example: `documents/docs.cloud.google.com/storage/docs/creating-buckets`",
+              "description": "Required. Specifies the name of the document to retrieve. Format: `documents/{uri_without_scheme}` Example: `documents/docs.cloud.google.com/storage/docs/creating-buckets` The name must not exceed 500 characters; values longer than 500 characters will result in an `INVALID_ARGUMENT` error.",
               "location": "path",
               "pattern": "^documents/.*$",
               "required": true,
@@ -172,7 +172,7 @@
               ],
               "enumDescriptions": [
                 "The default / unset value. See each API method for its default value if DocumentView is not specified.",
-                "Includes only the basic metadata fields: - `name` - `uri` - `data_source` - `title` - `description` - `update_time` - `view` This is the default of view for DeveloperKnowledge.SearchDocumentChunks.",
+                "Includes only the basic metadata fields: - `name` - `uri` - `data_source` - `title` - `description` - `update_time` - `view` - `content_length_bytes` This is the default of view for DeveloperKnowledge.SearchDocumentChunks.",
                 "Includes all Document fields.",
                 "Includes the `DOCUMENT_VIEW_BASIC` fields and the `content` field. This is the default of view for DeveloperKnowledge.GetDocument and DeveloperKnowledge.BatchGetDocuments."
               ],
@@ -196,12 +196,12 @@
           "parameterOrder": [],
           "parameters": {
             "filter": {
-              "description": "Optional. Applies a strict filter to the search results. The expression supports a subset of the syntax described at https://google.aip.dev/160. While `SearchDocumentChunks` returns DocumentChunks, the filter is applied to `DocumentChunk.document` fields. Supported fields for filtering: * `data_source` (STRING): The source of the document, e.g. `docs.cloud.google.com`. See https://developers.google.com/knowledge/reference/corpus-reference for the complete list of data sources in the corpus. * `update_time` (TIMESTAMP): The timestamp of when the document was last meaningfully updated. A meaningful update is one that changes document's markdown content or metadata. * `uri` (STRING): The document URI, e.g. `https://docs.cloud.google.com/bigquery/docs/tables`. STRING fields support `=` (equals) and `!=` (not equals) operators for **exact match** on the whole string. Partial match, prefix match, and regexp match are not supported. TIMESTAMP fields support `=`, `<`, `<=`, `>`, and `>=` operators. Timestamps must be in RFC-3339 format, e.g., `\"2025-01-01T00:00:00Z\"`. You can combine expressions using `AND`, `OR`, and `NOT` (or `-`) logical operators. `OR` has higher precedence than `AND`. Use parentheses for explicit precedence grouping. Examples: * `data_source = \"docs.cloud.google.com\" OR data_source = \"firebase.google.com\"` * `data_source != \"firebase.google.com\"` * `update_time < \"2024-01-01T00:00:00Z\"` * `update_time >= \"2025-01-22T00:00:00Z\" AND (data_source = \"developer.chrome.com\" OR data_source = \"web.dev\")` * `uri = \"https://docs.cloud.google.com/release-notes\"` The `filter` string must not exceed 500 characters; values longer than 500 characters will result in an `INVALID_ARGUMENT` error.",
+              "description": "Optional. Applies a strict filter to the search results. The expression supports a subset of the syntax described at https://google.aip.dev/160. While `SearchDocumentChunks` returns DocumentChunks, the filter is applied to `DocumentChunk.document` fields. Supported fields for filtering: * `content_length_bytes` (INTEGER): The length of the `Document.content` field in bytes. * `data_source` (STRING): The source of the document, e.g. `docs.cloud.google.com`. See https://developers.google.com/knowledge/reference/corpus-reference for the complete list of data sources in the corpus. * `update_time` (TIMESTAMP): The timestamp of when the document was last meaningfully updated. A meaningful update is one that changes document's markdown content or metadata. * `uri` (STRING): The document URI, e.g. `https://docs.cloud.google.com/bigquery/docs/tables`. INTEGER fields support `=`, `<`, `<=`, `>`, and `>=` operators. STRING fields support `=` (equals) and `!=` (not equals) operators for **exact match** on the whole string. Partial match, prefix match, and regexp match are not supported. TIMESTAMP fields support `=`, `<`, `<=`, `>`, and `>=` operators. Timestamps must be in RFC-3339 format, e.g., `\"2025-01-01T00:00:00Z\"`. Note: Field names must be in `snake_case` (e.g., `data_source`). Values on the right-hand side of filtering expressions must be string literals enclosed in double quotes (e.g., `\"docs.cloud.google.com\"`). You can combine expressions using `AND`, `OR`, and `NOT` (or `-`) logical operators. `OR` has higher precedence than `AND`. Use parentheses for explicit precedence grouping. Examples: * Filter by `Document.content_length_bytes`: `content_length_bytes < 50000` * `data_source = \"docs.cloud.google.com\" OR data_source = \"firebase.google.com\"` * `data_source != \"firebase.google.com\"` * `update_time < \"2024-01-01T00:00:00Z\"` * `update_time >= \"2025-01-22T00:00:00Z\" AND (data_source = \"developer.chrome.com\" OR data_source = \"web.dev\")` * `uri = \"https://docs.cloud.google.com/release-notes\"` The `filter` string must not exceed 500 characters; values longer than 500 characters will result in an `INVALID_ARGUMENT` error.",
               "location": "query",
               "type": "string"
             },
             "pageSize": {
-              "description": "Optional. Specifies the maximum number of results to return. The service may return fewer than this value. If unspecified, at most 5 results will be returned. The maximum value is 20; values above 20 will result in an INVALID_ARGUMENT error.",
+              "description": "Optional. Specifies the maximum number of results to return. The service may return fewer than this value. If unspecified, at most 5 results will be returned. The maximum value is 100; values above 100 will be coerced to 100.",
               "format": "int32",
               "location": "query",
               "type": "integer"
@@ -212,7 +212,7 @@
               "type": "string"
             },
             "query": {
-              "description": "Required. Provides the raw query string provided by the user, such as \"How to create a Cloud Storage bucket?\".",
+              "description": "Required. Provides the raw query string provided by the user, such as \"How to create a Cloud Storage bucket?\". The query must not exceed 500 characters; values longer than 500 characters will result in an `INVALID_ARGUMENT` error.",
               "location": "query",
               "type": "string"
             }
@@ -226,11 +226,121 @@
           ]
         }
       }
+    },
+    "v1": {
+      "methods": {
+        "answerQuery": {
+          "description": "Answers a query using grounded generation.",
+          "flatPath": "v1:answerQuery",
+          "httpMethod": "POST",
+          "id": "developerknowledge.answerQuery",
+          "parameterOrder": [],
+          "parameters": {},
+          "path": "v1:answerQuery",
+          "request": {
+            "$ref": "AnswerQueryRequest"
+          },
+          "response": {
+            "$ref": "AnswerQueryResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        }
+      }
     }
   },
-  "revision": "20260510",
+  "revision": "20260809",
   "rootUrl": "https://developerknowledge.googleapis.com/",
   "schemas": {
+    "Answer": {
+      "description": "An answer to a query.",
+      "id": "Answer",
+      "properties": {
+        "answerText": {
+          "description": "Contains the text of the answer.",
+          "type": "string"
+        },
+        "citations": {
+          "description": "Output only. Contains citations for the answer.",
+          "items": {
+            "$ref": "AnswerCitation"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "references": {
+          "description": "Output only. Contains references for the answer.",
+          "items": {
+            "$ref": "AnswerReference"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "AnswerCitation": {
+      "description": "Citation info for a segment.",
+      "id": "AnswerCitation",
+      "properties": {
+        "endIndex": {
+          "description": "Output only. Indicates the end of the segment, measured in bytes (UTF-8 unicode), exclusive. If there are multi-byte characters, such as non-ASCII characters, the index measurement is longer than the string length.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "sources": {
+          "description": "Output only. Contains citation sources for the attributed segment.",
+          "items": {
+            "$ref": "CitationSource"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "startIndex": {
+          "description": "Output only. Indicates the start of the segment, measured in bytes (UTF-8 unicode), inclusive. If there are multi-byte characters, such as non-ASCII characters, the index measurement is longer than the string length.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "AnswerQueryRequest": {
+      "description": "Request message for DeveloperKnowledge.AnswerQuery.",
+      "id": "AnswerQueryRequest",
+      "properties": {
+        "query": {
+          "description": "Required. The query to answer.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AnswerQueryResponse": {
+      "description": "Response message for DeveloperKnowledge.AnswerQuery.",
+      "id": "AnswerQueryResponse",
+      "properties": {
+        "answer": {
+          "$ref": "Answer",
+          "description": "The answer to the query."
+        }
+      },
+      "type": "object"
+    },
+    "AnswerReference": {
+      "description": "Represents a reference to a source.",
+      "id": "AnswerReference",
+      "properties": {
+        "documentReference": {
+          "$ref": "DocumentReference",
+          "description": "Output only. The reference document.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
     "BatchGetDocumentsResponse": {
       "description": "Response message for DeveloperKnowledge.BatchGetDocuments.",
       "id": "BatchGetDocumentsResponse",
@@ -245,14 +355,33 @@
       },
       "type": "object"
     },
+    "CitationSource": {
+      "description": "Citation source.",
+      "id": "CitationSource",
+      "properties": {
+        "referenceIndex": {
+          "description": "Output only. Contains the index of the Answer.AnswerReference in the `references` repeated field.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "Document": {
-      "description": "A Document represents a piece of content from the Developer Knowledge corpus.",
+      "description": "A Document represents a page of documentation in the Developer Knowledge corpus, like the page at https://docs.cloud.google.com/storage/docs/creating-buckets.",
       "id": "Document",
       "properties": {
         "content": {
           "description": "Output only. Contains the full content of the document in Markdown format.",
           "readOnly": true,
           "type": "string"
+        },
+        "contentLengthBytes": {
+          "description": "Output only. The length of the `content` field in bytes.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
         },
         "dataSource": {
           "description": "Output only. Specifies the data source of the document. Example data source: `firebase.google.com`",
@@ -294,7 +423,7 @@
           ],
           "enumDescriptions": [
             "The default / unset value. See each API method for its default value if DocumentView is not specified.",
-            "Includes only the basic metadata fields: - `name` - `uri` - `data_source` - `title` - `description` - `update_time` - `view` This is the default of view for DeveloperKnowledge.SearchDocumentChunks.",
+            "Includes only the basic metadata fields: - `name` - `uri` - `data_source` - `title` - `description` - `update_time` - `view` - `content_length_bytes` This is the default of view for DeveloperKnowledge.SearchDocumentChunks.",
             "Includes all Document fields.",
             "Includes the `DOCUMENT_VIEW_BASIC` fields and the `content` field. This is the default of view for DeveloperKnowledge.GetDocument and DeveloperKnowledge.BatchGetDocuments."
           ],
@@ -331,12 +460,24 @@
       },
       "type": "object"
     },
+    "DocumentReference": {
+      "description": "Represents a reference to a document.",
+      "id": "DocumentReference",
+      "properties": {
+        "documentChunk": {
+          "$ref": "DocumentChunk",
+          "description": "Output only. Contains the document chunk. The `document_chunk.id` field is not set and will be empty.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
     "SearchDocumentChunksResponse": {
       "description": "Response message for DeveloperKnowledge.SearchDocumentChunks.",
       "id": "SearchDocumentChunksResponse",
       "properties": {
         "nextPageToken": {
-          "description": "Optional. Provides a token that can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "description": "Provides a token that can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
           "type": "string"
         },
         "results": {

@@ -785,7 +785,7 @@
                         },
                         "documentId.gcsManagedDocId.cwDocId": {
                           "deprecated": true,
-                          "description": "Id of the document (indexed) managed by Content Warehouse.",
+                          "description": "ID of the document (indexed) managed by Content Warehouse.",
                           "location": "query",
                           "type": "string"
                         },
@@ -822,7 +822,7 @@
                           "type": "string"
                         },
                         "documentId.unmanagedDocId.docId": {
-                          "description": "Required. The id of the document.",
+                          "description": "Required. The ID of the document.",
                           "location": "query",
                           "type": "string"
                         },
@@ -1678,7 +1678,7 @@
       }
     }
   },
-  "revision": "20260503",
+  "revision": "20260706",
   "rootUrl": "https://documentai.googleapis.com/",
   "schemas": {
     "CloudAiDocumentaiLabHifiaToolsValidationValidatorInput": {
@@ -1967,7 +1967,7 @@
       "properties": {
         "documentId": {
           "$ref": "GoogleCloudDocumentaiUiv1beta3DocumentId",
-          "description": "The document id of the auto-labeled document. This will replace the gcs_uri."
+          "description": "The document ID of the auto-labeled document. This will replace the gcs_uri."
         },
         "status": {
           "$ref": "GoogleRpcStatus",
@@ -2015,7 +2015,7 @@
       "properties": {
         "documentId": {
           "$ref": "GoogleCloudDocumentaiUiv1beta3DocumentId",
-          "description": "The document id of the document."
+          "description": "The document ID of the document."
         },
         "status": {
           "$ref": "GoogleRpcStatus",
@@ -2086,7 +2086,7 @@
       "properties": {
         "documentId": {
           "$ref": "GoogleCloudDocumentaiUiv1beta3DocumentId",
-          "description": "The document id of the document."
+          "description": "The document ID of the document."
         },
         "status": {
           "$ref": "GoogleRpcStatus",
@@ -2124,7 +2124,7 @@
       "properties": {
         "documentId": {
           "$ref": "GoogleCloudDocumentaiUiv1beta3DocumentId",
-          "description": "The document id of the document."
+          "description": "The document ID of the document."
         },
         "status": {
           "$ref": "GoogleRpcStatus",
@@ -2268,7 +2268,7 @@
       "properties": {
         "gcsManagedDocId": {
           "$ref": "GoogleCloudDocumentaiUiv1beta3DocumentIdGCSManagedDocumentId",
-          "description": "A document id within user-managed Cloud Storage."
+          "description": "A document ID within user-managed Cloud Storage."
         },
         "revisionRef": {
           "$ref": "GoogleCloudDocumentaiUiv1beta3RevisionRef",
@@ -2276,7 +2276,7 @@
         },
         "unmanagedDocId": {
           "$ref": "GoogleCloudDocumentaiUiv1beta3DocumentIdUnmanagedDocumentId",
-          "description": "A document id within unmanaged dataset."
+          "description": "A document ID within unmanaged dataset."
         }
       },
       "type": "object"
@@ -2287,7 +2287,7 @@
       "properties": {
         "cwDocId": {
           "deprecated": true,
-          "description": "Id of the document (indexed) managed by Content Warehouse.",
+          "description": "ID of the document (indexed) managed by Content Warehouse.",
           "type": "string"
         },
         "gcsUri": {
@@ -2302,7 +2302,7 @@
       "id": "GoogleCloudDocumentaiUiv1beta3DocumentIdUnmanagedDocumentId",
       "properties": {
         "docId": {
-          "description": "Required. The id of the document.",
+          "description": "Required. The ID of the document.",
           "type": "string"
         }
       },
@@ -2321,7 +2321,7 @@
           "type": "string"
         },
         "documentPrompt": {
-          "description": "Optional. Document level prompt provided by the user. This custom text is injected into the AI model's prompt to provide extra, document-wide guidance for processing.",
+          "description": "Optional. Document-level prompt provided by the user. This custom text is injected into the AI model's prompt to provide extra, document-wide guidance for processing.",
           "type": "string"
         },
         "entityTypes": {
@@ -2366,7 +2366,7 @@
           "description": "If specified, lists all the possible values for this entity. This should not be more than a handful of values. If the number of values is >10 or could change frequently, use the `EntityType.value_ontology` field and specify a list of all possible values in a value ontology file."
         },
         "name": {
-          "description": "Name of the type. It must be unique within the schema file and cannot be a \"Common Type\". The following naming conventions are used: - Use `snake_casing`. - Name matching is case-sensitive. - Maximum 64 characters. - Must start with a letter. - Allowed characters: ASCII letters `[a-z0-9_-]`. (For backward compatibility, internal infrastructure and tooling can handle any ASCII character.) - The `/` is sometimes used to denote a property of a type. For example `line_item/amount`. This convention is deprecated, but will still be honored for backward compatibility.",
+          "description": "Name of the type. It must be unique within the schema file and cannot be a \"Common Type\". The following naming conventions are used: - Use `snake_casing`. - Name matching is case-sensitive. - Maximum 64 characters. - Must start with a letter. - Allowed characters: ASCII letters `[a-z0-9_-]`. (For backward compatibility, internal infrastructure and tooling can handle any ASCII character.) - The `/` is sometimes used to denote a property of a type. For example, `line_item/amount`. This convention is deprecated, but will still be honored for backward compatibility.",
           "type": "string"
         },
         "properties": {
@@ -2852,7 +2852,7 @@
         },
         "outputDocumentId": {
           "$ref": "GoogleCloudDocumentaiUiv1beta3DocumentId",
-          "description": "The document id of imported document if it was successful, otherwise empty."
+          "description": "The document ID of imported document if it was successful, otherwise empty."
         },
         "outputGcsDestination": {
           "description": "The output_gcs_destination of the processed document if it was successful, otherwise empty.",
@@ -2898,7 +2898,7 @@
       "id": "GoogleCloudDocumentaiUiv1beta3Processor",
       "properties": {
         "activeSchemaVersion": {
-          "description": "Optional. SchemaVersion used by the Processor. It is the same as Processor's DatasetSchema.schema_version Format is `projects/{project}/locations/{location}/schemas/{schema}/schemaVersions/{schema_version}",
+          "description": "Optional. SchemaVersion used by the Processor. It is the same as Processor's DatasetSchema.schema_version Format is `projects/{project}/locations/{location}/schemas/{schema}/schemaVersions/{schema_version}.",
           "type": "string"
         },
         "createTime": {
@@ -4159,7 +4159,7 @@
       "properties": {
         "documentId": {
           "$ref": "GoogleCloudDocumentaiV1beta3DocumentId",
-          "description": "The document id of the document."
+          "description": "The document ID of the document."
         },
         "status": {
           "$ref": "GoogleRpcStatus",
@@ -4603,7 +4603,7 @@
       "id": "GoogleCloudDocumentaiV1beta3Document",
       "properties": {
         "blobAssets": {
-          "description": "Optional. The blob assets in this document. This is used to store the content of the inline blobs in this document, for example, image bytes, such that it can be referenced by other fields in the document via asset id.",
+          "description": "Optional. The blob assets in this document. This is used to store the content of the inline blobs in this document, for example, image bytes, such that it can be referenced by other fields in the document via asset ID.",
           "items": {
             "$ref": "GoogleCloudDocumentaiV1beta3DocumentBlobAsset"
           },
@@ -4634,7 +4634,7 @@
           "type": "array"
         },
         "entitiesRevisionId": {
-          "description": "The entity revision ID that `document.entities` field is based on. If this field is set and `entities_revisions` is not empty, the entities in `document.entities` field are the entities in the entity revision with this id and `document.entity_validation_output` field is the `entity_validation_output` field in this entity revision.",
+          "description": "The entity revision ID that `document.entities` field is based on. If this field and `entities_revisions` are set, the entities in `document.entities` are the entities in the entity revision with this ID. The `document.entity_validation_output` field is the `entity_validation_output` field in this entity revision.",
           "type": "string"
         },
         "entitiesRevisions": {
@@ -4723,7 +4723,7 @@
       "id": "GoogleCloudDocumentaiV1beta3DocumentBlobAsset",
       "properties": {
         "assetId": {
-          "description": "Optional. The id of the blob asset.",
+          "description": "Optional. The ID of the blob asset.",
           "type": "string"
         },
         "content": {
@@ -4870,15 +4870,15 @@
           "description": "Annotation of the image chunk field."
         },
         "blobAssetId": {
-          "description": "Optional. Asset id of the inline image. If set, find the image content in the blob_assets field.",
+          "description": "Optional. Asset ID of the inline image. If set, find the image content in the blob_assets field.",
           "type": "string"
         },
         "dataUri": {
-          "description": "Optional. Data uri of the image. It is composed of four parts: a prefix (data:), a MIME type indicating the type of data, an optional base64 token if non-textual, and the data itself: data:,",
+          "description": "Optional. Data URI of the image. It is composed of four parts: a prefix (data:), a MIME type indicating the type of data, an optional base64 token if non-textual, and the data itself: data:,",
           "type": "string"
         },
         "gcsUri": {
-          "description": "Optional. Google Cloud Storage uri of the image.",
+          "description": "Optional. Google Cloud Storage URI of the image.",
           "type": "string"
         }
       },
@@ -4953,15 +4953,15 @@
           "description": "Annotation of the image block."
         },
         "blobAssetId": {
-          "description": "Optional. Asset id of the inline image. If set, find the image content in the blob_assets field.",
+          "description": "Optional. Asset ID of the inline image. If set, find the image content in the blob_assets field.",
           "type": "string"
         },
         "dataUri": {
-          "description": "Optional. Data uri of the image. It is composed of four parts: a prefix (data:), a MIME type indicating the type of data, an optional base64 token if non-textual, and the data itself: data:,",
+          "description": "Optional. Data URI of the image. It is composed of four parts: a prefix (data:), a MIME type indicating the type of data, an optional base64 token if non-textual, and the data itself: data:,",
           "type": "string"
         },
         "gcsUri": {
-          "description": "Optional. Google Cloud Storage uri of the image.",
+          "description": "Optional. Google Cloud Storage URI of the image.",
           "type": "string"
         },
         "imageText": {
@@ -5247,7 +5247,7 @@
           "description": "Money value. See also: https://github.com/googleapis/googleapis/blob/master/google/type/money.proto"
         },
         "signatureValue": {
-          "description": "A signature - a graphical representation of a person's name, often used to sign a document.",
+          "description": "A signature, which is a graphical representation of a person's name, often used to sign a document.",
           "type": "boolean"
         },
         "text": {
@@ -5341,7 +5341,7 @@
       "properties": {
         "gcsManagedDocId": {
           "$ref": "GoogleCloudDocumentaiV1beta3DocumentIdGCSManagedDocumentId",
-          "description": "A document id within user-managed Cloud Storage."
+          "description": "A document ID within user-managed Cloud Storage."
         },
         "revisionRef": {
           "$ref": "GoogleCloudDocumentaiV1beta3RevisionRef",
@@ -5349,7 +5349,7 @@
         },
         "unmanagedDocId": {
           "$ref": "GoogleCloudDocumentaiV1beta3DocumentIdUnmanagedDocumentId",
-          "description": "A document id within unmanaged dataset."
+          "description": "A document ID within unmanaged dataset."
         }
       },
       "type": "object"
@@ -5360,7 +5360,7 @@
       "properties": {
         "cwDocId": {
           "deprecated": true,
-          "description": "Id of the document (indexed) managed by Content Warehouse.",
+          "description": "ID of the document (indexed) managed by Content Warehouse.",
           "type": "string"
         },
         "gcsUri": {
@@ -5375,7 +5375,7 @@
       "id": "GoogleCloudDocumentaiV1beta3DocumentIdUnmanagedDocumentId",
       "properties": {
         "docId": {
-          "description": "Required. The id of the document.",
+          "description": "Required. The ID of the document.",
           "type": "string"
         }
       },
@@ -6197,7 +6197,7 @@
       "properties": {
         "id": {
           "deprecated": true,
-          "description": "The Id of this operation. Needs to be unique within the scope of the revision.",
+          "description": "The ID of this operation. Needs to be unique within the scope of the revision.",
           "format": "int32",
           "type": "integer"
         },
@@ -6257,7 +6257,7 @@
       "properties": {
         "id": {
           "deprecated": true,
-          "description": "The id of the parent provenance.",
+          "description": "The ID of the parent provenance.",
           "format": "int32",
           "type": "integer"
         },
@@ -6279,7 +6279,7 @@
       "id": "GoogleCloudDocumentaiV1beta3DocumentRevision",
       "properties": {
         "agent": {
-          "description": "If the change was made by a person specify the name or id of that person.",
+          "description": "If the change was made by a person specify the name or ID of that person.",
           "type": "string"
         },
         "createTime": {
@@ -6292,7 +6292,7 @@
           "description": "Human Review information of this revision."
         },
         "id": {
-          "description": "Id of the revision, internally generated by doc proto storage. Unique within the context of the document.",
+          "description": "ID of the revision, internally generated by doc proto storage. Unique within the context of the document.",
           "type": "string"
         },
         "parent": {
@@ -6346,7 +6346,7 @@
           "type": "string"
         },
         "documentPrompt": {
-          "description": "Optional. Document level prompt provided by the user. This custom text is injected into the AI model's prompt to provide extra, document-wide guidance for processing.",
+          "description": "Optional. Document-level prompt provided by the user. This custom text is injected into the AI model's prompt to provide extra, document-wide guidance for processing.",
           "type": "string"
         },
         "entityTypes": {
@@ -6391,7 +6391,7 @@
           "description": "If specified, lists all the possible values for this entity. This should not be more than a handful of values. If the number of values is >10 or could change frequently, use the `EntityType.value_ontology` field and specify a list of all possible values in a value ontology file."
         },
         "name": {
-          "description": "Name of the type. It must be unique within the schema file and cannot be a \"Common Type\". The following naming conventions are used: - Use `snake_casing`. - Name matching is case-sensitive. - Maximum 64 characters. - Must start with a letter. - Allowed characters: ASCII letters `[a-z0-9_-]`. (For backward compatibility, internal infrastructure and tooling can handle any ASCII character.) - The `/` is sometimes used to denote a property of a type. For example `line_item/amount`. This convention is deprecated, but will still be honored for backward compatibility.",
+          "description": "Name of the type. It must be unique within the schema file and cannot be a \"Common Type\". The following naming conventions are used: - Use `snake_casing`. - Name matching is case-sensitive. - Maximum 64 characters. - Must start with a letter. - Allowed characters: ASCII letters `[a-z0-9_-]`. (For backward compatibility, internal infrastructure and tooling can handle any ASCII character.) - The `/` is sometimes used to denote a property of a type. For example, `line_item/amount`. This convention is deprecated, but will still be honored for backward compatibility.",
           "type": "string"
         },
         "properties": {
@@ -7199,7 +7199,7 @@
         },
         "outputDocumentId": {
           "$ref": "GoogleCloudDocumentaiV1beta3DocumentId",
-          "description": "The document id of imported document if it was successful, otherwise empty."
+          "description": "The document ID of imported document if it was successful, otherwise empty."
         },
         "status": {
           "$ref": "GoogleRpcStatus",
@@ -7797,7 +7797,7 @@
       "id": "GoogleCloudDocumentaiV1beta3Processor",
       "properties": {
         "activeSchemaVersion": {
-          "description": "Optional. SchemaVersion used by the Processor. It is the same as Processor's DatasetSchema.schema_version Format is `projects/{project}/locations/{location}/schemas/{schema}/schemaVersions/{schema_version}",
+          "description": "Optional. SchemaVersion used by the Processor. It is the same as Processor's DatasetSchema.schema_version Format is `projects/{project}/locations/{location}/schemas/{schema}/schemaVersions/{schema_version}.",
           "type": "string"
         },
         "createTime": {
@@ -8581,7 +8581,7 @@
           "type": "number"
         },
         "previousFineTunedProcessorVersionName": {
-          "description": "Optional. Resource name of a previously fine tuned version id to copy the overwritten configs from. The base_processor_version should be newer than the base processor version used to fine tune this provided processor version. Format: `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}`.",
+          "description": "Optional. Resource name of a previously fine tuned version ID to copy the overwritten configs from. The base_processor_version should be newer than the base processor version used to fine tune this provided processor version. Format: `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}`.",
           "type": "string"
         },
         "trainSteps": {

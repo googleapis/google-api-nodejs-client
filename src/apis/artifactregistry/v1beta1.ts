@@ -620,8 +620,7 @@ export namespace artifactregistry_v1beta1 {
         | BodyResponseCallback<Schema$Location>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Location>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Location> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Location>>
@@ -668,7 +667,7 @@ export namespace artifactregistry_v1beta1 {
     }
 
     /**
-     * Lists information about the supported locations for this service. This method lists locations based on the resource scope provided in the [ListLocationsRequest.name] field: * **Global locations**: If `name` is empty, the method lists the public locations available to all projects. * **Project-specific locations**: If `name` follows the format `projects/{project\}`, the method lists locations visible to that specific project. This includes public, private, or other project-specific locations enabled for the project. For gRPC and client library implementations, the resource name is passed as the `name` field. For direct service calls, the resource name is incorporated into the request path based on the specific service implementation and version.
+     * Lists information about the supported locations for this service. This method lists locations based on the resource scope provided in the ListLocationsRequest.name field: * **Global locations**: If `name` is empty, the method lists the public locations available to all projects. * **Project-specific locations**: If `name` follows the format `projects/{project\}`, the method lists locations visible to that specific project. This includes public, private, or other project-specific locations enabled for the project. For gRPC and client library implementations, the resource name is passed as the `name` field. For direct service calls, the resource name is incorporated into the request path based on the specific service implementation and version.
      * @example
      * ```js
      * // Before running the sample:
@@ -701,7 +700,7 @@ export namespace artifactregistry_v1beta1 {
      *
      *   // Do the magic
      *   const res = await artifactregistry.projects.locations.list({
-     *     // Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
+     *     // Optional. Do not use this field unless explicitly documented otherwise. This is primarily for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -749,8 +748,7 @@ export namespace artifactregistry_v1beta1 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListLocationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListLocationsResponse>,
       callback: BodyResponseCallback<Schema$ListLocationsResponse>
     ): void;
     list(
@@ -828,7 +826,7 @@ export namespace artifactregistry_v1beta1 {
   }
   export interface Params$Resource$Projects$Locations$List extends StandardParameters {
     /**
-     * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
+     * Optional. Do not use this field unless explicitly documented otherwise. This is primarily for internal usage.
      */
     extraLocationTypes?: string[];
     /**
@@ -950,8 +948,7 @@ export namespace artifactregistry_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -1130,8 +1127,7 @@ export namespace artifactregistry_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -1272,8 +1268,7 @@ export namespace artifactregistry_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -1419,8 +1414,7 @@ export namespace artifactregistry_v1beta1 {
         | BodyResponseCallback<Schema$Repository>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Repository>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Repository> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Repository>>
@@ -1563,8 +1557,7 @@ export namespace artifactregistry_v1beta1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -1694,8 +1687,7 @@ export namespace artifactregistry_v1beta1 {
     list(
       params: Params$Resource$Projects$Locations$Repositories$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListRepositoriesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListRepositoriesResponse>,
       callback: BodyResponseCallback<Schema$ListRepositoriesResponse>
     ): void;
     list(
@@ -1880,8 +1872,7 @@ export namespace artifactregistry_v1beta1 {
         | BodyResponseCallback<Schema$Repository>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Repository>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Repository> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Repository>>
@@ -2027,8 +2018,7 @@ export namespace artifactregistry_v1beta1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -2161,8 +2151,7 @@ export namespace artifactregistry_v1beta1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Repositories$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -2430,8 +2419,7 @@ export namespace artifactregistry_v1beta1 {
         | BodyResponseCallback<Schema$File>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$File>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$File> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$File>>
@@ -2764,8 +2752,7 @@ export namespace artifactregistry_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -2907,8 +2894,7 @@ export namespace artifactregistry_v1beta1 {
         | BodyResponseCallback<Schema$Package>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Package>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Package> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Package>>
@@ -3037,8 +3023,7 @@ export namespace artifactregistry_v1beta1 {
     list(
       params: Params$Resource$Projects$Locations$Repositories$Packages$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListPackagesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListPackagesResponse>,
       callback: BodyResponseCallback<Schema$ListPackagesResponse>
     ): void;
     list(
@@ -3250,8 +3235,7 @@ export namespace artifactregistry_v1beta1 {
         | BodyResponseCallback<Schema$Tag>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Tag>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Tag> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Tag>>
@@ -3390,8 +3374,7 @@ export namespace artifactregistry_v1beta1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -3531,8 +3514,7 @@ export namespace artifactregistry_v1beta1 {
         | BodyResponseCallback<Schema$Tag>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Tag>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Tag> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Tag>>
@@ -3831,8 +3813,7 @@ export namespace artifactregistry_v1beta1 {
         | BodyResponseCallback<Schema$Tag>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Tag>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Tag> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Tag>>
@@ -4044,8 +4025,7 @@ export namespace artifactregistry_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4192,8 +4172,7 @@ export namespace artifactregistry_v1beta1 {
         | BodyResponseCallback<Schema$Version>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Version>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Version> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Version>>
@@ -4326,8 +4305,7 @@ export namespace artifactregistry_v1beta1 {
     list(
       params: Params$Resource$Projects$Locations$Repositories$Packages$Versions$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListVersionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListVersionsResponse>,
       callback: BodyResponseCallback<Schema$ListVersionsResponse>
     ): void;
     list(

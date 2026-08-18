@@ -327,6 +327,13 @@
     "src/apis/developerknowledge": {},
     "src/apis/health": {},
     "src/apis/webcontentpublisher": {},
-    "src/apis/cloudnumberregistry": {}
+    "src/apis/cloudnumberregistry": {},
+    "src/apis/agentidentitycredentials": {},
+    "src/apis/firebasecrashlytics": {},
+    "src/apis/databasecenter": {},
+    "src/apis/cloudproductregistry": {},
+    "src/apis/agentidentity": {},
+    "src/apis/androiddeveloperidstatus": {},
+    "src/apis/ftp": {}
   }
 }

@@ -657,8 +657,7 @@ export namespace runtimeconfig_v1beta1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -938,8 +937,7 @@ export namespace runtimeconfig_v1beta1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -1235,8 +1233,7 @@ export namespace runtimeconfig_v1beta1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -1366,8 +1363,7 @@ export namespace runtimeconfig_v1beta1 {
     testIamPermissions(
       params: Params$Resource$Projects$Configs$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -1773,8 +1769,7 @@ export namespace runtimeconfig_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -1902,8 +1897,7 @@ export namespace runtimeconfig_v1beta1 {
     testIamPermissions(
       params: Params$Resource$Projects$Configs$Operations$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -2109,8 +2103,7 @@ export namespace runtimeconfig_v1beta1 {
         | BodyResponseCallback<Schema$Variable>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Variable>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Variable> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Variable>>
@@ -2250,8 +2243,7 @@ export namespace runtimeconfig_v1beta1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -2392,8 +2384,7 @@ export namespace runtimeconfig_v1beta1 {
         | BodyResponseCallback<Schema$Variable>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Variable>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Variable> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Variable>>
@@ -2521,8 +2512,7 @@ export namespace runtimeconfig_v1beta1 {
     list(
       params: Params$Resource$Projects$Configs$Variables$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListVariablesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListVariablesResponse>,
       callback: BodyResponseCallback<Schema$ListVariablesResponse>
     ): void;
     list(
@@ -2674,8 +2664,7 @@ export namespace runtimeconfig_v1beta1 {
     testIamPermissions(
       params: Params$Resource$Projects$Configs$Variables$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -2854,8 +2843,7 @@ export namespace runtimeconfig_v1beta1 {
         | BodyResponseCallback<Schema$Variable>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Variable>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Variable> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Variable>>
@@ -3004,8 +2992,7 @@ export namespace runtimeconfig_v1beta1 {
         | BodyResponseCallback<Schema$Variable>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Variable>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Variable> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Variable>>
@@ -3259,8 +3246,7 @@ export namespace runtimeconfig_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3398,8 +3384,7 @@ export namespace runtimeconfig_v1beta1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -3542,8 +3527,7 @@ export namespace runtimeconfig_v1beta1 {
         | BodyResponseCallback<Schema$Waiter>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Waiter>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Waiter> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Waiter>>
@@ -3816,8 +3800,7 @@ export namespace runtimeconfig_v1beta1 {
     testIamPermissions(
       params: Params$Resource$Projects$Configs$Waiters$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(

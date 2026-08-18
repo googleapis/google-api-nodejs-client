@@ -1966,9 +1966,35 @@
           }
         }
       }
+    },
+    "v3": {
+      "methods": {
+        "fetchResourceSemantics": {
+          "description": "Returns the semantics associated with the specified resource.",
+          "flatPath": "v3:fetchResourceSemantics",
+          "httpMethod": "GET",
+          "id": "cloudresourcemanager.fetchResourceSemantics",
+          "parameterOrder": [],
+          "parameters": {
+            "fullResourceName": {
+              "description": "Required. The full resource name of the GCP resource to retrieve semantics for. Examples: \"//compute.googleapis.com/projects/123/zones/us-central1-a/instances/my-instance\" \"//storage.googleapis.com/projects/_/buckets/my_bucket\"",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "v3:fetchResourceSemantics",
+          "response": {
+            "$ref": "FetchResourceSemanticsResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/cloud-platform.read-only"
+          ]
+        }
+      }
     }
   },
-  "revision": "20260218",
+  "revision": "20260715",
   "rootUrl": "https://cloudresourcemanager.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -2289,6 +2315,24 @@
         "title": {
           "description": "Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "FetchResourceSemanticsResponse": {
+      "description": "Response message for FetchResourceSemantics.",
+      "id": "FetchResourceSemanticsResponse",
+      "properties": {
+        "fullResourceName": {
+          "description": "The full resource name for which semantics are returned. Examples: \"//compute.googleapis.com/projects/123/zones/us-central1-a/instances/my-instance\" \"//storage.googleapis.com/projects/_/buckets/my_bucket\"",
+          "type": "string"
+        },
+        "semantics": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Map of resource semantics (e.g., `\"ENVIRONMENT\": \"PRODUCTION\"`).",
+          "type": "object"
         }
       },
       "type": "object"

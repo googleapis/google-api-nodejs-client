@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/networksecurity",
-  "version": "16.0.0",
+  "version": "17.1.0",
   "description": "networksecurity",
   "main": "build/index.js",
   "types": "build/index.d.ts",

@@ -1129,8 +1129,7 @@ export namespace driveactivity_v2 {
     query(
       params: Params$Resource$Activity$Query,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$QueryDriveActivityResponse>,
+        MethodOptions | BodyResponseCallback<Schema$QueryDriveActivityResponse>,
       callback: BodyResponseCallback<Schema$QueryDriveActivityResponse>
     ): void;
     query(

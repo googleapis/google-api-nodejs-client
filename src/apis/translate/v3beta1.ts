@@ -858,8 +858,7 @@ export namespace translate_v3beta1 {
     detectLanguage(
       params: Params$Resource$Projects$Detectlanguage,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$DetectLanguageResponse>,
+        MethodOptions | BodyResponseCallback<Schema$DetectLanguageResponse>,
       callback: BodyResponseCallback<Schema$DetectLanguageResponse>
     ): void;
     detectLanguage(
@@ -1163,8 +1162,7 @@ export namespace translate_v3beta1 {
     translateText(
       params: Params$Resource$Projects$Translatetext,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TranslateTextResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TranslateTextResponse>,
       callback: BodyResponseCallback<Schema$TranslateTextResponse>
     ): void;
     translateText(
@@ -1401,8 +1399,7 @@ export namespace translate_v3beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -1559,8 +1556,7 @@ export namespace translate_v3beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -1692,8 +1688,7 @@ export namespace translate_v3beta1 {
     detectLanguage(
       params: Params$Resource$Projects$Locations$Detectlanguage,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$DetectLanguageResponse>,
+        MethodOptions | BodyResponseCallback<Schema$DetectLanguageResponse>,
       callback: BodyResponseCallback<Schema$DetectLanguageResponse>
     ): void;
     detectLanguage(
@@ -1858,8 +1853,7 @@ export namespace translate_v3beta1 {
         | BodyResponseCallback<Schema$Location>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Location>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Location> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Location>>
@@ -2132,8 +2126,7 @@ export namespace translate_v3beta1 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListLocationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListLocationsResponse>,
       callback: BodyResponseCallback<Schema$ListLocationsResponse>
     ): void;
     list(
@@ -2445,8 +2438,7 @@ export namespace translate_v3beta1 {
     translateDocument(
       params: Params$Resource$Projects$Locations$Translatedocument,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TranslateDocumentResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TranslateDocumentResponse>,
       callback: BodyResponseCallback<Schema$TranslateDocumentResponse>
     ): void;
     translateDocument(
@@ -2604,8 +2596,7 @@ export namespace translate_v3beta1 {
     translateText(
       params: Params$Resource$Projects$Locations$Translatetext,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TranslateTextResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TranslateTextResponse>,
       callback: BodyResponseCallback<Schema$TranslateTextResponse>
     ): void;
     translateText(
@@ -2900,8 +2891,7 @@ export namespace translate_v3beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3044,8 +3034,7 @@ export namespace translate_v3beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3187,8 +3176,7 @@ export namespace translate_v3beta1 {
         | BodyResponseCallback<Schema$Glossary>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Glossary>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Glossary> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Glossary>>
@@ -3313,8 +3301,7 @@ export namespace translate_v3beta1 {
     list(
       params: Params$Resource$Projects$Locations$Glossaries$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListGlossariesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListGlossariesResponse>,
       callback: BodyResponseCallback<Schema$ListGlossariesResponse>
     ): void;
     list(
@@ -3526,8 +3513,7 @@ export namespace translate_v3beta1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -3664,8 +3650,7 @@ export namespace translate_v3beta1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -3805,8 +3790,7 @@ export namespace translate_v3beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3934,8 +3918,7 @@ export namespace translate_v3beta1 {
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListOperationsResponse>,
       callback: BodyResponseCallback<Schema$ListOperationsResponse>
     ): void;
     list(
@@ -4106,8 +4089,7 @@ export namespace translate_v3beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>

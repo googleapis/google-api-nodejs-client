@@ -753,7 +753,7 @@
       }
     }
   },
-  "revision": "20260402",
+  "revision": "20260705",
   "rootUrl": "https://monitoring.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -1359,6 +1359,16 @@
           "description": "time_bin_size is used when the data type of the specified dimension is a time type and the bin size is determined by a time duration. If column_type is DATE, this must be a whole value multiple of 1 day. If column_type is TIME, this must be less than or equal to 24 hours.",
           "format": "google-duration",
           "type": "string"
+        },
+        "xMax": {
+          "description": "The maximum value for the x-axis.",
+          "format": "double",
+          "type": "number"
+        },
+        "xMin": {
+          "description": "The minimum value for the x-axis.",
+          "format": "double",
+          "type": "number"
         }
       },
       "type": "object"
@@ -1450,7 +1460,11 @@
             "SERVICE_HEALTH_INCIDENT",
             "SAP_BACKINT",
             "SAP_AVAILABILITY",
-            "SAP_OPERATIONS"
+            "SAP_OPERATIONS",
+            "INTERCONNECT_MAINTENANCE_STARTED",
+            "INTERCONNECT_MAINTENANCE_COMPLETED",
+            "VPN_TRAFFIC_SELECTOR_NARROWING",
+            "VPN_MAINTENANCE"
           ],
           "enumDescriptions": [
             "No event type specified.",
@@ -1477,7 +1491,11 @@
             "Incidents from Service Health",
             "Agent for SAP Backint related events.",
             "Agent for SAP availability related events.",
-            "Agent for SAP operations related events."
+            "Agent for SAP operations related events.",
+            "Interconnect maintenance started event.",
+            "Interconnect maintenance completed event.",
+            "VPN traffic selector narrowing event.",
+            "VPN maintenance event."
           ],
           "type": "string"
         },
@@ -2346,6 +2364,24 @@
       },
       "type": "object"
     },
+    "SpanAttributeFilter": {
+      "description": "Span attribute key and list of values to be used for filtering.",
+      "id": "SpanAttributeFilter",
+      "properties": {
+        "key": {
+          "description": "Key of the attribute",
+          "type": "string"
+        },
+        "value": {
+          "description": "List of attribute values for given key. Multiple values will be OR'd together.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "SpanContext": {
       "description": "The context of a span. This is attached to an Exemplar in Distribution values during aggregation.It contains the name of a span with format: projects/[PROJECT_ID_OR_NUMBER]/traces/[TRACE_ID]/spans/[SPAN_ID] ",
       "id": "SpanContext",
@@ -2353,6 +2389,83 @@
         "spanName": {
           "description": "The resource name of the span. The format is: projects/[PROJECT_ID_OR_NUMBER]/traces/[TRACE_ID]/spans/[SPAN_ID] [TRACE_ID] is a unique identifier for a trace within a project; it is a 32-character hexadecimal encoding of a 16-byte array.[SPAN_ID] is a unique identifier for a span within a trace; it is a 16-character hexadecimal encoding of an 8-byte array.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SpanFilters": {
+      "description": "First version of span filtering that is supported by the Trace component.",
+      "id": "SpanFilters",
+      "properties": {
+        "apphubServices": {
+          "description": "Optional. Filtering for spans containing one of the Apphub service IDs in the list. Multiple values will be OR'd together. Example: \"service-id1\", \"service-id2\"",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "apphubWorkloads": {
+          "description": "Optional. Filtering for spans containing one of the Apphub workload IDs in the list. Multiple values will be OR'd together. Example: \"workload-id1\", \"workload-id2\"",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "applicationIds": {
+          "description": "Optional. Filtering for spans containing one of the Apphub Application IDs in the list. Multiple values will be OR'd together.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "attributes": {
+          "description": "Optional. List of span attribute filters. Each SpanAttributeFilter key must be unique. Multiple attribute filters will be AND'd together.",
+          "items": {
+            "$ref": "SpanAttributeFilter"
+          },
+          "type": "array"
+        },
+        "displayNames": {
+          "description": "Optional. Filtering for spans containing one of the span display names in the list. Multiple values will be OR'd together.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "isRootSpan": {
+          "description": "Optional. Filters for root spans only if set to true. A root span is a span without a defined parent span ID.",
+          "type": "boolean"
+        },
+        "kinds": {
+          "description": "Optional. Filtering for spans containing one of the kinds in the list. Multiple values will be OR'd together.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "maxDuration": {
+          "description": "Optional. Filtering for spans with a maximum duration.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "minDuration": {
+          "description": "Optional. Filtering for spans with a minimum duration.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "services": {
+          "description": "Optional. Filtering for spans containing one of the services in the list. Multiple values will be OR'd together.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "status": {
+          "description": "Optional. Filtering for spans containing one of the statuses in the list. Multiple values will be OR'd together.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -2837,6 +2950,10 @@
           "description": "A query used to fetch time series with MQL.",
           "type": "string"
         },
+        "traceQuery": {
+          "$ref": "TraceQuery",
+          "description": "Optional. Preview: Query for traces. This is a preview feature and may be subject to change before final release."
+        },
         "unitOverride": {
           "description": "The unit of data contained in fetched time series. If non-empty, this unit will override any unit that accompanies fetched data. The format is the same as the unit (https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.metricDescriptors) field in MetricDescriptor.",
           "type": "string"
@@ -2875,6 +2992,37 @@
             "Horizontal bar rendering"
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TraceQuery": {
+      "description": "LINT.IfChange Preview: Query for traces. This is a preview feature and may be subject to change before final release.",
+      "id": "TraceQuery",
+      "properties": {
+        "resourceContainer": {
+          "description": "Optional. The resource name of the project or Trace scope to fetch data from. If empty, the widget will default to the project's default Trace scope. If scope cannot be determined, then we fallback to the current project. Optional.",
+          "type": "string"
+        },
+        "spanDataValue": {
+          "description": "The type of span data value to be displayed on the chart. Required.",
+          "enum": [
+            "SPAN_DATA_VALUE_UNSPECIFIED",
+            "SPAN_COUNT",
+            "SPAN_DURATION",
+            "SPAN_DURATION_PERCENTILES"
+          ],
+          "enumDescriptions": [
+            "We are required to have an UNSPECIFIED value for enums. This should not be used in practice.",
+            "Span count data value",
+            "Span duration data value",
+            "Span duration percentiles data value"
+          ],
+          "type": "string"
+        },
+        "spanFilters": {
+          "$ref": "SpanFilters",
+          "description": "First version of span filtering that we will support. Required."
         }
       },
       "type": "object"

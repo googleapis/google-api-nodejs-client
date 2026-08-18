@@ -1,0 +1,3676 @@
+{
+  "auth": {
+    "oauth2": {
+      "scopes": {
+        "https://www.googleapis.com/auth/cloud-platform": {
+          "description": "See, edit, configure, and delete your Google Cloud data and see the email address for your Google Account."
+        }
+      }
+    }
+  },
+  "basePath": "",
+  "baseUrl": "https://databasecenter.googleapis.com/",
+  "batchPath": "batch",
+  "canonicalName": "Database Center",
+  "description": "Database Center offers a comprehensive, organization-wide platform for monitoring database fleet health across various products. It simplifies management and reduces risk by automatically aggregating and summarizing key health signals, removing the need for custom dashboards. The platform provides a unified view through its dashboard and API, enabling teams focused on reliability, compliance, security, cost, and administration to quickly identify and address relevant issues within their database fleets. ",
+  "discoveryVersion": "v1",
+  "documentationLink": "https://docs.cloud.google.com/database-center/docs/overview",
+  "endpoints": [
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://databasecenter.us.rep.googleapis.com/",
+      "location": "us"
+    }
+  ],
+  "fullyEncodeReservedExpansion": true,
+  "icons": {
+    "x16": "http://www.google.com/images/icons/product/search-16.gif",
+    "x32": "http://www.google.com/images/icons/product/search-32.gif"
+  },
+  "id": "databasecenter:v1beta",
+  "kind": "discovery#restDescription",
+  "mtlsRootUrl": "https://databasecenter.mtls.googleapis.com/",
+  "name": "databasecenter",
+  "ownerDomain": "google.com",
+  "ownerName": "Google",
+  "parameters": {
+    "$.xgafv": {
+      "description": "V1 error format.",
+      "enum": [
+        "1",
+        "2"
+      ],
+      "enumDescriptions": [
+        "v1 error format",
+        "v2 error format"
+      ],
+      "location": "query",
+      "type": "string"
+    },
+    "access_token": {
+      "description": "OAuth access token.",
+      "location": "query",
+      "type": "string"
+    },
+    "alt": {
+      "default": "json",
+      "description": "Data format for response.",
+      "enum": [
+        "json",
+        "media",
+        "proto"
+      ],
+      "enumDescriptions": [
+        "Responses with Content-Type of application/json",
+        "Media download with context-dependent Content-Type",
+        "Responses with Content-Type of application/x-protobuf"
+      ],
+      "location": "query",
+      "type": "string"
+    },
+    "callback": {
+      "description": "JSONP",
+      "location": "query",
+      "type": "string"
+    },
+    "fields": {
+      "description": "Selector specifying which fields to include in a partial response.",
+      "location": "query",
+      "type": "string"
+    },
+    "key": {
+      "description": "API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.",
+      "location": "query",
+      "type": "string"
+    },
+    "oauth_token": {
+      "description": "OAuth 2.0 token for the current user.",
+      "location": "query",
+      "type": "string"
+    },
+    "prettyPrint": {
+      "default": "true",
+      "description": "Returns response with indentations and line breaks.",
+      "location": "query",
+      "type": "boolean"
+    },
+    "quotaUser": {
+      "description": "Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.",
+      "location": "query",
+      "type": "string"
+    },
+    "uploadType": {
+      "description": "Legacy upload protocol for media (e.g. \"media\", \"multipart\").",
+      "location": "query",
+      "type": "string"
+    },
+    "upload_protocol": {
+      "description": "Upload protocol for media (e.g. \"raw\", \"multipart\").",
+      "location": "query",
+      "type": "string"
+    }
+  },
+  "protocol": "rest",
+  "resources": {
+    "folders": {
+      "methods": {
+        "aggregateQueryStats": {
+          "description": "AggregateQueryStats provides database resource query execution statistics.",
+          "flatPath": "v1beta/folders/{foldersId}:aggregateQueryStats",
+          "httpMethod": "POST",
+          "id": "databasecenter.folders.aggregateQueryStats",
+          "parameterOrder": [
+            "parent"
+          ],
+          "parameters": {
+            "parent": {
+              "description": "Required. Parent can be a project, a folder, or an organization. The search is limited to the resources within the `parent`. The allowed values are: * projects/{PROJECT_ID} (e.g., \"projects/foo-bar\") * projects/{PROJECT_NUMBER} (e.g., \"projects/12345678\") * folders/{FOLDER_NUMBER} (e.g., \"folders/1234567\") * organizations/{ORGANIZATION_NUMBER} (e.g., \"organizations/123456\")",
+              "location": "path",
+              "pattern": "^folders/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1beta/{+parent}:aggregateQueryStats",
+          "request": {
+            "$ref": "AggregateQueryStatsRequest"
+          },
+          "response": {
+            "$ref": "AggregateQueryStatsResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        }
+      }
+    },
+    "organizations": {
+      "methods": {
+        "aggregateQueryStats": {
+          "description": "AggregateQueryStats provides database resource query execution statistics.",
+          "flatPath": "v1beta/organizations/{organizationsId}:aggregateQueryStats",
+          "httpMethod": "POST",
+          "id": "databasecenter.organizations.aggregateQueryStats",
+          "parameterOrder": [
+            "parent"
+          ],
+          "parameters": {
+            "parent": {
+              "description": "Required. Parent can be a project, a folder, or an organization. The search is limited to the resources within the `parent`. The allowed values are: * projects/{PROJECT_ID} (e.g., \"projects/foo-bar\") * projects/{PROJECT_NUMBER} (e.g., \"projects/12345678\") * folders/{FOLDER_NUMBER} (e.g., \"folders/1234567\") * organizations/{ORGANIZATION_NUMBER} (e.g., \"organizations/123456\")",
+              "location": "path",
+              "pattern": "^organizations/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1beta/{+parent}:aggregateQueryStats",
+          "request": {
+            "$ref": "AggregateQueryStatsRequest"
+          },
+          "response": {
+            "$ref": "AggregateQueryStatsResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        }
+      }
+    },
+    "projects": {
+      "methods": {
+        "aggregateQueryStats": {
+          "description": "AggregateQueryStats provides database resource query execution statistics.",
+          "flatPath": "v1beta/projects/{projectsId}:aggregateQueryStats",
+          "httpMethod": "POST",
+          "id": "databasecenter.projects.aggregateQueryStats",
+          "parameterOrder": [
+            "parent"
+          ],
+          "parameters": {
+            "parent": {
+              "description": "Required. Parent can be a project, a folder, or an organization. The search is limited to the resources within the `parent`. The allowed values are: * projects/{PROJECT_ID} (e.g., \"projects/foo-bar\") * projects/{PROJECT_NUMBER} (e.g., \"projects/12345678\") * folders/{FOLDER_NUMBER} (e.g., \"folders/1234567\") * organizations/{ORGANIZATION_NUMBER} (e.g., \"organizations/123456\")",
+              "location": "path",
+              "pattern": "^projects/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1beta/{+parent}:aggregateQueryStats",
+          "request": {
+            "$ref": "AggregateQueryStatsRequest"
+          },
+          "response": {
+            "$ref": "AggregateQueryStatsResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        }
+      }
+    },
+    "v1beta": {
+      "methods": {
+        "aggregateFleet": {
+          "description": "AggregateFleet provides statistics about the fleet grouped by various fields.",
+          "flatPath": "v1beta:aggregateFleet",
+          "httpMethod": "GET",
+          "id": "databasecenter.aggregateFleet",
+          "parameterOrder": [],
+          "parameters": {
+            "baselineDate.day": {
+              "description": "Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.",
+              "format": "int32",
+              "location": "query",
+              "type": "integer"
+            },
+            "baselineDate.month": {
+              "description": "Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.",
+              "format": "int32",
+              "location": "query",
+              "type": "integer"
+            },
+            "baselineDate.year": {
+              "description": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.",
+              "format": "int32",
+              "location": "query",
+              "type": "integer"
+            },
+            "filter": {
+              "description": "Optional. The expression to filter resources. Supported fields are: `full_resource_name`, `resource_type`, `container`, `product.type`, `product.engine`, `product.version`, `location`, `labels`, `issues`, fields of availability_info, data_protection_info, 'resource_name', etc. The expression is a list of zero or more restrictions combined via logical operators `AND` and `OR`. When `AND` and `OR` are both used in the expression, parentheses must be appropriately used to group the combinations. Example: `location=\"us-east1\"` Example: `container=\"projects/123\" OR container=\"projects/456\"` Example: `(container=\"projects/123\" OR container=\"projects/456\") AND location=\"us-east1\"`",
+              "location": "query",
+              "type": "string"
+            },
+            "groupBy": {
+              "description": "Optional. A field that statistics are grouped by. Valid values are any combination of the following: * container * product.type * product.engine * product.version * location * sub_resource_type * management_type * tag.key * tag.value * tag.source * tag.inherited * label.key * label.value * label.source * has_maintenance_schedule * has_deny_maintenance_schedules Comma separated list.",
+              "location": "query",
+              "type": "string"
+            },
+            "orderBy": {
+              "description": "Optional. Valid values to order by are: * resource_groups_count * resources_count * and all fields supported by `group_by` The default order is ascending. Add \"DESC\" after the field name to indicate descending order. Add \"ASC\" after the field name to indicate ascending order. It supports ordering using multiple fields. For example: `order_by = \"resource_groups_count\"` sorts response in ascending order `order_by = \"resource_groups_count DESC\"` sorts response in descending order `order_by = \"product.type, product.version DESC, location\"` orders by type in ascending order, version in descending order and location in ascending order",
+              "location": "query",
+              "type": "string"
+            },
+            "pageSize": {
+              "description": "Optional. If unspecified, at most 50 items will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+              "format": "int32",
+              "location": "query",
+              "type": "integer"
+            },
+            "pageToken": {
+              "description": "Optional. A page token, received from a previous `AggregateFleet` call. Provide this to retrieve the subsequent page. All other parameters should match the parameters in the call that provided the page token except for page_size which can be different.",
+              "location": "query",
+              "type": "string"
+            },
+            "parent": {
+              "description": "Required. Parent can be a project, a folder, or an organization. The search is limited to the resources within the `scope`. The allowed values are: * projects/{PROJECT_ID} (e.g., \"projects/foo-bar\") * projects/{PROJECT_NUMBER} (e.g., \"projects/12345678\") * folders/{FOLDER_NUMBER} (e.g., \"folders/1234567\") * organizations/{ORGANIZATION_NUMBER} (e.g., \"organizations/123456\")",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "v1beta:aggregateFleet",
+          "response": {
+            "$ref": "AggregateFleetResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        },
+        "aggregateIssueStats": {
+          "description": "AggregateIssueStats provides database resource issues statistics.",
+          "flatPath": "v1beta:aggregateIssueStats",
+          "httpMethod": "POST",
+          "id": "databasecenter.aggregateIssueStats",
+          "parameterOrder": [],
+          "parameters": {},
+          "path": "v1beta:aggregateIssueStats",
+          "request": {
+            "$ref": "AggregateIssueStatsRequest"
+          },
+          "response": {
+            "$ref": "AggregateIssueStatsResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        },
+        "queryDatabaseResourceGroups": {
+          "description": "QueryDatabaseResourceGroups returns paginated results of database groups.",
+          "flatPath": "v1beta:queryDatabaseResourceGroups",
+          "httpMethod": "POST",
+          "id": "databasecenter.queryDatabaseResourceGroups",
+          "parameterOrder": [],
+          "parameters": {},
+          "path": "v1beta:queryDatabaseResourceGroups",
+          "request": {
+            "$ref": "QueryDatabaseResourceGroupsRequest"
+          },
+          "response": {
+            "$ref": "QueryDatabaseResourceGroupsResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        },
+        "queryIssues": {
+          "description": "QueryIssues provides a list of issues and recommendations that a user has access to and that are within the requested scope.",
+          "flatPath": "v1beta:queryIssues",
+          "httpMethod": "POST",
+          "id": "databasecenter.queryIssues",
+          "parameterOrder": [],
+          "parameters": {},
+          "path": "v1beta:queryIssues",
+          "request": {
+            "$ref": "QueryIssuesRequest"
+          },
+          "response": {
+            "$ref": "QueryIssuesResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        },
+        "queryProducts": {
+          "description": "QueryProducts provides a list of all possible products which can be used to filter database resources.",
+          "flatPath": "v1beta:queryProducts",
+          "httpMethod": "GET",
+          "id": "databasecenter.queryProducts",
+          "parameterOrder": [],
+          "parameters": {
+            "pageSize": {
+              "description": "Optional. If unspecified, at most 50 products will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+              "format": "int32",
+              "location": "query",
+              "type": "integer"
+            },
+            "pageToken": {
+              "description": "Optional. A page token, received from a previous `ListLocations` call. Provide this to retrieve the subsequent page. All other parameters except page size should match the call that provided the page page token.",
+              "location": "query",
+              "type": "string"
+            },
+            "parent": {
+              "description": "Required. Parent can be a project, a folder, or an organization. The allowed values are: * projects/{PROJECT_ID}/locations/{LOCATION} (e.g.,\"projects/foo-bar/locations/us-central1\") * projects/{PROJECT_NUMBER}/locations/{LOCATION} (e.g.,\"projects/12345678/locations/us-central1\") * folders/{FOLDER_NUMBER}/locations/{LOCATION} (e.g.,\"folders/1234567/locations/us-central1\") * organizations/{ORGANIZATION_NUMBER}/locations/{LOCATION} (e.g.,\"organizations/123456/locations/us-central1\") * projects/{PROJECT_ID} (e.g., \"projects/foo-bar\") * projects/{PROJECT_NUMBER} (e.g., \"projects/12345678\") * folders/{FOLDER_NUMBER} (e.g., \"folders/1234567\") * organizations/{ORGANIZATION_NUMBER} (e.g., \"organizations/123456\")",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "v1beta:queryProducts",
+          "response": {
+            "$ref": "QueryProductsResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        }
+      }
+    }
+  },
+  "revision": "20260710",
+  "rootUrl": "https://databasecenter.googleapis.com/",
+  "schemas": {
+    "AdditionalDetail": {
+      "description": "Details related to signal.",
+      "id": "AdditionalDetail",
+      "properties": {
+        "automatedBackupPolicyInfo": {
+          "$ref": "AutomatedBackupPolicyInfo",
+          "description": "Automated backup policy information applies to signals with type SIGNAL_TYPE_NO_AUTOMATED_BACKUP_POLICY."
+        },
+        "backupRunInfo": {
+          "$ref": "BackupRunInfo",
+          "description": "Backup run information applies to signals with types SIGNAL_TYPE_LAST_BACKUP_FAILED and SIGNAL_TYPE_LAST_BACKUP_OLD."
+        },
+        "deletionProtectionInfo": {
+          "$ref": "DeletionProtectionInfo",
+          "description": "Deletion protection information applies to signals with type SIGNAL_TYPE_NO_DELETION_PROTECTION"
+        },
+        "inefficientQueryInfo": {
+          "$ref": "InefficientQueryInfo",
+          "description": "Inefficient query information applies to signals with type SIGNAL_TYPE_INEFFICIENT_QUERY."
+        },
+        "maintenanceRecommendationInfo": {
+          "$ref": "MaintenanceRecommendationInfo",
+          "description": "Maintenance recommendation information applies to signals with type SIGNAL_TYPE_RECOMMENDED_MAINTENANCE_POLICIES."
+        },
+        "outdatedMinorVersionInfo": {
+          "$ref": "OutdatedMinorVersionInfo",
+          "description": "Outdated minor version information applies to signals with type SIGNAL_TYPE_OUTDATED_MINOR_VERSION."
+        },
+        "recommendationInfo": {
+          "$ref": "RecommendationInfo",
+          "description": "Recommendation information applies to recommendations."
+        },
+        "resourceSuspensionInfo": {
+          "$ref": "ResourceSuspensionInfo",
+          "description": "Resource suspension information applies to signals with type SIGNAL_TYPE_RESOURCE_SUSPENDED."
+        },
+        "sccInfo": {
+          "$ref": "SCCInfo",
+          "description": "SCC information applies to SCC signals."
+        },
+        "shortBackupRetentionInfo": {
+          "$ref": "RetentionSettingsInfo",
+          "description": "Short backup retention information applies to signals with type SIGNAL_TYPE_SHORT_BACKUP_RETENTION."
+        },
+        "signalEventTime": {
+          "description": "Event time when signal was recorded by source service.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "signalSource": {
+          "description": "Where the signal is coming from.",
+          "enum": [
+            "SIGNAL_SOURCE_UNSPECIFIED",
+            "SIGNAL_SOURCE_RESOURCE_METADATA",
+            "SIGNAL_SOURCE_SECURITY_FINDINGS",
+            "SIGNAL_SOURCE_RECOMMENDER",
+            "SIGNAL_SOURCE_MODERN_OBSERVABILITY"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "Signal comes from resource metadata.",
+            "Signal comes from SCC findings.",
+            "Signal comes from recommender hub.",
+            "Signal comes from modern observability platform."
+          ],
+          "type": "string"
+        },
+        "signalType": {
+          "description": "Type of the signal.",
+          "enum": [
+            "SIGNAL_TYPE_UNSPECIFIED",
+            "SIGNAL_TYPE_RESOURCE_FAILOVER_PROTECTED",
+            "SIGNAL_TYPE_GROUP_MULTIREGIONAL",
+            "SIGNAL_TYPE_NO_AUTOMATED_BACKUP_POLICY",
+            "SIGNAL_TYPE_SHORT_BACKUP_RETENTION",
+            "SIGNAL_TYPE_LAST_BACKUP_FAILED",
+            "SIGNAL_TYPE_LAST_BACKUP_OLD",
+            "SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_2_0",
+            "SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_1_3",
+            "SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_1_2",
+            "SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_1_1",
+            "SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_1_0",
+            "SIGNAL_TYPE_VIOLATES_CIS_CONTROLS_V8_0",
+            "SIGNAL_TYPE_VIOLATES_NIST_800_53",
+            "SIGNAL_TYPE_VIOLATES_NIST_800_53_R5",
+            "SIGNAL_TYPE_VIOLATES_NIST_CYBERSECURITY_FRAMEWORK_V1_0",
+            "SIGNAL_TYPE_VIOLATES_ISO_27001",
+            "SIGNAL_TYPE_VIOLATES_ISO_27001_V2022",
+            "SIGNAL_TYPE_VIOLATES_PCI_DSS_V3_2_1",
+            "SIGNAL_TYPE_VIOLATES_PCI_DSS_V4_0",
+            "SIGNAL_TYPE_VIOLATES_CLOUD_CONTROLS_MATRIX_V4",
+            "SIGNAL_TYPE_VIOLATES_HIPAA",
+            "SIGNAL_TYPE_VIOLATES_SOC2_V2017",
+            "SIGNAL_TYPE_LOGS_NOT_OPTIMIZED_FOR_TROUBLESHOOTING",
+            "SIGNAL_TYPE_QUERY_DURATIONS_NOT_LOGGED",
+            "SIGNAL_TYPE_VERBOSE_ERROR_LOGGING",
+            "SIGNAL_TYPE_QUERY_LOCK_WAITS_NOT_LOGGED",
+            "SIGNAL_TYPE_LOGGING_MOST_ERRORS",
+            "SIGNAL_TYPE_LOGGING_ONLY_CRITICAL_ERRORS",
+            "SIGNAL_TYPE_MINIMAL_ERROR_LOGGING",
+            "SIGNAL_TYPE_QUERY_STATS_LOGGED",
+            "SIGNAL_TYPE_EXCESSIVE_LOGGING_OF_CLIENT_HOSTNAME",
+            "SIGNAL_TYPE_EXCESSIVE_LOGGING_OF_PARSER_STATS",
+            "SIGNAL_TYPE_EXCESSIVE_LOGGING_OF_PLANNER_STATS",
+            "SIGNAL_TYPE_NOT_LOGGING_ONLY_DDL_STATEMENTS",
+            "SIGNAL_TYPE_LOGGING_QUERY_STATS",
+            "SIGNAL_TYPE_NOT_LOGGING_TEMPORARY_FILES",
+            "SIGNAL_TYPE_CONNECTION_MAX_NOT_CONFIGURED",
+            "SIGNAL_TYPE_USER_OPTIONS_CONFIGURED",
+            "SIGNAL_TYPE_EXPOSED_TO_PUBLIC_ACCESS",
+            "SIGNAL_TYPE_UNENCRYPTED_CONNECTIONS",
+            "SIGNAL_TYPE_NO_ROOT_PASSWORD",
+            "SIGNAL_TYPE_WEAK_ROOT_PASSWORD",
+            "SIGNAL_TYPE_ENCRYPTION_KEY_NOT_CUSTOMER_MANAGED",
+            "SIGNAL_TYPE_SERVER_AUTHENTICATION_NOT_REQUIRED",
+            "SIGNAL_TYPE_EXPOSED_TO_EXTERNAL_SCRIPTS",
+            "SIGNAL_TYPE_EXPOSED_TO_LOCAL_DATA_LOADS",
+            "SIGNAL_TYPE_CONNECTION_ATTEMPTS_NOT_LOGGED",
+            "SIGNAL_TYPE_DISCONNECTIONS_NOT_LOGGED",
+            "SIGNAL_TYPE_LOGGING_EXCESSIVE_STATEMENT_INFO",
+            "SIGNAL_TYPE_EXPOSED_TO_REMOTE_ACCESS",
+            "SIGNAL_TYPE_DATABASE_NAMES_EXPOSED",
+            "SIGNAL_TYPE_SENSITIVE_TRACE_INFO_NOT_MASKED",
+            "SIGNAL_TYPE_PUBLIC_IP_ENABLED",
+            "SIGNAL_TYPE_IDLE",
+            "SIGNAL_TYPE_OVERPROVISIONED",
+            "SIGNAL_TYPE_HIGH_NUMBER_OF_OPEN_TABLES",
+            "SIGNAL_TYPE_HIGH_NUMBER_OF_TABLES",
+            "SIGNAL_TYPE_HIGH_TRANSACTION_ID_UTILIZATION",
+            "SIGNAL_TYPE_UNDERPROVISIONED",
+            "SIGNAL_TYPE_OUT_OF_DISK",
+            "SIGNAL_TYPE_SERVER_CERTIFICATE_NEAR_EXPIRY",
+            "SIGNAL_TYPE_DATABASE_AUDITING_DISABLED",
+            "SIGNAL_TYPE_RESTRICT_AUTHORIZED_NETWORKS",
+            "SIGNAL_TYPE_VIOLATE_POLICY_RESTRICT_PUBLIC_IP",
+            "SIGNAL_TYPE_QUOTA_LIMIT",
+            "SIGNAL_TYPE_NO_PASSWORD_POLICY",
+            "SIGNAL_TYPE_CONNECTIONS_PERFORMANCE_IMPACT",
+            "SIGNAL_TYPE_TMP_TABLES_PERFORMANCE_IMPACT",
+            "SIGNAL_TYPE_TRANS_LOGS_PERFORMANCE_IMPACT",
+            "SIGNAL_TYPE_HIGH_JOINS_WITHOUT_INDEXES",
+            "SIGNAL_TYPE_SUPERUSER_WRITING_TO_USER_TABLES",
+            "SIGNAL_TYPE_USER_GRANTED_ALL_PERMISSIONS",
+            "SIGNAL_TYPE_DATA_EXPORT_TO_EXTERNAL_CLOUD_STORAGE_BUCKET",
+            "SIGNAL_TYPE_DATA_EXPORT_TO_PUBLIC_CLOUD_STORAGE_BUCKET",
+            "SIGNAL_TYPE_WEAK_PASSWORD_HASH_ALGORITHM",
+            "SIGNAL_TYPE_NO_USER_PASSWORD_POLICY",
+            "SIGNAL_TYPE_HOT_NODE",
+            "SIGNAL_TYPE_NO_DELETION_PROTECTION",
+            "SIGNAL_TYPE_NO_POINT_IN_TIME_RECOVERY",
+            "SIGNAL_TYPE_RESOURCE_SUSPENDED",
+            "SIGNAL_TYPE_EXPENSIVE_COMMANDS",
+            "SIGNAL_TYPE_NO_MAINTENANCE_POLICY_CONFIGURED",
+            "SIGNAL_TYPE_INEFFICIENT_QUERY",
+            "SIGNAL_TYPE_READ_INTENSIVE_WORKLOAD",
+            "SIGNAL_TYPE_MEMORY_LIMIT",
+            "SIGNAL_TYPE_MAX_SERVER_MEMORY",
+            "SIGNAL_TYPE_LARGE_ROWS",
+            "SIGNAL_TYPE_HIGH_WRITE_PRESSURE",
+            "SIGNAL_TYPE_HIGH_READ_PRESSURE",
+            "SIGNAL_TYPE_ENCRYPTION_ORG_POLICY_NOT_SATISFIED",
+            "SIGNAL_TYPE_LOCATION_ORG_POLICY_NOT_SATISFIED",
+            "SIGNAL_TYPE_OUTDATED_MINOR_VERSION",
+            "SIGNAL_TYPE_SCHEMA_NOT_OPTIMIZED",
+            "SIGNAL_TYPE_REPLICATION_LAG",
+            "SIGNAL_TYPE_OUTDATED_CLIENT",
+            "SIGNAL_TYPE_DATABOOST_DISABLED",
+            "SIGNAL_TYPE_RECOMMENDED_MAINTENANCE_POLICIES",
+            "SIGNAL_TYPE_EXTENDED_SUPPORT",
+            "SIGNAL_TYPE_VERSION_NEARING_END_OF_LIFE",
+            "SIGNAL_TYPE_HIGH_MAINTENANCE_DOWNTIME_RISK",
+            "SIGNAL_TYPE_LOW_CACHE_HIT_AND_MAINTENANCE_DOWNTIME",
+            "SIGNAL_TYPE_MISSING_ENHANCED_PROTECTION"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "Represents if a resource is protected by automatic failover. Checks for resources that are configured to have redundancy within a region that enables automatic failover.",
+            "Represents if a group is replicating across regions. Checks for resources that are configured to have redundancy, and ongoing replication, across regions.",
+            "Represents if a resource has an automated backup policy.",
+            "Represents if a resources has a short backup retention period.",
+            "Represents if the last backup of a resource failed.",
+            "Represents if the last backup of a resource is older than some threshold value.",
+            "Represents if a resource violates CIS Google Cloud Platform Foundation 2.0.",
+            "Represents if a resource violates CIS Google Cloud Platform Foundation 1.3.",
+            "Represents if a resource violates CIS Google Cloud Platform Foundation 1.2.",
+            "Represents if a resource violates CIS Google Cloud Platform Foundation 1.1.",
+            "Represents if a resource violates CIS Google Cloud Platform Foundation 1.0.",
+            "Represents if a resource violates CIS Controls 8.0.",
+            "Represents if a resource violates NIST 800-53.",
+            "Represents if a resource violates NIST 800-53 R5.",
+            "Represents if a resource violates NIST Cybersecurity Framework 1.0.",
+            "Represents if a resource violates ISO-27001.",
+            "Represents if a resource violates ISO 27001 2022.",
+            "Represents if a resource violates PCI-DSS v3.2.1.",
+            "Represents if a resource violates PCI-DSS v4.0.",
+            "Represents if a resource violates Cloud Controls Matrix v4.0.",
+            "Represents if a resource violates HIPAA.",
+            "Represents if a resource violates SOC2 v2017.",
+            "Represents if log_checkpoints database flag for a Cloud SQL for PostgreSQL instance is not set to on.",
+            "Represents if the log_duration database flag for a Cloud SQL for PostgreSQL instance is not set to on.",
+            "Represents if the log_error_verbosity database flag for a Cloud SQL for PostgreSQL instance is not set to default or stricter (default or terse).",
+            "Represents if the log_lock_waits database flag for a Cloud SQL for PostgreSQL instance is not set to on.",
+            "Represents if the log_min_error_statement database flag for a Cloud SQL for PostgreSQL instance is not set appropriately.",
+            "Represents if the log_min_error_statement database flag for a Cloud SQL for PostgreSQL instance does not have an appropriate severity level.",
+            "Represents if the log_min_messages database flag for a Cloud SQL for PostgreSQL instance is not set to warning or another recommended value.",
+            "Represents if the databaseFlags property of instance metadata for the log_executor_status field is set to on.",
+            "Represents if the log_hostname database flag for a Cloud SQL for PostgreSQL instance is not set to off.",
+            "Represents if the log_parser_stats database flag for a Cloud SQL for PostgreSQL instance is not set to off.",
+            "Represents if the log_planner_stats database flag for a Cloud SQL for PostgreSQL instance is not set to off.",
+            "Represents if the log_statement database flag for a Cloud SQL for PostgreSQL instance is not set to DDL (all data definition statements).",
+            "Represents if the log_statement_stats database flag for a Cloud SQL for PostgreSQL instance is not set to off.",
+            "Represents if the log_temp_files database flag for a Cloud SQL for PostgreSQL instance is not set to \"0\". (NOTE: 0 = ON)",
+            "Represents if the user connections database flag for a Cloud SQL for SQL Server instance is configured.",
+            "Represents if the user options database flag for Cloud SQL SQL Server instance is configured or not.",
+            "Represents if a resource is exposed to public access.",
+            "Represents if a resources requires all incoming connections to use SSL or not.",
+            "Represents if a Cloud SQL database has a password configured for the root account or not.",
+            "Represents if a Cloud SQL database has a weak password configured for the root account.",
+            "Represents if a SQL database instance is not encrypted with customer-managed encryption keys (CMEK).",
+            "Represents if The contained database authentication database flag for a Cloud SQL for SQL Server instance is not set to off.",
+            "Represents if he external scripts enabled database flag for a Cloud SQL for SQL Server instance is not set to off.",
+            "Represents if the local_infile database flag for a Cloud SQL for MySQL instance is not set to off.",
+            "Represents if the log_connections database flag for a Cloud SQL for PostgreSQL instance is not set to on.",
+            "Represents if the log_disconnections database flag for a Cloud SQL for PostgreSQL instance is not set to on.",
+            "Represents if the log_min_duration_statement database flag for a Cloud SQL for PostgreSQL instance is not set to -1.",
+            "Represents if the remote access database flag for a Cloud SQL for SQL Server instance is not set to off.",
+            "Represents if the skip_show_database database flag for a Cloud SQL for MySQL instance is not set to on.",
+            "Represents if the 3625 (trace flag) database flag for a Cloud SQL for SQL Server instance is not set to on.",
+            "Represents if public IP is enabled.",
+            "Represents idle instance helps to reduce costs.",
+            "Represents instances that are unnecessarily large for given workload.",
+            "Represents high number of concurrently opened tables.",
+            "Represents high table count close to SLA limit.",
+            "Represents high number of unvacuumed transactions",
+            "Represents need for more CPU and/or memory",
+            "Represents out of disk.",
+            "Represents server certificate is near expiry.",
+            "Represents database auditing is disabled.",
+            "Represents not restricted to authorized networks.",
+            "Represents violate org policy restrict public ip.",
+            "Cluster nearing quota limit",
+            "No password policy set on resources",
+            "Performance impact of connections settings",
+            "Performance impact of temporary tables settings",
+            "Performance impact of transaction logs settings",
+            "Performance impact of high joins without indexes",
+            "Detects events where a database superuser (postgres for PostgreSQL servers or root for MySQL users) writes to non-system tables.",
+            "Detects events where a database user or role has been granted all privileges to a database, or to all tables, procedures, or functions in a schema.",
+            "Detects if database instance data exported to a Cloud Storage bucket outside of the organization.",
+            "Detects if database instance data exported to a Cloud Storage bucket that is owned by the organization and is publicly accessible.",
+            "Detects if a database instance is using a weak password hash algorithm.",
+            "Detects if a database instance has no user password policy set.",
+            "Detects if a database instance/cluster has a hot node.",
+            "Deletion Protection Disabled for the resource",
+            "Detects if a database instance has no point in time recovery enabled.",
+            "Detects if a database instance/cluster has suspended resources.",
+            "Detects that expensive commands are being run on a database instance impacting overall performance.",
+            "Indicates that the instance does not have a maintenance policy configured.",
+            "Indicates that the instance has inefficient queries detected.",
+            "Indicates that the instance has read intensive workload.",
+            "Indicates that the instance is nearing memory limit.",
+            "Indicates that the instance's max server memory is configured higher than the recommended value.",
+            "Indicates that the database has large rows beyond the recommended limit.",
+            "Heavy write pressure on the database rows.",
+            "Heavy read pressure on the database rows.",
+            "Encryption org policy not satisfied.",
+            "Location org policy not satisfied.",
+            "Outdated DB minor version.",
+            "Schema not optimized.",
+            "Replication delay.",
+            "Outdated client.",
+            "Databoost is disabled.",
+            "Recommended maintenance policy.",
+            "Resource version is in extended support.",
+            "Represents a database version nearing end of life.",
+            "Indicates a high risk of maintenance downtime.",
+            "Indicates both a low cache hit rate and a risk of maintenance downtime.",
+            "Indicates that the resource is missing enhanced protection."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Affiliation": {
+      "description": "Affiliation information of a resource",
+      "id": "Affiliation",
+      "properties": {
+        "fullResourceName": {
+          "description": "Optional. Full resource name",
+          "type": "string"
+        },
+        "lineages": {
+          "description": "Optional. Multiple lineages can be created from a resource. For example, a resource can be replicated to multiple target resources. In this case, there will be multiple lineages for the resource, one for each target resource.",
+          "items": {
+            "$ref": "Lineage"
+          },
+          "type": "array"
+        },
+        "resourceId": {
+          "description": "Optional. resource id of affiliated resource",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AggregateFleetResponse": {
+      "description": "The response message to aggregate a fleet by some group by fields.",
+      "id": "AggregateFleetResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token that can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "resourceGroupsTotalCount": {
+          "description": "Count of all resource groups in the fleet. This includes counts from all pages.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "resourceTotalCount": {
+          "description": "Count of all resources in the fleet. This includes counts from all pages.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "rows": {
+          "description": "Represents a row grouped by the fields in the input.",
+          "items": {
+            "$ref": "AggregateFleetRow"
+          },
+          "type": "array"
+        },
+        "totalSize": {
+          "description": "Output only. The total number of rows in the entire list.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "unreachable": {
+          "description": "Unordered list. List of unreachable regions from where data could not be retrieved.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "AggregateFleetRow": {
+      "description": "Individual row grouped by a particular dimension.",
+      "id": "AggregateFleetRow",
+      "properties": {
+        "deltaDetails": {
+          "$ref": "DeltaDetails",
+          "description": "Optional. Delta counts and details of resources which were added to/deleted from fleet."
+        },
+        "dimension": {
+          "description": "Group by dimension.",
+          "items": {
+            "$ref": "Dimension"
+          },
+          "type": "array"
+        },
+        "resourceGroupsCount": {
+          "description": "Number of resource groups that have a particular dimension.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "resourcesCount": {
+          "description": "Number of resources that have a particular dimension.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "AggregateIssueStatsRequest": {
+      "description": "AggregateIssueStatsRequest represents the input to the AggregateIssueStats method.",
+      "id": "AggregateIssueStatsRequest",
+      "properties": {
+        "baselineDate": {
+          "$ref": "Date",
+          "description": "Optional. The baseline date w.r.t. which the delta counts are calculated. If not set, delta counts are not included in the response and the response indicates the current state of the fleet."
+        },
+        "filter": {
+          "description": "Optional. The expression to filter resources. Supported fields are: `full_resource_name`, `resource_type`, `container`, `product.type`, `product.engine`, `product.version`, `location`, `labels`, `issues`, fields of availability_info, data_protection_info,'resource_name', etc. The expression is a list of zero or more restrictions combined via logical operators `AND` and `OR`. When `AND` and `OR` are both used in the expression, parentheses must be appropriately used to group the combinations. Example: `location=\"us-east1\"` Example: `container=\"projects/123\" OR container=\"projects/456\"` Example: `(container=\"projects/123\" OR container=\"projects/456\") AND location=\"us-east1\"`",
+          "type": "string"
+        },
+        "parent": {
+          "description": "Required. Parent can be a project, a folder, or an organization. The search is limited to the resources within the `scope`. The allowed values are: * projects/{PROJECT_ID} (e.g., \"projects/foo-bar\") * projects/{PROJECT_NUMBER} (e.g., \"projects/12345678\") * folders/{FOLDER_NUMBER} (e.g., \"folders/1234567\") * organizations/{ORGANIZATION_NUMBER} (e.g., \"organizations/123456\")",
+          "type": "string"
+        },
+        "signalTypeGroups": {
+          "description": "Optional. Lists of signal types that are issues.",
+          "items": {
+            "$ref": "SignalTypeGroup"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "AggregateIssueStatsResponse": {
+      "description": "The response message containing one of more group of relevant health issues for database resources.",
+      "id": "AggregateIssueStatsResponse",
+      "properties": {
+        "issueGroupStats": {
+          "description": "List of issue group stats where each group contains stats for resources having a particular combination of relevant issues.",
+          "items": {
+            "$ref": "IssueGroupStats"
+          },
+          "type": "array"
+        },
+        "totalResourceGroupsCount": {
+          "description": "Total count of the resource filtered in based on the user given filter.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "totalResourcesCount": {
+          "description": "Total count of the resources filtered in based on the user given filter.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "unreachable": {
+          "description": "Unordered list. List of unreachable regions from where data could not be retrieved.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "AggregateQueryStatsRequest": {
+      "description": "AggregateQueryStatsRequest represents the input to the AggregateQueryStats method.",
+      "id": "AggregateQueryStatsRequest",
+      "properties": {
+        "filter": {
+          "description": "Optional. The expression to filter resources. Supported fields are: `full_resource_name`, `resource_type`, `container`, `product.type`, `product.engine`, `product.version`, `location`, `labels`, `issues`, fields of availability_info, data_protection_info,'resource_name', etc. The expression is a list of zero or more restrictions combined via logical operators `AND` and `OR`. When `AND` and `OR` are both used in the expression, parentheses must be appropriately used to group the combinations. Example: `location=\"us-east1\"` Example: `container=\"projects/123\" OR container=\"projects/456\"` Example: `(container=\"projects/123\" OR container=\"projects/456\") AND location=\"us-east1\"` Additional specific fields for query stats are: `metric_window`, `query_hash`, `normalized_query`. Example: `metric_window=\"LAST_ONE_DAY\"` (Possible values for `metric_window` are: `LAST_ONE_DAY`, `LAST_ONE_WEEK`, `LAST_TWO_WEEKS`) Example: `query_hash=\"12345678\"` Example: `normalized_query=\"SELECT * FROM table\"`",
+          "type": "string"
+        },
+        "orderBy": {
+          "description": "Optional. The expression to order the results by. Example: `order_by=\"execution_count\"` Example: `order_by=\"execution_count desc\"` Supported order by fields are `execution_count`, `rows_processed`, `total_cpu_time`, `avg_cpu_time`.",
+          "type": "string"
+        },
+        "pageSize": {
+          "description": "Optional. If unspecified, at most 100 query stats will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "pageToken": {
+          "description": "Optional. A page token, received from a previous `AggregateQueryStatsRequest` call. Provide this to retrieve the subsequent page. All parameters except page_token should match the parameters in the call that provided the page token.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AggregateQueryStatsResponse": {
+      "description": "The response message containing relevant query stats for database resources.",
+      "id": "AggregateQueryStatsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token that can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "queryStats": {
+          "description": "List of query stats where each group contains stats for resources having a particular combination of relevant query stats.",
+          "items": {
+            "$ref": "QueryStatsInfo"
+          },
+          "type": "array"
+        },
+        "unreachable": {
+          "description": "Unordered list. List of unreachable regions from where data could not be retrieved.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "AutomatedBackupPolicyInfo": {
+      "description": "Automated backup policy signal info",
+      "id": "AutomatedBackupPolicyInfo",
+      "properties": {
+        "isEnabled": {
+          "description": "Is automated policy enabled.",
+          "type": "boolean"
+        },
+        "subResource": {
+          "$ref": "SubResource",
+          "description": "Optional. Sub resource details associated with the signal."
+        }
+      },
+      "type": "object"
+    },
+    "BackupDRConfig": {
+      "description": "BackupDRConfig to capture the backup and disaster recovery details of database resource.",
+      "id": "BackupDRConfig",
+      "properties": {
+        "backupdrManaged": {
+          "description": "Indicates if the resource is managed by BackupDR.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "BackupRunInfo": {
+      "description": "Metadata about latest backup run state for a database resource.",
+      "id": "BackupRunInfo",
+      "properties": {
+        "endTime": {
+          "description": "The time the backup operation completed.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "errorMessage": {
+          "description": "Additional information about the error encountered.",
+          "type": "string"
+        },
+        "operationErrorType": {
+          "description": "Optional. OperationErrorType to expose specific error when backup operation of database resource failed, that is state is FAILED.",
+          "enum": [
+            "OPERATION_ERROR_TYPE_UNSPECIFIED",
+            "KMS_KEY_ERROR",
+            "DATABASE_ERROR",
+            "STOCKOUT_ERROR",
+            "CANCELLATION_ERROR",
+            "SQLSERVER_ERROR",
+            "INTERNAL_ERROR"
+          ],
+          "enumDescriptions": [
+            "UNSPECIFIED means operation error type is not known or available.",
+            "Key destroyed, expired, not found, unreachable or permission denied.",
+            "Database is not accessible.",
+            "The zone or region does not have sufficient resources to handle the request at the moment.",
+            "User initiated cancellation.",
+            "SQL server specific error.",
+            "Any other internal error."
+          ],
+          "type": "string"
+        },
+        "startTime": {
+          "description": "The time the backup operation started.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The state of this run.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "SUCCEEDED",
+            "FAILED"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "The backup succeeded.",
+            "The backup was unsuccessful."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "subResource": {
+          "$ref": "SubResource",
+          "description": "Optional. Sub resource details associated with the backup run."
+        }
+      },
+      "type": "object"
+    },
+    "DatabaseResource": {
+      "description": "DatabaseResource represents every individually configured database unit representing compute and/or storage.",
+      "id": "DatabaseResource",
+      "properties": {
+        "affiliations": {
+          "description": "Optional. Affiliation details of the resource.",
+          "items": {
+            "$ref": "Affiliation"
+          },
+          "type": "array"
+        },
+        "backupdrConfig": {
+          "$ref": "BackupDRConfig",
+          "description": "Optional. Backup and disaster recovery details for the resource."
+        },
+        "childResources": {
+          "description": "List of children associated with a database group.",
+          "items": {
+            "$ref": "DatabaseResource"
+          },
+          "type": "array"
+        },
+        "container": {
+          "description": "Specifies where the resource is created. For Google Cloud resources, it is the full name of the project.",
+          "type": "string"
+        },
+        "edition": {
+          "description": "The edition of the resource.",
+          "enum": [
+            "EDITION_UNSPECIFIED",
+            "EDITION_ENTERPRISE",
+            "EDITION_ENTERPRISE_PLUS",
+            "EDITION_STANDARD"
+          ],
+          "enumDescriptions": [
+            "Default, to make it consistent with instance edition enum.",
+            "Represents the enterprise edition.",
+            "Represents the enterprise plus edition.",
+            "Represents the standard edition."
+          ],
+          "type": "string"
+        },
+        "fullResourceName": {
+          "description": "The full resource name, based on CAIS resource name format https://cloud.google.com/asset-inventory/docs/resource-name-format Example: `//cloudsql.googleapis.com/projects/project-number/instances/mysql-1` `//cloudsql.googleapis.com/projects/project-number/instances/postgres-1` `//spanner.googleapis.com/projects/project-number/instances/spanner-instance-1` `//alloydb.googleapis.com/projects/project-number/locations/us-central1/clusters/c1` `//alloydb.googleapis.com/projects/project-number/locations/us-central1/clusters/c1/instances/i1`",
+          "type": "string"
+        },
+        "labels": {
+          "description": "Labels applied on the resource. The requirements for labels assigned to Google Cloud resources may be found at https://cloud.google.com/resource-manager/docs/labels-overview#requirements",
+          "items": {
+            "$ref": "Label"
+          },
+          "type": "array"
+        },
+        "location": {
+          "description": "The location of the resources. It supports returning only regional locations in Google Cloud. These are of the form: \"us-central1\", \"us-east1\", etc. See https://cloud.google.com/about/locations for a list of such regions.",
+          "type": "string"
+        },
+        "machineConfig": {
+          "$ref": "MachineConfig",
+          "description": "Machine configuration like CPU, memory, etc for the resource."
+        },
+        "maintenanceInfo": {
+          "$ref": "MaintenanceInfo",
+          "description": "Optional. The maintenance information of the resource."
+        },
+        "metrics": {
+          "$ref": "Metrics",
+          "description": "Observable metrics for the resource e.g. CPU utilization, memory utilization, etc."
+        },
+        "product": {
+          "$ref": "Product",
+          "description": "The product this resource represents."
+        },
+        "resourceCategory": {
+          "description": "The category of the resource.",
+          "enum": [
+            "RESOURCE_CATEGORY_UNSPECIFIED",
+            "INSTANCE",
+            "CLUSTER",
+            "DATABASE",
+            "DATASET",
+            "RESERVATION"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "A resource that is an Instance.",
+            "A resource that is a Cluster.",
+            "A resource that is a Database.",
+            "A resource that is a Dataset.",
+            "A resource that is a Reservation."
+          ],
+          "type": "string"
+        },
+        "resourceName": {
+          "description": "The name of the resource(The last part of the full resource name). Example: For full resource name - `//cloudsql.googleapis.com/projects/project-number/instances/mysql-1`, resource name - `mysql-1` For full resource name - `//cloudsql.googleapis.com/projects/project-number/instances/postgres-1` , resource name - `postgres-1` Note: In some cases, there might be more than one resource with the same resource name.",
+          "type": "string"
+        },
+        "resourceType": {
+          "description": "The type of resource defined according to the pattern: {Service Name}/{Type}. Ex: sqladmin.googleapis.com/Instance alloydb.googleapis.com/Cluster alloydb.googleapis.com/Instance spanner.googleapis.com/Instance",
+          "type": "string"
+        },
+        "signalGroups": {
+          "description": "The list of signal groups and count of issues related to the resource. Only those signals which have been requested would be included.",
+          "items": {
+            "$ref": "SignalGroup"
+          },
+          "type": "array"
+        },
+        "subResourceType": {
+          "description": "Subtype of the resource specified at creation time.",
+          "enum": [
+            "SUB_RESOURCE_TYPE_UNSPECIFIED",
+            "SUB_RESOURCE_TYPE_PRIMARY",
+            "SUB_RESOURCE_TYPE_SECONDARY",
+            "SUB_RESOURCE_TYPE_READ_REPLICA",
+            "SUB_RESOURCE_TYPE_EXTERNAL_PRIMARY",
+            "SUB_RESOURCE_TYPE_READ_POOL",
+            "SUB_RESOURCE_TYPE_RESERVATION",
+            "SUB_RESOURCE_TYPE_DATASET",
+            "SUB_RESOURCE_TYPE_OTHER"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "A resource acting as a primary.",
+            "A resource acting as a secondary.",
+            "A resource acting as a read-replica.",
+            "A resource acting as an external primary.",
+            "A resource acting as a read pool.",
+            "Represents a reservation resource.",
+            "Represents a dataset resource.",
+            "For the rest of the categories."
+          ],
+          "type": "string"
+        },
+        "tags": {
+          "description": "Tags applied on the resource. The requirements for tags assigned to Google Cloud resources may be found at https://cloud.google.com/resource-manager/docs/tags/tags-overview",
+          "items": {
+            "$ref": "Tag"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "DatabaseResourceGroup": {
+      "description": "DatabaseResourceGroup represents all resources that serve a common data set. It is considered notionally as a single entity, powered by any number of units of compute and storage.",
+      "id": "DatabaseResourceGroup",
+      "properties": {
+        "rootResources": {
+          "description": "A database resource that serves as a root of the group of database resources. It is repeated just in case we have the concept of multiple roots in the future, however, it will only be populated with a single value for now.",
+          "items": {
+            "$ref": "DatabaseResource"
+          },
+          "type": "array"
+        },
+        "signalGroups": {
+          "description": "The filtered signal groups and the count of issues associated with the resources that have been filtered in.",
+          "items": {
+            "$ref": "IssueCount"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "DatabaseResourceIssue": {
+      "description": "DatabaseResource and Issue associated with it.",
+      "id": "DatabaseResourceIssue",
+      "properties": {
+        "resource": {
+          "$ref": "DatabaseResource",
+          "description": "Resource associated with the issue."
+        },
+        "signal": {
+          "$ref": "Signal",
+          "description": "Signal associated with the issue."
+        }
+      },
+      "type": "object"
+    },
+    "Date": {
+      "description": "Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp",
+      "id": "Date",
+      "properties": {
+        "day": {
+          "description": "Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "month": {
+          "description": "Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "year": {
+          "description": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "DeletionProtectionInfo": {
+      "description": "Deletion protection signal info for a database resource.",
+      "id": "DeletionProtectionInfo",
+      "properties": {
+        "deletionProtectionEnabled": {
+          "description": "Is deletion protection enabled.",
+          "type": "boolean"
+        },
+        "subResource": {
+          "$ref": "SubResource",
+          "description": "Optional. Sub resource details associated with the signal."
+        }
+      },
+      "type": "object"
+    },
+    "DeltaDetails": {
+      "description": "Captures the details of items that have increased or decreased in some bucket when compared to some point in history. It is currently used to capture the delta of resources that have been added or removed in the fleet as well as to capture the resources that have a change in Issue/Signal status.",
+      "id": "DeltaDetails",
+      "properties": {
+        "decreasedResources": {
+          "description": "Details of resources that have decreased.",
+          "items": {
+            "$ref": "ResourceDetails"
+          },
+          "type": "array"
+        },
+        "increasedResources": {
+          "description": "Details of resources that have increased.",
+          "items": {
+            "$ref": "ResourceDetails"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "Dimension": {
+      "description": "Dimension used to aggregate the fleet.",
+      "id": "Dimension",
+      "properties": {
+        "container": {
+          "description": "Specifies where the resource is created. For Google Cloud resources, it is the full name of the project.",
+          "type": "string"
+        },
+        "edition": {
+          "description": "The edition of the resource.",
+          "enum": [
+            "EDITION_UNSPECIFIED",
+            "EDITION_ENTERPRISE",
+            "EDITION_ENTERPRISE_PLUS",
+            "EDITION_STANDARD"
+          ],
+          "enumDescriptions": [
+            "Default, to make it consistent with instance edition enum.",
+            "Represents the enterprise edition.",
+            "Represents the enterprise plus edition.",
+            "Represents the standard edition."
+          ],
+          "type": "string"
+        },
+        "hasDenyMaintenanceSchedules": {
+          "description": "Whether the resource has deny maintenance schedules.",
+          "type": "boolean"
+        },
+        "hasMaintenanceSchedule": {
+          "description": "Whether the resource has a maintenance schedule.",
+          "type": "boolean"
+        },
+        "labelKey": {
+          "description": "Label key of the resource.",
+          "type": "string"
+        },
+        "labelSource": {
+          "description": "Label source of the resource.",
+          "type": "string"
+        },
+        "labelValue": {
+          "description": "Label value of the resource.",
+          "type": "string"
+        },
+        "location": {
+          "description": "The location of the resources. It supports returning only regional locations in Google Cloud.",
+          "type": "string"
+        },
+        "managementType": {
+          "description": "The management type of the resource.",
+          "enum": [
+            "MANAGEMENT_TYPE_UNSPECIFIED",
+            "MANAGEMENT_TYPE_GCP_MANAGED",
+            "MANAGEMENT_TYPE_SELF_MANAGED"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "Google-managed resource.",
+            "Self-managed resource."
+          ],
+          "type": "string"
+        },
+        "productEngine": {
+          "description": "Engine refers to underlying database binary running in an instance.",
+          "enum": [
+            "ENGINE_UNSPECIFIED",
+            "ENGINE_MYSQL",
+            "ENGINE_POSTGRES",
+            "ENGINE_SQL_SERVER",
+            "ENGINE_NATIVE",
+            "ENGINE_MEMORYSTORE_FOR_REDIS",
+            "ENGINE_MEMORYSTORE_FOR_REDIS_CLUSTER",
+            "ENGINE_MEMORSTORE_FOR_VALKEY",
+            "ENGINE_MEMORYSTORE_FOR_VALKEY",
+            "ENGINE_FIRESTORE_WITH_NATIVE_MODE",
+            "ENGINE_FIRESTORE_WITH_DATASTORE_MODE",
+            "ENGINE_EXADATA_ORACLE",
+            "ENGINE_ADB_SERVERLESS_ORACLE",
+            "ENGINE_FIRESTORE_WITH_MONGODB_COMPATIBILITY_MODE",
+            "ENGINE_OTHER"
+          ],
+          "enumDeprecated": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "enumDescriptions": [
+            "UNSPECIFIED means engine type is not known or available.",
+            "MySQL binary running as an engine in the database instance.",
+            "Postgres binary running as engine in database instance.",
+            "SQLServer binary running as engine in database instance.",
+            "Native database binary running as engine in instance.",
+            "Memorystore with Redis dialect.",
+            "Memorystore with Redis cluster dialect.",
+            "Deprecated: Use ENGINE_MEMORYSTORE_FOR_VALKEY instead.",
+            "Memorystore with Valkey dialect.",
+            "Firestore with native mode.",
+            "Firestore with datastore mode.",
+            "Oracle Exadata engine.",
+            "Oracle Autonomous DB Serverless engine.",
+            "Firestore with MongoDB compatibility.",
+            "Other refers to rest of other database engine. This is to be when engine is known, but it is not present in this enum."
+          ],
+          "type": "string"
+        },
+        "productType": {
+          "description": "Type to identify a product",
+          "enum": [
+            "PRODUCT_TYPE_UNSPECIFIED",
+            "PRODUCT_TYPE_CLOUD_SQL",
+            "PRODUCT_TYPE_ALLOYDB",
+            "PRODUCT_TYPE_SPANNER",
+            "PRODUCT_TYPE_BIGTABLE",
+            "PRODUCT_TYPE_MEMORYSTORE",
+            "PRODUCT_TYPE_FIRESTORE",
+            "PRODUCT_TYPE_COMPUTE_ENGINE",
+            "PRODUCT_TYPE_ORACLE_ON_GCP",
+            "PRODUCT_TYPE_BIGQUERY",
+            "PRODUCT_TYPE_OTHER"
+          ],
+          "enumDescriptions": [
+            "PRODUCT_TYPE_UNSPECIFIED means product type is not known or that the user didn't provide this field in the request.",
+            "Cloud SQL product area in Google Cloud",
+            "AlloyDB product area in Google Cloud",
+            "Spanner product area in Google Cloud",
+            "Bigtable product area in Google Cloud",
+            "Memorystore product area in Google Cloud",
+            "Firestore product area in Google Cloud",
+            "Compute Engine self managed databases",
+            "Oracle product area in Google Cloud",
+            "BigQuery product area in Google Cloud",
+            "Other refers to rest of other product type. This is to be when product type is known, but it is not present in this enum."
+          ],
+          "type": "string"
+        },
+        "productVersion": {
+          "description": "Version of the underlying database engine",
+          "type": "string"
+        },
+        "resourceCategory": {
+          "description": "The category of the resource.",
+          "enum": [
+            "RESOURCE_CATEGORY_UNSPECIFIED",
+            "INSTANCE",
+            "CLUSTER",
+            "DATABASE",
+            "DATASET",
+            "RESERVATION"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "A resource that is an Instance.",
+            "A resource that is a Cluster.",
+            "A resource that is a Database.",
+            "A resource that is a Dataset.",
+            "A resource that is a Reservation."
+          ],
+          "type": "string"
+        },
+        "resourceType": {
+          "description": "The type of resource defined according to the pattern: {Service Name}/{Type}. Ex: sqladmin.googleapis.com/Instance alloydb.googleapis.com/Cluster alloydb.googleapis.com/Instance spanner.googleapis.com/Instance",
+          "type": "string"
+        },
+        "subResourceType": {
+          "description": "Subtype of the resource specified at creation time.",
+          "enum": [
+            "SUB_RESOURCE_TYPE_UNSPECIFIED",
+            "SUB_RESOURCE_TYPE_PRIMARY",
+            "SUB_RESOURCE_TYPE_SECONDARY",
+            "SUB_RESOURCE_TYPE_READ_REPLICA",
+            "SUB_RESOURCE_TYPE_EXTERNAL_PRIMARY",
+            "SUB_RESOURCE_TYPE_READ_POOL",
+            "SUB_RESOURCE_TYPE_RESERVATION",
+            "SUB_RESOURCE_TYPE_DATASET",
+            "SUB_RESOURCE_TYPE_OTHER"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "A resource acting as a primary.",
+            "A resource acting as a secondary.",
+            "A resource acting as a read-replica.",
+            "A resource acting as an external primary.",
+            "A resource acting as a read pool.",
+            "Represents a reservation resource.",
+            "Represents a dataset resource.",
+            "For the rest of the categories."
+          ],
+          "type": "string"
+        },
+        "tagInherited": {
+          "description": "Tag inheritance value of the resource.",
+          "type": "boolean"
+        },
+        "tagKey": {
+          "description": "Tag key of the resource.",
+          "type": "string"
+        },
+        "tagSource": {
+          "description": "Tag source of the resource.",
+          "type": "string"
+        },
+        "tagValue": {
+          "description": "Tag value of the resource.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "InefficientQueryInfo": {
+      "description": "Metadata about inefficient query signal info for a database resource.",
+      "id": "InefficientQueryInfo",
+      "properties": {
+        "database": {
+          "description": "Name of the database where index is required. For example, \"db1\", which is the name of the database present in the instance.",
+          "type": "string"
+        },
+        "impactedQueriesCount": {
+          "description": "Count of queries to be impacted if index is applied",
+          "format": "int64",
+          "type": "string"
+        },
+        "sqlIndexStatement": {
+          "description": "SQL statement of the index. Based on the ddl type, this will be either CREATE INDEX or DROP INDEX.",
+          "type": "string"
+        },
+        "storageCostBytes": {
+          "description": "Cost of additional disk usage in bytes",
+          "format": "int64",
+          "type": "string"
+        },
+        "table": {
+          "description": "Name of the table where index is required",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "IssueCount": {
+      "description": "Count of issues for a group of signals.",
+      "id": "IssueCount",
+      "properties": {
+        "displayName": {
+          "description": "Title of a signal group corresponding to the request.",
+          "type": "string"
+        },
+        "issueCount": {
+          "description": "The count of the number of issues associated with those resources that are explicitly filtered in by the filters present in the request. A signal is an issue when its SignalStatus field is set to SIGNAL_STATUS_ISSUE.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "IssueGroupStats": {
+      "description": "IssueGroupStats refers to stats for a particulare combination of relevant health issues of database resources.",
+      "id": "IssueGroupStats",
+      "properties": {
+        "displayName": {
+          "description": "Database resource level health card name. This will corresponds to one of the requested input group names.",
+          "type": "string"
+        },
+        "healthyResourceGroupsCount": {
+          "description": "The number of resource groups from the total groups as defined above that are healthy with respect to all of the specified issues.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "healthyResourcesCount": {
+          "description": "The number of resources from the total defined above in field total_resources_count that are healthy with respect to all of the specified issues.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "issueStats": {
+          "description": "List of issues stats containing count of resources having particular issue category.",
+          "items": {
+            "$ref": "IssueStats"
+          },
+          "type": "array"
+        },
+        "resourceGroupsCount": {
+          "description": "Total count of the groups of resources returned by the filter that also have one or more resources for which any of the specified issues are applicable.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "resourcesCount": {
+          "description": "Total count of resources returned by the filter for which any of the specified issues are applicable.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "IssueStats": {
+      "description": "IssueStats holds stats for a particular signal category.",
+      "id": "IssueStats",
+      "properties": {
+        "deltaDetails": {
+          "$ref": "DeltaDetails",
+          "description": "Optional. Delta counts and details of resources for which issue was raised or fixed."
+        },
+        "issueSeverity": {
+          "description": "Severity of the issue.",
+          "enum": [
+            "ISSUE_SEVERITY_UNSPECIFIED",
+            "ISSUE_SEVERITY_LOW",
+            "ISSUE_SEVERITY_MEDIUM",
+            "ISSUE_SEVERITY_HIGH",
+            "ISSUE_SEVERITY_CRITICAL",
+            "ISSUE_SEVERITY_IRRELEVANT"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "Low severity.",
+            "Medium severity.",
+            "High severity.",
+            "Critical severity.",
+            "Irrelevant severity. This means the issue should not be surfaced at all."
+          ],
+          "type": "string"
+        },
+        "resourceCount": {
+          "description": "Number of resources having issues of a given type.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "signalType": {
+          "description": "Type of signal which is an issue.",
+          "enum": [
+            "SIGNAL_TYPE_UNSPECIFIED",
+            "SIGNAL_TYPE_RESOURCE_FAILOVER_PROTECTED",
+            "SIGNAL_TYPE_GROUP_MULTIREGIONAL",
+            "SIGNAL_TYPE_NO_AUTOMATED_BACKUP_POLICY",
+            "SIGNAL_TYPE_SHORT_BACKUP_RETENTION",
+            "SIGNAL_TYPE_LAST_BACKUP_FAILED",
+            "SIGNAL_TYPE_LAST_BACKUP_OLD",
+            "SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_2_0",
+            "SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_1_3",
+            "SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_1_2",
+            "SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_1_1",
+            "SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_1_0",
+            "SIGNAL_TYPE_VIOLATES_CIS_CONTROLS_V8_0",
+            "SIGNAL_TYPE_VIOLATES_NIST_800_53",
+            "SIGNAL_TYPE_VIOLATES_NIST_800_53_R5",
+            "SIGNAL_TYPE_VIOLATES_NIST_CYBERSECURITY_FRAMEWORK_V1_0",
+            "SIGNAL_TYPE_VIOLATES_ISO_27001",
+            "SIGNAL_TYPE_VIOLATES_ISO_27001_V2022",
+            "SIGNAL_TYPE_VIOLATES_PCI_DSS_V3_2_1",
+            "SIGNAL_TYPE_VIOLATES_PCI_DSS_V4_0",
+            "SIGNAL_TYPE_VIOLATES_CLOUD_CONTROLS_MATRIX_V4",
+            "SIGNAL_TYPE_VIOLATES_HIPAA",
+            "SIGNAL_TYPE_VIOLATES_SOC2_V2017",
+            "SIGNAL_TYPE_LOGS_NOT_OPTIMIZED_FOR_TROUBLESHOOTING",
+            "SIGNAL_TYPE_QUERY_DURATIONS_NOT_LOGGED",
+            "SIGNAL_TYPE_VERBOSE_ERROR_LOGGING",
+            "SIGNAL_TYPE_QUERY_LOCK_WAITS_NOT_LOGGED",
+            "SIGNAL_TYPE_LOGGING_MOST_ERRORS",
+            "SIGNAL_TYPE_LOGGING_ONLY_CRITICAL_ERRORS",
+            "SIGNAL_TYPE_MINIMAL_ERROR_LOGGING",
+            "SIGNAL_TYPE_QUERY_STATS_LOGGED",
+            "SIGNAL_TYPE_EXCESSIVE_LOGGING_OF_CLIENT_HOSTNAME",
+            "SIGNAL_TYPE_EXCESSIVE_LOGGING_OF_PARSER_STATS",
+            "SIGNAL_TYPE_EXCESSIVE_LOGGING_OF_PLANNER_STATS",
+            "SIGNAL_TYPE_NOT_LOGGING_ONLY_DDL_STATEMENTS",
+            "SIGNAL_TYPE_LOGGING_QUERY_STATS",
+            "SIGNAL_TYPE_NOT_LOGGING_TEMPORARY_FILES",
+            "SIGNAL_TYPE_CONNECTION_MAX_NOT_CONFIGURED",
+            "SIGNAL_TYPE_USER_OPTIONS_CONFIGURED",
+            "SIGNAL_TYPE_EXPOSED_TO_PUBLIC_ACCESS",
+            "SIGNAL_TYPE_UNENCRYPTED_CONNECTIONS",
+            "SIGNAL_TYPE_NO_ROOT_PASSWORD",
+            "SIGNAL_TYPE_WEAK_ROOT_PASSWORD",
+            "SIGNAL_TYPE_ENCRYPTION_KEY_NOT_CUSTOMER_MANAGED",
+            "SIGNAL_TYPE_SERVER_AUTHENTICATION_NOT_REQUIRED",
+            "SIGNAL_TYPE_EXPOSED_TO_EXTERNAL_SCRIPTS",
+            "SIGNAL_TYPE_EXPOSED_TO_LOCAL_DATA_LOADS",
+            "SIGNAL_TYPE_CONNECTION_ATTEMPTS_NOT_LOGGED",
+            "SIGNAL_TYPE_DISCONNECTIONS_NOT_LOGGED",
+            "SIGNAL_TYPE_LOGGING_EXCESSIVE_STATEMENT_INFO",
+            "SIGNAL_TYPE_EXPOSED_TO_REMOTE_ACCESS",
+            "SIGNAL_TYPE_DATABASE_NAMES_EXPOSED",
+            "SIGNAL_TYPE_SENSITIVE_TRACE_INFO_NOT_MASKED",
+            "SIGNAL_TYPE_PUBLIC_IP_ENABLED",
+            "SIGNAL_TYPE_IDLE",
+            "SIGNAL_TYPE_OVERPROVISIONED",
+            "SIGNAL_TYPE_HIGH_NUMBER_OF_OPEN_TABLES",
+            "SIGNAL_TYPE_HIGH_NUMBER_OF_TABLES",
+            "SIGNAL_TYPE_HIGH_TRANSACTION_ID_UTILIZATION",
+            "SIGNAL_TYPE_UNDERPROVISIONED",
+            "SIGNAL_TYPE_OUT_OF_DISK",
+            "SIGNAL_TYPE_SERVER_CERTIFICATE_NEAR_EXPIRY",
+            "SIGNAL_TYPE_DATABASE_AUDITING_DISABLED",
+            "SIGNAL_TYPE_RESTRICT_AUTHORIZED_NETWORKS",
+            "SIGNAL_TYPE_VIOLATE_POLICY_RESTRICT_PUBLIC_IP",
+            "SIGNAL_TYPE_QUOTA_LIMIT",
+            "SIGNAL_TYPE_NO_PASSWORD_POLICY",
+            "SIGNAL_TYPE_CONNECTIONS_PERFORMANCE_IMPACT",
+            "SIGNAL_TYPE_TMP_TABLES_PERFORMANCE_IMPACT",
+            "SIGNAL_TYPE_TRANS_LOGS_PERFORMANCE_IMPACT",
+            "SIGNAL_TYPE_HIGH_JOINS_WITHOUT_INDEXES",
+            "SIGNAL_TYPE_SUPERUSER_WRITING_TO_USER_TABLES",
+            "SIGNAL_TYPE_USER_GRANTED_ALL_PERMISSIONS",
+            "SIGNAL_TYPE_DATA_EXPORT_TO_EXTERNAL_CLOUD_STORAGE_BUCKET",
+            "SIGNAL_TYPE_DATA_EXPORT_TO_PUBLIC_CLOUD_STORAGE_BUCKET",
+            "SIGNAL_TYPE_WEAK_PASSWORD_HASH_ALGORITHM",
+            "SIGNAL_TYPE_NO_USER_PASSWORD_POLICY",
+            "SIGNAL_TYPE_HOT_NODE",
+            "SIGNAL_TYPE_NO_DELETION_PROTECTION",
+            "SIGNAL_TYPE_NO_POINT_IN_TIME_RECOVERY",
+            "SIGNAL_TYPE_RESOURCE_SUSPENDED",
+            "SIGNAL_TYPE_EXPENSIVE_COMMANDS",
+            "SIGNAL_TYPE_NO_MAINTENANCE_POLICY_CONFIGURED",
+            "SIGNAL_TYPE_INEFFICIENT_QUERY",
+            "SIGNAL_TYPE_READ_INTENSIVE_WORKLOAD",
+            "SIGNAL_TYPE_MEMORY_LIMIT",
+            "SIGNAL_TYPE_MAX_SERVER_MEMORY",
+            "SIGNAL_TYPE_LARGE_ROWS",
+            "SIGNAL_TYPE_HIGH_WRITE_PRESSURE",
+            "SIGNAL_TYPE_HIGH_READ_PRESSURE",
+            "SIGNAL_TYPE_ENCRYPTION_ORG_POLICY_NOT_SATISFIED",
+            "SIGNAL_TYPE_LOCATION_ORG_POLICY_NOT_SATISFIED",
+            "SIGNAL_TYPE_OUTDATED_MINOR_VERSION",
+            "SIGNAL_TYPE_SCHEMA_NOT_OPTIMIZED",
+            "SIGNAL_TYPE_REPLICATION_LAG",
+            "SIGNAL_TYPE_OUTDATED_CLIENT",
+            "SIGNAL_TYPE_DATABOOST_DISABLED",
+            "SIGNAL_TYPE_RECOMMENDED_MAINTENANCE_POLICIES",
+            "SIGNAL_TYPE_EXTENDED_SUPPORT",
+            "SIGNAL_TYPE_VERSION_NEARING_END_OF_LIFE",
+            "SIGNAL_TYPE_HIGH_MAINTENANCE_DOWNTIME_RISK",
+            "SIGNAL_TYPE_LOW_CACHE_HIT_AND_MAINTENANCE_DOWNTIME",
+            "SIGNAL_TYPE_MISSING_ENHANCED_PROTECTION"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "Represents if a resource is protected by automatic failover. Checks for resources that are configured to have redundancy within a region that enables automatic failover.",
+            "Represents if a group is replicating across regions. Checks for resources that are configured to have redundancy, and ongoing replication, across regions.",
+            "Represents if a resource has an automated backup policy.",
+            "Represents if a resources has a short backup retention period.",
+            "Represents if the last backup of a resource failed.",
+            "Represents if the last backup of a resource is older than some threshold value.",
+            "Represents if a resource violates CIS Google Cloud Platform Foundation 2.0.",
+            "Represents if a resource violates CIS Google Cloud Platform Foundation 1.3.",
+            "Represents if a resource violates CIS Google Cloud Platform Foundation 1.2.",
+            "Represents if a resource violates CIS Google Cloud Platform Foundation 1.1.",
+            "Represents if a resource violates CIS Google Cloud Platform Foundation 1.0.",
+            "Represents if a resource violates CIS Controls 8.0.",
+            "Represents if a resource violates NIST 800-53.",
+            "Represents if a resource violates NIST 800-53 R5.",
+            "Represents if a resource violates NIST Cybersecurity Framework 1.0.",
+            "Represents if a resource violates ISO-27001.",
+            "Represents if a resource violates ISO 27001 2022.",
+            "Represents if a resource violates PCI-DSS v3.2.1.",
+            "Represents if a resource violates PCI-DSS v4.0.",
+            "Represents if a resource violates Cloud Controls Matrix v4.0.",
+            "Represents if a resource violates HIPAA.",
+            "Represents if a resource violates SOC2 v2017.",
+            "Represents if log_checkpoints database flag for a Cloud SQL for PostgreSQL instance is not set to on.",
+            "Represents if the log_duration database flag for a Cloud SQL for PostgreSQL instance is not set to on.",
+            "Represents if the log_error_verbosity database flag for a Cloud SQL for PostgreSQL instance is not set to default or stricter (default or terse).",
+            "Represents if the log_lock_waits database flag for a Cloud SQL for PostgreSQL instance is not set to on.",
+            "Represents if the log_min_error_statement database flag for a Cloud SQL for PostgreSQL instance is not set appropriately.",
+            "Represents if the log_min_error_statement database flag for a Cloud SQL for PostgreSQL instance does not have an appropriate severity level.",
+            "Represents if the log_min_messages database flag for a Cloud SQL for PostgreSQL instance is not set to warning or another recommended value.",
+            "Represents if the databaseFlags property of instance metadata for the log_executor_status field is set to on.",
+            "Represents if the log_hostname database flag for a Cloud SQL for PostgreSQL instance is not set to off.",
+            "Represents if the log_parser_stats database flag for a Cloud SQL for PostgreSQL instance is not set to off.",
+            "Represents if the log_planner_stats database flag for a Cloud SQL for PostgreSQL instance is not set to off.",
+            "Represents if the log_statement database flag for a Cloud SQL for PostgreSQL instance is not set to DDL (all data definition statements).",
+            "Represents if the log_statement_stats database flag for a Cloud SQL for PostgreSQL instance is not set to off.",
+            "Represents if the log_temp_files database flag for a Cloud SQL for PostgreSQL instance is not set to \"0\". (NOTE: 0 = ON)",
+            "Represents if the user connections database flag for a Cloud SQL for SQL Server instance is configured.",
+            "Represents if the user options database flag for Cloud SQL SQL Server instance is configured or not.",
+            "Represents if a resource is exposed to public access.",
+            "Represents if a resources requires all incoming connections to use SSL or not.",
+            "Represents if a Cloud SQL database has a password configured for the root account or not.",
+            "Represents if a Cloud SQL database has a weak password configured for the root account.",
+            "Represents if a SQL database instance is not encrypted with customer-managed encryption keys (CMEK).",
+            "Represents if The contained database authentication database flag for a Cloud SQL for SQL Server instance is not set to off.",
+            "Represents if he external scripts enabled database flag for a Cloud SQL for SQL Server instance is not set to off.",
+            "Represents if the local_infile database flag for a Cloud SQL for MySQL instance is not set to off.",
+            "Represents if the log_connections database flag for a Cloud SQL for PostgreSQL instance is not set to on.",
+            "Represents if the log_disconnections database flag for a Cloud SQL for PostgreSQL instance is not set to on.",
+            "Represents if the log_min_duration_statement database flag for a Cloud SQL for PostgreSQL instance is not set to -1.",
+            "Represents if the remote access database flag for a Cloud SQL for SQL Server instance is not set to off.",
+            "Represents if the skip_show_database database flag for a Cloud SQL for MySQL instance is not set to on.",
+            "Represents if the 3625 (trace flag) database flag for a Cloud SQL for SQL Server instance is not set to on.",
+            "Represents if public IP is enabled.",
+            "Represents idle instance helps to reduce costs.",
+            "Represents instances that are unnecessarily large for given workload.",
+            "Represents high number of concurrently opened tables.",
+            "Represents high table count close to SLA limit.",
+            "Represents high number of unvacuumed transactions",
+            "Represents need for more CPU and/or memory",
+            "Represents out of disk.",
+            "Represents server certificate is near expiry.",
+            "Represents database auditing is disabled.",
+            "Represents not restricted to authorized networks.",
+            "Represents violate org policy restrict public ip.",
+            "Cluster nearing quota limit",
+            "No password policy set on resources",
+            "Performance impact of connections settings",
+            "Performance impact of temporary tables settings",
+            "Performance impact of transaction logs settings",
+            "Performance impact of high joins without indexes",
+            "Detects events where a database superuser (postgres for PostgreSQL servers or root for MySQL users) writes to non-system tables.",
+            "Detects events where a database user or role has been granted all privileges to a database, or to all tables, procedures, or functions in a schema.",
+            "Detects if database instance data exported to a Cloud Storage bucket outside of the organization.",
+            "Detects if database instance data exported to a Cloud Storage bucket that is owned by the organization and is publicly accessible.",
+            "Detects if a database instance is using a weak password hash algorithm.",
+            "Detects if a database instance has no user password policy set.",
+            "Detects if a database instance/cluster has a hot node.",
+            "Deletion Protection Disabled for the resource",
+            "Detects if a database instance has no point in time recovery enabled.",
+            "Detects if a database instance/cluster has suspended resources.",
+            "Detects that expensive commands are being run on a database instance impacting overall performance.",
+            "Indicates that the instance does not have a maintenance policy configured.",
+            "Indicates that the instance has inefficient queries detected.",
+            "Indicates that the instance has read intensive workload.",
+            "Indicates that the instance is nearing memory limit.",
+            "Indicates that the instance's max server memory is configured higher than the recommended value.",
+            "Indicates that the database has large rows beyond the recommended limit.",
+            "Heavy write pressure on the database rows.",
+            "Heavy read pressure on the database rows.",
+            "Encryption org policy not satisfied.",
+            "Location org policy not satisfied.",
+            "Outdated DB minor version.",
+            "Schema not optimized.",
+            "Replication delay.",
+            "Outdated client.",
+            "Databoost is disabled.",
+            "Recommended maintenance policy.",
+            "Resource version is in extended support.",
+            "Represents a database version nearing end of life.",
+            "Indicates a high risk of maintenance downtime.",
+            "Indicates both a low cache hit rate and a risk of maintenance downtime.",
+            "Indicates that the resource is missing enhanced protection."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Label": {
+      "description": "Label is a key value pair applied to a resource.",
+      "id": "Label",
+      "properties": {
+        "key": {
+          "description": "The key part of the label.",
+          "type": "string"
+        },
+        "source": {
+          "description": "The source of the Label. Source is empty if the label is directly attached to the resource and not inherited.",
+          "type": "string"
+        },
+        "value": {
+          "description": "The value part of the label.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Lineage": {
+      "description": "lineage information of the affiliated resources This captures source, target and process which created the lineage.",
+      "id": "Lineage",
+      "properties": {
+        "processFqn": {
+          "description": "Optional. FQN of process which created the lineage i.e. dataplex, datastream etc.",
+          "type": "string"
+        },
+        "processType": {
+          "description": "Optional. Type of process which created the lineage.",
+          "enum": [
+            "PROCESS_TYPE_UNSPECIFIED",
+            "COMPOSER",
+            "DATASTREAM",
+            "DATAFLOW",
+            "BIGQUERY",
+            "DATA_FUSION",
+            "DATAPROC"
+          ],
+          "enumDescriptions": [
+            "Unspecified process type.",
+            "Composer process type.",
+            "Datastream process type.",
+            "Dataflow process type.",
+            "Bigquery process type.",
+            "Data fusion process type.",
+            "Dataproc process type."
+          ],
+          "type": "string"
+        },
+        "sourceFqn": {
+          "description": "Optional. FQN of source table / column",
+          "type": "string"
+        },
+        "targetFqn": {
+          "description": "Optional. FQN of target table / column",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MachineConfig": {
+      "description": "MachineConfig describes the configuration of a machine specific to a Database Resource.",
+      "id": "MachineConfig",
+      "properties": {
+        "baselineSlotCount": {
+          "description": "Optional. Baseline slots for BigQuery Reservations. Baseline slots are in increments of 50.",
+          "format": "int64",
+          "type": "string"
+        },
+        "maxReservationSlotCount": {
+          "description": "Optional. Max slots for BigQuery Reservations. Max slots are in increments of 50.",
+          "format": "int64",
+          "type": "string"
+        },
+        "memorySizeBytes": {
+          "description": "Memory size in bytes.",
+          "format": "int64",
+          "type": "string"
+        },
+        "shardCount": {
+          "description": "Optional. The number of Shards (if applicable).",
+          "format": "int32",
+          "type": "integer"
+        },
+        "vcpuCount": {
+          "description": "Optional. The number of vCPUs (if applicable).",
+          "format": "double",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "MaintenanceInfo": {
+      "description": "MaintenanceInfo to capture the maintenance details of database resource.",
+      "id": "MaintenanceInfo",
+      "properties": {
+        "currentVersionReleaseDate": {
+          "$ref": "Date",
+          "description": "Output only. The date when the maintenance version was released.",
+          "readOnly": true
+        },
+        "denyMaintenanceSchedules": {
+          "description": "Optional. List of Deny maintenance period for the database resource.",
+          "items": {
+            "$ref": "ResourceMaintenanceDenySchedule"
+          },
+          "type": "array"
+        },
+        "maintenanceSchedule": {
+          "$ref": "ResourceMaintenanceSchedule",
+          "description": "Optional. Maintenance window for the database resource."
+        },
+        "maintenanceVersion": {
+          "description": "Output only. Current Maintenance version of the database resource. Example: \"MYSQL_8_0_41.R20250531.01_15\"",
+          "readOnly": true,
+          "type": "string"
+        },
+        "possibleFailureReasons": {
+          "description": "Output only. List of possible reasons why the maintenance is not completed. This is an optional field and is only populated if there are any reasons for failures recorded for the maintenance by DB Center. FAILURE maintenance status may not always have a failure reason.",
+          "items": {
+            "enum": [
+              "POSSIBLE_FAILURE_REASON_UNSPECIFIED",
+              "POSSIBLE_FAILURE_REASON_DENY_POLICY_CONFLICT",
+              "POSSIBLE_FAILURE_REASON_INSTANCE_IN_STOPPED_STATE"
+            ],
+            "enumDescriptions": [
+              "Failure reason is unspecified.",
+              "Maintenance may not be completed because there is a deny policy overlapping with upcoming maintenance schedule.",
+              "Maintenance may not be completed because the instance is stopped."
+            ],
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "previousMaintenanceVersion": {
+          "description": "Output only. Previous maintenance version of the database resource. Example: \"MYSQL_8_0_41.R20250531.01_15\". This is available once a minor version maintenance is complete on a database resource.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. Resource maintenance state. This is to capture the current state of the maintenance.",
+          "enum": [
+            "MAINTENANCE_STATE_UNSPECIFIED",
+            "MAINTENANCE_STATE_SCHEDULED",
+            "MAINTENANCE_STATE_IN_PROGRESS",
+            "MAINTENANCE_STATE_COMPLETED",
+            "MAINTENANCE_STATE_FAILED"
+          ],
+          "enumDescriptions": [
+            "Status is unspecified.",
+            "Maintenance is scheduled.",
+            "Maintenance is in progress.",
+            "Maintenance is completed.",
+            "Maintenance has failed."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "upcomingMaintenance": {
+          "$ref": "UpcomingMaintenance",
+          "description": "Output only. Upcoming maintenance window for the database resource. This is only populated for an engine, if upcoming maintenance is scheduled for the resource. This schedule is generated per engine and engine version, and there is only one upcoming maintenance window at any given time. In case of upcoming maintenance, the maintenance_state will be set to SCHEDULED first, and then IN_PROGRESS when the maintenance window starts.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "MaintenanceRecommendationInfo": {
+      "description": "Info associated with maintenance recommendation.",
+      "id": "MaintenanceRecommendationInfo",
+      "properties": {
+        "resourceMaintenanceSchedules": {
+          "description": "Optional. List of recommended maintenance schedules for the database resource.",
+          "items": {
+            "$ref": "ResourceMaintenanceSchedule"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "MetricData": {
+      "description": "MetricData represents the metric data for a database resource.",
+      "id": "MetricData",
+      "properties": {
+        "observationTime": {
+          "description": "The time the metric was observed in the metric source service.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "value": {
+          "$ref": "TypedValue",
+          "description": "The value associated with the metric."
+        }
+      },
+      "type": "object"
+    },
+    "Metrics": {
+      "description": "Metrics represents the metrics for a database resource.",
+      "id": "Metrics",
+      "properties": {
+        "currentMemoryUsedBytes": {
+          "$ref": "MetricData",
+          "description": "Current memory used by the resource in bytes."
+        },
+        "currentStorageUsedBytes": {
+          "$ref": "MetricData",
+          "description": "Current storage used by the resource in bytes."
+        },
+        "nodeCount": {
+          "$ref": "MetricData",
+          "description": "Number of nodes in instance for spanner or bigtable."
+        },
+        "p95CpuUtilization": {
+          "$ref": "MetricData",
+          "description": "P95 CPU utilization observed for the resource. The value is a fraction between 0.0 and 1.0 (may momentarily exceed 1.0 in some cases)."
+        },
+        "p99CpuUtilization": {
+          "$ref": "MetricData",
+          "description": "P99 CPU utilization observed for the resource. The value is a fraction between 0.0 and 1.0 (may momentarily exceed 1.0 in some cases)."
+        },
+        "peakMemoryUtilization": {
+          "$ref": "MetricData",
+          "description": "Peak memory utilization observed for the resource. The value is a fraction between 0.0 and 1.0 (may momentarily exceed 1.0 in some cases)."
+        },
+        "peakNumberConnections": {
+          "$ref": "MetricData",
+          "description": "Peak number of connections observed for the resource. The value is a positive integer."
+        },
+        "peakStorageUtilization": {
+          "$ref": "MetricData",
+          "description": "Peak storage utilization observed for the resource. The value is a fraction between 0.0 and 1.0 (may momentarily exceed 1.0 in some cases)."
+        },
+        "processingUnitCount": {
+          "$ref": "MetricData",
+          "description": "Number of processing units in spanner."
+        }
+      },
+      "type": "object"
+    },
+    "OutdatedMinorVersionInfo": {
+      "description": "Info associated with outdated minor version.",
+      "id": "OutdatedMinorVersionInfo",
+      "properties": {
+        "recommendedMinorVersion": {
+          "description": "Recommended minor version of the underlying database engine. Example values: For MySQL, it could be \"8.0.35\", \"5.7.25\" etc. For PostgreSQL, it could be \"14.4\", \"15.5\" etc.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Product": {
+      "description": "Product specification for databasecenter resources.",
+      "id": "Product",
+      "properties": {
+        "engine": {
+          "description": "Optional. The specific engine that the underlying database is running.",
+          "enum": [
+            "ENGINE_UNSPECIFIED",
+            "ENGINE_MYSQL",
+            "ENGINE_POSTGRES",
+            "ENGINE_SQL_SERVER",
+            "ENGINE_NATIVE",
+            "ENGINE_MEMORYSTORE_FOR_REDIS",
+            "ENGINE_MEMORYSTORE_FOR_REDIS_CLUSTER",
+            "ENGINE_MEMORSTORE_FOR_VALKEY",
+            "ENGINE_MEMORYSTORE_FOR_VALKEY",
+            "ENGINE_FIRESTORE_WITH_NATIVE_MODE",
+            "ENGINE_FIRESTORE_WITH_DATASTORE_MODE",
+            "ENGINE_EXADATA_ORACLE",
+            "ENGINE_ADB_SERVERLESS_ORACLE",
+            "ENGINE_FIRESTORE_WITH_MONGODB_COMPATIBILITY_MODE",
+            "ENGINE_OTHER"
+          ],
+          "enumDeprecated": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "enumDescriptions": [
+            "UNSPECIFIED means engine type is not known or available.",
+            "MySQL binary running as an engine in the database instance.",
+            "Postgres binary running as engine in database instance.",
+            "SQLServer binary running as engine in database instance.",
+            "Native database binary running as engine in instance.",
+            "Memorystore with Redis dialect.",
+            "Memorystore with Redis cluster dialect.",
+            "Deprecated: Use ENGINE_MEMORYSTORE_FOR_VALKEY instead.",
+            "Memorystore with Valkey dialect.",
+            "Firestore with native mode.",
+            "Firestore with datastore mode.",
+            "Oracle Exadata engine.",
+            "Oracle Autonomous DB Serverless engine.",
+            "Firestore with MongoDB compatibility.",
+            "Other refers to rest of other database engine. This is to be when engine is known, but it is not present in this enum."
+          ],
+          "type": "string"
+        },
+        "minorVersion": {
+          "description": "Optional. Minor version of the underlying database engine. Example values: For MySQL, it could be \"8.0.35\", \"5.7.25\" etc. For PostgreSQL, it could be \"14.4\", \"15.5\" etc.",
+          "type": "string"
+        },
+        "type": {
+          "description": "Optional. Type of specific database product. It could be CloudSQL, AlloyDB etc..",
+          "enum": [
+            "PRODUCT_TYPE_UNSPECIFIED",
+            "PRODUCT_TYPE_CLOUD_SQL",
+            "PRODUCT_TYPE_ALLOYDB",
+            "PRODUCT_TYPE_SPANNER",
+            "PRODUCT_TYPE_BIGTABLE",
+            "PRODUCT_TYPE_MEMORYSTORE",
+            "PRODUCT_TYPE_FIRESTORE",
+            "PRODUCT_TYPE_COMPUTE_ENGINE",
+            "PRODUCT_TYPE_ORACLE_ON_GCP",
+            "PRODUCT_TYPE_BIGQUERY",
+            "PRODUCT_TYPE_OTHER"
+          ],
+          "enumDescriptions": [
+            "PRODUCT_TYPE_UNSPECIFIED means product type is not known or that the user didn't provide this field in the request.",
+            "Cloud SQL product area in Google Cloud",
+            "AlloyDB product area in Google Cloud",
+            "Spanner product area in Google Cloud",
+            "Bigtable product area in Google Cloud",
+            "Memorystore product area in Google Cloud",
+            "Firestore product area in Google Cloud",
+            "Compute Engine self managed databases",
+            "Oracle product area in Google Cloud",
+            "BigQuery product area in Google Cloud",
+            "Other refers to rest of other product type. This is to be when product type is known, but it is not present in this enum."
+          ],
+          "type": "string"
+        },
+        "version": {
+          "description": "Optional. Version of the underlying database engine. Example values: For MySQL, it could be \"8.0\", \"5.7\" etc. For Postgres, it could be \"14\", \"15\" etc.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "QueryDatabaseResourceGroupsRequest": {
+      "description": "QueryDatabaseResourceGroupsRequest is the request to get a list of database groups.",
+      "id": "QueryDatabaseResourceGroupsRequest",
+      "properties": {
+        "filter": {
+          "description": "Optional. The expression to filter resources. The following fields are filterable: * full_resource_name * resource_type * container * product.type * product.engine * product.version * location * labels * resource_category * machine_config.cpu_count * machine_config.memory_size_bytes * machine_config.shard_count * resource_name * tags * backupdr_config.backupdr_managed * edition The expression is a list of zero or more restrictions combined via logical operators `AND` and `OR`. When `AND` and `OR` are both used in the expression, parentheses must be appropriately used to group the combinations. Example: `location=\"us-east1\"` Example: `container=\"projects/123\" OR container=\"projects/456\"` Example: `(container=\"projects/123\" OR container=\"projects/456\") AND location=\"us-east1\"` Example: `full_resource_name=~\"test\"` Example: `full_resource_name=~\"test.*master\"`",
+          "type": "string"
+        },
+        "orderBy": {
+          "description": "Optional. A field that specifies the sort order of the results. The following fields are sortable: * full_resource_name * product.type * product.engine * product.version * container * issue_count * machine_config.vcpu_count * machine_config.memory_size_bytes * machine_config.shard_count * resource_name * issue_severity * signal_type * location * resource_type * instance_type * edition * metrics.p99_cpu_utilization * metrics.p95_cpu_utilization * metrics.current_storage_used_bytes * metrics.node_count * metrics.processing_unit_count * metrics.current_memory_used_bytes * metrics.peak_storage_utilization * metrics.peak_number_connections * metrics.peak_memory_utilization The default order is ascending. Add \"DESC\" after the field name to indicate descending order. Add \"ASC\" after the field name to indicate ascending order. It only supports a single field at a time. For example: `order_by = \"full_resource_name\"` sorts response in ascending order `order_by = \"full_resource_name DESC\"` sorts response in descending order `order_by = \"issue_count DESC\"` sorts response in descending order of count of all issues associated with a resource. More explicitly, `order_by = \"full_resource_name, product\"` is not supported.",
+          "type": "string"
+        },
+        "pageSize": {
+          "description": "Optional. If unspecified, at most 50 resource groups will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "pageToken": {
+          "description": "Optional. A page token, received from a previous `QueryDatabaseResourceGroupsRequest` call. Provide this to retrieve the subsequent page. All parameters except page_token should match the parameters in the call that provided the page page token.",
+          "type": "string"
+        },
+        "parent": {
+          "description": "Required. Parent can be a project, a folder, or an organization. The search is limited to the resources within the `scope`. The allowed values are: * projects/{PROJECT_ID} (e.g., \"projects/foo-bar\") * projects/{PROJECT_NUMBER} (e.g., \"projects/12345678\") * folders/{FOLDER_NUMBER} (e.g., \"folders/1234567\") * organizations/{ORGANIZATION_NUMBER} (e.g., \"organizations/123456\")",
+          "type": "string"
+        },
+        "signalFilters": {
+          "description": "Optional. Filters based on signals. The list will be ORed together and then ANDed with the `filters` field above.",
+          "items": {
+            "$ref": "SignalFilter"
+          },
+          "type": "array"
+        },
+        "signalProductsFilters": {
+          "description": "Optional. Filters based on signal and product. The filter list will be ORed across pairs and ANDed within a signal and products pair.",
+          "items": {
+            "$ref": "SignalProductsFilters"
+          },
+          "type": "array"
+        },
+        "signalTypeGroups": {
+          "description": "Optional. Groups of signal types that are requested.",
+          "items": {
+            "$ref": "SignalTypeGroup"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "QueryDatabaseResourceGroupsResponse": {
+      "description": "QueryDatabaseResourceGroupsResponse represents the response message containing a list of resource groups.",
+      "id": "QueryDatabaseResourceGroupsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token that can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "resourceGroups": {
+          "description": "List of database resource groups that pass the filter.",
+          "items": {
+            "$ref": "DatabaseResourceGroup"
+          },
+          "type": "array"
+        },
+        "totalSize": {
+          "description": "Output only. The total number of resource groups in the entire list.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "unreachable": {
+          "description": "Unordered list. List of unreachable regions from where data could not be retrieved.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "QueryIssuesRequest": {
+      "description": "QueryIssuesRequest is the request to get a list of issues.",
+      "id": "QueryIssuesRequest",
+      "properties": {
+        "filter": {
+          "description": "Optional. Supported fields are: 'product', `location`, `issue_severity`, 'tags', 'labels',",
+          "type": "string"
+        },
+        "orderBy": {
+          "description": "Optional. Following fields are sortable: SignalType Product Location IssueSeverity The default order is ascending. Add \"DESC\" after the field name to indicate descending order. Add \"ASC\" after the field name to indicate ascending order. It only supports a single field at a time.",
+          "type": "string"
+        },
+        "pageSize": {
+          "description": "Optional. If unspecified, at most 50 issues will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "pageToken": {
+          "description": "Optional. A page token, received from a previous `QueryIssues` call. Provide this to retrieve the subsequent page. All parameters except page size should match the parameters used in the call that provided the page token.",
+          "type": "string"
+        },
+        "parent": {
+          "description": "Required. Parent can be a project, a folder, or an organization. The list is limited to the one attached to resources within the `scope` that a user has access to. The allowed values are: * projects/{PROJECT_ID} (e.g., \"projects/foo-bar\") * projects/{PROJECT_NUMBER} (e.g., \"projects/12345678\") * folders/{FOLDER_NUMBER} (e.g., \"folders/1234567\") * organizations/{ORGANIZATION_NUMBER} (e.g., \"organizations/123456\")",
+          "type": "string"
+        },
+        "signalProductsFilters": {
+          "description": "Optional. Filters based on signal and product. The filter list will be ORed across pairs and ANDed within a signal and products pair.",
+          "items": {
+            "$ref": "SignalProductsFilters"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "QueryIssuesResponse": {
+      "description": "QueryIssuesResponse is the response containing a list of issues.",
+      "id": "QueryIssuesResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token that can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "resourceIssues": {
+          "description": "List of issues and resource details.",
+          "items": {
+            "$ref": "DatabaseResourceIssue"
+          },
+          "type": "array"
+        },
+        "unreachable": {
+          "description": "Unordered list. List of unreachable regions from where data could not be retrieved.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "QueryMetrics": {
+      "description": "QueryMetrics contains the metrics related to the query execution.",
+      "id": "QueryMetrics",
+      "properties": {
+        "avgCpuTime": {
+          "description": "The average execution period of the query across all runs.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "executionCount": {
+          "description": "The number of times the query was executed.",
+          "format": "int64",
+          "type": "string"
+        },
+        "metricsWindow": {
+          "description": "The window over which the metrics are aggregated.",
+          "enum": [
+            "METRICS_WINDOW_UNSPECIFIED",
+            "LAST_ONE_DAY",
+            "LAST_ONE_WEEK",
+            "LAST_TWO_WEEKS"
+          ],
+          "enumDescriptions": [
+            "Unspecified. Default value.",
+            "Metrics are aggregated over the last 1 day.",
+            "Metrics are aggregated over the last 7 days.",
+            "Metrics are aggregated over the last 14 days."
+          ],
+          "type": "string"
+        },
+        "rowsProcessed": {
+          "description": "The average number of rows processed by the query across all runs.",
+          "format": "int64",
+          "type": "string"
+        },
+        "totalCpuTime": {
+          "description": "The total CPU time consumed by the query across all runs.",
+          "format": "google-duration",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "QueryProductsResponse": {
+      "description": "QueryProductsResponse represents the response containing a list of products.",
+      "id": "QueryProductsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token that can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages",
+          "type": "string"
+        },
+        "products": {
+          "description": "List of database products returned.",
+          "items": {
+            "$ref": "Product"
+          },
+          "type": "array"
+        },
+        "unreachable": {
+          "description": "Unordered list. List of unreachable regions from where data could not be retrieved.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "QueryStats": {
+      "description": "QueryStats contains the stats for a particular combination of query_hash, query_string and resource_type.",
+      "id": "QueryStats",
+      "properties": {
+        "inefficientQueryInfo": {
+          "$ref": "InefficientQueryInfo",
+          "description": "Information about inefficient query."
+        },
+        "normalizedQuery": {
+          "description": "The query string is normalized query without any PII data.",
+          "type": "string"
+        },
+        "queryHash": {
+          "description": "The query hash of the query.",
+          "type": "string"
+        },
+        "queryMetrics": {
+          "$ref": "QueryMetrics",
+          "description": "Metrics related to the query performance."
+        },
+        "resourceIds": {
+          "description": "The resource ids for which the query stats are collected.",
+          "items": {
+            "$ref": "ResourceId"
+          },
+          "type": "array"
+        },
+        "resourceType": {
+          "description": "The type of the resource. sqladmin.googleapis.com/Instance alloydb.googleapis.com/Cluster alloydb.googleapis.com/Instance",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "QueryStatsInfo": {
+      "description": "QueryStatsInfo contains the aggregated and detailed query stats for a particular combination of relevant query stats for queries having same normalized query.",
+      "id": "QueryStatsInfo",
+      "properties": {
+        "aggregatedQueryStats": {
+          "$ref": "QueryStats",
+          "description": "Aggregated query stats for the resources for same normalized query."
+        },
+        "queryStats": {
+          "description": "List of query stats for the resources in the group. This stats is stats at resource level for the resources having same normalized query.",
+          "items": {
+            "$ref": "QueryStats"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "RecommendationInfo": {
+      "description": "Info associated with recommendation.",
+      "id": "RecommendationInfo",
+      "properties": {
+        "recommender": {
+          "description": "Name of recommendation. Examples: organizations/1234/locations/us-central1/recommenders/google.cloudsql.instance.PerformanceRecommender/recommendations/9876",
+          "type": "string"
+        },
+        "recommenderId": {
+          "description": "ID of recommender. Examples: \"google.cloudsql.instance.PerformanceRecommender\"",
+          "type": "string"
+        },
+        "recommenderSubtype": {
+          "description": "Contains an identifier for a subtype of recommendations produced for the same recommender. Subtype is a function of content and impact, meaning a new subtype might be added when significant changes to `content` or `primary_impact.category` are introduced. See the Recommenders section to see a list of subtypes for a given Recommender. Examples: For recommender = \"google.cloudsql.instance.PerformanceRecommender\", recommender_subtype can be \"MYSQL_HIGH_NUMBER_OF_OPEN_TABLES_BEST_PRACTICE\"/\"POSTGRES_HIGH_TRANSACTION_ID_UTILIZATION_BEST_PRACTICE\"",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RegulatoryStandard": {
+      "description": "Compliances associated with signals.",
+      "id": "RegulatoryStandard",
+      "properties": {
+        "standard": {
+          "description": "Name of industry compliance standards, such as such as CIS, PCI, and OWASP.",
+          "type": "string"
+        },
+        "version": {
+          "description": "Version of the standard or benchmark, for example, 1.1.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ResourceDetails": {
+      "description": "Capture the resource details for resources that are included in the delta counts.",
+      "id": "ResourceDetails",
+      "properties": {
+        "container": {
+          "description": "Specifies where the resource is created. For Google Cloud resources, it is the full name of the project.",
+          "type": "string"
+        },
+        "fullResourceName": {
+          "description": "Full resource name of the resource.",
+          "type": "string"
+        },
+        "location": {
+          "description": "Location of the resource.",
+          "type": "string"
+        },
+        "product": {
+          "$ref": "Product",
+          "description": "Product type of the resource."
+        }
+      },
+      "type": "object"
+    },
+    "ResourceId": {
+      "description": "ResourceId contains the identifier for a database resource, including the full resource name, resource type, and product.",
+      "id": "ResourceId",
+      "properties": {
+        "fullResourceName": {
+          "description": "The full resource name of the resource.",
+          "type": "string"
+        },
+        "product": {
+          "$ref": "Product",
+          "description": "The product of the resource, including the type, engine, and version."
+        },
+        "resourceType": {
+          "description": "The type of the resource. sqladmin.googleapis.com/Instance alloydb.googleapis.com/Cluster alloydb.googleapis.com/Instance",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ResourceMaintenanceDenySchedule": {
+      "description": "Deny maintenance period for the database resource. It specifies the time range during which the maintenance cannot start. This is configured by the customer.",
+      "id": "ResourceMaintenanceDenySchedule",
+      "properties": {
+        "endDate": {
+          "$ref": "Date",
+          "description": "Optional. Deny period end date."
+        },
+        "startDate": {
+          "$ref": "Date",
+          "description": "Optional. The start date of the deny maintenance period."
+        },
+        "time": {
+          "$ref": "TimeOfDay",
+          "description": "Optional. Time in UTC when the deny period starts on start_date and ends on end_date."
+        }
+      },
+      "type": "object"
+    },
+    "ResourceMaintenanceSchedule": {
+      "description": "Maintenance window for the database resource. It specifies preferred time and day of the week and phase in some cases, when the maintenance can start.",
+      "id": "ResourceMaintenanceSchedule",
+      "properties": {
+        "day": {
+          "description": "Optional. Preferred day of the week for maintenance, e.g. MONDAY, TUESDAY, etc.",
+          "enum": [
+            "DAY_OF_WEEK_UNSPECIFIED",
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "SATURDAY",
+            "SUNDAY"
+          ],
+          "enumDescriptions": [
+            "The day of the week is unspecified.",
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+          ],
+          "type": "string"
+        },
+        "phase": {
+          "description": "Optional. Phase of the maintenance window. This is to capture order of maintenance. For example, for Cloud SQL resources, this can be used to capture if the maintenance window is in Week1, Week2, Week5, etc. Non production resources are usually part of early phase. For more details, refer to Cloud SQL resources - https://cloud.google.com/sql/docs/mysql/maintenance",
+          "enum": [
+            "PHASE_UNSPECIFIED",
+            "PHASE_WEEK1",
+            "PHASE_WEEK2",
+            "PHASE_WEEK5",
+            "PHASE_ANY"
+          ],
+          "enumDescriptions": [
+            "Phase is unspecified.",
+            "Week 1.",
+            "Week 2.",
+            "Week 5.",
+            "Any phase."
+          ],
+          "type": "string"
+        },
+        "startTime": {
+          "$ref": "TimeOfDay",
+          "description": "Optional. Preferred time to start the maintenance operation on the specified day."
+        }
+      },
+      "type": "object"
+    },
+    "ResourceSuspensionInfo": {
+      "description": "Resource suspension info for a database resource.",
+      "id": "ResourceSuspensionInfo",
+      "properties": {
+        "resourceSuspended": {
+          "description": "Is resource suspended.",
+          "type": "boolean"
+        },
+        "suspensionReason": {
+          "description": "Suspension reason for the resource.",
+          "enum": [
+            "SUSPENSION_REASON_UNSPECIFIED",
+            "WIPEOUT_HIDE_EVENT",
+            "WIPEOUT_PURGE_EVENT",
+            "BILLING_DISABLED",
+            "ABUSER_DETECTED",
+            "ENCRYPTION_KEY_INACCESSIBLE",
+            "REPLICATED_CLUSTER_ENCRYPTION_KEY_INACCESSIBLE"
+          ],
+          "enumDescriptions": [
+            "Suspension reason is unspecified.",
+            "Wipeout hide event.",
+            "Wipeout purge event.",
+            "Billing disabled for project",
+            "Abuse detected for resource",
+            "Encryption key inaccessible.",
+            "Replicated cluster encryption key inaccessible."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RetentionSettingsInfo": {
+      "description": "Metadata about backup retention settings for a database resource.",
+      "id": "RetentionSettingsInfo",
+      "properties": {
+        "durationBasedRetention": {
+          "description": "Duration based retention period i.e. 172800 seconds (2 days)",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "quantityBasedRetention": {
+          "description": "Number of backups that will be retained.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "subResource": {
+          "$ref": "SubResource",
+          "description": "Optional. Sub resource details associated with the backup configuration."
+        },
+        "timestampBasedRetentionTime": {
+          "description": "Timestamp based retention period i.e. till 2024-05-01T00:00:00Z",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SCCInfo": {
+      "description": "Info associated with SCC signals.",
+      "id": "SCCInfo",
+      "properties": {
+        "category": {
+          "description": "Name by which SCC calls this signal.",
+          "type": "string"
+        },
+        "externalUri": {
+          "description": "External URI which points to a SCC page associated with the signal.",
+          "type": "string"
+        },
+        "regulatoryStandards": {
+          "description": "Compliances that are associated with the signal.",
+          "items": {
+            "$ref": "RegulatoryStandard"
+          },
+          "type": "array"
+        },
+        "signal": {
+          "description": "Name of the signal.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Signal": {
+      "description": "Represents a signal.",
+      "id": "Signal",
+      "properties": {
+        "additionalDetails": {
+          "description": "Additional information related to the signal. In the case of composite signals, this field encapsulates details associated with granular signals, having a signal status of \"ISSUE\"; signals with a status of \"OK\" are not included. For granular signals, it encompasses information relevant to the signal, regardless of the signal status.",
+          "items": {
+            "$ref": "AdditionalDetail"
+          },
+          "type": "array"
+        },
+        "issueCreateTime": {
+          "description": "Timestamp when the issue was created (when signal status is ISSUE).",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "issueSeverity": {
+          "description": "Severity of the issue.",
+          "enum": [
+            "ISSUE_SEVERITY_UNSPECIFIED",
+            "ISSUE_SEVERITY_LOW",
+            "ISSUE_SEVERITY_MEDIUM",
+            "ISSUE_SEVERITY_HIGH",
+            "ISSUE_SEVERITY_CRITICAL",
+            "ISSUE_SEVERITY_IRRELEVANT"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "Low severity.",
+            "Medium severity.",
+            "High severity.",
+            "Critical severity.",
+            "Irrelevant severity. This means the issue should not be surfaced at all."
+          ],
+          "type": "string"
+        },
+        "signalStatus": {
+          "description": "Status of the signal.",
+          "enum": [
+            "SIGNAL_STATUS_UNSPECIFIED",
+            "SIGNAL_STATUS_NOT_APPLICABLE",
+            "SIGNAL_STATUS_OK",
+            "SIGNAL_STATUS_ISSUE",
+            "SIGNAL_STATUS_NOT_ENABLED"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "Signal is not applicable to the resource.",
+            "Signal is not an issue.",
+            "Signal is an issue.",
+            "Signal is not enabled for the resource."
+          ],
+          "type": "string"
+        },
+        "signalType": {
+          "description": "Type of the signal.",
+          "enum": [
+            "SIGNAL_TYPE_UNSPECIFIED",
+            "SIGNAL_TYPE_RESOURCE_FAILOVER_PROTECTED",
+            "SIGNAL_TYPE_GROUP_MULTIREGIONAL",
+            "SIGNAL_TYPE_NO_AUTOMATED_BACKUP_POLICY",
+            "SIGNAL_TYPE_SHORT_BACKUP_RETENTION",
+            "SIGNAL_TYPE_LAST_BACKUP_FAILED",
+            "SIGNAL_TYPE_LAST_BACKUP_OLD",
+            "SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_2_0",
+            "SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_1_3",
+            "SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_1_2",
+            "SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_1_1",
+            "SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_1_0",
+            "SIGNAL_TYPE_VIOLATES_CIS_CONTROLS_V8_0",
+            "SIGNAL_TYPE_VIOLATES_NIST_800_53",
+            "SIGNAL_TYPE_VIOLATES_NIST_800_53_R5",
+            "SIGNAL_TYPE_VIOLATES_NIST_CYBERSECURITY_FRAMEWORK_V1_0",
+            "SIGNAL_TYPE_VIOLATES_ISO_27001",
+            "SIGNAL_TYPE_VIOLATES_ISO_27001_V2022",
+            "SIGNAL_TYPE_VIOLATES_PCI_DSS_V3_2_1",
+            "SIGNAL_TYPE_VIOLATES_PCI_DSS_V4_0",
+            "SIGNAL_TYPE_VIOLATES_CLOUD_CONTROLS_MATRIX_V4",
+            "SIGNAL_TYPE_VIOLATES_HIPAA",
+            "SIGNAL_TYPE_VIOLATES_SOC2_V2017",
+            "SIGNAL_TYPE_LOGS_NOT_OPTIMIZED_FOR_TROUBLESHOOTING",
+            "SIGNAL_TYPE_QUERY_DURATIONS_NOT_LOGGED",
+            "SIGNAL_TYPE_VERBOSE_ERROR_LOGGING",
+            "SIGNAL_TYPE_QUERY_LOCK_WAITS_NOT_LOGGED",
+            "SIGNAL_TYPE_LOGGING_MOST_ERRORS",
+            "SIGNAL_TYPE_LOGGING_ONLY_CRITICAL_ERRORS",
+            "SIGNAL_TYPE_MINIMAL_ERROR_LOGGING",
+            "SIGNAL_TYPE_QUERY_STATS_LOGGED",
+            "SIGNAL_TYPE_EXCESSIVE_LOGGING_OF_CLIENT_HOSTNAME",
+            "SIGNAL_TYPE_EXCESSIVE_LOGGING_OF_PARSER_STATS",
+            "SIGNAL_TYPE_EXCESSIVE_LOGGING_OF_PLANNER_STATS",
+            "SIGNAL_TYPE_NOT_LOGGING_ONLY_DDL_STATEMENTS",
+            "SIGNAL_TYPE_LOGGING_QUERY_STATS",
+            "SIGNAL_TYPE_NOT_LOGGING_TEMPORARY_FILES",
+            "SIGNAL_TYPE_CONNECTION_MAX_NOT_CONFIGURED",
+            "SIGNAL_TYPE_USER_OPTIONS_CONFIGURED",
+            "SIGNAL_TYPE_EXPOSED_TO_PUBLIC_ACCESS",
+            "SIGNAL_TYPE_UNENCRYPTED_CONNECTIONS",
+            "SIGNAL_TYPE_NO_ROOT_PASSWORD",
+            "SIGNAL_TYPE_WEAK_ROOT_PASSWORD",
+            "SIGNAL_TYPE_ENCRYPTION_KEY_NOT_CUSTOMER_MANAGED",
+            "SIGNAL_TYPE_SERVER_AUTHENTICATION_NOT_REQUIRED",
+            "SIGNAL_TYPE_EXPOSED_TO_EXTERNAL_SCRIPTS",
+            "SIGNAL_TYPE_EXPOSED_TO_LOCAL_DATA_LOADS",
+            "SIGNAL_TYPE_CONNECTION_ATTEMPTS_NOT_LOGGED",
+            "SIGNAL_TYPE_DISCONNECTIONS_NOT_LOGGED",
+            "SIGNAL_TYPE_LOGGING_EXCESSIVE_STATEMENT_INFO",
+            "SIGNAL_TYPE_EXPOSED_TO_REMOTE_ACCESS",
+            "SIGNAL_TYPE_DATABASE_NAMES_EXPOSED",
+            "SIGNAL_TYPE_SENSITIVE_TRACE_INFO_NOT_MASKED",
+            "SIGNAL_TYPE_PUBLIC_IP_ENABLED",
+            "SIGNAL_TYPE_IDLE",
+            "SIGNAL_TYPE_OVERPROVISIONED",
+            "SIGNAL_TYPE_HIGH_NUMBER_OF_OPEN_TABLES",
+            "SIGNAL_TYPE_HIGH_NUMBER_OF_TABLES",
+            "SIGNAL_TYPE_HIGH_TRANSACTION_ID_UTILIZATION",
+            "SIGNAL_TYPE_UNDERPROVISIONED",
+            "SIGNAL_TYPE_OUT_OF_DISK",
+            "SIGNAL_TYPE_SERVER_CERTIFICATE_NEAR_EXPIRY",
+            "SIGNAL_TYPE_DATABASE_AUDITING_DISABLED",
+            "SIGNAL_TYPE_RESTRICT_AUTHORIZED_NETWORKS",
+            "SIGNAL_TYPE_VIOLATE_POLICY_RESTRICT_PUBLIC_IP",
+            "SIGNAL_TYPE_QUOTA_LIMIT",
+            "SIGNAL_TYPE_NO_PASSWORD_POLICY",
+            "SIGNAL_TYPE_CONNECTIONS_PERFORMANCE_IMPACT",
+            "SIGNAL_TYPE_TMP_TABLES_PERFORMANCE_IMPACT",
+            "SIGNAL_TYPE_TRANS_LOGS_PERFORMANCE_IMPACT",
+            "SIGNAL_TYPE_HIGH_JOINS_WITHOUT_INDEXES",
+            "SIGNAL_TYPE_SUPERUSER_WRITING_TO_USER_TABLES",
+            "SIGNAL_TYPE_USER_GRANTED_ALL_PERMISSIONS",
+            "SIGNAL_TYPE_DATA_EXPORT_TO_EXTERNAL_CLOUD_STORAGE_BUCKET",
+            "SIGNAL_TYPE_DATA_EXPORT_TO_PUBLIC_CLOUD_STORAGE_BUCKET",
+            "SIGNAL_TYPE_WEAK_PASSWORD_HASH_ALGORITHM",
+            "SIGNAL_TYPE_NO_USER_PASSWORD_POLICY",
+            "SIGNAL_TYPE_HOT_NODE",
+            "SIGNAL_TYPE_NO_DELETION_PROTECTION",
+            "SIGNAL_TYPE_NO_POINT_IN_TIME_RECOVERY",
+            "SIGNAL_TYPE_RESOURCE_SUSPENDED",
+            "SIGNAL_TYPE_EXPENSIVE_COMMANDS",
+            "SIGNAL_TYPE_NO_MAINTENANCE_POLICY_CONFIGURED",
+            "SIGNAL_TYPE_INEFFICIENT_QUERY",
+            "SIGNAL_TYPE_READ_INTENSIVE_WORKLOAD",
+            "SIGNAL_TYPE_MEMORY_LIMIT",
+            "SIGNAL_TYPE_MAX_SERVER_MEMORY",
+            "SIGNAL_TYPE_LARGE_ROWS",
+            "SIGNAL_TYPE_HIGH_WRITE_PRESSURE",
+            "SIGNAL_TYPE_HIGH_READ_PRESSURE",
+            "SIGNAL_TYPE_ENCRYPTION_ORG_POLICY_NOT_SATISFIED",
+            "SIGNAL_TYPE_LOCATION_ORG_POLICY_NOT_SATISFIED",
+            "SIGNAL_TYPE_OUTDATED_MINOR_VERSION",
+            "SIGNAL_TYPE_SCHEMA_NOT_OPTIMIZED",
+            "SIGNAL_TYPE_REPLICATION_LAG",
+            "SIGNAL_TYPE_OUTDATED_CLIENT",
+            "SIGNAL_TYPE_DATABOOST_DISABLED",
+            "SIGNAL_TYPE_RECOMMENDED_MAINTENANCE_POLICIES",
+            "SIGNAL_TYPE_EXTENDED_SUPPORT",
+            "SIGNAL_TYPE_VERSION_NEARING_END_OF_LIFE",
+            "SIGNAL_TYPE_HIGH_MAINTENANCE_DOWNTIME_RISK",
+            "SIGNAL_TYPE_LOW_CACHE_HIT_AND_MAINTENANCE_DOWNTIME",
+            "SIGNAL_TYPE_MISSING_ENHANCED_PROTECTION"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "Represents if a resource is protected by automatic failover. Checks for resources that are configured to have redundancy within a region that enables automatic failover.",
+            "Represents if a group is replicating across regions. Checks for resources that are configured to have redundancy, and ongoing replication, across regions.",
+            "Represents if a resource has an automated backup policy.",
+            "Represents if a resources has a short backup retention period.",
+            "Represents if the last backup of a resource failed.",
+            "Represents if the last backup of a resource is older than some threshold value.",
+            "Represents if a resource violates CIS Google Cloud Platform Foundation 2.0.",
+            "Represents if a resource violates CIS Google Cloud Platform Foundation 1.3.",
+            "Represents if a resource violates CIS Google Cloud Platform Foundation 1.2.",
+            "Represents if a resource violates CIS Google Cloud Platform Foundation 1.1.",
+            "Represents if a resource violates CIS Google Cloud Platform Foundation 1.0.",
+            "Represents if a resource violates CIS Controls 8.0.",
+            "Represents if a resource violates NIST 800-53.",
+            "Represents if a resource violates NIST 800-53 R5.",
+            "Represents if a resource violates NIST Cybersecurity Framework 1.0.",
+            "Represents if a resource violates ISO-27001.",
+            "Represents if a resource violates ISO 27001 2022.",
+            "Represents if a resource violates PCI-DSS v3.2.1.",
+            "Represents if a resource violates PCI-DSS v4.0.",
+            "Represents if a resource violates Cloud Controls Matrix v4.0.",
+            "Represents if a resource violates HIPAA.",
+            "Represents if a resource violates SOC2 v2017.",
+            "Represents if log_checkpoints database flag for a Cloud SQL for PostgreSQL instance is not set to on.",
+            "Represents if the log_duration database flag for a Cloud SQL for PostgreSQL instance is not set to on.",
+            "Represents if the log_error_verbosity database flag for a Cloud SQL for PostgreSQL instance is not set to default or stricter (default or terse).",
+            "Represents if the log_lock_waits database flag for a Cloud SQL for PostgreSQL instance is not set to on.",
+            "Represents if the log_min_error_statement database flag for a Cloud SQL for PostgreSQL instance is not set appropriately.",
+            "Represents if the log_min_error_statement database flag for a Cloud SQL for PostgreSQL instance does not have an appropriate severity level.",
+            "Represents if the log_min_messages database flag for a Cloud SQL for PostgreSQL instance is not set to warning or another recommended value.",
+            "Represents if the databaseFlags property of instance metadata for the log_executor_status field is set to on.",
+            "Represents if the log_hostname database flag for a Cloud SQL for PostgreSQL instance is not set to off.",
+            "Represents if the log_parser_stats database flag for a Cloud SQL for PostgreSQL instance is not set to off.",
+            "Represents if the log_planner_stats database flag for a Cloud SQL for PostgreSQL instance is not set to off.",
+            "Represents if the log_statement database flag for a Cloud SQL for PostgreSQL instance is not set to DDL (all data definition statements).",
+            "Represents if the log_statement_stats database flag for a Cloud SQL for PostgreSQL instance is not set to off.",
+            "Represents if the log_temp_files database flag for a Cloud SQL for PostgreSQL instance is not set to \"0\". (NOTE: 0 = ON)",
+            "Represents if the user connections database flag for a Cloud SQL for SQL Server instance is configured.",
+            "Represents if the user options database flag for Cloud SQL SQL Server instance is configured or not.",
+            "Represents if a resource is exposed to public access.",
+            "Represents if a resources requires all incoming connections to use SSL or not.",
+            "Represents if a Cloud SQL database has a password configured for the root account or not.",
+            "Represents if a Cloud SQL database has a weak password configured for the root account.",
+            "Represents if a SQL database instance is not encrypted with customer-managed encryption keys (CMEK).",
+            "Represents if The contained database authentication database flag for a Cloud SQL for SQL Server instance is not set to off.",
+            "Represents if he external scripts enabled database flag for a Cloud SQL for SQL Server instance is not set to off.",
+            "Represents if the local_infile database flag for a Cloud SQL for MySQL instance is not set to off.",
+            "Represents if the log_connections database flag for a Cloud SQL for PostgreSQL instance is not set to on.",
+            "Represents if the log_disconnections database flag for a Cloud SQL for PostgreSQL instance is not set to on.",
+            "Represents if the log_min_duration_statement database flag for a Cloud SQL for PostgreSQL instance is not set to -1.",
+            "Represents if the remote access database flag for a Cloud SQL for SQL Server instance is not set to off.",
+            "Represents if the skip_show_database database flag for a Cloud SQL for MySQL instance is not set to on.",
+            "Represents if the 3625 (trace flag) database flag for a Cloud SQL for SQL Server instance is not set to on.",
+            "Represents if public IP is enabled.",
+            "Represents idle instance helps to reduce costs.",
+            "Represents instances that are unnecessarily large for given workload.",
+            "Represents high number of concurrently opened tables.",
+            "Represents high table count close to SLA limit.",
+            "Represents high number of unvacuumed transactions",
+            "Represents need for more CPU and/or memory",
+            "Represents out of disk.",
+            "Represents server certificate is near expiry.",
+            "Represents database auditing is disabled.",
+            "Represents not restricted to authorized networks.",
+            "Represents violate org policy restrict public ip.",
+            "Cluster nearing quota limit",
+            "No password policy set on resources",
+            "Performance impact of connections settings",
+            "Performance impact of temporary tables settings",
+            "Performance impact of transaction logs settings",
+            "Performance impact of high joins without indexes",
+            "Detects events where a database superuser (postgres for PostgreSQL servers or root for MySQL users) writes to non-system tables.",
+            "Detects events where a database user or role has been granted all privileges to a database, or to all tables, procedures, or functions in a schema.",
+            "Detects if database instance data exported to a Cloud Storage bucket outside of the organization.",
+            "Detects if database instance data exported to a Cloud Storage bucket that is owned by the organization and is publicly accessible.",
+            "Detects if a database instance is using a weak password hash algorithm.",
+            "Detects if a database instance has no user password policy set.",
+            "Detects if a database instance/cluster has a hot node.",
+            "Deletion Protection Disabled for the resource",
+            "Detects if a database instance has no point in time recovery enabled.",
+            "Detects if a database instance/cluster has suspended resources.",
+            "Detects that expensive commands are being run on a database instance impacting overall performance.",
+            "Indicates that the instance does not have a maintenance policy configured.",
+            "Indicates that the instance has inefficient queries detected.",
+            "Indicates that the instance has read intensive workload.",
+            "Indicates that the instance is nearing memory limit.",
+            "Indicates that the instance's max server memory is configured higher than the recommended value.",
+            "Indicates that the database has large rows beyond the recommended limit.",
+            "Heavy write pressure on the database rows.",
+            "Heavy read pressure on the database rows.",
+            "Encryption org policy not satisfied.",
+            "Location org policy not satisfied.",
+            "Outdated DB minor version.",
+            "Schema not optimized.",
+            "Replication delay.",
+            "Outdated client.",
+            "Databoost is disabled.",
+            "Recommended maintenance policy.",
+            "Resource version is in extended support.",
+            "Represents a database version nearing end of life.",
+            "Indicates a high risk of maintenance downtime.",
+            "Indicates both a low cache hit rate and a risk of maintenance downtime.",
+            "Indicates that the resource is missing enhanced protection."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SignalFilter": {
+      "description": "A filter for Signals. If signal_type is left unset, all signals should be returned. For example, the following filter returns all issues. signal_filter: { signal_status: SIGNAL_STATUS_ISSUE; } Another example, the following filter returns issues of the given type: signal_filter: { type: SIGNAL_TYPE_NO_PROMOTABLE_REPLICA signal_status: ISSUE } If signal_status is left unset or set to SIGNAL_STATE_UNSPECIFIED, an error should be returned.",
+      "id": "SignalFilter",
+      "properties": {
+        "signalStatus": {
+          "description": "Optional. Represents the status of the Signal for which the filter is for.",
+          "enum": [
+            "SIGNAL_STATUS_UNSPECIFIED",
+            "SIGNAL_STATUS_NOT_APPLICABLE",
+            "SIGNAL_STATUS_OK",
+            "SIGNAL_STATUS_ISSUE",
+            "SIGNAL_STATUS_NOT_ENABLED"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "Signal is not applicable to the resource.",
+            "Signal is not an issue.",
+            "Signal is an issue.",
+            "Signal is not enabled for the resource."
+          ],
+          "type": "string"
+        },
+        "signalType": {
+          "description": "Optional. Represents the type of the Signal for which the filter is for.",
+          "enum": [
+            "SIGNAL_TYPE_UNSPECIFIED",
+            "SIGNAL_TYPE_RESOURCE_FAILOVER_PROTECTED",
+            "SIGNAL_TYPE_GROUP_MULTIREGIONAL",
+            "SIGNAL_TYPE_NO_AUTOMATED_BACKUP_POLICY",
+            "SIGNAL_TYPE_SHORT_BACKUP_RETENTION",
+            "SIGNAL_TYPE_LAST_BACKUP_FAILED",
+            "SIGNAL_TYPE_LAST_BACKUP_OLD",
+            "SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_2_0",
+            "SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_1_3",
+            "SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_1_2",
+            "SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_1_1",
+            "SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_1_0",
+            "SIGNAL_TYPE_VIOLATES_CIS_CONTROLS_V8_0",
+            "SIGNAL_TYPE_VIOLATES_NIST_800_53",
+            "SIGNAL_TYPE_VIOLATES_NIST_800_53_R5",
+            "SIGNAL_TYPE_VIOLATES_NIST_CYBERSECURITY_FRAMEWORK_V1_0",
+            "SIGNAL_TYPE_VIOLATES_ISO_27001",
+            "SIGNAL_TYPE_VIOLATES_ISO_27001_V2022",
+            "SIGNAL_TYPE_VIOLATES_PCI_DSS_V3_2_1",
+            "SIGNAL_TYPE_VIOLATES_PCI_DSS_V4_0",
+            "SIGNAL_TYPE_VIOLATES_CLOUD_CONTROLS_MATRIX_V4",
+            "SIGNAL_TYPE_VIOLATES_HIPAA",
+            "SIGNAL_TYPE_VIOLATES_SOC2_V2017",
+            "SIGNAL_TYPE_LOGS_NOT_OPTIMIZED_FOR_TROUBLESHOOTING",
+            "SIGNAL_TYPE_QUERY_DURATIONS_NOT_LOGGED",
+            "SIGNAL_TYPE_VERBOSE_ERROR_LOGGING",
+            "SIGNAL_TYPE_QUERY_LOCK_WAITS_NOT_LOGGED",
+            "SIGNAL_TYPE_LOGGING_MOST_ERRORS",
+            "SIGNAL_TYPE_LOGGING_ONLY_CRITICAL_ERRORS",
+            "SIGNAL_TYPE_MINIMAL_ERROR_LOGGING",
+            "SIGNAL_TYPE_QUERY_STATS_LOGGED",
+            "SIGNAL_TYPE_EXCESSIVE_LOGGING_OF_CLIENT_HOSTNAME",
+            "SIGNAL_TYPE_EXCESSIVE_LOGGING_OF_PARSER_STATS",
+            "SIGNAL_TYPE_EXCESSIVE_LOGGING_OF_PLANNER_STATS",
+            "SIGNAL_TYPE_NOT_LOGGING_ONLY_DDL_STATEMENTS",
+            "SIGNAL_TYPE_LOGGING_QUERY_STATS",
+            "SIGNAL_TYPE_NOT_LOGGING_TEMPORARY_FILES",
+            "SIGNAL_TYPE_CONNECTION_MAX_NOT_CONFIGURED",
+            "SIGNAL_TYPE_USER_OPTIONS_CONFIGURED",
+            "SIGNAL_TYPE_EXPOSED_TO_PUBLIC_ACCESS",
+            "SIGNAL_TYPE_UNENCRYPTED_CONNECTIONS",
+            "SIGNAL_TYPE_NO_ROOT_PASSWORD",
+            "SIGNAL_TYPE_WEAK_ROOT_PASSWORD",
+            "SIGNAL_TYPE_ENCRYPTION_KEY_NOT_CUSTOMER_MANAGED",
+            "SIGNAL_TYPE_SERVER_AUTHENTICATION_NOT_REQUIRED",
+            "SIGNAL_TYPE_EXPOSED_TO_EXTERNAL_SCRIPTS",
+            "SIGNAL_TYPE_EXPOSED_TO_LOCAL_DATA_LOADS",
+            "SIGNAL_TYPE_CONNECTION_ATTEMPTS_NOT_LOGGED",
+            "SIGNAL_TYPE_DISCONNECTIONS_NOT_LOGGED",
+            "SIGNAL_TYPE_LOGGING_EXCESSIVE_STATEMENT_INFO",
+            "SIGNAL_TYPE_EXPOSED_TO_REMOTE_ACCESS",
+            "SIGNAL_TYPE_DATABASE_NAMES_EXPOSED",
+            "SIGNAL_TYPE_SENSITIVE_TRACE_INFO_NOT_MASKED",
+            "SIGNAL_TYPE_PUBLIC_IP_ENABLED",
+            "SIGNAL_TYPE_IDLE",
+            "SIGNAL_TYPE_OVERPROVISIONED",
+            "SIGNAL_TYPE_HIGH_NUMBER_OF_OPEN_TABLES",
+            "SIGNAL_TYPE_HIGH_NUMBER_OF_TABLES",
+            "SIGNAL_TYPE_HIGH_TRANSACTION_ID_UTILIZATION",
+            "SIGNAL_TYPE_UNDERPROVISIONED",
+            "SIGNAL_TYPE_OUT_OF_DISK",
+            "SIGNAL_TYPE_SERVER_CERTIFICATE_NEAR_EXPIRY",
+            "SIGNAL_TYPE_DATABASE_AUDITING_DISABLED",
+            "SIGNAL_TYPE_RESTRICT_AUTHORIZED_NETWORKS",
+            "SIGNAL_TYPE_VIOLATE_POLICY_RESTRICT_PUBLIC_IP",
+            "SIGNAL_TYPE_QUOTA_LIMIT",
+            "SIGNAL_TYPE_NO_PASSWORD_POLICY",
+            "SIGNAL_TYPE_CONNECTIONS_PERFORMANCE_IMPACT",
+            "SIGNAL_TYPE_TMP_TABLES_PERFORMANCE_IMPACT",
+            "SIGNAL_TYPE_TRANS_LOGS_PERFORMANCE_IMPACT",
+            "SIGNAL_TYPE_HIGH_JOINS_WITHOUT_INDEXES",
+            "SIGNAL_TYPE_SUPERUSER_WRITING_TO_USER_TABLES",
+            "SIGNAL_TYPE_USER_GRANTED_ALL_PERMISSIONS",
+            "SIGNAL_TYPE_DATA_EXPORT_TO_EXTERNAL_CLOUD_STORAGE_BUCKET",
+            "SIGNAL_TYPE_DATA_EXPORT_TO_PUBLIC_CLOUD_STORAGE_BUCKET",
+            "SIGNAL_TYPE_WEAK_PASSWORD_HASH_ALGORITHM",
+            "SIGNAL_TYPE_NO_USER_PASSWORD_POLICY",
+            "SIGNAL_TYPE_HOT_NODE",
+            "SIGNAL_TYPE_NO_DELETION_PROTECTION",
+            "SIGNAL_TYPE_NO_POINT_IN_TIME_RECOVERY",
+            "SIGNAL_TYPE_RESOURCE_SUSPENDED",
+            "SIGNAL_TYPE_EXPENSIVE_COMMANDS",
+            "SIGNAL_TYPE_NO_MAINTENANCE_POLICY_CONFIGURED",
+            "SIGNAL_TYPE_INEFFICIENT_QUERY",
+            "SIGNAL_TYPE_READ_INTENSIVE_WORKLOAD",
+            "SIGNAL_TYPE_MEMORY_LIMIT",
+            "SIGNAL_TYPE_MAX_SERVER_MEMORY",
+            "SIGNAL_TYPE_LARGE_ROWS",
+            "SIGNAL_TYPE_HIGH_WRITE_PRESSURE",
+            "SIGNAL_TYPE_HIGH_READ_PRESSURE",
+            "SIGNAL_TYPE_ENCRYPTION_ORG_POLICY_NOT_SATISFIED",
+            "SIGNAL_TYPE_LOCATION_ORG_POLICY_NOT_SATISFIED",
+            "SIGNAL_TYPE_OUTDATED_MINOR_VERSION",
+            "SIGNAL_TYPE_SCHEMA_NOT_OPTIMIZED",
+            "SIGNAL_TYPE_REPLICATION_LAG",
+            "SIGNAL_TYPE_OUTDATED_CLIENT",
+            "SIGNAL_TYPE_DATABOOST_DISABLED",
+            "SIGNAL_TYPE_RECOMMENDED_MAINTENANCE_POLICIES",
+            "SIGNAL_TYPE_EXTENDED_SUPPORT",
+            "SIGNAL_TYPE_VERSION_NEARING_END_OF_LIFE",
+            "SIGNAL_TYPE_HIGH_MAINTENANCE_DOWNTIME_RISK",
+            "SIGNAL_TYPE_LOW_CACHE_HIT_AND_MAINTENANCE_DOWNTIME",
+            "SIGNAL_TYPE_MISSING_ENHANCED_PROTECTION"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "Represents if a resource is protected by automatic failover. Checks for resources that are configured to have redundancy within a region that enables automatic failover.",
+            "Represents if a group is replicating across regions. Checks for resources that are configured to have redundancy, and ongoing replication, across regions.",
+            "Represents if a resource has an automated backup policy.",
+            "Represents if a resources has a short backup retention period.",
+            "Represents if the last backup of a resource failed.",
+            "Represents if the last backup of a resource is older than some threshold value.",
+            "Represents if a resource violates CIS Google Cloud Platform Foundation 2.0.",
+            "Represents if a resource violates CIS Google Cloud Platform Foundation 1.3.",
+            "Represents if a resource violates CIS Google Cloud Platform Foundation 1.2.",
+            "Represents if a resource violates CIS Google Cloud Platform Foundation 1.1.",
+            "Represents if a resource violates CIS Google Cloud Platform Foundation 1.0.",
+            "Represents if a resource violates CIS Controls 8.0.",
+            "Represents if a resource violates NIST 800-53.",
+            "Represents if a resource violates NIST 800-53 R5.",
+            "Represents if a resource violates NIST Cybersecurity Framework 1.0.",
+            "Represents if a resource violates ISO-27001.",
+            "Represents if a resource violates ISO 27001 2022.",
+            "Represents if a resource violates PCI-DSS v3.2.1.",
+            "Represents if a resource violates PCI-DSS v4.0.",
+            "Represents if a resource violates Cloud Controls Matrix v4.0.",
+            "Represents if a resource violates HIPAA.",
+            "Represents if a resource violates SOC2 v2017.",
+            "Represents if log_checkpoints database flag for a Cloud SQL for PostgreSQL instance is not set to on.",
+            "Represents if the log_duration database flag for a Cloud SQL for PostgreSQL instance is not set to on.",
+            "Represents if the log_error_verbosity database flag for a Cloud SQL for PostgreSQL instance is not set to default or stricter (default or terse).",
+            "Represents if the log_lock_waits database flag for a Cloud SQL for PostgreSQL instance is not set to on.",
+            "Represents if the log_min_error_statement database flag for a Cloud SQL for PostgreSQL instance is not set appropriately.",
+            "Represents if the log_min_error_statement database flag for a Cloud SQL for PostgreSQL instance does not have an appropriate severity level.",
+            "Represents if the log_min_messages database flag for a Cloud SQL for PostgreSQL instance is not set to warning or another recommended value.",
+            "Represents if the databaseFlags property of instance metadata for the log_executor_status field is set to on.",
+            "Represents if the log_hostname database flag for a Cloud SQL for PostgreSQL instance is not set to off.",
+            "Represents if the log_parser_stats database flag for a Cloud SQL for PostgreSQL instance is not set to off.",
+            "Represents if the log_planner_stats database flag for a Cloud SQL for PostgreSQL instance is not set to off.",
+            "Represents if the log_statement database flag for a Cloud SQL for PostgreSQL instance is not set to DDL (all data definition statements).",
+            "Represents if the log_statement_stats database flag for a Cloud SQL for PostgreSQL instance is not set to off.",
+            "Represents if the log_temp_files database flag for a Cloud SQL for PostgreSQL instance is not set to \"0\". (NOTE: 0 = ON)",
+            "Represents if the user connections database flag for a Cloud SQL for SQL Server instance is configured.",
+            "Represents if the user options database flag for Cloud SQL SQL Server instance is configured or not.",
+            "Represents if a resource is exposed to public access.",
+            "Represents if a resources requires all incoming connections to use SSL or not.",
+            "Represents if a Cloud SQL database has a password configured for the root account or not.",
+            "Represents if a Cloud SQL database has a weak password configured for the root account.",
+            "Represents if a SQL database instance is not encrypted with customer-managed encryption keys (CMEK).",
+            "Represents if The contained database authentication database flag for a Cloud SQL for SQL Server instance is not set to off.",
+            "Represents if he external scripts enabled database flag for a Cloud SQL for SQL Server instance is not set to off.",
+            "Represents if the local_infile database flag for a Cloud SQL for MySQL instance is not set to off.",
+            "Represents if the log_connections database flag for a Cloud SQL for PostgreSQL instance is not set to on.",
+            "Represents if the log_disconnections database flag for a Cloud SQL for PostgreSQL instance is not set to on.",
+            "Represents if the log_min_duration_statement database flag for a Cloud SQL for PostgreSQL instance is not set to -1.",
+            "Represents if the remote access database flag for a Cloud SQL for SQL Server instance is not set to off.",
+            "Represents if the skip_show_database database flag for a Cloud SQL for MySQL instance is not set to on.",
+            "Represents if the 3625 (trace flag) database flag for a Cloud SQL for SQL Server instance is not set to on.",
+            "Represents if public IP is enabled.",
+            "Represents idle instance helps to reduce costs.",
+            "Represents instances that are unnecessarily large for given workload.",
+            "Represents high number of concurrently opened tables.",
+            "Represents high table count close to SLA limit.",
+            "Represents high number of unvacuumed transactions",
+            "Represents need for more CPU and/or memory",
+            "Represents out of disk.",
+            "Represents server certificate is near expiry.",
+            "Represents database auditing is disabled.",
+            "Represents not restricted to authorized networks.",
+            "Represents violate org policy restrict public ip.",
+            "Cluster nearing quota limit",
+            "No password policy set on resources",
+            "Performance impact of connections settings",
+            "Performance impact of temporary tables settings",
+            "Performance impact of transaction logs settings",
+            "Performance impact of high joins without indexes",
+            "Detects events where a database superuser (postgres for PostgreSQL servers or root for MySQL users) writes to non-system tables.",
+            "Detects events where a database user or role has been granted all privileges to a database, or to all tables, procedures, or functions in a schema.",
+            "Detects if database instance data exported to a Cloud Storage bucket outside of the organization.",
+            "Detects if database instance data exported to a Cloud Storage bucket that is owned by the organization and is publicly accessible.",
+            "Detects if a database instance is using a weak password hash algorithm.",
+            "Detects if a database instance has no user password policy set.",
+            "Detects if a database instance/cluster has a hot node.",
+            "Deletion Protection Disabled for the resource",
+            "Detects if a database instance has no point in time recovery enabled.",
+            "Detects if a database instance/cluster has suspended resources.",
+            "Detects that expensive commands are being run on a database instance impacting overall performance.",
+            "Indicates that the instance does not have a maintenance policy configured.",
+            "Indicates that the instance has inefficient queries detected.",
+            "Indicates that the instance has read intensive workload.",
+            "Indicates that the instance is nearing memory limit.",
+            "Indicates that the instance's max server memory is configured higher than the recommended value.",
+            "Indicates that the database has large rows beyond the recommended limit.",
+            "Heavy write pressure on the database rows.",
+            "Heavy read pressure on the database rows.",
+            "Encryption org policy not satisfied.",
+            "Location org policy not satisfied.",
+            "Outdated DB minor version.",
+            "Schema not optimized.",
+            "Replication delay.",
+            "Outdated client.",
+            "Databoost is disabled.",
+            "Recommended maintenance policy.",
+            "Resource version is in extended support.",
+            "Represents a database version nearing end of life.",
+            "Indicates a high risk of maintenance downtime.",
+            "Indicates both a low cache hit rate and a risk of maintenance downtime.",
+            "Indicates that the resource is missing enhanced protection."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SignalGroup": {
+      "description": "A group of signals and their counts.",
+      "id": "SignalGroup",
+      "properties": {
+        "displayName": {
+          "description": "Title of a signal group corresponding to the request.",
+          "type": "string"
+        },
+        "issueCount": {
+          "description": "When applied to a DatabaseResource represents count of issues associated with the resource. A signal is an issue when its SignalStatus field is set to SIGNAL_STATUS_ISSUE.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "signals": {
+          "description": "List of signals present in the group and associated with the resource. Only applies to a DatabaseResource.",
+          "items": {
+            "$ref": "Signal"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "SignalProductsFilters": {
+      "description": "SignalProductsFilters represents a signal and list of supported products.",
+      "id": "SignalProductsFilters",
+      "properties": {
+        "products": {
+          "description": "Optional. Product type of the resource. The version of the product will be ignored in filtering.",
+          "items": {
+            "$ref": "Product"
+          },
+          "type": "array"
+        },
+        "signalType": {
+          "description": "Optional. The type of signal.",
+          "enum": [
+            "SIGNAL_TYPE_UNSPECIFIED",
+            "SIGNAL_TYPE_RESOURCE_FAILOVER_PROTECTED",
+            "SIGNAL_TYPE_GROUP_MULTIREGIONAL",
+            "SIGNAL_TYPE_NO_AUTOMATED_BACKUP_POLICY",
+            "SIGNAL_TYPE_SHORT_BACKUP_RETENTION",
+            "SIGNAL_TYPE_LAST_BACKUP_FAILED",
+            "SIGNAL_TYPE_LAST_BACKUP_OLD",
+            "SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_2_0",
+            "SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_1_3",
+            "SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_1_2",
+            "SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_1_1",
+            "SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_1_0",
+            "SIGNAL_TYPE_VIOLATES_CIS_CONTROLS_V8_0",
+            "SIGNAL_TYPE_VIOLATES_NIST_800_53",
+            "SIGNAL_TYPE_VIOLATES_NIST_800_53_R5",
+            "SIGNAL_TYPE_VIOLATES_NIST_CYBERSECURITY_FRAMEWORK_V1_0",
+            "SIGNAL_TYPE_VIOLATES_ISO_27001",
+            "SIGNAL_TYPE_VIOLATES_ISO_27001_V2022",
+            "SIGNAL_TYPE_VIOLATES_PCI_DSS_V3_2_1",
+            "SIGNAL_TYPE_VIOLATES_PCI_DSS_V4_0",
+            "SIGNAL_TYPE_VIOLATES_CLOUD_CONTROLS_MATRIX_V4",
+            "SIGNAL_TYPE_VIOLATES_HIPAA",
+            "SIGNAL_TYPE_VIOLATES_SOC2_V2017",
+            "SIGNAL_TYPE_LOGS_NOT_OPTIMIZED_FOR_TROUBLESHOOTING",
+            "SIGNAL_TYPE_QUERY_DURATIONS_NOT_LOGGED",
+            "SIGNAL_TYPE_VERBOSE_ERROR_LOGGING",
+            "SIGNAL_TYPE_QUERY_LOCK_WAITS_NOT_LOGGED",
+            "SIGNAL_TYPE_LOGGING_MOST_ERRORS",
+            "SIGNAL_TYPE_LOGGING_ONLY_CRITICAL_ERRORS",
+            "SIGNAL_TYPE_MINIMAL_ERROR_LOGGING",
+            "SIGNAL_TYPE_QUERY_STATS_LOGGED",
+            "SIGNAL_TYPE_EXCESSIVE_LOGGING_OF_CLIENT_HOSTNAME",
+            "SIGNAL_TYPE_EXCESSIVE_LOGGING_OF_PARSER_STATS",
+            "SIGNAL_TYPE_EXCESSIVE_LOGGING_OF_PLANNER_STATS",
+            "SIGNAL_TYPE_NOT_LOGGING_ONLY_DDL_STATEMENTS",
+            "SIGNAL_TYPE_LOGGING_QUERY_STATS",
+            "SIGNAL_TYPE_NOT_LOGGING_TEMPORARY_FILES",
+            "SIGNAL_TYPE_CONNECTION_MAX_NOT_CONFIGURED",
+            "SIGNAL_TYPE_USER_OPTIONS_CONFIGURED",
+            "SIGNAL_TYPE_EXPOSED_TO_PUBLIC_ACCESS",
+            "SIGNAL_TYPE_UNENCRYPTED_CONNECTIONS",
+            "SIGNAL_TYPE_NO_ROOT_PASSWORD",
+            "SIGNAL_TYPE_WEAK_ROOT_PASSWORD",
+            "SIGNAL_TYPE_ENCRYPTION_KEY_NOT_CUSTOMER_MANAGED",
+            "SIGNAL_TYPE_SERVER_AUTHENTICATION_NOT_REQUIRED",
+            "SIGNAL_TYPE_EXPOSED_TO_EXTERNAL_SCRIPTS",
+            "SIGNAL_TYPE_EXPOSED_TO_LOCAL_DATA_LOADS",
+            "SIGNAL_TYPE_CONNECTION_ATTEMPTS_NOT_LOGGED",
+            "SIGNAL_TYPE_DISCONNECTIONS_NOT_LOGGED",
+            "SIGNAL_TYPE_LOGGING_EXCESSIVE_STATEMENT_INFO",
+            "SIGNAL_TYPE_EXPOSED_TO_REMOTE_ACCESS",
+            "SIGNAL_TYPE_DATABASE_NAMES_EXPOSED",
+            "SIGNAL_TYPE_SENSITIVE_TRACE_INFO_NOT_MASKED",
+            "SIGNAL_TYPE_PUBLIC_IP_ENABLED",
+            "SIGNAL_TYPE_IDLE",
+            "SIGNAL_TYPE_OVERPROVISIONED",
+            "SIGNAL_TYPE_HIGH_NUMBER_OF_OPEN_TABLES",
+            "SIGNAL_TYPE_HIGH_NUMBER_OF_TABLES",
+            "SIGNAL_TYPE_HIGH_TRANSACTION_ID_UTILIZATION",
+            "SIGNAL_TYPE_UNDERPROVISIONED",
+            "SIGNAL_TYPE_OUT_OF_DISK",
+            "SIGNAL_TYPE_SERVER_CERTIFICATE_NEAR_EXPIRY",
+            "SIGNAL_TYPE_DATABASE_AUDITING_DISABLED",
+            "SIGNAL_TYPE_RESTRICT_AUTHORIZED_NETWORKS",
+            "SIGNAL_TYPE_VIOLATE_POLICY_RESTRICT_PUBLIC_IP",
+            "SIGNAL_TYPE_QUOTA_LIMIT",
+            "SIGNAL_TYPE_NO_PASSWORD_POLICY",
+            "SIGNAL_TYPE_CONNECTIONS_PERFORMANCE_IMPACT",
+            "SIGNAL_TYPE_TMP_TABLES_PERFORMANCE_IMPACT",
+            "SIGNAL_TYPE_TRANS_LOGS_PERFORMANCE_IMPACT",
+            "SIGNAL_TYPE_HIGH_JOINS_WITHOUT_INDEXES",
+            "SIGNAL_TYPE_SUPERUSER_WRITING_TO_USER_TABLES",
+            "SIGNAL_TYPE_USER_GRANTED_ALL_PERMISSIONS",
+            "SIGNAL_TYPE_DATA_EXPORT_TO_EXTERNAL_CLOUD_STORAGE_BUCKET",
+            "SIGNAL_TYPE_DATA_EXPORT_TO_PUBLIC_CLOUD_STORAGE_BUCKET",
+            "SIGNAL_TYPE_WEAK_PASSWORD_HASH_ALGORITHM",
+            "SIGNAL_TYPE_NO_USER_PASSWORD_POLICY",
+            "SIGNAL_TYPE_HOT_NODE",
+            "SIGNAL_TYPE_NO_DELETION_PROTECTION",
+            "SIGNAL_TYPE_NO_POINT_IN_TIME_RECOVERY",
+            "SIGNAL_TYPE_RESOURCE_SUSPENDED",
+            "SIGNAL_TYPE_EXPENSIVE_COMMANDS",
+            "SIGNAL_TYPE_NO_MAINTENANCE_POLICY_CONFIGURED",
+            "SIGNAL_TYPE_INEFFICIENT_QUERY",
+            "SIGNAL_TYPE_READ_INTENSIVE_WORKLOAD",
+            "SIGNAL_TYPE_MEMORY_LIMIT",
+            "SIGNAL_TYPE_MAX_SERVER_MEMORY",
+            "SIGNAL_TYPE_LARGE_ROWS",
+            "SIGNAL_TYPE_HIGH_WRITE_PRESSURE",
+            "SIGNAL_TYPE_HIGH_READ_PRESSURE",
+            "SIGNAL_TYPE_ENCRYPTION_ORG_POLICY_NOT_SATISFIED",
+            "SIGNAL_TYPE_LOCATION_ORG_POLICY_NOT_SATISFIED",
+            "SIGNAL_TYPE_OUTDATED_MINOR_VERSION",
+            "SIGNAL_TYPE_SCHEMA_NOT_OPTIMIZED",
+            "SIGNAL_TYPE_REPLICATION_LAG",
+            "SIGNAL_TYPE_OUTDATED_CLIENT",
+            "SIGNAL_TYPE_DATABOOST_DISABLED",
+            "SIGNAL_TYPE_RECOMMENDED_MAINTENANCE_POLICIES",
+            "SIGNAL_TYPE_EXTENDED_SUPPORT",
+            "SIGNAL_TYPE_VERSION_NEARING_END_OF_LIFE",
+            "SIGNAL_TYPE_HIGH_MAINTENANCE_DOWNTIME_RISK",
+            "SIGNAL_TYPE_LOW_CACHE_HIT_AND_MAINTENANCE_DOWNTIME",
+            "SIGNAL_TYPE_MISSING_ENHANCED_PROTECTION"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "Represents if a resource is protected by automatic failover. Checks for resources that are configured to have redundancy within a region that enables automatic failover.",
+            "Represents if a group is replicating across regions. Checks for resources that are configured to have redundancy, and ongoing replication, across regions.",
+            "Represents if a resource has an automated backup policy.",
+            "Represents if a resources has a short backup retention period.",
+            "Represents if the last backup of a resource failed.",
+            "Represents if the last backup of a resource is older than some threshold value.",
+            "Represents if a resource violates CIS Google Cloud Platform Foundation 2.0.",
+            "Represents if a resource violates CIS Google Cloud Platform Foundation 1.3.",
+            "Represents if a resource violates CIS Google Cloud Platform Foundation 1.2.",
+            "Represents if a resource violates CIS Google Cloud Platform Foundation 1.1.",
+            "Represents if a resource violates CIS Google Cloud Platform Foundation 1.0.",
+            "Represents if a resource violates CIS Controls 8.0.",
+            "Represents if a resource violates NIST 800-53.",
+            "Represents if a resource violates NIST 800-53 R5.",
+            "Represents if a resource violates NIST Cybersecurity Framework 1.0.",
+            "Represents if a resource violates ISO-27001.",
+            "Represents if a resource violates ISO 27001 2022.",
+            "Represents if a resource violates PCI-DSS v3.2.1.",
+            "Represents if a resource violates PCI-DSS v4.0.",
+            "Represents if a resource violates Cloud Controls Matrix v4.0.",
+            "Represents if a resource violates HIPAA.",
+            "Represents if a resource violates SOC2 v2017.",
+            "Represents if log_checkpoints database flag for a Cloud SQL for PostgreSQL instance is not set to on.",
+            "Represents if the log_duration database flag for a Cloud SQL for PostgreSQL instance is not set to on.",
+            "Represents if the log_error_verbosity database flag for a Cloud SQL for PostgreSQL instance is not set to default or stricter (default or terse).",
+            "Represents if the log_lock_waits database flag for a Cloud SQL for PostgreSQL instance is not set to on.",
+            "Represents if the log_min_error_statement database flag for a Cloud SQL for PostgreSQL instance is not set appropriately.",
+            "Represents if the log_min_error_statement database flag for a Cloud SQL for PostgreSQL instance does not have an appropriate severity level.",
+            "Represents if the log_min_messages database flag for a Cloud SQL for PostgreSQL instance is not set to warning or another recommended value.",
+            "Represents if the databaseFlags property of instance metadata for the log_executor_status field is set to on.",
+            "Represents if the log_hostname database flag for a Cloud SQL for PostgreSQL instance is not set to off.",
+            "Represents if the log_parser_stats database flag for a Cloud SQL for PostgreSQL instance is not set to off.",
+            "Represents if the log_planner_stats database flag for a Cloud SQL for PostgreSQL instance is not set to off.",
+            "Represents if the log_statement database flag for a Cloud SQL for PostgreSQL instance is not set to DDL (all data definition statements).",
+            "Represents if the log_statement_stats database flag for a Cloud SQL for PostgreSQL instance is not set to off.",
+            "Represents if the log_temp_files database flag for a Cloud SQL for PostgreSQL instance is not set to \"0\". (NOTE: 0 = ON)",
+            "Represents if the user connections database flag for a Cloud SQL for SQL Server instance is configured.",
+            "Represents if the user options database flag for Cloud SQL SQL Server instance is configured or not.",
+            "Represents if a resource is exposed to public access.",
+            "Represents if a resources requires all incoming connections to use SSL or not.",
+            "Represents if a Cloud SQL database has a password configured for the root account or not.",
+            "Represents if a Cloud SQL database has a weak password configured for the root account.",
+            "Represents if a SQL database instance is not encrypted with customer-managed encryption keys (CMEK).",
+            "Represents if The contained database authentication database flag for a Cloud SQL for SQL Server instance is not set to off.",
+            "Represents if he external scripts enabled database flag for a Cloud SQL for SQL Server instance is not set to off.",
+            "Represents if the local_infile database flag for a Cloud SQL for MySQL instance is not set to off.",
+            "Represents if the log_connections database flag for a Cloud SQL for PostgreSQL instance is not set to on.",
+            "Represents if the log_disconnections database flag for a Cloud SQL for PostgreSQL instance is not set to on.",
+            "Represents if the log_min_duration_statement database flag for a Cloud SQL for PostgreSQL instance is not set to -1.",
+            "Represents if the remote access database flag for a Cloud SQL for SQL Server instance is not set to off.",
+            "Represents if the skip_show_database database flag for a Cloud SQL for MySQL instance is not set to on.",
+            "Represents if the 3625 (trace flag) database flag for a Cloud SQL for SQL Server instance is not set to on.",
+            "Represents if public IP is enabled.",
+            "Represents idle instance helps to reduce costs.",
+            "Represents instances that are unnecessarily large for given workload.",
+            "Represents high number of concurrently opened tables.",
+            "Represents high table count close to SLA limit.",
+            "Represents high number of unvacuumed transactions",
+            "Represents need for more CPU and/or memory",
+            "Represents out of disk.",
+            "Represents server certificate is near expiry.",
+            "Represents database auditing is disabled.",
+            "Represents not restricted to authorized networks.",
+            "Represents violate org policy restrict public ip.",
+            "Cluster nearing quota limit",
+            "No password policy set on resources",
+            "Performance impact of connections settings",
+            "Performance impact of temporary tables settings",
+            "Performance impact of transaction logs settings",
+            "Performance impact of high joins without indexes",
+            "Detects events where a database superuser (postgres for PostgreSQL servers or root for MySQL users) writes to non-system tables.",
+            "Detects events where a database user or role has been granted all privileges to a database, or to all tables, procedures, or functions in a schema.",
+            "Detects if database instance data exported to a Cloud Storage bucket outside of the organization.",
+            "Detects if database instance data exported to a Cloud Storage bucket that is owned by the organization and is publicly accessible.",
+            "Detects if a database instance is using a weak password hash algorithm.",
+            "Detects if a database instance has no user password policy set.",
+            "Detects if a database instance/cluster has a hot node.",
+            "Deletion Protection Disabled for the resource",
+            "Detects if a database instance has no point in time recovery enabled.",
+            "Detects if a database instance/cluster has suspended resources.",
+            "Detects that expensive commands are being run on a database instance impacting overall performance.",
+            "Indicates that the instance does not have a maintenance policy configured.",
+            "Indicates that the instance has inefficient queries detected.",
+            "Indicates that the instance has read intensive workload.",
+            "Indicates that the instance is nearing memory limit.",
+            "Indicates that the instance's max server memory is configured higher than the recommended value.",
+            "Indicates that the database has large rows beyond the recommended limit.",
+            "Heavy write pressure on the database rows.",
+            "Heavy read pressure on the database rows.",
+            "Encryption org policy not satisfied.",
+            "Location org policy not satisfied.",
+            "Outdated DB minor version.",
+            "Schema not optimized.",
+            "Replication delay.",
+            "Outdated client.",
+            "Databoost is disabled.",
+            "Recommended maintenance policy.",
+            "Resource version is in extended support.",
+            "Represents a database version nearing end of life.",
+            "Indicates a high risk of maintenance downtime.",
+            "Indicates both a low cache hit rate and a risk of maintenance downtime.",
+            "Indicates that the resource is missing enhanced protection."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SignalTypeGroup": {
+      "description": "A group of signal types that specifies what the user is interested in. Used by QueryDatabaseResourceGroups API. Example: signal_type_group { name = \"AVAILABILITY\" types = [SIGNAL_TYPE_NO_PROMOTABLE_REPLICA] }",
+      "id": "SignalTypeGroup",
+      "properties": {
+        "displayName": {
+          "description": "Required. The display name of a signal group.",
+          "type": "string"
+        },
+        "signalTypes": {
+          "description": "Optional. List of signal types present in the group.",
+          "items": {
+            "enum": [
+              "SIGNAL_TYPE_UNSPECIFIED",
+              "SIGNAL_TYPE_RESOURCE_FAILOVER_PROTECTED",
+              "SIGNAL_TYPE_GROUP_MULTIREGIONAL",
+              "SIGNAL_TYPE_NO_AUTOMATED_BACKUP_POLICY",
+              "SIGNAL_TYPE_SHORT_BACKUP_RETENTION",
+              "SIGNAL_TYPE_LAST_BACKUP_FAILED",
+              "SIGNAL_TYPE_LAST_BACKUP_OLD",
+              "SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_2_0",
+              "SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_1_3",
+              "SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_1_2",
+              "SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_1_1",
+              "SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_1_0",
+              "SIGNAL_TYPE_VIOLATES_CIS_CONTROLS_V8_0",
+              "SIGNAL_TYPE_VIOLATES_NIST_800_53",
+              "SIGNAL_TYPE_VIOLATES_NIST_800_53_R5",
+              "SIGNAL_TYPE_VIOLATES_NIST_CYBERSECURITY_FRAMEWORK_V1_0",
+              "SIGNAL_TYPE_VIOLATES_ISO_27001",
+              "SIGNAL_TYPE_VIOLATES_ISO_27001_V2022",
+              "SIGNAL_TYPE_VIOLATES_PCI_DSS_V3_2_1",
+              "SIGNAL_TYPE_VIOLATES_PCI_DSS_V4_0",
+              "SIGNAL_TYPE_VIOLATES_CLOUD_CONTROLS_MATRIX_V4",
+              "SIGNAL_TYPE_VIOLATES_HIPAA",
+              "SIGNAL_TYPE_VIOLATES_SOC2_V2017",
+              "SIGNAL_TYPE_LOGS_NOT_OPTIMIZED_FOR_TROUBLESHOOTING",
+              "SIGNAL_TYPE_QUERY_DURATIONS_NOT_LOGGED",
+              "SIGNAL_TYPE_VERBOSE_ERROR_LOGGING",
+              "SIGNAL_TYPE_QUERY_LOCK_WAITS_NOT_LOGGED",
+              "SIGNAL_TYPE_LOGGING_MOST_ERRORS",
+              "SIGNAL_TYPE_LOGGING_ONLY_CRITICAL_ERRORS",
+              "SIGNAL_TYPE_MINIMAL_ERROR_LOGGING",
+              "SIGNAL_TYPE_QUERY_STATS_LOGGED",
+              "SIGNAL_TYPE_EXCESSIVE_LOGGING_OF_CLIENT_HOSTNAME",
+              "SIGNAL_TYPE_EXCESSIVE_LOGGING_OF_PARSER_STATS",
+              "SIGNAL_TYPE_EXCESSIVE_LOGGING_OF_PLANNER_STATS",
+              "SIGNAL_TYPE_NOT_LOGGING_ONLY_DDL_STATEMENTS",
+              "SIGNAL_TYPE_LOGGING_QUERY_STATS",
+              "SIGNAL_TYPE_NOT_LOGGING_TEMPORARY_FILES",
+              "SIGNAL_TYPE_CONNECTION_MAX_NOT_CONFIGURED",
+              "SIGNAL_TYPE_USER_OPTIONS_CONFIGURED",
+              "SIGNAL_TYPE_EXPOSED_TO_PUBLIC_ACCESS",
+              "SIGNAL_TYPE_UNENCRYPTED_CONNECTIONS",
+              "SIGNAL_TYPE_NO_ROOT_PASSWORD",
+              "SIGNAL_TYPE_WEAK_ROOT_PASSWORD",
+              "SIGNAL_TYPE_ENCRYPTION_KEY_NOT_CUSTOMER_MANAGED",
+              "SIGNAL_TYPE_SERVER_AUTHENTICATION_NOT_REQUIRED",
+              "SIGNAL_TYPE_EXPOSED_TO_EXTERNAL_SCRIPTS",
+              "SIGNAL_TYPE_EXPOSED_TO_LOCAL_DATA_LOADS",
+              "SIGNAL_TYPE_CONNECTION_ATTEMPTS_NOT_LOGGED",
+              "SIGNAL_TYPE_DISCONNECTIONS_NOT_LOGGED",
+              "SIGNAL_TYPE_LOGGING_EXCESSIVE_STATEMENT_INFO",
+              "SIGNAL_TYPE_EXPOSED_TO_REMOTE_ACCESS",
+              "SIGNAL_TYPE_DATABASE_NAMES_EXPOSED",
+              "SIGNAL_TYPE_SENSITIVE_TRACE_INFO_NOT_MASKED",
+              "SIGNAL_TYPE_PUBLIC_IP_ENABLED",
+              "SIGNAL_TYPE_IDLE",
+              "SIGNAL_TYPE_OVERPROVISIONED",
+              "SIGNAL_TYPE_HIGH_NUMBER_OF_OPEN_TABLES",
+              "SIGNAL_TYPE_HIGH_NUMBER_OF_TABLES",
+              "SIGNAL_TYPE_HIGH_TRANSACTION_ID_UTILIZATION",
+              "SIGNAL_TYPE_UNDERPROVISIONED",
+              "SIGNAL_TYPE_OUT_OF_DISK",
+              "SIGNAL_TYPE_SERVER_CERTIFICATE_NEAR_EXPIRY",
+              "SIGNAL_TYPE_DATABASE_AUDITING_DISABLED",
+              "SIGNAL_TYPE_RESTRICT_AUTHORIZED_NETWORKS",
+              "SIGNAL_TYPE_VIOLATE_POLICY_RESTRICT_PUBLIC_IP",
+              "SIGNAL_TYPE_QUOTA_LIMIT",
+              "SIGNAL_TYPE_NO_PASSWORD_POLICY",
+              "SIGNAL_TYPE_CONNECTIONS_PERFORMANCE_IMPACT",
+              "SIGNAL_TYPE_TMP_TABLES_PERFORMANCE_IMPACT",
+              "SIGNAL_TYPE_TRANS_LOGS_PERFORMANCE_IMPACT",
+              "SIGNAL_TYPE_HIGH_JOINS_WITHOUT_INDEXES",
+              "SIGNAL_TYPE_SUPERUSER_WRITING_TO_USER_TABLES",
+              "SIGNAL_TYPE_USER_GRANTED_ALL_PERMISSIONS",
+              "SIGNAL_TYPE_DATA_EXPORT_TO_EXTERNAL_CLOUD_STORAGE_BUCKET",
+              "SIGNAL_TYPE_DATA_EXPORT_TO_PUBLIC_CLOUD_STORAGE_BUCKET",
+              "SIGNAL_TYPE_WEAK_PASSWORD_HASH_ALGORITHM",
+              "SIGNAL_TYPE_NO_USER_PASSWORD_POLICY",
+              "SIGNAL_TYPE_HOT_NODE",
+              "SIGNAL_TYPE_NO_DELETION_PROTECTION",
+              "SIGNAL_TYPE_NO_POINT_IN_TIME_RECOVERY",
+              "SIGNAL_TYPE_RESOURCE_SUSPENDED",
+              "SIGNAL_TYPE_EXPENSIVE_COMMANDS",
+              "SIGNAL_TYPE_NO_MAINTENANCE_POLICY_CONFIGURED",
+              "SIGNAL_TYPE_INEFFICIENT_QUERY",
+              "SIGNAL_TYPE_READ_INTENSIVE_WORKLOAD",
+              "SIGNAL_TYPE_MEMORY_LIMIT",
+              "SIGNAL_TYPE_MAX_SERVER_MEMORY",
+              "SIGNAL_TYPE_LARGE_ROWS",
+              "SIGNAL_TYPE_HIGH_WRITE_PRESSURE",
+              "SIGNAL_TYPE_HIGH_READ_PRESSURE",
+              "SIGNAL_TYPE_ENCRYPTION_ORG_POLICY_NOT_SATISFIED",
+              "SIGNAL_TYPE_LOCATION_ORG_POLICY_NOT_SATISFIED",
+              "SIGNAL_TYPE_OUTDATED_MINOR_VERSION",
+              "SIGNAL_TYPE_SCHEMA_NOT_OPTIMIZED",
+              "SIGNAL_TYPE_REPLICATION_LAG",
+              "SIGNAL_TYPE_OUTDATED_CLIENT",
+              "SIGNAL_TYPE_DATABOOST_DISABLED",
+              "SIGNAL_TYPE_RECOMMENDED_MAINTENANCE_POLICIES",
+              "SIGNAL_TYPE_EXTENDED_SUPPORT",
+              "SIGNAL_TYPE_VERSION_NEARING_END_OF_LIFE",
+              "SIGNAL_TYPE_HIGH_MAINTENANCE_DOWNTIME_RISK",
+              "SIGNAL_TYPE_LOW_CACHE_HIT_AND_MAINTENANCE_DOWNTIME",
+              "SIGNAL_TYPE_MISSING_ENHANCED_PROTECTION"
+            ],
+            "enumDescriptions": [
+              "Unspecified.",
+              "Represents if a resource is protected by automatic failover. Checks for resources that are configured to have redundancy within a region that enables automatic failover.",
+              "Represents if a group is replicating across regions. Checks for resources that are configured to have redundancy, and ongoing replication, across regions.",
+              "Represents if a resource has an automated backup policy.",
+              "Represents if a resources has a short backup retention period.",
+              "Represents if the last backup of a resource failed.",
+              "Represents if the last backup of a resource is older than some threshold value.",
+              "Represents if a resource violates CIS Google Cloud Platform Foundation 2.0.",
+              "Represents if a resource violates CIS Google Cloud Platform Foundation 1.3.",
+              "Represents if a resource violates CIS Google Cloud Platform Foundation 1.2.",
+              "Represents if a resource violates CIS Google Cloud Platform Foundation 1.1.",
+              "Represents if a resource violates CIS Google Cloud Platform Foundation 1.0.",
+              "Represents if a resource violates CIS Controls 8.0.",
+              "Represents if a resource violates NIST 800-53.",
+              "Represents if a resource violates NIST 800-53 R5.",
+              "Represents if a resource violates NIST Cybersecurity Framework 1.0.",
+              "Represents if a resource violates ISO-27001.",
+              "Represents if a resource violates ISO 27001 2022.",
+              "Represents if a resource violates PCI-DSS v3.2.1.",
+              "Represents if a resource violates PCI-DSS v4.0.",
+              "Represents if a resource violates Cloud Controls Matrix v4.0.",
+              "Represents if a resource violates HIPAA.",
+              "Represents if a resource violates SOC2 v2017.",
+              "Represents if log_checkpoints database flag for a Cloud SQL for PostgreSQL instance is not set to on.",
+              "Represents if the log_duration database flag for a Cloud SQL for PostgreSQL instance is not set to on.",
+              "Represents if the log_error_verbosity database flag for a Cloud SQL for PostgreSQL instance is not set to default or stricter (default or terse).",
+              "Represents if the log_lock_waits database flag for a Cloud SQL for PostgreSQL instance is not set to on.",
+              "Represents if the log_min_error_statement database flag for a Cloud SQL for PostgreSQL instance is not set appropriately.",
+              "Represents if the log_min_error_statement database flag for a Cloud SQL for PostgreSQL instance does not have an appropriate severity level.",
+              "Represents if the log_min_messages database flag for a Cloud SQL for PostgreSQL instance is not set to warning or another recommended value.",
+              "Represents if the databaseFlags property of instance metadata for the log_executor_status field is set to on.",
+              "Represents if the log_hostname database flag for a Cloud SQL for PostgreSQL instance is not set to off.",
+              "Represents if the log_parser_stats database flag for a Cloud SQL for PostgreSQL instance is not set to off.",
+              "Represents if the log_planner_stats database flag for a Cloud SQL for PostgreSQL instance is not set to off.",
+              "Represents if the log_statement database flag for a Cloud SQL for PostgreSQL instance is not set to DDL (all data definition statements).",
+              "Represents if the log_statement_stats database flag for a Cloud SQL for PostgreSQL instance is not set to off.",
+              "Represents if the log_temp_files database flag for a Cloud SQL for PostgreSQL instance is not set to \"0\". (NOTE: 0 = ON)",
+              "Represents if the user connections database flag for a Cloud SQL for SQL Server instance is configured.",
+              "Represents if the user options database flag for Cloud SQL SQL Server instance is configured or not.",
+              "Represents if a resource is exposed to public access.",
+              "Represents if a resources requires all incoming connections to use SSL or not.",
+              "Represents if a Cloud SQL database has a password configured for the root account or not.",
+              "Represents if a Cloud SQL database has a weak password configured for the root account.",
+              "Represents if a SQL database instance is not encrypted with customer-managed encryption keys (CMEK).",
+              "Represents if The contained database authentication database flag for a Cloud SQL for SQL Server instance is not set to off.",
+              "Represents if he external scripts enabled database flag for a Cloud SQL for SQL Server instance is not set to off.",
+              "Represents if the local_infile database flag for a Cloud SQL for MySQL instance is not set to off.",
+              "Represents if the log_connections database flag for a Cloud SQL for PostgreSQL instance is not set to on.",
+              "Represents if the log_disconnections database flag for a Cloud SQL for PostgreSQL instance is not set to on.",
+              "Represents if the log_min_duration_statement database flag for a Cloud SQL for PostgreSQL instance is not set to -1.",
+              "Represents if the remote access database flag for a Cloud SQL for SQL Server instance is not set to off.",
+              "Represents if the skip_show_database database flag for a Cloud SQL for MySQL instance is not set to on.",
+              "Represents if the 3625 (trace flag) database flag for a Cloud SQL for SQL Server instance is not set to on.",
+              "Represents if public IP is enabled.",
+              "Represents idle instance helps to reduce costs.",
+              "Represents instances that are unnecessarily large for given workload.",
+              "Represents high number of concurrently opened tables.",
+              "Represents high table count close to SLA limit.",
+              "Represents high number of unvacuumed transactions",
+              "Represents need for more CPU and/or memory",
+              "Represents out of disk.",
+              "Represents server certificate is near expiry.",
+              "Represents database auditing is disabled.",
+              "Represents not restricted to authorized networks.",
+              "Represents violate org policy restrict public ip.",
+              "Cluster nearing quota limit",
+              "No password policy set on resources",
+              "Performance impact of connections settings",
+              "Performance impact of temporary tables settings",
+              "Performance impact of transaction logs settings",
+              "Performance impact of high joins without indexes",
+              "Detects events where a database superuser (postgres for PostgreSQL servers or root for MySQL users) writes to non-system tables.",
+              "Detects events where a database user or role has been granted all privileges to a database, or to all tables, procedures, or functions in a schema.",
+              "Detects if database instance data exported to a Cloud Storage bucket outside of the organization.",
+              "Detects if database instance data exported to a Cloud Storage bucket that is owned by the organization and is publicly accessible.",
+              "Detects if a database instance is using a weak password hash algorithm.",
+              "Detects if a database instance has no user password policy set.",
+              "Detects if a database instance/cluster has a hot node.",
+              "Deletion Protection Disabled for the resource",
+              "Detects if a database instance has no point in time recovery enabled.",
+              "Detects if a database instance/cluster has suspended resources.",
+              "Detects that expensive commands are being run on a database instance impacting overall performance.",
+              "Indicates that the instance does not have a maintenance policy configured.",
+              "Indicates that the instance has inefficient queries detected.",
+              "Indicates that the instance has read intensive workload.",
+              "Indicates that the instance is nearing memory limit.",
+              "Indicates that the instance's max server memory is configured higher than the recommended value.",
+              "Indicates that the database has large rows beyond the recommended limit.",
+              "Heavy write pressure on the database rows.",
+              "Heavy read pressure on the database rows.",
+              "Encryption org policy not satisfied.",
+              "Location org policy not satisfied.",
+              "Outdated DB minor version.",
+              "Schema not optimized.",
+              "Replication delay.",
+              "Outdated client.",
+              "Databoost is disabled.",
+              "Recommended maintenance policy.",
+              "Resource version is in extended support.",
+              "Represents a database version nearing end of life.",
+              "Indicates a high risk of maintenance downtime.",
+              "Indicates both a low cache hit rate and a risk of maintenance downtime.",
+              "Indicates that the resource is missing enhanced protection."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "SubResource": {
+      "description": "Sub resource details For Spanner/Bigtable instance certain data protection settings are at sub resource level like database/table. This message is used to capture such sub resource details.",
+      "id": "SubResource",
+      "properties": {
+        "container": {
+          "description": "Specifies where the resource is created. For Google Cloud resources, it is the full name of the project.",
+          "type": "string"
+        },
+        "fullResourceName": {
+          "description": "Optional. Resource name associated with the sub resource where backup settings are configured. E.g.\"//spanner.googleapis.com/projects/project1/instances/inst1/databases/db1\" for Spanner where backup retention is configured on database within an instance OPTIONAL",
+          "type": "string"
+        },
+        "product": {
+          "$ref": "Product",
+          "description": "Optional. Product information associated with the sub resource where backup retention settings are configured. e.g. ``` product: { type : PRODUCT_TYPE_SPANNER engine : ENGINE_CLOUD_SPANNER_WITH_POSTGRES_DIALECT } ``` for Spanner where backup is configured on database within an instance OPTIONAL"
+        },
+        "resourceType": {
+          "description": "Optional. Resource type associated with the sub resource where backup settings are configured. E.g. \"spanner.googleapis.com/Database\" for Spanner where backup retention is configured on database within an instance OPTIONAL",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Tag": {
+      "description": "Tag is a key value pair attached to a resource.",
+      "id": "Tag",
+      "properties": {
+        "inherited": {
+          "description": "Indicates the inheritance status of a tag value attached to the given resource. If the tag value is inherited from one of the resource's ancestors, inherited will be true. If false, then the tag value is directly attached to the resource.",
+          "type": "boolean"
+        },
+        "key": {
+          "type": "string"
+        },
+        "source": {
+          "description": "The source of the tag. According to https://cloud.google.com/resource-manager/docs/tags/tags-overview#tags_and_labels, tags can be created only at the project or organization level. Tags can be inherited from different project as well not just the current project where the database resource is present. Format: \"projects/{PROJECT_ID}\", \"projects/{PROJECT_NUMBER}\", \"organizations/{ORGANIZATION_ID}\"",
+          "type": "string"
+        },
+        "value": {
+          "description": "The value part of the tag.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TimeOfDay": {
+      "description": "Represents a time of day. The date and time zone are either not significant or are specified elsewhere. An API may choose to allow leap seconds. Related types are google.type.Date and `google.protobuf.Timestamp`.",
+      "id": "TimeOfDay",
+      "properties": {
+        "hours": {
+          "description": "Hours of a day in 24 hour format. Must be greater than or equal to 0 and typically must be less than or equal to 23. An API may choose to allow the value \"24:00:00\" for scenarios like business closing time.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "minutes": {
+          "description": "Minutes of an hour. Must be greater than or equal to 0 and less than or equal to 59.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "nanos": {
+          "description": "Fractions of seconds, in nanoseconds. Must be greater than or equal to 0 and less than or equal to 999,999,999.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "seconds": {
+          "description": "Seconds of a minute. Must be greater than or equal to 0 and typically must be less than or equal to 59. An API may allow the value 60 if it allows leap-seconds.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "TypedValue": {
+      "description": "TypedValue represents the value of the metric based on data type.",
+      "id": "TypedValue",
+      "properties": {
+        "doubleValue": {
+          "description": "The value of the metric as double.",
+          "format": "double",
+          "type": "number"
+        },
+        "int64Value": {
+          "description": "The value of the metric as int.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "UpcomingMaintenance": {
+      "description": "Upcoming maintenance window for the database resource.",
+      "id": "UpcomingMaintenance",
+      "properties": {
+        "endTime": {
+          "description": "Output only. End time of the upcoming maintenance. This is only populated for an engine, if end time is public for the engine.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "startTime": {
+          "description": "Output only. Start time of the upcoming maintenance. Start time is always populated when an upcoming maintenance is scheduled.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "servicePath": "",
+  "title": "Database Center API",
+  "version": "v1beta",
+  "version_module": true
+}

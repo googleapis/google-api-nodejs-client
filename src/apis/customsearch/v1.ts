@@ -560,8 +560,7 @@ export namespace customsearch_v1 {
         | BodyResponseCallback<Schema$Search>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Search>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Search> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Search>>
@@ -906,8 +905,7 @@ export namespace customsearch_v1 {
         | BodyResponseCallback<Schema$Search>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Search>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Search> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Search>>

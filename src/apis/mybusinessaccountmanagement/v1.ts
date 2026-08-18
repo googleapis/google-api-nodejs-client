@@ -487,8 +487,7 @@ export namespace mybusinessaccountmanagement_v1 {
         | BodyResponseCallback<Schema$Account>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Account>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Account> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Account>>
@@ -631,8 +630,7 @@ export namespace mybusinessaccountmanagement_v1 {
         | BodyResponseCallback<Schema$Account>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Account>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Account> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Account>>
@@ -755,8 +753,7 @@ export namespace mybusinessaccountmanagement_v1 {
     list(
       params: Params$Resource$Accounts$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListAccountsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListAccountsResponse>,
       callback: BodyResponseCallback<Schema$ListAccountsResponse>
     ): void;
     list(
@@ -940,8 +937,7 @@ export namespace mybusinessaccountmanagement_v1 {
         | BodyResponseCallback<Schema$Account>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Account>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Account> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Account>>
@@ -1148,8 +1144,7 @@ export namespace mybusinessaccountmanagement_v1 {
         | BodyResponseCallback<Schema$Admin>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Admin>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Admin> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Admin>>
@@ -1285,8 +1280,7 @@ export namespace mybusinessaccountmanagement_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -1403,8 +1397,7 @@ export namespace mybusinessaccountmanagement_v1 {
     list(
       params: Params$Resource$Accounts$Admins$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListAccountAdminsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListAccountAdminsResponse>,
       callback: BodyResponseCallback<Schema$ListAccountAdminsResponse>
     ): void;
     list(
@@ -1582,8 +1575,7 @@ export namespace mybusinessaccountmanagement_v1 {
         | BodyResponseCallback<Schema$Admin>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Admin>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Admin> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Admin>>
@@ -1768,8 +1760,7 @@ export namespace mybusinessaccountmanagement_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -1908,8 +1899,7 @@ export namespace mybusinessaccountmanagement_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -2031,8 +2021,7 @@ export namespace mybusinessaccountmanagement_v1 {
     list(
       params: Params$Resource$Accounts$Invitations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListInvitationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListInvitationsResponse>,
       callback: BodyResponseCallback<Schema$ListInvitationsResponse>
     ): void;
     list(
@@ -2238,8 +2227,7 @@ export namespace mybusinessaccountmanagement_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -2412,8 +2400,7 @@ export namespace mybusinessaccountmanagement_v1 {
         | BodyResponseCallback<Schema$Admin>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Admin>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Admin> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Admin>>
@@ -2549,8 +2536,7 @@ export namespace mybusinessaccountmanagement_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -2667,8 +2653,7 @@ export namespace mybusinessaccountmanagement_v1 {
     list(
       params: Params$Resource$Locations$Admins$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListLocationAdminsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListLocationAdminsResponse>,
       callback: BodyResponseCallback<Schema$ListLocationAdminsResponse>
     ): void;
     list(
@@ -2846,8 +2831,7 @@ export namespace mybusinessaccountmanagement_v1 {
         | BodyResponseCallback<Schema$Admin>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Admin>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Admin> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Admin>>

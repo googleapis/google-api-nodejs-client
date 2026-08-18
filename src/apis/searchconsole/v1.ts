@@ -198,10 +198,16 @@ export namespace searchconsole_v1 {
     operator?: string | null;
   }
   /**
-   * A set of dimension value filters to test against each row. Only rows that pass all filter groups will be returned. All results within a filter group are either AND'ed or OR'ed together, depending on the group type selected. All filter groups are AND'ed together.
+   * A set of `dimension` value filters to test against each row. Only rows that pass all filter groups will be returned. All results within a filter group are either AND'ed or OR'ed together, depending on the group type selected. All filter groups are AND'ed together.
    */
   export interface Schema$ApiDimensionFilterGroup {
+    /**
+     * Optional. A list of single-value filters in this group.
+     */
     filters?: Schema$ApiDimensionFilter[];
+    /**
+     * Optional. The logic operator between filters of the same group.
+     */
     groupType?: string | null;
   }
   /**
@@ -1061,8 +1067,7 @@ export namespace searchconsole_v1 {
         | BodyResponseCallback<Schema$WmxSitemap>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$WmxSitemap>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$WmxSitemap> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$WmxSitemap>>
@@ -1184,8 +1189,7 @@ export namespace searchconsole_v1 {
     list(
       params: Params$Resource$Sitemaps$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$SitemapsListResponse>,
+        MethodOptions | BodyResponseCallback<Schema$SitemapsListResponse>,
       callback: BodyResponseCallback<Schema$SitemapsListResponse>
     ): void;
     list(
@@ -1784,8 +1788,7 @@ export namespace searchconsole_v1 {
         | BodyResponseCallback<Schema$WmxSite>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$WmxSite>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$WmxSite> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$WmxSite>>
@@ -2086,8 +2089,7 @@ export namespace searchconsole_v1 {
     inspect(
       params: Params$Resource$Urlinspection$Index$Inspect,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$InspectUrlIndexResponse>,
+        MethodOptions | BodyResponseCallback<Schema$InspectUrlIndexResponse>,
       callback: BodyResponseCallback<Schema$InspectUrlIndexResponse>
     ): void;
     inspect(

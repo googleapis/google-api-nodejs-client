@@ -1,5 +1,24 @@
 # Changelog
 
+## [4.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/threatintelligence-v4.0.0...threatintelligence-v4.1.0) (2026-08-14)
+
+
+### Features
+
+* **threatintelligence:** update the API ([c836445](https://github.com/googleapis/google-api-nodejs-client/commit/c836445a4095906a64b12cdc363fa82e67fb4196))
+* **threatintelligence:** update the API ([e40616e](https://github.com/googleapis/google-api-nodejs-client/commit/e40616e096d07de19e6e908e8587155bc852f1b8))
+
+## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/threatintelligence-v3.0.0...threatintelligence-v4.0.0) (2026-08-03)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3955](https://github.com/googleapis/google-api-nodejs-client/issues/3955)) ([c429a9b](https://github.com/googleapis/google-api-nodejs-client/commit/c429a9b6f8272f1a651084f83ffcf4b88124c59f))
+
 ## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/threatintelligence-v2.0.0...threatintelligence-v3.0.0) (2026-05-28)
 
 

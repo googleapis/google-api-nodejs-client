@@ -1163,8 +1163,7 @@ export namespace analyticshub_v1beta1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -1455,8 +1454,7 @@ export namespace analyticshub_v1beta1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -1583,8 +1581,7 @@ export namespace analyticshub_v1beta1 {
     list(
       params: Params$Resource$Projects$Locations$Dataexchanges$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListDataExchangesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListDataExchangesResponse>,
       callback: BodyResponseCallback<Schema$ListDataExchangesResponse>
     ): void;
     list(
@@ -1917,8 +1914,7 @@ export namespace analyticshub_v1beta1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -2050,8 +2046,7 @@ export namespace analyticshub_v1beta1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Dataexchanges$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -2348,8 +2343,7 @@ export namespace analyticshub_v1beta1 {
         | BodyResponseCallback<Schema$Listing>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Listing>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Listing> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Listing>>
@@ -2488,8 +2482,7 @@ export namespace analyticshub_v1beta1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -2639,8 +2632,7 @@ export namespace analyticshub_v1beta1 {
         | BodyResponseCallback<Schema$Listing>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Listing>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Listing> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Listing>>
@@ -2790,8 +2782,7 @@ export namespace analyticshub_v1beta1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -2921,8 +2912,7 @@ export namespace analyticshub_v1beta1 {
     list(
       params: Params$Resource$Projects$Locations$Dataexchanges$Listings$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListListingsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListListingsResponse>,
       callback: BodyResponseCallback<Schema$ListListingsResponse>
     ): void;
     list(
@@ -3119,8 +3109,7 @@ export namespace analyticshub_v1beta1 {
         | BodyResponseCallback<Schema$Listing>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Listing>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Listing> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Listing>>
@@ -3271,8 +3260,7 @@ export namespace analyticshub_v1beta1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -3401,8 +3389,7 @@ export namespace analyticshub_v1beta1 {
     subscribe(
       params: Params$Resource$Projects$Locations$Dataexchanges$Listings$Subscribe,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$SubscribeListingResponse>,
+        MethodOptions | BodyResponseCallback<Schema$SubscribeListingResponse>,
       callback: BodyResponseCallback<Schema$SubscribeListingResponse>
     ): void;
     subscribe(
@@ -3558,8 +3545,7 @@ export namespace analyticshub_v1beta1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Dataexchanges$Listings$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(

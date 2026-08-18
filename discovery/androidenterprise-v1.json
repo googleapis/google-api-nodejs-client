@@ -2691,7 +2691,7 @@
       }
     }
   },
-  "revision": "20260422",
+  "revision": "20260729",
   "rootUrl": "https://androidenterprise.googleapis.com/",
   "schemas": {
     "Administrator": {
@@ -3324,7 +3324,7 @@
       "id": "EnrollmentToken",
       "properties": {
         "duration": {
-          "description": "[Optional] The length of time the enrollment token is valid, ranging from 1 minute to [`Durations.MAX_VALUE`](https://developers.google.com/protocol-buffers/docs/reference/java/com/google/protobuf/util/Durations.html#MAX_VALUE), approximately 10,000 years. If not specified, the default duration is 1 hour.",
+          "description": "[Optional] The length of time the enrollment token is valid, ranging from 1 minute to [`Durations.MAX_VALUE`](https://developers.google.com/protocol-buffers/docs/reference/java/com/google/protobuf/util/Durations.html#MAX_VALUE), approximately 10,000 years. If not specified, the default duration is 1 hour. In the JSON REST API, this is represented as a string (e.g., `3600s`).",
           "format": "google-duration",
           "type": "string"
         },
@@ -3558,20 +3558,6 @@
       "description": "Contains settings for Google-provided user authentication.",
       "id": "GoogleAuthenticationSettings",
       "properties": {
-        "dedicatedDevicesAllowed": {
-          "description": "Whether dedicated devices are allowed.",
-          "enum": [
-            "dedicatedDevicesAllowedUnspecified",
-            "disallowed",
-            "allowed"
-          ],
-          "enumDescriptions": [
-            "This value is unused.",
-            "Dedicated devices are not allowed.",
-            "Dedicated devices are allowed."
-          ],
-          "type": "string"
-        },
         "googleAuthenticationRequired": {
           "description": "Whether Google authentication is required.",
           "enum": [

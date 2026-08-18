@@ -1,5 +1,23 @@
 # Changelog
 
+## [10.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/homegraph-v10.0.0...homegraph-v10.1.0) (2026-08-14)
+
+
+### Features
+
+* **homegraph:** update the API ([fd4580a](https://github.com/googleapis/google-api-nodejs-client/commit/fd4580ac59f1f0e1d558af6685d0fecc7093772f))
+
+## [10.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/homegraph-v9.0.0...homegraph-v10.0.0) (2026-08-03)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3955](https://github.com/googleapis/google-api-nodejs-client/issues/3955)) ([c429a9b](https://github.com/googleapis/google-api-nodejs-client/commit/c429a9b6f8272f1a651084f83ffcf4b88124c59f))
+
 ## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/homegraph-v8.1.0...homegraph-v9.0.0) (2026-05-28)
 
 

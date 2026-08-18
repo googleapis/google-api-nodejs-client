@@ -241,8 +241,7 @@ export namespace groupsmigration_v1 {
         | BodyResponseCallback<Schema$Groups>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Groups>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Groups> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Groups>>

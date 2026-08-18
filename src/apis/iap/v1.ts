@@ -774,8 +774,7 @@ export namespace iap_v1 {
         | BodyResponseCallback<Schema$Brand>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Brand>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Brand> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Brand>>
@@ -914,8 +913,7 @@ export namespace iap_v1 {
         | BodyResponseCallback<Schema$Brand>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Brand>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Brand> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Brand>>
@@ -1210,8 +1208,7 @@ export namespace iap_v1 {
     create(
       params: Params$Resource$Projects$Brands$Identityawareproxyclients$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$IdentityAwareProxyClient>,
+        MethodOptions | BodyResponseCallback<Schema$IdentityAwareProxyClient>,
       callback: BodyResponseCallback<Schema$IdentityAwareProxyClient>
     ): void;
     create(
@@ -1368,8 +1365,7 @@ export namespace iap_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -1487,8 +1483,7 @@ export namespace iap_v1 {
     get(
       params: Params$Resource$Projects$Brands$Identityawareproxyclients$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$IdentityAwareProxyClient>,
+        MethodOptions | BodyResponseCallback<Schema$IdentityAwareProxyClient>,
       callback: BodyResponseCallback<Schema$IdentityAwareProxyClient>
     ): void;
     get(
@@ -1785,8 +1780,7 @@ export namespace iap_v1 {
     resetSecret(
       params: Params$Resource$Projects$Brands$Identityawareproxyclients$Resetsecret,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$IdentityAwareProxyClient>,
+        MethodOptions | BodyResponseCallback<Schema$IdentityAwareProxyClient>,
       callback: BodyResponseCallback<Schema$IdentityAwareProxyClient>
     ): void;
     resetSecret(
@@ -2171,8 +2165,7 @@ export namespace iap_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -2815,8 +2808,7 @@ export namespace iap_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -3100,8 +3092,7 @@ export namespace iap_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -3226,8 +3217,7 @@ export namespace iap_v1 {
     testIamPermissions(
       params: Params$Resource$V1$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
