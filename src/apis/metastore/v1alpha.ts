@@ -349,6 +349,23 @@ export namespace metastore_v1alpha {
    */
   export interface Schema$CancelOperationRequest {}
   /**
+   * Aggregated report at the catalog level.
+   */
+  export interface Schema$CatalogReport {
+    /**
+     * The name of the catalog (format: projects/x/catalogs/x).
+     */
+    catalog?: string | null;
+    /**
+     * The type of catalog.
+     */
+    catalogType?: string | null;
+    /**
+     * A map of database names to their respective reports.
+     */
+    databaseReports?: {[key: string]: Schema$DatabaseReport} | null;
+  }
+  /**
    * Summary of results for a specific destination catalog.
    */
   export interface Schema$CatalogSummary {
@@ -530,6 +547,27 @@ export namespace metastore_v1alpha {
     type?: string | null;
   }
   /**
+   * Aggregated report at the database level.
+   */
+  export interface Schema$DatabaseReport {
+    /**
+     * The name of the database.
+     */
+    database?: string | null;
+    /**
+     * The discovered intent for the database (what we found and what we planned).
+     */
+    executionPlan?: Schema$ExecutionPlan;
+    /**
+     * The actual outcome of the database migration.
+     */
+    executionResult?: Schema$ExecutionResult;
+    /**
+     * A map of table names to their respective reports.
+     */
+    tableReports?: {[key: string]: Schema$TableReport} | null;
+  }
+  /**
    * Summary of results for a specific database in a catalog.
    */
   export interface Schema$DatabaseSummary {
@@ -593,6 +631,40 @@ export namespace metastore_v1alpha {
      * Additional structured details about this error.Keys define the failure items. Value describes the exception or details of the item.
      */
     details?: {[key: string]: string} | null;
+  }
+  /**
+   * Represents the migration plan for a specific resource (e.g. Database, Table).
+   */
+  export interface Schema$ExecutionPlan {
+    /**
+     * The action that will be taken for a resource during migration.
+     */
+    action?: string | null;
+    /**
+     * A map of field names to their respective value diff.
+     */
+    diffs?: {[key: string]: Schema$ValueDiff} | null;
+    /**
+     * A human-readable string explaining why the action was chosen.
+     */
+    reason?: string | null;
+  }
+  /**
+   * Represents the actual migration result for a specific resource (e.g. Database, Table).
+   */
+  export interface Schema$ExecutionResult {
+    /**
+     * Description of the error if the state is FAILED.
+     */
+    errorMessage?: string | null;
+    /**
+     * Remediation steps for the error if the state is FAILED.
+     */
+    remediation?: string | null;
+    /**
+     * Output only. The state of the migration for a resource.
+     */
+    state?: string | null;
   }
   /**
    * Request message for DataprocMetastore.ExportMetadata.
@@ -1101,6 +1173,19 @@ export namespace metastore_v1alpha {
     stateMessage?: string | null;
   }
   /**
+   * Report containing the results of a migration run. This report is generated at the specified path in the BigLakeMetastoreMigrationConfig after the backfill is complete, or when a dry run is executed.
+   */
+  export interface Schema$MigrationReport {
+    /**
+     * Output only. Detailed results for each catalog involved in the migration.
+     */
+    catalogReports?: Schema$CatalogReport[];
+    /**
+     * Output only. High-level summary of the migration results.
+     */
+    summary?: Schema$MigrationSummary;
+  }
+  /**
    * Summary of the migration results.
    */
   export interface Schema$MigrationSummary {
@@ -1242,6 +1327,23 @@ export namespace metastore_v1alpha {
      * Output only. Name of the verb executed by the operation.
      */
     verb?: string | null;
+  }
+  /**
+   * Partition migration report for a Hive table.
+   */
+  export interface Schema$PartitionReport {
+    /**
+     * The number of partitions that failed to migrate at the target.
+     */
+    partitionFailedCount?: string | null;
+    /**
+     * The number of partitions successfully migrated at the target.
+     */
+    partitionSuccessCount?: string | null;
+    /**
+     * Output only. The state of the partition migration.
+     */
+    state?: string | null;
   }
   /**
    * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources.A Policy is a collection of bindings. A binding binds one or more members, or principals, to a single role. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A role is a named list of permissions; each role can be an IAM predefined role or a user-created custom role.For some types of Google Cloud resources, a binding can also specify a condition, which is a logical expression that allows access to a resource only if the expression evaluates to true. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).JSON example: { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} YAML example: bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 For a description of IAM and its features, see the IAM documentation (https://cloud.google.com/iam/docs/).
@@ -1600,6 +1702,31 @@ export namespace metastore_v1alpha {
     space?: string | null;
   }
   /**
+   * Aggregated report at the table level.
+   */
+  export interface Schema$TableReport {
+    /**
+     * The discovered intent for the table (what we found and what we planned).
+     */
+    executionPlan?: Schema$ExecutionPlan;
+    /**
+     * The actual outcome of the table migration.
+     */
+    executionResult?: Schema$ExecutionResult;
+    /**
+     * The total number of partitions identified at the source during discovery. This is only relevant for Hive Partitioned tables.
+     */
+    partitionDiscoveredCount?: string | null;
+    /**
+     * Report containing the results of partition migration for this table. This is only relevant for Hive Partitioned tables.
+     */
+    partitionReport?: Schema$PartitionReport;
+    /**
+     * The name of the table.
+     */
+    table?: string | null;
+  }
+  /**
    * Aggregated summary of results for all tables in a database.
    */
   export interface Schema$TableSummary {
@@ -1650,6 +1777,19 @@ export namespace metastore_v1alpha {
      * A subset of TestPermissionsRequest.permissions that the caller is allowed.
      */
     permissions?: string[] | null;
+  }
+  /**
+   * A field-level metadata mismatch for a resource between the source and target.
+   */
+  export interface Schema$ValueDiff {
+    /**
+     * The value of the field at the source.
+     */
+    sourceValue?: string | null;
+    /**
+     * The value of the field at the target.
+     */
+    targetValue?: string | null;
   }
 
   export class Resource$Projects {
