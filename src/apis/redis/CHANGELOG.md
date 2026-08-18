@@ -1,5 +1,12 @@
 # Changelog
 
+## [23.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/redis-v23.0.0...redis-v23.0.1) (2026-08-18)
+
+
+### Bug Fixes
+
+* **redis:** update the API ([c639065](https://github.com/googleapis/google-api-nodejs-client/commit/c639065e6ab3019192384f71d95bc447fb176329))
+
 ## [23.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/redis-v22.2.0...redis-v23.0.0) (2026-08-03)
 
 

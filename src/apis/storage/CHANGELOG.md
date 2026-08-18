@@ -1,5 +1,12 @@
 # Changelog
 
+## [22.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/storage-v22.0.0...storage-v22.1.0) (2026-08-18)
+
+
+### Features
+
+* **storage:** update the API ([9974109](https://github.com/googleapis/google-api-nodejs-client/commit/9974109dd49839de0083621ed9ce133f6e1c37a8))
+
 ## [22.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/storage-v21.3.0...storage-v22.0.0) (2026-08-03)
 
 

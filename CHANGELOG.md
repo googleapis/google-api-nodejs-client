@@ -4,6 +4,45 @@
 
 [1]: https://www.npmjs.com/package/googleapis?activeTab=versions
 
+## [176.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/googleapis-v175.0.0...googleapis-v176.0.0) (2026-08-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* **securityposture:** This release has breaking changes.
+* **compute:** This release has breaking changes.
+* **assuredworkloads:** This release has breaking changes.
+
+### Features
+
+* **assuredworkloads:** update the API ([4f787ec](https://github.com/googleapis/google-api-nodejs-client/commit/4f787ecb10d2fcc0605045096ab472c8a3c848ce))
+* **bigqueryconnection:** update the API ([19d67d7](https://github.com/googleapis/google-api-nodejs-client/commit/19d67d7998bfd284eac66cbb2649df7479c3ecaa))
+* **bigquery:** update the API ([5047629](https://github.com/googleapis/google-api-nodejs-client/commit/5047629259ead4fb146cf95156bd8c28d5a0eb46))
+* **ces:** update the API ([4d674e7](https://github.com/googleapis/google-api-nodejs-client/commit/4d674e7e4efc6826072fe92f624378f9e03d0e34))
+* **compute:** update the API ([88ee28b](https://github.com/googleapis/google-api-nodejs-client/commit/88ee28ba7c20507de837c6335980f4aa239e5b4e))
+* **contactcenterinsights:** update the API ([8987bcf](https://github.com/googleapis/google-api-nodejs-client/commit/8987bcff71f26c6a511c92833049c0b7ad86469e))
+* **dialogflow:** update the API ([cb090b7](https://github.com/googleapis/google-api-nodejs-client/commit/cb090b72b2cae5d9b2053985b12237c51dd57ff7))
+* **discoveryengine:** update the API ([c9a9b98](https://github.com/googleapis/google-api-nodejs-client/commit/c9a9b98cfcc0acedf8679fd3c791c74477c64654))
+* **gkehub:** update the API ([e7356ce](https://github.com/googleapis/google-api-nodejs-client/commit/e7356ce9c0aa7240bd69688c544e4e3b3f81138a))
+* **looker:** update the API ([ce6eba9](https://github.com/googleapis/google-api-nodejs-client/commit/ce6eba99279a866be197c7eaba9a8ea2e7f1eafa))
+* **metastore:** update the API ([266b861](https://github.com/googleapis/google-api-nodejs-client/commit/266b861fd1a23ea8781f03ef252cf30dec2eb1f6))
+* **networkservices:** update the API ([71b26e6](https://github.com/googleapis/google-api-nodejs-client/commit/71b26e6c3734b967f4c228bb5cbc6658f0e8c42b))
+* **playdeveloperreporting:** update the API ([b0d0c26](https://github.com/googleapis/google-api-nodejs-client/commit/b0d0c264919b34dc6c18179113ea4195375db638))
+* regenerate index files ([0eb3a95](https://github.com/googleapis/google-api-nodejs-client/commit/0eb3a957cc14024a33be3910f970651aa7ba430b))
+* **secretmanager:** update the API ([333f48f](https://github.com/googleapis/google-api-nodejs-client/commit/333f48fa3afeb9daa9a506b77c7ddd9cdbed8fce))
+* **securityposture:** update the API ([8681053](https://github.com/googleapis/google-api-nodejs-client/commit/868105393dbb9148f0cc827d5895c5effa51f372))
+* **storage:** update the API ([9974109](https://github.com/googleapis/google-api-nodejs-client/commit/9974109dd49839de0083621ed9ce133f6e1c37a8))
+* **webcontentpublisher:** update the API ([7dc05fc](https://github.com/googleapis/google-api-nodejs-client/commit/7dc05fc5f268c8a7ca5d18429fde05b50a58b29c))
+
+
+### Bug Fixes
+
+* **datafusion:** update the API ([2c691d5](https://github.com/googleapis/google-api-nodejs-client/commit/2c691d571a3fdc8a93926fbfcbaa50273517756f))
+* **docs:** run JSDoc once per documentation build ([#3958](https://github.com/googleapis/google-api-nodejs-client/issues/3958)) ([5aaf111](https://github.com/googleapis/google-api-nodejs-client/commit/5aaf111af860b22a55ed64da824e0444b119c007))
+* **redis:** update the API ([c639065](https://github.com/googleapis/google-api-nodejs-client/commit/c639065e6ab3019192384f71d95bc447fb176329))
+* **trafficdirector:** update the API ([3331b0c](https://github.com/googleapis/google-api-nodejs-client/commit/3331b0cd347a11ea9d8c774f61ee67029399ba73))
+* **workstations:** update the API ([ee9521c](https://github.com/googleapis/google-api-nodejs-client/commit/ee9521ce5cdb69590827c30c59e58f0f047fb70d))
+
 ## [175.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/googleapis-v174.0.1...googleapis-v175.0.0) (2026-08-14)
 
 

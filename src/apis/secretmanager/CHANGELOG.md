@@ -1,5 +1,12 @@
 # Changelog
 
+## [8.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/secretmanager-v8.0.0...secretmanager-v8.1.0) (2026-08-18)
+
+
+### Features
+
+* **secretmanager:** update the API ([333f48f](https://github.com/googleapis/google-api-nodejs-client/commit/333f48fa3afeb9daa9a506b77c7ddd9cdbed8fce))
+
 ## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/secretmanager-v7.0.0...secretmanager-v8.0.0) (2026-08-03)
 
 

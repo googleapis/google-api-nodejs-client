@@ -1,5 +1,16 @@
 # Changelog
 
+## [16.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/assuredworkloads-v15.0.0...assuredworkloads-v16.0.0) (2026-08-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* **assuredworkloads:** This release has breaking changes.
+
+### Features
+
+* **assuredworkloads:** update the API ([4f787ec](https://github.com/googleapis/google-api-nodejs-client/commit/4f787ecb10d2fcc0605045096ab472c8a3c848ce))
+
 ## [15.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/assuredworkloads-v14.1.0...assuredworkloads-v15.0.0) (2026-08-03)
 
 
