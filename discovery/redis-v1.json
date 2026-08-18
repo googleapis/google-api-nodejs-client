@@ -510,7 +510,7 @@
                       "type": "string"
                     },
                     "name": {
-                      "description": "Required. Redis ACL policy resource name using the form: `projects/{project_id}/locations/{location_id}/aclPolicies/{acl_policy_id}` where `location_id` refers to a GCP region.",
+                      "description": "Required. Redis ACL policy resource name using the form: `projects/{project_id}/locations/{location_id}/aclPolicies/{acl_policy_id}` where `location_id` refers to a Google Cloud region.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/aclPolicies/[^/]+$",
                       "required": true,
@@ -541,7 +541,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Redis ACL policy resource name using the form: `projects/{project_id}/locations/{location_id}/aclPolicies/{acl_policy_id}` where `location_id` refers to a GCP region.",
+                      "description": "Required. Redis ACL policy resource name using the form: `projects/{project_id}/locations/{location_id}/aclPolicies/{acl_policy_id}` where `location_id` refers to a Google Cloud region.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/aclPolicies/[^/]+$",
                       "required": true,
@@ -648,7 +648,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. Redis ACL policy revision resource name using the form: `projects/{project_id}/locations/{location_id}/aclPolicies/{acl_policy_id}/revisions/{revision_id}` where `location_id` refers to a GCP region.",
+                          "description": "Required. Redis ACL policy revision resource name using the form: `projects/{project_id}/locations/{location_id}/aclPolicies/{acl_policy_id}/revisions/{revision_id}` where `location_id` refers to a Google Cloud region.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/aclPolicies/[^/]+/revisions/[^/]+$",
                           "required": true,
@@ -1914,7 +1914,7 @@
       }
     }
   },
-  "revision": "20260720",
+  "revision": "20260812",
   "rootUrl": "https://redis.googleapis.com/",
   "schemas": {
     "AOFConfig": {
