@@ -1,5 +1,12 @@
 # Changelog
 
+## [11.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/analytics-v11.0.1...analytics-v11.0.2) (2026-08-14)
+
+
+### Bug Fixes
+
+* **analytics:** update the API ([00ab26a](https://github.com/googleapis/google-api-nodejs-client/commit/00ab26a2c7da4105d6906814b68e4afeedc0e174))
+
 ## [11.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/analytics-v11.0.0...analytics-v11.0.1) (2025-12-05)
 
 

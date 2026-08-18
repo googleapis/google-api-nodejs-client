@@ -1,5 +1,12 @@
 # Changelog
 
+## [25.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/androidmanagement-v25.0.0...androidmanagement-v25.0.1) (2026-08-14)
+
+
+### Bug Fixes
+
+* **androidmanagement:** update the API ([b910725](https://github.com/googleapis/google-api-nodejs-client/commit/b9107252b417c18bceafd50743d0fc4d74ead506))
+
 ## [25.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/androidmanagement-v24.0.0...androidmanagement-v25.0.0) (2026-08-03)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [11.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/androiddeviceprovisioning-v11.0.0...androiddeviceprovisioning-v11.0.1) (2026-08-14)
+
+
+### Bug Fixes
+
+* **androiddeviceprovisioning:** update the API ([0f0513f](https://github.com/googleapis/google-api-nodejs-client/commit/0f0513f3d9537e101c467b81d5ea23c3dbc2ace5))
+
 ## [11.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/androiddeviceprovisioning-v10.0.1...androiddeviceprovisioning-v11.0.0) (2026-08-03)
 
 

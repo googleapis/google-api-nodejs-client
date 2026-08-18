@@ -1,5 +1,12 @@
 # Changelog
 
+## [9.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/toolresults-v9.0.0...toolresults-v9.1.0) (2026-08-14)
+
+
+### Features
+
+* **toolresults:** update the API ([cc15a70](https://github.com/googleapis/google-api-nodejs-client/commit/cc15a70ae7748df91fe863bf25fefef7c8d94860))
+
 ## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/toolresults-v8.1.0...toolresults-v9.0.0) (2026-08-03)
 
 
