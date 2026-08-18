@@ -3278,7 +3278,7 @@
       }
     }
   },
-  "revision": "20260721",
+  "revision": "20260810",
   "rootUrl": "https://oracledatabase.googleapis.com/",
   "schemas": {
     "AllConnectionStrings": {
@@ -5083,6 +5083,34 @@
         "timeZone": {
           "$ref": "TimeZone",
           "description": "Optional. Time zone of VM Cluster to set. Defaults to UTC if not specified."
+        },
+        "vmBackupStorageType": {
+          "description": "Optional. Specifies whether VM backups are stored on local DB server storage or Exascale storage.",
+          "enum": [
+            "VM_BACKUP_STORAGE_TYPE_UNSPECIFIED",
+            "VM_BACKUP_STORAGE_TYPE_LOCAL",
+            "VM_BACKUP_STORAGE_TYPE_EXASCALE"
+          ],
+          "enumDescriptions": [
+            "Unspecified storage type.",
+            "Local DB server storage.",
+            "Exascale storage."
+          ],
+          "type": "string"
+        },
+        "vmFileSystemStorageType": {
+          "description": "Optional. Specifies whether VM file system storage / VM images are stored on local DB server storage or Exascale storage.",
+          "enum": [
+            "VM_FILE_SYSTEM_STORAGE_TYPE_UNSPECIFIED",
+            "VM_FILE_SYSTEM_STORAGE_TYPE_LOCAL",
+            "VM_FILE_SYSTEM_STORAGE_TYPE_EXASCALE"
+          ],
+          "enumDescriptions": [
+            "Unspecified storage type.",
+            "Local DB server storage.",
+            "Exascale storage."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -5097,6 +5125,11 @@
         },
         "totalStorageSizeGb": {
           "description": "Required. The total storage to be allocated to Exascale in GBs.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "totalVmStorageSizeGb": {
+          "description": "Optional. Storage size needed for VM storage on Exascale in GBs.",
           "format": "int32",
           "type": "integer"
         }
@@ -6667,8 +6700,20 @@
           "readOnly": true,
           "type": "integer"
         },
+        "availableVmStorageSizeGb": {
+          "description": "Output only. Available storage size for VM storage on Exascale in GBs.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
         "totalStorageSizeGb": {
           "description": "Output only. Total storage size needed for Exascale in GBs.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "totalVmStorageSizeGb": {
+          "description": "Output only. Storage size needed for VM storage on Exascale in GBs.",
           "format": "int32",
           "readOnly": true,
           "type": "integer"

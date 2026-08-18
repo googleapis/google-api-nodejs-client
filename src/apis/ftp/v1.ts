@@ -102,7 +102,7 @@ export namespace ftp_v1 {
   /**
    * Cloud FTP API
    *
-   * Cloud FTP is a managed service that allows transferring files directly to Google Cloud Storage using SFTP.
+   * A managed, cloud-native solution to move data in and out of Google Cloud by using SSH File Transfer Protocol (SFTP).
    *
    * @example
    * ```js
@@ -1503,7 +1503,7 @@ export namespace ftp_v1 {
      *     parent: 'projects/my-project/locations/my-location',
      *     // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      *     requestId: 'placeholder-value',
-     *     // Required. Id of the requesting object If auto-generating Id server-side, remove this field and server_id from the method_signature of Create RPC
+     *     // Required. A unique ID for the server. Must start with a lowercase letter, and end with a lowercase letter or number. Can contain lowercase letters, numbers, and hyphens. Maximum length is 30 characters.
      *     serverId: 'placeholder-value',
      *
      *     // Request body metadata
@@ -2517,7 +2517,7 @@ export namespace ftp_v1 {
      */
     requestId?: string;
     /**
-     * Required. Id of the requesting object If auto-generating Id server-side, remove this field and server_id from the method_signature of Create RPC
+     * Required. A unique ID for the server. Must start with a lowercase letter, and end with a lowercase letter or number. Can contain lowercase letters, numbers, and hyphens. Maximum length is 30 characters.
      */
     serverId?: string;
 
@@ -2651,7 +2651,7 @@ export namespace ftp_v1 {
      *     parent: 'projects/my-project/locations/my-location/servers/my-server',
      *     // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      *     requestId: 'placeholder-value',
-     *     // Required. Id of the requesting object If auto-generating Id server-side, remove this field and server_id from the method_signature of Create RPC
+     *     // Required. A unique user ID for the SFTP user. The user ID must start with a lowercase letter and can include lowercase letters, numbers, or hyphens.
      *     userId: 'placeholder-value',
      *
      *     // Request body metadata
@@ -3373,7 +3373,7 @@ export namespace ftp_v1 {
      */
     requestId?: string;
     /**
-     * Required. Id of the requesting object If auto-generating Id server-side, remove this field and server_id from the method_signature of Create RPC
+     * Required. A unique user ID for the SFTP user. The user ID must start with a lowercase letter and can include lowercase letters, numbers, or hyphens.
      */
     userId?: string;
 

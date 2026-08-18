@@ -340,6 +340,10 @@ export namespace accesscontextmanager_v1 {
      * Optional. The application that is subject to this binding's scope.
      */
     restrictedClientApplication?: Schema$Application;
+    /**
+     * Optional. The GCP project that is subject to this binding's scope.
+     */
+    restrictedProject?: Schema$Project;
   }
   /**
    * A request to commit dry-run specs in all Service Perimeters belonging to an Access Policy.
@@ -556,7 +560,7 @@ export namespace accesscontextmanager_v1 {
      */
     principal?: Schema$Principal;
     /**
-     * Optional. Deprecated: use scoped_access_settings instead. A list of applications that are subject to this binding's restrictions. If the list is empty, the binding restrictions will universally apply to all applications.
+     * Optional. Deprecated: Use `scoped_access_settings` instead. A list of applications that are subject to this binding's restrictions. If the list is empty, the binding restrictions will universally apply to all applications.
      */
     restrictedClientApplications?: Schema$Application[];
     /**
@@ -784,7 +788,7 @@ export namespace accesscontextmanager_v1 {
    */
   export interface Schema$Modifier {
     /**
-     * Adds additional HTTP request headers.
+     * Adds an additional HTTP request header.
      */
     addRequestHeader?: Schema$AddRequestHeader;
   }
@@ -852,11 +856,15 @@ export namespace accesscontextmanager_v1 {
     version?: number | null;
   }
   /**
-   * The comprehensive identity container supporting identities including groups, service accounts and federated identities. Only one of them can be set to create an access binding.
+   * The comprehensive identity container supporting identities including groups, service accounts, and federated identities. Only one of them can be set to create an access binding.
    */
   export interface Schema$Principal {
     /**
-     * Immutable. Service account email used to assign policies to a specific service account. If a service account is subject to multiple policies (e.g., if there is a policy for all service accounts in a project and a policy for the service account), the closest (i.e. the most specific) dry-run policy will be used for the dry-run functionality and the closest policy will be used for the enforcement.
+     * Immutable. IAM federated principal name to assign policies to workforce/workload federated identities. Can be principal set or single principal, here are some examples: Single principal: principal://iam.googleapis.com/projects/{project_number\}/locations/global/workloadIdentityPools/{pool_id\}/subject/{subject_attribute_value\} PrincipalSet: principalSet://iam.googleapis.com/projects/{project_number\}/locations/global/workloadIdentityPools/{pool_id\}/x
+     */
+    federatedPrincipal?: string | null;
+    /**
+     * Immutable. Service account email used to assign policies to a specific service account. If a service account is subject to multiple policies (e.g., if there is a policy for all service accounts in a project and a policy for the service account), the closest (i.e. the most specific) dry-run policy will be used for the dry-run functionality and the closest enforcement policy will be used for the enforcement.
      */
     serviceAccount?: string | null;
     /**
@@ -872,6 +880,15 @@ export namespace accesscontextmanager_v1 {
      * The full resource name of the global forwarding rule that identifies a Private Service Connect endpoint. Forwarding rule format: `//compute.googleapis.com/projects/{PROJECT_ID\}/global/forwardingRules/{FORWARDING_RULE_ID\}`.
      */
     forwardingRule?: string | null;
+  }
+  /**
+   * A GCP project which contains applications and resources that users can access.
+   */
+  export interface Schema$Project {
+    /**
+     * The GCP project resource name. Format: "projects/{project_number\}" (Only the numeric project name variation is supported). Example: "projects/1234567890"
+     */
+    name?: string | null;
   }
   /**
    * A request to replace all existing Access Levels in an Access Policy with the Access Levels provided. This is done atomically.
@@ -943,7 +960,7 @@ export namespace accesscontextmanager_v1 {
      */
     modifiers?: Schema$Modifier[];
     /**
-     * URL pattern to allow. Only patterns of ".googleapis.com/x", "www.googleapis.com//x" and "*.appspot.com/x forms are supported, where should be alphanumerical name.
+     * URL pattern to allow. Only patterns of ".googleapis.com/x", "www.googleapis.com//x" and "*.appspot.com/x forms are supported, where should be an alphanumeric name.
      */
     pattern?: string | null;
     /**
@@ -1026,11 +1043,11 @@ export namespace accesscontextmanager_v1 {
      */
     maxInactivity?: string | null;
     /**
-     * Optional. The session length. Setting this field to zero is equal to disabling session. Also can set infinite session by flipping the enabled bit to false below. If use_oidc_max_age is true, for OIDC apps, the session length will be the minimum of this field and OIDC max_age param. If this field is set to zero, session_length_enabled must be set to false or left unset.
+     * Optional. The session length. Setting this field to zero allows for sessions that are active indefinitely. Also, setting `session_length_enabled` to false disregards session limits, which means that sessions never expire. If use_oidc_max_age is true, for OIDC apps, the session length will be the minimum of this field and the OIDC max_age param. If this field is set to zero, `session_length_enabled` must be set to false or left unset.
      */
     sessionLength?: string | null;
     /**
-     * Optional. This field enables or disables Google Cloud session length. When false, all fields set above will be disregarded and the session length is basically infinite. If session_length is set to zero, this field must be false.
+     * Optional. This field enables or disables Google Cloud session length. When false, all fields set above will be disregarded and the session length is basically infinite. If `session_length` is set to zero, this field must be set to false.
      */
     sessionLengthEnabled?: boolean | null;
     /**
@@ -6740,7 +6757,7 @@ export namespace accesscontextmanager_v1 {
      *   // Do the magic
      *   const res =
      *     await accesscontextmanager.organizations.gcpUserAccessBindings.list({
-     *       // Optional. The literal filter to apply to the results returned. See https://google.aip.dev/160 for more details. Accepts values: * principal:group_key * principal:service_account OR principal:service_account_project_number. If this field is empty or not one of the above, the default value is "principal:group_key".
+     *       // Optional. The literal filter to apply to the results returned. See https://google.aip.dev/160 for more details. Accepts values: * `principal:group_key` * `principal:service_account` OR `principal:service_account_project_number`. If this field is empty or not one of the above, the default value is `"principal:group_key"`.
      *       filter: 'placeholder-value',
      *       // Optional. Maximum number of items to return. The server may return fewer items. If left blank, the server may return any number of items.
      *       pageSize: 'placeholder-value',
@@ -7049,7 +7066,7 @@ export namespace accesscontextmanager_v1 {
   }
   export interface Params$Resource$Organizations$Gcpuseraccessbindings$List extends StandardParameters {
     /**
-     * Optional. The literal filter to apply to the results returned. See https://google.aip.dev/160 for more details. Accepts values: * principal:group_key * principal:service_account OR principal:service_account_project_number. If this field is empty or not one of the above, the default value is "principal:group_key".
+     * Optional. The literal filter to apply to the results returned. See https://google.aip.dev/160 for more details. Accepts values: * `principal:group_key` * `principal:service_account` OR `principal:service_account_project_number`. If this field is empty or not one of the above, the default value is `"principal:group_key"`.
      */
     filter?: string;
     /**

@@ -1143,6 +1143,14 @@ export namespace backupdr_v1 {
    */
   export interface Schema$ComputeInstanceBackupPlanProperties {
     /**
+     * Optional. If true, only the boot disk will be backed up.
+     */
+    bootDiskOnly?: boolean | null;
+    /**
+     * Optional. Labels used to identify disks for exclusion from the backup. If a disk carries any of these labels, it will be excluded (OR logic).
+     */
+    diskExclusionLabels?: Schema$DiskExclusionLabels;
+    /**
      * Optional. Indicates whether to perform a guest flush operation before taking a compute backup. When set to false, the system will create crash-consistent backups. Default value is false.
      */
     guestFlush?: boolean | null;
@@ -1164,6 +1172,10 @@ export namespace backupdr_v1 {
      */
     disk?: Schema$AttachedDisk[];
     /**
+     * Optional. List of disks excluded from the backup.
+     */
+    excludedDisks?: string[] | null;
+    /**
      * A list of guest accelerator cards' type and count to use for instances created from these properties.
      */
     guestAccelerator?: Schema$AcceleratorConfig[];
@@ -1171,6 +1183,10 @@ export namespace backupdr_v1 {
      * Optional. Indicates whether to perform a guest flush operation before taking a compute backup. When set to false, the system will create crash-consistent backups. Default value is false.
      */
     guestFlush?: boolean | null;
+    /**
+     * Optional. List of disks included in the backup.
+     */
+    includedDisks?: string[] | null;
     /**
      * KeyRevocationActionType of the instance. Supported options are "STOP" and "NONE". The default value is "NONE" if it is not specified.
      */
@@ -1701,6 +1717,15 @@ export namespace backupdr_v1 {
      * The type of the disk.
      */
     type?: string | null;
+  }
+  /**
+   * Message for selective disk backup exclusion labels.
+   */
+  export interface Schema$DiskExclusionLabels {
+    /**
+     * Optional. Labels used to identify disks for exclusion from the backup. If a disk carries any of these labels, it will be excluded (OR logic).
+     */
+    labels?: Schema$LabelKeyValPair[];
   }
   /**
    * DiskRestoreProperties represents the properties of a Disk restore.
@@ -2240,6 +2265,19 @@ export namespace backupdr_v1 {
      * Optional. Resource manager tags to be bound to the instance.
      */
     resourceManagerTags?: {[key: string]: string} | null;
+  }
+  /**
+   * Message for a label key-value pair.
+   */
+  export interface Schema$LabelKeyValPair {
+    /**
+     * Key of the label. The key must follow the format: `\\p{Ll\}\\p{Lo\}{0,62\}`. This means the key must start with a lowercase letter or a lowercase international character, followed by zero or more lowercase letters, lowercase international characters, numbers, underscores, or dashes. The key must be at most 63 characters long. International characters are allowed.
+     */
+    key?: string | null;
+    /**
+     * Value of the label. The value must follow the format: `[\\p{Ll\}\\p{Lo\}\\p{N\}_-]{1,63\}`. This means the value must be one or more lowercase letters, lowercase international characters, numbers, underscores, or dashes. The value must be at most 63 characters long. International characters are allowed.
+     */
+    value?: string | null;
   }
   /**
    * Response message for List BackupPlanAssociation

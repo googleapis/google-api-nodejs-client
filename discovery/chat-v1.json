@@ -686,7 +686,7 @@
           "parameterOrder": [],
           "parameters": {
             "orderBy": {
-              "description": "Optional. How the list of spaces is ordered. Supported attributes to order by are: - `membership_count.joined_direct_human_user_count` — Denotes the count of human users that have directly joined a space. - `last_active_time` — Denotes the time when last eligible item is added to any topic of this space. - `create_time` — Denotes the time of the space creation. When `useAdminAccess` is `false`, only `create_time` and `relevance` are supported for ordering. Only `DESC` is supported for these fields in non-admin searches. Valid ordering operation values are: - `ASC` for ascending. Default value. - `DESC` for descending. The supported syntax are when `useAdminAccess` is set to `true`: - `membership_count.joined_direct_human_user_count DESC` - `membership_count.joined_direct_human_user_count ASC` - `last_active_time DESC` - `last_active_time ASC` - `create_time DESC` - `create_time ASC` When `useAdminAccess` is set to `false`: - `create_time DESC` - `relevance DESC`",
+              "description": "Optional. How the list of spaces is ordered. Supported attributes to order by are: - `membership_count.joined_direct_human_user_count` — Denotes the count of human users that have directly joined a space. - `last_active_time` — Denotes the time when last eligible item is added to any topic of this space. - `create_time` — Denotes the time of the space creation. When `useAdminAccess` is `false`, only `create_time` and `relevance` are supported for ordering. Only `DESC` is supported for these fields in non-admin searches. Valid ordering operation values are: - `ASC` for ascending. Default value. - `DESC` for descending. The supported syntax are when `useAdminAccess` is set to `true`: - `membership_count.joined_direct_human_user_count DESC` - `membership_count.joined_direct_human_user_count ASC` - `last_active_time DESC` - `last_active_time ASC` - `create_time DESC` - `create_time ASC` When `useAdminAccess` is set to `false`: - `create_time DESC` - `relevance DESC` [Developer Preview](https://developers.google.com/workspace/preview).",
               "location": "query",
               "type": "string"
             },
@@ -2077,7 +2077,7 @@
       }
     }
   },
-  "revision": "20260728",
+  "revision": "20260809",
   "rootUrl": "https://chat.googleapis.com/",
   "schemas": {
     "AccessPermissionSetting": {
@@ -2324,12 +2324,14 @@
           "enum": [
             "APP_COMMAND_TYPE_UNSPECIFIED",
             "SLASH_COMMAND",
-            "QUICK_COMMAND"
+            "QUICK_COMMAND",
+            "MESSAGE_ACTION"
           ],
           "enumDescriptions": [
             "Default value. Unspecified.",
             "A slash command. The user sends the command in a Chat message.",
-            "A quick command. The user selects the command from the Chat menu in the message reply area."
+            "A quick command. The user selects the command from the Chat menu in the message reply area.",
+            "A message action. The user selects the command from the message context menu in Chat."
           ],
           "type": "string"
         }

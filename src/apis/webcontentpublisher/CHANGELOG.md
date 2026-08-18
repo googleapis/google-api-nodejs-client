@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/webcontentpublisher-v2.0.0...webcontentpublisher-v2.1.0) (2026-08-14)
+
+
+### Features
+
+* **webcontentpublisher:** update the API ([2b71e9e](https://github.com/googleapis/google-api-nodejs-client/commit/2b71e9edeb94101e0995e63aba25da5ed6c8ee43))
+
 ## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/webcontentpublisher-v1.0.0...webcontentpublisher-v2.0.0) (2026-08-03)
 
 

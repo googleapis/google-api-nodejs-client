@@ -1,5 +1,12 @@
 # Changelog
 
+## [21.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/dlp-v21.0.0...dlp-v21.0.1) (2026-08-14)
+
+
+### Bug Fixes
+
+* **dlp:** update the API ([aa382b0](https://github.com/googleapis/google-api-nodejs-client/commit/aa382b0bf3688e0e4c1a032ecf220d191b531519))
+
 ## [21.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/dlp-v20.0.0...dlp-v21.0.0) (2026-08-03)
 
 

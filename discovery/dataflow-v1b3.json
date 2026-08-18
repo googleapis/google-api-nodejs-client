@@ -410,7 +410,7 @@
         "jobs": {
           "methods": {
             "aggregated": {
-              "description": "List the jobs of a project across all regions. **Note:** This method doesn't support filtering the list of jobs by name.",
+              "description": "List the jobs of a project across all regions. **Note:** This method doesn't support filtering the list of jobs by name. # IAM Permissions Requires the `dataflow.jobs.list` permission on the project.",
               "flatPath": "v1b3/projects/{projectId}/jobs:aggregated",
               "httpMethod": "GET",
               "id": "dataflow.projects.jobs.aggregated",
@@ -491,7 +491,7 @@
               ]
             },
             "create": {
-              "description": "Creates a Dataflow job. To create a job, we recommend using `projects.locations.jobs.create` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.create` is not recommended, as your job will always start in `us-central1`. Do not enter confidential information when you supply string values using the API.",
+              "description": "Creates a Dataflow job. To create a job, we recommend using `projects.locations.jobs.create` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.create` is not recommended, as your job will always start in `us-central1`. Do not enter confidential information when you supply string values using the API. # IAM Permissions 1. Requires the `dataflow.jobs.create` permission on the project. 2. `resourcemanager.projects.get` (Specifically required for regional endpoints to resolve regional resource metadata)",
               "flatPath": "v1b3/projects/{projectId}/jobs",
               "httpMethod": "POST",
               "id": "dataflow.projects.jobs.create",
@@ -546,7 +546,7 @@
               ]
             },
             "get": {
-              "description": "Gets the state of the specified Cloud Dataflow job. To get the state of a job, we recommend using `projects.locations.jobs.get` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.get` is not recommended, as you can only get the state of jobs that are running in `us-central1`.",
+              "description": "Gets the state of the specified Cloud Dataflow job. To get the state of a job, we recommend using `projects.locations.jobs.get` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.get` is not recommended, as you can only get the state of jobs that are running in `us-central1`. # IAM Permissions Requires the `dataflow.jobs.get` permission on the job.",
               "flatPath": "v1b3/projects/{projectId}/jobs/{jobId}",
               "httpMethod": "GET",
               "id": "dataflow.projects.jobs.get",
@@ -600,7 +600,7 @@
               ]
             },
             "getMetrics": {
-              "description": "Request the job status. To request the status of a job, we recommend using `projects.locations.jobs.getMetrics` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.getMetrics` is not recommended, as you can only request the status of jobs that are running in `us-central1`.",
+              "description": "Request the job status. To request the status of a job, we recommend using `projects.locations.jobs.getMetrics` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.getMetrics` is not recommended, as you can only request the status of jobs that are running in `us-central1`. # IAM Permissions Requires the `dataflow.metrics.get` permission on the job.",
               "flatPath": "v1b3/projects/{projectId}/jobs/{jobId}/metrics",
               "httpMethod": "GET",
               "id": "dataflow.projects.jobs.getMetrics",
@@ -643,7 +643,7 @@
               ]
             },
             "list": {
-              "description": "List the jobs of a project. To list the jobs of a project in a region, we recommend using `projects.locations.jobs.list` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). To list the all jobs across all regions, use `projects.jobs.aggregated`. Using `projects.jobs.list` is not recommended, because you can only get the list of jobs that are running in `us-central1`. `projects.locations.jobs.list` and `projects.jobs.list` support filtering the list of jobs by name. Filtering by name isn't supported by `projects.jobs.aggregated`.",
+              "description": "List the jobs of a project. To list the jobs of a project in a region, we recommend using `projects.locations.jobs.list` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). To list the all jobs across all regions, use `projects.jobs.aggregated`. Using `projects.jobs.list` is not recommended, because you can only get the list of jobs that are running in `us-central1`. `projects.locations.jobs.list` and `projects.jobs.list` support filtering the list of jobs by name. Filtering by name isn't supported by `projects.jobs.aggregated`. # IAM Permissions Requires the `dataflow.jobs.list` permission on the project.",
               "flatPath": "v1b3/projects/{projectId}/jobs",
               "httpMethod": "GET",
               "id": "dataflow.projects.jobs.list",
@@ -724,7 +724,7 @@
               ]
             },
             "snapshot": {
-              "description": "Snapshot the state of a streaming job.",
+              "description": "Snapshot the state of a streaming job. # IAM Permissions Requires the `dataflow.jobs.snapshot` permission on the job.",
               "flatPath": "v1b3/projects/{projectId}/jobs/{jobId}:snapshot",
               "httpMethod": "POST",
               "id": "dataflow.projects.jobs.snapshot",
@@ -759,7 +759,7 @@
               ]
             },
             "update": {
-              "description": "Updates the state of an existing Cloud Dataflow job. To update the state of an existing job, we recommend using `projects.locations.jobs.update` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.update` is not recommended, as you can only update the state of jobs that are running in `us-central1`.",
+              "description": "Updates the state of an existing Cloud Dataflow job. To update the state of an existing job, we recommend using `projects.locations.jobs.update` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.update` is not recommended, as you can only update the state of jobs that are running in `us-central1`. # IAM Permissions 1. Requires the `dataflow.jobs.cancel` permission to cancel a job. 2. Requires the `dataflow.jobs.updateContents` permission to update runtime parameters.",
               "flatPath": "v1b3/projects/{projectId}/jobs/{jobId}",
               "httpMethod": "PUT",
               "id": "dataflow.projects.jobs.update",
@@ -883,7 +883,7 @@
             "messages": {
               "methods": {
                 "list": {
-                  "description": "Request the job status. To request the status of a job, we recommend using `projects.locations.jobs.messages.list` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.messages.list` is not recommended, as you can only request the status of jobs that are running in `us-central1`.",
+                  "description": "Request the job status. To request the status of a job, we recommend using `projects.locations.jobs.messages.list` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.messages.list` is not recommended, as you can only request the status of jobs that are running in `us-central1`. # IAM Permissions Requires the `dataflow.messages.list` permission on the job.",
                   "flatPath": "v1b3/projects/{projectId}/jobs/{jobId}/messages",
                   "httpMethod": "GET",
                   "id": "dataflow.projects.jobs.messages.list",
@@ -1083,7 +1083,7 @@
             "flexTemplates": {
               "methods": {
                 "launch": {
-                  "description": "Launch a job with a FlexTemplate.",
+                  "description": "Launch a job with a FlexTemplate. # IAM Permissions Requires the following IAM permission(s) on the resource: - `dataflow.jobs.create` - `resourcemanager.projects.get` - `iam.serviceAccounts.actAs` - `storage.buckets.get` - `storage.buckets.create` (Required if the default staging bucket must be created)",
                   "flatPath": "v1b3/projects/{projectId}/locations/{location}/flexTemplates:launch",
                   "httpMethod": "POST",
                   "id": "dataflow.projects.locations.flexTemplates.launch",
@@ -1122,7 +1122,7 @@
             "jobs": {
               "methods": {
                 "create": {
-                  "description": "Creates a Dataflow job. To create a job, we recommend using `projects.locations.jobs.create` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.create` is not recommended, as your job will always start in `us-central1`. Do not enter confidential information when you supply string values using the API.",
+                  "description": "Creates a Dataflow job. To create a job, we recommend using `projects.locations.jobs.create` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.create` is not recommended, as your job will always start in `us-central1`. Do not enter confidential information when you supply string values using the API. # IAM Permissions 1. Requires the `dataflow.jobs.create` permission on the project. 2. `resourcemanager.projects.get` (Specifically required for regional endpoints to resolve regional resource metadata)",
                   "flatPath": "v1b3/projects/{projectId}/locations/{location}/jobs",
                   "httpMethod": "POST",
                   "id": "dataflow.projects.locations.jobs.create",
@@ -1179,7 +1179,7 @@
                   ]
                 },
                 "get": {
-                  "description": "Gets the state of the specified Cloud Dataflow job. To get the state of a job, we recommend using `projects.locations.jobs.get` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.get` is not recommended, as you can only get the state of jobs that are running in `us-central1`.",
+                  "description": "Gets the state of the specified Cloud Dataflow job. To get the state of a job, we recommend using `projects.locations.jobs.get` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.get` is not recommended, as you can only get the state of jobs that are running in `us-central1`. # IAM Permissions Requires the `dataflow.jobs.get` permission on the job.",
                   "flatPath": "v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}",
                   "httpMethod": "GET",
                   "id": "dataflow.projects.locations.jobs.get",
@@ -1235,7 +1235,7 @@
                   ]
                 },
                 "getExecutionDetails": {
-                  "description": "Request detailed information about the execution status of the job. EXPERIMENTAL. This API is subject to change or removal without notice.",
+                  "description": "Request detailed information about the execution status of the job. EXPERIMENTAL. This API is subject to change or removal without notice. # IAM Permissions Requires the `dataflow.metrics.get` permission on the job.",
                   "flatPath": "v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}/executionDetails",
                   "httpMethod": "GET",
                   "id": "dataflow.projects.locations.jobs.getExecutionDetails",
@@ -1285,7 +1285,7 @@
                   ]
                 },
                 "getMetrics": {
-                  "description": "Request the job status. To request the status of a job, we recommend using `projects.locations.jobs.getMetrics` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.getMetrics` is not recommended, as you can only request the status of jobs that are running in `us-central1`.",
+                  "description": "Request the job status. To request the status of a job, we recommend using `projects.locations.jobs.getMetrics` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.getMetrics` is not recommended, as you can only request the status of jobs that are running in `us-central1`. # IAM Permissions Requires the `dataflow.metrics.get` permission on the job.",
                   "flatPath": "v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}/metrics",
                   "httpMethod": "GET",
                   "id": "dataflow.projects.locations.jobs.getMetrics",
@@ -1330,7 +1330,7 @@
                   ]
                 },
                 "list": {
-                  "description": "List the jobs of a project. To list the jobs of a project in a region, we recommend using `projects.locations.jobs.list` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). To list the all jobs across all regions, use `projects.jobs.aggregated`. Using `projects.jobs.list` is not recommended, because you can only get the list of jobs that are running in `us-central1`. `projects.locations.jobs.list` and `projects.jobs.list` support filtering the list of jobs by name. Filtering by name isn't supported by `projects.jobs.aggregated`.",
+                  "description": "List the jobs of a project. To list the jobs of a project in a region, we recommend using `projects.locations.jobs.list` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). To list the all jobs across all regions, use `projects.jobs.aggregated`. Using `projects.jobs.list` is not recommended, because you can only get the list of jobs that are running in `us-central1`. `projects.locations.jobs.list` and `projects.jobs.list` support filtering the list of jobs by name. Filtering by name isn't supported by `projects.jobs.aggregated`. # IAM Permissions Requires the `dataflow.jobs.list` permission on the project.",
                   "flatPath": "v1b3/projects/{projectId}/locations/{location}/jobs",
                   "httpMethod": "GET",
                   "id": "dataflow.projects.locations.jobs.list",
@@ -1413,7 +1413,7 @@
                   ]
                 },
                 "snapshot": {
-                  "description": "Snapshot the state of a streaming job.",
+                  "description": "Snapshot the state of a streaming job. # IAM Permissions Requires the `dataflow.jobs.snapshot` permission on the job.",
                   "flatPath": "v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}:snapshot",
                   "httpMethod": "POST",
                   "id": "dataflow.projects.locations.jobs.snapshot",
@@ -1455,7 +1455,7 @@
                   ]
                 },
                 "update": {
-                  "description": "Updates the state of an existing Cloud Dataflow job. To update the state of an existing job, we recommend using `projects.locations.jobs.update` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.update` is not recommended, as you can only update the state of jobs that are running in `us-central1`.",
+                  "description": "Updates the state of an existing Cloud Dataflow job. To update the state of an existing job, we recommend using `projects.locations.jobs.update` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.update` is not recommended, as you can only update the state of jobs that are running in `us-central1`. # IAM Permissions 1. Requires the `dataflow.jobs.cancel` permission to cancel a job. 2. Requires the `dataflow.jobs.updateContents` permission to update runtime parameters.",
                   "flatPath": "v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}",
                   "httpMethod": "PUT",
                   "id": "dataflow.projects.locations.jobs.update",
@@ -1637,7 +1637,7 @@
                 "messages": {
                   "methods": {
                     "list": {
-                      "description": "Request the job status. To request the status of a job, we recommend using `projects.locations.jobs.messages.list` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.messages.list` is not recommended, as you can only request the status of jobs that are running in `us-central1`.",
+                      "description": "Request the job status. To request the status of a job, we recommend using `projects.locations.jobs.messages.list` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.messages.list` is not recommended, as you can only request the status of jobs that are running in `us-central1`. # IAM Permissions Requires the `dataflow.messages.list` permission on the job.",
                       "flatPath": "v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}/messages",
                       "httpMethod": "GET",
                       "id": "dataflow.projects.locations.jobs.messages.list",
@@ -1767,7 +1767,7 @@
                 "stages": {
                   "methods": {
                     "getExecutionDetails": {
-                      "description": "Request detailed information about the execution status of a stage of the job. EXPERIMENTAL. This API is subject to change or removal without notice.",
+                      "description": "Request detailed information about the execution status of a stage of the job. EXPERIMENTAL. This API is subject to change or removal without notice. # IAM Permissions Requires the `dataflow.metrics.get` permission on the job.",
                       "flatPath": "v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}/stages/{stageId}/executionDetails",
                       "httpMethod": "GET",
                       "id": "dataflow.projects.locations.jobs.stages.getExecutionDetails",
@@ -2049,7 +2049,7 @@
             "templates": {
               "methods": {
                 "create": {
-                  "description": "Creates a Cloud Dataflow job from a template. Do not enter confidential information when you supply string values using the API. To create a job, we recommend using `projects.locations.templates.create` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.templates.create` is not recommended, because your job will always start in `us-central1`.",
+                  "description": "Creates a Cloud Dataflow job from a template. Do not enter confidential information when you supply string values using the API. To create a job, we recommend using `projects.locations.templates.create` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.templates.create` is not recommended, because your job will always start in `us-central1`. # IAM Permissions Requires the following IAM permission(s) on the project: - `dataflow.jobs.create` - `resourcemanager.projects.get`",
                   "flatPath": "v1b3/projects/{projectId}/locations/{location}/templates",
                   "httpMethod": "POST",
                   "id": "dataflow.projects.locations.templates.create",
@@ -2084,7 +2084,7 @@
                   ]
                 },
                 "get": {
-                  "description": "Get the template associated with a template. To get the template, we recommend using `projects.locations.templates.get` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.templates.get` is not recommended, because only templates that are running in `us-central1` are retrieved.",
+                  "description": "Get the template associated with a template. To get the template, we recommend using `projects.locations.templates.get` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.templates.get` is not recommended, because only templates that are running in `us-central1` are retrieved. # IAM Permissions Requires the `resourcemanager.projects.get` permission on the project.",
                   "flatPath": "v1b3/projects/{projectId}/locations/{location}/templates:get",
                   "httpMethod": "GET",
                   "id": "dataflow.projects.locations.templates.get",
@@ -2132,7 +2132,7 @@
                   ]
                 },
                 "launch": {
-                  "description": "Launches a template. To launch a template, we recommend using `projects.locations.templates.launch` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.templates.launch` is not recommended, because jobs launched from the template will always start in `us-central1`.",
+                  "description": "Launches a template. To launch a template, we recommend using `projects.locations.templates.launch` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.templates.launch` is not recommended, because jobs launched from the template will always start in `us-central1`. # IAM Permissions Requires the following IAM permission(s) on the project: - `dataflow.jobs.create` - `resourcemanager.projects.get`",
                   "flatPath": "v1b3/projects/{projectId}/locations/{location}/templates:launch",
                   "httpMethod": "POST",
                   "id": "dataflow.projects.locations.templates.launch",
@@ -2269,7 +2269,7 @@
         "templates": {
           "methods": {
             "create": {
-              "description": "Creates a Cloud Dataflow job from a template. Do not enter confidential information when you supply string values using the API. To create a job, we recommend using `projects.locations.templates.create` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.templates.create` is not recommended, because your job will always start in `us-central1`.",
+              "description": "Creates a Cloud Dataflow job from a template. Do not enter confidential information when you supply string values using the API. To create a job, we recommend using `projects.locations.templates.create` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.templates.create` is not recommended, because your job will always start in `us-central1`. # IAM Permissions Requires the following IAM permission(s) on the project: - `dataflow.jobs.create` - `resourcemanager.projects.get`",
               "flatPath": "v1b3/projects/{projectId}/templates",
               "httpMethod": "POST",
               "id": "dataflow.projects.templates.create",
@@ -2297,7 +2297,7 @@
               ]
             },
             "get": {
-              "description": "Get the template associated with a template. To get the template, we recommend using `projects.locations.templates.get` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.templates.get` is not recommended, because only templates that are running in `us-central1` are retrieved.",
+              "description": "Get the template associated with a template. To get the template, we recommend using `projects.locations.templates.get` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.templates.get` is not recommended, because only templates that are running in `us-central1` are retrieved. # IAM Permissions Requires the `resourcemanager.projects.get` permission on the project.",
               "flatPath": "v1b3/projects/{projectId}/templates:get",
               "httpMethod": "GET",
               "id": "dataflow.projects.templates.get",
@@ -2343,7 +2343,7 @@
               ]
             },
             "launch": {
-              "description": "Launches a template. To launch a template, we recommend using `projects.locations.templates.launch` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.templates.launch` is not recommended, because jobs launched from the template will always start in `us-central1`.",
+              "description": "Launches a template. To launch a template, we recommend using `projects.locations.templates.launch` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.templates.launch` is not recommended, because jobs launched from the template will always start in `us-central1`. # IAM Permissions Requires the following IAM permission(s) on the project: - `dataflow.jobs.create` - `resourcemanager.projects.get`",
               "flatPath": "v1b3/projects/{projectId}/templates:launch",
               "httpMethod": "POST",
               "id": "dataflow.projects.templates.launch",
@@ -2400,7 +2400,7 @@
       }
     }
   },
-  "revision": "20260615",
+  "revision": "20260807",
   "rootUrl": "https://dataflow.googleapis.com/",
   "schemas": {
     "ApproximateProgress": {
@@ -2515,6 +2515,45 @@
         },
         "workerPool": {
           "description": "A short and friendly name for the worker pool this event refers to.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AutoscalingSchedule": {
+      "description": "A schedule for autoscaling.",
+      "id": "AutoscalingSchedule",
+      "properties": {
+        "crontab": {
+          "description": "Optional. A crontab specification of when this schedule should trigger applying overrides. The overrides will be applied from the trigger time until the specified duration elapses.",
+          "type": "string"
+        },
+        "duration": {
+          "description": "Optional. The duration for which the parameter overrides for this schedule will be applied when triggered by the crontab.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "name": {
+          "description": "Optional. The name of the schedule.",
+          "type": "string"
+        },
+        "parameters": {
+          "$ref": "Parameters",
+          "description": "Optional. The parameters to use for autoscaling when this schedule is active."
+        },
+        "priority": {
+          "description": "Optional. Specifies the priority of the schedule. If two schedules overlap, the one with the higher priority will be used. The higher the value, the higher the priority of the schedule.",
+          "format": "int64",
+          "type": "string"
+        },
+        "timeZone": {
+          "description": "Optional. The time zone for the schedule. The value of this field must be a time zone name from the [tz database](http://en.wikipedia.org/wiki/Tz_database). The default value is UTC.",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. When the customer last updated the schedule.",
+          "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -5464,6 +5503,32 @@
       },
       "type": "object"
     },
+    "Parameters": {
+      "description": "The parameters to use for autoscaling when this schedule is active.",
+      "id": "Parameters",
+      "properties": {
+        "cpuUtilizationTarget": {
+          "description": "Optional. The target CPU utilization for this schedule.",
+          "format": "double",
+          "type": "number"
+        },
+        "latencyTarget": {
+          "description": "Optional. The target latency for this schedule.",
+          "type": "string"
+        },
+        "maxWorkerCount": {
+          "description": "Optional. The maximum number of workers for this schedule.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "minWorkerCount": {
+          "description": "Optional. The minimum number of workers for this schedule.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "PartialGroupByKeyInstruction": {
       "description": "An instruction that does a partial group-by-key. One input and one output.",
       "id": "PartialGroupByKeyInstruction",
@@ -6008,6 +6073,13 @@
           "description": "The minimum number of workers to scale down to. This field is currently only supported for Streaming Engine jobs.",
           "format": "int32",
           "type": "integer"
+        },
+        "schedules": {
+          "description": "Optional. The schedule for autoscaling.",
+          "items": {
+            "$ref": "AutoscalingSchedule"
+          },
+          "type": "array"
         },
         "workerUtilizationHint": {
           "description": "Target worker utilization, compared against the aggregate utilization of the worker pool by autoscaler, to determine upscaling and downscaling when absent other constraints such as backlog. For more information, see [Update an existing pipeline](https://cloud.google.com/dataflow/docs/guides/updating-a-pipeline).",

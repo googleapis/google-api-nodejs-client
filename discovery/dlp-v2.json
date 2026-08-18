@@ -5274,7 +5274,7 @@
       }
     }
   },
-  "revision": "20260725",
+  "revision": "20260808",
   "rootUrl": "https://dlp.googleapis.com/",
   "schemas": {
     "GooglePrivacyDlpV2Action": {
@@ -5887,7 +5887,7 @@
       "type": "object"
     },
     "GooglePrivacyDlpV2BoundingBox": {
-      "description": "Bounding box encompassing detected text within an image.",
+      "description": "Bounding box encompassing detected text within an image. Coordinates are in pixels and strictly within the image or frame bounds.",
       "id": "GooglePrivacyDlpV2BoundingBox",
       "properties": {
         "height": {
