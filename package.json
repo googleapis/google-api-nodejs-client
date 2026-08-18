@@ -55,7 +55,7 @@
     "client library"
   ],
   "dependencies": {
-    "google-auth-library": "10.5.0",
+    "google-auth-library": "10.9.1",
     "googleapis-common": "^8.0.0"
   },
   "devDependencies": {
