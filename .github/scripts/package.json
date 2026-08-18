@@ -11,7 +11,7 @@
         "node": ">=18"
     },
     "dependencies": {
-        "js-yaml": "^4.1.0"
+        "js-yaml": "^5.0.0"
     },
     "devDependencies": {
         "@octokit/rest": "^21.0.0",
