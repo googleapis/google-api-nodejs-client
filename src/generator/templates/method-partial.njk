@@ -21,6 +21,9 @@
  */
 {% if m.response.$ref %}
   {% set responseType = "Schema$"+m.response.$ref %}
+  {% if ':stream' in m.path %}
+    {% set responseType = responseType + "[]" %}
+  {% endif %}
 {% elif m.supportsMediaDownload %}
   {% set responseType = "unknown" %}
 {% else %}
