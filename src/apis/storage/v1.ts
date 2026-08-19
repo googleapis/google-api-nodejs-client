@@ -112,6 +112,7 @@ export namespace storage_v1 {
     objects: Resource$Objects;
     operations: Resource$Operations;
     projects: Resource$Projects;
+    rapidCaches: Resource$Rapidcaches;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this.context = {
@@ -136,6 +137,7 @@ export namespace storage_v1 {
       this.objects = new Resource$Objects(this.context);
       this.operations = new Resource$Operations(this.context);
       this.projects = new Resource$Projects(this.context);
+      this.rapidCaches = new Resource$Rapidcaches(this.context);
     }
   }
 
@@ -927,6 +929,10 @@ export namespace storage_v1 {
      */
     name?: string | null;
     /**
+     * The rapid cache configuration for the managed folder.
+     */
+    rapidCacheConfig?: Schema$RapidCacheConfig;
+    /**
      * The link to this managed folder.
      */
     selfLink?: string | null;
@@ -1315,6 +1321,106 @@ export namespace storage_v1 {
      * The IAM policy format version.
      */
     version?: number | null;
+  }
+  /**
+   * A Rapid Cache instance.
+   */
+  export interface Schema$RapidCache {
+    /**
+     * The cache-level entry admission policy.
+     */
+    admissionPolicy?: string | null;
+    /**
+     * The name of the bucket containing this cache instance.
+     */
+    bucket?: string | null;
+    /**
+     * The type of Rapid Cache this represents. Valid values include: "rapid-cache" and "rapid-cache-ultra".
+     */
+    cacheType?: string | null;
+    /**
+     * The creation time of the cache instance in RFC 3339 format.
+     */
+    createTime?: string | null;
+    /**
+     * The ID of the resource, including the project number, bucket name and rapid cache ID.
+     */
+    id?: string | null;
+    /**
+     * Specifies whether objects are ingested into the cache upon write.
+     */
+    ingestOnWrite?: boolean | null;
+    /**
+     * The kind of item this is. For Rapid Cache, this is always storage#rapidCache.
+     */
+    kind?: string | null;
+    /**
+     * True if the cache instance has an active Update long-running operation.
+     */
+    pendingUpdate?: boolean | null;
+    /**
+     * The ID of the Rapid cache instance.
+     */
+    rapidCacheId?: string | null;
+    /**
+     * The link to this cache instance.
+     */
+    selfLink?: string | null;
+    /**
+     * The current state of the cache instance.
+     */
+    state?: string | null;
+    /**
+     * The TTL of all cache entries in whole seconds. e.g., "7200s".
+     */
+    ttl?: string | null;
+    /**
+     * The modification time of the cache instance metadata in RFC 3339 format.
+     */
+    updateTime?: string | null;
+    /**
+     * The zone in which the cache instance is running. For example, us-central1-a.
+     */
+    zone?: string | null;
+  }
+  /**
+   * Configuration options for the rapid cache of a managed folder.
+   */
+  export interface Schema$RapidCacheConfig {
+    /**
+     * A map of rapid cache IDs to the corresponding `RapidCachePolicy` configurations for a managed folder.
+     */
+    policies?: {[key: string]: Schema$RapidCachePolicy} | null;
+  }
+  /**
+   * The rapid cache policy configuration for a managed folder.
+   */
+  export interface Schema$RapidCachePolicy {
+    /**
+     * The ingest-on-write policy for objects in the managed folder. When set to `enabled`, objects are automatically ingested into the cache when they are written to the managed folder.
+     */
+    ingestOnWrite?: string | null;
+    /**
+     * The unique identifier of the rapid cache.
+     */
+    rapidCacheId?: string | null;
+  }
+  /**
+   * A list of Rapid Caches.
+   */
+  export interface Schema$RapidCaches {
+    /**
+     * The list of items.
+     */
+    items?: Schema$RapidCache[];
+    /**
+     * The kind of item this is. For lists of Rapid Caches, this is always storage#rapidCaches.
+     */
+    kind?: string | null;
+    /**
+     * The continuation token, used to page through large result sets. Provide this value in a subsequent request to return the next page of results.
+     */
+    nextPageToken?: string | null;
   }
   /**
    * A Relocate Bucket request.
@@ -8745,6 +8851,7 @@ export namespace storage_v1 {
      *   //   "kind": "my_kind",
      *   //   "metageneration": "my_metageneration",
      *   //   "name": "my_name",
+     *   //   "rapidCacheConfig": {},
      *   //   "selfLink": "my_selfLink",
      *   //   "updateTime": "my_updateTime"
      *   // }
@@ -9044,6 +9151,7 @@ export namespace storage_v1 {
      *       //   "kind": "my_kind",
      *       //   "metageneration": "my_metageneration",
      *       //   "name": "my_name",
+     *       //   "rapidCacheConfig": {},
      *       //   "selfLink": "my_selfLink",
      *       //   "updateTime": "my_updateTime"
      *       // }
@@ -9059,6 +9167,7 @@ export namespace storage_v1 {
      *   //   "kind": "my_kind",
      *   //   "metageneration": "my_metageneration",
      *   //   "name": "my_name",
+     *   //   "rapidCacheConfig": {},
      *   //   "selfLink": "my_selfLink",
      *   //   "updateTime": "my_updateTime"
      *   // }
@@ -9621,6 +9730,176 @@ export namespace storage_v1 {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
       }
     }
+
+    /**
+     * Updates a managed folder using patch semantics.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const storage = google.storage('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *       'https://www.googleapis.com/auth/devstorage.read_write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await storage.managedFolders.update({
+     *     // The name of the bucket containing the managed folder.
+     *     bucket: 'placeholder-value',
+     *     // Makes the operation conditional on whether the metageneration of the managed folder matches the specified value.
+     *     ifMetagenerationMatch: 'placeholder-value',
+     *     // Makes the operation conditional on whether the metageneration of the managed folder doesn't match the specified value.
+     *     ifMetagenerationNotMatch: 'placeholder-value',
+     *     // The name of the managed folder.
+     *     managedFolder: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "bucket": "my_bucket",
+     *       //   "createTime": "my_createTime",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "metageneration": "my_metageneration",
+     *       //   "name": "my_name",
+     *       //   "rapidCacheConfig": {},
+     *       //   "selfLink": "my_selfLink",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bucket": "my_bucket",
+     *   //   "createTime": "my_createTime",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "metageneration": "my_metageneration",
+     *   //   "name": "my_name",
+     *   //   "rapidCacheConfig": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    update(
+      params: Params$Resource$Managedfolders$Update,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    update(
+      params?: Params$Resource$Managedfolders$Update,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ManagedFolder>>;
+    update(
+      params: Params$Resource$Managedfolders$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    update(
+      params: Params$Resource$Managedfolders$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$ManagedFolder>,
+      callback: BodyResponseCallback<Schema$ManagedFolder>
+    ): void;
+    update(
+      params: Params$Resource$Managedfolders$Update,
+      callback: BodyResponseCallback<Schema$ManagedFolder>
+    ): void;
+    update(callback: BodyResponseCallback<Schema$ManagedFolder>): void;
+    update(
+      paramsOrCallback?:
+        | Params$Resource$Managedfolders$Update
+        | BodyResponseCallback<Schema$ManagedFolder>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ManagedFolder>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ManagedFolder>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ManagedFolder>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Managedfolders$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Managedfolders$Update;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://storage.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/storage/v1/b/{bucket}/managedFolders/{managedFolder}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['bucket', 'managedFolder'],
+        pathParams: ['bucket', 'managedFolder'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ManagedFolder>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ManagedFolder>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Managedfolders$Delete extends StandardParameters {
@@ -9746,6 +10025,29 @@ export namespace storage_v1 {
      * The project to be billed for this request. Required for Requester Pays buckets.
      */
     userProject?: string;
+  }
+  export interface Params$Resource$Managedfolders$Update extends StandardParameters {
+    /**
+     * The name of the bucket containing the managed folder.
+     */
+    bucket?: string;
+    /**
+     * Makes the operation conditional on whether the metageneration of the managed folder matches the specified value.
+     */
+    ifMetagenerationMatch?: string;
+    /**
+     * Makes the operation conditional on whether the metageneration of the managed folder doesn't match the specified value.
+     */
+    ifMetagenerationNotMatch?: string;
+    /**
+     * The name of the managed folder.
+     */
+    managedFolder?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ManagedFolder;
   }
 
   export class Resource$Notifications {
@@ -16887,5 +17189,871 @@ export namespace storage_v1 {
      * The project to be billed for this request.
      */
     userProject?: string;
+  }
+
+  export class Resource$Rapidcaches {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Disables a Rapid Cache instance.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const storage = google.storage('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *       'https://www.googleapis.com/auth/devstorage.read_write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await storage.rapidCaches.disable({
+     *     // Name of the parent bucket.
+     *     bucket: 'placeholder-value',
+     *     // The ID of the requested Rapid Cache instance.
+     *     rapidCacheId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {},
+     *   //   "selfLink": "my_selfLink"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    disable(
+      params: Params$Resource$Rapidcaches$Disable,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    disable(
+      params?: Params$Resource$Rapidcaches$Disable,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
+    disable(
+      params: Params$Resource$Rapidcaches$Disable,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    disable(
+      params: Params$Resource$Rapidcaches$Disable,
+      options:
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    disable(
+      params: Params$Resource$Rapidcaches$Disable,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    disable(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    disable(
+      paramsOrCallback?:
+        | Params$Resource$Rapidcaches$Disable
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Rapidcaches$Disable;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Rapidcaches$Disable;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://storage.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/storage/v1/b/{bucket}/rapidCaches/{rapidCacheId}/disable'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['bucket', 'rapidCacheId'],
+        pathParams: ['bucket', 'rapidCacheId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Returns the metadata of a Rapid Cache instance.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const storage = google.storage('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *       'https://www.googleapis.com/auth/devstorage.read_only',
+     *       'https://www.googleapis.com/auth/devstorage.read_write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await storage.rapidCaches.get({
+     *     // Name of the parent bucket.
+     *     bucket: 'placeholder-value',
+     *     // The ID of the requested Rapid Cache instance.
+     *     rapidCacheId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "admissionPolicy": "my_admissionPolicy",
+     *   //   "bucket": "my_bucket",
+     *   //   "cacheType": "my_cacheType",
+     *   //   "createTime": "my_createTime",
+     *   //   "id": "my_id",
+     *   //   "ingestOnWrite": false,
+     *   //   "kind": "my_kind",
+     *   //   "pendingUpdate": false,
+     *   //   "rapidCacheId": "my_rapidCacheId",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "state": "my_state",
+     *   //   "ttl": "my_ttl",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Rapidcaches$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Rapidcaches$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$RapidCache>>;
+    get(
+      params: Params$Resource$Rapidcaches$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Rapidcaches$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$RapidCache>,
+      callback: BodyResponseCallback<Schema$RapidCache>
+    ): void;
+    get(
+      params: Params$Resource$Rapidcaches$Get,
+      callback: BodyResponseCallback<Schema$RapidCache>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$RapidCache>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Rapidcaches$Get
+        | BodyResponseCallback<Schema$RapidCache>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RapidCache>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$RapidCache> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$RapidCache>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Rapidcaches$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Rapidcaches$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://storage.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/storage/v1/b/{bucket}/rapidCaches/{rapidCacheId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['bucket', 'rapidCacheId'],
+        pathParams: ['bucket', 'rapidCacheId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$RapidCache>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$RapidCache>(parameters);
+      }
+    }
+
+    /**
+     * Creates a Rapid Cache instance.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const storage = google.storage('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *       'https://www.googleapis.com/auth/devstorage.read_write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await storage.rapidCaches.insert({
+     *     // Name of the parent bucket.
+     *     bucket: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "admissionPolicy": "my_admissionPolicy",
+     *       //   "bucket": "my_bucket",
+     *       //   "cacheType": "my_cacheType",
+     *       //   "createTime": "my_createTime",
+     *       //   "id": "my_id",
+     *       //   "ingestOnWrite": false,
+     *       //   "kind": "my_kind",
+     *       //   "pendingUpdate": false,
+     *       //   "rapidCacheId": "my_rapidCacheId",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "state": "my_state",
+     *       //   "ttl": "my_ttl",
+     *       //   "updateTime": "my_updateTime",
+     *       //   "zone": "my_zone"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {},
+     *   //   "selfLink": "my_selfLink"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    insert(
+      params: Params$Resource$Rapidcaches$Insert,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    insert(
+      params?: Params$Resource$Rapidcaches$Insert,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
+    insert(
+      params: Params$Resource$Rapidcaches$Insert,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    insert(
+      params: Params$Resource$Rapidcaches$Insert,
+      options:
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    insert(
+      params: Params$Resource$Rapidcaches$Insert,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    insert(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    insert(
+      paramsOrCallback?:
+        | Params$Resource$Rapidcaches$Insert
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Rapidcaches$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Rapidcaches$Insert;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://storage.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/storage/v1/b/{bucket}/rapidCaches').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['bucket'],
+        pathParams: ['bucket'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Returns a list of Rapid Cache instances of the bucket.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const storage = google.storage('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *       'https://www.googleapis.com/auth/devstorage.read_only',
+     *       'https://www.googleapis.com/auth/devstorage.read_write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await storage.rapidCaches.list({
+     *     // Name of the parent bucket.
+     *     bucket: 'placeholder-value',
+     *     // Maximum number of items to return in a single page of responses.
+     *     pageSize: 'placeholder-value',
+     *     // A previously-returned page token representing part of the larger set of results to view.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Rapidcaches$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Rapidcaches$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$RapidCaches>>;
+    list(
+      params: Params$Resource$Rapidcaches$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Rapidcaches$List,
+      options: MethodOptions | BodyResponseCallback<Schema$RapidCaches>,
+      callback: BodyResponseCallback<Schema$RapidCaches>
+    ): void;
+    list(
+      params: Params$Resource$Rapidcaches$List,
+      callback: BodyResponseCallback<Schema$RapidCaches>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$RapidCaches>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Rapidcaches$List
+        | BodyResponseCallback<Schema$RapidCaches>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RapidCaches>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RapidCaches>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$RapidCaches>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Rapidcaches$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Rapidcaches$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://storage.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/storage/v1/b/{bucket}/rapidCaches').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['bucket'],
+        pathParams: ['bucket'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$RapidCaches>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$RapidCaches>(parameters);
+      }
+    }
+
+    /**
+     * Updates the configuration of a Rapid Cache instance.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const storage = google.storage('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *       'https://www.googleapis.com/auth/devstorage.read_write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await storage.rapidCaches.update({
+     *     // Name of the parent bucket.
+     *     bucket: 'placeholder-value',
+     *     // The ID of the requested Rapid Cache instance.
+     *     rapidCacheId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "admissionPolicy": "my_admissionPolicy",
+     *       //   "bucket": "my_bucket",
+     *       //   "cacheType": "my_cacheType",
+     *       //   "createTime": "my_createTime",
+     *       //   "id": "my_id",
+     *       //   "ingestOnWrite": false,
+     *       //   "kind": "my_kind",
+     *       //   "pendingUpdate": false,
+     *       //   "rapidCacheId": "my_rapidCacheId",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "state": "my_state",
+     *       //   "ttl": "my_ttl",
+     *       //   "updateTime": "my_updateTime",
+     *       //   "zone": "my_zone"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {},
+     *   //   "selfLink": "my_selfLink"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    update(
+      params: Params$Resource$Rapidcaches$Update,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    update(
+      params?: Params$Resource$Rapidcaches$Update,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
+    update(
+      params: Params$Resource$Rapidcaches$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    update(
+      params: Params$Resource$Rapidcaches$Update,
+      options:
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    update(
+      params: Params$Resource$Rapidcaches$Update,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    update(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    update(
+      paramsOrCallback?:
+        | Params$Resource$Rapidcaches$Update
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Rapidcaches$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Rapidcaches$Update;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://storage.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/storage/v1/b/{bucket}/rapidCaches/{rapidCacheId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['bucket', 'rapidCacheId'],
+        pathParams: ['bucket', 'rapidCacheId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Rapidcaches$Disable extends StandardParameters {
+    /**
+     * Name of the parent bucket.
+     */
+    bucket?: string;
+    /**
+     * The ID of the requested Rapid Cache instance.
+     */
+    rapidCacheId?: string;
+  }
+  export interface Params$Resource$Rapidcaches$Get extends StandardParameters {
+    /**
+     * Name of the parent bucket.
+     */
+    bucket?: string;
+    /**
+     * The ID of the requested Rapid Cache instance.
+     */
+    rapidCacheId?: string;
+  }
+  export interface Params$Resource$Rapidcaches$Insert extends StandardParameters {
+    /**
+     * Name of the parent bucket.
+     */
+    bucket?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RapidCache;
+  }
+  export interface Params$Resource$Rapidcaches$List extends StandardParameters {
+    /**
+     * Name of the parent bucket.
+     */
+    bucket?: string;
+    /**
+     * Maximum number of items to return in a single page of responses.
+     */
+    pageSize?: number;
+    /**
+     * A previously-returned page token representing part of the larger set of results to view.
+     */
+    pageToken?: string;
+  }
+  export interface Params$Resource$Rapidcaches$Update extends StandardParameters {
+    /**
+     * Name of the parent bucket.
+     */
+    bucket?: string;
+    /**
+     * The ID of the requested Rapid Cache instance.
+     */
+    rapidCacheId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RapidCache;
   }
 }

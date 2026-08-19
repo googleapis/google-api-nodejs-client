@@ -1403,9 +1403,17 @@ export namespace ces_v1beta {
      */
     messages?: Schema$Message[];
     /**
+     * Output only. The full dynamically resolved developer instruction generated from templates. This field is only populated on-demand when requested during history retrieval. It is not persisted.
+     */
+    resolvedDeveloperInstruction?: string | null;
+    /**
      * Optional. The root span of the action processing.
      */
     rootSpan?: Schema$Span;
+    /**
+     * Optional. Variables or configurations referenced by the template engine during dynamic prompt generation. This allows reconstructing the exact prompt sent to the model for this turn.
+     */
+    templateAttributes?: {[key: string]: any} | null;
     /**
      * Optional. The intended ground-truth text from the Simulated Caller (Polysynth). Only populated when word error rate metrics are enabled.
      */
@@ -11860,6 +11868,8 @@ export namespace ces_v1beta {
      *     name: 'projects/my-project/locations/my-location/apps/my-app/conversations/my-conversation',
      *     // Optional. Indicate the source of the conversation. If not set, all source will be searched.
      *     source: 'placeholder-value',
+     *     // Optional. The view specifying which fields in the response should be populated.
+     *     view: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -12171,6 +12181,10 @@ export namespace ces_v1beta {
      * Optional. Indicate the source of the conversation. If not set, all source will be searched.
      */
     source?: string;
+    /**
+     * Optional. The view specifying which fields in the response should be populated.
+     */
+    view?: string;
   }
   export interface Params$Resource$Projects$Locations$Apps$Conversations$List extends StandardParameters {
     /**

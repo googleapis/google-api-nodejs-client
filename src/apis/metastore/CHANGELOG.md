@@ -1,5 +1,12 @@
 # Changelog
 
+## [15.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/metastore-v15.0.0...metastore-v15.1.0) (2026-08-18)
+
+
+### Features
+
+* **metastore:** update the API ([266b861](https://github.com/googleapis/google-api-nodejs-client/commit/266b861fd1a23ea8781f03ef252cf30dec2eb1f6))
+
 ## [15.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/metastore-v14.2.0...metastore-v15.0.0) (2026-08-03)
 
 

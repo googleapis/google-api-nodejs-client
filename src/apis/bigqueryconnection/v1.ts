@@ -388,11 +388,15 @@ export namespace bigqueryconnection_v1 {
      */
     network?: Schema$ConnectorConfigurationNetwork;
     /**
-     * Optional. A map of name-value pairs for connector-specific parameters. Extra configuration parameters, that are not standardized in configuration sections. To update a single parameter value call ConnectionService.UpdateConnection with `update_mask` set to `configuration.parameters.parameter_id`. If parameter id does not fit `[a-zA-Z0-9_]+` pattern, it should be escaped with backticks - for example ``configuration.parameters.`parameter id` ``.
+     * Optional. A map of name-value pairs for connector-specific parameters. These extra configuration parameters aren't standardized in the configuration sections. To update a single parameter value, call ConnectionService.UpdateConnection with `update_mask` set to `configuration.parameters.parameter_id`. If ``parameter_id`` doesn't fit the `[a-zA-Z0-9_]+` pattern, ``parameter_id`` should be escaped with backticks—for example, ``configuration.parameters.`parameter id` ``.
      */
     parameters?: {
       [key: string]: Schema$ConnectorConfigurationParameterValue;
     } | null;
+    /**
+     * Optional. TLS configuration options.
+     */
+    tls?: Schema$ConnectorConfigurationTls;
   }
   /**
    * Data Asset - a resource within instance of the system, reachable under specified endpoint. For example a database name in a SQL DB.
@@ -412,7 +416,7 @@ export namespace bigqueryconnection_v1 {
    */
   export interface Schema$ConnectorConfigurationAuthentication {
     /**
-     * Optional. A map of name-value pairs for authentication-specific parameters. Extra configuration parameters, that are not standardized in authentication. To update a single parameter value call ConnectionService.UpdateConnection with `update_mask` set to `configuration.authentication.parameters.parameter_id`. If parameter id does not fit `[a-zA-Z0-9_]+` pattern, it should be escaped with backticks - for example ``configuration.authentication.parameters.`parameter id` ``.
+     * Optional. A map of name-value pairs for connector-specific parameters. These extra configuration parameters aren't standardized in the configuration sections. To update a single parameter value, call ConnectionService.UpdateConnection with `update_mask` set to `configuration.parameters.parameter_id`. If ``parameter_id`` doesn't fit the `[a-zA-Z0-9_]+` pattern, ``parameter_id`` should be escaped with backticks—for example, ``configuration.parameters.`parameter id` ``.
      */
     parameters?: {
       [key: string]: Schema$ConnectorConfigurationParameterValue;
@@ -491,6 +495,36 @@ export namespace bigqueryconnection_v1 {
      */
     secretType?: string | null;
   }
+  /**
+   * TLS configuration options.
+   */
+  export interface Schema$ConnectorConfigurationTls {
+    /**
+     * Optional. The mode of TLS configuration.
+     */
+    mode?: string | null;
+    /**
+     * Optional. Private PKI.
+     */
+    privatePki?: Schema$ConnectorConfigurationTlsPrivatePki;
+    /**
+     * Optional. Web PKI.
+     */
+    webPki?: Schema$ConnectorConfigurationTlsWebPki;
+  }
+  /**
+   * Private PKI.
+   */
+  export interface Schema$ConnectorConfigurationTlsPrivatePki {
+    /**
+     * Optional. a PEM-encoded list of certificates to trust
+     */
+    trustedCertificatesPem?: string | null;
+  }
+  /**
+   * Web PKI.
+   */
+  export interface Schema$ConnectorConfigurationTlsWebPki {}
   /**
    * Username and Password authentication.
    */

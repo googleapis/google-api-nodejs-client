@@ -2316,6 +2316,10 @@ export namespace discoveryengine_v1 {
      * Final verdict of the customer policy enforcement. If only one policy blocked the processing, the verdict is BLOCK.
      */
     verdict?: string | null;
+    /**
+     * Output only. The source of the violation.
+     */
+    violationSource?: string | null;
   }
   /**
    * Customer policy enforcement result for the banned phrase policy.
@@ -4189,7 +4193,7 @@ export namespace discoveryengine_v1 {
      */
     displayName?: string | null;
     /**
-     * Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications`
+     * Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications`
      */
     features?: {[key: string]: string} | null;
     /**
@@ -7870,6 +7874,10 @@ export namespace discoveryengine_v1 {
      * Final verdict of the customer policy enforcement. If only one policy blocked the processing, the verdict is BLOCK.
      */
     verdict?: string | null;
+    /**
+     * Output only. The source of the violation.
+     */
+    violationSource?: string | null;
   }
   /**
    * Customer policy enforcement result for the banned phrase policy.
@@ -9397,7 +9405,7 @@ export namespace discoveryengine_v1 {
      */
     displayName?: string | null;
     /**
-     * Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications`
+     * Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications`
      */
     features?: {[key: string]: string} | null;
     /**
@@ -13513,7 +13521,7 @@ export namespace discoveryengine_v1 {
      */
     displayName?: string | null;
     /**
-     * Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications`
+     * Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications`
      */
     features?: {[key: string]: string} | null;
     /**
@@ -15577,6 +15585,10 @@ export namespace discoveryengine_v1 {
      */
     rankingExpressionBackend?: string | null;
     /**
+     * Optional. The granular relevance filtering specification. If not specified, the global `relevance_threshold` will be used for all sub-searches. If specified, this overrides the global `relevance_threshold` to use thresholds on a per sub-search basis. This feature is currently supported only for custom and site search.
+     */
+    relevanceFilterSpec?: Schema$GoogleCloudDiscoveryengineV1SearchRequestRelevanceFilterSpec;
+    /**
      * Optional. The specification for returning the relevance score.
      */
     relevanceScoreSpec?: Schema$GoogleCloudDiscoveryengineV1SearchRequestRelevanceScoreSpec;
@@ -15978,6 +15990,32 @@ export namespace discoveryengine_v1 {
     pinUnexpandedResults?: boolean | null;
   }
   /**
+   * Relevance filtering specification.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1SearchRequestRelevanceFilterSpec {
+    /**
+     * Optional. Relevance filtering threshold specification for keyword search.
+     */
+    keywordSearchThreshold?: Schema$GoogleCloudDiscoveryengineV1SearchRequestRelevanceFilterSpecRelevanceThresholdSpec;
+    /**
+     * Optional. Relevance filtering threshold specification for semantic search.
+     */
+    semanticSearchThreshold?: Schema$GoogleCloudDiscoveryengineV1SearchRequestRelevanceFilterSpecRelevanceThresholdSpec;
+  }
+  /**
+   * Specification for relevance filtering on a specific sub-search.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1SearchRequestRelevanceFilterSpecRelevanceThresholdSpec {
+    /**
+     * Pre-defined relevance threshold for the sub-search.
+     */
+    relevanceThreshold?: string | null;
+    /**
+     * Custom relevance threshold for the sub-search. The value must be in [0.0, 1.0].
+     */
+    semanticRelevanceThreshold?: number | null;
+  }
+  /**
    * The specification for returning the document relevance score.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1SearchRequestRelevanceScoreSpec {
@@ -16021,6 +16059,10 @@ export namespace discoveryengine_v1 {
    * Response message for SearchService.Search method.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1SearchResponse {
+    /**
+     * Optional. Controls applied as part of the Control service.
+     */
+    appliedControls?: string[] | null;
     /**
      * A unique search token. This should be included in the UserEvent logs resulting from this search, which enables accurate attribution of search model performance. This also helps to identify a request during the customer support scenarios.
      */
@@ -16283,6 +16325,10 @@ export namespace discoveryengine_v1 {
      * Optional. A set of ranking signals associated with the result.
      */
     rankSignals?: Schema$GoogleCloudDiscoveryengineV1SearchResponseSearchResultRankSignals;
+    /**
+     * Optional. A set of signals used by the relevance filter meant for use to fine-tune the relevance filter thresholds.
+     */
+    retrievalSignals?: Schema$GoogleCloudDiscoveryengineV1SearchResponseSearchResultRetrievalSignals;
   }
   /**
    * A set of ranking signals.
@@ -16341,6 +16387,19 @@ export namespace discoveryengine_v1 {
      * Optional. Float value representing the ranking signal (e.g. 1.25 for BM25).
      */
     value?: number | null;
+  }
+  /**
+   * Contains a set of signals used by the relevance filter.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1SearchResponseSearchResultRetrievalSignals {
+    /**
+     * Optional. Indicates how the result was retrieved.
+     */
+    retrievalSources?: string[] | null;
+    /**
+     * Optional. Relevance score used by the filter when semantic_relevance_threshold is set.
+     */
+    semanticRelevanceScore?: number | null;
   }
   /**
    * Information about the session.
@@ -17856,7 +17915,7 @@ export namespace discoveryengine_v1 {
      */
     enableVisualContentSummary?: boolean | null;
     /**
-     * Output only. Feature config for the engine to opt in or opt out of features. Supported keys: * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications`
+     * Output only. Feature config for the engine to opt in or opt out of features. Supported keys: * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications`
      */
     features?: {[key: string]: string} | null;
     /**
@@ -17974,6 +18033,10 @@ export namespace discoveryengine_v1 {
      * Output only. Whether the model is currently in preview. Clients should surface this via a "Preview" badge in the selector UI.
      */
     isPreview?: boolean | null;
+    /**
+     * Output only. Short label shown in the compact selector bar chip (e.g. `3.x Flash`) as opposed to the full `display_name` (`Gemini 3.x Flash`). Falls back to `display_name` when the backend registry does not specify a distinct short label.
+     */
+    label?: string | null;
     /**
      * Output only. Unique identifier of the model (e.g. `gemini-2.5-flash`, `gemini-3.1-pro-preview`). This is the same identifier that clients pass back to the assistant service to select this model. Virtual / "pseudo" models (e.g. `gemini-fast`) are also valid values here; they are resolved to the underlying concrete model on the backend.
      */
@@ -31486,6 +31549,7 @@ export namespace discoveryengine_v1 {
      *           //   "queryExpansionSpec": {},
      *           //   "rankingExpression": "my_rankingExpression",
      *           //   "rankingExpressionBackend": "my_rankingExpressionBackend",
+     *           //   "relevanceFilterSpec": {},
      *           //   "relevanceScoreSpec": {},
      *           //   "relevanceThreshold": "my_relevanceThreshold",
      *           //   "safeSearch": false,
@@ -31504,6 +31568,7 @@ export namespace discoveryengine_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "appliedControls": [],
      *   //   "attributionToken": "my_attributionToken",
      *   //   "correctedQuery": "my_correctedQuery",
      *   //   "facets": [],
@@ -31699,6 +31764,7 @@ export namespace discoveryengine_v1 {
      *           //   "queryExpansionSpec": {},
      *           //   "rankingExpression": "my_rankingExpression",
      *           //   "rankingExpressionBackend": "my_rankingExpressionBackend",
+     *           //   "relevanceFilterSpec": {},
      *           //   "relevanceScoreSpec": {},
      *           //   "relevanceThreshold": "my_relevanceThreshold",
      *           //   "safeSearch": false,
@@ -31717,6 +31783,7 @@ export namespace discoveryengine_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "appliedControls": [],
      *   //   "attributionToken": "my_attributionToken",
      *   //   "correctedQuery": "my_correctedQuery",
      *   //   "facets": [],
@@ -46314,6 +46381,7 @@ export namespace discoveryengine_v1 {
      *           //   "queryExpansionSpec": {},
      *           //   "rankingExpression": "my_rankingExpression",
      *           //   "rankingExpressionBackend": "my_rankingExpressionBackend",
+     *           //   "relevanceFilterSpec": {},
      *           //   "relevanceScoreSpec": {},
      *           //   "relevanceThreshold": "my_relevanceThreshold",
      *           //   "safeSearch": false,
@@ -46332,6 +46400,7 @@ export namespace discoveryengine_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "appliedControls": [],
      *   //   "attributionToken": "my_attributionToken",
      *   //   "correctedQuery": "my_correctedQuery",
      *   //   "facets": [],
@@ -46527,6 +46596,7 @@ export namespace discoveryengine_v1 {
      *           //   "queryExpansionSpec": {},
      *           //   "rankingExpression": "my_rankingExpression",
      *           //   "rankingExpressionBackend": "my_rankingExpressionBackend",
+     *           //   "relevanceFilterSpec": {},
      *           //   "relevanceScoreSpec": {},
      *           //   "relevanceThreshold": "my_relevanceThreshold",
      *           //   "safeSearch": false,
@@ -46545,6 +46615,7 @@ export namespace discoveryengine_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "appliedControls": [],
      *   //   "attributionToken": "my_attributionToken",
      *   //   "correctedQuery": "my_correctedQuery",
      *   //   "facets": [],
@@ -57568,6 +57639,7 @@ export namespace discoveryengine_v1 {
      *         //   "queryExpansionSpec": {},
      *         //   "rankingExpression": "my_rankingExpression",
      *         //   "rankingExpressionBackend": "my_rankingExpressionBackend",
+     *         //   "relevanceFilterSpec": {},
      *         //   "relevanceScoreSpec": {},
      *         //   "relevanceThreshold": "my_relevanceThreshold",
      *         //   "safeSearch": false,
@@ -57585,6 +57657,7 @@ export namespace discoveryengine_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "appliedControls": [],
      *   //   "attributionToken": "my_attributionToken",
      *   //   "correctedQuery": "my_correctedQuery",
      *   //   "facets": [],
@@ -57780,6 +57853,7 @@ export namespace discoveryengine_v1 {
      *           //   "queryExpansionSpec": {},
      *           //   "rankingExpression": "my_rankingExpression",
      *           //   "rankingExpressionBackend": "my_rankingExpressionBackend",
+     *           //   "relevanceFilterSpec": {},
      *           //   "relevanceScoreSpec": {},
      *           //   "relevanceThreshold": "my_relevanceThreshold",
      *           //   "safeSearch": false,
@@ -57798,6 +57872,7 @@ export namespace discoveryengine_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "appliedControls": [],
      *   //   "attributionToken": "my_attributionToken",
      *   //   "correctedQuery": "my_correctedQuery",
      *   //   "facets": [],

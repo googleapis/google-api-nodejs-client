@@ -1,5 +1,12 @@
 # Changelog
 
+## [20.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/workstations-v20.0.0...workstations-v20.0.1) (2026-08-18)
+
+
+### Bug Fixes
+
+* **workstations:** update the API ([ee9521c](https://github.com/googleapis/google-api-nodejs-client/commit/ee9521ce5cdb69590827c30c59e58f0f047fb70d))
+
 ## [20.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/workstations-v19.0.0...workstations-v20.0.0) (2026-08-03)
 
 

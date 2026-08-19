@@ -5031,7 +5031,7 @@
       }
     }
   },
-  "revision": "20260701",
+  "revision": "20260808",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3Action": {
@@ -7134,6 +7134,9 @@
       "properties": {
         "advancedSettings": {
           "$ref": "GoogleCloudDialogflowCxV3AdvancedSettings"
+        },
+        "codeBlockFunction": {
+          "type": "string"
         },
         "conditionalCases": {
           "items": {
@@ -11864,6 +11867,9 @@
         "advancedSettings": {
           "$ref": "GoogleCloudDialogflowCxV3beta1AdvancedSettings"
         },
+        "codeBlockFunction": {
+          "type": "string"
+        },
         "conditionalCases": {
           "items": {
             "$ref": "GoogleCloudDialogflowCxV3beta1FulfillmentConditionalCases"
@@ -15297,6 +15303,21 @@
           "format": "int32",
           "type": "integer"
         },
+        "similarityToLastQuery": {
+          "format": "float",
+          "type": "number"
+        },
+        "similarityToLastQueryThreshold": {
+          "format": "float",
+          "type": "number"
+        },
+        "thinkingBudgetTokens": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "thinkingLevel": {
+          "type": "string"
+        },
         "totalTokenCount": {
           "format": "int32",
           "type": "integer"
@@ -18110,6 +18131,21 @@
         "promptTokenCount": {
           "format": "int32",
           "type": "integer"
+        },
+        "similarityToLastQuery": {
+          "format": "float",
+          "type": "number"
+        },
+        "similarityToLastQueryThreshold": {
+          "format": "float",
+          "type": "number"
+        },
+        "thinkingBudgetTokens": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "thinkingLevel": {
+          "type": "string"
         },
         "totalTokenCount": {
           "format": "int32",

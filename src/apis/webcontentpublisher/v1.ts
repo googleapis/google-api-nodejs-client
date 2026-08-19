@@ -114,6 +114,7 @@ export namespace webcontentpublisher_v1 {
     context: APIRequestContext;
     organizations: Resource$Organizations;
     publications: Resource$Publications;
+    users: Resource$Users;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this.context = {
@@ -123,6 +124,7 @@ export namespace webcontentpublisher_v1 {
 
       this.organizations = new Resource$Organizations(this.context);
       this.publications = new Resource$Publications(this.context);
+      this.users = new Resource$Users(this.context);
     }
   }
 
@@ -185,6 +187,19 @@ export namespace webcontentpublisher_v1 {
      * Required. The URL of the domain property (e.g., "https://example.com").
      */
     url?: string | null;
+  }
+  /**
+   * Request message for `GeneratePlatformSiteTokens`.
+   */
+  export interface Schema$GeneratePlatformSiteTokensRequest {}
+  /**
+   * Response message for `GeneratePlatformSiteTokens`.
+   */
+  export interface Schema$GeneratePlatformSiteTokensResponse {
+    /**
+     * List of domain-scoped secure token mappings.
+     */
+    siteTokens?: Schema$SiteToken[];
   }
   /**
    * Response message for `ListCtas`.
@@ -326,6 +341,19 @@ export namespace webcontentpublisher_v1 {
      * Optional. The details of the TOS acceptance.
      */
     tosAcceptance?: Schema$TosAcceptance;
+  }
+  /**
+   * Represents a domain-scoped secure token mapping.
+   */
+  export interface Schema$SiteToken {
+    /**
+     * The domain scope this token is valid for.
+     */
+    domain?: string | null;
+    /**
+     * The domain-scoped secure token value (ESUT).
+     */
+    token?: string | null;
   }
   /**
    * Subscription Linking (SL) product settings and status.
@@ -1915,5 +1943,178 @@ export namespace webcontentpublisher_v1 {
      * Required. The URI of the content.
      */
     uri?: string;
+  }
+
+  export class Resource$Users {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Returns user tokens mapped to their canonical domains for all publications the authenticated user is entitled to.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/webcontentpublisher.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const webcontentpublisher = google.webcontentpublisher('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await webcontentpublisher.users.generatePlatformSiteTokens({
+     *     // Required. The resource name of the user to generate tokens for. Format: users/{user\}
+     *     name: 'users/my-user',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "siteTokens": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    generatePlatformSiteTokens(
+      params: Params$Resource$Users$Generateplatformsitetokens,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    generatePlatformSiteTokens(
+      params?: Params$Resource$Users$Generateplatformsitetokens,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GeneratePlatformSiteTokensResponse>
+    >;
+    generatePlatformSiteTokens(
+      params: Params$Resource$Users$Generateplatformsitetokens,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    generatePlatformSiteTokens(
+      params: Params$Resource$Users$Generateplatformsitetokens,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GeneratePlatformSiteTokensResponse>,
+      callback: BodyResponseCallback<Schema$GeneratePlatformSiteTokensResponse>
+    ): void;
+    generatePlatformSiteTokens(
+      params: Params$Resource$Users$Generateplatformsitetokens,
+      callback: BodyResponseCallback<Schema$GeneratePlatformSiteTokensResponse>
+    ): void;
+    generatePlatformSiteTokens(
+      callback: BodyResponseCallback<Schema$GeneratePlatformSiteTokensResponse>
+    ): void;
+    generatePlatformSiteTokens(
+      paramsOrCallback?:
+        | Params$Resource$Users$Generateplatformsitetokens
+        | BodyResponseCallback<Schema$GeneratePlatformSiteTokensResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GeneratePlatformSiteTokensResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GeneratePlatformSiteTokensResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GeneratePlatformSiteTokensResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Generateplatformsitetokens;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Users$Generateplatformsitetokens;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://webcontentpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:generatePlatformSiteTokens').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GeneratePlatformSiteTokensResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GeneratePlatformSiteTokensResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Users$Generateplatformsitetokens extends StandardParameters {
+    /**
+     * Required. The resource name of the user to generate tokens for. Format: users/{user\}
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GeneratePlatformSiteTokensRequest;
   }
 }

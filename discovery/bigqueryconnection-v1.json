@@ -366,7 +366,7 @@
       }
     }
   },
-  "revision": "20260601",
+  "revision": "20260804",
   "rootUrl": "https://bigqueryconnection.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -703,8 +703,12 @@
           "additionalProperties": {
             "$ref": "ConnectorConfigurationParameterValue"
           },
-          "description": "Optional. A map of name-value pairs for connector-specific parameters. Extra configuration parameters, that are not standardized in configuration sections. To update a single parameter value call ConnectionService.UpdateConnection with `update_mask` set to `configuration.parameters.parameter_id`. If parameter id does not fit `[a-zA-Z0-9_]+` pattern, it should be escaped with backticks - for example ``configuration.parameters.`parameter id` ``.",
+          "description": "Optional. A map of name-value pairs for connector-specific parameters. These extra configuration parameters aren't standardized in the configuration sections. To update a single parameter value, call ConnectionService.UpdateConnection with `update_mask` set to `configuration.parameters.parameter_id`. If ``parameter_id`` doesn't fit the `[a-zA-Z0-9_]+` pattern, ``parameter_id`` should be escaped with backticks—for example, ``configuration.parameters.`parameter id` ``.",
           "type": "object"
+        },
+        "tls": {
+          "$ref": "ConnectorConfigurationTls",
+          "description": "Optional. TLS configuration options."
         }
       },
       "type": "object"
@@ -732,7 +736,7 @@
           "additionalProperties": {
             "$ref": "ConnectorConfigurationParameterValue"
           },
-          "description": "Optional. A map of name-value pairs for authentication-specific parameters. Extra configuration parameters, that are not standardized in authentication. To update a single parameter value call ConnectionService.UpdateConnection with `update_mask` set to `configuration.authentication.parameters.parameter_id`. If parameter id does not fit `[a-zA-Z0-9_]+` pattern, it should be escaped with backticks - for example ``configuration.authentication.parameters.`parameter id` ``.",
+          "description": "Optional. A map of name-value pairs for connector-specific parameters. These extra configuration parameters aren't standardized in the configuration sections. To update a single parameter value, call ConnectionService.UpdateConnection with `update_mask` set to `configuration.parameters.parameter_id`. If ``parameter_id`` doesn't fit the `[a-zA-Z0-9_]+` pattern, ``parameter_id`` should be escaped with backticks—for example, ``configuration.parameters.`parameter id` ``.",
           "type": "object"
         },
         "serviceAccount": {
@@ -831,6 +835,56 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "ConnectorConfigurationTls": {
+      "description": "TLS configuration options.",
+      "id": "ConnectorConfigurationTls",
+      "properties": {
+        "mode": {
+          "description": "Optional. The mode of TLS configuration.",
+          "enum": [
+            "MODE_UNSPECIFIED",
+            "DISABLE",
+            "ENCRYPT_VERIFY_NONE",
+            "ENCRYPT_VERIFY_CA",
+            "ENCRYPT_VERIFY_CA_AND_HOST"
+          ],
+          "enumDescriptions": [
+            "TLS mode unspecified.",
+            "TLS is disabled.",
+            "Encryption is enabled, but server certificate is not verified.",
+            "Encryption is enabled, and server certificate is verified.",
+            "Encryption is enabled, and server certificate and host are verified."
+          ],
+          "type": "string"
+        },
+        "privatePki": {
+          "$ref": "ConnectorConfigurationTlsPrivatePki",
+          "description": "Optional. Private PKI."
+        },
+        "webPki": {
+          "$ref": "ConnectorConfigurationTlsWebPki",
+          "description": "Optional. Web PKI."
+        }
+      },
+      "type": "object"
+    },
+    "ConnectorConfigurationTlsPrivatePki": {
+      "description": "Private PKI.",
+      "id": "ConnectorConfigurationTlsPrivatePki",
+      "properties": {
+        "trustedCertificatesPem": {
+          "description": "Optional. a PEM-encoded list of certificates to trust",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ConnectorConfigurationTlsWebPki": {
+      "description": "Web PKI.",
+      "id": "ConnectorConfigurationTlsWebPki",
+      "properties": {},
       "type": "object"
     },
     "ConnectorConfigurationUsernamePassword": {
