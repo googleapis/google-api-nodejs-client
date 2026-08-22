@@ -1237,7 +1237,7 @@
       }
     }
   },
-  "revision": "20260724",
+  "revision": "20260812",
   "rootUrl": "https://networkmanagement.googleapis.com/",
   "schemas": {
     "AbortInfo": {
@@ -4489,6 +4489,10 @@
           "$ref": "StorageBucketInfo",
           "description": "Display information of a Storage Bucket. Used only for return traces."
         },
+        "viewerPermissionMissingInfo": {
+          "$ref": "ViewerPermissionMissingInfo",
+          "description": "Display information of a step that is redacted due to missing permissions."
+        },
         "vpcConnector": {
           "$ref": "VpcConnectorInfo",
           "description": "Display information of a VPC connector."
@@ -4560,6 +4564,32 @@
           "description": "A trace of a test contains multiple steps from the initial state to the final state (delivered, dropped, forwarded, or aborted). The steps are ordered by the processing sequence within the simulated network state machine. It is critical to preserve the order of the steps and avoid reordering or sorting them.",
           "items": {
             "$ref": "Step"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ViewerPermissionMissingInfo": {
+      "description": "For display only. Metadata associated with a step that was redacted due to missing permissions.",
+      "id": "ViewerPermissionMissingInfo",
+      "properties": {
+        "resourceTypes": {
+          "description": "Types of the resources that the user does not have permission to view.",
+          "items": {
+            "enum": [
+              "RESOURCE_TYPE_UNSPECIFIED",
+              "FIREWALL",
+              "INSTANCE",
+              "FORWARDING_RULE"
+            ],
+            "enumDescriptions": [
+              "Resource type is unspecified.",
+              "Firewall rule.",
+              "Instance.",
+              "Forwarding rule."
+            ],
+            "type": "string"
           },
           "type": "array"
         }
