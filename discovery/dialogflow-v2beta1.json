@@ -8431,7 +8431,7 @@
       }
     }
   },
-  "revision": "20260808",
+  "revision": "20260815",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AdvancedSettings": {
@@ -15167,6 +15167,9 @@
       "properties": {
         "message": {
           "type": "string"
+        },
+        "retryable": {
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -16130,6 +16133,7 @@
       "type": "object"
     },
     "GoogleCloudDialogflowV2beta1CesAppSpec": {
+      "deprecated": true,
       "id": "GoogleCloudDialogflowV2beta1CesAppSpec",
       "properties": {
         "cesApp": {
@@ -17534,6 +17538,7 @@
           "$ref": "GoogleCloudDialogflowV2beta1AgentCoachingContext"
         },
         "cesAppSpecs": {
+          "deprecated": true,
           "items": {
             "$ref": "GoogleCloudDialogflowV2beta1CesAppSpec"
           },
@@ -22942,6 +22947,9 @@
       "properties": {
         "message": {
           "type": "string"
+        },
+        "retryable": {
+          "type": "boolean"
         }
       },
       "type": "object"
