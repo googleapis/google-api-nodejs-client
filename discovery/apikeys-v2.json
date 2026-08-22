@@ -2,6 +2,12 @@
   "auth": {
     "oauth2": {
       "scopes": {
+        "https://www.googleapis.com/auth/apikeys": {
+          "description": "See, edit, configure, and delete your Google Cloud API Keys data and see the email address for your Google Account"
+        },
+        "https://www.googleapis.com/auth/apikeys.readonly": {
+          "description": "See your Google Cloud API Keys data and the email address of your Google Account"
+        },
         "https://www.googleapis.com/auth/cloud-platform": {
           "description": "See, edit, configure, and delete your Google Cloud data and see the email address for your Google Account."
         },
@@ -128,6 +134,8 @@
             "$ref": "V2LookupKeyResponse"
           },
           "scopes": [
+            "https://www.googleapis.com/auth/apikeys",
+            "https://www.googleapis.com/auth/apikeys.readonly",
             "https://www.googleapis.com/auth/cloud-platform",
             "https://www.googleapis.com/auth/cloud-platform.read-only"
           ]
@@ -158,6 +166,8 @@
             "$ref": "Operation"
           },
           "scopes": [
+            "https://www.googleapis.com/auth/apikeys",
+            "https://www.googleapis.com/auth/apikeys.readonly",
             "https://www.googleapis.com/auth/cloud-platform",
             "https://www.googleapis.com/auth/cloud-platform.read-only"
           ]
@@ -200,6 +210,7 @@
                     "$ref": "Operation"
                   },
                   "scopes": [
+                    "https://www.googleapis.com/auth/apikeys",
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
@@ -245,6 +256,7 @@
                     "$ref": "Operation"
                   },
                   "scopes": [
+                    "https://www.googleapis.com/auth/apikeys",
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
@@ -270,6 +282,8 @@
                     "$ref": "V2Key"
                   },
                   "scopes": [
+                    "https://www.googleapis.com/auth/apikeys",
+                    "https://www.googleapis.com/auth/apikeys.readonly",
                     "https://www.googleapis.com/auth/cloud-platform",
                     "https://www.googleapis.com/auth/cloud-platform.read-only"
                   ]
@@ -296,6 +310,8 @@
                     "$ref": "V2GetKeyStringResponse"
                   },
                   "scopes": [
+                    "https://www.googleapis.com/auth/apikeys",
+                    "https://www.googleapis.com/auth/apikeys.readonly",
                     "https://www.googleapis.com/auth/cloud-platform",
                     "https://www.googleapis.com/auth/cloud-platform.read-only"
                   ]
@@ -338,6 +354,8 @@
                     "$ref": "V2ListKeysResponse"
                   },
                   "scopes": [
+                    "https://www.googleapis.com/auth/apikeys",
+                    "https://www.googleapis.com/auth/apikeys.readonly",
                     "https://www.googleapis.com/auth/cloud-platform",
                     "https://www.googleapis.com/auth/cloud-platform.read-only"
                   ]
@@ -388,6 +406,7 @@
                     "$ref": "Operation"
                   },
                   "scopes": [
+                    "https://www.googleapis.com/auth/apikeys",
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
@@ -416,6 +435,7 @@
                     "$ref": "Operation"
                   },
                   "scopes": [
+                    "https://www.googleapis.com/auth/apikeys",
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 }
@@ -426,7 +446,7 @@
       }
     }
   },
-  "revision": "20260731",
+  "revision": "20260818",
   "rootUrl": "https://apikeys.googleapis.com/",
   "schemas": {
     "Operation": {
