@@ -423,7 +423,7 @@
       }
     }
   },
-  "revision": "20260810",
+  "revision": "20260817",
   "rootUrl": "https://alertcenter.googleapis.com/",
   "schemas": {
     "AbuseDetected": {
@@ -1951,6 +1951,8 @@
               "CHROME_WATERMARK",
               "CHROME_FORCE_SAVE_TO_CLOUD",
               "CHROME_KEEP_IN_MANAGED_CHROME",
+              "CHROME_BLOCK_DATA_COPIED",
+              "CHROME_WARN_DATA_COPIED",
               "DELETE_WEBPROTECT_EVIDENCE",
               "CHAT_BLOCK_CONTENT",
               "CHAT_WARN_USER",
@@ -1986,6 +1988,8 @@
               "Send watermark alert",
               "Force save to cloud storage.",
               "Keep in managed Chrome.",
+              "Block text copied from Chrome.",
+              "Warn on text copied from Chrome.",
               "Delete web protect evidence file",
               "Chat actions. Block Chat content to be sent out.",
               "Warn end user about Chat content.",
@@ -2071,6 +2075,8 @@
               "CHROME_WATERMARK",
               "CHROME_FORCE_SAVE_TO_CLOUD",
               "CHROME_KEEP_IN_MANAGED_CHROME",
+              "CHROME_BLOCK_DATA_COPIED",
+              "CHROME_WARN_DATA_COPIED",
               "DELETE_WEBPROTECT_EVIDENCE",
               "CHAT_BLOCK_CONTENT",
               "CHAT_WARN_USER",
@@ -2106,6 +2112,8 @@
               "Send watermark alert",
               "Force save to cloud storage.",
               "Keep in managed Chrome.",
+              "Block text copied from Chrome.",
+              "Warn on text copied from Chrome.",
               "Delete web protect evidence file",
               "Chat actions. Block Chat content to be sent out.",
               "Warn end user about Chat content.",
