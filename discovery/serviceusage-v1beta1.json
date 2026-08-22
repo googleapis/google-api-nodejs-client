@@ -969,7 +969,7 @@
       }
     }
   },
-  "revision": "20260731",
+  "revision": "20260818",
   "rootUrl": "https://serviceusage.googleapis.com/",
   "schemas": {
     "AddEnableRulesMetadata": {
@@ -4537,7 +4537,7 @@
         },
         "removedValues": {
           "deprecated": true,
-          "description": "The values removed from the parent consumer policy.",
+          "description": "Deprecated: This field is no longer populated. Use GetConsumerPolicy to verify the remaining enabled values.",
           "items": {
             "type": "string"
           },
