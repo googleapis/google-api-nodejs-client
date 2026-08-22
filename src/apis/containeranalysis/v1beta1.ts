@@ -1192,6 +1192,10 @@ export namespace containeranalysis_v1beta1 {
      */
     destPath?: string | null;
     /**
+     * Optional. True if remote tags should be fetched too (default false). Note: when depth is 1 (default), git fetch only retrieves tags pointing to commits within the shallow boundary. Set depth to -1 to fetch all historical tags.
+     */
+    fetchTags?: boolean | null;
+    /**
      * Optional. True if submodules should be fetched too (default false).
      */
     recurseSubmodules?: boolean | null;

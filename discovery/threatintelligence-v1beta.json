@@ -842,7 +842,7 @@
       }
     }
   },
-  "revision": "20260809",
+  "revision": "20260816",
   "rootUrl": "https://threatintelligence.googleapis.com/",
   "schemas": {
     "Alert": {
@@ -1255,9 +1255,18 @@
       "description": "CustomThreatScenarioConfig represents a user-defined threat scenario configuration.",
       "id": "CustomThreatScenarioConfig",
       "properties": {
+        "compiledLuceneQuery": {
+          "description": "Output only. The compiled Lucene query string.",
+          "readOnly": true,
+          "type": "string"
+        },
         "documentCondition": {
           "description": "Required. The condition driving the scenario, stored as a stringified JSON. This is used to query/filter documents.",
           "type": "string"
+        },
+        "legacyMonitorMetadata": {
+          "$ref": "LegacyMetadata",
+          "description": "Optional. Legacy metadata associated with this scenario/monitor."
         }
       },
       "type": "object"
@@ -1982,6 +1991,81 @@
             "Critical severity."
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "LegacyMetadata": {
+      "description": "Legacy metadata associated with this scenario/monitor.",
+      "id": "LegacyMetadata",
+      "properties": {
+        "aggregationEnabled": {
+          "description": "Optional. Whether aggregation is enabled for alerts from this monitor.",
+          "type": "boolean"
+        },
+        "aggregationSimilarity": {
+          "description": "Optional. Similarity threshold for aggregation.",
+          "format": "double",
+          "type": "number"
+        },
+        "conditionVersion": {
+          "description": "Optional. Version of the condition schema.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "creatorUserId": {
+          "description": "Optional. User ID who created the monitor.",
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. Description of the legacy monitor.",
+          "type": "string"
+        },
+        "disabledCode": {
+          "description": "Optional. Code indicating why the monitor is disabled (if applicable).",
+          "type": "string"
+        },
+        "disabledReason": {
+          "description": "Optional. Reason why the monitor is disabled (if applicable).",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Optional. Name of the legacy monitor.",
+          "type": "string"
+        },
+        "emailNotificationEnabled": {
+          "description": "Optional. Whether email notifications are enabled.",
+          "type": "boolean"
+        },
+        "emailNotificationImmediate": {
+          "description": "Optional. Whether email notifications are intermediate/immediate.",
+          "type": "boolean"
+        },
+        "legacyMonitorId": {
+          "description": "Optional. Unique identifier of the legacy monitor.",
+          "type": "string"
+        },
+        "staleTime": {
+          "description": "Optional. Time the legacy monitor was considered stale.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "templateId": {
+          "description": "Optional. ID of the template this monitor was created from.",
+          "type": "string"
+        },
+        "tenantId": {
+          "description": "Optional. ID of the tenant owning the monitor.",
+          "type": "string"
+        },
+        "updaterUserId": {
+          "description": "Optional. User ID who last updated the monitor.",
+          "type": "string"
+        },
+        "version": {
+          "description": "Optional. Version of the monitor configuration.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"

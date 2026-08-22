@@ -2105,6 +2105,7 @@ export namespace dialogflow_v2 {
   }
   export interface Schema$GoogleCloudDialogflowV2beta1ToolCallResultError {
     message?: string | null;
+    retryable?: boolean | null;
   }
   export interface Schema$GoogleCloudDialogflowV2beta1WebhookRequest {
     alternativeQueryResults?: Schema$GoogleCloudDialogflowV2beta1QueryResult[];
@@ -3671,6 +3672,7 @@ export namespace dialogflow_v2 {
   }
   export interface Schema$GoogleCloudDialogflowV2ToolCallResultError {
     message?: string | null;
+    retryable?: boolean | null;
   }
   export interface Schema$GoogleCloudDialogflowV2ToolConnectorTool {
     actions?: Schema$GoogleCloudDialogflowV2ToolConnectorToolAction[];

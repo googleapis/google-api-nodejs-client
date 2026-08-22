@@ -3095,6 +3095,7 @@ export namespace dialogflow_v2beta1 {
   }
   export interface Schema$GoogleCloudDialogflowV2beta1ToolCallResultError {
     message?: string | null;
+    retryable?: boolean | null;
   }
   export interface Schema$GoogleCloudDialogflowV2beta1ToolConnectorTool {
     actions?: Schema$GoogleCloudDialogflowV2beta1ToolConnectorToolAction[];
@@ -3753,6 +3754,7 @@ export namespace dialogflow_v2beta1 {
   }
   export interface Schema$GoogleCloudDialogflowV2ToolCallResultError {
     message?: string | null;
+    retryable?: boolean | null;
   }
   export interface Schema$GoogleCloudDialogflowV2UndeployConversationModelOperationMetadata {
     conversationModel?: string | null;

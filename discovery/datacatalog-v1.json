@@ -2344,7 +2344,7 @@
       }
     }
   },
-  "revision": "20260211",
+  "revision": "20260706",
   "rootUrl": "https://datacatalog.googleapis.com/",
   "schemas": {
     "Binding": {
@@ -3173,7 +3173,9 @@
             "FEATURE_ONLINE_STORE",
             "FEATURE_VIEW",
             "FEATURE_GROUP",
-            "GRAPH"
+            "GRAPH",
+            "NODE",
+            "EDGE"
           ],
           "enumDescriptions": [
             "Default unknown type.",
@@ -3195,7 +3197,9 @@
             "Feature Online Store resource in Vertex AI Feature Store.",
             "Feature View resource in Vertex AI Feature Store.",
             "Feature Group resource in Vertex AI Feature Store.",
-            "An entry type for a graph."
+            "An entry type for a graph.",
+            "An entry type for a graph node.",
+            "An entry type for a graph edge."
           ],
           "type": "string"
         },

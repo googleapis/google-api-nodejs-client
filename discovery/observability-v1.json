@@ -1009,6 +1009,39 @@
           "resources": {
             "buckets": {
               "methods": {
+                "create": {
+                  "description": "Create a new bucket.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/buckets",
+                  "httpMethod": "POST",
+                  "id": "observability.projects.locations.buckets.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "bucketId": {
+                      "description": "Required. Id of the bucket to create.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Name of the project and location for the bucket. The format is: projects/[PROJECT_ID]/locations/[LOCATION]",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/buckets",
+                  "request": {
+                    "$ref": "Bucket"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "get": {
                   "description": "Get bucket resource.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/buckets/{bucketsId}",
@@ -1070,6 +1103,40 @@
                   "path": "v1/{+parent}/buckets",
                   "response": {
                     "$ref": "ListBucketsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Update a bucket.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/buckets/{bucketsId}",
+                  "httpMethod": "PATCH",
+                  "id": "observability.projects.locations.buckets.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Identifier. Name of the bucket. The format is: projects/[PROJECT_ID]/locations/[LOCATION]/buckets/[BUCKET_ID]",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/buckets/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. The list of fields to update.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "Bucket"
+                  },
+                  "response": {
+                    "$ref": "Operation"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -1726,7 +1793,7 @@
       }
     }
   },
-  "revision": "20260630",
+  "revision": "20260817",
   "rootUrl": "https://observability.googleapis.com/",
   "schemas": {
     "Bucket": {

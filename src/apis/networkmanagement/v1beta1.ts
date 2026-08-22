@@ -1982,6 +1982,10 @@ export namespace networkmanagement_v1beta1 {
      */
     storageBucket?: Schema$StorageBucketInfo;
     /**
+     * Display information of a step that is redacted due to missing permissions.
+     */
+    viewerPermissionMissingInfo?: Schema$ViewerPermissionMissingInfo;
+    /**
      * Display information of a VPC connector.
      */
     vpcConnector?: Schema$VpcConnectorInfo;
@@ -2037,6 +2041,15 @@ export namespace networkmanagement_v1beta1 {
      * A trace of a test contains multiple steps from the initial state to the final state (delivered, dropped, forwarded, or aborted). The steps are ordered by the processing sequence within the simulated network state machine. It is critical to preserve the order of the steps and avoid reordering or sorting them.
      */
     steps?: Schema$Step[];
+  }
+  /**
+   * For display only. Metadata associated with a step that was redacted due to missing permissions.
+   */
+  export interface Schema$ViewerPermissionMissingInfo {
+    /**
+     * Types of the resources that the user does not have permission to view.
+     */
+    resourceTypes?: string[] | null;
   }
   /**
    * For display only. Metadata associated with a VPC connector.

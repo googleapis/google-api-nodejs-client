@@ -193,6 +193,10 @@ export namespace firestore_v1beta1 {
      */
     readTime?: string | null;
     /**
+     * Optional. The request options for this request.
+     */
+    requestOptions?: Schema$RequestOptions;
+    /**
      * Reads documents in a transaction.
      */
     transaction?: string | null;
@@ -227,6 +231,10 @@ export namespace firestore_v1beta1 {
      */
     labels?: {[key: string]: string} | null;
     /**
+     * Optional. The request options for this request.
+     */
+    requestOptions?: Schema$RequestOptions;
+    /**
      * The writes to apply. Method does not apply writes atomically and does not guarantee ordering. Each write succeeds or fails independently. You cannot write to the same document more than once per request.
      */
     writes?: Schema$Write[];
@@ -252,6 +260,10 @@ export namespace firestore_v1beta1 {
      * The options for the transaction. Defaults to a read-write transaction.
      */
     options?: Schema$TransactionOptions;
+    /**
+     * Optional. The request options for this request.
+     */
+    requestOptions?: Schema$RequestOptions;
   }
   /**
    * The response for Firestore.BeginTransaction.
@@ -305,6 +317,10 @@ export namespace firestore_v1beta1 {
    * The request for Firestore.Commit.
    */
   export interface Schema$CommitRequest {
+    /**
+     * Optional. The request options for this request.
+     */
+    requestOptions?: Schema$RequestOptions;
     /**
      * If set, applies all writes in this transaction, and commits it.
      */
@@ -486,6 +502,10 @@ export namespace firestore_v1beta1 {
      */
     readTime?: string | null;
     /**
+     * Optional. The request options for this request.
+     */
+    requestOptions?: Schema$RequestOptions;
+    /**
      * A pipelined operation.
      */
     structuredPipeline?: Schema$StructuredPipeline;
@@ -495,7 +515,7 @@ export namespace firestore_v1beta1 {
     transaction?: string | null;
   }
   /**
-   * The response for Firestore.Execute.
+   * The response for Firestore.ExecutePipeline.
    */
   export interface Schema$ExecutePipelineResponse {
     /**
@@ -1036,7 +1056,20 @@ export namespace firestore_v1beta1 {
   /**
    * Metadata related to the update database operation.
    */
-  export interface Schema$GoogleFirestoreAdminV1UpdateDatabaseMetadata {}
+  export interface Schema$GoogleFirestoreAdminV1UpdateDatabaseMetadata {
+    /**
+     * The time this operation completed. Will be unset if operation still in progress.
+     */
+    endTime?: string | null;
+    /**
+     * The time this operation started.
+     */
+    startTime?: string | null;
+    /**
+     * The state of the operation.
+     */
+    state?: string | null;
+  }
   /**
    * This resource represents a long-running operation that is the result of a network API call.
    */
@@ -1091,6 +1124,10 @@ export namespace firestore_v1beta1 {
      * Reads documents as they were at the given time. This must be a microsecond precision timestamp within the past one hour, or if Point-in-Time Recovery is enabled, can additionally be a whole minute timestamp within the past 7 days.
      */
     readTime?: string | null;
+    /**
+     * Optional. The request options for this request.
+     */
+    requestOptions?: Schema$RequestOptions;
   }
   /**
    * The response from Firestore.ListCollectionIds.
@@ -1134,6 +1171,10 @@ export namespace firestore_v1beta1 {
      * The ID of a target to remove from this stream.
      */
     removeTarget?: number | null;
+    /**
+     * Optional. The request options for the request.
+     */
+    requestOptions?: Schema$RequestOptions;
   }
   /**
    * The response for Firestore.Listen.
@@ -1202,6 +1243,10 @@ export namespace firestore_v1beta1 {
      * Reads documents as they were at the given time. This must be a microsecond precision timestamp within the past one hour, or if Point-in-Time Recovery is enabled, can additionally be a whole minute timestamp within the past 7 days.
      */
     readTime?: string | null;
+    /**
+     * Optional. The request options for the request.
+     */
+    requestOptions?: Schema$RequestOptions;
     /**
      * A structured query. Query must specify collection with all descendants and be ordered by name ascending. Other filters, order bys, limits, offsets, and start/end cursors are not supported.
      */
@@ -1296,9 +1341,22 @@ export namespace firestore_v1beta1 {
     retryTransaction?: string | null;
   }
   /**
+   * Options for a server request.
+   */
+  export interface Schema$RequestOptions {
+    /**
+     * Optional. The request tags for the request.
+     */
+    requestTags?: string[] | null;
+  }
+  /**
    * The request for Firestore.Rollback.
    */
   export interface Schema$RollbackRequest {
+    /**
+     * Optional. The request options for this request.
+     */
+    requestOptions?: Schema$RequestOptions;
     /**
      * Required. The transaction to roll back.
      */
@@ -1320,6 +1378,10 @@ export namespace firestore_v1beta1 {
      * Executes the query at the given timestamp. This must be a microsecond precision timestamp within the past one hour, or if Point-in-Time Recovery is enabled, can additionally be a whole minute timestamp within the past 7 days.
      */
     readTime?: string | null;
+    /**
+     * Optional. The request options for the request.
+     */
+    requestOptions?: Schema$RequestOptions;
     /**
      * An aggregation query.
      */
@@ -1366,6 +1428,10 @@ export namespace firestore_v1beta1 {
      * Reads documents as they were at the given time. This must be a microsecond precision timestamp within the past one hour, or if Point-in-Time Recovery is enabled, can additionally be a whole minute timestamp within the past 7 days.
      */
     readTime?: string | null;
+    /**
+     * Optional. The request options for this request.
+     */
+    requestOptions?: Schema$RequestOptions;
     /**
      * A structured query.
      */
@@ -1603,7 +1669,7 @@ export namespace firestore_v1beta1 {
    */
   export interface Schema$Value {
     /**
-     * An array value. Cannot directly contain another array value, though can contain a map which contains another array.
+     * An array value. In Standard edition databases, an array value cannot directly contain another array value, though it can contain a map which contains another array. In Enterprise edition databases, an array value can contain another array value.
      */
     arrayValue?: Schema$ArrayValue;
     /**
@@ -1611,7 +1677,7 @@ export namespace firestore_v1beta1 {
      */
     booleanValue?: boolean | null;
     /**
-     * A bytes value. Must not exceed 1 MiB - 89 bytes. Only the first 1,500 bytes are considered by queries.
+     * A bytes value. In Standard edition databases: * The value must not exceed 1 MiB - 89 bytes. * Only the first 1,500 bytes are considered by queries. In Enterprise edition databases, there is no limit on the size of the value. However, it is still subject to document and index entry size limits.
      */
     bytesValue?: string | null;
     /**
@@ -1651,7 +1717,7 @@ export namespace firestore_v1beta1 {
      */
     referenceValue?: string | null;
     /**
-     * A string value. The string, represented as UTF-8, must not exceed 1 MiB - 89 bytes. Only the first 1,500 bytes of the UTF-8 representation are considered by queries.
+     * A string value. In Standard edition databases: * The string, represented as UTF-8, must not exceed 1 MiB - 89 bytes. * Only the first 1,500 bytes of the UTF-8 representation are considered by queries. In Enterprise edition databases, there is no limit on the size of the value. However, it is still subject to document and index entry size limits.
      */
     stringValue?: string | null;
     /**
@@ -1700,6 +1766,10 @@ export namespace firestore_v1beta1 {
      * Labels associated with this write request.
      */
     labels?: {[key: string]: string} | null;
+    /**
+     * Optional. The request options for the request.
+     */
+    requestOptions?: Schema$RequestOptions;
     /**
      * The ID of the write stream to resume. This may only be set in the first message. When left empty, a new write stream will be created.
      */
@@ -2154,6 +2224,7 @@ export namespace firestore_v1beta1 {
      *       //   "mask": {},
      *       //   "newTransaction": {},
      *       //   "readTime": "my_readTime",
+     *       //   "requestOptions": {},
      *       //   "transaction": "my_transaction"
      *       // }
      *     },
@@ -2309,6 +2380,7 @@ export namespace firestore_v1beta1 {
      *       // request body parameters
      *       // {
      *       //   "labels": {},
+     *       //   "requestOptions": {},
      *       //   "writes": []
      *       // }
      *     },
@@ -2457,7 +2529,8 @@ export namespace firestore_v1beta1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
-     *       //   "options": {}
+     *       //   "options": {},
+     *       //   "requestOptions": {}
      *       // }
      *     },
      *   });
@@ -2608,6 +2681,7 @@ export namespace firestore_v1beta1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "requestOptions": {},
      *       //   "transaction": "my_transaction",
      *       //   "writes": []
      *       // }
@@ -2759,6 +2833,8 @@ export namespace firestore_v1beta1 {
      *     'mask.fieldPaths': 'placeholder-value',
      *     // Required. The parent resource. For example: `projects/{project_id\}/databases/{database_id\}/documents` or `projects/{project_id\}/databases/{database_id\}/documents/chatrooms/{chatroom_id\}`
      *     parent: 'projects/my-project/databases/my-database/documents/.*',
+     *     // Optional. The request tags for the request.
+     *     'requestOptions.requestTags': 'placeholder-value',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -2917,6 +2993,8 @@ export namespace firestore_v1beta1 {
      *     'currentDocument.updateTime': 'placeholder-value',
      *     // Required. The resource name of the Document to delete. In the format: `projects/{project_id\}/databases/{database_id\}/documents/{document_path\}`.
      *     name: 'projects/my-project/databases/my-database/documents/my-document/.*',
+     *     // Optional. The request tags for the request.
+     *     'requestOptions.requestTags': 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -3059,6 +3137,7 @@ export namespace firestore_v1beta1 {
      *       //   "autoCommitTransaction": false,
      *       //   "newTransaction": {},
      *       //   "readTime": "my_readTime",
+     *       //   "requestOptions": {},
      *       //   "structuredPipeline": {},
      *       //   "transaction": "my_transaction"
      *       // }
@@ -3213,6 +3292,8 @@ export namespace firestore_v1beta1 {
      *     name: 'projects/my-project/databases/my-database/documents/my-document/.*',
      *     // Reads the version of the document at the given time. This must be a microsecond precision timestamp within the past one hour, or if Point-in-Time Recovery is enabled, can additionally be a whole minute timestamp within the past 7 days.
      *     readTime: 'placeholder-value',
+     *     // Optional. The request tags for the request.
+     *     'requestOptions.requestTags': 'placeholder-value',
      *     // Reads the document in a transaction.
      *     transaction: 'placeholder-value',
      *   });
@@ -3369,6 +3450,8 @@ export namespace firestore_v1beta1 {
      *     readTime: 'placeholder-value',
      *     // Optional. If the list should recursively include all documents nested under the parent at any level. If the request specifies a `collection_id`, then the list will include all nested documents in the collection under the parent. This is optional, and when not provided, Firestore will only list documents nested immediately under the parent. Requests with `recursive` may not specify `show_missing`.
      *     recursive: 'placeholder-value',
+     *     // Optional. The request tags for the request.
+     *     'requestOptions.requestTags': 'placeholder-value',
      *     // If the list should show missing documents. A document is missing if it does not exist, but there are sub-documents nested underneath it. When true, such missing documents will be returned with a key but will not have fields, `create_time`, or `update_time` set. Requests with `show_missing` may not specify `where` or `order_by`.
      *     showMissing: 'placeholder-value',
      *     // Perform the read as part of an already active transaction.
@@ -3523,7 +3606,8 @@ export namespace firestore_v1beta1 {
      *       // {
      *       //   "pageSize": 0,
      *       //   "pageToken": "my_pageToken",
-     *       //   "readTime": "my_readTime"
+     *       //   "readTime": "my_readTime",
+     *       //   "requestOptions": {}
      *       // }
      *     },
      *   });
@@ -3685,6 +3769,8 @@ export namespace firestore_v1beta1 {
      *     readTime: 'placeholder-value',
      *     // Optional. If the list should recursively include all documents nested under the parent at any level. If the request specifies a `collection_id`, then the list will include all nested documents in the collection under the parent. This is optional, and when not provided, Firestore will only list documents nested immediately under the parent. Requests with `recursive` may not specify `show_missing`.
      *     recursive: 'placeholder-value',
+     *     // Optional. The request tags for the request.
+     *     'requestOptions.requestTags': 'placeholder-value',
      *     // If the list should show missing documents. A document is missing if it does not exist, but there are sub-documents nested underneath it. When true, such missing documents will be returned with a key but will not have fields, `create_time`, or `update_time` set. Requests with `show_missing` may not specify `where` or `order_by`.
      *     showMissing: 'placeholder-value',
      *     // Perform the read as part of an already active transaction.
@@ -3841,7 +3927,8 @@ export namespace firestore_v1beta1 {
      *       // {
      *       //   "addTarget": {},
      *       //   "labels": {},
-     *       //   "removeTarget": 0
+     *       //   "removeTarget": 0,
+     *       //   "requestOptions": {}
      *       // }
      *     },
      *   });
@@ -3998,6 +4085,7 @@ export namespace firestore_v1beta1 {
      *       //   "pageToken": "my_pageToken",
      *       //   "partitionCount": "my_partitionCount",
      *       //   "readTime": "my_readTime",
+     *       //   "requestOptions": {},
      *       //   "structuredQuery": {}
      *       // }
      *     },
@@ -4152,6 +4240,8 @@ export namespace firestore_v1beta1 {
      *     'mask.fieldPaths': 'placeholder-value',
      *     // The resource name of the document, for example `projects/{project_id\}/databases/{database_id\}/documents/{document_path\}`.
      *     name: 'projects/my-project/databases/my-database/documents/my-document/.*',
+     *     // Optional. The request tags for the request.
+     *     'requestOptions.requestTags': 'placeholder-value',
      *     // The list of field paths in the mask. See Document.fields for a field path syntax reference.
      *     'updateMask.fieldPaths': 'placeholder-value',
      *
@@ -4309,6 +4399,7 @@ export namespace firestore_v1beta1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "requestOptions": {},
      *       //   "transaction": "my_transaction"
      *       // }
      *     },
@@ -4458,6 +4549,7 @@ export namespace firestore_v1beta1 {
      *       //   "explainOptions": {},
      *       //   "newTransaction": {},
      *       //   "readTime": "my_readTime",
+     *       //   "requestOptions": {},
      *       //   "structuredAggregationQuery": {},
      *       //   "transaction": "my_transaction"
      *       // }
@@ -4619,6 +4711,7 @@ export namespace firestore_v1beta1 {
      *       //   "explainOptions": {},
      *       //   "newTransaction": {},
      *       //   "readTime": "my_readTime",
+     *       //   "requestOptions": {},
      *       //   "structuredQuery": {},
      *       //   "transaction": "my_transaction"
      *       // }
@@ -4774,6 +4867,7 @@ export namespace firestore_v1beta1 {
      *       // request body parameters
      *       // {
      *       //   "labels": {},
+     *       //   "requestOptions": {},
      *       //   "streamId": "my_streamId",
      *       //   "streamToken": "my_streamToken",
      *       //   "writes": []
@@ -4948,6 +5042,10 @@ export namespace firestore_v1beta1 {
      * Required. The parent resource. For example: `projects/{project_id\}/databases/{database_id\}/documents` or `projects/{project_id\}/databases/{database_id\}/documents/chatrooms/{chatroom_id\}`
      */
     parent?: string;
+    /**
+     * Optional. The request tags for the request.
+     */
+    'requestOptions.requestTags'?: string[];
 
     /**
      * Request body metadata
@@ -4967,6 +5065,10 @@ export namespace firestore_v1beta1 {
      * Required. The resource name of the Document to delete. In the format: `projects/{project_id\}/databases/{database_id\}/documents/{document_path\}`.
      */
     name?: string;
+    /**
+     * Optional. The request tags for the request.
+     */
+    'requestOptions.requestTags'?: string[];
   }
   export interface Params$Resource$Projects$Databases$Documents$Executepipeline extends StandardParameters {
     /**
@@ -4992,6 +5094,10 @@ export namespace firestore_v1beta1 {
      * Reads the version of the document at the given time. This must be a microsecond precision timestamp within the past one hour, or if Point-in-Time Recovery is enabled, can additionally be a whole minute timestamp within the past 7 days.
      */
     readTime?: string;
+    /**
+     * Optional. The request tags for the request.
+     */
+    'requestOptions.requestTags'?: string[];
     /**
      * Reads the document in a transaction.
      */
@@ -5030,6 +5136,10 @@ export namespace firestore_v1beta1 {
      * Optional. If the list should recursively include all documents nested under the parent at any level. If the request specifies a `collection_id`, then the list will include all nested documents in the collection under the parent. This is optional, and when not provided, Firestore will only list documents nested immediately under the parent. Requests with `recursive` may not specify `show_missing`.
      */
     recursive?: boolean;
+    /**
+     * Optional. The request tags for the request.
+     */
+    'requestOptions.requestTags'?: string[];
     /**
      * If the list should show missing documents. A document is missing if it does not exist, but there are sub-documents nested underneath it. When true, such missing documents will be returned with a key but will not have fields, `create_time`, or `update_time` set. Requests with `show_missing` may not specify `where` or `order_by`.
      */
@@ -5084,6 +5194,10 @@ export namespace firestore_v1beta1 {
      */
     recursive?: boolean;
     /**
+     * Optional. The request tags for the request.
+     */
+    'requestOptions.requestTags'?: string[];
+    /**
      * If the list should show missing documents. A document is missing if it does not exist, but there are sub-documents nested underneath it. When true, such missing documents will be returned with a key but will not have fields, `create_time`, or `update_time` set. Requests with `show_missing` may not specify `where` or `order_by`.
      */
     showMissing?: boolean;
@@ -5131,6 +5245,10 @@ export namespace firestore_v1beta1 {
      * The resource name of the document, for example `projects/{project_id\}/databases/{database_id\}/documents/{document_path\}`.
      */
     name?: string;
+    /**
+     * Optional. The request tags for the request.
+     */
+    'requestOptions.requestTags'?: string[];
     /**
      * The list of field paths in the mask. See Document.fields for a field path syntax reference.
      */

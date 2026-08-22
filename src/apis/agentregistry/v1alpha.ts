@@ -5621,7 +5621,7 @@ export namespace agentregistry_v1alpha {
      *     parent: 'projects/my-project/locations/my-location',
      *     // Optional. Signed UUID request idempotency token.
      *     requestId: 'placeholder-value',
-     *     // Required. Custom, user-defined unique container identifier. Must be unique within the parent project and location. This value should be 4-63 characters, and valid characters are `/a-z-/`.
+     *     // Required. Custom, user-defined unique container identifier. Must be unique within the parent project and location. This value should be 4-64 characters, and valid characters are `/a-z-/`.
      *     skillId: 'placeholder-value',
      *
      *     // Request body metadata
@@ -6538,7 +6538,7 @@ export namespace agentregistry_v1alpha {
      */
     requestId?: string;
     /**
-     * Required. Custom, user-defined unique container identifier. Must be unique within the parent project and location. This value should be 4-63 characters, and valid characters are `/a-z-/`.
+     * Required. Custom, user-defined unique container identifier. Must be unique within the parent project and location. This value should be 4-64 characters, and valid characters are `/a-z-/`.
      */
     skillId?: string;
 

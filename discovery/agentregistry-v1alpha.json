@@ -1161,7 +1161,7 @@
                       "type": "string"
                     },
                     "skillId": {
-                      "description": "Required. Custom, user-defined unique container identifier. Must be unique within the parent project and location. This value should be 4-63 characters, and valid characters are `/a-z-/`.",
+                      "description": "Required. Custom, user-defined unique container identifier. Must be unique within the parent project and location. This value should be 4-64 characters, and valid characters are `/a-z-/`.",
                       "location": "query",
                       "type": "string"
                     }
@@ -1244,7 +1244,9 @@
                     "https://www.googleapis.com/auth/agentregistry.read-write",
                     "https://www.googleapis.com/auth/cloud-platform",
                     "https://www.googleapis.com/auth/cloud-platform.read-only"
-                  ]
+                  ],
+                  "supportsMediaDownload": true,
+                  "useMediaDownloadService": true
                 },
                 "list": {
                   "description": "Lists logical Skills available in a project.",
@@ -1557,7 +1559,7 @@
       }
     }
   },
-  "revision": "20260722",
+  "revision": "20260812",
   "rootUrl": "https://agentregistry.googleapis.com/",
   "schemas": {
     "A2ASkill": {

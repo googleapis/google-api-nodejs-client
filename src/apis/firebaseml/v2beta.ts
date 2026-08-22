@@ -230,6 +230,10 @@ export namespace firebaseml_v2beta {
      */
     languageHints?: Schema$GoogleCloudAiplatformV1beta1AudioTranscriptionConfigLanguageHints;
     /**
+     * Optional. Configures transcription mode. Supported values: `VERBATIM`, `SMART`. If unspecified, defaults to `VERBATIM` transcription. In `SMART` mode, the model performs disfluency removal (eliminating filler words, repetitions, and false starts), light grammatical cleanup, automatic formatting (paragraphs, bullet points, numbered lists), and minor user edits (inline self-corrections). Timestamps and diarization are incompatible with mode `SMART`.
+     */
+    mode?: string | null;
+    /**
      * Optional. Configures word-level timestamp generation.
      */
     wordTimestamp?: boolean | null;
@@ -1528,6 +1532,10 @@ export namespace firebaseml_v2beta {
      * Optional. The inline data content of the part. This can be used to include images, audio, or video in a request.
      */
     inlineData?: Schema$GoogleCloudAiplatformV1beta1Blob;
+    /**
+     * Optional. How the model processes this part's media for understanding. Only meaningful for video parts (`inline_data` or `file_data` with video mime). Non-video parts ignore this field.
+     */
+    mediaProcessing?: string | null;
     /**
      * per part media resolution. Media resolution for the input media.
      */
