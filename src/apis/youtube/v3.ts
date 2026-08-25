@@ -2335,6 +2335,10 @@ export namespace youtube_v3 {
      */
     actualStartTime?: string | null;
     /**
+     * The YouTube video category associated with the video broadcast.
+     */
+    categoryId?: string | null;
+    /**
      * The ID that YouTube uses to uniquely identify the channel that is publishing the broadcast.
      */
     channelId?: string | null;
@@ -4003,6 +4007,10 @@ export namespace youtube_v3 {
      */
     default?: Schema$Thumbnail;
     /**
+     * The full high definition (1080p) quality image for this resource.
+     */
+    fhd?: Schema$Thumbnail;
+    /**
      * The high quality image for this resource.
      */
     high?: Schema$Thumbnail;
@@ -4015,9 +4023,17 @@ export namespace youtube_v3 {
      */
     medium?: Schema$Thumbnail;
     /**
+     * The quad high definition (1440p / 2K) quality image for this resource.
+     */
+    qhd?: Schema$Thumbnail;
+    /**
      * The standard quality image for this resource.
      */
     standard?: Schema$Thumbnail;
+    /**
+     * The ultra-high resolution (4K) quality image for this resource.
+     */
+    uhd?: Schema$Thumbnail;
   }
   export interface Schema$ThumbnailSetResponse {
     /**
