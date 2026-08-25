@@ -75,7 +75,6 @@ export {androidpublisher_v2} from './apis/androidpublisher/v2';
 export {androidpublisher_v3} from './apis/androidpublisher/v3';
 export {apigateway_v1} from './apis/apigateway/v1';
 export {apigateway_v1beta} from './apis/apigateway/v1beta';
-export {apigeeregistry_v1} from './apis/apigeeregistry/v1';
 export {apihub_v1} from './apis/apihub/v1';
 export {apikeys_v2} from './apis/apikeys/v2';
 export {apim_v1alpha} from './apis/apim/v1alpha';
