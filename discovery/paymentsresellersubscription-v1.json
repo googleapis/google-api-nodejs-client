@@ -586,7 +586,7 @@
       }
     }
   },
-  "revision": "20260607",
+  "revision": "20260816",
   "rootUrl": "https://paymentsresellersubscription.googleapis.com/",
   "schemas": {
     "Amount": {
@@ -1718,6 +1718,12 @@
       "description": "Describes the details of the migrated subscription.",
       "id": "SubscriptionMigrationDetails",
       "properties": {
+        "legacyCreationTime": {
+          "description": "Output only. The creation time of the migrated subscription in the legacy system.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
         "migratedSubscriptionId": {
           "description": "Output only. The migrated subscription id in the legacy system.",
           "readOnly": true,
