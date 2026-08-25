@@ -206,7 +206,7 @@
       }
     }
   },
-  "revision": "20260809",
+  "revision": "20260816",
   "rootUrl": "https://firebaseml.googleapis.com/",
   "schemas": {
     "Date": {
@@ -371,6 +371,20 @@
           "$ref": "GoogleCloudAiplatformV1beta1AudioTranscriptionConfigLanguageHints",
           "deprecated": true,
           "description": "Optional. Deprecated: Use top-level `language_codes` instead. Specifies one or more languages in the audio."
+        },
+        "mode": {
+          "description": "Optional. Configures transcription mode. Supported values: `VERBATIM`, `SMART`. If unspecified, defaults to `VERBATIM` transcription. In `SMART` mode, the model performs disfluency removal (eliminating filler words, repetitions, and false starts), light grammatical cleanup, automatic formatting (paragraphs, bullet points, numbered lists), and minor user edits (inline self-corrections). Timestamps and diarization are incompatible with mode `SMART`.",
+          "enum": [
+            "MODE_UNSPECIFIED",
+            "VERBATIM",
+            "SMART"
+          ],
+          "enumDescriptions": [
+            "Unspecified transcription mode.",
+            "Verbatim transcription mode.",
+            "Smart transcription mode."
+          ],
+          "type": "string"
         },
         "wordTimestamp": {
           "description": "Optional. Configures word-level timestamp generation.",
@@ -2385,6 +2399,20 @@
         "inlineData": {
           "$ref": "GoogleCloudAiplatformV1beta1Blob",
           "description": "Optional. The inline data content of the part. This can be used to include images, audio, or video in a request."
+        },
+        "mediaProcessing": {
+          "description": "Optional. How the model processes this part's media for understanding. Only meaningful for video parts (`inline_data` or `file_data` with video mime). Non-video parts ignore this field.",
+          "enum": [
+            "MEDIA_PROCESSING_UNSPECIFIED",
+            "STATIC",
+            "AGENTIC"
+          ],
+          "enumDescriptions": [
+            "Default. Uses model-specific processing (3.5 Pro+ -> `AGENTIC`, older models -> `STATIC`).",
+            "Fixed-rate frame extraction. All frames placed in context.",
+            "Model-driven dynamic navigation. Recommended for most use cases."
+          ],
+          "type": "string"
         },
         "mediaResolution": {
           "$ref": "GoogleCloudAiplatformV1beta1PartMediaResolution",
