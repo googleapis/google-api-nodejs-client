@@ -253,7 +253,7 @@
       "location": "northamerica-south1"
     }
   ],
-  "etag": "\"38353639383032313035393733313136383533\"",
+  "etag": "\"3138323634323934313536353633333331373333\"",
   "icons": {
     "x16": "https://www.google.com/images/icons/product/cloud_storage-16.png",
     "x32": "https://www.google.com/images/icons/product/cloud_storage-32.png"
@@ -2871,7 +2871,7 @@
               "type": "string"
             },
             "dropContextGroups": {
-              "description": "Specifies which groups of Object Contexts from the source object(s) should be dropped from the destination object.",
+              "description": "Specifies which object context groups to drop from the source object(s) during a compose operation. The accepted value is 'custom'.\nDestination contexts behave as follows:\n- When request body contexts are provided, they override all source contexts.\n- When no request body contexts are provided, source contexts are preserved unless 'dropContextGroups' contains 'custom', in which case all contexts are dropped.",
               "location": "query",
               "repeated": true,
               "type": "string"
@@ -3847,7 +3847,7 @@
               "type": "string"
             },
             "dropContextGroups": {
-              "description": "Specifies which groups of Object Contexts from the source object should be dropped from the destination object.",
+              "description": "Specifies which object context groups to drop from the source object during a copy operation. The accepted value is 'custom'.\nDestination contexts behave as follows:\n- When request body contexts are provided, they override all source contexts.\n- When no request body contexts are provided, source contexts are preserved unless 'dropContextGroups' contains 'custom', in which case all contexts are dropped.",
               "location": "query",
               "repeated": true,
               "type": "string"
@@ -4731,7 +4731,7 @@
       }
     }
   },
-  "revision": "20260805",
+  "revision": "20260821",
   "rootUrl": "https://storage.googleapis.com/",
   "schemas": {
     "AdvanceRelocateBucketOperationRequest": {
