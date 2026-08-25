@@ -275,7 +275,7 @@
           ]
         },
         "showEffectiveAutokeyConfig": {
-          "description": "Returns the effective Cloud KMS Autokey configuration for a given project or folder.",
+          "description": "Returns the effective Cloud KMS Autokey configuration for a given project or folder. Note on permissions: - If called on a project (`projects/{project}`), requires `cloudkms.projects.showEffectiveAutokeyConfig`. - If called on a folder (`folders/{folder}`), requires `cloudkms.folders.showEffectiveAutokeyConfig`.",
           "flatPath": "v1/folders/{foldersId}:showEffectiveAutokeyConfig",
           "httpMethod": "GET",
           "id": "cloudkms.folders.showEffectiveAutokeyConfig",
@@ -284,7 +284,7 @@
           ],
           "parameters": {
             "parent": {
-              "description": "Required. Name of the resource project or folder to show the effective Cloud KMS Autokey configuration for. This may be helpful for interrogating the effect of nested folder configurations on a given resource project. Format: * projects/{project} * folders/{folder}",
+              "description": "Required. Name of the resource project or folder to show the effective Cloud KMS Autokey configuration for. This may be helpful for evaluating the effect of nested folder configurations on a given resource project. Format: * projects/{project} * folders/{folder}",
               "location": "path",
               "pattern": "^folders/[^/]+$",
               "required": true,
@@ -492,7 +492,7 @@
           ]
         },
         "showEffectiveAutokeyConfig": {
-          "description": "Returns the effective Cloud KMS Autokey configuration for a given project or folder.",
+          "description": "Returns the effective Cloud KMS Autokey configuration for a given project or folder. Note on permissions: - If called on a project (`projects/{project}`), requires `cloudkms.projects.showEffectiveAutokeyConfig`. - If called on a folder (`folders/{folder}`), requires `cloudkms.folders.showEffectiveAutokeyConfig`.",
           "flatPath": "v1/projects/{projectsId}:showEffectiveAutokeyConfig",
           "httpMethod": "GET",
           "id": "cloudkms.projects.showEffectiveAutokeyConfig",
@@ -501,7 +501,7 @@
           ],
           "parameters": {
             "parent": {
-              "description": "Required. Name of the resource project or folder to show the effective Cloud KMS Autokey configuration for. This may be helpful for interrogating the effect of nested folder configurations on a given resource project. Format: * projects/{project} * folders/{folder}",
+              "description": "Required. Name of the resource project or folder to show the effective Cloud KMS Autokey configuration for. This may be helpful for evaluating the effect of nested folder configurations on a given resource project. Format: * projects/{project} * folders/{folder}",
               "location": "path",
               "pattern": "^projects/[^/]+$",
               "required": true,
@@ -3063,7 +3063,7 @@
       }
     }
   },
-  "revision": "20260806",
+  "revision": "20260814",
   "rootUrl": "https://cloudkms.googleapis.com/",
   "schemas": {
     "AddQuorumMember": {
@@ -3280,7 +3280,7 @@
       "type": "object"
     },
     "AutokeyConfig": {
-      "description": "Cloud KMS Autokey configuration for a folder.",
+      "description": "Cloud KMS Autokey configuration for a project or folder.",
       "id": "AutokeyConfig",
       "properties": {
         "etag": {
@@ -4340,7 +4340,7 @@
       "id": "ExternalProtectionLevelOptions",
       "properties": {
         "ekmConnectionBackendOverride": {
-          "description": "Optional. The resource name of the backend environment where the key material of CryptoKeyVersions is associated with. Setting this field overrides the CryptoKeyBackend. This field may be set when CryptoKeyVersions is set to EXTERNAL_VPC. Format: `projects/*/locations/*/ekmConnections/*`.",
+          "description": "Optional. The resource name of the backend environment where the key material of CryptoKeyVersions is associated with. Setting this field overrides the crypto_key_backend. This field may be set when CryptoKeyVersions is set to EXTERNAL_VPC. Format: `projects/*/locations/*/ekmConnections/*`.",
           "type": "string"
         },
         "ekmConnectionKeyPath": {
@@ -4933,12 +4933,14 @@
           "enum": [
             "ATTESTATION_FORMAT_UNSPECIFIED",
             "CAVIUM_V1_COMPRESSED",
-            "CAVIUM_V2_COMPRESSED"
+            "CAVIUM_V2_COMPRESSED",
+            "CAVIUM_V209"
           ],
           "enumDescriptions": [
             "Not specified.",
             "Cavium HSM attestation compressed with gzip. Note that this format is defined by Cavium and subject to change at any time. See https://www.marvell.com/products/security-solutions/nitrox-hs-adapters/software-key-attestation.html.",
-            "Cavium HSM attestation V2 compressed with gzip. This is a new format introduced in Cavium's version 3.2-08."
+            "Cavium HSM attestation V2 compressed with gzip. This is a new format introduced in Cavium's version 3.2-08.",
+            "Cavium HSM attestation V209, introduced in Cavium's version 2.09-0702."
           ],
           "readOnly": true,
           "type": "string"
@@ -6045,7 +6047,7 @@
       "type": "object"
     },
     "ShowEffectiveAutokeyConfigResponse": {
-      "description": "Response message for ShowEffectiveAutokeyConfig.",
+      "description": "Response message for ShowEffectiveAutokeyConfig",
       "id": "ShowEffectiveAutokeyConfigResponse",
       "properties": {
         "keyProject": {
