@@ -341,7 +341,7 @@ export namespace accesscontextmanager_v1 {
      */
     restrictedClientApplication?: Schema$Application;
     /**
-     * Optional. The GCP project that is subject to this binding's scope.
+     * Optional. The Google Cloud project that is subject to this binding's scope.
      */
     restrictedProject?: Schema$Project;
   }
@@ -860,7 +860,7 @@ export namespace accesscontextmanager_v1 {
    */
   export interface Schema$Principal {
     /**
-     * Immutable. IAM federated principal name to assign policies to workforce/workload federated identities. Can be principal set or single principal, here are some examples: Single principal: principal://iam.googleapis.com/projects/{project_number\}/locations/global/workloadIdentityPools/{pool_id\}/subject/{subject_attribute_value\} PrincipalSet: principalSet://iam.googleapis.com/projects/{project_number\}/locations/global/workloadIdentityPools/{pool_id\}/x
+     * Immutable. The IAM principal identifier of the federated workforce or workload to assign the policy to. Examples include the following: * Single principal: `principal://iam.googleapis.com/projects/{project_number\}/locations/global/workloadIdentityPools/{pool_id\}/subject/{subject_attribute_value\}` * All workloads in a workload identity pool: `principalSet://iam.googleapis.com/projects/{project_number\}/locations/global/workloadIdentityPools/{pool_id\}/x` * All Workforce Pools in a Google Cloud organization: `principalSet://cloudresourcemanager.googleapis.com/organizations/{organization_id\}/type/WorkforcePool` Bindings created for all Workforce Pools in a Google Cloud organization support only `scoped_access_settings` with the `restricted_project` client scope and active `session_settings`. No other configurations are allowed.
      */
     federatedPrincipal?: string | null;
     /**
@@ -882,11 +882,11 @@ export namespace accesscontextmanager_v1 {
     forwardingRule?: string | null;
   }
   /**
-   * A GCP project which contains applications and resources that users can access.
+   * A Google Cloud project which contains applications and resources that users can access.
    */
   export interface Schema$Project {
     /**
-     * The GCP project resource name. Format: "projects/{project_number\}" (Only the numeric project name variation is supported). Example: "projects/1234567890"
+     * The Google Cloud project resource name. Format: `projects/{project_number\}`. Only the project number is supported. Example: `projects/1234567890`
      */
     name?: string | null;
   }
@@ -1043,7 +1043,7 @@ export namespace accesscontextmanager_v1 {
      */
     maxInactivity?: string | null;
     /**
-     * Optional. The session length. Setting this field to zero allows for sessions that are active indefinitely. Also, setting `session_length_enabled` to false disregards session limits, which means that sessions never expire. If use_oidc_max_age is true, for OIDC apps, the session length will be the minimum of this field and the OIDC max_age param. If this field is set to zero, `session_length_enabled` must be set to false or left unset.
+     * Optional. The session length. Setting this field to zero allows for sessions that are active indefinitely. Also, setting `session_length_enabled` to `false` disregards session limits, which means that sessions never expire. If `use_oidc_max_age` is `true`, for OIDC apps, the session length will be the minimum of this field and the OIDC `max_age` param. If this field is set to zero, `session_length_enabled` must be set to `false` or left unset.
      */
     sessionLength?: string | null;
     /**
@@ -4853,6 +4853,8 @@ export namespace accesscontextmanager_v1 {
      *
      *   // Do the magic
      *   const res = await accesscontextmanager.accessPolicies.servicePerimeters.get({
+     *     // Optional. If true, the response will contain the deleted principal syntax for identities that support it.
+     *     deletedPrincipalSyntax: 'placeholder-value',
      *     // Required. Resource name for the Service Perimeter. Format: `accessPolicies/{policy_id\}/servicePerimeters/{service_perimeters_id\}`
      *     name: 'accessPolicies/my-accessPolicie/servicePerimeters/my-servicePerimeter',
      *   });
@@ -4995,6 +4997,8 @@ export namespace accesscontextmanager_v1 {
      *
      *   // Do the magic
      *   const res = await accesscontextmanager.accessPolicies.servicePerimeters.list({
+     *     // Optional. If true, the response will contain the deleted principal syntax for identities that support it.
+     *     deletedPrincipalSyntax: 'placeholder-value',
      *     // Number of Service Perimeters to include in the list. Default 100.
      *     pageSize: 'placeholder-value',
      *     // Next page token for the next batch of Service Perimeter instances. Defaults to the first page of results.
@@ -5145,6 +5149,8 @@ export namespace accesscontextmanager_v1 {
      *   // Do the magic
      *   const res = await accesscontextmanager.accessPolicies.servicePerimeters.patch(
      *     {
+     *       // Optional. If true, the response will contain the deleted principal syntax for identities that support it and the request can contain identities with deleted principal syntax.
+     *       deletedPrincipalSyntax: 'placeholder-value',
      *       // Identifier. Resource name for the `ServicePerimeter`. Format: `accessPolicies/{access_policy\}/servicePerimeters/{service_perimeter\}`. The `service_perimeter` component must begin with a letter, followed by alphanumeric characters or `_`. After you create a `ServicePerimeter`, you cannot change its `name`.
      *       name: 'accessPolicies/my-accessPolicie/servicePerimeters/my-servicePerimeter',
      *       // Required. Mask to control which fields get updated. Must be non-empty.
@@ -5606,11 +5612,19 @@ export namespace accesscontextmanager_v1 {
   }
   export interface Params$Resource$Accesspolicies$Serviceperimeters$Get extends StandardParameters {
     /**
+     * Optional. If true, the response will contain the deleted principal syntax for identities that support it.
+     */
+    deletedPrincipalSyntax?: string;
+    /**
      * Required. Resource name for the Service Perimeter. Format: `accessPolicies/{policy_id\}/servicePerimeters/{service_perimeters_id\}`
      */
     name?: string;
   }
   export interface Params$Resource$Accesspolicies$Serviceperimeters$List extends StandardParameters {
+    /**
+     * Optional. If true, the response will contain the deleted principal syntax for identities that support it.
+     */
+    deletedPrincipalSyntax?: string;
     /**
      * Number of Service Perimeters to include in the list. Default 100.
      */
@@ -5625,6 +5639,10 @@ export namespace accesscontextmanager_v1 {
     parent?: string;
   }
   export interface Params$Resource$Accesspolicies$Serviceperimeters$Patch extends StandardParameters {
+    /**
+     * Optional. If true, the response will contain the deleted principal syntax for identities that support it and the request can contain identities with deleted principal syntax.
+     */
+    deletedPrincipalSyntax?: string;
     /**
      * Identifier. Resource name for the `ServicePerimeter`. Format: `accessPolicies/{access_policy\}/servicePerimeters/{service_perimeter\}`. The `service_perimeter` component must begin with a letter, followed by alphanumeric characters or `_`. After you create a `ServicePerimeter`, you cannot change its `name`.
      */
