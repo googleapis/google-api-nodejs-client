@@ -638,6 +638,10 @@ export namespace run_v2 {
      */
     clientVersion?: string | null;
     /**
+     * Optional. If true, the system will start the execution within the next 12 hours depending on available capacity.
+     */
+    delayExecution?: boolean | null;
+    /**
      * Unstructured key value map that can be used to organize and categorize objects. User-provided labels are shared with Google's billing system, so they can be used to filter, or break down billing charges by team, component, environment, state, etc. For more information, visit https://cloud.google.com/resource-manager/docs/creating-managing-labels or https://cloud.google.com/run/docs/configuring/labels. Cloud Run API v2 does not support labels with `run.googleapis.com`, `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev` namespaces, and they will be rejected. All system labels in v1 now have a corresponding field in v2 ExecutionTemplate.
      */
     labels?: {[key: string]: string} | null;
@@ -1243,6 +1247,10 @@ export namespace run_v2 {
      */
     containerOverrides?: Schema$GoogleCloudRunV2ContainerOverride[];
     /**
+     * Optional. If true, the system will start the execution within the next 12 hours depending on available capacity.
+     */
+    delayExecution?: boolean | null;
+    /**
      * Optional. The desired number of tasks the execution should run. Will replace existing task_count value.
      */
     taskCount?: number | null;
@@ -1668,6 +1676,10 @@ export namespace run_v2 {
      * User-provided description of the Service. This field currently has a 512-character limit.
      */
     description?: string | null;
+    /**
+     * Optional. Immutable. Indicates whether the Service has durable execution enabled. This field is immutable once the Service is created.
+     */
+    durableExecution?: boolean | null;
     /**
      * Optional. A system-generated fingerprint for this version of the resource. May be used to detect modification conflict during updates.
      */
@@ -3057,6 +3069,10 @@ export namespace run_v2 {
      * Required. Where should the files be placed on the worker.
      */
     destPath?: string | null;
+    /**
+     * Optional. True if remote tags should be fetched too (default false). Note: when depth is 1 (default), git fetch only retrieves tags pointing to commits within the shallow boundary. Set depth to -1 to fetch all historical tags.
+     */
+    fetchTags?: boolean | null;
     /**
      * Optional. True if submodules should be fetched too (default false).
      */
@@ -9979,6 +9995,7 @@ export namespace run_v2 {
      *       //   "defaultUriDisabled": false,
      *       //   "deleteTime": "my_deleteTime",
      *       //   "description": "my_description",
+     *       //   "durableExecution": false,
      *       //   "etag": "my_etag",
      *       //   "expireTime": "my_expireTime",
      *       //   "generation": "my_generation",
@@ -10321,6 +10338,7 @@ export namespace run_v2 {
      *   //   "defaultUriDisabled": false,
      *   //   "deleteTime": "my_deleteTime",
      *   //   "description": "my_description",
+     *   //   "durableExecution": false,
      *   //   "etag": "my_etag",
      *   //   "expireTime": "my_expireTime",
      *   //   "generation": "my_generation",
@@ -10812,6 +10830,7 @@ export namespace run_v2 {
      *       //   "defaultUriDisabled": false,
      *       //   "deleteTime": "my_deleteTime",
      *       //   "description": "my_description",
+     *       //   "durableExecution": false,
      *       //   "etag": "my_etag",
      *       //   "expireTime": "my_expireTime",
      *       //   "generation": "my_generation",
