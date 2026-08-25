@@ -1800,7 +1800,7 @@
       }
     }
   },
-  "revision": "20260813",
+  "revision": "20260611",
   "rootUrl": "https://developerconnect.googleapis.com/",
   "schemas": {
     "AccountConnector": {
@@ -3418,8 +3418,7 @@
             "ROVO",
             "NEW_RELIC",
             "DATASTAX",
-            "DYNATRACE",
-            "BITBUCKET_CLOUD"
+            "DYNATRACE"
           ],
           "enumDescriptions": [
             "No system provider specified.",
@@ -3430,8 +3429,7 @@
             "Rovo provider. Must select the \"rovo\" scope.",
             "New Relic provider. No scopes are allowed.",
             "Datastax provider. No scopes are allowed.",
-            "Dynatrace provider.",
-            "Bitbucket Cloud provider."
+            "Dynatrace provider."
           ],
           "type": "string"
         }
@@ -3560,8 +3558,7 @@
             "ROVO",
             "NEW_RELIC",
             "DATASTAX",
-            "DYNATRACE",
-            "BITBUCKET_CLOUD"
+            "DYNATRACE"
           ],
           "enumDescriptions": [
             "No system provider specified.",
@@ -3572,8 +3569,7 @@
             "Rovo provider. Must select the \"rovo\" scope.",
             "New Relic provider. No scopes are allowed.",
             "Datastax provider. No scopes are allowed.",
-            "Dynatrace provider.",
-            "Bitbucket Cloud provider."
+            "Dynatrace provider."
           ],
           "type": "string"
         },
