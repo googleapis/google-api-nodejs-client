@@ -2354,7 +2354,7 @@ export namespace serviceusage_v1 {
      */
     parent?: string | null;
     /**
-     * The values removed from the parent consumer policy.
+     * Deprecated: This field is no longer populated. Use GetConsumerPolicy to verify the remaining enabled values.
      */
     removedValues?: string[] | null;
   }
