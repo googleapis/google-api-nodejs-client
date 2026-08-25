@@ -133,6 +133,10 @@ export namespace bigqueryreservation_v1 {
      */
     assignee?: string | null;
     /**
+     * Optional. Common Expression Language (CEL) condition that defines the matching criteria for this assignment. The condition must resolve to a boolean value. Supported variables will be added later.
+     */
+    condition?: Schema$Expr;
+    /**
      * Optional. Deprecated: "Gemini in BigQuery" is now available by default for all BigQuery editions and should not be explicitly set. Controls if "Gemini in BigQuery" (https://cloud.google.com/gemini/docs/bigquery/overview) features should be enabled for this reservation assignment.
      */
     enableGeminiInBigquery?: boolean | null;
@@ -144,6 +148,10 @@ export namespace bigqueryreservation_v1 {
      * Output only. Name of the resource. E.g.: `projects/myproject/locations/US/reservations/team1-prod/assignments/123`. The assignment_id must only contain lower case alphanumeric characters or dashes and the max length is 64 characters.
      */
     name?: string | null;
+    /**
+     * Optional. Specifies the priority precedence for this assignment. Used to resolve ambiguity when multiple assignments match a single job. Higher numerical values represent higher priority (e.g., 20 is higher than 10). If unspecified, it defaults to 0. Multiple assignments can share the same precedence, but it is recommended to use unique precedence values for assignments within the same assignee scope.
+     */
+    precedence?: string | null;
     /**
      * Optional. Represents the principal for this assignment. If not empty, jobs run by this principal will utilize the associated reservation. Otherwise, jobs will fall back to using the reservation assigned to the project, folder, or organization (in that order). If no reservation is assigned at any of these levels, on-demand capacity will be used. The supported formats are: * `principal://goog/subject/USER_EMAIL_ADDRESS` for users, * `principal://iam.googleapis.com/projects/-/serviceAccounts/SA_EMAIL_ADDRESS` for service accounts, * `principal://iam.googleapis.com/projects/PROJECT_NUMBER/locations/global/workloadIdentityPools/POOL_ID/subject/SUBJECT_ID` for workload identity pool identities. * The special value `unknown_or_deleted_user` represents principals which cannot be read from the user info service, for example deleted users.
      */
@@ -523,6 +531,10 @@ export namespace bigqueryreservation_v1 {
    */
   export interface Schema$ReservationGroup {
     /**
+     * Output only. Creation time of the reservation group.
+     */
+    creationTime?: string | null;
+    /**
      * Identifier. The resource name of the reservation group, e.g., `projects/x/locations/x/reservationGroups/team1-prod`. The reservation_group_id must only contain lower case alphanumeric characters or dashes. It must start with a letter and must not end with a dash. Its maximum length is 64 characters.
      */
     name?: string | null;
@@ -530,6 +542,10 @@ export namespace bigqueryreservation_v1 {
      * Optional. The parent reservation group of the reservation group. Format: `projects/x/locations/x/reservationGroups/team1-prod` for non-root reservation groups, or `projects/x/locations/x` for root reservation groups.
      */
     parentGroup?: string | null;
+    /**
+     * Output only. Last update time of the reservation group via a user operation. This timestamp is updated only when an update operation explicitly targets this reservation group directly. It is not updated when parent or child groups are created, updated, or deleted.
+     */
+    updateTime?: string | null;
   }
   /**
    * The scheduling policy controls how a reservation's resources are distributed.
@@ -2597,8 +2613,10 @@ export namespace bigqueryreservation_v1 {
      *       requestBody: {
      *         // request body parameters
      *         // {
+     *         //   "creationTime": "my_creationTime",
      *         //   "name": "my_name",
-     *         //   "parentGroup": "my_parentGroup"
+     *         //   "parentGroup": "my_parentGroup",
+     *         //   "updateTime": "my_updateTime"
      *         // }
      *       },
      *     });
@@ -2606,8 +2624,10 @@ export namespace bigqueryreservation_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "creationTime": "my_creationTime",
      *   //   "name": "my_name",
-     *   //   "parentGroup": "my_parentGroup"
+     *   //   "parentGroup": "my_parentGroup",
+     *   //   "updateTime": "my_updateTime"
      *   // }
      * }
      *
@@ -2887,8 +2907,10 @@ export namespace bigqueryreservation_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "creationTime": "my_creationTime",
      *   //   "name": "my_name",
-     *   //   "parentGroup": "my_parentGroup"
+     *   //   "parentGroup": "my_parentGroup",
+     *   //   "updateTime": "my_updateTime"
      *   // }
      * }
      *
@@ -3183,8 +3205,10 @@ export namespace bigqueryreservation_v1 {
      *       requestBody: {
      *         // request body parameters
      *         // {
+     *         //   "creationTime": "my_creationTime",
      *         //   "name": "my_name",
-     *         //   "parentGroup": "my_parentGroup"
+     *         //   "parentGroup": "my_parentGroup",
+     *         //   "updateTime": "my_updateTime"
      *         // }
      *       },
      *     });
@@ -3192,8 +3216,10 @@ export namespace bigqueryreservation_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "creationTime": "my_creationTime",
      *   //   "name": "my_name",
-     *   //   "parentGroup": "my_parentGroup"
+     *   //   "parentGroup": "my_parentGroup",
+     *   //   "updateTime": "my_updateTime"
      *   // }
      * }
      *
@@ -4954,9 +4980,11 @@ export namespace bigqueryreservation_v1 {
      *           // request body parameters
      *           // {
      *           //   "assignee": "my_assignee",
+     *           //   "condition": {},
      *           //   "enableGeminiInBigquery": false,
      *           //   "jobType": "my_jobType",
      *           //   "name": "my_name",
+     *           //   "precedence": "my_precedence",
      *           //   "principal": "my_principal",
      *           //   "schedulingPolicy": {},
      *           //   "state": "my_state"
@@ -4969,9 +4997,11 @@ export namespace bigqueryreservation_v1 {
      *   // Example response
      *   // {
      *   //   "assignee": "my_assignee",
+     *   //   "condition": {},
      *   //   "enableGeminiInBigquery": false,
      *   //   "jobType": "my_jobType",
      *   //   "name": "my_name",
+     *   //   "precedence": "my_precedence",
      *   //   "principal": "my_principal",
      *   //   "schedulingPolicy": {},
      *   //   "state": "my_state"
@@ -5565,9 +5595,11 @@ export namespace bigqueryreservation_v1 {
      *   // Example response
      *   // {
      *   //   "assignee": "my_assignee",
+     *   //   "condition": {},
      *   //   "enableGeminiInBigquery": false,
      *   //   "jobType": "my_jobType",
      *   //   "name": "my_name",
+     *   //   "precedence": "my_precedence",
      *   //   "principal": "my_principal",
      *   //   "schedulingPolicy": {},
      *   //   "state": "my_state"
@@ -5713,9 +5745,11 @@ export namespace bigqueryreservation_v1 {
      *           // request body parameters
      *           // {
      *           //   "assignee": "my_assignee",
+     *           //   "condition": {},
      *           //   "enableGeminiInBigquery": false,
      *           //   "jobType": "my_jobType",
      *           //   "name": "my_name",
+     *           //   "precedence": "my_precedence",
      *           //   "principal": "my_principal",
      *           //   "schedulingPolicy": {},
      *           //   "state": "my_state"
@@ -5728,9 +5762,11 @@ export namespace bigqueryreservation_v1 {
      *   // Example response
      *   // {
      *   //   "assignee": "my_assignee",
+     *   //   "condition": {},
      *   //   "enableGeminiInBigquery": false,
      *   //   "jobType": "my_jobType",
      *   //   "name": "my_name",
+     *   //   "precedence": "my_precedence",
      *   //   "principal": "my_principal",
      *   //   "schedulingPolicy": {},
      *   //   "state": "my_state"
