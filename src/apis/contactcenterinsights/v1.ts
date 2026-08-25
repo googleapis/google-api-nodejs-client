@@ -1968,9 +1968,13 @@ export namespace contactcenterinsights_v1 {
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1alpha1GcsSource {
     /**
-     * Cloud Storage URI that points to a file that contains the conversation audio.
+     * Immutable. Deprecated: Use `audio_uris` instead. Cloud Storage URI that points to a file that contains the conversation audio.
      */
     audioUri?: string | null;
+    /**
+     * Immutable. Cloud Storage URIs that point to files that contain the conversation audio. Supports both single audio files and multi-leg session recordings (e.g., call transfers, rolling recording buffers).
+     */
+    audioUris?: string[] | null;
     /**
      * Immutable. Cloud Storage URI that points to a file that contains the conversation transcript.
      */
@@ -5988,9 +5992,13 @@ export namespace contactcenterinsights_v1 {
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1GcsSource {
     /**
-     * Cloud Storage URI that points to a file that contains the conversation audio.
+     * Immutable. Deprecated: Use `audio_uris` instead. Cloud Storage URI that points to a file that contains the conversation audio.
      */
     audioUri?: string | null;
+    /**
+     * Immutable. Cloud Storage URIs that point to files that contain the conversation audio. Supports both single audio files and multi-leg session recordings (e.g., call transfers, rolling recording buffers).
+     */
+    audioUris?: string[] | null;
     /**
      * Immutable. Cloud Storage URI that points to a file that contains the conversation transcript.
      */
@@ -8788,9 +8796,13 @@ export namespace contactcenterinsights_v1 {
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1mainGcsSource {
     /**
-     * Cloud Storage URI that points to a file that contains the conversation audio.
+     * Immutable. Deprecated: Use `audio_uris` instead. Cloud Storage URI that points to a file that contains the conversation audio.
      */
     audioUri?: string | null;
+    /**
+     * Immutable. Cloud Storage URIs that point to files that contain the conversation audio. Supports both single audio files and multi-leg session recordings (e.g., call transfers, rolling recording buffers).
+     */
+    audioUris?: string[] | null;
     /**
      * Immutable. Cloud Storage URI that points to a file that contains the conversation transcript.
      */
@@ -11758,6 +11770,10 @@ export namespace contactcenterinsights_v1 {
      * The signed URI for the audio from the Cloud Storage conversation source.
      */
     signedGcsAudioUri?: string | null;
+    /**
+     * Output only. The signed URIs for the audio from the Cloud Storage conversation source when multiple audio files exist (e.g. multi-leg conversations).
+     */
+    signedGcsAudioUris?: string[] | null;
     /**
      * The signed URI for the audio corresponding to each turn in the conversation.
      */
