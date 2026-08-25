@@ -117,9 +117,9 @@ export namespace games_v1 {
     achievements: Resource$Achievements;
     applications: Resource$Applications;
     events: Resource$Events;
+    gameStats: Resource$Gamestats;
     leaderboards: Resource$Leaderboards;
     metagame: Resource$Metagame;
-    playerGameEvents: Resource$Playergameevents;
     players: Resource$Players;
     recall: Resource$Recall;
     revisions: Resource$Revisions;
@@ -140,9 +140,9 @@ export namespace games_v1 {
       this.achievements = new Resource$Achievements(this.context);
       this.applications = new Resource$Applications(this.context);
       this.events = new Resource$Events(this.context);
+      this.gameStats = new Resource$Gamestats(this.context);
       this.leaderboards = new Resource$Leaderboards(this.context);
       this.metagame = new Resource$Metagame(this.context);
-      this.playerGameEvents = new Resource$Playergameevents(this.context);
       this.players = new Resource$Players(this.context);
       this.recall = new Resource$Recall(this.context);
       this.revisions = new Resource$Revisions(this.context);
@@ -4429,6 +4429,177 @@ export namespace games_v1 {
     requestBody?: Schema$EventRecordRequest;
   }
 
+  export class Resource$Gamestats {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Records a batch of player game events for a specific player. This method allows sending multiple events in a single request.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/games.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const games = google.games('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await games.gameStats.batchRecordEvents({
+     *     // Required. The player ID of the player that performed the events.
+     *     playerId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "droidGuardBlob": "my_droidGuardBlob",
+     *       //   "events": [],
+     *       //   "packageName": "my_packageName",
+     *       //   "requestTime": "my_requestTime",
+     *       //   "salt": "my_salt"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "failedRequests": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    batchRecordEvents(
+      params: Params$Resource$Gamestats$Batchrecordevents,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    batchRecordEvents(
+      params?: Params$Resource$Gamestats$Batchrecordevents,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BatchRecordEventsResponse>>;
+    batchRecordEvents(
+      params: Params$Resource$Gamestats$Batchrecordevents,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    batchRecordEvents(
+      params: Params$Resource$Gamestats$Batchrecordevents,
+      options:
+        MethodOptions | BodyResponseCallback<Schema$BatchRecordEventsResponse>,
+      callback: BodyResponseCallback<Schema$BatchRecordEventsResponse>
+    ): void;
+    batchRecordEvents(
+      params: Params$Resource$Gamestats$Batchrecordevents,
+      callback: BodyResponseCallback<Schema$BatchRecordEventsResponse>
+    ): void;
+    batchRecordEvents(
+      callback: BodyResponseCallback<Schema$BatchRecordEventsResponse>
+    ): void;
+    batchRecordEvents(
+      paramsOrCallback?:
+        | Params$Resource$Gamestats$Batchrecordevents
+        | BodyResponseCallback<Schema$BatchRecordEventsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BatchRecordEventsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BatchRecordEventsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$BatchRecordEventsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Gamestats$Batchrecordevents;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Gamestats$Batchrecordevents;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://games.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/games/v1/players/{playerId}/gameStats:batchRecordEvents'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['playerId'],
+        pathParams: ['playerId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$BatchRecordEventsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$BatchRecordEventsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Gamestats$Batchrecordevents extends StandardParameters {
+    /**
+     * Required. The player ID of the player that performed the events.
+     */
+    playerId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$BatchRecordEventsRequest;
+  }
+
   export class Resource$Leaderboards {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -5064,177 +5235,6 @@ export namespace games_v1 {
      * A player ID. A value of `me` may be used in place of the authenticated player's ID.
      */
     playerId?: string;
-  }
-
-  export class Resource$Playergameevents {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Records a batch of player game events for a specific player. This method allows sending multiple events in a single request.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/games.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const games = google.games('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/games'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await games.playerGameEvents.batchRecordEvents({
-     *     // Required. The player ID of the player that performed the events.
-     *     playerId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "droidGuardBlob": "my_droidGuardBlob",
-     *       //   "events": [],
-     *       //   "packageName": "my_packageName",
-     *       //   "requestTime": "my_requestTime",
-     *       //   "salt": "my_salt"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "failedRequests": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    batchRecordEvents(
-      params: Params$Resource$Playergameevents$Batchrecordevents,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    batchRecordEvents(
-      params?: Params$Resource$Playergameevents$Batchrecordevents,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$BatchRecordEventsResponse>>;
-    batchRecordEvents(
-      params: Params$Resource$Playergameevents$Batchrecordevents,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    batchRecordEvents(
-      params: Params$Resource$Playergameevents$Batchrecordevents,
-      options:
-        MethodOptions | BodyResponseCallback<Schema$BatchRecordEventsResponse>,
-      callback: BodyResponseCallback<Schema$BatchRecordEventsResponse>
-    ): void;
-    batchRecordEvents(
-      params: Params$Resource$Playergameevents$Batchrecordevents,
-      callback: BodyResponseCallback<Schema$BatchRecordEventsResponse>
-    ): void;
-    batchRecordEvents(
-      callback: BodyResponseCallback<Schema$BatchRecordEventsResponse>
-    ): void;
-    batchRecordEvents(
-      paramsOrCallback?:
-        | Params$Resource$Playergameevents$Batchrecordevents
-        | BodyResponseCallback<Schema$BatchRecordEventsResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$BatchRecordEventsResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$BatchRecordEventsResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$BatchRecordEventsResponse>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Playergameevents$Batchrecordevents;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Playergameevents$Batchrecordevents;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://games.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/games/v1/players/{playerId}/gameEvents:batchRecordEvents'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['playerId'],
-        pathParams: ['playerId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$BatchRecordEventsResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$BatchRecordEventsResponse>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Playergameevents$Batchrecordevents extends StandardParameters {
-    /**
-     * Required. The player ID of the player that performed the events.
-     */
-    playerId?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$BatchRecordEventsRequest;
   }
 
   export class Resource$Players {
