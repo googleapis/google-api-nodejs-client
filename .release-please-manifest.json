@@ -99,7 +99,6 @@
   "src/apis/cloudtasks": "22.0.0",
   "src/apis/containeranalysis": "19.1.0",
   "src/apis/dialogflow": "29.1.0",
-  "src/apis/apigeeregistry": "7.0.0",
   "src/apis/cloudkms": "27.0.0",
   "src/apis/firebaseappcheck": "11.0.0",
   "src/apis/datafusion": "18.0.1",

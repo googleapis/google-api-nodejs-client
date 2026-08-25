@@ -249,7 +249,6 @@
     "src/apis/composer": {},
     "src/apis/gkehub": {},
     "src/apis/iap": {},
-    "src/apis/apigeeregistry": {},
     "src/apis/workspaceevents": {},
     "src/apis/binaryauthorization": {},
     "src/apis/alloydb": {},
