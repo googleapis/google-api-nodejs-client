@@ -266,6 +266,10 @@ export namespace developerknowledge_v1 {
      * Output only. Contains the resource name of the document this chunk is from. Format: `documents/{uri_without_scheme\}` Example: `documents/docs.cloud.google.com/storage/docs/creating-buckets`
      */
     parent?: string | null;
+    /**
+     * Output only. Represents the relevance score of the chunk to the search query. Higher score indicates higher chunk relevance. The score is in range [0.0, 1.0].
+     */
+    relevanceScore?: number | null;
   }
   /**
    * Represents a reference to a document.
