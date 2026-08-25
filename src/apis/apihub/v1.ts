@@ -256,11 +256,11 @@ export namespace apihub_v1 {
    */
   export interface Schema$GoogleCloudApihubV1Api {
     /**
-     * Optional. The api functional requirements associated with the API resource. Carinality is 1 for this attribute. This maps to the following system defined attribute: `projects/{project\}/locations/{location\}/attributes/system-api-functional-requirements` attribute. The value of the attribute should be a proper URI, and in case of Cloud Storage URI, it should point to a Cloud Storage object, not a directory.
+     * Optional. The api functional requirements associated with the API resource. Cardinality is 1 for this attribute. This maps to the following system defined attribute: `projects/{project\}/locations/{location\}/attributes/system-api-functional-requirements` attribute. The value of the attribute should be a proper URI, and in case of Cloud Storage URI, it should point to a Cloud Storage object, not a directory.
      */
     apiFunctionalRequirements?: Schema$GoogleCloudApihubV1AttributeValues;
     /**
-     * Optional. The api requirement doc associated with the API resource. Carinality is 1 for this attribute. This maps to the following system defined attribute: `projects/{project\}/locations/{location\}/attributes/system-api-requirements` attribute. The value of the attribute should be a proper URI, and in case of Cloud Storage URI, it should point to a Cloud Storage object, not a directory.
+     * Optional. The api requirement doc associated with the API resource. Cardinality is 1 for this attribute. This maps to the following system defined attribute: `projects/{project\}/locations/{location\}/attributes/system-api-requirements` attribute. The value of the attribute should be a proper URI, and in case of Cloud Storage URI, it should point to a Cloud Storage object, not a directory.
      */
     apiRequirements?: Schema$GoogleCloudApihubV1AttributeValues;
     /**
@@ -268,7 +268,7 @@ export namespace apihub_v1 {
      */
     apiStyle?: Schema$GoogleCloudApihubV1AttributeValues;
     /**
-     * Optional. The api technical requirements associated with the API resource. Carinality is 1 for this attribute. This maps to the following system defined attribute: `projects/{project\}/locations/{location\}/attributes/system-api-technical-requirements` attribute. The value of the attribute should be a proper URI, and in case of Cloud Storage URI, it should point to a Cloud Storage object, not a directory.
+     * Optional. The api technical requirements associated with the API resource. Cardinality is 1 for this attribute. This maps to the following system defined attribute: `projects/{project\}/locations/{location\}/attributes/system-api-technical-requirements` attribute. The value of the attribute should be a proper URI, and in case of Cloud Storage URI, it should point to a Cloud Storage object, not a directory.
      */
     apiTechnicalRequirements?: Schema$GoogleCloudApihubV1AttributeValues;
     /**
