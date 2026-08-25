@@ -2596,7 +2596,7 @@
       }
     }
   },
-  "revision": "20260808",
+  "revision": "20260817",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
     "AppDevExperienceFeatureSpec": {
@@ -6209,6 +6209,21 @@
       "properties": {},
       "type": "object"
     },
+    "PerStageSoakDurationOverrides": {
+      "description": "Configuration for per-stage soak duration overrides.",
+      "id": "PerStageSoakDurationOverrides",
+      "properties": {
+        "stageOverrides": {
+          "additionalProperties": {
+            "format": "google-duration",
+            "type": "string"
+          },
+          "description": "Required. A mapping of stage numbers to their respective desired soak durations. Key is the stage number, value is the desired soak duration. Stages omitted from the map will receive the standard soak duration configured on the sequence for that stage.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
     "Policy": {
       "description": "An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** ``` { \"bindings\": [ { \"role\": \"roles/resourcemanager.organizationAdmin\", \"members\": [ \"user:mike@example.com\", \"group:admins@example.com\", \"domain:google.com\", \"serviceAccount:my-project-id@appspot.gserviceaccount.com\" ] }, { \"role\": \"roles/resourcemanager.organizationViewer\", \"members\": [ \"user:eve@example.com\" ], \"condition\": { \"title\": \"expirable access\", \"description\": \"Does not grant access after Sep 2020\", \"expression\": \"request.time < timestamp('2020-10-01T00:00:00.000Z')\", } } ], \"etag\": \"BwWWja0YfJA=\", \"version\": 3 } ``` **YAML example:** ``` bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 ``` For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).",
       "id": "Policy",
@@ -6834,19 +6849,29 @@
           "readOnly": true,
           "type": "string"
         },
+        "ignoreClusterDisruptionBudgets": {
+          "description": "Optional. If set to true, the rollout will ignore the disruption budgets of the clusters.",
+          "type": "boolean"
+        },
+        "ignoreMaintenancePolicies": {
+          "description": "Optional. If set to true, the rollout will ignore any maintenance policies (Maintenance Windows and Maintenance Exclusions) set on the clusters.",
+          "type": "boolean"
+        },
         "intent": {
           "description": "Output only. The intent of the rollout.",
           "enum": [
             "ROLLOUT_INTENT_UNSPECIFIED",
             "REGULAR_UPGRADE",
             "CONTROL_PLANE_PATCH_ENFORCEMENT",
-            "END_OF_SUPPORT_ENFORCEMENT"
+            "END_OF_SUPPORT_ENFORCEMENT",
+            "PARTIAL_PATCH"
           ],
           "enumDescriptions": [
             "The default value.",
             "A standard rollout for the whole sequence.",
             "A mandatory upgrade for clusters that haven't been patched within the allowed window.",
-            "A mandatory upgrade for clusters that have reached its end of support."
+            "A mandatory upgrade for clusters that have reached its end of support.",
+            "A patch upgrade for a subset of clusters on a given minor version."
           ],
           "readOnly": true,
           "type": "string"
@@ -6873,6 +6898,14 @@
         "rolloutSequence": {
           "description": "Optional. Immutable. The full, unique resource name of the rollout sequence that initiatied this Rollout. In the format of `projects/{project}/locations/global/rolloutSequences/{rollout_sequence}`.",
           "type": "string"
+        },
+        "stageSoakDurationOverrides": {
+          "additionalProperties": {
+            "format": "google-duration",
+            "type": "string"
+          },
+          "description": "Optional. Overrides the soak durations for specific stages of the rollout. Key is the stage number, value is the desired soak duration. Stages omitted from the map will receive the standard soak duration configured on the sequence for that stage.",
+          "type": "object"
         },
         "stages": {
           "description": "Output only. The stages of the Rollout.",
@@ -8096,6 +8129,27 @@
         "force": {
           "description": "Optional. If set to true, any rollout already running on the first stage of the sequence will be cancelled to allow for the creation of the new rollout.",
           "type": "boolean"
+        },
+        "ignoreClusterDisruptionBudgets": {
+          "description": "Optional. If set to true, the rollout will ignore the disruption budgets of the clusters.",
+          "type": "boolean"
+        },
+        "ignoreMaintenancePolicies": {
+          "description": "Optional. If set to true, the rollout will ignore any maintenance policies (Maintenance Windows and Maintenance Exclusions) set on the clusters.",
+          "type": "boolean"
+        },
+        "patchOnly": {
+          "description": "Optional. If set to true, the rollout will only upgrade clusters that match the minor version of the `version` field, but are on an earlier patch version.",
+          "type": "boolean"
+        },
+        "soakDurationOverrideAllStages": {
+          "description": "Optional. Overrides the soak duration for all stages of the rollout.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "soakDurationOverridePerStage": {
+          "$ref": "PerStageSoakDurationOverrides",
+          "description": "Optional. Overrides the soak durations for specific stages of the rollout."
         },
         "upgradeType": {
           "description": "Required. The type of upgrade.",
