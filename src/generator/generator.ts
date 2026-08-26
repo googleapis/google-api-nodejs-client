@@ -219,6 +219,11 @@ export class Generator {
           await this.render('webpack.config.js.njk', {name: file}, wpPath);
         }
       }
+      if (Object.keys(apis[file]).length === 0) {
+        delete apis[file];
+        fs.rmSync(path.join(apisPath, file), {recursive: true, force: true});
+        continue;
+      }
     }
     if (directory) {
       return;
