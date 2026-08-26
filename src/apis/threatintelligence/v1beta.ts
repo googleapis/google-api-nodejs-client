@@ -690,9 +690,17 @@ export namespace threatintelligence_v1beta {
    */
   export interface Schema$CustomThreatScenarioConfig {
     /**
+     * Output only. The compiled Lucene query string.
+     */
+    compiledLuceneQuery?: string | null;
+    /**
      * Required. The condition driving the scenario, stored as a stringified JSON. This is used to query/filter documents.
      */
     documentCondition?: string | null;
+    /**
+     * Optional. Legacy metadata associated with this scenario/monitor.
+     */
+    legacyMonitorMetadata?: Schema$LegacyMetadata;
   }
   /**
    * Captures the specific details of Data Leak alert.
@@ -947,6 +955,75 @@ export namespace threatintelligence_v1beta {
      * Required. The severity of the InsiderThreat finding. This indicates the potential impact of the threat.
      */
     severity?: string | null;
+  }
+  /**
+   * Legacy metadata associated with this scenario/monitor.
+   */
+  export interface Schema$LegacyMetadata {
+    /**
+     * Optional. Whether aggregation is enabled for alerts from this monitor.
+     */
+    aggregationEnabled?: boolean | null;
+    /**
+     * Optional. Similarity threshold for aggregation.
+     */
+    aggregationSimilarity?: number | null;
+    /**
+     * Optional. Version of the condition schema.
+     */
+    conditionVersion?: number | null;
+    /**
+     * Optional. User ID who created the monitor.
+     */
+    creatorUserId?: string | null;
+    /**
+     * Optional. Description of the legacy monitor.
+     */
+    description?: string | null;
+    /**
+     * Optional. Code indicating why the monitor is disabled (if applicable).
+     */
+    disabledCode?: string | null;
+    /**
+     * Optional. Reason why the monitor is disabled (if applicable).
+     */
+    disabledReason?: string | null;
+    /**
+     * Optional. Name of the legacy monitor.
+     */
+    displayName?: string | null;
+    /**
+     * Optional. Whether email notifications are enabled.
+     */
+    emailNotificationEnabled?: boolean | null;
+    /**
+     * Optional. Whether email notifications are intermediate/immediate.
+     */
+    emailNotificationImmediate?: boolean | null;
+    /**
+     * Optional. Unique identifier of the legacy monitor.
+     */
+    legacyMonitorId?: string | null;
+    /**
+     * Optional. Time the legacy monitor was considered stale.
+     */
+    staleTime?: string | null;
+    /**
+     * Optional. ID of the template this monitor was created from.
+     */
+    templateId?: string | null;
+    /**
+     * Optional. ID of the tenant owning the monitor.
+     */
+    tenantId?: string | null;
+    /**
+     * Optional. User ID who last updated the monitor.
+     */
+    updaterUserId?: string | null;
+    /**
+     * Optional. Version of the monitor configuration.
+     */
+    version?: number | null;
   }
   /**
    * Response message for ListAlerts.
