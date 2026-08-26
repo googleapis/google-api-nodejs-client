@@ -16,6 +16,7 @@
     "poly:v1",
     "aiplatform:v1",
     "aiplatform:v1beta1",
-    "analytics:v3"
+    "analytics:v3",
+    "apigeeregistry:v1"
   ]
 }
