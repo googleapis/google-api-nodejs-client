@@ -1866,7 +1866,7 @@
       }
     }
   },
-  "revision": "20260708",
+  "revision": "20260816",
   "rootUrl": "https://saasservicemgmt.googleapis.com/",
   "schemas": {
     "Aggregate": {
@@ -2721,13 +2721,22 @@
         "state": {
           "description": "Output only. State of the Saas. It is always in STATE_ACTIVE state if the application_template is empty.",
           "enum": [
+            "STATE_UNSPECIFIED",
             "STATE_TYPE_UNSPECIFIED",
             "STATE_ACTIVE",
             "STATE_RUNNING",
             "STATE_FAILED"
           ],
+          "enumDeprecated": [
+            false,
+            true,
+            false,
+            false,
+            false
+          ],
           "enumDescriptions": [
-            "State type is unspecified.",
+            "State is unspecified.",
+            "State type is unspecified. Deprecated: Use STATE_UNSPECIFIED instead.",
             "The Saas is ready",
             "In the process of importing, synchronizing or replicating ApplicationTemplates",
             "Failure during process of importing, synchronizing or replicating ApplicationTemplate processing"
@@ -3406,7 +3415,7 @@
             "UNIT_OPERATION_STATE_CANCELLED"
           ],
           "enumDescriptions": [
-            "",
+            "Unit operation state is unknown.",
             "Unit operation is accepted but not ready to run.",
             "Unit operation is accepted and scheduled.",
             "Unit operation is running.",
