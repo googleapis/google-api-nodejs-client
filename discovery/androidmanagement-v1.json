@@ -1265,7 +1265,7 @@
       }
     }
   },
-  "revision": "20260810",
+  "revision": "20260824",
   "rootUrl": "https://androidmanagement.googleapis.com/",
   "schemas": {
     "AdbShellCommandEvent": {
@@ -2087,11 +2087,13 @@
           "description": "Optional. Whether the app is allowed to act as a credential provider on Android 14 and above.",
           "enum": [
             "CREDENTIAL_PROVIDER_POLICY_UNSPECIFIED",
-            "CREDENTIAL_PROVIDER_ALLOWED"
+            "CREDENTIAL_PROVIDER_ALLOWED",
+            "CREDENTIAL_PROVIDER_DISALLOWED"
           ],
           "enumDescriptions": [
             "Unspecified. The behaviour is governed by credentialProviderPolicyDefault.",
-            "App is allowed to act as a credential provider."
+            "App is allowed to act as a credential provider.",
+            "App is not allowed to act as a credential provider."
           ],
           "type": "string"
         },
@@ -6273,12 +6275,14 @@
           "enum": [
             "CREDENTIAL_PROVIDER_POLICY_DEFAULT_UNSPECIFIED",
             "CREDENTIAL_PROVIDER_DEFAULT_DISALLOWED",
-            "CREDENTIAL_PROVIDER_DEFAULT_DISALLOWED_EXCEPT_SYSTEM"
+            "CREDENTIAL_PROVIDER_DEFAULT_DISALLOWED_EXCEPT_SYSTEM",
+            "CREDENTIAL_PROVIDER_DEFAULT_ALLOWED"
           ],
           "enumDescriptions": [
             "Unspecified. Defaults to CREDENTIAL_PROVIDER_DEFAULT_DISALLOWED.",
             "Apps with credentialProviderPolicy unspecified are not allowed to act as a credential provider.",
-            "Apps with credentialProviderPolicy unspecified are not allowed to act as a credential provider except for the OEM default credential providers. OEM default credential providers are always allowed to act as credential providers."
+            "Apps with credentialProviderPolicy unspecified are not allowed to act as a credential provider except for the OEM default credential providers. OEM default credential providers are always allowed to act as credential providers.",
+            "Apps with credentialProviderPolicy unspecified are allowed to act as a credential provider."
           ],
           "type": "string"
         },
@@ -8315,7 +8319,7 @@
       "id": "WipeAction",
       "properties": {
         "preserveFrp": {
-          "description": "Whether the factory-reset protection data is preserved on the device. This setting doesn’t apply to work profiles.",
+          "description": "Whether the factory-reset protection data is preserved on the device. This setting applies to fully managed devices and work profiles on company-owned devices.",
           "type": "boolean"
         },
         "wipeAfterDays": {
