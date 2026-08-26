@@ -2802,6 +2802,15 @@ export namespace gkehub_v1alpha {
    */
   export interface Schema$PauseRolloutRequest {}
   /**
+   * Configuration for per-stage soak duration overrides.
+   */
+  export interface Schema$PerStageSoakDurationOverrides {
+    /**
+     * Required. A mapping of stage numbers to their respective desired soak durations. Key is the stage number, value is the desired soak duration. Stages omitted from the map will receive the standard soak duration configured on the sequence for that stage.
+     */
+    stageOverrides?: {[key: string]: string} | null;
+  }
+  /**
    * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** ``` { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} ``` **YAML example:** ``` bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 ``` For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
    */
   export interface Schema$Policy {
@@ -3206,6 +3215,14 @@ export namespace gkehub_v1alpha {
      */
     etag?: string | null;
     /**
+     * Optional. If set to true, the rollout will ignore the disruption budgets of the clusters.
+     */
+    ignoreClusterDisruptionBudgets?: boolean | null;
+    /**
+     * Optional. If set to true, the rollout will ignore any maintenance policies (Maintenance Windows and Maintenance Exclusions) set on the clusters.
+     */
+    ignoreMaintenancePolicies?: boolean | null;
+    /**
      * Output only. The intent of the rollout.
      */
     intent?: string | null;
@@ -3229,6 +3246,10 @@ export namespace gkehub_v1alpha {
      * Output only. The stages of the Rollout.
      */
     stages?: Schema$RolloutStage[];
+    /**
+     * Optional. Overrides the soak durations for specific stages of the rollout. Key is the stage number, value is the desired soak duration. Stages omitted from the map will receive the standard soak duration configured on the sequence for that stage.
+     */
+    stageSoakDurationOverrides?: {[key: string]: string} | null;
     /**
      * Output only. State specifies various states of the Rollout.
      */
@@ -3790,6 +3811,26 @@ export namespace gkehub_v1alpha {
      * Optional. If set to true, any rollout already running on the first stage of the sequence will be cancelled to allow for the creation of the new rollout.
      */
     force?: boolean | null;
+    /**
+     * Optional. If set to true, the rollout will ignore the disruption budgets of the clusters.
+     */
+    ignoreClusterDisruptionBudgets?: boolean | null;
+    /**
+     * Optional. If set to true, the rollout will ignore any maintenance policies (Maintenance Windows and Maintenance Exclusions) set on the clusters.
+     */
+    ignoreMaintenancePolicies?: boolean | null;
+    /**
+     * Optional. If set to true, the rollout will only upgrade clusters that match the minor version of the `version` field, but are on an earlier patch version.
+     */
+    patchOnly?: boolean | null;
+    /**
+     * Optional. Overrides the soak duration for all stages of the rollout.
+     */
+    soakDurationOverrideAllStages?: string | null;
+    /**
+     * Optional. Overrides the soak durations for specific stages of the rollout.
+     */
+    soakDurationOverridePerStage?: Schema$PerStageSoakDurationOverrides;
     /**
      * Required. The type of upgrade.
      */
@@ -11719,11 +11760,14 @@ export namespace gkehub_v1alpha {
      *   //   "deleteTime": "my_deleteTime",
      *   //   "displayName": "my_displayName",
      *   //   "etag": "my_etag",
+     *   //   "ignoreClusterDisruptionBudgets": false,
+     *   //   "ignoreMaintenancePolicies": false,
      *   //   "intent": "my_intent",
      *   //   "labels": {},
      *   //   "membershipStates": {},
      *   //   "name": "my_name",
      *   //   "rolloutSequence": "my_rolloutSequence",
+     *   //   "stageSoakDurationOverrides": {},
      *   //   "stages": [],
      *   //   "state": "my_state",
      *   //   "stateReason": "my_stateReason",
@@ -13163,6 +13207,11 @@ export namespace gkehub_v1alpha {
      *       // request body parameters
      *       // {
      *       //   "force": false,
+     *       //   "ignoreClusterDisruptionBudgets": false,
+     *       //   "ignoreMaintenancePolicies": false,
+     *       //   "patchOnly": false,
+     *       //   "soakDurationOverrideAllStages": "my_soakDurationOverrideAllStages",
+     *       //   "soakDurationOverridePerStage": {},
      *       //   "upgradeType": "my_upgradeType",
      *       //   "version": "my_version"
      *       // }
