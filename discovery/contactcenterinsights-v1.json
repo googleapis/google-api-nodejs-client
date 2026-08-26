@@ -6236,7 +6236,7 @@
       }
     }
   },
-  "revision": "20260813",
+  "revision": "20260818",
   "rootUrl": "https://contactcenterinsights.googleapis.com/",
   "schemas": {
     "GoogleCloudCesV1mainAgentTransfer": {
@@ -9834,8 +9834,16 @@
       "id": "GoogleCloudContactcenterinsightsV1GcsSource",
       "properties": {
         "audioUri": {
-          "description": "Cloud Storage URI that points to a file that contains the conversation audio.",
+          "deprecated": true,
+          "description": "Immutable. Deprecated: Use `audio_uris` instead. Cloud Storage URI that points to a file that contains the conversation audio.",
           "type": "string"
+        },
+        "audioUris": {
+          "description": "Immutable. Cloud Storage URIs that point to files that contain the conversation audio. Supports both single audio files and multi-leg session recordings (e.g., call transfers, rolling recording buffers).",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "transcriptUri": {
           "description": "Immutable. Cloud Storage URI that points to a file that contains the conversation transcript.",
@@ -13133,6 +13141,14 @@
           "description": "The signed URI for the audio from the Cloud Storage conversation source.",
           "type": "string"
         },
+        "signedGcsAudioUris": {
+          "description": "Output only. The signed URIs for the audio from the Cloud Storage conversation source when multiple audio files exist (e.g. multi-leg conversations).",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "signedTurnLevelAudios": {
           "description": "The signed URI for the audio corresponding to each turn in the conversation.",
           "items": {
@@ -15875,8 +15891,16 @@
       "id": "GoogleCloudContactcenterinsightsV1alpha1GcsSource",
       "properties": {
         "audioUri": {
-          "description": "Cloud Storage URI that points to a file that contains the conversation audio.",
+          "deprecated": true,
+          "description": "Immutable. Deprecated: Use `audio_uris` instead. Cloud Storage URI that points to a file that contains the conversation audio.",
           "type": "string"
+        },
+        "audioUris": {
+          "description": "Immutable. Cloud Storage URIs that point to files that contain the conversation audio. Supports both single audio files and multi-leg session recordings (e.g., call transfers, rolling recording buffers).",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "transcriptUri": {
           "description": "Immutable. Cloud Storage URI that points to a file that contains the conversation transcript.",
@@ -20466,8 +20490,16 @@
       "id": "GoogleCloudContactcenterinsightsV1mainGcsSource",
       "properties": {
         "audioUri": {
-          "description": "Cloud Storage URI that points to a file that contains the conversation audio.",
+          "deprecated": true,
+          "description": "Immutable. Deprecated: Use `audio_uris` instead. Cloud Storage URI that points to a file that contains the conversation audio.",
           "type": "string"
+        },
+        "audioUris": {
+          "description": "Immutable. Cloud Storage URIs that point to files that contain the conversation audio. Supports both single audio files and multi-leg session recordings (e.g., call transfers, rolling recording buffers).",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "transcriptUri": {
           "description": "Immutable. Cloud Storage URI that points to a file that contains the conversation transcript.",
