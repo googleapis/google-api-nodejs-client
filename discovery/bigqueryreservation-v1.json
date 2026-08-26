@@ -1317,7 +1317,7 @@
       }
     }
   },
-  "revision": "20260812",
+  "revision": "20260819",
   "rootUrl": "https://bigqueryreservation.googleapis.com/",
   "schemas": {
     "Assignment": {
@@ -1327,6 +1327,10 @@
         "assignee": {
           "description": "Optional. The resource which will use the reservation. E.g. `projects/myproject`, `folders/123`, or `organizations/456`.",
           "type": "string"
+        },
+        "condition": {
+          "$ref": "Expr",
+          "description": "Optional. Common Expression Language (CEL) condition that defines the matching criteria for this assignment. The condition must resolve to a boolean value. Supported variables will be added later."
         },
         "enableGeminiInBigquery": {
           "deprecated": true,
@@ -1364,6 +1368,11 @@
         "name": {
           "description": "Output only. Name of the resource. E.g.: `projects/myproject/locations/US/reservations/team1-prod/assignments/123`. The assignment_id must only contain lower case alphanumeric characters or dashes and the max length is 64 characters.",
           "readOnly": true,
+          "type": "string"
+        },
+        "precedence": {
+          "description": "Optional. Specifies the priority precedence for this assignment. Used to resolve ambiguity when multiple assignments match a single job. Higher numerical values represent higher priority (e.g., 20 is higher than 10). If unspecified, it defaults to 0. Multiple assignments can share the same precedence, but it is recommended to use unique precedence values for assignments within the same assignee scope.",
+          "format": "int64",
           "type": "string"
         },
         "principal": {
@@ -2011,12 +2020,24 @@
       "description": "A reservation group is a container for reservations.",
       "id": "ReservationGroup",
       "properties": {
+        "creationTime": {
+          "description": "Output only. Creation time of the reservation group.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
         "name": {
           "description": "Identifier. The resource name of the reservation group, e.g., `projects/*/locations/*/reservationGroups/team1-prod`. The reservation_group_id must only contain lower case alphanumeric characters or dashes. It must start with a letter and must not end with a dash. Its maximum length is 64 characters.",
           "type": "string"
         },
         "parentGroup": {
           "description": "Optional. The parent reservation group of the reservation group. Format: `projects/*/locations/*/reservationGroups/team1-prod` for non-root reservation groups, or `projects/*/locations/*` for root reservation groups.",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Last update time of the reservation group via a user operation. This timestamp is updated only when an update operation explicitly targets this reservation group directly. It is not updated when parent or child groups are created, updated, or deleted.",
+          "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         }
       },
