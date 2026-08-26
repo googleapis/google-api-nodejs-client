@@ -306,7 +306,7 @@
       }
     }
   },
-  "revision": "20260809",
+  "revision": "20260816",
   "rootUrl": "https://kmsinventory.googleapis.com/",
   "schemas": {
     "GoogleCloudKmsInventoryV1ListCryptoKeysResponse": {
@@ -803,7 +803,7 @@
           "type": "string"
         },
         "trustedWrappingEnabled": {
-          "description": "Immutable. Field indicating that the key may be wrapped by a trusted key. This field can be set for all key purposes except ENCRYPT_DECRYPT, and is only valid for keys with protection level HSM_SINGLE_TENANT. This field can only be set at creation or import time via CreateCryptoKeyVersion, or ImportCryptoKeyVersion.",
+          "description": "Optional. Immutable. Field indicating that the key may be wrapped by a trusted key. This field can be set for all key purposes except ENCRYPT_DECRYPT, and is only valid for keys with protection level HSM_SINGLE_TENANT. This field can only be set at creation or import time via CreateCryptoKeyVersion, or ImportCryptoKeyVersion.",
           "type": "boolean"
         }
       },
@@ -1039,12 +1039,14 @@
           "enum": [
             "ATTESTATION_FORMAT_UNSPECIFIED",
             "CAVIUM_V1_COMPRESSED",
-            "CAVIUM_V2_COMPRESSED"
+            "CAVIUM_V2_COMPRESSED",
+            "CAVIUM_V209"
           ],
           "enumDescriptions": [
             "Not specified.",
             "Cavium HSM attestation compressed with gzip. Note that this format is defined by Cavium and subject to change at any time. See https://www.marvell.com/products/security-solutions/nitrox-hs-adapters/software-key-attestation.html.",
-            "Cavium HSM attestation V2 compressed with gzip. This is a new format introduced in Cavium's version 3.2-08."
+            "Cavium HSM attestation V2 compressed with gzip. This is a new format introduced in Cavium's version 3.2-08.",
+            "Cavium HSM attestation V209, introduced in Cavium's version 2.09-0702."
           ],
           "readOnly": true,
           "type": "string"
