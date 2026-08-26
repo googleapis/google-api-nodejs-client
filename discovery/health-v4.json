@@ -26,9 +26,6 @@
         "https://www.googleapis.com/auth/googlehealth.location.readonly": {
           "description": "See exercise GPS location data in Google Health"
         },
-        "https://www.googleapis.com/auth/googlehealth.location.writeonly": {
-          "description": "Add exercise GPS location data to Google Health, and edit or delete the data it adds."
-        },
         "https://www.googleapis.com/auth/googlehealth.logged_symptoms.writeonly": {
           "description": "Add logged symptoms data to Google Health, and edit or delete the data it adds"
         },
@@ -712,7 +709,6 @@
                   "scopes": [
                     "https://www.googleapis.com/auth/googlehealth.activity_and_fitness.writeonly",
                     "https://www.googleapis.com/auth/googlehealth.health_metrics_and_measurements.writeonly",
-                    "https://www.googleapis.com/auth/googlehealth.location.writeonly",
                     "https://www.googleapis.com/auth/googlehealth.logged_symptoms.writeonly",
                     "https://www.googleapis.com/auth/googlehealth.mindfulness.writeonly",
                     "https://www.googleapis.com/auth/googlehealth.nutrition.writeonly",
@@ -747,7 +743,6 @@
                   "scopes": [
                     "https://www.googleapis.com/auth/googlehealth.activity_and_fitness.writeonly",
                     "https://www.googleapis.com/auth/googlehealth.health_metrics_and_measurements.writeonly",
-                    "https://www.googleapis.com/auth/googlehealth.location.writeonly",
                     "https://www.googleapis.com/auth/googlehealth.logged_symptoms.writeonly",
                     "https://www.googleapis.com/auth/googlehealth.mindfulness.writeonly",
                     "https://www.googleapis.com/auth/googlehealth.nutrition.writeonly",
@@ -781,9 +776,16 @@
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/googlehealth.activity_and_fitness.readonly",
+                    "https://www.googleapis.com/auth/googlehealth.activity_and_fitness.writeonly",
                     "https://www.googleapis.com/auth/googlehealth.health_metrics_and_measurements.readonly",
+                    "https://www.googleapis.com/auth/googlehealth.health_metrics_and_measurements.writeonly",
                     "https://www.googleapis.com/auth/googlehealth.location.readonly",
-                    "https://www.googleapis.com/auth/googlehealth.sleep.readonly"
+                    "https://www.googleapis.com/auth/googlehealth.logged_symptoms.writeonly",
+                    "https://www.googleapis.com/auth/googlehealth.mindfulness.writeonly",
+                    "https://www.googleapis.com/auth/googlehealth.nutrition.writeonly",
+                    "https://www.googleapis.com/auth/googlehealth.reproductive_health.writeonly",
+                    "https://www.googleapis.com/auth/googlehealth.sleep.readonly",
+                    "https://www.googleapis.com/auth/googlehealth.sleep.writeonly"
                   ]
                 },
                 "exportExerciseTcx": {
@@ -886,9 +888,16 @@
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/googlehealth.activity_and_fitness.readonly",
+                    "https://www.googleapis.com/auth/googlehealth.activity_and_fitness.writeonly",
                     "https://www.googleapis.com/auth/googlehealth.health_metrics_and_measurements.readonly",
+                    "https://www.googleapis.com/auth/googlehealth.health_metrics_and_measurements.writeonly",
                     "https://www.googleapis.com/auth/googlehealth.location.readonly",
-                    "https://www.googleapis.com/auth/googlehealth.sleep.readonly"
+                    "https://www.googleapis.com/auth/googlehealth.logged_symptoms.writeonly",
+                    "https://www.googleapis.com/auth/googlehealth.mindfulness.writeonly",
+                    "https://www.googleapis.com/auth/googlehealth.nutrition.writeonly",
+                    "https://www.googleapis.com/auth/googlehealth.reproductive_health.writeonly",
+                    "https://www.googleapis.com/auth/googlehealth.sleep.readonly",
+                    "https://www.googleapis.com/auth/googlehealth.sleep.writeonly"
                   ]
                 },
                 "patch": {
@@ -918,7 +927,6 @@
                   "scopes": [
                     "https://www.googleapis.com/auth/googlehealth.activity_and_fitness.writeonly",
                     "https://www.googleapis.com/auth/googlehealth.health_metrics_and_measurements.writeonly",
-                    "https://www.googleapis.com/auth/googlehealth.location.writeonly",
                     "https://www.googleapis.com/auth/googlehealth.logged_symptoms.writeonly",
                     "https://www.googleapis.com/auth/googlehealth.mindfulness.writeonly",
                     "https://www.googleapis.com/auth/googlehealth.nutrition.writeonly",
@@ -974,7 +982,6 @@
                     "https://www.googleapis.com/auth/googlehealth.health_metrics_and_measurements.readonly",
                     "https://www.googleapis.com/auth/googlehealth.health_metrics_and_measurements.writeonly",
                     "https://www.googleapis.com/auth/googlehealth.location.readonly",
-                    "https://www.googleapis.com/auth/googlehealth.location.writeonly",
                     "https://www.googleapis.com/auth/googlehealth.logged_symptoms.writeonly",
                     "https://www.googleapis.com/auth/googlehealth.mindfulness.writeonly",
                     "https://www.googleapis.com/auth/googlehealth.nutrition.writeonly",
@@ -1009,9 +1016,16 @@
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/googlehealth.activity_and_fitness.readonly",
+                    "https://www.googleapis.com/auth/googlehealth.activity_and_fitness.writeonly",
                     "https://www.googleapis.com/auth/googlehealth.health_metrics_and_measurements.readonly",
+                    "https://www.googleapis.com/auth/googlehealth.health_metrics_and_measurements.writeonly",
                     "https://www.googleapis.com/auth/googlehealth.location.readonly",
-                    "https://www.googleapis.com/auth/googlehealth.sleep.readonly"
+                    "https://www.googleapis.com/auth/googlehealth.logged_symptoms.writeonly",
+                    "https://www.googleapis.com/auth/googlehealth.mindfulness.writeonly",
+                    "https://www.googleapis.com/auth/googlehealth.nutrition.writeonly",
+                    "https://www.googleapis.com/auth/googlehealth.reproductive_health.writeonly",
+                    "https://www.googleapis.com/auth/googlehealth.sleep.readonly",
+                    "https://www.googleapis.com/auth/googlehealth.sleep.writeonly"
                   ]
                 }
               }
@@ -1086,7 +1100,7 @@
       }
     }
   },
-  "revision": "20260805",
+  "revision": "20260817",
   "rootUrl": "https://health.googleapis.com/",
   "schemas": {
     "ActiveEnergyBurned": {
@@ -6016,7 +6030,43 @@
               "CHEST_PAIN",
               "FATIGUE",
               "CONFUSION",
-              "DIZZINESS"
+              "DIZZINESS",
+              "ABDOMINAL_PAIN",
+              "BLADDER_LEAKS",
+              "BLEEDING_GUMS",
+              "BRAIN_FOG",
+              "BURNING_MOUTH",
+              "CONSTIPATION",
+              "CRAVINGS",
+              "DECREASED_APPETITE",
+              "DIARRHEA",
+              "DRAWING_PAIN",
+              "DRY_EYES",
+              "DRY_HAIR",
+              "DRY_SKIN",
+              "EXHAUSTION",
+              "FEEL_GOOD",
+              "FOOD_AVERSIONS",
+              "HAIR_LOSS",
+              "HEARTBURN",
+              "HYPERPIGMENTATION",
+              "INCREASED_APPETITE",
+              "INCREASED_APPETITE_V2",
+              "INSOMNIA",
+              "JOINT_PAIN",
+              "LEG_CRAMPS",
+              "MILKY_NIPPLE_DISCHARGE",
+              "NAUSEA",
+              "NIGHT_SWEATS",
+              "NORMAL_DIGESTION",
+              "NORMAL_STOOL",
+              "PERINEUM_PAIN",
+              "SLEEPINESS",
+              "STRETCH_MARKS",
+              "SWELLING",
+              "VAGINAL_DRYNESS",
+              "VAGINAL_ITCHING",
+              "VOMITING"
             ],
             "enumDescriptions": [
               "Unspecified symptom value.",
@@ -6048,7 +6098,43 @@
               "Chest pain or discomfort.",
               "Fatigue or extreme tiredness.",
               "Confusion or mental fogginess.",
-              "Dizziness or lightheadedness."
+              "Dizziness or lightheadedness.",
+              "Abdominal pain.",
+              "Bladder leaks.",
+              "Bleeding gums.",
+              "Brain fog.",
+              "Burning mouth.",
+              "Constipation.",
+              "Food cravings.",
+              "Decreased appetite.",
+              "Diarrhea.",
+              "Drawing pain.",
+              "Dry eyes.",
+              "Dry hair.",
+              "Dry skin.",
+              "Exhaustion.",
+              "Feeling good or well.",
+              "Food aversions.",
+              "Hair loss.",
+              "Heartburn.",
+              "Hyperpigmentation.",
+              "Increased appetite.",
+              "Increased appetite V2.",
+              "Insomnia or difficulty sleeping.",
+              "Joint pain.",
+              "Leg cramps.",
+              "Milky nipple discharge.",
+              "Nausea.",
+              "Night sweats.",
+              "Normal digestion.",
+              "Normal stool.",
+              "Perineum pain.",
+              "Sleepiness or drowsiness.",
+              "Stretch marks.",
+              "Swelling.",
+              "Vaginal dryness.",
+              "Vaginal itching.",
+              "Vomiting."
             ],
             "type": "string"
           },
