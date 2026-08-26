@@ -250,7 +250,7 @@
       }
     }
   },
-  "revision": "20260809",
+  "revision": "20260817",
   "rootUrl": "https://developerknowledge.googleapis.com/",
   "schemas": {
     "Answer": {
@@ -456,6 +456,12 @@
           "description": "Output only. Contains the resource name of the document this chunk is from. Format: `documents/{uri_without_scheme}` Example: `documents/docs.cloud.google.com/storage/docs/creating-buckets`",
           "readOnly": true,
           "type": "string"
+        },
+        "relevanceScore": {
+          "description": "Output only. Represents the relevance score of the chunk to the search query. Higher score indicates higher chunk relevance. The score is in range [0.0, 1.0].",
+          "format": "double",
+          "readOnly": true,
+          "type": "number"
         }
       },
       "type": "object"
