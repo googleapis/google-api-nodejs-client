@@ -193,6 +193,10 @@ export namespace firestore_v1 {
      */
     readTime?: string | null;
     /**
+     * Optional. The request options for this request.
+     */
+    requestOptions?: Schema$RequestOptions;
+    /**
      * Reads documents in a transaction.
      */
     transaction?: string | null;
@@ -227,6 +231,10 @@ export namespace firestore_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
+     * Optional. The request options for this request.
+     */
+    requestOptions?: Schema$RequestOptions;
+    /**
      * The writes to apply. Method does not apply writes atomically and does not guarantee ordering. Each write succeeds or fails independently. You cannot write to the same document more than once per request.
      */
     writes?: Schema$Write[];
@@ -252,6 +260,10 @@ export namespace firestore_v1 {
      * The options for the transaction. Defaults to a read-write transaction.
      */
     options?: Schema$TransactionOptions;
+    /**
+     * Optional. The request options for this request.
+     */
+    requestOptions?: Schema$RequestOptions;
   }
   /**
    * The response for Firestore.BeginTransaction.
@@ -305,6 +317,10 @@ export namespace firestore_v1 {
    * The request for Firestore.Commit.
    */
   export interface Schema$CommitRequest {
+    /**
+     * Optional. The request options for this request.
+     */
+    requestOptions?: Schema$RequestOptions;
     /**
      * If set, applies all writes in this transaction, and commits it.
      */
@@ -486,6 +502,10 @@ export namespace firestore_v1 {
      */
     readTime?: string | null;
     /**
+     * Optional. The request options for this request.
+     */
+    requestOptions?: Schema$RequestOptions;
+    /**
      * A pipelined operation.
      */
     structuredPipeline?: Schema$StructuredPipeline;
@@ -495,7 +515,7 @@ export namespace firestore_v1 {
     transaction?: string | null;
   }
   /**
-   * The response for Firestore.Execute.
+   * The response for Firestore.ExecutePipeline.
    */
   export interface Schema$ExecutePipelineResponse {
     /**
@@ -828,6 +848,43 @@ export namespace firestore_v1 {
     namespaceIds?: string[] | null;
   }
   /**
+   * A Change Stream is a resource that allows users to receive change notifications from a Firestore database.
+   */
+  export interface Schema$GoogleFirestoreAdminV1ChangeStream {
+    /**
+     * If set, the change stream is scoped to a collection group.
+     */
+    collectionGroupScope?: Schema$GoogleFirestoreAdminV1CollectionGroupScope;
+    /**
+     * Output only. The time the Change Stream was created.
+     */
+    createTime?: string | null;
+    /**
+     * If set, the change stream is scoped to the entire database.
+     */
+    databaseScope?: Schema$GoogleFirestoreAdminV1DatabaseScope;
+    /**
+     * Optional. An etag used to determine which version of the configuration is being edited.
+     */
+    etag?: string | null;
+    /**
+     * Identifier. The external resource name of the change stream. Format `projects/{project\}/databases/{database\}/changeStreams/{change_stream\}`
+     */
+    name?: string | null;
+    /**
+     * Required. The retention period of the change stream. This is the amount of time a change event is available on the change stream. Must be from 1 to 7 days, inclusive. The retention_period must be in day granularity, i.e. it must be a multiple of 24 hours.
+     */
+    retentionPeriod?: string | null;
+    /**
+     * Output only. The time the Change Stream started recording events.
+     */
+    startTime?: string | null;
+    /**
+     * Output only. The time the Change Stream was last updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
    * Metadata for the long-running operation from the CloneDatabase request.
    */
   export interface Schema$GoogleFirestoreAdminV1CloneDatabaseMetadata {
@@ -891,6 +948,15 @@ export namespace firestore_v1 {
     kmsKeyName?: string | null;
   }
   /**
+   * The change stream is scoped to a collection group. Only events associated with the given collection group are visible to the Change Stream. Only a single change stream can be enabled per collection group.
+   */
+  export interface Schema$GoogleFirestoreAdminV1CollectionGroupScope {
+    /**
+     * Required. The collection group name.
+     */
+    collectionGroupId?: string | null;
+  }
+  /**
    * Metadata related to the create database operation.
    */
   export interface Schema$GoogleFirestoreAdminV1CreateDatabaseMetadata {}
@@ -948,7 +1014,7 @@ export namespace firestore_v1 {
      */
     etag?: string | null;
     /**
-     * Optional. The Firestore API data access mode to use for this database. If not set on write: - the default value is DATA_ACCESS_MODE_DISABLED for Enterprise Edition. - the default value is DATA_ACCESS_MODE_ENABLED for Standard Edition.
+     * Optional. The Firestore API data access mode to use for this database. If not set on write: - the default value is DATA_ACCESS_MODE_DISABLED for Enterprise edition. - the default value is DATA_ACCESS_MODE_ENABLED for Standard edition.
      */
     firestoreDataAccessMode?: string | null;
     /**
@@ -964,7 +1030,7 @@ export namespace firestore_v1 {
      */
     locationId?: string | null;
     /**
-     * Optional. The MongoDB compatible API data access mode to use for this database. If not set on write, the default value is DATA_ACCESS_MODE_ENABLED for Enterprise Edition. The value is always DATA_ACCESS_MODE_DISABLED for Standard Edition.
+     * Optional. The MongoDB compatible API data access mode to use for this database. If not set on write, the default value is DATA_ACCESS_MODE_ENABLED for Enterprise edition. The value is always DATA_ACCESS_MODE_DISABLED for Standard edition.
      */
     mongodbCompatibleDataAccessMode?: string | null;
     /**
@@ -1008,6 +1074,10 @@ export namespace firestore_v1 {
      */
     versionRetentionPeriod?: string | null;
   }
+  /**
+   * The change stream is scoped to the entire database. All events in the database are visible to the Change Stream. One Database scope Change Stream is allowed per database.
+   */
+  export interface Schema$GoogleFirestoreAdminV1DatabaseScope {}
   /**
    * Metadata related to the delete database operation.
    */
@@ -1225,7 +1295,7 @@ export namespace firestore_v1 {
     namespaceIds?: string[] | null;
   }
   /**
-   * Cloud Firestore indexes enable simple and complex queries against documents in a database.
+   * Cloud Firestore indexes enable simple and complex queries against documents in a database. In Standard edition databases, single-field indexes are managed using the google.firestore.admin.v1.Field resource, and composite indexes are managed using the google.firestore.admin.v1.Index resource. In Enterprise edition databases, both single-field and composite indexes are managed using the google.firestore.admin.v1.Index resource.
    */
   export interface Schema$GoogleFirestoreAdminV1Index {
     /**
@@ -1237,7 +1307,7 @@ export namespace firestore_v1 {
      */
     density?: string | null;
     /**
-     * The fields supported by this index. For composite indexes, this requires a minimum of 2 and a maximum of 100 fields. The last field entry is always for the field path `__name__`. If, on creation, `__name__` was not specified as the last field, it will be added automatically with the same direction as that of the last field defined. If the final field in a composite index is not directional, the `__name__` will be ordered ASCENDING (unless explicitly specified). For single field indexes, this will always be exactly one entry with a field path equal to the field path of the associated field.
+     * The fields supported by this index. At most 100 fields may be specified. In Standard edition databases only: - At least 2 fields must be specified. - The last field entry is always for the field path `__name__`. If, on creation, `__name__` was not specified as the last field, it will be added automatically with the same direction as that of the last field defined. If the final field in the index is not directional, the `__name__` will be ordered ASCENDING (unless explicitly specified).
      */
     fields?: Schema$GoogleFirestoreAdminV1IndexField[];
     /**
@@ -1245,7 +1315,7 @@ export namespace firestore_v1 {
      */
     multikey?: boolean | null;
     /**
-     * Output only. A server defined name for this index. The form of this name for composite indexes will be: `projects/{project_id\}/databases/{database_id\}/collectionGroups/{collection_id\}/indexes/{composite_index_id\}` For single field indexes, this field will be empty.
+     * A server-defined name for this index. Output only. When used in the google.firestore.admin.v1.Index resource, the value is of the form: `projects/{project_id\}/databases/{database_id\}/collectionGroups/{collection_id\}/indexes/{index_id\}` When used in the google.firestore.admin.v1.Field resource, the value is empty.
      */
     name?: string | null;
     /**
@@ -1378,6 +1448,15 @@ export namespace firestore_v1 {
      * List of locations that existing backups were not able to be fetched from. Instead of failing the entire requests when a single location is unreachable, this response returns a partial result set and list of locations unable to be reached here. The request can be retried against a single location to get a concrete error.
      */
     unreachable?: string[] | null;
+  }
+  /**
+   * Response to FirestoreAdmin.ListChangeStreams.
+   */
+  export interface Schema$GoogleFirestoreAdminV1ListChangeStreamsResponse {
+    /**
+     * The list of change streams.
+     */
+    changeStreams?: Schema$GoogleFirestoreAdminV1ChangeStream[];
   }
   /**
    * The list of databases for a project.
@@ -1644,7 +1723,20 @@ export namespace firestore_v1 {
   /**
    * Metadata related to the update database operation.
    */
-  export interface Schema$GoogleFirestoreAdminV1UpdateDatabaseMetadata {}
+  export interface Schema$GoogleFirestoreAdminV1UpdateDatabaseMetadata {
+    /**
+     * The time this operation completed. Will be unset if operation still in progress.
+     */
+    endTime?: string | null;
+    /**
+     * The time this operation started.
+     */
+    startTime?: string | null;
+    /**
+     * The state of the operation.
+     */
+    state?: string | null;
+  }
   /**
    * A Cloud Firestore User Creds.
    */
@@ -1771,6 +1863,10 @@ export namespace firestore_v1 {
      * Reads documents as they were at the given time. This must be a microsecond precision timestamp within the past one hour, or if Point-in-Time Recovery is enabled, can additionally be a whole minute timestamp within the past 7 days.
      */
     readTime?: string | null;
+    /**
+     * Optional. The request options for this request.
+     */
+    requestOptions?: Schema$RequestOptions;
   }
   /**
    * The response from Firestore.ListCollectionIds.
@@ -1814,6 +1910,10 @@ export namespace firestore_v1 {
      * The ID of a target to remove from this stream.
      */
     removeTarget?: number | null;
+    /**
+     * Optional. The request options for the request.
+     */
+    requestOptions?: Schema$RequestOptions;
   }
   /**
    * The response for Firestore.Listen.
@@ -1921,6 +2021,10 @@ export namespace firestore_v1 {
      */
     readTime?: string | null;
     /**
+     * Optional. The request options for the request.
+     */
+    requestOptions?: Schema$RequestOptions;
+    /**
      * A structured query. Query must specify collection with all descendants and be ordered by name ascending. Other filters, order bys, limits, offsets, and start/end cursors are not supported.
      */
     structuredQuery?: Schema$StructuredQuery;
@@ -2014,9 +2118,22 @@ export namespace firestore_v1 {
     retryTransaction?: string | null;
   }
   /**
+   * Options for a server request.
+   */
+  export interface Schema$RequestOptions {
+    /**
+     * Optional. The request tags for the request.
+     */
+    requestTags?: string[] | null;
+  }
+  /**
    * The request for Firestore.Rollback.
    */
   export interface Schema$RollbackRequest {
+    /**
+     * Optional. The request options for this request.
+     */
+    requestOptions?: Schema$RequestOptions;
     /**
      * Required. The transaction to roll back.
      */
@@ -2038,6 +2155,10 @@ export namespace firestore_v1 {
      * Executes the query at the given timestamp. This must be a microsecond precision timestamp within the past one hour, or if Point-in-Time Recovery is enabled, can additionally be a whole minute timestamp within the past 7 days.
      */
     readTime?: string | null;
+    /**
+     * Optional. The request options for the request.
+     */
+    requestOptions?: Schema$RequestOptions;
     /**
      * An aggregation query.
      */
@@ -2084,6 +2205,10 @@ export namespace firestore_v1 {
      * Reads documents as they were at the given time. This must be a microsecond precision timestamp within the past one hour, or if Point-in-Time Recovery is enabled, can additionally be a whole minute timestamp within the past 7 days.
      */
     readTime?: string | null;
+    /**
+     * Optional. The request options for this request.
+     */
+    requestOptions?: Schema$RequestOptions;
     /**
      * A structured query.
      */
@@ -2321,7 +2446,7 @@ export namespace firestore_v1 {
    */
   export interface Schema$Value {
     /**
-     * An array value. Cannot directly contain another array value, though can contain a map which contains another array.
+     * An array value. In Standard edition databases, an array value cannot directly contain another array value, though it can contain a map which contains another array. In Enterprise edition databases, an array value can contain another array value.
      */
     arrayValue?: Schema$ArrayValue;
     /**
@@ -2329,7 +2454,7 @@ export namespace firestore_v1 {
      */
     booleanValue?: boolean | null;
     /**
-     * A bytes value. Must not exceed 1 MiB - 89 bytes. Only the first 1,500 bytes are considered by queries.
+     * A bytes value. In Standard edition databases: * The value must not exceed 1 MiB - 89 bytes. * Only the first 1,500 bytes are considered by queries. In Enterprise edition databases, there is no limit on the size of the value. However, it is still subject to document and index entry size limits.
      */
     bytesValue?: string | null;
     /**
@@ -2369,7 +2494,7 @@ export namespace firestore_v1 {
      */
     referenceValue?: string | null;
     /**
-     * A string value. The string, represented as UTF-8, must not exceed 1 MiB - 89 bytes. Only the first 1,500 bytes of the UTF-8 representation are considered by queries.
+     * A string value. In Standard edition databases: * The string, represented as UTF-8, must not exceed 1 MiB - 89 bytes. * Only the first 1,500 bytes of the UTF-8 representation are considered by queries. In Enterprise edition databases, there is no limit on the size of the value. However, it is still subject to document and index entry size limits.
      */
     stringValue?: string | null;
     /**
@@ -2418,6 +2543,10 @@ export namespace firestore_v1 {
      * Labels associated with this write request.
      */
     labels?: {[key: string]: string} | null;
+    /**
+     * Optional. The request options for the request.
+     */
+    requestOptions?: Schema$RequestOptions;
     /**
      * The ID of the write stream to resume. This may only be set in the first message. When left empty, a new write stream will be created.
      */
@@ -2480,6 +2609,7 @@ export namespace firestore_v1 {
   export class Resource$Projects$Databases {
     context: APIRequestContext;
     backupSchedules: Resource$Projects$Databases$Backupschedules;
+    changeStreams: Resource$Projects$Databases$Changestreams;
     collectionGroups: Resource$Projects$Databases$Collectiongroups;
     documents: Resource$Projects$Databases$Documents;
     operations: Resource$Projects$Databases$Operations;
@@ -2487,6 +2617,9 @@ export namespace firestore_v1 {
     constructor(context: APIRequestContext) {
       this.context = context;
       this.backupSchedules = new Resource$Projects$Databases$Backupschedules(
+        this.context
+      );
+      this.changeStreams = new Resource$Projects$Databases$Changestreams(
         this.context
       );
       this.collectionGroups = new Resource$Projects$Databases$Collectiongroups(
@@ -5046,6 +5179,665 @@ export namespace firestore_v1 {
     requestBody?: Schema$GoogleFirestoreAdminV1BackupSchedule;
   }
 
+  export class Resource$Projects$Databases$Changestreams {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a new change stream for the database.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firestore.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const firestore = google.firestore('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/datastore',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firestore.projects.databases.changeStreams.create({
+     *     // Required. The ID to use for the change stream, which will become the final component of the change stream's resource name. This value should be 4-63 characters. Valid characters are lowercase letters, numbers, and hyphens. The first character must be a letter, and the last character must be a letter or a number.
+     *     changeStreamId: 'placeholder-value',
+     *     // Required. The parent database to create the change stream for. Format is `projects/{project\}/databases/{database\}`.
+     *     parent: 'projects/my-project/databases/my-database',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "collectionGroupScope": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "databaseScope": {},
+     *       //   "etag": "my_etag",
+     *       //   "name": "my_name",
+     *       //   "retentionPeriod": "my_retentionPeriod",
+     *       //   "startTime": "my_startTime",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "collectionGroupScope": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "databaseScope": {},
+     *   //   "etag": "my_etag",
+     *   //   "name": "my_name",
+     *   //   "retentionPeriod": "my_retentionPeriod",
+     *   //   "startTime": "my_startTime",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Databases$Changestreams$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Projects$Databases$Changestreams$Create,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleFirestoreAdminV1ChangeStream>
+    >;
+    create(
+      params: Params$Resource$Projects$Databases$Changestreams$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Databases$Changestreams$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleFirestoreAdminV1ChangeStream>,
+      callback: BodyResponseCallback<Schema$GoogleFirestoreAdminV1ChangeStream>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Databases$Changestreams$Create,
+      callback: BodyResponseCallback<Schema$GoogleFirestoreAdminV1ChangeStream>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleFirestoreAdminV1ChangeStream>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Databases$Changestreams$Create
+        | BodyResponseCallback<Schema$GoogleFirestoreAdminV1ChangeStream>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleFirestoreAdminV1ChangeStream>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleFirestoreAdminV1ChangeStream>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleFirestoreAdminV1ChangeStream>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Databases$Changestreams$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Databases$Changestreams$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/changeStreams').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleFirestoreAdminV1ChangeStream>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleFirestoreAdminV1ChangeStream>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Deletes a change stream.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firestore.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const firestore = google.firestore('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/datastore',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firestore.projects.databases.changeStreams.delete({
+     *     // Optional. The etag of the change stream to delete. If this is not the current etag of the change stream, the deletion will fail.
+     *     etag: 'placeholder-value',
+     *     // Required. The name of the change stream to delete. Format is `projects/{project\}/databases/{database\}/changeStreams/{change_stream\}`.
+     *     name: 'projects/my-project/databases/my-database/changeStreams/my-changeStream',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Databases$Changestreams$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Projects$Databases$Changestreams$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
+    delete(
+      params: Params$Resource$Projects$Databases$Changestreams$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Databases$Changestreams$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Databases$Changestreams$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Databases$Changestreams$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Databases$Changestreams$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Databases$Changestreams$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Gets information about a change stream.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firestore.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const firestore = google.firestore('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/datastore',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firestore.projects.databases.changeStreams.get({
+     *     // Required. The name of the change stream to retrieve. Format is `projects/{project\}/databases/{database\}/changeStreams/{change_stream\}`.
+     *     name: 'projects/my-project/databases/my-database/changeStreams/my-changeStream',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "collectionGroupScope": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "databaseScope": {},
+     *   //   "etag": "my_etag",
+     *   //   "name": "my_name",
+     *   //   "retentionPeriod": "my_retentionPeriod",
+     *   //   "startTime": "my_startTime",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Databases$Changestreams$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Databases$Changestreams$Get,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleFirestoreAdminV1ChangeStream>
+    >;
+    get(
+      params: Params$Resource$Projects$Databases$Changestreams$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Databases$Changestreams$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleFirestoreAdminV1ChangeStream>,
+      callback: BodyResponseCallback<Schema$GoogleFirestoreAdminV1ChangeStream>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Databases$Changestreams$Get,
+      callback: BodyResponseCallback<Schema$GoogleFirestoreAdminV1ChangeStream>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleFirestoreAdminV1ChangeStream>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Databases$Changestreams$Get
+        | BodyResponseCallback<Schema$GoogleFirestoreAdminV1ChangeStream>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleFirestoreAdminV1ChangeStream>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleFirestoreAdminV1ChangeStream>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleFirestoreAdminV1ChangeStream>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Databases$Changestreams$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Databases$Changestreams$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleFirestoreAdminV1ChangeStream>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleFirestoreAdminV1ChangeStream>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists all change streams in a database.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firestore.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const firestore = google.firestore('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/datastore',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firestore.projects.databases.changeStreams.list({
+     *     // Required. The parent database to list change streams from. Format is `projects/{project\}/databases/{database\}`.
+     *     parent: 'projects/my-project/databases/my-database',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "changeStreams": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Databases$Changestreams$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Databases$Changestreams$List,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleFirestoreAdminV1ListChangeStreamsResponse>
+    >;
+    list(
+      params: Params$Resource$Projects$Databases$Changestreams$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Databases$Changestreams$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleFirestoreAdminV1ListChangeStreamsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleFirestoreAdminV1ListChangeStreamsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Databases$Changestreams$List,
+      callback: BodyResponseCallback<Schema$GoogleFirestoreAdminV1ListChangeStreamsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleFirestoreAdminV1ListChangeStreamsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Databases$Changestreams$List
+        | BodyResponseCallback<Schema$GoogleFirestoreAdminV1ListChangeStreamsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleFirestoreAdminV1ListChangeStreamsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleFirestoreAdminV1ListChangeStreamsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleFirestoreAdminV1ListChangeStreamsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Databases$Changestreams$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Databases$Changestreams$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/changeStreams').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleFirestoreAdminV1ListChangeStreamsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleFirestoreAdminV1ListChangeStreamsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Databases$Changestreams$Create extends StandardParameters {
+    /**
+     * Required. The ID to use for the change stream, which will become the final component of the change stream's resource name. This value should be 4-63 characters. Valid characters are lowercase letters, numbers, and hyphens. The first character must be a letter, and the last character must be a letter or a number.
+     */
+    changeStreamId?: string;
+    /**
+     * Required. The parent database to create the change stream for. Format is `projects/{project\}/databases/{database\}`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleFirestoreAdminV1ChangeStream;
+  }
+  export interface Params$Resource$Projects$Databases$Changestreams$Delete extends StandardParameters {
+    /**
+     * Optional. The etag of the change stream to delete. If this is not the current etag of the change stream, the deletion will fail.
+     */
+    etag?: string;
+    /**
+     * Required. The name of the change stream to delete. Format is `projects/{project\}/databases/{database\}/changeStreams/{change_stream\}`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Databases$Changestreams$Get extends StandardParameters {
+    /**
+     * Required. The name of the change stream to retrieve. Format is `projects/{project\}/databases/{database\}/changeStreams/{change_stream\}`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Databases$Changestreams$List extends StandardParameters {
+    /**
+     * Required. The parent database to list change streams from. Format is `projects/{project\}/databases/{database\}`.
+     */
+    parent?: string;
+  }
+
   export class Resource$Projects$Databases$Collectiongroups {
     context: APIRequestContext;
     fields: Resource$Projects$Databases$Collectiongroups$Fields;
@@ -6281,6 +7073,7 @@ export namespace firestore_v1 {
      *       //   "mask": {},
      *       //   "newTransaction": {},
      *       //   "readTime": "my_readTime",
+     *       //   "requestOptions": {},
      *       //   "transaction": "my_transaction"
      *       // }
      *     },
@@ -6436,6 +7229,7 @@ export namespace firestore_v1 {
      *       // request body parameters
      *       // {
      *       //   "labels": {},
+     *       //   "requestOptions": {},
      *       //   "writes": []
      *       // }
      *     },
@@ -6585,7 +7379,8 @@ export namespace firestore_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
-     *       //   "options": {}
+     *       //   "options": {},
+     *       //   "requestOptions": {}
      *       // }
      *     },
      *   });
@@ -6736,6 +7531,7 @@ export namespace firestore_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "requestOptions": {},
      *       //   "transaction": "my_transaction",
      *       //   "writes": []
      *       // }
@@ -6887,6 +7683,8 @@ export namespace firestore_v1 {
      *     'mask.fieldPaths': 'placeholder-value',
      *     // Required. The parent resource. For example: `projects/{project_id\}/databases/{database_id\}/documents` or `projects/{project_id\}/databases/{database_id\}/documents/chatrooms/{chatroom_id\}`
      *     parent: 'projects/my-project/databases/my-database/documents/.*',
+     *     // Optional. The request tags for the request.
+     *     'requestOptions.requestTags': 'placeholder-value',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -7045,6 +7843,8 @@ export namespace firestore_v1 {
      *     'currentDocument.updateTime': 'placeholder-value',
      *     // Required. The resource name of the Document to delete. In the format: `projects/{project_id\}/databases/{database_id\}/documents/{document_path\}`.
      *     name: 'projects/my-project/databases/my-database/documents/my-document/.*',
+     *     // Optional. The request tags for the request.
+     *     'requestOptions.requestTags': 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -7187,6 +7987,7 @@ export namespace firestore_v1 {
      *       //   "autoCommitTransaction": false,
      *       //   "newTransaction": {},
      *       //   "readTime": "my_readTime",
+     *       //   "requestOptions": {},
      *       //   "structuredPipeline": {},
      *       //   "transaction": "my_transaction"
      *       // }
@@ -7341,6 +8142,8 @@ export namespace firestore_v1 {
      *     name: 'projects/my-project/databases/my-database/documents/my-document/.*',
      *     // Reads the version of the document at the given time. This must be a microsecond precision timestamp within the past one hour, or if Point-in-Time Recovery is enabled, can additionally be a whole minute timestamp within the past 7 days.
      *     readTime: 'placeholder-value',
+     *     // Optional. The request tags for the request.
+     *     'requestOptions.requestTags': 'placeholder-value',
      *     // Reads the document in a transaction.
      *     transaction: 'placeholder-value',
      *   });
@@ -7497,6 +8300,8 @@ export namespace firestore_v1 {
      *     readTime: 'placeholder-value',
      *     // Optional. If the list should recursively include all documents nested under the parent at any level. If the request specifies a `collection_id`, then the list will include all nested documents in the collection under the parent. This is optional, and when not provided, Firestore will only list documents nested immediately under the parent. Requests with `recursive` may not specify `show_missing`.
      *     recursive: 'placeholder-value',
+     *     // Optional. The request tags for the request.
+     *     'requestOptions.requestTags': 'placeholder-value',
      *     // If the list should show missing documents. A document is missing if it does not exist, but there are sub-documents nested underneath it. When true, such missing documents will be returned with a key but will not have fields, `create_time`, or `update_time` set. Requests with `show_missing` may not specify `where` or `order_by`.
      *     showMissing: 'placeholder-value',
      *     // Perform the read as part of an already active transaction.
@@ -7651,7 +8456,8 @@ export namespace firestore_v1 {
      *       // {
      *       //   "pageSize": 0,
      *       //   "pageToken": "my_pageToken",
-     *       //   "readTime": "my_readTime"
+     *       //   "readTime": "my_readTime",
+     *       //   "requestOptions": {}
      *       // }
      *     },
      *   });
@@ -7813,6 +8619,8 @@ export namespace firestore_v1 {
      *     readTime: 'placeholder-value',
      *     // Optional. If the list should recursively include all documents nested under the parent at any level. If the request specifies a `collection_id`, then the list will include all nested documents in the collection under the parent. This is optional, and when not provided, Firestore will only list documents nested immediately under the parent. Requests with `recursive` may not specify `show_missing`.
      *     recursive: 'placeholder-value',
+     *     // Optional. The request tags for the request.
+     *     'requestOptions.requestTags': 'placeholder-value',
      *     // If the list should show missing documents. A document is missing if it does not exist, but there are sub-documents nested underneath it. When true, such missing documents will be returned with a key but will not have fields, `create_time`, or `update_time` set. Requests with `show_missing` may not specify `where` or `order_by`.
      *     showMissing: 'placeholder-value',
      *     // Perform the read as part of an already active transaction.
@@ -7969,7 +8777,8 @@ export namespace firestore_v1 {
      *       // {
      *       //   "addTarget": {},
      *       //   "labels": {},
-     *       //   "removeTarget": 0
+     *       //   "removeTarget": 0,
+     *       //   "requestOptions": {}
      *       // }
      *     },
      *   });
@@ -8126,6 +8935,7 @@ export namespace firestore_v1 {
      *       //   "pageToken": "my_pageToken",
      *       //   "partitionCount": "my_partitionCount",
      *       //   "readTime": "my_readTime",
+     *       //   "requestOptions": {},
      *       //   "structuredQuery": {}
      *       // }
      *     },
@@ -8280,6 +9090,8 @@ export namespace firestore_v1 {
      *     'mask.fieldPaths': 'placeholder-value',
      *     // The resource name of the document, for example `projects/{project_id\}/databases/{database_id\}/documents/{document_path\}`.
      *     name: 'projects/my-project/databases/my-database/documents/my-document/.*',
+     *     // Optional. The request tags for the request.
+     *     'requestOptions.requestTags': 'placeholder-value',
      *     // The list of field paths in the mask. See Document.fields for a field path syntax reference.
      *     'updateMask.fieldPaths': 'placeholder-value',
      *
@@ -8437,6 +9249,7 @@ export namespace firestore_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "requestOptions": {},
      *       //   "transaction": "my_transaction"
      *       // }
      *     },
@@ -8586,6 +9399,7 @@ export namespace firestore_v1 {
      *       //   "explainOptions": {},
      *       //   "newTransaction": {},
      *       //   "readTime": "my_readTime",
+     *       //   "requestOptions": {},
      *       //   "structuredAggregationQuery": {},
      *       //   "transaction": "my_transaction"
      *       // }
@@ -8747,6 +9561,7 @@ export namespace firestore_v1 {
      *       //   "explainOptions": {},
      *       //   "newTransaction": {},
      *       //   "readTime": "my_readTime",
+     *       //   "requestOptions": {},
      *       //   "structuredQuery": {},
      *       //   "transaction": "my_transaction"
      *       // }
@@ -8902,6 +9717,7 @@ export namespace firestore_v1 {
      *       // request body parameters
      *       // {
      *       //   "labels": {},
+     *       //   "requestOptions": {},
      *       //   "streamId": "my_streamId",
      *       //   "streamToken": "my_streamToken",
      *       //   "writes": []
@@ -9076,6 +9892,10 @@ export namespace firestore_v1 {
      * Required. The parent resource. For example: `projects/{project_id\}/databases/{database_id\}/documents` or `projects/{project_id\}/databases/{database_id\}/documents/chatrooms/{chatroom_id\}`
      */
     parent?: string;
+    /**
+     * Optional. The request tags for the request.
+     */
+    'requestOptions.requestTags'?: string[];
 
     /**
      * Request body metadata
@@ -9095,6 +9915,10 @@ export namespace firestore_v1 {
      * Required. The resource name of the Document to delete. In the format: `projects/{project_id\}/databases/{database_id\}/documents/{document_path\}`.
      */
     name?: string;
+    /**
+     * Optional. The request tags for the request.
+     */
+    'requestOptions.requestTags'?: string[];
   }
   export interface Params$Resource$Projects$Databases$Documents$Executepipeline extends StandardParameters {
     /**
@@ -9120,6 +9944,10 @@ export namespace firestore_v1 {
      * Reads the version of the document at the given time. This must be a microsecond precision timestamp within the past one hour, or if Point-in-Time Recovery is enabled, can additionally be a whole minute timestamp within the past 7 days.
      */
     readTime?: string;
+    /**
+     * Optional. The request tags for the request.
+     */
+    'requestOptions.requestTags'?: string[];
     /**
      * Reads the document in a transaction.
      */
@@ -9158,6 +9986,10 @@ export namespace firestore_v1 {
      * Optional. If the list should recursively include all documents nested under the parent at any level. If the request specifies a `collection_id`, then the list will include all nested documents in the collection under the parent. This is optional, and when not provided, Firestore will only list documents nested immediately under the parent. Requests with `recursive` may not specify `show_missing`.
      */
     recursive?: boolean;
+    /**
+     * Optional. The request tags for the request.
+     */
+    'requestOptions.requestTags'?: string[];
     /**
      * If the list should show missing documents. A document is missing if it does not exist, but there are sub-documents nested underneath it. When true, such missing documents will be returned with a key but will not have fields, `create_time`, or `update_time` set. Requests with `show_missing` may not specify `where` or `order_by`.
      */
@@ -9212,6 +10044,10 @@ export namespace firestore_v1 {
      */
     recursive?: boolean;
     /**
+     * Optional. The request tags for the request.
+     */
+    'requestOptions.requestTags'?: string[];
+    /**
      * If the list should show missing documents. A document is missing if it does not exist, but there are sub-documents nested underneath it. When true, such missing documents will be returned with a key but will not have fields, `create_time`, or `update_time` set. Requests with `show_missing` may not specify `where` or `order_by`.
      */
     showMissing?: boolean;
@@ -9259,6 +10095,10 @@ export namespace firestore_v1 {
      * The resource name of the document, for example `projects/{project_id\}/databases/{database_id\}/documents/{document_path\}`.
      */
     name?: string;
+    /**
+     * Optional. The request tags for the request.
+     */
+    'requestOptions.requestTags'?: string[];
     /**
      * The list of field paths in the mask. See Document.fields for a field path syntax reference.
      */
