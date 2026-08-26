@@ -306,16 +306,16 @@ export namespace travelimpactmodel_v1 {
     timWebsiteEmissionsCalculatorUrl?: string | null;
   }
   /**
-   * Information about the provenance of the data used to calculate emissions estimates, including contributing factors and their data sources.
+   * Information about the provenance of the data used to calculate emissions estimates, including contributing factors and their data sources. In `provenance_entries`, `provenance_entry_type` acts as the "key" identifying the contributing factor, and there is always only one entry per entry type. The remaining fields in each entry describe that specific entry type and may or may not be populated depending on the contributing factor and available data.
    */
   export interface Schema$EmissionsProvenance {
     /**
-     * Output only. All contributing factors used to calculate emissions.
+     * Output only. All contributing factors used to calculate emissions. Each entry type (`provenance_entry_type`) acts as a "key" identifying the factor, with always only one entry per entry type. The remaining fields describe that specific factor and may or may not be populated.
      */
     provenanceEntries?: Schema$EmissionsProvenanceEntry[];
   }
   /**
-   * Details about a single contributing factor in emissions calculations.
+   * Details about a single contributing factor in emissions calculations. Each entry represents a single factor where `provenance_entry_type` acts as the key identifying the factor, and the other fields describe it and may or may not be populated.
    */
   export interface Schema$EmissionsProvenanceEntry {
     /**
@@ -355,7 +355,7 @@ export namespace travelimpactmodel_v1 {
      */
     loadFactorsT100Strategy?: string | null;
     /**
-     * Output only. The type of the provenance entry.
+     * Output only. The type of the provenance entry. Acts as the "key" identifying the contributing factor; the remaining fields in this message describe it and may or may not be populated.
      */
     provenanceEntryType?: string | null;
     /**
