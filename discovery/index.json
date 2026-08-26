@@ -662,21 +662,6 @@
     },
     {
       "description": "",
-      "discoveryRestUrl": "https://apigeeregistry.googleapis.com/$discovery/rest?version=v1",
-      "documentationLink": "https://cloud.google.com/apigee/docs/api-hub/what-is-api-hub",
-      "icons": {
-        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
-        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
-      },
-      "id": "apigeeregistry:v1",
-      "kind": "discovery#directoryItem",
-      "name": "apigeeregistry",
-      "preferred": true,
-      "title": "Apigee Registry API",
-      "version": "v1"
-    },
-    {
-      "description": "",
       "discoveryRestUrl": "https://apihub.googleapis.com/$discovery/rest?version=v1",
       "documentationLink": "https://cloud.google.com/apigee/docs/api-hub/what-is-api-hub",
       "icons": {
@@ -6337,7 +6322,7 @@
       "version": "v1"
     },
     {
-      "description": "Vertex AI Search for commerce API is made up of Retail Search, Browse and Recommendations. These discovery AI solutions help you implement personalized search, browse and recommendations, based on machine learning models, across your websites and mobile applications.",
+      "description": "The AI Commerce Search API is made up of Retail Search, Browse and Recommendations. These discovery AI solutions help you implement personalized search, browse and recommendations, based on machine learning models, across your websites and mobile applications.",
       "discoveryRestUrl": "https://retail.googleapis.com/$discovery/rest?version=v2alpha",
       "documentationLink": "https://cloud.google.com/recommendations",
       "icons": {
@@ -6348,11 +6333,11 @@
       "kind": "discovery#directoryItem",
       "name": "retail",
       "preferred": false,
-      "title": "Vertex AI Search for commerce API",
+      "title": "AI Commerce Search API",
       "version": "v2alpha"
     },
     {
-      "description": "Vertex AI Search for commerce API is made up of Retail Search, Browse and Recommendations. These discovery AI solutions help you implement personalized search, browse and recommendations, based on machine learning models, across your websites and mobile applications.",
+      "description": "The AI Commerce Search API is made up of Retail Search, Browse and Recommendations. These discovery AI solutions help you implement personalized search, browse and recommendations, based on machine learning models, across your websites and mobile applications.",
       "discoveryRestUrl": "https://retail.googleapis.com/$discovery/rest?version=v2beta",
       "documentationLink": "https://cloud.google.com/recommendations",
       "icons": {
@@ -6363,11 +6348,11 @@
       "kind": "discovery#directoryItem",
       "name": "retail",
       "preferred": false,
-      "title": "Vertex AI Search for commerce API",
+      "title": "AI Commerce Search API",
       "version": "v2beta"
     },
     {
-      "description": "Vertex AI Search for commerce API is made up of Retail Search, Browse and Recommendations. These discovery AI solutions help you implement personalized search, browse and recommendations, based on machine learning models, across your websites and mobile applications.",
+      "description": "The AI Commerce Search API is made up of Retail Search, Browse and Recommendations. These discovery AI solutions help you implement personalized search, browse and recommendations, based on machine learning models, across your websites and mobile applications.",
       "discoveryRestUrl": "https://retail.googleapis.com/$discovery/rest?version=v2",
       "documentationLink": "https://cloud.google.com/recommendations",
       "icons": {
@@ -6378,7 +6363,7 @@
       "kind": "discovery#directoryItem",
       "name": "retail",
       "preferred": true,
-      "title": "Vertex AI Search for commerce API",
+      "title": "AI Commerce Search API",
       "version": "v2"
     },
     {
