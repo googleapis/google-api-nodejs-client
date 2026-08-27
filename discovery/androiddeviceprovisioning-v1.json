@@ -851,7 +851,7 @@
       }
     }
   },
-  "revision": "20260803",
+  "revision": "20260819",
   "rootUrl": "https://androiddeviceprovisioning.googleapis.com/",
   "schemas": {
     "ClaimDeviceRequest": {
@@ -979,7 +979,8 @@
           "type": "array"
         },
         "skipWelcomeEmail": {
-          "description": "Input only. If set to true, welcome email will not be sent to the customer. It is recommended to skip the welcome email if devices will be claimed with additional DEVICE_PROTECTION service, as the customer will receive separate emails at device claim time. This field is ignored if this is not a Zero-touch customer.",
+          "deprecated": true,
+          "description": "Input only. Deprecated: This field is no longer supported and is ignored by the server.",
           "type": "boolean"
         },
         "termsStatus": {
@@ -1282,7 +1283,7 @@
           ],
           "enumDescriptions": [
             "Device type is not specified.",
-            "Android device",
+            "Android mobile and Desktop except Googlebooks and Chromebooks",
             "Chrome OS device"
           ],
           "type": "string"
