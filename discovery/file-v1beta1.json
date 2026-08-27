@@ -1427,13 +1427,315 @@
                   ]
                 }
               }
+            },
+            "volumePools": {
+              "methods": {
+                "create": {
+                  "description": "Creates a volume pool.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/volumePools",
+                  "httpMethod": "POST",
+                  "id": "file.projects.locations.volumePools.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The project and location for which to create the volume pool, in the format `projects/{project}/locations/{location}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "volumePoolId": {
+                      "description": "Required. The ID to use for the volume pool, which will become the final component of the volume pool's resource name.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+parent}/volumePools",
+                  "request": {
+                    "$ref": "VolumePool"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a volume pool.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/volumePools/{volumePoolsId}",
+                  "httpMethod": "DELETE",
+                  "id": "file.projects.locations.volumePools.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The volume pool resource name, in the format `projects/{project}/locations/{location}/volumePools/{volume_pool}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/volumePools/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets the details of a specific volume pool.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/volumePools/{volumePoolsId}",
+                  "httpMethod": "GET",
+                  "id": "file.projects.locations.volumePools.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The volume pool resource name, in the format `projects/{project}/locations/{location}/volumePools/{volume_pool}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/volumePools/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "response": {
+                    "$ref": "VolumePool"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists all volume pools in a project for either a specified location or for all locations.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/volumePools",
+                  "httpMethod": "GET",
+                  "id": "file.projects.locations.volumePools.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. List filter.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Optional. Sort results. Supported values are \"name\", \"name desc\" or \"\" (unsorted).",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. The maximum number of items to return.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. The next_page_token value to use if there are additional results to retrieve for this list request.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The project and location for which to retrieve volume pool information, in the format `projects/{project}/locations/{location}`. To retrieve volume pool information for all locations, use \"-\" as the value of `{location}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+parent}/volumePools",
+                  "response": {
+                    "$ref": "ListVolumePoolsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates the settings of a specific volume pool.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/volumePools/{volumePoolsId}",
+                  "httpMethod": "PATCH",
+                  "id": "file.projects.locations.volumePools.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Identifier. The resource name of the volume pool, in the format `projects/{project}/locations/{location}/volumePools/{volume_pool}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/volumePools/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. Mask of fields to update. At least one path must be supplied in this field.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "request": {
+                    "$ref": "VolumePool"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              },
+              "resources": {
+                "volumes": {
+                  "methods": {
+                    "create": {
+                      "description": "Creates a volume.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/volumePools/{volumePoolsId}/volumes",
+                      "httpMethod": "POST",
+                      "id": "file.projects.locations.volumePools.volumes.create",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. The parent volume pool path, in the format `projects/{project}/locations/{location}/volumePools/{volume_pool}`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/volumePools/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "volumeId": {
+                          "description": "Required. The ID to use for the volume. The ID must be unique within the specified volume pool.",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+parent}/volumes",
+                      "request": {
+                        "$ref": "Volume"
+                      },
+                      "response": {
+                        "$ref": "Volume"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "delete": {
+                      "description": "Deletes a volume.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/volumePools/{volumePoolsId}/volumes/{volumesId}",
+                      "httpMethod": "DELETE",
+                      "id": "file.projects.locations.volumePools.volumes.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The volume resource name, in the format `projects/{project}/locations/{location}/volumePools/{volume_pool}/volumes/{volume}`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/volumePools/[^/]+/volumes/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+name}",
+                      "response": {
+                        "$ref": "Empty"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "get": {
+                      "description": "Gets the details of a specific volume.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/volumePools/{volumePoolsId}/volumes/{volumesId}",
+                      "httpMethod": "GET",
+                      "id": "file.projects.locations.volumePools.volumes.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The volume resource name, in the format `projects/{project}/locations/{location}/volumePools/{volume_pool}/volumes/{volume}`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/volumePools/[^/]+/volumes/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+name}",
+                      "response": {
+                        "$ref": "Volume"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists all volumes for a specified volume pool.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/volumePools/{volumePoolsId}/volumes",
+                      "httpMethod": "GET",
+                      "id": "file.projects.locations.volumePools.volumes.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "Optional. List filter.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "orderBy": {
+                          "description": "Optional. Sort results. Supported values are \"name\", \"name desc\" or \"\" (unsorted).",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "Optional. The maximum number of items to return.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Optional. The next_page_token value to use if there are additional results to retrieve for this list request.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The volume pool for which to retrieve volume information, in the format `projects/{project}/locations/{location}/volumePools/{volume_pool}`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/volumePools/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+parent}/volumes",
+                      "response": {
+                        "$ref": "ListVolumesResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                }
+              }
             }
           }
         }
       }
     }
   },
-  "revision": "20260710",
+  "revision": "20260819",
   "rootUrl": "https://file.googleapis.com/",
   "schemas": {
     "AcquireShareRequest": {
@@ -2266,6 +2568,94 @@
       },
       "type": "object"
     },
+    "InstanceTemplate": {
+      "description": "InstanceTemplate representation of a Cloud Filestore volume pool instance template.",
+      "id": "InstanceTemplate",
+      "properties": {
+        "backendType": {
+          "description": "Optional. Backend type.",
+          "enum": [
+            "BACKEND_TYPE_UNSPECIFIED",
+            "COMPUTE_BASED_BACKEND",
+            "FILESTORE_BACKEND"
+          ],
+          "enumDescriptions": [
+            "Backend type not set.",
+            "Instance is backed by Compute.",
+            "Instance is backed by Filestore."
+          ],
+          "type": "string"
+        },
+        "capacityGb": {
+          "description": "Optional. Capacity in GB.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Instance labels.",
+          "type": "object"
+        },
+        "networks": {
+          "description": "Optional. Network configurations.",
+          "items": {
+            "$ref": "NetworkConfig"
+          },
+          "type": "array"
+        },
+        "performanceConfig": {
+          "$ref": "PerformanceConfig",
+          "description": "Optional. Performance configuration."
+        },
+        "protocol": {
+          "description": "Optional. File protocol.",
+          "enum": [
+            "FILE_PROTOCOL_UNSPECIFIED",
+            "NFS_V3",
+            "NFS_V4_1"
+          ],
+          "enumDescriptions": [
+            "FILE_PROTOCOL_UNSPECIFIED serves a \"not set\" default value when a FileProtocol is a separate field in a message.",
+            "NFS 3.0.",
+            "NFS 4.1."
+          ],
+          "type": "string"
+        },
+        "requestOverrides": {
+          "description": "Optional. Request overrides in JSON format.",
+          "type": "string"
+        },
+        "tier": {
+          "description": "Optional. Tier of the instance.",
+          "enum": [
+            "TIER_UNSPECIFIED",
+            "STANDARD",
+            "PREMIUM",
+            "BASIC_HDD",
+            "BASIC_SSD",
+            "HIGH_SCALE_SSD",
+            "ENTERPRISE",
+            "ZONAL",
+            "REGIONAL"
+          ],
+          "enumDescriptions": [
+            "Not set.",
+            "STANDARD tier. BASIC_HDD is the preferred term for this tier.",
+            "PREMIUM tier. BASIC_SSD is the preferred term for this tier.",
+            "BASIC instances offer a maximum capacity of 63.9 TB. BASIC_HDD is an alias for STANDARD Tier, offering economical performance backed by HDD.",
+            "BASIC instances offer a maximum capacity of 63.9 TB. BASIC_SSD is an alias for PREMIUM Tier, and offers improved performance backed by SSD.",
+            "HIGH_SCALE instances offer expanded capacity and performance scaling capabilities.",
+            "ENTERPRISE instances offer the features and availability needed for mission-critical workloads.",
+            "ZONAL instances offer expanded capacity and performance scaling capabilities.",
+            "REGIONAL instances offer the features and availability needed for mission-critical workloads."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "LdapConfig": {
       "description": "LdapConfig contains all the parameters for connecting to LDAP servers.",
       "id": "LdapConfig",
@@ -2435,6 +2825,56 @@
       },
       "type": "object"
     },
+    "ListVolumePoolsResponse": {
+      "description": "ListVolumePoolsResponse is the result of ListVolumePoolsRequest.",
+      "id": "ListVolumePoolsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "Optional. The token you can use to retrieve the next page of results. Not returned if there are no more results in the list.",
+          "type": "string"
+        },
+        "unreachable": {
+          "description": "Unordered list. Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "volumePools": {
+          "description": "Unordered list. A list of volume pools in the project for the specified location.",
+          "items": {
+            "$ref": "VolumePool"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListVolumesResponse": {
+      "description": "ListVolumesResponse is the result of ListVolumesRequest.",
+      "id": "ListVolumesResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "Optional. The token you can use to retrieve the next page of results. Not returned if there are no more results in the list.",
+          "type": "string"
+        },
+        "unreachable": {
+          "description": "Unordered list. Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "volumes": {
+          "description": "Unordered list. A list of volumes in the project for the specified volume pool.",
+          "items": {
+            "$ref": "Volume"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "Location": {
       "description": "A resource that represents a Google Cloud location.",
       "id": "Location",
@@ -2544,6 +2984,23 @@
         },
         "domain": {
           "description": "Required. The domain resource name, in the format `projects/{project_id}/locations/global/domains/{domain}`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MountPoint": {
+      "description": "Mount details for a volume.",
+      "id": "MountPoint",
+      "properties": {
+        "ipAddress": {
+          "description": "Output only. The IP address of the physical Filestore instance hosting the volume.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "mountName": {
+          "description": "Output only. The mount name of the volume. Must be 63 characters or less and consist of uppercase or lowercase letters, numbers, and underscores.",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -2840,6 +3297,10 @@
       "properties": {
         "endpointProject": {
           "description": "Consumer service project in which the Private Service Connect endpoint would be set up. This is optional, and only relevant in case the network is a shared VPC. If this is not specified, the endpoint would be setup in the VPC host project.",
+          "type": "string"
+        },
+        "requestedIpAddress": {
+          "description": "Optional. Immutable. Optional: The desired IP address for the instance. If not specified, an IP will be automatically allocated. The IP must be from the subnetwork range configured in the Service Connection Policy. This effective ip address is set in the ip_addresses field. use 3 instead of 2 to avoid conflict with the reserved_ip_range field.",
           "type": "string"
         }
       },
@@ -3267,6 +3728,162 @@
         "window": {
           "$ref": "MaintenanceWindow",
           "description": "Optional. Maintenance window that is applied to resources covered by this policy."
+        }
+      },
+      "type": "object"
+    },
+    "Volume": {
+      "description": "Volume representation of a Cloud Filestore volume.",
+      "id": "Volume",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The time when the volume was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. A description of the volume with 2048 characters or less. Requests with longer descriptions will be rejected.",
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Resource labels to represent user provided metadata.",
+          "type": "object"
+        },
+        "mountPoint": {
+          "$ref": "MountPoint",
+          "description": "Output only. The mount point of the volume.",
+          "readOnly": true
+        },
+        "name": {
+          "description": "Identifier. The resource name of the volume, in the format `projects/{project}/locations/{location}/volumePools/{volume_pool}/volumes/{volume}`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "VolumePool": {
+      "description": "VolumePool representation of a Cloud Filestore volume pool.",
+      "id": "VolumePool",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The time when the volume pool was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. A description of the volume pool with 2048 characters or less.",
+          "type": "string"
+        },
+        "instanceListPageSize": {
+          "description": "Optional. The page size to use when listing instances.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "instanceNamePrefix": {
+          "description": "Optional. Instance name prefix.",
+          "type": "string"
+        },
+        "instanceTemplate": {
+          "$ref": "InstanceTemplate",
+          "description": "Optional. Instance template details."
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Resource labels to represent user provided metadata.",
+          "type": "object"
+        },
+        "maxAcquireCandidates": {
+          "description": "Optional. The maximum number of candidates to fetch when acquiring a volume.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "maxInstances": {
+          "description": "Optional. Maximum number of instances to create.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "maxPendingInstanceCreations": {
+          "description": "Optional. The maximum number of pending instance creation requests.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "maxPendingVolumeCreationsPerInstance": {
+          "description": "Optional. The maximum number of pending volume creation requests per instance.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "maxPendingVolumeDeletionsPerInstance": {
+          "description": "Optional. The maximum number of pending volume deletion requests per instance.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "maxVolumesPerInstance": {
+          "description": "Optional. Maximum number of volumes per instance.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "minAvailableVolumes": {
+          "description": "Optional. Minimum number of available volumes to maintain.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "minInstances": {
+          "description": "Optional. Minimum number of instances to create.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "description": "Identifier. The resource name of the volume pool, in the format `projects/{project}/locations/{location}/volumePools/{volume_pool}`.",
+          "type": "string"
+        },
+        "negbaInstanceRatio": {
+          "description": "Optional. The ratio of Negba instances to maintain in the volume pool, between 0 and 1.",
+          "format": "float",
+          "type": "number"
+        },
+        "operationPollLimit": {
+          "description": "Optional. The maximum number of operations to poll in a single reconciliation run.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "state": {
+          "description": "Output only. The volume pool state.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "READY",
+            "DELETING",
+            "INVALID"
+          ],
+          "enumDescriptions": [
+            "State not set.",
+            "Volume pool is ready for use.",
+            "Volume pool is being deleted.",
+            "Volume pool is in an invalid state."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "uniqueId": {
+          "description": "Output only. Unique ID of the resource, as defined by CCFE.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "volumeBatchSize": {
+          "description": "Optional. The number of volumes to create in a single batch.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "volumeSizeMb": {
+          "description": "Optional. Volume size in MiB.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
