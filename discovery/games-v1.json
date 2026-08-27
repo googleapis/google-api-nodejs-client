@@ -615,6 +615,37 @@
         }
       }
     },
+    "gameStats": {
+      "methods": {
+        "batchRecordEvents": {
+          "description": "Records a batch of player game events for a specific player. This method allows sending multiple events in a single request.",
+          "flatPath": "games/v1/players/{playerId}/gameStats:batchRecordEvents",
+          "httpMethod": "POST",
+          "id": "games.gameStats.batchRecordEvents",
+          "parameterOrder": [
+            "playerId"
+          ],
+          "parameters": {
+            "playerId": {
+              "description": "Required. The player ID of the player that performed the events.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "games/v1/players/{playerId}/gameStats:batchRecordEvents",
+          "request": {
+            "$ref": "BatchRecordEventsRequest"
+          },
+          "response": {
+            "$ref": "BatchRecordEventsResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/games"
+          ]
+        }
+      }
+    },
     "leaderboards": {
       "methods": {
         "get": {
@@ -745,37 +776,6 @@
           "path": "games/v1/players/{playerId}/categories/{collection}",
           "response": {
             "$ref": "CategoryListResponse"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/games"
-          ]
-        }
-      }
-    },
-    "playerGameEvents": {
-      "methods": {
-        "batchRecordEvents": {
-          "description": "Records a batch of player game events for a specific player. This method allows sending multiple events in a single request.",
-          "flatPath": "games/v1/players/{playerId}/gameEvents:batchRecordEvents",
-          "httpMethod": "POST",
-          "id": "games.playerGameEvents.batchRecordEvents",
-          "parameterOrder": [
-            "playerId"
-          ],
-          "parameters": {
-            "playerId": {
-              "description": "Required. The player ID of the player that performed the events.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "games/v1/players/{playerId}/gameEvents:batchRecordEvents",
-          "request": {
-            "$ref": "BatchRecordEventsRequest"
-          },
-          "response": {
-            "$ref": "BatchRecordEventsResponse"
           },
           "scopes": [
             "https://www.googleapis.com/auth/games"
@@ -1501,7 +1501,7 @@
       }
     }
   },
-  "revision": "20260730",
+  "revision": "20260813",
   "rootUrl": "https://games.googleapis.com/",
   "schemas": {
     "AchievementDefinition": {
