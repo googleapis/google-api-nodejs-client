@@ -2,6 +2,12 @@
   "auth": {
     "oauth2": {
       "scopes": {
+        "https://www.googleapis.com/auth/cloud-identity.allowlisteddomains": {
+          "description": "See and edit allowlisted domains in your Cloud Identity Organization"
+        },
+        "https://www.googleapis.com/auth/cloud-identity.allowlisteddomains.readonly": {
+          "description": "See allowlisted domains in your Cloud Identity Organization"
+        },
         "https://www.googleapis.com/auth/cloud-identity.devices": {
           "description": "Private Service: https://www.googleapis.com/auth/cloud-identity.devices"
         },
@@ -132,6 +138,112 @@
   },
   "protocol": "rest",
   "resources": {
+    "allowlistedDomains": {
+      "methods": {
+        "create": {
+          "description": "Adds a domain to the allowlist.",
+          "flatPath": "v1/allowlistedDomains",
+          "httpMethod": "POST",
+          "id": "cloudidentity.allowlistedDomains.create",
+          "parameterOrder": [],
+          "parameters": {},
+          "path": "v1/allowlistedDomains",
+          "request": {
+            "$ref": "AllowlistedDomain"
+          },
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-identity.allowlisteddomains"
+          ]
+        },
+        "delete": {
+          "description": "Removes a domain from the allowlist.",
+          "flatPath": "v1/allowlistedDomains/{allowlistedDomainsId}",
+          "httpMethod": "DELETE",
+          "id": "cloudidentity.allowlistedDomains.delete",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. Specifies the [resource name](https://google.aip.dev/122) of the domain to delete.",
+              "location": "path",
+              "pattern": "^allowlistedDomains/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1/{+name}",
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-identity.allowlisteddomains"
+          ]
+        },
+        "get": {
+          "description": "Retrieves a specific domain from the allowlist.",
+          "flatPath": "v1/allowlistedDomains/{allowlistedDomainsId}",
+          "httpMethod": "GET",
+          "id": "cloudidentity.allowlistedDomains.get",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. Specifies the [resource name](https://google.aip.dev/122) of the domain to retrieve.",
+              "location": "path",
+              "pattern": "^allowlistedDomains/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1/{+name}",
+          "response": {
+            "$ref": "AllowlistedDomain"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-identity.allowlisteddomains",
+            "https://www.googleapis.com/auth/cloud-identity.allowlisteddomains.readonly"
+          ]
+        },
+        "list": {
+          "description": "Lists the domains in the allowlist.",
+          "flatPath": "v1/allowlistedDomains",
+          "httpMethod": "GET",
+          "id": "cloudidentity.allowlistedDomains.list",
+          "parameterOrder": [],
+          "parameters": {
+            "filter": {
+              "description": "Optional. Provides an optional filter for list results. Currently, only exact matches on the domain are supported, such as \"domain = 'google.com'\", with no composite conditions.",
+              "location": "query",
+              "type": "string"
+            },
+            "pageSize": {
+              "description": "Optional. Specifies the requested page size. If unspecified, the service returns at most 5000 domains. The maximum value is 5000; values above 5000 coerce to 5000. The limits can change over time.",
+              "format": "int32",
+              "location": "query",
+              "type": "integer"
+            },
+            "pageToken": {
+              "description": "Optional. Identifies a token from a previous page of results, if any.",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "v1/allowlistedDomains",
+          "response": {
+            "$ref": "ListAllowlistedDomainsResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-identity.allowlisteddomains",
+            "https://www.googleapis.com/auth/cloud-identity.allowlisteddomains.readonly"
+          ]
+        }
+      }
+    },
     "customers": {
       "resources": {
         "userinvitations": {
@@ -2311,7 +2423,7 @@
       }
     }
   },
-  "revision": "20260803",
+  "revision": "20260817",
   "rootUrl": "https://cloudidentity.googleapis.com/",
   "schemas": {
     "AddIdpCredentialOperationMetadata": {
@@ -2331,6 +2443,22 @@
       "properties": {
         "pemData": {
           "description": "PEM encoded x509 certificate containing the public key for verifying IdP signatures.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AllowlistedDomain": {
+      "description": "This resource object defines a domain that has been designated as allowlisted.",
+      "id": "AllowlistedDomain",
+      "properties": {
+        "domain": {
+          "description": "Required. Immutable. Name of the domain that is in the allowlist. e.g. \"google.com\"",
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. Identifier. Resource name of the domain in the allowlist e.g. \"allowlistedDomains/0184mhaj1smlusv\"",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -3860,6 +3988,24 @@
         "isInvitableUser": {
           "description": "Returns true if the email address is invitable.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "ListAllowlistedDomainsResponse": {
+      "description": "Response message for AllowlistedDomainsService.ListAllowlistedDomains.",
+      "id": "ListAllowlistedDomainsResponse",
+      "properties": {
+        "allowlistedDomains": {
+          "description": "Contains the list of domains in the allowlist. There is no defined ordering of domains within a result.",
+          "items": {
+            "$ref": "AllowlistedDomain"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Contains the next page token if the result is not exhaustive. If there are no more results, this token is empty.",
+          "type": "string"
         }
       },
       "type": "object"
