@@ -840,6 +840,10 @@ export namespace paymentsresellersubscription_v1 {
    */
   export interface Schema$SubscriptionMigrationDetails {
     /**
+     * Output only. The creation time of the migrated subscription in the legacy system.
+     */
+    legacyCreationTime?: string | null;
+    /**
      * Output only. The migrated subscription id in the legacy system.
      */
     migratedSubscriptionId?: string | null;
