@@ -176,11 +176,11 @@ export namespace saasservicemgmt_v1beta1 {
    */
   export interface Schema$AppParams {
     /**
-     * Grouping used to construct the name of the AppHub Application. Multiple UnitKinds can specify the same group to use the same Application across their respective units. Corresponds to the app_boundary_id in the ADC composite ApplicationTemplate. Defaults to UnitKind.name
+     * Optional. Grouping used to construct the name of the AppHub Application. Multiple UnitKinds can specify the same group to use the same Application across their respective units. Corresponds to the app_boundary_id in the ADC composite ApplicationTemplate. Defaults to UnitKind.name
      */
     group?: string | null;
     /**
-     * Corresponds to the scope in the ADC composite ApplicationTemplate. Defaults to TYPE_REGIONAL.
+     * Optional. Corresponds to the scope in the ADC composite ApplicationTemplate. Defaults to TYPE_REGIONAL.
      */
     scope?: Schema$Scope;
   }
@@ -214,7 +214,7 @@ export namespace saasservicemgmt_v1beta1 {
      */
     compositeRef?: Schema$CompositeRef;
     /**
-     * Revision of the component. If the component does not have a revision, this field will be explicitly set to the revision of the composite ApplicationTemplate.
+     * Optional. Revision of the component. If the component does not have a revision, this field will be explicitly set to the revision of the composite ApplicationTemplate.
      */
     revision?: string | null;
   }
@@ -227,7 +227,7 @@ export namespace saasservicemgmt_v1beta1 {
      */
     applicationTemplate?: string | null;
     /**
-     * Revision of the ApplicationTemplate to use. Changes to revision will trigger manual resynchronization. If empty, ApplicationTemplate will be ignored.
+     * Optional. Revision of the ApplicationTemplate to use. Changes to revision will trigger manual resynchronization. If empty, ApplicationTemplate will be ignored.
      */
     revision?: string | null;
     /**
@@ -443,6 +443,15 @@ export namespace saasservicemgmt_v1beta1 {
     valueType?: string | null;
   }
   /**
+   * Wrapper for a list of flags.
+   */
+  export interface Schema$FlagNameList {
+    /**
+     * Required. Flags to be rolled out.
+     */
+    flags?: string[] | null;
+  }
+  /**
    * A collection of FlagRevisions.
    */
   export interface Schema$FlagRelease {
@@ -470,6 +479,10 @@ export namespace saasservicemgmt_v1beta1 {
      * Output only. An opaque value that uniquely identifies a version or generation of a resource. It can be used to confirm that the client and server agree on the ordering of a resource being written.
      */
     etag?: string | null;
+    /**
+     * Optional. Immutable. Specifies the release consisting of a list of flags.
+     */
+    flagNamesRelease?: Schema$FlagNameList;
     /**
      * Optional. Immutable. DEPRECATED: Use flag_revisions_release instead. FlagRevisions to be rolled out. Only one of flag_revisions, all_flags, or flag_sets can be set. It used to be the ultimate source to truth and has been moved to effective_flag_revisions.
      */
@@ -1658,7 +1671,7 @@ export namespace saasservicemgmt_v1beta1 {
      */
     applicationTemplateComponent?: Schema$ComponentRef;
     /**
-     * AppParams contains the parameters for creating an AppHub Application.
+     * Optional. AppParams contains the parameters for creating an AppHub Application.
      */
     appParams?: Schema$AppParams;
     /**
@@ -3241,6 +3254,7 @@ export namespace saasservicemgmt_v1beta1 {
      *       //   "createTime": "my_createTime",
      *       //   "effectiveFlagRevisions": [],
      *       //   "etag": "my_etag",
+     *       //   "flagNamesRelease": {},
      *       //   "flagRevisions": [],
      *       //   "flagRevisionsRelease": {},
      *       //   "flagSets": [],
@@ -3264,6 +3278,7 @@ export namespace saasservicemgmt_v1beta1 {
      *   //   "createTime": "my_createTime",
      *   //   "effectiveFlagRevisions": [],
      *   //   "etag": "my_etag",
+     *   //   "flagNamesRelease": {},
      *   //   "flagRevisions": [],
      *   //   "flagRevisionsRelease": {},
      *   //   "flagSets": [],
@@ -3562,6 +3577,7 @@ export namespace saasservicemgmt_v1beta1 {
      *   //   "createTime": "my_createTime",
      *   //   "effectiveFlagRevisions": [],
      *   //   "etag": "my_etag",
+     *   //   "flagNamesRelease": {},
      *   //   "flagRevisions": [],
      *   //   "flagRevisionsRelease": {},
      *   //   "flagSets": [],
@@ -3874,6 +3890,7 @@ export namespace saasservicemgmt_v1beta1 {
      *       //   "createTime": "my_createTime",
      *       //   "effectiveFlagRevisions": [],
      *       //   "etag": "my_etag",
+     *       //   "flagNamesRelease": {},
      *       //   "flagRevisions": [],
      *       //   "flagRevisionsRelease": {},
      *       //   "flagSets": [],
@@ -3897,6 +3914,7 @@ export namespace saasservicemgmt_v1beta1 {
      *   //   "createTime": "my_createTime",
      *   //   "effectiveFlagRevisions": [],
      *   //   "etag": "my_etag",
+     *   //   "flagNamesRelease": {},
      *   //   "flagRevisions": [],
      *   //   "flagRevisionsRelease": {},
      *   //   "flagSets": [],
