@@ -114,6 +114,7 @@ export namespace androidpublisher_v3 {
     context: APIRequestContext;
     applications: Resource$Applications;
     apprecovery: Resource$Apprecovery;
+    appsigning: Resource$Appsigning;
     appstoreappsreview: Resource$Appstoreappsreview;
     appstorecatalog: Resource$Appstorecatalog;
     edits: Resource$Edits;
@@ -137,6 +138,7 @@ export namespace androidpublisher_v3 {
 
       this.applications = new Resource$Applications(this.context);
       this.apprecovery = new Resource$Apprecovery(this.context);
+      this.appsigning = new Resource$Appsigning(this.context);
       this.appstoreappsreview = new Resource$Appstoreappsreview(this.context);
       this.appstorecatalog = new Resource$Appstorecatalog(this.context);
       this.edits = new Resource$Edits(this.context);
@@ -1311,6 +1313,45 @@ export namespace androidpublisher_v3 {
     targetSdkVersion?: string | null;
   }
   /**
+   * Hash digests of a certificate.
+   */
+  export interface Schema$CertificateHashes {
+    /**
+     * Hex-encoded MD5 hash of the certificate. example: `43:51:43:A1:B5:FC:8B:B7:0A:3A:A9:B1:0F:66:73:A8`
+     */
+    certificateHashMd5?: string | null;
+    /**
+     * Hex-encoded SHA1 hash of the certificate. example: `86:61:97:1A:D5:EF:E5:74:1E:A7:5B:84:7C:68:37:65:CD:94:16:DE`
+     */
+    certificateHashSha1?: string | null;
+    /**
+     * Hex-encoded SHA256 hash of the certificate. example: `94:49:C7:F3:A9:3C:F0:C5:5A:67:5D:DF:1C:83:73:2D:87:D5:62:55:E7:0B:15:0D:9E:6F:3C:F8:63:BB:7F:C1`
+     */
+    certificateHashSha256?: string | null;
+  }
+  /**
+   * Reference to a private key hosted in developer-managed Google Cloud KMS.
+   */
+  export interface Schema$CloudKmsKey {
+    /**
+     * Required. Resource identifier of the private key hosted in Google Cloud KMS. The Google Play service account must be granted Decrypt and Sign permissions on this resource. Format: projects//locations//keyRings//cryptoKeys//cryptoKeyVersions/
+     */
+    cryptoKeyVersionResource?: string | null;
+  }
+  /**
+   * Cloud KMS key and the certificate associated with the key.
+   */
+  export interface Schema$CloudKmsKeyAndCert {
+    /**
+     * Required. Cloud KMS key.
+     */
+    cloudKmsKey?: Schema$CloudKmsKey;
+    /**
+     * Required. Certificate associated with the key. The bytes must contain the certificate in PEM format.
+     */
+    pemCertificate?: string | null;
+  }
+  /**
    * Coarse Geographic location details for where the consumption happened.
    */
   export interface Schema$CoarseLocation {
@@ -2041,6 +2082,54 @@ export namespace androidpublisher_v3 {
      * Device tiers belonging to the set.
      */
     deviceTiers?: Schema$DeviceTier[];
+  }
+  /**
+   * Request to enroll an app into Play App Signing using a self-hosted Cloud KMS key.
+   */
+  export interface Schema$EnrollAppRequest {
+    /**
+     * Enrolls an existing app into Play signing using an external Cloud KMS key.
+     */
+    enrollExistingApp?: Schema$EnrollExistingApp;
+    /**
+     * Changes the signing key of a new app to an external Cloud KMS key. The app must not have published to Open testing or Production tracks.
+     */
+    enrollNewApp?: Schema$EnrollNewApp;
+    /**
+     * The certificate associated with the upload key, in PEM format.
+     */
+    pemUploadCertificate?: string | null;
+  }
+  /**
+   * Response to enroll an app into Play signing.
+   */
+  export interface Schema$EnrollAppResponse {
+    /**
+     * The signing certificate hashes for the app. Always set.
+     */
+    signingCertificate?: Schema$CertificateHashes;
+    /**
+     * The upload certificate hashes for the app. Set iff pem_upload_certificate was set in the request.
+     */
+    uploadCertificate?: Schema$CertificateHashes;
+  }
+  /**
+   * Enroll an existing app into Play signing.
+   */
+  export interface Schema$EnrollExistingApp {
+    /**
+     * Required. Self-hosted key. Once enrolled, this key will be used to sign your app.
+     */
+    cloudKmsKey?: Schema$CloudKmsKey;
+  }
+  /**
+   * Enroll a new app into Play signing.
+   */
+  export interface Schema$EnrollNewApp {
+    /**
+     * Required. Self-hosted key. Once enrolled, this key will be used to sign your app.
+     */
+    cloudKmsKeyAndCert?: Schema$CloudKmsKeyAndCert;
   }
   /**
    * An expansion file. The resource for ExpansionFilesService.
@@ -4033,7 +4122,7 @@ export namespace androidpublisher_v3 {
     values?: string[] | null;
   }
   /**
-   * An individual response to a policy question about an app.
+   * An individual response (answer) to a policy question about an app.
    */
   export interface Schema$PolicyResponse {
     /**
@@ -4820,6 +4909,41 @@ export namespace androidpublisher_v3 {
    * Response for the purchases.subscriptionsv2.revoke API.
    */
   export interface Schema$RevokeSubscriptionPurchaseResponse {}
+  /**
+   * Request to rotate an app's signing key.
+   */
+  export interface Schema$RotateAppSigningKeyRequest {
+    /**
+     * Required. Reason for rotating the app key.
+     */
+    keyRotationReason?: string | null;
+    /**
+     * Required. Self-hosted Cloud KMS key.
+     */
+    rotatedCloudKmsKey?: Schema$RotatedCloudKmsKey;
+  }
+  /**
+   * Response to rotate an app's signing key.
+   */
+  export interface Schema$RotateAppSigningKeyResponse {
+    /**
+     * The rotated key certificate hashes for the app. Always set.
+     */
+    rotatedKeyCertificate?: Schema$CertificateHashes;
+  }
+  /**
+   * Message representing rotated Cloud KMS key. Consists of the Cloud KMS key and its associated proof of rotation.
+   */
+  export interface Schema$RotatedCloudKmsKey {
+    /**
+     * Required. Cloud KMS key and the certificate associated with the key.
+     */
+    cloudKmsKeyAndCert?: Schema$CloudKmsKeyAndCert;
+    /**
+     * Required. Proof-of-rotation. See [creating signing certificate lineages](https://developer.android.com/studio/command-line/apksigner#rotate_signing_keys_2).
+     */
+    signingCertificateLineage?: string | null;
+  }
   /**
    * Request to update Safety Labels of an app.
    */
@@ -7834,6 +7958,336 @@ export namespace androidpublisher_v3 {
      * Required. Version code targeted by the list of recovery actions.
      */
     versionCode?: string;
+  }
+
+  export class Resource$Appsigning {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Enrolls an app in Play App Signing using a self-hosted Google Cloud KMS key. Warning: Do not use this method for standard Play App Signing enrollment. * Standard enrollment with Google-generated or Google-managed keys cannot be done via API. * This advanced API is strictly for enterprise organizations with mandatory compliance, regulatory, or policy requirements to retain key custody in an external Google Cloud KMS instance. * Prerequisites: Requires an active, properly configured Google Cloud KMS key with appropriate IAM permissions granted to Google Play before calling this method. See Help Center: https://support.google.com/googleplay/android-developer/answer/9842756
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.appsigning.enrollApp({
+     *     // Required. Either package name or app ID of the app enrolling in Play Signing.
+     *     name: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "enrollExistingApp": {},
+     *       //   "enrollNewApp": {},
+     *       //   "pemUploadCertificate": "my_pemUploadCertificate"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "signingCertificate": {},
+     *   //   "uploadCertificate": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    enrollApp(
+      params: Params$Resource$Appsigning$Enrollapp,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    enrollApp(
+      params?: Params$Resource$Appsigning$Enrollapp,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$EnrollAppResponse>>;
+    enrollApp(
+      params: Params$Resource$Appsigning$Enrollapp,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    enrollApp(
+      params: Params$Resource$Appsigning$Enrollapp,
+      options: MethodOptions | BodyResponseCallback<Schema$EnrollAppResponse>,
+      callback: BodyResponseCallback<Schema$EnrollAppResponse>
+    ): void;
+    enrollApp(
+      params: Params$Resource$Appsigning$Enrollapp,
+      callback: BodyResponseCallback<Schema$EnrollAppResponse>
+    ): void;
+    enrollApp(callback: BodyResponseCallback<Schema$EnrollAppResponse>): void;
+    enrollApp(
+      paramsOrCallback?:
+        | Params$Resource$Appsigning$Enrollapp
+        | BodyResponseCallback<Schema$EnrollAppResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$EnrollAppResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$EnrollAppResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$EnrollAppResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Appsigning$Enrollapp;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Appsigning$Enrollapp;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{name}/appSigning:enrollApp'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$EnrollAppResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$EnrollAppResponse>(parameters);
+      }
+    }
+
+    /**
+     * Rotates an app's signing key to a new self-hosted Google Cloud KMS key. Warning: This method only applies to apps enrolled with self-hosted Cloud KMS keys. For apps using standard Google-managed Play App Signing, key rotation requests must be initiated through the Google Play Console UI. See Help Center: https://support.google.com/googleplay/android-developer/answer/9842756
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.appsigning.rotateAppSigningKey({
+     *     // Required. Either package name or app ID of the app rotating the signing key.
+     *     name: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "keyRotationReason": "my_keyRotationReason",
+     *       //   "rotatedCloudKmsKey": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "rotatedKeyCertificate": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    rotateAppSigningKey(
+      params: Params$Resource$Appsigning$Rotateappsigningkey,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    rotateAppSigningKey(
+      params?: Params$Resource$Appsigning$Rotateappsigningkey,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$RotateAppSigningKeyResponse>>;
+    rotateAppSigningKey(
+      params: Params$Resource$Appsigning$Rotateappsigningkey,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    rotateAppSigningKey(
+      params: Params$Resource$Appsigning$Rotateappsigningkey,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RotateAppSigningKeyResponse>,
+      callback: BodyResponseCallback<Schema$RotateAppSigningKeyResponse>
+    ): void;
+    rotateAppSigningKey(
+      params: Params$Resource$Appsigning$Rotateappsigningkey,
+      callback: BodyResponseCallback<Schema$RotateAppSigningKeyResponse>
+    ): void;
+    rotateAppSigningKey(
+      callback: BodyResponseCallback<Schema$RotateAppSigningKeyResponse>
+    ): void;
+    rotateAppSigningKey(
+      paramsOrCallback?:
+        | Params$Resource$Appsigning$Rotateappsigningkey
+        | BodyResponseCallback<Schema$RotateAppSigningKeyResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RotateAppSigningKeyResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RotateAppSigningKeyResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$RotateAppSigningKeyResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Appsigning$Rotateappsigningkey;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Appsigning$Rotateappsigningkey;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{name}/appSigning:rotateAppSigningKey'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$RotateAppSigningKeyResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$RotateAppSigningKeyResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Appsigning$Enrollapp extends StandardParameters {
+    /**
+     * Required. Either package name or app ID of the app enrolling in Play Signing.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$EnrollAppRequest;
+  }
+  export interface Params$Resource$Appsigning$Rotateappsigningkey extends StandardParameters {
+    /**
+     * Required. Either package name or app ID of the app rotating the signing key.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RotateAppSigningKeyRequest;
   }
 
   export class Resource$Appstoreappsreview {
