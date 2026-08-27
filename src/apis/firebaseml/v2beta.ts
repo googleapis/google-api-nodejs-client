@@ -1529,6 +1529,10 @@ export namespace firebaseml_v2beta {
      */
     inlineData?: Schema$GoogleCloudAiplatformV1beta1Blob;
     /**
+     * Optional. How the model processes this part's media for understanding. Only meaningful for video parts (`inline_data` or `file_data` with video mime). Non-video parts ignore this field.
+     */
+    mediaProcessing?: string | null;
+    /**
      * per part media resolution. Media resolution for the input media.
      */
     mediaResolution?: Schema$GoogleCloudAiplatformV1beta1PartMediaResolution;
