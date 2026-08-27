@@ -2673,7 +2673,7 @@
       }
     }
   },
-  "revision": "20260807",
+  "revision": "20260814",
   "rootUrl": "https://run.googleapis.com/",
   "schemas": {
     "GoogleCloudRunV2BinaryAuthorization": {
@@ -2860,7 +2860,8 @@
             "CANCELLED",
             "CANCELLING",
             "DELETED",
-            "DELAYED_START_PENDING"
+            "DELAYED_START_PENDING",
+            "DELAYED_EXECUTION_EXCEEDING_DURATION_LIMIT"
           ],
           "enumDescriptions": [
             "Default value.",
@@ -2869,7 +2870,8 @@
             "The execution was cancelled by users.",
             "The execution is in the process of being cancelled.",
             "The execution was deleted.",
-            "A delayed execution is waiting for a start time."
+            "A delayed execution is waiting for a start time.",
+            "A delayed execution exceeded the maximum runtime duration."
           ],
           "readOnly": true,
           "type": "string"
@@ -3498,6 +3500,10 @@
         "clientVersion": {
           "description": "Optional. Arbitrary version identifier for the API client.",
           "type": "string"
+        },
+        "delayExecution": {
+          "description": "Optional. If true, the system will start the execution within the next 12 hours depending on available capacity.",
+          "type": "boolean"
         },
         "labels": {
           "additionalProperties": {
@@ -4410,6 +4416,10 @@
           },
           "type": "array"
         },
+        "delayExecution": {
+          "description": "Optional. If true, the system will start the execution within the next 12 hours depending on available capacity.",
+          "type": "boolean"
+        },
         "taskCount": {
           "description": "Optional. The desired number of tasks the execution should run. Will replace existing task_count value.",
           "format": "int32",
@@ -5008,6 +5018,10 @@
         "description": {
           "description": "User-provided description of the Service. This field currently has a 512-character limit.",
           "type": "string"
+        },
+        "durableExecution": {
+          "description": "Optional. Immutable. Indicates whether the Service has durable execution enabled. This field is immutable once the Service is created.",
+          "type": "boolean"
         },
         "etag": {
           "description": "Optional. A system-generated fingerprint for this version of the resource. May be used to detect modification conflict during updates.",
@@ -7131,6 +7145,10 @@
         "destPath": {
           "description": "Required. Where should the files be placed on the worker.",
           "type": "string"
+        },
+        "fetchTags": {
+          "description": "Optional. True if remote tags should be fetched too (default false). Note: when depth is 1 (default), git fetch only retrieves tags pointing to commits within the shallow boundary. Set depth to -1 to fetch all historical tags.",
+          "type": "boolean"
         },
         "recurseSubmodules": {
           "description": "Optional. True if submodules should be fetched too (default false).",
