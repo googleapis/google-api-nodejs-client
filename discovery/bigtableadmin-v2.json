@@ -3238,7 +3238,7 @@
       }
     }
   },
-  "revision": "20260725",
+  "revision": "20260817",
   "rootUrl": "https://bigtableadmin.googleapis.com/",
   "schemas": {
     "AppProfile": {
@@ -4901,7 +4901,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Labels are a flexible and lightweight mechanism for organizing cloud resources into groups that reflect a customer's organizational needs and deployment strategies. They can be used to filter resources and aggregate metrics. * Label keys must be between 1 and 63 characters long and must conform to the regular expression: `\\p{Ll}\\p{Lo}{0,62}`. * Label values must be between 0 and 63 characters long and must conform to the regular expression: `[\\p{Ll}\\p{Lo}\\p{N}_-]{0,63}`. * No more than 64 labels can be associated with a given resource. * Keys and values must both be under 128 bytes.",
+          "description": "Labels are a flexible and lightweight mechanism for organizing cloud resources into groups that reflect a customer's organizational needs and deployment strategies. They can be used to filter resources and aggregate metrics. * Label keys must be between 1 and 63 characters long and must conform to the regular expression: `\\p{Ll}\\p{Lo}{0,62}`. * Label values must be between 0 and 63 characters long and must conform to the regular expression: `[\\p{Ll}\\p{Lo}\\p{N}_-]{0,63}`. * No more than 64 labels can be associated with a given resource. * Keys and values must both be under 128 bytes. Labels and Tags (below) are both used to bind metadata to resources, with different use-cases. See https://cloud.google.com/resource-manager/docs/tags/tags-overview for an in-depth overview on the difference between tags and labels.",
           "type": "object"
         },
         "name": {
@@ -5841,11 +5841,13 @@
           "description": "Immutable. The granularity at which timestamps are stored in this table. Timestamps not matching the granularity will be rejected. If unspecified at creation time, the value will be set to `MILLIS`. Views: `SCHEMA_VIEW`, `FULL`.",
           "enum": [
             "TIMESTAMP_GRANULARITY_UNSPECIFIED",
-            "MILLIS"
+            "MILLIS",
+            "MICROS"
           ],
           "enumDescriptions": [
             "The user did not specify a granularity. Should not be returned. When specified during table creation, MILLIS will be used.",
-            "The table keeps data versioned at a granularity of 1ms."
+            "The table keeps data versioned at a granularity of 1ms.",
+            "The table keeps data versioned at a granularity of 1us."
           ],
           "type": "string"
         },
