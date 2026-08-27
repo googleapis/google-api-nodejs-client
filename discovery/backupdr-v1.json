@@ -2725,7 +2725,7 @@
       }
     }
   },
-  "revision": "20260805",
+  "revision": "20260812",
   "rootUrl": "https://backupdr.googleapis.com/",
   "schemas": {
     "AbandonBackupRequest": {
@@ -5173,6 +5173,10 @@
           },
           "type": "array"
         },
+        "instanceBackupSource": {
+          "$ref": "RestoreDiskFromInstanceOptions",
+          "description": "Provides options for creating a disk from a source Compute Instance backup."
+        },
         "labels": {
           "additionalProperties": {
             "type": "string"
@@ -6835,6 +6839,21 @@
         "targetResource": {
           "$ref": "TargetResource",
           "description": "Details of the target resource created/modified as part of restore."
+        }
+      },
+      "type": "object"
+    },
+    "RestoreDiskFromInstanceOptions": {
+      "description": "Options for creating a disk from a source Compute Instance backup.",
+      "id": "RestoreDiskFromInstanceOptions",
+      "properties": {
+        "bootDisk": {
+          "description": "Specifies that the boot disk should be restored from the instance backup. This field should only be set to `true` if selected.",
+          "type": "boolean"
+        },
+        "sourceDeviceName": {
+          "description": "The device name of the disk to restore from the VM backup.",
+          "type": "string"
         }
       },
       "type": "object"
