@@ -1771,7 +1771,7 @@
       }
     }
   },
-  "revision": "20260805",
+  "revision": "20260819",
   "rootUrl": "https://containeranalysis.googleapis.com/",
   "schemas": {
     "AISkillAnalysisNote": {
@@ -3946,6 +3946,10 @@
         "destPath": {
           "description": "Required. Where should the files be placed on the worker.",
           "type": "string"
+        },
+        "fetchTags": {
+          "description": "Optional. True if remote tags should be fetched too (default false). Note: when depth is 1 (default), git fetch only retrieves tags pointing to commits within the shallow boundary. Set depth to -1 to fetch all historical tags.",
+          "type": "boolean"
         },
         "recurseSubmodules": {
           "description": "Optional. True if submodules should be fetched too (default false).",
@@ -6163,6 +6167,10 @@
             "Critical severity.",
             "High severity."
           ],
+          "type": "string"
+        },
+        "modelId": {
+          "description": "The base name of the model that performed the scan.",
           "type": "string"
         },
         "scanStatus": {
