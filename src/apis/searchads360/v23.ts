@@ -26127,6 +26127,10 @@ export namespace searchads360_v23 {
      */
     campaignDraftOperation?: Schema$GoogleAdsSearchads360V23Services__CampaignDraftOperation;
     /**
+     * A campaign goal config mutate operation.
+     */
+    campaignGoalConfigOperation?: Schema$GoogleAdsSearchads360V23Services__CampaignGoalConfigOperation;
+    /**
      * A campaign group mutate operation.
      */
     campaignGroupOperation?: Schema$GoogleAdsSearchads360V23Services__CampaignGroupOperation;
@@ -26383,6 +26387,10 @@ export namespace searchads360_v23 {
      * The result for the campaign draft mutate.
      */
     campaignDraftResult?: Schema$GoogleAdsSearchads360V23Services__MutateCampaignDraftResult;
+    /**
+     * The result for the campaign goal config mutate.
+     */
+    campaignGoalConfigResult?: Schema$GoogleAdsSearchads360V23Services__MutateCampaignGoalConfigResult;
     /**
      * The result for the campaign group mutate.
      */
