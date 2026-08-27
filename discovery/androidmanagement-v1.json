@@ -1265,7 +1265,7 @@
       }
     }
   },
-  "revision": "20260810",
+  "revision": "20260826",
   "rootUrl": "https://androidmanagement.googleapis.com/",
   "schemas": {
     "AdbShellCommandEvent": {
@@ -2087,11 +2087,13 @@
           "description": "Optional. Whether the app is allowed to act as a credential provider on Android 14 and above.",
           "enum": [
             "CREDENTIAL_PROVIDER_POLICY_UNSPECIFIED",
-            "CREDENTIAL_PROVIDER_ALLOWED"
+            "CREDENTIAL_PROVIDER_ALLOWED",
+            "CREDENTIAL_PROVIDER_DISALLOWED"
           ],
           "enumDescriptions": [
             "Unspecified. The behaviour is governed by credentialProviderPolicyDefault.",
-            "App is allowed to act as a credential provider."
+            "App is allowed to act as a credential provider.",
+            "App is not allowed to act as a credential provider."
           ],
           "type": "string"
         },
@@ -3637,7 +3639,7 @@
       "id": "DeviceRadioState",
       "properties": {
         "airplaneModeState": {
-          "description": "Controls whether airplane mode can be toggled by the user or not.",
+          "description": "Optional. Controls whether airplane mode can be toggled by the user or not.",
           "enum": [
             "AIRPLANE_MODE_STATE_UNSPECIFIED",
             "AIRPLANE_MODE_USER_CHOICE",
@@ -3651,7 +3653,7 @@
           "type": "string"
         },
         "cellularTwoGState": {
-          "description": "Controls whether cellular 2G setting can be toggled by the user or not.",
+          "description": "Optional. Controls whether cellular 2G setting can be toggled by the user or not.",
           "enum": [
             "CELLULAR_TWO_G_STATE_UNSPECIFIED",
             "CELLULAR_TWO_G_USER_CHOICE",
@@ -3665,7 +3667,7 @@
           "type": "string"
         },
         "minimumWifiSecurityLevel": {
-          "description": "The minimum required security level of Wi-Fi networks that the device can connect to.",
+          "description": "Optional. The minimum required security level of Wi-Fi networks that the device can connect to.",
           "enum": [
             "MINIMUM_WIFI_SECURITY_LEVEL_UNSPECIFIED",
             "OPEN_NETWORK_SECURITY",
@@ -3683,7 +3685,7 @@
           "type": "string"
         },
         "ultraWidebandState": {
-          "description": "Controls the state of the ultra wideband setting and whether the user can toggle it on or off.",
+          "description": "Optional. Controls the state of the ultra wideband setting and whether the user can toggle it on or off.",
           "enum": [
             "ULTRA_WIDEBAND_STATE_UNSPECIFIED",
             "ULTRA_WIDEBAND_USER_CHOICE",
@@ -3711,7 +3713,7 @@
           "type": "string"
         },
         "wifiState": {
-          "description": "Controls current state of Wi-Fi and if user can change its state.",
+          "description": "Optional. Controls current state of Wi-Fi and if user can change its state.",
           "enum": [
             "WIFI_STATE_UNSPECIFIED",
             "WIFI_STATE_USER_CHOICE",
@@ -6273,12 +6275,14 @@
           "enum": [
             "CREDENTIAL_PROVIDER_POLICY_DEFAULT_UNSPECIFIED",
             "CREDENTIAL_PROVIDER_DEFAULT_DISALLOWED",
-            "CREDENTIAL_PROVIDER_DEFAULT_DISALLOWED_EXCEPT_SYSTEM"
+            "CREDENTIAL_PROVIDER_DEFAULT_DISALLOWED_EXCEPT_SYSTEM",
+            "CREDENTIAL_PROVIDER_DEFAULT_ALLOWED"
           ],
           "enumDescriptions": [
             "Unspecified. Defaults to CREDENTIAL_PROVIDER_DEFAULT_DISALLOWED.",
             "Apps with credentialProviderPolicy unspecified are not allowed to act as a credential provider.",
-            "Apps with credentialProviderPolicy unspecified are not allowed to act as a credential provider except for the OEM default credential providers. OEM default credential providers are always allowed to act as credential providers."
+            "Apps with credentialProviderPolicy unspecified are not allowed to act as a credential provider except for the OEM default credential providers. OEM default credential providers are always allowed to act as credential providers.",
+            "Apps with credentialProviderPolicy unspecified are allowed to act as a credential provider."
           ],
           "type": "string"
         },
@@ -6336,7 +6340,7 @@
         },
         "deviceRadioState": {
           "$ref": "DeviceRadioState",
-          "description": "Covers controls for radio state such as Wi-Fi, bluetooth, and more."
+          "description": "Optional. Covers controls for radio state such as Wi-Fi, bluetooth, and more."
         },
         "displaySettings": {
           "$ref": "DisplaySettings",
@@ -8315,7 +8319,7 @@
       "id": "WipeAction",
       "properties": {
         "preserveFrp": {
-          "description": "Whether the factory-reset protection data is preserved on the device. This setting doesn’t apply to work profiles.",
+          "description": "Whether the factory-reset protection data is preserved on the device. This setting applies to fully managed devices and work profiles on company-owned devices.",
           "type": "boolean"
         },
         "wipeAfterDays": {

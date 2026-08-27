@@ -1351,19 +1351,19 @@ export namespace androidmanagement_v1 {
    */
   export interface Schema$DeviceRadioState {
     /**
-     * Controls whether airplane mode can be toggled by the user or not.
+     * Optional. Controls whether airplane mode can be toggled by the user or not.
      */
     airplaneModeState?: string | null;
     /**
-     * Controls whether cellular 2G setting can be toggled by the user or not.
+     * Optional. Controls whether cellular 2G setting can be toggled by the user or not.
      */
     cellularTwoGState?: string | null;
     /**
-     * The minimum required security level of Wi-Fi networks that the device can connect to.
+     * Optional. The minimum required security level of Wi-Fi networks that the device can connect to.
      */
     minimumWifiSecurityLevel?: string | null;
     /**
-     * Controls the state of the ultra wideband setting and whether the user can toggle it on or off.
+     * Optional. Controls the state of the ultra wideband setting and whether the user can toggle it on or off.
      */
     ultraWidebandState?: string | null;
     /**
@@ -1371,7 +1371,7 @@ export namespace androidmanagement_v1 {
      */
     userInitiatedAddEsimSettings?: string | null;
     /**
-     * Controls current state of Wi-Fi and if user can change its state.
+     * Optional. Controls current state of Wi-Fi and if user can change its state.
      */
     wifiState?: string | null;
   }
@@ -2832,7 +2832,7 @@ export namespace androidmanagement_v1 {
      */
     deviceOwnerLockScreenInfo?: Schema$UserFacingMessage;
     /**
-     * Covers controls for radio state such as Wi-Fi, bluetooth, and more.
+     * Optional. Covers controls for radio state such as Wi-Fi, bluetooth, and more.
      */
     deviceRadioState?: Schema$DeviceRadioState;
     /**
@@ -4006,7 +4006,7 @@ export namespace androidmanagement_v1 {
    */
   export interface Schema$WipeAction {
     /**
-     * Whether the factory-reset protection data is preserved on the device. This setting doesn’t apply to work profiles.
+     * Whether the factory-reset protection data is preserved on the device. This setting applies to fully managed devices and work profiles on company-owned devices.
      */
     preserveFrp?: boolean | null;
     /**
