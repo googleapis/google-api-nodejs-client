@@ -186,7 +186,7 @@
             "accessSummaries": {
               "methods": {
                 "get": {
-                  "description": "Gets details of a single AccessSummary.",
+                  "description": "Gets details of a single access summary.",
                   "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/accessSummaries/{accessSummariesId}",
                   "httpMethod": "GET",
                   "id": "agentidentity.projects.locations.accessSummaries.get",
@@ -195,7 +195,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Name of the resource",
+                      "description": "Required. The resource name of the access summary.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/accessSummaries/[^/]+$",
                       "required": true,
@@ -211,7 +211,7 @@
                   ]
                 },
                 "list": {
-                  "description": "Lists AccessSummaries in a given project and location. Supported Filters: - `workload_id`: Filter by the SPIFFE ID of the agent. Example: `workload_id=\"spiffe://example.com/ns/default/sa/my-agent\"`",
+                  "description": "Lists access summaries in a given project and location. Supported filters: - `workload_id`: Filter by the SPIFFE ID of the agent. Example: `workload_id=\"spiffe://example.com/ns/default/sa/my-agent\"`",
                   "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/accessSummaries",
                   "httpMethod": "GET",
                   "id": "agentidentity.projects.locations.accessSummaries.list",
@@ -230,7 +230,7 @@
                       "type": "string"
                     },
                     "pageSize": {
-                      "description": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.",
+                      "description": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default. The maximum page size is 1000.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
@@ -261,7 +261,7 @@
             "authProviders": {
               "methods": {
                 "create": {
-                  "description": "Creates a new AuthProvider in a given project and location.",
+                  "description": "Creates a new auth provider in a given project and location.",
                   "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/authProviders",
                   "httpMethod": "POST",
                   "id": "agentidentity.projects.locations.authProviders.create",
@@ -270,12 +270,12 @@
                   ],
                   "parameters": {
                     "authProviderId": {
-                      "description": "Required. The ID to use for the AuthProvider, which will become the final segment of the AuthProvider's resource name. This value should be 1-63 characters, and valid characters are /a-z-/. The first character must be a lowercase letter, and the last character must be a lowercase letter or a number.",
+                      "description": "Required. The ID to use for the auth provider, which will become the final segment of the auth provider's resource name. This value should be 1-63 characters, and valid characters are /a-z-/. The first character must be a lowercase letter, and the last character must be a lowercase letter or a number.",
                       "location": "query",
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The parent resource where the AuthProvider is created. Format: projects/{project}/locations/{location}",
+                      "description": "Required. The parent resource where the auth provider is created. Format: projects/{project}/locations/{location}",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -299,7 +299,7 @@
                   ]
                 },
                 "delete": {
-                  "description": "Deletes a single AuthProvider.",
+                  "description": "Deletes a single auth provider.",
                   "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/authProviders/{authProvidersId}",
                   "httpMethod": "DELETE",
                   "id": "agentidentity.projects.locations.authProviders.delete",
@@ -308,7 +308,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Name of the resource",
+                      "description": "Required. The resource name of the auth provider.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/authProviders/[^/]+$",
                       "required": true,
@@ -329,7 +329,7 @@
                   ]
                 },
                 "disable": {
-                  "description": "Disables a single AuthProvider.",
+                  "description": "Disables a single auth provider.",
                   "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/authProviders/{authProvidersId}:disable",
                   "httpMethod": "POST",
                   "id": "agentidentity.projects.locations.authProviders.disable",
@@ -338,7 +338,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Name of the resource Format: projects/{project}/locations/{location}/authProviders/{auth_provider}",
+                      "description": "Required. The resource name of the auth provider. Format: projects/{project}/locations/{location}/authProviders/{auth_provider}",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/authProviders/[^/]+$",
                       "required": true,
@@ -357,7 +357,7 @@
                   ]
                 },
                 "enable": {
-                  "description": "Enables a single AuthProvider.",
+                  "description": "Enables a single auth provider.",
                   "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/authProviders/{authProvidersId}:enable",
                   "httpMethod": "POST",
                   "id": "agentidentity.projects.locations.authProviders.enable",
@@ -366,7 +366,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Name of the resource Format: projects/{project}/locations/{location}/authProviders/{auth_provider}",
+                      "description": "Required. The resource name of the auth provider. Format: projects/{project}/locations/{location}/authProviders/{auth_provider}",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/authProviders/[^/]+$",
                       "required": true,
@@ -385,7 +385,7 @@
                   ]
                 },
                 "get": {
-                  "description": "Gets details of a single AuthProvider.",
+                  "description": "Gets details of a single auth provider.",
                   "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/authProviders/{authProvidersId}",
                   "httpMethod": "GET",
                   "id": "agentidentity.projects.locations.authProviders.get",
@@ -394,7 +394,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Name of the resource",
+                      "description": "Required. The resource name of the auth provider.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/authProviders/[^/]+$",
                       "required": true,
@@ -441,7 +441,7 @@
                   ]
                 },
                 "list": {
-                  "description": "Lists AuthProviders in a given project and location.",
+                  "description": "Lists auth providers in a given project and location.",
                   "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/authProviders",
                   "httpMethod": "GET",
                   "id": "agentidentity.projects.locations.authProviders.list",
@@ -460,7 +460,7 @@
                       "type": "string"
                     },
                     "pageSize": {
-                      "description": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.",
+                      "description": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default. The maximum page size is 1000.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
@@ -478,7 +478,7 @@
                       "type": "string"
                     },
                     "showDeleted": {
-                      "description": "Optional. Deleted auth_providers will be kept with a soft-delete for 30 days before being purged. If this field is set to true, deleted auth_providers will also be returned.",
+                      "description": "Optional. Deleted auth providers will be kept with a soft-delete for 30 days before being purged. If this field is set to `true`, deleted auth providers will also be returned.",
                       "location": "query",
                       "type": "boolean"
                     }
@@ -492,7 +492,7 @@
                   ]
                 },
                 "patch": {
-                  "description": "Updates the parameters of a single AuthProvider.",
+                  "description": "Updates the parameters of a single auth provider.",
                   "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/authProviders/{authProvidersId}",
                   "httpMethod": "PATCH",
                   "id": "agentidentity.projects.locations.authProviders.patch",
@@ -501,7 +501,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Identifier. The full resource name of the auth_provider. Format: projects/{project}/locations/{location}/authProviders/{auth_provider}",
+                      "description": "Identifier. The full resource name of the auth provider. Format: projects/{project}/locations/{location}/authProviders/{auth_provider}",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/authProviders/[^/]+$",
                       "required": true,
@@ -513,7 +513,7 @@
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "Optional. Field mask is used to specify the fields to be overwritten in the AuthProvider resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields present in the request will be overwritten.",
+                      "description": "Optional. Field mask is used to specify the fields to be overwritten in the auth provider resource by the update. The fields specified in the `update_mask` are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields present in the request will be overwritten.",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -531,7 +531,7 @@
                   ]
                 },
                 "query": {
-                  "description": "Queries what all auth_providers are used by a given workload_id.",
+                  "description": "Queries which auth providers are used by a given workload ID.",
                   "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/authProviders:query",
                   "httpMethod": "GET",
                   "id": "agentidentity.projects.locations.authProviders.query",
@@ -572,7 +572,7 @@
                   ]
                 },
                 "queryWorkloads": {
-                  "description": "Queries what all workloads are using a given auth_provider.",
+                  "description": "Queries which workloads are using a given auth provider.",
                   "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/authProviders/{authProvidersId}:queryWorkloads",
                   "httpMethod": "GET",
                   "id": "agentidentity.projects.locations.authProviders.queryWorkloads",
@@ -581,20 +581,20 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The name of the auth_provider to query. Format: projects/{project}/locations/{location}/authProviders/{auth_provider}",
+                      "description": "Required. The name of the auth provider to query. Format: projects/{project}/locations/{location}/authProviders/{auth_provider}",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/authProviders/[^/]+$",
                       "required": true,
                       "type": "string"
                     },
                     "pageSize": {
-                      "description": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.",
+                      "description": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default. The maximum page size is 1000.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
                     },
                     "pageToken": {
-                      "description": "Optional. A token, which can be sent as `page_token` to retrieve the next page. When paginating, all other parameters provided to QueryWorkloads must match the call that provided the page token. If this field is omitted, the first page is returned.",
+                      "description": "Optional. A token, which can be sent as `page_token` to retrieve the next page. When paginating, all other parameters provided to `QueryWorkloads` must match the call that provided the page token. If this field is omitted, the first page is returned.",
                       "location": "query",
                       "type": "string"
                     }
@@ -608,7 +608,7 @@
                   ]
                 },
                 "revokeAuthorization": {
-                  "description": "Revokes all authorizations for a specific user on an AuthProvider. This deletes all authorization records associated with the user and AuthProvider, effectively revoking access across all agents.",
+                  "description": "Revokes all authorizations for a specific user on an auth provider. This deletes all authorization records associated with the user and auth provider, effectively revoking access across all agents.",
                   "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/authProviders/{authProvidersId}:revokeAuthorization",
                   "httpMethod": "POST",
                   "id": "agentidentity.projects.locations.authProviders.revokeAuthorization",
@@ -617,7 +617,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The resource name of the AuthProvider. Format: projects/{project}/locations/{location}/authProviders/{auth_provider}",
+                      "description": "Required. The resource name of the auth provider. Format: projects/{project}/locations/{location}/authProviders/{auth_provider}",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/authProviders/[^/]+$",
                       "required": true,
@@ -692,7 +692,7 @@
                   ]
                 },
                 "undelete": {
-                  "description": "Undeletes a single AuthProvider.",
+                  "description": "Undeletes a single auth provider.",
                   "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/authProviders/{authProvidersId}:undelete",
                   "httpMethod": "POST",
                   "id": "agentidentity.projects.locations.authProviders.undelete",
@@ -701,7 +701,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Name of the resource Format: projects/{project}/locations/{location}/authProviders/{auth_provider}",
+                      "description": "Required. The resource name of the auth provider. Format: projects/{project}/locations/{location}/authProviders/{auth_provider}",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/authProviders/[^/]+$",
                       "required": true,
@@ -724,7 +724,7 @@
                 "authorizations": {
                   "methods": {
                     "delete": {
-                      "description": "Deletes a single Authorization.",
+                      "description": "Deletes a single authorization.",
                       "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/authProviders/{authProvidersId}/authorizations/{authorizationsId}",
                       "httpMethod": "DELETE",
                       "id": "agentidentity.projects.locations.authProviders.authorizations.delete",
@@ -733,7 +733,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. The name of the Authorization to delete. Format: projects/{project}/locations/{location}/authProviders/{auth_provider}/authorizations/{authorization}",
+                          "description": "Required. The resource name of the authorization to delete. Format: projects/{project}/locations/{location}/authProviders/{auth_provider}/authorizations/{authorization}",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/authProviders/[^/]+/authorizations/[^/]+$",
                           "required": true,
@@ -754,7 +754,7 @@
                       ]
                     },
                     "get": {
-                      "description": "Gets details of a single Authorization.",
+                      "description": "Gets details of a single authorization.",
                       "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/authProviders/{authProvidersId}/authorizations/{authorizationsId}",
                       "httpMethod": "GET",
                       "id": "agentidentity.projects.locations.authProviders.authorizations.get",
@@ -763,7 +763,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. Name of the resource",
+                          "description": "Required. The resource name of the authorization.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/authProviders/[^/]+/authorizations/[^/]+$",
                           "required": true,
@@ -778,8 +778,39 @@
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
+                    "getIamPolicy": {
+                      "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
+                      "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/authProviders/{authProvidersId}/authorizations/{authorizationsId}:getIamPolicy",
+                      "httpMethod": "GET",
+                      "id": "agentidentity.projects.locations.authProviders.authorizations.getIamPolicy",
+                      "parameterOrder": [
+                        "resource"
+                      ],
+                      "parameters": {
+                        "options.requestedPolicyVersion": {
+                          "description": "Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "resource": {
+                          "description": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/authProviders/[^/]+/authorizations/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha/{+resource}:getIamPolicy",
+                      "response": {
+                        "$ref": "Policy"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "list": {
-                      "description": "Lists Authorizations in a given project and location.",
+                      "description": "Lists authorizations in a given project and location.",
                       "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/authProviders/{authProvidersId}/authorizations",
                       "httpMethod": "GET",
                       "id": "agentidentity.projects.locations.authProviders.authorizations.list",
@@ -798,7 +829,7 @@
                           "type": "string"
                         },
                         "pageSize": {
-                          "description": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.",
+                          "description": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default. The maximum page size is 1000.",
                           "format": "int32",
                           "location": "query",
                           "type": "integer"
@@ -823,6 +854,62 @@
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
+                    },
+                    "setIamPolicy": {
+                      "description": "Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.",
+                      "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/authProviders/{authProvidersId}/authorizations/{authorizationsId}:setIamPolicy",
+                      "httpMethod": "POST",
+                      "id": "agentidentity.projects.locations.authProviders.authorizations.setIamPolicy",
+                      "parameterOrder": [
+                        "resource"
+                      ],
+                      "parameters": {
+                        "resource": {
+                          "description": "REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/authProviders/[^/]+/authorizations/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha/{+resource}:setIamPolicy",
+                      "request": {
+                        "$ref": "SetIamPolicyRequest"
+                      },
+                      "response": {
+                        "$ref": "Policy"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "testIamPermissions": {
+                      "description": "Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may \"fail open\" without warning.",
+                      "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/authProviders/{authProvidersId}/authorizations/{authorizationsId}:testIamPermissions",
+                      "httpMethod": "POST",
+                      "id": "agentidentity.projects.locations.authProviders.authorizations.testIamPermissions",
+                      "parameterOrder": [
+                        "resource"
+                      ],
+                      "parameters": {
+                        "resource": {
+                          "description": "REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/authProviders/[^/]+/authorizations/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha/{+resource}:testIamPermissions",
+                      "request": {
+                        "$ref": "TestIamPermissionsRequest"
+                      },
+                      "response": {
+                        "$ref": "TestIamPermissionsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
                     }
                   }
                 }
@@ -833,20 +920,20 @@
       }
     }
   },
-  "revision": "20260722",
+  "revision": "20260823",
   "rootUrl": "https://agentidentity.googleapis.com/",
   "schemas": {
     "AccessSummary": {
-      "description": "Message describing AccessSummary object",
+      "description": "Represents an access summary.",
       "id": "AccessSummary",
       "properties": {
         "authProvider": {
-          "description": "Output only. The auth_provider that this access summary is associated with.",
+          "description": "Output only. The auth provider that this access summary is associated with.",
           "readOnly": true,
           "type": "string"
         },
         "authProviderType": {
-          "description": "Output only. The type of the connector that was used to create this access summary.",
+          "description": "Output only. The auth provider type used to create this access summary.",
           "enum": [
             "AUTH_PROVIDER_TYPE_UNSPECIFIED",
             "AUTH_PROVIDER_TYPE_THREE_LEGGED_OAUTH",
@@ -855,17 +942,17 @@
             "AUTH_PROVIDER_TYPE_GEMINI_ENTERPRISE"
           ],
           "enumDescriptions": [
-            "Unspecified auth-provider type.",
-            "Three Legged OAuth auth-provider type.",
-            "Two Legged OAuth auth-provider type.",
-            "API Key auth-provider type.",
-            "Gemini Enterprise auth-provider type."
+            "Unspecified auth provider type.",
+            "3-legged OAuth (3LO) auth provider type.",
+            "2-legged OAuth (2LO) auth provider type.",
+            "API key auth provider type.",
+            "Gemini Enterprise auth provider type."
           ],
           "readOnly": true,
           "type": "string"
         },
         "firstAccessTime": {
-          "description": "Output only. The first time this user has interacted with this workload. Rounded to the previous hour.",
+          "description": "Output only. The first time this user interacted with this workload, rounded to the previous hour.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -874,17 +961,17 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Optional. Labels as key value pairs",
+          "description": "Optional. Labels as key-value pairs.",
           "type": "object"
         },
         "lastAccessTime": {
-          "description": "Output only. The most recent time this user has interacted with this workload. Rounded to the previous hour.",
+          "description": "Output only. The most recent time this user interacted with this workload, rounded to the previous hour.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
         },
         "name": {
-          "description": "Output only. Identifier. Name of the AccessSummary",
+          "description": "Output only. Identifier. The resource name of the access summary.",
           "readOnly": true,
           "type": "string"
         },
@@ -903,17 +990,17 @@
           "type": "array"
         },
         "tokenUrl": {
-          "description": "Output only. The url of the authentication server that was accessed.",
+          "description": "Output only. The URL of the authentication server that was accessed.",
           "readOnly": true,
           "type": "string"
         },
         "userId": {
-          "description": "Output only. The user_id provided by the workload application for this user. Not verified by Google.",
+          "description": "Output only. The user ID provided by the workload application for this user. Not verified by Google.",
           "readOnly": true,
           "type": "string"
         },
         "workloadId": {
-          "description": "Output only. The identity bound to the workload that this user interacted with to produce this AccessSummary. Will typically be an agentic spiffe id",
+          "description": "Output only. The identity bound to the workload that this user interacted with to produce this access summary. Typically an agentic SPIFFE ID.",
           "readOnly": true,
           "type": "string"
         }
@@ -921,11 +1008,11 @@
       "type": "object"
     },
     "ApiKeyParams": {
-      "description": "Message describing ApiKeyParams object.",
+      "description": "Configuration for API key authentication.",
       "id": "ApiKeyParams",
       "properties": {
         "apiKey": {
-          "description": "Optional. Input only. The API key for this auth_provider.",
+          "description": "Optional. Input only. The API key for this auth provider.",
           "type": "string"
         }
       },
@@ -980,11 +1067,11 @@
       "type": "object"
     },
     "AuthProvider": {
-      "description": "Message describing AuthProvider object",
+      "description": "Represents an auth provider.",
       "id": "AuthProvider",
       "properties": {
         "allowedScopes": {
-          "description": "Optional. List of scopes that are allowed to be requested for this auth_provider. If this list is non-empty, only scopes within this list may be requested. If this list is empty, all scopes may be requested. Scopes appearing in `blocked_scopes` are disallowed even if they appear in `allowed_scopes`. The number of allowed scopes is limited to 200.",
+          "description": "Optional. List of scopes that are allowed to be requested for this auth provider. If this list is non-empty, only scopes within this list may be requested. If this list is empty, all scopes may be requested. Scopes appearing in `blocked_scopes` are disallowed even if they appear in `allowed_scopes`. The number of allowed scopes is limited to 200.",
           "items": {
             "type": "string"
           },
@@ -992,23 +1079,23 @@
         },
         "authProviderTypeParams": {
           "$ref": "AuthProviderTypeParams",
-          "description": "Required. AuthProvider type specific parameters."
+          "description": "Required. Parameters specific to the auth provider type."
         },
         "blockedScopes": {
-          "description": "Optional. List of scopes that are blocked from being requested for this auth_provider. If a scope appears in this list, it will not be requested, even if it also appears in `allowed_scopes`. `blocked_scopes` takes precedence over `allowed_scopes`. The number of blocked scopes is limited to 200.",
+          "description": "Optional. List of scopes that are blocked from being requested for this auth provider. If a scope appears in this list, it will not be requested, even if it also appears in `allowed_scopes`. `blocked_scopes` takes precedence over `allowed_scopes`. The number of blocked scopes is limited to 200.",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "createTime": {
-          "description": "Output only. [Output only] Create time stamp",
+          "description": "Output only. The creation timestamp.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
         },
         "deleted": {
-          "description": "Output only. This is set to true if the auth_provider is deleted.",
+          "description": "Output only. Set to `true` if the auth provider is deleted.",
           "readOnly": true,
           "type": "boolean"
         },
@@ -1017,7 +1104,7 @@
           "type": "string"
         },
         "expireTime": {
-          "description": "Output only. The time when the auth_provider will expire.",
+          "description": "Output only. The time when the auth provider will expire.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -1026,15 +1113,15 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Optional. Labels as key value pairs",
+          "description": "Optional. Labels as key-value pairs.",
           "type": "object"
         },
         "name": {
-          "description": "Identifier. The full resource name of the auth_provider. Format: projects/{project}/locations/{location}/authProviders/{auth_provider}",
+          "description": "Identifier. The full resource name of the auth provider. Format: projects/{project}/locations/{location}/authProviders/{auth_provider}",
           "type": "string"
         },
         "state": {
-          "description": "Output only. The state of the auth_provider.",
+          "description": "Output only. The state of the auth provider.",
           "enum": [
             "STATE_UNSPECIFIED",
             "ENABLED",
@@ -1049,13 +1136,13 @@
           "type": "string"
         },
         "updateTime": {
-          "description": "Output only. [Output only] Update time stamp",
+          "description": "Output only. The update timestamp.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
         },
         "workloadIds": {
-          "description": "Optional. Input only. Represents the workload identity in IAM `principal://` format of the agent(s) that will use this AuthProvider. Example: `principal://agents.global.org-${ORG_ID}.system.id.goog/resources/aiplatform/projects/{PROJECT_ID}/locations/{LOCATIONS}/reasoningEngines/{ID}`",
+          "description": "Optional. Input only. Identifiers for the agents that will use this auth provider, starting with `principal://`. For example: `principal://agents.global.org-${ORG_ID}.system.id.goog/resources/aiplatform/projects/{PROJECT_ID}/locations/{LOCATIONS}/reasoningEngines/{ID}`",
           "items": {
             "type": "string"
           },
@@ -1065,45 +1152,45 @@
       "type": "object"
     },
     "AuthProviderTypeParams": {
-      "description": "AuthProvider type specific parameters. Required when creating an auth_provider.",
+      "description": "Required. Parameters specific to the auth provider type.",
       "id": "AuthProviderTypeParams",
       "properties": {
         "apiKey": {
           "$ref": "ApiKeyParams",
-          "description": "ApiKey AuthProvider type parameters."
+          "description": "Parameters for API key authentication."
         },
         "geAuthProvider": {
           "$ref": "GeminiEnterpriseAuthProviderParams",
-          "description": "GeminiEnterprise auth_provider type parameters."
+          "description": "Parameters for Gemini Enterprise authentication."
         },
         "threeLeggedOauth": {
           "$ref": "ThreeLeggedOAuth",
-          "description": "ThreeLeggedOAuth AuthProvider type parameters."
+          "description": "Parameters for 3-legged OAuth (3LO) authentication."
         },
         "twoLeggedOauth": {
           "$ref": "TwoLeggedOAuth",
-          "description": "TwoLeggedOAuth AuthProvider type parameters."
+          "description": "Parameters for 2-legged OAuth (2LO) authentication."
         }
       },
       "type": "object"
     },
     "Authorization": {
-      "description": "Message describing Authorization object",
+      "description": "Represents an authorization.",
       "id": "Authorization",
       "properties": {
         "clientUserId": {
-          "description": "Output only. The client_user_id provided by the client application for their end user. Not verified by Google.",
+          "description": "Output only. The client user ID provided by the client application for their end user. Not verified by Google.",
           "readOnly": true,
           "type": "string"
         },
         "createTime": {
-          "description": "Output only. [Output only] Create time stamp",
+          "description": "Output only. The creation timestamp.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
         },
         "name": {
-          "description": "Identifier. name of resource",
+          "description": "Identifier. The resource name of the authorization.",
           "type": "string"
         },
         "scopes": {
@@ -1130,7 +1217,7 @@
           "type": "string"
         },
         "updateTime": {
-          "description": "Output only. [Output only] Update time stamp",
+          "description": "Output only. The update timestamp.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -1161,7 +1248,7 @@
       "type": "object"
     },
     "DisableAuthProviderRequest": {
-      "description": "Message for disabling an AuthProvider",
+      "description": "Request message for `DisableAuthProvider`.",
       "id": "DisableAuthProviderRequest",
       "properties": {
         "requestId": {
@@ -1178,7 +1265,7 @@
       "type": "object"
     },
     "EnableAuthProviderRequest": {
-      "description": "Message for enabling an AuthProvider",
+      "description": "Request message for `EnableAuthProvider`.",
       "id": "EnableAuthProviderRequest",
       "properties": {
         "requestId": {
@@ -1212,17 +1299,17 @@
       "type": "object"
     },
     "GeminiEnterpriseAuthProviderParams": {
-      "description": "Message describing GeminiEnterpriseAuthProviderParams object.",
+      "description": "Configuration for Gemini Enterprise authentication.",
       "id": "GeminiEnterpriseAuthProviderParams",
       "properties": {},
       "type": "object"
     },
     "ListAccessSummariesResponse": {
-      "description": "Message for response to listing AccessSummaries",
+      "description": "Response message for `ListAccessSummaries`.",
       "id": "ListAccessSummariesResponse",
       "properties": {
         "accessSummaries": {
-          "description": "The list of AccessSummary",
+          "description": "The list of access summaries.",
           "items": {
             "$ref": "AccessSummary"
           },
@@ -1243,11 +1330,11 @@
       "type": "object"
     },
     "ListAuthProvidersResponse": {
-      "description": "Message for response to listing AuthProviders",
+      "description": "Response message for `ListAuthProviders`.",
       "id": "ListAuthProvidersResponse",
       "properties": {
         "authProviders": {
-          "description": "The list of AuthProvider",
+          "description": "The list of auth providers.",
           "items": {
             "$ref": "AuthProvider"
           },
@@ -1268,11 +1355,11 @@
       "type": "object"
     },
     "ListAuthorizationsResponse": {
-      "description": "Message for response to listing Authorizations",
+      "description": "Response message for `ListAuthorizations`.",
       "id": "ListAuthorizationsResponse",
       "properties": {
         "authorizations": {
-          "description": "The list of Authorization",
+          "description": "The list of authorizations.",
           "items": {
             "$ref": "Authorization"
           },
@@ -1376,11 +1463,11 @@
       "type": "object"
     },
     "QueryAuthProvidersResponse": {
-      "description": "Response message for QueryAuthProviders.",
+      "description": "Response message for `QueryAuthProviders`.",
       "id": "QueryAuthProvidersResponse",
       "properties": {
         "authProviderNames": {
-          "description": "The unique list of auth_provider resource names used by the workload.",
+          "description": "The unique list of auth provider resource names used by the workload.",
           "items": {
             "type": "string"
           },
@@ -1394,7 +1481,7 @@
       "type": "object"
     },
     "QueryWorkloadsResponse": {
-      "description": "Response message for QueryWorkloads.",
+      "description": "Response message for `QueryWorkloads`.",
       "id": "QueryWorkloadsResponse",
       "properties": {
         "nextPageToken": {
@@ -1402,7 +1489,7 @@
           "type": "string"
         },
         "workloadIds": {
-          "description": "The unique list of workload identifiers (agents) that used the auth_provider.",
+          "description": "The unique list of identifiers for the agents that used this auth provider, starting with `principal://`.",
           "items": {
             "type": "string"
           },
@@ -1412,7 +1499,7 @@
       "type": "object"
     },
     "RevokeAuthorizationRequest": {
-      "description": "Request message for RevokeAuthorization.",
+      "description": "Request message for `RevokeAuthorization`.",
       "id": "RevokeAuthorizationRequest",
       "properties": {
         "userId": {
@@ -1423,7 +1510,7 @@
       "type": "object"
     },
     "RevokeAuthorizationResponse": {
-      "description": "Response message for RevokeAuthorization.",
+      "description": "Response message for `RevokeAuthorization`.",
       "id": "RevokeAuthorizationResponse",
       "properties": {},
       "type": "object"
@@ -1473,11 +1560,11 @@
       "type": "object"
     },
     "ThreeLeggedOAuth": {
-      "description": "Message describing ThreeLeggedOAuth object.",
+      "description": "Configuration for 3-legged OAuth (3LO) authentication.",
       "id": "ThreeLeggedOAuth",
       "properties": {
         "authorizationUrl": {
-          "description": "Optional. The authorization endpoint to send users to for consenting to delegate to the agent. eg. \"https://auth.atlassian.com/authorize\"",
+          "description": "Optional. The authorization endpoint to send users to for consenting to delegate to the agent. For example, \"https://auth.atlassian.com/authorize\".",
           "type": "string"
         },
         "clientId": {
@@ -1489,7 +1576,7 @@
           "type": "string"
         },
         "defaultContinueUri": {
-          "description": "Optional. The default continue URI for 3LO flow and it will be used when no continue URI is provided in the RetrieveCredentials request.",
+          "description": "Optional. The default continue URI for the 3LO flow, used when no continue URI is provided in the RetrieveCredentials request.",
           "type": "string"
         },
         "enablePkce": {
@@ -1497,19 +1584,19 @@
           "type": "boolean"
         },
         "redirectUrl": {
-          "description": "Output only. The redirect URL this auth_provider uses for the OAuth exchange. This is deterministic based on the name of the auth_provider.",
+          "description": "Output only. The redirect URL this auth provider uses for the OAuth exchange. This is deterministic based on the name of the auth provider.",
           "readOnly": true,
           "type": "string"
         },
         "tokenUrl": {
-          "description": "Optional. The token endpoint for requesting tokens on behalf of an end user. eg. \"https://auth.atlassian.com/oauth/token\"",
+          "description": "Optional. The token endpoint for requesting tokens on behalf of an end user. For example, \"https://auth.atlassian.com/oauth/token\".",
           "type": "string"
         }
       },
       "type": "object"
     },
     "TwoLeggedOAuth": {
-      "description": "Message describing TwoLeggedOAuth object.",
+      "description": "Configuration for 2-legged OAuth (2LO) authentication.",
       "id": "TwoLeggedOAuth",
       "properties": {
         "clientId": {
@@ -1528,7 +1615,7 @@
       "type": "object"
     },
     "UndeleteAuthProviderRequest": {
-      "description": "Message for undeleting a AuthProvider",
+      "description": "Request message for `UndeleteAuthProvider`.",
       "id": "UndeleteAuthProviderRequest",
       "properties": {
         "requestId": {
