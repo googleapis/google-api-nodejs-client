@@ -252,6 +252,19 @@ export namespace servicecontrol_v2 {
     status?: Schema$Status;
   }
   /**
+   * A composite unique identifier for a PAM Grant which is {Org/Folder/Project identifier, grant Unique Identifier\} tuple.
+   */
+  export interface Schema$AuditPamBindingId {
+    /**
+     * Output only. GCP Project/Folder/Organization identifier to which the PAM entitlement/grant is bound to. Container will be in the following form: projects/$project_num or folders/$folder_num or organizations/$org
+     */
+    container?: string | null;
+    /**
+     * Output only. Represents the unique identifier for the PAM grant. Full_resource_name_pattern for PAM Grant is: //privilegedaccessmanager.googleapis.com/ (projects|folders|organizations)/$0/locations/$1/entitlements/$2/ grants/$3 where $3 is the grant_uuid.
+     */
+    grantUuid?: string | null;
+  }
+  /**
    * This message defines request authentication attributes. Terminology is based on the JSON Web Token (JWT) standard, but the terms also correlate to concepts in other standards.
    */
   export interface Schema$Auth {
@@ -341,6 +354,10 @@ export namespace servicecontrol_v2 {
      * The type of the permission that was checked. For data access audit logs this corresponds with the permission type that must be enabled in the project/folder/organization IAM policy in order for the log to be written.
      */
     permissionType?: string | null;
+    /**
+     * Output only. Metadata about the Privileged Access Manager (PAM) backed authorization decisions. This field is populated if the access is granted via an IAM policy with a binding which is managed by Privileged Access Manager.
+     */
+    privilegedAccessManagerMetadata?: Schema$PrivilegedAccessManagerMetadata;
     /**
      * The resource being accessed, as a REST-style or cloud resource string. For example: bigquery.googleapis.com/projects/PROJECTID/datasets/DATASETID or projects/PROJECTID/datasets/DATASETID
      */
@@ -473,6 +490,32 @@ export namespace servicecontrol_v2 {
      * Indicates the orgpolicy violations for this resource.
      */
     orgPolicyViolationInfo?: Schema$OrgPolicyViolationInfo;
+    /**
+     * Indicates the regional access boundary policy violations for this resource.
+     */
+    rabPolicyViolationInfo?: Schema$RabPolicyViolationInfo;
+  }
+  /**
+   * Metadata about the Privileged Access Manager (PAM) backed authorization decisions.
+   */
+  export interface Schema$PrivilegedAccessManagerMetadata {
+    /**
+     * Output only. If PAM is managing the elevated access, AuditPamBindingId is written to an Identity and Access Management (IAM) policy, which specifies access controls for resources. If the access is granted via an IAM policy with a binding which is managed by Privileged Access Manager, PrivilegedAccessManagerMetadata will contain the AuditPamBindingId.
+     */
+    pamBindingIds?: Schema$AuditPamBindingId[];
+  }
+  /**
+   * Represents Regional Access Boundary (RAB) Policy Violation information.
+   */
+  export interface Schema$RabPolicyViolationInfo {
+    /**
+     * Optional. Error message detailing what triggered the violation. The error message content originates from the authz library e.g., google3/cloud/security/iam/cap/deny_explanation/internal/make_error_msg.cc. This will be the same (canonical) error message provided by the http error code.
+     */
+    errorMessage?: string | null;
+    /**
+     * Optional. The list of target locations of the resource.
+     */
+    resourceLocations?: string[] | null;
   }
   /**
    * Request message for the Report method.
