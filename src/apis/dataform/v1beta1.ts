@@ -248,6 +248,19 @@ export namespace dataform_v1beta1 {
     role?: string | null;
   }
   /**
+   * Contains metadata about a branch.
+   */
+  export interface Schema$BranchMetadata {
+    /**
+     * The branch name.
+     */
+    branchName?: string | null;
+    /**
+     * The last commit on the branch.
+     */
+    lastCommit?: Schema$CommitLogEntry;
+  }
+  /**
    * The request message for Operations.CancelOperation.
    */
   export interface Schema$CancelOperationRequest {}
@@ -259,6 +272,23 @@ export namespace dataform_v1beta1 {
    * `CancelWorkflowInvocation` response message.
    */
   export interface Schema$CancelWorkflowInvocationResponse {}
+  /**
+   * `CheckoutWorkspaceBranch` request message.
+   */
+  export interface Schema$CheckoutWorkspaceBranchRequest {
+    /**
+     * Required. The name of the branch in the Git repository to which the workspace should be checked out.
+     */
+    branch?: string | null;
+    /**
+     * Optional. If set to true and the branch does not exist, it will be created. Otherwise, an error will be thrown.
+     */
+    createIfNotExists?: boolean | null;
+    /**
+     * Optional. The name of the branch in the Git repository from which the new branch should be created. If left unset, the workspace's current branch name will be used. Accepts only branch names from FetchWorkspaceBranches response, and can only be set if `create_if_not_exists` is true. Oherwise, an error will be thrown.
+     */
+    sourceBranch?: string | null;
+  }
   /**
    * Configures various aspects of Dataform code compilation.
    */
@@ -633,6 +663,23 @@ export namespace dataform_v1beta1 {
     relationDescriptor?: Schema$RelationDescriptor;
   }
   /**
+   * `DeleteBranch` request message.
+   */
+  export interface Schema$DeleteBranchRequest {
+    /**
+     * Required. The name of the branch in the Git repository to delete.
+     */
+    branch?: string | null;
+    /**
+     * Optional. If set to true, any non-pushed commits on the branch will be deleted. Upstream branch name will be the same as the branch to delete.
+     */
+    force?: boolean | null;
+  }
+  /**
+   * `DeleteBranch` response message.
+   */
+  export interface Schema$DeleteBranchResponse {}
+  /**
    * Represents the delete file operation.
    */
   export interface Schema$DeleteFile {}
@@ -728,6 +775,15 @@ export namespace dataform_v1beta1 {
     title?: string | null;
   }
   /**
+   * Response message for `FetchCurrentWorkspaceBranch` method.
+   */
+  export interface Schema$FetchCurrentWorkspaceBranchResponse {
+    /**
+     * The name of the current branch for the workspace.
+     */
+    branchName?: string | null;
+  }
+  /**
    * `FetchFileDiff` response message.
    */
   export interface Schema$FetchFileDiffResponse {
@@ -775,6 +831,19 @@ export namespace dataform_v1beta1 {
      * A list of commit logs, ordered by 'git log' default order.
      */
     commits?: Schema$CommitLogEntry[];
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * Response message for `FetchWorkspaceBranches` method.
+   */
+  export interface Schema$FetchWorkspaceBranchesResponse {
+    /**
+     * The branches in the workspace.
+     */
+    branches?: Schema$BranchMetadata[];
     /**
      * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
      */
@@ -2000,6 +2069,23 @@ export namespace dataform_v1beta1 {
     message?: string | null;
   }
   /**
+   * `SyncWorkspaceRefs` request message.
+   */
+  export interface Schema$SyncWorkspaceRefsRequest {
+    /**
+     * Optional. Can be used to deepen the commit history of shallow clones. Git documentation: https://git-scm.com/docs/git-fetch#Documentation/git-fetch.txt---deependepth
+     */
+    deepen?: number | null;
+    /**
+     * Optional. The name of the branch in the Git remote to which the refs should be fetched for. If left unset, all remote branches will be fetched.
+     */
+    remoteBranchName?: string | null;
+  }
+  /**
+   * `SyncWorkspaceRefs` response message.
+   */
+  export interface Schema$SyncWorkspaceRefsResponse {}
+  /**
    * Represents a table update trigger configuration.
    */
   export interface Schema$TableUpdateTrigger {
@@ -2314,9 +2400,17 @@ export namespace dataform_v1beta1 {
      */
     dataEncryptionState?: Schema$DataEncryptionState;
     /**
+     * Optional. Input only. Immutable. The maximum depth of the Git repository to checkout for this workspace. If defined and greater than 0, the Git repository will be created as a shallow clone with the given depth, otherwise a full clone will be performed. This field is available only for GitHub, Gitlab and 1p repositories with enabled branch management.
+     */
+    depth?: number | null;
+    /**
      * Optional. If set to true, workspaces will not be moved if its linked Repository is moved. Instead, it will be deleted.
      */
     disableMoves?: boolean | null;
+    /**
+     * Immutable. Controls the enablement of branch checkout for the workspace. When set to True, the workspace will be allowed to checkout branches.
+     */
+    enableBranchManagement?: boolean | null;
     /**
      * Output only. All the metadata information that is used internally to serve the resource. For example: timestamps, flags, status fields, etc. The format of this field is a JSON string.
      */
@@ -2326,9 +2420,17 @@ export namespace dataform_v1beta1 {
      */
     name?: string | null;
     /**
+     * Optional. Input only. Immutable. The name of the default upstream branch for all pull/push operations in the remote repository for this workspace. If empty, the HEAD branch from repository will be used.
+     */
+    originalBranch?: string | null;
+    /**
      * Output only. Metadata indicating whether this resource is user-scoped. For `Workspace` resources, the `user_scoped` field is always `true`.
      */
     privateResourceMetadata?: Schema$PrivateResourceMetadata;
+    /**
+     * Output only. If set to true, the workspace was created as a shallow clone. Will be set to true if the depth field is set to a value greater than 0, otherwise it will be set to false.
+     */
+    shallow?: boolean | null;
   }
   /**
    * Configures workspace compilation overrides for a repository. Primarily used by the UI (`console.cloud.google.com`). `schema_suffix` and `table_prefix` can have a special expression - `${workspaceName\}`, which refers to the workspace name from which the compilation results will be created. API callers are expected to resolve the expression in these overrides and provide them explicitly in `code_compilation_config` (https://cloud.google.com/dataform/reference/rest/v1beta1/projects.locations.repositories.compilationResults#codecompilationconfig) when creating workspace-scoped compilation results.
@@ -11532,6 +11634,155 @@ export namespace dataform_v1beta1 {
     }
 
     /**
+     * Checkout a branch in a Workspace.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataform.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataform = google.dataform('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await dataform.projects.locations.repositories.workspaces.checkout({
+     *       // Required. The workspace resource name. Format: projects/{project\}/locations/{location\}/repositories/{repository\}/workspaces/{workspace\}
+     *       name: 'projects/my-project/locations/my-location/repositories/my-repositorie/workspaces/my-workspace',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "branch": "my_branch",
+     *         //   "createIfNotExists": false,
+     *         //   "sourceBranch": "my_sourceBranch"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    checkout(
+      params: Params$Resource$Projects$Locations$Repositories$Workspaces$Checkout,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    checkout(
+      params?: Params$Resource$Projects$Locations$Repositories$Workspaces$Checkout,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
+    checkout(
+      params: Params$Resource$Projects$Locations$Repositories$Workspaces$Checkout,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    checkout(
+      params: Params$Resource$Projects$Locations$Repositories$Workspaces$Checkout,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    checkout(
+      params: Params$Resource$Projects$Locations$Repositories$Workspaces$Checkout,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    checkout(callback: BodyResponseCallback<Schema$Empty>): void;
+    checkout(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Repositories$Workspaces$Checkout
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Repositories$Workspaces$Checkout;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Repositories$Workspaces$Checkout;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}:checkout').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
      * Applies a Git commit for uncommitted files in a Workspace.
      * @example
      * ```js
@@ -11732,10 +11983,14 @@ export namespace dataform_v1beta1 {
      *       // {
      *       //   "createTime": "my_createTime",
      *       //   "dataEncryptionState": {},
+     *       //   "depth": 0,
      *       //   "disableMoves": false,
+     *       //   "enableBranchManagement": false,
      *       //   "internalMetadata": "my_internalMetadata",
      *       //   "name": "my_name",
-     *       //   "privateResourceMetadata": {}
+     *       //   "originalBranch": "my_originalBranch",
+     *       //   "privateResourceMetadata": {},
+     *       //   "shallow": false
      *       // }
      *     },
      *   });
@@ -11745,10 +12000,14 @@ export namespace dataform_v1beta1 {
      *   // {
      *   //   "createTime": "my_createTime",
      *   //   "dataEncryptionState": {},
+     *   //   "depth": 0,
      *   //   "disableMoves": false,
+     *   //   "enableBranchManagement": false,
      *   //   "internalMetadata": "my_internalMetadata",
      *   //   "name": "my_name",
-     *   //   "privateResourceMetadata": {}
+     *   //   "originalBranch": "my_originalBranch",
+     *   //   "privateResourceMetadata": {},
+     *   //   "shallow": false
      *   // }
      * }
      *
@@ -11979,6 +12238,467 @@ export namespace dataform_v1beta1 {
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a branch in a Workspace.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataform.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataform = google.dataform('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await dataform.projects.locations.repositories.workspaces.deleteBranch({
+     *       // Required. The workspace resource name. Format: projects/{project\}/locations/{location\}/repositories/{repository\}/workspaces/{workspace\}
+     *       name: 'projects/my-project/locations/my-location/repositories/my-repositorie/workspaces/my-workspace',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "branch": "my_branch",
+     *         //   "force": false
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    deleteBranch(
+      params: Params$Resource$Projects$Locations$Repositories$Workspaces$Deletebranch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    deleteBranch(
+      params?: Params$Resource$Projects$Locations$Repositories$Workspaces$Deletebranch,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DeleteBranchResponse>>;
+    deleteBranch(
+      params: Params$Resource$Projects$Locations$Repositories$Workspaces$Deletebranch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    deleteBranch(
+      params: Params$Resource$Projects$Locations$Repositories$Workspaces$Deletebranch,
+      options:
+        MethodOptions | BodyResponseCallback<Schema$DeleteBranchResponse>,
+      callback: BodyResponseCallback<Schema$DeleteBranchResponse>
+    ): void;
+    deleteBranch(
+      params: Params$Resource$Projects$Locations$Repositories$Workspaces$Deletebranch,
+      callback: BodyResponseCallback<Schema$DeleteBranchResponse>
+    ): void;
+    deleteBranch(
+      callback: BodyResponseCallback<Schema$DeleteBranchResponse>
+    ): void;
+    deleteBranch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Repositories$Workspaces$Deletebranch
+        | BodyResponseCallback<Schema$DeleteBranchResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DeleteBranchResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DeleteBranchResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$DeleteBranchResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Repositories$Workspaces$Deletebranch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Repositories$Workspaces$Deletebranch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}:deleteBranch').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$DeleteBranchResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$DeleteBranchResponse>(parameters);
+      }
+    }
+
+    /**
+     * Fetches branches in a Workspace.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataform.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataform = google.dataform('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await dataform.projects.locations.repositories.workspaces.fetchBranches({
+     *       // Optional. Filter for the returned list.
+     *       filter: 'placeholder-value',
+     *       // Required. The workspace resource name. Format: projects/{project\}/locations/{location\}/repositories/{repository\}/workspaces/{workspace\}
+     *       name: 'projects/my-project/locations/my-location/repositories/my-repositorie/workspaces/my-workspace',
+     *       // Optional. Maximum number of branches to return. The server may return fewer items than requested. If unspecified, the server will pick an appropriate default. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *       pageSize: 'placeholder-value',
+     *       // Optional. Page token received from a previous `FetchWorkspaceBranches` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `FetchWorkspaceBranches`, with the exception of `page_size`, must match the call that provided the page token.
+     *       pageToken: 'placeholder-value',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "branches": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    fetchBranches(
+      params: Params$Resource$Projects$Locations$Repositories$Workspaces$Fetchbranches,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    fetchBranches(
+      params?: Params$Resource$Projects$Locations$Repositories$Workspaces$Fetchbranches,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$FetchWorkspaceBranchesResponse>>;
+    fetchBranches(
+      params: Params$Resource$Projects$Locations$Repositories$Workspaces$Fetchbranches,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    fetchBranches(
+      params: Params$Resource$Projects$Locations$Repositories$Workspaces$Fetchbranches,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$FetchWorkspaceBranchesResponse>,
+      callback: BodyResponseCallback<Schema$FetchWorkspaceBranchesResponse>
+    ): void;
+    fetchBranches(
+      params: Params$Resource$Projects$Locations$Repositories$Workspaces$Fetchbranches,
+      callback: BodyResponseCallback<Schema$FetchWorkspaceBranchesResponse>
+    ): void;
+    fetchBranches(
+      callback: BodyResponseCallback<Schema$FetchWorkspaceBranchesResponse>
+    ): void;
+    fetchBranches(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Repositories$Workspaces$Fetchbranches
+        | BodyResponseCallback<Schema$FetchWorkspaceBranchesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$FetchWorkspaceBranchesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$FetchWorkspaceBranchesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$FetchWorkspaceBranchesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Repositories$Workspaces$Fetchbranches;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Repositories$Workspaces$Fetchbranches;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}:fetchBranches').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$FetchWorkspaceBranchesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$FetchWorkspaceBranchesResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Fetches the current branch of a Workspace.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataform.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataform = google.dataform('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await dataform.projects.locations.repositories.workspaces.fetchCurrentBranch(
+     *       {
+     *         // Required. The workspace resource name. Format: projects/{project\}/locations/{location\}/repositories/{repository\}/workspaces/{workspace\}
+     *         name: 'projects/my-project/locations/my-location/repositories/my-repositorie/workspaces/my-workspace',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "branchName": "my_branchName"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    fetchCurrentBranch(
+      params: Params$Resource$Projects$Locations$Repositories$Workspaces$Fetchcurrentbranch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    fetchCurrentBranch(
+      params?: Params$Resource$Projects$Locations$Repositories$Workspaces$Fetchcurrentbranch,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$FetchCurrentWorkspaceBranchResponse>
+    >;
+    fetchCurrentBranch(
+      params: Params$Resource$Projects$Locations$Repositories$Workspaces$Fetchcurrentbranch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    fetchCurrentBranch(
+      params: Params$Resource$Projects$Locations$Repositories$Workspaces$Fetchcurrentbranch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$FetchCurrentWorkspaceBranchResponse>,
+      callback: BodyResponseCallback<Schema$FetchCurrentWorkspaceBranchResponse>
+    ): void;
+    fetchCurrentBranch(
+      params: Params$Resource$Projects$Locations$Repositories$Workspaces$Fetchcurrentbranch,
+      callback: BodyResponseCallback<Schema$FetchCurrentWorkspaceBranchResponse>
+    ): void;
+    fetchCurrentBranch(
+      callback: BodyResponseCallback<Schema$FetchCurrentWorkspaceBranchResponse>
+    ): void;
+    fetchCurrentBranch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Repositories$Workspaces$Fetchcurrentbranch
+        | BodyResponseCallback<Schema$FetchCurrentWorkspaceBranchResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$FetchCurrentWorkspaceBranchResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$FetchCurrentWorkspaceBranchResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$FetchCurrentWorkspaceBranchResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Repositories$Workspaces$Fetchcurrentbranch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Repositories$Workspaces$Fetchcurrentbranch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}:fetchCurrentBranch').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$FetchCurrentWorkspaceBranchResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$FetchCurrentWorkspaceBranchResponse>(
+          parameters
+        );
       }
     }
 
@@ -12474,10 +13194,14 @@ export namespace dataform_v1beta1 {
      *   // {
      *   //   "createTime": "my_createTime",
      *   //   "dataEncryptionState": {},
+     *   //   "depth": 0,
      *   //   "disableMoves": false,
+     *   //   "enableBranchManagement": false,
      *   //   "internalMetadata": "my_internalMetadata",
      *   //   "name": "my_name",
-     *   //   "privateResourceMetadata": {}
+     *   //   "originalBranch": "my_originalBranch",
+     *   //   "privateResourceMetadata": {},
+     *   //   "shallow": false
      *   // }
      * }
      *
@@ -14844,6 +15568,160 @@ export namespace dataform_v1beta1 {
     }
 
     /**
+     * Syncs the refs of a Workspace.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataform.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataform = google.dataform('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await dataform.projects.locations.repositories.workspaces.syncWorkspaceRefs(
+     *       {
+     *         // Required. The workspace resource name. Format: projects/{project\}/locations/{location\}/repositories/{repository\}/workspaces/{workspace\}
+     *         name: 'projects/my-project/locations/my-location/repositories/my-repositorie/workspaces/my-workspace',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "deepen": 0,
+     *           //   "remoteBranchName": "my_remoteBranchName"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    syncWorkspaceRefs(
+      params: Params$Resource$Projects$Locations$Repositories$Workspaces$Syncworkspacerefs,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    syncWorkspaceRefs(
+      params?: Params$Resource$Projects$Locations$Repositories$Workspaces$Syncworkspacerefs,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SyncWorkspaceRefsResponse>>;
+    syncWorkspaceRefs(
+      params: Params$Resource$Projects$Locations$Repositories$Workspaces$Syncworkspacerefs,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    syncWorkspaceRefs(
+      params: Params$Resource$Projects$Locations$Repositories$Workspaces$Syncworkspacerefs,
+      options:
+        MethodOptions | BodyResponseCallback<Schema$SyncWorkspaceRefsResponse>,
+      callback: BodyResponseCallback<Schema$SyncWorkspaceRefsResponse>
+    ): void;
+    syncWorkspaceRefs(
+      params: Params$Resource$Projects$Locations$Repositories$Workspaces$Syncworkspacerefs,
+      callback: BodyResponseCallback<Schema$SyncWorkspaceRefsResponse>
+    ): void;
+    syncWorkspaceRefs(
+      callback: BodyResponseCallback<Schema$SyncWorkspaceRefsResponse>
+    ): void;
+    syncWorkspaceRefs(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Repositories$Workspaces$Syncworkspacerefs
+        | BodyResponseCallback<Schema$SyncWorkspaceRefsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SyncWorkspaceRefsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SyncWorkspaceRefsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SyncWorkspaceRefsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Repositories$Workspaces$Syncworkspacerefs;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Repositories$Workspaces$Syncworkspacerefs;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}:syncWorkspaceRefs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SyncWorkspaceRefsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SyncWorkspaceRefsResponse>(parameters);
+      }
+    }
+
+    /**
      * Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
      * @example
      * ```js
@@ -15150,6 +16028,17 @@ export namespace dataform_v1beta1 {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Repositories$Workspaces$Checkout extends StandardParameters {
+    /**
+     * Required. The workspace resource name. Format: projects/{project\}/locations/{location\}/repositories/{repository\}/workspaces/{workspace\}
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CheckoutWorkspaceBranchRequest;
+  }
   export interface Params$Resource$Projects$Locations$Repositories$Workspaces$Commit extends StandardParameters {
     /**
      * Required. The workspace's name.
@@ -15179,6 +16068,41 @@ export namespace dataform_v1beta1 {
   export interface Params$Resource$Projects$Locations$Repositories$Workspaces$Delete extends StandardParameters {
     /**
      * Required. The workspace resource's name.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Repositories$Workspaces$Deletebranch extends StandardParameters {
+    /**
+     * Required. The workspace resource name. Format: projects/{project\}/locations/{location\}/repositories/{repository\}/workspaces/{workspace\}
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$DeleteBranchRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Repositories$Workspaces$Fetchbranches extends StandardParameters {
+    /**
+     * Optional. Filter for the returned list.
+     */
+    filter?: string;
+    /**
+     * Required. The workspace resource name. Format: projects/{project\}/locations/{location\}/repositories/{repository\}/workspaces/{workspace\}
+     */
+    name?: string;
+    /**
+     * Optional. Maximum number of branches to return. The server may return fewer items than requested. If unspecified, the server will pick an appropriate default. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. Page token received from a previous `FetchWorkspaceBranches` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `FetchWorkspaceBranches`, with the exception of `page_size`, must match the call that provided the page token.
+     */
+    pageToken?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Repositories$Workspaces$Fetchcurrentbranch extends StandardParameters {
+    /**
+     * Required. The workspace resource name. Format: projects/{project\}/locations/{location\}/repositories/{repository\}/workspaces/{workspace\}
      */
     name?: string;
   }
@@ -15409,6 +16333,17 @@ export namespace dataform_v1beta1 {
      * Request body metadata
      */
     requestBody?: Schema$SetIamPolicyRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Repositories$Workspaces$Syncworkspacerefs extends StandardParameters {
+    /**
+     * Required. The workspace resource name. Format: projects/{project\}/locations/{location\}/repositories/{repository\}/workspaces/{workspace\}
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SyncWorkspaceRefsRequest;
   }
   export interface Params$Resource$Projects$Locations$Repositories$Workspaces$Testiampermissions extends StandardParameters {
     /**
