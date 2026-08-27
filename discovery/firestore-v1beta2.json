@@ -867,7 +867,7 @@
       }
     }
   },
-  "revision": "20260323",
+  "revision": "20260810",
   "rootUrl": "https://firestore.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -1104,7 +1104,42 @@
     "GoogleFirestoreAdminV1UpdateDatabaseMetadata": {
       "description": "Metadata related to the update database operation.",
       "id": "GoogleFirestoreAdminV1UpdateDatabaseMetadata",
-      "properties": {},
+      "properties": {
+        "endTime": {
+          "description": "The time this operation completed. Will be unset if operation still in progress.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "startTime": {
+          "description": "The time this operation started.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "state": {
+          "description": "The state of the operation.",
+          "enum": [
+            "OPERATION_STATE_UNSPECIFIED",
+            "INITIALIZING",
+            "PROCESSING",
+            "CANCELLING",
+            "FINALIZING",
+            "SUCCESSFUL",
+            "FAILED",
+            "CANCELLED"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "Request is being prepared for processing.",
+            "Request is actively being processed.",
+            "Request is in the process of being cancelled after user called google.longrunning.Operations.CancelOperation on the operation.",
+            "Request has been processed and is in its finalization stage.",
+            "Request has completed successfully.",
+            "Request has finished being processed, but encountered an error.",
+            "Request has finished being cancelled after user called google.longrunning.Operations.CancelOperation."
+          ],
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "GoogleFirestoreAdminV1beta2ExportDocumentsMetadata": {
