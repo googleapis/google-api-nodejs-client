@@ -2026,6 +2026,7 @@ export namespace dialogflow_v2beta1 {
     enableAutomaticPunctuation?: boolean | null;
     enableVoiceActivityEvents?: boolean | null;
     enableWordInfo?: boolean | null;
+    geminiAsrConfig?: Schema$GoogleCloudDialogflowV2beta1SpeechToTextConfigGeminiAsrConfig;
     languageCode?: string | null;
     model?: string | null;
     modelVariant?: string | null;
@@ -2035,6 +2036,7 @@ export namespace dialogflow_v2beta1 {
     sampleRateHertz?: number | null;
     singleUtterance?: boolean | null;
     speechContexts?: Schema$GoogleCloudDialogflowV2beta1SpeechContext[];
+    useGeminiAsr?: boolean | null;
   }
   export interface Schema$GoogleCloudDialogflowV2beta1Intent {
     action?: string | null;
@@ -2772,12 +2774,21 @@ export namespace dialogflow_v2beta1 {
   export interface Schema$GoogleCloudDialogflowV2beta1SpeechToTextConfig {
     audioEncoding?: string | null;
     enableWordInfo?: boolean | null;
+    geminiAsrConfig?: Schema$GoogleCloudDialogflowV2beta1SpeechToTextConfigGeminiAsrConfig;
     languageCode?: string | null;
     model?: string | null;
     phraseSets?: string[] | null;
     sampleRateHertz?: number | null;
     speechModelVariant?: string | null;
+    useGeminiAsr?: boolean | null;
     useTimeoutBasedEndpointing?: boolean | null;
+  }
+  export interface Schema$GoogleCloudDialogflowV2beta1SpeechToTextConfigGeminiAsrConfig {
+    endOfSpeechSensitivity?: string | null;
+    modelId?: string | null;
+    prefixPaddingMs?: number | null;
+    silenceDurationMs?: number | null;
+    startOfSpeechSensitivity?: string | null;
   }
   export interface Schema$GoogleCloudDialogflowV2beta1SpeechWordInfo {
     confidence?: number | null;
@@ -3095,6 +3106,7 @@ export namespace dialogflow_v2beta1 {
   }
   export interface Schema$GoogleCloudDialogflowV2beta1ToolCallResultError {
     message?: string | null;
+    retryable?: boolean | null;
   }
   export interface Schema$GoogleCloudDialogflowV2beta1ToolConnectorTool {
     actions?: Schema$GoogleCloudDialogflowV2beta1ToolConnectorToolAction[];
@@ -3753,6 +3765,7 @@ export namespace dialogflow_v2beta1 {
   }
   export interface Schema$GoogleCloudDialogflowV2ToolCallResultError {
     message?: string | null;
+    retryable?: boolean | null;
   }
   export interface Schema$GoogleCloudDialogflowV2UndeployConversationModelOperationMetadata {
     conversationModel?: string | null;
