@@ -1622,6 +1622,10 @@ export namespace discoveryengine_v1beta {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaAssistantGroundedContentTextGroundingMetadataReference {
     /**
+     * Output only. Generic structured chunk metadata from upstream data source connectors.
+     */
+    chunkMetadata?: {[key: string]: any} | null;
+    /**
      * Chunk of code snippet from the referenced document.
      */
     codeSnippet?: string | null;
@@ -7911,6 +7915,10 @@ export namespace discoveryengine_v1beta {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaAssistantGroundedContentTextGroundingMetadataReference {
     /**
+     * Output only. Generic structured chunk metadata from upstream data source connectors.
+     */
+    chunkMetadata?: {[key: string]: any} | null;
+    /**
      * Chunk of code snippet from the referenced document.
      */
     codeSnippet?: string | null;
@@ -13803,6 +13811,10 @@ export namespace discoveryengine_v1beta {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaStreamAssistRequest {
     /**
+     * Optional. Specification of agents that are used to serve the request.
+     */
+    agentsSpec?: Schema$GoogleCloudDiscoveryengineV1betaStreamAssistRequestAgentsSpec;
+    /**
      * Optional. Specification of the generation configuration for the request.
      */
     generationSpec?: Schema$GoogleCloudDiscoveryengineV1betaStreamAssistRequestGenerationSpec;
@@ -13822,6 +13834,24 @@ export namespace discoveryengine_v1beta {
      * Optional. Information about the user initiating the query.
      */
     userMetadata?: Schema$GoogleCloudDiscoveryengineV1betaAssistUserMetadata;
+  }
+  /**
+   * Specification of agents that are used to serve the request.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaStreamAssistRequestAgentsSpec {
+    /**
+     * Optional. Specification of agents that are used to serve the request.
+     */
+    agentSpecs?: Schema$GoogleCloudDiscoveryengineV1betaStreamAssistRequestAgentsSpecAgentSpec[];
+  }
+  /**
+   * Specification of an agent.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaStreamAssistRequestAgentsSpecAgentSpec {
+    /**
+     * Required. ID to identify the agent resource serving the request. This field must conform to [RFC-1034](https://tools.ietf.org/html/rfc1034) with a length limit of 63 characters.
+     */
+    agentId?: string | null;
   }
   /**
    * Assistant generation specification for the request. This allows to override the default generation configuration at the engine level.
@@ -38637,6 +38667,7 @@ export namespace discoveryengine_v1beta {
      *         requestBody: {
      *           // request body parameters
      *           // {
+     *           //   "agentsSpec": {},
      *           //   "generationSpec": {},
      *           //   "query": {},
      *           //   "session": "my_session",

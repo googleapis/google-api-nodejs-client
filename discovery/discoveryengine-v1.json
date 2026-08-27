@@ -9742,7 +9742,7 @@
       }
     }
   },
-  "revision": "20260815",
+  "revision": "20260823",
   "rootUrl": "https://discoveryengine.googleapis.com/",
   "schemas": {
     "A2aV1APIKeySecurityScheme": {
@@ -13318,6 +13318,15 @@
       "description": "Referenced content and related document metadata.",
       "id": "GoogleCloudDiscoveryengineV1AssistantGroundedContentTextGroundingMetadataReference",
       "properties": {
+        "chunkMetadata": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Output only. Generic structured chunk metadata from upstream data source connectors.",
+          "readOnly": true,
+          "type": "object"
+        },
         "codeSnippet": {
           "description": "Chunk of code snippet from the referenced document.",
           "type": "string"
@@ -21504,6 +21513,10 @@
       "description": "Request for the AssistantService.StreamAssist method.",
       "id": "GoogleCloudDiscoveryengineV1StreamAssistRequest",
       "properties": {
+        "agentsSpec": {
+          "$ref": "GoogleCloudDiscoveryengineV1StreamAssistRequestAgentsSpec",
+          "description": "Optional. Specification of agents that are used to serve the request."
+        },
         "generationSpec": {
           "$ref": "GoogleCloudDiscoveryengineV1StreamAssistRequestGenerationSpec",
           "description": "Optional. Specification of the generation configuration for the request."
@@ -21523,6 +21536,31 @@
         "userMetadata": {
           "$ref": "GoogleCloudDiscoveryengineV1AssistUserMetadata",
           "description": "Optional. Information about the user initiating the query."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1StreamAssistRequestAgentsSpec": {
+      "description": "Specification of agents that are used to serve the request.",
+      "id": "GoogleCloudDiscoveryengineV1StreamAssistRequestAgentsSpec",
+      "properties": {
+        "agentSpecs": {
+          "description": "Optional. Specification of agents that are used to serve the request.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1StreamAssistRequestAgentsSpecAgentSpec"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1StreamAssistRequestAgentsSpecAgentSpec": {
+      "description": "Specification of an agent.",
+      "id": "GoogleCloudDiscoveryengineV1StreamAssistRequestAgentsSpecAgentSpec",
+      "properties": {
+        "agentId": {
+          "description": "Required. ID to identify the agent resource serving the request. This field must conform to [RFC-1034](https://tools.ietf.org/html/rfc1034) with a length limit of 63 characters.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -22673,7 +22711,7 @@
           "type": "string"
         },
         "isFirstParty": {
-          "description": "Output only. Whether this is a first-party (Google-owned) connector, as opposed to a third-party connector. Used by the frontend to group 1P vs 3P connectors. Sourced from `ConnectorSource.is_first_party` once that field is universally populated (b/534727761); until then derived from `ConnectorSource.connector_type == FIRST_PARTY`.",
+          "description": "Output only. Whether this is a first-party (Google-owned) connector, as opposed to a third-party connector. Used by the frontend to group 1P vs 3P connectors.",
           "readOnly": true,
           "type": "boolean"
         },
@@ -23233,6 +23271,11 @@
           "description": "Output only. Unique identifier of the model (e.g. `gemini-2.5-flash`, `gemini-3.1-pro-preview`). This is the same identifier that clients pass back to the assistant service to select this model. Virtual / \"pseudo\" models (e.g. `gemini-fast`) are also valid values here; they are resolved to the underlying concrete model on the backend.",
           "readOnly": true,
           "type": "string"
+        },
+        "promoted": {
+          "description": "Output only. Whether this model should be promoted in the GE chat homepage banner.",
+          "readOnly": true,
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -24873,6 +24916,15 @@
       "description": "Referenced content and related document metadata.",
       "id": "GoogleCloudDiscoveryengineV1alphaAssistantGroundedContentTextGroundingMetadataReference",
       "properties": {
+        "chunkMetadata": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Output only. Generic structured chunk metadata from upstream data source connectors.",
+          "readOnly": true,
+          "type": "object"
+        },
         "codeSnippet": {
           "description": "Chunk of code snippet from the referenced document.",
           "type": "string"
