@@ -95,6 +95,12 @@
         "https://www.googleapis.com/auth/chat.spaces.create": {
           "description": "Create new conversations and spaces in Google Chat"
         },
+        "https://www.googleapis.com/auth/chat.spaces.pins": {
+          "description": "See, add, and remove pins in your Google Chat spaces"
+        },
+        "https://www.googleapis.com/auth/chat.spaces.pins.readonly": {
+          "description": "See pins in your Google Chat spaces"
+        },
         "https://www.googleapis.com/auth/chat.spaces.readonly": {
           "description": "View chat and spaces in Google Chat"
         },
@@ -691,7 +697,7 @@
               "type": "string"
             },
             "pageSize": {
-              "description": "The maximum number of spaces to return. The service may return fewer than this value. If unspecified, at most 100 spaces are returned. The maximum value is 1000. If you use a value more than 1000, it's automatically changed to 1000.",
+              "description": "The maximum number of spaces to return. The service may return fewer than this value. If unspecified, at most 100 spaces are returned. The maximum value is 1000 when `useAdminAccess` is set to `true`. Otherwise, the maximum value is 100. If you use a value more than the maximum value, it's automatically changed to the maximum value.",
               "format": "int32",
               "location": "query",
               "type": "integer"
@@ -702,7 +708,7 @@
               "type": "string"
             },
             "query": {
-              "description": "Required. A search query. You can search by using the following parameters when `useAdminAccess` is set to `true`: - `create_time` - `customer` - `display_name` - `external_user_allowed` - `last_active_time` - `space_history_state` - `space_type` When `useAdminAccess` is set to `false`: - `display_name` - `external_user_allowed` - `space_type` `create_time` and `last_active_time` accept a timestamp in [RFC-3339](https://www.rfc-editor.org/rfc/rfc3339) format and the supported comparison operators are: `=`, `<`, `>`, `<=`, `>=`. `customer` is required when `useAdminAccess` is set to `true`, and is used to indicate which customer to fetch spaces from. `customers/my_customer` is the only supported value. `display_name` only accepts the `HAS` (`:`) operator. The text to match is first tokenized into tokens and each token is prefix-matched case-insensitively and independently as a substring anywhere in the space's `display_name`. For example, `Fun Eve` matches `Fun event` or `The evening was fun`, but not `notFun event` or `even`. When `useAdminAccess` is set to `false`, `display_name` is required to retrieve meaningful results. Otherwise, the default behavior is to return an empty response. `external_user_allowed` accepts either `true` or `false`. `space_history_state` only accepts values from the [`historyState`] (https://developers.google.com/workspace/chat/api/reference/rest/v1/spaces#Space.HistoryState) field of a `space` resource. `space_type` is required and the only valid value is `SPACE`. Across different fields, only `AND` operators are supported. A valid example is `space_type = \"SPACE\" AND display_name:\"Hello\"` and an invalid example is `space_type = \"SPACE\" OR display_name:\"Hello\"`. Among the same field, `space_type` doesn't support `AND` or `OR` operators. `display_name`, 'space_history_state', and 'external_user_allowed' only support `OR` operators. `last_active_time` and `create_time` support both `AND` and `OR` operators. `AND` can only be used to represent an interval, such as `last_active_time < \"2022-01-01T00:00:00+00:00\" AND last_active_time > \"2023-01-01T00:00:00+00:00\"`. The following example queries are valid when `useAdminAccess` is set to `true`: ``` customer = \"customers/my_customer\" AND space_type = \"SPACE\" customer = \"customers/my_customer\" AND space_type = \"SPACE\" AND display_name:\"Hello World\" customer = \"customers/my_customer\" AND space_type = \"SPACE\" AND (last_active_time < \"2020-01-01T00:00:00+00:00\" OR last_active_time > \"2022-01-01T00:00:00+00:00\") customer = \"customers/my_customer\" AND space_type = \"SPACE\" AND (display_name:\"Hello World\" OR display_name:\"Fun event\") AND (last_active_time > \"2020-01-01T00:00:00+00:00\" AND last_active_time < \"2022-01-01T00:00:00+00:00\") customer = \"customers/my_customer\" AND space_type = \"SPACE\" AND (create_time > \"2019-01-01T00:00:00+00:00\" AND create_time < \"2020-01-01T00:00:00+00:00\") AND (external_user_allowed = \"true\") AND (space_history_state = \"HISTORY_ON\" OR space_history_state = \"HISTORY_OFF\") ``` The following example queries are valid when `useAdminAccess` is set to `false`: ``` display_name:\"Hello World\" AND space_type = \"SPACE\" (display_name:\"Hello\" OR display_name:\"Fun\") AND space_type = \"SPACE\" (external_user_allowed = \"true\" AND space_type = \"SPACE\") // Returns an empty response. (external_user_allowed = \"true\" AND display_name:\"Hello\" AND space_type = \"SPACE\") ```",
+              "description": "Required. A search query. You can search by using the following parameters when `useAdminAccess` is set to `true`: - `create_time` - `customer` - `display_name` - `external_user_allowed` - `last_active_time` - `space_history_state` - `space_type` When `useAdminAccess` is set to `false`: - `display_name` - `external_user_allowed` - `space_type` `create_time` and `last_active_time` accept a timestamp in [RFC-3339](https://www.rfc-editor.org/rfc/rfc3339) format and the supported comparison operators are: `=`, `<`, `>`, `<=`, `>=`. `customer` is required when `useAdminAccess` is set to `true`, and is used to indicate which customer to fetch spaces from. `customers/my_customer` is the only supported value. `display_name` only accepts the `HAS` (`:`) operator. The text to match is first tokenized into tokens and each token is prefix-matched case-insensitively and independently as a substring anywhere in the space's `display_name`. For example, `Fun Eve` matches `Fun event` or `The evening was fun`, but not `notFun event` or `even`. When `useAdminAccess` is set to `false`, `display_name` is required to retrieve meaningful results. Otherwise, the default behavior is to return an empty response. `external_user_allowed` accepts either `true` or `false`. `space_history_state` only accepts values from the [`historyState`] (https://developers.google.com/workspace/chat/api/reference/rest/v1/spaces#Space.HistoryState) field of a `space` resource. `space_type` is required and the only valid value is `SPACE`. Across different fields, only `AND` operators are supported. A valid example is `space_type = \"SPACE\" AND display_name:\"Hello\"` and an invalid example is `space_type = \"SPACE\" OR display_name:\"Hello\"`. Among the same field, `space_type` doesn't support `AND` or `OR` operators. `display_name`, 'space_history_state', and 'external_user_allowed' only support `OR` operators. `last_active_time` and `create_time` support both `AND` and `OR` operators. `AND` can only be used to represent an interval, such as `last_active_time < \"2022-01-01T00:00:00+00:00\" AND last_active_time > \"2023-01-01T00:00:00+00:00\"`. The following example queries are valid when `useAdminAccess` is set to `true`: ``` customer = \"customers/my_customer\" AND space_type = \"SPACE\" customer = \"customers/my_customer\" AND space_type = \"SPACE\" AND display_name:\"Hello World\" customer = \"customers/my_customer\" AND space_type = \"SPACE\" AND (last_active_time < \"2020-01-01T00:00:00+00:00\" OR last_active_time > \"2022-01-01T00:00:00+00:00\") customer = \"customers/my_customer\" AND space_type = \"SPACE\" AND (display_name:\"Hello World\" OR display_name:\"Fun event\") AND (last_active_time > \"2020-01-01T00:00:00+00:00\" AND last_active_time < \"2022-01-01T00:00:00+00:00\") customer = \"customers/my_customer\" AND space_type = \"SPACE\" AND (create_time > \"2019-01-01T00:00:00+00:00\" AND create_time < \"2020-01-01T00:00:00+00:00\") AND (external_user_allowed = \"true\") AND (space_history_state = \"HISTORY_ON\" OR space_history_state = \"HISTORY_OFF\") ``` The following example queries are valid when `useAdminAccess` is set to `false`: ``` display_name:\"Hello World\" AND space_type = \"SPACE\" (display_name:\"Hello\" OR display_name:\"Fun\") AND space_type = \"SPACE\" (external_user_allowed = \"true\" AND space_type = \"SPACE\") // Returns an empty response. (external_user_allowed = \"true\" AND display_name:\"Hello\" AND space_type = \"SPACE\") ``` The maximum query length is 1,000 characters. Invalid queries are rejected by the server with an `INVALID_ARGUMENT` error.",
               "location": "query",
               "type": "string"
             },
@@ -954,6 +960,104 @@
                 "https://www.googleapis.com/auth/chat.app.memberships",
                 "https://www.googleapis.com/auth/chat.import",
                 "https://www.googleapis.com/auth/chat.memberships"
+              ]
+            }
+          }
+        },
+        "messagePins": {
+          "methods": {
+            "create": {
+              "description": "Creates a message pin. Requires [user authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user) with one of the following [authorization scopes](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes): - `https://www.googleapis.com/auth/chat.spaces.pins` - `https://www.googleapis.com/auth/chat.spaces`",
+              "flatPath": "v1/spaces/{spacesId}/messagePins",
+              "httpMethod": "POST",
+              "id": "chat.spaces.messagePins.create",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. The parent space in which to create the message pin. Format: spaces/{space}",
+                  "location": "path",
+                  "pattern": "^spaces/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/messagePins",
+              "request": {
+                "$ref": "MessagePin"
+              },
+              "response": {
+                "$ref": "MessagePin"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/chat.spaces",
+                "https://www.googleapis.com/auth/chat.spaces.pins"
+              ]
+            },
+            "delete": {
+              "description": "Deletes a message pin. Requires [user authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user) with one of the following [authorization scopes](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes): - `https://www.googleapis.com/auth/chat.spaces.pins` - `https://www.googleapis.com/auth/chat.spaces`",
+              "flatPath": "v1/spaces/{spacesId}/messagePins/{messagePinsId}",
+              "httpMethod": "DELETE",
+              "id": "chat.spaces.messagePins.delete",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The resource name of the message pin to remove. Format: spaces/{space}/messagePins/{message_pin}",
+                  "location": "path",
+                  "pattern": "^spaces/[^/]+/messagePins/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "response": {
+                "$ref": "Empty"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/chat.spaces",
+                "https://www.googleapis.com/auth/chat.spaces.pins"
+              ]
+            },
+            "list": {
+              "description": "Lists message pins in a space. Users can pin important messages in spaces for easy access. For more information, see [Pin or unpin a conversation in Google Chat](https://support.google.com/chat/answer/15622437). Requires [user authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user) with one of the following [authorization scopes](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes): - `https://www.googleapis.com/auth/chat.spaces.pins.readonly` - `https://www.googleapis.com/auth/chat.spaces.pins` - `https://www.googleapis.com/auth/chat.spaces.readonly` - `https://www.googleapis.com/auth/chat.spaces`",
+              "flatPath": "v1/spaces/{spacesId}/messagePins",
+              "httpMethod": "GET",
+              "id": "chat.spaces.messagePins.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "pageSize": {
+                  "description": "Optional. The maximum number of message pins returned. The service might return fewer messages than this value. The maximum value is 100. If you use a value more than 100, it's automatically changed to 100. If unspecified, at most 100 message pins will be returned. Negative values return an `INVALID_ARGUMENT` error.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "Optional. A page token received from a previous list message pins call. Provide this parameter to retrieve the subsequent page. When paginating, all other parameters provided should match the call that provided the page token. Passing different values to the other parameters might lead to unexpected results.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. The parent space which owns the collection of pinned items Format: `spaces/{space}`",
+                  "location": "path",
+                  "pattern": "^spaces/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/messagePins",
+              "response": {
+                "$ref": "ListMessagePinsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/chat.spaces",
+                "https://www.googleapis.com/auth/chat.spaces.pins",
+                "https://www.googleapis.com/auth/chat.spaces.pins.readonly",
+                "https://www.googleapis.com/auth/chat.spaces.readonly"
               ]
             }
           }
@@ -2077,7 +2181,7 @@
       }
     }
   },
-  "revision": "20260809",
+  "revision": "20260820",
   "rootUrl": "https://chat.googleapis.com/",
   "schemas": {
     "AccessPermissionSetting": {
@@ -2260,7 +2364,7 @@
       "type": "object"
     },
     "Annotation": {
-      "description": "Output only. Annotations can be associated with the plain-text body of the message or with chips that link to Google Workspace resources like Google Docs or Sheets with `start_index` and `length` of 0. To add basic formatting to a text message, see [Format text messages](https://developers.google.com/workspace/chat/format-messages). Example plain-text message body: ``` Hello @FooBot how are you!\" ``` The corresponding annotations metadata: ``` \"annotations\":[{ \"type\":\"USER_MENTION\", \"startIndex\":6, \"length\":7, \"userMention\": { \"user\": { \"name\":\"users/{user}\", \"displayName\":\"FooBot\", \"avatarUrl\":\"https://goo.gl/aeDtrS\", \"type\":\"BOT\" }, \"type\":\"MENTION\" } }] ```",
+      "description": "Annotations can be associated with the plain-text body of the message or with chips that link to Google Workspace resources like Google Docs or Sheets with `start_index` and `length` of 0. To add basic formatting to a text message, see [Format text messages](https://developers.google.com/workspace/chat/format-messages). Example plain-text message body: ``` Hello @FooBot how are you!\" ``` The corresponding annotations metadata: ``` \"annotations\":[{ \"type\":\"USER_MENTION\", \"startIndex\":6, \"length\":7, \"userMention\": { \"user\": { \"name\":\"users/{user}\", \"displayName\":\"FooBot\", \"avatarUrl\":\"https://goo.gl/aeDtrS\", \"type\":\"BOT\" }, \"type\":\"MENTION\" } }] ```",
       "id": "Annotation",
       "properties": {
         "customEmojiMetadata": {
@@ -5069,6 +5173,24 @@
       },
       "type": "object"
     },
+    "ListMessagePinsResponse": {
+      "description": "Response message for listing message pins.",
+      "id": "ListMessagePinsResponse",
+      "properties": {
+        "messagePins": {
+          "description": "The pinned messages from the specified space.",
+          "items": {
+            "$ref": "MessagePin"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "You can send a token as `pageToken` to retrieve the next page of results. If empty, there are no subsequent pages.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListMessagesResponse": {
       "description": "Response message for listing messages.",
       "id": "ListMessagesResponse",
@@ -5687,6 +5809,21 @@
       },
       "type": "object"
     },
+    "MessagePin": {
+      "description": "A pin on a Chat message. For more information see [Pin a message](https://support.google.com/chat?p=chat-board-hc).",
+      "id": "MessagePin",
+      "properties": {
+        "message": {
+          "description": "Required. Immutable. The resource name of the message that is pinned. Format: `spaces/{space}/messages/{message}`",
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. The resource name of the message pin. Format: `spaces/{space}/messagePins/{message_pin}` The resource ID component matches the resource ID component of the message. For example, a message with `spaces/AAA/messages/bbb.ccc` corresponds to the message pin with the resource name `spaces/AAA/messagePins/bbb.ccc`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "MessageUpdatedEventData": {
       "description": "Event payload for an updated message. Event type: `google.workspace.chat.message.v1.updated`",
       "id": "MessageUpdatedEventData",
@@ -6164,7 +6301,7 @@
       "id": "SearchSpacesResponse",
       "properties": {
         "nextPageToken": {
-          "description": "A token that can be used to retrieve the next page. If this field is empty, there are no subsequent pages.",
+          "description": "A token that can be used to retrieve the next page. If this field is empty, there are no subsequent pages. Only populated when `useAdminAccess` is set to `true`.",
           "type": "string"
         },
         "results": {
@@ -6184,7 +6321,7 @@
           "type": "array"
         },
         "totalSize": {
-          "description": "The total number of spaces that match the query, across all pages. If the result is over 10,000 spaces, this value is an estimate.",
+          "description": "The total number of spaces that match the query, across all pages. If the result is over 10,000 spaces, this value is an estimate. Only populated when `useAdminAccess` is set to `true`.",
           "format": "int32",
           "type": "integer"
         }
