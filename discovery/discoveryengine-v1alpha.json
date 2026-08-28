@@ -1286,6 +1286,39 @@
                     "https://www.googleapis.com/auth/discoveryengine.serving.readwrite"
                   ]
                 },
+                "getIamPolicy": {
+                  "description": "Gets the IAM access control policy for a Collection. A `NOT_FOUND` error is returned if the resource does not exist. An empty policy is returned if the resource exists but does not have a policy set on it.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}:getIamPolicy",
+                  "httpMethod": "GET",
+                  "id": "discoveryengine.projects.locations.collections.getIamPolicy",
+                  "parameterOrder": [
+                    "resource"
+                  ],
+                  "parameters": {
+                    "options.requestedPolicyVersion": {
+                      "description": "Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "resource": {
+                      "description": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+resource}:getIamPolicy",
+                  "response": {
+                    "$ref": "GoogleIamV1Policy"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/discoveryengine.readwrite",
+                    "https://www.googleapis.com/auth/discoveryengine.serving.readwrite"
+                  ]
+                },
                 "list": {
                   "description": "Gets a list of Collections.",
                   "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections",
@@ -1358,6 +1391,36 @@
                   },
                   "response": {
                     "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/discoveryengine.readwrite",
+                    "https://www.googleapis.com/auth/discoveryengine.serving.readwrite"
+                  ]
+                },
+                "setIamPolicy": {
+                  "description": "Sets the IAM access control policy for a Collection. A `NOT_FOUND` error is returned if the resource does not exist. **Important:** When setting a policy directly on a Collection resource, the only recommended roles in the bindings are: `roles/discoveryengine.admin` `roles/discoveryengine.agentspaceAdmin` `roles/discoveryengine.viewer` `roles/discoveryengine.agentspaceViewer` `roles/discoveryengine.user` `roles/discoveryengine.agentspaceUser` Attempting to grant any other role will result in a warning in logging.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}:setIamPolicy",
+                  "httpMethod": "POST",
+                  "id": "discoveryengine.projects.locations.collections.setIamPolicy",
+                  "parameterOrder": [
+                    "resource"
+                  ],
+                  "parameters": {
+                    "resource": {
+                      "description": "REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+resource}:setIamPolicy",
+                  "request": {
+                    "$ref": "GoogleIamV1SetIamPolicyRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleIamV1Policy"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform",
@@ -1486,6 +1549,37 @@
                       "path": "v1alpha/{+name}:getConnectorSecret",
                       "response": {
                         "$ref": "GoogleCloudDiscoveryengineV1alphaGetConnectorSecretResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite",
+                        "https://www.googleapis.com/auth/discoveryengine.serving.readwrite"
+                      ]
+                    },
+                    "invokeConnectorMcp": {
+                      "description": "Makes a call to an MCP connector.",
+                      "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataConnector:invokeConnectorMcp",
+                      "httpMethod": "POST",
+                      "id": "discoveryengine.projects.locations.collections.dataConnector.invokeConnectorMcp",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. DataConnector resource. The data connector used for making the MCP call.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataConnector$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha/{+name}:invokeConnectorMcp",
+                      "request": {
+                        "$ref": "GoogleCloudDiscoveryengineV1alphaInvokeConnectorMcpRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudDiscoveryengineV1alphaInvokeConnectorMcpResponse"
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform",
@@ -2000,6 +2094,39 @@
                         "https://www.googleapis.com/auth/discoveryengine.serving.readwrite"
                       ]
                     },
+                    "getIamPolicy": {
+                      "description": "Gets the IAM access control policy for a DataStore. A `NOT_FOUND` error is returned if the resource does not exist. An empty policy is returned if the resource exists but does not have a policy set on it.",
+                      "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}:getIamPolicy",
+                      "httpMethod": "GET",
+                      "id": "discoveryengine.projects.locations.collections.dataStores.getIamPolicy",
+                      "parameterOrder": [
+                        "resource"
+                      ],
+                      "parameters": {
+                        "options.requestedPolicyVersion": {
+                          "description": "Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "resource": {
+                          "description": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha/{+resource}:getIamPolicy",
+                      "response": {
+                        "$ref": "GoogleIamV1Policy"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite",
+                        "https://www.googleapis.com/auth/discoveryengine.serving.readwrite"
+                      ]
+                    },
                     "getSiteSearchEngine": {
                       "description": "Gets the SiteSearchEngine.",
                       "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}/siteSearchEngine",
@@ -2174,6 +2301,36 @@
                       },
                       "response": {
                         "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite",
+                        "https://www.googleapis.com/auth/discoveryengine.serving.readwrite"
+                      ]
+                    },
+                    "setIamPolicy": {
+                      "description": "Sets the IAM access control policy for a DataStore. A `NOT_FOUND` error is returned if the resource does not exist. **Important:** When setting a policy directly on a DataStore resource, the only recommended roles in the bindings are: `roles/discoveryengine.admin` `roles/discoveryengine.agentspaceAdmin` `roles/discoveryengine.viewer` `roles/discoveryengine.agentspaceViewer` `roles/discoveryengine.user` `roles/discoveryengine.agentspaceUser` Attempting to grant any other role will result in a warning in logging.",
+                      "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}:setIamPolicy",
+                      "httpMethod": "POST",
+                      "id": "discoveryengine.projects.locations.collections.dataStores.setIamPolicy",
+                      "parameterOrder": [
+                        "resource"
+                      ],
+                      "parameters": {
+                        "resource": {
+                          "description": "REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha/{+resource}:setIamPolicy",
+                      "request": {
+                        "$ref": "GoogleIamV1SetIamPolicyRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleIamV1Policy"
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform",
@@ -8480,6 +8637,39 @@
                     "https://www.googleapis.com/auth/discoveryengine.serving.readwrite"
                   ]
                 },
+                "getIamPolicy": {
+                  "description": "Gets the IAM access control policy for a DataStore. A `NOT_FOUND` error is returned if the resource does not exist. An empty policy is returned if the resource exists but does not have a policy set on it.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/dataStores/{dataStoresId}:getIamPolicy",
+                  "httpMethod": "GET",
+                  "id": "discoveryengine.projects.locations.dataStores.getIamPolicy",
+                  "parameterOrder": [
+                    "resource"
+                  ],
+                  "parameters": {
+                    "options.requestedPolicyVersion": {
+                      "description": "Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "resource": {
+                      "description": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+resource}:getIamPolicy",
+                  "response": {
+                    "$ref": "GoogleIamV1Policy"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/discoveryengine.readwrite",
+                    "https://www.googleapis.com/auth/discoveryengine.serving.readwrite"
+                  ]
+                },
                 "getSiteSearchEngine": {
                   "description": "Gets the SiteSearchEngine.",
                   "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/dataStores/{dataStoresId}/siteSearchEngine",
@@ -8654,6 +8844,36 @@
                   },
                   "response": {
                     "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/discoveryengine.readwrite",
+                    "https://www.googleapis.com/auth/discoveryengine.serving.readwrite"
+                  ]
+                },
+                "setIamPolicy": {
+                  "description": "Sets the IAM access control policy for a DataStore. A `NOT_FOUND` error is returned if the resource does not exist. **Important:** When setting a policy directly on a DataStore resource, the only recommended roles in the bindings are: `roles/discoveryengine.admin` `roles/discoveryengine.agentspaceAdmin` `roles/discoveryengine.viewer` `roles/discoveryengine.agentspaceViewer` `roles/discoveryengine.user` `roles/discoveryengine.agentspaceUser` Attempting to grant any other role will result in a warning in logging.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/dataStores/{dataStoresId}:setIamPolicy",
+                  "httpMethod": "POST",
+                  "id": "discoveryengine.projects.locations.dataStores.setIamPolicy",
+                  "parameterOrder": [
+                    "resource"
+                  ],
+                  "parameters": {
+                    "resource": {
+                      "description": "REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+resource}:setIamPolicy",
+                  "request": {
+                    "$ref": "GoogleIamV1SetIamPolicyRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleIamV1Policy"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform",
@@ -13427,7 +13647,7 @@
       }
     }
   },
-  "revision": "20260815",
+  "revision": "20260823",
   "rootUrl": "https://discoveryengine.googleapis.com/",
   "schemas": {
     "GoogleApiDistribution": {
@@ -21516,6 +21736,15 @@
       "description": "Referenced content and related document metadata.",
       "id": "GoogleCloudDiscoveryengineV1alphaAssistantGroundedContentTextGroundingMetadataReference",
       "properties": {
+        "chunkMetadata": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Output only. Generic structured chunk metadata from upstream data source connectors.",
+          "readOnly": true,
+          "type": "object"
+        },
         "codeSnippet": {
           "description": "Chunk of code snippet from the referenced document.",
           "type": "string"
@@ -23156,7 +23385,7 @@
           "type": "integer"
         },
         "queryFrequencyThreshold": {
-          "description": "This field is only meaningful for suggestions generated from user events or search history. If a query shows up less than this threshold, it may indicate that the query is rarely searched and thus will not be generated as a suggestion. This is field can be helpful for preventing PII queries becoming suggestions, as those queries are usually uniquely searched. If not set, the default value is 3 used in the generation pipeline.",
+          "description": "This field is only meaningful for suggestions generated from user events or search history. If a query shows up less than this threshold, it may indicate that the query is rarely searched and thus will not be generated as a suggestion. This is field can be helpful for preventing PII queries becoming suggestions, as those queries are usually uniquely searched. If not set, the default value is 8 used in the generation pipeline.",
           "format": "int32",
           "type": "integer"
         },
@@ -28143,6 +28372,48 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaInvokeConnectorMcpRequest": {
+      "description": "Request message for making a call to an MCP connector. It carries the connector name, the method to invoke, and optional parameters.",
+      "id": "GoogleCloudDiscoveryengineV1alphaInvokeConnectorMcpRequest",
+      "properties": {
+        "engine": {
+          "description": "Optional. The engine resource name (e.g. \"projects/{project}/locations/{location}/collections/{collection}/engines/{engine}\"). Used as the search engine id when invoking tool registry tools that issue Discovery Search Service requests.",
+          "type": "string"
+        },
+        "method": {
+          "description": "Required. The method to invoke (e.g. \"tools/list\", \"tools/call\", \"resources/read\", \"prompts/get\", etc.).",
+          "type": "string"
+        },
+        "params": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Optional. Arbitrary structured parameters for the method. Using google.protobuf.Struct keeps the payload schema-flexible, matching JSON-RPC's free-form `params` field.",
+          "type": "object"
+        },
+        "toolSpecVersion": {
+          "description": "Optional. The tool spec version to resolve the connector's tool surface against. This corresponds to the connector's BAP tool spec file name (e.g. \"v2\", \"v5.2\"). When unset, the server uses its default (latest) tool spec for the connector. Applies to all methods (e.g. \"tools/list\" and \"tools/call\").",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaInvokeConnectorMcpResponse": {
+      "description": "Response message returning the result of an MCP connector invocation. It contains either a successful result payload or error details.",
+      "id": "GoogleCloudDiscoveryengineV1alphaInvokeConnectorMcpResponse",
+      "properties": {
+        "error": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaMcpError",
+          "description": "Error details when the call fails."
+        },
+        "result": {
+          "description": "Successful result — arbitrary structured data.",
+          "type": "any"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaLanguageInfo": {
       "description": "Language info for DataStore.",
       "id": "GoogleCloudDiscoveryengineV1alphaLanguageInfo",
@@ -28938,6 +29209,26 @@
       "description": "Stores the definition of a Google managed agent.",
       "id": "GoogleCloudDiscoveryengineV1alphaManagedAgentDefinition",
       "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaMcpError": {
+      "description": "McpError represents error details when an MCP call fails. This structure follows the JSON-RPC 2.0 error object shape.",
+      "id": "GoogleCloudDiscoveryengineV1alphaMcpError",
+      "properties": {
+        "code": {
+          "description": "Numeric error code.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "data": {
+          "description": "Optional structured data with additional error context.",
+          "type": "any"
+        },
+        "message": {
+          "description": "Short, human-readable description of the error.",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "GoogleCloudDiscoveryengineV1alphaMediaInfo": {
@@ -33495,6 +33786,10 @@
           "$ref": "GoogleCloudDiscoveryengineV1alphaStreamAssistRequestActionSpec",
           "description": "Optional. Specification of actions for the request."
         },
+        "agentsSpec": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaStreamAssistRequestAgentsSpec",
+          "description": "Optional. Specification of agents that are used to serve the request."
+        },
         "generationSpec": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaStreamAssistRequestGenerationSpec",
           "description": "Optional. Specification of the generation configuration for the request."
@@ -33525,6 +33820,31 @@
         "actionDisabled": {
           "description": "Optional. If true, actions will not be served for the request. This only works for enterprise edition.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaStreamAssistRequestAgentsSpec": {
+      "description": "Specification of agents that are used to serve the request.",
+      "id": "GoogleCloudDiscoveryengineV1alphaStreamAssistRequestAgentsSpec",
+      "properties": {
+        "agentSpecs": {
+          "description": "Optional. Specification of agents that are used to serve the request.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaStreamAssistRequestAgentsSpecAgentSpec"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaStreamAssistRequestAgentsSpecAgentSpec": {
+      "description": "Specification of an agent.",
+      "id": "GoogleCloudDiscoveryengineV1alphaStreamAssistRequestAgentsSpecAgentSpec",
+      "properties": {
+        "agentId": {
+          "description": "Required. ID to identify the agent resource serving the request. This field must conform to [RFC-1034](https://tools.ietf.org/html/rfc1034) with a length limit of 63 characters.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -34810,7 +35130,7 @@
           "type": "string"
         },
         "isFirstParty": {
-          "description": "Output only. Whether this is a first-party (Google-owned) connector, as opposed to a third-party connector. Used by the frontend to group 1P vs 3P connectors. Sourced from `ConnectorSource.is_first_party` once that field is universally populated (b/534727761); until then derived from `ConnectorSource.connector_type == FIRST_PARTY`.",
+          "description": "Output only. Whether this is a first-party (Google-owned) connector, as opposed to a third-party connector. Used by the frontend to group 1P vs 3P connectors.",
           "readOnly": true,
           "type": "boolean"
         },
@@ -35422,6 +35742,11 @@
           "description": "Output only. Unique identifier of the model (e.g. `gemini-2.5-flash`, `gemini-3.1-pro-preview`). This is the same identifier that clients pass back to the assistant service to select this model. Virtual / \"pseudo\" models (e.g. `gemini-fast`) are also valid values here; they are resolved to the underlying concrete model on the backend.",
           "readOnly": true,
           "type": "string"
+        },
+        "promoted": {
+          "description": "Output only. Whether this model should be promoted in the GE chat homepage banner.",
+          "readOnly": true,
+          "type": "boolean"
         }
       },
       "type": "object"

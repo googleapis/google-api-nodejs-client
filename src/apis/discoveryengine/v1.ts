@@ -2493,6 +2493,10 @@ export namespace discoveryengine_v1 {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaAssistantGroundedContentTextGroundingMetadataReference {
     /**
+     * Output only. Generic structured chunk metadata from upstream data source connectors.
+     */
+    chunkMetadata?: {[key: string]: any} | null;
+    /**
      * Chunk of code snippet from the referenced document.
      */
     codeSnippet?: string | null;
@@ -8170,6 +8174,10 @@ export namespace discoveryengine_v1 {
    * Referenced content and related document metadata.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1AssistantGroundedContentTextGroundingMetadataReference {
+    /**
+     * Output only. Generic structured chunk metadata from upstream data source connectors.
+     */
+    chunkMetadata?: {[key: string]: any} | null;
     /**
      * Chunk of code snippet from the referenced document.
      */
@@ -16826,6 +16834,10 @@ export namespace discoveryengine_v1 {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1StreamAssistRequest {
     /**
+     * Optional. Specification of agents that are used to serve the request.
+     */
+    agentsSpec?: Schema$GoogleCloudDiscoveryengineV1StreamAssistRequestAgentsSpec;
+    /**
      * Optional. Specification of the generation configuration for the request.
      */
     generationSpec?: Schema$GoogleCloudDiscoveryengineV1StreamAssistRequestGenerationSpec;
@@ -16845,6 +16857,24 @@ export namespace discoveryengine_v1 {
      * Optional. Information about the user initiating the query.
      */
     userMetadata?: Schema$GoogleCloudDiscoveryengineV1AssistUserMetadata;
+  }
+  /**
+   * Specification of agents that are used to serve the request.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1StreamAssistRequestAgentsSpec {
+    /**
+     * Optional. Specification of agents that are used to serve the request.
+     */
+    agentSpecs?: Schema$GoogleCloudDiscoveryengineV1StreamAssistRequestAgentsSpecAgentSpec[];
+  }
+  /**
+   * Specification of an agent.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1StreamAssistRequestAgentsSpecAgentSpec {
+    /**
+     * Required. ID to identify the agent resource serving the request. This field must conform to [RFC-1034](https://tools.ietf.org/html/rfc1034) with a length limit of 63 characters.
+     */
+    agentId?: string | null;
   }
   /**
    * Assistant generation specification for the request. This allows to override the default generation configuration at the engine level.
@@ -17679,7 +17709,7 @@ export namespace discoveryengine_v1 {
      */
     id?: string | null;
     /**
-     * Output only. Whether this is a first-party (Google-owned) connector, as opposed to a third-party connector. Used by the frontend to group 1P vs 3P connectors. Sourced from `ConnectorSource.is_first_party` once that field is universally populated (b/534727761); until then derived from `ConnectorSource.connector_type == FIRST_PARTY`.
+     * Output only. Whether this is a first-party (Google-owned) connector, as opposed to a third-party connector. Used by the frontend to group 1P vs 3P connectors.
      */
     isFirstParty?: boolean | null;
     /**
@@ -18041,6 +18071,10 @@ export namespace discoveryengine_v1 {
      * Output only. Unique identifier of the model (e.g. `gemini-2.5-flash`, `gemini-3.1-pro-preview`). This is the same identifier that clients pass back to the assistant service to select this model. Virtual / "pseudo" models (e.g. `gemini-fast`) are also valid values here; they are resolved to the underlying concrete model on the backend.
      */
     modelId?: string | null;
+    /**
+     * Output only. Whether this model should be promoted in the GE chat homepage banner.
+     */
+    promoted?: boolean | null;
   }
   /**
    * Admin-surface metadata. Populated only when the request originates from the Cloud Console admin "Feature Control" page; left unset for end-user surfaces (Web, Mobile). Lets the admin page render its toggle table directly from the backend instead of a hardcoded client-side registry.
@@ -40252,6 +40286,7 @@ export namespace discoveryengine_v1 {
      *         requestBody: {
      *           // request body parameters
      *           // {
+     *           //   "agentsSpec": {},
      *           //   "generationSpec": {},
      *           //   "query": {},
      *           //   "session": "my_session",

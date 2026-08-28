@@ -9554,7 +9554,7 @@
       }
     }
   },
-  "revision": "20260815",
+  "revision": "20260823",
   "rootUrl": "https://discoveryengine.googleapis.com/",
   "schemas": {
     "GoogleApiDistribution": {
@@ -16080,6 +16080,15 @@
       "description": "Referenced content and related document metadata.",
       "id": "GoogleCloudDiscoveryengineV1alphaAssistantGroundedContentTextGroundingMetadataReference",
       "properties": {
+        "chunkMetadata": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Output only. Generic structured chunk metadata from upstream data source connectors.",
+          "readOnly": true,
+          "type": "object"
+        },
         "codeSnippet": {
           "description": "Chunk of code snippet from the referenced document.",
           "type": "string"
@@ -25101,6 +25110,15 @@
       "description": "Referenced content and related document metadata.",
       "id": "GoogleCloudDiscoveryengineV1betaAssistantGroundedContentTextGroundingMetadataReference",
       "properties": {
+        "chunkMetadata": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Output only. Generic structured chunk metadata from upstream data source connectors.",
+          "readOnly": true,
+          "type": "object"
+        },
         "codeSnippet": {
           "description": "Chunk of code snippet from the referenced document.",
           "type": "string"
@@ -33526,6 +33544,10 @@
       "description": "Request for the AssistantService.StreamAssist method.",
       "id": "GoogleCloudDiscoveryengineV1betaStreamAssistRequest",
       "properties": {
+        "agentsSpec": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaStreamAssistRequestAgentsSpec",
+          "description": "Optional. Specification of agents that are used to serve the request."
+        },
         "generationSpec": {
           "$ref": "GoogleCloudDiscoveryengineV1betaStreamAssistRequestGenerationSpec",
           "description": "Optional. Specification of the generation configuration for the request."
@@ -33545,6 +33567,31 @@
         "userMetadata": {
           "$ref": "GoogleCloudDiscoveryengineV1betaAssistUserMetadata",
           "description": "Optional. Information about the user initiating the query."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaStreamAssistRequestAgentsSpec": {
+      "description": "Specification of agents that are used to serve the request.",
+      "id": "GoogleCloudDiscoveryengineV1betaStreamAssistRequestAgentsSpec",
+      "properties": {
+        "agentSpecs": {
+          "description": "Optional. Specification of agents that are used to serve the request.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1betaStreamAssistRequestAgentsSpecAgentSpec"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaStreamAssistRequestAgentsSpecAgentSpec": {
+      "description": "Specification of an agent.",
+      "id": "GoogleCloudDiscoveryengineV1betaStreamAssistRequestAgentsSpecAgentSpec",
+      "properties": {
+        "agentId": {
+          "description": "Required. ID to identify the agent resource serving the request. This field must conform to [RFC-1034](https://tools.ietf.org/html/rfc1034) with a length limit of 63 characters.",
+          "type": "string"
         }
       },
       "type": "object"
