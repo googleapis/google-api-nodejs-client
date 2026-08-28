@@ -8662,6 +8662,72 @@
         }
       }
     },
+    "globalFrontendSettings": {
+      "methods": {
+        "get": {
+          "description": "Gets the Global Frontend Billing Bundle Settings for a project.",
+          "flatPath": "projects/{project}/global/globalFrontendSettings",
+          "httpMethod": "GET",
+          "id": "compute.globalFrontendSettings.get",
+          "parameterOrder": [
+            "project"
+          ],
+          "parameters": {
+            "project": {
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/global/globalFrontendSettings",
+          "response": {
+            "$ref": "GlobalFrontendSettings"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute",
+            "https://www.googleapis.com/auth/compute.readonly"
+          ]
+        },
+        "patch": {
+          "description": "Updates the Global Frontend Billing Bundle Settings for a project.",
+          "flatPath": "projects/{project}/global/globalFrontendSettings",
+          "httpMethod": "PATCH",
+          "id": "compute.globalFrontendSettings.patch",
+          "parameterOrder": [
+            "project"
+          ],
+          "parameters": {
+            "project": {
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "requestId": {
+              "location": "query",
+              "type": "string"
+            },
+            "updateMask": {
+              "description": "e.g., \"type\"",
+              "format": "google-fieldmask",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/global/globalFrontendSettings",
+          "request": {
+            "$ref": "GlobalFrontendSettings"
+          },
+          "response": {
+            "$ref": "GlobalFrontendSettingsPatchResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute"
+          ]
+        }
+      }
+    },
     "globalNetworkEndpointGroups": {
       "methods": {
         "attachNetworkEndpoints": {
@@ -30013,6 +30079,7 @@
             "recoverableSnapshot": {
               "description": "Name of the recoverable resource to recover",
               "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
               "required": true,
               "type": "string"
             },
@@ -44859,8 +44926,7 @@
           },
           "scopes": [
             "https://www.googleapis.com/auth/cloud-platform",
-            "https://www.googleapis.com/auth/compute",
-            "https://www.googleapis.com/auth/compute.readonly"
+            "https://www.googleapis.com/auth/compute"
           ]
         },
         "getVersion": {
@@ -58369,7 +58435,7 @@
       }
     }
   },
-  "revision": "20260807",
+  "revision": "20260821",
   "rootUrl": "https://compute.googleapis.com/",
   "schemas": {
     "AWSV4Signature": {
@@ -61498,6 +61564,18 @@
           ],
           "type": "string"
         },
+        "signalAggregation": {
+          "$ref": "AutoscalingPolicySignalAggregation",
+          "description": "Defines how CPU utilization is aggregated in a group.\n\nOperates on the results from the `time_aggregation`, reducing the\nper-instance values down to a single aggregate value across the entire\ninstance group if samples are available."
+        },
+        "timeAggregation": {
+          "$ref": "AutoscalingPolicyTimeAggregation",
+          "description": "Defines how CPU utilization is aggregated over time.\n\nOperates on all CPU utilization samples produced by each instance over\nthe `time_aggregation.time_window_sec`, reducing them to exactly one\nvalue per instance if samples are available."
+        },
+        "utilizationRange": {
+          "$ref": "UtilizationRange",
+          "description": "Defines a target range for CPU utilization. The values of\n`min_utilization` and `max_utilization` must be in\nthe range (0.0, 1.0].\n\nIf the average CPU is between `min_utilization` and\n`max_utilization`, the autoscaler maintains the current size\nunless another configured metric requires scaling out.\n\nIf the average CPU is above `max_utilization`, the autoscaler\nscales out until the average utilization reaches the\n`utilization_range.utilization_target`.\n\nIf the average CPU is below `min_utilization`, the autoscaler\nconsiders scaling in until the average utilization reaches the\n`utilization_range.utilization_target`. Scaling in can occur only if all\nother configured scaling metrics also suggest scaling in.\n\nAt most one of CpuUtilization.utilization_target or\nCpuUtilization.utilization_range can be set."
+        },
         "utilizationTarget": {
           "description": "The target CPU utilization that the autoscaler maintains. Must be\na float value in the range (0, 1]. If not specified, the default is0.6.\n\nIf the CPU level is below the target utilization, the autoscaler scales\nin the number of instances until it reaches the minimum number of\ninstances you specified or until the average CPU of your instances\nreaches the target utilization.\n\nIf the average CPU is above the target utilization, the autoscaler\nscales out until it reaches the maximum number of instances you\nspecified or until the average utilization reaches the target\nutilization.",
           "format": "double",
@@ -61618,6 +61696,73 @@
         "timeZone": {
           "description": "The time zone to use when interpreting the schedule.\nThe value of this field must be a time zone name from the tz database:\nhttps://en.wikipedia.org/wiki/Tz_database. This field is assigned a\ndefault value of \"UTC\" if left empty.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AutoscalingPolicySignalAggregation": {
+      "description": "Defines how scaling signal is aggregated in a group. Operates on the\nresults of the `TimeAggregation`, reducing the per-instance\nvalues down to a single aggregate value across the entire instance group.",
+      "id": "AutoscalingPolicySignalAggregation",
+      "properties": {
+        "percentile": {
+          "description": "If statistic is PERCENTILE, percentile must be defined. This value is\nused only when statistic is PERCENTILE.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "statistic": {
+          "description": "Required. The aggregator used to aggregate signal samples across the entire\ninstance group. This field is required.",
+          "enum": [
+            "AGGREGATOR_UNSPECIFIED",
+            "AVERAGE",
+            "MAX",
+            "MIN",
+            "PERCENTILE"
+          ],
+          "enumDescriptions": [
+            "The default value. This value is used if the aggregator is unspecified.",
+            "Average value of the signal samples across the instance group.",
+            "Maximum value of the signal samples across the instance group.",
+            "Minimum value of the signal samples across the instance group.",
+            "Percentage percentile value of the signal samples across the instance\ngroup."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AutoscalingPolicyTimeAggregation": {
+      "description": "Defines how scaling signal is aggregated over a time window. Operates on\nall signal samples produced over the `time_window_sec`, reducing them to\nexactly one value.",
+      "id": "AutoscalingPolicyTimeAggregation",
+      "properties": {
+        "percentile": {
+          "description": "If statistic is PERCENTILE, percentile must be defined. This value is\nused only when statistic is PERCENTILE.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "statistic": {
+          "description": "Required. The aggregator used to aggregate signal samples over the\n`time_window_sec`. This field is required.",
+          "enum": [
+            "AGGREGATOR_UNSPECIFIED",
+            "AVERAGE",
+            "LAST_VALUE",
+            "MAX",
+            "MIN",
+            "PERCENTILE"
+          ],
+          "enumDescriptions": [
+            "The default value. This value is used if the aggregator is unspecified.",
+            "Average value of the signal samples in the time window.",
+            "The last value of the signal samples in the time window.",
+            "Maximum value of the signal samples in the time window.",
+            "Minimum value of the signal samples in the time window.",
+            "Percentage percentile value of the signal samples in the time window."
+          ],
+          "type": "string"
+        },
+        "timeWindowSec": {
+          "description": "Required. The duration of the time window over which the signal samples are\naggregated. This field is required.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -67098,6 +67243,7 @@
         "confidentialInstanceType": {
           "description": "Defines the type of technology used by the confidential instance.",
           "enum": [
+            "BMSAI",
             "CCA",
             "CONFIDENTIAL_INSTANCE_TYPE_UNSPECIFIED",
             "SEV",
@@ -67105,6 +67251,7 @@
             "TDX"
           ],
           "enumDescriptions": [
+            "Bare Metal Secure AI.",
             "Arm Confidential Compute Architecture.",
             "No type specified. Do not use this value.",
             "AMD Secure Encrypted Virtualization.",
@@ -70834,6 +70981,10 @@
       "description": "Represents a Firewall Policy resource.",
       "id": "FirewallPolicy",
       "properties": {
+        "applySecurityProfileFallbackAction": {
+          "description": "Optional. If specified, it defines what should happen in case of backend issues for\nrules with apply_security_profile_group action.\nAllowed values: ALLOW, DENY. If not specified, the default behavior is\nALLOW.",
+          "type": "string"
+        },
         "associations": {
           "description": "A list of associations that belong to this firewall policy.",
           "items": {
@@ -72709,10 +72860,12 @@
         },
         "confidentialComputeType": {
           "enum": [
+            "CONFIDENTIAL_COMPUTE_TYPE_BMSAI",
             "CONFIDENTIAL_COMPUTE_TYPE_TDX",
             "CONFIDENTIAL_COMPUTE_TYPE_UNSPECIFIED"
           ],
           "enumDescriptions": [
+            "Bare Metal Secure AI.",
             "Intel Trust Domain Extensions.",
             ""
           ],
@@ -74091,7 +74244,7 @@
             "The repair is because of critical failures, that are scoped outside\nemergent maintenance",
             "The repair is because of an emergent maintenance",
             "The repair is because of a planned maintenance",
-            "",
+            "Unspecified repair category.",
             "The repair is because of a user reported fault"
           ],
           "readOnly": true,
@@ -74172,6 +74325,68 @@
         "destinationAddress": {
           "description": "The URL of the destination address to move to. This can be a full or\npartial URL. For example, the following are all valid URLs to a address:\n   \n   - https://www.googleapis.com/compute/v1/projects/project/global/addresses/address \n   - projects/project/global/addresses/address\n\n\nNote that destination project must be different from the source project. So/global/addresses/address is not valid partial url.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GlobalFrontendSettings": {
+      "description": "Represents the Global Frontend Bundle settings for a single project.",
+      "id": "GlobalFrontendSettings",
+      "properties": {
+        "bundleType": {
+          "description": "Customer-settable bundle type.",
+          "enum": [
+            "BUNDLE_TYPE_UNSPECIFIED",
+            "GLOBAL_FRONT_END",
+            "INDIVIDUAL"
+          ],
+          "enumDescriptions": [
+            "Bundling is not active",
+            "Standard Global Frontend bundle",
+            "Ala Carte mode"
+          ],
+          "type": "string"
+        },
+        "creationTimestamp": {
+          "description": "Output only. [Output Only] Creation timestamp in RFC3339 text format.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Output only. [Output Only] An optional description of this resource.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "etag": {
+          "description": "Output only. For optimistic locking",
+          "readOnly": true,
+          "type": "string"
+        },
+        "id": {
+          "description": "Output only. [Output Only] The unique identifier for the resource. This identifier is\ndefined by the server.",
+          "format": "uint64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. OUTPUT_ONLY fields\n[Output Only] Name of the resource. Must be 1-63 characters long and match\nthe regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first\ncharacter must be a lowercase letter, and all following characters must\nbe a dash, lowercase letter, or digit, except the last character, which\ncannot be a dash.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "selfLink": {
+          "description": "Output only. [Output Only] Server-defined URL for the resource.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GlobalFrontendSettingsPatchResponse": {
+      "description": "Response to an UpdateGlobalFrontendSettingsRequest.",
+      "id": "GlobalFrontendSettingsPatchResponse",
+      "properties": {
+        "operation": {
+          "$ref": "Operation"
         }
       },
       "type": "object"
@@ -75089,7 +75304,7 @@
       "id": "GuestOsFeature",
       "properties": {
         "type": {
-          "description": "The ID of a supported feature. To add multiple values, use commas to\nseparate values. Set to one or more of the following values:\n   \n   - VIRTIO_SCSI_MULTIQUEUE\n   - WINDOWS\n   - MULTI_IP_SUBNET\n   - UEFI_COMPATIBLE\n   - GVNIC\n   - SEV_CAPABLE\n   - SUSPEND_RESUME_COMPATIBLE\n   - SEV_LIVE_MIGRATABLE_V2\n   - SEV_SNP_CAPABLE\n   - TDX_CAPABLE\n   - IDPF\n   - SNP_SVSM_CAPABLE\n   - CCA_CAPABLE\n\n\nFor more information, see\nEnabling guest operating system features.",
+          "description": "The ID of a supported feature. To add multiple values, use commas to\nseparate values. Set to one or more of the following values:\n   \n   - VIRTIO_SCSI_MULTIQUEUE\n   - WINDOWS\n   - MULTI_IP_SUBNET\n   - UEFI_COMPATIBLE\n   - GVNIC\n   - SEV_CAPABLE\n   - SUSPEND_RESUME_COMPATIBLE\n   - SEV_LIVE_MIGRATABLE_V2\n   - SEV_SNP_CAPABLE\n   - TDX_CAPABLE\n   - IDPF\n   - SNP_SVSM_CAPABLE\n   - CCA_CAPABLE\n   - SUSPEND_SAFE_FPR\n\n\nFor more information, see\nEnabling guest operating system features.",
           "enum": [
             "BARE_METAL_LINUX_COMPATIBLE",
             "CCA_CAPABLE",
@@ -75103,6 +75318,7 @@
             "SEV_LIVE_MIGRATABLE_V2",
             "SEV_SNP_CAPABLE",
             "SNP_SVSM_CAPABLE",
+            "SUSPEND_SAFE_FPR",
             "TDX_CAPABLE",
             "UEFI_COMPATIBLE",
             "VIRTIO_SCSI_MULTIQUEUE",
@@ -75121,6 +75337,7 @@
             "",
             "",
             "",
+            "Indicates the guest OS is safe for free page reporting (FPR) during\nsuspend.",
             "",
             "",
             "",
@@ -83452,19 +83669,6 @@
           },
           "type": "array"
         },
-        "disruptionMode": {
-          "deprecated": true,
-          "description": "Whether the boot disk is allowed to be updated with restart.",
-          "enum": [
-            "LEGACY",
-            "OPTIMIZED"
-          ],
-          "enumDescriptions": [
-            "Default option: boot disk will not be updated with restart.",
-            "Boot disk will be updated with restart."
-          ],
-          "type": "string"
-        },
         "instanceRedistributionType": {
           "description": "The \ninstance redistribution policy for regional managed instance groups.\nValid values are: \n   \n   - PROACTIVE (default): The group attempts to maintain an\n   even distribution of VM instances across zones in the region.\n   - NONE: For non-autoscaled groups, proactive\n   redistribution is disabled.",
           "enum": [
@@ -83616,19 +83820,6 @@
             "type": "string"
           },
           "type": "array"
-        },
-        "disruptionMode": {
-          "deprecated": true,
-          "description": "Whether the boot disk is allowed to be updated with restart.",
-          "enum": [
-            "LEGACY",
-            "OPTIMIZED"
-          ],
-          "enumDescriptions": [
-            "Default option: boot disk will not be updated with restart.",
-            "Boot disk will be updated with restart."
-          ],
-          "type": "string"
         },
         "instances": {
           "description": "The list of URLs of one or more instances for which you want to apply\nupdates. Each URL can be a full URL or a partial URL, such aszones/[ZONE]/instances/[INSTANCE_NAME].",
@@ -87649,7 +87840,7 @@
           "type": "string"
         },
         "selfLinkWithId": {
-          "description": "Output only. [Output Only] Server-defined URL for this resource with the resource id.",
+          "description": "Output only. Server-defined URL for this resource with the resource id.",
           "readOnly": true,
           "type": "string"
         },
@@ -90768,6 +90959,18 @@
       "properties": {
         "city": {
           "description": "Output only. The remote location for Cross-Site Interconnect wires. This specifies an\nInterconnectLocation city (metropolitan area designator), which itself\nmay match multiple InterconnectLocations.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "maxDynamicPathBandwidthGbps": {
+          "description": "Output only. The maximum unmetered bandwidth for dynamic paths allowable per\nWireGroup for this metro.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "maxFixedPathBandwidthGbps": {
+          "description": "Output only. The maximum unmetered bandwidth for fixed paths allowable per WireGroup\nfor this metro.",
+          "format": "int64",
           "readOnly": true,
           "type": "string"
         },
@@ -94337,10 +94540,11 @@
           "type": "string"
         },
         "targetStatus": {
-          "description": "Output only. [Output Only] The eventual status of the instance. The instance group\nmanager will not be identified as stable till each managed instance reaches\nits targetStatus.",
+          "description": "Output only. The eventual status of the instance. The instance group\nmanager will not be identified as stable till each managed instance reaches\nits targetStatus.",
           "enum": [
             "ABANDONED",
             "DELETED",
+            "INVALID",
             "RUNNING",
             "STOPPED",
             "SUSPENDED"
@@ -94348,6 +94552,7 @@
           "enumDescriptions": [
             "The managed instance will eventually be ABANDONED, i.e. dissociated\nfrom the managed instance group.",
             "The managed instance will eventually be DELETED.",
+            "Only present to map the STATUS_INVALID value.",
             "The managed instance will eventually reach status RUNNING.",
             "The managed instance will eventually reach status TERMINATED.",
             "The managed instance will eventually reach status SUSPENDED."
@@ -94878,15 +95083,13 @@
           "type": "string"
         },
         "type": {
-          "description": "Required. The type of management service this interface provides.\nSupported types include NMX-C for partition management, gNMI for switch\nmonitoring, and TPU slice management.",
+          "description": "Required. The type of management service this interface provides.\nSupported types include NMX-C for partition management and gNMI for switch\nmonitoring.",
           "enum": [
             "TYPE_NVLINK_PARTITION_MANAGEMENT",
             "TYPE_NVLINK_SWITCH_MONITORING",
-            "TYPE_TPU_SLICE_MANAGEMENT",
             "TYPE_UNSPECIFIED"
           ],
           "enumDescriptions": [
-            "",
             "",
             "",
             ""
@@ -103139,7 +103342,7 @@
         },
         "getHealthOperationMetadata": {
           "$ref": "GetHealthOperationMetadata",
-          "description": "Output only. [Output Only] Metadata for GetHealth operations.",
+          "description": "Output only. Metadata for GetHealth operations.",
           "readOnly": true
         },
         "getVersionOperationMetadata": {
@@ -108747,7 +108950,7 @@
           "type": "string"
         },
         "deletionTimestamp": {
-          "description": "Output only. [Output Only] Purge timestamp of recoverable snapshot inRFC3339 text format.",
+          "description": "Output only. [Output Only] Deletion timestamp of snapshot inRFC3339 text format.",
           "readOnly": true,
           "type": "string"
         },
@@ -110320,19 +110523,6 @@
           },
           "type": "array"
         },
-        "disruptionMode": {
-          "deprecated": true,
-          "description": "Whether the boot disk is allowed to be updated with restart.",
-          "enum": [
-            "LEGACY",
-            "OPTIMIZED"
-          ],
-          "enumDescriptions": [
-            "Default option: boot disk will not be updated with restart.",
-            "Boot disk will be updated with restart."
-          ],
-          "type": "string"
-        },
         "instances": {
           "description": "The list of URLs of one or more instances for which you want to apply\nupdates. Each URL can be a full URL or a partial URL, such aszones/[ZONE]/instances/[INSTANCE_NAME].",
           "items": {
@@ -111568,10 +111758,12 @@
         },
         "confidentialComputeType": {
           "enum": [
+            "CONFIDENTIAL_COMPUTE_TYPE_BMSAI",
             "CONFIDENTIAL_COMPUTE_TYPE_TDX",
             "CONFIDENTIAL_COMPUTE_TYPE_UNSPECIFIED"
           ],
           "enumDescriptions": [
+            "Bare Metal Secure AI.",
             "Intel Trust Domain Extensions.",
             ""
           ],
@@ -133010,6 +133202,28 @@
       },
       "type": "object"
     },
+    "UtilizationRange": {
+      "description": "Represents a range of acceptable utilization values.\nThis message is used to configure range-based scaling policies,\nallowing Autoscaler to maintain utilization within a specified range\ninstead of aiming for a single target point.",
+      "id": "UtilizationRange",
+      "properties": {
+        "maxUtilization": {
+          "description": "Required. The upper bound of the utilization range. Must be greater or equal to\nmin_utilization. This value is required when using range-based scaling.\n\nScaling out is triggered if the utilization exceeds this value.",
+          "format": "double",
+          "type": "number"
+        },
+        "minUtilization": {
+          "description": "Required. The lower bound of the utilization range. Must be smaller or equal to\nmax_utilization. This value is required when using range-based scaling.\n\nScaling in is considered only if the utilization drops below this value.",
+          "format": "double",
+          "type": "number"
+        },
+        "utilizationTarget": {
+          "description": "The target utilization that the autoscaler aims to achieve when scaling\nis triggered. This value must be within the range [min_utilization,\nmax_utilization].\n\nIf not specified, this will default to the average of max_utilization and\nmin_utilization.",
+          "format": "double",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
     "VmEndpointNatMappings": {
       "description": "Contain information of Nat mapping for a VM endpoint (i.e., NIC).",
       "id": "VmEndpointNatMappings",
@@ -133970,7 +134184,7 @@
           ],
           "enumDescriptions": [
             "A new configuration is being applied to the extension.\nDepending on each extensions' behavior, an extension restart might be\ninvolved in this process to get new configuration applied properly.",
-            "",
+            "Enforcement state of the extension is unspecified.",
             "None of the extension revisions of the given extension version is\ncompatible with the VM's architecture and Operating System.",
             "The extension has been successfully installed.",
             "The extension is being installed.",
@@ -133998,12 +134212,12 @@
             "STOPPING"
           ],
           "enumDescriptions": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
+            "The extension crashed.",
+            "Health status is unspecified.",
+            "The extension is running.",
+            "The extension is starting.",
+            "The extension is stopped.",
+            "The extension is stopping."
           ],
           "type": "string"
         },

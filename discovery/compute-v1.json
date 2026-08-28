@@ -36699,6 +36699,58 @@
             "https://www.googleapis.com/auth/compute.readonly"
           ]
         },
+        "getHealth": {
+          "description": "Get health info on a reservation slot.",
+          "flatPath": "projects/{project}/zones/{zone}/reservations/{reservationsId}/reservationBlocks/{reservationBlocksId}/reservationSubBlocks/{reservationSubBlocksId}/reservationSlots/{reservationSlot}/getHealth",
+          "httpMethod": "POST",
+          "id": "compute.reservationSlots.getHealth",
+          "parameterOrder": [
+            "project",
+            "zone",
+            "parentName",
+            "reservationSlot"
+          ],
+          "parameters": {
+            "parentName": {
+              "description": "The name of the parent reservation, parent block and parent sub-block. In\nthe format of\nreservations/{reservation_name}/reservationBlocks/{reservation_block_name}/reservationSubBlocks/{reservation_sub_block_name}",
+              "location": "path",
+              "pattern": "reservations/([a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19})/reservationBlocks/([a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19})/reservationSubBlocks/([a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19})",
+              "required": true,
+              "type": "string"
+            },
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "requestId": {
+              "description": "An optional request ID to identify requests.",
+              "location": "query",
+              "type": "string"
+            },
+            "reservationSlot": {
+              "description": "The name of the reservation slot.\nName should conform to RFC1035 or be a resource ID.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "zone": {
+              "description": "Name of the zone for this request. Zone name should conform to RFC1035.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/zones/{zone}/{+parentName}/reservationSlots/{reservationSlot}/getHealth",
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute"
+          ]
+        },
         "getVersion": {
           "description": "Allows customers to get SBOM versions of a reservation slot.",
           "flatPath": "projects/{project}/zones/{zone}/reservations/{reservationsId}/reservationBlocks/{reservationBlocksId}/reservationSubBlocks/{reservationSubBlocksId}/reservationSlots/{reservationSlot}/getVersion",
@@ -48715,7 +48767,7 @@
       }
     }
   },
-  "revision": "20260807",
+  "revision": "20260821",
   "rootUrl": "https://compute.googleapis.com/",
   "schemas": {
     "AWSV4Signature": {
@@ -56167,6 +56219,7 @@
         "confidentialInstanceType": {
           "description": "Defines the type of technology used by the confidential instance.",
           "enum": [
+            "BMSAI",
             "CCA",
             "CONFIDENTIAL_INSTANCE_TYPE_UNSPECIFIED",
             "SEV",
@@ -56174,6 +56227,7 @@
             "TDX"
           ],
           "enumDescriptions": [
+            "Bare Metal Secure AI.",
             "Arm Confidential Compute Architecture.",
             "No type specified. Do not use this value.",
             "AMD Secure Encrypted Virtualization.",
@@ -60752,10 +60806,12 @@
         },
         "confidentialComputeType": {
           "enum": [
+            "CONFIDENTIAL_COMPUTE_TYPE_BMSAI",
             "CONFIDENTIAL_COMPUTE_TYPE_TDX",
             "CONFIDENTIAL_COMPUTE_TYPE_UNSPECIFIED"
           ],
           "enumDescriptions": [
+            "Bare Metal Secure AI.",
             "Intel Trust Domain Extensions.",
             ""
           ],
@@ -62037,6 +62093,99 @@
       },
       "type": "object"
     },
+    "GetHealthOperationMetadata": {
+      "description": "Metadata for GetHealth operations.",
+      "id": "GetHealthOperationMetadata",
+      "properties": {
+        "healthInfo": {
+          "$ref": "GetHealthOperationMetadataHealthInfo",
+          "description": "Output only. The health information.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "GetHealthOperationMetadataHealthInfo": {
+      "description": "Health information.",
+      "id": "GetHealthOperationMetadataHealthInfo",
+      "properties": {
+        "availabilitySloStatus": {
+          "description": "Output only. The availability SLO status.",
+          "enum": [
+            "AVAILABILITY_SLO_STATUS_IN_SLO",
+            "AVAILABILITY_SLO_STATUS_OUT_OF_SLO",
+            "AVAILABILITY_SLO_STATUS_SLO_UNKNOWN",
+            "AVAILABILITY_SLO_STATUS_UNSPECIFIED"
+          ],
+          "enumDescriptions": [
+            "The slot availability is in SLO.",
+            "The slot availability is out of SLO.",
+            "The slot availability is unknown.",
+            "Unspecified availability SLO status."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "healthStatus": {
+          "description": "Output only. The health status.",
+          "enum": [
+            "HEALTH_STATUS_HEALTHY",
+            "HEALTH_STATUS_UNHEALTHY",
+            "HEALTH_STATUS_UNSPECIFIED"
+          ],
+          "enumDescriptions": [
+            "The reservation slot is healthy.",
+            "The reservation slot is unhealthy.",
+            "Unspecified health status."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "repairCategory": {
+          "description": "Output only. The repair category.",
+          "enum": [
+            "REPAIR_CATEGORY_CRITICAL_FAILURE",
+            "REPAIR_CATEGORY_EMERGENT_MAINTENANCE",
+            "REPAIR_CATEGORY_PLANNED_MAINTENANCE",
+            "REPAIR_CATEGORY_UNSPECIFIED",
+            "REPAIR_CATEGORY_USER_REPORTED_FAULT"
+          ],
+          "enumDescriptions": [
+            "The repair is because of critical failures, that are scoped outside\nemergent maintenance",
+            "The repair is because of an emergent maintenance",
+            "The repair is because of a planned maintenance",
+            "Unspecified repair category.",
+            "The repair is because of a user reported fault"
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "unhealthyReason": {
+          "description": "Output only. The reason for unhealthy status.",
+          "enum": [
+            "UNHEALTHY_REASON_PENDING_USER_APPROVAL",
+            "UNHEALTHY_REASON_REPAIRING",
+            "UNHEALTHY_REASON_UNSCHEDULABLE",
+            "UNHEALTHY_REASON_UNSPECIFIED"
+          ],
+          "enumDescriptions": [
+            "The slot is unhealthy because there is a pending repair, waiting for\ncustomer approval",
+            "The slot is unhealthy because repair is in progress",
+            "The slot is unhealthy because a vm cannot be scheduled on it, and no\nrepairs are running on the slot",
+            "Unspecified unhealthy reason."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The time when health info was updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GetVersionOperationMetadata": {
       "id": "GetVersionOperationMetadata",
       "properties": {
@@ -62727,7 +62876,7 @@
       "id": "GuestOsFeature",
       "properties": {
         "type": {
-          "description": "The ID of a supported feature. To add multiple values, use commas to\nseparate values. Set to one or more of the following values:\n   \n   - VIRTIO_SCSI_MULTIQUEUE\n   - WINDOWS\n   - MULTI_IP_SUBNET\n   - UEFI_COMPATIBLE\n   - GVNIC\n   - SEV_CAPABLE\n   - SUSPEND_RESUME_COMPATIBLE\n   - SEV_LIVE_MIGRATABLE_V2\n   - SEV_SNP_CAPABLE\n   - TDX_CAPABLE\n   - IDPF\n   - SNP_SVSM_CAPABLE\n   - CCA_CAPABLE\n\n\nFor more information, see\nEnabling guest operating system features.",
+          "description": "The ID of a supported feature. To add multiple values, use commas to\nseparate values. Set to one or more of the following values:\n   \n   - VIRTIO_SCSI_MULTIQUEUE\n   - WINDOWS\n   - MULTI_IP_SUBNET\n   - UEFI_COMPATIBLE\n   - GVNIC\n   - SEV_CAPABLE\n   - SUSPEND_RESUME_COMPATIBLE\n   - SEV_LIVE_MIGRATABLE_V2\n   - SEV_SNP_CAPABLE\n   - TDX_CAPABLE\n   - IDPF\n   - SNP_SVSM_CAPABLE\n   - CCA_CAPABLE\n   - SUSPEND_SAFE_FPR\n\n\nFor more information, see\nEnabling guest operating system features.",
           "enum": [
             "BARE_METAL_LINUX_COMPATIBLE",
             "CCA_CAPABLE",
@@ -62741,6 +62890,7 @@
             "SEV_LIVE_MIGRATABLE_V2",
             "SEV_SNP_CAPABLE",
             "SNP_SVSM_CAPABLE",
+            "SUSPEND_SAFE_FPR",
             "TDX_CAPABLE",
             "UEFI_COMPATIBLE",
             "VIRTIO_SCSI_MULTIQUEUE",
@@ -62759,6 +62909,7 @@
             "",
             "",
             "",
+            "Indicates the guest OS is safe for free page reporting (FPR) during\nsuspend.",
             "",
             "",
             "",
@@ -73147,6 +73298,11 @@
           "readOnly": true,
           "type": "string"
         },
+        "selfLinkWithId": {
+          "description": "Output only. Server-defined URL for this resource with the resource id.",
+          "readOnly": true,
+          "type": "string"
+        },
         "state": {
           "description": "Output only. [Output Only] The current state of Interconnect functionality, which can\ntake one of the following values:\n   \n   - ACTIVE: The Interconnect is valid, turned up and ready to use.\n   Attachments may be provisioned on this Interconnect.\n   - UNPROVISIONED: The Interconnect has not completed turnup. No\n   attachments may be provisioned on this Interconnect.\n   - UNDER_MAINTENANCE: The Interconnect is undergoing internal maintenance.\n   No attachments may be provisioned or updated on this\n   Interconnect.",
           "enum": [
@@ -76008,6 +76164,18 @@
           "description": "Output only. The remote location for Cross-Site Interconnect wires. This specifies an\nInterconnectLocation city (metropolitan area designator), which itself\nmay match multiple InterconnectLocations.",
           "readOnly": true,
           "type": "string"
+        },
+        "maxDynamicPathBandwidthGbps": {
+          "description": "Output only. The maximum unmetered bandwidth for dynamic paths allowable per\nWireGroup for this metro.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "maxFixedPathBandwidthGbps": {
+          "description": "Output only. The maximum unmetered bandwidth for fixed paths allowable per WireGroup\nfor this metro.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -78509,6 +78677,27 @@
           "description": "Output only. Specifies the graceful shutdown details if the instance is in\n`PENDING_STOP` state or there is a programmed stop scheduled.",
           "readOnly": true
         },
+        "targetStatus": {
+          "description": "Output only. The eventual status of the instance. The instance group\nmanager will not be identified as stable till each managed instance reaches\nits targetStatus.",
+          "enum": [
+            "ABANDONED",
+            "DELETED",
+            "INVALID",
+            "RUNNING",
+            "STOPPED",
+            "SUSPENDED"
+          ],
+          "enumDescriptions": [
+            "The managed instance will eventually be ABANDONED, i.e. dissociated\nfrom the managed instance group.",
+            "The managed instance will eventually be DELETED.",
+            "Only present to map the STATUS_INVALID value.",
+            "The managed instance will eventually reach status RUNNING.",
+            "The managed instance will eventually reach status TERMINATED.",
+            "The managed instance will eventually reach status SUSPENDED."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
         "version": {
           "$ref": "ManagedInstanceVersion",
           "description": "Output only. [Output Only] Intended version of this instance.",
@@ -80080,6 +80269,7 @@
           "description": "Type of network endpoints in this network endpoint group. Can be one ofGCE_VM_IP, GCE_VM_IP_PORT,NON_GCP_PRIVATE_IP_PORT, INTERNET_FQDN_PORT,INTERNET_IP_PORT, SERVERLESS,PRIVATE_SERVICE_CONNECT, GCE_VM_IP_PORTMAP.",
           "enum": [
             "GCE_VM_IP",
+            "GCE_VM_IP_DEDICATED_BACKEND",
             "GCE_VM_IP_PORT",
             "GCE_VM_IP_PORTMAP",
             "INTERNET_FQDN_PORT",
@@ -80090,6 +80280,7 @@
           ],
           "enumDescriptions": [
             "The network endpoint is represented by an IP address.",
+            "The network endpoint for targeting a specific network interface of a\nVM instance in configurations with multiple network interfaces on the\nsame network.",
             "The network endpoint is represented by IP address and port pair.",
             "The network endpoint is represented by an IP, Port and Client Destination\nPort.",
             "The network endpoint is represented by fully qualified domain name and\nport.",
@@ -85315,6 +85506,11 @@
             }
           },
           "type": "object"
+        },
+        "getHealthOperationMetadata": {
+          "$ref": "GetHealthOperationMetadata",
+          "description": "Output only. Metadata for GetHealth operations.",
+          "readOnly": true
         },
         "getVersionOperationMetadata": {
           "$ref": "GetVersionOperationMetadata"
@@ -91356,10 +91552,12 @@
         },
         "confidentialComputeType": {
           "enum": [
+            "CONFIDENTIAL_COMPUTE_TYPE_BMSAI",
             "CONFIDENTIAL_COMPUTE_TYPE_TDX",
             "CONFIDENTIAL_COMPUTE_TYPE_UNSPECIFIED"
           ],
           "enumDescriptions": [
+            "Bare Metal Secure AI.",
             "Intel Trust Domain Extensions.",
             ""
           ],
@@ -104593,10 +104791,14 @@
           "description": "Configures subnet mask resolution for this subnetwork.",
           "enum": [
             "ARP_ALL_RANGES",
+            "ARP_BROADCAST_PRIMARY_RANGE",
+            "ARP_BROADCAST_PRIMARY_RANGE_WITH_LEARNING",
             "ARP_PRIMARY_RANGE"
           ],
           "enumDescriptions": [
             "All ranges assigned to the VM NIC will respond to ARP.",
+            "VMs will receive an ARP response from a VM instance owning the target IP\naddress within the subnetwork's primary CIDR range, if such a VM instance\nexists and is running.",
+            "Combines ARP_BROADCAST_PRIMARY_RANGE with MAC learning. Enables cache\nmapping between IP addresses and custom MAC addresses of instances and\nuse of it to set the correct destination MAC address. If this option is\nchosen, the subnetwork must have /24 or a smaller CIDR range.",
             "Only the primary range of the VM NIC will respond to ARP."
           ],
           "type": "string"
