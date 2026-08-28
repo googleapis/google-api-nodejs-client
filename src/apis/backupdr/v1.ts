@@ -1756,6 +1756,10 @@ export namespace backupdr_v1 {
      */
     guestOsFeature?: Schema$GuestOsFeature[];
     /**
+     * Provides options for creating a disk from a source Compute Instance backup.
+     */
+    instanceBackupSource?: Schema$RestoreDiskFromInstanceOptions;
+    /**
      * Optional. Labels to apply to this disk. These can be modified later using setLabels method. Label values can be empty.
      */
     labels?: {[key: string]: string} | null;
@@ -2884,6 +2888,19 @@ export namespace backupdr_v1 {
      * Details of the target resource created/modified as part of restore.
      */
     targetResource?: Schema$TargetResource;
+  }
+  /**
+   * Options for creating a disk from a source Compute Instance backup.
+   */
+  export interface Schema$RestoreDiskFromInstanceOptions {
+    /**
+     * Specifies that the boot disk should be restored from the instance backup. This field should only be set to `true` if selected.
+     */
+    bootDisk?: boolean | null;
+    /**
+     * The device name of the disk to restore from the VM backup.
+     */
+    sourceDeviceName?: string | null;
   }
   /**
    * Message for rules config info.
