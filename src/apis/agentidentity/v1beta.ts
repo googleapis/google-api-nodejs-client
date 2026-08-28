@@ -125,31 +125,31 @@ export namespace agentidentity_v1beta {
   }
 
   /**
-   * Message describing AccessSummary object
+   * Represents an access summary.
    */
   export interface Schema$AccessSummary {
     /**
-     * Output only. The auth_provider that this access summary is associated with.
+     * Output only. The auth provider that this access summary is associated with.
      */
     authProvider?: string | null;
     /**
-     * Output only. The type of the connector that was used to create this access summary.
+     * Output only. The auth provider type used to create this access summary.
      */
     authProviderType?: string | null;
     /**
-     * Output only. The first time this user has interacted with this workload. Rounded to the previous hour.
+     * Output only. The first time this user interacted with this workload, rounded to the previous hour.
      */
     firstAccessTime?: string | null;
     /**
-     * Optional. Labels as key value pairs
+     * Optional. Labels as key-value pairs.
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Output only. The most recent time this user has interacted with this workload. Rounded to the previous hour.
+     * Output only. The most recent time this user interacted with this workload, rounded to the previous hour.
      */
     lastAccessTime?: string | null;
     /**
-     * Output only. Identifier. Name of the AccessSummary
+     * Output only. Identifier. The resource name of the access summary.
      */
     name?: string | null;
     /**
@@ -161,24 +161,24 @@ export namespace agentidentity_v1beta {
      */
     scopes?: string[] | null;
     /**
-     * Output only. The url of the authentication server that was accessed.
+     * Output only. The URL of the authentication server that was accessed.
      */
     tokenUrl?: string | null;
     /**
-     * Output only. The user_id provided by the workload application for this user. Not verified by Google.
+     * Output only. The user ID provided by the workload application for this user. Not verified by Google.
      */
     userId?: string | null;
     /**
-     * Output only. The identity bound to the workload that this user interacted with to produce this AccessSummary. Will typically be an agentic spiffe id
+     * Output only. The identity bound to the workload that this user interacted with to produce this access summary. Typically an agentic SPIFFE ID.
      */
     workloadId?: string | null;
   }
   /**
-   * Message describing ApiKeyParams object.
+   * Configuration for API key authentication.
    */
   export interface Schema$ApiKeyParams {
     /**
-     * Optional. Input only. The API key for this auth_provider.
+     * Optional. Input only. The API key for this auth provider.
      */
     apiKey?: string | null;
   }
@@ -209,19 +209,19 @@ export namespace agentidentity_v1beta {
     logType?: string | null;
   }
   /**
-   * Message describing Authorization object
+   * Represents an authorization.
    */
   export interface Schema$Authorization {
     /**
-     * Output only. The client_user_id provided by the client application for their end user. Not verified by Google.
+     * Output only. The client user ID provided by the client application for their end user. Not verified by Google.
      */
     clientUserId?: string | null;
     /**
-     * Output only. [Output only] Create time stamp
+     * Output only. The creation timestamp.
      */
     createTime?: string | null;
     /**
-     * Identifier. name of resource
+     * Identifier. The resource name of the authorization.
      */
     name?: string | null;
     /**
@@ -233,32 +233,32 @@ export namespace agentidentity_v1beta {
      */
     state?: string | null;
     /**
-     * Output only. [Output only] Update time stamp
+     * Output only. The update timestamp.
      */
     updateTime?: string | null;
   }
   /**
-   * Message describing AuthProvider object
+   * Represents an auth provider.
    */
   export interface Schema$AuthProvider {
     /**
-     * Optional. List of scopes that are allowed to be requested for this auth_provider. If this list is non-empty, only scopes within this list may be requested. If this list is empty, all scopes may be requested. Scopes appearing in `blocked_scopes` are disallowed even if they appear in `allowed_scopes`. The number of allowed scopes is limited to 200.
+     * Optional. List of scopes that are allowed to be requested for this auth provider. If this list is non-empty, only scopes within this list may be requested. If this list is empty, all scopes may be requested. Scopes appearing in `blocked_scopes` are disallowed even if they appear in `allowed_scopes`. The number of allowed scopes is limited to 200.
      */
     allowedScopes?: string[] | null;
     /**
-     * Required. AuthProvider type specific parameters.
+     * Required. Parameters specific to the auth provider type.
      */
     authProviderTypeParams?: Schema$AuthProviderTypeParams;
     /**
-     * Optional. List of scopes that are blocked from being requested for this auth_provider. If a scope appears in this list, it will not be requested, even if it also appears in `allowed_scopes`. `blocked_scopes` takes precedence over `allowed_scopes`. The number of blocked scopes is limited to 200.
+     * Optional. List of scopes that are blocked from being requested for this auth provider. If a scope appears in this list, it will not be requested, even if it also appears in `allowed_scopes`. `blocked_scopes` takes precedence over `allowed_scopes`. The number of blocked scopes is limited to 200.
      */
     blockedScopes?: string[] | null;
     /**
-     * Output only. [Output only] Create time stamp
+     * Output only. The creation timestamp.
      */
     createTime?: string | null;
     /**
-     * Output only. This is set to true if the auth_provider is deleted.
+     * Output only. Set to `true` if the auth provider is deleted.
      */
     deleted?: boolean | null;
     /**
@@ -266,48 +266,48 @@ export namespace agentidentity_v1beta {
      */
     description?: string | null;
     /**
-     * Output only. The time when the auth_provider will expire.
+     * Output only. The time when the auth provider will expire.
      */
     expireTime?: string | null;
     /**
-     * Optional. Labels as key value pairs
+     * Optional. Labels as key-value pairs.
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Identifier. The full resource name of the auth_provider. Format: projects/{project\}/locations/{location\}/authProviders/{auth_provider\}
+     * Identifier. The full resource name of the auth provider. Format: projects/{project\}/locations/{location\}/authProviders/{auth_provider\}
      */
     name?: string | null;
     /**
-     * Output only. The state of the auth_provider.
+     * Output only. The state of the auth provider.
      */
     state?: string | null;
     /**
-     * Output only. [Output only] Update time stamp
+     * Output only. The update timestamp.
      */
     updateTime?: string | null;
     /**
-     * Optional. Input only. Represents the workload identity in IAM `principal://` format of the agent(s) that will use this AuthProvider. Example: `principal://agents.global.org-${ORG_ID\}.system.id.goog/resources/aiplatform/projects/{PROJECT_ID\}/locations/{LOCATIONS\}/reasoningEngines/{ID\}`
+     * Optional. Input only. Identifiers for the agents that will use this auth provider, starting with `principal://`. For example: `principal://agents.global.org-${ORG_ID\}.system.id.goog/resources/aiplatform/projects/{PROJECT_ID\}/locations/{LOCATIONS\}/reasoningEngines/{ID\}`
      */
     workloadIds?: string[] | null;
   }
   /**
-   * AuthProvider type specific parameters. Required when creating an auth_provider.
+   * Required. Parameters specific to the auth provider type.
    */
   export interface Schema$AuthProviderTypeParams {
     /**
-     * ApiKey AuthProvider type parameters.
+     * Parameters for API key authentication.
      */
     apiKey?: Schema$ApiKeyParams;
     /**
-     * GeminiEnterprise auth_provider type parameters.
+     * Parameters for Gemini Enterprise authentication.
      */
     geAuthProvider?: Schema$GeminiEnterpriseAuthProviderParams;
     /**
-     * ThreeLeggedOAuth AuthProvider type parameters.
+     * Parameters for 3-legged OAuth (3LO) authentication.
      */
     threeLeggedOauth?: Schema$ThreeLeggedOAuth;
     /**
-     * TwoLeggedOAuth AuthProvider type parameters.
+     * Parameters for 2-legged OAuth (2LO) authentication.
      */
     twoLeggedOauth?: Schema$TwoLeggedOAuth;
   }
@@ -329,7 +329,7 @@ export namespace agentidentity_v1beta {
     role?: string | null;
   }
   /**
-   * Message for disabling an AuthProvider
+   * Request message for `DisableAuthProvider`.
    */
   export interface Schema$DisableAuthProviderRequest {
     /**
@@ -342,7 +342,7 @@ export namespace agentidentity_v1beta {
    */
   export interface Schema$Empty {}
   /**
-   * Message for enabling an AuthProvider
+   * Request message for `EnableAuthProvider`.
    */
   export interface Schema$EnableAuthProviderRequest {
     /**
@@ -372,15 +372,15 @@ export namespace agentidentity_v1beta {
     title?: string | null;
   }
   /**
-   * Message describing GeminiEnterpriseAuthProviderParams object.
+   * Configuration for Gemini Enterprise authentication.
    */
   export interface Schema$GeminiEnterpriseAuthProviderParams {}
   /**
-   * Message for response to listing AccessSummaries
+   * Response message for `ListAccessSummaries`.
    */
   export interface Schema$ListAccessSummariesResponse {
     /**
-     * The list of AccessSummary
+     * The list of access summaries.
      */
     accessSummaries?: Schema$AccessSummary[];
     /**
@@ -393,11 +393,11 @@ export namespace agentidentity_v1beta {
     unreachable?: string[] | null;
   }
   /**
-   * Message for response to listing Authorizations
+   * Response message for `ListAuthorizations`.
    */
   export interface Schema$ListAuthorizationsResponse {
     /**
-     * The list of Authorization
+     * The list of authorizations.
      */
     authorizations?: Schema$Authorization[];
     /**
@@ -410,11 +410,11 @@ export namespace agentidentity_v1beta {
     unreachable?: string[] | null;
   }
   /**
-   * Message for response to listing AuthProviders
+   * Response message for `ListAuthProviders`.
    */
   export interface Schema$ListAuthProvidersResponse {
     /**
-     * The list of AuthProvider
+     * The list of auth providers.
      */
     authProviders?: Schema$AuthProvider[];
     /**
@@ -486,11 +486,11 @@ export namespace agentidentity_v1beta {
     version?: number | null;
   }
   /**
-   * Response message for QueryAuthProviders.
+   * Response message for `QueryAuthProviders`.
    */
   export interface Schema$QueryAuthProvidersResponse {
     /**
-     * The unique list of auth_provider resource names used by the workload.
+     * The unique list of auth provider resource names used by the workload.
      */
     authProviderNames?: string[] | null;
     /**
@@ -499,7 +499,7 @@ export namespace agentidentity_v1beta {
     nextPageToken?: string | null;
   }
   /**
-   * Response message for QueryWorkloads.
+   * Response message for `QueryWorkloads`.
    */
   export interface Schema$QueryWorkloadsResponse {
     /**
@@ -507,12 +507,12 @@ export namespace agentidentity_v1beta {
      */
     nextPageToken?: string | null;
     /**
-     * The unique list of workload identifiers (agents) that used the auth_provider.
+     * The unique list of identifiers for the agents that used this auth provider, starting with `principal://`.
      */
     workloadIds?: string[] | null;
   }
   /**
-   * Request message for RevokeAuthorization.
+   * Request message for `RevokeAuthorization`.
    */
   export interface Schema$RevokeAuthorizationRequest {
     /**
@@ -521,7 +521,7 @@ export namespace agentidentity_v1beta {
     userId?: string | null;
   }
   /**
-   * Response message for RevokeAuthorization.
+   * Response message for `RevokeAuthorization`.
    */
   export interface Schema$RevokeAuthorizationResponse {}
   /**
@@ -556,11 +556,11 @@ export namespace agentidentity_v1beta {
     permissions?: string[] | null;
   }
   /**
-   * Message describing ThreeLeggedOAuth object.
+   * Configuration for 3-legged OAuth (3LO) authentication.
    */
   export interface Schema$ThreeLeggedOAuth {
     /**
-     * Optional. The authorization endpoint to send users to for consenting to delegate to the agent. eg. "https://auth.atlassian.com/authorize"
+     * Optional. The authorization endpoint to send users to for consenting to delegate to the agent. For example, "https://auth.atlassian.com/authorize".
      */
     authorizationUrl?: string | null;
     /**
@@ -572,7 +572,7 @@ export namespace agentidentity_v1beta {
      */
     clientSecret?: string | null;
     /**
-     * Optional. The default continue URI for 3LO flow and it will be used when no continue URI is provided in the RetrieveCredentials request.
+     * Optional. The default continue URI for the 3LO flow, used when no continue URI is provided in the RetrieveCredentials request.
      */
     defaultContinueUri?: string | null;
     /**
@@ -580,16 +580,16 @@ export namespace agentidentity_v1beta {
      */
     enablePkce?: boolean | null;
     /**
-     * Output only. The redirect URL this auth_provider uses for the OAuth exchange. This is deterministic based on the name of the auth_provider.
+     * Output only. The redirect URL this auth provider uses for the OAuth exchange. This is deterministic based on the name of the auth provider.
      */
     redirectUrl?: string | null;
     /**
-     * Optional. The token endpoint for requesting tokens on behalf of an end user. eg. "https://auth.atlassian.com/oauth/token"
+     * Optional. The token endpoint for requesting tokens on behalf of an end user. For example, "https://auth.atlassian.com/oauth/token".
      */
     tokenUrl?: string | null;
   }
   /**
-   * Message describing TwoLeggedOAuth object.
+   * Configuration for 2-legged OAuth (2LO) authentication.
    */
   export interface Schema$TwoLeggedOAuth {
     /**
@@ -606,7 +606,7 @@ export namespace agentidentity_v1beta {
     tokenUrl?: string | null;
   }
   /**
-   * Message for undeleting a AuthProvider
+   * Request message for `UndeleteAuthProvider`.
    */
   export interface Schema$UndeleteAuthProviderRequest {
     /**
@@ -961,7 +961,7 @@ export namespace agentidentity_v1beta {
     }
 
     /**
-     * Gets details of a single AccessSummary.
+     * Gets details of a single access summary.
      * @example
      * ```js
      * // Before running the sample:
@@ -991,7 +991,7 @@ export namespace agentidentity_v1beta {
      *
      *   // Do the magic
      *   const res = await agentidentity.projects.locations.accessSummaries.get({
-     *     // Required. Name of the resource
+     *     // Required. The resource name of the access summary.
      *     name: 'projects/my-project/locations/my-location/accessSummaries/my-accessSummarie',
      *   });
      *   console.log(res.data);
@@ -1106,7 +1106,7 @@ export namespace agentidentity_v1beta {
     }
 
     /**
-     * Lists AccessSummaries in a given project and location. Supported Filters: - `workload_id`: Filter by the SPIFFE ID of the agent. Example: `workload_id="spiffe://example.com/ns/default/sa/my-agent"`
+     * Lists access summaries in a given project and location. Supported filters: - `workload_id`: Filter by the SPIFFE ID of the agent. Example: `workload_id="spiffe://example.com/ns/default/sa/my-agent"`
      * @example
      * ```js
      * // Before running the sample:
@@ -1140,7 +1140,7 @@ export namespace agentidentity_v1beta {
      *     filter: 'placeholder-value',
      *     // Optional. This field is currently ignored. Defaults to ordering by (auth_provider_id, user_id) in ascending order.
      *     orderBy: 'placeholder-value',
-     *     // Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
+     *     // Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default. The maximum page size is 1000.
      *     pageSize: 'placeholder-value',
      *     // Optional. A token identifying a page of results the server should return.
      *     pageToken: 'placeholder-value',
@@ -1260,7 +1260,7 @@ export namespace agentidentity_v1beta {
 
   export interface Params$Resource$Projects$Locations$Accesssummaries$Get extends StandardParameters {
     /**
-     * Required. Name of the resource
+     * Required. The resource name of the access summary.
      */
     name?: string;
   }
@@ -1274,7 +1274,7 @@ export namespace agentidentity_v1beta {
      */
     orderBy?: string;
     /**
-     * Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
+     * Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default. The maximum page size is 1000.
      */
     pageSize?: number;
     /**
@@ -1299,7 +1299,7 @@ export namespace agentidentity_v1beta {
     }
 
     /**
-     * Creates a new AuthProvider in a given project and location.
+     * Creates a new auth provider in a given project and location.
      * @example
      * ```js
      * // Before running the sample:
@@ -1329,9 +1329,9 @@ export namespace agentidentity_v1beta {
      *
      *   // Do the magic
      *   const res = await agentidentity.projects.locations.authProviders.create({
-     *     // Required. The ID to use for the AuthProvider, which will become the final segment of the AuthProvider's resource name. This value should be 1-63 characters, and valid characters are /a-z-/. The first character must be a lowercase letter, and the last character must be a lowercase letter or a number.
+     *     // Required. The ID to use for the auth provider, which will become the final segment of the auth provider's resource name. This value should be 1-63 characters, and valid characters are /a-z-/. The first character must be a lowercase letter, and the last character must be a lowercase letter or a number.
      *     authProviderId: 'placeholder-value',
-     *     // Required. The parent resource where the AuthProvider is created. Format: projects/{project\}/locations/{location\}
+     *     // Required. The parent resource where the auth provider is created. Format: projects/{project\}/locations/{location\}
      *     parent: 'projects/my-project/locations/my-location',
      *     // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      *     requestId: 'placeholder-value',
@@ -1471,7 +1471,7 @@ export namespace agentidentity_v1beta {
     }
 
     /**
-     * Deletes a single AuthProvider.
+     * Deletes a single auth provider.
      * @example
      * ```js
      * // Before running the sample:
@@ -1501,7 +1501,7 @@ export namespace agentidentity_v1beta {
      *
      *   // Do the magic
      *   const res = await agentidentity.projects.locations.authProviders.delete({
-     *     // Required. Name of the resource
+     *     // Required. The resource name of the auth provider.
      *     name: 'projects/my-project/locations/my-location/authProviders/my-authProvider',
      *     // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      *     requestId: 'placeholder-value',
@@ -1605,7 +1605,7 @@ export namespace agentidentity_v1beta {
     }
 
     /**
-     * Disables a single AuthProvider.
+     * Disables a single auth provider.
      * @example
      * ```js
      * // Before running the sample:
@@ -1635,7 +1635,7 @@ export namespace agentidentity_v1beta {
      *
      *   // Do the magic
      *   const res = await agentidentity.projects.locations.authProviders.disable({
-     *     // Required. Name of the resource Format: projects/{project\}/locations/{location\}/authProviders/{auth_provider\}
+     *     // Required. The resource name of the auth provider. Format: projects/{project\}/locations/{location\}/authProviders/{auth_provider\}
      *     name: 'projects/my-project/locations/my-location/authProviders/my-authProvider',
      *
      *     // Request body metadata
@@ -1762,7 +1762,7 @@ export namespace agentidentity_v1beta {
     }
 
     /**
-     * Enables a single AuthProvider.
+     * Enables a single auth provider.
      * @example
      * ```js
      * // Before running the sample:
@@ -1792,7 +1792,7 @@ export namespace agentidentity_v1beta {
      *
      *   // Do the magic
      *   const res = await agentidentity.projects.locations.authProviders.enable({
-     *     // Required. Name of the resource Format: projects/{project\}/locations/{location\}/authProviders/{auth_provider\}
+     *     // Required. The resource name of the auth provider. Format: projects/{project\}/locations/{location\}/authProviders/{auth_provider\}
      *     name: 'projects/my-project/locations/my-location/authProviders/my-authProvider',
      *
      *     // Request body metadata
@@ -1919,7 +1919,7 @@ export namespace agentidentity_v1beta {
     }
 
     /**
-     * Gets details of a single AuthProvider.
+     * Gets details of a single auth provider.
      * @example
      * ```js
      * // Before running the sample:
@@ -1949,7 +1949,7 @@ export namespace agentidentity_v1beta {
      *
      *   // Do the magic
      *   const res = await agentidentity.projects.locations.authProviders.get({
-     *     // Required. Name of the resource
+     *     // Required. The resource name of the auth provider.
      *     name: 'projects/my-project/locations/my-location/authProviders/my-authProvider',
      *   });
      *   console.log(res.data);
@@ -2211,7 +2211,7 @@ export namespace agentidentity_v1beta {
     }
 
     /**
-     * Lists AuthProviders in a given project and location.
+     * Lists auth providers in a given project and location.
      * @example
      * ```js
      * // Before running the sample:
@@ -2245,13 +2245,13 @@ export namespace agentidentity_v1beta {
      *     filter: 'placeholder-value',
      *     // Optional. Currently ignored. Defaults to ordering by auth_provider_id in ascending order.
      *     orderBy: 'placeholder-value',
-     *     // Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
+     *     // Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default. The maximum page size is 1000.
      *     pageSize: 'placeholder-value',
      *     // Optional. A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, the first page is returned.
      *     pageToken: 'placeholder-value',
      *     // Required. The parent resource where the search is performed. Format: projects/{project\}/locations/{location\}
      *     parent: 'projects/my-project/locations/my-location',
-     *     // Optional. Deleted auth_providers will be kept with a soft-delete for 30 days before being purged. If this field is set to true, deleted auth_providers will also be returned.
+     *     // Optional. Deleted auth providers will be kept with a soft-delete for 30 days before being purged. If this field is set to `true`, deleted auth providers will also be returned.
      *     showDeleted: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -2364,7 +2364,7 @@ export namespace agentidentity_v1beta {
     }
 
     /**
-     * Updates the parameters of a single AuthProvider.
+     * Updates the parameters of a single auth provider.
      * @example
      * ```js
      * // Before running the sample:
@@ -2394,11 +2394,11 @@ export namespace agentidentity_v1beta {
      *
      *   // Do the magic
      *   const res = await agentidentity.projects.locations.authProviders.patch({
-     *     // Identifier. The full resource name of the auth_provider. Format: projects/{project\}/locations/{location\}/authProviders/{auth_provider\}
+     *     // Identifier. The full resource name of the auth provider. Format: projects/{project\}/locations/{location\}/authProviders/{auth_provider\}
      *     name: 'projects/my-project/locations/my-location/authProviders/my-authProvider',
      *     // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      *     requestId: 'placeholder-value',
-     *     // Optional. Field mask is used to specify the fields to be overwritten in the AuthProvider resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields present in the request will be overwritten.
+     *     // Optional. Field mask is used to specify the fields to be overwritten in the auth provider resource by the update. The fields specified in the `update_mask` are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields present in the request will be overwritten.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -2533,7 +2533,7 @@ export namespace agentidentity_v1beta {
     }
 
     /**
-     * Queries what all auth_providers are used by a given workload_id.
+     * Queries which auth providers are used by a given workload ID.
      * @example
      * ```js
      * // Before running the sample:
@@ -2681,7 +2681,7 @@ export namespace agentidentity_v1beta {
     }
 
     /**
-     * Queries what all workloads are using a given auth_provider.
+     * Queries which workloads are using a given auth provider.
      * @example
      * ```js
      * // Before running the sample:
@@ -2712,11 +2712,11 @@ export namespace agentidentity_v1beta {
      *   // Do the magic
      *   const res =
      *     await agentidentity.projects.locations.authProviders.queryWorkloads({
-     *       // Required. The name of the auth_provider to query. Format: projects/{project\}/locations/{location\}/authProviders/{auth_provider\}
+     *       // Required. The name of the auth provider to query. Format: projects/{project\}/locations/{location\}/authProviders/{auth_provider\}
      *       name: 'projects/my-project/locations/my-location/authProviders/my-authProvider',
-     *       // Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
+     *       // Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default. The maximum page size is 1000.
      *       pageSize: 'placeholder-value',
-     *       // Optional. A token, which can be sent as `page_token` to retrieve the next page. When paginating, all other parameters provided to QueryWorkloads must match the call that provided the page token. If this field is omitted, the first page is returned.
+     *       // Optional. A token, which can be sent as `page_token` to retrieve the next page. When paginating, all other parameters provided to `QueryWorkloads` must match the call that provided the page token. If this field is omitted, the first page is returned.
      *       pageToken: 'placeholder-value',
      *     });
      *   console.log(res.data);
@@ -2829,7 +2829,7 @@ export namespace agentidentity_v1beta {
     }
 
     /**
-     * Revokes all authorizations for a specific user on an AuthProvider. This deletes all authorization records associated with the user and AuthProvider, effectively revoking access across all agents.
+     * Revokes all authorizations for a specific user on an auth provider. This deletes all authorization records associated with the user and auth provider, effectively revoking access across all agents.
      * @example
      * ```js
      * // Before running the sample:
@@ -2860,7 +2860,7 @@ export namespace agentidentity_v1beta {
      *   // Do the magic
      *   const res =
      *     await agentidentity.projects.locations.authProviders.revokeAuthorization({
-     *       // Required. The resource name of the AuthProvider. Format: projects/{project\}/locations/{location\}/authProviders/{auth_provider\}
+     *       // Required. The resource name of the auth provider. Format: projects/{project\}/locations/{location\}/authProviders/{auth_provider\}
      *       name: 'projects/my-project/locations/my-location/authProviders/my-authProvider',
      *
      *       // Request body metadata
@@ -3284,7 +3284,7 @@ export namespace agentidentity_v1beta {
     }
 
     /**
-     * Undeletes a single AuthProvider.
+     * Undeletes a single auth provider.
      * @example
      * ```js
      * // Before running the sample:
@@ -3314,7 +3314,7 @@ export namespace agentidentity_v1beta {
      *
      *   // Do the magic
      *   const res = await agentidentity.projects.locations.authProviders.undelete({
-     *     // Required. Name of the resource Format: projects/{project\}/locations/{location\}/authProviders/{auth_provider\}
+     *     // Required. The resource name of the auth provider. Format: projects/{project\}/locations/{location\}/authProviders/{auth_provider\}
      *     name: 'projects/my-project/locations/my-location/authProviders/my-authProvider',
      *
      *     // Request body metadata
@@ -3444,11 +3444,11 @@ export namespace agentidentity_v1beta {
 
   export interface Params$Resource$Projects$Locations$Authproviders$Create extends StandardParameters {
     /**
-     * Required. The ID to use for the AuthProvider, which will become the final segment of the AuthProvider's resource name. This value should be 1-63 characters, and valid characters are /a-z-/. The first character must be a lowercase letter, and the last character must be a lowercase letter or a number.
+     * Required. The ID to use for the auth provider, which will become the final segment of the auth provider's resource name. This value should be 1-63 characters, and valid characters are /a-z-/. The first character must be a lowercase letter, and the last character must be a lowercase letter or a number.
      */
     authProviderId?: string;
     /**
-     * Required. The parent resource where the AuthProvider is created. Format: projects/{project\}/locations/{location\}
+     * Required. The parent resource where the auth provider is created. Format: projects/{project\}/locations/{location\}
      */
     parent?: string;
     /**
@@ -3463,7 +3463,7 @@ export namespace agentidentity_v1beta {
   }
   export interface Params$Resource$Projects$Locations$Authproviders$Delete extends StandardParameters {
     /**
-     * Required. Name of the resource
+     * Required. The resource name of the auth provider.
      */
     name?: string;
     /**
@@ -3473,7 +3473,7 @@ export namespace agentidentity_v1beta {
   }
   export interface Params$Resource$Projects$Locations$Authproviders$Disable extends StandardParameters {
     /**
-     * Required. Name of the resource Format: projects/{project\}/locations/{location\}/authProviders/{auth_provider\}
+     * Required. The resource name of the auth provider. Format: projects/{project\}/locations/{location\}/authProviders/{auth_provider\}
      */
     name?: string;
 
@@ -3484,7 +3484,7 @@ export namespace agentidentity_v1beta {
   }
   export interface Params$Resource$Projects$Locations$Authproviders$Enable extends StandardParameters {
     /**
-     * Required. Name of the resource Format: projects/{project\}/locations/{location\}/authProviders/{auth_provider\}
+     * Required. The resource name of the auth provider. Format: projects/{project\}/locations/{location\}/authProviders/{auth_provider\}
      */
     name?: string;
 
@@ -3495,7 +3495,7 @@ export namespace agentidentity_v1beta {
   }
   export interface Params$Resource$Projects$Locations$Authproviders$Get extends StandardParameters {
     /**
-     * Required. Name of the resource
+     * Required. The resource name of the auth provider.
      */
     name?: string;
   }
@@ -3519,7 +3519,7 @@ export namespace agentidentity_v1beta {
      */
     orderBy?: string;
     /**
-     * Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
+     * Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default. The maximum page size is 1000.
      */
     pageSize?: number;
     /**
@@ -3531,13 +3531,13 @@ export namespace agentidentity_v1beta {
      */
     parent?: string;
     /**
-     * Optional. Deleted auth_providers will be kept with a soft-delete for 30 days before being purged. If this field is set to true, deleted auth_providers will also be returned.
+     * Optional. Deleted auth providers will be kept with a soft-delete for 30 days before being purged. If this field is set to `true`, deleted auth providers will also be returned.
      */
     showDeleted?: boolean;
   }
   export interface Params$Resource$Projects$Locations$Authproviders$Patch extends StandardParameters {
     /**
-     * Identifier. The full resource name of the auth_provider. Format: projects/{project\}/locations/{location\}/authProviders/{auth_provider\}
+     * Identifier. The full resource name of the auth provider. Format: projects/{project\}/locations/{location\}/authProviders/{auth_provider\}
      */
     name?: string;
     /**
@@ -3545,7 +3545,7 @@ export namespace agentidentity_v1beta {
      */
     requestId?: string;
     /**
-     * Optional. Field mask is used to specify the fields to be overwritten in the AuthProvider resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields present in the request will be overwritten.
+     * Optional. Field mask is used to specify the fields to be overwritten in the auth provider resource by the update. The fields specified in the `update_mask` are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields present in the request will be overwritten.
      */
     updateMask?: string;
 
@@ -3574,21 +3574,21 @@ export namespace agentidentity_v1beta {
   }
   export interface Params$Resource$Projects$Locations$Authproviders$Queryworkloads extends StandardParameters {
     /**
-     * Required. The name of the auth_provider to query. Format: projects/{project\}/locations/{location\}/authProviders/{auth_provider\}
+     * Required. The name of the auth provider to query. Format: projects/{project\}/locations/{location\}/authProviders/{auth_provider\}
      */
     name?: string;
     /**
-     * Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
+     * Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default. The maximum page size is 1000.
      */
     pageSize?: number;
     /**
-     * Optional. A token, which can be sent as `page_token` to retrieve the next page. When paginating, all other parameters provided to QueryWorkloads must match the call that provided the page token. If this field is omitted, the first page is returned.
+     * Optional. A token, which can be sent as `page_token` to retrieve the next page. When paginating, all other parameters provided to `QueryWorkloads` must match the call that provided the page token. If this field is omitted, the first page is returned.
      */
     pageToken?: string;
   }
   export interface Params$Resource$Projects$Locations$Authproviders$Revokeauthorization extends StandardParameters {
     /**
-     * Required. The resource name of the AuthProvider. Format: projects/{project\}/locations/{location\}/authProviders/{auth_provider\}
+     * Required. The resource name of the auth provider. Format: projects/{project\}/locations/{location\}/authProviders/{auth_provider\}
      */
     name?: string;
 
@@ -3621,7 +3621,7 @@ export namespace agentidentity_v1beta {
   }
   export interface Params$Resource$Projects$Locations$Authproviders$Undelete extends StandardParameters {
     /**
-     * Required. Name of the resource Format: projects/{project\}/locations/{location\}/authProviders/{auth_provider\}
+     * Required. The resource name of the auth provider. Format: projects/{project\}/locations/{location\}/authProviders/{auth_provider\}
      */
     name?: string;
 
@@ -3638,7 +3638,7 @@ export namespace agentidentity_v1beta {
     }
 
     /**
-     * Deletes a single Authorization.
+     * Deletes a single authorization.
      * @example
      * ```js
      * // Before running the sample:
@@ -3669,7 +3669,7 @@ export namespace agentidentity_v1beta {
      *   // Do the magic
      *   const res =
      *     await agentidentity.projects.locations.authProviders.authorizations.delete({
-     *       // Required. The name of the Authorization to delete. Format: projects/{project\}/locations/{location\}/authProviders/{auth_provider\}/authorizations/{authorization\}
+     *       // Required. The resource name of the authorization to delete. Format: projects/{project\}/locations/{location\}/authProviders/{auth_provider\}/authorizations/{authorization\}
      *       name: 'projects/my-project/locations/my-location/authProviders/my-authProvider/authorizations/my-authorization',
      *       // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      *       requestId: 'placeholder-value',
@@ -3774,7 +3774,7 @@ export namespace agentidentity_v1beta {
     }
 
     /**
-     * Gets details of a single Authorization.
+     * Gets details of a single authorization.
      * @example
      * ```js
      * // Before running the sample:
@@ -3805,7 +3805,7 @@ export namespace agentidentity_v1beta {
      *   // Do the magic
      *   const res =
      *     await agentidentity.projects.locations.authProviders.authorizations.get({
-     *       // Required. Name of the resource
+     *       // Required. The resource name of the authorization.
      *       name: 'projects/my-project/locations/my-location/authProviders/my-authProvider/authorizations/my-authorization',
      *     });
      *   console.log(res.data);
@@ -3916,7 +3916,7 @@ export namespace agentidentity_v1beta {
     }
 
     /**
-     * Lists Authorizations in a given project and location.
+     * Lists authorizations in a given project and location.
      * @example
      * ```js
      * // Before running the sample:
@@ -3951,7 +3951,7 @@ export namespace agentidentity_v1beta {
      *       filter: 'placeholder-value',
      *       // Optional. This field is currently ignored. Defaults to ordering by authorization_id in ascending order.
      *       orderBy: 'placeholder-value',
-     *       // Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
+     *       // Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default. The maximum page size is 1000.
      *       pageSize: 'placeholder-value',
      *       // Optional. A page token, received from a previous `ListAuthorizations` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListAuthorizations` must match the call that provided the page token.
      *       pageToken: 'placeholder-value',
@@ -4072,7 +4072,7 @@ export namespace agentidentity_v1beta {
 
   export interface Params$Resource$Projects$Locations$Authproviders$Authorizations$Delete extends StandardParameters {
     /**
-     * Required. The name of the Authorization to delete. Format: projects/{project\}/locations/{location\}/authProviders/{auth_provider\}/authorizations/{authorization\}
+     * Required. The resource name of the authorization to delete. Format: projects/{project\}/locations/{location\}/authProviders/{auth_provider\}/authorizations/{authorization\}
      */
     name?: string;
     /**
@@ -4082,7 +4082,7 @@ export namespace agentidentity_v1beta {
   }
   export interface Params$Resource$Projects$Locations$Authproviders$Authorizations$Get extends StandardParameters {
     /**
-     * Required. Name of the resource
+     * Required. The resource name of the authorization.
      */
     name?: string;
   }
@@ -4096,7 +4096,7 @@ export namespace agentidentity_v1beta {
      */
     orderBy?: string;
     /**
-     * Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
+     * Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default. The maximum page size is 1000.
      */
     pageSize?: number;
     /**
