@@ -550,7 +550,7 @@ export namespace datamanager_v1 {
      */
     operatingAccount?: Schema$ProductAccount;
     /**
-     * Required. The object within the product account to ingest into. For example, a Google Ads audience ID, a Display & Video 360 audience ID or a Google Ads conversion action ID.
+     * Optional. The object within the product account to ingest into. For example, a Google Ads audience ID, a Display & Video 360 audience ID or a Google Ads conversion action ID. This field is optional for Google Ad Manager event ingestion and User ingestion. Required for all other use cases.
      */
     productDestinationId?: string | null;
     /**
