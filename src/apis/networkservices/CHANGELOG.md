@@ -1,5 +1,12 @@
 # Changelog
 
+## [34.2.1](https://github.com/googleapis/google-api-nodejs-client/compare/networkservices-v34.2.0...networkservices-v34.2.1) (2026-08-28)
+
+
+### Bug Fixes
+
+* **networkservices:** update the API ([ead0353](https://github.com/googleapis/google-api-nodejs-client/commit/ead03532c0fd1b700bc25e19ebea28ccc679f75d))
+
 ## [34.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/networkservices-v34.1.0...networkservices-v34.2.0) (2026-08-18)
 
 
