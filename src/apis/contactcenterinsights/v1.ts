@@ -1231,6 +1231,10 @@ export namespace contactcenterinsights_v1 {
      */
     messageTime?: string | null;
     /**
+     * Optional. The structured parts that make up this transcript segment.
+     */
+    parts?: Schema$GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentTranscriptPart[];
+    /**
      * The participant of this segment.
      */
     segmentParticipant?: Schema$GoogleCloudContactcenterinsightsV1alpha1ConversationParticipant;
@@ -1259,6 +1263,241 @@ export namespace contactcenterinsights_v1 {
      * Whether the transcript segment was covered under the configured smart reply allowlist in Agent Assist.
      */
     smartReplyAllowlistCovered?: boolean | null;
+  }
+  /**
+   * A structured component/part of a transcript segment.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentTranscriptPart {
+    /**
+     * Optional. Citation or reference to grounding material.
+     */
+    citation?: Schema$GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentTranscriptPartCitationPart;
+    /**
+     * Optional. Generic custom structured payload.
+     */
+    customPayload?: Schema$GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentTranscriptPartCustomPayloadPart;
+    /**
+     * Optional. Image media.
+     */
+    image?: Schema$GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentTranscriptPartMediaPart;
+    /**
+     * Optional. Web link or URL.
+     */
+    link?: Schema$GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentTranscriptPartLinkPart;
+    /**
+     * Optional. Ordered or unordered list.
+     */
+    list?: Schema$GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentTranscriptPartListPart;
+    /**
+     * Optional. Product collection or carousel.
+     */
+    productCollection?: Schema$GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentTranscriptPartProductCollectionPart;
+    /**
+     * Optional. Suggestion chips or interactive buttons.
+     */
+    suggestionChips?: Schema$GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentTranscriptPartSuggestionChipsPart;
+    /**
+     * Optional. Tabular data.
+     */
+    table?: Schema$GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentTranscriptPartTablePart;
+    /**
+     * Optional. Plain text content.
+     */
+    text?: Schema$GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentTranscriptPartTextPart;
+    /**
+     * Optional. Model thought or internal reasoning.
+     */
+    thought?: Schema$GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentTranscriptPartThoughtPart;
+    /**
+     * Optional. Video media.
+     */
+    video?: Schema$GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentTranscriptPartMediaPart;
+  }
+  /**
+   * A suggestion chip.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentTranscriptPartChip {
+    /**
+     * Optional. Optional action or destination URI triggered by the chip.
+     */
+    actionUri?: string | null;
+    /**
+     * Optional. The chip label or text.
+     */
+    text?: string | null;
+  }
+  /**
+   * A citation part.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentTranscriptPartCitationPart {
+    /**
+     * Optional. Snippet of the cited text.
+     */
+    snippet?: string | null;
+    /**
+     * Optional. The cited source title.
+     */
+    sourceTitle?: string | null;
+    /**
+     * Optional. The cited source URI.
+     */
+    sourceUri?: string | null;
+  }
+  /**
+   * A custom payload part.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentTranscriptPartCustomPayloadPart {
+    /**
+     * Optional. Arbitrary structured payload.
+     */
+    payload?: {[key: string]: any} | null;
+    /**
+     * Optional. Type identifier for the payload.
+     */
+    payloadType?: string | null;
+  }
+  /**
+   * A link part.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentTranscriptPartLinkPart {
+    /**
+     * Optional. Anchor or display text.
+     */
+    text?: string | null;
+    /**
+     * Optional. Target URI.
+     */
+    uri?: string | null;
+  }
+  /**
+   * An item in a list.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentTranscriptPartListItem {
+    /**
+     * Optional. Nested sub-items.
+     */
+    subItems?: Schema$GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentTranscriptPartListItem[];
+    /**
+     * Optional. The text of the list item.
+     */
+    text?: string | null;
+  }
+  /**
+   * A list part.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentTranscriptPartListPart {
+    /**
+     * Optional. List items.
+     */
+    items?: Schema$GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentTranscriptPartListItem[];
+    /**
+     * Optional. The type of list.
+     */
+    listType?: string | null;
+  }
+  /**
+   * A media part.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentTranscriptPartMediaPart {
+    /**
+     * Optional. Alternative text description.
+     */
+    alternativeText?: string | null;
+    /**
+     * Optional. URI or URL to the media.
+     */
+    uri?: string | null;
+  }
+  /**
+   * A product in a product collection.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentTranscriptPartProduct {
+    /**
+     * Optional. Product description.
+     */
+    description?: string | null;
+    /**
+     * Optional. Product display name.
+     */
+    displayName?: string | null;
+    /**
+     * Optional. Product ID.
+     */
+    id?: string | null;
+    /**
+     * Optional. Product image URLs.
+     */
+    imageUris?: string[] | null;
+    /**
+     * Optional. Product price.
+     */
+    price?: Schema$GoogleTypeMoney;
+    /**
+     * Optional. Product URL or deep link.
+     */
+    uri?: string | null;
+  }
+  /**
+   * A product collection part.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentTranscriptPartProductCollectionPart {
+    /**
+     * Optional. List of products.
+     */
+    products?: Schema$GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentTranscriptPartProduct[];
+  }
+  /**
+   * A suggestion chips part.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentTranscriptPartSuggestionChipsPart {
+    /**
+     * Optional. List of suggestion chips.
+     */
+    chips?: Schema$GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentTranscriptPartChip[];
+  }
+  /**
+   * A table part.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentTranscriptPartTablePart {
+    /**
+     * Optional. Table column headers.
+     */
+    headers?: string[] | null;
+    /**
+     * Optional. Table rows.
+     */
+    rows?: Schema$GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentTranscriptPartTableRow[];
+    /**
+     * Optional. Optional title for the table.
+     */
+    title?: string | null;
+  }
+  /**
+   * A row in a table.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentTranscriptPartTableRow {
+    /**
+     * Optional. The cell values in the row.
+     */
+    cells?: string[] | null;
+  }
+  /**
+   * A text part.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentTranscriptPartTextPart {
+    /**
+     * Optional. The text content.
+     */
+    text?: string | null;
+  }
+  /**
+   * A thought part.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentTranscriptPartThoughtPart {
+    /**
+     * Optional. The thought or reasoning text.
+     */
+    text?: string | null;
   }
   /**
    * Word-level info for words in a transcript.
@@ -1968,9 +2207,13 @@ export namespace contactcenterinsights_v1 {
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1alpha1GcsSource {
     /**
-     * Cloud Storage URI that points to a file that contains the conversation audio.
+     * Immutable. Deprecated: Use `audio_uris` instead. Cloud Storage URI that points to a file that contains the conversation audio.
      */
     audioUri?: string | null;
+    /**
+     * Immutable. Cloud Storage URIs that point to files that contain the conversation audio. Supports both single audio files and multi-leg session recordings (e.g., call transfers, rolling recording buffers).
+     */
+    audioUris?: string[] | null;
     /**
      * Immutable. Cloud Storage URI that points to a file that contains the conversation transcript.
      */
@@ -5116,6 +5359,10 @@ export namespace contactcenterinsights_v1 {
      */
     messageTime?: string | null;
     /**
+     * Optional. The structured parts that make up this transcript segment.
+     */
+    parts?: Schema$GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentTranscriptPart[];
+    /**
      * The participant of this segment.
      */
     segmentParticipant?: Schema$GoogleCloudContactcenterinsightsV1ConversationParticipant;
@@ -5144,6 +5391,241 @@ export namespace contactcenterinsights_v1 {
      * Whether the transcript segment was covered under the configured smart reply allowlist in Agent Assist.
      */
     smartReplyAllowlistCovered?: boolean | null;
+  }
+  /**
+   * A structured component/part of a transcript segment.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentTranscriptPart {
+    /**
+     * Optional. Citation or reference to grounding material.
+     */
+    citation?: Schema$GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentTranscriptPartCitationPart;
+    /**
+     * Optional. Generic custom structured payload.
+     */
+    customPayload?: Schema$GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentTranscriptPartCustomPayloadPart;
+    /**
+     * Optional. Image media.
+     */
+    image?: Schema$GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentTranscriptPartMediaPart;
+    /**
+     * Optional. Web link or URL.
+     */
+    link?: Schema$GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentTranscriptPartLinkPart;
+    /**
+     * Optional. Ordered or unordered list.
+     */
+    list?: Schema$GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentTranscriptPartListPart;
+    /**
+     * Optional. Product collection or carousel.
+     */
+    productCollection?: Schema$GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentTranscriptPartProductCollectionPart;
+    /**
+     * Optional. Suggestion chips or interactive buttons.
+     */
+    suggestionChips?: Schema$GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentTranscriptPartSuggestionChipsPart;
+    /**
+     * Optional. Tabular data.
+     */
+    table?: Schema$GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentTranscriptPartTablePart;
+    /**
+     * Optional. Plain text content.
+     */
+    text?: Schema$GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentTranscriptPartTextPart;
+    /**
+     * Optional. Model thought or internal reasoning.
+     */
+    thought?: Schema$GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentTranscriptPartThoughtPart;
+    /**
+     * Optional. Video media.
+     */
+    video?: Schema$GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentTranscriptPartMediaPart;
+  }
+  /**
+   * A suggestion chip.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentTranscriptPartChip {
+    /**
+     * Optional. Optional action or destination URI triggered by the chip.
+     */
+    actionUri?: string | null;
+    /**
+     * Optional. The chip label or text.
+     */
+    text?: string | null;
+  }
+  /**
+   * A citation part.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentTranscriptPartCitationPart {
+    /**
+     * Optional. Snippet of the cited text.
+     */
+    snippet?: string | null;
+    /**
+     * Optional. The cited source title.
+     */
+    sourceTitle?: string | null;
+    /**
+     * Optional. The cited source URI.
+     */
+    sourceUri?: string | null;
+  }
+  /**
+   * A custom payload part.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentTranscriptPartCustomPayloadPart {
+    /**
+     * Optional. Arbitrary structured payload.
+     */
+    payload?: {[key: string]: any} | null;
+    /**
+     * Optional. Type identifier for the payload.
+     */
+    payloadType?: string | null;
+  }
+  /**
+   * A link part.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentTranscriptPartLinkPart {
+    /**
+     * Optional. Anchor or display text.
+     */
+    text?: string | null;
+    /**
+     * Optional. Target URI.
+     */
+    uri?: string | null;
+  }
+  /**
+   * An item in a list.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentTranscriptPartListItem {
+    /**
+     * Optional. Nested sub-items.
+     */
+    subItems?: Schema$GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentTranscriptPartListItem[];
+    /**
+     * Optional. The text of the list item.
+     */
+    text?: string | null;
+  }
+  /**
+   * A list part.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentTranscriptPartListPart {
+    /**
+     * Optional. List items.
+     */
+    items?: Schema$GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentTranscriptPartListItem[];
+    /**
+     * Optional. The type of list.
+     */
+    listType?: string | null;
+  }
+  /**
+   * A media part.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentTranscriptPartMediaPart {
+    /**
+     * Optional. Alternative text description.
+     */
+    alternativeText?: string | null;
+    /**
+     * Optional. URI or URL to the media.
+     */
+    uri?: string | null;
+  }
+  /**
+   * A product in a product collection.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentTranscriptPartProduct {
+    /**
+     * Optional. Product description.
+     */
+    description?: string | null;
+    /**
+     * Optional. Product display name.
+     */
+    displayName?: string | null;
+    /**
+     * Optional. Product ID.
+     */
+    id?: string | null;
+    /**
+     * Optional. Product image URLs.
+     */
+    imageUris?: string[] | null;
+    /**
+     * Optional. Product price.
+     */
+    price?: Schema$GoogleTypeMoney;
+    /**
+     * Optional. Product URL or deep link.
+     */
+    uri?: string | null;
+  }
+  /**
+   * A product collection part.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentTranscriptPartProductCollectionPart {
+    /**
+     * Optional. List of products.
+     */
+    products?: Schema$GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentTranscriptPartProduct[];
+  }
+  /**
+   * A suggestion chips part.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentTranscriptPartSuggestionChipsPart {
+    /**
+     * Optional. List of suggestion chips.
+     */
+    chips?: Schema$GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentTranscriptPartChip[];
+  }
+  /**
+   * A table part.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentTranscriptPartTablePart {
+    /**
+     * Optional. Table column headers.
+     */
+    headers?: string[] | null;
+    /**
+     * Optional. Table rows.
+     */
+    rows?: Schema$GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentTranscriptPartTableRow[];
+    /**
+     * Optional. Optional title for the table.
+     */
+    title?: string | null;
+  }
+  /**
+   * A row in a table.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentTranscriptPartTableRow {
+    /**
+     * Optional. The cell values in the row.
+     */
+    cells?: string[] | null;
+  }
+  /**
+   * A text part.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentTranscriptPartTextPart {
+    /**
+     * Optional. The text content.
+     */
+    text?: string | null;
+  }
+  /**
+   * A thought part.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentTranscriptPartThoughtPart {
+    /**
+     * Optional. The thought or reasoning text.
+     */
+    text?: string | null;
   }
   /**
    * Word-level info for words in a transcript.
@@ -5988,9 +6470,13 @@ export namespace contactcenterinsights_v1 {
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1GcsSource {
     /**
-     * Cloud Storage URI that points to a file that contains the conversation audio.
+     * Immutable. Deprecated: Use `audio_uris` instead. Cloud Storage URI that points to a file that contains the conversation audio.
      */
     audioUri?: string | null;
+    /**
+     * Immutable. Cloud Storage URIs that point to files that contain the conversation audio. Supports both single audio files and multi-leg session recordings (e.g., call transfers, rolling recording buffers).
+     */
+    audioUris?: string[] | null;
     /**
      * Immutable. Cloud Storage URI that points to a file that contains the conversation transcript.
      */
@@ -8051,6 +8537,10 @@ export namespace contactcenterinsights_v1 {
      */
     messageTime?: string | null;
     /**
+     * Optional. The structured parts that make up this transcript segment.
+     */
+    parts?: Schema$GoogleCloudContactcenterinsightsV1mainConversationTranscriptTranscriptSegmentTranscriptPart[];
+    /**
      * The participant of this segment.
      */
     segmentParticipant?: Schema$GoogleCloudContactcenterinsightsV1mainConversationParticipant;
@@ -8079,6 +8569,241 @@ export namespace contactcenterinsights_v1 {
      * Whether the transcript segment was covered under the configured smart reply allowlist in Agent Assist.
      */
     smartReplyAllowlistCovered?: boolean | null;
+  }
+  /**
+   * A structured component/part of a transcript segment.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainConversationTranscriptTranscriptSegmentTranscriptPart {
+    /**
+     * Optional. Citation or reference to grounding material.
+     */
+    citation?: Schema$GoogleCloudContactcenterinsightsV1mainConversationTranscriptTranscriptSegmentTranscriptPartCitationPart;
+    /**
+     * Optional. Generic custom structured payload.
+     */
+    customPayload?: Schema$GoogleCloudContactcenterinsightsV1mainConversationTranscriptTranscriptSegmentTranscriptPartCustomPayloadPart;
+    /**
+     * Optional. Image media.
+     */
+    image?: Schema$GoogleCloudContactcenterinsightsV1mainConversationTranscriptTranscriptSegmentTranscriptPartMediaPart;
+    /**
+     * Optional. Web link or URL.
+     */
+    link?: Schema$GoogleCloudContactcenterinsightsV1mainConversationTranscriptTranscriptSegmentTranscriptPartLinkPart;
+    /**
+     * Optional. Ordered or unordered list.
+     */
+    list?: Schema$GoogleCloudContactcenterinsightsV1mainConversationTranscriptTranscriptSegmentTranscriptPartListPart;
+    /**
+     * Optional. Product collection or carousel.
+     */
+    productCollection?: Schema$GoogleCloudContactcenterinsightsV1mainConversationTranscriptTranscriptSegmentTranscriptPartProductCollectionPart;
+    /**
+     * Optional. Suggestion chips or interactive buttons.
+     */
+    suggestionChips?: Schema$GoogleCloudContactcenterinsightsV1mainConversationTranscriptTranscriptSegmentTranscriptPartSuggestionChipsPart;
+    /**
+     * Optional. Tabular data.
+     */
+    table?: Schema$GoogleCloudContactcenterinsightsV1mainConversationTranscriptTranscriptSegmentTranscriptPartTablePart;
+    /**
+     * Optional. Plain text content.
+     */
+    text?: Schema$GoogleCloudContactcenterinsightsV1mainConversationTranscriptTranscriptSegmentTranscriptPartTextPart;
+    /**
+     * Optional. Model thought or internal reasoning.
+     */
+    thought?: Schema$GoogleCloudContactcenterinsightsV1mainConversationTranscriptTranscriptSegmentTranscriptPartThoughtPart;
+    /**
+     * Optional. Video media.
+     */
+    video?: Schema$GoogleCloudContactcenterinsightsV1mainConversationTranscriptTranscriptSegmentTranscriptPartMediaPart;
+  }
+  /**
+   * A suggestion chip.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainConversationTranscriptTranscriptSegmentTranscriptPartChip {
+    /**
+     * Optional. Optional action or destination URI triggered by the chip.
+     */
+    actionUri?: string | null;
+    /**
+     * Optional. The chip label or text.
+     */
+    text?: string | null;
+  }
+  /**
+   * A citation part.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainConversationTranscriptTranscriptSegmentTranscriptPartCitationPart {
+    /**
+     * Optional. Snippet of the cited text.
+     */
+    snippet?: string | null;
+    /**
+     * Optional. The cited source title.
+     */
+    sourceTitle?: string | null;
+    /**
+     * Optional. The cited source URI.
+     */
+    sourceUri?: string | null;
+  }
+  /**
+   * A custom payload part.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainConversationTranscriptTranscriptSegmentTranscriptPartCustomPayloadPart {
+    /**
+     * Optional. Arbitrary structured payload.
+     */
+    payload?: {[key: string]: any} | null;
+    /**
+     * Optional. Type identifier for the payload.
+     */
+    payloadType?: string | null;
+  }
+  /**
+   * A link part.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainConversationTranscriptTranscriptSegmentTranscriptPartLinkPart {
+    /**
+     * Optional. Anchor or display text.
+     */
+    text?: string | null;
+    /**
+     * Optional. Target URI.
+     */
+    uri?: string | null;
+  }
+  /**
+   * An item in a list.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainConversationTranscriptTranscriptSegmentTranscriptPartListItem {
+    /**
+     * Optional. Nested sub-items.
+     */
+    subItems?: Schema$GoogleCloudContactcenterinsightsV1mainConversationTranscriptTranscriptSegmentTranscriptPartListItem[];
+    /**
+     * Optional. The text of the list item.
+     */
+    text?: string | null;
+  }
+  /**
+   * A list part.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainConversationTranscriptTranscriptSegmentTranscriptPartListPart {
+    /**
+     * Optional. List items.
+     */
+    items?: Schema$GoogleCloudContactcenterinsightsV1mainConversationTranscriptTranscriptSegmentTranscriptPartListItem[];
+    /**
+     * Optional. The type of list.
+     */
+    listType?: string | null;
+  }
+  /**
+   * A media part.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainConversationTranscriptTranscriptSegmentTranscriptPartMediaPart {
+    /**
+     * Optional. Alternative text description.
+     */
+    alternativeText?: string | null;
+    /**
+     * Optional. URI or URL to the media.
+     */
+    uri?: string | null;
+  }
+  /**
+   * A product in a product collection.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainConversationTranscriptTranscriptSegmentTranscriptPartProduct {
+    /**
+     * Optional. Product description.
+     */
+    description?: string | null;
+    /**
+     * Optional. Product display name.
+     */
+    displayName?: string | null;
+    /**
+     * Optional. Product ID.
+     */
+    id?: string | null;
+    /**
+     * Optional. Product image URLs.
+     */
+    imageUris?: string[] | null;
+    /**
+     * Optional. Product price.
+     */
+    price?: Schema$GoogleTypeMoney;
+    /**
+     * Optional. Product URL or deep link.
+     */
+    uri?: string | null;
+  }
+  /**
+   * A product collection part.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainConversationTranscriptTranscriptSegmentTranscriptPartProductCollectionPart {
+    /**
+     * Optional. List of products.
+     */
+    products?: Schema$GoogleCloudContactcenterinsightsV1mainConversationTranscriptTranscriptSegmentTranscriptPartProduct[];
+  }
+  /**
+   * A suggestion chips part.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainConversationTranscriptTranscriptSegmentTranscriptPartSuggestionChipsPart {
+    /**
+     * Optional. List of suggestion chips.
+     */
+    chips?: Schema$GoogleCloudContactcenterinsightsV1mainConversationTranscriptTranscriptSegmentTranscriptPartChip[];
+  }
+  /**
+   * A table part.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainConversationTranscriptTranscriptSegmentTranscriptPartTablePart {
+    /**
+     * Optional. Table column headers.
+     */
+    headers?: string[] | null;
+    /**
+     * Optional. Table rows.
+     */
+    rows?: Schema$GoogleCloudContactcenterinsightsV1mainConversationTranscriptTranscriptSegmentTranscriptPartTableRow[];
+    /**
+     * Optional. Optional title for the table.
+     */
+    title?: string | null;
+  }
+  /**
+   * A row in a table.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainConversationTranscriptTranscriptSegmentTranscriptPartTableRow {
+    /**
+     * Optional. The cell values in the row.
+     */
+    cells?: string[] | null;
+  }
+  /**
+   * A text part.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainConversationTranscriptTranscriptSegmentTranscriptPartTextPart {
+    /**
+     * Optional. The text content.
+     */
+    text?: string | null;
+  }
+  /**
+   * A thought part.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainConversationTranscriptTranscriptSegmentTranscriptPartThoughtPart {
+    /**
+     * Optional. The thought or reasoning text.
+     */
+    text?: string | null;
   }
   /**
    * Word-level info for words in a transcript.
@@ -8788,9 +9513,13 @@ export namespace contactcenterinsights_v1 {
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1mainGcsSource {
     /**
-     * Cloud Storage URI that points to a file that contains the conversation audio.
+     * Immutable. Deprecated: Use `audio_uris` instead. Cloud Storage URI that points to a file that contains the conversation audio.
      */
     audioUri?: string | null;
+    /**
+     * Immutable. Cloud Storage URIs that point to files that contain the conversation audio. Supports both single audio files and multi-leg session recordings (e.g., call transfers, rolling recording buffers).
+     */
+    audioUris?: string[] | null;
     /**
      * Immutable. Cloud Storage URI that points to a file that contains the conversation transcript.
      */
@@ -11759,6 +12488,10 @@ export namespace contactcenterinsights_v1 {
      */
     signedGcsAudioUri?: string | null;
     /**
+     * Output only. The signed URIs for the audio from the Cloud Storage conversation source when multiple audio files exist (e.g. multi-leg conversations).
+     */
+    signedGcsAudioUris?: string[] | null;
+    /**
      * The signed URI for the audio corresponding to each turn in the conversation.
      */
     signedTurnLevelAudios?: Schema$GoogleCloudContactcenterinsightsV1ConversationDataSourceTurnLevelAudio[];
@@ -12358,6 +13091,23 @@ export namespace contactcenterinsights_v1 {
      * Optional. Inclusive start of the interval. If specified, a Timestamp matching this interval will have to be the same or after the start.
      */
     startTime?: string | null;
+  }
+  /**
+   * Represents an amount of money with its currency type.
+   */
+  export interface Schema$GoogleTypeMoney {
+    /**
+     * The three-letter currency code defined in ISO 4217.
+     */
+    currencyCode?: string | null;
+    /**
+     * Number of nano (10^-9) units of the amount. The value must be between -999,999,999 and +999,999,999 inclusive. If `units` is positive, `nanos` must be positive or zero. If `units` is zero, `nanos` can be positive, zero, or negative. If `units` is negative, `nanos` must be negative or zero. For example $-1.75 is represented as `units`=-1 and `nanos`=-750,000,000.
+     */
+    nanos?: number | null;
+    /**
+     * The whole units of the amount. For example if `currencyCode` is `"USD"`, then 1 unit is one US dollar.
+     */
+    units?: string | null;
   }
 
   export class Resource$Projects {
