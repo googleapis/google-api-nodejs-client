@@ -138,6 +138,7 @@ export namespace compute_alpha {
     globalAddresses: Resource$Globaladdresses;
     globalFolderOperations: Resource$Globalfolderoperations;
     globalForwardingRules: Resource$Globalforwardingrules;
+    globalFrontendSettings: Resource$Globalfrontendsettings;
     globalNetworkEndpointGroups: Resource$Globalnetworkendpointgroups;
     globalOperations: Resource$Globaloperations;
     globalOrganizationOperations: Resource$Globalorganizationoperations;
@@ -306,6 +307,9 @@ export namespace compute_alpha {
         this.context
       );
       this.globalForwardingRules = new Resource$Globalforwardingrules(
+        this.context
+      );
+      this.globalFrontendSettings = new Resource$Globalfrontendsettings(
         this.context
       );
       this.globalNetworkEndpointGroups =
@@ -2434,6 +2438,44 @@ export namespace compute_alpha {
      */
     predictiveMethod?: string | null;
     /**
+     * Defines how CPU utilization is aggregated in a group.
+     *
+     * Operates on the results from the `time_aggregation`, reducing the
+     * per-instance values down to a single aggregate value across the entire
+     * instance group if samples are available.
+     */
+    signalAggregation?: Schema$AutoscalingPolicySignalAggregation;
+    /**
+     * Defines how CPU utilization is aggregated over time.
+     *
+     * Operates on all CPU utilization samples produced by each instance over
+     * the `time_aggregation.time_window_sec`, reducing them to exactly one
+     * value per instance if samples are available.
+     */
+    timeAggregation?: Schema$AutoscalingPolicyTimeAggregation;
+    /**
+     * Defines a target range for CPU utilization. The values of
+     * `min_utilization` and `max_utilization` must be in
+     * the range (0.0, 1.0].
+     *
+     * If the average CPU is between `min_utilization` and
+     * `max_utilization`, the autoscaler maintains the current size
+     * unless another configured metric requires scaling out.
+     *
+     * If the average CPU is above `max_utilization`, the autoscaler
+     * scales out until the average utilization reaches the
+     * `utilization_range.utilization_target`.
+     *
+     * If the average CPU is below `min_utilization`, the autoscaler
+     * considers scaling in until the average utilization reaches the
+     * `utilization_range.utilization_target`. Scaling in can occur only if all
+     * other configured scaling metrics also suggest scaling in.
+     *
+     * At most one of CpuUtilization.utilization_target or
+     * CpuUtilization.utilization_range can be set.
+     */
+    utilizationRange?: Schema$UtilizationRange;
+    /**
      * The target CPU utilization that the autoscaler maintains. Must be
      * a float value in the range (0, 1]. If not specified, the default is0.6.
      *
@@ -2631,6 +2673,45 @@ export namespace compute_alpha {
      * default value of "UTC" if left empty.
      */
     timeZone?: string | null;
+  }
+  /**
+   * Defines how scaling signal is aggregated in a group. Operates on the
+   * results of the `TimeAggregation`, reducing the per-instance
+   * values down to a single aggregate value across the entire instance group.
+   */
+  export interface Schema$AutoscalingPolicySignalAggregation {
+    /**
+     * If statistic is PERCENTILE, percentile must be defined. This value is
+     * used only when statistic is PERCENTILE.
+     */
+    percentile?: number | null;
+    /**
+     * Required. The aggregator used to aggregate signal samples across the entire
+     * instance group. This field is required.
+     */
+    statistic?: string | null;
+  }
+  /**
+   * Defines how scaling signal is aggregated over a time window. Operates on
+   * all signal samples produced over the `time_window_sec`, reducing them to
+   * exactly one value.
+   */
+  export interface Schema$AutoscalingPolicyTimeAggregation {
+    /**
+     * If statistic is PERCENTILE, percentile must be defined. This value is
+     * used only when statistic is PERCENTILE.
+     */
+    percentile?: number | null;
+    /**
+     * Required. The aggregator used to aggregate signal samples over the
+     * `time_window_sec`. This field is required.
+     */
+    statistic?: string | null;
+    /**
+     * Required. The duration of the time window over which the signal samples are
+     * aggregated. This field is required.
+     */
+    timeWindowSec?: number | null;
   }
   /**
    * Contains the configurations necessary to generate a signature for access to
@@ -9271,6 +9352,13 @@ export namespace compute_alpha {
    */
   export interface Schema$FirewallPolicy {
     /**
+     * Optional. If specified, it defines what should happen in case of backend issues for
+     * rules with apply_security_profile_group action.
+     * Allowed values: ALLOW, DENY. If not specified, the default behavior is
+     * ALLOW.
+     */
+    applySecurityProfileFallbackAction?: string | null;
+    /**
      * A list of associations that belong to this firewall policy.
      */
     associations?: Schema$FirewallPolicyAssociation[];
@@ -11355,6 +11443,51 @@ export namespace compute_alpha {
      */
     destinationAddress?: string | null;
   }
+  /**
+   * Represents the Global Frontend Bundle settings for a single project.
+   */
+  export interface Schema$GlobalFrontendSettings {
+    /**
+     * Customer-settable bundle type.
+     */
+    bundleType?: string | null;
+    /**
+     * Output only. [Output Only] Creation timestamp in RFC3339 text format.
+     */
+    creationTimestamp?: string | null;
+    /**
+     * Output only. [Output Only] An optional description of this resource.
+     */
+    description?: string | null;
+    /**
+     * Output only. For optimistic locking
+     */
+    etag?: string | null;
+    /**
+     * Output only. [Output Only] The unique identifier for the resource. This identifier is
+     * defined by the server.
+     */
+    id?: string | null;
+    /**
+     * Output only. OUTPUT_ONLY fields
+     * [Output Only] Name of the resource. Must be 1-63 characters long and match
+     * the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first
+     * character must be a lowercase letter, and all following characters must
+     * be a dash, lowercase letter, or digit, except the last character, which
+     * cannot be a dash.
+     */
+    name?: string | null;
+    /**
+     * Output only. [Output Only] Server-defined URL for the resource.
+     */
+    selfLink?: string | null;
+  }
+  /**
+   * Response to an UpdateGlobalFrontendSettingsRequest.
+   */
+  export interface Schema$GlobalFrontendSettingsPatchResponse {
+    operation?: Schema$Operation;
+  }
   export interface Schema$GlobalListVmExtensionsResponse {
     /**
      * Output only. Fingerprint of this resource. A hash of the contents stored
@@ -12016,6 +12149,7 @@ export namespace compute_alpha {
      *    - IDPF
      *    - SNP_SVSM_CAPABLE
      *    - CCA_CAPABLE
+     *    - SUSPEND_SAFE_FPR
      *
      *
      * For more information, see
@@ -16709,10 +16843,6 @@ export namespace compute_alpha {
      */
     allowedActions?: string[] | null;
     /**
-     * Whether the boot disk is allowed to be updated with restart.
-     */
-    disruptionMode?: string | null;
-    /**
      * The list of URLs of one or more instances for which you want to apply
      * updates. Each URL can be a full URL or a partial URL, such aszones/[ZONE]/instances/[INSTANCE_NAME].
      */
@@ -17384,10 +17514,6 @@ export namespace compute_alpha {
      * Actions that are allowed to update instances within MIG.
      */
     allowedActions?: string[] | null;
-    /**
-     * Whether the boot disk is allowed to be updated with restart.
-     */
-    disruptionMode?: string | null;
     /**
      * The
      * instance redistribution policy for regional managed instance groups.
@@ -19077,7 +19203,7 @@ export namespace compute_alpha {
      */
     selfLink?: string | null;
     /**
-     * Output only. [Output Only] Server-defined URL for this resource with the resource id.
+     * Output only. Server-defined URL for this resource with the resource id.
      */
     selfLinkWithId?: string | null;
     /**
@@ -21114,6 +21240,16 @@ export namespace compute_alpha {
      */
     city?: string | null;
     /**
+     * Output only. The maximum unmetered bandwidth for dynamic paths allowable per
+     * WireGroup for this metro.
+     */
+    maxDynamicPathBandwidthGbps?: string | null;
+    /**
+     * Output only. The maximum unmetered bandwidth for fixed paths allowable per WireGroup
+     * for this metro.
+     */
+    maxFixedPathBandwidthGbps?: string | null;
+    /**
      * Output only. The maximum gbps for a single flow to this metro.
      * This limits the total bandwidth which may be configured per wire.
      */
@@ -22896,7 +23032,7 @@ export namespace compute_alpha {
      */
     tag?: string | null;
     /**
-     * Output only. [Output Only] The eventual status of the instance. The instance group
+     * Output only. The eventual status of the instance. The instance group
      * manager will not be identified as stable till each managed instance reaches
      * its targetStatus.
      */
@@ -23155,8 +23291,8 @@ export namespace compute_alpha {
     subnetwork?: string | null;
     /**
      * Required. The type of management service this interface provides.
-     * Supported types include NMX-C for partition management, gNMI for switch
-     * monitoring, and TPU slice management.
+     * Supported types include NMX-C for partition management and gNMI for switch
+     * monitoring.
      */
     type?: string | null;
   }
@@ -26843,7 +26979,7 @@ export namespace compute_alpha {
      */
     firewallPolicyRuleOperationMetadata?: Schema$FirewallPolicyRuleOperationMetadata;
     /**
-     * Output only. [Output Only] Metadata for GetHealth operations.
+     * Output only. Metadata for GetHealth operations.
      */
     getHealthOperationMetadata?: Schema$GetHealthOperationMetadata;
     getVersionOperationMetadata?: Schema$GetVersionOperationMetadata;
@@ -29463,7 +29599,7 @@ export namespace compute_alpha {
      */
     creationTimestamp?: string | null;
     /**
-     * Output only. [Output Only] Purge timestamp of recoverable snapshot inRFC3339 text format.
+     * Output only. [Output Only] Deletion timestamp of snapshot inRFC3339 text format.
      */
     deletionTimestamp?: string | null;
     /**
@@ -30135,10 +30271,6 @@ export namespace compute_alpha {
      * Actions that are allowed to update instances within MIG.
      */
     allowedActions?: string[] | null;
-    /**
-     * Whether the boot disk is allowed to be updated with restart.
-     */
-    disruptionMode?: string | null;
     /**
      * The list of URLs of one or more instances for which you want to apply
      * updates. Each URL can be a full URL or a partial URL, such aszones/[ZONE]/instances/[INSTANCE_NAME].
@@ -41980,6 +42112,37 @@ export namespace compute_alpha {
      * conventions.
      */
     reportNamePrefix?: string | null;
+  }
+  /**
+   * Represents a range of acceptable utilization values.
+   * This message is used to configure range-based scaling policies,
+   * allowing Autoscaler to maintain utilization within a specified range
+   * instead of aiming for a single target point.
+   */
+  export interface Schema$UtilizationRange {
+    /**
+     * Required. The upper bound of the utilization range. Must be greater or equal to
+     * min_utilization. This value is required when using range-based scaling.
+     *
+     * Scaling out is triggered if the utilization exceeds this value.
+     */
+    maxUtilization?: number | null;
+    /**
+     * Required. The lower bound of the utilization range. Must be smaller or equal to
+     * max_utilization. This value is required when using range-based scaling.
+     *
+     * Scaling in is considered only if the utilization drops below this value.
+     */
+    minUtilization?: number | null;
+    /**
+     * The target utilization that the autoscaler aims to achieve when scaling
+     * is triggered. This value must be within the range [min_utilization,
+     * max_utilization].
+     *
+     * If not specified, this will default to the average of max_utilization and
+     * min_utilization.
+     */
+    utilizationTarget?: number | null;
   }
   /**
    * Contain information of Nat mapping for a VM endpoint (i.e., NIC).
@@ -70082,6 +70245,7 @@ export namespace compute_alpha {
      *
      *   // Example response
      *   // {
+     *   //   "applySecurityProfileFallbackAction": "my_applySecurityProfileFallbackAction",
      *   //   "associations": [],
      *   //   "creationTimestamp": "my_creationTimestamp",
      *   //   "description": "my_description",
@@ -70875,6 +71039,7 @@ export namespace compute_alpha {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "applySecurityProfileFallbackAction": "my_applySecurityProfileFallbackAction",
      *       //   "associations": [],
      *       //   "creationTimestamp": "my_creationTimestamp",
      *       //   "description": "my_description",
@@ -71661,6 +71826,7 @@ export namespace compute_alpha {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "applySecurityProfileFallbackAction": "my_applySecurityProfileFallbackAction",
      *       //   "associations": [],
      *       //   "creationTimestamp": "my_creationTimestamp",
      *       //   "description": "my_description",
@@ -87478,6 +87644,353 @@ export namespace compute_alpha {
      * Request body metadata
      */
     requestBody?: Schema$TestPermissionsRequest;
+  }
+
+  export class Resource$Globalfrontendsettings {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets the Global Frontend Billing Bundle Settings for a project.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.globalFrontendSettings.get({
+     *     project: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bundleType": "my_bundleType",
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "name": "my_name",
+     *   //   "selfLink": "my_selfLink"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Globalfrontendsettings$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Globalfrontendsettings$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GlobalFrontendSettings>>;
+    get(
+      params: Params$Resource$Globalfrontendsettings$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Globalfrontendsettings$Get,
+      options:
+        MethodOptions | BodyResponseCallback<Schema$GlobalFrontendSettings>,
+      callback: BodyResponseCallback<Schema$GlobalFrontendSettings>
+    ): void;
+    get(
+      params: Params$Resource$Globalfrontendsettings$Get,
+      callback: BodyResponseCallback<Schema$GlobalFrontendSettings>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$GlobalFrontendSettings>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Globalfrontendsettings$Get
+        | BodyResponseCallback<Schema$GlobalFrontendSettings>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GlobalFrontendSettings>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GlobalFrontendSettings>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GlobalFrontendSettings>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Globalfrontendsettings$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Globalfrontendsettings$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/alpha/projects/{project}/global/globalFrontendSettings'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GlobalFrontendSettings>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GlobalFrontendSettings>(parameters);
+      }
+    }
+
+    /**
+     * Updates the Global Frontend Billing Bundle Settings for a project.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.globalFrontendSettings.patch({
+     *     project: 'placeholder-value',
+     *
+     *     requestId: 'placeholder-value',
+     *     // e.g., "type"
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "bundleType": "my_bundleType",
+     *       //   "creationTimestamp": "my_creationTimestamp",
+     *       //   "description": "my_description",
+     *       //   "etag": "my_etag",
+     *       //   "id": "my_id",
+     *       //   "name": "my_name",
+     *       //   "selfLink": "my_selfLink"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "operation": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Globalfrontendsettings$Patch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patch(
+      params?: Params$Resource$Globalfrontendsettings$Patch,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GlobalFrontendSettingsPatchResponse>
+    >;
+    patch(
+      params: Params$Resource$Globalfrontendsettings$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Globalfrontendsettings$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GlobalFrontendSettingsPatchResponse>,
+      callback: BodyResponseCallback<Schema$GlobalFrontendSettingsPatchResponse>
+    ): void;
+    patch(
+      params: Params$Resource$Globalfrontendsettings$Patch,
+      callback: BodyResponseCallback<Schema$GlobalFrontendSettingsPatchResponse>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GlobalFrontendSettingsPatchResponse>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Globalfrontendsettings$Patch
+        | BodyResponseCallback<Schema$GlobalFrontendSettingsPatchResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GlobalFrontendSettingsPatchResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GlobalFrontendSettingsPatchResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GlobalFrontendSettingsPatchResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Globalfrontendsettings$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Globalfrontendsettings$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/alpha/projects/{project}/global/globalFrontendSettings'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GlobalFrontendSettingsPatchResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GlobalFrontendSettingsPatchResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Globalfrontendsettings$Get extends StandardParameters {
+    /**
+     *
+     */
+    project?: string;
+  }
+  export interface Params$Resource$Globalfrontendsettings$Patch extends StandardParameters {
+    /**
+     *
+     */
+    project?: string;
+    /**
+     *
+     */
+    requestId?: string;
+    /**
+     * e.g., "type"
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GlobalFrontendSettings;
   }
 
   export class Resource$Globalnetworkendpointgroups {
@@ -107236,7 +107749,6 @@ export namespace compute_alpha {
      *       // {
      *       //   "allInstances": false,
      *       //   "allowedActions": [],
-     *       //   "disruptionMode": "my_disruptionMode",
      *       //   "instances": [],
      *       //   "maximalAction": "my_maximalAction",
      *       //   "minimalAction": "my_minimalAction",
@@ -159602,6 +160114,7 @@ export namespace compute_alpha {
      *
      *   // Example response
      *   // {
+     *   //   "applySecurityProfileFallbackAction": "my_applySecurityProfileFallbackAction",
      *   //   "associations": [],
      *   //   "creationTimestamp": "my_creationTimestamp",
      *   //   "description": "my_description",
@@ -160407,6 +160920,7 @@ export namespace compute_alpha {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "applySecurityProfileFallbackAction": "my_applySecurityProfileFallbackAction",
      *       //   "associations": [],
      *       //   "creationTimestamp": "my_creationTimestamp",
      *       //   "description": "my_description",
@@ -160853,6 +161367,7 @@ export namespace compute_alpha {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "applySecurityProfileFallbackAction": "my_applySecurityProfileFallbackAction",
      *       //   "associations": [],
      *       //   "creationTimestamp": "my_creationTimestamp",
      *       //   "description": "my_description",
@@ -195736,7 +196251,7 @@ export namespace compute_alpha {
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *     // Name of the recoverable resource to recover
-     *     recoverableSnapshot: 'placeholder-value',
+     *     recoverableSnapshot: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
      *     // An optional request ID to identify requests. Specify a unique request ID so
      *     // that if you must retry your request, the server will know to ignore the
      *     // request if it has already been completed.
@@ -222029,7 +222544,6 @@ export namespace compute_alpha {
      *         // {
      *         //   "allInstances": false,
      *         //   "allowedActions": [],
-     *         //   "disruptionMode": "my_disruptionMode",
      *         //   "instances": [],
      *         //   "maximalAction": "my_maximalAction",
      *         //   "minimalAction": "my_minimalAction",
@@ -238821,6 +239335,7 @@ export namespace compute_alpha {
      *
      *   // Example response
      *   // {
+     *   //   "applySecurityProfileFallbackAction": "my_applySecurityProfileFallbackAction",
      *   //   "associations": [],
      *   //   "creationTimestamp": "my_creationTimestamp",
      *   //   "description": "my_description",
@@ -239630,6 +240145,7 @@ export namespace compute_alpha {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "applySecurityProfileFallbackAction": "my_applySecurityProfileFallbackAction",
      *       //   "associations": [],
      *       //   "creationTimestamp": "my_creationTimestamp",
      *       //   "description": "my_description",
@@ -240081,6 +240597,7 @@ export namespace compute_alpha {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "applySecurityProfileFallbackAction": "my_applySecurityProfileFallbackAction",
      *       //   "associations": [],
      *       //   "creationTimestamp": "my_creationTimestamp",
      *       //   "description": "my_description",
@@ -268829,7 +269346,6 @@ export namespace compute_alpha {
      *     scopes: [
      *       'https://www.googleapis.com/auth/cloud-platform',
      *       'https://www.googleapis.com/auth/compute',
-     *       'https://www.googleapis.com/auth/compute.readonly',
      *     ],
      *   });
      *
