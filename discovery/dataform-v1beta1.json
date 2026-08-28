@@ -2148,6 +2148,35 @@
                 },
                 "workspaces": {
                   "methods": {
+                    "checkout": {
+                      "description": "Checkout a branch in a Workspace.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/repositories/{repositoriesId}/workspaces/{workspacesId}:checkout",
+                      "httpMethod": "POST",
+                      "id": "dataform.projects.locations.repositories.workspaces.checkout",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The workspace resource name. Format: projects/{project}/locations/{location}/repositories/{repository}/workspaces/{workspace}",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/repositories/[^/]+/workspaces/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+name}:checkout",
+                      "request": {
+                        "$ref": "CheckoutWorkspaceBranchRequest"
+                      },
+                      "response": {
+                        "$ref": "Empty"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/bigquery",
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "commit": {
                       "description": "Applies a Git commit for uncommitted files in a Workspace.",
                       "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/repositories/{repositoriesId}/workspaces/{workspacesId}:commit",
@@ -2231,6 +2260,115 @@
                       "path": "v1beta1/{+name}",
                       "response": {
                         "$ref": "Empty"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/bigquery",
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "deleteBranch": {
+                      "description": "Deletes a branch in a Workspace.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/repositories/{repositoriesId}/workspaces/{workspacesId}:deleteBranch",
+                      "httpMethod": "POST",
+                      "id": "dataform.projects.locations.repositories.workspaces.deleteBranch",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The workspace resource name. Format: projects/{project}/locations/{location}/repositories/{repository}/workspaces/{workspace}",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/repositories/[^/]+/workspaces/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+name}:deleteBranch",
+                      "request": {
+                        "$ref": "DeleteBranchRequest"
+                      },
+                      "response": {
+                        "$ref": "DeleteBranchResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/bigquery",
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "fetchBranches": {
+                      "description": "Fetches branches in a Workspace.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/repositories/{repositoriesId}/workspaces/{workspacesId}:fetchBranches",
+                      "httpMethod": "GET",
+                      "id": "dataform.projects.locations.repositories.workspaces.fetchBranches",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "Optional. Filter for the returned list.",
+                          "enum": [
+                            "BRANCH_FILTER_UNSPECIFIED",
+                            "LOCAL_ONLY",
+                            "REMOTE_ONLY",
+                            "ALL"
+                          ],
+                          "enumDescriptions": [
+                            "Default value. This value is unused.",
+                            "Returns local branches.",
+                            "Returns remote branches.",
+                            "Returns all branches."
+                          ],
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "name": {
+                          "description": "Required. The workspace resource name. Format: projects/{project}/locations/{location}/repositories/{repository}/workspaces/{workspace}",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/repositories/[^/]+/workspaces/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "Optional. Maximum number of branches to return. The server may return fewer items than requested. If unspecified, the server will pick an appropriate default. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Optional. Page token received from a previous `FetchWorkspaceBranches` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `FetchWorkspaceBranches`, with the exception of `page_size`, must match the call that provided the page token.",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+name}:fetchBranches",
+                      "response": {
+                        "$ref": "FetchWorkspaceBranchesResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/bigquery",
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "fetchCurrentBranch": {
+                      "description": "Fetches the current branch of a Workspace.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/repositories/{repositoriesId}/workspaces/{workspacesId}:fetchCurrentBranch",
+                      "httpMethod": "GET",
+                      "id": "dataform.projects.locations.repositories.workspaces.fetchCurrentBranch",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The workspace resource name. Format: projects/{project}/locations/{location}/repositories/{repository}/workspaces/{workspace}",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/repositories/[^/]+/workspaces/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+name}:fetchCurrentBranch",
+                      "response": {
+                        "$ref": "FetchCurrentWorkspaceBranchResponse"
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/bigquery",
@@ -2855,6 +2993,35 @@
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
+                    "syncWorkspaceRefs": {
+                      "description": "Syncs the refs of a Workspace.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/repositories/{repositoriesId}/workspaces/{workspacesId}:syncWorkspaceRefs",
+                      "httpMethod": "POST",
+                      "id": "dataform.projects.locations.repositories.workspaces.syncWorkspaceRefs",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The workspace resource name. Format: projects/{project}/locations/{location}/repositories/{repository}/workspaces/{workspace}",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/repositories/[^/]+/workspaces/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+name}:syncWorkspaceRefs",
+                      "request": {
+                        "$ref": "SyncWorkspaceRefsRequest"
+                      },
+                      "response": {
+                        "$ref": "SyncWorkspaceRefsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/bigquery",
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "testIamPermissions": {
                       "description": "Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may \"fail open\" without warning.",
                       "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/repositories/{repositoriesId}/workspaces/{workspacesId}:testIamPermissions",
@@ -3261,7 +3428,7 @@
       }
     }
   },
-  "revision": "20260802",
+  "revision": "20260819",
   "rootUrl": "https://dataform.googleapis.com/",
   "schemas": {
     "ActionErrorTable": {
@@ -3415,6 +3582,21 @@
       },
       "type": "object"
     },
+    "BranchMetadata": {
+      "description": "Contains metadata about a branch.",
+      "id": "BranchMetadata",
+      "properties": {
+        "branchName": {
+          "description": "The branch name.",
+          "type": "string"
+        },
+        "lastCommit": {
+          "$ref": "CommitLogEntry",
+          "description": "The last commit on the branch."
+        }
+      },
+      "type": "object"
+    },
     "CancelOperationRequest": {
       "description": "The request message for Operations.CancelOperation.",
       "id": "CancelOperationRequest",
@@ -3431,6 +3613,25 @@
       "description": "`CancelWorkflowInvocation` response message.",
       "id": "CancelWorkflowInvocationResponse",
       "properties": {},
+      "type": "object"
+    },
+    "CheckoutWorkspaceBranchRequest": {
+      "description": "`CheckoutWorkspaceBranch` request message.",
+      "id": "CheckoutWorkspaceBranchRequest",
+      "properties": {
+        "branch": {
+          "description": "Required. The name of the branch in the Git repository to which the workspace should be checked out.",
+          "type": "string"
+        },
+        "createIfNotExists": {
+          "description": "Optional. If set to true and the branch does not exist, it will be created. Otherwise, an error will be thrown.",
+          "type": "boolean"
+        },
+        "sourceBranch": {
+          "description": "Optional. The name of the branch in the Git repository from which the new branch should be created. If left unset, the workspace's current branch name will be used. Accepts only branch names from FetchWorkspaceBranches response, and can only be set if `create_if_not_exists` is true. Oherwise, an error will be thrown.",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "CodeCompilationConfig": {
@@ -3900,6 +4101,27 @@
       },
       "type": "object"
     },
+    "DeleteBranchRequest": {
+      "description": "`DeleteBranch` request message.",
+      "id": "DeleteBranchRequest",
+      "properties": {
+        "branch": {
+          "description": "Required. The name of the branch in the Git repository to delete.",
+          "type": "string"
+        },
+        "force": {
+          "description": "Optional. If set to true, any non-pushed commits on the branch will be deleted. Upstream branch name will be the same as the branch to delete.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "DeleteBranchResponse": {
+      "description": "`DeleteBranch` response message.",
+      "id": "DeleteBranchResponse",
+      "properties": {},
+      "type": "object"
+    },
     "DeleteFile": {
       "description": "Represents the delete file operation.",
       "id": "DeleteFile",
@@ -4014,6 +4236,17 @@
       },
       "type": "object"
     },
+    "FetchCurrentWorkspaceBranchResponse": {
+      "description": "Response message for `FetchCurrentWorkspaceBranch` method.",
+      "id": "FetchCurrentWorkspaceBranchResponse",
+      "properties": {
+        "branchName": {
+          "description": "The name of the current branch for the workspace.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "FetchFileDiffResponse": {
       "description": "`FetchFileDiff` response message.",
       "id": "FetchFileDiffResponse",
@@ -4078,6 +4311,24 @@
           "description": "A list of commit logs, ordered by 'git log' default order.",
           "items": {
             "$ref": "CommitLogEntry"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "FetchWorkspaceBranchesResponse": {
+      "description": "Response message for `FetchWorkspaceBranches` method.",
+      "id": "FetchWorkspaceBranchesResponse",
+      "properties": {
+        "branches": {
+          "description": "The branches in the workspace.",
+          "items": {
+            "$ref": "BranchMetadata"
           },
           "type": "array"
         },
@@ -5735,6 +5986,28 @@
       },
       "type": "object"
     },
+    "SyncWorkspaceRefsRequest": {
+      "description": "`SyncWorkspaceRefs` request message.",
+      "id": "SyncWorkspaceRefsRequest",
+      "properties": {
+        "deepen": {
+          "description": "Optional. Can be used to deepen the commit history of shallow clones. Git documentation: https://git-scm.com/docs/git-fetch#Documentation/git-fetch.txt---deependepth",
+          "format": "int32",
+          "type": "integer"
+        },
+        "remoteBranchName": {
+          "description": "Optional. The name of the branch in the Git remote to which the refs should be fetched for. If left unset, all remote branches will be fetched.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SyncWorkspaceRefsResponse": {
+      "description": "`SyncWorkspaceRefs` response message.",
+      "id": "SyncWorkspaceRefsResponse",
+      "properties": {},
+      "type": "object"
+    },
     "TableUpdateTrigger": {
       "description": "Represents a table update trigger configuration.",
       "id": "TableUpdateTrigger",
@@ -6193,8 +6466,17 @@
           "description": "Output only. A data encryption state of a Git repository if this Workspace is protected by a KMS key.",
           "readOnly": true
         },
+        "depth": {
+          "description": "Optional. Input only. Immutable. The maximum depth of the Git repository to checkout for this workspace. If defined and greater than 0, the Git repository will be created as a shallow clone with the given depth, otherwise a full clone will be performed. This field is available only for GitHub, Gitlab and 1p repositories with enabled branch management.",
+          "format": "int32",
+          "type": "integer"
+        },
         "disableMoves": {
           "description": "Optional. If set to true, workspaces will not be moved if its linked Repository is moved. Instead, it will be deleted.",
+          "type": "boolean"
+        },
+        "enableBranchManagement": {
+          "description": "Immutable. Controls the enablement of branch checkout for the workspace. When set to True, the workspace will be allowed to checkout branches.",
           "type": "boolean"
         },
         "internalMetadata": {
@@ -6206,10 +6488,19 @@
           "description": "Identifier. The workspace's name.",
           "type": "string"
         },
+        "originalBranch": {
+          "description": "Optional. Input only. Immutable. The name of the default upstream branch for all pull/push operations in the remote repository for this workspace. If empty, the HEAD branch from repository will be used.",
+          "type": "string"
+        },
         "privateResourceMetadata": {
           "$ref": "PrivateResourceMetadata",
           "description": "Output only. Metadata indicating whether this resource is user-scoped. For `Workspace` resources, the `user_scoped` field is always `true`.",
           "readOnly": true
+        },
+        "shallow": {
+          "description": "Output only. If set to true, the workspace was created as a shallow clone. Will be set to true if the depth field is set to a value greater than 0, otherwise it will be set to false.",
+          "readOnly": true,
+          "type": "boolean"
         }
       },
       "type": "object"
