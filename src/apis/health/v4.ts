@@ -5872,7 +5872,6 @@ export namespace health_v4 {
      *     scopes: [
      *       'https://www.googleapis.com/auth/googlehealth.activity_and_fitness.writeonly',
      *       'https://www.googleapis.com/auth/googlehealth.health_metrics_and_measurements.writeonly',
-     *       'https://www.googleapis.com/auth/googlehealth.location.writeonly',
      *       'https://www.googleapis.com/auth/googlehealth.logged_symptoms.writeonly',
      *       'https://www.googleapis.com/auth/googlehealth.mindfulness.writeonly',
      *       'https://www.googleapis.com/auth/googlehealth.nutrition.writeonly',
@@ -6029,7 +6028,6 @@ export namespace health_v4 {
      *     scopes: [
      *       'https://www.googleapis.com/auth/googlehealth.activity_and_fitness.writeonly',
      *       'https://www.googleapis.com/auth/googlehealth.health_metrics_and_measurements.writeonly',
-     *       'https://www.googleapis.com/auth/googlehealth.location.writeonly',
      *       'https://www.googleapis.com/auth/googlehealth.logged_symptoms.writeonly',
      *       'https://www.googleapis.com/auth/googlehealth.mindfulness.writeonly',
      *       'https://www.googleapis.com/auth/googlehealth.nutrition.writeonly',
@@ -6228,9 +6226,16 @@ export namespace health_v4 {
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
      *       'https://www.googleapis.com/auth/googlehealth.activity_and_fitness.readonly',
+     *       'https://www.googleapis.com/auth/googlehealth.activity_and_fitness.writeonly',
      *       'https://www.googleapis.com/auth/googlehealth.health_metrics_and_measurements.readonly',
+     *       'https://www.googleapis.com/auth/googlehealth.health_metrics_and_measurements.writeonly',
      *       'https://www.googleapis.com/auth/googlehealth.location.readonly',
+     *       'https://www.googleapis.com/auth/googlehealth.logged_symptoms.writeonly',
+     *       'https://www.googleapis.com/auth/googlehealth.mindfulness.writeonly',
+     *       'https://www.googleapis.com/auth/googlehealth.nutrition.writeonly',
+     *       'https://www.googleapis.com/auth/googlehealth.reproductive_health.writeonly',
      *       'https://www.googleapis.com/auth/googlehealth.sleep.readonly',
+     *       'https://www.googleapis.com/auth/googlehealth.sleep.writeonly',
      *     ],
      *   });
      *
@@ -6534,9 +6539,16 @@ export namespace health_v4 {
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
      *       'https://www.googleapis.com/auth/googlehealth.activity_and_fitness.readonly',
+     *       'https://www.googleapis.com/auth/googlehealth.activity_and_fitness.writeonly',
      *       'https://www.googleapis.com/auth/googlehealth.health_metrics_and_measurements.readonly',
+     *       'https://www.googleapis.com/auth/googlehealth.health_metrics_and_measurements.writeonly',
      *       'https://www.googleapis.com/auth/googlehealth.location.readonly',
+     *       'https://www.googleapis.com/auth/googlehealth.logged_symptoms.writeonly',
+     *       'https://www.googleapis.com/auth/googlehealth.mindfulness.writeonly',
+     *       'https://www.googleapis.com/auth/googlehealth.nutrition.writeonly',
+     *       'https://www.googleapis.com/auth/googlehealth.reproductive_health.writeonly',
      *       'https://www.googleapis.com/auth/googlehealth.sleep.readonly',
+     *       'https://www.googleapis.com/auth/googlehealth.sleep.writeonly',
      *     ],
      *   });
      *
@@ -6715,9 +6727,16 @@ export namespace health_v4 {
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
      *       'https://www.googleapis.com/auth/googlehealth.activity_and_fitness.readonly',
+     *       'https://www.googleapis.com/auth/googlehealth.activity_and_fitness.writeonly',
      *       'https://www.googleapis.com/auth/googlehealth.health_metrics_and_measurements.readonly',
+     *       'https://www.googleapis.com/auth/googlehealth.health_metrics_and_measurements.writeonly',
      *       'https://www.googleapis.com/auth/googlehealth.location.readonly',
+     *       'https://www.googleapis.com/auth/googlehealth.logged_symptoms.writeonly',
+     *       'https://www.googleapis.com/auth/googlehealth.mindfulness.writeonly',
+     *       'https://www.googleapis.com/auth/googlehealth.nutrition.writeonly',
+     *       'https://www.googleapis.com/auth/googlehealth.reproductive_health.writeonly',
      *       'https://www.googleapis.com/auth/googlehealth.sleep.readonly',
+     *       'https://www.googleapis.com/auth/googlehealth.sleep.writeonly',
      *     ],
      *   });
      *
@@ -6866,7 +6885,6 @@ export namespace health_v4 {
      *     scopes: [
      *       'https://www.googleapis.com/auth/googlehealth.activity_and_fitness.writeonly',
      *       'https://www.googleapis.com/auth/googlehealth.health_metrics_and_measurements.writeonly',
-     *       'https://www.googleapis.com/auth/googlehealth.location.writeonly',
      *       'https://www.googleapis.com/auth/googlehealth.logged_symptoms.writeonly',
      *       'https://www.googleapis.com/auth/googlehealth.mindfulness.writeonly',
      *       'https://www.googleapis.com/auth/googlehealth.nutrition.writeonly',
@@ -7066,7 +7084,6 @@ export namespace health_v4 {
      *       'https://www.googleapis.com/auth/googlehealth.health_metrics_and_measurements.readonly',
      *       'https://www.googleapis.com/auth/googlehealth.health_metrics_and_measurements.writeonly',
      *       'https://www.googleapis.com/auth/googlehealth.location.readonly',
-     *       'https://www.googleapis.com/auth/googlehealth.location.writeonly',
      *       'https://www.googleapis.com/auth/googlehealth.logged_symptoms.writeonly',
      *       'https://www.googleapis.com/auth/googlehealth.mindfulness.writeonly',
      *       'https://www.googleapis.com/auth/googlehealth.nutrition.writeonly',
@@ -7225,9 +7242,16 @@ export namespace health_v4 {
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
      *       'https://www.googleapis.com/auth/googlehealth.activity_and_fitness.readonly',
+     *       'https://www.googleapis.com/auth/googlehealth.activity_and_fitness.writeonly',
      *       'https://www.googleapis.com/auth/googlehealth.health_metrics_and_measurements.readonly',
+     *       'https://www.googleapis.com/auth/googlehealth.health_metrics_and_measurements.writeonly',
      *       'https://www.googleapis.com/auth/googlehealth.location.readonly',
+     *       'https://www.googleapis.com/auth/googlehealth.logged_symptoms.writeonly',
+     *       'https://www.googleapis.com/auth/googlehealth.mindfulness.writeonly',
+     *       'https://www.googleapis.com/auth/googlehealth.nutrition.writeonly',
+     *       'https://www.googleapis.com/auth/googlehealth.reproductive_health.writeonly',
      *       'https://www.googleapis.com/auth/googlehealth.sleep.readonly',
+     *       'https://www.googleapis.com/auth/googlehealth.sleep.writeonly',
      *     ],
      *   });
      *
