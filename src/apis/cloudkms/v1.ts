@@ -265,7 +265,7 @@ export namespace cloudkms_v1 {
     logType?: string | null;
   }
   /**
-   * Cloud KMS Autokey configuration for a folder.
+   * Cloud KMS Autokey configuration for a project or folder.
    */
   export interface Schema$AutokeyConfig {
     /**
@@ -802,7 +802,7 @@ export namespace cloudkms_v1 {
    */
   export interface Schema$ExternalProtectionLevelOptions {
     /**
-     * Optional. The resource name of the backend environment where the key material of CryptoKeyVersions is associated with. Setting this field overrides the CryptoKeyBackend. This field may be set when CryptoKeyVersions is set to EXTERNAL_VPC. Format: `projects/x/locations/x/ekmConnections/x`.
+     * Optional. The resource name of the backend environment where the key material of CryptoKeyVersions is associated with. Setting this field overrides the crypto_key_backend. This field may be set when CryptoKeyVersions is set to EXTERNAL_VPC. Format: `projects/x/locations/x/ekmConnections/x`.
      */
     ekmConnectionBackendOverride?: string | null;
     /**
@@ -1699,7 +1699,7 @@ export namespace cloudkms_v1 {
     updateMask?: string | null;
   }
   /**
-   * Response message for ShowEffectiveAutokeyConfig.
+   * Response message for ShowEffectiveAutokeyConfig
    */
   export interface Schema$ShowEffectiveAutokeyConfigResponse {
     /**
@@ -2238,7 +2238,7 @@ export namespace cloudkms_v1 {
     }
 
     /**
-     * Returns the effective Cloud KMS Autokey configuration for a given project or folder.
+     * Returns the effective Cloud KMS Autokey configuration for a given project or folder. Note on permissions: - If called on a project (`projects/{project\}`), requires `cloudkms.projects.showEffectiveAutokeyConfig`. - If called on a folder (`folders/{folder\}`), requires `cloudkms.folders.showEffectiveAutokeyConfig`.
      * @example
      * ```js
      * // Before running the sample:
@@ -2271,7 +2271,7 @@ export namespace cloudkms_v1 {
      *
      *   // Do the magic
      *   const res = await cloudkms.folders.showEffectiveAutokeyConfig({
-     *     // Required. Name of the resource project or folder to show the effective Cloud KMS Autokey configuration for. This may be helpful for interrogating the effect of nested folder configurations on a given resource project. Format: * projects/{project\} * folders/{folder\}
+     *     // Required. Name of the resource project or folder to show the effective Cloud KMS Autokey configuration for. This may be helpful for evaluating the effect of nested folder configurations on a given resource project. Format: * projects/{project\} * folders/{folder\}
      *     parent: 'folders/my-folder',
      *   });
      *   console.log(res.data);
@@ -2722,7 +2722,7 @@ export namespace cloudkms_v1 {
   }
   export interface Params$Resource$Folders$Showeffectiveautokeyconfig extends StandardParameters {
     /**
-     * Required. Name of the resource project or folder to show the effective Cloud KMS Autokey configuration for. This may be helpful for interrogating the effect of nested folder configurations on a given resource project. Format: * projects/{project\} * folders/{folder\}
+     * Required. Name of the resource project or folder to show the effective Cloud KMS Autokey configuration for. This may be helpful for evaluating the effect of nested folder configurations on a given resource project. Format: * projects/{project\} * folders/{folder\}
      */
     parent?: string;
   }
@@ -3397,7 +3397,7 @@ export namespace cloudkms_v1 {
     }
 
     /**
-     * Returns the effective Cloud KMS Autokey configuration for a given project or folder.
+     * Returns the effective Cloud KMS Autokey configuration for a given project or folder. Note on permissions: - If called on a project (`projects/{project\}`), requires `cloudkms.projects.showEffectiveAutokeyConfig`. - If called on a folder (`folders/{folder\}`), requires `cloudkms.folders.showEffectiveAutokeyConfig`.
      * @example
      * ```js
      * // Before running the sample:
@@ -3430,7 +3430,7 @@ export namespace cloudkms_v1 {
      *
      *   // Do the magic
      *   const res = await cloudkms.projects.showEffectiveAutokeyConfig({
-     *     // Required. Name of the resource project or folder to show the effective Cloud KMS Autokey configuration for. This may be helpful for interrogating the effect of nested folder configurations on a given resource project. Format: * projects/{project\} * folders/{folder\}
+     *     // Required. Name of the resource project or folder to show the effective Cloud KMS Autokey configuration for. This may be helpful for evaluating the effect of nested folder configurations on a given resource project. Format: * projects/{project\} * folders/{folder\}
      *     parent: 'projects/my-project',
      *   });
      *   console.log(res.data);
@@ -4189,7 +4189,7 @@ export namespace cloudkms_v1 {
   }
   export interface Params$Resource$Projects$Showeffectiveautokeyconfig extends StandardParameters {
     /**
-     * Required. Name of the resource project or folder to show the effective Cloud KMS Autokey configuration for. This may be helpful for interrogating the effect of nested folder configurations on a given resource project. Format: * projects/{project\} * folders/{folder\}
+     * Required. Name of the resource project or folder to show the effective Cloud KMS Autokey configuration for. This may be helpful for evaluating the effect of nested folder configurations on a given resource project. Format: * projects/{project\} * folders/{folder\}
      */
     parent?: string;
   }
