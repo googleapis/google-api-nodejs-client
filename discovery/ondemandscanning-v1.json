@@ -344,7 +344,7 @@
       }
     }
   },
-  "revision": "20260803",
+  "revision": "20260821",
   "rootUrl": "https://ondemandscanning.googleapis.com/",
   "schemas": {
     "AISkillAnalysisOccurrence": {
@@ -2153,6 +2153,10 @@
             "Critical severity.",
             "High severity."
           ],
+          "type": "string"
+        },
+        "modelId": {
+          "description": "The base name of the model that performed the scan.",
           "type": "string"
         },
         "scanStatus": {
