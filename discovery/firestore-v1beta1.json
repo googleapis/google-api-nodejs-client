@@ -775,6 +775,12 @@
                       "pattern": "^projects/[^/]+/databases/[^/]+/documents/.*$",
                       "required": true,
                       "type": "string"
+                    },
+                    "requestOptions.requestTags": {
+                      "description": "Optional. The request tags for the request. Request tags are user-provided strings used for usage monitoring, cost management, and observability. Callers can associate custom application context (such as component, microservice, feature name, or operation type) with database requests. These tags are collected and aggregated in usage and monitoring reports, allowing billable operations and usage metrics to be sliced and analyzed by tag. These tags *only* show up in monitoring and are visible in administrative operations (such as usage reports). They do not affect data storage, query semantics, or request execution. Cardinality and Best Practices: - Request tags are most effective when using a bounded set of distinct values (e.g., fewer than 100 distinct tags across an entire database). Using a large number of distinct tags may result in tags being omitted from top usage dashboards. - Use structured identifiers (for example: `app=cart`, `env=prod`, `service=checkout`) and avoid high-cardinality values such as UUIDs, request IDs, timestamps, user IDs, or document keys. - Do not include sensitive data or personally identifiable information (PII) in request tags, as they show up in administrative monitoring. The tags are processed as follows: - Leading and trailing whitespace is trimmed. - Empty tags (after trimming) are filtered out. - Truncated to a maximum of 510 characters. - Deduplicated within the same request. - Limited to a maximum of 50 tags per request (excess tags are silently discarded).",
+                      "location": "query",
+                      "repeated": true,
+                      "type": "string"
                     }
                   },
                   "path": "v1beta1/{+parent}/{collectionId}",
@@ -814,6 +820,12 @@
                       "location": "path",
                       "pattern": "^projects/[^/]+/databases/[^/]+/documents/[^/]+/.*$",
                       "required": true,
+                      "type": "string"
+                    },
+                    "requestOptions.requestTags": {
+                      "description": "Optional. The request tags for the request. Request tags are user-provided strings used for usage monitoring, cost management, and observability. Callers can associate custom application context (such as component, microservice, feature name, or operation type) with database requests. These tags are collected and aggregated in usage and monitoring reports, allowing billable operations and usage metrics to be sliced and analyzed by tag. These tags *only* show up in monitoring and are visible in administrative operations (such as usage reports). They do not affect data storage, query semantics, or request execution. Cardinality and Best Practices: - Request tags are most effective when using a bounded set of distinct values (e.g., fewer than 100 distinct tags across an entire database). Using a large number of distinct tags may result in tags being omitted from top usage dashboards. - Use structured identifiers (for example: `app=cart`, `env=prod`, `service=checkout`) and avoid high-cardinality values such as UUIDs, request IDs, timestamps, user IDs, or document keys. - Do not include sensitive data or personally identifiable information (PII) in request tags, as they show up in administrative monitoring. The tags are processed as follows: - Leading and trailing whitespace is trimmed. - Empty tags (after trimming) are filtered out. - Truncated to a maximum of 510 characters. - Deduplicated within the same request. - Limited to a maximum of 50 tags per request (excess tags are silently discarded).",
+                      "location": "query",
+                      "repeated": true,
                       "type": "string"
                     }
                   },
@@ -881,6 +893,12 @@
                       "description": "Reads the version of the document at the given time. This must be a microsecond precision timestamp within the past one hour, or if Point-in-Time Recovery is enabled, can additionally be a whole minute timestamp within the past 7 days.",
                       "format": "google-datetime",
                       "location": "query",
+                      "type": "string"
+                    },
+                    "requestOptions.requestTags": {
+                      "description": "Optional. The request tags for the request. Request tags are user-provided strings used for usage monitoring, cost management, and observability. Callers can associate custom application context (such as component, microservice, feature name, or operation type) with database requests. These tags are collected and aggregated in usage and monitoring reports, allowing billable operations and usage metrics to be sliced and analyzed by tag. These tags *only* show up in monitoring and are visible in administrative operations (such as usage reports). They do not affect data storage, query semantics, or request execution. Cardinality and Best Practices: - Request tags are most effective when using a bounded set of distinct values (e.g., fewer than 100 distinct tags across an entire database). Using a large number of distinct tags may result in tags being omitted from top usage dashboards. - Use structured identifiers (for example: `app=cart`, `env=prod`, `service=checkout`) and avoid high-cardinality values such as UUIDs, request IDs, timestamps, user IDs, or document keys. - Do not include sensitive data or personally identifiable information (PII) in request tags, as they show up in administrative monitoring. The tags are processed as follows: - Leading and trailing whitespace is trimmed. - Empty tags (after trimming) are filtered out. - Truncated to a maximum of 510 characters. - Deduplicated within the same request. - Limited to a maximum of 50 tags per request (excess tags are silently discarded).",
+                      "location": "query",
+                      "repeated": true,
                       "type": "string"
                     },
                     "transaction": {
@@ -954,6 +972,12 @@
                       "description": "Optional. If the list should recursively include all documents nested under the parent at any level. If the request specifies a `collection_id`, then the list will include all nested documents in the collection under the parent. This is optional, and when not provided, Firestore will only list documents nested immediately under the parent. Requests with `recursive` may not specify `show_missing`.",
                       "location": "query",
                       "type": "boolean"
+                    },
+                    "requestOptions.requestTags": {
+                      "description": "Optional. The request tags for the request. Request tags are user-provided strings used for usage monitoring, cost management, and observability. Callers can associate custom application context (such as component, microservice, feature name, or operation type) with database requests. These tags are collected and aggregated in usage and monitoring reports, allowing billable operations and usage metrics to be sliced and analyzed by tag. These tags *only* show up in monitoring and are visible in administrative operations (such as usage reports). They do not affect data storage, query semantics, or request execution. Cardinality and Best Practices: - Request tags are most effective when using a bounded set of distinct values (e.g., fewer than 100 distinct tags across an entire database). Using a large number of distinct tags may result in tags being omitted from top usage dashboards. - Use structured identifiers (for example: `app=cart`, `env=prod`, `service=checkout`) and avoid high-cardinality values such as UUIDs, request IDs, timestamps, user IDs, or document keys. - Do not include sensitive data or personally identifiable information (PII) in request tags, as they show up in administrative monitoring. The tags are processed as follows: - Leading and trailing whitespace is trimmed. - Empty tags (after trimming) are filtered out. - Truncated to a maximum of 510 characters. - Deduplicated within the same request. - Limited to a maximum of 50 tags per request (excess tags are silently discarded).",
+                      "location": "query",
+                      "repeated": true,
+                      "type": "string"
                     },
                     "showMissing": {
                       "description": "If the list should show missing documents. A document is missing if it does not exist, but there are sub-documents nested underneath it. When true, such missing documents will be returned with a key but will not have fields, `create_time`, or `update_time` set. Requests with `show_missing` may not specify `where` or `order_by`.",
@@ -1060,6 +1084,12 @@
                       "description": "Optional. If the list should recursively include all documents nested under the parent at any level. If the request specifies a `collection_id`, then the list will include all nested documents in the collection under the parent. This is optional, and when not provided, Firestore will only list documents nested immediately under the parent. Requests with `recursive` may not specify `show_missing`.",
                       "location": "query",
                       "type": "boolean"
+                    },
+                    "requestOptions.requestTags": {
+                      "description": "Optional. The request tags for the request. Request tags are user-provided strings used for usage monitoring, cost management, and observability. Callers can associate custom application context (such as component, microservice, feature name, or operation type) with database requests. These tags are collected and aggregated in usage and monitoring reports, allowing billable operations and usage metrics to be sliced and analyzed by tag. These tags *only* show up in monitoring and are visible in administrative operations (such as usage reports). They do not affect data storage, query semantics, or request execution. Cardinality and Best Practices: - Request tags are most effective when using a bounded set of distinct values (e.g., fewer than 100 distinct tags across an entire database). Using a large number of distinct tags may result in tags being omitted from top usage dashboards. - Use structured identifiers (for example: `app=cart`, `env=prod`, `service=checkout`) and avoid high-cardinality values such as UUIDs, request IDs, timestamps, user IDs, or document keys. - Do not include sensitive data or personally identifiable information (PII) in request tags, as they show up in administrative monitoring. The tags are processed as follows: - Leading and trailing whitespace is trimmed. - Empty tags (after trimming) are filtered out. - Truncated to a maximum of 510 characters. - Deduplicated within the same request. - Limited to a maximum of 50 tags per request (excess tags are silently discarded).",
+                      "location": "query",
+                      "repeated": true,
+                      "type": "string"
                     },
                     "showMissing": {
                       "description": "If the list should show missing documents. A document is missing if it does not exist, but there are sub-documents nested underneath it. When true, such missing documents will be returned with a key but will not have fields, `create_time`, or `update_time` set. Requests with `show_missing` may not specify `where` or `order_by`.",
@@ -1171,6 +1201,12 @@
                       "location": "path",
                       "pattern": "^projects/[^/]+/databases/[^/]+/documents/[^/]+/.*$",
                       "required": true,
+                      "type": "string"
+                    },
+                    "requestOptions.requestTags": {
+                      "description": "Optional. The request tags for the request. Request tags are user-provided strings used for usage monitoring, cost management, and observability. Callers can associate custom application context (such as component, microservice, feature name, or operation type) with database requests. These tags are collected and aggregated in usage and monitoring reports, allowing billable operations and usage metrics to be sliced and analyzed by tag. These tags *only* show up in monitoring and are visible in administrative operations (such as usage reports). They do not affect data storage, query semantics, or request execution. Cardinality and Best Practices: - Request tags are most effective when using a bounded set of distinct values (e.g., fewer than 100 distinct tags across an entire database). Using a large number of distinct tags may result in tags being omitted from top usage dashboards. - Use structured identifiers (for example: `app=cart`, `env=prod`, `service=checkout`) and avoid high-cardinality values such as UUIDs, request IDs, timestamps, user IDs, or document keys. - Do not include sensitive data or personally identifiable information (PII) in request tags, as they show up in administrative monitoring. The tags are processed as follows: - Leading and trailing whitespace is trimmed. - Empty tags (after trimming) are filtered out. - Truncated to a maximum of 510 characters. - Deduplicated within the same request. - Limited to a maximum of 50 tags per request (excess tags are silently discarded).",
+                      "location": "query",
+                      "repeated": true,
                       "type": "string"
                     },
                     "updateMask.fieldPaths": {
@@ -1441,7 +1477,7 @@
       }
     }
   },
-  "revision": "20260706",
+  "revision": "20260818",
   "rootUrl": "https://firestore.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -1530,6 +1566,10 @@
           "format": "google-datetime",
           "type": "string"
         },
+        "requestOptions": {
+          "$ref": "RequestOptions",
+          "description": "Optional. The request options for this request."
+        },
         "transaction": {
           "description": "Reads documents in a transaction.",
           "format": "byte",
@@ -1574,6 +1614,10 @@
           "description": "Labels associated with this batch write.",
           "type": "object"
         },
+        "requestOptions": {
+          "$ref": "RequestOptions",
+          "description": "Optional. The request options for this request."
+        },
         "writes": {
           "description": "The writes to apply. Method does not apply writes atomically and does not guarantee ordering. Each write succeeds or fails independently. You cannot write to the same document more than once per request.",
           "items": {
@@ -1612,6 +1656,10 @@
         "options": {
           "$ref": "TransactionOptions",
           "description": "The options for the transaction. Defaults to a read-write transaction."
+        },
+        "requestOptions": {
+          "$ref": "RequestOptions",
+          "description": "Optional. The request options for this request."
         }
       },
       "type": "object"
@@ -1680,6 +1728,10 @@
       "description": "The request for Firestore.Commit.",
       "id": "CommitRequest",
       "properties": {
+        "requestOptions": {
+          "$ref": "RequestOptions",
+          "description": "Optional. The request options for this request."
+        },
         "transaction": {
           "description": "If set, applies all writes in this transaction, and commits it.",
           "format": "byte",
@@ -1944,6 +1996,10 @@
           "format": "google-datetime",
           "type": "string"
         },
+        "requestOptions": {
+          "$ref": "RequestOptions",
+          "description": "Optional. The request options for this request."
+        },
         "structuredPipeline": {
           "$ref": "StructuredPipeline",
           "description": "A pipelined operation."
@@ -1957,7 +2013,7 @@
       "type": "object"
     },
     "ExecutePipelineResponse": {
-      "description": "The response for Firestore.Execute.",
+      "description": "The response for Firestore.ExecutePipeline.",
       "id": "ExecutePipelineResponse",
       "properties": {
         "executionTime": {
@@ -2492,7 +2548,42 @@
     "GoogleFirestoreAdminV1UpdateDatabaseMetadata": {
       "description": "Metadata related to the update database operation.",
       "id": "GoogleFirestoreAdminV1UpdateDatabaseMetadata",
-      "properties": {},
+      "properties": {
+        "endTime": {
+          "description": "The time this operation completed. Will be unset if operation still in progress.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "startTime": {
+          "description": "The time this operation started.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "state": {
+          "description": "The state of the operation.",
+          "enum": [
+            "OPERATION_STATE_UNSPECIFIED",
+            "INITIALIZING",
+            "PROCESSING",
+            "CANCELLING",
+            "FINALIZING",
+            "SUCCESSFUL",
+            "FAILED",
+            "CANCELLED"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "Request is being prepared for processing.",
+            "Request is actively being processed.",
+            "Request is in the process of being cancelled after user called google.longrunning.Operations.CancelOperation on the operation.",
+            "Request has been processed and is in its finalization stage.",
+            "Request has completed successfully.",
+            "Request has finished being processed, but encountered an error.",
+            "Request has finished being cancelled after user called google.longrunning.Operations.CancelOperation."
+          ],
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "GoogleFirestoreAdminV1beta1ExportDocumentsMetadata": {
@@ -2878,6 +2969,10 @@
           "description": "Reads documents as they were at the given time. This must be a microsecond precision timestamp within the past one hour, or if Point-in-Time Recovery is enabled, can additionally be a whole minute timestamp within the past 7 days.",
           "format": "google-datetime",
           "type": "string"
+        },
+        "requestOptions": {
+          "$ref": "RequestOptions",
+          "description": "Optional. The request options for this request."
         }
       },
       "type": "object"
@@ -2937,6 +3032,10 @@
           "description": "The ID of a target to remove from this stream.",
           "format": "int32",
           "type": "integer"
+        },
+        "requestOptions": {
+          "$ref": "RequestOptions",
+          "description": "Optional. The request options for the request."
         }
       },
       "type": "object"
@@ -3029,6 +3128,10 @@
           "description": "Reads documents as they were at the given time. This must be a microsecond precision timestamp within the past one hour, or if Point-in-Time Recovery is enabled, can additionally be a whole minute timestamp within the past 7 days.",
           "format": "google-datetime",
           "type": "string"
+        },
+        "requestOptions": {
+          "$ref": "RequestOptions",
+          "description": "Optional. The request options for the request."
         },
         "structuredQuery": {
           "$ref": "StructuredQuery",
@@ -3170,10 +3273,28 @@
       },
       "type": "object"
     },
+    "RequestOptions": {
+      "description": "Options for a request.",
+      "id": "RequestOptions",
+      "properties": {
+        "requestTags": {
+          "description": "Optional. The request tags for the request. Request tags are user-provided strings used for usage monitoring, cost management, and observability. Callers can associate custom application context (such as component, microservice, feature name, or operation type) with database requests. These tags are collected and aggregated in usage and monitoring reports, allowing billable operations and usage metrics to be sliced and analyzed by tag. These tags *only* show up in monitoring and are visible in administrative operations (such as usage reports). They do not affect data storage, query semantics, or request execution. Cardinality and Best Practices: - Request tags are most effective when using a bounded set of distinct values (e.g., fewer than 100 distinct tags across an entire database). Using a large number of distinct tags may result in tags being omitted from top usage dashboards. - Use structured identifiers (for example: `app=cart`, `env=prod`, `service=checkout`) and avoid high-cardinality values such as UUIDs, request IDs, timestamps, user IDs, or document keys. - Do not include sensitive data or personally identifiable information (PII) in request tags, as they show up in administrative monitoring. The tags are processed as follows: - Leading and trailing whitespace is trimmed. - Empty tags (after trimming) are filtered out. - Truncated to a maximum of 510 characters. - Deduplicated within the same request. - Limited to a maximum of 50 tags per request (excess tags are silently discarded).",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "RollbackRequest": {
       "description": "The request for Firestore.Rollback.",
       "id": "RollbackRequest",
       "properties": {
+        "requestOptions": {
+          "$ref": "RequestOptions",
+          "description": "Optional. The request options for this request."
+        },
         "transaction": {
           "description": "Required. The transaction to roll back.",
           "format": "byte",
@@ -3198,6 +3319,10 @@
           "description": "Executes the query at the given timestamp. This must be a microsecond precision timestamp within the past one hour, or if Point-in-Time Recovery is enabled, can additionally be a whole minute timestamp within the past 7 days.",
           "format": "google-datetime",
           "type": "string"
+        },
+        "requestOptions": {
+          "$ref": "RequestOptions",
+          "description": "Optional. The request options for the request."
         },
         "structuredAggregationQuery": {
           "$ref": "StructuredAggregationQuery",
@@ -3252,6 +3377,10 @@
           "description": "Reads documents as they were at the given time. This must be a microsecond precision timestamp within the past one hour, or if Point-in-Time Recovery is enabled, can additionally be a whole minute timestamp within the past 7 days.",
           "format": "google-datetime",
           "type": "string"
+        },
+        "requestOptions": {
+          "$ref": "RequestOptions",
+          "description": "Optional. The request options for this request."
         },
         "structuredQuery": {
           "$ref": "StructuredQuery",
@@ -3585,14 +3714,14 @@
       "properties": {
         "arrayValue": {
           "$ref": "ArrayValue",
-          "description": "An array value. Cannot directly contain another array value, though can contain a map which contains another array."
+          "description": "An array value. In Standard edition databases, an array value cannot directly contain another array value, though it can contain a map which contains another array. In Enterprise edition databases, an array value can contain another array value."
         },
         "booleanValue": {
           "description": "A boolean value.",
           "type": "boolean"
         },
         "bytesValue": {
-          "description": "A bytes value. Must not exceed 1 MiB - 89 bytes. Only the first 1,500 bytes are considered by queries.",
+          "description": "A bytes value. In Standard edition databases: * The value must not exceed 1 MiB - 89 bytes. * Only the first 1,500 bytes are considered by queries. In Enterprise edition databases, there is no limit on the size of the value. However, it is still subject to document and index entry size limits.",
           "format": "byte",
           "type": "string"
         },
@@ -3641,7 +3770,7 @@
           "type": "string"
         },
         "stringValue": {
-          "description": "A string value. The string, represented as UTF-8, must not exceed 1 MiB - 89 bytes. Only the first 1,500 bytes of the UTF-8 representation are considered by queries.",
+          "description": "A string value. In Standard edition databases: * The string, represented as UTF-8, must not exceed 1 MiB - 89 bytes. * Only the first 1,500 bytes of the UTF-8 representation are considered by queries. In Enterprise edition databases, there is no limit on the size of the value. However, it is still subject to document and index entry size limits.",
           "type": "string"
         },
         "timestampValue": {
@@ -3700,6 +3829,10 @@
           },
           "description": "Labels associated with this write request.",
           "type": "object"
+        },
+        "requestOptions": {
+          "$ref": "RequestOptions",
+          "description": "Optional. The request options for the request."
         },
         "streamId": {
           "description": "The ID of the write stream to resume. This may only be set in the first message. When left empty, a new write stream will be created.",

@@ -551,7 +551,20 @@ export namespace firestore_v1beta2 {
   /**
    * Metadata related to the update database operation.
    */
-  export interface Schema$GoogleFirestoreAdminV1UpdateDatabaseMetadata {}
+  export interface Schema$GoogleFirestoreAdminV1UpdateDatabaseMetadata {
+    /**
+     * The time this operation completed. Will be unset if operation still in progress.
+     */
+    endTime?: string | null;
+    /**
+     * The time this operation started.
+     */
+    startTime?: string | null;
+    /**
+     * The state of the operation.
+     */
+    state?: string | null;
+  }
   /**
    * This resource represents a long-running operation that is the result of a network API call.
    */
