@@ -1,5 +1,12 @@
 # Changelog
 
+## [32.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/discoveryengine-v32.1.0...discoveryengine-v32.2.0) (2026-08-28)
+
+
+### Features
+
+* **discoveryengine:** update the API ([4f3f211](https://github.com/googleapis/google-api-nodejs-client/commit/4f3f211db4834af07afe20ca3814863e9ee14b79))
+
 ## [32.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/discoveryengine-v32.0.0...discoveryengine-v32.1.0) (2026-08-18)
 
 

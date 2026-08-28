@@ -1,5 +1,12 @@
 # Changelog
 
+## [22.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/alloydb-v22.1.0...alloydb-v22.2.0) (2026-08-28)
+
+
+### Features
+
+* **alloydb:** update the API ([2f436c2](https://github.com/googleapis/google-api-nodejs-client/commit/2f436c2b3310b5bc9477c45f9e4542e5cb0931b2))
+
 ## [22.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/alloydb-v22.0.0...alloydb-v22.1.0) (2026-08-14)
 
 

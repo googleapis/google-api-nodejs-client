@@ -1,5 +1,16 @@
 # Changelog
 
+## [14.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/games-v13.1.0...games-v14.0.0) (2026-08-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **games:** This release has breaking changes.
+
+### Features
+
+* **games:** update the API ([ecc91a5](https://github.com/googleapis/google-api-nodejs-client/commit/ecc91a5c99b0d38acdbf3916ba4b7c4db0bba8d2))
+
 ## [13.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/games-v13.0.0...games-v13.1.0) (2026-08-14)
 
 

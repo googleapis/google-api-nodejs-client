@@ -1,5 +1,12 @@
 # Changelog
 
+## [9.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/observability-v9.0.0...observability-v9.1.0) (2026-08-28)
+
+
+### Features
+
+* **observability:** update the API ([e96e222](https://github.com/googleapis/google-api-nodejs-client/commit/e96e222608184ef24d2a637e29c4e95d1a49ed8c))
+
 ## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/observability-v8.3.0...observability-v9.0.0) (2026-08-03)
 
 

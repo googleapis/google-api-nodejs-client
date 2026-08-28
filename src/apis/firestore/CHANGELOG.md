@@ -1,5 +1,12 @@
 # Changelog
 
+## [21.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/firestore-v21.0.0...firestore-v21.1.0) (2026-08-28)
+
+
+### Features
+
+* **firestore:** update the API ([cdfbddc](https://github.com/googleapis/google-api-nodejs-client/commit/cdfbddc589bebd13f0b804e3b3a4470378a4169f))
+
 ## [21.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/firestore-v20.0.0...firestore-v21.0.0) (2026-08-03)
 
 

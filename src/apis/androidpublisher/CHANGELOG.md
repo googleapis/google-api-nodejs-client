@@ -1,5 +1,12 @@
 # Changelog
 
+## [37.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/androidpublisher-v37.0.0...androidpublisher-v37.1.0) (2026-08-28)
+
+
+### Features
+
+* **androidpublisher:** update the API ([0d59254](https://github.com/googleapis/google-api-nodejs-client/commit/0d592544958eaac0d148a5bb93dfae73190ae975))
+
 ## [37.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/androidpublisher-v36.0.0...androidpublisher-v37.0.0) (2026-08-03)
 
 

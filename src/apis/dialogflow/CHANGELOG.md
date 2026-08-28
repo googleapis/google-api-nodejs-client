@@ -1,5 +1,12 @@
 # Changelog
 
+## [29.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/dialogflow-v29.1.0...dialogflow-v29.2.0) (2026-08-28)
+
+
+### Features
+
+* **dialogflow:** update the API ([9b01990](https://github.com/googleapis/google-api-nodejs-client/commit/9b0199030afdd44d15c33645905df6003237c212))
+
 ## [29.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/dialogflow-v29.0.0...dialogflow-v29.1.0) (2026-08-18)
 
 

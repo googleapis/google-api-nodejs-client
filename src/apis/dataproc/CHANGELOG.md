@@ -1,5 +1,16 @@
 # Changelog
 
+## [20.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/dataproc-v19.0.0...dataproc-v20.0.0) (2026-08-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **dataproc:** This release has breaking changes.
+
+### Features
+
+* **dataproc:** update the API ([0ee92e8](https://github.com/googleapis/google-api-nodejs-client/commit/0ee92e8894443a5a46af3277a42e50320bed8320))
+
 ## [19.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/dataproc-v18.0.0...dataproc-v19.0.0) (2026-08-03)
 
 

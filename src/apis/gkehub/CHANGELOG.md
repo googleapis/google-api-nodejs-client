@@ -1,5 +1,12 @@
 # Changelog
 
+## [29.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/gkehub-v29.1.0...gkehub-v29.2.0) (2026-08-28)
+
+
+### Features
+
+* **gkehub:** update the API ([b04a752](https://github.com/googleapis/google-api-nodejs-client/commit/b04a7522f12f5f49c32ac0c588063d2f6ed39dff))
+
 ## [29.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/gkehub-v29.0.1...gkehub-v29.1.0) (2026-08-18)
 
 

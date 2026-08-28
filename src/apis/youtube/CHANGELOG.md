@@ -1,5 +1,12 @@
 # Changelog
 
+## [34.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/youtube-v34.1.0...youtube-v34.2.0) (2026-08-28)
+
+
+### Features
+
+* **youtube:** update the API ([5167dd8](https://github.com/googleapis/google-api-nodejs-client/commit/5167dd853b90186684a25e8a070d3f99364af8f1))
+
 ## [34.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/youtube-v34.0.0...youtube-v34.1.0) (2026-08-14)
 
 

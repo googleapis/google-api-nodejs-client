@@ -1,5 +1,12 @@
 # Changelog
 
+## [9.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/saasservicemgmt-v9.0.0...saasservicemgmt-v9.1.0) (2026-08-28)
+
+
+### Features
+
+* **saasservicemgmt:** update the API ([7435196](https://github.com/googleapis/google-api-nodejs-client/commit/74351965e4411e37f0c9aaa70b81ac46199a0ab0))
+
 ## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/saasservicemgmt-v8.0.0...saasservicemgmt-v9.0.0) (2026-08-03)
 
 
