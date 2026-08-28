@@ -709,9 +709,9 @@ export namespace merchantapi_notifications_v1 {
      *
      *   // Do the magic
      *   const res = await merchantapi.accounts.notificationsubscriptions.list({
-     *     // The maximum number of notification subscriptions to return in a page. The default value for `page_size` is 100. The maximum value is `200`. Values above `200` will be coerced to `200`.
+     *     // Optional. The maximum number of notification subscriptions to return in a page. The default value for `page_size` is 100. The maximum value is `200`. Values above `200` will be coerced to `200`.
      *     pageSize: 'placeholder-value',
-     *     // Token (if provided) to retrieve the subsequent page. All other parameters must match the original call that provided the page token.
+     *     // Optional. Token (if provided) to retrieve the subsequent page. All other parameters must match the original call that provided the page token.
      *     pageToken: 'placeholder-value',
      *     // Required. The merchant account who owns the notification subscriptions. Format: `accounts/{account\}`
      *     parent: 'accounts/my-account',
@@ -1013,11 +1013,11 @@ export namespace merchantapi_notifications_v1 {
   }
   export interface Params$Resource$Accounts$Notificationsubscriptions$List extends StandardParameters {
     /**
-     * The maximum number of notification subscriptions to return in a page. The default value for `page_size` is 100. The maximum value is `200`. Values above `200` will be coerced to `200`.
+     * Optional. The maximum number of notification subscriptions to return in a page. The default value for `page_size` is 100. The maximum value is `200`. Values above `200` will be coerced to `200`.
      */
     pageSize?: number;
     /**
-     * Token (if provided) to retrieve the subsequent page. All other parameters must match the original call that provided the page token.
+     * Optional. Token (if provided) to retrieve the subsequent page. All other parameters must match the original call that provided the page token.
      */
     pageToken?: string;
     /**
