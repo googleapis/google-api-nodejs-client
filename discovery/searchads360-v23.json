@@ -4969,7 +4969,7 @@
       }
     }
   },
-  "revision": "20260810",
+  "revision": "20260820",
   "rootUrl": "https://searchads360.googleapis.com/",
   "schemas": {
     "GoogleAdsSearchads360V0Common__Value": {
@@ -35384,12 +35384,16 @@
           "enum": [
             "UNSPECIFIED",
             "UNKNOWN",
-            "CUSTOMER_RETENTION"
+            "CUSTOMER_RETENTION",
+            "NEW_CUSTOMER_ACQUISITION",
+            "LOYALTY_RETENTION"
           ],
           "enumDescriptions": [
             "Not specified.",
             "Used for return value only. Represents value unknown in this version.",
-            "Retention goal, which allows advertisers to optimize campaigns to win back lapsed customers. (https://support.google.com/google-ads/answer/14792043?hl=en)"
+            "Retention goal, which allows advertisers to optimize campaigns to win back lapsed customers. See https://support.google.com/google-ads/answer/14792043 to learn more.",
+            "New customer acquisition goal, which allows advertisers to optimize campaigns to acquire new customers.",
+            "Loyalty retention goal, which allows advertisers to optimize campaigns for retaining loyalty program members."
           ],
           "readOnly": true,
           "type": "string"
@@ -39854,12 +39858,16 @@
           "enum": [
             "UNSPECIFIED",
             "UNKNOWN",
-            "CUSTOMER_RETENTION"
+            "CUSTOMER_RETENTION",
+            "NEW_CUSTOMER_ACQUISITION",
+            "LOYALTY_RETENTION"
           ],
           "enumDescriptions": [
             "Not specified.",
             "Used for return value only. Represents value unknown in this version.",
-            "Retention goal, which allows advertisers to optimize campaigns to win back lapsed customers. (https://support.google.com/google-ads/answer/14792043?hl=en)"
+            "Retention goal, which allows advertisers to optimize campaigns to win back lapsed customers. See https://support.google.com/google-ads/answer/14792043 to learn more.",
+            "New customer acquisition goal, which allows advertisers to optimize campaigns to acquire new customers.",
+            "Loyalty retention goal, which allows advertisers to optimize campaigns for retaining loyalty program members."
           ],
           "readOnly": true,
           "type": "string"
@@ -56800,6 +56808,10 @@
           "$ref": "GoogleAdsSearchads360V23Services__CampaignDraftOperation",
           "description": "A campaign draft mutate operation."
         },
+        "campaignGoalConfigOperation": {
+          "$ref": "GoogleAdsSearchads360V23Services__CampaignGoalConfigOperation",
+          "description": "A campaign goal config mutate operation."
+        },
         "campaignGroupOperation": {
           "$ref": "GoogleAdsSearchads360V23Services__CampaignGroupOperation",
           "description": "A campaign group mutate operation."
@@ -57058,6 +57070,10 @@
         "campaignDraftResult": {
           "$ref": "GoogleAdsSearchads360V23Services__MutateCampaignDraftResult",
           "description": "The result for the campaign draft mutate."
+        },
+        "campaignGoalConfigResult": {
+          "$ref": "GoogleAdsSearchads360V23Services__MutateCampaignGoalConfigResult",
+          "description": "The result for the campaign goal config mutate."
         },
         "campaignGroupResult": {
           "$ref": "GoogleAdsSearchads360V23Services__MutateCampaignGroupResult",
