@@ -2390,7 +2390,7 @@
       }
     }
   },
-  "revision": "20260731",
+  "revision": "20260811",
   "rootUrl": "https://bigquery.googleapis.com/",
   "schemas": {
     "AggregateClassificationMetrics": {
@@ -5059,7 +5059,7 @@
           "description": "Job level error stats across all GenAi functions"
         },
         "functionStats": {
-          "description": "Function level stats for GenAi Functions. See https://docs.cloud.google.com/bigquery/docs/generative-ai-overview",
+          "description": "Function level stats for GenAI Functions. For more information, see [Generative AI overview](https://docs.cloud.google.com/bigquery/docs/generative-ai-overview).",
           "items": {
             "$ref": "GenAiFunctionStats"
           },
@@ -10657,7 +10657,7 @@
             "Replication is Active with no errors.",
             "Source object is deleted.",
             "Source revoked replication permissions.",
-            "Source configuration doesn’t allow replication."
+            "Source configuration doesn't allow replication."
           ],
           "readOnly": true,
           "type": "string"
