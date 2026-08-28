@@ -686,7 +686,7 @@ export namespace networkservices_v1 {
      */
     paths?: Schema$ExtensionBindingMatchConditionStringMatch[];
     /**
-     * Optional. A list of non-empty strings whose value is matched against the resource value. If not specified, any resource is allowed. If specified, a match occurs if any of the resources matches the resource value in the request. Limited to 5 resources.
+     * Optional. A list of non-empty strings whose value is matched against the resource to which a request is sent (e.g., an Agent in AiApplication). If not specified, any resource is allowed. If specified, a match occurs if any of the resources matches the resource value in the request. Limited to 5 resources. When matching against resources in the AgentRegistry, use the URNs of the registry resources.
      */
     resources?: Schema$ExtensionBindingMatchConditionStringMatch[];
   }
@@ -704,7 +704,7 @@ export namespace networkservices_v1 {
    */
   export interface Schema$ExtensionBindingTarget {
     /**
-     * Optional. The reference to the target resource, to which this binding should attach. Exactly one of `resources` or `scope` must be set. For Agent Gateway, this would be the full resource name, in the format: `projects/{project\}/locations/{location\}/agentGateways/{agent_gateway\}`. For AI App, this would be the full resource name, in the format: `projects/{project\}/locations/{location\}/applications/{application\}`.
+     * Optional. The reference to the target resource, to which this binding should attach. Exactly one of `resources` or `scope` must be set.
      */
     resources?: string[] | null;
     /**
@@ -2413,7 +2413,7 @@ export namespace networkservices_v1 {
      */
     extensionSettings?: Schema$ProducerExtensionExtensionSettings;
     /**
-     * Optional. Set of labels associated with the `ProducerExtension` resource. The format must comply with [the following requirements]((https://cloud.google.com/compute/docs/labeling-resources#requirements).
+     * Optional. Set of labels associated with the `ProducerExtension` resource. The format must comply with [the following requirements](https://cloud.google.com/compute/docs/labeling-resources#requirements).
      */
     labels?: {[key: string]: string} | null;
     /**
