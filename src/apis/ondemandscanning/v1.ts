@@ -1157,6 +1157,10 @@ export namespace ondemandscanning_v1 {
      */
     maxSeverity?: string | null;
     /**
+     * The base name of the model that performed the scan.
+     */
+    modelId?: string | null;
+    /**
      * Status of the scan.
      */
     scanStatus?: string | null;
