@@ -1035,6 +1035,10 @@ export namespace notebooks_v2 {
      */
     family?: string | null;
     /**
+     * Output only. A human-readable description of the image running on the instance (for example, "Debian 11, Python 3.10"), derived at read time from the image release configuration (the source of truth). Set to "Custom" for unrecognized boot-disk images.
+     */
+    imageDescription?: string | null;
+    /**
      * Optional. Use VM image name to find the image.
      */
     name?: string | null;
@@ -1087,7 +1091,10 @@ export namespace notebooks_v2 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/notebooks',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -1224,7 +1231,10 @@ export namespace notebooks_v2 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/notebooks',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -1407,7 +1417,10 @@ export namespace notebooks_v2 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/notebooks',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -1558,7 +1571,10 @@ export namespace notebooks_v2 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/notebooks',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -1709,7 +1725,10 @@ export namespace notebooks_v2 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/notebooks',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -1880,7 +1899,10 @@ export namespace notebooks_v2 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/notebooks',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -2019,7 +2041,10 @@ export namespace notebooks_v2 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/notebooks',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -2168,7 +2193,10 @@ export namespace notebooks_v2 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/notebooks',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -2321,7 +2349,10 @@ export namespace notebooks_v2 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/notebooks',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -2473,7 +2504,10 @@ export namespace notebooks_v2 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/notebooks',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -2612,7 +2646,10 @@ export namespace notebooks_v2 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/notebooks',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -2753,7 +2790,10 @@ export namespace notebooks_v2 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/notebooks',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -2901,7 +2941,10 @@ export namespace notebooks_v2 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/notebooks',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -3069,7 +3112,10 @@ export namespace notebooks_v2 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/notebooks',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -3219,7 +3265,10 @@ export namespace notebooks_v2 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/notebooks',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -3362,7 +3411,10 @@ export namespace notebooks_v2 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/notebooks',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -3512,7 +3564,10 @@ export namespace notebooks_v2 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/notebooks',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -3660,7 +3715,10 @@ export namespace notebooks_v2 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/notebooks',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -3809,7 +3867,10 @@ export namespace notebooks_v2 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/notebooks',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -3956,7 +4017,10 @@ export namespace notebooks_v2 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/notebooks',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -4099,7 +4163,10 @@ export namespace notebooks_v2 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/notebooks',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -4242,7 +4309,10 @@ export namespace notebooks_v2 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/notebooks',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -4391,7 +4461,10 @@ export namespace notebooks_v2 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/notebooks',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -4539,7 +4612,10 @@ export namespace notebooks_v2 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/notebooks',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -4948,7 +5024,10 @@ export namespace notebooks_v2 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/notebooks',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -5085,7 +5164,10 @@ export namespace notebooks_v2 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/notebooks',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -5216,7 +5298,10 @@ export namespace notebooks_v2 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/notebooks',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -5353,7 +5438,10 @@ export namespace notebooks_v2 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/notebooks',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
