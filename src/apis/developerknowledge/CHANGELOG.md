@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/developerknowledge-v3.1.0...developerknowledge-v3.2.0) (2026-08-28)
+
+
+### Features
+
+* **developerknowledge:** update the API ([14ad375](https://github.com/googleapis/google-api-nodejs-client/commit/14ad3758a8eccb6010516a6e60aee5a613b2f08f))
+
 ## [3.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/developerknowledge-v3.0.0...developerknowledge-v3.1.0) (2026-08-14)
 
 
