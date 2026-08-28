@@ -376,7 +376,10 @@
                   },
                   "response": {
                     "$ref": "Cta"
-                  }
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/subscribewithgoogle.publications.entitlements.manage"
+                  ]
                 }
               }
             }
@@ -449,12 +452,16 @@
           },
           "response": {
             "$ref": "GeneratePlatformSiteTokensResponse"
-          }
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/subscribewithgoogle.publications.entitlements.manage",
+            "https://www.googleapis.com/auth/subscribewithgoogle.publications.entitlements.readonly"
+          ]
         }
       }
     }
   },
-  "revision": "20260812",
+  "revision": "20260823",
   "rootUrl": "https://webcontentpublisher.googleapis.com/",
   "schemas": {
     "CheckFreeAccessResponse": {
@@ -831,14 +838,6 @@
         "emailOptIn": {
           "description": "Optional. Whether the user opted in to receive product updates and email communications.",
           "type": "boolean"
-        },
-        "signer": {
-          "description": "Optional. The name of the person who accepted the TOS.",
-          "type": "string"
-        },
-        "signerTitle": {
-          "description": "Optional. The job title or role of the signer.",
-          "type": "string"
         },
         "userAccepted": {
           "description": "Required. Whether the user has accepted the Terms of Service.",

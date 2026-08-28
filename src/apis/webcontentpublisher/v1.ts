@@ -377,14 +377,6 @@ export namespace webcontentpublisher_v1 {
      */
     emailOptIn?: boolean | null;
     /**
-     * Optional. The name of the person who accepted the TOS.
-     */
-    signer?: string | null;
-    /**
-     * Optional. The job title or role of the signer.
-     */
-    signerTitle?: string | null;
-    /**
      * Required. Whether the user has accepted the Terms of Service.
      */
     userAccepted?: boolean | null;
@@ -1593,7 +1585,9 @@ export namespace webcontentpublisher_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/subscribewithgoogle.publications.entitlements.manage',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -1973,7 +1967,10 @@ export namespace webcontentpublisher_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/subscribewithgoogle.publications.entitlements.manage',
+     *       'https://www.googleapis.com/auth/subscribewithgoogle.publications.entitlements.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
