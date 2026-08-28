@@ -340,6 +340,334 @@
   },
   "protocol": "rest",
   "resources": {
+    "folders": {
+      "resources": {
+        "locations": {
+          "resources": {
+            "configStoreSettings": {
+              "methods": {
+                "create": {
+                  "description": "Creates a new ConfigStoreSetting.",
+                  "flatPath": "v1b3/folders/{foldersId}/locations/{locationsId}/configStoreSettings",
+                  "httpMethod": "POST",
+                  "id": "dataflow.folders.locations.configStoreSettings.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "configStoreSettingId": {
+                      "description": "Required. The ID to use for the setting.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent resource where this setting will be created.",
+                      "location": "path",
+                      "pattern": "^folders/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1b3/{+parent}/configStoreSettings",
+                  "request": {
+                    "$ref": "ConfigStoreSetting"
+                  },
+                  "response": {
+                    "$ref": "ConfigStoreSetting"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/compute"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes an existing ConfigStoreSetting.",
+                  "flatPath": "v1b3/folders/{foldersId}/locations/{locationsId}/configStoreSettings/{configStoreSettingsId}",
+                  "httpMethod": "DELETE",
+                  "id": "dataflow.folders.locations.configStoreSettings.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the ConfigStoreSetting to delete.",
+                      "location": "path",
+                      "pattern": "^folders/[^/]+/locations/[^/]+/configStoreSettings/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1b3/{+name}",
+                  "response": {
+                    "$ref": "Empty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/compute"
+                  ]
+                },
+                "get": {
+                  "description": "Gets a ConfigStoreSetting.",
+                  "flatPath": "v1b3/folders/{foldersId}/locations/{locationsId}/configStoreSettings/{configStoreSettingsId}",
+                  "httpMethod": "GET",
+                  "id": "dataflow.folders.locations.configStoreSettings.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the ConfigStoreSetting to retrieve.",
+                      "location": "path",
+                      "pattern": "^folders/[^/]+/locations/[^/]+/configStoreSettings/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1b3/{+name}",
+                  "response": {
+                    "$ref": "ConfigStoreSetting"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/compute"
+                  ]
+                },
+                "list": {
+                  "description": "Lists ConfigStoreSettings.",
+                  "flatPath": "v1b3/folders/{foldersId}/locations/{locationsId}/configStoreSettings",
+                  "httpMethod": "GET",
+                  "id": "dataflow.folders.locations.configStoreSettings.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "Optional. The maximum number of settings to return.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A page token, received from a previous `ListConfigStoreSettings` call.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent resource whose settings are being listed.",
+                      "location": "path",
+                      "pattern": "^folders/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1b3/{+parent}/configStoreSettings",
+                  "response": {
+                    "$ref": "ListConfigStoreSettingsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/compute"
+                  ]
+                },
+                "resolve": {
+                  "description": "Resolves effective value of a ConfigStoreSetting.",
+                  "flatPath": "v1b3/folders/{foldersId}/locations/{locationsId}/configStoreSettings/{configStoreSettingsId}:resolve",
+                  "httpMethod": "POST",
+                  "id": "dataflow.folders.locations.configStoreSettings.resolve",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the setting to resolve.",
+                      "location": "path",
+                      "pattern": "^folders/[^/]+/locations/[^/]+/configStoreSettings/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1b3/{+name}:resolve",
+                  "request": {
+                    "$ref": "ResolveConfigStoreSettingRequest"
+                  },
+                  "response": {
+                    "$ref": "ResolveConfigStoreSettingResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/compute"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "organizations": {
+      "resources": {
+        "locations": {
+          "resources": {
+            "configStoreSettings": {
+              "methods": {
+                "create": {
+                  "description": "Creates a new ConfigStoreSetting.",
+                  "flatPath": "v1b3/organizations/{organizationsId}/locations/{locationsId}/configStoreSettings",
+                  "httpMethod": "POST",
+                  "id": "dataflow.organizations.locations.configStoreSettings.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "configStoreSettingId": {
+                      "description": "Required. The ID to use for the setting.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent resource where this setting will be created.",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1b3/{+parent}/configStoreSettings",
+                  "request": {
+                    "$ref": "ConfigStoreSetting"
+                  },
+                  "response": {
+                    "$ref": "ConfigStoreSetting"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/compute"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes an existing ConfigStoreSetting.",
+                  "flatPath": "v1b3/organizations/{organizationsId}/locations/{locationsId}/configStoreSettings/{configStoreSettingsId}",
+                  "httpMethod": "DELETE",
+                  "id": "dataflow.organizations.locations.configStoreSettings.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the ConfigStoreSetting to delete.",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+/configStoreSettings/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1b3/{+name}",
+                  "response": {
+                    "$ref": "Empty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/compute"
+                  ]
+                },
+                "get": {
+                  "description": "Gets a ConfigStoreSetting.",
+                  "flatPath": "v1b3/organizations/{organizationsId}/locations/{locationsId}/configStoreSettings/{configStoreSettingsId}",
+                  "httpMethod": "GET",
+                  "id": "dataflow.organizations.locations.configStoreSettings.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the ConfigStoreSetting to retrieve.",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+/configStoreSettings/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1b3/{+name}",
+                  "response": {
+                    "$ref": "ConfigStoreSetting"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/compute"
+                  ]
+                },
+                "list": {
+                  "description": "Lists ConfigStoreSettings.",
+                  "flatPath": "v1b3/organizations/{organizationsId}/locations/{locationsId}/configStoreSettings",
+                  "httpMethod": "GET",
+                  "id": "dataflow.organizations.locations.configStoreSettings.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "Optional. The maximum number of settings to return.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A page token, received from a previous `ListConfigStoreSettings` call.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent resource whose settings are being listed.",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1b3/{+parent}/configStoreSettings",
+                  "response": {
+                    "$ref": "ListConfigStoreSettingsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/compute"
+                  ]
+                },
+                "resolve": {
+                  "description": "Resolves effective value of a ConfigStoreSetting.",
+                  "flatPath": "v1b3/organizations/{organizationsId}/locations/{locationsId}/configStoreSettings/{configStoreSettingsId}:resolve",
+                  "httpMethod": "POST",
+                  "id": "dataflow.organizations.locations.configStoreSettings.resolve",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the setting to resolve.",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+/configStoreSettings/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1b3/{+name}:resolve",
+                  "request": {
+                    "$ref": "ResolveConfigStoreSettingRequest"
+                  },
+                  "response": {
+                    "$ref": "ResolveConfigStoreSettingResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/compute"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "projects": {
       "methods": {
         "deleteSnapshots": {
@@ -1080,6 +1408,162 @@
             }
           },
           "resources": {
+            "configStoreSettings": {
+              "methods": {
+                "create": {
+                  "description": "Creates a new ConfigStoreSetting.",
+                  "flatPath": "v1b3/projects/{projectsId}/locations/{locationsId}/configStoreSettings",
+                  "httpMethod": "POST",
+                  "id": "dataflow.projects.locations.configStoreSettings.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "configStoreSettingId": {
+                      "description": "Required. The ID to use for the setting.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent resource where this setting will be created.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1b3/{+parent}/configStoreSettings",
+                  "request": {
+                    "$ref": "ConfigStoreSetting"
+                  },
+                  "response": {
+                    "$ref": "ConfigStoreSetting"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/compute"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes an existing ConfigStoreSetting.",
+                  "flatPath": "v1b3/projects/{projectsId}/locations/{locationsId}/configStoreSettings/{configStoreSettingsId}",
+                  "httpMethod": "DELETE",
+                  "id": "dataflow.projects.locations.configStoreSettings.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the ConfigStoreSetting to delete.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/configStoreSettings/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1b3/{+name}",
+                  "response": {
+                    "$ref": "Empty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/compute"
+                  ]
+                },
+                "get": {
+                  "description": "Gets a ConfigStoreSetting.",
+                  "flatPath": "v1b3/projects/{projectsId}/locations/{locationsId}/configStoreSettings/{configStoreSettingsId}",
+                  "httpMethod": "GET",
+                  "id": "dataflow.projects.locations.configStoreSettings.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the ConfigStoreSetting to retrieve.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/configStoreSettings/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1b3/{+name}",
+                  "response": {
+                    "$ref": "ConfigStoreSetting"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/compute"
+                  ]
+                },
+                "list": {
+                  "description": "Lists ConfigStoreSettings.",
+                  "flatPath": "v1b3/projects/{projectsId}/locations/{locationsId}/configStoreSettings",
+                  "httpMethod": "GET",
+                  "id": "dataflow.projects.locations.configStoreSettings.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "Optional. The maximum number of settings to return.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A page token, received from a previous `ListConfigStoreSettings` call.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent resource whose settings are being listed.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1b3/{+parent}/configStoreSettings",
+                  "response": {
+                    "$ref": "ListConfigStoreSettingsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/compute"
+                  ]
+                },
+                "resolve": {
+                  "description": "Resolves effective value of a ConfigStoreSetting.",
+                  "flatPath": "v1b3/projects/{projectsId}/locations/{locationsId}/configStoreSettings/{configStoreSettingsId}:resolve",
+                  "httpMethod": "POST",
+                  "id": "dataflow.projects.locations.configStoreSettings.resolve",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the setting to resolve.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/configStoreSettings/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1b3/{+name}:resolve",
+                  "request": {
+                    "$ref": "ResolveConfigStoreSettingRequest"
+                  },
+                  "response": {
+                    "$ref": "ResolveConfigStoreSettingResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/compute"
+                  ]
+                }
+              }
+            },
             "flexTemplates": {
               "methods": {
                 "launch": {
@@ -2400,7 +2884,7 @@
       }
     }
   },
-  "revision": "20260807",
+  "revision": "20260818",
   "rootUrl": "https://dataflow.googleapis.com/",
   "schemas": {
     "ApproximateProgress": {
@@ -2815,6 +3299,36 @@
         "position": {
           "$ref": "Position",
           "description": "Position within the inner source."
+        }
+      },
+      "type": "object"
+    },
+    "ConfigStoreSetting": {
+      "description": "A ConfigStoreSetting resource.",
+      "id": "ConfigStoreSetting",
+      "properties": {
+        "name": {
+          "description": "Identifier. The resource name of the setting.",
+          "type": "string"
+        },
+        "value": {
+          "$ref": "ConfigStoreSettingValue",
+          "description": "Required. The dynamic value of the setting."
+        }
+      },
+      "type": "object"
+    },
+    "ConfigStoreSettingValue": {
+      "description": "Represents a dynamically typed value.",
+      "id": "ConfigStoreSettingValue",
+      "properties": {
+        "boolValue": {
+          "description": "Represents a boolean value.",
+          "type": "boolean"
+        },
+        "stringValue": {
+          "description": "Represents a string value.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -3434,6 +3948,12 @@
           "description": "Residual part (returned to the pool of work). Specified relative to the previously-current source."
         }
       },
+      "type": "object"
+    },
+    "Empty": {
+      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
+      "id": "Empty",
+      "properties": {},
       "type": "object"
     },
     "Environment": {
@@ -4880,6 +5400,24 @@
       },
       "type": "object"
     },
+    "ListConfigStoreSettingsResponse": {
+      "description": "Response message for ListConfigStoreSettings.",
+      "id": "ListConfigStoreSettingsResponse",
+      "properties": {
+        "configStoreSettings": {
+          "description": "The list of ConfigStoreSettings.",
+          "items": {
+            "$ref": "ConfigStoreSetting"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token that can be sent as `page_token` to retrieve the next page.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListJobMessagesResponse": {
       "description": "Response to a request to list job messages.",
       "id": "ListJobMessagesResponse",
@@ -5867,6 +6405,30 @@
           "description": "Specifies the level of parallelism in case it is finite.",
           "format": "double",
           "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "ResolveConfigStoreSettingRequest": {
+      "description": "Request message for ResolveConfigStoreSetting.",
+      "id": "ResolveConfigStoreSettingRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "ResolveConfigStoreSettingResponse": {
+      "description": "Response message for ResolveConfigStoreSetting.",
+      "id": "ResolveConfigStoreSettingResponse",
+      "properties": {
+        "choices": {
+          "description": "The list of settings that were considered during resolution.",
+          "items": {
+            "$ref": "ConfigStoreSetting"
+          },
+          "type": "array"
+        },
+        "setting": {
+          "$ref": "ConfigStoreSetting",
+          "description": "The dry-run setting result."
         }
       },
       "type": "object"
