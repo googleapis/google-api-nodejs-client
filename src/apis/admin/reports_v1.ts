@@ -241,7 +241,7 @@ export namespace admin_reports_v1 {
      */
     resourceDetails?: Schema$ResourceDetails[];
     /**
-     * Device details of the user doing the action.
+     * Device details of the user doing the action. This field is only exposed for the `contacts`, `gemini_in_workspace_apps`, `keep`, `meet_hardware`, `meet`, `chat`, `chrome`, `directory_sync`, `drive`, `groups`, `rules`, `data_studio`, `saml` applications.
      */
     userDeviceInfo?: Schema$ActivityUserDeviceInfo;
   }
@@ -805,7 +805,7 @@ export namespace admin_reports_v1 {
      *       '(.+[&lt;,&lt;=,==,&gt;=,&gt;,&lt;&gt;].+,)*(.+[&lt;,&lt;=,==,&gt;=,&gt;,&lt;&gt;].+)',
      *     // Comma separated group ids (obfuscated) on which user activities are filtered, i.e. the response will contain activities for only those users that are a part of at least one of the group ids mentioned here. Format: "id:abc123,id:xyz456" *Important:* To filter by groups, you must explicitly add the groups to your filtering groups allowlist. For more information about adding groups to filtering groups allowlist, see [Filter results by Google Group](https://support.google.com/a/answer/11482175)
      *     groupIdFilter: '(id:[a-z0-9]+(,id:[a-z0-9]+)*)',
-     *     // Optional. When set to `true`, this field allows sensitive user-generated content to be included in the returned audit logs. This parameter is supported only for Rules (DLP) and Chat applications; using it with any other application will result in a permission error.
+     *     // Optional. When set to `true`, this field allows sensitive user-generated content to be included in the returned audit logs. This parameter is supported only for Rules (DLP), Chat and Workspace Studio applications; using it with any other application will result in a permission error.
      *     includeSensitiveData: 'placeholder-value',
      *     // Determines how many activity records are shown on each response page. For example, if the request sets `maxResults=1` and the report has two activities, the report has two pages. The response's `nextPageToken` property has the token to the second page. The `maxResults` query string is optional in the request. The default value is 1000.
      *     maxResults: 'placeholder-value',
@@ -1159,7 +1159,7 @@ export namespace admin_reports_v1 {
      */
     groupIdFilter?: string;
     /**
-     * Optional. When set to `true`, this field allows sensitive user-generated content to be included in the returned audit logs. This parameter is supported only for Rules (DLP) and Chat applications; using it with any other application will result in a permission error.
+     * Optional. When set to `true`, this field allows sensitive user-generated content to be included in the returned audit logs. This parameter is supported only for Rules (DLP), Chat and Workspace Studio applications; using it with any other application will result in a permission error.
      */
     includeSensitiveData?: boolean;
     /**
