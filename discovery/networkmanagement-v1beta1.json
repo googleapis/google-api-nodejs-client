@@ -1237,7 +1237,7 @@
       }
     }
   },
-  "revision": "20260724",
+  "revision": "20260819",
   "rootUrl": "https://networkmanagement.googleapis.com/",
   "schemas": {
     "AbortInfo": {
@@ -1576,12 +1576,17 @@
       "id": "CloudRunRevisionEndpoint",
       "properties": {
         "serviceUri": {
-          "description": "Output only. The URI of the Cloud Run service that the revision belongs to. The format is: projects/{project}/locations/{location}/services/{service}",
+          "description": "Output only. The URI of the Cloud Run service that the revision belongs to. The format is: projects/{project}/locations/{location}/services/{service}. Mutually exclusive with worker_pool_uri.",
           "readOnly": true,
           "type": "string"
         },
         "uri": {
           "description": "A [Cloud Run](https://cloud.google.com/run) [revision](https://cloud.google.com/run/docs/reference/rest/v1/namespaces.revisions/get) URI. The format is: projects/{project}/locations/{location}/revisions/{revision}",
+          "type": "string"
+        },
+        "workerPoolUri": {
+          "description": "Output only. The URI of the worker pool that the revision belongs to. The format is: projects/{project}/locations/{location}/workerPools/{workerPool}. Mutually exclusive with service_uri.",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -1600,11 +1605,15 @@
           "type": "string"
         },
         "serviceUri": {
-          "description": "URI of Cloud Run service this revision belongs to. Format: `projects/{project_id}/locations/{location}/services/{service_id}`",
+          "description": "URI of Cloud Run service this revision belongs to. Format: `projects/{project_id}/locations/{location}/services/{service_id}` Mutually exclusive with `worker_pool_uri`.",
           "type": "string"
         },
         "uri": {
           "description": "URI of the Cloud Run revision. Format: `projects/{project_id}/locations/{location}/revisions/{revision_id}`",
+          "type": "string"
+        },
+        "workerPoolUri": {
+          "description": "URI of Cloud Run worker pool this revision belongs to. Format: `projects/{project_id}/locations/{location}/workerPools/{worker_pool_id}`. Mutually exclusive with `service_uri`.",
           "type": "string"
         }
       },
@@ -4489,6 +4498,10 @@
           "$ref": "StorageBucketInfo",
           "description": "Display information of a Storage Bucket. Used only for return traces."
         },
+        "viewerPermissionMissingInfo": {
+          "$ref": "ViewerPermissionMissingInfo",
+          "description": "Display information of a step that is redacted due to missing permissions."
+        },
         "vpcConnector": {
           "$ref": "VpcConnectorInfo",
           "description": "Display information of a VPC connector."
@@ -4560,6 +4573,32 @@
           "description": "A trace of a test contains multiple steps from the initial state to the final state (delivered, dropped, forwarded, or aborted). The steps are ordered by the processing sequence within the simulated network state machine. It is critical to preserve the order of the steps and avoid reordering or sorting them.",
           "items": {
             "$ref": "Step"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ViewerPermissionMissingInfo": {
+      "description": "For display only. Metadata associated with a step that was redacted due to missing permissions.",
+      "id": "ViewerPermissionMissingInfo",
+      "properties": {
+        "resourceTypes": {
+          "description": "Types of the resources that the user does not have permission to view.",
+          "items": {
+            "enum": [
+              "RESOURCE_TYPE_UNSPECIFIED",
+              "FIREWALL",
+              "INSTANCE",
+              "FORWARDING_RULE"
+            ],
+            "enumDescriptions": [
+              "Resource type is unspecified.",
+              "Firewall rule.",
+              "Instance.",
+              "Forwarding rule."
+            ],
+            "type": "string"
           },
           "type": "array"
         }
