@@ -197,13 +197,13 @@
               ],
               "parameters": {
                 "pageSize": {
-                  "description": "The maximum number of notification subscriptions to return in a page. The default value for `page_size` is 100. The maximum value is `200`. Values above `200` will be coerced to `200`.",
+                  "description": "Optional. The maximum number of notification subscriptions to return in a page. The default value for `page_size` is 100. The maximum value is `200`. Values above `200` will be coerced to `200`.",
                   "format": "int32",
                   "location": "query",
                   "type": "integer"
                 },
                 "pageToken": {
-                  "description": "Token (if provided) to retrieve the subsequent page. All other parameters must match the original call that provided the page token.",
+                  "description": "Optional. Token (if provided) to retrieve the subsequent page. All other parameters must match the original call that provided the page token.",
                   "location": "query",
                   "type": "string"
                 },
@@ -262,7 +262,7 @@
       }
     }
   },
-  "revision": "20260722",
+  "revision": "20260817",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "Empty": {
