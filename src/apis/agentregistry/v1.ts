@@ -856,8 +856,10 @@ export namespace agentregistry_v1 {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
+     *       'https://www.googleapis.com/auth/agentregistry.read-only',
      *       'https://www.googleapis.com/auth/agentregistry.read-write',
      *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
      *     ],
      *   });
      *
@@ -997,8 +999,10 @@ export namespace agentregistry_v1 {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
+     *       'https://www.googleapis.com/auth/agentregistry.read-only',
      *       'https://www.googleapis.com/auth/agentregistry.read-write',
      *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
      *     ],
      *   });
      *
@@ -3977,8 +3981,10 @@ export namespace agentregistry_v1 {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
+     *       'https://www.googleapis.com/auth/agentregistry.read-only',
      *       'https://www.googleapis.com/auth/agentregistry.read-write',
      *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
      *     ],
      *   });
      *
