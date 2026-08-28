@@ -5498,7 +5498,7 @@
       }
     }
   },
-  "revision": "20260715",
+  "revision": "20260818",
   "rootUrl": "https://dataproc.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -6840,8 +6840,7 @@
       "id": "ClusterStatus",
       "properties": {
         "detail": {
-          "description": "Optional. Output only. Details of cluster's state.",
-          "readOnly": true,
+          "description": "Optional. Details of cluster's state.",
           "type": "string"
         },
         "state": {
@@ -8770,8 +8769,7 @@
       "id": "JobStatus",
       "properties": {
         "details": {
-          "description": "Optional. Output only. Job state details, such as an error description if the state is ERROR.",
-          "readOnly": true,
+          "description": "Optional. Job state details, such as an error description if the state is ERROR.",
           "type": "string"
         },
         "state": {
@@ -9345,7 +9343,7 @@
       "id": "Metric",
       "properties": {
         "metricOverrides": {
-          "description": "Optional. Specify one or more Custom metrics (https://cloud.google.com/dataproc/docs/guides/dataproc-metrics#custom_metrics) to collect for the metric course (for the SPARK metric source (any Spark metric (https://spark.apache.org/docs/latest/monitoring.html#metrics) can be specified).Provide metrics in the following format: METRIC_SOURCE: INSTANCE:GROUP:METRIC Use camelcase as appropriate.Examples: yarn:ResourceManager:QueueMetrics:AppsCompleted spark:driver:DAGScheduler:job.allJobs sparkHistoryServer:JVM:Memory:NonHeapMemoryUsage.committed hiveserver2:JVM:Memory:NonHeapMemoryUsage.used Notes: Only the specified overridden metrics are collected for the metric source. For example, if one or more spark:executive metrics are listed as metric overrides, other SPARK metrics are not collected. The collection of the metrics for other enabled custom metric sources is unaffected. For example, if both SPARK and YARN metric sources are enabled, and overrides are provided for Spark metrics only, all YARN metrics are collected.",
+          "description": "Optional. Specify one or more Custom metrics (https://cloud.google.com/dataproc/docs/guides/dataproc-metrics#custom_metrics) to collect for the metric course (for the SPARK metric source (any Spark metric (https://spark.apache.org/docs/latest/monitoring.html#metrics) can be specified).Provide metrics in the following format:METRIC_SOURCE:INSTANCE :GROUP:METRIC Use camelcase as appropriate.Examples: yarn:ResourceManager:QueueMetrics:AppsCompleted spark:driver:DAGScheduler:job.allJobs sparkHistoryServer:JVM:Memory:NonHeapMemoryUsage.committed hiveserver2:JVM:Memory:NonHeapMemoryUsage.used Notes: Only the specified overridden metrics are collected for the metric source. For example, if one or more spark:executive metrics are listed as metric overrides, other SPARK metrics are not collected. The collection of the metrics for other enabled custom metric sources is unaffected. For example, if both SPARK and YARN metric sources are enabled, and overrides are provided for Spark metrics only, all YARN metrics are collected.",
           "items": {
             "type": "string"
           },
