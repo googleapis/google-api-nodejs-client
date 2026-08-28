@@ -1,5 +1,12 @@
 # Changelog
 
+## [17.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/notebooks-v17.0.0...notebooks-v17.1.0) (2026-08-28)
+
+
+### Features
+
+* **notebooks:** update the API ([534ae7d](https://github.com/googleapis/google-api-nodejs-client/commit/534ae7db5705b2553e4a1aa4ac0b2bb24b788292))
+
 ## [17.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/notebooks-v16.0.0...notebooks-v17.0.0) (2026-08-03)
 
 

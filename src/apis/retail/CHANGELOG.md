@@ -1,5 +1,12 @@
 # Changelog
 
+## [23.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/retail-v23.1.0...retail-v23.1.1) (2026-08-28)
+
+
+### Bug Fixes
+
+* **retail:** update the API ([8d97c8b](https://github.com/googleapis/google-api-nodejs-client/commit/8d97c8b9f70537c4ce24d06b2f8d496db6a50475))
+
 ## [23.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/retail-v23.0.0...retail-v23.1.0) (2026-08-14)
 
 

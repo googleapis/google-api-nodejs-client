@@ -1,5 +1,12 @@
 # Changelog
 
+## [17.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/cloudsupport-v17.0.0...cloudsupport-v17.0.1) (2026-08-28)
+
+
+### Bug Fixes
+
+* **cloudsupport:** update the API ([ed66027](https://github.com/googleapis/google-api-nodejs-client/commit/ed66027e372b4788fcadaa7918139311c2b0a0df))
+
 ## [17.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudsupport-v16.0.0...cloudsupport-v17.0.0) (2026-08-03)
 
 

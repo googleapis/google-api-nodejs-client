@@ -1,5 +1,12 @@
 # Changelog
 
+## [8.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/apihub-v8.0.1...apihub-v8.0.2) (2026-08-28)
+
+
+### Bug Fixes
+
+* **apihub:** update the API ([31ee662](https://github.com/googleapis/google-api-nodejs-client/commit/31ee6627dfcf62a5441b4f7cb1f31b50049b8118))
+
 ## [8.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/apihub-v8.0.0...apihub-v8.0.1) (2026-08-14)
 
 

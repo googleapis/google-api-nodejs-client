@@ -1,5 +1,12 @@
 # Changelog
 
+## [13.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/servicecontrol-v13.0.0...servicecontrol-v13.1.0) (2026-08-28)
+
+
+### Features
+
+* **servicecontrol:** update the API ([82f4843](https://github.com/googleapis/google-api-nodejs-client/commit/82f484315cc6a9336a0f2a2da21746c43a4c7609))
+
 ## [13.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/servicecontrol-v12.0.0...servicecontrol-v13.0.0) (2026-08-03)
 
 

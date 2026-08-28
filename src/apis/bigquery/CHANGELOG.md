@@ -1,5 +1,12 @@
 # Changelog
 
+## [22.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/bigquery-v22.1.0...bigquery-v22.1.1) (2026-08-28)
+
+
+### Bug Fixes
+
+* **bigquery:** update the API ([2cc35ca](https://github.com/googleapis/google-api-nodejs-client/commit/2cc35ca341b83e8d607479df37c0caa33ef291b7))
+
 ## [22.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/bigquery-v22.0.0...bigquery-v22.1.0) (2026-08-18)
 
 
