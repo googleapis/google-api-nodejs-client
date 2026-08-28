@@ -216,7 +216,7 @@
       }
     }
   },
-  "revision": "20260731",
+  "revision": "20260821",
   "rootUrl": "https://homegraph.googleapis.com/",
   "schemas": {
     "AgentDeviceId": {
@@ -1137,8 +1137,8 @@
           "format": "google-datetime",
           "type": "string"
         },
-        "providerVersionTime": {
-          "description": "Optional in write requests (e.g. ReportStateAndNotification). If set, represents the provider version timestamp of the existing trait in the database. The server will perform optimistic locking validation if this field is present and the experiment is enabled. It will not be persisted to the database.",
+        "providerUpdateTime": {
+          "description": "The custom timestamp supplied by the provider during a ReportStateAndNotification update (if provided). This field is returned as part of the `QueryResponse`.",
           "format": "google-datetime",
           "type": "string"
         },
