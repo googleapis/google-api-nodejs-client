@@ -708,9 +708,9 @@ export namespace homegraph_v1 {
      */
     commitTime?: string | null;
     /**
-     * Optional in write requests (e.g. ReportStateAndNotification). If set, represents the provider version timestamp of the existing trait in the database. The server will perform optimistic locking validation if this field is present and the experiment is enabled. It will not be persisted to the database.
+     * The custom timestamp supplied by the provider during a ReportStateAndNotification update (if provided). This field is returned as part of the `QueryResponse`.
      */
-    providerVersionTime?: string | null;
+    providerUpdateTime?: string | null;
     /**
      * The Provider Home API trait payload.
      */
