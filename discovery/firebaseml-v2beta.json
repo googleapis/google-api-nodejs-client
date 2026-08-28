@@ -206,7 +206,7 @@
       }
     }
   },
-  "revision": "20260809",
+  "revision": "20260823",
   "rootUrl": "https://firebaseml.googleapis.com/",
   "schemas": {
     "Date": {
@@ -2385,6 +2385,20 @@
         "inlineData": {
           "$ref": "GoogleCloudAiplatformV1beta1Blob",
           "description": "Optional. The inline data content of the part. This can be used to include images, audio, or video in a request."
+        },
+        "mediaProcessing": {
+          "description": "Optional. How the model processes this part's media for understanding. Only meaningful for video parts (`inline_data` or `file_data` with video mime). Non-video parts ignore this field.",
+          "enum": [
+            "MEDIA_PROCESSING_UNSPECIFIED",
+            "STATIC",
+            "AGENTIC"
+          ],
+          "enumDescriptions": [
+            "Default. Uses model-specific processing (3.5 Pro+ -> `AGENTIC`, older models -> `STATIC`).",
+            "Fixed-rate frame extraction. All frames placed in context.",
+            "Model-driven dynamic navigation. Recommended for most use cases."
+          ],
+          "type": "string"
         },
         "mediaResolution": {
           "$ref": "GoogleCloudAiplatformV1beta1PartMediaResolution",
