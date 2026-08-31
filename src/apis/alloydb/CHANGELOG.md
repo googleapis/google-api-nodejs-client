@@ -1,5 +1,37 @@
 # Changelog
 
+## [23.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/alloydb-v22.2.0...alloydb-v23.0.0) (2026-08-31)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+* This release has breaking changes.
+* **alloydb:** This release has breaking changes.
+
+### Features
+
+* **alloydb:** update the API ([2f436c2](https://github.com/googleapis/google-api-nodejs-client/commit/2f436c2b3310b5bc9477c45f9e4542e5cb0931b2))
+* **alloydb:** update the API ([a20f722](https://github.com/googleapis/google-api-nodejs-client/commit/a20f722296a15aeffa1da4afbd20585c96847bf0))
+* **alloydb:** update the API ([264529d](https://github.com/googleapis/google-api-nodejs-client/commit/264529d9121acf8c129066911eb33657a5ae5ac8))
+* **alloydb:** update the API ([907c32b](https://github.com/googleapis/google-api-nodejs-client/commit/907c32b7953154514f69d816dfbae97cb50b655f))
+* run the generator ([#3920](https://github.com/googleapis/google-api-nodejs-client/issues/3920)) ([08443b4](https://github.com/googleapis/google-api-nodejs-client/commit/08443b4944a71fabe6804b05cb4e12d746c23011))
+* run the generator ([#3955](https://github.com/googleapis/google-api-nodejs-client/issues/3955)) ([c429a9b](https://github.com/googleapis/google-api-nodejs-client/commit/c429a9b6f8272f1a651084f83ffcf4b88124c59f))
+* run the generator ([#3959](https://github.com/googleapis/google-api-nodejs-client/issues/3959)) ([ac15310](https://github.com/googleapis/google-api-nodejs-client/commit/ac153108d76743e8caaa0e4c013bb802d3f5121f))
+
+
+### Bug Fixes
+
+* **alloydb:** update the API ([fa881d2](https://github.com/googleapis/google-api-nodejs-client/commit/fa881d2939e695c4540f69fa6b8524fd96166143))
+
+## [22.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/alloydb-v22.1.0...alloydb-v22.2.0) (2026-08-28)
+
+
+### Features
+
+* **alloydb:** update the API ([2f436c2](https://github.com/googleapis/google-api-nodejs-client/commit/2f436c2b3310b5bc9477c45f9e4542e5cb0931b2))
+
 ## [22.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/alloydb-v22.0.0...alloydb-v22.1.0) (2026-08-14)
 
 

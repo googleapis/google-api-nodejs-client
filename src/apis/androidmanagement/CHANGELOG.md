@@ -1,5 +1,36 @@
 # Changelog
 
+## [26.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/androidmanagement-v25.0.2...androidmanagement-v26.0.0) (2026-08-31)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+* This release has breaking changes.
+* **androidmanagement:** This release has breaking changes.
+
+### Features
+
+* **androidmanagement:** update the API ([912aa01](https://github.com/googleapis/google-api-nodejs-client/commit/912aa01160605bf30085e45ca68d078a1dc2ab0c))
+* **androidmanagement:** update the API ([18923fe](https://github.com/googleapis/google-api-nodejs-client/commit/18923fe60ae8d97b53a6d1935e7da84afea4647b))
+* run the generator ([#3919](https://github.com/googleapis/google-api-nodejs-client/issues/3919)) ([b385d3f](https://github.com/googleapis/google-api-nodejs-client/commit/b385d3f99850e9407a217bd525c70a1ac8ab9163))
+* run the generator ([#3920](https://github.com/googleapis/google-api-nodejs-client/issues/3920)) ([08443b4](https://github.com/googleapis/google-api-nodejs-client/commit/08443b4944a71fabe6804b05cb4e12d746c23011))
+* run the generator ([#3955](https://github.com/googleapis/google-api-nodejs-client/issues/3955)) ([c429a9b](https://github.com/googleapis/google-api-nodejs-client/commit/c429a9b6f8272f1a651084f83ffcf4b88124c59f))
+
+
+### Bug Fixes
+
+* **androidmanagement:** update the API ([2446451](https://github.com/googleapis/google-api-nodejs-client/commit/244645191136309b0f8a238fc79bcb76693c6931))
+* **androidmanagement:** update the API ([b910725](https://github.com/googleapis/google-api-nodejs-client/commit/b9107252b417c18bceafd50743d0fc4d74ead506))
+
+## [25.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/androidmanagement-v25.0.1...androidmanagement-v25.0.2) (2026-08-28)
+
+
+### Bug Fixes
+
+* **androidmanagement:** update the API ([2446451](https://github.com/googleapis/google-api-nodejs-client/commit/244645191136309b0f8a238fc79bcb76693c6931))
+
 ## [25.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/androidmanagement-v25.0.0...androidmanagement-v25.0.1) (2026-08-14)
 
 

@@ -1,5 +1,30 @@
 # Changelog
 
+## [10.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/observability-v9.1.0...observability-v10.0.0) (2026-08-31)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* **observability:** update the API ([e96e222](https://github.com/googleapis/google-api-nodejs-client/commit/e96e222608184ef24d2a637e29c4e95d1a49ed8c))
+* **observability:** update the API ([94dd44e](https://github.com/googleapis/google-api-nodejs-client/commit/94dd44e0c9c2f003312f87e6003154e12b2d75d5))
+* run the generator ([#3955](https://github.com/googleapis/google-api-nodejs-client/issues/3955)) ([c429a9b](https://github.com/googleapis/google-api-nodejs-client/commit/c429a9b6f8272f1a651084f83ffcf4b88124c59f))
+
+
+### Bug Fixes
+
+* **observability:** update the API ([1aa9af8](https://github.com/googleapis/google-api-nodejs-client/commit/1aa9af8e2a9d7b5c6b7e2340efecdce2b75b5f46))
+
+## [9.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/observability-v9.0.0...observability-v9.1.0) (2026-08-28)
+
+
+### Features
+
+* **observability:** update the API ([e96e222](https://github.com/googleapis/google-api-nodejs-client/commit/e96e222608184ef24d2a637e29c4e95d1a49ed8c))
+
 ## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/observability-v8.3.0...observability-v9.0.0) (2026-08-03)
 
 

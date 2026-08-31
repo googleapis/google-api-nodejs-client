@@ -1,5 +1,34 @@
 # Changelog
 
+## [21.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/workstations-v20.1.0...workstations-v21.0.0) (2026-08-31)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3920](https://github.com/googleapis/google-api-nodejs-client/issues/3920)) ([08443b4](https://github.com/googleapis/google-api-nodejs-client/commit/08443b4944a71fabe6804b05cb4e12d746c23011))
+* run the generator ([#3955](https://github.com/googleapis/google-api-nodejs-client/issues/3955)) ([c429a9b](https://github.com/googleapis/google-api-nodejs-client/commit/c429a9b6f8272f1a651084f83ffcf4b88124c59f))
+* **workstations:** update the API ([62d3758](https://github.com/googleapis/google-api-nodejs-client/commit/62d3758b0bace70501e80ddeaf17c4efb95eeb61))
+* **workstations:** update the API ([dd560af](https://github.com/googleapis/google-api-nodejs-client/commit/dd560afd3da39bcc653e28e9ebd58bb004bc1670))
+
+
+### Bug Fixes
+
+* **workstations:** update the API ([ee9521c](https://github.com/googleapis/google-api-nodejs-client/commit/ee9521ce5cdb69590827c30c59e58f0f047fb70d))
+* **workstations:** update the API ([d4f7d65](https://github.com/googleapis/google-api-nodejs-client/commit/d4f7d6544f67c54524a5a2c67b60489ca408b45d))
+* **workstations:** update the API ([4fc6178](https://github.com/googleapis/google-api-nodejs-client/commit/4fc61784c489bca2931f7b88c3c1769567db3816))
+
+## [20.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/workstations-v20.0.1...workstations-v20.1.0) (2026-08-28)
+
+
+### Features
+
+* **workstations:** update the API ([62d3758](https://github.com/googleapis/google-api-nodejs-client/commit/62d3758b0bace70501e80ddeaf17c4efb95eeb61))
+
 ## [20.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/workstations-v20.0.0...workstations-v20.0.1) (2026-08-18)
 
 

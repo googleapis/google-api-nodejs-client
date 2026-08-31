@@ -1,5 +1,34 @@
 # Changelog
 
+## [25.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudidentity-v24.1.0...cloudidentity-v25.0.0) (2026-08-31)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* **cloudidentity:** update the API ([f2de9d4](https://github.com/googleapis/google-api-nodejs-client/commit/f2de9d41af0dc589476fa844762dc34a35c8b73b))
+* **cloudidentity:** update the API ([5fb30ac](https://github.com/googleapis/google-api-nodejs-client/commit/5fb30ac7904048129b439b0b6e20826b3294b045))
+* run the generator ([#3919](https://github.com/googleapis/google-api-nodejs-client/issues/3919)) ([b385d3f](https://github.com/googleapis/google-api-nodejs-client/commit/b385d3f99850e9407a217bd525c70a1ac8ab9163))
+* run the generator ([#3920](https://github.com/googleapis/google-api-nodejs-client/issues/3920)) ([08443b4](https://github.com/googleapis/google-api-nodejs-client/commit/08443b4944a71fabe6804b05cb4e12d746c23011))
+* run the generator ([#3955](https://github.com/googleapis/google-api-nodejs-client/issues/3955)) ([c429a9b](https://github.com/googleapis/google-api-nodejs-client/commit/c429a9b6f8272f1a651084f83ffcf4b88124c59f))
+
+
+### Bug Fixes
+
+* **cloudidentity:** update the API ([00bc621](https://github.com/googleapis/google-api-nodejs-client/commit/00bc6219a7ac3f5a7b0e8fd14d89e72e17ebf9b7))
+
+## [24.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudidentity-v24.0.1...cloudidentity-v24.1.0) (2026-08-28)
+
+
+### Features
+
+* **cloudidentity:** update the API ([f2de9d4](https://github.com/googleapis/google-api-nodejs-client/commit/f2de9d41af0dc589476fa844762dc34a35c8b73b))
+
 ## [24.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/cloudidentity-v24.0.0...cloudidentity-v24.0.1) (2026-08-14)
 
 

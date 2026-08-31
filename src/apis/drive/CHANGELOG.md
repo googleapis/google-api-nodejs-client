@@ -1,5 +1,30 @@
 # Changelog
 
+## [22.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/drive-v21.0.1...drive-v22.0.0) (2026-08-31)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* **drive:** update the API ([55eb582](https://github.com/googleapis/google-api-nodejs-client/commit/55eb58276d5be12d515da1ca425efa48d2d022bb))
+* run the generator ([#3955](https://github.com/googleapis/google-api-nodejs-client/issues/3955)) ([c429a9b](https://github.com/googleapis/google-api-nodejs-client/commit/c429a9b6f8272f1a651084f83ffcf4b88124c59f))
+
+
+### Bug Fixes
+
+* **drive:** update the API ([f2a079c](https://github.com/googleapis/google-api-nodejs-client/commit/f2a079c79f9c18fb262f76c5d0001d6f0c725491))
+* **drive:** update the API ([ec56684](https://github.com/googleapis/google-api-nodejs-client/commit/ec56684c66a78123babcf7c7bb9db85e0999a4de))
+
+## [21.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/drive-v21.0.0...drive-v21.0.1) (2026-08-28)
+
+
+### Bug Fixes
+
+* **drive:** update the API ([f2a079c](https://github.com/googleapis/google-api-nodejs-client/commit/f2a079c79f9c18fb262f76c5d0001d6f0c725491))
+
 ## [21.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/drive-v20.2.0...drive-v21.0.0) (2026-08-03)
 
 

@@ -1,5 +1,32 @@
 # Changelog
 
+## [24.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/serviceusage-v23.1.1...serviceusage-v24.0.0) (2026-08-31)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* **serviceusage:** This release has breaking changes.
+
+### Features
+
+* run the generator ([#3955](https://github.com/googleapis/google-api-nodejs-client/issues/3955)) ([c429a9b](https://github.com/googleapis/google-api-nodejs-client/commit/c429a9b6f8272f1a651084f83ffcf4b88124c59f))
+* **serviceusage:** update the API ([466db61](https://github.com/googleapis/google-api-nodejs-client/commit/466db61dd9555a5cb35f664217bc2ff618dd2e2a))
+* **serviceusage:** update the API ([eb00618](https://github.com/googleapis/google-api-nodejs-client/commit/eb0061863c413510eb2c0f7d5305f4554a774960))
+* **serviceusage:** update the API ([e481f8c](https://github.com/googleapis/google-api-nodejs-client/commit/e481f8c871d30125c25df729c4b6b2f75c36fdb7))
+
+
+### Bug Fixes
+
+* **serviceusage:** update the API ([afcb7c8](https://github.com/googleapis/google-api-nodejs-client/commit/afcb7c83f986bef2e0de8175a718d2d1a961ac8d))
+
+## [23.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/serviceusage-v23.1.0...serviceusage-v23.1.1) (2026-08-28)
+
+
+### Bug Fixes
+
+* **serviceusage:** update the API ([afcb7c8](https://github.com/googleapis/google-api-nodejs-client/commit/afcb7c83f986bef2e0de8175a718d2d1a961ac8d))
+
 ## [23.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/serviceusage-v23.0.0...serviceusage-v23.1.0) (2026-08-14)
 
 

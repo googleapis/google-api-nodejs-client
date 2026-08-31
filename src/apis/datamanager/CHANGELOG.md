@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/datamanager-v5.0.1...datamanager-v5.0.2) (2026-08-28)
+
+
+### Bug Fixes
+
+* **datamanager:** update the API ([5546d55](https://github.com/googleapis/google-api-nodejs-client/commit/5546d553e637d61a035909850f20bee4bdbd0874))
+
 ## [5.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/datamanager-v5.0.0...datamanager-v5.0.1) (2026-08-14)
 
 

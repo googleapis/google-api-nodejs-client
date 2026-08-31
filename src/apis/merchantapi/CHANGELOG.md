@@ -1,5 +1,35 @@
 # Changelog
 
+## [21.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/merchantapi-v20.0.1...merchantapi-v21.0.0) (2026-08-31)
+
+
+### ⚠ BREAKING CHANGES
+
+* **merchantapi:** This release has breaking changes.
+* This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* **merchantapi:** update the API ([e55fbe0](https://github.com/googleapis/google-api-nodejs-client/commit/e55fbe008f47ba9eb6e17004a99d4675e2db0a8f))
+* **merchantapi:** update the API ([7a475e5](https://github.com/googleapis/google-api-nodejs-client/commit/7a475e5f32de846aee3c1b455a71d3db39013710))
+* **merchantapi:** update the API ([213b03e](https://github.com/googleapis/google-api-nodejs-client/commit/213b03e856cba2c3ca3ee1da97c10ac8f0287ad5))
+* run the generator ([#3920](https://github.com/googleapis/google-api-nodejs-client/issues/3920)) ([08443b4](https://github.com/googleapis/google-api-nodejs-client/commit/08443b4944a71fabe6804b05cb4e12d746c23011))
+* run the generator ([#3955](https://github.com/googleapis/google-api-nodejs-client/issues/3955)) ([c429a9b](https://github.com/googleapis/google-api-nodejs-client/commit/c429a9b6f8272f1a651084f83ffcf4b88124c59f))
+
+
+### Bug Fixes
+
+* **merchantapi:** update the API ([26a7e86](https://github.com/googleapis/google-api-nodejs-client/commit/26a7e867480a60a7f79fec8056d2ac100392b2ba))
+* **merchantapi:** update the API ([11cbf29](https://github.com/googleapis/google-api-nodejs-client/commit/11cbf29467478219e2ac7774f6b638efd1886fd7))
+
+## [20.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/merchantapi-v20.0.0...merchantapi-v20.0.1) (2026-08-28)
+
+
+### Bug Fixes
+
+* **merchantapi:** update the API ([26a7e86](https://github.com/googleapis/google-api-nodejs-client/commit/26a7e867480a60a7f79fec8056d2ac100392b2ba))
+
 ## [20.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/merchantapi-v19.0.0...merchantapi-v20.0.0) (2026-08-14)
 
 

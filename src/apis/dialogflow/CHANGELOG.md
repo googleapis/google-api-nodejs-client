@@ -1,5 +1,31 @@
 # Changelog
 
+## [30.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/dialogflow-v29.2.0...dialogflow-v30.0.0) (2026-08-31)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* **dialogflow:** update the API ([9b01990](https://github.com/googleapis/google-api-nodejs-client/commit/9b0199030afdd44d15c33645905df6003237c212))
+* **dialogflow:** update the API ([cb090b7](https://github.com/googleapis/google-api-nodejs-client/commit/cb090b72b2cae5d9b2053985b12237c51dd57ff7))
+* **dialogflow:** update the API ([6e01b50](https://github.com/googleapis/google-api-nodejs-client/commit/6e01b50f0b90125c06d3f422c23816d7c7f56162))
+* **dialogflow:** update the API ([119e344](https://github.com/googleapis/google-api-nodejs-client/commit/119e34473f23d433c43ccc80d1938c978caa1b63))
+* run the generator ([#3919](https://github.com/googleapis/google-api-nodejs-client/issues/3919)) ([b385d3f](https://github.com/googleapis/google-api-nodejs-client/commit/b385d3f99850e9407a217bd525c70a1ac8ab9163))
+* run the generator ([#3920](https://github.com/googleapis/google-api-nodejs-client/issues/3920)) ([08443b4](https://github.com/googleapis/google-api-nodejs-client/commit/08443b4944a71fabe6804b05cb4e12d746c23011))
+* run the generator ([#3955](https://github.com/googleapis/google-api-nodejs-client/issues/3955)) ([c429a9b](https://github.com/googleapis/google-api-nodejs-client/commit/c429a9b6f8272f1a651084f83ffcf4b88124c59f))
+
+## [29.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/dialogflow-v29.1.0...dialogflow-v29.2.0) (2026-08-28)
+
+
+### Features
+
+* **dialogflow:** update the API ([9b01990](https://github.com/googleapis/google-api-nodejs-client/commit/9b0199030afdd44d15c33645905df6003237c212))
+
 ## [29.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/dialogflow-v29.0.0...dialogflow-v29.1.0) (2026-08-18)
 
 

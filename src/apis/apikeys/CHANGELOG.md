@@ -1,5 +1,27 @@
 # Changelog
 
+## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/apikeys-v8.2.0...apikeys-v9.0.0) (2026-08-31)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* **apikeys:** This release has breaking changes.
+
+### Features
+
+* **apikeys:** update the API ([0316790](https://github.com/googleapis/google-api-nodejs-client/commit/03167904a0ca49a3dbad5ce16e7d292c7c0878b6))
+* **apikeys:** update the API ([602fdeb](https://github.com/googleapis/google-api-nodejs-client/commit/602fdeb9d29d97f6de7c6526ef384fe6297b9cf0))
+* **apikeys:** update the API ([e212177](https://github.com/googleapis/google-api-nodejs-client/commit/e212177aa6d647c3bc9e08f2fe664a3681243c09))
+* run the generator ([#3955](https://github.com/googleapis/google-api-nodejs-client/issues/3955)) ([c429a9b](https://github.com/googleapis/google-api-nodejs-client/commit/c429a9b6f8272f1a651084f83ffcf4b88124c59f))
+
+## [8.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/apikeys-v8.1.0...apikeys-v8.2.0) (2026-08-28)
+
+
+### Features
+
+* **apikeys:** update the API ([0316790](https://github.com/googleapis/google-api-nodejs-client/commit/03167904a0ca49a3dbad5ce16e7d292c7c0878b6))
+
 ## [8.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/apikeys-v8.0.0...apikeys-v8.1.0) (2026-08-14)
 
 

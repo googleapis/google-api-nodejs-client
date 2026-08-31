@@ -1,5 +1,12 @@
 # Changelog
 
+## [22.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/contactcenterinsights-v22.1.0...contactcenterinsights-v22.2.0) (2026-08-28)
+
+
+### Features
+
+* **contactcenterinsights:** update the API ([74022db](https://github.com/googleapis/google-api-nodejs-client/commit/74022db58283b7423c22af8764bd7b6875d01397))
+
 ## [22.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/contactcenterinsights-v22.0.0...contactcenterinsights-v22.1.0) (2026-08-18)
 
 

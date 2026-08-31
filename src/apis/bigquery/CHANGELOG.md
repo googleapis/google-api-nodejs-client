@@ -1,5 +1,33 @@
 # Changelog
 
+## [23.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/bigquery-v22.1.1...bigquery-v23.0.0) (2026-08-31)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* **bigquery:** update the API ([5047629](https://github.com/googleapis/google-api-nodejs-client/commit/5047629259ead4fb146cf95156bd8c28d5a0eb46))
+* **bigquery:** update the API ([d79d109](https://github.com/googleapis/google-api-nodejs-client/commit/d79d109812b9a0620d2c92d92752fdf09e13da03))
+* **bigquery:** update the API ([5ae68bd](https://github.com/googleapis/google-api-nodejs-client/commit/5ae68bd0b8d5f282ab31920531426642739bcb3f))
+* run the generator ([#3920](https://github.com/googleapis/google-api-nodejs-client/issues/3920)) ([08443b4](https://github.com/googleapis/google-api-nodejs-client/commit/08443b4944a71fabe6804b05cb4e12d746c23011))
+* run the generator ([#3955](https://github.com/googleapis/google-api-nodejs-client/issues/3955)) ([c429a9b](https://github.com/googleapis/google-api-nodejs-client/commit/c429a9b6f8272f1a651084f83ffcf4b88124c59f))
+
+
+### Bug Fixes
+
+* **bigquery:** update the API ([2cc35ca](https://github.com/googleapis/google-api-nodejs-client/commit/2cc35ca341b83e8d607479df37c0caa33ef291b7))
+
+## [22.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/bigquery-v22.1.0...bigquery-v22.1.1) (2026-08-28)
+
+
+### Bug Fixes
+
+* **bigquery:** update the API ([2cc35ca](https://github.com/googleapis/google-api-nodejs-client/commit/2cc35ca341b83e8d607479df37c0caa33ef291b7))
+
 ## [22.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/bigquery-v22.0.0...bigquery-v22.1.0) (2026-08-18)
 
 

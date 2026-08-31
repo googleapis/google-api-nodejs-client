@@ -1,5 +1,16 @@
 # Changelog
 
+## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/health-v3.1.0...health-v4.0.0) (2026-08-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **health:** This release has breaking changes.
+
+### Features
+
+* **health:** update the API ([5a704aa](https://github.com/googleapis/google-api-nodejs-client/commit/5a704aaa27c8b60afdb3e73a5d03a5b88abff856))
+
 ## [3.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/health-v3.0.0...health-v3.1.0) (2026-08-14)
 
 

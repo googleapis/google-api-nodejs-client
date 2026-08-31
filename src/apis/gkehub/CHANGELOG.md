@@ -1,5 +1,37 @@
 # Changelog
 
+## [30.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/gkehub-v29.2.0...gkehub-v30.0.0) (2026-08-31)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+* This release has breaking changes.
+* **gkehub:** This release has breaking changes.
+
+### Features
+
+* **gkehub:** update the API ([b04a752](https://github.com/googleapis/google-api-nodejs-client/commit/b04a7522f12f5f49c32ac0c588063d2f6ed39dff))
+* **gkehub:** update the API ([e7356ce](https://github.com/googleapis/google-api-nodejs-client/commit/e7356ce9c0aa7240bd69688c544e4e3b3f81138a))
+* **gkehub:** update the API ([e305bf9](https://github.com/googleapis/google-api-nodejs-client/commit/e305bf983dde9dd4ff284d6ee0d08e08dfdc6f7e))
+* **gkehub:** update the API ([c8958b0](https://github.com/googleapis/google-api-nodejs-client/commit/c8958b0b8a6df5c2f364c860bf29444eefa3da07))
+* run the generator ([#3919](https://github.com/googleapis/google-api-nodejs-client/issues/3919)) ([b385d3f](https://github.com/googleapis/google-api-nodejs-client/commit/b385d3f99850e9407a217bd525c70a1ac8ab9163))
+* run the generator ([#3920](https://github.com/googleapis/google-api-nodejs-client/issues/3920)) ([08443b4](https://github.com/googleapis/google-api-nodejs-client/commit/08443b4944a71fabe6804b05cb4e12d746c23011))
+* run the generator ([#3955](https://github.com/googleapis/google-api-nodejs-client/issues/3955)) ([c429a9b](https://github.com/googleapis/google-api-nodejs-client/commit/c429a9b6f8272f1a651084f83ffcf4b88124c59f))
+
+
+### Bug Fixes
+
+* **gkehub:** update the API ([9af96ef](https://github.com/googleapis/google-api-nodejs-client/commit/9af96eff176a500616c8a6c5977470a685c41f8b))
+
+## [29.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/gkehub-v29.1.0...gkehub-v29.2.0) (2026-08-28)
+
+
+### Features
+
+* **gkehub:** update the API ([b04a752](https://github.com/googleapis/google-api-nodejs-client/commit/b04a7522f12f5f49c32ac0c588063d2f6ed39dff))
+
 ## [29.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/gkehub-v29.0.1...gkehub-v29.1.0) (2026-08-18)
 
 
