@@ -1,5 +1,21 @@
 # Changelog
 
+## [21.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/networkmanagement-v20.1.0...networkmanagement-v21.0.0) (2026-08-31)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* **networkmanagement:** update the API ([5d5dac3](https://github.com/googleapis/google-api-nodejs-client/commit/5d5dac33c6a20b092ecf2d8680f13b19d749deae))
+* **networkmanagement:** update the API ([b8b28f3](https://github.com/googleapis/google-api-nodejs-client/commit/b8b28f39d89f791db224c19c84945a8654584f51))
+* **networkmanagement:** update the API ([91104e5](https://github.com/googleapis/google-api-nodejs-client/commit/91104e507999326f08fd904019efec30129389df))
+* run the generator ([#3920](https://github.com/googleapis/google-api-nodejs-client/issues/3920)) ([08443b4](https://github.com/googleapis/google-api-nodejs-client/commit/08443b4944a71fabe6804b05cb4e12d746c23011))
+* run the generator ([#3955](https://github.com/googleapis/google-api-nodejs-client/issues/3955)) ([c429a9b](https://github.com/googleapis/google-api-nodejs-client/commit/c429a9b6f8272f1a651084f83ffcf4b88124c59f))
+
 ## [20.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/networkmanagement-v20.0.0...networkmanagement-v20.1.0) (2026-08-28)
 
 

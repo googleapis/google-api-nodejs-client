@@ -1,5 +1,24 @@
 # Changelog
 
+## [10.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/kmsinventory-v9.0.2...kmsinventory-v10.0.0) (2026-08-31)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3955](https://github.com/googleapis/google-api-nodejs-client/issues/3955)) ([c429a9b](https://github.com/googleapis/google-api-nodejs-client/commit/c429a9b6f8272f1a651084f83ffcf4b88124c59f))
+
+
+### Bug Fixes
+
+* **kmsinventory:** update the API ([1a365fe](https://github.com/googleapis/google-api-nodejs-client/commit/1a365fe2995cf5a4970d3b97c7cb2d3c15189507))
+* **kmsinventory:** update the API ([f40820b](https://github.com/googleapis/google-api-nodejs-client/commit/f40820bd599b1d877ec32cfc9991362a18f59a27))
+* **kmsinventory:** update the API ([724107f](https://github.com/googleapis/google-api-nodejs-client/commit/724107f95aaae5700f83cf58a031bc0a41e1a227))
+* **kmsinventory:** update the API ([acdf97a](https://github.com/googleapis/google-api-nodejs-client/commit/acdf97adcb6d7768455751f2e18d412e0363c5c6))
+
 ## [9.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/kmsinventory-v9.0.1...kmsinventory-v9.0.2) (2026-08-28)
 
 

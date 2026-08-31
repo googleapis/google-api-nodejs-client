@@ -1,5 +1,22 @@
 # Changelog
 
+## [22.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/firestore-v21.1.0...firestore-v22.0.0) (2026-08-31)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+* **firestore:** This release has breaking changes.
+
+### Features
+
+* **firestore:** update the API ([cdfbddc](https://github.com/googleapis/google-api-nodejs-client/commit/cdfbddc589bebd13f0b804e3b3a4470378a4169f))
+* **firestore:** update the API ([ccd55e8](https://github.com/googleapis/google-api-nodejs-client/commit/ccd55e87f67f4bc7f176bd25976019dd42f33ddf))
+* **firestore:** update the API ([4c0d283](https://github.com/googleapis/google-api-nodejs-client/commit/4c0d283a7a09bfe56d73569b57baa88f3e6ab51f))
+* run the generator ([#3920](https://github.com/googleapis/google-api-nodejs-client/issues/3920)) ([08443b4](https://github.com/googleapis/google-api-nodejs-client/commit/08443b4944a71fabe6804b05cb4e12d746c23011))
+* run the generator ([#3955](https://github.com/googleapis/google-api-nodejs-client/issues/3955)) ([c429a9b](https://github.com/googleapis/google-api-nodejs-client/commit/c429a9b6f8272f1a651084f83ffcf4b88124c59f))
+
 ## [21.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/firestore-v21.0.0...firestore-v21.1.0) (2026-08-28)
 
 

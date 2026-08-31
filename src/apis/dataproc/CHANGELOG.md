@@ -1,5 +1,24 @@
 # Changelog
 
+## [21.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/dataproc-v20.0.0...dataproc-v21.0.0) (2026-08-31)
+
+
+### ⚠ BREAKING CHANGES
+
+* **dataproc:** This release has breaking changes.
+* This release has breaking changes.
+* This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* **dataproc:** update the API ([0ee92e8](https://github.com/googleapis/google-api-nodejs-client/commit/0ee92e8894443a5a46af3277a42e50320bed8320))
+* **dataproc:** update the API ([2e04914](https://github.com/googleapis/google-api-nodejs-client/commit/2e04914ac1467e5616e61da0bf4cff95e87add6c))
+* **dataproc:** update the API ([fda47a6](https://github.com/googleapis/google-api-nodejs-client/commit/fda47a6c8aa526ce367184db885e6cb6d18893ae))
+* run the generator ([#3919](https://github.com/googleapis/google-api-nodejs-client/issues/3919)) ([b385d3f](https://github.com/googleapis/google-api-nodejs-client/commit/b385d3f99850e9407a217bd525c70a1ac8ab9163))
+* run the generator ([#3920](https://github.com/googleapis/google-api-nodejs-client/issues/3920)) ([08443b4](https://github.com/googleapis/google-api-nodejs-client/commit/08443b4944a71fabe6804b05cb4e12d746c23011))
+* run the generator ([#3955](https://github.com/googleapis/google-api-nodejs-client/issues/3955)) ([c429a9b](https://github.com/googleapis/google-api-nodejs-client/commit/c429a9b6f8272f1a651084f83ffcf4b88124c59f))
+
 ## [20.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/dataproc-v19.0.0...dataproc-v20.0.0) (2026-08-28)
 
 

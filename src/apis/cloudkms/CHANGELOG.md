@@ -1,5 +1,25 @@
 # Changelog
 
+## [28.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudkms-v27.0.1...cloudkms-v28.0.0) (2026-08-31)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* **cloudkms:** update the API ([ccc77a8](https://github.com/googleapis/google-api-nodejs-client/commit/ccc77a8771eff92120a21827880d59ac27944ea0))
+* **cloudkms:** update the API ([f808981](https://github.com/googleapis/google-api-nodejs-client/commit/f8089816f6d64a826d91050c75bbc8555ab21e99))
+* run the generator ([#3920](https://github.com/googleapis/google-api-nodejs-client/issues/3920)) ([08443b4](https://github.com/googleapis/google-api-nodejs-client/commit/08443b4944a71fabe6804b05cb4e12d746c23011))
+* run the generator ([#3955](https://github.com/googleapis/google-api-nodejs-client/issues/3955)) ([c429a9b](https://github.com/googleapis/google-api-nodejs-client/commit/c429a9b6f8272f1a651084f83ffcf4b88124c59f))
+
+
+### Bug Fixes
+
+* **cloudkms:** update the API ([34e0088](https://github.com/googleapis/google-api-nodejs-client/commit/34e00881a7b5d0048b56b922fa1b60801287158d))
+
 ## [27.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/cloudkms-v27.0.0...cloudkms-v27.0.1) (2026-08-28)
 
 

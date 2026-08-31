@@ -1,5 +1,25 @@
 # Changelog
 
+## [18.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/notebooks-v17.1.0...notebooks-v18.0.0) (2026-08-31)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* **notebooks:** update the API ([534ae7d](https://github.com/googleapis/google-api-nodejs-client/commit/534ae7db5705b2553e4a1aa4ac0b2bb24b788292))
+* run the generator ([#3920](https://github.com/googleapis/google-api-nodejs-client/issues/3920)) ([08443b4](https://github.com/googleapis/google-api-nodejs-client/commit/08443b4944a71fabe6804b05cb4e12d746c23011))
+* run the generator ([#3955](https://github.com/googleapis/google-api-nodejs-client/issues/3955)) ([c429a9b](https://github.com/googleapis/google-api-nodejs-client/commit/c429a9b6f8272f1a651084f83ffcf4b88124c59f))
+
+
+### Bug Fixes
+
+* **notebooks:** update the API ([69ef1d4](https://github.com/googleapis/google-api-nodejs-client/commit/69ef1d49708c4b618ce402b01aea846b66c9baa6))
+* **notebooks:** update the API ([f045443](https://github.com/googleapis/google-api-nodejs-client/commit/f045443bea2c53186b8c23cc795349a4e9428325))
+
 ## [17.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/notebooks-v17.0.0...notebooks-v17.1.0) (2026-08-28)
 
 
