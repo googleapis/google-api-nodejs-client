@@ -1,5 +1,29 @@
 # Changelog
 
+## [47.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/chat-v46.1.0...chat-v47.0.0) (2026-08-31)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* **chat:** update the API ([127fc04](https://github.com/googleapis/google-api-nodejs-client/commit/127fc04ecd5504ba7d2ffb31f0abc64789b18388))
+* **chat:** update the API ([c8455da](https://github.com/googleapis/google-api-nodejs-client/commit/c8455da522f0d0c9aaf3400fa4d174de8af7e3bd))
+* **chat:** update the API ([3455540](https://github.com/googleapis/google-api-nodejs-client/commit/3455540bce87a2b76fc6d1dad2797c3b2e58b618))
+* **chat:** update the API ([ff6ce9b](https://github.com/googleapis/google-api-nodejs-client/commit/ff6ce9ba930128d5a01161a7c37478ebc0f3d4d5))
+* run the generator ([#3920](https://github.com/googleapis/google-api-nodejs-client/issues/3920)) ([08443b4](https://github.com/googleapis/google-api-nodejs-client/commit/08443b4944a71fabe6804b05cb4e12d746c23011))
+* run the generator ([#3955](https://github.com/googleapis/google-api-nodejs-client/issues/3955)) ([c429a9b](https://github.com/googleapis/google-api-nodejs-client/commit/c429a9b6f8272f1a651084f83ffcf4b88124c59f))
+* run the generator ([#3959](https://github.com/googleapis/google-api-nodejs-client/issues/3959)) ([ac15310](https://github.com/googleapis/google-api-nodejs-client/commit/ac153108d76743e8caaa0e4c013bb802d3f5121f))
+
+
+### Bug Fixes
+
+* **chat:** update the API ([f50fc4f](https://github.com/googleapis/google-api-nodejs-client/commit/f50fc4fd533a7863547e2f7825feac068a592a1e))
+
 ## [46.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/chat-v46.0.1...chat-v46.1.0) (2026-08-28)
 
 

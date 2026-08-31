@@ -1,5 +1,26 @@
 # Changelog
 
+## [18.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudsupport-v17.0.1...cloudsupport-v18.0.0) (2026-08-31)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* **cloudsupport:** update the API ([c8e95aa](https://github.com/googleapis/google-api-nodejs-client/commit/c8e95aa817fa2f7945621ed039d74fc4aba37719))
+* run the generator ([#3920](https://github.com/googleapis/google-api-nodejs-client/issues/3920)) ([08443b4](https://github.com/googleapis/google-api-nodejs-client/commit/08443b4944a71fabe6804b05cb4e12d746c23011))
+* run the generator ([#3955](https://github.com/googleapis/google-api-nodejs-client/issues/3955)) ([c429a9b](https://github.com/googleapis/google-api-nodejs-client/commit/c429a9b6f8272f1a651084f83ffcf4b88124c59f))
+* run the generator ([#3959](https://github.com/googleapis/google-api-nodejs-client/issues/3959)) ([ac15310](https://github.com/googleapis/google-api-nodejs-client/commit/ac153108d76743e8caaa0e4c013bb802d3f5121f))
+
+
+### Bug Fixes
+
+* **cloudsupport:** update the API ([ed66027](https://github.com/googleapis/google-api-nodejs-client/commit/ed66027e372b4788fcadaa7918139311c2b0a0df))
+
 ## [17.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/cloudsupport-v17.0.0...cloudsupport-v17.0.1) (2026-08-28)
 
 

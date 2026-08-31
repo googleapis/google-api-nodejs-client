@@ -1,5 +1,22 @@
 # Changelog
 
+## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/clouderrorreporting-v8.0.1...clouderrorreporting-v9.0.0) (2026-08-31)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3955](https://github.com/googleapis/google-api-nodejs-client/issues/3955)) ([c429a9b](https://github.com/googleapis/google-api-nodejs-client/commit/c429a9b6f8272f1a651084f83ffcf4b88124c59f))
+
+
+### Bug Fixes
+
+* **clouderrorreporting:** update the API ([bda420e](https://github.com/googleapis/google-api-nodejs-client/commit/bda420e952a1a9e61c519f9ea62b6746fa6a7666))
+* **clouderrorreporting:** update the API ([e7b44a1](https://github.com/googleapis/google-api-nodejs-client/commit/e7b44a14ce3f514adba53620655d741b4eb9314e))
+
 ## [8.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/clouderrorreporting-v8.0.0...clouderrorreporting-v8.0.1) (2026-08-28)
 
 

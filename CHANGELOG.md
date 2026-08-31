@@ -4,6 +4,17 @@
 
 [1]: https://www.npmjs.com/package/googleapis?activeTab=versions
 
+## [178.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/googleapis-v177.0.0...googleapis-v178.0.0) (2026-08-31)
+
+
+### ⚠ BREAKING CHANGES
+
+* Update apiary to minimum Node version of 22.
+
+### feat\
+
+* Update apiary to minimum Node version of 22. ([6cf2c5f](https://github.com/googleapis/google-api-nodejs-client/commit/6cf2c5f72b9e3e31c7aa7178e2b249aec51f263c))
+
 ## [177.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/googleapis-v176.0.0...googleapis-v177.0.0) (2026-08-28)
 
 

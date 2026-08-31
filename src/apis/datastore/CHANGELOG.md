@@ -1,5 +1,22 @@
 # Changelog
 
+## [10.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/datastore-v9.0.1...datastore-v10.0.0) (2026-08-31)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3955](https://github.com/googleapis/google-api-nodejs-client/issues/3955)) ([c429a9b](https://github.com/googleapis/google-api-nodejs-client/commit/c429a9b6f8272f1a651084f83ffcf4b88124c59f))
+
+
+### Bug Fixes
+
+* **datastore:** update the API ([0070f45](https://github.com/googleapis/google-api-nodejs-client/commit/0070f4523923788552600967bf6c147d1e67ae89))
+* **datastore:** update the API ([ed34e66](https://github.com/googleapis/google-api-nodejs-client/commit/ed34e66d361a6c98c8575c2ea5ff95159486afd0))
+
 ## [9.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/datastore-v9.0.0...datastore-v9.0.1) (2026-08-28)
 
 

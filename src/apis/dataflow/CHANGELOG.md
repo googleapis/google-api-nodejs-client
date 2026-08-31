@@ -1,5 +1,21 @@
 # Changelog
 
+## [22.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/dataflow-v21.2.0...dataflow-v22.0.0) (2026-08-31)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* **dataflow:** update the API ([0f7b716](https://github.com/googleapis/google-api-nodejs-client/commit/0f7b716d5b83c62a285c4bc12f06712a7d391303))
+* **dataflow:** update the API ([c225012](https://github.com/googleapis/google-api-nodejs-client/commit/c22501258c9dc8b6f38cf040cebb893180f1705e))
+* **dataflow:** update the API ([efe33ba](https://github.com/googleapis/google-api-nodejs-client/commit/efe33bac804708ee3b8ebab08ec11e7197fbe56a))
+* **dataflow:** update the API ([cc4895c](https://github.com/googleapis/google-api-nodejs-client/commit/cc4895cba6ee394cf3b7760964e1eab99139d9a3))
+* **dataflow:** update the API ([839875d](https://github.com/googleapis/google-api-nodejs-client/commit/839875d95c1a3b39a510a6e0e676de24924f0abc))
+* run the generator ([#3955](https://github.com/googleapis/google-api-nodejs-client/issues/3955)) ([c429a9b](https://github.com/googleapis/google-api-nodejs-client/commit/c429a9b6f8272f1a651084f83ffcf4b88124c59f))
+
 ## [21.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/dataflow-v21.1.0...dataflow-v21.2.0) (2026-08-28)
 
 
