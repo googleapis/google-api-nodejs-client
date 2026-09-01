@@ -334,6 +334,8 @@
     "src/apis/cloudproductregistry": {},
     "src/apis/agentidentity": {},
     "src/apis/androiddeveloperidstatus": {},
-    "src/apis/ftp": {}
+    "src/apis/ftp": {},
+    "src/apis/agenciesandbrands": {},
+    "src/apis/curationpartners": {}
   }
 }
