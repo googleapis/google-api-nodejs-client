@@ -1188,6 +1188,10 @@ export namespace recaptchaenterprise_v1 {
      */
     androidPackageName?: string | null;
     /**
+     * Output only. Indicates a failure collecting reCAPTCHA signals at token generation. This might be a transient condition, or persistent for a user’s environment.
+     */
+    clientSignalsFailed?: boolean | null;
+    /**
      * Output only. The timestamp corresponding to the generation of the token.
      */
     createTime?: string | null;
@@ -1454,7 +1458,7 @@ export namespace recaptchaenterprise_v1 {
      */
     allowedDomains?: string[] | null;
     /**
-     * Optional. Settings for the frequency and difficulty at which this key triggers captcha challenges. This should only be specified for `IntegrationType` CHECKBOX, INVISIBLE or POLICY_BASED_CHALLENGE.
+     * Optional. Settings for the frequency and difficulty at which this key triggers captcha challenges. This should only be specified for `IntegrationType` CHECKBOX (defaults to BALANCE), INVISIBLE (defaults to USABILITY), or POLICY_BASED_CHALLENGE (defaults to USABILITY).
      */
     challengeSecurityPreference?: string | null;
     /**
