@@ -242,6 +242,21 @@
       "version": "v1"
     },
     {
+      "description": "Agencies and brands API is an externally available HTTP API for ad agencies and brands to programmatically manage their deals and spending with Google Ad Manager publishers.",
+      "discoveryRestUrl": "https://agenciesandbrands.googleapis.com/$discovery/rest?version=v1",
+      "documentationLink": "https://developers.google.com/authorized-buyers/agencies-and-brands/get-started/start",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "id": "agenciesandbrands:v1",
+      "kind": "discovery#directoryItem",
+      "name": "agenciesandbrands",
+      "preferred": true,
+      "title": "Agencies and Brands API",
+      "version": "v1"
+    },
+    {
       "description": "",
       "discoveryRestUrl": "https://agentidentity.googleapis.com/$discovery/rest?version=v1alpha",
       "documentationLink": "https://cloud.google.com/iam/docs/",
@@ -2401,6 +2416,21 @@
       "name": "css",
       "preferred": true,
       "title": "CSS API",
+      "version": "v1"
+    },
+    {
+      "description": "Curation partners API is an externally available HTTP API for curators to programmatically manage their data segments and curated packages used by ad agencies.",
+      "discoveryRestUrl": "https://curationpartners.googleapis.com/$discovery/rest?version=v1",
+      "documentationLink": "https://developers.google.com/authorized-buyers/curation/apis/guides/curationpartners/overview",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "id": "curationpartners:v1",
+      "kind": "discovery#directoryItem",
+      "name": "curationpartners",
+      "preferred": true,
+      "title": "Curation Partners API",
       "version": "v1"
     },
     {
