@@ -232,6 +232,23 @@ export namespace metastore_v1 {
     name?: string | null;
   }
   /**
+   * Backfill status for the migration execution.
+   */
+  export interface Schema$BackfillStatus {
+    /**
+     * Output only. Summary of the migration results. This is populated after the backfill or dry run is finished.
+     */
+    migrationSummary?: Schema$MigrationSummary;
+    /**
+     * Output only. The Cloud Storage path where the backfill or dry run report is written. Format: "gs://path-to-report".
+     */
+    reportPath?: string | null;
+    /**
+     * Output only. The current state of the backfill (or dry run).
+     */
+    state?: string | null;
+  }
+  /**
    * The details of a backup resource.
    */
   export interface Schema$Backup {
@@ -265,6 +282,39 @@ export namespace metastore_v1 {
     state?: string | null;
   }
   /**
+   * Defines the configuration required to migrate metadata from a Dataproc Metastore service to BigLake Metastore.
+   */
+  export interface Schema$BigLakeMetastoreMigrationConfig {
+    /**
+     * Output only.
+     */
+    backfillStatus?: Schema$BackfillStatus;
+    /**
+     * Optional. The policy to handle conflicts when migrating resources, defaults to SKIP if not specified.
+     */
+    conflictPolicy?: string | null;
+    /**
+     * Optional. If true, performs discovery of requested resources and analysis against the target catalog to come up with a plan for each resource (e.g. Create, Update, Skip, etc.). No metadata is actually migrated.
+     */
+    dryRun?: boolean | null;
+    /**
+     * Optional. At least one of hive_config or iceberg_config must be provided, otherwise, a validation error will be thrown. If only one is provided, the service only migrates tables of that specific type. If both are provided, both Hive and Iceberg tables will be migrated.Configuration for migrating Hive tables to a BigLake Hive catalog.
+     */
+    hiveConfig?: Schema$HiveConfig;
+    /**
+     * Optional. Configuration for migrating Iceberg tables to a BigLake Iceberg REST catalog.
+     */
+    icebergConfig?: Schema$IcebergConfig;
+    /**
+     * Required. Defines the behavior of the migration execution.
+     */
+    mode?: string | null;
+    /**
+     * Optional. The Cloud Storage path where the backfill / dry run report should be written. If not provided, the report will be generated in the service's artifacts bucket. Format: "gs://path/to/folder"
+     */
+    reportPath?: string | null;
+  }
+  /**
    * Associates members, or principals, with a role.
    */
   export interface Schema$Binding {
@@ -290,87 +340,38 @@ export namespace metastore_v1 {
    */
   export interface Schema$CancelOperationRequest {}
   /**
-   * Configuration information to start the Change Data Capture (CDC) streams from customer database to backend database of Dataproc Metastore.
+   * Aggregated report at the catalog level.
    */
-  export interface Schema$CdcConfig {
+  export interface Schema$CatalogReport {
     /**
-     * Optional. The bucket to write the intermediate stream event data in. The bucket name must be without any prefix like "gs://". See the bucket naming requirements (https://cloud.google.com/storage/docs/buckets#naming). This field is optional. If not set, the Artifacts Cloud Storage bucket will be used.
+     * The name of the catalog (format: projects/x/catalogs/x).
      */
-    bucket?: string | null;
+    catalog?: string | null;
     /**
-     * Required. Input only. The password for the user that Datastream service should use for the MySQL connection. This field is not returned on request.
+     * The type of catalog.
      */
-    password?: string | null;
+    catalogType?: string | null;
     /**
-     * Required. The URL of the subnetwork resource to create the VM instance hosting the reverse proxy in. More context in https://cloud.google.com/datastream/docs/private-connectivity#reverse-csql-proxy The subnetwork should reside in the network provided in the request that Datastream will peer to and should be in the same region as Datastream, in the following format. projects/{project_id\}/regions/{region_id\}/subnetworks/{subnetwork_id\}
+     * A map of database names to their respective reports.
      */
-    reverseProxySubnet?: string | null;
-    /**
-     * Optional. The root path inside the Cloud Storage bucket. The stream event data will be written to this path. The default value is /migration.
-     */
-    rootPath?: string | null;
-    /**
-     * Required. A /29 CIDR IP range for peering with datastream.
-     */
-    subnetIpRange?: string | null;
-    /**
-     * Required. The username that the Datastream service should use for the MySQL connection.
-     */
-    username?: string | null;
-    /**
-     * Required. Fully qualified name of the Cloud SQL instance's VPC network or the shared VPC network that Datastream will peer to, in the following format: projects/{project_id\}/locations/global/networks/{network_id\}. More context in https://cloud.google.com/datastream/docs/network-connectivity-options#privateconnectivity
-     */
-    vpcNetwork?: string | null;
+    databaseReports?: {[key: string]: Schema$DatabaseReport} | null;
   }
   /**
-   * Configuration information to establish customer database connection before the cutover phase of migration
+   * Summary of results for a specific destination catalog.
    */
-  export interface Schema$CloudSQLConnectionConfig {
+  export interface Schema$CatalogSummary {
     /**
-     * Required. The hive database name.
+     * Output only. The catalog resource name (format: projects/x/catalogs/x).
      */
-    hiveDatabaseName?: string | null;
+    catalog?: string | null;
     /**
-     * Required. Cloud SQL database connection name (project_id:region:instance_name)
+     * Output only. The type of the catalog.
      */
-    instanceConnectionName?: string | null;
+    catalogType?: string | null;
     /**
-     * Required. The private IP address of the Cloud SQL instance.
+     * Output only. Summary of results for each database in the catalog.
      */
-    ipAddress?: string | null;
-    /**
-     * Required. The relative resource name of the subnetwork to be used for Private Service Connect. Note that this cannot be a regular subnet and is used only for NAT. (https://cloud.google.com/vpc/docs/about-vpc-hosted-services#psc-subnets) This subnet is used to publish the SOCKS5 proxy service. The subnet size must be at least /29 and it should reside in a network through which the Cloud SQL instance is accessible. The resource name should be in the format, projects/{project_id\}/regions/{region_id\}/subnetworks/{subnetwork_id\}
-     */
-    natSubnet?: string | null;
-    /**
-     * Required. Input only. The password for the user that Dataproc Metastore service will be using to connect to the database. This field is not returned on request.
-     */
-    password?: string | null;
-    /**
-     * Required. The network port of the database.
-     */
-    port?: number | null;
-    /**
-     * Required. The relative resource name of the subnetwork to deploy the SOCKS5 proxy service in. The subnetwork should reside in a network through which the Cloud SQL instance is accessible. The resource name should be in the format, projects/{project_id\}/regions/{region_id\}/subnetworks/{subnetwork_id\}
-     */
-    proxySubnet?: string | null;
-    /**
-     * Required. The username that Dataproc Metastore service will use to connect to the database.
-     */
-    username?: string | null;
-  }
-  /**
-   * Deprecated: Migrations to Dataproc Metastore are no longer supported. Use BigLake Metastore migration instead. Configuration information for migrating from self-managed hive metastore on Google Cloud using Cloud SQL as the backend database to Dataproc Metastore.
-   */
-  export interface Schema$CloudSQLMigrationConfig {
-    /**
-     * Required. Configuration information to start the Change Data Capture (CDC) streams from customer database to backend database of Dataproc Metastore. Dataproc Metastore switches to using its backend database after the cutover phase of migration.
-     */
-    cdcConfig?: Schema$CdcConfig;
-    /**
-     * Required. Configuration information to establish customer database connection before the cutover phase of migration
-     */
-    cloudSqlConnectionConfig?: Schema$CloudSQLConnectionConfig;
+    databaseSummaries?: Schema$DatabaseSummary[];
   }
   /**
    * Request message for DataprocMetastore.CompleteMigration.
@@ -432,6 +433,48 @@ export namespace metastore_v1 {
     type?: string | null;
   }
   /**
+   * Aggregated report at the database level.
+   */
+  export interface Schema$DatabaseReport {
+    /**
+     * The name of the database.
+     */
+    database?: string | null;
+    /**
+     * The discovered intent for the database (what we found and what we planned).
+     */
+    executionPlan?: Schema$ExecutionPlan;
+    /**
+     * The actual outcome of the database migration.
+     */
+    executionResult?: Schema$ExecutionResult;
+    /**
+     * A map of table names to their respective reports.
+     */
+    tableReports?: {[key: string]: Schema$TableReport} | null;
+  }
+  /**
+   * Summary of results for a specific database in a catalog.
+   */
+  export interface Schema$DatabaseSummary {
+    /**
+     * Output only. The name of the database.
+     */
+    database?: string | null;
+    /**
+     * Output only. The migration plan action for the database.
+     */
+    planAction?: string | null;
+    /**
+     * Output only. The migration result status for the database. This is only set if the migration is not a dry run.
+     */
+    resultStatus?: string | null;
+    /**
+     * Output only. Aggregated summary of results for all tables in the database.
+     */
+    tableSummary?: Schema$TableSummary;
+  }
+  /**
    * Specifies how metastore metadata should be integrated with the Data Catalog service.
    */
   export interface Schema$DataCatalogConfig {
@@ -461,6 +504,40 @@ export namespace metastore_v1 {
      * Additional structured details about this error.Keys define the failure items. Value describes the exception or details of the item.
      */
     details?: {[key: string]: string} | null;
+  }
+  /**
+   * Represents the migration plan for a specific resource (e.g. Database, Table).
+   */
+  export interface Schema$ExecutionPlan {
+    /**
+     * The action that will be taken for a resource during migration.
+     */
+    action?: string | null;
+    /**
+     * A map of field names to their respective value diff.
+     */
+    diffs?: {[key: string]: Schema$ValueDiff} | null;
+    /**
+     * A human-readable string explaining why the action was chosen.
+     */
+    reason?: string | null;
+  }
+  /**
+   * Represents the actual migration result for a specific resource (e.g. Database, Table).
+   */
+  export interface Schema$ExecutionResult {
+    /**
+     * Description of the error if the state is FAILED.
+     */
+    errorMessage?: string | null;
+    /**
+     * Remediation steps for the error if the state is FAILED.
+     */
+    remediation?: string | null;
+    /**
+     * Output only. The state of the migration for a resource.
+     */
+    state?: string | null;
   }
   /**
    * Request message for DataprocMetastore.ExportMetadata.
@@ -550,6 +627,19 @@ export namespace metastore_v1 {
     version?: string | null;
   }
   /**
+   * Configuration for migrating Hive metadata.
+   */
+  export interface Schema$HiveConfig {
+    /**
+     * Required. The target catalog for migrated databases and tables. Format: "projects/{project_id_or_number\}/catalogs/{catalog_id\}"
+     */
+    catalog?: string | null;
+    /**
+     * Required. The list of databases to migrate to the Hive catalog. Use "*" to migrate all databases. Note: If Iceberg tables exist in these databases, they will only be migrated if iceberg_config is also specified.
+     */
+    databases?: string[] | null;
+  }
+  /**
    * Specifies configuration information specific to running Hive metastore software as the metastore service.
    */
   export interface Schema$HiveMetastoreConfig {
@@ -586,6 +676,19 @@ export namespace metastore_v1 {
      * The semantic version of the Hive Metastore software.
      */
     version?: string | null;
+  }
+  /**
+   * Configuration for migrating Iceberg metadata.
+   */
+  export interface Schema$IcebergConfig {
+    /**
+     * Required. The target catalog for migrated Iceberg metadata. Format: "projects/{project_id_or_number\}/catalogs/{catalog_id\}"
+     */
+    catalog?: string | null;
+    /**
+     * Required. The list of namespaces to migrate to the Iceberg REST catalog. Use "*" to migrate all namespaces. Note: If Hive tables exist in these namespaces, they will only be migrated if hive_config is also specified.
+     */
+    namespaces?: string[] | null;
   }
   /**
    * Configuration information for a Kerberos principal.
@@ -897,9 +1000,9 @@ export namespace metastore_v1 {
    */
   export interface Schema$MigrationExecution {
     /**
-     * Deprecated: Migrations to Dataproc Metastore are no longer supported. Use BigLake Metastore migration instead. Configuration information specific to migrating from self-managed hive metastore on Google Cloud using Cloud SQL as the backend database to Dataproc Metastore.
+     * Configuration information specific to migrating from Dataproc Metastore to BigLake Metastore.
      */
-    cloudSqlMigrationConfig?: Schema$CloudSQLMigrationConfig;
+    biglakeMetastoreMigrationConfig?: Schema$BigLakeMetastoreMigrationConfig;
     /**
      * Output only. The time when the migration execution was started.
      */
@@ -924,6 +1027,40 @@ export namespace metastore_v1 {
      * Output only. Additional information about the current state of the migration execution.
      */
     stateMessage?: string | null;
+  }
+  /**
+   * Report containing the results of a migration run. This report is generated at the specified path in the BigLakeMetastoreMigrationConfig after the backfill is complete, or when a dry run is executed.
+   */
+  export interface Schema$MigrationReport {
+    /**
+     * Output only. Detailed results for each catalog involved in the migration.
+     */
+    catalogReports?: Schema$CatalogReport[];
+    /**
+     * Output only. High-level summary of the migration results.
+     */
+    summary?: Schema$MigrationSummary;
+  }
+  /**
+   * Summary of the migration results.
+   */
+  export interface Schema$MigrationSummary {
+    /**
+     * Output only. Summary of results for each catalog involved in the migration.
+     */
+    catalogSummaries?: Schema$CatalogSummary[];
+    /**
+     * Output only. The UTC time when this report was finalized.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. Whether the migration was a dry run.
+     */
+    dryRun?: boolean | null;
+    /**
+     * Output only. The Dataproc Metastore service name (format: projects/x/locations/x/services/x) on which the migration was executed.
+     */
+    service?: string | null;
   }
   /**
    * Request message for DataprocMetastore.MoveTableToDatabase.
@@ -1029,6 +1166,23 @@ export namespace metastore_v1 {
      * Output only. Name of the verb executed by the operation.
      */
     verb?: string | null;
+  }
+  /**
+   * Partition migration report for a Hive table.
+   */
+  export interface Schema$PartitionReport {
+    /**
+     * The number of partitions that failed to migrate at the target.
+     */
+    partitionFailedCount?: string | null;
+    /**
+     * The number of partitions successfully migrated at the target.
+     */
+    partitionSuccessCount?: string | null;
+    /**
+     * Output only. The state of the partition migration.
+     */
+    state?: string | null;
   }
   /**
    * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources.A Policy is a collection of bindings. A binding binds one or more members, or principals, to a single role. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A role is a named list of permissions; each role can be an IAM predefined role or a user-created custom role.For some types of Google Cloud resources, a binding can also specify a condition, which is a logical expression that allows access to a resource only if the expression evaluates to true. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).JSON example: { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} YAML example: bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 For a description of IAM and its features, see the IAM documentation (https://cloud.google.com/iam/docs/).
@@ -1305,6 +1459,10 @@ export namespace metastore_v1 {
      */
     migrationExecution?: Schema$MigrationExecution;
     /**
+     * Optional. The ID to use for the migration execution, which will become the final component of the migration execution's resource name. If not specified, a UUID will be generated.This value must be between 2 and 63 characters long inclusive, begin with a letter, end with a letter or number, and valid characters are a-z0-9-.
+     */
+    migrationExecutionId?: string | null;
+    /**
      * Optional. A request ID. Specify a unique request ID to allow the server to ignore the request if it has completed. The server will ignore subsequent requests that provide a duplicate request ID for at least 60 minutes after the first request.For example, if an initial request times out, followed by another request with the same request ID, the server ignores the second request to prevent the creation of duplicate commitments.The request ID must be a valid UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier#Format) A zero UUID (00000000-0000-0000-0000-000000000000) is not supported.
      */
     requestId?: string | null;
@@ -1352,6 +1510,56 @@ export namespace metastore_v1 {
     space?: string | null;
   }
   /**
+   * Aggregated report at the table level.
+   */
+  export interface Schema$TableReport {
+    /**
+     * The discovered intent for the table (what we found and what we planned).
+     */
+    executionPlan?: Schema$ExecutionPlan;
+    /**
+     * The actual outcome of the table migration.
+     */
+    executionResult?: Schema$ExecutionResult;
+    /**
+     * The total number of partitions identified at the source during discovery. This is only relevant for Hive Partitioned tables.
+     */
+    partitionDiscoveredCount?: string | null;
+    /**
+     * Report containing the results of partition migration for this table. This is only relevant for Hive Partitioned tables.
+     */
+    partitionReport?: Schema$PartitionReport;
+    /**
+     * The name of the table.
+     */
+    table?: string | null;
+  }
+  /**
+   * Aggregated summary of results for all tables in a database.
+   */
+  export interface Schema$TableSummary {
+    /**
+     * Output only. Partition migration summary across all Hive tables in the database.The total number of partitions discovered at the source.
+     */
+    partitionDiscoveredCount?: string | null;
+    /**
+     * Output only. The total number of partitions that failed to migrate at the target.
+     */
+    partitionFailedCount?: string | null;
+    /**
+     * Output only. The total number of partitions successfully migrated at the target.
+     */
+    partitionSuccessCount?: string | null;
+    /**
+     * Output only. Number of tables with a specific migration plan action. The key is the action name (e.g. CREATE, UPDATE, SKIP, etc.).
+     */
+    planCounts?: {[key: string]: string} | null;
+    /**
+     * Output only. Number of tables with a specific migration result status. The key is the status name (e.g. SUCCEEDED, FAILED, SKIPPED, etc.). This is only set if the migration is not a dry run.
+     */
+    resultCounts?: {[key: string]: string} | null;
+  }
+  /**
    * Telemetry Configuration for the Dataproc Metastore service.
    */
   export interface Schema$TelemetryConfig {
@@ -1377,6 +1585,19 @@ export namespace metastore_v1 {
      * A subset of TestPermissionsRequest.permissions that the caller is allowed.
      */
     permissions?: string[] | null;
+  }
+  /**
+   * A field-level metadata mismatch for a resource between the source and target.
+   */
+  export interface Schema$ValueDiff {
+    /**
+     * The value of the field at the source.
+     */
+    sourceValue?: string | null;
+    /**
+     * The value of the field at the target.
+     */
+    targetValue?: string | null;
   }
 
   export class Resource$Projects {
@@ -5978,6 +6199,7 @@ export namespace metastore_v1 {
      *       // request body parameters
      *       // {
      *       //   "migrationExecution": {},
+     *       //   "migrationExecutionId": "my_migrationExecutionId",
      *       //   "requestId": "my_requestId"
      *       // }
      *     },
@@ -8934,7 +9156,7 @@ export namespace metastore_v1 {
      *
      *   // Example response
      *   // {
-     *   //   "cloudSqlMigrationConfig": {},
+     *   //   "biglakeMetastoreMigrationConfig": {},
      *   //   "createTime": "my_createTime",
      *   //   "endTime": "my_endTime",
      *   //   "name": "my_name",
