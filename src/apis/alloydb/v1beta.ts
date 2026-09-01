@@ -125,15 +125,6 @@ export namespace alloydb_v1beta {
   }
 
   /**
-   * AlloyDbInternalDebugInfo contains internal debugging information for AlloyDB errors. It is explicitly kept out of the allowlist (errors.yaml) to ensure it is sanitized (stripped) by OnePlatform for all external requests. Used only to carry internal error details to across UPC/FlowLib boundary for ObservabilityInfo.
-   */
-  export interface Schema$AlloydbClhErrorsAlloyDbInternalDebugInfo {
-    /**
-     * The original error message or details before sanitization, used internally for debugging and logging.
-     */
-    originalError?: string | null;
-  }
-  /**
    * AuthorizedNetwork contains metadata for an authorized network.
    */
   export interface Schema$AuthorizedNetwork {
