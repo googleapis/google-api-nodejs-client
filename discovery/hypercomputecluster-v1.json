@@ -498,7 +498,7 @@
       }
     }
   },
-  "revision": "20260729",
+  "revision": "20260820",
   "rootUrl": "https://hypercomputecluster.googleapis.com/",
   "schemas": {
     "BootDisk": {
@@ -595,6 +595,11 @@
           },
           "description": "Optional. Storage resources available to the cluster. Keys specify the ID of the storage resource by which it can be referenced elsewhere, and must conform to [RFC-1034](https://datatracker.ietf.org/doc/html/rfc1034) (lower-case, alphanumeric, and at most 63 characters).",
           "type": "object"
+        },
+        "uid": {
+          "description": "Output only. The globally unique identifier for this Cluster.",
+          "readOnly": true,
+          "type": "string"
         },
         "updateTime": {
           "description": "Output only. Time that the cluster was most recently updated.",
