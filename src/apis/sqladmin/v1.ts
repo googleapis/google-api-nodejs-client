@@ -114,6 +114,7 @@ export namespace sqladmin_v1 {
     context: APIRequestContext;
     backupRuns: Resource$Backupruns;
     Backups: Resource$Backups;
+    blueGreenDeployments: Resource$Bluegreendeployments;
     connect: Resource$Connect;
     databases: Resource$Databases;
     flags: Resource$Flags;
@@ -132,6 +133,9 @@ export namespace sqladmin_v1 {
 
       this.backupRuns = new Resource$Backupruns(this.context);
       this.Backups = new Resource$Backups(this.context);
+      this.blueGreenDeployments = new Resource$Bluegreendeployments(
+        this.context
+      );
       this.connect = new Resource$Connect(this.context);
       this.databases = new Resource$Databases(this.context);
       this.flags = new Resource$Flags(this.context);
@@ -534,6 +538,72 @@ export namespace sqladmin_v1 {
     kind?: string | null;
   }
   /**
+   * A `BlueGreenDeployment` resource represents a Cloud SQL blue-green deployment setup.
+   */
+  export interface Schema$BlueGreenDeployment {
+    /**
+     * Output only. The time when the deployment was created. Example: `2024-01-01T00:00:00Z`
+     */
+    createTime?: string | null;
+    /**
+     * Output only. A list representing the pairs of source and target instances in the deployment.
+     */
+    deploymentMappings?: Schema$SourceTargetPairedNode[];
+    /**
+     * Output only. Combined list of tasks for all paired nodes.
+     */
+    deploymentTasks?: Schema$DeploymentTasks;
+    /**
+     * Optional. User-provided description for the deployment. The description can be up to 255 characters long.
+     */
+    description?: string | null;
+    /**
+     * Output only. Provides details on why switchover is not possible. This field is empty unless a switchover attempt failed or the state is `SWITCHOVER_NOT_READY`. Example: "The target database version does not match the source instance database version."
+     */
+    errorDetail?: string | null;
+    /**
+     * Output only. Identifier. The full resource name of the deployment. Format: projects/{project\}/locations/{location\}/blueGreenDeployments/{deployment_id\}
+     */
+    name?: string | null;
+    /**
+     * Optional. Immutable. Optional on create, and immutable. The configuration intended for the target instance(s) when the deployment was created.
+     */
+    requestedConfig?: Schema$RequestedConfig;
+    /**
+     * Required. Immutable. Required on create, and immutable. The full resource name of the source instance (the "blue" instance). Format: projects/{project\}/instances/{instance\}
+     */
+    sourceInstance?: string | null;
+    /**
+     * Output only. The current state of the blue-green deployment.
+     */
+    state?: string | null;
+    /**
+     * Output only. The full resource name of the primary target instance (the "green" instance) that will be promoted during switchover. This field is always populated once the deployment is created. Format: projects/{project\}/instances/{instance\}
+     */
+    switchoverTargetInstance?: string | null;
+  }
+  /**
+   * Blue-green deployment metadata for a database instance. In a blue-green deployment, we maintain two environments, one of which is live. This message contains details about the blue-green deployment.
+   */
+  export interface Schema$BlueGreenDeploymentInfo {
+    /**
+     * Output only. The resource ID of the blue-green deployment.
+     */
+    deploymentId?: string | null;
+    /**
+     * Output only. The source instance for the Blue-Green deployment.
+     */
+    source?: Schema$SourceRole;
+    /**
+     * Output only. The current state of blue-green-deployment for UI tags
+     */
+    state?: string | null;
+    /**
+     * Output only. The target instance for the Blue-Green deployment.
+     */
+    target?: Schema$TargetRole;
+  }
+  /**
    * Database instance clone context.
    */
   export interface Schema$CloneContext {
@@ -598,6 +668,23 @@ export namespace sqladmin_v1 {
      * Datatype of the column.
      */
     type?: string | null;
+  }
+  /**
+   * Represents a specific configuration difference between blue and green instances.
+   */
+  export interface Schema$ConfigDiff {
+    /**
+     * Output only. The name of the field that differs in the blue and green instances, fully-qualified. Example: `settings.tier`
+     */
+    field?: string | null;
+    /**
+     * Output only. The value on the source instance.
+     */
+    sourceValue?: string | null;
+    /**
+     * Output only. The value on the target instance.
+     */
+    targetValue?: string | null;
   }
   /**
    * The managed connection pooling configuration.
@@ -802,6 +889,10 @@ export namespace sqladmin_v1 {
      * The database engine type and version. The `databaseVersion` field cannot be changed after instance creation.
      */
     databaseVersion?: string | null;
+    /**
+     * Output only. Deployment info for the instance. This is set if the instance is currently part of any blue-green setup.
+     */
+    deploymentInfo?: Schema$BlueGreenDeploymentInfo;
     /**
      * Disk encryption configuration specific to an instance.
      */
@@ -1096,9 +1187,47 @@ export namespace sqladmin_v1 {
     time?: string | null;
   }
   /**
+   * Represents a task executed as part of the deployment on a target instance.
+   */
+  export interface Schema$DeploymentTask {
+    /**
+     * Output only. Task end time (if completed).
+     */
+    endTime?: string | null;
+    /**
+     * Output only. Optional error details if the task state is `FAILED`.
+     */
+    errorMessage?: string | null;
+    /**
+     * Output only. Task start time.
+     */
+    startTime?: string | null;
+    /**
+     * Output only. The current state of the task.
+     */
+    state?: string | null;
+    /**
+     * Output only. The type of the task.
+     */
+    type?: string | null;
+  }
+  /**
+   * Combined list of tasks for all paired nodes in the deployment.
+   */
+  export interface Schema$DeploymentTasks {
+    /**
+     * Output only. Tasks performed or being performed on the paired nodes of the deployment at a consolidated level.
+     */
+    task?: Schema$DeploymentTask[];
+  }
+  /**
    * Disk encryption configuration for an instance.
    */
   export interface Schema$DiskEncryptionConfiguration {
+    /**
+     * Optional. If true, enables Confidential Mode for the instance's Hyperdisk Balanced volumes. Only supported for zonal C4A instances currently.
+     */
+    confidentialMode?: boolean | null;
     /**
      * This is always `sql#diskEncryptionConfiguration`.
      */
@@ -1697,6 +1826,10 @@ export namespace sqladmin_v1 {
      */
     backupdrBackup?: string | null;
     /**
+     * Optional. If true, the restore operation proceeds even if the target instance's maintenance version is older than the source instance's maintenance version.
+     */
+    ignoreMaintenanceVersion?: boolean | null;
+    /**
      * Parameters required to perform the restore backup operation.
      */
     restoreBackupContext?: Schema$RestoreBackupContext;
@@ -1846,6 +1979,19 @@ export namespace sqladmin_v1 {
     warnings?: Schema$ApiWarning[];
   }
   /**
+   * The response message for listing blue-green deployment resources.
+   */
+  export interface Schema$ListBlueGreenDeploymentsResponse {
+    /**
+     * The list of blue-green deployment resources.
+     */
+    blueGreenDeployments?: Schema$BlueGreenDeployment[];
+    /**
+     * A token to retrieve the next page of results, or empty if there are no more results.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
    * Preferred location. This specifies where a Cloud SQL instance is located. Note that if the preferred location is not available, the instance will be located as close as possible within the region. Only one location may be specified.
    */
   export interface Schema$LocationPreference {
@@ -1966,6 +2112,27 @@ export namespace sqladmin_v1 {
      * Flags to use for the initial dump.
      */
     initialSyncFlags?: Schema$SyncFlags[];
+  }
+  /**
+   * Details about an instance within the deployment.
+   */
+  export interface Schema$NodeInfo {
+    /**
+     * Output only. The instance connection name.
+     */
+    connection?: string | null;
+    /**
+     * Output only. The unique DNS name for this instance.
+     */
+    dns?: string | null;
+    /**
+     * Output only. The full resource name of the instance. Format: projects/{project\}/instances/{instance\}
+     */
+    instance?: string | null;
+    /**
+     * Output only. The list of IP addresses for this instance.
+     */
+    ipMappings?: Schema$IpMapping[];
   }
   /**
    * On-premises instance configuration.
@@ -2464,7 +2631,7 @@ export namespace sqladmin_v1 {
      */
     allowedConsumerProjects?: string[] | null;
     /**
-     * Optional. The network attachment of the consumer network that the Private Service Connect enabled Cloud SQL instance is authorized to connect via PSC interface. format: projects/PROJECT/regions/REGION/networkAttachments/ID
+     * Optional. The network attachment of the consumer network that the Private Service Connect enabled Cloud SQL instance is authorized to connect using the PSC interface. format: projects/PROJECT/regions/REGION/networkAttachments/ID
      */
     networkAttachmentUri?: string | null;
     /**
@@ -2583,6 +2750,15 @@ export namespace sqladmin_v1 {
      * Output only. If set, this field indicates this instance has a private service access (PSA) DNS endpoint that is pointing to the primary instance of the cluster. If this instance is the primary, then the DNS endpoint points to this instance. After a switchover or replica failover operation, this DNS endpoint points to the promoted instance. This is a read-only field, returned to the user as information. This field can exist even if a standalone instance doesn't have a DR replica yet or the DR replica is deleted.
      */
     psaWriteEndpoint?: string | null;
+  }
+  /**
+   * Configuration specified by the user at creation time for the target (green) instance.
+   */
+  export interface Schema$RequestedConfig {
+    /**
+     * Optional. The target database major version for the upgrade. For example, `MYSQL_8_0` or `POSTGRES_15`.
+     */
+    databaseVersion?: string | null;
   }
   export interface Schema$Reschedule {
     /**
@@ -2805,7 +2981,7 @@ export namespace sqladmin_v1 {
      */
     maintenanceWindow?: Schema$MaintenanceWindow;
     /**
-     * The local user password validation policy of the instance.
+     * The local user password validation policy of the instance for PostgreSQL and MySQL.
      */
     passwordValidationPolicy?: Schema$PasswordValidationPolicy;
     /**
@@ -2860,6 +3036,36 @@ export namespace sqladmin_v1 {
      * User-provided labels, represented as a dictionary where each label is a single key value pair.
      */
     userLabels?: {[key: string]: string} | null;
+  }
+  /**
+   * The source instance for the Blue-Green deployment.
+   */
+  export interface Schema$SourceRole {
+    /**
+     * Output only. The target instance paired with this source instance in a blue-green deployment.
+     */
+    targetId?: Schema$InstanceReference;
+  }
+  /**
+   * Represents a pairing of a source instance node and a target instance node.
+   */
+  export interface Schema$SourceTargetPairedNode {
+    /**
+     * Output only. Describes the list of differences for the `SourceTargetPairedNode`.
+     */
+    diffs?: Schema$ConfigDiff[];
+    /**
+     * Output only. Specifies the resource name of the source instance in this pair.
+     */
+    source?: Schema$NodeInfo;
+    /**
+     * Output only. Specifies the current state of this specific source-target pair.
+     */
+    state?: string | null;
+    /**
+     * Output only. Specifies details of the corresponding target instance in this pair.
+     */
+    target?: Schema$NodeInfo;
   }
   /**
    * Active Directory configuration, relevant only for Cloud SQL for SQL Server.
@@ -2992,11 +3198,20 @@ export namespace sqladmin_v1 {
   /**
    * Instance reset replica size request.
    */
-  export interface Schema$SqlInstancesResetReplicaSizeRequest {}
+  export interface Schema$SqlInstancesResetReplicaSizeRequest {
+    /**
+     * Optional. Region of the Cloud SQL instance.
+     */
+    location?: string | null;
+  }
   /**
    * Instance start external sync request.
    */
   export interface Schema$SqlInstancesStartExternalSyncRequest {
+    /**
+     * Optional. Region of the Cloud SQL instance.
+     */
+    location?: string | null;
     /**
      * Optional. MigrationType configures the migration to use physical files or logical dump files. If not set, then the logical dump file configuration is used. Valid values are `LOGICAL` or `PHYSICAL`. Only applicable to MySQL.
      */
@@ -3026,6 +3241,10 @@ export namespace sqladmin_v1 {
    * Instance verify external sync settings request.
    */
   export interface Schema$SqlInstancesVerifyExternalSyncSettingsRequest {
+    /**
+     * Optional. Region of the Cloud SQL instance.
+     */
+    location?: string | null;
     /**
      * Optional. MigrationType configures the migration to use physical files or logical dump files. If not set, then the logical dump file configuration is used. Valid values are `LOGICAL` or `PHYSICAL`. Only applicable to MySQL.
      */
@@ -3159,11 +3378,11 @@ export namespace sqladmin_v1 {
    */
   export interface Schema$SqlServerUserDetails {
     /**
-     * If the user has been disabled
+     * Indicates if the user has been disabled.
      */
     disabled?: boolean | null;
     /**
-     * The server roles for this user
+     * Indicates the server roles for this user.
      */
     serverRoles?: string[] | null;
   }
@@ -3304,6 +3523,10 @@ export namespace sqladmin_v1 {
     message?: string | null;
   }
   /**
+   * Request message for switching over a `BlueGreenDeployment` resource.
+   */
+  export interface Schema$SwitchoverBlueGreenDeploymentRequest {}
+  /**
    * Initial sync flags for certain Cloud SQL APIs. Currently used for the MySQL external server initial dump.
    */
   export interface Schema$SyncFlags {
@@ -3328,6 +3551,15 @@ export namespace sqladmin_v1 {
      * The target value for the metric.
      */
     targetValue?: number | null;
+  }
+  /**
+   * The target instance for the Blue-Green deployment.
+   */
+  export interface Schema$TargetRole {
+    /**
+     * Output only. The source instance paired with this target instance in a blue-green deployment.
+     */
+    sourceId?: Schema$InstanceReference;
   }
   /**
    * A Google Cloud SQL service tier resource.
@@ -5123,6 +5355,887 @@ export namespace sqladmin_v1 {
     requestBody?: Schema$Backup;
   }
 
+  export class Resource$Bluegreendeployments {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a blue-green deployment under a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const sqladmin = google.sqladmin('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sql.blueGreenDeployments.create({
+     *     // Required. The ID to use for the blue-green deployment, which will become the final component of the deployment's resource name. The ID must be unique within the given project and location and between 2-63 characters.
+     *     blueGreenDeploymentId: 'placeholder-value',
+     *     // Required. The parent resource where this blue-green deployment will be created. Format: projects/{project\}/locations/{location\}
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "deploymentMappings": [],
+     *       //   "deploymentTasks": {},
+     *       //   "description": "my_description",
+     *       //   "errorDetail": "my_errorDetail",
+     *       //   "name": "my_name",
+     *       //   "requestedConfig": {},
+     *       //   "sourceInstance": "my_sourceInstance",
+     *       //   "state": "my_state",
+     *       //   "switchoverTargetInstance": "my_switchoverTargetInstance"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "acquireSsrsLeaseContext": {},
+     *   //   "apiWarning": {},
+     *   //   "backupContext": {},
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "exportContext": {},
+     *   //   "importContext": {},
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "preCheckMajorVersionUpgradeContext": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "subOperationType": {},
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "targetProject": "my_targetProject",
+     *   //   "user": "my_user"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Bluegreendeployments$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Bluegreendeployments$Create,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    create(
+      params: Params$Resource$Bluegreendeployments$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Bluegreendeployments$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Bluegreendeployments$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Bluegreendeployments$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Bluegreendeployments$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Bluegreendeployments$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/blueGreenDeployments').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a blue-green deployment.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const sqladmin = google.sqladmin('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sql.blueGreenDeployments.delete({
+     *     // Optional. If set to true, and the switchover is complete, this deletes the old source instance along with the deployment.
+     *     deleteOldSource: 'placeholder-value',
+     *     // Required. The name of the blue-green deployment to delete. Format: projects/{project\}/locations/{location\}/blueGreenDeployments/{blue_green_deployment\}
+     *     name: 'projects/my-project/locations/my-location/blueGreenDeployments/my-blueGreenDeployment',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "acquireSsrsLeaseContext": {},
+     *   //   "apiWarning": {},
+     *   //   "backupContext": {},
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "exportContext": {},
+     *   //   "importContext": {},
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "preCheckMajorVersionUpgradeContext": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "subOperationType": {},
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "targetProject": "my_targetProject",
+     *   //   "user": "my_user"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Bluegreendeployments$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Bluegreendeployments$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    delete(
+      params: Params$Resource$Bluegreendeployments$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Bluegreendeployments$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Bluegreendeployments$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Bluegreendeployments$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Bluegreendeployments$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Bluegreendeployments$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Retrieves a blue-green deployment resource under a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const sqladmin = google.sqladmin('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sql.blueGreenDeployments.get({
+     *     // Required. The name of the blue-green deployment to retrieve. Format: projects/{project\}/locations/{location\}/blueGreenDeployments/{blue_green_deployment\}
+     *     name: 'projects/my-project/locations/my-location/blueGreenDeployments/my-blueGreenDeployment',
+     *     // Optional. Specifies whether to return the basic or detailed view of the resource in the response.
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "deploymentMappings": [],
+     *   //   "deploymentTasks": {},
+     *   //   "description": "my_description",
+     *   //   "errorDetail": "my_errorDetail",
+     *   //   "name": "my_name",
+     *   //   "requestedConfig": {},
+     *   //   "sourceInstance": "my_sourceInstance",
+     *   //   "state": "my_state",
+     *   //   "switchoverTargetInstance": "my_switchoverTargetInstance"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Bluegreendeployments$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Bluegreendeployments$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BlueGreenDeployment>>;
+    get(
+      params: Params$Resource$Bluegreendeployments$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Bluegreendeployments$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$BlueGreenDeployment>,
+      callback: BodyResponseCallback<Schema$BlueGreenDeployment>
+    ): void;
+    get(
+      params: Params$Resource$Bluegreendeployments$Get,
+      callback: BodyResponseCallback<Schema$BlueGreenDeployment>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$BlueGreenDeployment>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Bluegreendeployments$Get
+        | BodyResponseCallback<Schema$BlueGreenDeployment>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BlueGreenDeployment>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BlueGreenDeployment>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$BlueGreenDeployment>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Bluegreendeployments$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Bluegreendeployments$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$BlueGreenDeployment>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$BlueGreenDeployment>(parameters);
+      }
+    }
+
+    /**
+     * Lists blue-green deployments under a given project.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const sqladmin = google.sqladmin('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sql.blueGreenDeployments.list({
+     *     // Optional. A filter expression that filters the results.
+     *     filter: 'placeholder-value',
+     *     // Optional. A comma-separated list of fields to order the results by.
+     *     orderBy: 'placeholder-value',
+     *     // Optional. The maximum number of deployments to return. The service may return fewer deployments than this value. If unspecified, at most 500 deployments are returned. The maximum value is 1000; values above 1000 are treated as 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A page token, received from a previous `ListBlueGreenDeployments` call. Provide this to retrieve the subsequent page.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent resource whose blue-green deployments are to be listed. Format: projects/{project\}/locations/{location\}
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "blueGreenDeployments": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Bluegreendeployments$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Bluegreendeployments$List,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListBlueGreenDeploymentsResponse>
+    >;
+    list(
+      params: Params$Resource$Bluegreendeployments$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Bluegreendeployments$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListBlueGreenDeploymentsResponse>,
+      callback: BodyResponseCallback<Schema$ListBlueGreenDeploymentsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Bluegreendeployments$List,
+      callback: BodyResponseCallback<Schema$ListBlueGreenDeploymentsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListBlueGreenDeploymentsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Bluegreendeployments$List
+        | BodyResponseCallback<Schema$ListBlueGreenDeploymentsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListBlueGreenDeploymentsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListBlueGreenDeploymentsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListBlueGreenDeploymentsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Bluegreendeployments$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Bluegreendeployments$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/blueGreenDeployments').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListBlueGreenDeploymentsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListBlueGreenDeploymentsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Switches over to green instance for a blue-green deployment.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const sqladmin = google.sqladmin('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sql.blueGreenDeployments.switchover({
+     *     // Required. The name of the blue-green deployment to switch over. Format: projects/{project\}/locations/{location\}/blueGreenDeployments/{blue_green_deployment\}
+     *     name: 'projects/my-project/locations/my-location/blueGreenDeployments/my-blueGreenDeployment',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "acquireSsrsLeaseContext": {},
+     *   //   "apiWarning": {},
+     *   //   "backupContext": {},
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "exportContext": {},
+     *   //   "importContext": {},
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "preCheckMajorVersionUpgradeContext": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "subOperationType": {},
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "targetProject": "my_targetProject",
+     *   //   "user": "my_user"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    switchover(
+      params: Params$Resource$Bluegreendeployments$Switchover,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    switchover(
+      params?: Params$Resource$Bluegreendeployments$Switchover,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    switchover(
+      params: Params$Resource$Bluegreendeployments$Switchover,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    switchover(
+      params: Params$Resource$Bluegreendeployments$Switchover,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    switchover(
+      params: Params$Resource$Bluegreendeployments$Switchover,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    switchover(callback: BodyResponseCallback<Schema$Operation>): void;
+    switchover(
+      paramsOrCallback?:
+        | Params$Resource$Bluegreendeployments$Switchover
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Bluegreendeployments$Switchover;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Bluegreendeployments$Switchover;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:switchover').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Bluegreendeployments$Create extends StandardParameters {
+    /**
+     * Required. The ID to use for the blue-green deployment, which will become the final component of the deployment's resource name. The ID must be unique within the given project and location and between 2-63 characters.
+     */
+    blueGreenDeploymentId?: string;
+    /**
+     * Required. The parent resource where this blue-green deployment will be created. Format: projects/{project\}/locations/{location\}
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$BlueGreenDeployment;
+  }
+  export interface Params$Resource$Bluegreendeployments$Delete extends StandardParameters {
+    /**
+     * Optional. If set to true, and the switchover is complete, this deletes the old source instance along with the deployment.
+     */
+    deleteOldSource?: boolean;
+    /**
+     * Required. The name of the blue-green deployment to delete. Format: projects/{project\}/locations/{location\}/blueGreenDeployments/{blue_green_deployment\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Bluegreendeployments$Get extends StandardParameters {
+    /**
+     * Required. The name of the blue-green deployment to retrieve. Format: projects/{project\}/locations/{location\}/blueGreenDeployments/{blue_green_deployment\}
+     */
+    name?: string;
+    /**
+     * Optional. Specifies whether to return the basic or detailed view of the resource in the response.
+     */
+    view?: string;
+  }
+  export interface Params$Resource$Bluegreendeployments$List extends StandardParameters {
+    /**
+     * Optional. A filter expression that filters the results.
+     */
+    filter?: string;
+    /**
+     * Optional. A comma-separated list of fields to order the results by.
+     */
+    orderBy?: string;
+    /**
+     * Optional. The maximum number of deployments to return. The service may return fewer deployments than this value. If unspecified, at most 500 deployments are returned. The maximum value is 1000; values above 1000 are treated as 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `ListBlueGreenDeployments` call. Provide this to retrieve the subsequent page.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent resource whose blue-green deployments are to be listed. Format: projects/{project\}/locations/{location\}
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Bluegreendeployments$Switchover extends StandardParameters {
+    /**
+     * Required. The name of the blue-green deployment to switch over. Format: projects/{project\}/locations/{location\}/blueGreenDeployments/{blue_green_deployment\}
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SwitchoverBlueGreenDeploymentRequest;
+  }
+
   export class Resource$Connect {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -5685,6 +6798,8 @@ export namespace sqladmin_v1 {
      *     database: 'placeholder-value',
      *     // Database instance ID. This does not include the project ID.
      *     instance: 'placeholder-value',
+     *     // Optional. Region of the Cloud SQL instance.
+     *     location: 'placeholder-value',
      *     // Project ID of the project that contains the instance.
      *     project: 'placeholder-value',
      *   });
@@ -5846,6 +6961,8 @@ export namespace sqladmin_v1 {
      *     database: 'placeholder-value',
      *     // Database instance ID. This does not include the project ID.
      *     instance: 'placeholder-value',
+     *     // Optional. Region of the Cloud SQL instance.
+     *     location: 'placeholder-value',
      *     // Project ID of the project that contains the instance.
      *     project: 'placeholder-value',
      *   });
@@ -5994,6 +7111,8 @@ export namespace sqladmin_v1 {
      *   const res = await sql.databases.insert({
      *     // Database instance ID. This does not include the project ID.
      *     instance: 'placeholder-value',
+     *     // Optional. Region of the Cloud SQL instance.
+     *     location: 'placeholder-value',
      *     // Project ID of the project that contains the instance.
      *     project: 'placeholder-value',
      *
@@ -6168,6 +7287,8 @@ export namespace sqladmin_v1 {
      *   const res = await sql.databases.list({
      *     // Cloud SQL instance ID. This does not include the project ID.
      *     instance: 'placeholder-value',
+     *     // Optional. Region of the Cloud SQL instance.
+     *     location: 'placeholder-value',
      *     // Project ID of the project that contains the instance.
      *     project: 'placeholder-value',
      *   });
@@ -6312,6 +7433,8 @@ export namespace sqladmin_v1 {
      *     database: 'placeholder-value',
      *     // Database instance ID. This does not include the project ID.
      *     instance: 'placeholder-value',
+     *     // Optional. Region of the Cloud SQL instance.
+     *     location: 'placeholder-value',
      *     // Project ID of the project that contains the instance.
      *     project: 'placeholder-value',
      *
@@ -6489,6 +7612,8 @@ export namespace sqladmin_v1 {
      *     database: 'placeholder-value',
      *     // Database instance ID. This does not include the project ID.
      *     instance: 'placeholder-value',
+     *     // Optional. Region of the Cloud SQL instance.
+     *     location: 'placeholder-value',
      *     // Project ID of the project that contains the instance.
      *     project: 'placeholder-value',
      *
@@ -6639,6 +7764,10 @@ export namespace sqladmin_v1 {
      */
     instance?: string;
     /**
+     * Optional. Region of the Cloud SQL instance.
+     */
+    location?: string;
+    /**
      * Project ID of the project that contains the instance.
      */
     project?: string;
@@ -6653,6 +7782,10 @@ export namespace sqladmin_v1 {
      */
     instance?: string;
     /**
+     * Optional. Region of the Cloud SQL instance.
+     */
+    location?: string;
+    /**
      * Project ID of the project that contains the instance.
      */
     project?: string;
@@ -6662,6 +7795,10 @@ export namespace sqladmin_v1 {
      * Database instance ID. This does not include the project ID.
      */
     instance?: string;
+    /**
+     * Optional. Region of the Cloud SQL instance.
+     */
+    location?: string;
     /**
      * Project ID of the project that contains the instance.
      */
@@ -6678,6 +7815,10 @@ export namespace sqladmin_v1 {
      */
     instance?: string;
     /**
+     * Optional. Region of the Cloud SQL instance.
+     */
+    location?: string;
+    /**
      * Project ID of the project that contains the instance.
      */
     project?: string;
@@ -6691,6 +7832,10 @@ export namespace sqladmin_v1 {
      * Database instance ID. This does not include the project ID.
      */
     instance?: string;
+    /**
+     * Optional. Region of the Cloud SQL instance.
+     */
+    location?: string;
     /**
      * Project ID of the project that contains the instance.
      */
@@ -6710,6 +7855,10 @@ export namespace sqladmin_v1 {
      * Database instance ID. This does not include the project ID.
      */
     instance?: string;
+    /**
+     * Optional. Region of the Cloud SQL instance.
+     */
+    location?: string;
     /**
      * Project ID of the project that contains the instance.
      */
@@ -6920,6 +8069,8 @@ export namespace sqladmin_v1 {
      *   const res = await sql.instances.acquireSsrsLease({
      *     // Required. Cloud SQL instance ID. This doesn't include the project ID. It's composed of lowercase letters, numbers, and hyphens, and it must start with a letter. The total length must be 98 characters or less (Example: instance-id).
      *     instance: 'placeholder-value',
+     *     // Optional. Region of the Cloud SQL instance.
+     *     location: 'placeholder-value',
      *     // Required. Project ID of the project that contains the instance (Example: project-id).
      *     project: 'placeholder-value',
      *
@@ -7080,6 +8231,8 @@ export namespace sqladmin_v1 {
      *   const res = await sql.instances.addEntraIdCertificate({
      *     // Required. Cloud SQL instance ID. This does not include the project ID.
      *     instance: 'placeholder-value',
+     *     // Optional. Region of the Cloud SQL instance.
+     *     location: 'placeholder-value',
      *     // Required. Project ID of the project that contains the instance.
      *     project: 'placeholder-value',
      *   });
@@ -7242,6 +8395,8 @@ export namespace sqladmin_v1 {
      *   const res = await sql.instances.addServerCa({
      *     // Cloud SQL instance ID. This does not include the project ID.
      *     instance: 'placeholder-value',
+     *     // Optional. Region of the Cloud SQL instance.
+     *     location: 'placeholder-value',
      *     // Project ID of the project that contains the instance.
      *     project: 'placeholder-value',
      *   });
@@ -7402,6 +8557,8 @@ export namespace sqladmin_v1 {
      *   const res = await sql.instances.addServerCertificate({
      *     // Cloud SQL instance ID. This does not include the project ID.
      *     instance: 'placeholder-value',
+     *     // Optional. Region of the Cloud SQL instance.
+     *     location: 'placeholder-value',
      *     // Project ID of the project that contains the instance.
      *     project: 'placeholder-value',
      *   });
@@ -7564,6 +8721,8 @@ export namespace sqladmin_v1 {
      *   const res = await sql.instances.clone({
      *     // Required. The ID of the Cloud SQL instance to be cloned (source). This does not include the project ID.
      *     instance: 'placeholder-value',
+     *     // Optional. Region of the Cloud SQL instance.
+     *     location: 'placeholder-value',
      *     // Required. Project ID of the source Cloud SQL instance.
      *     project: 'placeholder-value',
      *
@@ -7738,6 +8897,8 @@ export namespace sqladmin_v1 {
      *     finalBackupTtlDays: 'placeholder-value',
      *     // Cloud SQL instance ID. This does not include the project ID.
      *     instance: 'placeholder-value',
+     *     // Optional. Region of the Cloud SQL instance.
+     *     location: 'placeholder-value',
      *     // Project ID of the project that contains the instance to be deleted.
      *     project: 'placeholder-value',
      *   });
@@ -7896,6 +9057,8 @@ export namespace sqladmin_v1 {
      *   const res = await sql.instances.demote({
      *     // Required. Cloud SQL instance name.
      *     instance: 'placeholder-value',
+     *     // Optional. Region of the Cloud SQL instance.
+     *     location: 'placeholder-value',
      *     // Required. ID of the project that contains the instance.
      *     project: 'placeholder-value',
      *
@@ -8062,6 +9225,8 @@ export namespace sqladmin_v1 {
      *   const res = await sql.instances.demoteMaster({
      *     // Cloud SQL instance name.
      *     instance: 'placeholder-value',
+     *     // Optional. Region of the Cloud SQL instance.
+     *     location: 'placeholder-value',
      *     // ID of the project that contains the instance.
      *     project: 'placeholder-value',
      *
@@ -8230,6 +9395,8 @@ export namespace sqladmin_v1 {
      *   const res = await sql.instances.executeSql({
      *     // Required. Database instance ID. This does not include the project ID.
      *     instance: 'placeholder-value',
+     *     // Optional. Region of the Cloud SQL instance.
+     *     location: 'placeholder-value',
      *     // Required. Project ID of the project that contains the instance.
      *     project: 'placeholder-value',
      *
@@ -8392,6 +9559,8 @@ export namespace sqladmin_v1 {
      *   const res = await sql.instances.export({
      *     // Cloud SQL instance ID. This does not include the project ID.
      *     instance: 'placeholder-value',
+     *     // Optional. Region of the Cloud SQL instance.
+     *     location: 'placeholder-value',
      *     // Project ID of the project that contains the instance to be exported.
      *     project: 'placeholder-value',
      *
@@ -8558,6 +9727,8 @@ export namespace sqladmin_v1 {
      *   const res = await sql.instances.failover({
      *     // Cloud SQL instance ID. This does not include the project ID.
      *     instance: 'placeholder-value',
+     *     // Optional. Region of the Cloud SQL instance.
+     *     location: 'placeholder-value',
      *     // ID of the project that contains the read replica.
      *     project: 'placeholder-value',
      *
@@ -8725,6 +9896,8 @@ export namespace sqladmin_v1 {
      *   const res = await sql.instances.get({
      *     // Required. Database instance ID. This does not include the project ID.
      *     instance: 'placeholder-value',
+     *     // Optional. Region of the Cloud SQL instance.
+     *     location: 'placeholder-value',
      *     // Required. Project ID of the project that contains the instance.
      *     project: 'placeholder-value',
      *   });
@@ -8740,6 +9913,7 @@ export namespace sqladmin_v1 {
      *   //   "databaseCenterIntegrationEnabled": false,
      *   //   "databaseInstalledVersion": "my_databaseInstalledVersion",
      *   //   "databaseVersion": "my_databaseVersion",
+     *   //   "deploymentInfo": {},
      *   //   "diskEncryptionConfiguration": {},
      *   //   "diskEncryptionStatus": {},
      *   //   "dnsName": "my_dnsName",
@@ -8913,6 +10087,8 @@ export namespace sqladmin_v1 {
      *   const res = await sql.instances.import({
      *     // Cloud SQL instance ID. This does not include the project ID.
      *     instance: 'placeholder-value',
+     *     // Optional. Region of the Cloud SQL instance.
+     *     location: 'placeholder-value',
      *     // Project ID of the project that contains the instance.
      *     project: 'placeholder-value',
      *
@@ -9077,6 +10253,8 @@ export namespace sqladmin_v1 {
      *
      *   // Do the magic
      *   const res = await sql.instances.insert({
+     *     // Optional. Region of the Cloud SQL instance.
+     *     location: 'placeholder-value',
      *     // Project ID of the project to which the newly created Cloud SQL instances should belong.
      *     project: 'placeholder-value',
      *
@@ -9092,6 +10270,7 @@ export namespace sqladmin_v1 {
      *       //   "databaseCenterIntegrationEnabled": false,
      *       //   "databaseInstalledVersion": "my_databaseInstalledVersion",
      *       //   "databaseVersion": "my_databaseVersion",
+     *       //   "deploymentInfo": {},
      *       //   "diskEncryptionConfiguration": {},
      *       //   "diskEncryptionStatus": {},
      *       //   "dnsName": "my_dnsName",
@@ -9295,6 +10474,8 @@ export namespace sqladmin_v1 {
      *   const res = await sql.instances.list({
      *     // A filter expression that filters resources listed in the response. The expression is in the form of field:value. For example, 'instanceType:CLOUD_SQL_INSTANCE'. Fields can be nested as needed as per their JSON representation, such as 'settings.userLabels.auto_start:true'. Multiple filter queries are space-separated. For example. 'state:RUNNABLE instanceType:CLOUD_SQL_INSTANCE'. By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly.
      *     filter: 'placeholder-value',
+     *     // Optional. Region of the Cloud SQL instance.
+     *     location: 'placeholder-value',
      *     // The maximum number of instances to return. The service may return fewer than this value. If unspecified, at most 500 instances are returned. The maximum value is 1000; values above 1000 are coerced to 1000.
      *     maxResults: 'placeholder-value',
      *     // A previously-returned page token representing part of the larger set of results to view.
@@ -9444,6 +10625,8 @@ export namespace sqladmin_v1 {
      *   const res = await sql.instances.ListEntraIdCertificates({
      *     // Required. Cloud SQL instance ID. This does not include the project ID.
      *     instance: 'placeholder-value',
+     *     // Optional. Region of the Cloud SQL instance.
+     *     location: 'placeholder-value',
      *     // Required. Project ID of the project that contains the instance.
      *     project: 'placeholder-value',
      *   });
@@ -9598,6 +10781,8 @@ export namespace sqladmin_v1 {
      *   const res = await sql.instances.listServerCas({
      *     // Cloud SQL instance ID. This does not include the project ID.
      *     instance: 'placeholder-value',
+     *     // Optional. Region of the Cloud SQL instance.
+     *     location: 'placeholder-value',
      *     // Project ID of the project that contains the instance.
      *     project: 'placeholder-value',
      *   });
@@ -9748,6 +10933,8 @@ export namespace sqladmin_v1 {
      *   const res = await sql.instances.ListServerCertificates({
      *     // Required. Cloud SQL instance ID. This does not include the project ID.
      *     instance: 'placeholder-value',
+     *     // Optional. Region of the Cloud SQL instance.
+     *     location: 'placeholder-value',
      *     // Required. Project ID of the project that contains the instance.
      *     project: 'placeholder-value',
      *   });
@@ -9903,6 +11090,8 @@ export namespace sqladmin_v1 {
      *   const res = await sql.instances.patch({
      *     // Cloud SQL instance ID. This does not include the project ID.
      *     instance: 'placeholder-value',
+     *     // Optional. Region of the Cloud SQL instance.
+     *     location: 'placeholder-value',
      *     // Project ID of the project that contains the instance.
      *     project: 'placeholder-value',
      *     // Optional. Set PSC config to the same value as the existing config to reconcile the PSC networking.
@@ -9922,6 +11111,7 @@ export namespace sqladmin_v1 {
      *       //   "databaseCenterIntegrationEnabled": false,
      *       //   "databaseInstalledVersion": "my_databaseInstalledVersion",
      *       //   "databaseVersion": "my_databaseVersion",
+     *       //   "deploymentInfo": {},
      *       //   "diskEncryptionConfiguration": {},
      *       //   "diskEncryptionStatus": {},
      *       //   "dnsName": "my_dnsName",
@@ -10299,6 +11489,8 @@ export namespace sqladmin_v1 {
      *   const res = await sql.instances.preCheckMajorVersionUpgrade({
      *     // Required. Cloud SQL instance ID. This does not include the project ID.
      *     instance: 'placeholder-value',
+     *     // Optional. Region of the Cloud SQL instance.
+     *     location: 'placeholder-value',
      *     // Required. Project ID of the project that contains the instance.
      *     project: 'placeholder-value',
      *
@@ -10471,6 +11663,8 @@ export namespace sqladmin_v1 {
      *     failover: 'placeholder-value',
      *     // Cloud SQL read replica instance name.
      *     instance: 'placeholder-value',
+     *     // Optional. Region of the Cloud SQL instance.
+     *     location: 'placeholder-value',
      *     // ID of the project that contains the read replica.
      *     project: 'placeholder-value',
      *   });
@@ -10631,6 +11825,8 @@ export namespace sqladmin_v1 {
      *   const res = await sql.instances.reencrypt({
      *     // Cloud SQL instance ID. This does not include the project ID.
      *     instance: 'placeholder-value',
+     *     // Optional. Region of the Cloud SQL instance.
+     *     location: 'placeholder-value',
      *     // ID of the project that contains the instance.
      *     project: 'placeholder-value',
      *
@@ -10798,6 +11994,8 @@ export namespace sqladmin_v1 {
      *   const res = await sql.instances.releaseSsrsLease({
      *     // Required. The Cloud SQL instance ID. This doesn't include the project ID. The instance ID contains lowercase letters, numbers, and hyphens, and it must start with a letter. This ID can have a maximum length of 98 characters.
      *     instance: 'placeholder-value',
+     *     // Optional. Region of the Cloud SQL instance.
+     *     location: 'placeholder-value',
      *     // Required. The project ID that contains the instance.
      *     project: 'placeholder-value',
      *   });
@@ -10950,6 +12148,8 @@ export namespace sqladmin_v1 {
      *   const res = await sql.instances.resetSslConfig({
      *     // Cloud SQL instance ID. This does not include the project ID.
      *     instance: 'placeholder-value',
+     *     // Optional. Region of the Cloud SQL instance.
+     *     location: 'placeholder-value',
      *     // Optional. Reset SSL mode to use.
      *     mode: 'placeholder-value',
      *     // Project ID of the project that contains the instance.
@@ -11112,6 +12312,8 @@ export namespace sqladmin_v1 {
      *   const res = await sql.instances.restart({
      *     // Cloud SQL instance ID. This does not include the project ID.
      *     instance: 'placeholder-value',
+     *     // Optional. Region of the Cloud SQL instance.
+     *     location: 'placeholder-value',
      *     // Project ID of the project that contains the instance to be restarted.
      *     project: 'placeholder-value',
      *   });
@@ -11271,6 +12473,8 @@ export namespace sqladmin_v1 {
      *   const res = await sql.instances.restoreBackup({
      *     // Cloud SQL instance ID. This does not include the project ID.
      *     instance: 'placeholder-value',
+     *     // Optional. Region of the Cloud SQL instance.
+     *     location: 'placeholder-value',
      *     // Project ID of the project that contains the instance.
      *     project: 'placeholder-value',
      *
@@ -11280,6 +12484,7 @@ export namespace sqladmin_v1 {
      *       // {
      *       //   "backup": "my_backup",
      *       //   "backupdrBackup": "my_backupdrBackup",
+     *       //   "ignoreMaintenanceVersion": false,
      *       //   "restoreBackupContext": {},
      *       //   "restoreInstanceClearOverridesFieldNames": [],
      *       //   "restoreInstanceSettings": {}
@@ -11443,6 +12648,8 @@ export namespace sqladmin_v1 {
      *   const res = await sql.instances.RotateEntraIdCertificate({
      *     // Required. Cloud SQL instance ID. This does not include the project ID.
      *     instance: 'placeholder-value',
+     *     // Optional. Region of the Cloud SQL instance.
+     *     location: 'placeholder-value',
      *     // Required. Project ID of the project that contains the instance.
      *     project: 'placeholder-value',
      *
@@ -11613,6 +12820,8 @@ export namespace sqladmin_v1 {
      *   const res = await sql.instances.rotateServerCa({
      *     // Cloud SQL instance ID. This does not include the project ID.
      *     instance: 'placeholder-value',
+     *     // Optional. Region of the Cloud SQL instance.
+     *     location: 'placeholder-value',
      *     // Project ID of the project that contains the instance.
      *     project: 'placeholder-value',
      *
@@ -11781,6 +12990,8 @@ export namespace sqladmin_v1 {
      *   const res = await sql.instances.RotateServerCertificate({
      *     // Required. Cloud SQL instance ID. This does not include the project ID.
      *     instance: 'placeholder-value',
+     *     // Optional. Region of the Cloud SQL instance.
+     *     location: 'placeholder-value',
      *     // Required. Project ID of the project that contains the instance.
      *     project: 'placeholder-value',
      *
@@ -11951,6 +13162,8 @@ export namespace sqladmin_v1 {
      *   const res = await sql.instances.startReplica({
      *     // Cloud SQL read replica instance name.
      *     instance: 'placeholder-value',
+     *     // Optional. Region of the Cloud SQL instance.
+     *     location: 'placeholder-value',
      *     // ID of the project that contains the read replica.
      *     project: 'placeholder-value',
      *   });
@@ -12111,6 +13324,8 @@ export namespace sqladmin_v1 {
      *   const res = await sql.instances.stopReplica({
      *     // Cloud SQL read replica instance name.
      *     instance: 'placeholder-value',
+     *     // Optional. Region of the Cloud SQL instance.
+     *     location: 'placeholder-value',
      *     // ID of the project that contains the read replica.
      *     project: 'placeholder-value',
      *   });
@@ -12273,6 +13488,8 @@ export namespace sqladmin_v1 {
      *     dbTimeout: 'placeholder-value',
      *     // Cloud SQL read replica instance name.
      *     instance: 'placeholder-value',
+     *     // Optional. Region of the Cloud SQL instance.
+     *     location: 'placeholder-value',
      *     // ID of the project that contains the replica.
      *     project: 'placeholder-value',
      *   });
@@ -12432,6 +13649,8 @@ export namespace sqladmin_v1 {
      *   const res = await sql.instances.truncateLog({
      *     // Cloud SQL instance ID. This does not include the project ID.
      *     instance: 'placeholder-value',
+     *     // Optional. Region of the Cloud SQL instance.
+     *     location: 'placeholder-value',
      *     // Project ID of the Cloud SQL project.
      *     project: 'placeholder-value',
      *
@@ -12600,6 +13819,8 @@ export namespace sqladmin_v1 {
      *   const res = await sql.instances.update({
      *     // Cloud SQL instance ID. This does not include the project ID.
      *     instance: 'placeholder-value',
+     *     // Optional. Region of the Cloud SQL instance.
+     *     location: 'placeholder-value',
      *     // Project ID of the project that contains the instance.
      *     project: 'placeholder-value',
      *
@@ -12615,6 +13836,7 @@ export namespace sqladmin_v1 {
      *       //   "databaseCenterIntegrationEnabled": false,
      *       //   "databaseInstalledVersion": "my_databaseInstalledVersion",
      *       //   "databaseVersion": "my_databaseVersion",
+     *       //   "deploymentInfo": {},
      *       //   "diskEncryptionConfiguration": {},
      *       //   "diskEncryptionStatus": {},
      *       //   "dnsName": "my_dnsName",
@@ -12788,6 +14010,10 @@ export namespace sqladmin_v1 {
      */
     instance?: string;
     /**
+     * Optional. Region of the Cloud SQL instance.
+     */
+    location?: string;
+    /**
      * Required. Project ID of the project that contains the instance (Example: project-id).
      */
     project?: string;
@@ -12803,6 +14029,10 @@ export namespace sqladmin_v1 {
      */
     instance?: string;
     /**
+     * Optional. Region of the Cloud SQL instance.
+     */
+    location?: string;
+    /**
      * Required. Project ID of the project that contains the instance.
      */
     project?: string;
@@ -12812,6 +14042,10 @@ export namespace sqladmin_v1 {
      * Cloud SQL instance ID. This does not include the project ID.
      */
     instance?: string;
+    /**
+     * Optional. Region of the Cloud SQL instance.
+     */
+    location?: string;
     /**
      * Project ID of the project that contains the instance.
      */
@@ -12823,6 +14057,10 @@ export namespace sqladmin_v1 {
      */
     instance?: string;
     /**
+     * Optional. Region of the Cloud SQL instance.
+     */
+    location?: string;
+    /**
      * Project ID of the project that contains the instance.
      */
     project?: string;
@@ -12832,6 +14070,10 @@ export namespace sqladmin_v1 {
      * Required. The ID of the Cloud SQL instance to be cloned (source). This does not include the project ID.
      */
     instance?: string;
+    /**
+     * Optional. Region of the Cloud SQL instance.
+     */
+    location?: string;
     /**
      * Required. Project ID of the source Cloud SQL instance.
      */
@@ -12864,6 +14106,10 @@ export namespace sqladmin_v1 {
      */
     instance?: string;
     /**
+     * Optional. Region of the Cloud SQL instance.
+     */
+    location?: string;
+    /**
      * Project ID of the project that contains the instance to be deleted.
      */
     project?: string;
@@ -12873,6 +14119,10 @@ export namespace sqladmin_v1 {
      * Required. Cloud SQL instance name.
      */
     instance?: string;
+    /**
+     * Optional. Region of the Cloud SQL instance.
+     */
+    location?: string;
     /**
      * Required. ID of the project that contains the instance.
      */
@@ -12889,6 +14139,10 @@ export namespace sqladmin_v1 {
      */
     instance?: string;
     /**
+     * Optional. Region of the Cloud SQL instance.
+     */
+    location?: string;
+    /**
      * ID of the project that contains the instance.
      */
     project?: string;
@@ -12903,6 +14157,10 @@ export namespace sqladmin_v1 {
      * Required. Database instance ID. This does not include the project ID.
      */
     instance?: string;
+    /**
+     * Optional. Region of the Cloud SQL instance.
+     */
+    location?: string;
     /**
      * Required. Project ID of the project that contains the instance.
      */
@@ -12919,6 +14177,10 @@ export namespace sqladmin_v1 {
      */
     instance?: string;
     /**
+     * Optional. Region of the Cloud SQL instance.
+     */
+    location?: string;
+    /**
      * Project ID of the project that contains the instance to be exported.
      */
     project?: string;
@@ -12933,6 +14195,10 @@ export namespace sqladmin_v1 {
      * Cloud SQL instance ID. This does not include the project ID.
      */
     instance?: string;
+    /**
+     * Optional. Region of the Cloud SQL instance.
+     */
+    location?: string;
     /**
      * ID of the project that contains the read replica.
      */
@@ -12949,6 +14215,10 @@ export namespace sqladmin_v1 {
      */
     instance?: string;
     /**
+     * Optional. Region of the Cloud SQL instance.
+     */
+    location?: string;
+    /**
      * Required. Project ID of the project that contains the instance.
      */
     project?: string;
@@ -12958,6 +14228,10 @@ export namespace sqladmin_v1 {
      * Cloud SQL instance ID. This does not include the project ID.
      */
     instance?: string;
+    /**
+     * Optional. Region of the Cloud SQL instance.
+     */
+    location?: string;
     /**
      * Project ID of the project that contains the instance.
      */
@@ -12969,6 +14243,10 @@ export namespace sqladmin_v1 {
     requestBody?: Schema$InstancesImportRequest;
   }
   export interface Params$Resource$Instances$Insert extends StandardParameters {
+    /**
+     * Optional. Region of the Cloud SQL instance.
+     */
+    location?: string;
     /**
      * Project ID of the project to which the newly created Cloud SQL instances should belong.
      */
@@ -12984,6 +14262,10 @@ export namespace sqladmin_v1 {
      * A filter expression that filters resources listed in the response. The expression is in the form of field:value. For example, 'instanceType:CLOUD_SQL_INSTANCE'. Fields can be nested as needed as per their JSON representation, such as 'settings.userLabels.auto_start:true'. Multiple filter queries are space-separated. For example. 'state:RUNNABLE instanceType:CLOUD_SQL_INSTANCE'. By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly.
      */
     filter?: string;
+    /**
+     * Optional. Region of the Cloud SQL instance.
+     */
+    location?: string;
     /**
      * The maximum number of instances to return. The service may return fewer than this value. If unspecified, at most 500 instances are returned. The maximum value is 1000; values above 1000 are coerced to 1000.
      */
@@ -13003,6 +14285,10 @@ export namespace sqladmin_v1 {
      */
     instance?: string;
     /**
+     * Optional. Region of the Cloud SQL instance.
+     */
+    location?: string;
+    /**
      * Required. Project ID of the project that contains the instance.
      */
     project?: string;
@@ -13012,6 +14298,10 @@ export namespace sqladmin_v1 {
      * Cloud SQL instance ID. This does not include the project ID.
      */
     instance?: string;
+    /**
+     * Optional. Region of the Cloud SQL instance.
+     */
+    location?: string;
     /**
      * Project ID of the project that contains the instance.
      */
@@ -13023,6 +14313,10 @@ export namespace sqladmin_v1 {
      */
     instance?: string;
     /**
+     * Optional. Region of the Cloud SQL instance.
+     */
+    location?: string;
+    /**
      * Required. Project ID of the project that contains the instance.
      */
     project?: string;
@@ -13032,6 +14326,10 @@ export namespace sqladmin_v1 {
      * Cloud SQL instance ID. This does not include the project ID.
      */
     instance?: string;
+    /**
+     * Optional. Region of the Cloud SQL instance.
+     */
+    location?: string;
     /**
      * Project ID of the project that contains the instance.
      */
@@ -13067,6 +14365,10 @@ export namespace sqladmin_v1 {
      */
     instance?: string;
     /**
+     * Optional. Region of the Cloud SQL instance.
+     */
+    location?: string;
+    /**
      * Required. Project ID of the project that contains the instance.
      */
     project?: string;
@@ -13086,6 +14388,10 @@ export namespace sqladmin_v1 {
      */
     instance?: string;
     /**
+     * Optional. Region of the Cloud SQL instance.
+     */
+    location?: string;
+    /**
      * ID of the project that contains the read replica.
      */
     project?: string;
@@ -13095,6 +14401,10 @@ export namespace sqladmin_v1 {
      * Cloud SQL instance ID. This does not include the project ID.
      */
     instance?: string;
+    /**
+     * Optional. Region of the Cloud SQL instance.
+     */
+    location?: string;
     /**
      * ID of the project that contains the instance.
      */
@@ -13111,6 +14421,10 @@ export namespace sqladmin_v1 {
      */
     instance?: string;
     /**
+     * Optional. Region of the Cloud SQL instance.
+     */
+    location?: string;
+    /**
      * Required. The project ID that contains the instance.
      */
     project?: string;
@@ -13120,6 +14434,10 @@ export namespace sqladmin_v1 {
      * Cloud SQL instance ID. This does not include the project ID.
      */
     instance?: string;
+    /**
+     * Optional. Region of the Cloud SQL instance.
+     */
+    location?: string;
     /**
      * Optional. Reset SSL mode to use.
      */
@@ -13135,6 +14453,10 @@ export namespace sqladmin_v1 {
      */
     instance?: string;
     /**
+     * Optional. Region of the Cloud SQL instance.
+     */
+    location?: string;
+    /**
      * Project ID of the project that contains the instance to be restarted.
      */
     project?: string;
@@ -13144,6 +14466,10 @@ export namespace sqladmin_v1 {
      * Cloud SQL instance ID. This does not include the project ID.
      */
     instance?: string;
+    /**
+     * Optional. Region of the Cloud SQL instance.
+     */
+    location?: string;
     /**
      * Project ID of the project that contains the instance.
      */
@@ -13160,6 +14486,10 @@ export namespace sqladmin_v1 {
      */
     instance?: string;
     /**
+     * Optional. Region of the Cloud SQL instance.
+     */
+    location?: string;
+    /**
      * Required. Project ID of the project that contains the instance.
      */
     project?: string;
@@ -13174,6 +14504,10 @@ export namespace sqladmin_v1 {
      * Cloud SQL instance ID. This does not include the project ID.
      */
     instance?: string;
+    /**
+     * Optional. Region of the Cloud SQL instance.
+     */
+    location?: string;
     /**
      * Project ID of the project that contains the instance.
      */
@@ -13190,6 +14524,10 @@ export namespace sqladmin_v1 {
      */
     instance?: string;
     /**
+     * Optional. Region of the Cloud SQL instance.
+     */
+    location?: string;
+    /**
      * Required. Project ID of the project that contains the instance.
      */
     project?: string;
@@ -13205,6 +14543,10 @@ export namespace sqladmin_v1 {
      */
     instance?: string;
     /**
+     * Optional. Region of the Cloud SQL instance.
+     */
+    location?: string;
+    /**
      * ID of the project that contains the read replica.
      */
     project?: string;
@@ -13214,6 +14556,10 @@ export namespace sqladmin_v1 {
      * Cloud SQL read replica instance name.
      */
     instance?: string;
+    /**
+     * Optional. Region of the Cloud SQL instance.
+     */
+    location?: string;
     /**
      * ID of the project that contains the read replica.
      */
@@ -13229,6 +14575,10 @@ export namespace sqladmin_v1 {
      */
     instance?: string;
     /**
+     * Optional. Region of the Cloud SQL instance.
+     */
+    location?: string;
+    /**
      * ID of the project that contains the replica.
      */
     project?: string;
@@ -13238,6 +14588,10 @@ export namespace sqladmin_v1 {
      * Cloud SQL instance ID. This does not include the project ID.
      */
     instance?: string;
+    /**
+     * Optional. Region of the Cloud SQL instance.
+     */
+    location?: string;
     /**
      * Project ID of the Cloud SQL project.
      */
@@ -13253,6 +14607,10 @@ export namespace sqladmin_v1 {
      * Cloud SQL instance ID. This does not include the project ID.
      */
     instance?: string;
+    /**
+     * Optional. Region of the Cloud SQL instance.
+     */
+    location?: string;
     /**
      * Project ID of the project that contains the instance.
      */
@@ -13823,6 +15181,8 @@ export namespace sqladmin_v1 {
      *   const res = await sql.projects.instances.getDiskShrinkConfig({
      *     // Cloud SQL instance ID. This does not include the project ID.
      *     instance: 'placeholder-value',
+     *     // Optional. Region of the Cloud SQL instance.
+     *     location: 'placeholder-value',
      *     // Project ID of the project that contains the instance.
      *     project: 'placeholder-value',
      *   });
@@ -13977,6 +15337,8 @@ export namespace sqladmin_v1 {
      *   const res = await sql.projects.instances.getLatestRecoveryTime({
      *     // Cloud SQL instance ID. This does not include the project ID.
      *     instance: 'placeholder-value',
+     *     // Optional. Region of the Cloud SQL instance.
+     *     location: 'placeholder-value',
      *     // Project ID of the project that contains the instance.
      *     project: 'placeholder-value',
      *     // The timestamp used to identify the time when the source instance is deleted. If this instance is deleted, then you must set the timestamp.
@@ -14133,6 +15495,8 @@ export namespace sqladmin_v1 {
      *   const res = await sql.projects.instances.performDiskShrink({
      *     // Cloud SQL instance ID. This does not include the project ID.
      *     instance: 'placeholder-value',
+     *     // Optional. Region of the Cloud SQL instance.
+     *     location: 'placeholder-value',
      *     // Project ID of the project that contains the instance.
      *     project: 'placeholder-value',
      *
@@ -14301,6 +15665,8 @@ export namespace sqladmin_v1 {
      *   const res = await sql.projects.instances.rescheduleMaintenance({
      *     // Cloud SQL instance ID. This does not include the project ID.
      *     instance: 'placeholder-value',
+     *     // Optional. Region of the Cloud SQL instance.
+     *     location: 'placeholder-value',
      *     // ID of the project that contains the instance.
      *     project: 'placeholder-value',
      *
@@ -14477,7 +15843,9 @@ export namespace sqladmin_v1 {
      *     // Request body metadata
      *     requestBody: {
      *       // request body parameters
-     *       // {}
+     *       // {
+     *       //   "location": "my_location"
+     *       // }
      *     },
      *   });
      *   console.log(res.data);
@@ -14644,6 +16012,7 @@ export namespace sqladmin_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "location": "my_location",
      *       //   "migrationType": "my_migrationType",
      *       //   "mysqlSyncConfig": {},
      *       //   "replicaOverwriteEnabled": false,
@@ -14817,6 +16186,7 @@ export namespace sqladmin_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "location": "my_location",
      *       //   "migrationType": "my_migrationType",
      *       //   "mysqlSyncConfig": {},
      *       //   "selectedObjects": [],
@@ -14950,6 +16320,10 @@ export namespace sqladmin_v1 {
      */
     instance?: string;
     /**
+     * Optional. Region of the Cloud SQL instance.
+     */
+    location?: string;
+    /**
      * Project ID of the project that contains the instance.
      */
     project?: string;
@@ -14959,6 +16333,10 @@ export namespace sqladmin_v1 {
      * Cloud SQL instance ID. This does not include the project ID.
      */
     instance?: string;
+    /**
+     * Optional. Region of the Cloud SQL instance.
+     */
+    location?: string;
     /**
      * Project ID of the project that contains the instance.
      */
@@ -14974,6 +16352,10 @@ export namespace sqladmin_v1 {
      */
     instance?: string;
     /**
+     * Optional. Region of the Cloud SQL instance.
+     */
+    location?: string;
+    /**
      * Project ID of the project that contains the instance.
      */
     project?: string;
@@ -14988,6 +16370,10 @@ export namespace sqladmin_v1 {
      * Cloud SQL instance ID. This does not include the project ID.
      */
     instance?: string;
+    /**
+     * Optional. Region of the Cloud SQL instance.
+     */
+    location?: string;
     /**
      * ID of the project that contains the instance.
      */
@@ -15086,6 +16472,8 @@ export namespace sqladmin_v1 {
      *   const res = await sql.sslCerts.createEphemeral({
      *     // Cloud SQL instance ID. This does not include the project ID.
      *     instance: 'placeholder-value',
+     *     // Optional. Region of the Cloud SQL instance.
+     *     location: 'placeholder-value',
      *     // Project ID of the Cloud SQL project.
      *     project: 'placeholder-value',
      *
@@ -15820,6 +17208,10 @@ export namespace sqladmin_v1 {
      */
     instance?: string;
     /**
+     * Optional. Region of the Cloud SQL instance.
+     */
+    location?: string;
+    /**
      * Project ID of the Cloud SQL project.
      */
     project?: string;
@@ -16081,6 +17473,8 @@ export namespace sqladmin_v1 {
      *     host: 'placeholder-value',
      *     // Database instance ID. This does not include the project ID.
      *     instance: 'placeholder-value',
+     *     // Optional. Region of the Cloud SQL instance.
+     *     location: 'placeholder-value',
      *     // Name of the user in the instance.
      *     name: 'placeholder-value',
      *     // Project ID of the project that contains the instance.
@@ -16243,6 +17637,8 @@ export namespace sqladmin_v1 {
      *     host: 'placeholder-value',
      *     // Database instance ID. This does not include the project ID.
      *     instance: 'placeholder-value',
+     *     // Optional. Region of the Cloud SQL instance.
+     *     location: 'placeholder-value',
      *     // User of the instance.
      *     name: 'placeholder-value',
      *     // Project ID of the project that contains the instance.
@@ -16399,6 +17795,8 @@ export namespace sqladmin_v1 {
      *   const res = await sql.users.insert({
      *     // Database instance ID. This does not include the project ID.
      *     instance: 'placeholder-value',
+     *     // Optional. Region of the Cloud SQL instance.
+     *     location: 'placeholder-value',
      *     // Project ID of the project that contains the instance.
      *     project: 'placeholder-value',
      *
@@ -16579,6 +17977,8 @@ export namespace sqladmin_v1 {
      *   const res = await sql.users.list({
      *     // Database instance ID. This does not include the project ID.
      *     instance: 'placeholder-value',
+     *     // Optional. Region of the Cloud SQL instance.
+     *     location: 'placeholder-value',
      *     // Project ID of the project that contains the instance.
      *     project: 'placeholder-value',
      *   });
@@ -16725,6 +18125,8 @@ export namespace sqladmin_v1 {
      *     host: 'placeholder-value',
      *     // Database instance ID. This does not include the project ID.
      *     instance: 'placeholder-value',
+     *     // Optional. Region of the Cloud SQL instance.
+     *     location: 'placeholder-value',
      *     // Name of the user in the instance.
      *     name: 'placeholder-value',
      *     // Project ID of the project that contains the instance.
@@ -16888,6 +18290,10 @@ export namespace sqladmin_v1 {
      */
     instance?: string;
     /**
+     * Optional. Region of the Cloud SQL instance.
+     */
+    location?: string;
+    /**
      * Name of the user in the instance.
      */
     name?: string;
@@ -16906,6 +18312,10 @@ export namespace sqladmin_v1 {
      */
     instance?: string;
     /**
+     * Optional. Region of the Cloud SQL instance.
+     */
+    location?: string;
+    /**
      * User of the instance.
      */
     name?: string;
@@ -16919,6 +18329,10 @@ export namespace sqladmin_v1 {
      * Database instance ID. This does not include the project ID.
      */
     instance?: string;
+    /**
+     * Optional. Region of the Cloud SQL instance.
+     */
+    location?: string;
     /**
      * Project ID of the project that contains the instance.
      */
@@ -16934,6 +18348,10 @@ export namespace sqladmin_v1 {
      * Database instance ID. This does not include the project ID.
      */
     instance?: string;
+    /**
+     * Optional. Region of the Cloud SQL instance.
+     */
+    location?: string;
     /**
      * Project ID of the project that contains the instance.
      */
@@ -16952,6 +18370,10 @@ export namespace sqladmin_v1 {
      * Database instance ID. This does not include the project ID.
      */
     instance?: string;
+    /**
+     * Optional. Region of the Cloud SQL instance.
+     */
+    location?: string;
     /**
      * Name of the user in the instance.
      */
