@@ -969,7 +969,7 @@
       }
     }
   },
-  "revision": "20260818",
+  "revision": "20260819",
   "rootUrl": "https://serviceusage.googleapis.com/",
   "schemas": {
     "AddEnableRulesMetadata": {
@@ -2156,7 +2156,8 @@
       "id": "EnableRule",
       "properties": {
         "enableType": {
-          "description": "Client and resource project enable type.",
+          "deprecated": true,
+          "description": "Deprecated: EnableType is not supported.",
           "enum": [
             "ENABLE_TYPE_UNSPECIFIED",
             "CLIENT",

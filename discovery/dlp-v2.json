@@ -3545,7 +3545,7 @@
                   ],
                   "parameters": {
                     "parent": {
-                      "description": "Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization): + Projects scope: `projects/{project_id}/locations/{location_id}` + Organizations scope: `organizations/{org_id}/locations/{location_id}`",
+                      "description": "Required. Parent resource name. The format of this value varies depending on the scope of the request (project): + Projects scope: `projects/{project_id}/locations/{location_id}`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -3634,7 +3634,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. Resource name of the organization or project, for example, `organizations/433245324/locations/europe` or `projects/project-id/locations/asia`.",
+                      "description": "Required. Resource name of the project, for example, `projects/project-id/locations/asia`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -5274,7 +5274,7 @@
       }
     }
   },
-  "revision": "20260808",
+  "revision": "20260825",
   "rootUrl": "https://dlp.googleapis.com/",
   "schemas": {
     "GooglePrivacyDlpV2Action": {
