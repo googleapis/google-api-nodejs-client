@@ -41,8 +41,7 @@ describe('google.auth', async () => {
       assert.strictEqual(projectId, 'foo-project-id');
     });
 
-    it.skip('uses the last configured client settings', async () => {
-      // TODO: Unskip this later when we resolve this flakey test issue.
+    it('uses the last configured client settings', async () => {
       let authClient = await google.auth.getClient();
       authClient = await google.auth.getClient({
         scopes: ['https://www.googleapis.com/auth/cloud-platform'],
