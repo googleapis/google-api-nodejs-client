@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/deploymentmanager",
-  "version": "20.0.0",
+  "version": "20.1.0",
   "description": "deploymentmanager",
   "main": "build/index.js",
   "types": "build/index.d.ts",
