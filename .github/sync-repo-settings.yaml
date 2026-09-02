@@ -8,8 +8,6 @@ branchProtectionRules:
       - "ci/kokoro: Samples test"
       - "ci/kokoro: System test"
       - lint
-      - test (18)
-      - test (20)
       - test (22)
       - cla/google
       - windows
