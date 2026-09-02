@@ -20,7 +20,8 @@ const compute = google.compute('v1');
 
 describe('google.auth', async () => {
   describe('google.auth.getClient', async () => {
-    it('allows client to be configured using historical API', async () => {
+    it.skip('allows client to be configured using historical API', async () => {
+      // TODO: Turn on this test again when it stops being flakey (https://b.corp.google.com/issues/555831398)
       const authClient = await google.auth.getClient({
         scopes: ['https://www.googleapis.com/auth/cloud-platform'],
       });
