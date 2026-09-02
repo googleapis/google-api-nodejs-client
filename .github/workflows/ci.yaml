@@ -10,32 +10,11 @@ permissions:
   contents: read
 
 jobs:
-  test-18:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node: [18]
-    steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
-      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7
-        with:
-          node-version: ${{ matrix.node }}
-      - run: node --version
-      # The first installation step ensures that all of our production
-      # dependencies work on the given Node.js version, this helps us find
-      # dependencies that don't match our engines field:
-      - run: npm install --production --ignore-scripts --no-package-lock
-      # Clean up the production install, before installing dev/production:
-      - run: rm -rf node_modules
-      - run: npm install
-      - run: npm test
-        env:
-          MOCHA_THROW_DEPRECATION: false
   test:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node: [20, 22]
+        node: [22]
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
       - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7
