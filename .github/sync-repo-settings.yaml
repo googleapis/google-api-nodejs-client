@@ -9,6 +9,8 @@ branchProtectionRules:
       - "ci/kokoro: System test"
       - lint
       - test (22)
+      - test (24)
+      - test (26)
       - cla/google
       - windows
       - OwlBot Post Processor
