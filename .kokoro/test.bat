@@ -21,7 +21,7 @@ cd ..
 @rem we upgrade Node.js in the image:
 SET PATH=%PATH%;/cygdrive/c/Program Files/nodejs/npm
 
-call nvm use 22
+call nvm use 18
 call which node
 
 call npm install || goto :error
