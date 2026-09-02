@@ -15,7 +15,7 @@ jobs:
           persist-credentials: false
       - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
         with:
-          node-version: 18
+          node-version: 22
       - run: npm install
         working-directory: ./.github/scripts
       - uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
