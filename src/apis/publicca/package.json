@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/publicca",
-  "version": "5.0.1",
+  "version": "5.1.0",
   "description": "publicca",
   "main": "build/index.js",
   "types": "build/index.d.ts",

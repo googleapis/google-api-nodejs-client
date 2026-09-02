@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/workspaceevents",
-  "version": "12.0.0",
+  "version": "12.1.0",
   "description": "workspaceevents",
   "main": "build/index.js",
   "types": "build/index.d.ts",
