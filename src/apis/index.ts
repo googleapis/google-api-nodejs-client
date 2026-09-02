@@ -58,6 +58,10 @@ import {
   advisorynotifications,
 } from './advisorynotifications';
 import {
+  VERSIONS as agenciesandbrandsVersions,
+  agenciesandbrands,
+} from './agenciesandbrands';
+import {
   VERSIONS as agentidentityVersions,
   agentidentity,
 } from './agentidentity';
@@ -289,6 +293,10 @@ import {
   contentwarehouse,
 } from './contentwarehouse';
 import {VERSIONS as cssVersions, css} from './css';
+import {
+  VERSIONS as curationpartnersVersions,
+  curationpartners,
+} from './curationpartners';
 import {VERSIONS as customsearchVersions, customsearch} from './customsearch';
 import {
   VERSIONS as databasecenterVersions,
@@ -841,6 +849,7 @@ export const APIS: APIList = {
   adsensehost: adsensehostVersions,
   adsenseplatform: adsenseplatformVersions,
   advisorynotifications: advisorynotificationsVersions,
+  agenciesandbrands: agenciesandbrandsVersions,
   agentidentity: agentidentityVersions,
   agentidentitycredentials: agentidentitycredentialsVersions,
   agentregistry: agentregistryVersions,
@@ -935,6 +944,7 @@ export const APIS: APIList = {
   content: contentVersions,
   contentwarehouse: contentwarehouseVersions,
   css: cssVersions,
+  curationpartners: curationpartnersVersions,
   customsearch: customsearchVersions,
   databasecenter: databasecenterVersions,
   datacatalog: datacatalogVersions,
@@ -1177,6 +1187,7 @@ export class GeneratedAPIs {
   adsensehost = adsensehost;
   adsenseplatform = adsenseplatform;
   advisorynotifications = advisorynotifications;
+  agenciesandbrands = agenciesandbrands;
   agentidentity = agentidentity;
   agentidentitycredentials = agentidentitycredentials;
   agentregistry = agentregistry;
@@ -1271,6 +1282,7 @@ export class GeneratedAPIs {
   content = content;
   contentwarehouse = contentwarehouse;
   css = css;
+  curationpartners = curationpartners;
   customsearch = customsearch;
   databasecenter = databasecenter;
   datacatalog = datacatalog;
