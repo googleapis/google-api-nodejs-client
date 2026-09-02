@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/playintegrity",
-  "version": "24.0.0",
+  "version": "24.1.0",
   "description": "playintegrity",
   "main": "build/index.js",
   "types": "build/index.d.ts",
