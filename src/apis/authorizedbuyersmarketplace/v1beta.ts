@@ -254,6 +254,10 @@ export namespace authorizedbuyersmarketplace_v1beta {
      * Output only. Time the data segment was last updated.
      */
     updateTime?: string | null;
+    /**
+     * Optional. Immutable. The ID of the User List wrapped by this Data Segment. Curators with a linked Data Partner account can create a data segment that wraps a user list owned by the linked Data Partner account. User lists can be uploaded and managed using the [Data Manager API](https://developers.google.com/data-manager/api/data-partners/audiences). Linking a user list to a data segment lets you define a segment of inventory that is based on an audience you create.
+     */
+    userListId?: string | null;
   }
   /**
    * Request message for DeactivateCuratedPackage.
@@ -1654,7 +1658,8 @@ export namespace authorizedbuyersmarketplace_v1beta {
      *   //   "millipercentOfMediaFee": "my_millipercentOfMediaFee",
      *   //   "name": "my_name",
      *   //   "state": "my_state",
-     *   //   "updateTime": "my_updateTime"
+     *   //   "updateTime": "my_updateTime",
+     *   //   "userListId": "my_userListId"
      *   // }
      * }
      *
@@ -1799,7 +1804,8 @@ export namespace authorizedbuyersmarketplace_v1beta {
      *       //   "millipercentOfMediaFee": "my_millipercentOfMediaFee",
      *       //   "name": "my_name",
      *       //   "state": "my_state",
-     *       //   "updateTime": "my_updateTime"
+     *       //   "updateTime": "my_updateTime",
+     *       //   "userListId": "my_userListId"
      *       // }
      *     },
      *   });
@@ -1812,7 +1818,8 @@ export namespace authorizedbuyersmarketplace_v1beta {
      *   //   "millipercentOfMediaFee": "my_millipercentOfMediaFee",
      *   //   "name": "my_name",
      *   //   "state": "my_state",
-     *   //   "updateTime": "my_updateTime"
+     *   //   "updateTime": "my_updateTime",
+     *   //   "userListId": "my_userListId"
      *   // }
      * }
      *
@@ -1964,7 +1971,8 @@ export namespace authorizedbuyersmarketplace_v1beta {
      *   //   "millipercentOfMediaFee": "my_millipercentOfMediaFee",
      *   //   "name": "my_name",
      *   //   "state": "my_state",
-     *   //   "updateTime": "my_updateTime"
+     *   //   "updateTime": "my_updateTime",
+     *   //   "userListId": "my_userListId"
      *   // }
      * }
      *
@@ -2109,7 +2117,8 @@ export namespace authorizedbuyersmarketplace_v1beta {
      *   //   "millipercentOfMediaFee": "my_millipercentOfMediaFee",
      *   //   "name": "my_name",
      *   //   "state": "my_state",
-     *   //   "updateTime": "my_updateTime"
+     *   //   "updateTime": "my_updateTime",
+     *   //   "userListId": "my_userListId"
      *   // }
      * }
      *
@@ -2399,7 +2408,8 @@ export namespace authorizedbuyersmarketplace_v1beta {
      *       //   "millipercentOfMediaFee": "my_millipercentOfMediaFee",
      *       //   "name": "my_name",
      *       //   "state": "my_state",
-     *       //   "updateTime": "my_updateTime"
+     *       //   "updateTime": "my_updateTime",
+     *       //   "userListId": "my_userListId"
      *       // }
      *     },
      *   });
@@ -2412,7 +2422,8 @@ export namespace authorizedbuyersmarketplace_v1beta {
      *   //   "millipercentOfMediaFee": "my_millipercentOfMediaFee",
      *   //   "name": "my_name",
      *   //   "state": "my_state",
-     *   //   "updateTime": "my_updateTime"
+     *   //   "updateTime": "my_updateTime",
+     *   //   "userListId": "my_userListId"
      *   // }
      * }
      *
