@@ -5,7 +5,7 @@
   "license": "Apache-2.0",
   "private": true,
   "engines": {
-    "node": ">=18"
+    "node": ">=22.0.0"
   },
   "files": [
     "**/*.js",
@@ -18,7 +18,7 @@
   "dependencies": {
     "express": "^5.0.0",
     "googleapis": "^178.0.0",
-    "googleapis-common": "^8.0.2-rc.0",
+    "googleapis-common": "^9.0.0",
     "nconf": "^0.13.0",
     "open": "^8.0.0",
     "server-destroy": "^1.0.1"

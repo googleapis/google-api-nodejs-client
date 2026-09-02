@@ -8,7 +8,7 @@
   "types": "./build/src/index.d.ts",
   "sideEffects": false,
   "engines": {
-    "node": ">=18"
+    "node": ">=22.0.0"
   },
   "files": [
     "build/src",
@@ -55,8 +55,8 @@
     "client library"
   ],
   "dependencies": {
-    "google-auth-library": "10.5.0",
-    "googleapis-common": "^8.0.0"
+    "google-auth-library": "^11.0.0",
+    "googleapis-common": "^9.0.0"
   },
   "devDependencies": {
     "@types/execa": "^2.0.2",
@@ -80,8 +80,8 @@
     "gts": "^6.0.2",
     "js-green-licenses": "^4.0.0",
     "jsdoc": "^4.0.4",
-    "jsdoc-fresh": "^5.0.0",
-    "jsdoc-region-tag": "^4.0.0",
+    "jsdoc-fresh": "^6.0.0",
+    "jsdoc-region-tag": "^5.0.0",
     "linkinator": "^6.1.2",
     "mocha": "^11.2.2",
     "mv": "^2.1.1",
