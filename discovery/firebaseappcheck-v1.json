@@ -551,6 +551,35 @@
                 "https://www.googleapis.com/auth/cloud-platform",
                 "https://www.googleapis.com/auth/firebase"
               ]
+            },
+            "mintAppCheckToken": {
+              "description": "Mints a new App Check token for the specified Firebase App. This method is intended to be called from a privileged environment where the caller can be authorized via Cloud IAM; for example, using a service account. To call this method, the caller must have the [`firebaseappcheck.googleapis.com/tokens.mint`](https://firebase.google.com/docs/projects/iam/permissions#app-check) permission. Returns a MintAppCheckTokenResponse.",
+              "flatPath": "v1/projects/{projectsId}/apps/{appsId}:mintAppCheckToken",
+              "httpMethod": "POST",
+              "id": "firebaseappcheck.projects.apps.mintAppCheckToken",
+              "parameterOrder": [
+                "app"
+              ],
+              "parameters": {
+                "app": {
+                  "description": "Required. The relative resource name of the app, in the format: ``` projects/{project_number}/apps/{app_id} ``` If necessary, the `project_number` element can be replaced with the project ID of the Firebase project. Learn more about using project identifiers in Google's [AIP 2510](https://google.aip.dev/cloud/2510) standard.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/apps/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+app}:mintAppCheckToken",
+              "request": {
+                "$ref": "GoogleFirebaseAppcheckV1MintAppCheckTokenRequest"
+              },
+              "response": {
+                "$ref": "GoogleFirebaseAppcheckV1MintAppCheckTokenResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/firebase"
+              ]
             }
           },
           "resources": {
@@ -1535,7 +1564,7 @@
       }
     }
   },
-  "revision": "20260717",
+  "revision": "20260822",
   "rootUrl": "https://firebaseappcheck.googleapis.com/",
   "schemas": {
     "GoogleFirebaseAppcheckV1AppAttestConfig": {
@@ -1971,6 +2000,17 @@
       },
       "type": "object"
     },
+    "GoogleFirebaseAppcheckV1LimitedUseConfig": {
+      "description": "Configuration for a limited-use App Check token.",
+      "id": "GoogleFirebaseAppcheckV1LimitedUseConfig",
+      "properties": {
+        "jti": {
+          "description": "Optional. Specifies the desired `jti` claim (Section 4.1.7 of RFC 7519) in the returned App Check token. Limited-use App Check tokens with the same `jti` will be counted as the same token for the purposes of replay protection. The size of this field is limited to 500 bytes. If specified, its length must be at least 16 bytes. If this field is omitted or is empty, a randomly generated `jti` claim with length between 16 and 500 bytes (inclusive) will be used in the returned App Check token. Leaving this field empty is only recommended if your custom attestation provider itself is not vulnerable to replay attacks.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleFirebaseAppcheckV1ListDebugTokensResponse": {
       "description": "Response message for the ListDebugTokens method.",
       "id": "GoogleFirebaseAppcheckV1ListDebugTokensResponse",
@@ -2021,6 +2061,38 @@
             "$ref": "GoogleFirebaseAppcheckV1Service"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleFirebaseAppcheckV1MintAppCheckTokenRequest": {
+      "description": "Request message for the MintAppCheckToken method.",
+      "id": "GoogleFirebaseAppcheckV1MintAppCheckTokenRequest",
+      "properties": {
+        "limitedUseConfig": {
+          "$ref": "GoogleFirebaseAppcheckV1LimitedUseConfig",
+          "description": "Optional. If specified, the returned App Check token will be a limited-use token minted according to the specified configuration options."
+        },
+        "tokenTtl": {
+          "description": "Optional. If specified, the returned App Check token will be a session token, valid for the specified duration. Must be between 30 minutes and 7 days, inclusive.",
+          "format": "google-duration",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleFirebaseAppcheckV1MintAppCheckTokenResponse": {
+      "description": "Response message for the MintAppCheckToken method.",
+      "id": "GoogleFirebaseAppcheckV1MintAppCheckTokenResponse",
+      "properties": {
+        "token": {
+          "description": "The App Check token, used to access backend services protected by App Check. App Check tokens are signed [JWTs](https://tools.ietf.org/html/rfc7519) containing claims that identify the attested app and GCP project. This token is used to access Google services protected by App Check. These tokens can also be [verified by your own custom backends](https://firebase.google.com/docs/app-check/custom-resource-backend) using the Firebase Admin SDK or third-party libraries.",
+          "type": "string"
+        },
+        "ttl": {
+          "description": "The duration from the time this token is minted until its expiration. This field is intended to ease client-side token management, since the client may have clock skew, but is still able to accurately measure a duration.",
+          "format": "google-duration",
+          "type": "string"
         }
       },
       "type": "object"

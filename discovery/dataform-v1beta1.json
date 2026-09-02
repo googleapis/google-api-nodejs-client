@@ -3428,7 +3428,7 @@
       }
     }
   },
-  "revision": "20260819",
+  "revision": "20260826",
   "rootUrl": "https://dataform.googleapis.com/",
   "schemas": {
     "ActionErrorTable": {
@@ -6467,7 +6467,7 @@
           "readOnly": true
         },
         "depth": {
-          "description": "Optional. Input only. Immutable. The maximum depth of the Git repository to checkout for this workspace. If defined and greater than 0, the Git repository will be created as a shallow clone with the given depth, otherwise a full clone will be performed. This field is available only for GitHub, Gitlab and 1p repositories with enabled branch management.",
+          "description": "Optional. Input only. Immutable. The maximum depth of the Git repository to checkout for this workspace. If defined and greater than 0, the Git repository will be created as a shallow clone with the given depth, otherwise a full clone will be performed. This field is available only for GitHub, GitLab and 1p repositories with enabled branch management.",
           "format": "int32",
           "type": "integer"
         },
