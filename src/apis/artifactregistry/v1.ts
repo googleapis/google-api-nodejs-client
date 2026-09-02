@@ -1696,6 +1696,10 @@ export namespace artifactregistry_v1 {
      * Optional. The ID of the file. If left empty will default to sha256 digest of the content uploaded.
      */
     fileId?: string | null;
+    /**
+     * Optional. The type of the file to upload. Defaulting to ATTACHMENT if not specified.
+     */
+    fileType?: string | null;
   }
   /**
    * The response to upload a generic artifact.
@@ -1722,6 +1726,10 @@ export namespace artifactregistry_v1 {
      * The ID of the package of the generic artifact. If the package does not exist, a new package will be created. The `package_id` should start and end with a letter or number, only contain letters, numbers, hyphens, underscores, and periods, and not exceed 256 characters.
      */
     packageId?: string | null;
+    /**
+     * Optional. Client specified annotations to attach to the version upon creation. This field is only applied if the Version is created during this upload. If the Version already exists and this field is set, the request will fail.
+     */
+    versionAnnotations?: {[key: string]: string} | null;
     /**
      * The ID of the version of the generic artifact. If the version does not exist, a new version will be created. The version_id must start and end with a letter or number, can only contain lowercase letters, numbers, the following characters [-.+~:], i.e.[a-z0-9-.+~:] and cannot exceed a total of 128 characters. Creating a version called `latest` is not allowed.
      */
@@ -1925,7 +1933,7 @@ export namespace artifactregistry_v1 {
    */
   export interface Schema$VulnerabilityScanningConfig {
     /**
-     * Optional. Config for whether this repository has vulnerability scanning disabled.
+     * Optional. Config for whether this repository has vulnerability scanning disabled. When unset (ENABLEMENT_CONFIG_UNSPECIFIED), this is treated as INHERITED for Docker repositories and DISABLED for non-Docker repositories.
      */
     enablementConfig?: string | null;
     /**
@@ -7808,7 +7816,8 @@ export namespace artifactregistry_v1 {
      *       requestBody: {
      *         // request body parameters
      *         // {
-     *         //   "fileId": "my_fileId"
+     *         //   "fileId": "my_fileId",
+     *         //   "fileType": "my_fileType"
      *         // }
      *       },
      *       media: {
@@ -8060,6 +8069,7 @@ export namespace artifactregistry_v1 {
      *           // {
      *           //   "filename": "my_filename",
      *           //   "packageId": "my_packageId",
+     *           //   "versionAnnotations": {},
      *           //   "versionId": "my_versionId"
      *           // }
      *         },
