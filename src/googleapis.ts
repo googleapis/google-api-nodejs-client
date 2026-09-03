@@ -23,6 +23,8 @@ import {
 
 export {AuthPlus};
 
+// Example comment.
+
 export class GoogleApis extends GeneratedAPIs {
   private _discovery = new Discovery({debug: false, includePrivate: false});
   auth = new AuthPlus();
