@@ -30341,7 +30341,7 @@ export namespace discoveryengine_v1beta {
       params?: Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$Streamanswer,
       options?: MethodOptions
     ): Promise<
-      GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1betaAnswerQueryResponse>
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1betaAnswerQueryResponse[]>
     >;
     streamAnswer(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$Streamanswer,
@@ -30352,33 +30352,33 @@ export namespace discoveryengine_v1beta {
       params: Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$Streamanswer,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaAnswerQueryResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaAnswerQueryResponse>
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaAnswerQueryResponse[]>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaAnswerQueryResponse[]>
     ): void;
     streamAnswer(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$Streamanswer,
-      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaAnswerQueryResponse>
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaAnswerQueryResponse[]>
     ): void;
     streamAnswer(
-      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaAnswerQueryResponse>
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaAnswerQueryResponse[]>
     ): void;
     streamAnswer(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$Streamanswer
-        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaAnswerQueryResponse>
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaAnswerQueryResponse[]>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaAnswerQueryResponse>
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaAnswerQueryResponse[]>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaAnswerQueryResponse>
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaAnswerQueryResponse[]>
         | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1betaAnswerQueryResponse>
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1betaAnswerQueryResponse[]>
         >
       | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
@@ -30417,12 +30417,12 @@ export namespace discoveryengine_v1beta {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1betaAnswerQueryResponse>(
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1betaAnswerQueryResponse[]>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1betaAnswerQueryResponse>(
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1betaAnswerQueryResponse[]>(
           parameters
         );
       }
@@ -43524,7 +43524,7 @@ export namespace discoveryengine_v1beta {
       params?: Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Streamanswer,
       options?: MethodOptions
     ): Promise<
-      GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1betaAnswerQueryResponse>
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1betaAnswerQueryResponse[]>
     >;
     streamAnswer(
       params: Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Streamanswer,
@@ -43535,33 +43535,33 @@ export namespace discoveryengine_v1beta {
       params: Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Streamanswer,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaAnswerQueryResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaAnswerQueryResponse>
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaAnswerQueryResponse[]>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaAnswerQueryResponse[]>
     ): void;
     streamAnswer(
       params: Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Streamanswer,
-      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaAnswerQueryResponse>
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaAnswerQueryResponse[]>
     ): void;
     streamAnswer(
-      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaAnswerQueryResponse>
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaAnswerQueryResponse[]>
     ): void;
     streamAnswer(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Streamanswer
-        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaAnswerQueryResponse>
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaAnswerQueryResponse[]>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaAnswerQueryResponse>
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaAnswerQueryResponse[]>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaAnswerQueryResponse>
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaAnswerQueryResponse[]>
         | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1betaAnswerQueryResponse>
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1betaAnswerQueryResponse[]>
         >
       | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
@@ -43600,12 +43600,12 @@ export namespace discoveryengine_v1beta {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1betaAnswerQueryResponse>(
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1betaAnswerQueryResponse[]>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1betaAnswerQueryResponse>(
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1betaAnswerQueryResponse[]>(
           parameters
         );
       }
@@ -54330,7 +54330,7 @@ export namespace discoveryengine_v1beta {
       params?: Params$Resource$Projects$Locations$Datastores$Servingconfigs$Streamanswer,
       options?: MethodOptions
     ): Promise<
-      GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1betaAnswerQueryResponse>
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1betaAnswerQueryResponse[]>
     >;
     streamAnswer(
       params: Params$Resource$Projects$Locations$Datastores$Servingconfigs$Streamanswer,
@@ -54341,33 +54341,33 @@ export namespace discoveryengine_v1beta {
       params: Params$Resource$Projects$Locations$Datastores$Servingconfigs$Streamanswer,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaAnswerQueryResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaAnswerQueryResponse>
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaAnswerQueryResponse[]>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaAnswerQueryResponse[]>
     ): void;
     streamAnswer(
       params: Params$Resource$Projects$Locations$Datastores$Servingconfigs$Streamanswer,
-      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaAnswerQueryResponse>
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaAnswerQueryResponse[]>
     ): void;
     streamAnswer(
-      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaAnswerQueryResponse>
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaAnswerQueryResponse[]>
     ): void;
     streamAnswer(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Datastores$Servingconfigs$Streamanswer
-        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaAnswerQueryResponse>
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaAnswerQueryResponse[]>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaAnswerQueryResponse>
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaAnswerQueryResponse[]>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaAnswerQueryResponse>
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaAnswerQueryResponse[]>
         | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1betaAnswerQueryResponse>
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1betaAnswerQueryResponse[]>
         >
       | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
@@ -54406,12 +54406,12 @@ export namespace discoveryengine_v1beta {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1betaAnswerQueryResponse>(
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1betaAnswerQueryResponse[]>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1betaAnswerQueryResponse>(
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1betaAnswerQueryResponse[]>(
           parameters
         );
       }
