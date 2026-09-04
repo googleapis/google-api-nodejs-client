@@ -365,7 +365,7 @@ export namespace run_v2 {
      */
     sandboxLauncher?: boolean | null;
     /**
-     * Optional. Location of the source.
+     * Optional. Location of the source. This field is only supported in Cloud Run Service.
      */
     sourceCode?: Schema$GoogleCloudRunV2SourceCode;
     /**
@@ -1677,10 +1677,6 @@ export namespace run_v2 {
      */
     description?: string | null;
     /**
-     * Optional. Immutable. Indicates whether the Service has durable execution enabled. This field is immutable once the Service is created.
-     */
-    durableExecution?: boolean | null;
-    /**
      * Optional. A system-generated fingerprint for this version of the resource. May be used to detect modification conflict during updates.
      */
     etag?: string | null;
@@ -1828,7 +1824,7 @@ export namespace run_v2 {
      */
     cloudStorageSource?: Schema$GoogleCloudRunV2CloudStorageSource;
     /**
-     * Optional. Input only. Source code inlined in the request. Cloud Run will store the inlined_source to Cloud Storage and replace the field with cloud_storage_source.
+     * Optional. Input only. Source code inlined in the request. Cloud Run will store the inlined_source to Cloud Storage and replace the field with cloud_storage_source. This field is only supported in Cloud Run Service.
      */
     inlinedSource?: Schema$GoogleCloudRunV2InlinedSource;
   }
@@ -9995,7 +9991,6 @@ export namespace run_v2 {
      *       //   "defaultUriDisabled": false,
      *       //   "deleteTime": "my_deleteTime",
      *       //   "description": "my_description",
-     *       //   "durableExecution": false,
      *       //   "etag": "my_etag",
      *       //   "expireTime": "my_expireTime",
      *       //   "generation": "my_generation",
@@ -10338,7 +10333,6 @@ export namespace run_v2 {
      *   //   "defaultUriDisabled": false,
      *   //   "deleteTime": "my_deleteTime",
      *   //   "description": "my_description",
-     *   //   "durableExecution": false,
      *   //   "etag": "my_etag",
      *   //   "expireTime": "my_expireTime",
      *   //   "generation": "my_generation",
@@ -10830,7 +10824,6 @@ export namespace run_v2 {
      *       //   "defaultUriDisabled": false,
      *       //   "deleteTime": "my_deleteTime",
      *       //   "description": "my_description",
-     *       //   "durableExecution": false,
      *       //   "etag": "my_etag",
      *       //   "expireTime": "my_expireTime",
      *       //   "generation": "my_generation",
