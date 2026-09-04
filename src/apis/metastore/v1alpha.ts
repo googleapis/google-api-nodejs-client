@@ -383,6 +383,89 @@ export namespace metastore_v1alpha {
     databaseSummaries?: Schema$DatabaseSummary[];
   }
   /**
+   * Configuration information to start the Change Data Capture (CDC) streams from customer database to backend database of Dataproc Metastore.
+   */
+  export interface Schema$CdcConfig {
+    /**
+     * Optional. The bucket to write the intermediate stream event data in. The bucket name must be without any prefix like "gs://". See the bucket naming requirements (https://cloud.google.com/storage/docs/buckets#naming). This field is optional. If not set, the Artifacts Cloud Storage bucket will be used.
+     */
+    bucket?: string | null;
+    /**
+     * Required. Input only. The password for the user that Datastream service should use for the MySQL connection. This field is not returned on request.
+     */
+    password?: string | null;
+    /**
+     * Required. The URL of the subnetwork resource to create the VM instance hosting the reverse proxy in. More context in https://cloud.google.com/datastream/docs/private-connectivity#reverse-csql-proxy The subnetwork should reside in the network provided in the request that Datastream will peer to and should be in the same region as Datastream, in the following format. projects/{project_id\}/regions/{region_id\}/subnetworks/{subnetwork_id\}
+     */
+    reverseProxySubnet?: string | null;
+    /**
+     * Optional. The root path inside the Cloud Storage bucket. The stream event data will be written to this path. The default value is /migration.
+     */
+    rootPath?: string | null;
+    /**
+     * Required. A /29 CIDR IP range for peering with datastream.
+     */
+    subnetIpRange?: string | null;
+    /**
+     * Required. The username that the Datastream service should use for the MySQL connection.
+     */
+    username?: string | null;
+    /**
+     * Required. Fully qualified name of the Cloud SQL instance's VPC network or the shared VPC network that Datastream will peer to, in the following format: projects/{project_id\}/locations/global/networks/{network_id\}. More context in https://cloud.google.com/datastream/docs/network-connectivity-options#privateconnectivity
+     */
+    vpcNetwork?: string | null;
+  }
+  /**
+   * Configuration information to establish customer database connection before the cutover phase of migration
+   */
+  export interface Schema$CloudSQLConnectionConfig {
+    /**
+     * Required. The hive database name.
+     */
+    hiveDatabaseName?: string | null;
+    /**
+     * Required. Cloud SQL database connection name (project_id:region:instance_name)
+     */
+    instanceConnectionName?: string | null;
+    /**
+     * Required. The private IP address of the Cloud SQL instance.
+     */
+    ipAddress?: string | null;
+    /**
+     * Required. The relative resource name of the subnetwork to be used for Private Service Connect. Note that this cannot be a regular subnet and is used only for NAT. (https://cloud.google.com/vpc/docs/about-vpc-hosted-services#psc-subnets) This subnet is used to publish the SOCKS5 proxy service. The subnet size must be at least /29 and it should reside in a network through which the Cloud SQL instance is accessible. The resource name should be in the format, projects/{project_id\}/regions/{region_id\}/subnetworks/{subnetwork_id\}
+     */
+    natSubnet?: string | null;
+    /**
+     * Required. Input only. The password for the user that Dataproc Metastore service will be using to connect to the database. This field is not returned on request.
+     */
+    password?: string | null;
+    /**
+     * Required. The network port of the database.
+     */
+    port?: number | null;
+    /**
+     * Required. The relative resource name of the subnetwork to deploy the SOCKS5 proxy service in. The subnetwork should reside in a network through which the Cloud SQL instance is accessible. The resource name should be in the format, projects/{project_id\}/regions/{region_id\}/subnetworks/{subnetwork_id\}
+     */
+    proxySubnet?: string | null;
+    /**
+     * Required. The username that Dataproc Metastore service will use to connect to the database.
+     */
+    username?: string | null;
+  }
+  /**
+   * Deprecated: Migrations to Dataproc Metastore are no longer supported. Use BigLake Metastore migration instead. Configuration information for migrating from self-managed hive metastore on Google Cloud using Cloud SQL as the backend database to Dataproc Metastore.
+   */
+  export interface Schema$CloudSQLMigrationConfig {
+    /**
+     * Required. Configuration information to start the Change Data Capture (CDC) streams from customer database to backend database of Dataproc Metastore. Dataproc Metastore switches to using its backend database after the cutover phase of migration.
+     */
+    cdcConfig?: Schema$CdcConfig;
+    /**
+     * Required. Configuration information to establish customer database connection before the cutover phase of migration
+     */
+    cloudSqlConnectionConfig?: Schema$CloudSQLConnectionConfig;
+  }
+  /**
    * Request message for DataprocMetastore.CompleteMigration.
    */
   export interface Schema$CompleteMigrationRequest {}
@@ -1061,6 +1144,10 @@ export namespace metastore_v1alpha {
      */
     biglakeMetastoreMigrationConfig?: Schema$BigLakeMetastoreMigrationConfig;
     /**
+     * Deprecated: Migrations to Dataproc Metastore are no longer supported. Use BigLake Metastore migration instead. Configuration information specific to migrating from self-managed hive metastore on Google Cloud using Cloud SQL as the backend database to Dataproc Metastore.
+     */
+    cloudSqlMigrationConfig?: Schema$CloudSQLMigrationConfig;
+    /**
      * Output only. The time when the migration execution was started.
      */
     createTime?: string | null;
@@ -1567,10 +1654,6 @@ export namespace metastore_v1alpha {
      * Required. The configuration details for the migration.
      */
     migrationExecution?: Schema$MigrationExecution;
-    /**
-     * Optional. The ID to use for the migration execution, which will become the final component of the migration execution's resource name. If not specified, a UUID will be generated.This value must be between 2 and 63 characters long inclusive, begin with a letter, end with a letter or number, and valid characters are a-z0-9-.
-     */
-    migrationExecutionId?: string | null;
     /**
      * Optional. A request ID. Specify a unique request ID to allow the server to ignore the request if it has completed. The server will ignore subsequent requests that provide a duplicate request ID for at least 60 minutes after the first request.For example, if an initial request times out, followed by another request with the same request ID, the server ignores the second request to prevent the creation of duplicate commitments.The request ID must be a valid UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier#Format) A zero UUID (00000000-0000-0000-0000-000000000000) is not supported.
      */
@@ -6464,7 +6547,6 @@ export namespace metastore_v1alpha {
      *       // request body parameters
      *       // {
      *       //   "migrationExecution": {},
-     *       //   "migrationExecutionId": "my_migrationExecutionId",
      *       //   "requestId": "my_requestId"
      *       // }
      *     },
@@ -9921,6 +10003,7 @@ export namespace metastore_v1alpha {
      *   // Example response
      *   // {
      *   //   "biglakeMetastoreMigrationConfig": {},
+     *   //   "cloudSqlMigrationConfig": {},
      *   //   "createTime": "my_createTime",
      *   //   "endTime": "my_endTime",
      *   //   "name": "my_name",

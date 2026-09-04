@@ -217,7 +217,6 @@
         "containers": {
           "methods": {
             "combine": {
-              "deprecated": true,
               "description": "Combines Containers.",
               "flatPath": "tagmanager/v2/accounts/{accountsId}/containers/{containersId}:combine",
               "httpMethod": "POST",
@@ -402,7 +401,6 @@
               ]
             },
             "move_tag_id": {
-              "deprecated": true,
               "description": "Move Tag ID out of a Container.",
               "flatPath": "tagmanager/v2/accounts/{accountsId}/containers/{containersId}:move_tag_id",
               "httpMethod": "POST",
@@ -3990,7 +3988,7 @@
       }
     }
   },
-  "revision": "20260826",
+  "revision": "20260706",
   "rootUrl": "https://tagmanager.googleapis.com/",
   "schemas": {
     "Account": {

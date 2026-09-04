@@ -504,15 +504,6 @@ export namespace firebaseappcheck_v1beta {
     ttl?: string | null;
   }
   /**
-   * Configuration for a limited-use App Check token.
-   */
-  export interface Schema$GoogleFirebaseAppcheckV1betaLimitedUseConfig {
-    /**
-     * Optional. Specifies the desired `jti` claim (Section 4.1.7 of RFC 7519) in the returned App Check token. Limited-use App Check tokens with the same `jti` will be counted as the same token for the purposes of replay protection. The size of this field is limited to 500 bytes. If specified, its length must be at least 16 bytes. If this field is omitted or is empty, a randomly generated `jti` claim with length between 16 and 500 bytes (inclusive) will be used in the returned App Check token. Leaving this field empty is only recommended if your custom attestation provider itself is not vulnerable to replay attacks.
-     */
-    jti?: string | null;
-  }
-  /**
    * Response message for the ListDebugTokens method.
    */
   export interface Schema$GoogleFirebaseAppcheckV1betaListDebugTokensResponse {
@@ -550,32 +541,6 @@ export namespace firebaseappcheck_v1beta {
      * The Services retrieved.
      */
     services?: Schema$GoogleFirebaseAppcheckV1betaService[];
-  }
-  /**
-   * Request message for the MintAppCheckToken method.
-   */
-  export interface Schema$GoogleFirebaseAppcheckV1betaMintAppCheckTokenRequest {
-    /**
-     * Optional. If specified, the returned App Check token will be a limited-use token minted according to the specified configuration options.
-     */
-    limitedUseConfig?: Schema$GoogleFirebaseAppcheckV1betaLimitedUseConfig;
-    /**
-     * Optional. If specified, the returned App Check token will be a session token, valid for the specified duration. Must be between 30 minutes and 7 days, inclusive.
-     */
-    tokenTtl?: string | null;
-  }
-  /**
-   * Response message for the MintAppCheckToken method.
-   */
-  export interface Schema$GoogleFirebaseAppcheckV1betaMintAppCheckTokenResponse {
-    /**
-     * The App Check token, used to access backend services protected by App Check. App Check tokens are signed [JWTs](https://tools.ietf.org/html/rfc7519) containing claims that identify the attested app and GCP project. This token is used to access Google services protected by App Check. These tokens can also be [verified by your own custom backends](https://firebase.google.com/docs/app-check/custom-resource-backend) using the Firebase Admin SDK or third-party libraries.
-     */
-    token?: string | null;
-    /**
-     * The duration from the time this token is minted until its expiration. This field is intended to ease client-side token management, since the client may have clock skew, but is still able to accurately measure a duration.
-     */
-    ttl?: string | null;
   }
   /**
    * An app's Play Integrity configuration object. This configuration controls certain properties of the `AppCheckToken` returned by ExchangePlayIntegrityToken, such as its ttl. Note that your registered SHA-256 certificate fingerprints are used to validate tokens issued by the Play Integrity API; please register them via the Firebase Console or programmatically via the [Firebase Management Service](https://firebase.google.com/docs/projects/api/reference/rest/v1beta1/projects.androidApps.sha/create).
@@ -3696,167 +3661,6 @@ export namespace firebaseappcheck_v1beta {
         );
       }
     }
-
-    /**
-     * Mints a new App Check token for the specified Firebase App. This method is intended to be called from a privileged environment where the caller can be authorized via Cloud IAM; for example, using a service account. To call this method, the caller must have the [`firebaseappcheck.googleapis.com/tokens.mint`](https://firebase.google.com/docs/projects/iam/permissions#app-check) permission. Returns a MintAppCheckTokenResponse.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/firebaseappcheck.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const firebaseappcheck = google.firebaseappcheck('v1beta');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/firebase',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await firebaseappcheck.projects.apps.mintAppCheckToken({
-     *     // Required. The relative resource name of the app, in the format: ``` projects/{project_number\}/apps/{app_id\} ``` If necessary, the `project_number` element can be replaced with the project ID of the Firebase project. Learn more about using project identifiers in Google's [AIP 2510](https://google.aip.dev/cloud/2510) standard.
-     *     app: 'projects/my-project/apps/my-app',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "limitedUseConfig": {},
-     *       //   "tokenTtl": "my_tokenTtl"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "token": "my_token",
-     *   //   "ttl": "my_ttl"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    mintAppCheckToken(
-      params: Params$Resource$Projects$Apps$Mintappchecktoken,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    mintAppCheckToken(
-      params?: Params$Resource$Projects$Apps$Mintappchecktoken,
-      options?: MethodOptions
-    ): Promise<
-      GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1betaMintAppCheckTokenResponse>
-    >;
-    mintAppCheckToken(
-      params: Params$Resource$Projects$Apps$Mintappchecktoken,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    mintAppCheckToken(
-      params: Params$Resource$Projects$Apps$Mintappchecktoken,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaMintAppCheckTokenResponse>,
-      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaMintAppCheckTokenResponse>
-    ): void;
-    mintAppCheckToken(
-      params: Params$Resource$Projects$Apps$Mintappchecktoken,
-      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaMintAppCheckTokenResponse>
-    ): void;
-    mintAppCheckToken(
-      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaMintAppCheckTokenResponse>
-    ): void;
-    mintAppCheckToken(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Apps$Mintappchecktoken
-        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaMintAppCheckTokenResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaMintAppCheckTokenResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaMintAppCheckTokenResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1betaMintAppCheckTokenResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Apps$Mintappchecktoken;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Apps$Mintappchecktoken;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://firebaseappcheck.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1beta/{+app}:mintAppCheckToken').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['app'],
-        pathParams: ['app'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleFirebaseAppcheckV1betaMintAppCheckTokenResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleFirebaseAppcheckV1betaMintAppCheckTokenResponse>(
-          parameters
-        );
-      }
-    }
   }
 
   export interface Params$Resource$Projects$Apps$Exchangeappattestassertion extends StandardParameters {
@@ -3979,17 +3783,6 @@ export namespace firebaseappcheck_v1beta {
      * Request body metadata
      */
     requestBody?: Schema$GoogleFirebaseAppcheckV1betaGeneratePlayIntegrityChallengeRequest;
-  }
-  export interface Params$Resource$Projects$Apps$Mintappchecktoken extends StandardParameters {
-    /**
-     * Required. The relative resource name of the app, in the format: ``` projects/{project_number\}/apps/{app_id\} ``` If necessary, the `project_number` element can be replaced with the project ID of the Firebase project. Learn more about using project identifiers in Google's [AIP 2510](https://google.aip.dev/cloud/2510) standard.
-     */
-    app?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleFirebaseAppcheckV1betaMintAppCheckTokenRequest;
   }
 
   export class Resource$Projects$Apps$Appattestconfig {

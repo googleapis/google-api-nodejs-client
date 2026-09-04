@@ -231,10 +231,6 @@ export namespace ces_v1beta {
      */
     name?: string | null;
     /**
-     * Optional. The remote [A2A](https://github.com/a2aproject/A2A) agent to be used for the agent execution.
-     */
-    remoteA2aAgent?: Schema$AgentRemoteA2aAgent;
-    /**
      * Optional. The remote [Dialogflow](https://cloud.google.com/dialogflow/cx/docs/concept/console-conversational-agents) agent to be used for the agent execution. If this field is set, all other agent level properties will be ignored. Note: If the Dialogflow agent is in a different project from the app, you should grant `roles/dialogflow.client` to the CES service agent `service-@gcp-sa-ces.iam.gserviceaccount.com`.
      */
     remoteDialogflowAgent?: Schema$AgentRemoteDialogflowAgent;
@@ -322,24 +318,6 @@ export namespace ces_v1beta {
    * Default agent type. The agent uses instructions and callbacks specified in the agent to perform the task using a large language model.
    */
   export interface Schema$AgentLlmAgent {}
-  /**
-   * Configuration and status for Agent Registry deployment.
-   */
-  export interface Schema$AgentRegistryDeployment {
-    /**
-     * Optional. Output only. The resource name of the deployed Agent Registry service. Format: `projects/{project\}/locations/{location\}/services/{service\}`
-     */
-    agentRegistryServiceName?: string | null;
-  }
-  /**
-   * The agent which will transfer execution to a remote [A2A](https://github.com/a2aproject/A2A) agent.
-   */
-  export interface Schema$AgentRemoteA2aAgent {
-    /**
-     * Required. The A2A connection configuration.
-     */
-    a2aConfig?: Schema$RemoteA2aConfig;
-  }
   /**
    * The agent which will transfer execution to a remote [Dialogflow CX](https://docs.cloud.google.com/dialogflow/cx/docs/concept/agent) agent. The Dialogflow agent will process subsequent user queries until the session ends or flow ends, and the control is transferred back to the parent CES agent.
    */
@@ -652,10 +630,6 @@ export namespace ces_v1beta {
      */
     createTime?: string | null;
     /**
-     * Optional. App-specific dashboard settings for linking and configuring Contact Center Insights dashboards.
-     */
-    dashboardSettings?: Schema$DashboardSettings;
-    /**
      * Optional. The data store settings for the app.
      */
     dataStoreSettings?: Schema$DataStoreSettings;
@@ -842,10 +816,6 @@ export namespace ces_v1beta {
      * Output only. The snapshot of the app when the version is created.
      */
     snapshot?: Schema$AppSnapshot;
-    /**
-     * Output only. Timestamp when the app version was last updated.
-     */
-    updateTime?: string | null;
   }
   /**
    * Configuration for how the input and output audio should be processed and delivered.
@@ -1234,10 +1204,6 @@ export namespace ces_v1beta {
      * List of cited pieces of information.
      */
     citedChunks?: Schema$CitationsCitedChunk[];
-    /**
-     * Optional. List of inline citations in the agent response.
-     */
-    inlineCitations?: Schema$CitationsInlineCitation[];
   }
   /**
    * Piece of cited information.
@@ -1259,23 +1225,6 @@ export namespace ces_v1beta {
      * URI used for citation.
      */
     uri?: string | null;
-  }
-  /**
-   * An inline citation in the response text.
-   */
-  export interface Schema$CitationsInlineCitation {
-    /**
-     * The indices of the cited chunks that back this text segment. Indices refer to the elements in `cited_chunks`.
-     */
-    citedChunkIndices?: number[] | null;
-    /**
-     * The ending index (in bytes) of the text segment in the agent response.
-     */
-    endIndex?: number | null;
-    /**
-     * The starting index (in bytes) of the text segment in the agent response.
-     */
-    startIndex?: number | null;
   }
   /**
    * Settings for custom client certificates.
@@ -1454,22 +1403,21 @@ export namespace ces_v1beta {
      */
     messages?: Schema$Message[];
     /**
+     * Output only. The full dynamically resolved developer instruction generated from templates. This field is only populated on-demand when requested during history retrieval. It is not persisted.
+     */
+    resolvedDeveloperInstruction?: string | null;
+    /**
      * Optional. The root span of the action processing.
      */
     rootSpan?: Schema$Span;
     /**
+     * Optional. Variables or configurations referenced by the template engine during dynamic prompt generation. This allows reconstructing the exact prompt sent to the model for this turn.
+     */
+    templateAttributes?: {[key: string]: any} | null;
+    /**
      * Optional. The intended ground-truth text from the Simulated Caller (Polysynth). Only populated when word error rate metrics are enabled.
      */
     userIntendedText?: string | null;
-  }
-  /**
-   * Settings for dashboards associated with the app, that show up in the Monitoring view.
-   */
-  export interface Schema$DashboardSettings {
-    /**
-     * Optional. The resource name of the default Contact Center Insights dashboard associated with the app. This is the dashboard that will be displayed when users navigate to the Monitoring view for the app. Format: `projects/{project\}/locations/{location\}/dashboards/{dashboard\}`
-     */
-    defaultDashboard?: string | null;
   }
   /**
    * A DataStore resource in Vertex AI Search.
@@ -1738,10 +1686,6 @@ export namespace ces_v1beta {
      * Optional. Whether snippets are enabled.
      */
     enableSnippets?: boolean | null;
-    /**
-     * Optional. Number of snippets to return per query. If unset, returns all snippets from the service by default.
-     */
-    maxSnippets?: number | null;
   }
   /**
    * Summarization configuration.
@@ -1765,22 +1709,9 @@ export namespace ces_v1beta {
    */
   export interface Schema$DeleteEvaluationRunOperationMetadata {}
   /**
-   * Response message for AgentService.DeployChannel.
-   */
-  export interface Schema$DeployChannelResponse {
-    /**
-     * The created deployment.
-     */
-    deployment?: Schema$Deployment;
-  }
-  /**
    * A deployment represents an immutable, queryable version of the app. It is used to deploy an app version with a specific channel profile.
    */
   export interface Schema$Deployment {
-    /**
-     * Optional. Configuration for deploying this deployment to Agent Registry. If present, this deployment will be published to Agent Registry.
-     */
-    agentRegistryDeployment?: Schema$AgentRegistryDeployment;
     /**
      * Optional. The resource name of the app version to deploy. Format: `projects/{project\}/locations/{location\}/apps/{app\}/versions/{version\}` Use `projects/{project\}/locations/{location\}/apps/{app\}/versions/-` to use the draft app.
      */
@@ -4113,10 +4044,6 @@ export namespace ces_v1beta {
    */
   export interface Schema$Image {
     /**
-     * Optional. The alternative text for the image.
-     */
-    altText?: string | null;
-    /**
      * Required. Raw bytes of the image.
      */
     data?: string | null;
@@ -4153,14 +4080,6 @@ export namespace ces_v1beta {
      * Optional. Options governing the import process for the app.
      */
     importOptions?: Schema$ImportAppRequestImportOptions;
-    /**
-     * Optional. Patch content as a JSON string.
-     */
-    jsonPatchContent?: string | null;
-    /**
-     * Optional. A Cloud Storage URI pointing to a JSON file containing the patches.
-     */
-    jsonPatchGcsUri?: string | null;
   }
   /**
    * Configuration options for the app import process. These options control how the import behaves, particularly when conflicts arise with existing app data.
@@ -5022,27 +4941,6 @@ export namespace ces_v1beta {
     task?: Schema$LfA2aV1Task;
   }
   /**
-   * A wrapper object used in streaming operations to encapsulate different types of response data.
-   */
-  export interface Schema$LfA2aV1StreamResponse {
-    /**
-     * An event indicating a task artifact update.
-     */
-    artifactUpdate?: Schema$LfA2aV1TaskArtifactUpdateEvent;
-    /**
-     * A Message object containing a message from the agent.
-     */
-    message?: Schema$LfA2aV1Message;
-    /**
-     * An event indicating a task status update.
-     */
-    statusUpdate?: Schema$LfA2aV1TaskStatusUpdateEvent;
-    /**
-     * A Task object containing the current state of the task.
-     */
-    task?: Schema$LfA2aV1Task;
-  }
-  /**
    * protolint:disable REPEATED_FIELD_NAMES_PLURALIZED A list of strings.
    */
   export interface Schema$LfA2aV1StringList {
@@ -5079,35 +4977,6 @@ export namespace ces_v1beta {
      * Required. The current status of a `Task`, including `state` and a `message`.
      */
     status?: Schema$LfA2aV1TaskStatus;
-  }
-  /**
-   * A task delta where an artifact has been generated.
-   */
-  export interface Schema$LfA2aV1TaskArtifactUpdateEvent {
-    /**
-     * If true, the content of this artifact should be appended to a previously sent artifact with the same ID.
-     */
-    append?: boolean | null;
-    /**
-     * Required. The artifact that was generated or updated.
-     */
-    artifact?: Schema$LfA2aV1Artifact;
-    /**
-     * Required. The ID of the context that this task belongs to.
-     */
-    contextId?: string | null;
-    /**
-     * If true, this is the final chunk of the artifact.
-     */
-    lastChunk?: boolean | null;
-    /**
-     * Optional. Metadata associated with the artifact update.
-     */
-    metadata?: {[key: string]: any} | null;
-    /**
-     * Required. The ID of the task for this artifact.
-     */
-    taskId?: string | null;
   }
   /**
    * A container associating a push notification configuration with a specific task.
@@ -5154,27 +5023,6 @@ export namespace ces_v1beta {
      * ISO 8601 Timestamp when the status was recorded. Example: "2023-10-27T10:00:00Z"
      */
     timestamp?: string | null;
-  }
-  /**
-   * An event sent by the agent to notify the client of a change in a task's status.
-   */
-  export interface Schema$LfA2aV1TaskStatusUpdateEvent {
-    /**
-     * Required. The ID of the context that the task belongs to.
-     */
-    contextId?: string | null;
-    /**
-     * Optional. Metadata associated with the task update.
-     */
-    metadata?: {[key: string]: any} | null;
-    /**
-     * Required. The new status of the task.
-     */
-    status?: Schema$LfA2aV1TaskStatus;
-    /**
-     * Required. The ID of the task that has changed.
-     */
-    taskId?: string | null;
   }
   /**
    * Response message for AgentService.ListAgents.
@@ -5968,39 +5816,6 @@ export namespace ces_v1beta {
     inspectTemplate?: string | null;
   }
   /**
-   * Shared configuration for connecting to a remote [A2A](https://github.com/a2aproject/A2A) agent.
-   */
-  export interface Schema$RemoteA2aConfig {
-    /**
-     * Optional. The full agent card defined inline.
-     */
-    agentCard?: Schema$AgentCard;
-    /**
-     * Optional. Reference to the agent in the Agent Registry. Format: `projects/{project\}/locations/{location\}/agents/{agent\}`
-     */
-    agentRegistry?: string | null;
-    /**
-     * Optional. Authentication configuration for calling the remote agent. Optional if the registry reference already handles authentication.
-     */
-    apiAuthentication?: Schema$ApiAuthentication;
-    /**
-     * Optional. If not empty, interactions with the remote A2A agent will use this context ID. This context_id field can refer to a session variable like `$context.variables.order_agent_session_id`.
-     */
-    contextId?: string | null;
-    /**
-     * Optional. Mapping of input variable names of remote agent to GECX variable names.
-     */
-    inputVariableMapping?: {[key: string]: string} | null;
-    /**
-     * Optional. Mapping of output variable names of remote agent to GECX variable names.
-     */
-    outputVariableMapping?: {[key: string]: string} | null;
-    /**
-     * Optional. Whether streaming is enabled for the remote agent.
-     */
-    streamingEnabled?: boolean | null;
-  }
-  /**
    * Represents a tool that allows the agent to call another remote agent.
    */
   export interface Schema$RemoteAgentTool {
@@ -6008,10 +5823,6 @@ export namespace ces_v1beta {
      * Required. The agent card of the remote agent that this tool invokes.
      */
     agentCard?: Schema$AgentCard;
-    /**
-     * Optional. Authentication configuration for calling the remote agent.
-     */
-    apiAuthentication?: Schema$ApiAuthentication;
     /**
      * Required. The description of the tool.
      */
@@ -6515,10 +6326,6 @@ export namespace ces_v1beta {
      */
     googleSearchSuggestions?: Schema$GoogleSearchSuggestions;
     /**
-     * Output image from the CES agent.
-     */
-    image?: Schema$Image;
-    /**
      * Custom payload with structured output from the CES agent.
      */
     payload?: {[key: string]: any} | null;
@@ -6787,10 +6594,6 @@ export namespace ces_v1beta {
    */
   export interface Schema$ToolCall {
     /**
-     * Output only. Human-readable name of the agent that issued this call, e.g. "Contract Architect". Empty when the root agent issued it.
-     */
-    agentName?: string | null;
-    /**
      * Optional. The input parameters and values for the tool in JSON object format.
      */
     args?: {[key: string]: any} | null;
@@ -6802,10 +6605,6 @@ export namespace ces_v1beta {
      * Optional. The unique identifier of the tool call. If populated, the client should return the execution result with the matching ID in ToolResponse.
      */
     id?: string | null;
-    /**
-     * Output only. The id of the tool call that caused this one, when it was issued by a sub-agent working on behalf of a parent call. Empty for top-level calls. Lets a client group a sub-agent's work under the call that started it instead of rendering every step as a sibling.
-     */
-    parentToolCallId?: string | null;
     /**
      * Optional. The name of the tool to execute. Format: `projects/{project\}/locations/{location\}/apps/{app\}/tools/{tool\}`
      */
@@ -6842,10 +6641,6 @@ export namespace ces_v1beta {
    */
   export interface Schema$ToolResponse {
     /**
-     * Output only. Human-readable name of the agent that issued this call, e.g. "Contract Architect". Empty when the root agent issued it.
-     */
-    agentName?: string | null;
-    /**
      * Output only. Display name of the tool.
      */
     displayName?: string | null;
@@ -6853,10 +6648,6 @@ export namespace ces_v1beta {
      * Optional. The matching ID of the tool call the response is for.
      */
     id?: string | null;
-    /**
-     * Output only. The id of the tool call that caused this one, when it was issued by a sub-agent working on behalf of a parent call. Empty for top-level calls. Lets a client group a sub-agent's work under the call that started it instead of rendering every step as a sibling.
-     */
-    parentToolCallId?: string | null;
     /**
      * Required. The tool execution result in JSON object format. Use "output" key to specify tool response and "error" key to specify error details (if any). If "output" and "error" keys are not specified, then whole "response" is treated as tool execution result.
      */
@@ -7976,7 +7767,6 @@ export namespace ces_v1beta {
      *       //   "audioProcessingConfig": {},
      *       //   "clientCertificateSettings": {},
      *       //   "createTime": "my_createTime",
-     *       //   "dashboardSettings": {},
      *       //   "dataStoreSettings": {},
      *       //   "defaultChannelProfile": {},
      *       //   "deploymentCount": 0,
@@ -8774,7 +8564,6 @@ export namespace ces_v1beta {
      *   //   "audioProcessingConfig": {},
      *   //   "clientCertificateSettings": {},
      *   //   "createTime": "my_createTime",
-     *   //   "dashboardSettings": {},
      *   //   "dataStoreSettings": {},
      *   //   "defaultChannelProfile": {},
      *   //   "deploymentCount": 0,
@@ -9098,9 +8887,7 @@ export namespace ces_v1beta {
      *       //   "displayName": "my_displayName",
      *       //   "gcsUri": "my_gcsUri",
      *       //   "ignoreAppLock": false,
-     *       //   "importOptions": {},
-     *       //   "jsonPatchContent": "my_jsonPatchContent",
-     *       //   "jsonPatchGcsUri": "my_jsonPatchGcsUri"
+     *       //   "importOptions": {}
      *       // }
      *     },
      *   });
@@ -9561,7 +9348,6 @@ export namespace ces_v1beta {
      *       //   "audioProcessingConfig": {},
      *       //   "clientCertificateSettings": {},
      *       //   "createTime": "my_createTime",
-     *       //   "dashboardSettings": {},
      *       //   "dataStoreSettings": {},
      *       //   "defaultChannelProfile": {},
      *       //   "deploymentCount": 0,
@@ -9599,7 +9385,6 @@ export namespace ces_v1beta {
      *   //   "audioProcessingConfig": {},
      *   //   "clientCertificateSettings": {},
      *   //   "createTime": "my_createTime",
-     *   //   "dashboardSettings": {},
      *   //   "dataStoreSettings": {},
      *   //   "defaultChannelProfile": {},
      *   //   "deploymentCount": 0,
@@ -10422,7 +10207,6 @@ export namespace ces_v1beta {
      *       //   "llmAgent": {},
      *       //   "modelSettings": {},
      *       //   "name": "my_name",
-     *       //   "remoteA2aAgent": {},
      *       //   "remoteDialogflowAgent": {},
      *       //   "tools": [],
      *       //   "toolsets": [],
@@ -10453,7 +10237,6 @@ export namespace ces_v1beta {
      *   //   "llmAgent": {},
      *   //   "modelSettings": {},
      *   //   "name": "my_name",
-     *   //   "remoteA2aAgent": {},
      *   //   "remoteDialogflowAgent": {},
      *   //   "tools": [],
      *   //   "toolsets": [],
@@ -10753,7 +10536,6 @@ export namespace ces_v1beta {
      *   //   "llmAgent": {},
      *   //   "modelSettings": {},
      *   //   "name": "my_name",
-     *   //   "remoteA2aAgent": {},
      *   //   "remoteDialogflowAgent": {},
      *   //   "tools": [],
      *   //   "toolsets": [],
@@ -11063,7 +10845,6 @@ export namespace ces_v1beta {
      *       //   "llmAgent": {},
      *       //   "modelSettings": {},
      *       //   "name": "my_name",
-     *       //   "remoteA2aAgent": {},
      *       //   "remoteDialogflowAgent": {},
      *       //   "tools": [],
      *       //   "toolsets": [],
@@ -11094,7 +10875,6 @@ export namespace ces_v1beta {
      *   //   "llmAgent": {},
      *   //   "modelSettings": {},
      *   //   "name": "my_name",
-     *   //   "remoteA2aAgent": {},
      *   //   "remoteDialogflowAgent": {},
      *   //   "tools": [],
      *   //   "toolsets": [],
@@ -12088,6 +11868,8 @@ export namespace ces_v1beta {
      *     name: 'projects/my-project/locations/my-location/apps/my-app/conversations/my-conversation',
      *     // Optional. Indicate the source of the conversation. If not set, all source will be searched.
      *     source: 'placeholder-value',
+     *     // Optional. The view specifying which fields in the response should be populated.
+     *     view: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -12399,6 +12181,10 @@ export namespace ces_v1beta {
      * Optional. Indicate the source of the conversation. If not set, all source will be searched.
      */
     source?: string;
+    /**
+     * Optional. The view specifying which fields in the response should be populated.
+     */
+    view?: string;
   }
   export interface Params$Resource$Projects$Locations$Apps$Conversations$List extends StandardParameters {
     /**
@@ -12480,7 +12266,6 @@ export namespace ces_v1beta {
      *     requestBody: {
      *       // request body parameters
      *       // {
-     *       //   "agentRegistryDeployment": {},
      *       //   "appVersion": "my_appVersion",
      *       //   "channelProfile": {},
      *       //   "createTime": "my_createTime",
@@ -12500,7 +12285,6 @@ export namespace ces_v1beta {
      *
      *   // Example response
      *   // {
-     *   //   "agentRegistryDeployment": {},
      *   //   "appVersion": "my_appVersion",
      *   //   "channelProfile": {},
      *   //   "createTime": "my_createTime",
@@ -12789,7 +12573,6 @@ export namespace ces_v1beta {
      *
      *   // Example response
      *   // {
-     *   //   "agentRegistryDeployment": {},
      *   //   "appVersion": "my_appVersion",
      *   //   "channelProfile": {},
      *   //   "createTime": "my_createTime",
@@ -13245,7 +13028,6 @@ export namespace ces_v1beta {
      *     requestBody: {
      *       // request body parameters
      *       // {
-     *       //   "agentRegistryDeployment": {},
      *       //   "appVersion": "my_appVersion",
      *       //   "channelProfile": {},
      *       //   "createTime": "my_createTime",
@@ -13265,7 +13047,6 @@ export namespace ces_v1beta {
      *
      *   // Example response
      *   // {
-     *   //   "agentRegistryDeployment": {},
      *   //   "appVersion": "my_appVersion",
      *   //   "channelProfile": {},
      *   //   "createTime": "my_createTime",
@@ -13606,176 +13387,9 @@ export namespace ces_v1beta {
         return createAPIRequest<Schema$LfA2aV1SendMessageResponse>(parameters);
       }
     }
-
-    /**
-     * Sends a streaming message to an agent, allowing for real-time interaction and status updates. Streaming version of `SendMessage`
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/ces.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const ces = google.ces('v1beta');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/ces',
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await ces.projects.locations.apps.deployments.message.stream({
-     *     // Optional. Opaque routing identifier. Must match the `tenant` value from the selected `AgentInterface` in the Agent Card when that field is set.
-     *     tenant:
-     *       'projects/my-project/locations/my-location/apps/my-app/deployments/my-deployment',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "configuration": {},
-     *       //   "message": {},
-     *       //   "metadata": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "artifactUpdate": {},
-     *   //   "message": {},
-     *   //   "statusUpdate": {},
-     *   //   "task": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    stream(
-      params: Params$Resource$Projects$Locations$Apps$Deployments$Message$Stream,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    stream(
-      params?: Params$Resource$Projects$Locations$Apps$Deployments$Message$Stream,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$LfA2aV1StreamResponse>>;
-    stream(
-      params: Params$Resource$Projects$Locations$Apps$Deployments$Message$Stream,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    stream(
-      params: Params$Resource$Projects$Locations$Apps$Deployments$Message$Stream,
-      options:
-        MethodOptions | BodyResponseCallback<Schema$LfA2aV1StreamResponse>,
-      callback: BodyResponseCallback<Schema$LfA2aV1StreamResponse>
-    ): void;
-    stream(
-      params: Params$Resource$Projects$Locations$Apps$Deployments$Message$Stream,
-      callback: BodyResponseCallback<Schema$LfA2aV1StreamResponse>
-    ): void;
-    stream(callback: BodyResponseCallback<Schema$LfA2aV1StreamResponse>): void;
-    stream(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Apps$Deployments$Message$Stream
-        | BodyResponseCallback<Schema$LfA2aV1StreamResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$LfA2aV1StreamResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$LfA2aV1StreamResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$LfA2aV1StreamResponse>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Apps$Deployments$Message$Stream;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Apps$Deployments$Message$Stream;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://ces.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1beta/{+tenant}/message:stream').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['tenant'],
-        pathParams: ['tenant'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$LfA2aV1StreamResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$LfA2aV1StreamResponse>(parameters);
-      }
-    }
   }
 
   export interface Params$Resource$Projects$Locations$Apps$Deployments$Message$Send extends StandardParameters {
-    /**
-     * Optional. Opaque routing identifier. Must match the `tenant` value from the selected `AgentInterface` in the Agent Card when that field is set.
-     */
-    tenant?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$LfA2aV1SendMessageRequest;
-  }
-  export interface Params$Resource$Projects$Locations$Apps$Deployments$Message$Stream extends StandardParameters {
     /**
      * Optional. Opaque routing identifier. Must match the `tenant` value from the selected `AgentInterface` in the Agent Card when that field is set.
      */
@@ -20065,174 +19679,9 @@ export namespace ces_v1beta {
         return createAPIRequest<Schema$LfA2aV1SendMessageResponse>(parameters);
       }
     }
-
-    /**
-     * Sends a streaming message to an agent, allowing for real-time interaction and status updates. Streaming version of `SendMessage`
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/ces.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const ces = google.ces('v1beta');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/ces',
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await ces.projects.locations.apps.message.stream({
-     *     // Optional. Opaque routing identifier. Must match the `tenant` value from the selected `AgentInterface` in the Agent Card when that field is set.
-     *     tenant: 'projects/my-project/locations/my-location/apps/my-app',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "configuration": {},
-     *       //   "message": {},
-     *       //   "metadata": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "artifactUpdate": {},
-     *   //   "message": {},
-     *   //   "statusUpdate": {},
-     *   //   "task": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    stream(
-      params: Params$Resource$Projects$Locations$Apps$Message$Stream,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    stream(
-      params?: Params$Resource$Projects$Locations$Apps$Message$Stream,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$LfA2aV1StreamResponse>>;
-    stream(
-      params: Params$Resource$Projects$Locations$Apps$Message$Stream,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    stream(
-      params: Params$Resource$Projects$Locations$Apps$Message$Stream,
-      options:
-        MethodOptions | BodyResponseCallback<Schema$LfA2aV1StreamResponse>,
-      callback: BodyResponseCallback<Schema$LfA2aV1StreamResponse>
-    ): void;
-    stream(
-      params: Params$Resource$Projects$Locations$Apps$Message$Stream,
-      callback: BodyResponseCallback<Schema$LfA2aV1StreamResponse>
-    ): void;
-    stream(callback: BodyResponseCallback<Schema$LfA2aV1StreamResponse>): void;
-    stream(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Apps$Message$Stream
-        | BodyResponseCallback<Schema$LfA2aV1StreamResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$LfA2aV1StreamResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$LfA2aV1StreamResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$LfA2aV1StreamResponse>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Apps$Message$Stream;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Apps$Message$Stream;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://ces.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1beta/{+tenant}/message:stream').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['tenant'],
-        pathParams: ['tenant'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$LfA2aV1StreamResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$LfA2aV1StreamResponse>(parameters);
-      }
-    }
   }
 
   export interface Params$Resource$Projects$Locations$Apps$Message$Send extends StandardParameters {
-    /**
-     * Optional. Opaque routing identifier. Must match the `tenant` value from the selected `AgentInterface` in the Agent Card when that field is set.
-     */
-    tenant?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$LfA2aV1SendMessageRequest;
-  }
-  export interface Params$Resource$Projects$Locations$Apps$Message$Stream extends StandardParameters {
     /**
      * Optional. Opaque routing identifier. Must match the `tenant` value from the selected `AgentInterface` in the Agent Card when that field is set.
      */
@@ -23596,8 +23045,7 @@ export namespace ces_v1beta {
      *       //   "displayName": "my_displayName",
      *       //   "etag": "my_etag",
      *       //   "name": "my_name",
-     *       //   "snapshot": {},
-     *       //   "updateTime": "my_updateTime"
+     *       //   "snapshot": {}
      *       // }
      *     },
      *   });
@@ -23611,8 +23059,7 @@ export namespace ces_v1beta {
      *   //   "displayName": "my_displayName",
      *   //   "etag": "my_etag",
      *   //   "name": "my_name",
-     *   //   "snapshot": {},
-     *   //   "updateTime": "my_updateTime"
+     *   //   "snapshot": {}
      *   // }
      * }
      *
@@ -23893,8 +23340,7 @@ export namespace ces_v1beta {
      *   //   "displayName": "my_displayName",
      *   //   "etag": "my_etag",
      *   //   "name": "my_name",
-     *   //   "snapshot": {},
-     *   //   "updateTime": "my_updateTime"
+     *   //   "snapshot": {}
      *   // }
      * }
      *
@@ -24297,166 +23743,6 @@ export namespace ces_v1beta {
     }
 
     /**
-     * Updates the specified app version.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/ces.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const ces = google.ces('v1beta');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/ces',
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await ces.projects.locations.apps.versions.patch({
-     *     // Identifier. The unique identifier of the app version. Format: `projects/{project\}/locations/{location\}/apps/{app\}/versions/{version\}`
-     *     name: 'projects/my-project/locations/my-location/apps/my-app/versions/my-version',
-     *     // Optional. The list of fields to update. If empty, fields `display_name` and `description` will be updated.
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "createTime": "my_createTime",
-     *       //   "creator": "my_creator",
-     *       //   "description": "my_description",
-     *       //   "displayName": "my_displayName",
-     *       //   "etag": "my_etag",
-     *       //   "name": "my_name",
-     *       //   "snapshot": {},
-     *       //   "updateTime": "my_updateTime"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "createTime": "my_createTime",
-     *   //   "creator": "my_creator",
-     *   //   "description": "my_description",
-     *   //   "displayName": "my_displayName",
-     *   //   "etag": "my_etag",
-     *   //   "name": "my_name",
-     *   //   "snapshot": {},
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    patch(
-      params: Params$Resource$Projects$Locations$Apps$Versions$Patch,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    patch(
-      params?: Params$Resource$Projects$Locations$Apps$Versions$Patch,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$AppVersion>>;
-    patch(
-      params: Params$Resource$Projects$Locations$Apps$Versions$Patch,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    patch(
-      params: Params$Resource$Projects$Locations$Apps$Versions$Patch,
-      options: MethodOptions | BodyResponseCallback<Schema$AppVersion>,
-      callback: BodyResponseCallback<Schema$AppVersion>
-    ): void;
-    patch(
-      params: Params$Resource$Projects$Locations$Apps$Versions$Patch,
-      callback: BodyResponseCallback<Schema$AppVersion>
-    ): void;
-    patch(callback: BodyResponseCallback<Schema$AppVersion>): void;
-    patch(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Apps$Versions$Patch
-        | BodyResponseCallback<Schema$AppVersion>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$AppVersion>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        BodyResponseCallback<Schema$AppVersion> | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$AppVersion>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Apps$Versions$Patch;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Apps$Versions$Patch;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://ces.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'PATCH',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$AppVersion>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$AppVersion>(parameters);
-      }
-    }
-
-    /**
      * Restores the specified app version. This will create a new app version from the current draft app and overwrite the current draft with the specified app version.
      * @example
      * ```js
@@ -24665,21 +23951,6 @@ export namespace ces_v1beta {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Apps$Versions$Patch extends StandardParameters {
-    /**
-     * Identifier. The unique identifier of the app version. Format: `projects/{project\}/locations/{location\}/apps/{app\}/versions/{version\}`
-     */
-    name?: string;
-    /**
-     * Optional. The list of fields to update. If empty, fields `display_name` and `description` will be updated.
-     */
-    updateMask?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$AppVersion;
-  }
   export interface Params$Resource$Projects$Locations$Apps$Versions$Restore extends StandardParameters {
     /**
      * Required. The resource name of the app version to restore.
@@ -24853,176 +24124,9 @@ export namespace ces_v1beta {
         return createAPIRequest<Schema$LfA2aV1SendMessageResponse>(parameters);
       }
     }
-
-    /**
-     * Sends a streaming message to an agent, allowing for real-time interaction and status updates. Streaming version of `SendMessage`
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/ces.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const ces = google.ces('v1beta');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/ces',
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await ces.projects.locations.apps.versions.message.stream({
-     *     // Optional. Opaque routing identifier. Must match the `tenant` value from the selected `AgentInterface` in the Agent Card when that field is set.
-     *     tenant:
-     *       'projects/my-project/locations/my-location/apps/my-app/versions/my-version',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "configuration": {},
-     *       //   "message": {},
-     *       //   "metadata": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "artifactUpdate": {},
-     *   //   "message": {},
-     *   //   "statusUpdate": {},
-     *   //   "task": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    stream(
-      params: Params$Resource$Projects$Locations$Apps$Versions$Message$Stream,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    stream(
-      params?: Params$Resource$Projects$Locations$Apps$Versions$Message$Stream,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$LfA2aV1StreamResponse>>;
-    stream(
-      params: Params$Resource$Projects$Locations$Apps$Versions$Message$Stream,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    stream(
-      params: Params$Resource$Projects$Locations$Apps$Versions$Message$Stream,
-      options:
-        MethodOptions | BodyResponseCallback<Schema$LfA2aV1StreamResponse>,
-      callback: BodyResponseCallback<Schema$LfA2aV1StreamResponse>
-    ): void;
-    stream(
-      params: Params$Resource$Projects$Locations$Apps$Versions$Message$Stream,
-      callback: BodyResponseCallback<Schema$LfA2aV1StreamResponse>
-    ): void;
-    stream(callback: BodyResponseCallback<Schema$LfA2aV1StreamResponse>): void;
-    stream(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Apps$Versions$Message$Stream
-        | BodyResponseCallback<Schema$LfA2aV1StreamResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$LfA2aV1StreamResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$LfA2aV1StreamResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$LfA2aV1StreamResponse>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Apps$Versions$Message$Stream;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Apps$Versions$Message$Stream;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://ces.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1beta/{+tenant}/message:stream').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['tenant'],
-        pathParams: ['tenant'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$LfA2aV1StreamResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$LfA2aV1StreamResponse>(parameters);
-      }
-    }
   }
 
   export interface Params$Resource$Projects$Locations$Apps$Versions$Message$Send extends StandardParameters {
-    /**
-     * Optional. Opaque routing identifier. Must match the `tenant` value from the selected `AgentInterface` in the Agent Card when that field is set.
-     */
-    tenant?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$LfA2aV1SendMessageRequest;
-  }
-  export interface Params$Resource$Projects$Locations$Apps$Versions$Message$Stream extends StandardParameters {
     /**
      * Optional. Opaque routing identifier. Must match the `tenant` value from the selected `AgentInterface` in the Agent Card when that field is set.
      */

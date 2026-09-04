@@ -951,34 +951,6 @@
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
-                    "getIamPolicy": {
-                      "description": "Gets IAM policies on a WorkforcePool.",
-                      "flatPath": "v1/locations/{locationsId}/workforcePools/{workforcePoolsId}/providers/{providersId}/scimTenants/{scimTenantsId}:getIamPolicy",
-                      "httpMethod": "POST",
-                      "id": "iam.locations.workforcePools.providers.scimTenants.getIamPolicy",
-                      "parameterOrder": [
-                        "resource"
-                      ],
-                      "parameters": {
-                        "resource": {
-                          "description": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
-                          "location": "path",
-                          "pattern": "^locations/[^/]+/workforcePools/[^/]+/providers/[^/]+/scimTenants/[^/]+$",
-                          "required": true,
-                          "type": "string"
-                        }
-                      },
-                      "path": "v1/{+resource}:getIamPolicy",
-                      "request": {
-                        "$ref": "GetIamPolicyRequest"
-                      },
-                      "response": {
-                        "$ref": "Policy"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
-                      ]
-                    },
                     "list": {
                       "description": "Gemini Enterprise only. Lists all non-deleted WorkforcePoolProviderScimTenants in a WorkforcePoolProvider. If `show_deleted` is set to `true`, then deleted SCIM tenants are also listed.",
                       "flatPath": "v1/locations/{locationsId}/workforcePools/{workforcePoolsId}/providers/{providersId}/scimTenants",
@@ -1049,62 +1021,6 @@
                       },
                       "response": {
                         "$ref": "WorkforcePoolProviderScimTenant"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
-                      ]
-                    },
-                    "setIamPolicy": {
-                      "description": "Sets IAM policies on a WorkforcePool.",
-                      "flatPath": "v1/locations/{locationsId}/workforcePools/{workforcePoolsId}/providers/{providersId}/scimTenants/{scimTenantsId}:setIamPolicy",
-                      "httpMethod": "POST",
-                      "id": "iam.locations.workforcePools.providers.scimTenants.setIamPolicy",
-                      "parameterOrder": [
-                        "resource"
-                      ],
-                      "parameters": {
-                        "resource": {
-                          "description": "REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
-                          "location": "path",
-                          "pattern": "^locations/[^/]+/workforcePools/[^/]+/providers/[^/]+/scimTenants/[^/]+$",
-                          "required": true,
-                          "type": "string"
-                        }
-                      },
-                      "path": "v1/{+resource}:setIamPolicy",
-                      "request": {
-                        "$ref": "SetIamPolicyRequest"
-                      },
-                      "response": {
-                        "$ref": "Policy"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
-                      ]
-                    },
-                    "testIamPermissions": {
-                      "description": "Returns the caller's permissions on the WorkforcePool. If the pool doesn't exist, this call returns an empty set of permissions. It doesn't return a `NOT_FOUND` error.",
-                      "flatPath": "v1/locations/{locationsId}/workforcePools/{workforcePoolsId}/providers/{providersId}/scimTenants/{scimTenantsId}:testIamPermissions",
-                      "httpMethod": "POST",
-                      "id": "iam.locations.workforcePools.providers.scimTenants.testIamPermissions",
-                      "parameterOrder": [
-                        "resource"
-                      ],
-                      "parameters": {
-                        "resource": {
-                          "description": "REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
-                          "location": "path",
-                          "pattern": "^locations/[^/]+/workforcePools/[^/]+/providers/[^/]+/scimTenants/[^/]+$",
-                          "required": true,
-                          "type": "string"
-                        }
-                      },
-                      "path": "v1/{+resource}:testIamPermissions",
-                      "request": {
-                        "$ref": "TestIamPermissionsRequest"
-                      },
-                      "response": {
-                        "$ref": "TestIamPermissionsResponse"
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform"
@@ -4341,7 +4257,7 @@
       }
     }
   },
-  "revision": "20260828",
+  "revision": "20260807",
   "rootUrl": "https://iam.googleapis.com/",
   "schemas": {
     "AccessRestrictions": {
