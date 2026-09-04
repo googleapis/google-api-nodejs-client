@@ -9618,7 +9618,7 @@
       }
     }
   },
-  "revision": "20260811",
+  "revision": "20260902",
   "rootUrl": "https://displayvideo.googleapis.com/",
   "schemas": {
     "ActiveViewVideoViewabilityMetricConfig": {
@@ -9904,7 +9904,7 @@
       "type": "object"
     },
     "AdGroupAd": {
-      "description": "A single ad associated with an ad group.",
+      "description": "LINT: LEGACY_NAMES A single ad associated with an ad group.",
       "id": "AdGroupAd",
       "properties": {
         "adGroupAdId": {
@@ -16729,7 +16729,7 @@
       "id": "DigitalContentLabelAssignedTargetingOptionDetails",
       "properties": {
         "excludedContentRatingTier": {
-          "description": "Required. The display name of the digital content label rating tier to be EXCLUDED.",
+          "description": "Required. The display name of the digital content label rating tier to be EXCLUDED. **Starting on *October 1, 2026*, this field will only accept the value `CONTENT_RATING_TIER_UNRATED`. All other values will be deprecated and no longer be accepted.**",
           "enum": [
             "CONTENT_RATING_TIER_UNSPECIFIED",
             "CONTENT_RATING_TIER_UNRATED",
@@ -16740,13 +16740,13 @@
             "CONTENT_RATING_TIER_FAMILIES"
           ],
           "enumDescriptions": [
-            "Content label is not specified in this version. This enum is a place holder for a default value and does not represent a real content rating.",
+            "Content label is not specified in this version. This enum is a place holder for a default value and does not represent a real content rating. **Starting on *October 1, 2026*, this value will be deprecated and no longer be accepted as a valid value when assigning targeting.**",
             "Content that has not been labeled.",
-            "Content suitable for general audiences.",
-            "Content suitable for most audiences with parental guidance.",
-            "Content suitable for teen and older audiences.",
-            "Content suitable only for mature audiences.",
-            "Content suitable for family audiences. It is a subset of CONTENT_RATING_TIER_GENERAL. Only applicable to YouTube and Partners line items."
+            "Content suitable for general audiences. **Starting on *October 1, 2026*, this value will be deprecated and no longer be accepted as a valid value when assigning targeting.**",
+            "Content suitable for most audiences with parental guidance. **Starting on *October 1, 2026*, this value will be deprecated and no longer be accepted as a valid value when assigning targeting.**",
+            "Content suitable for teen and older audiences. **Starting on *October 1, 2026*, this value will be deprecated and no longer be accepted as a valid value when assigning targeting.**",
+            "Content suitable only for mature audiences. **Starting on *October 1, 2026*, this value will be deprecated and no longer be accepted as a valid value when assigning targeting.**",
+            "Content suitable for family audiences. It is a subset of CONTENT_RATING_TIER_GENERAL. Only applicable to YouTube and Partners line items. **Starting on *October 1, 2026*, this value will be deprecated and no longer be accepted as a valid value when assigning targeting.**"
           ],
           "type": "string"
         }
@@ -16769,13 +16769,13 @@
             "CONTENT_RATING_TIER_FAMILIES"
           ],
           "enumDescriptions": [
-            "Content label is not specified in this version. This enum is a place holder for a default value and does not represent a real content rating.",
+            "Content label is not specified in this version. This enum is a place holder for a default value and does not represent a real content rating. **Starting on *October 1, 2026*, this value will be deprecated and no longer be accepted as a valid value when assigning targeting.**",
             "Content that has not been labeled.",
-            "Content suitable for general audiences.",
-            "Content suitable for most audiences with parental guidance.",
-            "Content suitable for teen and older audiences.",
-            "Content suitable only for mature audiences.",
-            "Content suitable for family audiences. It is a subset of CONTENT_RATING_TIER_GENERAL. Only applicable to YouTube and Partners line items."
+            "Content suitable for general audiences. **Starting on *October 1, 2026*, this value will be deprecated and no longer be accepted as a valid value when assigning targeting.**",
+            "Content suitable for most audiences with parental guidance. **Starting on *October 1, 2026*, this value will be deprecated and no longer be accepted as a valid value when assigning targeting.**",
+            "Content suitable for teen and older audiences. **Starting on *October 1, 2026*, this value will be deprecated and no longer be accepted as a valid value when assigning targeting.**",
+            "Content suitable only for mature audiences. **Starting on *October 1, 2026*, this value will be deprecated and no longer be accepted as a valid value when assigning targeting.**",
+            "Content suitable for family audiences. It is a subset of CONTENT_RATING_TIER_GENERAL. Only applicable to YouTube and Partners line items. **Starting on *October 1, 2026*, this value will be deprecated and no longer be accepted as a valid value when assigning targeting.**"
           ],
           "readOnly": true,
           "type": "string"
@@ -24441,7 +24441,7 @@
       "id": "SensitiveCategoryAssignedTargetingOptionDetails",
       "properties": {
         "excludedSensitiveCategory": {
-          "description": "Required. An enum for the DV360 Sensitive category content classified to be EXCLUDED.",
+          "description": "Required. An enum for the DV360 Sensitive category content classified to be EXCLUDED. **Starting on *October 1, 2026*, this field will only accept `SENSITIVE_CATEGORY_EMBEDDED_VIDEO` or `SENSITIVE_CATEGORY_LIVE_STREAMING_VIDEO`. All other values will be deprecated and no longer be accepted.**",
           "enum": [
             "SENSITIVE_CATEGORY_UNSPECIFIED",
             "SENSITIVE_CATEGORY_ADULT",
@@ -24466,23 +24466,23 @@
           ],
           "enumDescriptions": [
             "This enum is only a placeholder and doesn't specify a DV360 sensitive category.",
-            "Adult or pornographic text, image, or video content.",
-            "Content that may be construed as biased against individuals, groups, or organizations based on criteria such as race, religion, disability, sex, age, veteran status, sexual orientation, gender identity, or political affiliation. May also indicate discussion of such content, for instance, in an academic or journalistic context.",
-            "Content related to audio, video, or software downloads.",
-            "Contains content related to personal weapons, including knives, guns, small firearms, and ammunition. Selecting either \"weapons\" or \"sensitive social issues\" will result in selecting both.",
-            "Contains content related to betting or wagering in a real-world or online setting.",
-            "Content which may be considered graphically violent, gory, gruesome, or shocking, such as street fighting videos, accident photos, descriptions of torture, etc.",
-            "Adult content, as well as suggestive content that's not explicitly pornographic. This category includes all pages categorized as adult.",
-            "Prominent use of words considered indecent, such as curse words and sexual slang. Pages with only very occasional usage, such as news sites that might include such words in a quotation, are not included.",
-            "Contains content related to alcoholic beverages, alcohol brands, recipes, etc.",
-            "Contains content related to the recreational use of legal or illegal drugs, as well as to drug paraphernalia or cultivation.",
-            "Contains content related to tobacco and tobacco accessories, including lighters, humidors, ashtrays, etc.",
-            "Political news and media, including discussions of social, governmental, and public policy.",
-            "Content related to religious thought or beliefs.",
-            "Content related to death, disasters, accidents, war, etc.",
-            "Content related to motor vehicle, aviation or other transportation accidents.",
-            "Issues that evoke strong, opposing views and spark debate. These include issues that are controversial in most countries and markets (such as abortion), as well as those that are controversial in specific countries and markets (such as immigration reform in the United States).",
-            "Content which may be considered shocking or disturbing, such as violent news stories, stunts, or toilet humor.",
+            "Adult or pornographic text, image, or video content. **Starting on *October 1, 2026*, this value will be deprecated and no longer be accepted as a valid value when assigning targeting.**",
+            "Content that may be construed as biased against individuals, groups, or organizations based on criteria such as race, religion, disability, sex, age, veteran status, sexual orientation, gender identity, or political affiliation. May also indicate discussion of such content, for instance, in an academic or journalistic context. **Starting on *October 1, 2026*, this value will be deprecated and no longer be accepted as a valid value when assigning targeting.**",
+            "Content related to audio, video, or software downloads. **Starting on *October 1, 2026*, this value will be deprecated and no longer be accepted as a valid value when assigning targeting.**",
+            "Contains content related to personal weapons, including knives, guns, small firearms, and ammunition. Selecting either \"weapons\" or \"sensitive social issues\" will result in selecting both. **Starting on *October 1, 2026*, this value will be deprecated and no longer be accepted as a valid value when assigning targeting.**",
+            "Contains content related to betting or wagering in a real-world or online setting. **Starting on *October 1, 2026*, this value will be deprecated and no longer be accepted as a valid value when assigning targeting.**",
+            "Content which may be considered graphically violent, gory, gruesome, or shocking, such as street fighting videos, accident photos, descriptions of torture, etc. **Starting on *October 1, 2026*, this value will be deprecated and no longer be accepted as a valid value when assigning targeting.**",
+            "Adult content, as well as suggestive content that's not explicitly pornographic. This category includes all pages categorized as adult. **Starting on *October 1, 2026*, this value will be deprecated and no longer be accepted as a valid value when assigning targeting.**",
+            "Prominent use of words considered indecent, such as curse words and sexual slang. Pages with only very occasional usage, such as news sites that might include such words in a quotation, are not included. **Starting on *October 1, 2026*, this value will be deprecated and no longer be accepted as a valid value when assigning targeting.**",
+            "Contains content related to alcoholic beverages, alcohol brands, recipes, etc. **Starting on *October 1, 2026*, this value will be deprecated and no longer be accepted as a valid value when assigning targeting.**",
+            "Contains content related to the recreational use of legal or illegal drugs, as well as to drug paraphernalia or cultivation. **Starting on *October 1, 2026*, this value will be deprecated and no longer be accepted as a valid value when assigning targeting.**",
+            "Contains content related to tobacco and tobacco accessories, including lighters, humidors, ashtrays, etc. **Starting on *October 1, 2026*, this value will be deprecated and no longer be accepted as a valid value when assigning targeting.**",
+            "Political news and media, including discussions of social, governmental, and public policy. **Starting on *October 1, 2026*, this value will be deprecated and no longer be accepted as a valid value when assigning targeting.**",
+            "Content related to religious thought or beliefs. **Starting on *October 1, 2026*, this value will be deprecated and no longer be accepted as a valid value when assigning targeting.**",
+            "Content related to death, disasters, accidents, war, etc. **Starting on *October 1, 2026*, this value will be deprecated and no longer be accepted as a valid value when assigning targeting.**",
+            "Content related to motor vehicle, aviation or other transportation accidents. **Starting on *October 1, 2026*, this value will be deprecated and no longer be accepted as a valid value when assigning targeting.**",
+            "Issues that evoke strong, opposing views and spark debate. These include issues that are controversial in most countries and markets (such as abortion), as well as those that are controversial in specific countries and markets (such as immigration reform in the United States). **Starting on *October 1, 2026*, this value will be deprecated and no longer be accepted as a valid value when assigning targeting.**",
+            "Content which may be considered shocking or disturbing, such as violent news stories, stunts, or toilet humor. **Starting on *October 1, 2026*, this value will be deprecated and no longer be accepted as a valid value when assigning targeting.**",
             "YouTube videos embedded on websites outside of YouTube.com.",
             "Video of live events streamed over the internet."
           ],
@@ -24521,23 +24521,23 @@
           ],
           "enumDescriptions": [
             "This enum is only a placeholder and doesn't specify a DV360 sensitive category.",
-            "Adult or pornographic text, image, or video content.",
-            "Content that may be construed as biased against individuals, groups, or organizations based on criteria such as race, religion, disability, sex, age, veteran status, sexual orientation, gender identity, or political affiliation. May also indicate discussion of such content, for instance, in an academic or journalistic context.",
-            "Content related to audio, video, or software downloads.",
-            "Contains content related to personal weapons, including knives, guns, small firearms, and ammunition. Selecting either \"weapons\" or \"sensitive social issues\" will result in selecting both.",
-            "Contains content related to betting or wagering in a real-world or online setting.",
-            "Content which may be considered graphically violent, gory, gruesome, or shocking, such as street fighting videos, accident photos, descriptions of torture, etc.",
-            "Adult content, as well as suggestive content that's not explicitly pornographic. This category includes all pages categorized as adult.",
-            "Prominent use of words considered indecent, such as curse words and sexual slang. Pages with only very occasional usage, such as news sites that might include such words in a quotation, are not included.",
-            "Contains content related to alcoholic beverages, alcohol brands, recipes, etc.",
-            "Contains content related to the recreational use of legal or illegal drugs, as well as to drug paraphernalia or cultivation.",
-            "Contains content related to tobacco and tobacco accessories, including lighters, humidors, ashtrays, etc.",
-            "Political news and media, including discussions of social, governmental, and public policy.",
-            "Content related to religious thought or beliefs.",
-            "Content related to death, disasters, accidents, war, etc.",
-            "Content related to motor vehicle, aviation or other transportation accidents.",
-            "Issues that evoke strong, opposing views and spark debate. These include issues that are controversial in most countries and markets (such as abortion), as well as those that are controversial in specific countries and markets (such as immigration reform in the United States).",
-            "Content which may be considered shocking or disturbing, such as violent news stories, stunts, or toilet humor.",
+            "Adult or pornographic text, image, or video content. **Starting on *October 1, 2026*, this value will be deprecated and no longer be accepted as a valid value when assigning targeting.**",
+            "Content that may be construed as biased against individuals, groups, or organizations based on criteria such as race, religion, disability, sex, age, veteran status, sexual orientation, gender identity, or political affiliation. May also indicate discussion of such content, for instance, in an academic or journalistic context. **Starting on *October 1, 2026*, this value will be deprecated and no longer be accepted as a valid value when assigning targeting.**",
+            "Content related to audio, video, or software downloads. **Starting on *October 1, 2026*, this value will be deprecated and no longer be accepted as a valid value when assigning targeting.**",
+            "Contains content related to personal weapons, including knives, guns, small firearms, and ammunition. Selecting either \"weapons\" or \"sensitive social issues\" will result in selecting both. **Starting on *October 1, 2026*, this value will be deprecated and no longer be accepted as a valid value when assigning targeting.**",
+            "Contains content related to betting or wagering in a real-world or online setting. **Starting on *October 1, 2026*, this value will be deprecated and no longer be accepted as a valid value when assigning targeting.**",
+            "Content which may be considered graphically violent, gory, gruesome, or shocking, such as street fighting videos, accident photos, descriptions of torture, etc. **Starting on *October 1, 2026*, this value will be deprecated and no longer be accepted as a valid value when assigning targeting.**",
+            "Adult content, as well as suggestive content that's not explicitly pornographic. This category includes all pages categorized as adult. **Starting on *October 1, 2026*, this value will be deprecated and no longer be accepted as a valid value when assigning targeting.**",
+            "Prominent use of words considered indecent, such as curse words and sexual slang. Pages with only very occasional usage, such as news sites that might include such words in a quotation, are not included. **Starting on *October 1, 2026*, this value will be deprecated and no longer be accepted as a valid value when assigning targeting.**",
+            "Contains content related to alcoholic beverages, alcohol brands, recipes, etc. **Starting on *October 1, 2026*, this value will be deprecated and no longer be accepted as a valid value when assigning targeting.**",
+            "Contains content related to the recreational use of legal or illegal drugs, as well as to drug paraphernalia or cultivation. **Starting on *October 1, 2026*, this value will be deprecated and no longer be accepted as a valid value when assigning targeting.**",
+            "Contains content related to tobacco and tobacco accessories, including lighters, humidors, ashtrays, etc. **Starting on *October 1, 2026*, this value will be deprecated and no longer be accepted as a valid value when assigning targeting.**",
+            "Political news and media, including discussions of social, governmental, and public policy. **Starting on *October 1, 2026*, this value will be deprecated and no longer be accepted as a valid value when assigning targeting.**",
+            "Content related to religious thought or beliefs. **Starting on *October 1, 2026*, this value will be deprecated and no longer be accepted as a valid value when assigning targeting.**",
+            "Content related to death, disasters, accidents, war, etc. **Starting on *October 1, 2026*, this value will be deprecated and no longer be accepted as a valid value when assigning targeting.**",
+            "Content related to motor vehicle, aviation or other transportation accidents. **Starting on *October 1, 2026*, this value will be deprecated and no longer be accepted as a valid value when assigning targeting.**",
+            "Issues that evoke strong, opposing views and spark debate. These include issues that are controversial in most countries and markets (such as abortion), as well as those that are controversial in specific countries and markets (such as immigration reform in the United States). **Starting on *October 1, 2026*, this value will be deprecated and no longer be accepted as a valid value when assigning targeting.**",
+            "Content which may be considered shocking or disturbing, such as violent news stories, stunts, or toilet humor. **Starting on *October 1, 2026*, this value will be deprecated and no longer be accepted as a valid value when assigning targeting.**",
             "YouTube videos embedded on websites outside of YouTube.com.",
             "Video of live events streamed over the internet."
           ],

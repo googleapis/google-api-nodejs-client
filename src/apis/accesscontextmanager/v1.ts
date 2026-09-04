@@ -113,9 +113,11 @@ export namespace accesscontextmanager_v1 {
   export class Accesscontextmanager {
     context: APIRequestContext;
     accessPolicies: Resource$Accesspolicies;
+    folders: Resource$Folders;
     operations: Resource$Operations;
     organizations: Resource$Organizations;
     permissions: Resource$Permissions;
+    projects: Resource$Projects;
     services: Resource$Services;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
@@ -125,9 +127,11 @@ export namespace accesscontextmanager_v1 {
       };
 
       this.accessPolicies = new Resource$Accesspolicies(this.context);
+      this.folders = new Resource$Folders(this.context);
       this.operations = new Resource$Operations(this.context);
       this.organizations = new Resource$Organizations(this.context);
       this.permissions = new Resource$Permissions(this.context);
+      this.projects = new Resource$Projects(this.context);
       this.services = new Resource$Services(this.context);
     }
   }
@@ -560,11 +564,7 @@ export namespace accesscontextmanager_v1 {
      */
     principal?: Schema$Principal;
     /**
-     * Optional. Deprecated: Use `scoped_access_settings` instead. A list of applications that are subject to this binding's restrictions. If the list is empty, the binding restrictions will universally apply to all applications.
-     */
-    restrictedClientApplications?: Schema$Application[];
-    /**
-     * Optional. A list of scoped access settings that set this binding's restrictions on a subset of applications. This field cannot be set if restricted_client_applications is set.
+     * Optional. A list of scoped access settings that set this binding's restrictions on a subset of applications.
      */
     scopedAccessSettings?: Schema$ScopedAccessSettings[];
     /**
@@ -769,6 +769,27 @@ export namespace accesscontextmanager_v1 {
      * List of services supported by VPC Service Controls instances.
      */
     supportedServices?: Schema$SupportedService[];
+  }
+  /**
+   * A configured service perimeter returned by Access Context Manager.
+   */
+  export interface Schema$LookupConfiguredServicePerimeterResponse {
+    /**
+     * The resource (e.g. "projects/123", "folders/456") that directly owns/is restricted by the enforced perimeter.
+     */
+    restrictedResource?: string | null;
+    /**
+     * The resource (e.g. "projects/123", "folders/456") that directly owns/is restricted by the dry-run perimeter.
+     */
+    restrictedResourceDryRun?: string | null;
+    /**
+     * Fully qualified name of the configured enforced perimeter. Format: `accessPolicies/{policy_id\}/servicePerimeters/{perimeter_name\}` This field is empty if no enforced perimeter applies.
+     */
+    servicePerimeter?: string | null;
+    /**
+     * Fully qualified name of the configured dry-run perimeter. Format: `accessPolicies/{policy_id\}/servicePerimeters/{perimeter_name\}` This field is empty if no dry-run perimeter configuration applies.
+     */
+    servicePerimeterDryRun?: string | null;
   }
   /**
    * An allowed method or permission of a service specified in ApiOperation.
@@ -5680,6 +5701,171 @@ export namespace accesscontextmanager_v1 {
     requestBody?: Schema$TestIamPermissionsRequest;
   }
 
+  export class Resource$Folders {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Looks up the configured service perimeter for a given resource Format: ['projects/{projectNumber\}', 'folders/{folderNumber\}'].
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/accesscontextmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const accesscontextmanager = google.accesscontextmanager('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await accesscontextmanager.folders.lookupConfiguredServicePerimeter({
+     *       // Required. The Resource to resolve (e.g. "projects/123", "folders/456").
+     *       resource: 'folders/my-folder',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "restrictedResource": "my_restrictedResource",
+     *   //   "restrictedResourceDryRun": "my_restrictedResourceDryRun",
+     *   //   "servicePerimeter": "my_servicePerimeter",
+     *   //   "servicePerimeterDryRun": "my_servicePerimeterDryRun"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    lookupConfiguredServicePerimeter(
+      params: Params$Resource$Folders$Lookupconfiguredserviceperimeter,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    lookupConfiguredServicePerimeter(
+      params?: Params$Resource$Folders$Lookupconfiguredserviceperimeter,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$LookupConfiguredServicePerimeterResponse>
+    >;
+    lookupConfiguredServicePerimeter(
+      params: Params$Resource$Folders$Lookupconfiguredserviceperimeter,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    lookupConfiguredServicePerimeter(
+      params: Params$Resource$Folders$Lookupconfiguredserviceperimeter,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LookupConfiguredServicePerimeterResponse>,
+      callback: BodyResponseCallback<Schema$LookupConfiguredServicePerimeterResponse>
+    ): void;
+    lookupConfiguredServicePerimeter(
+      params: Params$Resource$Folders$Lookupconfiguredserviceperimeter,
+      callback: BodyResponseCallback<Schema$LookupConfiguredServicePerimeterResponse>
+    ): void;
+    lookupConfiguredServicePerimeter(
+      callback: BodyResponseCallback<Schema$LookupConfiguredServicePerimeterResponse>
+    ): void;
+    lookupConfiguredServicePerimeter(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Lookupconfiguredserviceperimeter
+        | BodyResponseCallback<Schema$LookupConfiguredServicePerimeterResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LookupConfiguredServicePerimeterResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LookupConfiguredServicePerimeterResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$LookupConfiguredServicePerimeterResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Lookupconfiguredserviceperimeter;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Lookupconfiguredserviceperimeter;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://accesscontextmanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+resource}:lookupConfiguredServicePerimeter'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$LookupConfiguredServicePerimeterResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$LookupConfiguredServicePerimeterResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Folders$Lookupconfiguredserviceperimeter extends StandardParameters {
+    /**
+     * Required. The Resource to resolve (e.g. "projects/123", "folders/456").
+     */
+    resource?: string;
+  }
+
   export class Resource$Operations {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -6345,7 +6531,6 @@ export namespace accesscontextmanager_v1 {
      *         //   "groupKey": "my_groupKey",
      *         //   "name": "my_name",
      *         //   "principal": {},
-     *         //   "restrictedClientApplications": [],
      *         //   "scopedAccessSettings": [],
      *         //   "sessionSettings": {}
      *         // }
@@ -6643,7 +6828,6 @@ export namespace accesscontextmanager_v1 {
      *   //   "groupKey": "my_groupKey",
      *   //   "name": "my_name",
      *   //   "principal": {},
-     *   //   "restrictedClientApplications": [],
      *   //   "scopedAccessSettings": [],
      *   //   "sessionSettings": {}
      *   // }
@@ -6947,7 +7131,6 @@ export namespace accesscontextmanager_v1 {
      *         //   "groupKey": "my_groupKey",
      *         //   "name": "my_name",
      *         //   "principal": {},
-     *         //   "restrictedClientApplications": [],
      *         //   "scopedAccessSettings": [],
      *         //   "sessionSettings": {}
      *         // }
@@ -7283,6 +7466,172 @@ export namespace accesscontextmanager_v1 {
      * Optional. Use this token to retrieve a specific page of results. Default is the first page.
      */
     pageToken?: string;
+  }
+
+  export class Resource$Projects {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Looks up the configured service perimeter for a given resource Format: ['projects/{projectNumber\}', 'folders/{folderNumber\}'].
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/accesscontextmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const accesscontextmanager = google.accesscontextmanager('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await accesscontextmanager.projects.lookupConfiguredServicePerimeter({
+     *       // Required. The Resource to resolve (e.g. "projects/123", "folders/456").
+     *       resource: 'projects/my-project',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "restrictedResource": "my_restrictedResource",
+     *   //   "restrictedResourceDryRun": "my_restrictedResourceDryRun",
+     *   //   "servicePerimeter": "my_servicePerimeter",
+     *   //   "servicePerimeterDryRun": "my_servicePerimeterDryRun"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    lookupConfiguredServicePerimeter(
+      params: Params$Resource$Projects$Lookupconfiguredserviceperimeter,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    lookupConfiguredServicePerimeter(
+      params?: Params$Resource$Projects$Lookupconfiguredserviceperimeter,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$LookupConfiguredServicePerimeterResponse>
+    >;
+    lookupConfiguredServicePerimeter(
+      params: Params$Resource$Projects$Lookupconfiguredserviceperimeter,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    lookupConfiguredServicePerimeter(
+      params: Params$Resource$Projects$Lookupconfiguredserviceperimeter,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LookupConfiguredServicePerimeterResponse>,
+      callback: BodyResponseCallback<Schema$LookupConfiguredServicePerimeterResponse>
+    ): void;
+    lookupConfiguredServicePerimeter(
+      params: Params$Resource$Projects$Lookupconfiguredserviceperimeter,
+      callback: BodyResponseCallback<Schema$LookupConfiguredServicePerimeterResponse>
+    ): void;
+    lookupConfiguredServicePerimeter(
+      callback: BodyResponseCallback<Schema$LookupConfiguredServicePerimeterResponse>
+    ): void;
+    lookupConfiguredServicePerimeter(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Lookupconfiguredserviceperimeter
+        | BodyResponseCallback<Schema$LookupConfiguredServicePerimeterResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LookupConfiguredServicePerimeterResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LookupConfiguredServicePerimeterResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$LookupConfiguredServicePerimeterResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Lookupconfiguredserviceperimeter;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Lookupconfiguredserviceperimeter;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://accesscontextmanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+resource}:lookupConfiguredServicePerimeter'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$LookupConfiguredServicePerimeterResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$LookupConfiguredServicePerimeterResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Lookupconfiguredserviceperimeter extends StandardParameters {
+    /**
+     * Required. The Resource to resolve (e.g. "projects/123", "folders/456").
+     */
+    resource?: string;
   }
 
   export class Resource$Services {

@@ -751,6 +751,10 @@ export namespace cloudnumberregistry_v1alpha {
      */
     claimedScopes?: string[] | null;
     /**
+     * Output only. Detailed scope information corresponding to each entry in `claimed_scopes`.
+     */
+    claimedScopesInfo?: Schema$ScopeInfo[];
+    /**
      * Output only. The time at which the RegistryBook was created.
      */
     createTime?: string | null;
@@ -772,6 +776,23 @@ export namespace cloudnumberregistry_v1alpha {
     updateTime?: string | null;
   }
   /**
+   * Details of a scope (e.g. project or folder).
+   */
+  export interface Schema$ScopeInfo {
+    /**
+     * Output only. Human-readable display title of the scope shown in Console (e.g. "My Cloud Project"). Used for UI display.
+     */
+    displayName?: string | null;
+    /**
+     * Output only. Programmatic string identifier of the scope (e.g. GCP Project ID "my-project-id"). Used for API and code logic.
+     */
+    id?: string | null;
+    /**
+     * Output only. Resource name of the scope, e.g. "projects/1234567890".
+     */
+    name?: string | null;
+  }
+  /**
    * Request message for the CloudNumberRegistry.SearchIpResources method.
    */
   export interface Schema$SearchIpResourcesRequest {
@@ -788,7 +809,7 @@ export namespace cloudnumberregistry_v1alpha {
      */
     pageToken?: string | null;
     /**
-     * Optional. Search query. This string filters resources in an AIP-160-like format. It has some limitations. You can only specify top level conjunctions or attribute level negations. Each restriction can only be used once except the attribute restriction. The available restrictions for Ranges are: - `realm`: The Realm name to search in. - `ip_address`: The IP address to search for within Ranges. - `ip_version`: The IP version to filter by (e.g., "IPV4", "IPV6"). - `parent_range`: The parent Range of the Range to search for. - `attribute_text`: The attribute text to search for within Ranges. - `attribute`: The attribute key and value to filter by. The available restrictions for Realms are: - `ip_version`: The IP version to search for. - `management_type`: The management type of the Realm (e.g., "CNR", "USER"). Only one of attribute_text or multiple attribute filters can be specified. Examples: - `realm=test-realm` - `realm=test-realm AND ip_address=10.0.0.0` - `realm=test-realm AND ip_version=IPV6` - `realm=test-realm AND attribute_text=test` - `ip_address=10.0.0.0 AND attribute:(key1=value1) AND attribute:(key2=value2)` - `attribute_text=test AND parent_range=projects/123/locations/global/discoveredRanges/test-parent-range` - `management_type=CNR`
+     * Optional. Search query. This string filters resources in an AIP-160-like format. It has some limitations. You can only specify top level conjunctions or attribute level negations. Each restriction can only be used once except the attribute restriction. The available restrictions for Ranges are: - `resource_id`: The resource ID to search for within Ranges (only substring matching using the format `resource_id="*value*"` is supported). - `realm`: The Realm name to search in. - `ip_address`: The IP address to search for within Ranges. - `ip_version`: The IP version to filter by (e.g., "IPV4", "IPV6"). - `parent_range`: The parent Range of the Range to search for. - `attribute_text`: The attribute text to search for within Ranges. - `attribute`: The attribute key and value to filter by. The available restrictions for Realms are: - `ip_version`: The IP version to search for. - `management_type`: The management type of the Realm (e.g., "CNR", "USER"). Only one of attribute_text or multiple attribute filters can be specified. Examples: - `realm=test-realm` - `realm=test-realm AND ip_address=10.0.0.0` - `realm=test-realm AND ip_version=IPV6` - `realm=test-realm AND resource_id="*my-range*"` - `realm=test-realm AND attribute_text=test` - `ip_address=10.0.0.0 AND attribute:(key1=value1) AND attribute:(key2=value2)` - `attribute_text=test AND parent_range=projects/123/locations/global/discoveredRanges/test-parent-range` - `management_type=CNR`
      */
     query?: string | null;
     /**
@@ -7239,6 +7260,7 @@ export namespace cloudnumberregistry_v1alpha {
      *         // {
      *         //   "aggregatedData": {},
      *         //   "claimedScopes": [],
+     *         //   "claimedScopesInfo": [],
      *         //   "createTime": "my_createTime",
      *         //   "isDefault": false,
      *         //   "labels": {},
@@ -7541,6 +7563,7 @@ export namespace cloudnumberregistry_v1alpha {
      *   // {
      *   //   "aggregatedData": {},
      *   //   "claimedScopes": [],
+     *   //   "claimedScopesInfo": [],
      *   //   "createTime": "my_createTime",
      *   //   "isDefault": false,
      *   //   "labels": {},
@@ -7839,6 +7862,7 @@ export namespace cloudnumberregistry_v1alpha {
      *       // {
      *       //   "aggregatedData": {},
      *       //   "claimedScopes": [],
+     *       //   "claimedScopesInfo": [],
      *       //   "createTime": "my_createTime",
      *       //   "isDefault": false,
      *       //   "labels": {},

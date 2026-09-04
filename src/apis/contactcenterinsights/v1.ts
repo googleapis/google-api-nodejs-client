@@ -209,6 +209,10 @@ export namespace contactcenterinsights_v1 {
    */
   export interface Schema$GoogleCloudCesV1mainImage {
     /**
+     * Optional. The alternative text for the image.
+     */
+    altText?: string | null;
+    /**
      * Required. Raw bytes of the image.
      */
     data?: string | null;

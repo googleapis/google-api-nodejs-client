@@ -2184,6 +2184,23 @@ export namespace androidpublisher_v3 {
     obfuscatedProfileId?: string | null;
   }
   /**
+   * Reporting details unique to the external content link program.
+   */
+  export interface Schema$ExternalContentLinkDetails {
+    /**
+     * Optional. The category of the downlaoded app. This must match the category provided in Play Console during the external app verification process. Only required for app installs.
+     */
+    externalAppCategory?: string | null;
+    /**
+     * Optional. The package name of the app downloaded through this transaction. Only required for app installs.
+     */
+    installedAppPackage?: string | null;
+    /**
+     * Required. The type content being reported by this transaction.
+     */
+    linkType?: string | null;
+  }
+  /**
    * Defines an APK available for this application that is hosted externally and not uploaded to Google Play. This function is only available to organizations using Managed Play whose application is configured to restrict distribution to the organizations.
    */
   export interface Schema$ExternallyHostedApk {
@@ -2294,6 +2311,10 @@ export namespace androidpublisher_v3 {
      * Output only. The current tax amount. This represents the current tax amount including any refunds that may have been applied to this transaction.
      */
     currentTaxAmount?: Schema$Price;
+    /**
+     * Optional. Details necessary to accurately report external content link transactions.
+     */
+    externalContentLinkDetails?: Schema$ExternalContentLinkDetails;
     /**
      * Optional. Details necessary to accurately report external offers transactions.
      */
@@ -3532,6 +3553,15 @@ export namespace androidpublisher_v3 {
     startTime?: string | null;
   }
   /**
+   * Configuration specific to game reward offers.
+   */
+  export interface Schema$OneTimeProductGameRewardOffer {
+    /**
+     * Optional. The number of times this offer can be redeemed. If unset or set to 0, allows for unlimited offer redemptions. Otherwise must be a number between 1 and 50 inclusive.
+     */
+    redemptionLimit?: string | null;
+  }
+  /**
    * Regional store listing for a one-time product.
    */
   export interface Schema$OneTimeProductListing {
@@ -3556,6 +3586,10 @@ export namespace androidpublisher_v3 {
      * A discounted offer.
      */
     discountedOffer?: Schema$OneTimeProductDiscountedOffer;
+    /**
+     * A game reward offer.
+     */
+    gameRewardOffer?: Schema$OneTimeProductGameRewardOffer;
     /**
      * Required. Immutable. The ID of this product offer. Must be unique within the purchase option. It must start with a number or lower-case letter, and can only contain lower-case letters (a-z), numbers (0-9), and hyphens (-). The maximum length is 63 characters.
      */
@@ -16073,6 +16107,7 @@ export namespace androidpublisher_v3 {
      *         //   "createTime": "my_createTime",
      *         //   "currentPreTaxAmount": {},
      *         //   "currentTaxAmount": {},
+     *         //   "externalContentLinkDetails": {},
      *         //   "externalOfferDetails": {},
      *         //   "externalTransactionId": "my_externalTransactionId",
      *         //   "oneTimeTransaction": {},
@@ -16095,6 +16130,7 @@ export namespace androidpublisher_v3 {
      *   //   "createTime": "my_createTime",
      *   //   "currentPreTaxAmount": {},
      *   //   "currentTaxAmount": {},
+     *   //   "externalContentLinkDetails": {},
      *   //   "externalOfferDetails": {},
      *   //   "externalTransactionId": "my_externalTransactionId",
      *   //   "oneTimeTransaction": {},
@@ -16250,6 +16286,7 @@ export namespace androidpublisher_v3 {
      *   //   "createTime": "my_createTime",
      *   //   "currentPreTaxAmount": {},
      *   //   "currentTaxAmount": {},
+     *   //   "externalContentLinkDetails": {},
      *   //   "externalOfferDetails": {},
      *   //   "externalTransactionId": "my_externalTransactionId",
      *   //   "oneTimeTransaction": {},
@@ -16416,6 +16453,7 @@ export namespace androidpublisher_v3 {
      *   //   "createTime": "my_createTime",
      *   //   "currentPreTaxAmount": {},
      *   //   "currentTaxAmount": {},
+     *   //   "externalContentLinkDetails": {},
      *   //   "externalOfferDetails": {},
      *   //   "externalTransactionId": "my_externalTransactionId",
      *   //   "oneTimeTransaction": {},
@@ -21011,6 +21049,7 @@ export namespace androidpublisher_v3 {
      *   // Example response
      *   // {
      *   //   "discountedOffer": {},
+     *   //   "gameRewardOffer": {},
      *   //   "offerId": "my_offerId",
      *   //   "offerTags": [],
      *   //   "packageName": "my_packageName",
@@ -21824,6 +21863,7 @@ export namespace androidpublisher_v3 {
      *   // Example response
      *   // {
      *   //   "discountedOffer": {},
+     *   //   "gameRewardOffer": {},
      *   //   "offerId": "my_offerId",
      *   //   "offerTags": [],
      *   //   "packageName": "my_packageName",
@@ -21998,6 +22038,7 @@ export namespace androidpublisher_v3 {
      *   // Example response
      *   // {
      *   //   "discountedOffer": {},
+     *   //   "gameRewardOffer": {},
      *   //   "offerId": "my_offerId",
      *   //   "offerTags": [],
      *   //   "packageName": "my_packageName",
