@@ -18,6 +18,16 @@
   "endpoints": [
     {
       "description": "Regional Endpoint",
+      "endpointUrl": "https://developerconnect.us-central1.rep.googleapis.com/",
+      "location": "us-central1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://developerconnect.europe-west1.rep.googleapis.com/",
+      "location": "europe-west1"
+    },
+    {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://developerconnect.asia-east1.rep.googleapis.com/",
       "location": "asia-east1"
     },
@@ -28,158 +38,8 @@
     },
     {
       "description": "Regional Endpoint",
-      "endpointUrl": "https://developerconnect.asia-northeast1.rep.googleapis.com/",
-      "location": "asia-northeast1"
-    },
-    {
-      "description": "Regional Endpoint",
-      "endpointUrl": "https://developerconnect.asia-northeast2.rep.googleapis.com/",
-      "location": "asia-northeast2"
-    },
-    {
-      "description": "Regional Endpoint",
-      "endpointUrl": "https://developerconnect.asia-northeast3.rep.googleapis.com/",
-      "location": "asia-northeast3"
-    },
-    {
-      "description": "Regional Endpoint",
-      "endpointUrl": "https://developerconnect.asia-south1.rep.googleapis.com/",
-      "location": "asia-south1"
-    },
-    {
-      "description": "Regional Endpoint",
-      "endpointUrl": "https://developerconnect.asia-south2.rep.googleapis.com/",
-      "location": "asia-south2"
-    },
-    {
-      "description": "Regional Endpoint",
-      "endpointUrl": "https://developerconnect.asia-southeast1.rep.googleapis.com/",
-      "location": "asia-southeast1"
-    },
-    {
-      "description": "Regional Endpoint",
-      "endpointUrl": "https://developerconnect.asia-southeast2.rep.googleapis.com/",
-      "location": "asia-southeast2"
-    },
-    {
-      "description": "Regional Endpoint",
-      "endpointUrl": "https://developerconnect.australia-southeast1.rep.googleapis.com/",
-      "location": "australia-southeast1"
-    },
-    {
-      "description": "Regional Endpoint",
-      "endpointUrl": "https://developerconnect.australia-southeast2.rep.googleapis.com/",
-      "location": "australia-southeast2"
-    },
-    {
-      "description": "Regional Endpoint",
-      "endpointUrl": "https://developerconnect.europe-central2.rep.googleapis.com/",
-      "location": "europe-central2"
-    },
-    {
-      "description": "Regional Endpoint",
-      "endpointUrl": "https://developerconnect.europe-north1.rep.googleapis.com/",
-      "location": "europe-north1"
-    },
-    {
-      "description": "Regional Endpoint",
-      "endpointUrl": "https://developerconnect.europe-southwest1.rep.googleapis.com/",
-      "location": "europe-southwest1"
-    },
-    {
-      "description": "Regional Endpoint",
-      "endpointUrl": "https://developerconnect.europe-west1.rep.googleapis.com/",
-      "location": "europe-west1"
-    },
-    {
-      "description": "Regional Endpoint",
-      "endpointUrl": "https://developerconnect.europe-west10.rep.googleapis.com/",
-      "location": "europe-west10"
-    },
-    {
-      "description": "Regional Endpoint",
-      "endpointUrl": "https://developerconnect.europe-west12.rep.googleapis.com/",
-      "location": "europe-west12"
-    },
-    {
-      "description": "Regional Endpoint",
-      "endpointUrl": "https://developerconnect.europe-west2.rep.googleapis.com/",
-      "location": "europe-west2"
-    },
-    {
-      "description": "Regional Endpoint",
-      "endpointUrl": "https://developerconnect.europe-west3.rep.googleapis.com/",
-      "location": "europe-west3"
-    },
-    {
-      "description": "Regional Endpoint",
       "endpointUrl": "https://developerconnect.europe-west4.rep.googleapis.com/",
       "location": "europe-west4"
-    },
-    {
-      "description": "Regional Endpoint",
-      "endpointUrl": "https://developerconnect.europe-west6.rep.googleapis.com/",
-      "location": "europe-west6"
-    },
-    {
-      "description": "Regional Endpoint",
-      "endpointUrl": "https://developerconnect.europe-west8.rep.googleapis.com/",
-      "location": "europe-west8"
-    },
-    {
-      "description": "Regional Endpoint",
-      "endpointUrl": "https://developerconnect.europe-west9.rep.googleapis.com/",
-      "location": "europe-west9"
-    },
-    {
-      "description": "Regional Endpoint",
-      "endpointUrl": "https://developerconnect.me-central1.rep.googleapis.com/",
-      "location": "me-central1"
-    },
-    {
-      "description": "Regional Endpoint",
-      "endpointUrl": "https://developerconnect.me-central2.rep.googleapis.com/",
-      "location": "me-central2"
-    },
-    {
-      "description": "Regional Endpoint",
-      "endpointUrl": "https://developerconnect.me-west1.rep.googleapis.com/",
-      "location": "me-west1"
-    },
-    {
-      "description": "Regional Endpoint",
-      "endpointUrl": "https://developerconnect.northamerica-northeast1.rep.googleapis.com/",
-      "location": "northamerica-northeast1"
-    },
-    {
-      "description": "Regional Endpoint",
-      "endpointUrl": "https://developerconnect.northamerica-northeast2.rep.googleapis.com/",
-      "location": "northamerica-northeast2"
-    },
-    {
-      "description": "Regional Endpoint",
-      "endpointUrl": "https://developerconnect.southamerica-east1.rep.googleapis.com/",
-      "location": "southamerica-east1"
-    },
-    {
-      "description": "Regional Endpoint",
-      "endpointUrl": "https://developerconnect.southamerica-west1.rep.googleapis.com/",
-      "location": "southamerica-west1"
-    },
-    {
-      "description": "Regional Endpoint",
-      "endpointUrl": "https://developerconnect.us-central1.rep.googleapis.com/",
-      "location": "us-central1"
-    },
-    {
-      "description": "Regional Endpoint",
-      "endpointUrl": "https://developerconnect.us-central2.rep.googleapis.com/",
-      "location": "us-central2"
-    },
-    {
-      "description": "Regional Endpoint",
-      "endpointUrl": "https://developerconnect.us-east1.rep.googleapis.com/",
-      "location": "us-east1"
     },
     {
       "description": "Regional Endpoint",
@@ -193,13 +53,8 @@
     },
     {
       "description": "Regional Endpoint",
-      "endpointUrl": "https://developerconnect.us-east7.rep.googleapis.com/",
-      "location": "us-east7"
-    },
-    {
-      "description": "Regional Endpoint",
-      "endpointUrl": "https://developerconnect.us-south1.rep.googleapis.com/",
-      "location": "us-south1"
+      "endpointUrl": "https://developerconnect.asia-southeast1.rep.googleapis.com/",
+      "location": "asia-southeast1"
     },
     {
       "description": "Regional Endpoint",
@@ -210,16 +65,6 @@
       "description": "Regional Endpoint",
       "endpointUrl": "https://developerconnect.us-west2.rep.googleapis.com/",
       "location": "us-west2"
-    },
-    {
-      "description": "Regional Endpoint",
-      "endpointUrl": "https://developerconnect.us-west3.rep.googleapis.com/",
-      "location": "us-west3"
-    },
-    {
-      "description": "Regional Endpoint",
-      "endpointUrl": "https://developerconnect.us-west4.rep.googleapis.com/",
-      "location": "us-west4"
     }
   ],
   "fullyEncodeReservedExpansion": true,
@@ -1955,7 +1800,7 @@
       }
     }
   },
-  "revision": "20260824",
+  "revision": "20260813",
   "rootUrl": "https://developerconnect.googleapis.com/",
   "schemas": {
     "AccountConnector": {
@@ -2652,21 +2497,6 @@
             "$ref": "UserRepository"
           },
           "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "FieldVisibility": {
-      "description": "Visibility rules for individual tool parameters (fields). This allows producers to hide specific fields in tools/list and tools/call.",
-      "id": "FieldVisibility",
-      "properties": {
-        "restriction": {
-          "description": "The visibility restriction labels for this field (comma-separated).",
-          "type": "string"
-        },
-        "selector": {
-          "description": "The name of the parameter in the input_schema or output_schema.",
-          "type": "string"
         }
       },
       "type": "object"
@@ -3397,38 +3227,6 @@
         },
         "name": {
           "description": "Resource name for the location, which may vary between implementations. For example: `\"projects/example-project/locations/us-east1\"`",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "McpToolVisibility": {
-      "description": "Profile describing the visibility restriction of an MCP tool. Key: \"google.com/tool.profiles/visibility.restriction\"",
-      "id": "McpToolVisibility",
-      "properties": {
-        "fieldVisibility": {
-          "description": "A list of field-level visibility restrictions.",
-          "items": {
-            "$ref": "FieldVisibility"
-          },
-          "type": "array"
-        },
-        "visibilityEnforcementStrategy": {
-          "description": "The strategy used to enforce visibility restrictions. DO NOT USE. This field is not yet implemented.",
-          "enum": [
-            "VISIBILITY_ENFORCEMENT_STRATEGY_UNSPECIFIED",
-            "COMBINE",
-            "OVERRIDE"
-          ],
-          "enumDescriptions": [
-            "Default. Equivalent to COMBINE.",
-            "The principal must satisfy both API-level tool-level) visibility restrictions.",
-            "Bypasses the API-level visibility restrictions check; access is determined solely by the tool-level visibility restrictions."
-          ],
-          "type": "string"
-        },
-        "visibilityRestriction": {
-          "description": "The visibility restriction labels for the tool itself (e.g., \"PRODUCER_DEFINED_PREVIEW\"). Multiple labels can be provided as a comma-separated string.",
           "type": "string"
         }
       },

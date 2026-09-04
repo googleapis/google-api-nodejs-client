@@ -966,10 +966,6 @@ export namespace file_v1 {
      * Optional. Consumer service project in which the Private Service Connect endpoint would be set up. This is optional, and only relevant in case the network is a shared VPC. If this is not specified, the endpoint would be setup in the VPC host project.
      */
     endpointProject?: string | null;
-    /**
-     * Optional. Immutable. Optional: The desired IP address for the instance. If not specified, an IP will be automatically allocated. The IP must be from the subnetwork range configured in the Service Connection Policy. This effective ip address is set in the ip_addresses field. use 3 instead of 2 to avoid conflict with the reserved_ip_range field.
-     */
-    requestedIpAddress?: string | null;
   }
   /**
    * Replica configuration for the instance.

@@ -662,19 +662,6 @@ export namespace developerconnect_v1 {
     userRepos?: Schema$UserRepository[];
   }
   /**
-   * Visibility rules for individual tool parameters (fields). This allows producers to hide specific fields in tools/list and tools/call.
-   */
-  export interface Schema$FieldVisibility {
-    /**
-     * The visibility restriction labels for this field (comma-separated).
-     */
-    restriction?: string | null;
-    /**
-     * The name of the parameter in the input_schema or output_schema.
-     */
-    selector?: string | null;
-  }
-  /**
    * Message for responding to finishing an OAuth flow.
    */
   export interface Schema$FinishOAuthResponse {
@@ -1203,23 +1190,6 @@ export namespace developerconnect_v1 {
      * Resource name for the location, which may vary between implementations. For example: `"projects/example-project/locations/us-east1"`
      */
     name?: string | null;
-  }
-  /**
-   * Profile describing the visibility restriction of an MCP tool. Key: "google.com/tool.profiles/visibility.restriction"
-   */
-  export interface Schema$McpToolVisibility {
-    /**
-     * A list of field-level visibility restrictions.
-     */
-    fieldVisibility?: Schema$FieldVisibility[];
-    /**
-     * The strategy used to enforce visibility restrictions. DO NOT USE. This field is not yet implemented.
-     */
-    visibilityEnforcementStrategy?: string | null;
-    /**
-     * The visibility restriction labels for the tool itself (e.g., "PRODUCER_DEFINED_PREVIEW"). Multiple labels can be provided as a comma-separated string.
-     */
-    visibilityRestriction?: string | null;
   }
   /**
    * Represents an OAuth token of the account that authorized the Connection, and associated metadata.

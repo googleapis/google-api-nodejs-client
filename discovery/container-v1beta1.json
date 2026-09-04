@@ -2837,7 +2837,7 @@
       }
     }
   },
-  "revision": "20260818",
+  "revision": "20260727",
   "rootUrl": "https://container.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -3353,7 +3353,7 @@
           "type": "string"
         },
         "diskSizeGb": {
-          "description": "Size of the disk attached to each node, specified in GB. The smallest allowed disk size is 15 GB for node pools running GKE versions 1.36.3-gke.1480000 or later. Or, for earlier versions, the smallest allowed disk size is 12 GB. If unspecified, the default disk size is 100GB.",
+          "description": "Size of the disk attached to each node, specified in GB. The smallest allowed disk size is 10GB. If unspecified, the default disk size is 100GB.",
           "format": "int32",
           "type": "integer"
         },
@@ -7557,7 +7557,7 @@
           "description": "Parameters for containerd customization."
         },
         "diskSizeGb": {
-          "description": "Size of the disk attached to each node, specified in GB. The smallest allowed disk size is 15 GB for node pools running GKE versions 1.36.2-gke.2933000 or later. Or, for earlier versions, the smallest allowed disk size is 12 GB. If unspecified, the default disk size is 100GB.",
+          "description": "Size of the disk attached to each node, specified in GB. The smallest allowed disk size is 10GB. If unspecified, the default disk size is 100GB.",
           "format": "int32",
           "type": "integer"
         },
@@ -9262,14 +9262,6 @@
         "defaultVersion": {
           "description": "The default version for newly created clusters on the channel.",
           "type": "string"
-        },
-        "previewVersions": {
-          "description": "Output only. List of preview versions for the channel.",
-          "items": {
-            "type": "string"
-          },
-          "readOnly": true,
-          "type": "array"
         },
         "upgradeTargetVersion": {
           "description": "The auto upgrade target version for clusters on the channel.",

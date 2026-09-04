@@ -1042,12 +1042,6 @@
                 "name"
               ],
               "parameters": {
-                "contexts": {
-                  "description": "Optional. Specifies the scope of the context in which the search will be performed. This scope will also be used to perform IAM checks, which if passing, will return all resources in the scope.",
-                  "location": "query",
-                  "repeated": true,
-                  "type": "string"
-                },
                 "name": {
                   "description": "Required. The project to which the request should be attributed in the following form: projects/{project}/locations/global.",
                   "location": "path",
@@ -8044,7 +8038,7 @@
       }
     }
   },
-  "revision": "20260823",
+  "revision": "20260804",
   "rootUrl": "https://dataplex.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -9849,21 +9843,6 @@
           "description": "Output only. The SQL query string which can be executed.",
           "readOnly": true,
           "type": "string"
-        },
-        "sqlDialect": {
-          "description": "Output only. The SQL dialect of the query.",
-          "enum": [
-            "SQL_DIALECT_UNSPECIFIED",
-            "GOOGLE_SQL",
-            "SPARK_SQL"
-          ],
-          "enumDescriptions": [
-            "SQL dialect unspecified.",
-            "Google SQL dialect.",
-            "Spark SQL dialect."
-          ],
-          "readOnly": true,
-          "type": "string"
         }
       },
       "type": "object"
@@ -10011,20 +9990,6 @@
             "type": "string"
           },
           "type": "array"
-        },
-        "sqlDialect": {
-          "description": "Optional. The SQL dialect to use in the generated SQL queries. If not specified, the default dialect is Google SQL.",
-          "enum": [
-            "SQL_DIALECT_UNSPECIFIED",
-            "GOOGLE_SQL",
-            "SPARK_SQL"
-          ],
-          "enumDescriptions": [
-            "SQL dialect unspecified.",
-            "Google SQL dialect.",
-            "Spark SQL dialect."
-          ],
-          "type": "string"
         }
       },
       "type": "object"

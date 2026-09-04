@@ -3198,7 +3198,7 @@ export namespace container_v1 {
      */
     containerdConfig?: Schema$ContainerdConfig;
     /**
-     * Size of the disk attached to each node, specified in GB. The smallest allowed disk size is 15 GB for node pools running GKE versions 1.36.3-gke.1480000 or later. Or, for earlier versions, the smallest allowed disk size is 12 GB. If unspecified, the default disk size is 100GB.
+     * Size of the disk attached to each node, specified in GB. The smallest allowed disk size is 10GB. If unspecified, the default disk size is 100GB.
      */
     diskSizeGb?: number | null;
     /**
@@ -4300,10 +4300,6 @@ export namespace container_v1 {
      * The default version for newly created clusters on the channel.
      */
     defaultVersion?: string | null;
-    /**
-     * Output only. List of preview versions for the channel.
-     */
-    previewVersions?: string[] | null;
     /**
      * The auto upgrade target version for clusters on the channel.
      */

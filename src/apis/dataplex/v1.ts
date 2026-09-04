@@ -1419,10 +1419,6 @@ export namespace dataplex_v1 {
      * Output only. The SQL query string which can be executed.
      */
     sql?: string | null;
-    /**
-     * Output only. The SQL dialect of the query.
-     */
-    sqlDialect?: string | null;
   }
   /**
    * Schema of the table with generated metadata of columns.
@@ -1500,10 +1496,6 @@ export namespace dataplex_v1 {
      * Optional. Specifies which components of the data documentation to generate. Any component that is required to generate the specified components will also be generated. If no generation scope is specified, all available documentation components will be generated.
      */
     generationScopes?: string[] | null;
-    /**
-     * Optional. The SQL dialect to use in the generated SQL queries. If not specified, the default dialect is Google SQL.
-     */
-    sqlDialect?: string | null;
   }
   /**
    * A DataDomain is a logical grouping of data resources for governance, discovery, and management at scale.
@@ -9263,8 +9255,6 @@ export namespace dataplex_v1 {
      *
      *   // Do the magic
      *   const res = await dataplex.projects.locations.searchEntries({
-     *     // Optional. Specifies the scope of the context in which the search will be performed. This scope will also be used to perform IAM checks, which if passing, will return all resources in the scope.
-     *     contexts: 'placeholder-value',
      *     // Required. The project to which the request should be attributed in the following form: projects/{project\}/locations/global.
      *     name: 'projects/my-project/locations/my-location',
      *     // Optional. Specifies the ordering of results. Supported values are: relevance last_modified_timestamp last_modified_timestamp asc
@@ -9496,10 +9486,6 @@ export namespace dataplex_v1 {
     requestBody?: Schema$GoogleCloudDataplexV1ModifyEntryRequest;
   }
   export interface Params$Resource$Projects$Locations$Searchentries extends StandardParameters {
-    /**
-     * Optional. Specifies the scope of the context in which the search will be performed. This scope will also be used to perform IAM checks, which if passing, will return all resources in the scope.
-     */
-    contexts?: string[];
     /**
      * Required. The project to which the request should be attributed in the following form: projects/{project\}/locations/global.
      */

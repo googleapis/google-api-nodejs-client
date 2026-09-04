@@ -2874,7 +2874,7 @@
       }
     }
   },
-  "revision": "20260826",
+  "revision": "20260813",
   "rootUrl": "https://retail.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -4330,13 +4330,6 @@
       "description": "Response of the autocomplete query.",
       "id": "GoogleCloudRetailV2alphaCompleteQueryResponse",
       "properties": {
-        "agentPrompts": {
-          "description": "Conversational prompts to trigger agents like Shopping Agent. This is an experimental feature for select customers.",
-          "items": {
-            "$ref": "GoogleCloudRetailV2alphaCompleteQueryResponseAgentPrompt"
-          },
-          "type": "array"
-        },
         "attributeResults": {
           "additionalProperties": {
             "$ref": "GoogleCloudRetailV2alphaCompleteQueryResponseAttributeResult"
@@ -4366,17 +4359,6 @@
       },
       "type": "object"
     },
-    "GoogleCloudRetailV2alphaCompleteQueryResponseAgentPrompt": {
-      "description": "A conversational prompt to trigger agents like Shopping Agent.",
-      "id": "GoogleCloudRetailV2alphaCompleteQueryResponseAgentPrompt",
-      "properties": {
-        "prompt": {
-          "description": "The conversational prompt string.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "GoogleCloudRetailV2alphaCompleteQueryResponseAttributeResult": {
       "description": "Resource that represents attribute results.",
       "id": "GoogleCloudRetailV2alphaCompleteQueryResponseAttributeResult",
@@ -4396,10 +4378,9 @@
       "id": "GoogleCloudRetailV2alphaCompleteQueryResponseCompletionResult",
       "properties": {
         "agentPrompts": {
-          "deprecated": true,
-          "description": "Deprecated: Use CompleteQueryResponse.agent_prompts instead. Conversational prompts to trigger agents like Shopping Agent. There may be multiple prompts for a single suggestion. This is an experimental feature for select customers.",
+          "description": "Conversational prompts to trigger agents like Shopping Agent. There may be multiple prompts for a single suggestion. This is an experimental feature for select customers. If you want to receive this prompt information, reach out to the Retail support team.",
           "items": {
-            "$ref": "GoogleCloudRetailV2alphaCompleteQueryResponseAgentPrompt"
+            "$ref": "GoogleCloudRetailV2alphaCompleteQueryResponseCompletionResultAgentPrompt"
           },
           "type": "array"
         },
@@ -4425,6 +4406,17 @@
           "description": "Total number of products associated with a search with this suggestion. This is an experimental feature for limited customers. If you want to receive this product count information, reach out to the Retail support team.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2alphaCompleteQueryResponseCompletionResultAgentPrompt": {
+      "description": "A conversational prompt to trigger agents like Shopping Agent.",
+      "id": "GoogleCloudRetailV2alphaCompleteQueryResponseCompletionResultAgentPrompt",
+      "properties": {
+        "prompt": {
+          "description": "The conversational prompt string.",
+          "type": "string"
         }
       },
       "type": "object"

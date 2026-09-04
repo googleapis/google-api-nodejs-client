@@ -1096,10 +1096,8 @@ export namespace agentregistry_v1alpha {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
-     *       'https://www.googleapis.com/auth/agentregistry.read-only',
      *       'https://www.googleapis.com/auth/agentregistry.read-write',
      *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
      *     ],
      *   });
      *
@@ -1239,10 +1237,8 @@ export namespace agentregistry_v1alpha {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
-     *       'https://www.googleapis.com/auth/agentregistry.read-only',
      *       'https://www.googleapis.com/auth/agentregistry.read-write',
      *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
      *     ],
      *   });
      *
@@ -4223,10 +4219,8 @@ export namespace agentregistry_v1alpha {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
-     *       'https://www.googleapis.com/auth/agentregistry.read-only',
      *       'https://www.googleapis.com/auth/agentregistry.read-write',
      *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
      *     ],
      *   });
      *
@@ -6093,7 +6087,7 @@ export namespace agentregistry_v1alpha {
      *
      *   // Do the magic
      *   const res = await agentregistry.projects.locations.skills.list({
-     *     // Optional. Use this field to specify filter criteria on list results. Filter expressions can be used to restrict results based upon filterable fields, where equality operators can be used. See [instructions](https://docs.cloud.google.com/agent-registry/search-agents-and-tools) for more details. Allowed operators: `=`, `<`, `\>`, `NOT`, `AND`, `OR`, and `()`. | Field | `=` | `<`, `\>` | |----------------------------|-----|----------| | state | Yes | No | | targetState | Yes | No | | createTime | Yes | Yes | | updateTime | Yes | Yes | | publisher | Yes | No | | frontmatter.metadata. | Yes | No | | attributes.. | Yes | No | Examples: * `state=ACTIVE` to restrict results to skills in the `ACTIVE` state. * `frontmatter.metadata.version=10` to restrict results to skills with a frontmatter metadata `version` equal to `10`.
+     *     // Optional. Use this field to specify filter criteria on list results. Filter expressions can be used to restrict results based upon filterable fields, where equality operators can be used. See [instructions](https://docs.cloud.google.com/agent-registry/search-agents-and-tools) for more details. Allowed operators: `=`, `<`, `\>`, `NOT`, `AND`, `OR`, and `()`. | Field | `=` | `<`, `\>` | |--------------|-----|----------| | state | Yes | No | | targetState | Yes | No | | createTime | Yes | Yes | | updateTime | Yes | Yes | Examples: * `state=ACTIVE` to restrict results to skills in the `ACTIVE` state.
      *     filter: 'placeholder-value',
      *     // Optional. Hint for how to order the results
      *     orderBy: 'placeholder-value',
@@ -6414,7 +6408,7 @@ export namespace agentregistry_v1alpha {
      *
      *   // Do the magic
      *   const res = await agentregistry.projects.locations.skills.search({
-     *     // Optional. Use this field to specify additional filter criteria on search results. Filter expressions can be used to restrict results based upon filterable fields, where equality operators can be used. See [instructions](https://docs.cloud.google.com/agent-registry/search-agents-and-tools) for more details. Allowed operators: `=`, `<`, `\>`, `NOT`, `AND`, `OR`, and `()`. | Field | `=` | `<`, `\>` | |----------------------------|-----|----------| | state | Yes | No | | targetState | Yes | No | | createTime | Yes | Yes | | updateTime | Yes | Yes | | publisher | Yes | No | | frontmatter.metadata. | Yes | No | | attributes.. | Yes | No | Examples: * `state=ACTIVE` to restrict results to skills in the `ACTIVE` state. * `frontmatter.metadata.version=10` to restrict results to skills with a frontmatter metadata `version` equal to `10`.
+     *     // Optional. Use this field to specify additional filter criteria on search results. Filter expressions can be used to restrict results based upon filterable fields, where equality operators can be used. See [instructions](https://docs.cloud.google.com/agent-registry/search-agents-and-tools) for more details. Allowed operators: `=`, `<`, `\>`, `NOT`, `AND`, `OR`, and `()`. | Field | `=` | `<`, `\>` | |--------------|-----|----------| | state | Yes | No | | targetState | Yes | No | | createTime | Yes | Yes | | updateTime | Yes | Yes | Examples: * `state=ACTIVE` to restrict results to skills in the `ACTIVE` state.
      *     filter: 'placeholder-value',
      *     // Optional. The maximum number of search results to return per page. The page size is capped at `100`, even if a larger value is specified. A negative value will result in an `INVALID_ARGUMENT` error. If unspecified or set to `0`, a default value of `20` will be used. The server may return fewer results than requested.
      *     pageSize: 'placeholder-value',
@@ -6422,7 +6416,7 @@ export namespace agentregistry_v1alpha {
      *     pageToken: 'placeholder-value',
      *     // Required. Parent value for SearchSkillsRequest. Format: `projects/{project\}/locations/{location\}`.
      *     parent: 'projects/my-project/locations/my-location',
-     *     // Optional. Search criteria used to select the Skills to return. If no search criteria is specified then all accessible Skills will be returned. Search expressions can be used to restrict results based upon searchable fields, where the operators can be used along with the suffix wildcard symbol `*`. See [instructions](https://docs.cloud.google.com/agent-registry/search-agents-and-tools) for more details. Allowed operators: `=`, `:`, `NOT`, `AND`, `OR`, and `()`. Searchable fields: | Field | `=` | `:` | `*` | Keyword Search | |----------------------------|-----|-----|-----|----------------| | skillId | Yes | Yes | Yes | Included | | name | No | Yes | Yes | Included | | displayName | No | Yes | Yes | Included | | description | No | Yes | No | Included | | publisher | No | Yes | Yes | Excluded | | frontmatter.name | No | Yes | No | Included | | frontmatter.description | No | Yes | No | Included | | frontmatter.compatibility | No | Yes | No | Included | | frontmatter.license | No | Yes | No | Included | | frontmatter.metadata. | No | Yes | No | Excluded | | attributes.. | No | Yes | No | Excluded | Examples: * `skillId="urn:skill:projects-1234:locations:global:private-important-skill"` to find the skill with the specified skill ID. * `name:important` to find skills whose name contains `important` as a word. * `displayName:works*` to find skills whose display name contains words that start with `works`. * `frontmatter.metadata.author:alice` to find skills whose frontmatter metadata `author` contains words that start with `alice`.
+     *     // Optional. Search criteria used to select the Skills to return. If no search criteria is specified then all accessible Skills will be returned. Search expressions can be used to restrict results based upon searchable fields, where the operators can be used along with the suffix wildcard symbol `*`. See [instructions](https://docs.cloud.google.com/agent-registry/search-agents-and-tools) for more details. Allowed operators: `=`, `:`, `NOT`, `AND`, `OR`, and `()`. Searchable fields: | Field | `=` | `:` | `*` | Keyword Search | |---------------------------|-----|-----|-----|----------------| | skillId | Yes | Yes | Yes | Included | | name | No | Yes | Yes | Included | | displayName | No | Yes | Yes | Included | | description | No | Yes | No | Included | | frontmatter.name | No | Yes | No | Included | | frontmatter.description | No | Yes | No | Included | | frontmatter.compatibility | No | Yes | No | Included | | frontmatter.license | No | Yes | No | Included | Examples: * `skillId="urn:skill:projects-1234:locations:global:private-important-skill"` to find the skill with the specified skill ID. * `name:important` to find skills whose name contains `important` as a word. * `displayName:works*` to find skills whose display name contains words that start with `works`.
      *     searchString: 'placeholder-value',
      *     // Optional. The type of search.
      *     searchType: 'placeholder-value',
@@ -6575,7 +6569,7 @@ export namespace agentregistry_v1alpha {
   }
   export interface Params$Resource$Projects$Locations$Skills$List extends StandardParameters {
     /**
-     * Optional. Use this field to specify filter criteria on list results. Filter expressions can be used to restrict results based upon filterable fields, where equality operators can be used. See [instructions](https://docs.cloud.google.com/agent-registry/search-agents-and-tools) for more details. Allowed operators: `=`, `<`, `\>`, `NOT`, `AND`, `OR`, and `()`. | Field | `=` | `<`, `\>` | |----------------------------|-----|----------| | state | Yes | No | | targetState | Yes | No | | createTime | Yes | Yes | | updateTime | Yes | Yes | | publisher | Yes | No | | frontmatter.metadata. | Yes | No | | attributes.. | Yes | No | Examples: * `state=ACTIVE` to restrict results to skills in the `ACTIVE` state. * `frontmatter.metadata.version=10` to restrict results to skills with a frontmatter metadata `version` equal to `10`.
+     * Optional. Use this field to specify filter criteria on list results. Filter expressions can be used to restrict results based upon filterable fields, where equality operators can be used. See [instructions](https://docs.cloud.google.com/agent-registry/search-agents-and-tools) for more details. Allowed operators: `=`, `<`, `\>`, `NOT`, `AND`, `OR`, and `()`. | Field | `=` | `<`, `\>` | |--------------|-----|----------| | state | Yes | No | | targetState | Yes | No | | createTime | Yes | Yes | | updateTime | Yes | Yes | Examples: * `state=ACTIVE` to restrict results to skills in the `ACTIVE` state.
      */
     filter?: string;
     /**
@@ -6616,7 +6610,7 @@ export namespace agentregistry_v1alpha {
   }
   export interface Params$Resource$Projects$Locations$Skills$Search extends StandardParameters {
     /**
-     * Optional. Use this field to specify additional filter criteria on search results. Filter expressions can be used to restrict results based upon filterable fields, where equality operators can be used. See [instructions](https://docs.cloud.google.com/agent-registry/search-agents-and-tools) for more details. Allowed operators: `=`, `<`, `\>`, `NOT`, `AND`, `OR`, and `()`. | Field | `=` | `<`, `\>` | |----------------------------|-----|----------| | state | Yes | No | | targetState | Yes | No | | createTime | Yes | Yes | | updateTime | Yes | Yes | | publisher | Yes | No | | frontmatter.metadata. | Yes | No | | attributes.. | Yes | No | Examples: * `state=ACTIVE` to restrict results to skills in the `ACTIVE` state. * `frontmatter.metadata.version=10` to restrict results to skills with a frontmatter metadata `version` equal to `10`.
+     * Optional. Use this field to specify additional filter criteria on search results. Filter expressions can be used to restrict results based upon filterable fields, where equality operators can be used. See [instructions](https://docs.cloud.google.com/agent-registry/search-agents-and-tools) for more details. Allowed operators: `=`, `<`, `\>`, `NOT`, `AND`, `OR`, and `()`. | Field | `=` | `<`, `\>` | |--------------|-----|----------| | state | Yes | No | | targetState | Yes | No | | createTime | Yes | Yes | | updateTime | Yes | Yes | Examples: * `state=ACTIVE` to restrict results to skills in the `ACTIVE` state.
      */
     filter?: string;
     /**
@@ -6632,7 +6626,7 @@ export namespace agentregistry_v1alpha {
      */
     parent?: string;
     /**
-     * Optional. Search criteria used to select the Skills to return. If no search criteria is specified then all accessible Skills will be returned. Search expressions can be used to restrict results based upon searchable fields, where the operators can be used along with the suffix wildcard symbol `*`. See [instructions](https://docs.cloud.google.com/agent-registry/search-agents-and-tools) for more details. Allowed operators: `=`, `:`, `NOT`, `AND`, `OR`, and `()`. Searchable fields: | Field | `=` | `:` | `*` | Keyword Search | |----------------------------|-----|-----|-----|----------------| | skillId | Yes | Yes | Yes | Included | | name | No | Yes | Yes | Included | | displayName | No | Yes | Yes | Included | | description | No | Yes | No | Included | | publisher | No | Yes | Yes | Excluded | | frontmatter.name | No | Yes | No | Included | | frontmatter.description | No | Yes | No | Included | | frontmatter.compatibility | No | Yes | No | Included | | frontmatter.license | No | Yes | No | Included | | frontmatter.metadata. | No | Yes | No | Excluded | | attributes.. | No | Yes | No | Excluded | Examples: * `skillId="urn:skill:projects-1234:locations:global:private-important-skill"` to find the skill with the specified skill ID. * `name:important` to find skills whose name contains `important` as a word. * `displayName:works*` to find skills whose display name contains words that start with `works`. * `frontmatter.metadata.author:alice` to find skills whose frontmatter metadata `author` contains words that start with `alice`.
+     * Optional. Search criteria used to select the Skills to return. If no search criteria is specified then all accessible Skills will be returned. Search expressions can be used to restrict results based upon searchable fields, where the operators can be used along with the suffix wildcard symbol `*`. See [instructions](https://docs.cloud.google.com/agent-registry/search-agents-and-tools) for more details. Allowed operators: `=`, `:`, `NOT`, `AND`, `OR`, and `()`. Searchable fields: | Field | `=` | `:` | `*` | Keyword Search | |---------------------------|-----|-----|-----|----------------| | skillId | Yes | Yes | Yes | Included | | name | No | Yes | Yes | Included | | displayName | No | Yes | Yes | Included | | description | No | Yes | No | Included | | frontmatter.name | No | Yes | No | Included | | frontmatter.description | No | Yes | No | Included | | frontmatter.compatibility | No | Yes | No | Included | | frontmatter.license | No | Yes | No | Included | Examples: * `skillId="urn:skill:projects-1234:locations:global:private-important-skill"` to find the skill with the specified skill ID. * `name:important` to find skills whose name contains `important` as a word. * `displayName:works*` to find skills whose display name contains words that start with `works`.
      */
     searchString?: string;
     /**

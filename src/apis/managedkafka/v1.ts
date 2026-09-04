@@ -132,10 +132,6 @@ export namespace managedkafka_v1 {
      * Required. Virtual Private Cloud (VPC) networks that must be granted direct access to the Kafka cluster. Minimum of 1 network is required. Maximum 10 networks can be specified.
      */
     networkConfigs?: Schema$NetworkConfig[];
-    /**
-     * Optional. The configuration for public connectivity to the Kafka cluster.
-     */
-    publicClusterConfig?: Schema$PublicClusterConfig;
   }
   /**
    * Represents the set of ACLs for a given Kafka Resource Pattern, which consists of resource_type, resource_name and pattern_type.
@@ -199,15 +195,6 @@ export namespace managedkafka_v1 {
      * Whether the acl was created as a result of adding the acl entry.
      */
     aclCreated?: boolean | null;
-  }
-  /**
-   * Capacity configuration at a per-broker level within the Kafka cluster. The config will be appled to each broker in the cluster.
-   */
-  export interface Schema$BrokerCapacityConfig {
-    /**
-     * Optional. The disk to provision for each broker in Gibibytes. Minimum: 100 GiB.
-     */
-    diskSizeGib?: string | null;
   }
   /**
    * Details of a broker in the Kafka cluster.
@@ -291,14 +278,6 @@ export namespace managedkafka_v1 {
    */
   export interface Schema$Cluster {
     /**
-     * Output only. The bootstrap address of the Kafka cluster. The returned address format is: `bootstrap-...managedkafka.s.cloud.goog` or `bootstrap...managedkafka..cloud.goog` (legacy format). ## Examples: `bootstrap-nol2mecj8p94jhx2ge2rg54579a.c0aad26f.europe-west1.managedkafka.s.cloud.goog` - `bootstrap.my-cluster.us-central1.managedkafka.my-project.cloud.goog` The port number is omitted so clients can connect to their target listener (for example, `:9092` for TLS or `:9094` for mTLS).
-     */
-    bootstrapAddress?: string | null;
-    /**
-     * Optional. Capacity configuration at a per-broker level within the Kafka cluster. The config will be appled to each broker in the cluster.
-     */
-    brokerCapacityConfig?: Schema$BrokerCapacityConfig;
-    /**
      * Output only. Only populated when FULL view is requested. Details of each broker in the cluster.
      */
     brokerDetails?: Schema$BrokerDetails[];
@@ -310,10 +289,6 @@ export namespace managedkafka_v1 {
      * Output only. The time when the cluster was created.
      */
     createTime?: string | null;
-    /**
-     * Output only. Only populated when FULL view is requested. The effective capacity configuration of the cluster.
-     */
-    effectiveCapacityConfig?: Schema$EffectiveCapacityConfig;
     /**
      * Required. Configuration properties for a Kafka cluster deployed to Google Cloud Platform.
      */
@@ -330,10 +305,6 @@ export namespace managedkafka_v1 {
      * Identifier. The name of the cluster. Structured like: projects/{project_number\}/locations/{location\}/clusters/{cluster_id\}
      */
     name?: string | null;
-    /**
-     * Output only. Details of the public cluster feature for the Kafka cluster.
-     */
-    publicClusterDetails?: Schema$PublicClusterDetails;
     /**
      * Optional. Rebalance configuration for the Kafka cluster.
      */
@@ -570,19 +541,6 @@ export namespace managedkafka_v1 {
      * The unique identifier of the schema created.
      */
     id?: number | null;
-  }
-  /**
-   * Describes the effective capacity configuration of a Kafka cluster, both cluster-wide and per-broker.
-   */
-  export interface Schema$EffectiveCapacityConfig {
-    /**
-     * Output only. The number of brokers in the cluster.
-     */
-    brokerCount?: string | null;
-    /**
-     * Output only. The disk assigned to each broker in Gibibytes.
-     */
-    brokerDiskSizeGib?: string | null;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
@@ -868,28 +826,6 @@ export namespace managedkafka_v1 {
    * Response for PauseConnector.
    */
   export interface Schema$PauseConnectorResponse {}
-  /**
-   * The configuration for a public Kafka cluster
-   */
-  export interface Schema$PublicClusterConfig {
-    /**
-     * Required. The list of IPv4 ranges in CIDR notation that are allowed to connect to the public Kafka broker endpoints. The Kafka cluster should only be exposed to trusted external ranges. A maximum of 500 IP ranges can be specified and no single range can be larger than a `/16`. This field is required if PublicClusterConfig is specified.
-     */
-    allowedSourceIpRanges?: string[] | null;
-  }
-  /**
-   * Details of the public cluster feature for the Kafka cluster.
-   */
-  export interface Schema$PublicClusterDetails {
-    /**
-     * Output only. DNS discovery records that resolve to all of the external IP addresses associated with the public cluster. Used for configuring DNS-based egress firewall rules to a public cluster. discovery_dns_record can be added to this list if the cluster is scaled up. Must configure DNS based firewalls to resolve ALL DNS records in this list as large clusters have IP addresses sharded across records. Each record contains a maximum of 30 IP addresses.
-     */
-    discoveryDnsRecords?: string[] | null;
-    /**
-     * Output only. All of the external IP addresses associated with the public cluster used for configuring egress firewall rules to a public cluster. external_ip_address can be added to this list if the cluster is scaled up.
-     */
-    externalIpAddresses?: string[] | null;
-  }
   /**
    * Defines rebalancing behavior of a Kafka cluster.
    */
@@ -1560,17 +1496,13 @@ export namespace managedkafka_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
-     *       //   "bootstrapAddress": "my_bootstrapAddress",
-     *       //   "brokerCapacityConfig": {},
      *       //   "brokerDetails": [],
      *       //   "capacityConfig": {},
      *       //   "createTime": "my_createTime",
-     *       //   "effectiveCapacityConfig": {},
      *       //   "gcpConfig": {},
      *       //   "kafkaVersion": "my_kafkaVersion",
      *       //   "labels": {},
      *       //   "name": "my_name",
-     *       //   "publicClusterDetails": {},
      *       //   "rebalanceConfig": {},
      *       //   "satisfiesPzi": false,
      *       //   "satisfiesPzs": false,
@@ -1866,17 +1798,13 @@ export namespace managedkafka_v1 {
      *
      *   // Example response
      *   // {
-     *   //   "bootstrapAddress": "my_bootstrapAddress",
-     *   //   "brokerCapacityConfig": {},
      *   //   "brokerDetails": [],
      *   //   "capacityConfig": {},
      *   //   "createTime": "my_createTime",
-     *   //   "effectiveCapacityConfig": {},
      *   //   "gcpConfig": {},
      *   //   "kafkaVersion": "my_kafkaVersion",
      *   //   "labels": {},
      *   //   "name": "my_name",
-     *   //   "publicClusterDetails": {},
      *   //   "rebalanceConfig": {},
      *   //   "satisfiesPzi": false,
      *   //   "satisfiesPzs": false,
@@ -2168,17 +2096,13 @@ export namespace managedkafka_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
-     *       //   "bootstrapAddress": "my_bootstrapAddress",
-     *       //   "brokerCapacityConfig": {},
      *       //   "brokerDetails": [],
      *       //   "capacityConfig": {},
      *       //   "createTime": "my_createTime",
-     *       //   "effectiveCapacityConfig": {},
      *       //   "gcpConfig": {},
      *       //   "kafkaVersion": "my_kafkaVersion",
      *       //   "labels": {},
      *       //   "name": "my_name",
-     *       //   "publicClusterDetails": {},
      *       //   "rebalanceConfig": {},
      *       //   "satisfiesPzi": false,
      *       //   "satisfiesPzs": false,

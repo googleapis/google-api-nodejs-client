@@ -22390,7 +22390,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.locations.contentPolicies.create({
-     *     // Required. Parent resource name. The format of this value varies depending on the scope of the request (project): + Projects scope: `projects/{project_id\}/locations/{location_id\}`
+     *     // Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization): + Projects scope: `projects/{project_id\}/locations/{location_id\}` + Organizations scope: `organizations/{org_id\}/locations/{location_id\}`
      *     parent: 'projects/my-project/locations/my-location',
      *
      *     // Request body metadata
@@ -22844,7 +22844,7 @@ export namespace dlp_v2 {
      *     pageSize: 'placeholder-value',
      *     // Optional. Page token from a previous page to return the next set of results. If set, all other request fields must match the original request.
      *     pageToken: 'placeholder-value',
-     *     // Required. Resource name of the project, for example, `projects/project-id/locations/asia`.
+     *     // Required. Resource name of the organization or project, for example, `organizations/433245324/locations/europe` or `projects/project-id/locations/asia`.
      *     parent: 'projects/my-project/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -23125,7 +23125,7 @@ export namespace dlp_v2 {
 
   export interface Params$Resource$Projects$Locations$Contentpolicies$Create extends StandardParameters {
     /**
-     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project): + Projects scope: `projects/{project_id\}/locations/{location_id\}`
+     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization): + Projects scope: `projects/{project_id\}/locations/{location_id\}` + Organizations scope: `organizations/{org_id\}/locations/{location_id\}`
      */
     parent?: string;
 
@@ -23156,7 +23156,7 @@ export namespace dlp_v2 {
      */
     pageToken?: string;
     /**
-     * Required. Resource name of the project, for example, `projects/project-id/locations/asia`.
+     * Required. Resource name of the organization or project, for example, `organizations/433245324/locations/europe` or `projects/project-id/locations/asia`.
      */
     parent?: string;
   }

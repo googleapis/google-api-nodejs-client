@@ -321,7 +321,7 @@
       }
     }
   },
-  "revision": "20260901",
+  "revision": "20260719",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "DataSource": {
@@ -449,8 +449,7 @@
             "FREE_VEHICLE_LISTINGS",
             "VEHICLE_ADS",
             "CLOUD_RETAIL",
-            "LOCAL_CLOUD_RETAIL",
-            "RENTAL_ADS"
+            "LOCAL_CLOUD_RETAIL"
           ],
           "enumDescriptions": [
             "Not specified.",
@@ -465,8 +464,7 @@
             "[Free vehicle listings](https://support.google.com/merchants/answer/11189169).",
             "[Vehicle ads](https://support.google.com/merchants/answer/11189169).",
             "[Cloud retail](https://cloud.google.com/solutions/retail).",
-            "[Local cloud retail](https://cloud.google.com/solutions/retail).",
-            "Real Estate Rental Ads. ."
+            "[Local cloud retail](https://cloud.google.com/solutions/retail)."
           ],
           "type": "string"
         },
@@ -847,14 +845,12 @@
             "LOCAL_CLOUD_RETAIL",
             "PRODUCT_REVIEWS",
             "MERCHANT_REVIEWS",
-            "YOUTUBE_CHECKOUT",
-            "RENTAL_ADS"
+            "YOUTUBE_CHECKOUT"
           ],
           "enumDeprecated": [
             false,
             false,
             true,
-            false,
             false,
             false,
             false,
@@ -893,8 +889,7 @@
             "[Local cloud retail](https://cloud.google.com/solutions/retail).",
             "[Product Reviews](https://support.google.com/merchants/answer/14620732).",
             "[Merchant Reviews](https://developers.google.com/merchant-review-feeds).",
-            "YouTube Checkout .",
-            "Real Estate Rental Ads. ."
+            "YouTube Checkout ."
           ],
           "type": "string"
         }
