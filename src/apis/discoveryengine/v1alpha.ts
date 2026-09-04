@@ -2524,6 +2524,10 @@ export namespace discoveryengine_v1alpha {
      */
     generationConfig?: Schema$GoogleCloudDiscoveryengineV1alphaAssistantGenerationConfig;
     /**
+     * Optional. Indicates whether Knowledge Catalog is enabled for this specific assistant. When enabled, it powers discovery context using organizational data.
+     */
+    knowledgeCatalogEnabled?: boolean | null;
+    /**
      * Immutable. Resource name of the assistant. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/assistants/{assistant\}` It must be a UTF-8 encoded string with a length limit of 1024 characters.
      */
     name?: string | null;
@@ -5735,7 +5739,7 @@ export namespace discoveryengine_v1alpha {
      */
     displayName?: string | null;
     /**
-     * Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications`
+     * Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `canvas-app-builder` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications`
      */
     features?: {[key: string]: string} | null;
     /**
@@ -12070,6 +12074,10 @@ export namespace discoveryengine_v1alpha {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaWidgetConfigCustomerProvidedConfig {
     /**
+     * Output only. The customer's Assured Workloads compliance level. `customer_type` collapses every compliance level into a single `GOVERNMENT_CUSTOMER` value, so a client that gates a feature on one specific level rather than on government status as a whole must read this field instead.
+     */
+    complianceLevel?: string | null;
+    /**
      * Customer type.
      */
     customerType?: string | null;
@@ -12280,7 +12288,7 @@ export namespace discoveryengine_v1alpha {
      */
     enableVisualContentSummary?: boolean | null;
     /**
-     * Output only. Feature config for the engine to opt in or opt out of features. Supported keys: * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications`
+     * Output only. Feature config for the engine to opt in or opt out of features. Supported keys: * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `canvas-app-builder` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications`
      */
     features?: {[key: string]: string} | null;
     /**
@@ -13712,7 +13720,7 @@ export namespace discoveryengine_v1alpha {
      */
     displayName?: string | null;
     /**
-     * Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications`
+     * Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `canvas-app-builder` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications`
      */
     features?: {[key: string]: string} | null;
     /**
@@ -17004,7 +17012,7 @@ export namespace discoveryengine_v1alpha {
      */
     displayName?: string | null;
     /**
-     * Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications`
+     * Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `canvas-app-builder` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications`
      */
     features?: {[key: string]: string} | null;
     /**
@@ -49707,6 +49715,7 @@ export namespace discoveryengine_v1alpha {
      *           //   "displayName": "my_displayName",
      *           //   "enabledTools": {},
      *           //   "generationConfig": {},
+     *           //   "knowledgeCatalogEnabled": false,
      *           //   "name": "my_name",
      *           //   "updateTime": "my_updateTime",
      *           //   "webGroundingType": "my_webGroundingType"
@@ -49726,6 +49735,7 @@ export namespace discoveryengine_v1alpha {
      *   //   "displayName": "my_displayName",
      *   //   "enabledTools": {},
      *   //   "generationConfig": {},
+     *   //   "knowledgeCatalogEnabled": false,
      *   //   "name": "my_name",
      *   //   "updateTime": "my_updateTime",
      *   //   "webGroundingType": "my_webGroundingType"
@@ -50035,6 +50045,7 @@ export namespace discoveryengine_v1alpha {
      *   //   "displayName": "my_displayName",
      *   //   "enabledTools": {},
      *   //   "generationConfig": {},
+     *   //   "knowledgeCatalogEnabled": false,
      *   //   "name": "my_name",
      *   //   "updateTime": "my_updateTime",
      *   //   "webGroundingType": "my_webGroundingType"
@@ -50363,6 +50374,7 @@ export namespace discoveryengine_v1alpha {
      *           //   "displayName": "my_displayName",
      *           //   "enabledTools": {},
      *           //   "generationConfig": {},
+     *           //   "knowledgeCatalogEnabled": false,
      *           //   "name": "my_name",
      *           //   "updateTime": "my_updateTime",
      *           //   "webGroundingType": "my_webGroundingType"
@@ -50382,6 +50394,7 @@ export namespace discoveryengine_v1alpha {
      *   //   "displayName": "my_displayName",
      *   //   "enabledTools": {},
      *   //   "generationConfig": {},
+     *   //   "knowledgeCatalogEnabled": false,
      *   //   "name": "my_name",
      *   //   "updateTime": "my_updateTime",
      *   //   "webGroundingType": "my_webGroundingType"
