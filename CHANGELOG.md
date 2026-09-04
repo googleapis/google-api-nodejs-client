@@ -4,6 +4,13 @@
 
 [1]: https://www.npmjs.com/package/googleapis?activeTab=versions
 
+## [178.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/googleapis-v178.1.0...googleapis-v178.1.1) (2026-09-04)
+
+
+### Bug Fixes
+
+* **deps:** update dependency js-yaml to v5 ([717cb9a](https://github.com/googleapis/google-api-nodejs-client/commit/717cb9ac8617bc16f657f0b4f2e8a5825c99d0a5))
+
 ## [178.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/googleapis-v178.0.0...googleapis-v178.1.0) (2026-09-02)
 
 
