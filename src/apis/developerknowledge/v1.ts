@@ -242,7 +242,7 @@ export namespace developerknowledge_v1 {
      */
     updateTime?: string | null;
     /**
-     * Output only. Provides the URI of the content, such as `docs.cloud.google.com/storage/docs/creating-buckets`.
+     * Output only. Provides the URI of the content, such as `https://docs.cloud.google.com/storage/docs/creating-buckets`.
      */
     uri?: string | null;
     /**
