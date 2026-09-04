@@ -3745,6 +3745,7 @@
           "scopes": [
             "https://www.googleapis.com/auth/youtube",
             "https://www.googleapis.com/auth/youtube.force-ssl",
+            "https://www.googleapis.com/auth/youtube.readonly",
             "https://www.googleapis.com/auth/youtubepartner"
           ]
         },
@@ -4192,7 +4193,7 @@
       }
     }
   },
-  "revision": "20260820",
+  "revision": "20260902",
   "rootUrl": "https://youtube.googleapis.com/",
   "schemas": {
     "AbuseReport": {
