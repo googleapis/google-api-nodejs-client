@@ -333,7 +333,5 @@
   "src/apis/cloudproductregistry": "1.1.0",
   "src/apis/agentidentity": "1.2.0",
   "src/apis/androiddeveloperidstatus": "1.1.0",
-  "src/apis/ftp": "1.1.0",
-  "src/apis/agenciesandbrands": "1.0.0",
-  "src/apis/curationpartners": "1.0.0"
+  "src/apis/ftp": "1.1.0"
 }
