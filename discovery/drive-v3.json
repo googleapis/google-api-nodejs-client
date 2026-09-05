@@ -1344,6 +1344,12 @@
             "fileId"
           ],
           "parameters": {
+            "copyComments": {
+              "default": "false",
+              "description": "Whether to copy the comments associated with the file.",
+              "location": "query",
+              "type": "boolean"
+            },
             "enforceSingleParent": {
               "default": "false",
               "deprecated": true,
@@ -3038,7 +3044,7 @@
       }
     }
   },
-  "revision": "20260823",
+  "revision": "20260901",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "About": {
