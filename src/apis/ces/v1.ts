@@ -716,6 +716,10 @@ export namespace ces_v1 {
      */
     bargeInConfig?: Schema$BargeInConfig;
     /**
+     * Optional. Configures custom voice samples for voice cloning.
+     */
+    customVoiceSamples?: Schema$CustomVoiceSample[];
+    /**
      * Optional. The duration of user inactivity (no speech or interaction) before the agent prompts the user for reengagement. If not set, the agent will not prompt the user for reengagement.
      */
     inactivityTimeout?: string | null;
@@ -1300,6 +1304,35 @@ export namespace ces_v1 {
      * Optional. The intended ground-truth text from the Simulated Caller (Polysynth). Only populated when word error rate metrics are enabled.
      */
     userIntendedText?: string | null;
+  }
+  /**
+   * Configuration for a custom voice sample used for voice cloning.
+   */
+  export interface Schema$CustomVoiceSample {
+    /**
+     * Optional. Consent audio for voice cloning.
+     */
+    consentAudioGcsUri?: string | null;
+    /**
+     * Optional. The user-defined name for the custom voice sample.
+     */
+    name?: string | null;
+    /**
+     * Output only. Synthesized preview audio for custom voice, formatted as canonical WAV (LINEAR16, 24kHz, 16-bit, mono).
+     */
+    previewAudioContent?: string | null;
+    /**
+     * Optional. Text for synthesizing preview audio for custom voice.
+     */
+    previewText?: string | null;
+    /**
+     * Optional. Natural language instructions for voice style, tone, pacing, or pronunciation.
+     */
+    voiceInstruction?: string | null;
+    /**
+     * Optional. The Cloud Storage URI to the audio sample for voice cloning. The audio sample should be a mono-channel, 24kHz WAV file.
+     */
+    voiceSampleGcsUri?: string | null;
   }
   /**
    * Settings for dashboards associated with the app, that show up in the Monitoring view.

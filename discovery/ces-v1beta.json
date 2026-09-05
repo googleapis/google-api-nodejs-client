@@ -3874,7 +3874,7 @@
       }
     }
   },
-  "revision": "20260831",
+  "revision": "20260901",
   "rootUrl": "https://ces.googleapis.com/",
   "schemas": {
     "Action": {
@@ -4913,6 +4913,13 @@
           "$ref": "BargeInConfig",
           "description": "Optional. Configures the agent behavior for the user barge-in activities."
         },
+        "customVoiceSamples": {
+          "description": "Optional. Configures custom voice samples for voice cloning.",
+          "items": {
+            "$ref": "CustomVoiceSample"
+          },
+          "type": "array"
+        },
         "inactivityTimeout": {
           "description": "Optional. The duration of user inactivity (no speech or interaction) before the agent prompts the user for reengagement. If not set, the agent will not prompt the user for reengagement.",
           "format": "google-duration",
@@ -5784,6 +5791,39 @@
         },
         "userIntendedText": {
           "description": "Optional. The intended ground-truth text from the Simulated Caller (Polysynth). Only populated when word error rate metrics are enabled.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CustomVoiceSample": {
+      "description": "Configuration for a custom voice sample used for voice cloning.",
+      "id": "CustomVoiceSample",
+      "properties": {
+        "consentAudioGcsUri": {
+          "description": "Optional. Consent audio for voice cloning.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Optional. The user-defined name for the custom voice sample.",
+          "type": "string"
+        },
+        "previewAudioContent": {
+          "description": "Output only. Synthesized preview audio for custom voice, formatted as canonical WAV (LINEAR16, 24kHz, 16-bit, mono).",
+          "format": "byte",
+          "readOnly": true,
+          "type": "string"
+        },
+        "previewText": {
+          "description": "Optional. Text for synthesizing preview audio for custom voice.",
+          "type": "string"
+        },
+        "voiceInstruction": {
+          "description": "Optional. Natural language instructions for voice style, tone, pacing, or pronunciation.",
+          "type": "string"
+        },
+        "voiceSampleGcsUri": {
+          "description": "Optional. The Cloud Storage URI to the audio sample for voice cloning. The audio sample should be a mono-channel, 24kHz WAV file.",
           "type": "string"
         }
       },
