@@ -5498,7 +5498,7 @@
       }
     }
   },
-  "revision": "20260818",
+  "revision": "20260820",
   "rootUrl": "https://dataproc.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -5983,7 +5983,8 @@
           "type": "integer"
         },
         "diskType": {
-          "description": "Optional. Disk type.",
+          "deprecated": true,
+          "description": "Optional. Deprecated: Use type instead.",
           "enum": [
             "DISK_TYPE_UNSPECIFIED",
             "HYPERDISK_BALANCED",
@@ -5992,11 +5993,11 @@
             "HYPERDISK_THROUGHPUT"
           ],
           "enumDescriptions": [
-            "Required unspecified disk type.",
-            "Hyperdisk Balanced disk type.",
-            "Hyperdisk Extreme disk type.",
-            "Hyperdisk ML disk type.",
-            "Hyperdisk Throughput disk type."
+            "Disk type is not specified.",
+            "Hyperdisk Balanced.",
+            "Hyperdisk Extreme.",
+            "Hyperdisk ML.",
+            "Hyperdisk Throughput."
           ],
           "type": "string"
         },
@@ -6008,6 +6009,10 @@
         "provisionedThroughput": {
           "description": "Optional. Indicates how much throughput to provision for the attached disk. This sets the number of throughput mb per second that the disk can handle. See https://cloud.google.com/compute/docs/disks/hyperdisks#hyperdisk-features",
           "format": "int64",
+          "type": "string"
+        },
+        "type": {
+          "description": "Optional. Attached disk type. Currently only supports Hyperdisks. See https://cloud.google.com/compute/docs/disks/hyperdisks. Note: Hyperdisk Balanced High Availability is not supported.Allowed values are: hyperdisk-balanced hyperdisk-extreme hyperdisk-ml hyperdisk-throughput",
           "type": "string"
         }
       },
