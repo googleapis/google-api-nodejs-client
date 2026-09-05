@@ -784,7 +784,7 @@
       }
     }
   },
-  "revision": "20260828",
+  "revision": "20260901",
   "rootUrl": "https://curationpartners.googleapis.com/",
   "schemas": {
     "AccessControlSettings": {
@@ -1265,7 +1265,7 @@
             "Bids in auction.",
             "Bid requests.",
             "Clicks.",
-            "Curator fee.",
+            "Curator fee. This will be redacted to 0.00 if the package's visibility is set to non-disclosed. Use the PACKAGE_FEE_VISIBILITY dimension to check if the package's fee is disclosed.",
             "Number of data segment requests sent in the Real-time curation.",
             "Impressions.",
             "Spend in reporting currency specified in the request. Defaults to USD."
@@ -2090,7 +2090,7 @@
               "Bids in auction.",
               "Bid requests.",
               "Clicks.",
-              "Curator fee.",
+              "Curator fee. This will be redacted to 0.00 if the package's visibility is set to non-disclosed. Use the PACKAGE_FEE_VISIBILITY dimension to check if the package's fee is disclosed.",
               "Number of data segment requests sent in the Real-time curation.",
               "Impressions.",
               "Spend in reporting currency specified in the request. Defaults to USD."
