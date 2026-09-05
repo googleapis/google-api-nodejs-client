@@ -434,6 +434,19 @@ export namespace pubsub_v1 {
     schema?: Schema$Schema;
   }
   /**
+   * Configuration specific to compiled Protocol Buffer schemas.
+   */
+  export interface Schema$CompiledProtoSchema {
+    /**
+     * Required. The compiled FileDescriptorSet binary.
+     */
+    compiledBytes?: string | null;
+    /**
+     * Required. The name of the root message type in the schema.
+     */
+    rootMessage?: string | null;
+  }
+  /**
    * Configuration for compressing/decompressing message data using a user-specified compression algorithm.
    */
   export interface Schema$Compression {
@@ -926,6 +939,10 @@ export namespace pubsub_v1 {
    */
   export interface Schema$Schema {
     /**
+     * Optional. Configuration for a schema provided as a pre-compiled Protocol Buffer FileDescriptorSet. The `type` field above must be set to PROTOCOL_BUFFER.
+     */
+    compiledProtoSchema?: Schema$CompiledProtoSchema;
+    /**
      * The definition of the schema. This should contain a string representing the full definition of the schema that is a valid schema definition of the type specified in `type`.
      */
     definition?: string | null;
@@ -1344,6 +1361,7 @@ export namespace pubsub_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "compiledProtoSchema": {},
      *   //   "definition": "my_definition",
      *   //   "name": "my_name",
      *   //   "revisionCreateTime": "my_revisionCreateTime",
@@ -1486,6 +1504,7 @@ export namespace pubsub_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "compiledProtoSchema": {},
      *       //   "definition": "my_definition",
      *       //   "name": "my_name",
      *       //   "revisionCreateTime": "my_revisionCreateTime",
@@ -1498,6 +1517,7 @@ export namespace pubsub_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "compiledProtoSchema": {},
      *   //   "definition": "my_definition",
      *   //   "name": "my_name",
      *   //   "revisionCreateTime": "my_revisionCreateTime",
@@ -1777,6 +1797,7 @@ export namespace pubsub_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "compiledProtoSchema": {},
      *   //   "definition": "my_definition",
      *   //   "name": "my_name",
      *   //   "revisionCreateTime": "my_revisionCreateTime",
@@ -1922,6 +1943,7 @@ export namespace pubsub_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "compiledProtoSchema": {},
      *   //   "definition": "my_definition",
      *   //   "name": "my_name",
      *   //   "revisionCreateTime": "my_revisionCreateTime",
@@ -2511,6 +2533,7 @@ export namespace pubsub_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "compiledProtoSchema": {},
      *   //   "definition": "my_definition",
      *   //   "name": "my_name",
      *   //   "revisionCreateTime": "my_revisionCreateTime",
