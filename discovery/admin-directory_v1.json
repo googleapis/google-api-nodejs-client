@@ -4729,7 +4729,7 @@
       }
     }
   },
-  "revision": "20260729",
+  "revision": "20260902",
   "rootUrl": "https://admin.googleapis.com/",
   "schemas": {
     "Alias": {
@@ -6570,6 +6570,18 @@
       "properties": {},
       "type": "object"
     },
+    "ExpirationDetails": {
+      "description": "Details regarding the expiration of this role assignment. Used to automatically revoke access when the time limit is reached.",
+      "id": "ExpirationDetails",
+      "properties": {
+        "expireTime": {
+          "description": "The specific timestamp when the role assignment expires.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ExternalId": {
       "description": "External identifier used to link and identify this group across external directory systems.",
       "id": "ExternalId",
@@ -7685,6 +7697,10 @@
         "etag": {
           "description": "ETag of the resource.",
           "type": "string"
+        },
+        "expirationDetails": {
+          "$ref": "ExpirationDetails",
+          "description": "Optional. Details regarding the expiration of this role assignment."
         },
         "kind": {
           "default": "admin#directory#roleAssignment",
