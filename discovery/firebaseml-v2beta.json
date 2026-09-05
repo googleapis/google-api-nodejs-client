@@ -206,7 +206,7 @@
       }
     }
   },
-  "revision": "20260823",
+  "revision": "20260830",
   "rootUrl": "https://firebaseml.googleapis.com/",
   "schemas": {
     "Date": {
@@ -1625,6 +1625,10 @@
           "description": "Optional. Specifies the nucleus sampling threshold. The model considers only the smallest set of tokens whose cumulative probability is at least `top_p`. This helps generate more diverse and less repetitive responses. For example, a `top_p` of 0.9 means the model considers tokens until the cumulative probability of the tokens to select from reaches 0.9. It's recommended to adjust either temperature or `top_p`, but not both.",
           "format": "float",
           "type": "number"
+        },
+        "translationConfig": {
+          "$ref": "GoogleCloudAiplatformV1beta1TranslationConfig",
+          "description": "Optional. Config for translation."
         }
       },
       "type": "object"
@@ -2394,7 +2398,7 @@
             "AGENTIC"
           ],
           "enumDescriptions": [
-            "Default. Uses model-specific processing (3.5 Pro+ -> `AGENTIC`, older models -> `STATIC`).",
+            "Defaults to model-specific processing.",
             "Fixed-rate frame extraction. All frames placed in context.",
             "Model-driven dynamic navigation. Recommended for most use cases."
           ],
@@ -3411,6 +3415,21 @@
         "enableZeroDataRetention": {
           "description": "Optional. Instructs Vertex Grounding to use Parallel's Zero Data Retention Marketplace product. If this value is \"false\" or omitted, the Parallel Web Search for Grounding standard subscription will be used. If this value is \"true\", the Parallel Web Search for Grounding - ZDR subscription will be used.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1TranslationConfig": {
+      "description": "Config for translation features.",
+      "id": "GoogleCloudAiplatformV1beta1TranslationConfig",
+      "properties": {
+        "echoTargetLanguage": {
+          "description": "Optional. If `true`, the model will generate audio when the target language is spoken, essentially it will parrot the input. If `false`, we will not produce audio for the target language.",
+          "type": "boolean"
+        },
+        "targetLanguageCode": {
+          "description": "Required. The target language for translation. Supported values are BCP-47 language codes (e.g. \"en\", \"es\", \"fr\").",
+          "type": "string"
         }
       },
       "type": "object"
