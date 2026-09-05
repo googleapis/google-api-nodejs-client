@@ -5970,7 +5970,7 @@
       }
     }
   },
-  "revision": "20260825",
+  "revision": "20260901",
   "rootUrl": "https://androidpublisher.googleapis.com/",
   "schemas": {
     "Abi": {
@@ -8857,6 +8857,45 @@
       },
       "type": "object"
     },
+    "ExternalContentLinkDetails": {
+      "description": "Reporting details unique to the external content link program.",
+      "id": "ExternalContentLinkDetails",
+      "properties": {
+        "externalAppCategory": {
+          "description": "Optional. The category of the downlaoded app. This must match the category provided in Play Console during the external app verification process. Only required for app installs.",
+          "enum": [
+            "EXTERNAL_CONTENT_APP_CATEGORY_UNSPECIFIED",
+            "APP",
+            "GAME"
+          ],
+          "enumDescriptions": [
+            "Unspecified, do not use.",
+            "The app is classified under the app category.",
+            "The app is classified under the game category."
+          ],
+          "type": "string"
+        },
+        "installedAppPackage": {
+          "description": "Optional. The package name of the app downloaded through this transaction. Only required for app installs.",
+          "type": "string"
+        },
+        "linkType": {
+          "description": "Required. The type content being reported by this transaction.",
+          "enum": [
+            "EXTERNAL_CONTENT_LINK_TYPE_UNSPECIFIED",
+            "LINK_TO_DIGITAL_CONTENT_OFFER",
+            "LINK_TO_APP_DOWNLOAD"
+          ],
+          "enumDescriptions": [
+            "Unspecified, do not use.",
+            "An offer to purchase digital content.",
+            "An app install."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ExternalOfferDetails": {
       "description": "Reporting details unique to the external offers program.",
       "id": "ExternalOfferDetails",
@@ -8940,6 +8979,10 @@
           "$ref": "Price",
           "description": "Output only. The current tax amount. This represents the current tax amount including any refunds that may have been applied to this transaction.",
           "readOnly": true
+        },
+        "externalContentLinkDetails": {
+          "$ref": "ExternalContentLinkDetails",
+          "description": "Optional. Details necessary to accurately report external content link transactions."
         },
         "externalOfferDetails": {
           "$ref": "ExternalOfferDetails",
@@ -10792,6 +10835,18 @@
       },
       "type": "object"
     },
+    "OneTimeProductGameRewardOffer": {
+      "description": "Configuration specific to game reward offers.",
+      "id": "OneTimeProductGameRewardOffer",
+      "properties": {
+        "redemptionLimit": {
+          "description": "Optional. The number of times this offer can be redeemed. If unset or set to 0, allows for unlimited offer redemptions. Otherwise must be a number between 1 and 50 inclusive.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "OneTimeProductListing": {
       "description": "Regional store listing for a one-time product.",
       "id": "OneTimeProductListing",
@@ -10818,6 +10873,10 @@
         "discountedOffer": {
           "$ref": "OneTimeProductDiscountedOffer",
           "description": "A discounted offer."
+        },
+        "gameRewardOffer": {
+          "$ref": "OneTimeProductGameRewardOffer",
+          "description": "A game reward offer."
         },
         "offerId": {
           "description": "Required. Immutable. The ID of this product offer. Must be unique within the purchase option. It must start with a number or lower-case letter, and can only contain lower-case letters (a-z), numbers (0-9), and hyphens (-). The maximum length is 63 characters.",
