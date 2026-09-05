@@ -1454,7 +1454,7 @@
       }
     }
   },
-  "revision": "20260819",
+  "revision": "20260826",
   "rootUrl": "https://containeranalysis.googleapis.com/",
   "schemas": {
     "AISkillAnalysisNote": {
@@ -5812,6 +5812,11 @@
           ],
           "readOnly": true,
           "type": "string"
+        },
+        "tokenUsage": {
+          "$ref": "TokenUsage",
+          "description": "Output only. Telemetry metrics tracking token usage for the AI scan.",
+          "readOnly": true
         }
       },
       "type": "object"
@@ -7748,6 +7753,43 @@
         "startTime": {
           "description": "Start of time span.",
           "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TokenUsage": {
+      "description": "Token usage associated with an AI scan.",
+      "id": "TokenUsage",
+      "properties": {
+        "cacheCount": {
+          "description": "Output only. Cache matched tokens for implicit cache.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "candidateCount": {
+          "description": "Output only. Tokens in the model response.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "promptCount": {
+          "description": "Output only. Tokens in the user request.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "thinkingCount": {
+          "description": "Output only. Tokens in the thinking output.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "toolUsePromptCount": {
+          "description": "Output only. Prompt tokens for using tools.",
+          "format": "int64",
+          "readOnly": true,
           "type": "string"
         }
       },
