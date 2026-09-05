@@ -2086,7 +2086,7 @@
       }
     }
   },
-  "revision": "20260818",
+  "revision": "20260826",
   "rootUrl": "https://alloydb.googleapis.com/",
   "schemas": {
     "AuthorizedNetwork": {
@@ -3225,6 +3225,39 @@
         "time": {
           "$ref": "GoogleTypeTimeOfDay",
           "description": "Time in UTC when the deny period starts on start_date and ends on end_date. This can be: * Full time OR * All zeros for 00:00:00 UTC"
+        }
+      },
+      "type": "object"
+    },
+    "DnsAutomationInfo": {
+      "description": "DnsAutomationInfo contains information about the DNS automation for the instance.",
+      "id": "DnsAutomationInfo",
+      "properties": {
+        "fullyQualifiedDomainName": {
+          "description": "Output only. The fully qualified domain name of the instance for DNS automation. Example: \"...alloydb.goog.\". Note: The AUDIT directive is intentionally omitted because this field contains sensitive network topology information.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The state of the DNS automation.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "PENDING_CREATE",
+            "ACTIVE",
+            "PENDING_DELETE",
+            "CREATE_FAILED",
+            "DELETE_FAILED"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "DNS record creation is pending.",
+            "DNS record is active.",
+            "DNS record deletion is pending.",
+            "DNS record creation failed.",
+            "DNS record deletion failed."
+          ],
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -4542,8 +4575,26 @@
           "description": "The consumer project to which the PSC service automation endpoint will be created.",
           "type": "string"
         },
+        "dnsAutomationInfos": {
+          "description": "Output only. List of DNS automation info for the PSC auto connection.",
+          "items": {
+            "$ref": "DnsAutomationInfo"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "ipAddress": {
           "description": "Output only. The IP address of the PSC service automation endpoint.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "serviceConnectionPolicy": {
+          "description": "Output only. The PSC service connection policy name. The format is \"projects//regions//serviceConnectionPolicies/\"",
+          "readOnly": true,
+          "type": "string"
+        },
+        "serviceConnectionPolicyCreationState": {
+          "description": "Output only. The creation state or result of the connection policy. Possible values include: - `ACTIVE`: The policy was created successfully. - `PERMISSION_DENIED`: Sufficient permissions were not provided. Note that this field is an unstructured output and customers should not rely on the specific string value or error message directly.",
           "readOnly": true,
           "type": "string"
         },

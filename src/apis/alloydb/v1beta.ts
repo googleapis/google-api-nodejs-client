@@ -809,6 +809,19 @@ export namespace alloydb_v1beta {
     time?: Schema$GoogleTypeTimeOfDay;
   }
   /**
+   * DnsAutomationInfo contains information about the DNS automation for the instance.
+   */
+  export interface Schema$DnsAutomationInfo {
+    /**
+     * Output only. The fully qualified domain name of the instance for DNS automation. Example: "...alloydb.goog.". Note: The AUDIT directive is intentionally omitted because this field contains sensitive network topology information.
+     */
+    fullyQualifiedDomainName?: string | null;
+    /**
+     * Output only. The state of the DNS automation.
+     */
+    state?: string | null;
+  }
+  /**
    * The DNS config for the endpoint, containing the DNS record name, type and targets.
    */
   export interface Schema$DNSConfig {
@@ -1697,9 +1710,21 @@ export namespace alloydb_v1beta {
      */
     consumerProject?: string | null;
     /**
+     * Output only. List of DNS automation info for the PSC auto connection.
+     */
+    dnsAutomationInfos?: Schema$DnsAutomationInfo[];
+    /**
      * Output only. The IP address of the PSC service automation endpoint.
      */
     ipAddress?: string | null;
+    /**
+     * Output only. The PSC service connection policy name. The format is "projects//regions//serviceConnectionPolicies/"
+     */
+    serviceConnectionPolicy?: string | null;
+    /**
+     * Output only. The creation state or result of the connection policy. Possible values include: - `ACTIVE`: The policy was created successfully. - `PERMISSION_DENIED`: Sufficient permissions were not provided. Note that this field is an unstructured output and customers should not rely on the specific string value or error message directly.
+     */
+    serviceConnectionPolicyCreationState?: string | null;
     /**
      * Output only. The status of the PSC service automation connection. Possible values: "STATE_UNSPECIFIED" - An invalid state as the default case. "ACTIVE" - The connection has been created successfully. "FAILED" - The connection is not functional since some resources on the connection fail to be created. "CREATING" - The connection is being created. "DELETING" - The connection is being deleted. "CREATE_REPAIRING" - The connection is being repaired to complete creation. "DELETE_REPAIRING" - The connection is being repaired to complete deletion.
      */
