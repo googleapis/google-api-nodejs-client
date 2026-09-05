@@ -207,6 +207,10 @@ export namespace file_v1beta1 {
      */
     sourceInstanceTier?: string | null;
     /**
+     * Optional. The resource name of the Filestore volume that the backup is created from. Should be in the format: projects/{project_id\}/locations/{location_id\}/volumePools/{volume_pool_id\}/volumes/{volume_id\}
+     */
+    sourceVolume?: string | null;
+    /**
      * Output only. The backup state.
      */
     state?: string | null;
@@ -656,43 +660,6 @@ export namespace file_v1beta1 {
     tags?: {[key: string]: string} | null;
     /**
      * The service tier of the instance.
-     */
-    tier?: string | null;
-  }
-  /**
-   * InstanceTemplate representation of a Cloud Filestore volume pool instance template.
-   */
-  export interface Schema$InstanceTemplate {
-    /**
-     * Optional. Backend type.
-     */
-    backendType?: string | null;
-    /**
-     * Optional. Capacity in GB.
-     */
-    capacityGb?: number | null;
-    /**
-     * Optional. Instance labels.
-     */
-    labels?: {[key: string]: string} | null;
-    /**
-     * Optional. Network configurations.
-     */
-    networks?: Schema$NetworkConfig[];
-    /**
-     * Optional. Performance configuration.
-     */
-    performanceConfig?: Schema$PerformanceConfig;
-    /**
-     * Optional. File protocol.
-     */
-    protocol?: string | null;
-    /**
-     * Optional. Request overrides in JSON format.
-     */
-    requestOverrides?: string | null;
-    /**
-     * Optional. Tier of the instance.
      */
     tier?: string | null;
   }
@@ -1259,9 +1226,13 @@ export namespace file_v1beta1 {
      */
     backup?: string | null;
     /**
-     * File share capacity in gigabytes (GB). Filestore defines 1 GB as 1024^3 bytes. Must be greater than 0.
+     * Optional. File share capacity in gigabytes (GB). Filestore defines 1 GB as 1024^3 bytes. Must be greater than 0. Exactly one of capacity_gb or capacity_mb must be specified.
      */
     capacityGb?: string | null;
+    /**
+     * Optional. File share capacity in Megabytes (MB). Must be greater than 0. Exactly one of capacity_gb or capacity_mb must be specified.
+     */
+    capacityMb?: string | null;
     /**
      * Output only. The time when the share was created.
      */
@@ -1409,89 +1380,37 @@ export namespace file_v1beta1 {
    */
   export interface Schema$VolumePool {
     /**
+     * Optional. The number of IOPs provisioned per active volume.
+     */
+    activeVolumeIops?: number | null;
+    /**
      * Output only. The time when the volume pool was created.
      */
     createTime?: string | null;
+    /**
+     * Optional. The default quota per volume in MiB. Default: 1024 MiB.
+     */
+    defaultVolumeQuotaMib?: number | null;
     /**
      * Optional. A description of the volume pool with 2048 characters or less.
      */
     description?: string | null;
     /**
-     * Optional. The page size to use when listing instances.
-     */
-    instanceListPageSize?: number | null;
-    /**
-     * Optional. Instance name prefix.
-     */
-    instanceNamePrefix?: string | null;
-    /**
-     * Optional. Instance template details.
-     */
-    instanceTemplate?: Schema$InstanceTemplate;
-    /**
      * Optional. Resource labels to represent user provided metadata.
      */
     labels?: {[key: string]: string} | null;
-    /**
-     * Optional. The maximum number of candidates to fetch when acquiring a volume.
-     */
-    maxAcquireCandidates?: number | null;
-    /**
-     * Optional. Maximum number of instances to create.
-     */
-    maxInstances?: number | null;
-    /**
-     * Optional. The maximum number of pending instance creation requests.
-     */
-    maxPendingInstanceCreations?: number | null;
-    /**
-     * Optional. The maximum number of pending volume creation requests per instance.
-     */
-    maxPendingVolumeCreationsPerInstance?: number | null;
-    /**
-     * Optional. The maximum number of pending volume deletion requests per instance.
-     */
-    maxPendingVolumeDeletionsPerInstance?: number | null;
-    /**
-     * Optional. Maximum number of volumes per instance.
-     */
-    maxVolumesPerInstance?: number | null;
-    /**
-     * Optional. Minimum number of available volumes to maintain.
-     */
-    minAvailableVolumes?: number | null;
-    /**
-     * Optional. Minimum number of instances to create.
-     */
-    minInstances?: number | null;
     /**
      * Identifier. The resource name of the volume pool, in the format `projects/{project\}/locations/{location\}/volumePools/{volume_pool\}`.
      */
     name?: string | null;
     /**
-     * Optional. The ratio of Negba instances to maintain in the volume pool, between 0 and 1.
+     * Required. The VPC network to which the VolumePool should be attached. Only Private Service Connect (PSC) is supported.
      */
-    negbaInstanceRatio?: number | null;
+    network?: string | null;
     /**
-     * Optional. The maximum number of operations to poll in a single reconciliation run.
+     * Output only. System-assigned unique identifier for the volume pool.
      */
-    operationPollLimit?: number | null;
-    /**
-     * Output only. The volume pool state.
-     */
-    state?: string | null;
-    /**
-     * Output only. Unique ID of the resource, as defined by CCFE.
-     */
-    uniqueId?: string | null;
-    /**
-     * Optional. The number of volumes to create in a single batch.
-     */
-    volumeBatchSize?: number | null;
-    /**
-     * Optional. Volume size in MiB.
-     */
-    volumeSizeMb?: number | null;
+    uid?: string | null;
   }
   /**
    * Time window specified for weekly operations.
@@ -1907,6 +1826,7 @@ export namespace file_v1beta1 {
      *       //   "sourceFileShare": "my_sourceFileShare",
      *       //   "sourceInstance": "my_sourceInstance",
      *       //   "sourceInstanceTier": "my_sourceInstanceTier",
+     *       //   "sourceVolume": "my_sourceVolume",
      *       //   "state": "my_state",
      *       //   "storageBytes": "my_storageBytes",
      *       //   "tags": {}
@@ -2207,6 +2127,7 @@ export namespace file_v1beta1 {
      *   //   "sourceFileShare": "my_sourceFileShare",
      *   //   "sourceInstance": "my_sourceInstance",
      *   //   "sourceInstanceTier": "my_sourceInstanceTier",
+     *   //   "sourceVolume": "my_sourceVolume",
      *   //   "state": "my_state",
      *   //   "storageBytes": "my_storageBytes",
      *   //   "tags": {}
@@ -2504,6 +2425,7 @@ export namespace file_v1beta1 {
      *       //   "sourceFileShare": "my_sourceFileShare",
      *       //   "sourceInstance": "my_sourceInstance",
      *       //   "sourceInstanceTier": "my_sourceInstanceTier",
+     *       //   "sourceVolume": "my_sourceVolume",
      *       //   "state": "my_state",
      *       //   "storageBytes": "my_storageBytes",
      *       //   "tags": {}
@@ -4411,6 +4333,7 @@ export namespace file_v1beta1 {
      *       // {
      *       //   "backup": "my_backup",
      *       //   "capacityGb": "my_capacityGb",
+     *       //   "capacityMb": "my_capacityMb",
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
      *       //   "labels": {},
@@ -4706,6 +4629,7 @@ export namespace file_v1beta1 {
      *   // {
      *   //   "backup": "my_backup",
      *   //   "capacityGb": "my_capacityGb",
+     *   //   "capacityMb": "my_capacityMb",
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
      *   //   "labels": {},
@@ -4996,6 +4920,7 @@ export namespace file_v1beta1 {
      *       // {
      *       //   "backup": "my_backup",
      *       //   "capacityGb": "my_capacityGb",
+     *       //   "capacityMb": "my_capacityMb",
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
      *       //   "labels": {},
@@ -6980,27 +6905,14 @@ export namespace file_v1beta1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "activeVolumeIops": 0,
      *       //   "createTime": "my_createTime",
+     *       //   "defaultVolumeQuotaMib": 0,
      *       //   "description": "my_description",
-     *       //   "instanceListPageSize": 0,
-     *       //   "instanceNamePrefix": "my_instanceNamePrefix",
-     *       //   "instanceTemplate": {},
      *       //   "labels": {},
-     *       //   "maxAcquireCandidates": 0,
-     *       //   "maxInstances": 0,
-     *       //   "maxPendingInstanceCreations": 0,
-     *       //   "maxPendingVolumeCreationsPerInstance": 0,
-     *       //   "maxPendingVolumeDeletionsPerInstance": 0,
-     *       //   "maxVolumesPerInstance": 0,
-     *       //   "minAvailableVolumes": 0,
-     *       //   "minInstances": 0,
      *       //   "name": "my_name",
-     *       //   "negbaInstanceRatio": {},
-     *       //   "operationPollLimit": 0,
-     *       //   "state": "my_state",
-     *       //   "uniqueId": "my_uniqueId",
-     *       //   "volumeBatchSize": 0,
-     *       //   "volumeSizeMb": 0
+     *       //   "network": "my_network",
+     *       //   "uid": "my_uid"
      *       // }
      *     },
      *   });
@@ -7285,27 +7197,14 @@ export namespace file_v1beta1 {
      *
      *   // Example response
      *   // {
+     *   //   "activeVolumeIops": 0,
      *   //   "createTime": "my_createTime",
+     *   //   "defaultVolumeQuotaMib": 0,
      *   //   "description": "my_description",
-     *   //   "instanceListPageSize": 0,
-     *   //   "instanceNamePrefix": "my_instanceNamePrefix",
-     *   //   "instanceTemplate": {},
      *   //   "labels": {},
-     *   //   "maxAcquireCandidates": 0,
-     *   //   "maxInstances": 0,
-     *   //   "maxPendingInstanceCreations": 0,
-     *   //   "maxPendingVolumeCreationsPerInstance": 0,
-     *   //   "maxPendingVolumeDeletionsPerInstance": 0,
-     *   //   "maxVolumesPerInstance": 0,
-     *   //   "minAvailableVolumes": 0,
-     *   //   "minInstances": 0,
      *   //   "name": "my_name",
-     *   //   "negbaInstanceRatio": {},
-     *   //   "operationPollLimit": 0,
-     *   //   "state": "my_state",
-     *   //   "uniqueId": "my_uniqueId",
-     *   //   "volumeBatchSize": 0,
-     *   //   "volumeSizeMb": 0
+     *   //   "network": "my_network",
+     *   //   "uid": "my_uid"
      *   // }
      * }
      *
@@ -7588,27 +7487,14 @@ export namespace file_v1beta1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "activeVolumeIops": 0,
      *       //   "createTime": "my_createTime",
+     *       //   "defaultVolumeQuotaMib": 0,
      *       //   "description": "my_description",
-     *       //   "instanceListPageSize": 0,
-     *       //   "instanceNamePrefix": "my_instanceNamePrefix",
-     *       //   "instanceTemplate": {},
      *       //   "labels": {},
-     *       //   "maxAcquireCandidates": 0,
-     *       //   "maxInstances": 0,
-     *       //   "maxPendingInstanceCreations": 0,
-     *       //   "maxPendingVolumeCreationsPerInstance": 0,
-     *       //   "maxPendingVolumeDeletionsPerInstance": 0,
-     *       //   "maxVolumesPerInstance": 0,
-     *       //   "minAvailableVolumes": 0,
-     *       //   "minInstances": 0,
      *       //   "name": "my_name",
-     *       //   "negbaInstanceRatio": {},
-     *       //   "operationPollLimit": 0,
-     *       //   "state": "my_state",
-     *       //   "uniqueId": "my_uniqueId",
-     *       //   "volumeBatchSize": 0,
-     *       //   "volumeSizeMb": 0
+     *       //   "network": "my_network",
+     *       //   "uid": "my_uid"
      *       // }
      *     },
      *   });
