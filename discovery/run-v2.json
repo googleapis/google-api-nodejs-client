@@ -2228,10 +2228,6 @@
                     ],
                     "maxSize": "262144000",
                     "protocols": {
-                      "resumable": {
-                        "multipart": true,
-                        "path": "/resumable/upload/v2/{+parent}:uploadSource"
-                      },
                       "simple": {
                         "multipart": true,
                         "path": "/upload/v2/{+parent}:uploadSource"
@@ -2673,7 +2669,7 @@
       }
     }
   },
-  "revision": "20260814",
+  "revision": "20260828",
   "rootUrl": "https://run.googleapis.com/",
   "schemas": {
     "GoogleCloudRunV2BinaryAuthorization": {
@@ -3095,7 +3091,7 @@
         },
         "sourceCode": {
           "$ref": "GoogleCloudRunV2SourceCode",
-          "description": "Optional. Location of the source."
+          "description": "Optional. Location of the source. This field is only supported in Cloud Run Service."
         },
         "startupProbe": {
           "$ref": "GoogleCloudRunV2Probe",
@@ -5019,10 +5015,6 @@
           "description": "User-provided description of the Service. This field currently has a 512-character limit.",
           "type": "string"
         },
-        "durableExecution": {
-          "description": "Optional. Immutable. Indicates whether the Service has durable execution enabled. This field is immutable once the Service is created.",
-          "type": "boolean"
-        },
         "etag": {
           "description": "Optional. A system-generated fingerprint for this version of the resource. May be used to detect modification conflict during updates.",
           "type": "string"
@@ -5256,7 +5248,7 @@
         },
         "inlinedSource": {
           "$ref": "GoogleCloudRunV2InlinedSource",
-          "description": "Optional. Input only. Source code inlined in the request. Cloud Run will store the inlined_source to Cloud Storage and replace the field with cloud_storage_source."
+          "description": "Optional. Input only. Source code inlined in the request. Cloud Run will store the inlined_source to Cloud Storage and replace the field with cloud_storage_source. This field is only supported in Cloud Run Service."
         }
       },
       "type": "object"
