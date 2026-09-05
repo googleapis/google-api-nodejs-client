@@ -1245,7 +1245,7 @@
           ]
         },
         "calendarModeExtension": {
-          "description": "Advise on whether extending an existing Future Reservation is possible\nbased on the desired extension end time. If capacity is not available for\nthe entire requested duration, the method will recommend the longest\npossible extension.",
+          "description": "Advises on whether extending an existing future reservation is possible\nbased on the desired extension end time. If capacity isn't available for\nthe entire requested duration, the method recommends the longest possible\nextension.",
           "flatPath": "projects/{project}/regions/{region}/advice/calendarModeExtension",
           "httpMethod": "POST",
           "id": "compute.advice.calendarModeExtension",
@@ -58435,7 +58435,7 @@
       }
     }
   },
-  "revision": "20260821",
+  "revision": "20260828",
   "rootUrl": "https://compute.googleapis.com/",
   "schemas": {
     "AWSV4Signature": {
@@ -63042,6 +63042,10 @@
           "description": "The URL of the network to which this backend service belongs.\n\nThis field must be set for Internal Passthrough Network Load Balancers when\nthe haPolicy is enabled, and for External Passthrough Network Load\nBalancers when the haPolicy fastIpMove is enabled.\n\nThis field can only be specified when the load balancing scheme is set toINTERNAL, or when the load balancing scheme is set toEXTERNAL and haPolicy fastIpMove is enabled.",
           "type": "string"
         },
+        "networkAttachment": {
+          "description": "Optional. The URL of the network attachment that this resource\nbelongs to.projects/{project}/regions/{region_name}/networkAttachments/{network_attachment_name}.",
+          "type": "string"
+        },
         "networkPassThroughLbTrafficPolicy": {
           "$ref": "BackendServiceNetworkPassThroughLbTrafficPolicy",
           "description": "Configures traffic steering properties of internal passthrough Network\nLoad Balancers.\n\nnetworkPassThroughLbTrafficPolicy cannot be specified with haPolicy."
@@ -63124,6 +63128,10 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "serviceClassId": {
+          "description": "Optional. The service class ID associated with this resource.\nProducer Service's Service class ID for the region of this backend\nservice. Can only be used with network_attachment. It is not possible to\nuse on its own; however, network_attachment can be used without\nservice_class_id.",
+          "type": "string"
         },
         "serviceLbPolicy": {
           "description": "URL to networkservices.ServiceLbPolicy resource.\n\nCan only be set if load balancing scheme is EXTERNAL_MANAGED,\nINTERNAL_MANAGED or INTERNAL_SELF_MANAGED for a global backend service, and\nEXTERNAL_MANAGED or INTERNAL_MANAGED for a regional backend service. For a\nglobal backend service, the service lb policy must be global. For a\nregional backend service, the service lb policy must be regional and in the\nsame region.",
@@ -63652,7 +63660,7 @@
       "id": "BackendServiceHAPolicyLeaderNetworkEndpoint",
       "properties": {
         "instance": {
-          "description": "The name of the VM instance of the leader network endpoint. The\ninstance must already be attached to the NEG specified in the\nhaPolicy.leader.backendGroup.\n\nThe name must be 1-63 characters long, and comply with RFC1035.\nAuthorization requires the following IAM permission on the\nspecified resource instance: compute.instances.use",
+          "description": "The name of the VM instance of the leader network endpoint. The\ninstance must already be attached to the NEG specified in the\nhaPolicy.leader.backendGroup.\n\nThe value must be a valid RFC1035 name (1-63 characters) or a valid\ninstance URL.\nAuthorization requires the following IAM permission on the\nspecified resource instance: compute.instances.use",
           "type": "string"
         }
       },
@@ -65238,36 +65246,36 @@
       "type": "object"
     },
     "CalendarModeExtensionAdviceRequest": {
-      "description": "A request to recommend the best duration for extending an existing\nFuture Reservation in CALENDAR mode, that is equal or less than the specified\nextension duration.",
+      "description": "A request to recommend the maximum duration for extending an existing future\nreservation in calendar mode. The recommended duration is shorter than or\nequal to the specified extension duration.",
       "id": "CalendarModeExtensionAdviceRequest",
       "properties": {
         "endTimeNotLaterThan": {
-          "description": "Required. The desired end time after the Future Reservation is extended.",
+          "description": "Required. The desired end time for the extension.",
           "format": "google-datetime",
           "type": "string"
         },
         "futureReservation": {
-          "description": "Required. Reference to the Future Reservation, in the format:\nprojects/{project}/zones/{zone}/futureReservations/{name}\nFull URIs that include hostnames (like compute.googleapis.com or\nwww.googleapis.com) are also supported.",
+          "description": "Required. Reference to the future reservation, in the format:\nprojects/{project}/zones/{zone}/futureReservations/{name}\nFull URIs that include hostnames (like compute.googleapis.com or\nwww.googleapis.com) are also supported.",
           "type": "string"
         }
       },
       "type": "object"
     },
     "CalendarModeExtensionAdviceResponse": {
-      "description": "A response containing the recommended duration to extend a\nFuture Reservation in CALENDAR mode based on the available capacity during\nthe extension period.",
+      "description": "A response that contains the recommended duration for extending\na future reservation in calendar mode based on available capacity\nduring the extension period.",
       "id": "CalendarModeExtensionAdviceResponse",
       "properties": {
         "endTime": {
-          "description": "The recommended end time for the extension, which will either be\nthe end time requested by the caller or the longest alternative for\nwhich there is sufficient capacity. If extension is not possible, this\nfield will be empty, and not_recommended_reason will be populated instead.",
+          "description": "The recommended end time for the extension, which is either the end time\nrequested by the caller or the longest alternative with sufficient\ncapacity. If the extension is not possible, this field is empty, and\nnotRecommendedReason is populated instead.",
           "format": "google-datetime",
           "type": "string"
         },
         "notRecommendedReason": {
           "$ref": "CalendarModeExtensionAdviceResponseNotRecommendedReason",
-          "description": "Information regarding the reason why the Future Reservation\ncannot be extended at all. If a recommendation is provided, whether that is\nthe requested end time or an alternative, this field will be empty."
+          "description": "The reason why the future reservation can't be extended. If a\nrecommendation is provided, whether for the requested end time or an\nalternative, this field is empty."
         },
         "recommendationId": {
-          "description": "Unique id of the recommendation, a UUID string generated by the API.",
+          "description": "The unique ID of the recommendation, which is a UUID string generated by\nthe API.",
           "type": "string"
         }
       },
@@ -65278,7 +65286,7 @@
       "id": "CalendarModeExtensionAdviceResponseNotRecommendedReason",
       "properties": {
         "details": {
-          "description": "Details (human readable) describing why the recommendation\nwas not provided. For example, if the status is CONDITION_NOT_MET,\nthen this field will contain information about why the requested\nextension duration is not eligible.",
+          "description": "Human-readable details describing why the recommendation wasn't provided.\nFor example, if the status is CONDITIONS_NOT_MET, this field explains why\nthe requested extension duration isn't possible.",
           "type": "string"
         },
         "status": {
@@ -65289,7 +65297,7 @@
             "NO_CAPACITY"
           ],
           "enumDescriptions": [
-            "The requested extension window does not meet the\nrequired conditions.",
+            "The requested extension window doesn't meet the\nrequired conditions.",
             "Default value, unused.",
             "There is no available capacity for the extension to be provided."
           ],
@@ -65377,7 +65385,7 @@
             "Picks zones for creating VM instances to fulfill the requested number\nof VMs within present resource constraints.",
             "Creates all VM instances within a single zone. The zone is selected\nbased on the present resource constraints.",
             "Prioritizes acquisition of resources, scheduling VMs in zones where\nresources are available while distributing VMs as evenly as possible\nacross selected zones to minimize the impact of zonal failure.",
-            ""
+            "Default value, unused."
           ],
           "type": "string"
         },
@@ -65624,7 +65632,7 @@
               "PRICE"
             ],
             "enumDescriptions": [
-              "",
+              "Default value, unused.",
               "Preemption history.",
               "Price history."
             ],
@@ -69923,6 +69931,25 @@
       },
       "type": "object"
     },
+    "DynamicCompressionPolicy": {
+      "description": "Dynamic compression policy for this URL Map's route.",
+      "id": "DynamicCompressionPolicy",
+      "properties": {
+        "compressionMode": {
+          "description": "Compress text responses using Brotli or gzip compression, based on\nthe client's Accept-Encoding header.",
+          "enum": [
+            "AUTOMATIC",
+            "DISABLED"
+          ],
+          "enumDescriptions": [
+            "Automatically uses the best compression based on the Accept-Encoding\nheader sent by the client.",
+            "Disables compression. Existing compressed responses cached by\nCloud CDN will not be served to clients."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ErrorInfo": {
       "description": "Describes the cause of the error with structured details.\n\nExample of an error when contacting the \"pubsub.googleapis.com\" API when it\nis not enabled:\n\n    { \"reason\": \"API_DISABLED\"\n      \"domain\": \"googleapis.com\"\n      \"metadata\": {\n        \"resource\": \"projects/123\",\n        \"service\": \"pubsub.googleapis.com\"\n      }\n    }\n\nThis response indicates that the pubsub.googleapis.com API is not enabled.\n\nExample of an error that is returned when attempting to create a Spanner\ninstance in a region that is out of stock:\n\n    { \"reason\": \"STOCKOUT\"\n      \"domain\": \"spanner.googleapis.com\",\n      \"metadata\": {\n        \"availableRegions\": \"us-central1,us-east2\"\n      }\n    }",
       "id": "ErrorInfo",
@@ -72215,6 +72242,10 @@
           "description": "This field is not used for global external load balancing.\n\nFor internal passthrough Network Load Balancers, this field identifies the\nnetwork that the load balanced IP should belong to for this forwarding\nrule.\nIf the subnetwork is specified, the network of the subnetwork will be used.\nIf neither subnetwork nor this field is specified, the default network will\nbe used.\n\nFor Private Service Connect forwarding rules that forward traffic to Google\nAPIs, a network must be provided.",
           "type": "string"
         },
+        "networkAttachment": {
+          "description": "Optional. The URL of the network attachment that this resource\nbelongs to.projects/{project}/regions/{region_name}/networkAttachments/{network_attachment_name}.",
+          "type": "string"
+        },
         "networkTier": {
           "description": "This signifies the networking tier used for configuring\nthis load balancer and can only take the following values:PREMIUM, STANDARD.\n\nFor regional ForwardingRule, the valid values are PREMIUM andSTANDARD. For GlobalForwardingRule, the valid value isPREMIUM.\n\nIf this field is not specified, it is assumed to be PREMIUM.\nIf IPAddress is specified, this value must be equal to the\nnetworkTier of the Address.",
           "enum": [
@@ -72292,6 +72323,10 @@
         "selfLinkWithId": {
           "description": "Output only. [Output Only] Server-defined URL for this resource with the resource id.",
           "readOnly": true,
+          "type": "string"
+        },
+        "serviceClassId": {
+          "description": "Optional. Producer Service's Service class ID for the region of this forwarding rule.\nCan only be used with network_attachment. It is not possible to use on its\nown; however, network_attachment can be used without service_class_id.",
           "type": "string"
         },
         "serviceDirectoryRegistrations": {
@@ -75307,6 +75342,7 @@
           "description": "The ID of a supported feature. To add multiple values, use commas to\nseparate values. Set to one or more of the following values:\n   \n   - VIRTIO_SCSI_MULTIQUEUE\n   - WINDOWS\n   - MULTI_IP_SUBNET\n   - UEFI_COMPATIBLE\n   - GVNIC\n   - SEV_CAPABLE\n   - SUSPEND_RESUME_COMPATIBLE\n   - SEV_LIVE_MIGRATABLE_V2\n   - SEV_SNP_CAPABLE\n   - TDX_CAPABLE\n   - IDPF\n   - SNP_SVSM_CAPABLE\n   - CCA_CAPABLE\n   - SUSPEND_SAFE_FPR\n\n\nFor more information, see\nEnabling guest operating system features.",
           "enum": [
             "BARE_METAL_LINUX_COMPATIBLE",
+            "BMSAI_CAPABLE",
             "CCA_CAPABLE",
             "FEATURE_TYPE_UNSPECIFIED",
             "GVNIC",
@@ -75326,6 +75362,7 @@
           ],
           "enumDescriptions": [
             "",
+            "Indicates the guest OS is capable of Bare Metal Secure AI (BMSAI)\nconfidential computing.",
             "",
             "",
             "",
@@ -79826,6 +79863,10 @@
         "corsPolicy": {
           "$ref": "CorsPolicy",
           "description": "The specification for allowing client-side cross-origin requests. For more\ninformation about the W3C recommendation for cross-origin resource sharing\n(CORS), see Fetch API Living\nStandard.\n\nNot supported when the URL map is bound to a target gRPC proxy."
+        },
+        "dynamicCompressionPolicy": {
+          "$ref": "DynamicCompressionPolicy",
+          "description": "Dynamic compression policy for this URL Map's route. Available only for\nGlobal EXTERNAL_MANAGED load balancer schemes."
         },
         "faultInjectionPolicy": {
           "$ref": "HttpFaultInjection",
@@ -95940,6 +95981,14 @@
           "description": "Deprecated in favor of subnet mode networks.\nThe range of internal addresses that are legal on this network. This\nrange is aCIDR specification, for example:192.168.0.0/16. Provided by the client when the network is\ncreated.",
           "pattern": "[0-9]{1,3}(?:\\.[0-9]{1,3}){3}/[0-9]{1,2}",
           "type": "string"
+        },
+        "additionalTags": {
+          "description": "Output only. [Output Only] Additional tags for this resource.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
         },
         "autoCreateSubnetworks": {
           "description": "Must be set to create a VPC network. If not set, a legacy network is\ncreated.\n\nWhen set to true, the VPC network is created in auto mode.\nWhen set to false, the VPC network is created in custom mode.\n\nAn auto mode VPC network starts with one subnet per region. Each subnet\nhas a predetermined range as described inAuto mode VPC network IP ranges.\n\nFor custom mode VPC networks, you can add subnets using the subnetworksinsert\nmethod.",
@@ -115177,6 +115226,11 @@
         },
         "host": {
           "description": "[Output Only] The ID of the host on which the running instance is located.\nInstances on the same host experience the lowest possible network\nlatency.",
+          "type": "string"
+        },
+        "machine": {
+          "description": "Output only. [Output Only] The ID of the machine on which the running instance is\nlocated. It is only populated for machines which have multiple hosts.",
+          "readOnly": true,
           "type": "string"
         },
         "subblock": {
