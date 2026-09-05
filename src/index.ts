@@ -204,7 +204,6 @@ export {container_v1beta1} from './apis/container/v1beta1';
 export {containeranalysis_v1} from './apis/containeranalysis/v1';
 export {containeranalysis_v1alpha1} from './apis/containeranalysis/v1alpha1';
 export {containeranalysis_v1beta1} from './apis/containeranalysis/v1beta1';
-export {content_v2_1} from './apis/content/v2.1';
 export {content_v2} from './apis/content/v2';
 export {contentwarehouse_v1} from './apis/contentwarehouse/v1';
 export {css_v1} from './apis/css/v1';

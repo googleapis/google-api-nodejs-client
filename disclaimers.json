@@ -8,24 +8,20 @@
     "package": "@google-cloud/access-context-manager"
   },
   {
-    "api": "advisorynotifications",
-    "package": "@google-cloud/advisorynotifications"
+    "api": "addressvalidation",
+    "package": "@googlemaps/addressvalidation"
   },
   {
-    "api": "notebooks",
-    "package": "@google-cloud/notebooks"
+    "api": "advisorynotifications",
+    "package": "@google-cloud/advisorynotifications"
   },
   {
     "api": "alloydb",
     "package": "@google-cloud/alloydb"
   },
   {
-    "api": "bigquerydatapolicy",
-    "package": "@google-cloud/bigquery-data-exchange"
-  },
-  {
-    "api": "gkemulticloud",
-    "package": "@google-cloud/gkemulticloud"
+    "api": "analyticshub",
+    "package": "@google-cloud/bigquery-analyticshub"
   },
   {
     "api": "apigateway",
@@ -38,6 +34,10 @@
   {
     "api": "apigeeconnect",
     "package": "@google-cloud/apigee-connect"
+  },
+  {
+    "api": "apigeeregistry",
+    "package": "@google-cloud/apigee-registry"
   },
   {
     "api": "appengine",
@@ -60,10 +60,6 @@
     "package": "@google-cloud/automl"
   },
   {
-    "api": "backupdr",
-    "package": "@google-cloud/backupdr"
-  },
-  {
     "api": "gkebackup",
     "package": "@google-cloud/gke-backup"
   },
@@ -72,16 +68,48 @@
     "package": "@google-cloud/bare-metal-solution"
   },
   {
+    "api": "batch",
+    "package": "@google-cloud/batch"
+  },
+  {
     "api": "beyondcorp",
     "package": "@google-cloud/appconnections"
   },
   {
-    "api": "analyticshub",
+    "api": "beyondcorp",
+    "package": "@google-cloud/appconnectors"
+  },
+  {
+    "api": "beyondcorp",
+    "package": "@google-cloud/appgateways"
+  },
+  {
+    "api": "beyondcorp",
+    "package": "@google-cloud/clientconnectorservices"
+  },
+  {
+    "api": "beyondcorp",
     "package": "@google-cloud/clientgateways"
+  },
+  {
+    "api": "bigqueryconnection",
+    "package": "@google-cloud/bigquery-connection"
+  },
+  {
+    "api": "bigquerydatapolicy",
+    "package": "@google-cloud/bigquery-datapolicies"
+  },
+  {
+    "api": "bigquerydatatransfer",
+    "package": "@google-cloud/bigquery-data-transfer"
   },
   {
     "api": "bigquerymigration",
     "package": "@google-cloud/bigquery-migration"
+  },
+  {
+    "api": "bigqueryreservation",
+    "package": "@google-cloud/bigquery-reservation"
   },
   {
     "api": "cloudbilling",
@@ -112,28 +140,32 @@
     "package": "@google-cloud/channel"
   },
   {
-    "api": "cloudcommerceconsumerprocurement",
-    "package": "@google-cloud/procurement"
-  },
-  {
     "api": "composer",
     "package": "@google-cloud/orchestration-airflow"
+  },
+  {
+    "api": "compute",
+    "package": "@google-cloud/compute"
   },
   {
     "api": "confidentialcomputing",
     "package": "@google-cloud/confidentialcomputing"
   },
   {
-    "api": "connectors",
-    "package": "@google-cloud/connectors"
+    "api": "connectgateway",
+    "package": "@google-cloud/gke-connect-gateway"
   },
   {
     "api": "contactcenterinsights",
     "package": "@google-cloud/contact-center-insights"
   },
   {
-    "api": "cloudcontrolspartner",
-    "package": "@google-cloud/cloudcontrolspartner"
+    "api": "containeranalysis",
+    "package": "@google-cloud/containeranalysis"
+  },
+  {
+    "api": "containeranalysis",
+    "package": "@google-cloud/grafeas"
   },
   {
     "api": "datacatalog",
@@ -148,12 +180,12 @@
     "package": "@google-cloud/lineage"
   },
   {
-    "api": "dlp",
-    "package": "@google-cloud/dlp"
-  },
-  {
     "api": "datamigration",
     "package": "@google-cloud/dms"
+  },
+  {
+    "api": "dataform",
+    "package": "@google-cloud/dataform"
   },
   {
     "api": "dataplex",
@@ -188,18 +220,6 @@
     "package": "@google-cloud/discoveryengine"
   },
   {
-    "api": "edgecontainer",
-    "package": "@google-cloud/edgecontainer"
-  },
-  {
-    "api": "edgenetwork",
-    "package": "@google-cloud/edgenetwork"
-  },
-  {
-    "api": "dns",
-    "package": "@google-cloud/dns"
-  },
-  {
     "api": "documentai",
     "package": "@google-cloud/documentai"
   },
@@ -232,47 +252,27 @@
     "package": "@google-cloud/functions"
   },
   {
+    "api": "generativelanguage",
+    "package": "@google-ai/generativelanguage"
+  },
+  {
     "api": "gkehub",
     "package": "@google-cloud/gke-hub"
   },
   {
-    "api": "bigqueryconnection",
-    "package": "@google-cloud/bigquery-connection"
-  },
-  {
-    "api": "bigquerydatatransfer",
-    "package": "@google-cloud/bigquery-data-transfer"
-  },
-  {
-    "api": "bigqueryreservation",
-    "package": "@google-cloud/bigquery-reservation"
-  },
-  {
-    "api": "compute",
-    "package": "@google-cloud/compute"
-  },
-  {
-    "api": "containeranalysis",
-    "package": "@google-cloud/containeranalysis"
+    "api": "gkemulticloud",
+    "package": "@google-cloud/gkemulticloud"
   },
   {
     "api": "gsuiteaddons",
     "package": "@google-cloud/gsuiteaddons"
   },
   {
-    "api": "containeranalysis",
-    "package": "@google-cloud/grafeas"
-  },
-  {
-    "api": "policytroubleshooter",
-    "package": "@google-cloud/policy-troubleshooter"
-  },
-  {
     "api": "iamcredentials",
     "package": "@google-cloud/iam-credentials"
   },
   {
-    "api": "google",
+    "api": "iam",
     "package": "@google-cloud/iam"
   },
   {
@@ -284,16 +284,16 @@
     "package": "@google-cloud/ids"
   },
   {
-    "api": "config",
-    "package": "@google-cloud/config"
-  },
-  {
     "api": "cloudiot",
     "package": "@google-cloud/iot"
   },
   {
     "api": "cloudkms",
     "package": "@google-cloud/kms"
+  },
+  {
+    "api": "kmsinventory",
+    "package": "@google-cloud/kms-inventory"
   },
   {
     "api": "container",
@@ -304,24 +304,584 @@
     "package": "@google-cloud/livestream"
   },
   {
-    "api": "logging",
-    "package": "@google-cloud/logging-winston"
-  },
-  {
     "api": "managedidentities",
     "package": "@google-cloud/managed-identities"
   },
   {
-    "api": "mediatranslation",
-    "package": "@google-cloud/media-translation"
+    "api": "mapsplatformdatasets",
+    "package": "@googlemaps/maps-platform-datasets"
   },
   {
     "api": "memcache",
     "package": "@google-cloud/memcache"
   },
   {
+    "api": "redis",
+    "package": "@google-cloud/redis"
+  },
+  {
+    "api": "migrationcenter",
+    "package": "@google-cloud/migrationcenter"
+  },
+  {
+    "api": "monitoring",
+    "package": "@google-cloud/monitoring"
+  },
+  {
+    "api": "monitoring",
+    "package": "@google-cloud/monitoring-dashboards"
+  },
+  {
+    "api": "language",
+    "package": "@google-cloud/language"
+  },
+  {
+    "api": "networkconnectivity",
+    "package": "@google-cloud/network-connectivity"
+  },
+  {
+    "api": "networkmanagement",
+    "package": "@google-cloud/network-management"
+  },
+  {
+    "api": "networksecurity",
+    "package": "@google-cloud/network-security"
+  },
+  {
+    "api": "notebooks",
+    "package": "@google-cloud/notebooks"
+  },
+  {
+    "api": "orgpolicy",
+    "package": "@google-cloud/org-policy"
+  },
+  {
+    "api": "osconfig",
+    "package": "@google-cloud/os-config"
+  },
+  {
+    "api": "oslogin",
+    "package": "@google-cloud/os-login"
+  },
+  {
+    "api": "places",
+    "package": "@googlemaps/places"
+  },
+  {
+    "api": "policytroubleshooter",
+    "package": "@google-cloud/policy-troubleshooter"
+  },
+  {
+    "api": "cloudproductregistry",
+    "package": "@google-cloud/productregistry"
+  },
+  {
+    "api": "publicca",
+    "package": "@google-cloud/publicca"
+  },
+  {
+    "api": "cloudquotas",
+    "package": "@google-cloud/cloudquotas"
+  },
+  {
+    "api": "rapidmigrationassessment",
+    "package": "@google-cloud/rapidmigrationassessment"
+  },
+  {
+    "api": "recaptchaenterprise",
+    "package": "@google-cloud/recaptcha-enterprise"
+  },
+  {
+    "api": "recommender",
+    "package": "@google-cloud/recommender"
+  },
+  {
+    "api": "cloudresourcemanager",
+    "package": "@google-cloud/resource-manager"
+  },
+  {
+    "api": "routes",
+    "package": "@googlemaps/routing"
+  },
+  {
+    "api": "run",
+    "package": "@google-cloud/run"
+  },
+  {
+    "api": "cloudscheduler",
+    "package": "@google-cloud/scheduler"
+  },
+  {
+    "api": "secretmanager",
+    "package": "@google-cloud/secret-manager"
+  },
+  {
+    "api": "securitycenter",
+    "package": "@google-cloud/security-center"
+  },
+  {
+    "api": "dlp",
+    "package": "@google-cloud/dlp"
+  },
+  {
+    "api": "vpcaccess",
+    "package": "@google-cloud/vpc-access"
+  },
+  {
+    "api": "servicecontrol",
+    "package": "@google-cloud/service-control"
+  },
+  {
+    "api": "servicedirectory",
+    "package": "@google-cloud/service-directory"
+  },
+  {
+    "api": "servicemanagement",
+    "package": "@google-cloud/service-management"
+  },
+  {
+    "api": "serviceusage",
+    "package": "@google-cloud/service-usage"
+  },
+  {
+    "api": "cloudshell",
+    "package": "@google-cloud/shell"
+  },
+  {
     "api": "merchantapi",
     "package": "@google-shopping/accounts"
+  },
+  {
+    "api": "speech",
+    "package": "@google-cloud/speech"
+  },
+  {
+    "api": "storageinsights",
+    "package": "@google-cloud/storageinsights"
+  },
+  {
+    "api": "storagetransfer",
+    "package": "@google-cloud/storage-transfer"
+  },
+  {
+    "api": "cloudsupport",
+    "package": "@google-cloud/support"
+  },
+  {
+    "api": "jobs",
+    "package": "@google-cloud/talent"
+  },
+  {
+    "api": "cloudtasks",
+    "package": "@google-cloud/tasks"
+  },
+  {
+    "api": "texttospeech",
+    "package": "@google-cloud/text-to-speech"
+  },
+  {
+    "api": "tpu",
+    "package": "@google-cloud/tpu"
+  },
+  {
+    "api": "transcoder",
+    "package": "@google-cloud/video-transcoder"
+  },
+  {
+    "api": "translate",
+    "package": "@google-cloud/translate"
+  },
+  {
+    "api": "aiplatform",
+    "package": "@google-cloud/aiplatform"
+  },
+  {
+    "api": "retail",
+    "package": "@google-cloud/retail"
+  },
+  {
+    "api": "videointelligence",
+    "package": "@google-cloud/video-intelligence"
+  },
+  {
+    "api": "videostitcher",
+    "package": "@google-cloud/video-stitcher"
+  },
+  {
+    "api": "vision",
+    "package": "@google-cloud/vision"
+  },
+  {
+    "api": "vmmigration",
+    "package": "@google-cloud/vmmigration"
+  },
+  {
+    "api": "vmwareengine",
+    "package": "@google-cloud/vmwareengine"
+  },
+  {
+    "api": "webrisk",
+    "package": "@google-cloud/web-risk"
+  },
+  {
+    "api": "websecurityscanner",
+    "package": "@google-cloud/web-security-scanner"
+  },
+  {
+    "api": "workflows",
+    "package": "@google-cloud/workflows"
+  },
+  {
+    "api": "workstations",
+    "package": "@google-cloud/workstations"
+  },
+  {
+    "api": "agentidentity",
+    "package": "@google-cloud/agentidentity"
+  },
+  {
+    "api": "agentregistry",
+    "package": "@google-cloud/agentregistry"
+  },
+  {
+    "api": "analyticshub",
+    "package": "@google-cloud/bigquery-data-exchange"
+  },
+  {
+    "api": "apihub",
+    "package": "@google-cloud/apihub"
+  },
+  {
+    "api": "cloudapiregistry",
+    "package": "@google-cloud/apiregistry"
+  },
+  {
+    "api": "apphub",
+    "package": "@google-cloud/apphub"
+  },
+  {
+    "api": "saasservicemgmt",
+    "package": "@google-cloud/saasservicemgmt"
+  },
+  {
+    "api": "appoptimize",
+    "package": "@google-cloud/appoptimize"
+  },
+  {
+    "api": "apptopology",
+    "package": "@google-cloud/apptopology"
+  },
+  {
+    "api": "area120tables",
+    "package": "@google/area120-tables"
+  },
+  {
+    "api": "auditmanager",
+    "package": "@google-cloud/auditmanager"
+  },
+  {
+    "api": "backupdr",
+    "package": "@google-cloud/backupdr"
+  },
+  {
+    "api": "bigquerystorage",
+    "package": "@google-cloud/bigquery-storage-api"
+  },
+  {
+    "api": "bigtable",
+    "package": "@google-cloud/bigtable-api"
+  },
+  {
+    "api": "capacityplanner",
+    "package": "@google-cloud/capacityplanner"
+  },
+  {
+    "api": "chronicle",
+    "package": "@google-cloud/chronicle"
+  },
+  {
+    "api": "hypercomputecluster",
+    "package": "@google-cloud/hypercomputecluster"
+  },
+  {
+    "api": "cloudcommerceconsumerprocurement",
+    "package": "@google-cloud/procurement"
+  },
+  {
+    "api": "commerceproducer",
+    "package": "@google-cloud/commerceproducer"
+  },
+  {
+    "api": "configdelivery",
+    "package": "@google-cloud/configdelivery"
+  },
+  {
+    "api": "connectors",
+    "package": "@google-cloud/connectors"
+  },
+  {
+    "api": "cloudcontrolspartner",
+    "package": "@google-cloud/cloudcontrolspartner"
+  },
+  {
+    "api": "css",
+    "package": "@google-shopping/css"
+  },
+  {
+    "api": "geminidataanalytics",
+    "package": "@google-cloud/geminidataanalytics"
+  },
+  {
+    "api": "datalabeling",
+    "package": "@google-cloud/datalabeling"
+  },
+  {
+    "api": "datalineage",
+    "package": "@google-cloud/configmanagement"
+  },
+  {
+    "api": "datamanager",
+    "package": "@google-ads/datamanager"
+  },
+  {
+    "api": "dataqna",
+    "package": "@google-cloud/data-qna"
+  },
+  {
+    "api": "databasecenter",
+    "package": "@google-cloud/databasecenter"
+  },
+  {
+    "api": "dataflow",
+    "package": "@google-cloud/dataflow"
+  },
+  {
+    "api": "datastore",
+    "package": "@google-cloud/datastore-api"
+  },
+  {
+    "api": "developerconnect",
+    "package": "@google-cloud/developerconnect"
+  },
+  {
+    "api": "developerknowledge",
+    "package": "@google/developer-knowledge"
+  },
+  {
+    "api": "devicestreaming",
+    "package": "@google-cloud/devicestreaming"
+  },
+  {
+    "api": "edgecontainer",
+    "package": "@google-cloud/edgecontainer"
+  },
+  {
+    "api": "edgenetwork",
+    "package": "@google-cloud/edgenetwork"
+  },
+  {
+    "api": "financialservices",
+    "package": "@google-cloud/financialservices"
+  },
+  {
+    "api": "firestore",
+    "package": "@google-cloud/firestore-api"
+  },
+  {
+    "api": "ftp",
+    "package": "@google-cloud/ftp"
+  },
+  {
+    "api": "gdchardwaremanagement",
+    "package": "@google-cloud/gdchardwaremanagement"
+  },
+  {
+    "api": "ces",
+    "package": "@google-cloud/ces"
+  },
+  {
+    "api": "geocoding-backend",
+    "package": "@google-cloud/geocode"
+  },
+  {
+    "api": "gkerecommender",
+    "package": "@google-cloud/gkerecommender"
+  },
+  {
+    "api": "admanager",
+    "package": "@google-ads/admanager"
+  },
+  {
+    "api": "analyticsadmin",
+    "package": "@google-analytics/admin"
+  },
+  {
+    "api": "analyticsdata",
+    "package": "@google-analytics/data"
+  },
+  {
+    "api": "chat",
+    "package": "@google-apps/chat"
+  },
+  {
+    "api": "health",
+    "package": "@google-cloud/health"
+  },
+  {
+    "api": "marketingplatformadmin",
+    "package": "@google-ads/marketing-platform-admin"
+  },
+  {
+    "api": "meet",
+    "package": "@google-apps/meet"
+  },
+  {
+    "api": "workspaceevents",
+    "package": "@google-cloud/subscriptions"
+  },
+  {
+    "api": "config",
+    "package": "@google-cloud/config"
+  },
+  {
+    "api": "isochrones",
+    "package": "@google-maps/isochrones"
+  },
+  {
+    "api": "fleetengine",
+    "package": "@googlemaps/fleetengine-delivery"
+  },
+  {
+    "api": "licensemanager",
+    "package": "@google-cloud/licensemanager"
+  },
+  {
+    "api": "lifesciences",
+    "package": "@google-cloud/life-sciences"
+  },
+  {
+    "api": "fleetengine",
+    "package": "@googlemaps/fleetengine"
+  },
+  {
+    "api": "cloudlocationfinder",
+    "package": "@google-cloud/locationfinder"
+  },
+  {
+    "api": "logging",
+    "package": "@google-cloud/logging-api"
+  },
+  {
+    "api": "maintenance",
+    "package": "@google-cloud/maintenance-api"
+  },
+  {
+    "api": "lustre",
+    "package": "@google-cloud/lustre"
+  },
+  {
+    "api": "managedkafka",
+    "package": "@google-cloud/managedkafka-schemaregistry"
+  },
+  {
+    "api": "managedkafka",
+    "package": "@google-cloud/managedkafka"
+  },
+  {
+    "api": "mapmanagement",
+    "package": "@google-cloud/mapmanagement"
+  },
+  {
+    "api": "mediatranslation",
+    "package": "@google-cloud/media-translation"
+  },
+  {
+    "api": "memorystore",
+    "package": "@google-cloud/memorystore"
+  },
+  {
+    "api": "redis",
+    "package": "@google-cloud/redis-cluster"
+  },
+  {
+    "api": "modelarmor",
+    "package": "@google-cloud/modelarmor"
+  },
+  {
+    "api": "navigationconnect",
+    "package": "@google-cloud/navconnect"
+  },
+  {
+    "api": "netapp",
+    "package": "@google-cloud/netapp"
+  },
+  {
+    "api": "networkservices",
+    "package": "@google-cloud/networkservices"
+  },
+  {
+    "api": "oracledatabase",
+    "package": "@google-cloud/oracledatabase"
+  },
+  {
+    "api": "parallelstore",
+    "package": "@google-cloud/parallelstore"
+  },
+  {
+    "api": "parametermanager",
+    "package": "@google-cloud/parametermanager"
+  },
+  {
+    "api": "phishingprotection",
+    "package": "@google-cloud/phishing-protection"
+  },
+  {
+    "api": "areainsights",
+    "package": "@googlemaps/areainsights"
+  },
+  {
+    "api": "policysimulator",
+    "package": "@google-cloud/policysimulator"
+  },
+  {
+    "api": "policytroubleshooter",
+    "package": "@google-cloud/policy-troubleshooter-iam"
+  },
+  {
+    "api": "cloudprivatecatalog",
+    "package": "@google-cloud/private-catalog"
+  },
+  {
+    "api": "privilegedaccessmanager",
+    "package": "@google-cloud/privilegedaccessmanager"
+  },
+  {
+    "api": "cloudprofiler",
+    "package": "@google-cloud/cloudprofiler"
+  },
+  {
+    "api": "pubsub",
+    "package": "@google-cloud/pubsub-api"
+  },
+  {
+    "api": "routeoptimization",
+    "package": "@googlemaps/routeoptimization"
+  },
+  {
+    "api": "securesourcemanager",
+    "package": "@google-cloud/securesourcemanager"
+  },
+  {
+    "api": "securitycentermanagement",
+    "package": "@google-cloud/securitycentermanagement"
+  },
+  {
+    "api": "cloudsecuritycompliance",
+    "package": "@google-cloud/cloudsecuritycompliance"
+  },
+  {
+    "api": "servicehealth",
+    "package": "@google-cloud/servicehealth"
   },
   {
     "api": "merchantapi",
@@ -368,500 +928,36 @@
     "package": "@google-shopping/reports"
   },
   {
-    "api": "vmmigration",
-    "package": "@google-cloud/vmmigration"
-  },
-  {
-    "api": "migrationcenter",
-    "package": "@google-cloud/migrationcenter"
-  },
-  {
-    "api": "monitoring",
-    "package": "@google-cloud/monitoring-dashboards"
-  },
-  {
-    "api": "language",
-    "package": "@google-cloud/language"
-  },
-  {
-    "api": "netapp",
-    "package": "@google-cloud/netapp"
-  },
-  {
-    "api": "networkconnectivity",
-    "package": "@google-cloud/network-connectivity"
-  },
-  {
-    "api": "networkmanagement",
-    "package": "@google-cloud/network-management"
-  },
-  {
-    "api": "networksecurity",
-    "package": "@google-cloud/network-security"
-  },
-  {
-    "api": "networkservices",
-    "package": "@google-cloud/networkservices"
-  },
-  {
-    "api": "orgpolicy",
-    "package": "@google-cloud/org-policy"
-  },
-  {
-    "api": "osconfig",
-    "package": "@google-cloud/os-config"
-  },
-  {
-    "api": "oslogin",
-    "package": "@google-cloud/os-login"
-  },
-  {
-    "api": "policysimulator",
-    "package": "@google-cloud/policysimulator"
-  },
-  {
-    "api": "publicca",
-    "package": "@google-cloud/publicca"
-  },
-  {
-    "api": "cloudquotas",
-    "package": "@google-cloud/cloudquotas"
-  },
-  {
-    "api": "rapidmigrationassessment",
-    "package": "@google-cloud/rapidmigrationassessment"
-  },
-  {
-    "api": "recaptchaenterprise",
-    "package": "@google-cloud/recaptcha-enterprise"
-  },
-  {
-    "api": "recommender",
-    "package": "@google-cloud/recommender"
-  },
-  {
-    "api": "redis",
-    "package": "@google-cloud/redis"
-  },
-  {
-    "api": "cloudresourcemanager",
-    "package": "@google-cloud/resource-manager"
-  },
-  {
-    "api": "retail",
-    "package": "@google-cloud/retail"
-  },
-  {
-    "api": "run",
-    "package": "@google-cloud/run"
-  },
-  {
-    "api": "cloudscheduler",
-    "package": "@google-cloud/scheduler"
-  },
-  {
-    "api": "secretmanager",
-    "package": "@google-cloud/secret-manager"
-  },
-  {
-    "api": "securesourcemanager",
-    "package": "@google-cloud/securesourcemanager"
-  },
-  {
-    "api": "securitycentermanagement",
-    "package": "@google-cloud/securitycentermanagement"
-  },
-  {
-    "api": "securitycenter",
-    "package": "@google-cloud/security-center"
-  },
-  {
-    "api": "servicecontrol",
-    "package": "@google-cloud/service-control"
-  },
-  {
-    "api": "servicedirectory",
-    "package": "@google-cloud/service-directory"
-  },
-  {
-    "api": "servicehealth",
-    "package": "@google-cloud/servicehealth"
-  },
-  {
-    "api": "servicemanagement",
-    "package": "@google-cloud/service-management"
-  },
-  {
-    "api": "serviceusage",
-    "package": "@google-cloud/service-usage"
-  },
-  {
-    "api": "cloudshell",
-    "package": "@google-cloud/shell"
-  },
-  {
-    "api": "speech",
-    "package": "@google-cloud/speech"
-  },
-  {
-    "api": "sqladmin",
-    "package": "@google-cloud/sql"
-  },
-  {
-    "api": "monitoring",
-    "package": "@google-cloud/monitoring"
-  },
-  {
-    "api": "storage",
-    "package": "@google-cloud/storage-control"
-  },
-  {
-    "api": "storageinsights",
-    "package": "@google-cloud/storageinsights"
-  },
-  {
-    "api": "storagetransfer",
-    "package": "@google-cloud/storage-transfer"
-  },
-  {
-    "api": "cloudsupport",
-    "package": "@google-cloud/support"
-  },
-  {
-    "api": "jobs",
-    "package": "@google-cloud/talent"
-  },
-  {
-    "api": "cloudtasks",
-    "package": "@google-cloud/tasks"
-  },
-  {
-    "api": "telcoautomation",
-    "package": "@google-cloud/telcoautomation"
-  },
-  {
-    "api": "texttospeech",
-    "package": "@google-cloud/text-to-speech"
-  },
-  {
-    "api": "tpu",
-    "package": "@google-cloud/tpu"
-  },
-  {
-    "api": "transcoder",
-    "package": "@google-cloud/video-transcoder"
-  },
-  {
-    "api": "translate",
-    "package": "@google-cloud/translate"
-  },
-  {
-    "api": "aiplatform",
-    "package": "@google-cloud/aiplatform"
-  },
-  {
-    "api": "videointelligence",
-    "package": "@google-cloud/video-intelligence"
-  },
-  {
-    "api": "videostitcher",
-    "package": "@google-cloud/video-stitcher"
-  },
-  {
-    "api": "vpcaccess",
-    "package": "@google-cloud/vpc-access"
-  },
-  {
-    "api": "vision",
-    "package": "@google-cloud/vision"
-  },
-  {
-    "api": "vmwareengine",
-    "package": "@google-cloud/vmwareengine"
-  },
-  {
-    "api": "webrisk",
-    "package": "@google-cloud/web-risk"
-  },
-  {
-    "api": "websecurityscanner",
-    "package": "@google-cloud/web-security-scanner"
-  },
-  {
-    "api": "workflowexecutions",
-    "package": "@google-cloud/workflows"
-  },
-  {
-    "api": "workstations",
-    "package": "@google-cloud/workstations"
-  },
-  {
-    "api": "google",
-    "package": "@google-cloud/bigquery-datapolicies"
-  },
-  {
-    "api": "apihub",
-    "package": "@google-cloud/apihub"
-  },
-  {
-    "api": "cloudapiregistry",
-    "package": "@google-cloud/apiregistry"
-  },
-  {
-    "api": "apigeeregistry",
-    "package": "@google-cloud/apigee-registry"
-  },
-  {
-    "api": "apphub",
-    "package": "@google-cloud/apphub"
-  },
-  {
-    "api": "area120tables",
-    "package": "@google/area120-tables"
-  },
-  {
-    "api": "batch",
-    "package": "@google-cloud/batch"
-  },
-  {
-    "api": "beyondcorp",
-    "package": "@google-cloud/appconnectors"
-  },
-  {
-    "api": "beyondcorp",
-    "package": "@google-cloud/appgateways"
-  },
-  {
-    "api": "beyondcorp",
-    "package": "@google-cloud/clientconnectorservices"
-  },
-  {
-    "api": "capacityplanner",
-    "package": "@google-cloud/capacityplanner"
-  },
-  {
-    "api": "chronicle",
-    "package": "@google-cloud/chronicle"
-  },
-  {
-    "api": "hypercomputecluster",
-    "package": "@google-cloud/hypercomputecluster"
-  },
-  {
-    "api": "configdelivery",
-    "package": "@google-cloud/configdelivery"
-  },
-  {
-    "api": "css",
-    "package": "@google-shopping/css"
-  },
-  {
-    "api": "geminidataanalytics",
-    "package": "@google-cloud/geminidataanalytics"
-  },
-  {
-    "api": "datalabeling",
-    "package": "@google-cloud/datalabeling"
-  },
-  {
-    "api": "datalineage",
-    "package": "@google-cloud/configmanagement"
-  },
-  {
-    "api": "datamanager",
-    "package": "@google-ads/datamanager"
-  },
-  {
-    "api": "dataqna",
-    "package": "@google-cloud/data-qna"
-  },
-  {
-    "api": "dataflow",
-    "package": "@google-cloud/dataflow"
-  },
-  {
-    "api": "dataform",
-    "package": "@google-cloud/dataform"
-  },
-  {
-    "api": "developerconnect",
-    "package": "@google-cloud/developerconnect"
-  },
-  {
-    "api": "devicestreaming",
-    "package": "@google-cloud/devicestreaming"
-  },
-  {
-    "api": "financialservices",
-    "package": "@google-cloud/financialservices"
-  },
-  {
-    "api": "gdchardwaremanagement",
-    "package": "@google-cloud/gdchardwaremanagement"
-  },
-  {
-    "api": "ces",
-    "package": "@google-cloud/ces"
-  },
-  {
-    "api": "generativelanguage",
-    "package": "@google-ai/generativelanguage"
-  },
-  {
-    "api": "connectgateway",
-    "package": "@google-cloud/gke-connect-gateway"
-  },
-  {
-    "api": "gkerecommender",
-    "package": "@google-cloud/gkerecommender"
-  },
-  {
-    "api": "admanager",
-    "package": "@google-ads/admanager"
-  },
-  {
-    "api": "analyticsadmin",
-    "package": "@google-analytics/admin"
-  },
-  {
-    "api": "analyticsdata",
-    "package": "@google-analytics/data"
-  },
-  {
-    "api": "chat",
-    "package": "@google-apps/chat"
-  },
-  {
-    "api": "routes",
-    "package": "@googlemaps/routing"
-  },
-  {
-    "api": "marketingplatformadmin",
-    "package": "@google-ads/marketing-platform-admin"
-  },
-  {
-    "api": "meet",
-    "package": "@google-apps/meet"
-  },
-  {
-    "api": "workspaceevents",
-    "package": "@google-cloud/subscriptions"
-  },
-  {
-    "api": "fleetengine",
-    "package": "@googlemaps/fleetengine-delivery"
-  },
-  {
-    "api": "licensemanager",
-    "package": "@google-cloud/licensemanager"
-  },
-  {
-    "api": "lifesciences",
-    "package": "@google-cloud/life-sciences"
-  },
-  {
-    "api": "fleetengine",
-    "package": "@googlemaps/fleetengine"
-  },
-  {
-    "api": "cloudlocationfinder",
-    "package": "@google-cloud/locationfinder"
-  },
-  {
-    "api": "maintenance",
-    "package": "@google-cloud/maintenance-api"
-  },
-  {
-    "api": "lustre",
-    "package": "@google-cloud/lustre"
-  },
-  {
-    "api": "managedkafka",
-    "package": "@google-cloud/managedkafka-schemaregistry"
-  },
-  {
-    "api": "managedkafka",
-    "package": "@google-cloud/managedkafka"
-  },
-  {
-    "api": "memorystore",
-    "package": "@google-cloud/memorystore"
-  },
-  {
-    "api": "redis",
-    "package": "@google-cloud/redis-cluster"
-  },
-  {
     "api": "merchantapi",
     "package": "@google-shopping/reviews"
-  },
-  {
-    "api": "modelarmor",
-    "package": "@google-cloud/modelarmor"
-  },
-  {
-    "api": "navigationconnect",
-    "package": "@google-cloud/navconnect"
-  },
-  {
-    "api": "oracledatabase",
-    "package": "@google-cloud/oracledatabase"
-  },
-  {
-    "api": "parallelstore",
-    "package": "@google-cloud/parallelstore"
-  },
-  {
-    "api": "parametermanager",
-    "package": "@google-cloud/parametermanager"
-  },
-  {
-    "api": "phishingprotection",
-    "package": "@google-cloud/phishing-protection"
-  },
-  {
-    "api": "places",
-    "package": "@googlemaps/places"
-  },
-  {
-    "api": "areainsights",
-    "package": "@googlemaps/areainsights"
-  },
-  {
-    "api": "policytroubleshooter",
-    "package": "@google-cloud/policy-troubleshooter-iam"
-  },
-  {
-    "api": "privatecatalog",
-    "package": "@google-cloud/private-catalog"
-  },
-  {
-    "api": "privilegedaccessmanager",
-    "package": "@google-cloud/privilegedaccessmanager"
-  },
-  {
-    "api": "cloudprofiler",
-    "package": "@google-cloud/cloudprofiler"
-  },
-  {
-    "api": "routeoptimization",
-    "package": "@googlemaps/routeoptimization"
-  },
-  {
-    "api": "saasservicemgmt",
-    "package": "@google-cloud/saasservicemgmt"
-  },
-  {
-    "api": "cloudsecuritycompliance",
-    "package": "@google-cloud/cloudsecuritycompliance"
   },
   {
     "api": "solar",
     "package": "@googlemaps/solar"
   },
   {
+    "api": "spanner",
+    "package": "@google-cloud/spanner-api"
+  },
+  {
+    "api": "sqladmin",
+    "package": "@google-cloud/sql"
+  },
+  {
+    "api": "storage",
+    "package": "@google-cloud/storage-control"
+  },
+  {
     "api": "storagebatchoperations",
     "package": "@google-cloud/storagebatchoperations"
+  },
+  {
+    "api": "streetviewpublish",
+    "package": "@googlemaps/streetview-publish"
+  },
+  {
+    "api": "telcoautomation",
+    "package": "@google-cloud/telcoautomation"
   },
   {
     "api": "vectorsearch",
@@ -870,6 +966,10 @@
   {
     "api": "visionai",
     "package": "@google-cloud/visionai"
+  },
+  {
+    "api": "workloadidentity",
+    "package": "@google-cloud/workloadidentity"
   },
   {
     "api": "workloadmanager",

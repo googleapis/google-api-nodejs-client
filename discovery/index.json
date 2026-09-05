@@ -2374,21 +2374,6 @@
       "version": "v1"
     },
     {
-      "description": "This API is deprecated. Please use Merchant API instead: https://developers.google.com/merchant/api.",
-      "discoveryRestUrl": "https://shoppingcontent.googleapis.com/$discovery/rest?version=v2.1",
-      "documentationLink": "https://developers.google.com/shopping-content/v2/",
-      "icons": {
-        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
-        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
-      },
-      "id": "content:v2.1",
-      "kind": "discovery#directoryItem",
-      "name": "content",
-      "preferred": true,
-      "title": "Content API for Shopping",
-      "version": "v2.1"
-    },
-    {
       "description": "",
       "discoveryRestUrl": "https://contentwarehouse.googleapis.com/$discovery/rest?version=v1",
       "documentationLink": "https://cloud.google.com/document-warehouse",
@@ -2714,9 +2699,24 @@
       "id": "dataproc:v1",
       "kind": "discovery#directoryItem",
       "name": "dataproc",
-      "preferred": true,
+      "preferred": false,
       "title": "Cloud Dataproc API",
       "version": "v1"
+    },
+    {
+      "description": "Manages Hadoop-based clusters and jobs on Google Cloud Platform.",
+      "discoveryRestUrl": "https://dataproc.googleapis.com/$discovery/rest?version=v2",
+      "documentationLink": "https://cloud.google.com/dataproc/",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "id": "dataproc:v2",
+      "kind": "discovery#directoryItem",
+      "name": "dataproc",
+      "preferred": true,
+      "title": "Cloud Dataproc API",
+      "version": "v2"
     },
     {
       "description": "Accesses the schemaless NoSQL database to provide fully managed, robust, scalable storage for your application.",
