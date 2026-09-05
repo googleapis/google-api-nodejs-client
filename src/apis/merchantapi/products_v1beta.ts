@@ -173,7 +173,7 @@ export namespace merchantapi_products_v1beta {
      */
     canonicalLink?: string | null;
     /**
-     * Product Certifications, for example for energy efficiency labeling of products recorded in the [EU EPREL](https://eprel.ec.europa.eu/screen/home) database. See the [Help Center](https://support.google.com/merchants/answer/13528839) article for more information.
+     * Product Certifications, for example for energy efficiency labeling of products recorded in the [EU EPREL](https://eprel.ec.europa.eu/screen/home) database. For more information, see [Certification](https://support.google.com/merchants/answer/13528839).
      */
     certifications?: Schema$Certification[];
     /**
@@ -538,6 +538,14 @@ export namespace merchantapi_products_v1beta {
      * The certification code. Maximum length is 2000 characters.
      */
     certificationCode?: string | null;
+    /**
+     * Optional. URL to the certification document (eg. `https://www.example.com/document`), for example, the product data sheet or fiche required by UK's DESNZ or EU's EPREL. Maximum length is 2000 characters. For more information, see [Certification](https://support.google.com/merchants/answer/13528839).
+     */
+    certificationDocumentLink?: string | null;
+    /**
+     * Optional. URL to the certification label (eg. `https://www.example.com/label`), for example, the energy efficiency label required by UK's DESNZ or EU's EPREL. Maximum length is 2000 characters. For more information, see [Certification](https://support.google.com/merchants/answer/13528839).
+     */
+    certificationLabelLink?: string | null;
     /**
      * The name of the certification, for example "EPREL". Maximum length is 2000 characters.
      */
