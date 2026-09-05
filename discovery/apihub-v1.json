@@ -49,8 +49,18 @@
     },
     {
       "description": "Regional Endpoint",
+      "endpointUrl": "https://apihub.europe-west3.rep.googleapis.com/",
+      "location": "europe-west3"
+    },
+    {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://apihub.europe-west9.rep.googleapis.com/",
       "location": "europe-west9"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://apihub.northamerica-northeast2.rep.googleapis.com/",
+      "location": "northamerica-northeast2"
     },
     {
       "description": "Regional Endpoint",
@@ -66,6 +76,11 @@
       "description": "Regional Endpoint",
       "endpointUrl": "https://apihub.us-west1.rep.googleapis.com/",
       "location": "us-west1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://apihub.us-west2.rep.googleapis.com/",
+      "location": "us-west2"
     }
   ],
   "fullyEncodeReservedExpansion": true,
@@ -3435,7 +3450,7 @@
       }
     }
   },
-  "revision": "20260819",
+  "revision": "20260831",
   "rootUrl": "https://apihub.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -3535,6 +3550,11 @@
       "description": "Addon resource.",
       "id": "GoogleCloudApihubV1Addon",
       "properties": {
+        "boostSpecGeminiRegionId": {
+          "description": "Output only. The Vertex AI region where the BoostSpec Gemini model calls run for this API Hub instance. Populated only for the SpecGen addon (`system-spec-generation`); other addons leave this field empty. `gemini-2.5-flash` is not available in every API Hub region, so the effective region may differ from the API Hub instance's own region. The value follows these semantics: - `\"\"`: BoostSpec is disabled in this region (the addon is not SpecGen, or the API Hub instance region has no configured Gemini endpoint or fallback). - Equal to the API Hub instance region: BoostSpec calls run in-region. - Differs from the API Hub instance region: BoostSpec calls run in the specified fallback region. Callers rendering this field can derive the three display states from this single field combined with the API Hub instance region.",
+          "readOnly": true,
+          "type": "string"
+        },
         "config": {
           "$ref": "GoogleCloudApihubV1AddonConfig",
           "description": "Required. The configuration of the addon."
