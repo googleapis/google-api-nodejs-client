@@ -2,7 +2,7 @@
 
 # content
 
-> This API is deprecated. Please use Merchant API instead: https://developers.google.com/merchant/api.
+> 
 
 ## Installation
 
