@@ -4,6 +4,15 @@
 
 > Manages identity and access control for Google Cloud resources, including the creation of service accounts, which you can use to authenticate to Google and make API calls. Enabling this API also enables the IAM Service Account Credentials API (iamcredentials.googleapis.com). However, disabling this API doesn&#39;t disable the IAM Service Account Credentials API.
 
+## Support status
+**Note**: Google provides multiple libraries for this service. This library is in
+maintenance mode, and will continue to be made available for users who have
+existing applications. If you're building a new application, or modernizing a
+legacy application, please use [@google-cloud/iam](https://www.npmjs.com/package/@google-cloud/iam) instead.
+The [@google-cloud/iam](https://www.npmjs.com/package/@google-cloud/iam) library is faster, easier to use, and better maintained.
+
+To learn more, see [Client Libraries Explained](https://cloud.google.com/apis/docs/client-libraries-explained).
+
 ## Installation
 
 ```sh
