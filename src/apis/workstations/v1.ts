@@ -898,6 +898,19 @@ export namespace workstations_v1 {
     validateOnly?: boolean | null;
   }
   /**
+   * Request message for SuspendWorkstation.
+   */
+  export interface Schema$SuspendWorkstationRequest {
+    /**
+     * Optional. If set, the request will be rejected if the latest version of the workstation on the server does not have this ETag.
+     */
+    etag?: string | null;
+    /**
+     * Optional. If set, validate the request and preview the result, but do not actually apply it.
+     */
+    validateOnly?: boolean | null;
+  }
+  /**
    * Request message for `TestIamPermissions` method.
    */
   export interface Schema$TestIamPermissionsRequest {
@@ -1146,7 +1159,11 @@ export namespace workstations_v1 {
      */
     host?: Schema$Host;
     /**
-     * Optional. Number of seconds to wait before automatically stopping a workstation after it last received user traffic. A value of `"0s"` indicates that Cloud Workstations VMs created with this configuration should never time out due to idleness. Provide [duration](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#duration) terminated by `s` for seconds—for example, `"7200s"` (2 hours). The default is `"1200s"` (20 minutes).
+     * Optional. The action to take when the workstation has been idle for the duration specified in idle_timeout. Defaults to STOP.
+     */
+    idleAction?: string | null;
+    /**
+     * Optional. Number of seconds to wait before automatically stopping or suspending a workstation after it last received user traffic. See idle_action to configure whether to stop or suspend idle workstations. A value of `"0s"` indicates that Cloud Workstations VMs created with this configuration should never time out due to idleness. Provide [duration](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#duration) terminated by `s` for seconds—for example, `"7200s"` (2 hours). The default is `"1200s"` (20 minutes).
      */
     idleTimeout?: string | null;
     /**
@@ -1178,7 +1195,7 @@ export namespace workstations_v1 {
      */
     replicaZones?: string[] | null;
     /**
-     * Optional. Number of seconds to wait before automatically stopping a workstation. We recommend that workstations be stopped daily so that security updates can be applied upon restart. The idle_timeout and running_timeout fields are independent of each other. Note that the running_timeout field stops workstations after the specified time, regardless of whether or not the workstations are idle. Provide duration terminated by `s` for seconds—for example, `"54000s"` (15 hours). Defaults to `"43200s"` (12 hours). A value of `"0s"` indicates that workstations using this configuration should never time out. If encryption_key is set, it must be greater than `"0s"` and less than `"86400s"` (24 hours). Warning: A value of `"0s"` indicates that Cloud Workstations VMs created with this configuration have no maximum running time. This is strongly discouraged because you incur costs and will not pick up security updates.
+     * Optional. Number of seconds to wait before automatically stopping a workstation. We recommend that workstations be stopped daily so that security updates can be applied upon restart. The idle_timeout and running_timeout fields are independent of each other. Note that the running_timeout field stops workstations after the specified time, regardless of whether or not the workstations are idle. Note: This timeout applies to workstations in the following states: * STATE_RUNNING * STATE_SUSPENDED Suspending a workstation does not reset this timeout. Provide duration terminated by `s` for seconds—for example, `"54000s"` (15 hours). Defaults to `"43200s"` (12 hours). A value of `"0s"` indicates that workstations using this configuration should never time out. If encryption_key is set, it must be greater than `"0s"` and less than `"86400s"` (24 hours). Warning: A value of `"0s"` indicates that Cloud Workstations VMs created with this configuration have no maximum running time. This is strongly discouraged because you incur costs and will not pick up security updates.
      */
     runningTimeout?: string | null;
     /**
@@ -3112,6 +3129,7 @@ export namespace workstations_v1 {
      *           //   "etag": "my_etag",
      *           //   "grantWorkstationAdminRoleOnCreate": false,
      *           //   "host": {},
+     *           //   "idleAction": "my_idleAction",
      *           //   "idleTimeout": "my_idleTimeout",
      *           //   "labels": {},
      *           //   "maxUsableWorkstations": 0,
@@ -3437,6 +3455,7 @@ export namespace workstations_v1 {
      *   //   "etag": "my_etag",
      *   //   "grantWorkstationAdminRoleOnCreate": false,
      *   //   "host": {},
+     *   //   "idleAction": "my_idleAction",
      *   //   "idleTimeout": "my_idleTimeout",
      *   //   "labels": {},
      *   //   "maxUsableWorkstations": 0,
@@ -4064,6 +4083,7 @@ export namespace workstations_v1 {
      *           //   "etag": "my_etag",
      *           //   "grantWorkstationAdminRoleOnCreate": false,
      *           //   "host": {},
+     *           //   "idleAction": "my_idleAction",
      *           //   "idleTimeout": "my_idleTimeout",
      *           //   "labels": {},
      *           //   "maxUsableWorkstations": 0,
@@ -6336,6 +6356,159 @@ export namespace workstations_v1 {
     }
 
     /**
+     * Suspends a workstation to reduce costs.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/workstations.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const workstations = google.workstations('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await workstations.projects.locations.workstationClusters.workstationConfigs.workstations.suspend(
+     *       {
+     *         // Required. Name of the workstation to suspend.
+     *         name: 'projects/my-project/locations/my-location/workstationClusters/my-workstationCluster/workstationConfigs/my-workstationConfig/workstations/my-workstation',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "etag": "my_etag",
+     *           //   "validateOnly": false
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    suspend(
+      params: Params$Resource$Projects$Locations$Workstationclusters$Workstationconfigs$Workstations$Suspend,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    suspend(
+      params?: Params$Resource$Projects$Locations$Workstationclusters$Workstationconfigs$Workstations$Suspend,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    suspend(
+      params: Params$Resource$Projects$Locations$Workstationclusters$Workstationconfigs$Workstations$Suspend,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    suspend(
+      params: Params$Resource$Projects$Locations$Workstationclusters$Workstationconfigs$Workstations$Suspend,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    suspend(
+      params: Params$Resource$Projects$Locations$Workstationclusters$Workstationconfigs$Workstations$Suspend,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    suspend(callback: BodyResponseCallback<Schema$Operation>): void;
+    suspend(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Workstationclusters$Workstationconfigs$Workstations$Suspend
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Workstationclusters$Workstationconfigs$Workstations$Suspend;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Workstationclusters$Workstationconfigs$Workstations$Suspend;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://workstations.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:suspend').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
      * @example
      * ```js
@@ -6636,6 +6809,17 @@ export namespace workstations_v1 {
      * Request body metadata
      */
     requestBody?: Schema$StopWorkstationRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Workstationclusters$Workstationconfigs$Workstations$Suspend extends StandardParameters {
+    /**
+     * Required. Name of the workstation to suspend.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SuspendWorkstationRequest;
   }
   export interface Params$Resource$Projects$Locations$Workstationclusters$Workstationconfigs$Workstations$Testiampermissions extends StandardParameters {
     /**
