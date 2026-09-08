@@ -962,7 +962,7 @@ export namespace serviceusage_v1beta1 {
    */
   export interface Schema$EnableRule {
     /**
-     * Client and resource project enable type.
+     * Deprecated: EnableType is not supported.
      */
     enableType?: string | null;
     /**

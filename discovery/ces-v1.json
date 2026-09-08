@@ -890,21 +890,6 @@
                           ],
                           "location": "query",
                           "type": "string"
-                        },
-                        "view": {
-                          "description": "Optional. The view specifying which fields in the response should be populated.",
-                          "enum": [
-                            "CONVERSATION_VIEW_UNSPECIFIED",
-                            "CONVERSATION_VIEW_BASIC",
-                            "CONVERSATION_VIEW_FULL"
-                          ],
-                          "enumDescriptions": [
-                            "Not specified, defaults to CONVERSATION_VIEW_BASIC.",
-                            "The basic view. Returns everything except resolved instructions.",
-                            "The full view. Includes resolved instructions dynamically per turn."
-                          ],
-                          "location": "query",
-                          "type": "string"
                         }
                       },
                       "path": "v1/{+name}",
@@ -1222,6 +1207,35 @@
                           },
                           "response": {
                             "$ref": "LfA2aV1SendMessageResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/ces",
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "stream": {
+                          "description": "Sends a streaming message to an agent, allowing for real-time interaction and status updates. Streaming version of `SendMessage`",
+                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/apps/{appsId}/deployments/{deploymentsId}/message:stream",
+                          "httpMethod": "POST",
+                          "id": "ces.projects.locations.apps.deployments.message.stream",
+                          "parameterOrder": [
+                            "tenant"
+                          ],
+                          "parameters": {
+                            "tenant": {
+                              "description": "Optional. Opaque routing identifier. Must match the `tenant` value from the selected `AgentInterface` in the Agent Card when that field is set.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/apps/[^/]+/deployments/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+tenant}/message:stream",
+                          "request": {
+                            "$ref": "LfA2aV1SendMessageRequest"
+                          },
+                          "response": {
+                            "$ref": "LfA2aV1StreamResponse"
                           },
                           "scopes": [
                             "https://www.googleapis.com/auth/ces",
@@ -1616,6 +1630,35 @@
                       },
                       "response": {
                         "$ref": "LfA2aV1SendMessageResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/ces",
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "stream": {
+                      "description": "Sends a streaming message to an agent, allowing for real-time interaction and status updates. Streaming version of `SendMessage`",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/apps/{appsId}/message:stream",
+                      "httpMethod": "POST",
+                      "id": "ces.projects.locations.apps.message.stream",
+                      "parameterOrder": [
+                        "tenant"
+                      ],
+                      "parameters": {
+                        "tenant": {
+                          "description": "Optional. Opaque routing identifier. Must match the `tenant` value from the selected `AgentInterface` in the Agent Card when that field is set.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/apps/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+tenant}/message:stream",
+                      "request": {
+                        "$ref": "LfA2aV1SendMessageRequest"
+                      },
+                      "response": {
+                        "$ref": "LfA2aV1StreamResponse"
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/ces",
@@ -2274,6 +2317,41 @@
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
+                    "patch": {
+                      "description": "Updates the specified app version.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/apps/{appsId}/versions/{versionsId}",
+                      "httpMethod": "PATCH",
+                      "id": "ces.projects.locations.apps.versions.patch",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Identifier. The unique identifier of the app version. Format: `projects/{project}/locations/{location}/apps/{app}/versions/{version}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/apps/[^/]+/versions/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "updateMask": {
+                          "description": "Optional. The list of fields to update. If empty, fields `display_name` and `description` will be updated.",
+                          "format": "google-fieldmask",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "request": {
+                        "$ref": "AppVersion"
+                      },
+                      "response": {
+                        "$ref": "AppVersion"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/ces",
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "restore": {
                       "description": "Restores the specified app version. This will create a new app version from the current draft app and overwrite the current draft with the specified app version.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/apps/{appsId}/versions/{versionsId}:restore",
@@ -2330,6 +2408,35 @@
                           },
                           "response": {
                             "$ref": "LfA2aV1SendMessageResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/ces",
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "stream": {
+                          "description": "Sends a streaming message to an agent, allowing for real-time interaction and status updates. Streaming version of `SendMessage`",
+                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/apps/{appsId}/versions/{versionsId}/message:stream",
+                          "httpMethod": "POST",
+                          "id": "ces.projects.locations.apps.versions.message.stream",
+                          "parameterOrder": [
+                            "tenant"
+                          ],
+                          "parameters": {
+                            "tenant": {
+                              "description": "Optional. Opaque routing identifier. Must match the `tenant` value from the selected `AgentInterface` in the Agent Card when that field is set.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/apps/[^/]+/versions/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+tenant}/message:stream",
+                          "request": {
+                            "$ref": "LfA2aV1SendMessageRequest"
+                          },
+                          "response": {
+                            "$ref": "LfA2aV1StreamResponse"
                           },
                           "scopes": [
                             "https://www.googleapis.com/auth/ces",
@@ -2479,7 +2586,7 @@
       }
     }
   },
-  "revision": "20260806",
+  "revision": "20260831",
   "rootUrl": "https://ces.googleapis.com/",
   "schemas": {
     "Action": {
@@ -2641,6 +2748,10 @@
           "description": "Identifier. The unique identifier of the agent. Format: `projects/{project}/locations/{location}/apps/{app}/agents/{agent}`",
           "type": "string"
         },
+        "remoteA2aAgent": {
+          "$ref": "AgentRemoteA2aAgent",
+          "description": "Optional. The remote [A2A](https://github.com/a2aproject/A2A) agent to be used for the agent execution."
+        },
         "remoteDialogflowAgent": {
           "$ref": "AgentRemoteDialogflowAgent",
           "description": "Optional. The remote [Dialogflow](https://cloud.google.com/dialogflow/cx/docs/concept/console-conversational-agents) agent to be used for the agent execution. If this field is set, all other agent level properties will be ignored. Note: If the Dialogflow agent is in a different project from the app, you should grant `roles/dialogflow.client` to the CES service agent `service-@gcp-sa-ces.iam.gserviceaccount.com`."
@@ -2761,6 +2872,29 @@
       "description": "Default agent type. The agent uses instructions and callbacks specified in the agent to perform the task using a large language model.",
       "id": "AgentLlmAgent",
       "properties": {},
+      "type": "object"
+    },
+    "AgentRegistryDeployment": {
+      "description": "Configuration and status for Agent Registry deployment.",
+      "id": "AgentRegistryDeployment",
+      "properties": {
+        "agentRegistryServiceName": {
+          "description": "Optional. Output only. The resource name of the deployed Agent Registry service. Format: `projects/{project}/locations/{location}/services/{service}`",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AgentRemoteA2aAgent": {
+      "description": "The agent which will transfer execution to a remote [A2A](https://github.com/a2aproject/A2A) agent.",
+      "id": "AgentRemoteA2aAgent",
+      "properties": {
+        "a2aConfig": {
+          "$ref": "RemoteA2aConfig",
+          "description": "Required. The A2A connection configuration."
+        }
+      },
       "type": "object"
     },
     "AgentRemoteDialogflowAgent": {
@@ -2996,6 +3130,10 @@
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
+        },
+        "dashboardSettings": {
+          "$ref": "DashboardSettings",
+          "description": "Optional. App-specific dashboard settings for linking and configuring Contact Center Insights dashboards."
         },
         "dataStoreSettings": {
           "$ref": "DataStoreSettings",
@@ -3233,6 +3371,12 @@
           "$ref": "AppSnapshot",
           "description": "Output only. The snapshot of the app when the version is created.",
           "readOnly": true
+        },
+        "updateTime": {
+          "description": "Output only. Timestamp when the app version was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -3759,6 +3903,13 @@
             "$ref": "CitationsCitedChunk"
           },
           "type": "array"
+        },
+        "inlineCitations": {
+          "description": "Optional. List of inline citations in the agent response.",
+          "items": {
+            "$ref": "CitationsInlineCitation"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -3782,6 +3933,31 @@
         "uri": {
           "description": "URI used for citation.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CitationsInlineCitation": {
+      "description": "An inline citation in the response text.",
+      "id": "CitationsInlineCitation",
+      "properties": {
+        "citedChunkIndices": {
+          "description": "The indices of the cited chunks that back this text segment. Indices refer to the elements in `cited_chunks`.",
+          "items": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "endIndex": {
+          "description": "The ending index (in bytes) of the text segment in the agent response.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "startIndex": {
+          "description": "The starting index (in bytes) of the text segment in the agent response.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -4054,25 +4230,23 @@
           },
           "type": "array"
         },
-        "resolvedDeveloperInstruction": {
-          "description": "Output only. The full dynamically resolved developer instruction generated from templates. This field is only populated on-demand when requested during history retrieval. It is not persisted.",
-          "readOnly": true,
-          "type": "string"
-        },
         "rootSpan": {
           "$ref": "Span",
           "description": "Optional. The root span of the action processing."
         },
-        "templateAttributes": {
-          "additionalProperties": {
-            "description": "Properties of the object.",
-            "type": "any"
-          },
-          "description": "Optional. Variables or configurations referenced by the template engine during dynamic prompt generation. This allows reconstructing the exact prompt sent to the model for this turn.",
-          "type": "object"
-        },
         "userIntendedText": {
           "description": "Optional. The intended ground-truth text from the Simulated Caller (Polysynth). Only populated when word error rate metrics are enabled.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DashboardSettings": {
+      "description": "Settings for dashboards associated with the app, that show up in the Monitoring view.",
+      "id": "DashboardSettings",
+      "properties": {
+        "defaultDashboard": {
+          "description": "Optional. The resource name of the default Contact Center Insights dashboard associated with the app. This is the dashboard that will be displayed when users navigate to the Monitoring view for the app. Format: `projects/{project}/locations/{location}/dashboards/{dashboard}`",
           "type": "string"
         }
       },
@@ -4482,6 +4656,11 @@
         "enableSnippets": {
           "description": "Optional. Whether snippets are enabled.",
           "type": "boolean"
+        },
+        "maxSnippets": {
+          "description": "Optional. Number of snippets to return per query. If unset, returns all snippets from the service by default.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -4505,10 +4684,25 @@
       },
       "type": "object"
     },
+    "DeployChannelResponse": {
+      "description": "Response message for AgentService.DeployChannel.",
+      "id": "DeployChannelResponse",
+      "properties": {
+        "deployment": {
+          "$ref": "Deployment",
+          "description": "The created deployment."
+        }
+      },
+      "type": "object"
+    },
     "Deployment": {
       "description": "A deployment represents an immutable, queryable version of the app. It is used to deploy an app version with a specific channel profile.",
       "id": "Deployment",
       "properties": {
+        "agentRegistryDeployment": {
+          "$ref": "AgentRegistryDeployment",
+          "description": "Optional. Configuration for deploying this deployment to Agent Registry. If present, this deployment will be published to Agent Registry."
+        },
         "appVersion": {
           "description": "Optional. The resource name of the app version to deploy. Format: `projects/{project}/locations/{location}/apps/{app}/versions/{version}` Use `projects/{project}/locations/{location}/apps/{app}/versions/-` to use the draft app.",
           "type": "string"
@@ -5510,14 +5704,18 @@
             "HARM_CATEGORY_HATE_SPEECH",
             "HARM_CATEGORY_DANGEROUS_CONTENT",
             "HARM_CATEGORY_HARASSMENT",
-            "HARM_CATEGORY_SEXUALLY_EXPLICIT"
+            "HARM_CATEGORY_SEXUALLY_EXPLICIT",
+            "HARM_CATEGORY_PROFANITY",
+            "HARM_CATEGORY_TOXIC"
           ],
           "enumDescriptions": [
             "The harm category is unspecified.",
             "The harm category is hate speech.",
             "The harm category is dangerous content.",
             "The harm category is harassment.",
-            "The harm category is sexually explicit content."
+            "The harm category is sexually explicit content.",
+            "The harm category is profanity.",
+            "The harm category is toxic."
           ],
           "type": "string"
         },
@@ -5548,6 +5746,10 @@
       "description": "Represents an image input or output in the conversation.",
       "id": "Image",
       "properties": {
+        "altText": {
+          "description": "Optional. The alternative text for the image.",
+          "type": "string"
+        },
         "data": {
           "description": "Required. Raw bytes of the image.",
           "format": "byte",
@@ -5588,6 +5790,14 @@
         "importOptions": {
           "$ref": "ImportAppRequestImportOptions",
           "description": "Optional. Options governing the import process for the app."
+        },
+        "jsonPatchContent": {
+          "description": "Optional. Patch content as a JSON string.",
+          "type": "string"
+        },
+        "jsonPatchGcsUri": {
+          "description": "Optional. A Cloud Storage URI pointing to a JSON file containing the patches.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -6459,6 +6669,29 @@
       },
       "type": "object"
     },
+    "LfA2aV1StreamResponse": {
+      "description": "A wrapper object used in streaming operations to encapsulate different types of response data.",
+      "id": "LfA2aV1StreamResponse",
+      "properties": {
+        "artifactUpdate": {
+          "$ref": "LfA2aV1TaskArtifactUpdateEvent",
+          "description": "An event indicating a task artifact update."
+        },
+        "message": {
+          "$ref": "LfA2aV1Message",
+          "description": "A Message object containing a message from the agent."
+        },
+        "statusUpdate": {
+          "$ref": "LfA2aV1TaskStatusUpdateEvent",
+          "description": "An event indicating a task status update."
+        },
+        "task": {
+          "$ref": "LfA2aV1Task",
+          "description": "A Task object containing the current state of the task."
+        }
+      },
+      "type": "object"
+    },
     "LfA2aV1StringList": {
       "description": "protolint:disable REPEATED_FIELD_NAMES_PLURALIZED A list of strings.",
       "id": "LfA2aV1StringList",
@@ -6510,6 +6743,41 @@
         "status": {
           "$ref": "LfA2aV1TaskStatus",
           "description": "Required. The current status of a `Task`, including `state` and a `message`."
+        }
+      },
+      "type": "object"
+    },
+    "LfA2aV1TaskArtifactUpdateEvent": {
+      "description": "A task delta where an artifact has been generated.",
+      "id": "LfA2aV1TaskArtifactUpdateEvent",
+      "properties": {
+        "append": {
+          "description": "If true, the content of this artifact should be appended to a previously sent artifact with the same ID.",
+          "type": "boolean"
+        },
+        "artifact": {
+          "$ref": "LfA2aV1Artifact",
+          "description": "Required. The artifact that was generated or updated."
+        },
+        "contextId": {
+          "description": "Required. The ID of the context that this task belongs to.",
+          "type": "string"
+        },
+        "lastChunk": {
+          "description": "If true, this is the final chunk of the artifact.",
+          "type": "boolean"
+        },
+        "metadata": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Optional. Metadata associated with the artifact update.",
+          "type": "object"
+        },
+        "taskId": {
+          "description": "Required. The ID of the task for this artifact.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -6582,6 +6850,33 @@
         "timestamp": {
           "description": "ISO 8601 Timestamp when the status was recorded. Example: \"2023-10-27T10:00:00Z\"",
           "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "LfA2aV1TaskStatusUpdateEvent": {
+      "description": "An event sent by the agent to notify the client of a change in a task's status.",
+      "id": "LfA2aV1TaskStatusUpdateEvent",
+      "properties": {
+        "contextId": {
+          "description": "Required. The ID of the context that the task belongs to.",
+          "type": "string"
+        },
+        "metadata": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Optional. Metadata associated with the task update.",
+          "type": "object"
+        },
+        "status": {
+          "$ref": "LfA2aV1TaskStatus",
+          "description": "Required. The new status of the task."
+        },
+        "taskId": {
+          "description": "Required. The ID of the task that has changed.",
           "type": "string"
         }
       },
@@ -7412,6 +7707,47 @@
       },
       "type": "object"
     },
+    "RemoteA2aConfig": {
+      "description": "Shared configuration for connecting to a remote [A2A](https://github.com/a2aproject/A2A) agent.",
+      "id": "RemoteA2aConfig",
+      "properties": {
+        "agentCard": {
+          "$ref": "AgentCard",
+          "description": "Optional. The full agent card defined inline."
+        },
+        "agentRegistry": {
+          "description": "Optional. Reference to the agent in the Agent Registry. Format: `projects/{project}/locations/{location}/agents/{agent}`",
+          "type": "string"
+        },
+        "apiAuthentication": {
+          "$ref": "ApiAuthentication",
+          "description": "Optional. Authentication configuration for calling the remote agent. Optional if the registry reference already handles authentication."
+        },
+        "contextId": {
+          "description": "Optional. If not empty, interactions with the remote A2A agent will use this context ID. This context_id field can refer to a session variable like `$context.variables.order_agent_session_id`.",
+          "type": "string"
+        },
+        "inputVariableMapping": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Mapping of input variable names of remote agent to GECX variable names.",
+          "type": "object"
+        },
+        "outputVariableMapping": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Mapping of output variable names of remote agent to GECX variable names.",
+          "type": "object"
+        },
+        "streamingEnabled": {
+          "description": "Optional. Whether streaming is enabled for the remote agent.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "RemoteAgentTool": {
       "description": "Represents a tool that allows the agent to call another remote agent.",
       "id": "RemoteAgentTool",
@@ -7419,6 +7755,10 @@
         "agentCard": {
           "$ref": "AgentCard",
           "description": "Required. The agent card of the remote agent that this tool invokes."
+        },
+        "apiAuthentication": {
+          "$ref": "ApiAuthentication",
+          "description": "Optional. Authentication configuration for calling the remote agent."
         },
         "description": {
           "description": "Required. The description of the tool.",
@@ -7893,6 +8233,10 @@
           "$ref": "GoogleSearchSuggestions",
           "description": "The suggestions returned from Google Search as a result of invoking the GoogleSearchTool."
         },
+        "image": {
+          "$ref": "Image",
+          "description": "Output image from the CES agent."
+        },
         "payload": {
           "additionalProperties": {
             "description": "Properties of the object.",
@@ -8216,6 +8560,11 @@
       "description": "Request for the client or the agent to execute the specified tool.",
       "id": "ToolCall",
       "properties": {
+        "agentName": {
+          "description": "Output only. Human-readable name of the agent that issued this call, e.g. \"Contract Architect\". Empty when the root agent issued it.",
+          "readOnly": true,
+          "type": "string"
+        },
         "args": {
           "additionalProperties": {
             "description": "Properties of the object.",
@@ -8231,6 +8580,11 @@
         },
         "id": {
           "description": "Optional. The unique identifier of the tool call. If populated, the client should return the execution result with the matching ID in ToolResponse.",
+          "type": "string"
+        },
+        "parentToolCallId": {
+          "description": "Output only. The id of the tool call that caused this one, when it was issued by a sub-agent working on behalf of a parent call. Empty for top-level calls. Lets a client group a sub-agent's work under the call that started it instead of rendering every step as a sibling.",
+          "readOnly": true,
           "type": "string"
         },
         "tool": {
@@ -8277,6 +8631,11 @@
       "description": "The execution result of a specific tool from the client or the agent.",
       "id": "ToolResponse",
       "properties": {
+        "agentName": {
+          "description": "Output only. Human-readable name of the agent that issued this call, e.g. \"Contract Architect\". Empty when the root agent issued it.",
+          "readOnly": true,
+          "type": "string"
+        },
         "displayName": {
           "description": "Output only. Display name of the tool.",
           "readOnly": true,
@@ -8284,6 +8643,11 @@
         },
         "id": {
           "description": "Optional. The matching ID of the tool call the response is for.",
+          "type": "string"
+        },
+        "parentToolCallId": {
+          "description": "Output only. The id of the tool call that caused this one, when it was issued by a sub-agent working on behalf of a parent call. Empty for top-level calls. Lets a client group a sub-agent's work under the call that started it instead of rendering every step as a sibling.",
+          "readOnly": true,
           "type": "string"
         },
         "response": {
