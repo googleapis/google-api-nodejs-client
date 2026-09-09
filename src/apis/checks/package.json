@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/checks",
-  "version": "10.1.1",
+  "version": "11.0.0",
   "description": "checks",
   "main": "build/index.js",
   "types": "build/index.d.ts",

@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/addressvalidation",
-  "version": "4.1.1",
+  "version": "5.0.0",
   "description": "addressvalidation",
   "main": "build/index.js",
   "types": "build/index.d.ts",

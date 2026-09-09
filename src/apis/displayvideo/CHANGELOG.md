@@ -1,5 +1,31 @@
 # Changelog
 
+## [41.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/displayvideo-v40.1.1...displayvideo-v41.0.0) (2026-09-09)
+
+
+### ⚠ BREAKING CHANGES
+
+* Update apiary to minimum Node version of 22. ([#4011](https://github.com/googleapis/google-api-nodejs-client/issues/4011))
+* run the generator
+* This release has breaking changes.
+* **displayvideo:** This release has breaking changes.
+* **displayvideo:** This release has breaking changes.
+
+### Features
+
+* **displayvideo:** update the API ([8d5bc94](https://github.com/googleapis/google-api-nodejs-client/commit/8d5bc94cf54114987ed14cf27b1bdcac3c4c178d))
+* **displayvideo:** update the API ([cf4e1e9](https://github.com/googleapis/google-api-nodejs-client/commit/cf4e1e9a13d18a8d5c8b043c7e5536d03a923b07))
+* run the generator ([5f7d438](https://github.com/googleapis/google-api-nodejs-client/commit/5f7d438db1d60a1a0d6e8f8c0495f3e9f0e3c9d7))
+* run the generator ([#3955](https://github.com/googleapis/google-api-nodejs-client/issues/3955)) ([c429a9b](https://github.com/googleapis/google-api-nodejs-client/commit/c429a9b6f8272f1a651084f83ffcf4b88124c59f))
+* Update apiary to minimum Node version of 22. ([#4011](https://github.com/googleapis/google-api-nodejs-client/issues/4011)) ([ec5a6bf](https://github.com/googleapis/google-api-nodejs-client/commit/ec5a6bf892c4278bec2aa0d006cb6a63c889f116))
+
+
+### Bug Fixes
+
+* add back support for node 18 ([eccac1d](https://github.com/googleapis/google-api-nodejs-client/commit/eccac1df8b92551e617fbae0198ebfa67009a4de))
+* **displayvideo:** update the API ([024dc68](https://github.com/googleapis/google-api-nodejs-client/commit/024dc680894df23fa573dc647fa231e2364a5003))
+* upgrade dependencies in generated packages to Node 22 ([de9d20d](https://github.com/googleapis/google-api-nodejs-client/commit/de9d20d36f008e68867947bd8ff65121343d8bd2))
+
 ## [40.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/displayvideo-v40.1.0...displayvideo-v40.1.1) (2026-09-09)
 
 

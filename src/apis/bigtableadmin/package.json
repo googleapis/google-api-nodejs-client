@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/bigtableadmin",
-  "version": "35.1.1",
+  "version": "36.0.0",
   "description": "bigtableadmin",
   "main": "build/index.js",
   "types": "build/index.d.ts",

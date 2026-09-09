@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/apim",
-  "version": "8.1.1",
+  "version": "9.0.0",
   "description": "apim",
   "main": "build/index.js",
   "types": "build/index.d.ts",
