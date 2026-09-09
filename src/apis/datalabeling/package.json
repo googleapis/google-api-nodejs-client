@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/datalabeling",
-  "version": "7.1.0",
+  "version": "7.1.1",
   "description": "datalabeling",
   "main": "build/index.js",
   "types": "build/index.d.ts",
