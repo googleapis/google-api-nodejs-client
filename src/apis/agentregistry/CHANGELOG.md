@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.2.1](https://github.com/googleapis/google-api-nodejs-client/compare/agentregistry-v2.2.0...agentregistry-v2.2.1) (2026-09-09)
+
+
+### Bug Fixes
+
+* add back support for node 18 ([eccac1d](https://github.com/googleapis/google-api-nodejs-client/commit/eccac1df8b92551e617fbae0198ebfa67009a4de))
+
 ## [2.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/agentregistry-v2.1.0...agentregistry-v2.2.0) (2026-09-02)
 
 
