@@ -1,5 +1,31 @@
 # Changelog
 
+## [25.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/serviceusage-v24.1.1...serviceusage-v25.0.0) (2026-09-09)
+
+
+### ⚠ BREAKING CHANGES
+
+* Update apiary to minimum Node version of 22. ([#4011](https://github.com/googleapis/google-api-nodejs-client/issues/4011))
+* run the generator
+* This release has breaking changes.
+* **serviceusage:** This release has breaking changes.
+
+### Features
+
+* run the generator ([5f7d438](https://github.com/googleapis/google-api-nodejs-client/commit/5f7d438db1d60a1a0d6e8f8c0495f3e9f0e3c9d7))
+* run the generator ([#3955](https://github.com/googleapis/google-api-nodejs-client/issues/3955)) ([c429a9b](https://github.com/googleapis/google-api-nodejs-client/commit/c429a9b6f8272f1a651084f83ffcf4b88124c59f))
+* **serviceusage:** update the API ([466db61](https://github.com/googleapis/google-api-nodejs-client/commit/466db61dd9555a5cb35f664217bc2ff618dd2e2a))
+* **serviceusage:** update the API ([eb00618](https://github.com/googleapis/google-api-nodejs-client/commit/eb0061863c413510eb2c0f7d5305f4554a774960))
+* **serviceusage:** update the API ([e481f8c](https://github.com/googleapis/google-api-nodejs-client/commit/e481f8c871d30125c25df729c4b6b2f75c36fdb7))
+* Update apiary to minimum Node version of 22. ([#4011](https://github.com/googleapis/google-api-nodejs-client/issues/4011)) ([ec5a6bf](https://github.com/googleapis/google-api-nodejs-client/commit/ec5a6bf892c4278bec2aa0d006cb6a63c889f116))
+
+
+### Bug Fixes
+
+* add back support for node 18 ([eccac1d](https://github.com/googleapis/google-api-nodejs-client/commit/eccac1df8b92551e617fbae0198ebfa67009a4de))
+* **serviceusage:** update the API ([afcb7c8](https://github.com/googleapis/google-api-nodejs-client/commit/afcb7c83f986bef2e0de8175a718d2d1a961ac8d))
+* upgrade dependencies in generated packages to Node 22 ([de9d20d](https://github.com/googleapis/google-api-nodejs-client/commit/de9d20d36f008e68867947bd8ff65121343d8bd2))
+
 ## [24.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/serviceusage-v24.1.0...serviceusage-v24.1.1) (2026-09-09)
 
 

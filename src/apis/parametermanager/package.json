@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/parametermanager",
-  "version": "6.1.1",
+  "version": "7.0.0",
   "description": "parametermanager",
   "main": "build/index.js",
   "types": "build/index.d.ts",
