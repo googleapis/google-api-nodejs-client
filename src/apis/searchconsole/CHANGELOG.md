@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.2.1](https://github.com/googleapis/google-api-nodejs-client/compare/searchconsole-v7.2.0...searchconsole-v7.2.1) (2026-09-09)
+
+
+### Bug Fixes
+
+* add back support for node 18 ([eccac1d](https://github.com/googleapis/google-api-nodejs-client/commit/eccac1df8b92551e617fbae0198ebfa67009a4de))
+
 ## [7.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/searchconsole-v7.1.0...searchconsole-v7.2.0) (2026-09-02)
 
 
