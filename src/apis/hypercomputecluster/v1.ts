@@ -195,10 +195,6 @@ export namespace hypercomputecluster_v1 {
      */
     storageResources?: {[key: string]: Schema$StorageResource} | null;
     /**
-     * Output only. The globally unique identifier for this Cluster.
-     */
-    uid?: string | null;
-    /**
      * Output only. Time that the cluster was most recently updated.
      */
     updateTime?: string | null;
@@ -1533,7 +1529,6 @@ export namespace hypercomputecluster_v1 {
      *       //   "orchestrator": {},
      *       //   "reconciling": false,
      *       //   "storageResources": {},
-     *       //   "uid": "my_uid",
      *       //   "updateTime": "my_updateTime"
      *       // }
      *     },
@@ -1832,7 +1827,6 @@ export namespace hypercomputecluster_v1 {
      *   //   "orchestrator": {},
      *   //   "reconciling": false,
      *   //   "storageResources": {},
-     *   //   "uid": "my_uid",
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -2129,7 +2123,6 @@ export namespace hypercomputecluster_v1 {
      *       //   "orchestrator": {},
      *       //   "reconciling": false,
      *       //   "storageResources": {},
-     *       //   "uid": "my_uid",
      *       //   "updateTime": "my_updateTime"
      *       // }
      *     },

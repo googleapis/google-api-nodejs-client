@@ -1278,7 +1278,7 @@
       }
     }
   },
-  "revision": "20260825",
+  "revision": "20260622",
   "rootUrl": "https://composer.googleapis.com/",
   "schemas": {
     "AirflowMetadataRetentionPolicyConfig": {
@@ -1645,18 +1645,6 @@
           "description": "Optional. User-defined labels for this environment. The labels map can contain no more than 64 entries. Entries of the labels map are UTF8 strings that comply with the following restrictions: * Keys must conform to regexp: \\p{Ll}\\p{Lo}{0,62} * Values must conform to regexp: [\\p{Ll}\\p{Lo}\\p{N}_-]{0,63} * Both keys and values are additionally constrained to be <= 128 bytes in size.",
           "type": "object"
         },
-        "mode": {
-          "description": "Optional. Selects the environment mode that determines what settings are customizable and what features are available in the environment.",
-          "enum": [
-            "MODE_UNSPECIFIED",
-            "DEVELOPMENT"
-          ],
-          "enumDescriptions": [
-            "Represents the default mode, which allows full customization of the environment. It should be used for all production and customized test environments.",
-            "Represents the development mode, which has constraints on the environment configuration, but offers an additional feature (environment hibernation). It should be used only for test environments."
-          ],
-          "type": "string"
-        },
         "name": {
           "description": "Identifier. The resource name of the environment, in the form: \"projects/{projectId}/locations/{locationId}/environments/{environmentId}\" EnvironmentId must start with a lowercase letter followed by up to 63 lowercase letters, numbers, or hyphens, and cannot end with a hyphen.",
           "type": "string"
@@ -1678,7 +1666,6 @@
             "CREATING",
             "RUNNING",
             "UPDATING",
-            "HIBERNATED",
             "DELETING",
             "ERROR"
           ],
@@ -1687,7 +1674,6 @@
             "The environment is in the process of being created.",
             "The environment is currently running and healthy. It is ready for use.",
             "The environment is being updated. It remains usable but cannot receive additional update requests or be deleted at this time.",
-            "The environment is currently hibernated. It does not run any DAGs.",
             "The environment is undergoing deletion. It cannot be used.",
             "The environment has encountered an error and cannot be used."
           ],
@@ -2303,9 +2289,7 @@
             "SAVE_SNAPSHOT",
             "LOAD_SNAPSHOT",
             "DATABASE_FAILOVER",
-            "MIGRATE",
-            "HIBERNATE",
-            "RESUME"
+            "MIGRATE"
           ],
           "enumDescriptions": [
             "Unused.",
@@ -2316,9 +2300,7 @@
             "Saves snapshot of the resource operation.",
             "Loads snapshot of the resource operation.",
             "Triggers failover of environment's Cloud SQL instance (only for highly resilient environments).",
-            "Migrates resource to a new major version.",
-            "Hibernates a resource.",
-            "Resumes a resource."
+            "Migrates resource to a new major version."
           ],
           "type": "string"
         },

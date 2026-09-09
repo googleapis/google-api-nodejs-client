@@ -842,7 +842,7 @@
       }
     }
   },
-  "revision": "20260823",
+  "revision": "20260816",
   "rootUrl": "https://threatintelligence.googleapis.com/",
   "schemas": {
     "Alert": {
@@ -1223,10 +1223,6 @@
           "readOnly": true,
           "type": "string"
         },
-        "domainConfiguration": {
-          "$ref": "DomainConfiguration",
-          "description": "Domain Configuration detail config."
-        },
         "technologyWatchlist": {
           "$ref": "TechnologyWatchListConfig",
           "description": "Technology Watchlist detail config."
@@ -1267,10 +1263,6 @@
         "documentCondition": {
           "description": "Required. The condition driving the scenario, stored as a stringified JSON. This is used to query/filter documents.",
           "type": "string"
-        },
-        "documentQuery": {
-          "$ref": "DocumentQuery",
-          "description": "Optional. The query used to match documents."
         },
         "legacyMonitorMetadata": {
           "$ref": "LegacyMetadata",
@@ -1686,96 +1678,6 @@
             "High severity.",
             "Critical severity."
           ],
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "DocumentQuery": {
-      "description": "Represents a query to match documents.",
-      "id": "DocumentQuery",
-      "properties": {
-        "dataModel": {
-          "description": "Required. The data model to query against.",
-          "enum": [
-            "DATA_MODEL_UNSPECIFIED",
-            "DATA_MODEL_GTI"
-          ],
-          "enumDescriptions": [
-            "Default value, should never be set.",
-            "GTI data model."
-          ],
-          "type": "string"
-        },
-        "query": {
-          "description": "Required. The query string.",
-          "type": "string"
-        },
-        "queryType": {
-          "description": "Required. The type of query.",
-          "enum": [
-            "QUERY_TYPE_UNSPECIFIED",
-            "QUERY_TYPE_LUCENE"
-          ],
-          "enumDescriptions": [
-            "Default value, should never be set.",
-            "Lucene query type."
-          ],
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "DomainConfiguration": {
-      "description": "Configuration holding settings for one or more monitored domains.",
-      "id": "DomainConfiguration",
-      "properties": {
-        "domainSettings": {
-          "description": "Optional. A list of settings for individual domains.",
-          "items": {
-            "$ref": "DomainSetting"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "DomainMonitoringFeatureConfig": {
-      "description": "Specific configuration for the Domain Monitoring feature.",
-      "id": "DomainMonitoringFeatureConfig",
-      "properties": {
-        "disabled": {
-          "description": "Optional. Whether the Domain Monitoring feature is disabled for the domain.",
-          "type": "boolean"
-        }
-      },
-      "type": "object"
-    },
-    "DomainSetting": {
-      "description": "Feature settings and toggles for a single specific domain.",
-      "id": "DomainSetting",
-      "properties": {
-        "domain": {
-          "description": "Required. The domain name to match against.",
-          "type": "string"
-        },
-        "domainMonitoringConfig": {
-          "$ref": "DomainMonitoringFeatureConfig",
-          "description": "Optional. If not present, Domain Monitoring is enabled."
-        },
-        "state": {
-          "description": "Output only. The verification state of the domain.",
-          "enum": [
-            "STATE_UNSPECIFIED",
-            "PENDING",
-            "VERIFIED"
-          ],
-          "enumDescriptions": [
-            "Default value. This value is unused.",
-            "Verification is pending. The customer needs to add the TXT record.",
-            "Verification succeeded."
-          ],
-          "readOnly": true,
           "type": "string"
         }
       },

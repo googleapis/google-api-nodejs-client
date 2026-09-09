@@ -2400,7 +2400,7 @@ export namespace dataform_v1beta1 {
      */
     dataEncryptionState?: Schema$DataEncryptionState;
     /**
-     * Optional. Input only. Immutable. The maximum depth of the Git repository to checkout for this workspace. If defined and greater than 0, the Git repository will be created as a shallow clone with the given depth, otherwise a full clone will be performed. This field is available only for GitHub, GitLab and 1p repositories with enabled branch management.
+     * Optional. Input only. Immutable. The maximum depth of the Git repository to checkout for this workspace. If defined and greater than 0, the Git repository will be created as a shallow clone with the given depth, otherwise a full clone will be performed. This field is available only for GitHub, Gitlab and 1p repositories with enabled branch management.
      */
     depth?: number | null;
     /**

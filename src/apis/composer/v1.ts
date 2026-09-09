@@ -359,10 +359,6 @@ export namespace composer_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Optional. Selects the environment mode that determines what settings are customizable and what features are available in the environment.
-     */
-    mode?: string | null;
-    /**
      * Identifier. The resource name of the environment, in the form: "projects/{projectId\}/locations/{locationId\}/environments/{environmentId\}" EnvironmentId must start with a lowercase letter followed by up to 63 lowercase letters, numbers, or hyphens, and cannot end with a hyphen.
      */
     name?: string | null;
@@ -1529,7 +1525,6 @@ export namespace composer_v1 {
      *       //   "config": {},
      *       //   "createTime": "my_createTime",
      *       //   "labels": {},
-     *       //   "mode": "my_mode",
      *       //   "name": "my_name",
      *       //   "satisfiesPzi": false,
      *       //   "satisfiesPzs": false,
@@ -2295,7 +2290,6 @@ export namespace composer_v1 {
      *   //   "config": {},
      *   //   "createTime": "my_createTime",
      *   //   "labels": {},
-     *   //   "mode": "my_mode",
      *   //   "name": "my_name",
      *   //   "satisfiesPzi": false,
      *   //   "satisfiesPzs": false,
@@ -2748,7 +2742,6 @@ export namespace composer_v1 {
      *       //   "config": {},
      *       //   "createTime": "my_createTime",
      *       //   "labels": {},
-     *       //   "mode": "my_mode",
      *       //   "name": "my_name",
      *       //   "satisfiesPzi": false,
      *       //   "satisfiesPzs": false,
