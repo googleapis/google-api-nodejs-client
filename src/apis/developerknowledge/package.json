@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/developerknowledge",
-  "version": "3.3.1",
+  "version": "4.0.0",
   "description": "developerknowledge",
   "main": "build/index.js",
   "types": "build/index.d.ts",

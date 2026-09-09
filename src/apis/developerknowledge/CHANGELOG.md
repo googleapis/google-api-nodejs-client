@@ -1,5 +1,16 @@
 # Changelog
 
+## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/developerknowledge-v3.3.1...developerknowledge-v4.0.0) (2026-09-09)
+
+
+### ⚠ BREAKING CHANGES
+
+* Update apiary to minimum Node version of 22. ([#4011](https://github.com/googleapis/google-api-nodejs-client/issues/4011))
+
+### Features
+
+* Update apiary to minimum Node version of 22. ([#4011](https://github.com/googleapis/google-api-nodejs-client/issues/4011)) ([ec5a6bf](https://github.com/googleapis/google-api-nodejs-client/commit/ec5a6bf892c4278bec2aa0d006cb6a63c889f116))
+
 ## [3.3.1](https://github.com/googleapis/google-api-nodejs-client/compare/developerknowledge-v3.3.0...developerknowledge-v3.3.1) (2026-09-09)
 
 
