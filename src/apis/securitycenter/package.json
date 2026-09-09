@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/securitycenter",
-  "version": "18.1.1",
+  "version": "19.0.0",
   "description": "securitycenter",
   "main": "build/index.js",
   "types": "build/index.d.ts",

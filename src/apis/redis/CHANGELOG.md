@@ -1,5 +1,29 @@
 # Changelog
 
+## [24.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/redis-v23.1.1...redis-v24.0.0) (2026-09-09)
+
+
+### ⚠ BREAKING CHANGES
+
+* Update apiary to minimum Node version of 22. ([#4011](https://github.com/googleapis/google-api-nodejs-client/issues/4011))
+* run the generator
+* This release has breaking changes.
+
+### Features
+
+* **redis:** update the API ([d94bd24](https://github.com/googleapis/google-api-nodejs-client/commit/d94bd24b5d5b6ac5a78f077fd1cb7fbc783bf614))
+* **redis:** update the API ([f217d7e](https://github.com/googleapis/google-api-nodejs-client/commit/f217d7e018862e91558bf12b0c1bbdcff84ae2b5))
+* run the generator ([5f7d438](https://github.com/googleapis/google-api-nodejs-client/commit/5f7d438db1d60a1a0d6e8f8c0495f3e9f0e3c9d7))
+* run the generator ([#3955](https://github.com/googleapis/google-api-nodejs-client/issues/3955)) ([c429a9b](https://github.com/googleapis/google-api-nodejs-client/commit/c429a9b6f8272f1a651084f83ffcf4b88124c59f))
+* Update apiary to minimum Node version of 22. ([#4011](https://github.com/googleapis/google-api-nodejs-client/issues/4011)) ([ec5a6bf](https://github.com/googleapis/google-api-nodejs-client/commit/ec5a6bf892c4278bec2aa0d006cb6a63c889f116))
+
+
+### Bug Fixes
+
+* add back support for node 18 ([eccac1d](https://github.com/googleapis/google-api-nodejs-client/commit/eccac1df8b92551e617fbae0198ebfa67009a4de))
+* **redis:** update the API ([c639065](https://github.com/googleapis/google-api-nodejs-client/commit/c639065e6ab3019192384f71d95bc447fb176329))
+* upgrade dependencies in generated packages to Node 22 ([de9d20d](https://github.com/googleapis/google-api-nodejs-client/commit/de9d20d36f008e68867947bd8ff65121343d8bd2))
+
 ## [23.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/redis-v23.1.0...redis-v23.1.1) (2026-09-09)
 
 

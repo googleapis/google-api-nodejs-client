@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/managedkafka",
-  "version": "9.1.1",
+  "version": "10.0.0",
   "description": "managedkafka",
   "main": "build/index.js",
   "types": "build/index.d.ts",

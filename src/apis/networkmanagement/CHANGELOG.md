@@ -1,5 +1,31 @@
 # Changelog
 
+## [22.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/networkmanagement-v21.1.1...networkmanagement-v22.0.0) (2026-09-09)
+
+
+### ⚠ BREAKING CHANGES
+
+* Update apiary to minimum Node version of 22. ([#4011](https://github.com/googleapis/google-api-nodejs-client/issues/4011))
+* run the generator
+* This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* **networkmanagement:** update the API ([5d5dac3](https://github.com/googleapis/google-api-nodejs-client/commit/5d5dac33c6a20b092ecf2d8680f13b19d749deae))
+* **networkmanagement:** update the API ([b8b28f3](https://github.com/googleapis/google-api-nodejs-client/commit/b8b28f39d89f791db224c19c84945a8654584f51))
+* **networkmanagement:** update the API ([91104e5](https://github.com/googleapis/google-api-nodejs-client/commit/91104e507999326f08fd904019efec30129389df))
+* run the generator ([5f7d438](https://github.com/googleapis/google-api-nodejs-client/commit/5f7d438db1d60a1a0d6e8f8c0495f3e9f0e3c9d7))
+* run the generator ([#3920](https://github.com/googleapis/google-api-nodejs-client/issues/3920)) ([08443b4](https://github.com/googleapis/google-api-nodejs-client/commit/08443b4944a71fabe6804b05cb4e12d746c23011))
+* run the generator ([#3955](https://github.com/googleapis/google-api-nodejs-client/issues/3955)) ([c429a9b](https://github.com/googleapis/google-api-nodejs-client/commit/c429a9b6f8272f1a651084f83ffcf4b88124c59f))
+* Update apiary to minimum Node version of 22. ([#4011](https://github.com/googleapis/google-api-nodejs-client/issues/4011)) ([ec5a6bf](https://github.com/googleapis/google-api-nodejs-client/commit/ec5a6bf892c4278bec2aa0d006cb6a63c889f116))
+
+
+### Bug Fixes
+
+* add back support for node 18 ([eccac1d](https://github.com/googleapis/google-api-nodejs-client/commit/eccac1df8b92551e617fbae0198ebfa67009a4de))
+* upgrade dependencies in generated packages to Node 22 ([de9d20d](https://github.com/googleapis/google-api-nodejs-client/commit/de9d20d36f008e68867947bd8ff65121343d8bd2))
+
 ## [21.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/networkmanagement-v21.1.0...networkmanagement-v21.1.1) (2026-09-09)
 
 
