@@ -1,5 +1,32 @@
 # Changelog
 
+## [13.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/homegraph-v12.1.1...homegraph-v13.0.0) (2026-09-09)
+
+
+### ⚠ BREAKING CHANGES
+
+* Update apiary to minimum Node version of 22. ([#4011](https://github.com/googleapis/google-api-nodejs-client/issues/4011))
+* run the generator
+* **homegraph:** This release has breaking changes.
+* This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* **homegraph:** update the API ([b84992b](https://github.com/googleapis/google-api-nodejs-client/commit/b84992b1c0086e45f47403acded514ada08e10a4))
+* **homegraph:** update the API ([fd4580a](https://github.com/googleapis/google-api-nodejs-client/commit/fd4580ac59f1f0e1d558af6685d0fecc7093772f))
+* **homegraph:** update the API ([78c0b99](https://github.com/googleapis/google-api-nodejs-client/commit/78c0b9967d59c28a41522cf786772aba3c0c3241))
+* run the generator ([5f7d438](https://github.com/googleapis/google-api-nodejs-client/commit/5f7d438db1d60a1a0d6e8f8c0495f3e9f0e3c9d7))
+* run the generator ([#3920](https://github.com/googleapis/google-api-nodejs-client/issues/3920)) ([08443b4](https://github.com/googleapis/google-api-nodejs-client/commit/08443b4944a71fabe6804b05cb4e12d746c23011))
+* run the generator ([#3955](https://github.com/googleapis/google-api-nodejs-client/issues/3955)) ([c429a9b](https://github.com/googleapis/google-api-nodejs-client/commit/c429a9b6f8272f1a651084f83ffcf4b88124c59f))
+* Update apiary to minimum Node version of 22. ([#4011](https://github.com/googleapis/google-api-nodejs-client/issues/4011)) ([ec5a6bf](https://github.com/googleapis/google-api-nodejs-client/commit/ec5a6bf892c4278bec2aa0d006cb6a63c889f116))
+
+
+### Bug Fixes
+
+* add back support for node 18 ([eccac1d](https://github.com/googleapis/google-api-nodejs-client/commit/eccac1df8b92551e617fbae0198ebfa67009a4de))
+* upgrade dependencies in generated packages to Node 22 ([de9d20d](https://github.com/googleapis/google-api-nodejs-client/commit/de9d20d36f008e68867947bd8ff65121343d8bd2))
+
 ## [12.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/homegraph-v12.1.0...homegraph-v12.1.1) (2026-09-09)
 
 
