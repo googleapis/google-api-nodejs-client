@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/mybusinessaccountmanagement",
-  "version": "9.1.1",
+  "version": "10.0.0",
   "description": "mybusinessaccountmanagement",
   "main": "build/index.js",
   "types": "build/index.d.ts",

@@ -1,5 +1,34 @@
 # Changelog
 
+## [26.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/ondemandscanning-v25.1.1...ondemandscanning-v26.0.0) (2026-09-09)
+
+
+### ⚠ BREAKING CHANGES
+
+* Update apiary to minimum Node version of 22. ([#4011](https://github.com/googleapis/google-api-nodejs-client/issues/4011))
+* run the generator
+* This release has breaking changes.
+* This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* **ondemandscanning:** update the API ([051d03f](https://github.com/googleapis/google-api-nodejs-client/commit/051d03f31b3c16e48900e61f4c863317b25b04cb))
+* **ondemandscanning:** update the API ([f05d80b](https://github.com/googleapis/google-api-nodejs-client/commit/f05d80b7c2001994eb9c441b7ad6bccb9d959d10))
+* **ondemandscanning:** update the API ([6b54abc](https://github.com/googleapis/google-api-nodejs-client/commit/6b54abc1606b2a67ca8d9c710bfd2372fdfd673f))
+* **ondemandscanning:** update the API ([21a5a07](https://github.com/googleapis/google-api-nodejs-client/commit/21a5a07500639370f029350e374be104db2e17ca))
+* run the generator ([5f7d438](https://github.com/googleapis/google-api-nodejs-client/commit/5f7d438db1d60a1a0d6e8f8c0495f3e9f0e3c9d7))
+* run the generator ([#3919](https://github.com/googleapis/google-api-nodejs-client/issues/3919)) ([b385d3f](https://github.com/googleapis/google-api-nodejs-client/commit/b385d3f99850e9407a217bd525c70a1ac8ab9163))
+* run the generator ([#3920](https://github.com/googleapis/google-api-nodejs-client/issues/3920)) ([08443b4](https://github.com/googleapis/google-api-nodejs-client/commit/08443b4944a71fabe6804b05cb4e12d746c23011))
+* run the generator ([#3955](https://github.com/googleapis/google-api-nodejs-client/issues/3955)) ([c429a9b](https://github.com/googleapis/google-api-nodejs-client/commit/c429a9b6f8272f1a651084f83ffcf4b88124c59f))
+* Update apiary to minimum Node version of 22. ([#4011](https://github.com/googleapis/google-api-nodejs-client/issues/4011)) ([ec5a6bf](https://github.com/googleapis/google-api-nodejs-client/commit/ec5a6bf892c4278bec2aa0d006cb6a63c889f116))
+
+
+### Bug Fixes
+
+* add back support for node 18 ([eccac1d](https://github.com/googleapis/google-api-nodejs-client/commit/eccac1df8b92551e617fbae0198ebfa67009a4de))
+* upgrade dependencies in generated packages to Node 22 ([de9d20d](https://github.com/googleapis/google-api-nodejs-client/commit/de9d20d36f008e68867947bd8ff65121343d8bd2))
+
 ## [25.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/ondemandscanning-v25.1.0...ondemandscanning-v25.1.1) (2026-09-09)
 
 

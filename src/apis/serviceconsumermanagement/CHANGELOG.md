@@ -1,5 +1,29 @@
 # Changelog
 
+## [27.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/serviceconsumermanagement-v26.2.1...serviceconsumermanagement-v27.0.0) (2026-09-09)
+
+
+### ⚠ BREAKING CHANGES
+
+* Update apiary to minimum Node version of 22. ([#4011](https://github.com/googleapis/google-api-nodejs-client/issues/4011))
+* run the generator
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([5f7d438](https://github.com/googleapis/google-api-nodejs-client/commit/5f7d438db1d60a1a0d6e8f8c0495f3e9f0e3c9d7))
+* run the generator ([#3955](https://github.com/googleapis/google-api-nodejs-client/issues/3955)) ([c429a9b](https://github.com/googleapis/google-api-nodejs-client/commit/c429a9b6f8272f1a651084f83ffcf4b88124c59f))
+* **serviceconsumermanagement:** update the API ([9a4eb89](https://github.com/googleapis/google-api-nodejs-client/commit/9a4eb89ef75dd9d7152e3883b958203cb7e9e9a1))
+* **serviceconsumermanagement:** update the API ([c1224e9](https://github.com/googleapis/google-api-nodejs-client/commit/c1224e9a38c80684ab4e8d3a114feb9f0ee12d89))
+* Update apiary to minimum Node version of 22. ([#4011](https://github.com/googleapis/google-api-nodejs-client/issues/4011)) ([ec5a6bf](https://github.com/googleapis/google-api-nodejs-client/commit/ec5a6bf892c4278bec2aa0d006cb6a63c889f116))
+
+
+### Bug Fixes
+
+* add back support for node 18 ([eccac1d](https://github.com/googleapis/google-api-nodejs-client/commit/eccac1df8b92551e617fbae0198ebfa67009a4de))
+* **serviceconsumermanagement:** update the API ([8e6cca2](https://github.com/googleapis/google-api-nodejs-client/commit/8e6cca2d9f34809ac9e78dba312beda32240270c))
+* upgrade dependencies in generated packages to Node 22 ([de9d20d](https://github.com/googleapis/google-api-nodejs-client/commit/de9d20d36f008e68867947bd8ff65121343d8bd2))
+
 ## [26.2.1](https://github.com/googleapis/google-api-nodejs-client/compare/serviceconsumermanagement-v26.2.0...serviceconsumermanagement-v26.2.1) (2026-09-09)
 
 
