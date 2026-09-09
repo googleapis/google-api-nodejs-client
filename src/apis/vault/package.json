@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/vault",
-  "version": "9.1.1",
+  "version": "10.0.0",
   "description": "vault",
   "main": "build/index.js",
   "types": "build/index.d.ts",

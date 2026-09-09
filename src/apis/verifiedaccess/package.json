@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/verifiedaccess",
-  "version": "8.1.1",
+  "version": "9.0.0",
   "description": "verifiedaccess",
   "main": "build/index.js",
   "types": "build/index.d.ts",
