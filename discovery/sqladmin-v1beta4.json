@@ -664,6 +664,192 @@
         }
       }
     },
+    "blueGreenDeployments": {
+      "methods": {
+        "create": {
+          "description": "Creates a blue-green deployment under a given project and location. This deployment provisions a synchronized green environment (target instance) from a blue production environment (source instance), facilitating updates like major version upgrades on the green instance without impacting the blue instance.",
+          "flatPath": "sql/v1beta4/projects/{projectsId}/locations/{locationsId}/blueGreenDeployments",
+          "httpMethod": "POST",
+          "id": "sql.blueGreenDeployments.create",
+          "parameterOrder": [
+            "parent"
+          ],
+          "parameters": {
+            "blueGreenDeploymentId": {
+              "description": "Required. The ID to use for the blue-green deployment, which will become the final component of the deployment's resource name.",
+              "location": "query",
+              "type": "string"
+            },
+            "parent": {
+              "description": "Required. The parent resource where this blue-green deployment will be created. Format: projects/{project}/locations/{location}",
+              "location": "path",
+              "pattern": "^projects/[^/]+/locations/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "sql/v1beta4/{+parent}/blueGreenDeployments",
+          "request": {
+            "$ref": "BlueGreenDeployment"
+          },
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/sqlservice.admin"
+          ]
+        },
+        "delete": {
+          "description": "Deletes a blue-green deployment, including metadata and underlying resources based on the deployment state. If issued before switchover, this deletes the green instance. If issued after switchover, this deletes the old blue instance (source instance) if the `delete_old_source` field in the request is set to true. All blue-green deployment metadata is permanently deleted. Resources deleted as a result of this operation are no longer accessible and can't be restored.",
+          "flatPath": "sql/v1beta4/projects/{projectsId}/locations/{locationsId}/blueGreenDeployments/{blueGreenDeploymentsId}",
+          "httpMethod": "DELETE",
+          "id": "sql.blueGreenDeployments.delete",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "deleteOldSource": {
+              "description": "Optional. If set to true, and the switchover is complete, this deletes the old source instance along with the deployment.",
+              "location": "query",
+              "type": "boolean"
+            },
+            "name": {
+              "description": "Required. The name of the blue-green deployment to delete. Format: projects/{project}/locations/{location}/blueGreenDeployments/{blue_green_deployment}",
+              "location": "path",
+              "pattern": "^projects/[^/]+/locations/[^/]+/blueGreenDeployments/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "sql/v1beta4/{+name}",
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/sqlservice.admin"
+          ]
+        },
+        "get": {
+          "description": "Retrieves a blue-green deployment resource under a given project and location.",
+          "flatPath": "sql/v1beta4/projects/{projectsId}/locations/{locationsId}/blueGreenDeployments/{blueGreenDeploymentsId}",
+          "httpMethod": "GET",
+          "id": "sql.blueGreenDeployments.get",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. The name of the blue-green deployment to retrieve. Format: projects/{project}/locations/{location}/blueGreenDeployments/{blue_green_deployment}",
+              "location": "path",
+              "pattern": "^projects/[^/]+/locations/[^/]+/blueGreenDeployments/[^/]+$",
+              "required": true,
+              "type": "string"
+            },
+            "view": {
+              "description": "Optional. Specifies whether to return the basic or detailed view of the resource in the response.",
+              "enum": [
+                "BLUE_GREEN_DEPLOYMENT_VIEW_UNSPECIFIED",
+                "BASIC",
+                "DETAILED"
+              ],
+              "enumDescriptions": [
+                "Blue-green deployment view enumeration. This allows the caller to specify what view they query. If unspecified (BLUE_GREEN_DEPLOYMENT_VIEW_UNSPECIFIED), the behavior is the same as BASIC.",
+                "Includes basic metadata about the blue-green deployment. `BASIC` is the default view.",
+                "Includes basic metadata and configuration differences between source and target instances (`database_version`, `tier`, `edition`, `availability_type`, `data_disk_size_gb`, and `data_disk_type`)."
+              ],
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "sql/v1beta4/{+name}",
+          "response": {
+            "$ref": "BlueGreenDeployment"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/sqlservice.admin"
+          ]
+        },
+        "list": {
+          "description": "Lists blue-green deployments under a given project.",
+          "flatPath": "sql/v1beta4/projects/{projectsId}/locations/{locationsId}/blueGreenDeployments",
+          "httpMethod": "GET",
+          "id": "sql.blueGreenDeployments.list",
+          "parameterOrder": [
+            "parent"
+          ],
+          "parameters": {
+            "filter": {
+              "description": "Optional. A filter expression that filters the results.",
+              "location": "query",
+              "type": "string"
+            },
+            "orderBy": {
+              "description": "Optional. A comma-separated list of fields to order the results by.",
+              "location": "query",
+              "type": "string"
+            },
+            "pageSize": {
+              "description": "Optional. The maximum number of deployments to return.",
+              "format": "int32",
+              "location": "query",
+              "type": "integer"
+            },
+            "pageToken": {
+              "description": "Optional. A page token, received from a previous `ListBlueGreenDeployments` call. Provide this to retrieve the subsequent page.",
+              "location": "query",
+              "type": "string"
+            },
+            "parent": {
+              "description": "Required. The parent resource whose blue-green deployments are to be listed. Format: projects/{project}/locations/{location}",
+              "location": "path",
+              "pattern": "^projects/[^/]+/locations/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "sql/v1beta4/{+parent}/blueGreenDeployments",
+          "response": {
+            "$ref": "ListBlueGreenDeploymentsResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/sqlservice.admin"
+          ]
+        },
+        "switchover": {
+          "description": "Switches over to green instance for a blue-green deployment.",
+          "flatPath": "sql/v1beta4/projects/{projectsId}/locations/{locationsId}/blueGreenDeployments/{blueGreenDeploymentsId}:switchover",
+          "httpMethod": "POST",
+          "id": "sql.blueGreenDeployments.switchover",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. The name of the blue-green deployment to switch over. Format: projects/{project}/locations/{location}/blueGreenDeployments/{blue_green_deployment}",
+              "location": "path",
+              "pattern": "^projects/[^/]+/locations/[^/]+/blueGreenDeployments/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "sql/v1beta4/{+name}:switchover",
+          "request": {
+            "$ref": "SwitchoverBlueGreenDeploymentRequest"
+          },
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/sqlservice.admin"
+          ]
+        }
+      }
+    },
     "connect": {
       "methods": {
         "generateEphemeralCert": {
@@ -798,6 +984,11 @@
               "required": true,
               "type": "string"
             },
+            "location": {
+              "description": "Optional. Region of the Cloud SQL instance.",
+              "location": "query",
+              "type": "string"
+            },
             "project": {
               "description": "Project ID of the project that contains the instance.",
               "location": "path",
@@ -837,6 +1028,11 @@
               "required": true,
               "type": "string"
             },
+            "location": {
+              "description": "Optional. Region of the Cloud SQL instance.",
+              "location": "query",
+              "type": "string"
+            },
             "project": {
               "description": "Project ID of the project that contains the instance.",
               "location": "path",
@@ -867,6 +1063,11 @@
               "description": "Database instance ID. This does not include the project ID.",
               "location": "path",
               "required": true,
+              "type": "string"
+            },
+            "location": {
+              "description": "Optional. Region of the Cloud SQL instance.",
+              "location": "query",
               "type": "string"
             },
             "project": {
@@ -902,6 +1103,11 @@
               "description": "Cloud SQL instance ID. This does not include the project ID.",
               "location": "path",
               "required": true,
+              "type": "string"
+            },
+            "location": {
+              "description": "Optional. Region of the Cloud SQL instance.",
+              "location": "query",
               "type": "string"
             },
             "project": {
@@ -941,6 +1147,11 @@
               "description": "Database instance ID. This does not include the project ID.",
               "location": "path",
               "required": true,
+              "type": "string"
+            },
+            "location": {
+              "description": "Optional. Region of the Cloud SQL instance.",
+              "location": "query",
               "type": "string"
             },
             "project": {
@@ -983,6 +1194,11 @@
               "description": "Database instance ID. This does not include the project ID.",
               "location": "path",
               "required": true,
+              "type": "string"
+            },
+            "location": {
+              "description": "Optional. Region of the Cloud SQL instance.",
+              "location": "query",
               "type": "string"
             },
             "project": {
@@ -1065,6 +1281,11 @@
               "required": true,
               "type": "string"
             },
+            "location": {
+              "description": "Optional. Region of the Cloud SQL instance.",
+              "location": "query",
+              "type": "string"
+            },
             "project": {
               "description": "Required. Project ID of the project that contains the instance.",
               "location": "path",
@@ -1097,6 +1318,11 @@
               "required": true,
               "type": "string"
             },
+            "location": {
+              "description": "Optional. Region of the Cloud SQL instance.",
+              "location": "query",
+              "type": "string"
+            },
             "project": {
               "description": "Required. Project ID of the project that contains the instance.",
               "location": "path",
@@ -1127,6 +1353,11 @@
               "description": "Required. Cloud SQL instance ID. This does not include the project ID.",
               "location": "path",
               "required": true,
+              "type": "string"
+            },
+            "location": {
+              "description": "Optional. Region of the Cloud SQL instance.",
+              "location": "query",
               "type": "string"
             },
             "project": {
@@ -1164,6 +1395,11 @@
               "required": true,
               "type": "string"
             },
+            "location": {
+              "description": "Optional. Region of the Cloud SQL instance.",
+              "location": "query",
+              "type": "string"
+            },
             "project": {
               "description": "Required. Project ID of the project that contains the instance.",
               "location": "path",
@@ -1197,6 +1433,11 @@
               "description": "Required. Cloud SQL instance ID. This doesn't include the project ID. It's composed of lowercase letters, numbers, and hyphens, and it must start with a letter. The total length must be 98 characters or less (Example: instance-id).",
               "location": "path",
               "required": true,
+              "type": "string"
+            },
+            "location": {
+              "description": "Optional. Region of the Cloud SQL instance.",
+              "location": "query",
               "type": "string"
             },
             "project": {
@@ -1234,6 +1475,11 @@
               "required": true,
               "type": "string"
             },
+            "location": {
+              "description": "Optional. Region of the Cloud SQL instance.",
+              "location": "query",
+              "type": "string"
+            },
             "project": {
               "description": "Required. Project ID of the project that contains the instance.",
               "location": "path",
@@ -1264,6 +1510,11 @@
               "description": "Cloud SQL instance ID. This does not include the project ID.",
               "location": "path",
               "required": true,
+              "type": "string"
+            },
+            "location": {
+              "description": "Optional. Region of the Cloud SQL instance.",
+              "location": "query",
               "type": "string"
             },
             "project": {
@@ -1298,6 +1549,11 @@
               "required": true,
               "type": "string"
             },
+            "location": {
+              "description": "Optional. Region of the Cloud SQL instance.",
+              "location": "query",
+              "type": "string"
+            },
             "project": {
               "description": "Required. Project ID of the project that contains the instance.",
               "location": "path",
@@ -1328,6 +1584,11 @@
               "description": "The ID of the Cloud SQL instance to be cloned (source). This does not include the project ID.",
               "location": "path",
               "required": true,
+              "type": "string"
+            },
+            "location": {
+              "description": "Optional. Region of the Cloud SQL instance.",
+              "location": "query",
               "type": "string"
             },
             "project": {
@@ -1387,6 +1648,11 @@
               "required": true,
               "type": "string"
             },
+            "location": {
+              "description": "Optional. Region of the Cloud SQL instance.",
+              "location": "query",
+              "type": "string"
+            },
             "project": {
               "description": "Project ID of the project that contains the instance to be deleted.",
               "location": "path",
@@ -1417,6 +1683,11 @@
               "description": "Required. The name of the Cloud SQL instance.",
               "location": "path",
               "required": true,
+              "type": "string"
+            },
+            "location": {
+              "description": "Optional. Region of the Cloud SQL instance.",
+              "location": "query",
               "type": "string"
             },
             "project": {
@@ -1454,6 +1725,11 @@
               "required": true,
               "type": "string"
             },
+            "location": {
+              "description": "Optional. Region of the Cloud SQL instance.",
+              "location": "query",
+              "type": "string"
+            },
             "project": {
               "description": "ID of the project that contains the instance.",
               "location": "path",
@@ -1487,6 +1763,11 @@
               "description": "Required. Database instance ID. This does not include the project ID.",
               "location": "path",
               "required": true,
+              "type": "string"
+            },
+            "location": {
+              "description": "Optional. Region of the Cloud SQL instance.",
+              "location": "query",
               "type": "string"
             },
             "project": {
@@ -1524,6 +1805,11 @@
               "required": true,
               "type": "string"
             },
+            "location": {
+              "description": "Optional. Region of the Cloud SQL instance.",
+              "location": "query",
+              "type": "string"
+            },
             "project": {
               "description": "Project ID of the project that contains the instance to be exported.",
               "location": "path",
@@ -1556,6 +1842,11 @@
               "description": "Cloud SQL instance ID. This does not include the project ID.",
               "location": "path",
               "required": true,
+              "type": "string"
+            },
+            "location": {
+              "description": "Optional. Region of the Cloud SQL instance.",
+              "location": "query",
               "type": "string"
             },
             "project": {
@@ -1593,6 +1884,11 @@
               "required": true,
               "type": "string"
             },
+            "location": {
+              "description": "Optional. Region of the Cloud SQL instance.",
+              "location": "query",
+              "type": "string"
+            },
             "project": {
               "description": "Project ID of the project that contains the instance.",
               "location": "path",
@@ -1625,6 +1921,11 @@
               "required": true,
               "type": "string"
             },
+            "location": {
+              "description": "Optional. Region of the Cloud SQL instance.",
+              "location": "query",
+              "type": "string"
+            },
             "project": {
               "description": "Project ID of the project that contains the instance.",
               "location": "path",
@@ -1652,6 +1953,11 @@
             "project"
           ],
           "parameters": {
+            "location": {
+              "description": "Optional. Region of the Cloud SQL instance.",
+              "location": "query",
+              "type": "string"
+            },
             "project": {
               "description": "Project ID of the project to which the newly created Cloud SQL instances should belong.",
               "location": "path",
@@ -1682,6 +1988,11 @@
           "parameters": {
             "filter": {
               "description": "A filter expression that filters resources listed in the response. The expression is in the form of field:value. For example, 'instanceType:CLOUD_SQL_INSTANCE'. Fields can be nested as needed as per their JSON representation, such as 'settings.userLabels.auto_start:true'. Multiple filter queries are space-separated. For example. 'state:RUNNABLE instanceType:CLOUD_SQL_INSTANCE'. By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly.",
+              "location": "query",
+              "type": "string"
+            },
+            "location": {
+              "description": "Optional. Region of the Cloud SQL instance.",
               "location": "query",
               "type": "string"
             },
@@ -1728,6 +2039,11 @@
               "required": true,
               "type": "string"
             },
+            "location": {
+              "description": "Optional. Region of the Cloud SQL instance.",
+              "location": "query",
+              "type": "string"
+            },
             "project": {
               "description": "Project ID of the project that contains the instance.",
               "location": "path",
@@ -1758,6 +2074,11 @@
               "description": "Cloud SQL instance ID. This does not include the project ID.",
               "location": "path",
               "required": true,
+              "type": "string"
+            },
+            "location": {
+              "description": "Optional. Region of the Cloud SQL instance.",
+              "location": "query",
               "type": "string"
             },
             "project": {
@@ -1834,6 +2155,11 @@
               "required": true,
               "type": "string"
             },
+            "location": {
+              "description": "Optional. Region of the Cloud SQL instance.",
+              "location": "query",
+              "type": "string"
+            },
             "project": {
               "description": "Required. Project ID of the project that contains the instance.",
               "location": "path",
@@ -1874,6 +2200,11 @@
               "required": true,
               "type": "string"
             },
+            "location": {
+              "description": "Optional. Region of the Cloud SQL instance.",
+              "location": "query",
+              "type": "string"
+            },
             "project": {
               "description": "ID of the project that contains the read replica.",
               "location": "path",
@@ -1904,6 +2235,11 @@
               "description": "Cloud SQL instance ID. This does not include the project ID.",
               "location": "path",
               "required": true,
+              "type": "string"
+            },
+            "location": {
+              "description": "Optional. Region of the Cloud SQL instance.",
+              "location": "query",
               "type": "string"
             },
             "project": {
@@ -1941,6 +2277,11 @@
               "required": true,
               "type": "string"
             },
+            "location": {
+              "description": "Optional. Region of the Cloud SQL instance.",
+              "location": "query",
+              "type": "string"
+            },
             "project": {
               "description": "Required. The ID of the project that contains the instance (Example: project-id).",
               "location": "path",
@@ -1971,6 +2312,11 @@
               "description": "Cloud SQL instance ID. This does not include the project ID.",
               "location": "path",
               "required": true,
+              "type": "string"
+            },
+            "location": {
+              "description": "Optional. Region of the Cloud SQL instance.",
+              "location": "query",
               "type": "string"
             },
             "mode": {
@@ -2020,6 +2366,11 @@
               "required": true,
               "type": "string"
             },
+            "location": {
+              "description": "Optional. Region of the Cloud SQL instance.",
+              "location": "query",
+              "type": "string"
+            },
             "project": {
               "description": "Project ID of the project that contains the instance to be restarted.",
               "location": "path",
@@ -2050,6 +2401,11 @@
               "description": "Cloud SQL instance ID. This does not include the project ID.",
               "location": "path",
               "required": true,
+              "type": "string"
+            },
+            "location": {
+              "description": "Optional. Region of the Cloud SQL instance.",
+              "location": "query",
               "type": "string"
             },
             "project": {
@@ -2087,6 +2443,11 @@
               "required": true,
               "type": "string"
             },
+            "location": {
+              "description": "Optional. Region of the Cloud SQL instance.",
+              "location": "query",
+              "type": "string"
+            },
             "project": {
               "description": "Project ID of the project that contains the instance.",
               "location": "path",
@@ -2122,6 +2483,11 @@
               "required": true,
               "type": "string"
             },
+            "location": {
+              "description": "Optional. Region of the Cloud SQL instance.",
+              "location": "query",
+              "type": "string"
+            },
             "project": {
               "description": "ID of the project that contains the read replica.",
               "location": "path",
@@ -2152,6 +2518,11 @@
               "description": "Cloud SQL read replica instance name.",
               "location": "path",
               "required": true,
+              "type": "string"
+            },
+            "location": {
+              "description": "Optional. Region of the Cloud SQL instance.",
+              "location": "query",
               "type": "string"
             },
             "project": {
@@ -2192,6 +2563,11 @@
               "required": true,
               "type": "string"
             },
+            "location": {
+              "description": "Optional. Region of the Cloud SQL instance.",
+              "location": "query",
+              "type": "string"
+            },
             "project": {
               "description": "ID of the project that contains the replica.",
               "location": "path",
@@ -2222,6 +2598,11 @@
               "description": "Cloud SQL instance ID. This does not include the project ID.",
               "location": "path",
               "required": true,
+              "type": "string"
+            },
+            "location": {
+              "description": "Optional. Region of the Cloud SQL instance.",
+              "location": "query",
               "type": "string"
             },
             "project": {
@@ -2257,6 +2638,11 @@
               "description": "Cloud SQL instance ID. This does not include the project ID.",
               "location": "path",
               "required": true,
+              "type": "string"
+            },
+            "location": {
+              "description": "Optional. Region of the Cloud SQL instance.",
+              "location": "query",
               "type": "string"
             },
             "project": {
@@ -2424,6 +2810,11 @@
                   "required": true,
                   "type": "string"
                 },
+                "location": {
+                  "description": "Optional. Region of the Cloud SQL instance.",
+                  "location": "query",
+                  "type": "string"
+                },
                 "project": {
                   "description": "Project ID of the project that contains the instance.",
                   "location": "path",
@@ -2454,6 +2845,11 @@
                   "description": "Cloud SQL instance ID. This does not include the project ID.",
                   "location": "path",
                   "required": true,
+                  "type": "string"
+                },
+                "location": {
+                  "description": "Optional. Region of the Cloud SQL instance.",
+                  "location": "query",
                   "type": "string"
                 },
                 "project": {
@@ -2494,6 +2890,11 @@
                   "required": true,
                   "type": "string"
                 },
+                "location": {
+                  "description": "Optional. Region of the Cloud SQL instance.",
+                  "location": "query",
+                  "type": "string"
+                },
                 "project": {
                   "description": "Project ID of the project that contains the instance.",
                   "location": "path",
@@ -2527,6 +2928,11 @@
                   "description": "Cloud SQL instance ID. This does not include the project ID.",
                   "location": "path",
                   "required": true,
+                  "type": "string"
+                },
+                "location": {
+                  "description": "Optional. Region of the Cloud SQL instance.",
+                  "location": "query",
                   "type": "string"
                 },
                 "project": {
@@ -2673,6 +3079,11 @@
               "description": "Cloud SQL instance ID. This does not include the project ID.",
               "location": "path",
               "required": true,
+              "type": "string"
+            },
+            "location": {
+              "description": "Optional. Region of the Cloud SQL instance.",
+              "location": "query",
               "type": "string"
             },
             "project": {
@@ -2893,6 +3304,11 @@
               "required": true,
               "type": "string"
             },
+            "location": {
+              "description": "Optional. Region of the Cloud SQL instance.",
+              "location": "query",
+              "type": "string"
+            },
             "name": {
               "description": "Name of the user in the instance.",
               "location": "query",
@@ -2936,6 +3352,11 @@
               "required": true,
               "type": "string"
             },
+            "location": {
+              "description": "Optional. Region of the Cloud SQL instance.",
+              "location": "query",
+              "type": "string"
+            },
             "name": {
               "description": "User of the instance.",
               "location": "path",
@@ -2974,6 +3395,11 @@
               "required": true,
               "type": "string"
             },
+            "location": {
+              "description": "Optional. Region of the Cloud SQL instance.",
+              "location": "query",
+              "type": "string"
+            },
             "project": {
               "description": "Project ID of the project that contains the instance.",
               "location": "path",
@@ -3007,6 +3433,11 @@
               "description": "Database instance ID. This does not include the project ID.",
               "location": "path",
               "required": true,
+              "type": "string"
+            },
+            "location": {
+              "description": "Optional. Region of the Cloud SQL instance.",
+              "location": "query",
               "type": "string"
             },
             "project": {
@@ -3052,6 +3483,11 @@
               "required": true,
               "type": "string"
             },
+            "location": {
+              "description": "Optional. Region of the Cloud SQL instance.",
+              "location": "query",
+              "type": "string"
+            },
             "name": {
               "description": "Name of the user in the instance.",
               "location": "query",
@@ -3095,7 +3531,7 @@
       }
     }
   },
-  "revision": "20260722",
+  "revision": "20260819",
   "rootUrl": "https://sqladmin.googleapis.com/",
   "schemas": {
     "AclEntry": {
@@ -4053,6 +4489,133 @@
       },
       "type": "object"
     },
+    "BlueGreenDeployment": {
+      "description": "A `BlueGreenDeployment` resource represents a Cloud SQL blue-green deployment setup. It orchestrates the lifecycle of creating a synchronized \"green\" environment from a \"blue\" production environment, performing updates, and managing the switchover process to minimize downtime.",
+      "id": "BlueGreenDeployment",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The time when the deployment was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "deploymentMappings": {
+          "description": "Output only. A list representing the pairs of source and target instances in the deployment.",
+          "items": {
+            "$ref": "SourceTargetPairedNode"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "deploymentTasks": {
+          "$ref": "DeploymentTasks",
+          "description": "Output only. Combined list of tasks for all paired nodes.",
+          "readOnly": true
+        },
+        "description": {
+          "description": "Optional. User-provided description for the deployment.",
+          "type": "string"
+        },
+        "errorDetail": {
+          "description": "Output only. Provides an error message with details on why switchover is not possible.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. Identifier. The full resource name of the deployment. Format: projects/{project}/locations/{location}/blueGreenDeployments/{deployment_id}",
+          "readOnly": true,
+          "type": "string"
+        },
+        "pairedNodes": {
+          "deprecated": true,
+          "description": "Output only. Deprecated: Use deployment_mappings instead. Output only. A list representing the pairs of source and target instances in the deployment.",
+          "items": {
+            "$ref": "SourceTargetPairedNode"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "requestedConfig": {
+          "$ref": "RequestedConfig",
+          "description": "Optional. Immutable. Optional on create, and immutable. The configuration intended for the target instance(s) when the deployment was created."
+        },
+        "sourceInstance": {
+          "description": "Required. Immutable. The instance ID of the source instance (the \"blue\" instance). The value for this field does not include the project ID, for example, `my-instance-id`. This field is immutable.",
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The current state of the blue-green deployment.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "PROVISIONING",
+            "SWITCHOVER_READY",
+            "SWITCHOVER_NOT_READY",
+            "SWITCHOVER_IN_PROGRESS",
+            "SWITCHOVER_COMPLETED",
+            "DELETING"
+          ],
+          "enumDescriptions": [
+            "The state of the deployment is unknown.",
+            "The deployment is being provisioned.",
+            "The deployment is ready for switchover.",
+            "The deployment is not ready for switchover.",
+            "The deployment is in the process of switching over.",
+            "The deployment has completed switchover.",
+            "The deployment is being deleted."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "switchoverTargetInstance": {
+          "description": "Output only. Details about the primary target instance (the \"Green\" instance) that will be promoted during switchover.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "targetConfig": {
+          "$ref": "TargetConfig",
+          "deprecated": true,
+          "description": "Optional. Immutable. Deprecated: Use requested_config instead. The configuration intended for the target instance(s) when the deployment was created. This field is immutable."
+        }
+      },
+      "type": "object"
+    },
+    "BlueGreenDeploymentInfo": {
+      "description": "Blue-green deployment metadata for a database instance. In a blue-green deployment, we maintain two environments, one of which is live. This message contains details about the blue-green deployment.",
+      "id": "BlueGreenDeploymentInfo",
+      "properties": {
+        "deploymentId": {
+          "description": "Output only. The resource ID of the blue-green deployment.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "source": {
+          "$ref": "SourceRole",
+          "description": "Output only. The source instance for the Blue-Green deployment.",
+          "readOnly": true
+        },
+        "state": {
+          "description": "Output only. The current state of blue-green-deployment for UI tags",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "PRE_SWITCHOVER",
+            "POST_SWITCHOVER"
+          ],
+          "enumDescriptions": [
+            "The state of the deployment is unknown.",
+            "The deployment is pre-switchover.",
+            "The deployment is post-switchover."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "target": {
+          "$ref": "TargetRole",
+          "description": "Output only. The target instance for the Blue-Green deployment.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
     "CloneContext": {
       "description": "Database instance clone context.",
       "id": "CloneContext",
@@ -4124,6 +4687,28 @@
         },
         "type": {
           "description": "Datatype of the column.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ConfigDiff": {
+      "description": "Represents a specific configuration difference between Blue and Green instances.",
+      "id": "ConfigDiff",
+      "properties": {
+        "field": {
+          "description": "Output only. The name of the field that differs, fully-qualified. Example: settings.tier",
+          "readOnly": true,
+          "type": "string"
+        },
+        "sourceValue": {
+          "description": "Output only. The value on the source instance.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "targetValue": {
+          "description": "Output only. The value on the target instance.",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -4805,6 +5390,11 @@
           ],
           "type": "string"
         },
+        "deploymentInfo": {
+          "$ref": "BlueGreenDeploymentInfo",
+          "description": "Output only. Deployment info for the instance. This is set if the instance is currently part of any blue-green setup.",
+          "readOnly": true
+        },
         "diskEncryptionConfiguration": {
           "$ref": "DiskEncryptionConfiguration",
           "description": "Disk encryption configuration specific to an instance."
@@ -4863,14 +5453,16 @@
             "CLOUD_SQL_INSTANCE",
             "ON_PREMISES_INSTANCE",
             "READ_REPLICA_INSTANCE",
-            "READ_POOL_INSTANCE"
+            "READ_POOL_INSTANCE",
+            "GREEN_INSTANCE"
           ],
           "enumDescriptions": [
             "This is an unknown Cloud SQL instance type.",
             "A regular Cloud SQL instance that is not replicating from a primary instance.",
             "An instance running on the customer's premises that is not managed by Cloud SQL.",
             "A Cloud SQL instance acting as a read-replica.",
-            "A Cloud SQL read pool."
+            "A Cloud SQL read pool.",
+            "A Cloud SQL instance acting as a Blue-Green deployment target primary. (MySQL only)"
           ],
           "type": "string"
         },
@@ -5226,10 +5818,93 @@
       },
       "type": "object"
     },
+    "DeploymentTask": {
+      "description": "Represents a task executed as part of the deployment on a target instance.",
+      "id": "DeploymentTask",
+      "properties": {
+        "endTime": {
+          "description": "Output only. Task end time (if completed).",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "errorMessage": {
+          "description": "Output only. Optional Error details if the task state is FAILED.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "startTime": {
+          "description": "Output only. Task start time.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The current state of the task.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "PENDING",
+            "RUNNING",
+            "SUCCEEDED",
+            "FAILED"
+          ],
+          "enumDescriptions": [
+            "The state of the task is unknown.",
+            "The task is pending.",
+            "The task is running.",
+            "The task has succeeded.",
+            "The task has failed."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "type": {
+          "description": "Output only. The type of the task.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "PROVISION",
+            "UPGRADE",
+            "SWITCHOVER",
+            "DELETE",
+            "POST_SWITCHOVER_OPERATIONS"
+          ],
+          "enumDescriptions": [
+            "The default value. This value is used if the type is omitted.",
+            "Creating target instance.",
+            "e.g., Major Version Upgrade on Target.",
+            "Promoting Target, Demoting Source for this pair.",
+            "The task is to delete deployment.",
+            "Post-switchover operations, including cleaning up resources of the old instance, taking final backups, and updating metadata."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DeploymentTasks": {
+      "description": "Combined list of tasks for all paired nodes in the deployment.",
+      "id": "DeploymentTasks",
+      "properties": {
+        "task": {
+          "description": "Output only. Tasks performed or being performed on the paired nodes of the deployment at a consolidated level.",
+          "items": {
+            "$ref": "DeploymentTask"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "DiskEncryptionConfiguration": {
       "description": "Disk encryption configuration for an instance.",
       "id": "DiskEncryptionConfiguration",
       "properties": {
+        "confidentialMode": {
+          "description": "Optional. If true, enables Confidential Mode for the instance's Hyperdisk Balanced volumes. Only supported for zonal C4A instances currently.",
+          "type": "boolean"
+        },
         "kind": {
           "description": "This is always `sql#diskEncryptionConfiguration`.",
           "type": "string"
@@ -6427,6 +7102,10 @@
           "description": "The name of the backup that's used to restore a Cloud SQL instance: Format: \"projects/{project-id}/locations/{location}/backupVaults/{backupvault}/dataSources/{datasource}/backups/{backup-uid}\". Only one of restore_backup_context, backup, backupdr_backup can be passed to the input.",
           "type": "string"
         },
+        "ignoreMaintenanceVersion": {
+          "description": "Optional. If true, the restore operation proceeds even if the target instance's maintenance version is older than the source instance's maintenance version.",
+          "type": "boolean"
+        },
         "restoreBackupContext": {
           "$ref": "RestoreBackupContext",
           "description": "Parameters required to perform the restore backup operation."
@@ -6660,6 +7339,24 @@
       },
       "type": "object"
     },
+    "ListBlueGreenDeploymentsResponse": {
+      "description": "The response message for listing blue-green deployment resources.",
+      "id": "ListBlueGreenDeploymentsResponse",
+      "properties": {
+        "blueGreenDeployments": {
+          "description": "The list of blue-green deployment resources.",
+          "items": {
+            "$ref": "BlueGreenDeployment"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token to retrieve the next page of results, or empty if there are no more results.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "LocationPreference": {
       "description": "Preferred location. This specifies where a Cloud SQL instance is located. Note that if the preferred location is not available, the instance will be located as close as possible within the region. Only one location may be specified.",
       "id": "LocationPreference",
@@ -6810,6 +7507,36 @@
           "items": {
             "$ref": "SyncFlags"
           },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "NodeInfo": {
+      "description": "Details about an instance within the deployment.",
+      "id": "NodeInfo",
+      "properties": {
+        "connection": {
+          "description": "Output only. The instance connection name.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "dns": {
+          "description": "Output only. The unique DNS name for this instance.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "instance": {
+          "description": "Output only. The full resource name of the instance. Format: projects/{project}/instances/{instance}",
+          "readOnly": true,
+          "type": "string"
+        },
+        "ipMappings": {
+          "description": "Output only. The list of IP addresses for this instance.",
+          "items": {
+            "$ref": "IpMapping"
+          },
+          "readOnly": true,
           "type": "array"
         }
       },
@@ -6988,6 +7715,9 @@
             "REPAIR_READ_POOL",
             "CREATE_READ_POOL",
             "PRE_CHECK_MAJOR_VERSION_UPGRADE",
+            "CREATE_BLUE_GREEN_DEPLOYMENT",
+            "SWITCHOVER_BLUE_GREEN_DEPLOYMENT",
+            "DELETE_BLUE_GREEN_DEPLOYMENT",
             "SETUP_MIGRATION",
             "AGENT_SEND_MESSAGE"
           ],
@@ -7040,6 +7770,9 @@
             false,
             false,
             true,
+            false,
+            false,
+            false,
             false,
             false,
             false,
@@ -7102,6 +7835,9 @@
             "Repairs entire read pool or specified read pool nodes in the read pool.",
             "Creates a Cloud SQL read pool instance.",
             "Pre-checks for major version upgrade.",
+            "Creates a new Blue-Green deployment.",
+            "Switches over a Blue-Green deployment.",
+            "Deletes a Blue-Green deployment.",
             "This operation type represents individual steps in a multi-step setup migration workflow: including configuration, replication, switchover/back, and data reseeding, as defined by operation's intent.",
             "Sends a message to a Cloud SQL agent."
           ],
@@ -7877,7 +8613,7 @@
           "type": "array"
         },
         "networkAttachmentUri": {
-          "description": "Optional. The network attachment of the consumer network that the Private Service Connect enabled Cloud SQL instance is authorized to connect via PSC interface. format: projects/PROJECT/regions/REGION/networkAttachments/ID",
+          "description": "Optional. The network attachment of the consumer network that the Private Service Connect enabled Cloud SQL instance is authorized to connect using the PSC interface. format: projects/PROJECT/regions/REGION/networkAttachments/ID",
           "type": "string"
         },
         "pscAutoConnectionPolicyEnabled": {
@@ -8020,6 +8756,17 @@
         "psaWriteEndpoint": {
           "description": "Output only. If set, this field indicates this instance has a private service access (PSA) DNS endpoint that is pointing to the primary instance of the cluster. If this instance is the primary, then the DNS endpoint points to this instance. After a switchover or replica failover operation, this DNS endpoint points to the promoted instance. This is a read-only field, returned to the user as information. This field can exist even if a standalone instance doesn't have a DR replica yet or the DR replica is deleted.",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RequestedConfig": {
+      "description": "Configuration specified by the user at creation time for the target (Green) instance.",
+      "id": "RequestedConfig",
+      "properties": {
+        "databaseVersion": {
+          "description": "Optional. The target database major version for the upgrade.",
           "type": "string"
         }
       },
@@ -8375,7 +9122,7 @@
         },
         "passwordValidationPolicy": {
           "$ref": "PasswordValidationPolicy",
-          "description": "The local user password validation policy of the instance."
+          "description": "The local user password validation policy of the instance for PostgreSQL and MySQL."
         },
         "performanceCaptureConfig": {
           "$ref": "PerformanceCaptureConfig",
@@ -8455,6 +9202,96 @@
           },
           "description": "User-provided labels, represented as a dictionary where each label is a single key value pair.",
           "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "SourceRole": {
+      "description": "The source instance for the Blue-Green deployment.",
+      "id": "SourceRole",
+      "properties": {
+        "targetId": {
+          "$ref": "InstanceReference",
+          "description": "Output only. The target instance paired with this source instance in a blue-green deployment.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "SourceTargetPairedNode": {
+      "description": "Represents a pairing of a source instance node and a target instance node.",
+      "id": "SourceTargetPairedNode",
+      "properties": {
+        "currentlyServingTraffic": {
+          "deprecated": true,
+          "description": "Output only. Deprecated: Indicates which instance (SOURCE or TARGET) in the pair is currently live. Used for internal implementation and deprecated for external use.",
+          "enum": [
+            "CURRENTLY_SERVING_TRAFFIC_UNSPECIFIED",
+            "SOURCE",
+            "TARGET"
+          ],
+          "enumDescriptions": [
+            "The instance serving traffic is unknown.",
+            "The source instance is serving traffic.",
+            "The target instance is serving traffic."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "diffs": {
+          "description": "Output only. Describes the list of differences for this pair.",
+          "items": {
+            "$ref": "ConfigDiff"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "source": {
+          "$ref": "NodeInfo",
+          "description": "Output only. Resource name of the source instance in this pair.",
+          "readOnly": true
+        },
+        "state": {
+          "description": "Output only. The current state of this specific source-target pair.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "PROVISIONING",
+            "PROVISIONED",
+            "UPGRADING",
+            "UPGRADED",
+            "UPGRADE_FAILED",
+            "SWITCHOVER_IN_PROGRESS",
+            "SWITCHOVER_FAILED",
+            "SWITCHOVER_SUCCEEDED",
+            "DELETING"
+          ],
+          "enumDescriptions": [
+            "The state of the paired node is unknown.",
+            "The paired node is being provisioned.",
+            "The paired node is provisioned.",
+            "The paired node is upgrading.",
+            "The paired node is upgraded.",
+            "Upgrade failed on the paired node.",
+            "Switchover is in progress.",
+            "Switchover failed on the paired node.",
+            "Switchover completed successfully.",
+            "The paired node is being deleted."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "target": {
+          "$ref": "NodeInfo",
+          "description": "Output only. Details of the corresponding target instance in this pair.",
+          "readOnly": true
+        },
+        "tasks": {
+          "description": "Output only. Tasks performed or being performed on the target instance of this pair.",
+          "items": {
+            "$ref": "DeploymentTask"
+          },
+          "readOnly": true,
+          "type": "array"
         }
       },
       "type": "object"
@@ -8584,7 +9421,9 @@
             "SELECTED_OBJECTS_REFERENCE_UNSELECTED_OBJECTS",
             "PROMPT_DELETE_EXISTING",
             "WILL_DELETE_EXISTING",
-            "PG_DDL_REPLICATION_INSUFFICIENT_PRIVILEGE"
+            "PG_DDL_REPLICATION_INSUFFICIENT_PRIVILEGE",
+            "WRITABLE_DESTINATION_REPLICA_RECREATION_DOWNTIME",
+            "WRITABLE_DESTINATION_STORAGE_AUTO_INCREASE_DISABLED"
           ],
           "enumDescriptions": [
             "",
@@ -8645,7 +9484,9 @@
             "Selected objects reference unselected objects. Based on their object type (foreign key constraint or view), selected objects will fail during migration.",
             "The migration will delete existing data in the replica; set replica_overwrite_enabled in the request to acknowledge this. This is an error. MySQL only.",
             "The migration will delete existing data in the replica; replica_overwrite_enabled was set in the request acknowledging this. This is a warning rather than an error. MySQL only.",
-            "The replication user is missing specific privileges to setup DDL replication. (e.g. CREATE EVENT TRIGGER, CREATE SCHEMA) for PostgreSQL."
+            "The replication user is missing specific privileges to setup DDL replication. (e.g. CREATE EVENT TRIGGER, CREATE SCHEMA) for PostgreSQL.",
+            "Read replicas of the Writable Destination instance will be recreated after external synchronization is complete, causing downtime on read replicas.",
+            "A warning that disk storage auto increase is disabled on the destination instance for a Writable Destination migration."
           ],
           "type": "string"
         }
@@ -8758,12 +9599,21 @@
     "SqlInstancesResetReplicaSizeRequest": {
       "description": "Instance reset replica size request.",
       "id": "SqlInstancesResetReplicaSizeRequest",
-      "properties": {},
+      "properties": {
+        "location": {
+          "description": "Optional. Region of the Cloud SQL instance.",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "SqlInstancesStartExternalSyncRequest": {
       "id": "SqlInstancesStartExternalSyncRequest",
       "properties": {
+        "location": {
+          "description": "Optional. Region of the Cloud SQL instance.",
+          "type": "string"
+        },
         "migrationType": {
           "description": "Optional. MigrationType configures the migration to use physical files or logical dump files. If not set, then the logical dump file configuration is used. Valid values are `LOGICAL` or `PHYSICAL`. Only applicable to MySQL.",
           "enum": [
@@ -8826,6 +9676,10 @@
     "SqlInstancesVerifyExternalSyncSettingsRequest": {
       "id": "SqlInstancesVerifyExternalSyncSettingsRequest",
       "properties": {
+        "location": {
+          "description": "Optional. Region of the Cloud SQL instance.",
+          "type": "string"
+        },
         "migrationType": {
           "description": "Optional. MigrationType configures the migration to use physical files or logical dump files. If not set, then the logical dump file configuration is used. Valid values are `LOGICAL` or `PHYSICAL`. Only applicable to MySQL.",
           "enum": [
@@ -9034,11 +9888,11 @@
       "id": "SqlServerUserDetails",
       "properties": {
         "disabled": {
-          "description": "If the user has been disabled",
+          "description": "Indicates if the user has been disabled.",
           "type": "boolean"
         },
         "serverRoles": {
-          "description": "The server roles for this user",
+          "description": "Indicates the server roles for this user.",
           "items": {
             "type": "string"
           },
@@ -9226,6 +10080,12 @@
       },
       "type": "object"
     },
+    "SwitchoverBlueGreenDeploymentRequest": {
+      "description": "Request message for switching over a `BlueGreenDeployment` resource.",
+      "id": "SwitchoverBlueGreenDeploymentRequest",
+      "properties": {},
+      "type": "object"
+    },
     "SyncFlags": {
       "description": "Initial sync flags for certain Cloud SQL APIs. Currently used for the MySQL external server initial dump.",
       "id": "SyncFlags",
@@ -9236,6 +10096,18 @@
         },
         "value": {
           "description": "The value of the flag. This field must be omitted if the flag doesn't take a value.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TargetConfig": {
+      "deprecated": true,
+      "description": "Deprecated: Use RequestedConfig instead. Configuration specified by the user at creation time for the target (Green) instance.",
+      "id": "TargetConfig",
+      "properties": {
+        "databaseVersion": {
+          "description": "Optional. The target database major version for the upgrade.",
           "type": "string"
         }
       },
@@ -9253,6 +10125,18 @@
           "description": "The target value for the metric.",
           "format": "float",
           "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "TargetRole": {
+      "description": "The target instance for the Blue-Green deployment.",
+      "id": "TargetRole",
+      "properties": {
+        "sourceId": {
+          "$ref": "InstanceReference",
+          "description": "Output only. The source instance paired with this target instance in a blue-green deployment.",
+          "readOnly": true
         }
       },
       "type": "object"

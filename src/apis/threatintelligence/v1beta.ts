@@ -380,6 +380,10 @@ export namespace threatintelligence_v1beta {
      */
     detailType?: string | null;
     /**
+     * Domain Configuration detail config.
+     */
+    domainConfiguration?: Schema$DomainConfiguration;
+    /**
      * Technology Watchlist detail config.
      */
     technologyWatchlist?: Schema$TechnologyWatchListConfig;
@@ -698,6 +702,10 @@ export namespace threatintelligence_v1beta {
      */
     documentCondition?: string | null;
     /**
+     * Optional. The query used to match documents.
+     */
+    documentQuery?: Schema$DocumentQuery;
+    /**
      * Optional. Legacy metadata associated with this scenario/monitor.
      */
     legacyMonitorMetadata?: Schema$LegacyMetadata;
@@ -731,6 +739,58 @@ export namespace threatintelligence_v1beta {
      * Required. The severity of the Data Leak finding. This indicates the potential impact of the threat.
      */
     severity?: string | null;
+  }
+  /**
+   * Represents a query to match documents.
+   */
+  export interface Schema$DocumentQuery {
+    /**
+     * Required. The data model to query against.
+     */
+    dataModel?: string | null;
+    /**
+     * Required. The query string.
+     */
+    query?: string | null;
+    /**
+     * Required. The type of query.
+     */
+    queryType?: string | null;
+  }
+  /**
+   * Configuration holding settings for one or more monitored domains.
+   */
+  export interface Schema$DomainConfiguration {
+    /**
+     * Optional. A list of settings for individual domains.
+     */
+    domainSettings?: Schema$DomainSetting[];
+  }
+  /**
+   * Specific configuration for the Domain Monitoring feature.
+   */
+  export interface Schema$DomainMonitoringFeatureConfig {
+    /**
+     * Optional. Whether the Domain Monitoring feature is disabled for the domain.
+     */
+    disabled?: boolean | null;
+  }
+  /**
+   * Feature settings and toggles for a single specific domain.
+   */
+  export interface Schema$DomainSetting {
+    /**
+     * Required. The domain name to match against.
+     */
+    domain?: string | null;
+    /**
+     * Optional. If not present, Domain Monitoring is enabled.
+     */
+    domainMonitoringConfig?: Schema$DomainMonitoringFeatureConfig;
+    /**
+     * Output only. The verification state of the domain.
+     */
+    state?: string | null;
   }
   /**
    * Response message for EnumerateAlertFacets.

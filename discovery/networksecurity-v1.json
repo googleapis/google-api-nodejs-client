@@ -6141,7 +6141,7 @@
       }
     }
   },
-  "revision": "20260729",
+  "revision": "20260824",
   "rootUrl": "https://networksecurity.googleapis.com/",
   "schemas": {
     "AddAddressGroupItemsRequest": {
@@ -6353,18 +6353,20 @@
       "id": "AuthzPolicy",
       "properties": {
         "action": {
-          "description": "Required. Can be one of `ALLOW`, `DENY`, `CUSTOM`. When the action is `CUSTOM`, `customProvider` must be specified. When the action is `ALLOW`, only requests matching the policy will be allowed. When the action is `DENY`, only requests matching the policy will be denied. When a request arrives, the policies are evaluated in the following order: 1. If there is a `CUSTOM` policy that matches the request, the `CUSTOM` policy is evaluated using the custom authorization providers and the request is denied if the provider rejects the request. 2. If there are any `DENY` policies that match the request, the request is denied. 3. If there are no `ALLOW` policies for the resource or if any of the `ALLOW` policies match the request, the request is allowed. 4. Else the request is denied by default if none of the configured AuthzPolicies with `ALLOW` action match the request.",
+          "description": "Required. Can be one of `ALLOW`, `DENY`, `CUSTOM`, `DENY_BY_DEFAULT`. When the action is `CUSTOM`, `customProvider` must be specified. When the action is `ALLOW`, only requests matching the policy will be allowed. When the action is `DENY`, only requests matching the policy will be denied. When the action is `DENY_BY_DEFAULT`, no `http_rules` or `network_rules` can be specified. When a request arrives, the policies are evaluated in the following order: 1. If there is a `CUSTOM` policy that matches the request, the `CUSTOM` policy is evaluated using the custom authorization providers and the request is denied if the provider rejects the request. 2. If there are any `DENY` policies that match the request, the request is denied. 3. If any of the `ALLOW` policies match the request, the request is allowed. 4. If a `DENY_BY_DEFAULT` policy is applied to the resource, the request is denied (unless it was explicitly allowed by a `CUSTOM` or `ALLOW` policy). 5. Else, the request is allowed by default if no other policies are configured.",
           "enum": [
             "AUTHZ_ACTION_UNSPECIFIED",
             "ALLOW",
             "DENY",
-            "CUSTOM"
+            "CUSTOM",
+            "DENY_BY_DEFAULT"
           ],
           "enumDescriptions": [
             "Unspecified action.",
             "Allow request to pass through to the backend.",
             "Deny the request and return a HTTP 404 to the client.",
-            "Delegate the authorization decision to an external authorization engine."
+            "Delegate the authorization decision to an external authorization engine.",
+            "Establishes a secure-by-default posture by denying any request not explicitly matched by any `ALLOW`, `DENY`, or `CUSTOM` policy. This action serves as a universal fallback: if no other policies match or are configured, the request is denied."
           ],
           "type": "string"
         },
@@ -6728,7 +6730,7 @@
       "id": "AuthzPolicyAuthzRuleToRequestOperationMCPMethod",
       "properties": {
         "name": {
-          "description": "Required. The MCP method to match against. Allowed values are as follows: 1. `tools`, `prompts`, `resources` - these will match against all sub methods under the respective methods. 2. `prompts/list`, `tools/list`, `resources/list`, `resources/templates/list` 3. `prompts/get`, `tools/call`, `resources/subscribe`, `resources/unsubscribe`, `resources/read` Params cannot be specified for categories 1 and 2.",
+          "description": "Required. The MCP method to match against. Allowed values include: 1. `tools`, `prompts`, `resources` - these will match against all sub methods under the respective methods. 2. `prompts/list`, `tools/list`, `resources/list`, `resources/templates/list` 3. `prompts/get`, `tools/call`, `resources/subscribe`, `resources/unsubscribe`, `resources/read` Params cannot be specified for categories 1 and 2.",
           "type": "string"
         },
         "params": {
@@ -6781,7 +6783,7 @@
       "id": "AuthzPolicyTarget",
       "properties": {
         "loadBalancingScheme": {
-          "description": "Optional. All gateways and forwarding rules referenced by this policy and extensions must share the same load balancing scheme. Required only when targeting forwarding rules. If targeting Secure Web Proxy, this field must be `INTERNAL_MANAGED` or not specified. Must not be specified when targeting Agent Gateway. Supported values: `INTERNAL_MANAGED` and `EXTERNAL_MANAGED`. For more information, refer to [Backend services overview](https://cloud.google.com/load-balancing/docs/backend-service).",
+          "description": "Optional. All gateways and forwarding rules referenced by this policy and extensions must share the same load balancing scheme. Required only when targeting forwarding rules. If targeting Secure Web Proxy, this field must be `INTERNAL_MANAGED` or not specified. Must not be specified when targeting Agent Gateway. Supported values include `INTERNAL_MANAGED` and `EXTERNAL_MANAGED`. For more information, refer to [Backend services overview](https://cloud.google.com/load-balancing/docs/backend-service).",
           "enum": [
             "LOAD_BALANCING_SCHEME_UNSPECIFIED",
             "INTERNAL_MANAGED",
@@ -9846,6 +9848,20 @@
       "properties": {
         "caPool": {
           "description": "Required. A CA pool resource used to issue interception certificates. The CA pool string has a relative resource path following the form \"projects/{project}/locations/{location}/caPools/{ca_pool}\".",
+          "type": "string"
+        },
+        "certificateIssuanceMode": {
+          "description": "Optional. The mode used to issue certificates (local CA signing vs direct leaf).",
+          "enum": [
+            "CERTIFICATE_ISSUANCE_MODE_UNSPECIFIED",
+            "DIRECT_LEAF_PROVISIONING",
+            "LOCAL_INTERMEDIATE_CA_SIGNING"
+          ],
+          "enumDescriptions": [
+            "Unspecified default mode.",
+            "Fallback: Direct Private CA leaf certificate provisioning.",
+            "High-speed Local Intermediate CA signing."
+          ],
           "type": "string"
         },
         "createTime": {

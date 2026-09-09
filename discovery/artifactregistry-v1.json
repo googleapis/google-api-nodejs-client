@@ -2714,7 +2714,7 @@
       }
     }
   },
-  "revision": "20260702",
+  "revision": "20260822",
   "rootUrl": "https://artifactregistry.googleapis.com/",
   "schemas": {
     "AptArtifact": {
@@ -4716,7 +4716,8 @@
             "KFP",
             "GO",
             "GENERIC",
-            "RUBY"
+            "RUBY",
+            "CONDA"
           ],
           "enumDescriptions": [
             "Unspecified package format.",
@@ -4730,7 +4731,8 @@
             "Kubeflow Pipelines package format.",
             "Go package format.",
             "Generic package format.",
-            "Ruby package format."
+            "Ruby package format.",
+            "Conda package format."
           ],
           "type": "string"
         },
@@ -4955,6 +4957,18 @@
         "fileId": {
           "description": "Optional. The ID of the file. If left empty will default to sha256 digest of the content uploaded.",
           "type": "string"
+        },
+        "fileType": {
+          "description": "Optional. The type of the file to upload. Defaulting to ATTACHMENT if not specified.",
+          "enum": [
+            "ATTACHMENT",
+            "ARTIFACT"
+          ],
+          "enumDescriptions": [
+            "Attachment file. Default value.",
+            "Facade specific artifact file."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -4987,6 +5001,13 @@
         "packageId": {
           "description": "The ID of the package of the generic artifact. If the package does not exist, a new package will be created. The `package_id` should start and end with a letter or number, only contain letters, numbers, hyphens, underscores, and periods, and not exceed 256 characters.",
           "type": "string"
+        },
+        "versionAnnotations": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Client specified annotations to attach to the version upon creation. This field is only applied if the Version is created during this upload. If the Version already exists and this field is set, the request will fail.",
+          "type": "object"
         },
         "versionId": {
           "description": "The ID of the version of the generic artifact. If the version does not exist, a new version will be created. The version_id must start and end with a letter or number, can only contain lowercase letters, numbers, the following characters [-.+~:], i.e.[a-z0-9-.+~:] and cannot exceed a total of 128 characters. Creating a version called `latest` is not allowed.",
@@ -5273,16 +5294,16 @@
       "id": "VulnerabilityScanningConfig",
       "properties": {
         "enablementConfig": {
-          "description": "Optional. Config for whether this repository has vulnerability scanning disabled.",
+          "description": "Optional. Config for whether this repository has vulnerability scanning disabled. When unset (ENABLEMENT_CONFIG_UNSPECIFIED), this is treated as INHERITED for Docker repositories and DISABLED for non-Docker repositories.",
           "enum": [
             "ENABLEMENT_CONFIG_UNSPECIFIED",
             "INHERITED",
             "DISABLED"
           ],
           "enumDescriptions": [
-            "Not set. This will be treated as INHERITED for Docker repositories and DISABLED for non-Docker repositories.",
-            "Scanning is Enabled, but dependent on API enablement.",
-            "No automatic vulnerability scanning will be performed for this repository."
+            "Unspecified enablement configuration.",
+            "Enables the feature, but is dependent on parent API enablement.",
+            "Disables the feature for this repository."
           ],
           "type": "string"
         },
