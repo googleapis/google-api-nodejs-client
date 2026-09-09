@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/driveactivity",
-  "version": "7.1.0",
+  "version": "7.1.1",
   "description": "driveactivity",
   "main": "build/index.js",
   "types": "build/index.d.ts",

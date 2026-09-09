@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/genomics-v7.1.0...genomics-v7.1.1) (2026-09-09)
+
+
+### Bug Fixes
+
+* add back support for node 18 ([eccac1d](https://github.com/googleapis/google-api-nodejs-client/commit/eccac1df8b92551e617fbae0198ebfa67009a4de))
+
 ## [7.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/genomics-v7.0.0...genomics-v7.1.0) (2026-09-02)
 
 
