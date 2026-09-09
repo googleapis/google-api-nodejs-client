@@ -1,5 +1,12 @@
 # Changelog
 
+## [17.3.1](https://github.com/googleapis/google-api-nodejs-client/compare/dataform-v17.3.0...dataform-v17.3.1) (2026-09-09)
+
+
+### Bug Fixes
+
+* add back support for node 18 ([eccac1d](https://github.com/googleapis/google-api-nodejs-client/commit/eccac1df8b92551e617fbae0198ebfa67009a4de))
+
 ## [17.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/dataform-v17.2.0...dataform-v17.3.0) (2026-09-02)
 
 
