@@ -58,6 +58,10 @@ import {
   advisorynotifications,
 } from './advisorynotifications';
 import {
+  VERSIONS as agenciesandbrandsVersions,
+  agenciesandbrands,
+} from './agenciesandbrands';
+import {
   VERSIONS as agentidentityVersions,
   agentidentity,
 } from './agentidentity';
@@ -132,6 +136,7 @@ import {
   VERSIONS as assuredworkloadsVersions,
   assuredworkloads,
 } from './assuredworkloads';
+import {VERSIONS as auditmanagerVersions, auditmanager} from './auditmanager';
 import {
   VERSIONS as authorizedbuyersmarketplaceVersions,
   authorizedbuyersmarketplace,
@@ -289,6 +294,10 @@ import {
   contentwarehouse,
 } from './contentwarehouse';
 import {VERSIONS as cssVersions, css} from './css';
+import {
+  VERSIONS as curationpartnersVersions,
+  curationpartners,
+} from './curationpartners';
 import {VERSIONS as customsearchVersions, customsearch} from './customsearch';
 import {
   VERSIONS as databasecenterVersions,
@@ -841,6 +850,7 @@ export const APIS: APIList = {
   adsensehost: adsensehostVersions,
   adsenseplatform: adsenseplatformVersions,
   advisorynotifications: advisorynotificationsVersions,
+  agenciesandbrands: agenciesandbrandsVersions,
   agentidentity: agentidentityVersions,
   agentidentitycredentials: agentidentitycredentialsVersions,
   agentregistry: agentregistryVersions,
@@ -871,6 +881,7 @@ export const APIS: APIList = {
   areainsights: areainsightsVersions,
   artifactregistry: artifactregistryVersions,
   assuredworkloads: assuredworkloadsVersions,
+  auditmanager: auditmanagerVersions,
   authorizedbuyersmarketplace: authorizedbuyersmarketplaceVersions,
   backupdr: backupdrVersions,
   baremetalsolution: baremetalsolutionVersions,
@@ -935,6 +946,7 @@ export const APIS: APIList = {
   content: contentVersions,
   contentwarehouse: contentwarehouseVersions,
   css: cssVersions,
+  curationpartners: curationpartnersVersions,
   customsearch: customsearchVersions,
   databasecenter: databasecenterVersions,
   datacatalog: datacatalogVersions,
@@ -1177,6 +1189,7 @@ export class GeneratedAPIs {
   adsensehost = adsensehost;
   adsenseplatform = adsenseplatform;
   advisorynotifications = advisorynotifications;
+  agenciesandbrands = agenciesandbrands;
   agentidentity = agentidentity;
   agentidentitycredentials = agentidentitycredentials;
   agentregistry = agentregistry;
@@ -1207,6 +1220,7 @@ export class GeneratedAPIs {
   areainsights = areainsights;
   artifactregistry = artifactregistry;
   assuredworkloads = assuredworkloads;
+  auditmanager = auditmanager;
   authorizedbuyersmarketplace = authorizedbuyersmarketplace;
   backupdr = backupdr;
   baremetalsolution = baremetalsolution;
@@ -1271,6 +1285,7 @@ export class GeneratedAPIs {
   content = content;
   contentwarehouse = contentwarehouse;
   css = css;
+  curationpartners = curationpartners;
   customsearch = customsearch;
   databasecenter = databasecenter;
   datacatalog = datacatalog;
