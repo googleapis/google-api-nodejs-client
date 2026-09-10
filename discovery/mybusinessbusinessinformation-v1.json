@@ -612,7 +612,7 @@
       }
     }
   },
-  "revision": "20260809",
+  "revision": "20260826",
   "rootUrl": "https://mybusinessbusinessinformation.googleapis.com/",
   "schemas": {
     "AdWordsLocationExtensions": {
@@ -1647,10 +1647,10 @@
       "properties": {
         "closeTime": {
           "$ref": "TimeOfDay",
-          "description": "Optional. Valid values are `00:00-24:00`, where `24:00` represents midnight at the end of the specified day field. It must be specified if `closed` is `false`. Note: In Proto3 JSON mapping, default zero values (`00:00`) are omitted, producing `{}` for `close_time`."
+          "description": "Optional. Valid values are 00:00-24:00, where 24:00 represents midnight at the end of the specified day field. Must be specified if `closed` is false."
         },
         "closed": {
-          "description": "Optional. If `true`, `end_date`, `open_time`, and `close_time` are ignored, and the date specified in `start_date` is treated as the location being closed for the entire day.",
+          "description": "Optional. If true, `end_date`, `open_time`, and `close_time` are ignored, and the date specified in `start_date` is treated as the location being closed for the entire day.",
           "type": "boolean"
         },
         "endDate": {
@@ -1659,7 +1659,7 @@
         },
         "openTime": {
           "$ref": "TimeOfDay",
-          "description": "Optional. Valid values are `00:00-24:00`, where `24:00` represents midnight at the end of the specified day field. It must be specified if `closed` is `false`. Note: In Proto3 JSON mapping, default zero values (`00:00`) are omitted, producing `{}` for `open_time`."
+          "description": "Optional. Valid values are 00:00-24:00 where 24:00 represents midnight at the end of the specified day field. Must be specified if `closed` is false."
         },
         "startDate": {
           "$ref": "Date",
@@ -1754,7 +1754,7 @@
         },
         "closeTime": {
           "$ref": "TimeOfDay",
-          "description": "Required. Valid values are `00:00-24:00`, where `24:00` represents midnight at the end of the specified day field. Note: In Proto3 JSON mapping, default zero values (`00:00`) are omitted, producing `{}` for `close_time`."
+          "description": "Required. Valid values are 00:00-24:00, where 24:00 represents midnight at the end of the specified day field. Note: In Proto3 JSON mapping, default zero values (00:00) are omitted, producing `{}` for close_time."
         },
         "openDay": {
           "description": "Required. Indicates the day of the week this period starts on.",
@@ -1782,7 +1782,7 @@
         },
         "openTime": {
           "$ref": "TimeOfDay",
-          "description": "Required. Valid values are `00:00-24:00`, where `24:00` represents midnight at the end of the specified day field. Note: In Proto3 JSON mapping, default zero values (`00:00`) are omitted, producing `{}` for `open_time`."
+          "description": "Required. Valid values are 00:00-24:00, where 24:00 represents midnight at the end of the specified day field. Note: In Proto3 JSON mapping, default zero values (00:00) are omitted, producing `{}` for open_time."
         }
       },
       "type": "object"
