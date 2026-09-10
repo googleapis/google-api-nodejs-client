@@ -1026,7 +1026,7 @@
       }
     }
   },
-  "revision": "20260722",
+  "revision": "20260831",
   "rootUrl": "https://cloudtasks.googleapis.com/",
   "schemas": {
     "AcknowledgeTaskRequest": {
@@ -1464,7 +1464,7 @@
       "type": "object"
     },
     "HttpTarget": {
-      "description": "HTTP target. When specified as a Queue, all the tasks with [HttpRequest] will be overridden according to the target.",
+      "description": "HTTP target. When specified at the Queue level, all tasks with HttpRequest are overridden according to the target.",
       "id": "HttpTarget",
       "properties": {
         "headerOverrides": {
