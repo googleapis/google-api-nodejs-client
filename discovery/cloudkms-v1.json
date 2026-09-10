@@ -1308,7 +1308,7 @@
                   ]
                 },
                 "delete": {
-                  "description": "Permanently deletes the given KeyRing. All child resources of the KeyRing must have been previously deleted using their corresponding Delete operations. The specified key ring will be immediately and permanently deleted upon calling this method. This action cannot be undone. Note: the key ring and its metadata will be remembered by KeyManagementService to prevent re-use of the key ring's resource name.",
+                  "description": "Permanently deletes the given KeyRing. All child resources of the KeyRing must have been previously deleted using their corresponding Delete operations. The specified key ring will be immediately and permanently deleted upon calling this method. This action cannot be undone.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/keyRings/{keyRingsId}",
                   "httpMethod": "DELETE",
                   "id": "cloudkms.projects.locations.keyRings.delete",
@@ -3089,7 +3089,7 @@
       }
     }
   },
-  "revision": "20260821",
+  "revision": "20260827",
   "rootUrl": "https://cloudkms.googleapis.com/",
   "schemas": {
     "AddQuorumMember": {
