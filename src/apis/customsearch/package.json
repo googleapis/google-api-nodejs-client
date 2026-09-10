@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/customsearch",
-  "version": "9.0.0",
+  "version": "10.0.0",
   "description": "customsearch",
   "main": "build/index.js",
   "types": "build/index.d.ts",

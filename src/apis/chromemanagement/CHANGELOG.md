@@ -1,5 +1,21 @@
 # Changelog
 
+## [29.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/chromemanagement-v28.0.0...chromemanagement-v29.0.0) (2026-09-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* Update apiary to minimum Node version of 22. ([#4011](https://github.com/googleapis/google-api-nodejs-client/issues/4011))
+
+### Features
+
+* Update apiary to minimum Node version of 22. ([#4011](https://github.com/googleapis/google-api-nodejs-client/issues/4011)) ([ec5a6bf](https://github.com/googleapis/google-api-nodejs-client/commit/ec5a6bf892c4278bec2aa0d006cb6a63c889f116))
+
+
+### Bug Fixes
+
+* add back support for node 18 ([eccac1d](https://github.com/googleapis/google-api-nodejs-client/commit/eccac1df8b92551e617fbae0198ebfa67009a4de))
+
 ## [28.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/chromemanagement-v27.1.1...chromemanagement-v28.0.0) (2026-09-09)
 
 
