@@ -2228,10 +2228,6 @@
                     ],
                     "maxSize": "262144000",
                     "protocols": {
-                      "resumable": {
-                        "multipart": true,
-                        "path": "/resumable/upload/v2/{+parent}:uploadSource"
-                      },
                       "simple": {
                         "multipart": true,
                         "path": "/upload/v2/{+parent}:uploadSource"
@@ -2673,7 +2669,7 @@
       }
     }
   },
-  "revision": "20260814",
+  "revision": "20260904",
   "rootUrl": "https://run.googleapis.com/",
   "schemas": {
     "GoogleCloudRunV2BinaryAuthorization": {
@@ -3095,7 +3091,7 @@
         },
         "sourceCode": {
           "$ref": "GoogleCloudRunV2SourceCode",
-          "description": "Optional. Location of the source."
+          "description": "Optional. Location of the source. This field is only supported in Cloud Run Service."
         },
         "startupProbe": {
           "$ref": "GoogleCloudRunV2Probe",
@@ -3930,6 +3926,10 @@
         "serviceAccount": {
           "type": "string"
         },
+        "sshEnabled": {
+          "description": "Optional. Enables SSH access to the Instance.",
+          "type": "boolean"
+        },
         "terminalCondition": {
           "$ref": "GoogleCloudRunV2Condition",
           "description": "Output only. The Condition of this Instance, containing its readiness status, and detailed error information in case it did not reach a serving state. See comments in `reconciling` for additional information on reconciliation process in Cloud Run.",
@@ -4090,6 +4090,20 @@
           "description": "Output only. For a deleted resource, the time after which it will be permamently deleted.",
           "format": "google-datetime",
           "readOnly": true,
+          "type": "string"
+        },
+        "functionalType": {
+          "description": "Optional. The functional type of the Job.",
+          "enum": [
+            "FUNCTIONAL_TYPE_UNSPECIFIED",
+            "FUNCTIONAL_TYPE_AGENT",
+            "FUNCTIONAL_TYPE_MCP_SERVER"
+          ],
+          "enumDescriptions": [
+            "Specifies that the functional type is unspecified.",
+            "Represents an AGENT functional type.",
+            "Represents an MCP_SERVER functional type."
+          ],
           "type": "string"
         },
         "generation": {
@@ -4726,6 +4740,10 @@
         "vpcAccess": {
           "$ref": "GoogleCloudRunV2VpcAccess",
           "description": "VPC Access configuration for this Revision. For more information, visit https://cloud.google.com/run/docs/configuring/connecting-vpc."
+        },
+        "workloadIdentityConfig": {
+          "$ref": "GoogleCloudRunV2WorkloadIdentityConfig",
+          "description": "Optional. The Revision's workload identity settings."
         }
       },
       "type": "object"
@@ -4891,6 +4909,10 @@
         "vpcAccess": {
           "$ref": "GoogleCloudRunV2VpcAccess",
           "description": "Optional. VPC Access configuration to use for this Revision. For more information, visit https://cloud.google.com/run/docs/configuring/connecting-vpc."
+        },
+        "workloadIdentityConfig": {
+          "$ref": "GoogleCloudRunV2WorkloadIdentityConfig",
+          "description": "Optional. The Revision's workload identity settings."
         }
       },
       "type": "object"
@@ -5019,10 +5041,6 @@
           "description": "User-provided description of the Service. This field currently has a 512-character limit.",
           "type": "string"
         },
-        "durableExecution": {
-          "description": "Optional. Immutable. Indicates whether the Service has durable execution enabled. This field is immutable once the Service is created.",
-          "type": "boolean"
-        },
         "etag": {
           "description": "Optional. A system-generated fingerprint for this version of the resource. May be used to detect modification conflict during updates.",
           "type": "string"
@@ -5031,6 +5049,20 @@
           "description": "Output only. For a deleted resource, the time after which it will be permanently deleted.",
           "format": "google-datetime",
           "readOnly": true,
+          "type": "string"
+        },
+        "functionalType": {
+          "description": "Optional. The functional type of the Service.",
+          "enum": [
+            "FUNCTIONAL_TYPE_UNSPECIFIED",
+            "FUNCTIONAL_TYPE_AGENT",
+            "FUNCTIONAL_TYPE_MCP_SERVER"
+          ],
+          "enumDescriptions": [
+            "Specifies that the functional type is unspecified.",
+            "Represents an AGENT functional type.",
+            "Represents an MCP_SERVER functional type."
+          ],
           "type": "string"
         },
         "generation": {
@@ -5256,7 +5288,7 @@
         },
         "inlinedSource": {
           "$ref": "GoogleCloudRunV2InlinedSource",
-          "description": "Optional. Input only. Source code inlined in the request. Cloud Run will store the inlined_source to Cloud Storage and replace the field with cloud_storage_source."
+          "description": "Optional. Input only. Source code inlined in the request. Cloud Run will store the inlined_source to Cloud Storage and replace the field with cloud_storage_source. This field is only supported in Cloud Run Service."
         }
       },
       "type": "object"
@@ -5627,6 +5659,10 @@
           "$ref": "GoogleCloudRunV2VpcAccess",
           "description": "Output only. VPC Access configuration to use for this Task. For more information, visit https://cloud.google.com/run/docs/configuring/connecting-vpc.",
           "readOnly": true
+        },
+        "workloadIdentityConfig": {
+          "$ref": "GoogleCloudRunV2WorkloadIdentityConfig",
+          "description": "Optional. The Task's workload identity settings."
         }
       },
       "type": "object"
@@ -5716,6 +5752,10 @@
         "vpcAccess": {
           "$ref": "GoogleCloudRunV2VpcAccess",
           "description": "Optional. VPC Access configuration to use for this Task. For more information, visit https://cloud.google.com/run/docs/configuring/connecting-vpc."
+        },
+        "workloadIdentityConfig": {
+          "$ref": "GoogleCloudRunV2WorkloadIdentityConfig",
+          "description": "Optional. The Task's workload identity settings."
         }
       },
       "type": "object"
@@ -6203,6 +6243,35 @@
           "description": "Optional. The total number of instances in manual scaling mode.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRunV2WorkloadIdentityConfig": {
+      "description": "Workload identity settings.",
+      "id": "GoogleCloudRunV2WorkloadIdentityConfig",
+      "properties": {
+        "identity": {
+          "description": "Optional. The Revision's SPIFFE workload identity. Enables provisioning of SPIFFE workload certificates.",
+          "type": "string"
+        },
+        "identityCertificateEnabled": {
+          "description": "Optional. Controls whether an instance receives a MWLID certificate. Corresponds to the intention of the original --[no-]identity-certificate flag.",
+          "type": "boolean"
+        },
+        "identityType": {
+          "description": "Optional. The type of identity to use.",
+          "enum": [
+            "IDENTITY_TYPE_UNSPECIFIED",
+            "IDENTITY_TYPE_SERVICE_ACCOUNT",
+            "IDENTITY_TYPE_AGENT_IDENTITY"
+          ],
+          "enumDescriptions": [
+            "Unspecified",
+            "Service account identity.",
+            "Agent identity."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
