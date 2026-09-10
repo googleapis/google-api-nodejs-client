@@ -868,6 +868,39 @@
                         "https://www.googleapis.com/auth/discoveryengine.serving.readwrite"
                       ]
                     },
+                    "getIamPolicy": {
+                      "description": "Gets the IAM access control policy for a DataStore. A `NOT_FOUND` error is returned if the resource does not exist. An empty policy is returned if the resource exists but does not have a policy set on it.",
+                      "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}:getIamPolicy",
+                      "httpMethod": "GET",
+                      "id": "discoveryengine.projects.locations.collections.dataStores.getIamPolicy",
+                      "parameterOrder": [
+                        "resource"
+                      ],
+                      "parameters": {
+                        "options.requestedPolicyVersion": {
+                          "description": "Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "resource": {
+                          "description": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta/{+resource}:getIamPolicy",
+                      "response": {
+                        "$ref": "GoogleIamV1Policy"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite",
+                        "https://www.googleapis.com/auth/discoveryengine.serving.readwrite"
+                      ]
+                    },
                     "getSiteSearchEngine": {
                       "description": "Gets the SiteSearchEngine.",
                       "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}/siteSearchEngine",
@@ -967,6 +1000,36 @@
                       },
                       "response": {
                         "$ref": "GoogleCloudDiscoveryengineV1betaDataStore"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite",
+                        "https://www.googleapis.com/auth/discoveryengine.serving.readwrite"
+                      ]
+                    },
+                    "setIamPolicy": {
+                      "description": "Sets the IAM access control policy for a DataStore. A `NOT_FOUND` error is returned if the resource does not exist. **Important:** When setting a policy directly on a DataStore resource, the only recommended roles in the bindings are: `roles/discoveryengine.admin` `roles/discoveryengine.agentspaceAdmin` `roles/discoveryengine.viewer` `roles/discoveryengine.agentspaceViewer` `roles/discoveryengine.user` `roles/discoveryengine.agentspaceUser` Attempting to grant any other role will result in a warning in logging.",
+                      "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}:setIamPolicy",
+                      "httpMethod": "POST",
+                      "id": "discoveryengine.projects.locations.collections.dataStores.setIamPolicy",
+                      "parameterOrder": [
+                        "resource"
+                      ],
+                      "parameters": {
+                        "resource": {
+                          "description": "REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta/{+resource}:setIamPolicy",
+                      "request": {
+                        "$ref": "GoogleIamV1SetIamPolicyRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleIamV1Policy"
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform",
@@ -5531,6 +5594,39 @@
                     "https://www.googleapis.com/auth/discoveryengine.serving.readwrite"
                   ]
                 },
+                "getIamPolicy": {
+                  "description": "Gets the IAM access control policy for a DataStore. A `NOT_FOUND` error is returned if the resource does not exist. An empty policy is returned if the resource exists but does not have a policy set on it.",
+                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/dataStores/{dataStoresId}:getIamPolicy",
+                  "httpMethod": "GET",
+                  "id": "discoveryengine.projects.locations.dataStores.getIamPolicy",
+                  "parameterOrder": [
+                    "resource"
+                  ],
+                  "parameters": {
+                    "options.requestedPolicyVersion": {
+                      "description": "Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "resource": {
+                      "description": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta/{+resource}:getIamPolicy",
+                  "response": {
+                    "$ref": "GoogleIamV1Policy"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/discoveryengine.readwrite",
+                    "https://www.googleapis.com/auth/discoveryengine.serving.readwrite"
+                  ]
+                },
                 "getSiteSearchEngine": {
                   "description": "Gets the SiteSearchEngine.",
                   "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/dataStores/{dataStoresId}/siteSearchEngine",
@@ -5630,6 +5726,36 @@
                   },
                   "response": {
                     "$ref": "GoogleCloudDiscoveryengineV1betaDataStore"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/discoveryengine.readwrite",
+                    "https://www.googleapis.com/auth/discoveryengine.serving.readwrite"
+                  ]
+                },
+                "setIamPolicy": {
+                  "description": "Sets the IAM access control policy for a DataStore. A `NOT_FOUND` error is returned if the resource does not exist. **Important:** When setting a policy directly on a DataStore resource, the only recommended roles in the bindings are: `roles/discoveryengine.admin` `roles/discoveryengine.agentspaceAdmin` `roles/discoveryengine.viewer` `roles/discoveryengine.agentspaceViewer` `roles/discoveryengine.user` `roles/discoveryengine.agentspaceUser` Attempting to grant any other role will result in a warning in logging.",
+                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/dataStores/{dataStoresId}:setIamPolicy",
+                  "httpMethod": "POST",
+                  "id": "discoveryengine.projects.locations.dataStores.setIamPolicy",
+                  "parameterOrder": [
+                    "resource"
+                  ],
+                  "parameters": {
+                    "resource": {
+                      "description": "REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta/{+resource}:setIamPolicy",
+                  "request": {
+                    "$ref": "GoogleIamV1SetIamPolicyRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleIamV1Policy"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform",
@@ -9554,7 +9680,7 @@
       }
     }
   },
-  "revision": "20260823",
+  "revision": "20260908",
   "rootUrl": "https://discoveryengine.googleapis.com/",
   "schemas": {
     "GoogleApiDistribution": {
@@ -10252,6 +10378,10 @@
             "$ref": "GoogleCloudDiscoveryengineV1AssistantCustomerPolicyBannedPhrase"
           },
           "type": "array"
+        },
+        "dataProtectionPolicy": {
+          "$ref": "GoogleCloudDiscoveryengineV1DataProtectionPolicy",
+          "description": "Optional. Data protection policy to be used for sanitizing file uploads."
         },
         "modelArmorConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1AssistantCustomerPolicyModelArmorConfig",
@@ -11169,6 +11299,10 @@
           "readOnly": true,
           "type": "string"
         },
+        "dataProtectionPolicy": {
+          "$ref": "GoogleCloudDiscoveryengineV1DataProtectionPolicy",
+          "description": "Optional. Specifies the data protection policy for the connector."
+        },
         "dataSource": {
           "description": "Required. The identifier for the data source. For the full, up-to-date list of supported connectors and their values, see [Connect a third-party data source](https://docs.cloud.google.com/gemini/enterprise/docs/connectors/connect-third-party-data-source#sources-by-launch-stage).",
           "type": "string"
@@ -11579,6 +11713,28 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1DataProtectionPolicy": {
+      "description": "Contains the data protection policy config for a DataStore or a connector.",
+      "id": "GoogleCloudDiscoveryengineV1DataProtectionPolicy",
+      "properties": {
+        "sensitiveDataProtectionPolicy": {
+          "$ref": "GoogleCloudDiscoveryengineV1DataProtectionPolicySensitiveDataProtectionPolicy",
+          "description": "Optional. Specifies the sensitive data protection policy for the connector source."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1DataProtectionPolicySensitiveDataProtectionPolicy": {
+      "description": "Specifies a Sensitive Data Protection (https://cloud.google.com/sensitive-data-protection/docs/sensitive-data-protection-overview) policy.",
+      "id": "GoogleCloudDiscoveryengineV1DataProtectionPolicySensitiveDataProtectionPolicy",
+      "properties": {
+        "policy": {
+          "description": "Optional. Specifies the resource name of the Sensitive Data Protection content policy.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1DataStore": {
       "description": "DataStore captures global settings and configs at the DataStore level.",
       "id": "GoogleCloudDiscoveryengineV1DataStore",
@@ -11644,6 +11800,10 @@
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
+        },
+        "dataProtectionPolicy": {
+          "$ref": "GoogleCloudDiscoveryengineV1DataProtectionPolicy",
+          "description": "Optional. Specifies the data protection policy for the data store."
         },
         "defaultSchemaId": {
           "description": "Output only. The id of the default Schema associated to this data store.",
@@ -12403,7 +12563,7 @@
             ],
             "type": "string"
           },
-          "description": "Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications`",
+          "description": "Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `canvas-app-builder` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications`",
           "type": "object"
         },
         "industryVertical": {
@@ -12483,6 +12643,10 @@
         "searchEngineConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1EngineSearchEngineConfig",
           "description": "Configurations for the Search Engine. Only applicable if solution_type is SOLUTION_TYPE_SEARCH."
+        },
+        "sessionConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1SessionConfig",
+          "description": "Optional. Non-empty default. Session config for the engine."
         },
         "solutionType": {
           "description": "Required. The solutions of the engine.",
@@ -14090,6 +14254,43 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1SessionConfig": {
+      "description": "Configuration for the session.",
+      "id": "GoogleCloudDiscoveryengineV1SessionConfig",
+      "properties": {
+        "sessionManagementPolicy": {
+          "description": "Optional. Session management policy that defines who will manage the session.",
+          "enum": [
+            "SESSION_MANAGEMENT_POLICY_UNSPECIFIED",
+            "NOT_MANAGED",
+            "VERTEX_AI_MANAGED"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "The session will be managed by the customer.",
+            "Sessions multi-tenancy will be controlled by Google using 1P or 3P identity providers."
+          ],
+          "type": "string"
+        },
+        "sessionTtl": {
+          "$ref": "GoogleCloudDiscoveryengineV1SessionConfigSessionTtl",
+          "description": "Optional. The TTL for the session. If unset, the default value is 60 days."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1SessionConfigSessionTtl": {
+      "description": "Defines the TTL for sessions.",
+      "id": "GoogleCloudDiscoveryengineV1SessionConfigSessionTtl",
+      "properties": {
+        "days": {
+          "description": "Defines the number of days for session TTL.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1SetUpDataConnectorMetadata": {
       "description": "Metadata for DataConnectorService.SetUpDataConnector method.",
       "id": "GoogleCloudDiscoveryengineV1SetUpDataConnectorMetadata",
@@ -14956,6 +15157,24 @@
       "properties": {
         "name": {
           "description": "Required. Model name (e.g. `gemini-2.5-flash`, `gemini-3.1-pro-preview`). See `model_mixture` for the list of allowed models.",
+          "type": "string"
+        },
+        "thinkingLevel": {
+          "description": "Optional. Sent as Vertex `ThinkingConfig.thinking_level`.",
+          "enum": [
+            "THINKING_LEVEL_UNSPECIFIED",
+            "MINIMAL",
+            "LOW",
+            "MEDIUM",
+            "HIGH"
+          ],
+          "enumDescriptions": [
+            "Unset. The model applies its own default, which is not the same level for every model.",
+            "Least thinking. Not offered by every model.",
+            "Vertex `LOW`.",
+            "Vertex `MEDIUM`.",
+            "Vertex `HIGH`."
+          ],
           "type": "string"
         },
         "weight": {
@@ -18670,7 +18889,7 @@
             ],
             "type": "string"
           },
-          "description": "Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications`",
+          "description": "Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `canvas-app-builder` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications`",
           "type": "object"
         },
         "industryVertical": {
@@ -18755,6 +18974,10 @@
         "searchEngineConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaEngineSearchEngineConfig",
           "description": "Configurations for the Search Engine. Only applicable if solution_type is SOLUTION_TYPE_SEARCH."
+        },
+        "sessionConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaSessionConfig",
+          "description": "Optional. Non-empty default. Session config for the engine."
         },
         "similarDocumentsConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaEngineSimilarDocumentsEngineConfig",
@@ -22280,6 +22503,43 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaSessionConfig": {
+      "description": "Configuration for the session.",
+      "id": "GoogleCloudDiscoveryengineV1alphaSessionConfig",
+      "properties": {
+        "sessionManagementPolicy": {
+          "description": "Optional. Session management policy that defines who will manage the session.",
+          "enum": [
+            "SESSION_MANAGEMENT_POLICY_UNSPECIFIED",
+            "NOT_MANAGED",
+            "VERTEX_AI_MANAGED"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "The session will be managed by the customer.",
+            "Sessions multi-tenancy will be controlled by Google using 1P or 3P identity providers."
+          ],
+          "type": "string"
+        },
+        "sessionTtl": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaSessionConfigSessionTtl",
+          "description": "Optional. The TTL for the session. If unset, the default value is 60 days."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaSessionConfigSessionTtl": {
+      "description": "Defines the TTL for sessions.",
+      "id": "GoogleCloudDiscoveryengineV1alphaSessionConfigSessionTtl",
+      "properties": {
+        "days": {
+          "description": "Defines the number of days for session TTL.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaSessionTurn": {
       "description": "Represents a turn, including a query from the user and a answer from service.",
       "id": "GoogleCloudDiscoveryengineV1alphaSessionTurn",
@@ -24957,6 +25217,10 @@
           },
           "type": "array"
         },
+        "dataProtectionPolicy": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaDataProtectionPolicy",
+          "description": "Optional. Data protection policy to be used for sanitizing file uploads."
+        },
         "modelArmorConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1betaAssistantCustomerPolicyModelArmorConfig",
           "description": "Optional. Model Armor configuration to be used for sanitizing user prompts and assistant responses."
@@ -26864,6 +27128,28 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1betaDataProtectionPolicy": {
+      "description": "Contains the data protection policy config for a DataStore or a connector.",
+      "id": "GoogleCloudDiscoveryengineV1betaDataProtectionPolicy",
+      "properties": {
+        "sensitiveDataProtectionPolicy": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaDataProtectionPolicySensitiveDataProtectionPolicy",
+          "description": "Optional. Specifies the sensitive data protection policy for the connector source."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaDataProtectionPolicySensitiveDataProtectionPolicy": {
+      "description": "Specifies a Sensitive Data Protection (https://cloud.google.com/sensitive-data-protection/docs/sensitive-data-protection-overview) policy.",
+      "id": "GoogleCloudDiscoveryengineV1betaDataProtectionPolicySensitiveDataProtectionPolicy",
+      "properties": {
+        "policy": {
+          "description": "Optional. Specifies the resource name of the Sensitive Data Protection content policy.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1betaDataStore": {
       "description": "DataStore captures global settings and configs at the DataStore level.",
       "id": "GoogleCloudDiscoveryengineV1betaDataStore",
@@ -26929,6 +27215,10 @@
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
+        },
+        "dataProtectionPolicy": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaDataProtectionPolicy",
+          "description": "Optional. Specifies the data protection policy for the data store."
         },
         "defaultSchemaId": {
           "description": "Output only. The id of the default Schema associated to this data store.",
@@ -27865,7 +28155,7 @@
             ],
             "type": "string"
           },
-          "description": "Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications`",
+          "description": "Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `canvas-app-builder` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications`",
           "type": "object"
         },
         "industryVertical": {
@@ -27945,6 +28235,10 @@
         "searchEngineConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1betaEngineSearchEngineConfig",
           "description": "Configurations for the Search Engine. Only applicable if solution_type is SOLUTION_TYPE_SEARCH."
+        },
+        "sessionConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaSessionConfig",
+          "description": "Optional. Non-empty default. Session config for the engine."
         },
         "solutionType": {
           "description": "Required. The solutions of the engine.",
@@ -33314,6 +33608,43 @@
         "userPseudoId": {
           "description": "A unique identifier for tracking users.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaSessionConfig": {
+      "description": "Configuration for the session.",
+      "id": "GoogleCloudDiscoveryengineV1betaSessionConfig",
+      "properties": {
+        "sessionManagementPolicy": {
+          "description": "Optional. Session management policy that defines who will manage the session.",
+          "enum": [
+            "SESSION_MANAGEMENT_POLICY_UNSPECIFIED",
+            "NOT_MANAGED",
+            "VERTEX_AI_MANAGED"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "The session will be managed by the customer.",
+            "Sessions multi-tenancy will be controlled by Google using 1P or 3P identity providers."
+          ],
+          "type": "string"
+        },
+        "sessionTtl": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaSessionConfigSessionTtl",
+          "description": "Optional. The TTL for the session. If unset, the default value is 60 days."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaSessionConfigSessionTtl": {
+      "description": "Defines the TTL for sessions.",
+      "id": "GoogleCloudDiscoveryengineV1betaSessionConfigSessionTtl",
+      "properties": {
+        "days": {
+          "description": "Defines the number of days for session TTL.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
