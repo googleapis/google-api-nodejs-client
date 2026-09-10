@@ -136,6 +136,7 @@ import {
   VERSIONS as assuredworkloadsVersions,
   assuredworkloads,
 } from './assuredworkloads';
+import {VERSIONS as auditmanagerVersions, auditmanager} from './auditmanager';
 import {
   VERSIONS as authorizedbuyersmarketplaceVersions,
   authorizedbuyersmarketplace,
@@ -880,6 +881,7 @@ export const APIS: APIList = {
   areainsights: areainsightsVersions,
   artifactregistry: artifactregistryVersions,
   assuredworkloads: assuredworkloadsVersions,
+  auditmanager: auditmanagerVersions,
   authorizedbuyersmarketplace: authorizedbuyersmarketplaceVersions,
   backupdr: backupdrVersions,
   baremetalsolution: baremetalsolutionVersions,
@@ -1218,6 +1220,7 @@ export class GeneratedAPIs {
   areainsights = areainsights;
   artifactregistry = artifactregistry;
   assuredworkloads = assuredworkloads;
+  auditmanager = auditmanager;
   authorizedbuyersmarketplace = authorizedbuyersmarketplace;
   backupdr = backupdr;
   baremetalsolution = baremetalsolution;

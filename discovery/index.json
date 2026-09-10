@@ -916,6 +916,21 @@
       "version": "v1"
     },
     {
+      "description": "The Audit Manager API allows customers to manage compliance audits.",
+      "discoveryRestUrl": "https://auditmanager.googleapis.com/$discovery/rest?version=v1",
+      "documentationLink": "https://cloud.google.com/assured-workloads/docs/audit-manager",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "id": "auditmanager:v1",
+      "kind": "discovery#directoryItem",
+      "name": "auditmanager",
+      "preferred": true,
+      "title": "Audit Manager API",
+      "version": "v1"
+    },
+    {
       "description": "The Authorized Buyers Marketplace API lets buyers programmatically discover inventory; propose, retrieve and negotiate deals with publishers.",
       "discoveryRestUrl": "https://authorizedbuyersmarketplace.googleapis.com/$discovery/rest?version=v1alpha",
       "documentationLink": "https://developers.google.com/authorized-buyers/apis/marketplace/reference/rest/",
@@ -959,6 +974,21 @@
       "preferred": true,
       "title": "Authorized Buyers Marketplace API",
       "version": "v1"
+    },
+    {
+      "description": "",
+      "discoveryRestUrl": "https://backupdr.googleapis.com/$discovery/rest?version=v1beta",
+      "documentationLink": "https://cloud.google.com/backup-disaster-recovery",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "id": "backupdr:v1beta",
+      "kind": "discovery#directoryItem",
+      "name": "backupdr",
+      "preferred": false,
+      "title": "Backup and DR Service API",
+      "version": "v1beta"
     },
     {
       "description": "",
@@ -2372,21 +2402,6 @@
       "preferred": true,
       "title": "Container Analysis API",
       "version": "v1"
-    },
-    {
-      "description": "This API is deprecated. Please use Merchant API instead: https://developers.google.com/merchant/api.",
-      "discoveryRestUrl": "https://shoppingcontent.googleapis.com/$discovery/rest?version=v2.1",
-      "documentationLink": "https://developers.google.com/shopping-content/v2/",
-      "icons": {
-        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
-        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
-      },
-      "id": "content:v2.1",
-      "kind": "discovery#directoryItem",
-      "name": "content",
-      "preferred": true,
-      "title": "Content API for Shopping",
-      "version": "v2.1"
     },
     {
       "description": "",
@@ -4099,6 +4114,21 @@
       "preferred": true,
       "title": "Groups Settings API",
       "version": "v1"
+    },
+    {
+      "description": "The Google Health API lets you view and manage health and fitness metrics and measurement data.",
+      "discoveryRestUrl": "https://health.googleapis.com/$discovery/rest?version=v4beta",
+      "documentationLink": "https://developers.google.com/health",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "id": "health:v4beta",
+      "kind": "discovery#directoryItem",
+      "name": "health",
+      "preferred": false,
+      "title": "Google Health API",
+      "version": "v4beta"
     },
     {
       "description": "The Google Health API lets you view and manage health and fitness metrics and measurement data.",
