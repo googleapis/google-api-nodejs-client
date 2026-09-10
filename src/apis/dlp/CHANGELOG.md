@@ -1,5 +1,16 @@
 # Changelog
 
+## [23.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/dlp-v22.0.0...dlp-v23.0.0) (2026-09-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* **dlp:** This release has breaking changes.
+
+### Features
+
+* **dlp:** update the API ([ccdae08](https://github.com/googleapis/google-api-nodejs-client/commit/ccdae08796c538374c91da37e96856f725ebd113))
+
 ## [22.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/dlp-v21.1.1...dlp-v22.0.0) (2026-09-09)
 
 

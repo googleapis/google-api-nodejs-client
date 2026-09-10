@@ -1,5 +1,12 @@
 # Changelog
 
+## [8.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/apigateway-v8.0.0...apigateway-v8.1.0) (2026-09-10)
+
+
+### Features
+
+* **apigateway:** update the API ([c234f1a](https://github.com/googleapis/google-api-nodejs-client/commit/c234f1a58a8ef39be54c9ab432828fc8d6aecf8f))
+
 ## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/apigateway-v7.1.1...apigateway-v8.0.0) (2026-09-09)
 
 

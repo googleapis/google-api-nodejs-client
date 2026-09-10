@@ -1,5 +1,12 @@
 # Changelog
 
+## [23.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/contactcenterinsights-v23.0.0...contactcenterinsights-v23.1.0) (2026-09-10)
+
+
+### Features
+
+* **contactcenterinsights:** update the API ([f7c39dd](https://github.com/googleapis/google-api-nodejs-client/commit/f7c39ddd2ba00f69049860e74a465ce9db8edb31))
+
 ## [23.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/contactcenterinsights-v22.3.1...contactcenterinsights-v23.0.0) (2026-09-09)
 
 

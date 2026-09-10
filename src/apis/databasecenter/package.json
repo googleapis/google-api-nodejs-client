@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/databasecenter",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "databasecenter",
   "main": "build/index.js",
   "types": "build/index.d.ts",

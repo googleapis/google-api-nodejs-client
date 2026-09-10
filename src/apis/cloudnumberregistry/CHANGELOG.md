@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudnumberregistry-v3.0.0...cloudnumberregistry-v3.1.0) (2026-09-10)
+
+
+### Features
+
+* **cloudnumberregistry:** update the API ([6a1d3b5](https://github.com/googleapis/google-api-nodejs-client/commit/6a1d3b52629787ce94465c71eb1402ffb8f486a2))
+
 ## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudnumberregistry-v2.2.1...cloudnumberregistry-v3.0.0) (2026-09-09)
 
 

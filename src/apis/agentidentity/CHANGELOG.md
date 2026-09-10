@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/agentidentity-v2.0.0...agentidentity-v2.0.1) (2026-09-10)
+
+
+### Bug Fixes
+
+* **agentidentity:** update the API ([fb170ee](https://github.com/googleapis/google-api-nodejs-client/commit/fb170ee439d081c50cf837130b0b18583b8801cf))
+
 ## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/agentidentity-v1.2.1...agentidentity-v2.0.0) (2026-09-09)
 
 

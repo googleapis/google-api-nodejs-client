@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/threatintelligence-v5.0.0...threatintelligence-v5.1.0) (2026-09-10)
+
+
+### Features
+
+* **threatintelligence:** update the API ([4a1d721](https://github.com/googleapis/google-api-nodejs-client/commit/4a1d72125fb306280e44009519f5763742fc8ef1))
+
 ## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/threatintelligence-v4.3.1...threatintelligence-v5.0.0) (2026-09-09)
 
 

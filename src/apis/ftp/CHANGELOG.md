@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/ftp-v2.0.0...ftp-v2.0.1) (2026-09-10)
+
+
+### Bug Fixes
+
+* **ftp:** update the API ([708a95a](https://github.com/googleapis/google-api-nodejs-client/commit/708a95a988fb83a124fcffcd95dee8aa21ae1d70))
+
 ## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/ftp-v1.1.1...ftp-v2.0.0) (2026-09-09)
 
 

@@ -1,5 +1,16 @@
 # Changelog
 
+## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/datamanager-v6.0.0...datamanager-v7.0.0) (2026-09-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* **datamanager:** This release has breaking changes.
+
+### Features
+
+* **datamanager:** update the API ([3307ceb](https://github.com/googleapis/google-api-nodejs-client/commit/3307cebb84d968d969a040d64fb7494bfbdec4dd))
+
 ## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/datamanager-v5.1.1...datamanager-v6.0.0) (2026-09-09)
 
 

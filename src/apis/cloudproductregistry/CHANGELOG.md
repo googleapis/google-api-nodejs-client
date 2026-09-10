@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/cloudproductregistry-v2.0.0...cloudproductregistry-v2.0.1) (2026-09-10)
+
+
+### Bug Fixes
+
+* **cloudproductregistry:** update the API ([d0d0d7a](https://github.com/googleapis/google-api-nodejs-client/commit/d0d0d7a45e236da59923ac425ea1166c8281f819))
+
 ## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudproductregistry-v1.1.1...cloudproductregistry-v2.0.0) (2026-09-09)
 
 

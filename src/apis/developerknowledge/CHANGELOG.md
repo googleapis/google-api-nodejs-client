@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/developerknowledge-v4.0.0...developerknowledge-v4.0.1) (2026-09-10)
+
+
+### Bug Fixes
+
+* **developerknowledge:** update the API ([dbda367](https://github.com/googleapis/google-api-nodejs-client/commit/dbda3674bbbfcf0990d3ed4c3a2e6e8088c27264))
+
 ## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/developerknowledge-v3.3.1...developerknowledge-v4.0.0) (2026-09-09)
 
 

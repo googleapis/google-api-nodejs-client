@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/curationpartners-v2.0.0...curationpartners-v2.0.1) (2026-09-10)
+
+
+### Bug Fixes
+
+* **curationpartners:** update the API ([76ac61f](https://github.com/googleapis/google-api-nodejs-client/commit/76ac61f5a64f5b758a33e5ccbf9c536f2aa8520b))
+
 ## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/curationpartners-v1.0.0...curationpartners-v2.0.0) (2026-09-10)
 
 
