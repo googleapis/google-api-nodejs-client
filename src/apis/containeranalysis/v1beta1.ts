@@ -2768,6 +2768,10 @@ export namespace containeranalysis_v1beta1 {
      * Status of the scan.
      */
     scanStatus?: string | null;
+    /**
+     * Telemetry metrics tracking token usage for the AI scan.
+     */
+    tokenUsage?: Schema$TokenUsage;
   }
   /**
    * Result of Malicious Content Static scan.
@@ -3705,6 +3709,31 @@ export namespace containeranalysis_v1beta1 {
      * Start of time span.
      */
     startTime?: string | null;
+  }
+  /**
+   * Token usage associated with an AI scan.
+   */
+  export interface Schema$TokenUsage {
+    /**
+     * Cache matched tokens for implicit cache.
+     */
+    cacheCount?: string | null;
+    /**
+     * Tokens in the model response.
+     */
+    candidateCount?: string | null;
+    /**
+     * Tokens in the user request.
+     */
+    promptCount?: string | null;
+    /**
+     * Tokens in the thinking output.
+     */
+    thinkingCount?: string | null;
+    /**
+     * Prompt tokens for using tools.
+     */
+    toolUsePromptCount?: string | null;
   }
   /**
    * Version contains structured information about the version of a package.
