@@ -1,5 +1,30 @@
 # Changelog
 
+## [25.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudtasks-v24.0.0...cloudtasks-v25.0.0) (2026-09-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* Update apiary to minimum Node version of 22. ([#4011](https://github.com/googleapis/google-api-nodejs-client/issues/4011))
+* run the generator
+* This release has breaking changes.
+* **cloudtasks:** This release has breaking changes.
+
+### Features
+
+* **cloudtasks:** update the API ([e36e6a4](https://github.com/googleapis/google-api-nodejs-client/commit/e36e6a47ca720a28ca540915928776efc15a6d46))
+* **cloudtasks:** update the API ([51ba2a8](https://github.com/googleapis/google-api-nodejs-client/commit/51ba2a873311990ef6bb7d0d0b13a84266a4a860))
+* **cloudtasks:** update the API ([757a51a](https://github.com/googleapis/google-api-nodejs-client/commit/757a51ac61b7c68e4a36934b8f54855b12a882bc))
+* run the generator ([5f7d438](https://github.com/googleapis/google-api-nodejs-client/commit/5f7d438db1d60a1a0d6e8f8c0495f3e9f0e3c9d7))
+* run the generator ([#3955](https://github.com/googleapis/google-api-nodejs-client/issues/3955)) ([c429a9b](https://github.com/googleapis/google-api-nodejs-client/commit/c429a9b6f8272f1a651084f83ffcf4b88124c59f))
+* Update apiary to minimum Node version of 22. ([#4011](https://github.com/googleapis/google-api-nodejs-client/issues/4011)) ([ec5a6bf](https://github.com/googleapis/google-api-nodejs-client/commit/ec5a6bf892c4278bec2aa0d006cb6a63c889f116))
+
+
+### Bug Fixes
+
+* add back support for node 18 ([eccac1d](https://github.com/googleapis/google-api-nodejs-client/commit/eccac1df8b92551e617fbae0198ebfa67009a4de))
+* upgrade dependencies in generated packages to Node 22 ([de9d20d](https://github.com/googleapis/google-api-nodejs-client/commit/de9d20d36f008e68867947bd8ff65121343d8bd2))
+
 ## [24.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudtasks-v23.0.0...cloudtasks-v24.0.0) (2026-09-10)
 
 
