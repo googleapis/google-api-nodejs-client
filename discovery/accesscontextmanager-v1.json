@@ -1000,6 +1000,35 @@
         }
       }
     },
+    "folders": {
+      "methods": {
+        "lookupConfiguredServicePerimeter": {
+          "description": "Looks up the configured service perimeter for a given resource Format: ['projects/{projectNumber}', 'folders/{folderNumber}'].",
+          "flatPath": "v1/folders/{foldersId}:lookupConfiguredServicePerimeter",
+          "httpMethod": "GET",
+          "id": "accesscontextmanager.folders.lookupConfiguredServicePerimeter",
+          "parameterOrder": [
+            "resource"
+          ],
+          "parameters": {
+            "resource": {
+              "description": "Required. The Resource to resolve (e.g. \"projects/123\", \"folders/456\").",
+              "location": "path",
+              "pattern": "^folders/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1/{+resource}:lookupConfiguredServicePerimeter",
+          "response": {
+            "$ref": "LookupConfiguredServicePerimeterResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        }
+      }
+    },
     "operations": {
       "methods": {
         "cancel": {
@@ -1325,6 +1354,35 @@
         }
       }
     },
+    "projects": {
+      "methods": {
+        "lookupConfiguredServicePerimeter": {
+          "description": "Looks up the configured service perimeter for a given resource Format: ['projects/{projectNumber}', 'folders/{folderNumber}'].",
+          "flatPath": "v1/projects/{projectsId}:lookupConfiguredServicePerimeter",
+          "httpMethod": "GET",
+          "id": "accesscontextmanager.projects.lookupConfiguredServicePerimeter",
+          "parameterOrder": [
+            "resource"
+          ],
+          "parameters": {
+            "resource": {
+              "description": "Required. The Resource to resolve (e.g. \"projects/123\", \"folders/456\").",
+              "location": "path",
+              "pattern": "^projects/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1/{+resource}:lookupConfiguredServicePerimeter",
+          "response": {
+            "$ref": "LookupConfiguredServicePerimeterResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        }
+      }
+    },
     "services": {
       "methods": {
         "get": {
@@ -1381,7 +1439,7 @@
       }
     }
   },
-  "revision": "20260819",
+  "revision": "20260827",
   "rootUrl": "https://accesscontextmanager.googleapis.com/",
   "schemas": {
     "AccessContextManagerOperationMetadata": {
@@ -2033,16 +2091,8 @@
           "$ref": "Principal",
           "description": "Optional. Immutable. The principal that is subject to the access policies in this policy binding."
         },
-        "restrictedClientApplications": {
-          "deprecated": true,
-          "description": "Optional. Deprecated: Use `scoped_access_settings` instead. A list of applications that are subject to this binding's restrictions. If the list is empty, the binding restrictions will universally apply to all applications.",
-          "items": {
-            "$ref": "Application"
-          },
-          "type": "array"
-        },
         "scopedAccessSettings": {
-          "description": "Optional. A list of scoped access settings that set this binding's restrictions on a subset of applications. This field cannot be set if restricted_client_applications is set.",
+          "description": "Optional. A list of scoped access settings that set this binding's restrictions on a subset of applications.",
           "items": {
             "$ref": "ScopedAccessSettings"
           },
@@ -2334,6 +2384,29 @@
             "$ref": "SupportedService"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "LookupConfiguredServicePerimeterResponse": {
+      "description": "A configured service perimeter returned by Access Context Manager.",
+      "id": "LookupConfiguredServicePerimeterResponse",
+      "properties": {
+        "restrictedResource": {
+          "description": "The resource (e.g. \"projects/123\", \"folders/456\") that directly owns/is restricted by the enforced perimeter.",
+          "type": "string"
+        },
+        "restrictedResourceDryRun": {
+          "description": "The resource (e.g. \"projects/123\", \"folders/456\") that directly owns/is restricted by the dry-run perimeter.",
+          "type": "string"
+        },
+        "servicePerimeter": {
+          "description": "Fully qualified name of the configured enforced perimeter. Format: `accessPolicies/{policy_id}/servicePerimeters/{perimeter_name}` This field is empty if no enforced perimeter applies.",
+          "type": "string"
+        },
+        "servicePerimeterDryRun": {
+          "description": "Fully qualified name of the configured dry-run perimeter. Format: `accessPolicies/{policy_id}/servicePerimeters/{perimeter_name}` This field is empty if no dry-run perimeter configuration applies.",
+          "type": "string"
         }
       },
       "type": "object"
